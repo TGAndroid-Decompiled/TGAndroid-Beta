@@ -1,59 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class m01 extends cw0 {
-    public final org.telegram.ui.l20 f26271w0;
-    public final org.telegram.ui.ActionBar.f6 f26272x0;
-    public final k01 f26273y0;
+import android.animation.ValueAnimator;
+public final class m01 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f26031a;
+    public final n01 f26032b;
 
-    public m01(Context context, org.telegram.ui.ActionBar.f6 f6Var, k01 k01Var) {
-        super(context, null);
-        this.f26272x0 = f6Var;
-        this.f26273y0 = k01Var;
-        this.f26271w0 = new org.telegram.ui.l20();
+    public m01(n01 n01Var, int i10) {
+        this.f26031a = i10;
+        this.f26032b = n01Var;
     }
 
     @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final boolean Q() {
-        return false;
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f26273y0) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.save();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, AndroidUtilities.dp(45.0f), getHeight());
-            this.f26271w0.b(canvas, rectF, 0, 1.0f);
-            canvas.restore();
-            canvas.restore();
-            return drawChild;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f26031a) {
+            case 0:
+                n01 n01Var = this.f26032b;
+                n01Var.getClass();
+                n01Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n01Var.invalidate();
+                return;
+            case 1:
+                n01 n01Var2 = this.f26032b;
+                n01Var2.getClass();
+                n01Var2.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n01Var2.invalidate();
+                return;
+            case 2:
+                n01 n01Var3 = this.f26032b;
+                n01Var3.getClass();
+                n01Var3.f26284f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n01Var3.invalidate();
+                return;
+            case 3:
+                n01 n01Var4 = this.f26032b;
+                n01Var4.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n01Var4.f26287s = floatValue;
+                n01Var4.f26288w = (int) ((n01Var4.h * floatValue) + 0);
+                n01Var4.invalidate();
+                return;
+            default:
+                n01 n01Var5 = this.f26032b;
+                n01Var5.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n01Var5.v = floatValue2;
+                int i10 = n01Var5.f26286r;
+                n01Var5.f26289x = i10 + ((int) Math.ceil((n01Var5.f26285n - i10) * floatValue2));
+                n01Var5.invalidate();
+                return;
         }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
-        return this.f26272x0;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824);
-        k01 k01Var = this.f26273y0;
-        k01Var.measure(makeMeasureSpec, i11);
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), k01Var.getMeasuredHeight() + AndroidUtilities.dp(24.0f));
     }
 }

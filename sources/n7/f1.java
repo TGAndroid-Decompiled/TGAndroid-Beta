@@ -1,5 +1,10 @@
 package n7;
 public final class f1 {
-    public static final f1 f15354b = new f1();
-    public final f f15355a = new f(new Object());
+    public final byte f15116a;
+    public final byte f15117b;
+
+    public f1(int i10) {
+        this.f15116a = (byte) (i10 & 224);
+        this.f15117b = (byte) (i10 & 31);
+    }
 }

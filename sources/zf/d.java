@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.zip.CRC32;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.mb1;
+import org.telegram.ui.kb1;
 public abstract class d {
     public static void a(TLRPC.GroupCall groupCall, TLRPC.GroupCall groupCall2) {
         if ((groupCall2 instanceof TLRPC.TL_groupCall) && (groupCall instanceof TLRPC.TL_groupCall)) {
@@ -39,13 +39,13 @@ public abstract class d {
                         Charset charset = StandardCharsets.UTF_8;
                         crc32.update(l4.getBytes(charset));
                         crc32.update(pollAnswer.option);
-                        crc32.update(Long.toString(poll.f18369id).getBytes(charset));
+                        crc32.update(Long.toString(poll.f18135id).getBytes(charset));
                         pollAnswer.shuffle_hash = crc32.getValue();
                     }
                 }
                 ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(poll.answers);
                 poll.shuffled_answers = arrayList;
-                List.EL.sort(arrayList, new mb1(24));
+                List.EL.sort(arrayList, new kb1(24));
             }
         }
     }

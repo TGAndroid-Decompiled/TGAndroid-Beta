@@ -1,38 +1,38 @@
 package org.telegram.ui.Components;
 
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public abstract class r51 {
-    public String[] f27826a = new String[0];
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class r51 extends LinkMovementMethod {
+    public final UndoView f27555a;
 
-    public boolean a() {
-        return false;
+    public r51(UndoView undoView) {
+        this.f27555a = undoView;
     }
 
-    public String[] b() {
-        return this.f27826a;
-    }
-
-    public boolean c() {
-        return false;
-    }
-
-    public boolean d(k51 k51Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(k51 k51Var, j jVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f27826a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+    @Override
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                if (motionEvent.getAction() == 1) {
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        this.f27555a.b(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
+                }
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            }
+            return false;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
     }
 }

@@ -1,73 +1,77 @@
 package hg;
 
-import android.content.Context;
+import android.graphics.Rect;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.xl0;
-public final class g0 extends xl0 {
-    public final Context f10298c;
-    public final ArrayList d = new ArrayList();
-    public String e;
-    public final i0 f10299f;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.ek;
+import org.telegram.ui.Components.gl;
+import org.telegram.ui.Components.in;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ni;
+import org.telegram.ui.Components.nj;
+import org.telegram.ui.Components.pz;
+import org.telegram.ui.Components.yk;
+public final class g0 extends pz {
+    public final int U;
+    public final ni V;
 
-    public g0(i0 i0Var, Context context) {
-        this.f10299f = i0Var;
-        this.f10298c = context;
+    public g0(ni niVar, int i10, ll0 ll0Var, int i11) {
+        super(i10, 0, ll0Var);
+        this.U = i11;
+        this.V = niVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42998f == 0) {
-            return true;
+    public int[] t(View view, Rect rect) {
+        switch (this.U) {
+            case 4:
+                int C = this.f42773n - C();
+                int top = (view.getTop() + rect.top) - view.getScrollY();
+                int min = Math.min(0, top);
+                int max = Math.max(0, (rect.height() + top) - C);
+                if (min == 0) {
+                    min = Math.min(top, max);
+                }
+                return new int[]{0, min};
+            default:
+                return super.t(view, rect);
         }
-        return false;
     }
 
     @Override
-    public final int h() {
-        return this.d.size() + 2;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        switch (this.U) {
+            case 0:
+                f0 f0Var = new f0(this, recyclerView.getContext());
+                f0Var.f42821a = i10;
+                w0(f0Var);
+                return;
+            case 1:
+                nj njVar = new nj(this, recyclerView.getContext());
+                njVar.f42821a = i10;
+                w0(njVar);
+                return;
+            case 2:
+                ek ekVar = new ek(this, recyclerView.getContext());
+                ekVar.f42821a = i10;
+                w0(ekVar);
+                return;
+            case 3:
+                yk ykVar = new yk(this, recyclerView.getContext());
+                ykVar.f42821a = i10;
+                w0(ykVar);
+                return;
+            default:
+                in inVar = new in(this, recyclerView.getContext());
+                inVar.f42821a = i10;
+                w0(inVar);
+                return;
         }
-        if (i10 == h() - 1) {
-            return 2;
-        }
-        return 0;
     }
 
-    @Override
-    public final void l() {
-        super.l();
-        this.f10299f.L();
-    }
-
-    @Override
-    public final void v(s4.c1 r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: hg.g0.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View x1Var;
-        Context context = this.f10298c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                x1Var = new View(context);
-                x1Var.setTag(-33024);
-            } else {
-                x1Var = new View(context);
-                x1Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
-                x1Var.setTag(-33024);
-            }
-        } else {
-            x1Var = new x1(context, this.f10299f.f26785a, false);
-        }
-        return new s4.c1(x1Var);
+    public g0(gl glVar, ai.w0 w0Var) {
+        super(0, 0, w0Var);
+        this.U = 3;
+        this.V = glVar;
     }
 }

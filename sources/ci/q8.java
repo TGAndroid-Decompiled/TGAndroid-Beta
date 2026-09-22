@@ -2,29 +2,29 @@ package ci;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class q8 implements Runnable {
-    public final int f5358a;
-    public final x8 f5359b;
+    public final int f5356a;
+    public final x8 f5357b;
 
     public q8(x8 x8Var, int i10) {
-        this.f5358a = i10;
-        this.f5359b = x8Var;
+        this.f5356a = i10;
+        this.f5357b = x8Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f5358a) {
+        switch (this.f5356a) {
             case 0:
-                x8.Q(this.f5359b);
+                x8.Q(this.f5357b);
                 return;
             case 1:
-                this.f5359b.X();
+                this.f5357b.X();
                 return;
             default:
-                x8 x8Var = this.f5359b;
-                org.telegram.ui.Cells.k3 k3Var = x8Var.Y;
+                x8 x8Var = this.f5357b;
+                org.telegram.ui.Cells.i3 i3Var = x8Var.Y;
                 if (x8Var.isShowing()) {
-                    k3Var.f20542b.requestFocus();
-                    AndroidUtilities.showKeyboard(k3Var.f20542b);
+                    i3Var.f20190b.requestFocus();
+                    AndroidUtilities.showKeyboard(i3Var.f20190b);
                     return;
                 }
                 return;

@@ -1,30 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
-import org.telegram.tgnet.TLRPC;
-public final class m51 extends g.p {
-    public final u51 f26333c;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.tgnet.TLObject;
+public class m51 extends URLSpan {
+    public final boolean f26081a;
+    public final o01 f26082b;
+    public TLObject f26083c;
+    public String d;
 
-    public m51(u51 u51Var) {
-        this.f26333c = u51Var;
+    public m51(String str) {
+        this(str, (o01) null);
     }
 
     @Override
-    public final int i(int i10) {
-        u51 u51Var = this.f26333c;
-        s4.h0 adapter = u51Var.f28671n.getAdapter();
-        t51 t51Var = u51Var.f28673s;
-        if (adapter == t51Var) {
-            if ((t51Var.d.get(i10) instanceof Integer) || i10 >= t51Var.f28403w) {
-                return t51Var.v;
-            }
-            return 1;
+    public void onClick(View view) {
+        String url = getURL();
+        if (url.startsWith("@")) {
+            nf.f.p(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
+            return;
         }
-        gg.g2 g2Var = u51Var.v;
-        SparseArray sparseArray = g2Var.f9749s;
-        if (i10 != g2Var.f9752y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
-            return 1;
+        nf.f.s(view.getContext(), url);
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int i10 = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        o01 o01Var = this.f26082b;
+        if (o01Var != null) {
+            o01Var.a(textPaint);
         }
-        return g2Var.e.a();
+        if (i10 == color && !this.f26081a) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+    }
+
+    public m51(String str, int i10) {
+        this(str, (o01) null);
+        this.f26081a = true;
+    }
+
+    public m51(String str, o01 o01Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f26081a = false;
+        this.f26082b = o01Var;
     }
 }

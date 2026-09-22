@@ -4,14 +4,14 @@ import org.telegram.messenger.R;
 public final class d5 {
     public static final d5 d;
     public static final d5 e;
-    public static final d5 f32949f;
+    public static final d5 f32933f;
     public static final d5 h;
-    public static final d5 f32950n;
-    public static final d5 f32951r;
-    public static final d5[] f32952s;
-    public final String f32953a;
-    public final int f32954b;
-    public final int f32955c;
+    public static final d5 f32934n;
+    public static final d5 f32935r;
+    public static final d5[] f32936s;
+    public final String f32937a;
+    public final int f32938b;
+    public final int f32939c;
 
     static {
         d5 d5Var = new d5(0, R.string.OpenProfile, R.drawable.msg_openprofile, "OPEN_PROFILE", "OpenProfile");
@@ -21,20 +21,20 @@ public final class d5 {
         int i10 = R.string.OpenGroup2;
         int i11 = R.drawable.msg_discussion;
         d5 d5Var3 = new d5(2, i10, i11, "OPEN_GROUP", "OpenGroup2");
-        f32949f = d5Var3;
+        f32933f = d5Var3;
         d5 d5Var4 = new d5(3, R.string.SendMessage, i11, "SEND_MESSAGE", "SendMessage");
         h = d5Var4;
         d5 d5Var5 = new d5(4, R.string.Mention, R.drawable.msg_mention, "MENTION", "Mention");
-        f32950n = d5Var5;
+        f32934n = d5Var5;
         d5 d5Var6 = new d5(5, R.string.AvatarPreviewSearchMessages, R.drawable.msg_search, "SEARCH_MESSAGES", "AvatarPreviewSearchMessages");
-        f32951r = d5Var6;
-        f32952s = new d5[]{d5Var, d5Var2, d5Var3, d5Var4, d5Var5, d5Var6};
+        f32935r = d5Var6;
+        f32936s = new d5[]{d5Var, d5Var2, d5Var3, d5Var4, d5Var5, d5Var6};
     }
 
     public d5(int i10, int i11, int i12, String str, String str2) {
-        this.f32953a = str2;
-        this.f32954b = i11;
-        this.f32955c = i12;
+        this.f32937a = str2;
+        this.f32938b = i11;
+        this.f32939c = i12;
     }
 
     public static d5 valueOf(String str) {
@@ -42,6 +42,6 @@ public final class d5 {
     }
 
     public static d5[] values() {
-        return (d5[]) f32952s.clone();
+        return (d5[]) f32936s.clone();
     }
 }

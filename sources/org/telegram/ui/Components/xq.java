@@ -16,72 +16,72 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 public final class xq implements Runnable {
-    public final String[] f30386a;
-    public final org.telegram.messenger.jb f30387b;
-    public final org.telegram.ui.Cells.k3 f30388c;
+    public final String[] f30028a;
+    public final org.telegram.messenger.jb f30029b;
+    public final org.telegram.ui.Cells.i3 f30030c;
     public final int[] d;
     public final ci.d e;
-    public final boolean f30389f;
+    public final boolean f30031f;
     public final int h;
-    public final TLRPC.User f30390n;
-    public final int[] f30391r;
-    public final boolean[] f30392s;
+    public final TLRPC.User f30032n;
+    public final int[] f30033r;
+    public final boolean[] f30034s;
     public final Utilities.Callback v;
-    public final org.telegram.ui.ActionBar.f3 f30393w;
-    public final org.telegram.ui.ActionBar.f6 f30394x;
-    public final Context f30395y;
+    public final org.telegram.ui.ActionBar.f3 f30035w;
+    public final org.telegram.ui.ActionBar.e6 f30036x;
+    public final Context f30037y;
 
-    public xq(String[] strArr, org.telegram.messenger.jb jbVar, org.telegram.ui.Cells.k3 k3Var, int[] iArr, ci.d dVar, boolean z10, int i10, TLRPC.User user, int[] iArr2, boolean[] zArr, Utilities.Callback callback, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.f6 f6Var, Context context) {
-        this.f30386a = strArr;
-        this.f30387b = jbVar;
-        this.f30388c = k3Var;
+    public xq(String[] strArr, org.telegram.messenger.jb jbVar, org.telegram.ui.Cells.i3 i3Var, int[] iArr, ci.d dVar, boolean z10, int i10, TLRPC.User user, int[] iArr2, boolean[] zArr, Utilities.Callback callback, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.e6 e6Var, Context context) {
+        this.f30028a = strArr;
+        this.f30029b = jbVar;
+        this.f30030c = i3Var;
         this.d = iArr;
         this.e = dVar;
-        this.f30389f = z10;
+        this.f30031f = z10;
         this.h = i10;
-        this.f30390n = user;
-        this.f30391r = iArr2;
-        this.f30392s = zArr;
+        this.f30032n = user;
+        this.f30033r = iArr2;
+        this.f30034s = zArr;
         this.v = callback;
-        this.f30393w = f3Var;
-        this.f30394x = f6Var;
-        this.f30395y = context;
+        this.f30035w = f3Var;
+        this.f30036x = e6Var;
+        this.f30037y = context;
     }
 
     @Override
     public final void run() {
-        String[] strArr = this.f30386a;
+        String[] strArr = this.f30028a;
         if (strArr[0] == null) {
-            this.f30387b.run();
+            this.f30029b.run();
             return;
         }
-        org.telegram.ui.Cells.k3 k3Var = this.f30388c;
-        String trim = k3Var.f20542b.getText().toString().trim();
+        org.telegram.ui.Cells.i3 i3Var = this.f30030c;
+        String trim = i3Var.f20190b.getText().toString().trim();
         if (TextUtils.isEmpty(trim)) {
             int[] iArr = this.d;
             int i10 = -iArr[0];
             iArr[0] = i10;
-            AndroidUtilities.shakeViewSpring(k3Var, i10);
+            AndroidUtilities.shakeViewSpring(i3Var, i10);
             return;
         }
         final ci.d dVar = this.e;
         dVar.setLoading(true);
         TL_bots.createBot createbot = new TL_bots.createBot();
-        createbot.via_deeplink = this.f30389f;
+        createbot.via_deeplink = this.f30031f;
         createbot.username = strArr[0];
         createbot.name = trim;
         final int i11 = this.h;
         MessagesController messagesController = MessagesController.getInstance(i11);
-        final TLRPC.User user = this.f30390n;
+        final TLRPC.User user = this.f30032n;
         createbot.manager_id = messagesController.getInputUser(user);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
         ?? obj = new Object();
-        final int[] iArr2 = this.f30391r;
-        final boolean[] zArr = this.f30392s;
+        final int[] iArr2 = this.f30033r;
+        final boolean[] zArr = this.f30034s;
         final Utilities.Callback callback = this.v;
-        final org.telegram.ui.ActionBar.f3 f3Var = this.f30393w;
-        final org.telegram.ui.ActionBar.f6 f6Var = this.f30394x;
-        final Context context = this.f30395y;
+        final org.telegram.ui.ActionBar.f3 f3Var = this.f30035w;
+        final org.telegram.ui.ActionBar.e6 e6Var = this.f30036x;
+        final Context context = this.f30037y;
         iArr2[0] = connectionsManager.sendRequestTyped(createbot, obj, new Utilities.Callback2() {
             @Override
             public final void run(Object obj2, Object obj3) {
@@ -103,11 +103,11 @@ public final class xq implements Runnable {
                     f3Var2.dismiss();
                 } else if (tL_error != null) {
                     boolean equalsIgnoreCase = "BOT_CREATE_LIMIT_EXCEEDED".equalsIgnoreCase(tL_error.text);
-                    org.telegram.ui.ActionBar.f6 f6Var2 = f6Var;
+                    org.telegram.ui.ActionBar.e6 e6Var2 = e6Var;
                     if (equalsIgnoreCase) {
                         MessagesController messagesController2 = MessagesController.getInstance(i12);
                         boolean isPremium = UserConfig.getInstance(i12).isPremium();
-                        xc xcVar = new xc(f3Var2.topBulletinContainer, f6Var2);
+                        vc vcVar = new vc(f3Var2.topBulletinContainer, e6Var2);
                         int i13 = R.raw.error;
                         String string = LocaleController.getString(R.string.CreateManagedBotLimitTitle);
                         if (isPremium) {
@@ -115,22 +115,22 @@ public final class xq implements Runnable {
                         } else {
                             formatString = LocaleController.formatString(R.string.CreateManagedBotLimitTextPremium, Integer.valueOf(messagesController2.config.botsCreateLimitPremium.get()), Integer.valueOf(messagesController2.config.botsCreateLimitDefault.get()));
                         }
-                        SpannableStringBuilder replaceSingleLink = AndroidUtilities.replaceSingleLink(formatString, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gi, f6Var2), new xp(f3Var2, 2));
-                        tc tcVar = new tc(23, f3Var2, context);
+                        SpannableStringBuilder replaceSingleLink = AndroidUtilities.replaceSingleLink(formatString, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Gi, e6Var2), new xp(f3Var2, 2));
+                        oh ohVar = new oh(17, f3Var2, context);
                         if (replaceSingleLink == null) {
                             replaceSingleLink = new SpannableStringBuilder(replaceSingleLink);
                         }
                         int charSequenceIndexOf = AndroidUtilities.charSequenceIndexOf(replaceSingleLink, "@BotFather");
                         if (charSequenceIndexOf >= 0) {
-                            replaceSingleLink.setSpan(new org.telegram.ui.Cells.i(f6Var2, tcVar, 6), charSequenceIndexOf, charSequenceIndexOf + 10, 33);
+                            replaceSingleLink.setSpan(new org.telegram.ui.Cells.i(e6Var2, ohVar, 6), charSequenceIndexOf, charSequenceIndexOf + 10, 33);
                         }
-                        pc M = xcVar.M(string, replaceSingleLink, i13);
-                        M.f27311j = 8000;
+                        oc M = vcVar.M(string, replaceSingleLink, i13);
+                        M.f26751j = 8000;
                         M.j();
                     } else {
                         String str = tL_error.text;
                         if (str != null && str.startsWith("FLOOD_WAIT_")) {
-                            new xc(f3Var2.topBulletinContainer, f6Var2).M(LocaleController.getString(R.string.CreateManagedBotLimitTitle), LocaleController.formatString(R.string.CreateManagedBotLimitTextTime, LocaleController.formatDuration(Integer.parseInt(tL_error.text.substring(11)))), R.raw.error).j();
+                            new vc(f3Var2.topBulletinContainer, e6Var2).M(LocaleController.getString(R.string.CreateManagedBotLimitTitle), LocaleController.formatString(R.string.CreateManagedBotLimitTextTime, LocaleController.formatDuration(Integer.parseInt(tL_error.text.substring(11)))), R.raw.error).j();
                         } else if ("MANAGER_PERMISSION_MISSING".equalsIgnoreCase(tL_error.text)) {
                             TLRPC.User user3 = user;
                             if (!TextUtils.isEmpty(UserObject.getPublicUsername(user3))) {
@@ -138,9 +138,9 @@ public final class xq implements Runnable {
                             } else {
                                 userName = UserObject.getUserName(user3);
                             }
-                            new xc(f3Var2.topBulletinContainer, f6Var2).Q(R.raw.error, 36, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gi, f6Var2))).j();
+                            new vc(f3Var2.topBulletinContainer, e6Var2).Q(R.raw.error, 36, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Gi, e6Var2))).j();
                         } else {
-                            org.telegram.ui.Cells.c1.s(f3Var2.topBulletinContainer, f6Var2, tL_error, false);
+                            org.telegram.ui.Cells.q3.r(f3Var2.topBulletinContainer, e6Var2, tL_error, false);
                         }
                     }
                     AndroidUtilities.hideKeyboard(f3Var2.getCurrentFocus());

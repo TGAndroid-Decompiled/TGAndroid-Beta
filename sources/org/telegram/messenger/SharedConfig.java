@@ -214,24 +214,24 @@ public class SharedConfig {
         public long availableCheckTime;
         public boolean checking;
         public long ping;
-        public oi.b settings;
+        public ni.b settings;
 
-        public ProxyInfo(oi.b bVar) {
+        public ProxyInfo(ni.b bVar) {
             this.settings = bVar;
         }
 
         public static ProxyInfo fromSerializedData(int i10, InputSerializedData inputSerializedData) {
             long j3;
             long j10;
-            oi.a a2 = oi.b.a();
+            ni.a a2 = ni.b.a();
             boolean z10 = false;
             String readString = inputSerializedData.readString(false);
             String str = "";
             if (readString == null) {
                 readString = "";
             }
-            a2.f15746b = readString;
-            a2.f15747c = inputSerializedData.readInt32(false);
+            a2.f15238b = readString;
+            a2.f15239c = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -246,7 +246,7 @@ public class SharedConfig {
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f15748f = str;
+            a2.f15240f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j3 = inputSerializedData.readInt64(false);
@@ -256,16 +256,16 @@ public class SharedConfig {
                 j10 = 0;
             }
             if (i10 >= 3) {
-                int e = oi.b.e(inputSerializedData.readInt32(false));
+                int e = ni.b.e(inputSerializedData.readInt32(false));
                 if (e == 0) {
                     e = 1;
                 }
-                a2.f15745a = e;
+                a2.f15237a = e;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f15745a = i11;
+                a2.f15237a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.a());
             proxyInfo.availableCheckTime = j10;
@@ -278,14 +278,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f15752b);
-            outputSerializedData.writeInt32(this.settings.f15753c);
+            outputSerializedData.writeString(this.settings.f15244b);
+            outputSerializedData.writeInt32(this.settings.f15245c);
             outputSerializedData.writeString(this.settings.d);
             outputSerializedData.writeString(this.settings.e);
-            outputSerializedData.writeString(this.settings.f15754f);
+            outputSerializedData.writeString(this.settings.f15246f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f15751a);
+            int c10 = m1.j.c(this.settings.f15243a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -911,10 +911,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new v1(21));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f18669a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f18435a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18669a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
             b2Var.setCanceledOnTouchOutside(false);
             b2Var.show();
         }
@@ -952,7 +952,7 @@ public class SharedConfig {
     public static void loadProxyList() {
         if (!proxyListLoaded) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-            oi.b c10 = oi.b.c(sharedPreferences);
+            ni.b c10 = ni.b.c(sharedPreferences);
             proxyListLoaded = true;
             proxyList.clear();
             currentProxy = null;
@@ -1050,17 +1050,17 @@ public class SharedConfig {
             i12 = (i11 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i11 == 8 && i10 <= 23)) ? 1 : 2;
         }
         if (BuildVars.LOGS_ENABLED) {
-            StringBuilder l4 = hg.k0.l("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
-            hg.k0.t(l4, ceil, ", memoryClass = ", memoryClass, ", android version ");
-            l4.append(i10);
-            l4.append(", manufacture ");
-            l4.append(Build.MANUFACTURER);
-            l4.append(", screenRefreshRate=");
-            l4.append(AndroidUtilities.screenRefreshRate);
-            l4.append(", screenMaxRefreshRate=");
-            l4.append(AndroidUtilities.screenMaxRefreshRate);
-            l4.append(")");
-            FileLog.d(l4.toString());
+            StringBuilder m10 = hg.c.m("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
+            hg.c.v(m10, ceil, ", memoryClass = ", memoryClass, ", android version ");
+            m10.append(i10);
+            m10.append(", manufacture ");
+            m10.append(Build.MANUFACTURER);
+            m10.append(", screenRefreshRate=");
+            m10.append(AndroidUtilities.screenRefreshRate);
+            m10.append(", screenMaxRefreshRate=");
+            m10.append(AndroidUtilities.screenMaxRefreshRate);
+            m10.append(")");
+            FileLog.d(m10.toString());
         }
         return i12;
     }

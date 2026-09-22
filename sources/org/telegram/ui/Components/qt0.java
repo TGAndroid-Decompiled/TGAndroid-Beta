@@ -1,21 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class qt0 extends fv0 {
-    public final lv0 h;
-
-    public qt0(lv0 lv0Var, Context context) {
-        super(lv0Var, context);
-        this.h = lv0Var;
-    }
+import org.telegram.messenger.AndroidUtilities;
+public class qt0 extends ga implements ai.s9 {
+    public int f27441d3;
+    public int f27442e3;
 
     @Override
-    public final void l() {
-        super.l();
-        lv0 lv0Var = this.h;
-        eu0 W = lv0Var.W(0);
-        if (W != null && W.f24043r.getVisibility() == 0) {
-            lv0Var.I.l();
-        }
+    public final void a(int[] iArr) {
+        iArr[0] = (getPaddingTop() - AndroidUtilities.dp(2.0f)) - this.f27441d3;
+        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f27442e3;
     }
 }

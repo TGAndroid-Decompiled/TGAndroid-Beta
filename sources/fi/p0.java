@@ -1,41 +1,41 @@
 package fi;
 
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.zn;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.bo;
 public final class p0 implements Runnable {
-    public final int f9162a = 0;
-    public final zn f9163b;
-    public final boolean f9164c;
+    public final int f9159a = 0;
+    public final bo f9160b;
+    public final boolean f9161c;
     public final int d;
 
-    public p0(int i10, zn znVar, boolean z10) {
+    public p0(int i10, bo boVar, boolean z10) {
         this.d = i10;
-        this.f9163b = znVar;
-        this.f9164c = z10;
+        this.f9160b = boVar;
+        this.f9161c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f9162a) {
+        switch (this.f9159a) {
             case 0:
                 int i10 = this.d;
-                zn znVar = this.f9163b;
+                bo boVar = this.f9160b;
                 if (i10 != 2) {
-                    znVar.U9();
-                    znVar.Yb();
+                    boVar.U9();
+                    boVar.Yb();
                 }
-                u0.f(xc.a0(znVar), i10, this.f9164c);
+                u0.f(vc.a0(boVar), i10, this.f9161c);
                 return;
             default:
-                boolean z10 = this.f9164c;
-                this.f9163b.yc(this.d, z10);
+                boolean z10 = this.f9161c;
+                this.f9160b.yc(this.d, z10);
                 return;
         }
     }
 
-    public p0(zn znVar, boolean z10, int i10) {
-        this.f9163b = znVar;
-        this.f9164c = z10;
+    public p0(bo boVar, boolean z10, int i10) {
+        this.f9160b = boVar;
+        this.f9161c = z10;
         this.d = i10;
     }
 }

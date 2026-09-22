@@ -5,34 +5,29 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gk implements qt {
-    public final zn f33943a;
+    public final bo f33877a;
 
-    public gk(zn znVar) {
-        this.f33943a = znVar;
+    public gk(bo boVar) {
+        this.f33877a = boVar;
     }
 
     @Override
-    public final MessageObject A() {
-        return null;
-    }
-
-    @Override
-    public final boolean B() {
+    public final boolean A() {
         return false;
     }
 
     @Override
-    public final boolean D() {
+    public final boolean C() {
         return false;
     }
 
     @Override
-    public final boolean E(TLRPC.Document document) {
+    public final boolean D(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final String G(boolean z10) {
+    public final String F(boolean z10) {
         return null;
     }
 
@@ -49,15 +44,15 @@ public final class gk implements qt {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            zn znVar = this.f33943a;
-            if (znVar.getParentActivity() != null) {
+            bo boVar = this.f33877a;
+            if (boVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f18363id = inputStickerSet.f18363id;
-                org.telegram.ui.Components.iy0 iy0Var = new org.telegram.ui.Components.iy0(znVar.getParentActivity(), znVar, tL_inputStickerSetID, null, znVar.Y, znVar.f40324ea);
-                iy0Var.setCalcMandatoryInsets(znVar.x9());
-                iy0Var.f25207i0 = z10;
-                znVar.showDialog(iy0Var);
+                tL_inputStickerSetID.f18129id = inputStickerSet.f18129id;
+                org.telegram.ui.Components.vx0 vx0Var = new org.telegram.ui.Components.vx0(boVar.getParentActivity(), boVar, tL_inputStickerSetID, null, boVar.Y, boVar.f32293ea);
+                vx0Var.setCalcMandatoryInsets(boVar.x9());
+                vx0Var.f29462i0 = z10;
+                boVar.showDialog(vx0Var);
             }
         }
     }
@@ -79,17 +74,17 @@ public final class gk implements qt {
 
     @Override
     public final long a() {
-        return this.f33943a.T5;
+        return this.f33877a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f33943a.D6();
+        return this.f33877a.D6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f33943a.R3 == 1) {
+        if (this.f33877a.R3 == 1) {
             return true;
         }
         return false;
@@ -121,7 +116,7 @@ public final class gk implements qt {
     }
 
     @Override
-    public final org.telegram.ui.Components.y70 i(ci.n6 n6Var) {
+    public final org.telegram.ui.Components.n70 i(ci.n6 n6Var) {
         return null;
     }
 
@@ -137,7 +132,7 @@ public final class gk implements qt {
 
     @Override
     public final void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f33943a.Y.d(document, str, obj, null, true, z10, i10, i11);
+        this.f33877a.Y.d(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override
@@ -146,16 +141,21 @@ public final class gk implements qt {
     }
 
     @Override
-    public final boolean y() {
+    public final boolean x() {
         return true;
     }
 
     @Override
-    public final void C(TLRPC.Document document) {
+    public final MessageObject z() {
+        return null;
     }
 
     @Override
-    public final void F(TLRPC.Document document) {
+    public final void B(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void E(TLRPC.Document document) {
     }
 
     @Override
@@ -199,23 +199,23 @@ public final class gk implements qt {
     }
 
     @Override
-    public final void v(TLRPC.Document document) {
+    public final void u(TLRPC.Document document) {
     }
 
     @Override
-    public final void z(String str) {
+    public final void y(String str) {
     }
 
     @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    public final void v(TLRPC.StickerSet stickerSet, String str) {
     }
 
     @Override
-    public final void x(TLObject tLObject, Object obj) {
+    public final void w(TLObject tLObject, Object obj) {
     }
 
     @Override
-    public final void u(CharSequence charSequence, String str, of ofVar) {
+    public final void G(CharSequence charSequence, String str, nf nfVar) {
     }
 
     @Override

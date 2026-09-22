@@ -32,8 +32,8 @@ public final class s extends org.telegram.ui.ActionBar.m {
         }
     }
 
-    public s(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, com.google.firebase.messaging.m mVar) {
-        super(context, f6Var, mVar);
+    public s(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, com.google.firebase.messaging.m mVar) {
+        super(context, e6Var, mVar);
         this.e = kVar;
     }
 }

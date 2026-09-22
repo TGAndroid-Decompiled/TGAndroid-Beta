@@ -1,62 +1,177 @@
 package org.telegram.ui;
-public final class af0 implements Runnable {
-    public final int f32067a;
-    public final cf0 f32068b;
 
-    public af0(cf0 cf0Var, int i10) {
-        this.f32067a = i10;
-        this.f32068b = cf0Var;
+import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class af0 extends org.telegram.ui.Components.uv0 {
+    public final de0 f31779a;
+    public final TextView f31780b;
+    public final TextView f31781c;
+    public final vh.o d;
+    public final org.telegram.ui.Components.aj0 e;
+    public Bundle f31782f;
+    public String h;
+    public boolean f31783n;
+    public String f31784r;
+    public String f31785s;
+    public String v;
+    public boolean f31786w;
+    public final ye0 f31787x;
+    public final wg0 f31788y;
+
+    public af0(org.telegram.ui.wg0 r20, android.content.Context r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.af0.<init>(org.telegram.ui.wg0, android.content.Context):void");
     }
 
     @Override
-    public final void run() {
-        switch (this.f32067a) {
-            case 0:
-                cf0 cf0Var = this.f32068b;
-                org.telegram.ui.Components.nj0 nj0Var = cf0Var.e;
-                nj0Var.getAnimatedDrawable().N(0, false, false);
-                nj0Var.d();
-                fe0 fe0Var = cf0Var.f32754a;
-                if (fe0Var != null) {
-                    fe0Var.f33145f[0].requestFocus();
-                    return;
-                }
-                return;
-            case 1:
-                cf0 cf0Var2 = this.f32068b;
-                int i10 = 0;
-                cf0Var2.f32761w = false;
-                while (true) {
-                    gs[] gsVarArr = cf0Var2.f32754a.f33145f;
-                    if (i10 < gsVarArr.length) {
-                        gsVarArr[i10].i(0.0f);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 2:
-                cf0 cf0Var3 = this.f32068b;
-                cf0Var3.postDelayed(new af0(cf0Var3, 3), 150L);
-                af0 af0Var = cf0Var3.f32762x;
-                cf0Var3.removeCallbacks(af0Var);
-                cf0Var3.postDelayed(af0Var, 3000L);
-                cf0Var3.f32761w = true;
-                return;
-            default:
-                fe0 fe0Var2 = this.f32068b.f32754a;
-                int i11 = 0;
-                fe0Var2.e = false;
-                fe0Var2.f33145f[0].requestFocus();
-                while (true) {
-                    gs[] gsVarArr2 = fe0Var2.f33145f;
-                    if (i11 < gsVarArr2.length) {
-                        gsVarArr2[i11].i(0.0f);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
+    public final boolean a() {
+        return true;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean c(boolean z10) {
+        this.f31788y.k1(true, true);
+        this.f31782f = null;
+        this.f31783n = false;
+        return true;
+    }
+
+    @Override
+    public final void d() {
+        this.f31783n = false;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return LocaleController.getString("LoginPassword", R.string.LoginPassword);
+    }
+
+    @Override
+    public final void h(String str) {
+        int i10;
+        if (this.f31783n) {
+            return;
         }
+        de0 de0Var = this.f31779a;
+        de0Var.e = true;
+        for (gs gsVar : de0Var.f33081f) {
+            gsVar.j(0.0f);
+        }
+        String code = de0Var.getCode();
+        if (code.length() == 0) {
+            o(false);
+            return;
+        }
+        this.f31783n = true;
+        wg0 wg0Var = this.f31788y;
+        wg0Var.n1(0, true);
+        TLRPC.TL_auth_checkRecoveryPassword tL_auth_checkRecoveryPassword = new TLRPC.TL_auth_checkRecoveryPassword();
+        tL_auth_checkRecoveryPassword.code = code;
+        i10 = ((org.telegram.ui.ActionBar.n2) wg0Var).currentAccount;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_auth_checkRecoveryPassword, new bc0(2, this, code), 10);
+    }
+
+    @Override
+    public final void j() {
+        AndroidUtilities.runOnUIThread(new ye0(this, 0), wg0.f39196t0);
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("recoveryview_params");
+        this.f31782f = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+        String string = bundle.getString("recoveryview_code");
+        if (string != null) {
+            this.f31779a.setText(string);
+        }
+    }
+
+    @Override
+    public final void l(Bundle bundle) {
+        String code = this.f31779a.getCode();
+        if (code != null && code.length() != 0) {
+            bundle.putString("recoveryview_code", code);
+        }
+        Bundle bundle2 = this.f31782f;
+        if (bundle2 != null) {
+            bundle.putBundle("recoveryview_params", bundle2);
+        }
+    }
+
+    @Override
+    public final void m(Bundle bundle, boolean z10) {
+        if (bundle == null) {
+            return;
+        }
+        de0 de0Var = this.f31779a;
+        de0Var.setText("");
+        this.f31782f = bundle;
+        this.h = bundle.getString("password");
+        this.f31784r = this.f31782f.getString("requestPhone");
+        this.f31785s = this.f31782f.getString("phoneHash");
+        this.v = this.f31782f.getString("phoneCode");
+        String string = this.f31782f.getString("email_unconfirmed_pattern");
+        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
+        int indexOf = string.indexOf(42);
+        int lastIndexOf = string.lastIndexOf(42);
+        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+            ?? obj = new Object();
+            obj.f26642a |= 256;
+            obj.f26643b = indexOf;
+            int i10 = lastIndexOf + 1;
+            obj.f26644c = i10;
+            valueOf.setSpan(new org.telegram.ui.Components.p01(obj, 0), indexOf, i10, 0);
+        }
+        this.d.setText(AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailNoAccess), valueOf));
+        wg0.T0(this.f31788y, de0Var);
+        de0Var.requestFocus();
+    }
+
+    @Override
+    public final void n() {
+        this.f31780b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
+        this.f31781c.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.D6, false));
+        this.d.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.q6, false));
+        this.f31779a.invalidate();
+    }
+
+    public final void o(boolean z10) {
+        de0 de0Var = this.f31779a;
+        if (this.f31788y.getParentActivity() == null) {
+            return;
+        }
+        try {
+            de0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        if (z10) {
+            for (gs gsVar : de0Var.f33081f) {
+                gsVar.setText("");
+            }
+        }
+        for (gs gsVar2 : de0Var.f33081f) {
+            gsVar2.i(1.0f);
+        }
+        de0Var.f33081f[0].requestFocus();
+        AndroidUtilities.shakeViewSpring(de0Var, new ye0(this, 2));
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        removeCallbacks(this.f31787x);
     }
 }

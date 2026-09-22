@@ -1,10 +1,10 @@
 package db;
 public final class l extends i {
-    public final fb.n f7609a = new fb.n(false);
+    public final fb.m f7607a = new fb.m(false);
 
     public final boolean equals(Object obj) {
         if (obj != this) {
-            if (!(obj instanceof l) || !((l) obj).f7609a.equals(this.f7609a)) {
+            if (!(obj instanceof l) || !((l) obj).f7607a.equals(this.f7607a)) {
                 return false;
             }
             return true;
@@ -13,13 +13,13 @@ public final class l extends i {
     }
 
     public final int hashCode() {
-        return this.f7609a.hashCode();
+        return this.f7607a.hashCode();
     }
 
     public final void o(String str, i iVar) {
         if (iVar == null) {
-            iVar = k.f7608a;
+            iVar = k.f7606a;
         }
-        this.f7609a.put(str, iVar);
+        this.f7607a.put(str, iVar);
     }
 }

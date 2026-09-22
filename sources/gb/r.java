@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 public final class r extends db.u {
-    public static final p f9584c = new p(db.t.f7611a, 1);
-    public final db.g f9585a;
-    public final db.t f9586b;
+    public static final p f9580c = new p(db.t.f7609a, 1);
+    public final db.g f9581a;
+    public final db.t f9582b;
 
     public r(db.g gVar, db.t tVar) {
-        this.f9585a = gVar;
-        this.f9586b = tVar;
+        this.f9581a = gVar;
+        this.f9582b = tVar;
     }
 
     public final Serializable a(lb.a aVar, int i10) {
@@ -24,11 +24,11 @@ public final class r extends db.u {
                         aVar.t();
                         return null;
                     }
-                    throw new IllegalStateException("Unexpected token: ".concat(hg.k0.D(i10)));
+                    throw new IllegalStateException("Unexpected token: ".concat(hg.c.E(i10)));
                 }
                 return Boolean.valueOf(aVar.n());
             }
-            return this.f9586b.a(aVar);
+            return this.f9582b.a(aVar);
         }
         return aVar.v();
     }
@@ -46,7 +46,7 @@ public final class r extends db.u {
                 arrayList = null;
             } else {
                 aVar.b();
-                arrayList = new fb.n(true);
+                arrayList = new fb.m(true);
             }
         } else {
             aVar.a();
@@ -70,7 +70,7 @@ public final class r extends db.u {
                         arrayList2 = null;
                     } else {
                         aVar.b();
-                        arrayList2 = new fb.n(true);
+                        arrayList2 = new fb.m(true);
                     }
                 } else {
                     aVar.a();
@@ -114,7 +114,7 @@ public final class r extends db.u {
             return;
         }
         Class<?> cls = obj.getClass();
-        db.g gVar = this.f9585a;
+        db.g gVar = this.f9581a;
         gVar.getClass();
         db.u b10 = gVar.b(new kb.a(cls));
         if (b10 instanceof r) {

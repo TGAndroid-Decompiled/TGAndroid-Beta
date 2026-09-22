@@ -1,85 +1,55 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
+import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
-public final class um0 implements org.telegram.ui.Components.ti {
-    public final pn0 f38160a;
+public final class um0 implements Comparator {
+    public final on0 f38069a;
 
-    public um0(pn0 pn0Var) {
-        this.f38160a = pn0Var;
+    public um0(on0 on0Var) {
+        this.f38069a = on0Var;
     }
 
-    @Override
-    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        org.telegram.ui.Components.vi viVar;
-        pn0 pn0Var = this.f38160a;
-        if (pn0Var.getParentActivity() != null && (viVar = pn0Var.R0) != null) {
-            if (i10 != 8 && i10 != 7) {
-                viVar.dismissWithButtonClick(i10);
-                pn0Var.F1(i10);
-                return;
-            }
-            if (i10 != 8) {
-                viVar.dismiss(true);
-            }
-            HashMap<Object, Object> selectedPhotos = pn0Var.R0.f29108j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = pn0Var.R0.f29108j0.getSelectedPhotosOrder();
-            if (!selectedPhotos.isEmpty()) {
-                ArrayList arrayList = new ArrayList();
-                for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i13));
-                    SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                    String str = photoEntry.imagePath;
-                    if (str != null) {
-                        sendingMediaInfo.path = str;
-                    } else {
-                        sendingMediaInfo.path = photoEntry.path;
-                    }
-                    arrayList.add(sendingMediaInfo);
-                    photoEntry.reset();
-                }
-                pn0Var.G1(arrayList);
-            }
+    public final int a(TLRPC.SecureValueError secureValueError) {
+        if (secureValueError instanceof TLRPC.TL_secureValueError) {
+            return 0;
         }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
+            return 1;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
+            return 2;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
+            return 3;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
+            return 4;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
+            return 5;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
+            return 6;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
+            return 7;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
+            return on0.C0(this.f38069a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
+        }
+        return 100;
     }
 
     @Override
-    public final void L0() {
-        AndroidUtilities.hideKeyboard(this.f38160a.fragmentView.findFocus());
-    }
-
-    @Override
-    public final boolean S1() {
-        return false;
-    }
-
-    @Override
-    public final boolean f0() {
-        return false;
-    }
-
-    @Override
-    public final void y0(org.telegram.ui.Components.gh ghVar) {
-        ghVar.run();
-    }
-
-    @Override
-    public final void V0(Object obj) {
-    }
-
-    @Override
-    public final void k1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void v0() {
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public final int compare(Object obj, Object obj2) {
+        int a2 = a((TLRPC.SecureValueError) obj);
+        int a10 = a((TLRPC.SecureValueError) obj2);
+        if (a2 < a10) {
+            return -1;
+        }
+        if (a2 > a10) {
+            return 1;
+        }
+        return 0;
     }
 }

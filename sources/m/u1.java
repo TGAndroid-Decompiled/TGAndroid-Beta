@@ -3,28 +3,28 @@ package m;
 import android.view.View;
 import android.view.ViewConfiguration;
 public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChangeListener {
-    public final float f14555a;
-    public final int f14556b;
-    public final int f14557c;
+    public final float f14317a;
+    public final int f14318b;
+    public final int f14319c;
     public final View d;
     public t1 e;
-    public t1 f14558f;
+    public t1 f14320f;
     public boolean h;
-    public int f14559n;
-    public final int[] f14560r = new int[2];
+    public int f14321n;
+    public final int[] f14322r = new int[2];
 
     public u1(View view) {
         this.d = view;
         view.setLongClickable(true);
         view.addOnAttachStateChangeListener(this);
-        this.f14555a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+        this.f14317a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
         int tapTimeout = ViewConfiguration.getTapTimeout();
-        this.f14556b = tapTimeout;
-        this.f14557c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
+        this.f14318b = tapTimeout;
+        this.f14319c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
     }
 
     public final void a() {
-        t1 t1Var = this.f14558f;
+        t1 t1Var = this.f14320f;
         View view = this.d;
         if (t1Var != null) {
             view.removeCallbacks(t1Var);
@@ -35,12 +35,12 @@ public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChan
         }
     }
 
-    public abstract l.c0 b();
+    public abstract l.b0 b();
 
     public abstract boolean c();
 
     public boolean d() {
-        l.c0 b10 = b();
+        l.b0 b10 = b();
         if (b10 != null && b10.a()) {
             b10.dismiss();
             return true;
@@ -56,7 +56,7 @@ public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChan
     @Override
     public final void onViewDetachedFromWindow(View view) {
         this.h = false;
-        this.f14559n = -1;
+        this.f14321n = -1;
         t1 t1Var = this.e;
         if (t1Var != null) {
             this.d.removeCallbacks(t1Var);

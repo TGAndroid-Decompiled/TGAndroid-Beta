@@ -4,7 +4,6 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.os.SystemClock;
 import android.view.Surface;
-import hg.k0;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingDeque;
@@ -16,7 +15,7 @@ import org.webrtc.EncodedImage;
 import org.webrtc.ThreadUtils;
 import org.webrtc.VideoDecoder;
 import org.webrtc.VideoFrame;
-public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
+class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     private static final int DEQUEUE_INPUT_TIMEOUT_US = 500000;
     private static final int DEQUEUE_OUTPUT_BUFFER_TIMEOUT_US = 100000;
     private static final int MEDIA_CODEC_RELEASE_TIMEOUT_MS = 5000;
@@ -77,7 +76,7 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
             this.frameInfos = new LinkedBlockingDeque();
             return;
         }
-        throw new IllegalArgumentException(k0.h(i10, "Unsupported color format: "));
+        throw new IllegalArgumentException(hg.c.i(i10, "Unsupported color format: "));
     }
 
     private VideoFrame.Buffer copyI420Buffer(ByteBuffer byteBuffer, int i10, int i11, int i12, int i13) {
@@ -126,7 +125,7 @@ public class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 return allocateI420Buffer;
             }
         }
-        throw new AssertionError(k0.h(i10, "Stride is not divisible by two: "));
+        throw new AssertionError(hg.c.i(i10, "Stride is not divisible by two: "));
     }
 
     private VideoFrame.Buffer copyNV12ToI420Buffer(ByteBuffer byteBuffer, int i10, int i11, int i12, int i13) {

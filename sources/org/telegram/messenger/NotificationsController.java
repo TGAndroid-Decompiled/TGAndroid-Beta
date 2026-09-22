@@ -94,7 +94,7 @@ public class NotificationsController extends BaseController implements Notificat
     private long lastSoundPlay;
     private final a0.i lastWearNotifiedMessageId;
     private String launcherClassName;
-    private vh.g mediaSpoilerEffect;
+    private vh.h mediaSpoilerEffect;
     private Runnable notificationDelayRunnable;
     private PowerManager.WakeLock notificationDelayWakelock;
     private String notificationGroup;
@@ -133,7 +133,7 @@ public class NotificationsController extends BaseController implements Notificat
     public class C1NotificationHolder {
         TLRPC.Chat chat;
         long dialogId;
-        int f15841id;
+        int f15605id;
         String name;
         e0.t notification;
         boolean story;
@@ -162,7 +162,7 @@ public class NotificationsController extends BaseController implements Notificat
             this.val$isInApp = z12;
             this.val$isSilent = z13;
             this.val$chatType = i13;
-            this.f15841id = i10;
+            this.f15605id = i10;
             this.name = str;
             this.user = user;
             this.chat = chat;
@@ -174,10 +174,10 @@ public class NotificationsController extends BaseController implements Notificat
 
         public void call() {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.w("show dialog notification with id " + this.f15841id + " " + this.dialogId + " user=" + this.user + " chat=" + this.chat);
+                FileLog.w("show dialog notification with id " + this.f15605id + " " + this.dialogId + " user=" + this.user + " chat=" + this.chat);
             }
             try {
-                NotificationsController.notificationManager.d(this.f15841id, this.notification.b());
+                NotificationsController.notificationManager.d(this.f15605id, this.notification.b());
             } catch (SecurityException e) {
                 FileLog.e(e);
                 NotificationsController.this.resetNotificationSound(this.notification, this.dialogId, this.val$lastTopicId, this.val$chatName, this.val$vibrationPattern, this.val$ledColor, this.val$sound, this.val$importance, this.val$isDefault, this.val$isInApp, this.val$isSilent, this.val$chatType);
@@ -271,7 +271,7 @@ public class NotificationsController extends BaseController implements Notificat
         this.notifyCheck = false;
         this.lastOnlineFromOtherDevice = 0;
         this.lastBadgeCount = -1;
-        this.mediaSpoilerEffect = new vh.g();
+        this.mediaSpoilerEffect = new vh.h();
         this.spoilerChars = new char[]{10252, 10338, 10385, 10280, 10277, 10286, 10321};
         this.checkStoryPushesRunnable = new bh(this, 7);
         this.notificationId = this.currentAccount + 1;
@@ -497,7 +497,7 @@ public class NotificationsController extends BaseController implements Notificat
         String string = sharedPreferences.getString(str3, "NoSound");
         if (j3 != 0) {
             TLRPC.TL_notificationSoundRingtone tL_notificationSoundRingtone = new TLRPC.TL_notificationSoundRingtone();
-            tL_notificationSoundRingtone.f18468id = j3;
+            tL_notificationSoundRingtone.f18234id = j3;
             return tL_notificationSoundRingtone;
         } else if (string != null) {
             if (string.equalsIgnoreCase("NoSound")) {
@@ -573,17 +573,17 @@ public class NotificationsController extends BaseController implements Notificat
                     j11 = j12 < 0 ? -j12 : 0L;
                 }
                 SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
-                boolean u10 = l0.u("content_preview_", j10, notificationsSettings, true);
+                boolean v = y0.v("content_preview_", j10, notificationsSettings, true);
                 if (messageObject.isFcmMessage()) {
                     int i10 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
                     if (i10 == 0 && j12 != 0) {
-                        if (!u10 || !notificationsSettings.getBoolean("EnablePreviewAll", true)) {
+                        if (!v || !notificationsSettings.getBoolean("EnablePreviewAll", true)) {
                             if (zArr2 != null) {
                                 zArr2[0] = false;
                             }
                             return LocaleController.formatString(R.string.NotificationMessageNoText, messageObject.localName);
                         }
-                    } else if (i10 != 0 && (!u10 || ((!messageObject.localChannel && !notificationsSettings.getBoolean("EnablePreviewGroup", true)) || (messageObject.localChannel && !notificationsSettings.getBoolean("EnablePreviewChannel", true))))) {
+                    } else if (i10 != 0 && (!v || ((!messageObject.localChannel && !notificationsSettings.getBoolean("EnablePreviewGroup", true)) || (messageObject.localChannel && !notificationsSettings.getBoolean("EnablePreviewChannel", true))))) {
                         if (zArr2 != null) {
                             zArr2[0] = false;
                         }
@@ -644,7 +644,7 @@ public class NotificationsController extends BaseController implements Notificat
                 if (i11 != 0 || j12 == 0) {
                     if (i11 != 0) {
                         boolean z12 = ChatObject.isChannel(chat) && !chat.megagroup;
-                        if (!u10 || ((z12 || !notificationsSettings.getBoolean("EnablePreviewGroup", true)) && !(z12 && notificationsSettings.getBoolean("EnablePreviewChannel", true)))) {
+                        if (!v || ((z12 || !notificationsSettings.getBoolean("EnablePreviewGroup", true)) && !(z12 && notificationsSettings.getBoolean("EnablePreviewChannel", true)))) {
                             if (zArr2 != null) {
                                 zArr2[0] = false;
                             }
@@ -667,7 +667,7 @@ public class NotificationsController extends BaseController implements Notificat
                                         if (user2 == null) {
                                             return null;
                                         }
-                                        return j12 == user2.f18490id ? chat.megagroup ? LocaleController.formatString(R.string.NotificationGroupAddSelfMega, string, getTitle(chat)) : LocaleController.formatString(R.string.NotificationGroupAddSelf, string, getTitle(chat)) : LocaleController.formatString(R.string.NotificationGroupAddMember, string, getTitle(chat), UserObject.getUserName(user2));
+                                        return j12 == user2.f18256id ? chat.megagroup ? LocaleController.formatString(R.string.NotificationGroupAddSelfMega, string, getTitle(chat)) : LocaleController.formatString(R.string.NotificationGroupAddSelf, string, getTitle(chat)) : LocaleController.formatString(R.string.NotificationGroupAddMember, string, getTitle(chat), UserObject.getUserName(user2));
                                     }
                                     return LocaleController.formatString(R.string.ChannelAddedByNotification, string, getTitle(chat));
                                 }
@@ -1096,7 +1096,7 @@ public class NotificationsController extends BaseController implements Notificat
                             }
                         }
                     }
-                } else if (!u10 || !notificationsSettings.getBoolean("EnablePreviewAll", true)) {
+                } else if (!v || !notificationsSettings.getBoolean("EnablePreviewAll", true)) {
                     if (zArr2 != null) {
                         zArr2[0] = false;
                     }
@@ -1304,8 +1304,8 @@ public class NotificationsController extends BaseController implements Notificat
                                 int size = arrayList.size();
                                 for (int i12 = 0; i12 < size; i12++) {
                                     TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList.get(i12);
-                                    if (dialog != null && DialogObject.isChatDialog(dialog.f18347id)) {
-                                        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-dialog.f18347id));
+                                    if (dialog != null && DialogObject.isChatDialog(dialog.f18113id)) {
+                                        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-dialog.f18113id));
                                         if (!ChatObject.isNotInChat(chat)) {
                                             if (ChatObject.isCommunity(chat)) {
                                             }
@@ -1326,8 +1326,8 @@ public class NotificationsController extends BaseController implements Notificat
                             int size2 = MessagesController.getInstance(i11).allDialogs.size();
                             for (int i13 = 0; i13 < size2; i13++) {
                                 TLRPC.Dialog dialog2 = MessagesController.getInstance(i11).allDialogs.get(i13);
-                                if (DialogObject.isChatDialog(dialog2.f18347id)) {
-                                    TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(-dialog2.f18347id));
+                                if (DialogObject.isChatDialog(dialog2.f18113id)) {
+                                    TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(-dialog2.f18113id));
                                     if (!ChatObject.isNotInChat(chat2)) {
                                         if (ChatObject.isCommunity(chat2)) {
                                         }
@@ -1811,7 +1811,7 @@ public class NotificationsController extends BaseController implements Notificat
                             j12 = j11;
                         }
                         SparseArray sparseArray = (SparseArray) notificationsController.pushMessagesDict.f(j11);
-                        if (sparseArray != null && sparseArray.indexOfKey(message3.f18364id) >= 0) {
+                        if (sparseArray != null && sparseArray.indexOfKey(message3.f18130id) >= 0) {
                             sharedPreferences2 = notificationsSettings;
                             i15 = i16;
                             i16 = i15 + 1;
@@ -1866,7 +1866,7 @@ public class NotificationsController extends BaseController implements Notificat
                                         sparseArray = new SparseArray();
                                         notificationsController.pushMessagesDict.k(sparseArray, j14);
                                     }
-                                    sparseArray.put(message2.f18364id, messageObject2);
+                                    sparseArray.put(message2.f18130id, messageObject2);
                                     notificationsController.appendMessage(messageObject2);
                                     if (dialogId != j17) {
                                         Integer num = (Integer) notificationsController.pushDialogsOverrideMention.f(dialogId);
@@ -2582,7 +2582,7 @@ public class NotificationsController extends BaseController implements Notificat
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
                     try {
-                        paint2.setShader(new LinearGradient(size, size2, size, size2 + f11, new int[]{org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19331p8[org.telegram.ui.Components.g9.e(user.f18490id)], false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19349q8[org.telegram.ui.Components.g9.e(user.f18490id)], false)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+                        paint2.setShader(new LinearGradient(size, size2, size, size2 + f11, new int[]{org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19054p8[org.telegram.ui.Components.f9.e(user.f18256id)], false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19072q8[org.telegram.ui.Components.f9.e(user.f18256id)], false)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                         canvas.drawCircle(f13, f14, f12, paint2);
                         if (textPaint == null) {
                             try {
@@ -2608,7 +2608,7 @@ public class NotificationsController extends BaseController implements Notificat
                             }
                         }
                         StringBuilder sb2 = new StringBuilder();
-                        org.telegram.ui.Components.g9.a(user.first_name, user.last_name, null, sb2);
+                        org.telegram.ui.Components.f9.a(user.first_name, user.last_name, null, sb2);
                         String sb3 = sb2.toString();
                         try {
                             textPaint.getTextBounds(sb3, 0, sb3.length(), rect);
@@ -2637,12 +2637,12 @@ public class NotificationsController extends BaseController implements Notificat
 
     public static e0.o0 loadRoundAvatar(long j3, File file, e0.o0 o0Var) {
         if (j3 == 489001) {
-            o0Var.f7822b = IconCompat.d(ApplicationLoader.applicationContext, R.drawable.ic_launcher_dr);
+            o0Var.f7820b = IconCompat.d(ApplicationLoader.applicationContext, R.drawable.ic_launcher_dr);
             return o0Var;
         }
         if (file != null && Build.VERSION.SDK_INT >= 28) {
             try {
-                o0Var.f7822b = IconCompat.c(ImageDecoder.decodeBitmap(ImageDecoder.createSource(file), new Object()));
+                o0Var.f7820b = IconCompat.c(ImageDecoder.decodeBitmap(ImageDecoder.createSource(file), new Object()));
             } catch (Throwable unused) {
             }
         }
@@ -2762,12 +2762,12 @@ public class NotificationsController extends BaseController implements Notificat
                 }
                 getNotificationsController().lambda$deleteNotificationChannelGlobal$43(i12, -1);
             } else {
-                edit.putString(l0.h(j3, j10, new StringBuilder("sound_")), string);
-                edit.putString(l0.h(j3, j10, new StringBuilder("sound_path_")), uri3);
+                edit.putString(y0.i(j3, j10, new StringBuilder("sound_")), string);
+                edit.putString(y0.i(j3, j10, new StringBuilder("sound_path_")), uri3);
                 lambda$deleteNotificationChannel$42(j3, j10, -1);
             }
             edit.commit();
-            tVar.f7854y = validateChannelId(j3, j10, str, jArr, i10, uri2, i11, z10, z11, z12, i12);
+            tVar.f7852y = validateChannelId(j3, j10, str, jArr, i10, uri2, i11, z10, z11, z12, i12);
             notificationManager.d(this.notificationId, tVar.b());
         }
     }
@@ -2821,9 +2821,9 @@ public class NotificationsController extends BaseController implements Notificat
 
     private void setNotificationChannel(Notification notification, e0.t tVar, boolean z10) {
         if (z10) {
-            tVar.f7854y = OTHER_NOTIFICATIONS_CHANNEL;
+            tVar.f7852y = OTHER_NOTIFICATIONS_CHANNEL;
         } else {
-            tVar.f7854y = notification.getChannelId();
+            tVar.f7852y = notification.getChannelId();
         }
     }
 
@@ -3173,9 +3173,9 @@ public class NotificationsController extends BaseController implements Notificat
         }
         SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
         if (isGlobalNotificationsEnabled && !z11) {
-            edit.remove(l0.h(j3, j10, new StringBuilder("notify2_")));
+            edit.remove(y0.i(j3, j10, new StringBuilder("notify2_")));
         } else {
-            edit.putInt(l0.h(j3, j10, new StringBuilder("notify2_")), 0);
+            edit.putInt(y0.i(j3, j10, new StringBuilder("notify2_")), 0);
         }
         if (i10 == 0) {
             getMessagesStorage().setDialogFlags(j3, 0L);
@@ -3384,7 +3384,7 @@ public class NotificationsController extends BaseController implements Notificat
     }
 
     public void removeDeletedMessagesFromNotifications(a0.i iVar, boolean z10) {
-        notificationsQueue.postRunnable(new uj(this, iVar, z10, new ArrayList(0), 14));
+        notificationsQueue.postRunnable(new vj(this, iVar, z10, new ArrayList(0), 14));
     }
 
     public void removeNotificationsForDialog(long j3) {
@@ -3403,9 +3403,9 @@ public class NotificationsController extends BaseController implements Notificat
         TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(UserConfig.selectedAccount).dialogs_dict.f(j3);
         if (i10 == 4) {
             if (isGlobalNotificationsEnabled(j3, false, false)) {
-                edit.remove(l0.h(j3, j10, new StringBuilder("notify2_")));
+                edit.remove(y0.i(j3, j10, new StringBuilder("notify2_")));
             } else {
-                edit.putInt(l0.h(j3, j10, new StringBuilder("notify2_")), 0);
+                edit.putInt(y0.i(j3, j10, new StringBuilder("notify2_")), 0);
             }
             getMessagesStorage().setDialogFlags(j3, 0L);
             if (dialog != null) {
@@ -3424,10 +3424,10 @@ public class NotificationsController extends BaseController implements Notificat
             }
             long j11 = 1;
             if (i10 == 3) {
-                edit.putInt(l0.h(j3, j10, new StringBuilder("notify2_")), 2);
+                edit.putInt(y0.i(j3, j10, new StringBuilder("notify2_")), 2);
             } else {
-                edit.putInt(l0.h(j3, j10, new StringBuilder("notify2_")), 3);
-                edit.putInt(l0.h(j3, j10, new StringBuilder("notifyuntil_")), currentTime);
+                edit.putInt(y0.i(j3, j10, new StringBuilder("notify2_")), 3);
+                edit.putInt(y0.i(j3, j10, new StringBuilder("notifyuntil_")), currentTime);
                 j11 = 1 | (currentTime << 32);
             }
             getInstance(UserConfig.selectedAccount).removeNotificationsForDialog(j3);
@@ -3550,30 +3550,30 @@ public class NotificationsController extends BaseController implements Notificat
             tL_inputPeerNotifySettings3.flags |= 64;
             tL_inputPeerNotifySettings3.stories_muted = !notificationsSettings.getBoolean("stories_" + sharedPrefKey, true);
         }
-        int i10 = notificationsSettings.getInt(l0.h(j3, j10, new StringBuilder("notify2_")), -1);
+        int i10 = notificationsSettings.getInt(y0.i(j3, j10, new StringBuilder("notify2_")), -1);
         if (i10 != -1) {
             TLRPC.TL_inputPeerNotifySettings tL_inputPeerNotifySettings4 = updatenotifysettings.settings;
             tL_inputPeerNotifySettings4.flags |= 4;
             if (i10 == 3) {
-                tL_inputPeerNotifySettings4.mute_until = notificationsSettings.getInt(l0.h(j3, j10, new StringBuilder("notifyuntil_")), 0);
+                tL_inputPeerNotifySettings4.mute_until = notificationsSettings.getInt(y0.i(j3, j10, new StringBuilder("notifyuntil_")), 0);
             } else {
                 tL_inputPeerNotifySettings4.mute_until = i10 == 2 ? Integer.MAX_VALUE : 0;
             }
         }
-        long j11 = notificationsSettings.getLong(l0.h(j3, j10, new StringBuilder("sound_document_id_")), 0L);
-        String string = notificationsSettings.getString(l0.h(j3, j10, new StringBuilder("sound_path_")), null);
+        long j11 = notificationsSettings.getLong(y0.i(j3, j10, new StringBuilder("sound_document_id_")), 0L);
+        String string = notificationsSettings.getString(y0.i(j3, j10, new StringBuilder("sound_path_")), null);
         TLRPC.TL_inputPeerNotifySettings tL_inputPeerNotifySettings5 = updatenotifysettings.settings;
         tL_inputPeerNotifySettings5.flags |= 8;
         if (j11 != 0) {
             TLRPC.TL_notificationSoundRingtone tL_notificationSoundRingtone = new TLRPC.TL_notificationSoundRingtone();
-            tL_notificationSoundRingtone.f18468id = j11;
+            tL_notificationSoundRingtone.f18234id = j11;
             updatenotifysettings.settings.sound = tL_notificationSoundRingtone;
         } else if (string != null) {
             if (string.equalsIgnoreCase("NoSound")) {
                 updatenotifysettings.settings.sound = new TLRPC.TL_notificationSoundNone();
             } else {
                 TLRPC.TL_notificationSoundLocal tL_notificationSoundLocal = new TLRPC.TL_notificationSoundLocal();
-                tL_notificationSoundLocal.title = notificationsSettings.getString(l0.h(j3, j10, new StringBuilder("sound_")), null);
+                tL_notificationSoundLocal.title = notificationsSettings.getString(y0.i(j3, j10, new StringBuilder("sound_")), null);
                 tL_notificationSoundLocal.data = string;
                 updatenotifysettings.settings.sound = tL_notificationSoundLocal;
             }

@@ -27,8 +27,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f9341a;
-    public static volatile ArrayList f9342b;
+    public static volatile e f9338a;
+    public static volatile ArrayList f9339b;
 
     public static void a(Context context, ArrayList arrayList) {
         List p5 = p(arrayList);
@@ -55,8 +55,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        throw a4.a.k(it);
     }
 
     public static boolean b(Context context, c cVar) {
@@ -64,7 +63,7 @@ public abstract class f {
         IconCompat c10;
         IconCompat iconCompat = cVar.h;
         if (iconCompat != null) {
-            int i10 = iconCompat.f2167a;
+            int i10 = iconCompat.f2165a;
             if (i10 != 6 && i10 != 4) {
                 return true;
             }
@@ -74,7 +73,7 @@ public abstract class f {
             }
             if (i10 == 6) {
                 c10 = new IconCompat(5);
-                c10.f2168b = decodeStream;
+                c10.f2166b = decodeStream;
             } else {
                 c10 = IconCompat.c(decodeStream);
             }
@@ -148,7 +147,7 @@ public abstract class f {
     public static List i(Context context) {
         Bundle bundle;
         String string;
-        if (f9342b == null) {
+        if (f9339b == null) {
             ArrayList arrayList = new ArrayList();
             PackageManager packageManager = context.getPackageManager();
             Intent intent = new Intent("androidx.core.content.pm.SHORTCUT_LISTENER");
@@ -167,26 +166,26 @@ public abstract class f {
                     }
                 }
             }
-            if (f9342b == null) {
-                f9342b = arrayList;
+            if (f9339b == null) {
+                f9339b = arrayList;
             }
         }
-        return f9342b;
+        return f9339b;
     }
 
     public static e j(Context context) {
-        if (f9341a == null) {
+        if (f9338a == null) {
             if (Build.VERSION.SDK_INT >= 23) {
                 try {
-                    f9341a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                    f9338a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
                 } catch (Exception unused) {
                 }
             }
-            if (f9341a == null) {
-                f9341a = new Object();
+            if (f9338a == null) {
+                f9338a = new Object();
             }
         }
-        return f9341a;
+        return f9338a;
     }
 
     public static List k(Context context) {
@@ -243,9 +242,9 @@ public abstract class f {
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f9339m;
+                        int i13 = cVar2.f9336m;
                         if (i13 > i11) {
-                            str2 = cVar2.f9331b;
+                            str2 = cVar2.f9328b;
                             i11 = i13;
                         }
                     }
@@ -278,10 +277,10 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f9331b);
+                q(context, cVar.f9328b);
                 throw th2;
             }
-            q(context, cVar.f9331b);
+            q(context, cVar.f9328b);
         }
     }
 
@@ -294,8 +293,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        throw a4.a.k(it);
     }
 
     public static void o(Context context, ArrayList arrayList) {
@@ -307,8 +305,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        throw a4.a.k(it);
     }
 
     public static List p(ArrayList arrayList) {
@@ -404,7 +401,6 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        it.next().getClass();
-        throw new ClassCastException();
+        throw a4.a.k(it);
     }
 }

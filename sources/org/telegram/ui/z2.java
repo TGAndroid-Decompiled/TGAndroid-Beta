@@ -9,68 +9,68 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class z2 implements Runnable {
-    public final int f40089a;
-    public final h4 f40090b;
+    public final int f40020a;
+    public final h4 f40021b;
 
     public z2(h4 h4Var, int i10) {
-        this.f40089a = i10;
-        this.f40090b = h4Var;
+        this.f40020a = i10;
+        this.f40021b = h4Var;
     }
 
     @Override
     public final void run() {
         ArticleViewer$WindowView articleViewer$WindowView;
-        org.telegram.ui.Cells.r9 r9Var;
-        switch (this.f40089a) {
+        org.telegram.ui.Cells.q9 q9Var;
+        switch (this.f40020a) {
             case 0:
-                h4 h4Var = this.f40090b;
-                if (h4Var.J0 && (articleViewer$WindowView = h4Var.f34116f0) != null) {
+                h4 h4Var = this.f40021b;
+                if (h4Var.J0 && (articleViewer$WindowView = h4Var.f34076f0) != null) {
                     h4Var.J0 = false;
-                    if (h4Var.f37981b != null) {
+                    if (h4Var.f37826b != null) {
                         try {
                             articleViewer$WindowView.performHapticFeedback(0, 2);
                         } catch (Exception unused) {
                         }
-                        h4Var.Z(((org.telegram.ui.Components.a11) h4Var.f37981b.f27022i).f22518b);
-                        h4Var.f37981b = null;
+                        h4Var.Z(((org.telegram.ui.Components.k01) h4Var.f37826b.f23247i).f25498b);
+                        h4Var.f37826b = null;
                         h4Var.d = null;
-                        View view = h4Var.f37983f;
+                        View view = h4Var.f37828f;
                         if (view != null) {
                             view.invalidate();
                             return;
                         }
                         return;
                     }
-                    View view2 = h4Var.f37983f;
+                    View view2 = h4Var.f37828f;
                     if (view2 != null && h4Var.O0.g0(view2)) {
-                        if (h4Var.f37983f.getTag() != null && h4Var.f37983f.getTag() == "bottomSheet" && (r9Var = h4Var.P0) != null) {
-                            r9Var.m0();
+                        if (h4Var.f37828f.getTag() != null && h4Var.f37828f.getTag() == "bottomSheet" && (q9Var = h4Var.P0) != null) {
+                            q9Var.m0();
                         } else {
                             h4Var.O0.m0();
                         }
                         if (h4Var.O0.y()) {
                             try {
-                                h4Var.f34116f0.performHapticFeedback(0, 2);
+                                h4Var.f34076f0.performHapticFeedback(0, 2);
                                 return;
                             } catch (Exception unused2) {
                                 return;
                             }
                         }
                         return;
-                    } else if (h4Var.d != null && h4Var.f37983f != null) {
+                    } else if (h4Var.d != null && h4Var.f37828f != null) {
                         try {
-                            h4Var.f34116f0.performHapticFeedback(0, 2);
+                            h4Var.f34076f0.performHapticFeedback(0, 2);
                         } catch (Exception unused3) {
                         }
                         int[] iArr = new int[2];
-                        h4Var.f37983f.getLocationInWindow(iArr);
+                        h4Var.f37828f.getLocationInWindow(iArr);
                         int dp = (iArr[1] + h4Var.e) - AndroidUtilities.dp(54.0f);
                         if (dp < 0) {
                             dp = 0;
                         }
-                        h4Var.f37983f.invalidate();
+                        h4Var.f37828f.invalidate();
                         h4Var.h = true;
-                        View view3 = h4Var.f37983f;
+                        View view3 = h4Var.f37828f;
                         org.telegram.ui.ActionBar.n1 n1Var = h4Var.H;
                         if (n1Var != null && n1Var.isShowing()) {
                             h4Var.H.d(true);
@@ -87,17 +87,17 @@ public final class z2 implements Runnable {
                                 h4Var.A0.setShownFromBottom(false);
                                 TextView textView = new TextView(h4Var.L);
                                 h4Var.B0 = textView;
-                                textView.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19199i6, false), 2, -1));
+                                textView.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.f0(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18923i6, false), 2, -1));
                                 h4Var.B0.setGravity(16);
                                 h4Var.B0.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
                                 h4Var.B0.setTextSize(1, 15.0f);
                                 h4Var.B0.setTypeface(AndroidUtilities.bold());
                                 h4Var.B0.setText(LocaleController.getString(R.string.Copy).toUpperCase());
                                 h4Var.B0.setOnClickListener(new s(h4Var, 5));
-                                h4Var.A0.addView(h4Var.B0, w7.y5.c(48.0f, -2));
+                                h4Var.A0.addView(h4Var.B0, w7.x5.c(48.0f, -2));
                                 org.telegram.ui.ActionBar.n1 n1Var2 = new org.telegram.ui.ActionBar.n1(h4Var.A0, -2, -2);
                                 h4Var.H = n1Var2;
-                                n1Var2.f19655b = false;
+                                n1Var2.f19416b = false;
                                 n1Var2.setAnimationStyle(R.style.PopupContextAnimation);
                                 h4Var.H.setOutsideTouchable(true);
                                 h4Var.H.setClippingEnabled(true);
@@ -106,18 +106,18 @@ public final class z2 implements Runnable {
                                 h4Var.H.getContentView().setFocusableInTouchMode(true);
                                 h4Var.H.setOnDismissListener(new e0(h4Var, 0));
                             }
-                            h4Var.B0.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.E8, false));
+                            h4Var.B0.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.E8, false));
                             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = h4Var.A0;
                             if (actionBarPopupWindow$ActionBarPopupWindowLayout2 != null) {
-                                actionBarPopupWindow$ActionBarPopupWindowLayout2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G8, false));
+                                actionBarPopupWindow$ActionBarPopupWindowLayout2.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G8, false));
                             }
                             h4Var.A0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
                             h4Var.H.setFocusable(true);
                             h4Var.H.showAtLocation(view3, 48, 0, dp);
                             h4Var.H.h();
                         }
-                        h4Var.f34130u0[0].f35305b.setLayoutFrozen(true);
-                        h4Var.f34130u0[0].f35305b.setLayoutFrozen(false);
+                        h4Var.f34090u0[0].f35307b.setLayoutFrozen(true);
+                        h4Var.f34090u0[0].f35307b.setLayoutFrozen(false);
                         return;
                     } else {
                         return;
@@ -125,12 +125,12 @@ public final class z2 implements Runnable {
                 }
                 return;
             default:
-                h4 h4Var2 = this.f40090b;
+                h4 h4Var2 = this.f40021b;
                 if (h4Var2.K0 == null) {
                     h4Var2.K0 = new z2(h4Var2, 0);
                 }
                 h4Var2.K0.getClass();
-                ArticleViewer$WindowView articleViewer$WindowView2 = h4Var2.f34116f0;
+                ArticleViewer$WindowView articleViewer$WindowView2 = h4Var2.f34076f0;
                 if (articleViewer$WindowView2 != null) {
                     articleViewer$WindowView2.postDelayed(h4Var2.K0, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                     return;

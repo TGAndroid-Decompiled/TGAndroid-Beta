@@ -1,27 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.LaunchActivity;
-public final class s6 extends mb {
-    public s6(LaunchActivity launchActivity, org.telegram.ui.nb0 nb0Var) {
-        super(launchActivity, null);
-        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
-        TextView textView = new TextView(getContext());
-        addView(qVar, w7.y5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
-        textView.setGravity(8388611);
-        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Hi));
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(Typeface.SANS_SERIF);
-        addView(textView, w7.y5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(nb0Var.f35983b));
-        qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
-        qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
-        qVar.setForeground(nb0Var.f35984c);
-        org.telegram.messenger.rk.q(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(nb0Var.d)}, textView);
+import android.view.View;
+public final class s6 implements View.OnClickListener {
+    public final int f27781a;
+    public final Runnable f27782b;
+
+    public s6(int i10, Runnable runnable) {
+        this.f27781a = i10;
+        this.f27782b = runnable;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        switch (this.f27781a) {
+            case 0:
+                this.f27782b.run();
+                return;
+            case 1:
+                Runnable runnable = this.f27782b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                this.f27782b.run();
+                return;
+        }
     }
 }

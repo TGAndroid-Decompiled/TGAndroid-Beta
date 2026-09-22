@@ -27,36 +27,36 @@ public abstract class fa extends ScrollView {
     public float I;
     public int J;
     public boolean K;
-    public final h2 f4668a;
-    public final int f4669b;
-    public final ea f4670c;
+    public final h2 f4666a;
+    public final int f4667b;
+    public final ea f4668c;
     public final ArrayList d;
     public m30 e;
-    public final p9 f4671f;
+    public final p9 f4669f;
     public boolean h;
-    public Utilities.Callback f4672n;
-    public final org.telegram.ui.Components.d6 f4673r;
-    public final LinearGradient f4674s;
+    public Utilities.Callback f4670n;
+    public final org.telegram.ui.Components.c6 f4671r;
+    public final LinearGradient f4672s;
     public final Paint v;
-    public final Matrix f4675w;
-    public final org.telegram.ui.Components.d6 f4676x;
-    public final LinearGradient f4677y;
+    public final Matrix f4673w;
+    public final org.telegram.ui.Components.c6 f4674x;
+    public final LinearGradient f4675y;
 
-    public fa(Context context, org.telegram.ui.ActionBar.f6 f6Var, p9 p9Var) {
+    public fa(Context context, org.telegram.ui.ActionBar.e6 e6Var, p9 p9Var) {
         super(context);
         int i10;
         this.d = new ArrayList();
         qr qrVar = qr.h;
-        this.f4673r = new org.telegram.ui.Components.d6(this, 0L, 300L, qrVar);
+        this.f4671r = new org.telegram.ui.Components.c6(this, 0L, 300L, qrVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f4674s = linearGradient;
+        this.f4672s = linearGradient;
         Paint paint = new Paint(1);
         this.v = paint;
-        this.f4675w = new Matrix();
-        this.f4676x = new org.telegram.ui.Components.d6(this, 0L, 300L, qrVar);
+        this.f4673w = new Matrix();
+        this.f4674x = new org.telegram.ui.Components.c6(this, 0L, 300L, qrVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f4677y = linearGradient2;
+        this.f4675y = linearGradient2;
         Paint paint2 = new Paint(1);
         this.E = paint2;
         this.F = new Matrix();
@@ -65,23 +65,23 @@ public abstract class fa extends ScrollView {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f4671f = p9Var;
+        this.f4669f = p9Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19109d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18834d6, false));
         ea eaVar = new ea(this, context);
-        this.f4670c = eaVar;
-        addView(eaVar, w7.y5.c(-2.0f, -1));
+        this.f4668c = eaVar;
+        addView(eaVar, w7.x5.c(-2.0f, -1));
         h2 h2Var = new h2(this, context, 1);
-        this.f4668a = h2Var;
+        this.f4666a = h2Var;
         if (Build.VERSION.SDK_INT >= 25) {
             h2Var.setRevealOnFocusHint(false);
         }
         h2Var.setTextSize(1, 16.0f);
-        h2Var.setHintColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Xh, f6Var));
-        h2Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
-        int i11 = org.telegram.ui.ActionBar.j6.Yh;
-        h2Var.setCursorColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        h2Var.setHandlesColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        h2Var.setHintColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Xh, e6Var));
+        h2Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, e6Var));
+        int i11 = org.telegram.ui.ActionBar.i6.Yh;
+        h2Var.setCursorColor(org.telegram.ui.ActionBar.i6.v0(i11, e6Var));
+        h2Var.setHandlesColor(org.telegram.ui.ActionBar.i6.v0(i11, e6Var));
         h2Var.setCursorWidth(1.5f);
         h2Var.setInputType(h2Var.getInputType() | 176);
         h2Var.setSingleLine(true);
@@ -99,7 +99,7 @@ public abstract class fa extends ScrollView {
         h2Var.setGravity(i10 | 16);
         eaVar.addView(h2Var);
         h2Var.setHintText(LocaleController.getString(R.string.Search));
-        this.f4669b = (int) h2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
+        this.f4667b = (int) h2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
         h2Var.addTextChangedListener(new ca(this));
     }
 
@@ -110,19 +110,19 @@ public abstract class fa extends ScrollView {
         canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
-        float e = this.f4673r.e(canScrollVertically(-1));
-        Matrix matrix = this.f4675w;
+        float e = this.f4671r.e(canScrollVertically(-1));
+        Matrix matrix = this.f4673w;
         matrix.reset();
         matrix.postTranslate(0.0f, scrollY2);
-        this.f4674s.setLocalMatrix(matrix);
+        this.f4672s.setLocalMatrix(matrix);
         Paint paint = this.v;
         paint.setAlpha((int) (e * 255.0f));
         canvas.drawRect(0.0f, scrollY2, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
-        float e7 = this.f4676x.e(canScrollVertically(1));
+        float e7 = this.f4674x.e(canScrollVertically(1));
         Matrix matrix2 = this.F;
         matrix2.reset();
         matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
-        this.f4677y.setLocalMatrix(matrix2);
+        this.f4675y.setLocalMatrix(matrix2);
         Paint paint2 = this.E;
         paint2.setAlpha((int) (e7 * 255.0f));
         canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), getHeight() + scrollY, paint2);
@@ -142,26 +142,26 @@ public abstract class fa extends ScrollView {
             return false;
         }
         rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top = org.telegram.messenger.l0.C(20.0f, this.H, rect.top);
-        rect.bottom = org.telegram.messenger.l0.C(50.0f, this.H, rect.bottom);
+        rect.top = org.telegram.messenger.y0.C(20.0f, this.H, rect.top);
+        rect.bottom = org.telegram.messenger.y0.C(50.0f, this.H, rect.bottom);
         return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 
     public void setContainerHeight(float f7) {
         this.I = f7;
-        ea eaVar = this.f4670c;
+        ea eaVar = this.f4668c;
         if (eaVar != null) {
             eaVar.requestLayout();
         }
     }
 
     public void setOnSearchTextChange(Utilities.Callback<String> callback) {
-        this.f4672n = callback;
+        this.f4670n = callback;
     }
 
     public void setText(CharSequence charSequence) {
         this.h = true;
-        this.f4668a.setText(charSequence);
+        this.f4666a.setText(charSequence);
         this.h = false;
     }
 }

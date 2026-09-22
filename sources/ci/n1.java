@@ -20,10 +20,10 @@ public final class n1 extends ht {
         this.R = p1Var;
     }
 
-    public static void m(Canvas canvas, org.telegram.ui.Components.p5 p5Var, o1 o1Var, float f7) {
-        if (p5Var != null) {
-            p5Var.setAlpha((int) (f7 * 255.0f));
-            p5Var.draw(canvas);
+    public static void m(Canvas canvas, org.telegram.ui.Components.o5 o5Var, o1 o1Var, float f7) {
+        if (o5Var != null) {
+            o5Var.setAlpha((int) (f7 * 255.0f));
+            o5Var.draw(canvas);
         } else if (o1Var.e != null) {
             canvas.save();
             canvas.clipRect(o1Var.e.getImageX(), o1Var.e.getImageY(), o1Var.e.getImageX2(), o1Var.e.getImageY2());
@@ -39,7 +39,7 @@ public final class n1 extends ht {
         if (this.O == null) {
             return;
         }
-        s4.m0 m0Var = this.R.f2842c0;
+        s4.m0 m0Var = this.R.f2840c0;
         boolean z11 = true;
         if ((m0Var == null || !m0Var.k()) && this.O.size() > 4 && this.Q) {
             z10 = false;
@@ -71,11 +71,11 @@ public final class n1 extends ht {
             if (i10 < arrayList.size()) {
                 o1 o1Var = (o1) arrayList.get(i10);
                 o1Var.getClass();
-                org.telegram.ui.Components.p5 p5Var = o1Var.f5110c;
-                if (p5Var != null) {
-                    p5Var.setColorFilter(this.R.f5300h3);
+                org.telegram.ui.Components.o5 o5Var = o1Var.f5108c;
+                if (o5Var != null) {
+                    o5Var.setColorFilter(this.R.f5298h3);
                 }
-                o1Var.f5112n.draw(canvas, o1Var.h[this.K]);
+                o1Var.f5110n.draw(canvas, o1Var.h[this.K]);
                 i10++;
             } else {
                 return;
@@ -85,7 +85,7 @@ public final class n1 extends ht {
 
     @Override
     public final void d(Canvas canvas, float f7) {
-        org.telegram.ui.Components.p5 p5Var;
+        org.telegram.ui.Components.o5 o5Var;
         if (this.O != null) {
             canvas.save();
             canvas.translate(-this.N, 0.0f);
@@ -96,25 +96,25 @@ public final class n1 extends ht {
                 float alpha = o1Var.getAlpha() * f7;
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(o1Var.getPaddingLeft() + ((int) o1Var.getX()), o1Var.getPaddingTop(), (o1Var.getWidth() + ((int) o1Var.getX())) - o1Var.getPaddingRight(), o1Var.getHeight() - o1Var.getPaddingBottom());
-                org.telegram.ui.Components.p5 p5Var2 = o1Var.f5110c;
-                if (p5Var2 != null) {
-                    p5Var2.setBounds(rect);
+                org.telegram.ui.Components.o5 o5Var2 = o1Var.f5108c;
+                if (o5Var2 != null) {
+                    o5Var2.setBounds(rect);
                 }
                 ImageReceiver imageReceiver = o1Var.e;
                 if (imageReceiver != null) {
                     imageReceiver.setImageCoords(rect);
                 }
-                PorterDuffColorFilter porterDuffColorFilter = this.R.f5300h3;
-                if (porterDuffColorFilter != null && (p5Var = o1Var.f5110c) != null) {
-                    p5Var.setColorFilter(porterDuffColorFilter);
+                PorterDuffColorFilter porterDuffColorFilter = this.R.f5298h3;
+                if (porterDuffColorFilter != null && (o5Var = o1Var.f5108c) != null) {
+                    o5Var.setColorFilter(porterDuffColorFilter);
                 }
                 if (scale != 1.0f) {
                     canvas.save();
                     canvas.scale(scale, scale, rect.centerX(), rect.centerY());
-                    m(canvas, p5Var2, o1Var, alpha);
+                    m(canvas, o5Var2, o1Var, alpha);
                     canvas.restore();
                 } else {
-                    m(canvas, p5Var2, o1Var, alpha);
+                    m(canvas, o5Var2, o1Var, alpha);
                 }
             }
             canvas.restore();

@@ -3,8 +3,8 @@ package ai;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.rk0;
-public final class z4 implements rk0 {
+import org.telegram.ui.Components.ek0;
+public final class z4 implements ek0 {
     public final f6 f1781a;
 
     public z4(f6 f6Var) {

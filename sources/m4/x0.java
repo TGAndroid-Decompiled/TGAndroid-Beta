@@ -1,31 +1,64 @@
 package m4;
 
-import ci.m4;
-public final class x0 implements e1 {
-    public final int f14952a;
-    public final e1 f14953b;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+public final class x0 implements Runnable {
+    public final int f14715a = 0;
+    public final int f14716b;
+    public final int f14717c;
+    public final Object d;
+    public final Object e;
+    public final Object f14718f;
+    public final Object h;
+    public final Object f14719n;
 
-    public x0(e1 e1Var, int i10) {
-        this.f14952a = i10;
-        this.f14953b = e1Var;
+    public x0(g1 g1Var, r rVar, m1 m1Var, a0 a0Var, int i10, int i11, f1 f1Var) {
+        this.d = g1Var;
+        this.e = rVar;
+        this.f14718f = m1Var;
+        this.h = a0Var;
+        this.f14716b = i10;
+        this.f14717c = i11;
+        this.f14719n = f1Var;
     }
 
     @Override
-    public final Object h(final a0 a0Var, final r rVar, final int i10) {
-        switch (this.f14952a) {
+    public final void run() {
+        switch (this.f14715a) {
             case 0:
-                if (a0Var == null) {
-                    f1.I0(null, rVar, i10, this.f14953b, new m4(rVar, i10, 1));
-                    throw null;
-                }
-                throw new ClassCastException();
-            default:
-                return f1.I0(a0Var, rVar, i10, this.f14953b, new e2.h() {
-                    @Override
-                    public final void accept(java.lang.Object r4) {
-                        throw new UnsupportedOperationException("Method not decompiled: m4.a1.accept(java.lang.Object):void");
+                r rVar = (r) this.e;
+                m1 m1Var = (m1) this.f14718f;
+                a0 a0Var = (a0) this.h;
+                f1 f1Var = (f1) this.f14719n;
+                ni.f fVar = ((g1) this.d).f14536b;
+                if (fVar.A(rVar)) {
+                    int i10 = this.f14716b;
+                    if (m1Var != null) {
+                        if (!fVar.D(rVar, m1Var)) {
+                            g1.O0(a0Var, rVar, i10, new q1(-4));
+                            return;
+                        }
+                    } else if (!fVar.C(rVar, this.f14717c)) {
+                        g1.O0(a0Var, rVar, i10, new q1(-4));
+                        return;
                     }
-                });
+                    f1Var.h(a0Var, rVar, i10);
+                    return;
+                }
+                return;
+            default:
+                ((MediaDataController) this.d).lambda$toggleStickerSet$108((boolean[]) this.e, (TLRPC.StickerSet) this.f14718f, this.f14716b, this.f14717c, (TLRPC.TL_messages_stickerSet) this.h, (Runnable) this.f14719n);
+                return;
         }
+    }
+
+    public x0(MediaDataController mediaDataController, boolean[] zArr, TLRPC.StickerSet stickerSet, int i10, int i11, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, Runnable runnable) {
+        this.d = mediaDataController;
+        this.e = zArr;
+        this.f14718f = stickerSet;
+        this.f14716b = i10;
+        this.f14717c = i11;
+        this.h = tL_messages_stickerSet;
+        this.f14719n = runnable;
     }
 }

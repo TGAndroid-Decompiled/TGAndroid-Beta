@@ -11,10 +11,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.g01;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.w01;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.wc;
 public final class sa {
     public static CharSequence[] f1509y;
     public int f1510a;
@@ -26,17 +26,17 @@ public final class sa {
     public SpannableStringBuilder f1517k;
     public String f1518l;
     public boolean f1519m;
-    public w01 f1520n;
-    public w01 f1521o;
+    public g01 f1520n;
+    public g01 f1521o;
     public boolean f1522p;
     public boolean f1523q;
     public View f1524r;
     public Runnable f1525s;
     public int f1529x;
     public boolean f1513f = true;
-    public final org.telegram.ui.Components.d6 h = new org.telegram.ui.Components.d6(0, 350, qr.h);
-    public final yc f1515i = new yc((View) null);
-    public final org.telegram.ui.Cells.z f1516j = org.telegram.ui.ActionBar.j6.Y(553648127, 0, 0);
+    public final org.telegram.ui.Components.c6 h = new org.telegram.ui.Components.c6(0, 350, qr.h);
+    public final wc f1515i = new wc((View) null);
+    public final org.telegram.ui.Cells.z f1516j = org.telegram.ui.ActionBar.i6.Y(553648127, 0, 0);
     public final Paint f1526t = new Paint(1);
     public final Paint f1527u = new Paint(1);
     public final Path v = new Path();
@@ -78,19 +78,19 @@ public final class sa {
             } else {
                 bold = AndroidUtilities.bold();
             }
-            this.f1520n = new w01(spannableStringBuilder, f10, bold);
+            this.f1520n = new g01(spannableStringBuilder, f10, bold);
         }
         if (this.f1521o == null || this.f1519m) {
             String str2 = this.f1518l;
             if (str2 != null) {
                 str = str2;
             }
-            this.f1521o = new w01(str, 14.0f, null);
+            this.f1521o = new g01(str, 14.0f, null);
         }
         float e = this.h.e(this.f1513f);
         Paint paint = this.f1526t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f7, Math.max(this.f1520n.f29862c, this.f1521o.f29862c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
+        int min = (int) Math.min(f7, Math.max(this.f1520n.f24146c, this.f1521o.f24146c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
         this.f1529x = min;
         int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(22.0f), e);
         float f11 = min;
@@ -124,13 +124,13 @@ public final class sa {
         if (f11 < f7) {
             dp = (int) Math.min(AndroidUtilities.dp(12.0f) + dp, f7 - AndroidUtilities.dp(20.0f));
         }
-        w01 w01Var = this.f1520n;
+        g01 g01Var = this.f1520n;
         float f13 = dp;
-        w01Var.f29872p = f13;
-        w01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
-        w01 w01Var2 = this.f1521o;
-        w01Var2.f29872p = f13;
-        w01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
+        g01Var.f24156p = f13;
+        g01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
+        g01 g01Var2 = this.f1521o;
+        g01Var2.f24156p = f13;
+        g01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
         canvas.restore();
     }
 

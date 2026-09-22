@@ -16,7 +16,7 @@ public class ImageLocation {
     public long documentId;
     public byte[] file_reference;
     public int imageType;
-    public org.telegram.ui.web.i2 instantFile;
+    public org.telegram.ui.web.h2 instantFile;
     public byte[] iv;
     public byte[] key;
     public TLRPC.TL_fileLocationToBeDeprecated location;
@@ -49,12 +49,12 @@ public class ImageLocation {
         return imageLocation;
     }
 
-    public static ImageLocation getForInstantFile(org.telegram.ui.web.i2 i2Var) {
-        if (i2Var == null) {
+    public static ImageLocation getForInstantFile(org.telegram.ui.web.h2 h2Var) {
+        if (h2Var == null) {
             return null;
         }
         ImageLocation imageLocation = new ImageLocation();
-        imageLocation.instantFile = i2Var;
+        imageLocation.instantFile = h2Var;
         return imageLocation;
     }
 
@@ -156,7 +156,7 @@ public class ImageLocation {
         }
         if (stickerSet.access_hash != 0) {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetShortName.f18363id = stickerSet.f18370id;
+            tL_inputStickerSetShortName.f18129id = stickerSet.f18136id;
             tL_inputStickerSetShortName.access_hash = stickerSet.access_hash;
         } else {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
@@ -204,19 +204,19 @@ public class ImageLocation {
         String simpleName;
         String strippedKeyInternal = getStrippedKeyInternal(obj, obj2, obj3);
         if (BuildVars.LOGS_ENABLED && (obj instanceof MessageObject) && (message = ((MessageObject) obj).messageOwner) != null && message.rich_message != null) {
-            StringBuilder v = a4.a.v("[richmedia] strippedKey=", strippedKeyInternal, " fullObject=");
+            StringBuilder w10 = a4.a.w("[richmedia] strippedKey=", strippedKeyInternal, " fullObject=");
             String str = "null";
             if (obj2 == null) {
                 simpleName = "null";
             } else {
                 simpleName = obj2.getClass().getSimpleName();
             }
-            v.append(simpleName);
-            v.append(" stripped=");
+            w10.append(simpleName);
+            w10.append(" stripped=");
             if (obj3 != null) {
                 str = obj3.getClass().getSimpleName();
             }
-            com.google.android.gms.internal.vision.e2.t(str, v);
+            com.google.android.gms.internal.vision.e2.t(str, w10);
         }
         return strippedKeyInternal;
     }
@@ -228,7 +228,7 @@ public class ImageLocation {
     public String getKey(Object obj, Object obj2, boolean z10) {
         int i10;
         if (this.secureDocument != null) {
-            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f18478id;
+            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f18244id;
         }
         TLRPC.PhotoSize photoSize = this.photoSize;
         if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -239,9 +239,9 @@ public class ImageLocation {
             if (webFile != null) {
                 return Utilities.MD5(webFile.url);
             }
-            org.telegram.ui.web.i2 i2Var = this.instantFile;
-            if (i2Var != null) {
-                return Utilities.MD5(i2Var.f38962b);
+            org.telegram.ui.web.h2 h2Var = this.instantFile;
+            if (h2Var != null) {
+                return Utilities.MD5(h2Var.f38979b);
             }
             TLRPC.Document document = this.document;
             if (document != null) {
@@ -250,9 +250,9 @@ public class ImageLocation {
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append(this.document.dc_id);
                     sb2.append("_");
-                    sb2.append(this.document.f18349id);
+                    sb2.append(this.document.f18115id);
                     sb2.append("_");
-                    sb2.append(org.telegram.ui.ActionBar.j6.q0(themeDocument.themeSettings));
+                    sb2.append(org.telegram.ui.ActionBar.i6.q0(themeDocument.themeSettings));
                     sb2.append("_");
                     sb2.append(themeDocument.themeSettings.accent_color);
                     sb2.append("_");
@@ -269,8 +269,8 @@ public class ImageLocation {
                     }
                     sb2.append(i11);
                     return sb2.toString();
-                } else if (document.f18349id != 0 && document.dc_id != 0) {
-                    return this.document.dc_id + "_" + this.document.f18349id;
+                } else if (document.f18115id != 0 && document.dc_id != 0) {
+                    return this.document.dc_id + "_" + this.document.f18115id;
                 } else {
                     return null;
                 }
@@ -350,11 +350,11 @@ public class ImageLocation {
                 return null;
             }
             tL_inputPeerChat = new TLRPC.TL_inputPeerChannel();
-            tL_inputPeerChat.channel_id = chat.f18343id;
+            tL_inputPeerChat.channel_id = chat.f18109id;
             tL_inputPeerChat.access_hash = chat.access_hash;
         } else {
             tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
-            tL_inputPeerChat.chat_id = chat.f18343id;
+            tL_inputPeerChat.chat_id = chat.f18109id;
         }
         TLRPC.InputPeer inputPeer = tL_inputPeerChat;
         int i12 = chat.photo.dc_id;
@@ -434,14 +434,14 @@ public class ImageLocation {
                 if (photo != null) {
                     imageLocation.file_reference = photo.file_reference;
                     imageLocation.access_hash = photo.access_hash;
-                    imageLocation.photoId = photo.f18367id;
+                    imageLocation.photoId = photo.f18133id;
                     imageLocation.thumbSize = str;
                     return imageLocation;
                 }
                 if (document != null) {
                     imageLocation.file_reference = document.file_reference;
                     imageLocation.access_hash = document.access_hash;
-                    imageLocation.documentId = document.f18349id;
+                    imageLocation.documentId = document.f18115id;
                     imageLocation.thumbSize = str;
                 }
                 return imageLocation;

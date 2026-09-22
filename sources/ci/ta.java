@@ -23,38 +23,38 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.oe0;
-import org.telegram.ui.Components.s91;
-import org.telegram.ui.Components.t91;
-import org.telegram.ui.Components.uf0;
+import org.telegram.ui.Components.d91;
+import org.telegram.ui.Components.de0;
+import org.telegram.ui.Components.e91;
+import org.telegram.ui.Components.jf0;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.vz;
 import org.telegram.ui.Components.wz;
-public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.a2, s91, Utilities.CallbackVoidReturn, k71, k9, m8 {
-    public final int f5574a;
-    public final oc f5575b;
+public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.a2, d91, Utilities.CallbackVoidReturn, t61, k9, m8 {
+    public final int f5572a;
+    public final oc f5573b;
 
     public ta(oc ocVar, int i10) {
-        this.f5574a = i10;
-        this.f5575b = ocVar;
+        this.f5572a = i10;
+        this.f5573b = ocVar;
     }
 
     @Override
-    public r0.l1 P0(View view, r0.l1 l1Var) {
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        int i10 = defaultWindowInsets.f10592a;
-        oc ocVar = this.f5575b;
+        int i10 = defaultWindowInsets.f10590a;
+        oc ocVar = this.f5573b;
         ocVar.Y = i10;
-        ocVar.Z = defaultWindowInsets.f10593b;
-        ocVar.f5204a0 = defaultWindowInsets.f10594c;
-        ocVar.f5207b0 = defaultWindowInsets.d;
-        ocVar.f5243n.requestLayout();
-        return r0.l1.f42174b;
+        ocVar.Z = defaultWindowInsets.f10591b;
+        ocVar.f5202a0 = defaultWindowInsets.f10592c;
+        ocVar.f5205b0 = defaultWindowInsets.d;
+        ocVar.f5241n.requestLayout();
+        return r0.l1.f41850b;
     }
 
     @Override
     public void a(float f7) {
-        oc ocVar = this.f5575b;
+        oc ocVar = this.f5573b;
         rb rbVar = ocVar.B0;
         if (rbVar != null) {
             ocVar.T1 = f7;
@@ -66,10 +66,10 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
     @Override
     public void b(vz vzVar) {
         MediaController.SavedFilterState savedFilterState;
-        oc ocVar = this.f5575b;
+        oc ocVar = this.f5573b;
         if (vzVar != null) {
             o8 o8Var = ocVar.K1;
-            if (o8Var != null && (savedFilterState = o8Var.f5143a1) != null) {
+            if (o8Var != null && (savedFilterState = o8Var.f5141a1) != null) {
                 vzVar.f(new wz(savedFilterState));
                 return;
             }
@@ -80,20 +80,126 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
-        return BitmapFactory.decodeFile(this.f5575b.K1.L.getAbsolutePath(), options);
+        return BitmapFactory.decodeFile(this.f5573b.K1.L.getAbsolutePath(), options);
     }
 
     @Override
-    public void g(final ga gaVar, final boolean z10, final boolean z11, boolean z12, final boolean z13, final TLRPC.InputPeer inputPeer, final int i10, b9 b9Var, final androidx.fragment.app.a0 a0Var) {
-        switch (this.f5574a) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f5572a) {
+            case 2:
+                oc ocVar = this.f5573b;
+                ocVar.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    ocVar.f5204b.startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 3:
+                oc ocVar2 = this.f5573b;
+                ocVar2.getClass();
+                try {
+                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    ocVar2.f5204b.startActivity(intent2);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            case 4:
+            case 6:
+            case 7:
+            default:
+                oc ocVar3 = this.f5573b;
+                ocVar3.getClass();
+                try {
+                    Intent intent3 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent3.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    ocVar3.f5204b.startActivity(intent3);
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+            case 5:
+                oc ocVar4 = this.f5573b;
+                ocVar4.getClass();
+                try {
+                    Intent intent4 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent4.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    ocVar4.f5204b.startActivity(intent4);
+                    return;
+                } catch (Exception e11) {
+                    FileLog.e(e11);
+                    return;
+                }
+            case 8:
+                oc ocVar5 = this.f5573b;
+                int i11 = ocVar5.f5208c;
+                o8 o8Var = ocVar5.K1;
+                if (o8Var != null) {
+                    o8Var.D0 = MessagesController.getInstance(i11).storyEntitiesAllowed();
+                    ocVar5.V1 = !ocVar5.K1.f5145c;
+                    ocVar5.i(null);
+                    ocVar5.l();
+                    ocVar5.m();
+                    ocVar5.y();
+                    o8 o8Var2 = ocVar5.K1;
+                    o8Var2.i(true);
+                    o8Var2.C0 = ocVar5.f5210c1.getText();
+                    ocVar5.K1 = null;
+                    ocVar5.W(o8Var2, true);
+                    b1 b1Var = MessagesController.getInstance(i11).getStoriesController().f1208w;
+                    if (o8Var2.f5145c) {
+                        b1Var.d(o8Var2);
+                    } else {
+                        ArrayList arrayList = b1Var.f4379b;
+                        if (!o8Var2.f5180u) {
+                            b1Var.e(o8Var2);
+                            o8Var2.f5142b = Utilities.random.nextLong();
+                            a1 a1Var = new a1(o8Var2);
+                            arrayList.remove(o8Var2);
+                            arrayList.add(0, o8Var2);
+                            b1Var.a(a1Var);
+                        }
+                    }
+                    ocVar5.K(0, true);
+                    return;
+                }
+                return;
+            case 9:
+                oc ocVar6 = this.f5573b;
+                o8 o8Var3 = ocVar6.K1;
+                if (o8Var3 != null && !o8Var3.f5154g && ((!o8Var3.f5166n || o8Var3.f5180u) && o8Var3.f5145c)) {
+                    MessagesController.getInstance(ocVar6.f5208c).getStoriesController().f1208w.b(ocVar6.K1);
+                    ocVar6.K1 = null;
+                }
+                o8 o8Var4 = ocVar6.K1;
+                if (o8Var4 != null && (o8Var4.f5168o || o8Var4.f5154g || (o8Var4.f5166n && !o8Var4.f5180u))) {
+                    ocVar6.q(true);
+                    return;
+                } else {
+                    ocVar6.K(0, true);
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public void k(final ga gaVar, final boolean z10, final boolean z11, boolean z12, final boolean z13, final TLRPC.InputPeer inputPeer, final int i10, b9 b9Var, final androidx.fragment.app.a0 a0Var) {
+        switch (this.f5572a) {
             case 10:
-                ArrayList arrayList = gaVar.f4725b;
-                oc ocVar = this.f5575b;
+                ArrayList arrayList = gaVar.f4723b;
+                oc ocVar = this.f5573b;
                 if (ocVar.K1 != null) {
                     ocVar.X0.x(5, true);
                     ocVar.K1.E0 = gaVar;
-                    int i11 = ocVar.f5210c;
-                    int i12 = ja.f4857a;
+                    int i11 = ocVar.f5208c;
+                    int i12 = ja.f4855a;
                     SerializedData serializedData = new SerializedData(true);
                     ja.c(serializedData, gaVar);
                     SerializedData serializedData2 = new SerializedData(serializedData.length());
@@ -107,8 +213,8 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
                     o8Var.F0.clear();
                     ocVar.K1.F0.addAll(arrayList);
                     o8 o8Var2 = ocVar.K1;
-                    o8Var2.f5165l = true;
-                    o8Var2.f5184v0 = inputPeer;
+                    o8Var2.f5163l = true;
+                    o8Var2.f5182v0 = inputPeer;
                     ArrayList arrayList2 = ocVar.H1;
                     if (arrayList2 != null) {
                         int size = arrayList2.size();
@@ -123,8 +229,8 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
                             o8Var3.H0 = z11;
                             arrayList3.clear();
                             arrayList3.addAll(arrayList);
-                            o8Var3.f5165l = true;
-                            o8Var3.f5184v0 = inputPeer;
+                            o8Var3.f5163l = true;
+                            o8Var3.f5182v0 = inputPeer;
                         }
                     }
                     ocVar.i(new qa(ocVar, b9Var, 0));
@@ -135,15 +241,15 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
                 int i14 = R.raw.permission_request_camera;
                 int i15 = R.string.PermissionNoCameraMicVideo;
                 String[] strArr = z13 ? new String[0] : new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"};
-                final oc ocVar2 = this.f5575b;
-                oe0.d(i14, i15, strArr, new Utilities.Callback() {
+                final oc ocVar2 = this.f5573b;
+                de0.d(i14, i15, strArr, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
                         final boolean z14;
                         TLRPC.InputPeer inputPeer2;
                         long clientUserId;
                         final oc ocVar3 = oc.this;
-                        int i16 = ocVar3.f5210c;
+                        int i16 = ocVar3.f5208c;
                         boolean booleanValue = ((Boolean) obj2).booleanValue();
                         final androidx.fragment.app.a0 a0Var2 = a0Var;
                         if (!booleanValue) {
@@ -171,7 +277,7 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
                             clientUserId = UserConfig.getInstance(i16).getClientUserId();
                         }
                         final long j3 = clientUserId;
-                        tL_startLive.privacy_rules.addAll(gaVar.f4725b);
+                        tL_startLive.privacy_rules.addAll(gaVar.f4723b);
                         tL_startLive.random_id = Utilities.random.nextLong();
                         final boolean z15 = z13;
                         tL_startLive.rtmp_stream = z15;
@@ -190,127 +296,21 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
     }
 
     @Override
-    public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f5574a) {
-            case 2:
-                oc ocVar = this.f5575b;
-                ocVar.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    ocVar.f5206b.startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            case 3:
-                oc ocVar2 = this.f5575b;
-                ocVar2.getClass();
-                try {
-                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    ocVar2.f5206b.startActivity(intent2);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
-            case 4:
-            case 6:
-            case 7:
-            default:
-                oc ocVar3 = this.f5575b;
-                ocVar3.getClass();
-                try {
-                    Intent intent3 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent3.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    ocVar3.f5206b.startActivity(intent3);
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
-            case 5:
-                oc ocVar4 = this.f5575b;
-                ocVar4.getClass();
-                try {
-                    Intent intent4 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent4.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    ocVar4.f5206b.startActivity(intent4);
-                    return;
-                } catch (Exception e11) {
-                    FileLog.e(e11);
-                    return;
-                }
-            case 8:
-                oc ocVar5 = this.f5575b;
-                int i11 = ocVar5.f5210c;
-                o8 o8Var = ocVar5.K1;
-                if (o8Var != null) {
-                    o8Var.D0 = MessagesController.getInstance(i11).storyEntitiesAllowed();
-                    ocVar5.V1 = !ocVar5.K1.f5147c;
-                    ocVar5.i(null);
-                    ocVar5.l();
-                    ocVar5.m();
-                    ocVar5.y();
-                    o8 o8Var2 = ocVar5.K1;
-                    o8Var2.i(true);
-                    o8Var2.C0 = ocVar5.f5212c1.getText();
-                    ocVar5.K1 = null;
-                    ocVar5.W(o8Var2, true);
-                    b1 b1Var = MessagesController.getInstance(i11).getStoriesController().f1208w;
-                    if (o8Var2.f5147c) {
-                        b1Var.d(o8Var2);
-                    } else {
-                        ArrayList arrayList = b1Var.f4381b;
-                        if (!o8Var2.f5182u) {
-                            b1Var.e(o8Var2);
-                            o8Var2.f5144b = Utilities.random.nextLong();
-                            a1 a1Var = new a1(o8Var2);
-                            arrayList.remove(o8Var2);
-                            arrayList.add(0, o8Var2);
-                            b1Var.a(a1Var);
-                        }
-                    }
-                    ocVar5.K(0, true);
-                    return;
-                }
-                return;
-            case 9:
-                oc ocVar6 = this.f5575b;
-                o8 o8Var3 = ocVar6.K1;
-                if (o8Var3 != null && !o8Var3.f5156g && ((!o8Var3.f5168n || o8Var3.f5182u) && o8Var3.f5147c)) {
-                    MessagesController.getInstance(ocVar6.f5210c).getStoriesController().f1208w.b(ocVar6.K1);
-                    ocVar6.K1 = null;
-                }
-                o8 o8Var4 = ocVar6.K1;
-                if (o8Var4 != null && (o8Var4.f5170o || o8Var4.f5156g || (o8Var4.f5168n && !o8Var4.f5182u))) {
-                    ocVar6.q(true);
-                    return;
-                } else {
-                    ocVar6.K(0, true);
-                    return;
-                }
-        }
-    }
-
-    @Override
     public void onCameraInit() {
-        oc ocVar = this.f5575b;
+        oc ocVar = this.f5573b;
         String C = ocVar.C();
         String str = null;
         if (TextUtils.equals(C, ocVar.F())) {
             C = null;
         }
-        if (ocVar.f5221f0 == 0) {
+        if (ocVar.f5219f0 == 0) {
             str = C;
         }
         ocVar.e0(str);
-        t91 t91Var = ocVar.V0;
-        if (t91Var != null) {
+        e91 e91Var = ocVar.V0;
+        if (e91Var != null) {
             ocVar.T1 = 0.0f;
-            t91Var.b(0.0f, false);
+            e91Var.b(0.0f, false);
         }
         ocVar.m0(true);
     }
@@ -319,10 +319,10 @@ public final class ta implements CameraView.CameraViewDelegate, r0.n, org.telegr
     public Object run() {
         Bitmap bitmap;
         cc ccVar;
-        oc ocVar = this.f5575b;
-        uf0 uf0Var = ocVar.B1;
-        if (uf0Var != null) {
-            bitmap = uf0Var.getUiBlurBitmap();
+        oc ocVar = this.f5573b;
+        jf0 jf0Var = ocVar.B1;
+        if (jf0Var != null) {
+            bitmap = jf0Var.getUiBlurBitmap();
         } else {
             bitmap = null;
         }

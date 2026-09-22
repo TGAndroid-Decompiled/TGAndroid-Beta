@@ -1,26 +1,63 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class q8 implements DialogInterface.OnCancelListener {
-    public final int f36812a;
-    public final l9 f36813b;
-    public final int f36814c;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class q8 implements Predicate {
+    public final int f36790a;
+    public final long f36791b;
 
-    public q8(l9 l9Var, int i10, int i11) {
-        this.f36812a = i11;
-        this.f36813b = l9Var;
-        this.f36814c = i10;
+    public q8(long j3, int i10) {
+        this.f36790a = i10;
+        this.f36791b = j3;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f36790a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f36790a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f36790a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f36812a) {
+    public final boolean test(Object obj) {
+        switch (this.f36790a) {
             case 0:
-                this.f36813b.getConnectionsManager().cancelRequest(this.f36814c, true);
-                return;
+                if (((TLRPC.User) obj).f18256id == this.f36791b) {
+                    return true;
+                }
+                return false;
+            case 1:
+                if (((TLRPC.User) obj).f18256id == this.f36791b) {
+                    return true;
+                }
+                return false;
             default:
-                this.f36813b.getConnectionsManager().cancelRequest(this.f36814c, true);
-                return;
+                TLObject tLObject = (TLObject) obj;
+                if (tLObject instanceof TLRPC.User) {
+                    if (((TLRPC.User) tLObject).f18256id != this.f36791b) {
+                        return true;
+                    }
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    return true ^ ChatObject.hasAdminRights((TLRPC.Chat) tLObject);
+                }
+                return false;
         }
     }
 }

@@ -5,19 +5,19 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public interface qt {
-    MessageObject A();
+    boolean A();
 
-    boolean B();
+    void B(TLRPC.Document document);
 
-    void C(TLRPC.Document document);
+    boolean C();
 
-    boolean D();
+    boolean D(TLRPC.Document document);
 
-    boolean E(TLRPC.Document document);
+    void E(TLRPC.Document document);
 
-    void F(TLRPC.Document document);
+    String F(boolean z10);
 
-    String G(boolean z10);
+    void G(CharSequence charSequence, String str, nf nfVar);
 
     void H(TLRPC.Document document);
 
@@ -55,7 +55,7 @@ public interface qt {
 
     boolean h();
 
-    org.telegram.ui.Components.y70 i(ci.n6 n6Var);
+    org.telegram.ui.Components.n70 i(ci.n6 n6Var);
 
     void j(SendMessagesHelper.ImportingSticker importingSticker);
 
@@ -79,15 +79,15 @@ public interface qt {
 
     void t();
 
-    void u(CharSequence charSequence, String str, of ofVar);
+    void u(TLRPC.Document document);
 
-    void v(TLRPC.Document document);
+    void v(TLRPC.StickerSet stickerSet, String str);
 
-    void w(TLRPC.StickerSet stickerSet, String str);
+    void w(TLObject tLObject, Object obj);
 
-    void x(TLObject tLObject, Object obj);
+    boolean x();
 
-    boolean y();
+    void y(String str);
 
-    void z(String str);
+    MessageObject z();
 }

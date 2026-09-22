@@ -3,31 +3,31 @@ package ci;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class r8 implements TextWatcher {
-    public final ai.ba f5459a;
-    public final x8 f5460b;
+    public final ai.ba f5457a;
+    public final x8 f5458b;
 
     public r8(x8 x8Var, ai.ba baVar) {
-        this.f5460b = x8Var;
-        this.f5459a = baVar;
+        this.f5458b = x8Var;
+        this.f5457a = baVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj;
-        this.f5459a.run();
-        x8 x8Var = this.f5460b;
-        org.telegram.ui.Cells.k3 k3Var = x8Var.Y;
-        if (x8Var.f5764c0) {
+        this.f5457a.run();
+        x8 x8Var = this.f5458b;
+        org.telegram.ui.Cells.i3 i3Var = x8Var.Y;
+        if (x8Var.f5762c0) {
             return;
         }
-        if (x8Var.f5765d0 && editable != null) {
+        if (x8Var.f5763d0 && editable != null) {
             String substring = editable.toString().substring(8);
-            x8Var.f5764c0 = true;
-            k3Var.f20542b.setText(substring);
-            org.telegram.ui.Cells.i3 i3Var = k3Var.f20542b;
-            i3Var.setSelection(0, i3Var.getText().length());
-            x8Var.f5764c0 = false;
-            x8Var.f5765d0 = false;
+            x8Var.f5762c0 = true;
+            i3Var.f20190b.setText(substring);
+            org.telegram.ui.Cells.g3 g3Var = i3Var.f20190b;
+            g3Var.setSelection(0, g3Var.getText().length());
+            x8Var.f5762c0 = false;
+            x8Var.f5763d0 = false;
             x8.S(x8Var, substring);
             return;
         }
@@ -42,15 +42,15 @@ public final class r8 implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         int i13;
-        x8 x8Var = this.f5460b;
-        if (x8Var.f5764c0) {
+        x8 x8Var = this.f5458b;
+        if (x8Var.f5762c0) {
             return;
         }
         boolean z10 = false;
         if (charSequence != null && i10 == 8 && charSequence.subSequence(0, i10).toString().equals("https://") && charSequence.length() >= (i13 = i12 + i10) && charSequence.subSequence(i10, i13).toString().startsWith("https://")) {
             z10 = true;
         }
-        x8Var.f5765d0 = z10;
+        x8Var.f5763d0 = z10;
     }
 
     @Override

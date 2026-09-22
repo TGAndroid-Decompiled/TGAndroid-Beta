@@ -3,20 +3,20 @@ package org.telegram.ui.ActionBar;
 import android.graphics.Point;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class t5 extends w7.j0 {
-    public final boolean f19789a;
-    public final View f19790b;
+public final class t5 extends w7.i0 {
+    public final boolean f19551a;
+    public final View f19552b;
 
     public t5(View view, boolean z10) {
-        this.f19789a = z10;
-        this.f19790b = view;
+        this.f19551a = z10;
+        this.f19552b = view;
     }
 
     @Override
     public final void b(int i10, int i11) {
         boolean z10;
-        boolean z11 = this.f19789a;
-        View view = this.f19790b;
+        boolean z11 = this.f19551a;
+        View view = this.f19552b;
         if (!z11) {
             Point point = AndroidUtilities.displaySize;
             boolean z12 = false;

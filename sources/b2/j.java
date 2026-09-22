@@ -3,44 +3,44 @@ package b2;
 import java.util.Arrays;
 public final class j {
     public static final j h = new j(1, 2, 3, null, -1, -1);
-    public static final String f3026i;
-    public static final String f3027j;
-    public static final String f3028k;
-    public static final String f3029l;
-    public static final String f3030m;
-    public static final String f3031n;
-    public final int f3032a;
-    public final int f3033b;
-    public final int f3034c;
+    public static final String f3024i;
+    public static final String f3025j;
+    public static final String f3026k;
+    public static final String f3027l;
+    public static final String f3028m;
+    public static final String f3029n;
+    public final int f3030a;
+    public final int f3031b;
+    public final int f3032c;
     public final byte[] d;
     public final int e;
-    public final int f3035f;
-    public int f3036g;
+    public final int f3033f;
+    public int f3034g;
 
     static {
-        String str = e2.d0.f7887a;
-        f3026i = Integer.toString(0, 36);
-        f3027j = Integer.toString(1, 36);
-        f3028k = Integer.toString(2, 36);
-        f3029l = Integer.toString(3, 36);
-        f3030m = Integer.toString(4, 36);
-        f3031n = Integer.toString(5, 36);
+        String str = e2.d0.f7885a;
+        f3024i = Integer.toString(0, 36);
+        f3025j = Integer.toString(1, 36);
+        f3026k = Integer.toString(2, 36);
+        f3027l = Integer.toString(3, 36);
+        f3028m = Integer.toString(4, 36);
+        f3029n = Integer.toString(5, 36);
     }
 
     public j(int i10, int i11, int i12, byte[] bArr, int i13, int i14) {
-        this.f3032a = i10;
-        this.f3033b = i11;
-        this.f3034c = i12;
+        this.f3030a = i10;
+        this.f3031b = i11;
+        this.f3032c = i12;
         this.d = bArr;
         this.e = i13;
-        this.f3035f = i14;
+        this.f3033f = i14;
     }
 
     public static String a(int i10) {
         if (i10 != -1) {
             if (i10 != 1) {
                 if (i10 != 2) {
-                    return hg.k0.h(i10, "Undefined color range ");
+                    return hg.c.i(i10, "Undefined color range ");
                 }
                 return "Limited range";
             }
@@ -54,7 +54,7 @@ public final class j {
             if (i10 != 6) {
                 if (i10 != 1) {
                     if (i10 != 2) {
-                        return hg.k0.h(i10, "Undefined color space ");
+                        return hg.c.i(i10, "Undefined color space ");
                     }
                     return "BT601";
                 }
@@ -73,7 +73,7 @@ public final class j {
                         if (i10 != 3) {
                             if (i10 != 6) {
                                 if (i10 != 7) {
-                                    return hg.k0.h(i10, "Undefined color transfer ");
+                                    return hg.c.i(i10, "Undefined color transfer ");
                                 }
                                 return "HLG";
                             }
@@ -94,13 +94,13 @@ public final class j {
         if (jVar == null) {
             return true;
         }
-        int i10 = jVar.f3032a;
+        int i10 = jVar.f3030a;
         if (i10 == -1 || i10 == 1 || i10 == 2) {
-            int i11 = jVar.f3033b;
+            int i11 = jVar.f3031b;
             if (i11 == -1 || i11 == 2) {
-                int i12 = jVar.f3034c;
+                int i12 = jVar.f3032c;
                 if ((i12 == -1 || i12 == 3) && jVar.d == null) {
-                    int i13 = jVar.f3035f;
+                    int i13 = jVar.f3033f;
                     if (i13 == -1 || i13 == 8) {
                         int i14 = jVar.e;
                         if (i14 == -1 || i14 == 8) {
@@ -153,7 +153,7 @@ public final class j {
     }
 
     public final boolean d() {
-        if (this.f3032a != -1 && this.f3033b != -1 && this.f3034c != -1) {
+        if (this.f3030a != -1 && this.f3031b != -1 && this.f3032c != -1) {
             return true;
         }
         return false;
@@ -165,7 +165,7 @@ public final class j {
         }
         if (obj != null && j.class == obj.getClass()) {
             j jVar = (j) obj;
-            if (this.f3032a == jVar.f3032a && this.f3033b == jVar.f3033b && this.f3034c == jVar.f3034c && Arrays.equals(this.d, jVar.d) && this.e == jVar.e && this.f3035f == jVar.f3035f) {
+            if (this.f3030a == jVar.f3030a && this.f3031b == jVar.f3031b && this.f3032c == jVar.f3032c && Arrays.equals(this.d, jVar.d) && this.e == jVar.e && this.f3033f == jVar.f3033f) {
                 return true;
             }
         }
@@ -173,21 +173,21 @@ public final class j {
     }
 
     public final int hashCode() {
-        if (this.f3036g == 0) {
-            this.f3036g = ((((Arrays.hashCode(this.d) + ((((((527 + this.f3032a) * 31) + this.f3033b) * 31) + this.f3034c) * 31)) * 31) + this.e) * 31) + this.f3035f;
+        if (this.f3034g == 0) {
+            this.f3034g = ((((Arrays.hashCode(this.d) + ((((((527 + this.f3030a) * 31) + this.f3031b) * 31) + this.f3032c) * 31)) * 31) + this.e) * 31) + this.f3033f;
         }
-        return this.f3036g;
+        return this.f3034g;
     }
 
     public final String toString() {
         boolean z10;
         String str;
         StringBuilder sb2 = new StringBuilder("ColorInfo(");
-        sb2.append(b(this.f3032a));
+        sb2.append(b(this.f3030a));
         sb2.append(", ");
-        sb2.append(a(this.f3033b));
+        sb2.append(a(this.f3031b));
         sb2.append(", ");
-        sb2.append(c(this.f3034c));
+        sb2.append(c(this.f3032c));
         sb2.append(", ");
         if (this.d != null) {
             z10 = true;
@@ -201,14 +201,14 @@ public final class j {
         if (i10 == -1) {
             str = "NA";
         } else {
-            str = a4.a.m(i10, "bit Luma");
+            str = a4.a.n(i10, "bit Luma");
         }
         sb2.append(str);
         sb2.append(", ");
-        int i11 = this.f3035f;
+        int i11 = this.f3033f;
         if (i11 != -1) {
-            str2 = a4.a.m(i11, "bit Chroma");
+            str2 = a4.a.n(i11, "bit Chroma");
         }
-        return a4.a.s(sb2, str2, ")");
+        return a4.a.t(sb2, str2, ")");
     }
 }

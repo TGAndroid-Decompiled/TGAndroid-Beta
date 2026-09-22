@@ -8,12 +8,12 @@ import android.os.RemoteException;
 import android.util.Log;
 import java.util.ArrayList;
 import n6.l;
-import v7.d9;
-import v7.k8;
-import v7.y7;
+import v7.c9;
+import v7.j8;
+import v7.x7;
 public abstract class e {
-    public static boolean f10145a = false;
-    public static int f10146b = 1;
+    public static boolean f10141a = false;
+    public static int f10142b = 1;
 
     public static final ArrayList a(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
@@ -24,8 +24,8 @@ public abstract class e {
             i10++;
             w wVar = (w) obj;
             Bundle bundle = new Bundle();
-            bundle.putInt("event_type", wVar.f352a);
-            bundle.putLong("event_timestamp", wVar.f353b);
+            bundle.putInt("event_type", wVar.f355a);
+            bundle.putLong("event_timestamp", wVar.f356b);
             arrayList2.add(bundle);
         }
         return arrayList2;
@@ -37,27 +37,27 @@ public abstract class e {
             try {
                 l.i(context, "Context is null");
                 Log.d("e", "preferredRenderer: ".concat("null"));
-                if (f10145a) {
+                if (f10141a) {
                     return 0;
                 }
                 try {
-                    i8.e a2 = k8.a(context);
+                    i8.e a2 = j8.a(context);
                     try {
                         i8.a W0 = a2.W0();
                         l.h(W0);
-                        y7.f44508a = W0;
+                        x7.f44177a = W0;
                         s7.e Y0 = a2.Y0();
-                        if (d9.f44266b == null) {
+                        if (c9.f43935b == null) {
                             l.i(Y0, "delegate must not be null");
-                            d9.f44266b = Y0;
+                            c9.f43935b = Y0;
                         }
-                        f10145a = true;
+                        f10141a = true;
                         try {
                             Parcel N0 = a2.N0(a2.O0(), 9);
                             int readInt = N0.readInt();
                             N0.recycle();
                             if (readInt == 2) {
-                                f10146b = 2;
+                                f10142b = 2;
                             }
                             x6.b bVar = new x6.b(context);
                             Parcel O0 = a2.O0();
@@ -67,7 +67,7 @@ public abstract class e {
                         } catch (RemoteException e) {
                             Log.e("e", "Failed to retrieve renderer type or log initialization.", e);
                         }
-                        int i10 = f10146b;
+                        int i10 = f10142b;
                         if (i10 != 1) {
                             if (i10 != 2) {
                                 str = "null";

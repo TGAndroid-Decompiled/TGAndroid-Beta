@@ -8,7 +8,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
 public final class c5 implements e2.h {
     public final int f621a;
@@ -37,7 +37,7 @@ public final class c5 implements e2.h {
                 h5 h5Var = (h5) callback;
                 sa saVar = (sa) obj4;
                 jc jcVar = (jc) obj3;
-                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj2;
+                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj2;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
                 if (storyItem != null) {
                     org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
@@ -51,12 +51,12 @@ public final class c5 implements e2.h {
                     }
                     return;
                 }
-                org.telegram.ui.Components.pc Q = new xc(h5Var.f943z0.f800c1, f6Var).Q(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
-                Q.f27305a = 3;
+                org.telegram.ui.Components.oc Q = new vc(h5Var.f943z0.f800c1, e6Var).Q(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
+                Q.f26745a = 3;
                 Q.k(true);
                 return;
             default:
-                ((tg.s0) callback).dismiss();
+                ((tg.t0) callback).dismiss();
                 NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostedChannelByUser, (TL_stories.TL_premium_myBoosts) obj4, Integer.valueOf(((ArrayList) obj3).size()), Integer.valueOf(((HashSet) obj2).size()), (TL_stories.TL_premium_boostsStatus) obj);
                 return;
         }

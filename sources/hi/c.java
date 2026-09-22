@@ -13,28 +13,28 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.g9;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.v9;
-import org.telegram.ui.Components.xl0;
-import org.telegram.ui.Components.yl0;
-import w7.y5;
-public final class c extends ab {
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.za;
+import w7.x5;
+public final class c extends za {
     public final d1 X;
-    public m61 Y;
+    public w51 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
-        super(context, (f6) null, false);
+        super(context, (e6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        yl0 yl0Var = this.d;
+        ll0 ll0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        yl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        ll0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -56,9 +56,9 @@ public final class c extends ab {
         TextView textView2 = (TextView) d1Var.f684c;
         this.X = d1Var;
         d1Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((v9) d1Var.f683b).e(chat, new g9(chat));
+        ((u9) d1Var.f683b).e(chat, new f9(chat));
         textView2.setText(DialogObject.getName(chat));
-        int i13 = j6.G6;
+        int i13 = i6.G6;
         textView2.setTextColor(getThemedColor(i13));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
@@ -71,17 +71,17 @@ public final class c extends ab {
         spannableStringBuilder.append((CharSequence) LocaleController.getString(i11));
         textView.setTextColor(getThemedColor(i13));
         textView.setText(spannableStringBuilder);
-        this.containerView.addView(dVar2, y5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
-        this.containerView.addView(dVar, y5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar2, x5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar, x5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.Y.N(false);
     }
 
     @Override
-    public final xl0 v(yl0 yl0Var) {
-        m61 m61Var = new m61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = m61Var;
-        m61Var.f26342r = false;
-        return m61Var;
+    public final kl0 v(ll0 ll0Var) {
+        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = w51Var;
+        w51Var.f29610r = false;
+        return w51Var;
     }
 
     @Override

@@ -19,14 +19,14 @@ public abstract class d {
     public static zzd a(ac.e eVar) {
         bc.b bVar = (bc.b) qb.g.c().a(bc.b.class);
         wf b10 = yf.b();
-        ?? mobileVisionBase = new MobileVisionBase((bc.f) bVar.f3492a.O0(eVar), (Executor) bVar.f3493b.f41559a.get());
+        ?? mobileVisionBase = new MobileVisionBase((bc.f) bVar.f3490a.O0(eVar), (Executor) bVar.f3491b.f41231a.get());
         ?? obj = new Object();
-        obj.f14520c = fb.TYPE_THIN;
-        ?? obj2 = new Object();
-        obj2.f45703b = eVar.a();
-        obj2.f45702a = gb.NO_ERROR;
-        obj.d = new ce(obj2);
-        m.f41578a.execute(new p(b10, new a5.a((p3) obj, 1), hb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 8));
+        obj.f14282c = fb.TYPE_THIN;
+        o0.a aVar = new o0.a(28, (byte) 0);
+        aVar.f15299c = eVar.a();
+        aVar.f15298b = gb.NO_ERROR;
+        obj.d = new ce(aVar);
+        m.f41250a.execute(new p(b10, new a5.a((p3) obj, 1), hb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 8));
         return mobileVisionBase;
     }
 

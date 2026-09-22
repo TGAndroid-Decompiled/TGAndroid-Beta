@@ -2,177 +2,84 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class zh0 extends org.telegram.ui.Components.xl0 {
-    public final Context f40242c;
-    public final ai0 d;
+public final class zh0 extends org.telegram.ui.ActionBar.n2 {
+    public final org.telegram.ui.Components.ca0 f40206a;
 
-    public zh0(ai0 ai0Var, Context context) {
-        this.d = ai0Var;
-        this.f40242c = context;
+    public zh0(long j3) {
+        super(null);
+        this.f40206a = new org.telegram.ui.Components.ca0(this, this, getLayoutContainer(), j3);
     }
 
     @Override
-    public final void A(s4.c1 c1Var) {
-        View view = c1Var.f42995a;
-        if (view instanceof org.telegram.ui.Cells.c5) {
-            ((org.telegram.ui.Cells.c5) view).a();
+    public final View createView(Context context) {
+        int i10;
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setActionBarMenuOnItemClick(new v70(this, 8));
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        org.telegram.ui.Components.ca0 ca0Var = this.f40206a;
+        if (ca0Var.f45107a) {
+            i10 = R.string.SubscribeRequests;
+        } else {
+            i10 = R.string.MemberRequests;
         }
+        kVar.setTitle(LocaleController.getString(i10));
+        org.telegram.ui.ActionBar.v0 a2 = this.actionBar.n().a(0, R.drawable.outline_header_search);
+        a2.F();
+        a2.H = new hg.e2(this, 13);
+        a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        a2.setVisibility(8);
+        org.telegram.ui.ActionBar.n2 n2Var = ca0Var.f45111g;
+        if (ca0Var.f45116m == null) {
+            FrameLayout frameLayout = new FrameLayout(n2Var.getParentActivity());
+            ca0Var.f45116m = frameLayout;
+            frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18778a7, n2Var.getResourceProvider()));
+            org.telegram.ui.Components.t00 b10 = ca0Var.b();
+            ca0Var.f45120q = b10;
+            ca0Var.f45116m.addView(b10, -1, -1);
+            org.telegram.ui.Components.yw0 c10 = ca0Var.c();
+            ca0Var.f45118o = c10;
+            ca0Var.f45116m.addView(c10, -1, -1);
+            org.telegram.ui.Components.yw0 a10 = ca0Var.a();
+            ca0Var.f45117n = a10;
+            ca0Var.f45116m.addView(a10, w7.x5.c(-1.0f, -1));
+            n2Var.getParentActivity();
+            s4.c0 c0Var = new s4.c0();
+            org.telegram.ui.Components.ll0 ll0Var = new org.telegram.ui.Components.ll0(n2Var.getParentActivity(), null);
+            ca0Var.f45119p = ll0Var;
+            ll0Var.setAdapter(ca0Var.f45110f);
+            ca0Var.f45119p.p1();
+            ca0Var.f45119p.setLayoutManager(c0Var);
+            ca0Var.f45119p.setOnItemClickListener(new ai.g(ca0Var, 19));
+            ca0Var.f45119p.setOnScrollListener(ca0Var.D);
+            ca0Var.f45119p.setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18923i6, n2Var.getResourceProvider()));
+            ca0Var.f45116m.addView(ca0Var.f45119p, -1, -1);
+            s4.j jVar = new s4.j();
+            jVar.n(350L);
+            jVar.o(org.telegram.ui.Components.qr.h);
+            jVar.C = false;
+            jVar.f42706m = false;
+            ca0Var.f45119p.setItemAnimator(jVar);
+        }
+        FrameLayout frameLayout2 = ca0Var.f45116m;
+        this.actionBar.z(ca0Var.f45119p, false);
+        ca0Var.e();
+        this.fragmentView = frameLayout2;
+        return frameLayout2;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int b10 = c1Var.b();
-        ai0 ai0Var = this.d;
-        if (ai0Var.Q != b10 && ai0Var.f32119x != b10) {
-            if (b10 < ai0Var.f32120y || b10 >= ai0Var.E) {
-                if ((b10 < ai0Var.H || b10 >= ai0Var.I) && b10 != ai0Var.N) {
-                    if (b10 >= ai0Var.U && b10 < ai0Var.V) {
-                        return true;
-                    }
-                    return false;
-                }
-                return true;
+    public final boolean onBackPressed(boolean z10) {
+        wh.m mVar = this.f40206a.f45122s;
+        if (mVar != null) {
+            if (z10) {
+                mVar.e(false);
             }
-            return true;
+            return false;
         }
         return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.X;
-    }
-
-    @Override
-    public final int j(int i10) {
-        ai0 ai0Var = this.d;
-        if (i10 == ai0Var.f32113r) {
-            return 0;
-        }
-        if (i10 == ai0Var.f32115s || i10 == ai0Var.L || i10 == ai0Var.S || i10 == ai0Var.P) {
-            return 1;
-        }
-        if (i10 == ai0Var.v) {
-            return 2;
-        }
-        if (i10 == ai0Var.f32119x) {
-            return 3;
-        }
-        if (i10 != ai0Var.f32118w && i10 != ai0Var.J && i10 != ai0Var.M && i10 != ai0Var.R && i10 != ai0Var.T) {
-            if (i10 < ai0Var.f32120y || i10 >= ai0Var.E) {
-                if (i10 >= ai0Var.H && i10 < ai0Var.I) {
-                    return 5;
-                }
-                if (i10 == ai0Var.F) {
-                    return 6;
-                }
-                if (i10 == ai0Var.K) {
-                    return 7;
-                }
-                if (i10 == ai0Var.N) {
-                    return 8;
-                }
-                if (i10 == ai0Var.O) {
-                    return 9;
-                }
-                if (i10 != ai0Var.Q) {
-                    if (i10 < ai0Var.U || i10 >= ai0Var.V) {
-                        if (i10 != ai0Var.G) {
-                            return 1;
-                        }
-                        return 11;
-                    }
-                    return 10;
-                }
-                return 10;
-            }
-            return 5;
-        }
-        return 4;
-    }
-
-    @Override
-    public final void v(s4.c1 r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zh0.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Components.g90 g90Var;
-        org.telegram.ui.ActionBar.f6 f6Var;
-        org.telegram.ui.ActionBar.f6 f6Var2;
-        int i11;
-        ai0 ai0Var = this.d;
-        Context context = this.f40242c;
-        switch (i10) {
-            case 1:
-                g90Var = new org.telegram.ui.Cells.n4(context, 23);
-                break;
-            case 2:
-                org.telegram.ui.Components.g90 g90Var2 = new org.telegram.ui.Components.g90(this.f40242c, ai0Var, null, true, ai0Var.h);
-                g90Var2.setPermanent(true);
-                g90Var2.setDelegate(new yh0(this, g90Var2));
-                g90Var = g90Var2;
-                break;
-            case 3:
-                f6Var = ((org.telegram.ui.ActionBar.n2) ai0Var).resourceProvider;
-                g90Var = new org.telegram.ui.Cells.g2(context, 64, f6Var);
-                break;
-            case 4:
-                g90Var = new org.telegram.ui.Cells.c7(context, (org.telegram.ui.Cells.c1) null);
-                break;
-            case 5:
-                g90Var = new xh0(ai0Var, context);
-                break;
-            case 6:
-                org.telegram.ui.Components.t00 t00Var = new org.telegram.ui.Components.t00(context, null);
-                t00Var.setIsSingleCell(true);
-                t00Var.setViewType(9);
-                t00Var.f28362w = false;
-                g90Var = t00Var;
-                break;
-            case 7:
-                g90Var = new org.telegram.ui.Cells.c7(context, (org.telegram.ui.Cells.c1) null);
-                break;
-            case 8:
-                org.telegram.ui.Cells.fa faVar = new org.telegram.ui.Cells.fa(context);
-                faVar.b(LocaleController.getString(R.string.DeleteAllRevokedLinks), false);
-                faVar.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19330p7, false));
-                g90Var = faVar;
-                break;
-            case 9:
-                g90Var = new org.telegram.ui.Cells.f9(context);
-                break;
-            case 10:
-                g90Var = new org.telegram.ui.Cells.c5(8, 6, this.f40242c, null, false);
-                break;
-            case 11:
-                f6Var2 = ((org.telegram.ui.ActionBar.n2) ai0Var).resourceProvider;
-                g90Var = new org.telegram.ui.Cells.f9(context, f6Var2);
-                break;
-            default:
-                FrameLayout frameLayout = new FrameLayout(context);
-                frameLayout.addView(new sh0(context), w7.y5.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
-                TextView textView = new TextView(context);
-                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19166g9, false));
-                textView.setTextSize(1, 14.0f);
-                textView.setGravity(17);
-                if (ai0Var.h) {
-                    i11 = R.string.PrimaryLinkHelpChannel;
-                } else {
-                    i11 = R.string.PrimaryLinkHelp;
-                }
-                textView.setText(LocaleController.getString(i11));
-                frameLayout.addView(textView, w7.y5.d(-1, -2.0f, 51, 52.0f, 143.0f, 52.0f, 18.0f));
-                frameLayout.setTag(-33024);
-                g90Var = frameLayout;
-                break;
-        }
-        return com.google.android.gms.internal.vision.e2.k(g90Var, g90Var, -1, -2);
     }
 }

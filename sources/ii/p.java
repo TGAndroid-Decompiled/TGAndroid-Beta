@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ly;
-import org.telegram.ui.Components.u51;
-public final class p implements ly {
-    public final r f11549a;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.ky;
+public final class p implements ky {
+    public final r f11547a;
 
     public p(r rVar) {
-        this.f11549a = rVar;
+        this.f11547a = rVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class p implements ly {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        r rVar = this.f11549a;
-        if (i10 != 0 && (focusedEditTextOrNull = rVar.f11592r.getFocusedEditTextOrNull()) != null) {
+        r rVar = this.f11547a;
+        if (i10 != 0 && (focusedEditTextOrNull = rVar.f11590r.getFocusedEditTextOrNull()) != null) {
             rVar.F = focusedEditTextOrNull;
             rVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        rVar.f11596y = z10;
+        rVar.f11594y = z10;
         rVar.S();
     }
 
@@ -69,7 +69,7 @@ public final class p implements ly {
 
     @Override
     public final boolean k() {
-        i1 M = r.M(this.f11549a);
+        i1 M = r.M(this.f11547a);
         if (M == null || M.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class p implements ly {
 
     @Override
     public final void l(String str) {
-        r rVar = this.f11549a;
+        r rVar = this.f11547a;
         i1 M = r.M(rVar);
         if (M != null) {
             int N = r.N(rVar, M);
@@ -103,8 +103,8 @@ public final class p implements ly {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.y5 y5Var;
-        r rVar = this.f11549a;
+        org.telegram.ui.Components.x5 x5Var;
+        r rVar = this.f11547a;
         i1 M = r.M(rVar);
         if (M != null) {
             int N = r.N(rVar, M);
@@ -114,12 +114,12 @@ public final class p implements ly {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    y5Var = new org.telegram.ui.Components.y5(document, M.getPaint().getFontMetricsInt());
+                    x5Var = new org.telegram.ui.Components.x5(document, M.getPaint().getFontMetricsInt());
                 } else {
-                    y5Var = new org.telegram.ui.Components.y5(j3, M.getPaint().getFontMetricsInt());
+                    x5Var = new org.telegram.ui.Components.x5(j3, M.getPaint().getFontMetricsInt());
                 }
-                y5Var.cacheType = org.telegram.ui.Components.p5.g();
-                spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
+                x5Var.cacheType = org.telegram.ui.Components.o5.g();
+                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
                 M.setText(M.getText().insert(N, spannableString));
                 int length = N + spannableString.length();
                 M.setSelection(length, length);
@@ -133,7 +133,7 @@ public final class p implements ly {
 
     @Override
     public final boolean z() {
-        return this.f11549a.f11596y;
+        return this.f11547a.f11594y;
     }
 
     @Override
@@ -141,7 +141,15 @@ public final class p implements ly {
     }
 
     @Override
-    public final void o(u51 u51Var) {
+    public final void n() {
+    }
+
+    @Override
+    public final void o(e51 e51Var) {
+    }
+
+    @Override
+    public final void q() {
     }
 
     @Override
@@ -157,23 +165,15 @@ public final class p implements ly {
     }
 
     @Override
-    public final void y(long j3) {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
     public final void u() {
     }
 
     @Override
     public final void w() {
+    }
+
+    @Override
+    public final void y(long j3) {
     }
 
     @Override

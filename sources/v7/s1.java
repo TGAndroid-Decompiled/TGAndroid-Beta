@@ -1,128 +1,17 @@
 package v7;
+public final class s1 implements ia.d {
+    public static final s1 f44085a = new Object();
 
-import java.util.Arrays;
-import java.util.HashMap;
-public class s1 implements ja.a {
-    public final int f44404a;
-    public Object f44405b;
-    public Object f44406c;
-    public Object d;
-
-    public s1(int i10, boolean z10) {
-        this.f44404a = i10;
+    static {
+        org.telegram.ui.Cells.q3.t(org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(3, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(2, org.telegram.ui.Cells.q3.k(h.class, new e(1)))))));
     }
 
     @Override
-    public ja.a m(Class cls, ia.d dVar) {
-        switch (this.f44404a) {
-            case 4:
-                ((HashMap) this.f44405b).put(cls, dVar);
-                ((HashMap) this.d).remove(cls);
-                return this;
-            case 5:
-            default:
-                ((HashMap) this.f44405b).put(cls, dVar);
-                ((HashMap) this.d).remove(cls);
-                return this;
-            case 6:
-                ((HashMap) this.f44405b).put(cls, dVar);
-                ((HashMap) this.d).remove(cls);
-                return this;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ia.e eVar = (ia.e) obj2;
+            throw null;
         }
-    }
-
-    public String toString() {
-        String str = "";
-        switch (this.f44404a) {
-            case 1:
-                StringBuilder sb2 = new StringBuilder(32);
-                sb2.append((String) this.f44405b);
-                sb2.append('{');
-                s1 s1Var = (s1) ((s1) this.f44406c).f44406c;
-                while (s1Var != null) {
-                    Object obj = s1Var.d;
-                    sb2.append(str);
-                    String str2 = (String) s1Var.f44405b;
-                    if (str2 != null) {
-                        sb2.append(str2);
-                        sb2.append('=');
-                    }
-                    if (obj != null && obj.getClass().isArray()) {
-                        String deepToString = Arrays.deepToString(new Object[]{obj});
-                        sb2.append((CharSequence) deepToString, 1, deepToString.length() - 1);
-                    } else {
-                        sb2.append(obj);
-                    }
-                    s1Var = (s1) s1Var.f44406c;
-                    str = ", ";
-                }
-                sb2.append('}');
-                return sb2.toString();
-            case 11:
-                StringBuilder sb3 = new StringBuilder(32);
-                sb3.append((String) this.f44405b);
-                sb3.append('{');
-                s1 s1Var2 = (s1) ((s1) this.d).f44406c;
-                while (s1Var2 != null) {
-                    Object obj2 = s1Var2.d;
-                    sb3.append(str);
-                    String str3 = (String) s1Var2.f44405b;
-                    if (str3 != null) {
-                        sb3.append(str3);
-                        sb3.append('=');
-                    }
-                    if (obj2 != null && obj2.getClass().isArray()) {
-                        String deepToString2 = Arrays.deepToString(new Object[]{obj2});
-                        sb3.append((CharSequence) deepToString2, 1, deepToString2.length() - 1);
-                    } else {
-                        sb3.append(obj2);
-                    }
-                    s1Var2 = (s1) s1Var2.f44406c;
-                    str = ", ";
-                }
-                sb3.append('}');
-                return sb3.toString();
-            default:
-                return super.toString();
-        }
-    }
-
-    public s1(int i10) {
-        this.f44404a = i10;
-        switch (i10) {
-            case 6:
-                this.f44405b = new HashMap();
-                this.d = new HashMap();
-                this.f44406c = x7.d0.f45696c;
-                return;
-            case 12:
-                this.f44405b = new HashMap();
-                this.d = new HashMap();
-                this.f44406c = z7.x.f49003c;
-                return;
-            default:
-                this.f44405b = new HashMap();
-                this.d = new HashMap();
-                this.f44406c = w7.e.f44951c;
-                return;
-        }
-    }
-
-    public s1(String str, int i10) {
-        this.f44404a = i10;
-        switch (i10) {
-            case 11:
-                s1 s1Var = new s1(10, false);
-                this.d = s1Var;
-                this.f44406c = s1Var;
-                this.f44405b = str;
-                return;
-            default:
-                s1 s1Var2 = new s1(0, false);
-                this.f44406c = s1Var2;
-                this.d = s1Var2;
-                this.f44405b = str;
-                return;
-        }
+        throw new ClassCastException();
     }
 }

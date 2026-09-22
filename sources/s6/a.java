@@ -10,24 +10,24 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 import n6.l;
-import w7.f0;
+import w7.e0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new Object();
-    public final List f43184a;
-    public final boolean f43185b;
-    public final String f43186c;
+    public final List f42857a;
+    public final boolean f42858b;
+    public final String f42859c;
     public final String d;
 
     public a(ArrayList arrayList, boolean z10, String str, String str2) {
         l.h(arrayList);
-        this.f43184a = arrayList;
-        this.f43185b = z10;
-        this.f43186c = str;
+        this.f42857a = arrayList;
+        this.f42858b = z10;
+        this.f42859c = str;
         this.d = str2;
     }
 
     public static a b(List list, boolean z10) {
-        TreeSet treeSet = new TreeSet(b.f43187a);
+        TreeSet treeSet = new TreeSet(b.f42860a);
         Iterator it = list.iterator();
         while (it.hasNext()) {
             Collections.addAll(treeSet, ((n) it.next()).c());
@@ -40,24 +40,24 @@ public final class a extends o6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f43185b != aVar.f43185b || !l.l(this.f43184a, aVar.f43184a) || !l.l(this.f43186c, aVar.f43186c) || !l.l(this.d, aVar.d)) {
+        if (this.f42858b != aVar.f42858b || !l.l(this.f42857a, aVar.f42857a) || !l.l(this.f42859c, aVar.f42859c) || !l.l(this.d, aVar.d)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f43185b), this.f43184a, this.f43186c, this.d});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f42858b), this.f42857a, this.f42859c, this.d});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.p(parcel, 1, this.f43184a);
-        f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f43185b ? 1 : 0);
-        f0.l(parcel, 3, this.f43186c);
-        f0.l(parcel, 4, this.d);
-        f0.r(parcel, q6);
+        int q6 = e0.q(parcel, 20293);
+        e0.p(parcel, 1, this.f42857a);
+        e0.s(parcel, 2, 4);
+        parcel.writeInt(this.f42858b ? 1 : 0);
+        e0.l(parcel, 3, this.f42859c);
+        e0.l(parcel, 4, this.d);
+        e0.r(parcel, q6);
     }
 }

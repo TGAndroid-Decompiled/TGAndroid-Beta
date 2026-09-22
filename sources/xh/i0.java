@@ -1,7 +1,7 @@
 package xh;
 
-import org.telegram.ui.Components.ug;
-public final class i0 extends ug {
+import org.telegram.ui.Components.tg;
+public final class i0 extends tg {
     @Override
     public final boolean d() {
         return false;

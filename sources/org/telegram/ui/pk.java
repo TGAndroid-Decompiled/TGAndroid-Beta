@@ -5,13 +5,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class pk extends org.telegram.ui.Components.od {
+public final class pk extends org.telegram.ui.Components.md {
     public final boolean e;
-    public final zn f36606f;
+    public final bo f36598f;
 
-    public pk(zn znVar, Context context, boolean z10) {
+    public pk(bo boVar, Context context, boolean z10) {
         super(context);
-        this.f36606f = znVar;
+        this.f36598f = boVar;
         this.e = z10;
     }
 
@@ -23,11 +23,11 @@ public final class pk extends org.telegram.ui.Components.od {
         } else {
             i10 = 0;
         }
-        int i11 = org.telegram.ui.ActionBar.j6.f19447ve;
-        zn znVar = this.f36606f;
-        setBackground(org.telegram.ui.ActionBar.j6.W(AndroidUtilities.dp(19.0f), 436207615 & znVar.getThemedColor(i11), i10, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f)));
-        getImageView().setColorFilter(new PorterDuffColorFilter(znVar.getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
-        getTextView().setTextColor(znVar.getThemedColor(i11));
+        int i11 = org.telegram.ui.ActionBar.i6.f19170ve;
+        bo boVar = this.f36598f;
+        setBackground(org.telegram.ui.ActionBar.i6.W(AndroidUtilities.dp(19.0f), 436207615 & boVar.getThemedColor(i11), i10, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f)));
+        getImageView().setColorFilter(new PorterDuffColorFilter(boVar.getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
+        getTextView().setTextColor(boVar.getThemedColor(i11));
     }
 
     @Override

@@ -29,18 +29,18 @@ public final class b implements o {
         l lVar = (l) pVar;
         v vVar = this.f13403a;
         vVar.G(2);
-        lVar.h(vVar.f7933a, 0, 2, false);
+        lVar.h(vVar.f7931a, 0, 2, false);
         if (vVar.D() == 65496) {
             vVar.G(2);
-            lVar.h(vVar.f7933a, 0, 2, false);
+            lVar.h(vVar.f7931a, 0, 2, false);
             int D = vVar.D();
             this.d = D;
             if (D == 65504) {
                 vVar.G(2);
-                lVar.h(vVar.f7933a, 0, 2, false);
+                lVar.h(vVar.f7931a, 0, 2, false);
                 lVar.s(vVar.D() - 2, false);
                 vVar.G(2);
-                lVar.h(vVar.f7933a, 0, 2, false);
+                lVar.h(vVar.f7931a, 0, 2, false);
                 this.d = vVar.D();
             }
             if (this.d == 65505) {
@@ -53,7 +53,7 @@ public final class b implements o {
     public final void b() {
         q qVar = this.f13404b;
         qVar.getClass();
-        qVar.f1();
+        qVar.e1();
         this.f13404b.X1(new t(-9223372036854775807L));
         this.f13405c = 6;
     }
@@ -77,7 +77,7 @@ public final class b implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8083b;
+        g0 g0Var = i0.f8081b;
         return a1.e;
     }
 

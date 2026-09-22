@@ -5,22 +5,22 @@ import b2.o0;
 import b2.s;
 import java.util.ArrayList;
 public final class c implements o0 {
-    public final ArrayList f42335a;
+    public final ArrayList f42011a;
 
     public c(ArrayList arrayList) {
-        this.f42335a = arrayList;
+        this.f42011a = arrayList;
         boolean z10 = false;
         if (!arrayList.isEmpty()) {
-            long j3 = ((b) arrayList.get(0)).f42333b;
+            long j3 = ((b) arrayList.get(0)).f42009b;
             int i10 = 1;
             while (true) {
                 if (i10 >= arrayList.size()) {
                     break;
-                } else if (((b) arrayList.get(i10)).f42332a < j3) {
+                } else if (((b) arrayList.get(i10)).f42008a < j3) {
                     z10 = true;
                     break;
                 } else {
-                    j3 = ((b) arrayList.get(i10)).f42333b;
+                    j3 = ((b) arrayList.get(i10)).f42009b;
                     i10++;
                 }
             }
@@ -43,17 +43,17 @@ public final class c implements o0 {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            return this.f42335a.equals(((c) obj).f42335a);
+            return this.f42011a.equals(((c) obj).f42011a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f42335a.hashCode();
+        return this.f42011a.hashCode();
     }
 
     public final String toString() {
-        return "SlowMotion: segments=" + this.f42335a;
+        return "SlowMotion: segments=" + this.f42011a;
     }
 
     @Override

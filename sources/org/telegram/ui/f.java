@@ -10,30 +10,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class f extends ViewGroup {
-    public final int f33449a;
-    public final Object f33450b;
+    public final int f33437a;
+    public final Object f33438b;
 
     public f(Object obj, Context context, int i10) {
         super(context);
-        this.f33449a = i10;
-        this.f33450b = obj;
+        this.f33437a = i10;
+        this.f33438b = obj;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f33449a) {
+        switch (this.f33437a) {
             case 1:
-                org.telegram.ui.Components.rg0 rg0Var = (org.telegram.ui.Components.rg0) this.f33450b;
-                if (!rg0Var.m0) {
+                org.telegram.ui.Components.eg0 eg0Var = (org.telegram.ui.Components.eg0) this.f33438b;
+                if (!eg0Var.m0) {
                     canvas.save();
-                    canvas.scale(rg0Var.H / rg0Var.e.getWidth(), rg0Var.I / rg0Var.e.getHeight());
+                    canvas.scale(eg0Var.H / eg0Var.e.getWidth(), eg0Var.I / eg0Var.e.getHeight());
                     super.draw(canvas);
                     canvas.restore();
                     return;
                 }
                 return;
             case 2:
-                if (!((org.telegram.ui.Components.voip.j1) this.f33450b).f29372a0) {
+                if (!((org.telegram.ui.Components.voip.j1) this.f33438b).f29004a0) {
                     super.draw(canvas);
                     return;
                 }
@@ -47,13 +47,13 @@ public final class f extends ViewGroup {
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
         org.telegram.ui.ActionBar.d5 d5Var;
-        switch (this.f33449a) {
+        switch (this.f33437a) {
             case 4:
                 boolean drawChild = super.drawChild(canvas, view, j3);
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f33450b;
-                if (view == usersSelectActivity.d || view == usersSelectActivity.f31916f) {
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f33438b;
+                if (view == usersSelectActivity.d || view == usersSelectActivity.f31608f) {
                     d5Var = ((org.telegram.ui.ActionBar.n2) usersSelectActivity).parentLayout;
-                    ((ActionBarLayout) d5Var).q(canvas, usersSelectActivity.f31913a.getMeasuredHeight());
+                    ((ActionBarLayout) d5Var).q(canvas, usersSelectActivity.f31605a.getMeasuredHeight());
                 }
                 return drawChild;
             default:
@@ -63,22 +63,16 @@ public final class f extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        org.telegram.ui.ActionBar.k kVar;
         float f7;
         float f10;
+        org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        org.telegram.ui.ActionBar.k kVar4;
-        org.telegram.ui.ActionBar.k kVar5;
         int measuredWidth;
-        switch (this.f33449a) {
+        switch (this.f33437a) {
             case 0:
-                h hVar = (h) this.f33450b;
-                kVar = ((org.telegram.ui.ActionBar.n2) hVar).actionBar;
-                if (kVar != null) {
-                    kVar2 = ((org.telegram.ui.ActionBar.n2) hVar).actionBar;
-                    kVar3 = ((org.telegram.ui.ActionBar.n2) hVar).actionBar;
-                    kVar2.layout(0, 0, i12, kVar3.getMeasuredHeight());
+                h hVar = (h) this.f33438b;
+                if (h.X(hVar) != null) {
+                    h.Z(hVar).layout(0, 0, i12, h.Y(hVar).getMeasuredHeight());
                 }
                 int i14 = i12 - i10;
                 int i15 = i13 - i11;
@@ -88,11 +82,11 @@ public final class f extends ViewGroup {
                         if (i16 != 5) {
                             if (i16 == 6) {
                                 if (i12 > i13) {
-                                    int measuredHeight = (i15 - hVar.f34031a.getMeasuredHeight()) / 2;
+                                    int measuredHeight = (i15 - hVar.f33986a.getMeasuredHeight()) / 2;
                                     float f11 = i14;
-                                    int measuredWidth2 = ((int) ((0.5f * f11) - hVar.f34031a.getMeasuredWidth())) / 2;
-                                    org.telegram.ui.Components.nj0 nj0Var = hVar.f34031a;
-                                    nj0Var.layout(measuredWidth2, measuredHeight, nj0Var.getMeasuredWidth() + measuredWidth2, hVar.f34031a.getMeasuredHeight() + measuredHeight);
+                                    int measuredWidth2 = ((int) ((0.5f * f11) - hVar.f33986a.getMeasuredWidth())) / 2;
+                                    org.telegram.ui.Components.aj0 aj0Var = hVar.f33986a;
+                                    aj0Var.layout(measuredWidth2, measuredHeight, aj0Var.getMeasuredWidth() + measuredWidth2, hVar.f33986a.getMeasuredHeight() + measuredHeight);
                                     float f12 = 0.4f * f11;
                                     int i17 = (int) f12;
                                     float f13 = i15;
@@ -100,35 +94,35 @@ public final class f extends ViewGroup {
                                     TextView textView = hVar.e;
                                     textView.layout(i17, i18, textView.getMeasuredWidth() + i17, hVar.e.getMeasuredHeight() + i18);
                                     int i19 = (int) (0.31f * f13);
-                                    TextView textView2 = hVar.f34034f;
-                                    textView2.layout(i17, i19, textView2.getMeasuredWidth() + i17, hVar.f34034f.getMeasuredHeight() + i19);
-                                    int A = (int) com.google.android.gms.internal.vision.e2.A(f11 * 0.6f, hVar.f34033c.getMeasuredWidth(), 2.0f, f12);
+                                    TextView textView2 = hVar.f33989f;
+                                    textView2.layout(i17, i19, textView2.getMeasuredWidth() + i17, hVar.f33989f.getMeasuredHeight() + i19);
+                                    int A = (int) com.google.android.gms.internal.vision.e2.A(f11 * 0.6f, hVar.f33988c.getMeasuredWidth(), 2.0f, f12);
                                     int i20 = (int) (f13 * 0.78f);
-                                    bi.o oVar = hVar.f34033c;
-                                    oVar.layout(A, i20, oVar.getMeasuredWidth() + A, hVar.f34033c.getMeasuredHeight() + i20);
+                                    bi.o oVar = hVar.f33988c;
+                                    oVar.layout(A, i20, oVar.getMeasuredWidth() + A, hVar.f33988c.getMeasuredHeight() + i20);
                                     return;
                                 }
                                 int i21 = (int) (i15 * 0.3f);
-                                int measuredWidth3 = (i14 - hVar.f34031a.getMeasuredWidth()) / 2;
-                                org.telegram.ui.Components.nj0 nj0Var2 = hVar.f34031a;
-                                nj0Var2.layout(measuredWidth3, i21, nj0Var2.getMeasuredWidth() + measuredWidth3, hVar.f34031a.getMeasuredHeight() + i21);
-                                int C = org.telegram.messenger.l0.C(24.0f, hVar.f34031a.getMeasuredHeight(), i21);
+                                int measuredWidth3 = (i14 - hVar.f33986a.getMeasuredWidth()) / 2;
+                                org.telegram.ui.Components.aj0 aj0Var2 = hVar.f33986a;
+                                aj0Var2.layout(measuredWidth3, i21, aj0Var2.getMeasuredWidth() + measuredWidth3, hVar.f33986a.getMeasuredHeight() + i21);
+                                int C = org.telegram.messenger.y0.C(24.0f, hVar.f33986a.getMeasuredHeight(), i21);
                                 TextView textView3 = hVar.e;
                                 textView3.layout(0, C, textView3.getMeasuredWidth(), hVar.e.getMeasuredHeight() + C);
                                 int textSize = (int) (hVar.e.getTextSize() + AndroidUtilities.dp(16.0f) + C);
-                                TextView textView4 = hVar.f34034f;
-                                textView4.layout(0, textSize, textView4.getMeasuredWidth(), hVar.f34034f.getMeasuredHeight() + textSize);
-                                int measuredWidth4 = (i14 - hVar.f34033c.getMeasuredWidth()) / 2;
-                                int measuredHeight2 = (i15 - hVar.f34033c.getMeasuredHeight()) - AndroidUtilities.dp(48.0f);
-                                bi.o oVar2 = hVar.f34033c;
-                                oVar2.layout(measuredWidth4, measuredHeight2, oVar2.getMeasuredWidth() + measuredWidth4, hVar.f34033c.getMeasuredHeight() + measuredHeight2);
+                                TextView textView4 = hVar.f33989f;
+                                textView4.layout(0, textSize, textView4.getMeasuredWidth(), hVar.f33989f.getMeasuredHeight() + textSize);
+                                int measuredWidth4 = (i14 - hVar.f33988c.getMeasuredWidth()) / 2;
+                                int measuredHeight2 = (i15 - hVar.f33988c.getMeasuredHeight()) - AndroidUtilities.dp(48.0f);
+                                bi.o oVar2 = hVar.f33988c;
+                                oVar2.layout(measuredWidth4, measuredHeight2, oVar2.getMeasuredWidth() + measuredWidth4, hVar.f33988c.getMeasuredHeight() + measuredHeight2);
                                 return;
                             }
                             return;
                         } else if (i12 > i13) {
-                            int measuredHeight3 = (i15 - hVar.f34031a.getMeasuredHeight()) / 2;
-                            org.telegram.ui.Components.nj0 nj0Var3 = hVar.f34031a;
-                            nj0Var3.layout(0, measuredHeight3, nj0Var3.getMeasuredWidth(), hVar.f34031a.getMeasuredHeight() + measuredHeight3);
+                            int measuredHeight3 = (i15 - hVar.f33986a.getMeasuredHeight()) / 2;
+                            org.telegram.ui.Components.aj0 aj0Var3 = hVar.f33986a;
+                            aj0Var3.layout(0, measuredHeight3, aj0Var3.getMeasuredWidth(), hVar.f33986a.getMeasuredHeight() + measuredHeight3);
                             float f14 = i14;
                             float f15 = 0.4f * f14;
                             int i22 = (int) f15;
@@ -141,17 +135,17 @@ public final class f extends ViewGroup {
                             int i24 = (int) (0.25f * f16);
                             LinearLayout linearLayout = hVar.h;
                             linearLayout.layout(A2, i24, linearLayout.getMeasuredWidth() + A2, hVar.h.getMeasuredHeight() + i24);
-                            int A3 = (int) com.google.android.gms.internal.vision.e2.A(f17, hVar.f34033c.getMeasuredWidth(), 2.0f, f15);
+                            int A3 = (int) com.google.android.gms.internal.vision.e2.A(f17, hVar.f33988c.getMeasuredWidth(), 2.0f, f15);
                             int i25 = (int) (f16 * 0.78f);
-                            bi.o oVar3 = hVar.f34033c;
-                            oVar3.layout(A3, i25, oVar3.getMeasuredWidth() + A3, hVar.f34033c.getMeasuredHeight() + i25);
+                            bi.o oVar3 = hVar.f33988c;
+                            oVar3.layout(A3, i25, oVar3.getMeasuredWidth() + A3, hVar.f33988c.getMeasuredHeight() + i25);
                             return;
                         } else {
                             if (AndroidUtilities.displaySize.y < 1800) {
                                 f7 = i15;
                                 int i26 = (int) (0.06f * f7);
-                                org.telegram.ui.Components.nj0 nj0Var4 = hVar.f34031a;
-                                nj0Var4.layout(0, i26, nj0Var4.getMeasuredWidth(), hVar.f34031a.getMeasuredHeight() + i26);
+                                org.telegram.ui.Components.aj0 aj0Var4 = hVar.f33986a;
+                                aj0Var4.layout(0, i26, aj0Var4.getMeasuredWidth(), hVar.f33986a.getMeasuredHeight() + i26);
                                 int i27 = (int) (0.463f * f7);
                                 TextView textView6 = hVar.e;
                                 textView6.layout(0, i27, textView6.getMeasuredWidth(), hVar.e.getMeasuredHeight() + i27);
@@ -159,8 +153,8 @@ public final class f extends ViewGroup {
                             } else {
                                 f7 = i15;
                                 int i28 = (int) (0.148f * f7);
-                                org.telegram.ui.Components.nj0 nj0Var5 = hVar.f34031a;
-                                nj0Var5.layout(0, i28, nj0Var5.getMeasuredWidth(), hVar.f34031a.getMeasuredHeight() + i28);
+                                org.telegram.ui.Components.aj0 aj0Var5 = hVar.f33986a;
+                                aj0Var5.layout(0, i28, aj0Var5.getMeasuredWidth(), hVar.f33986a.getMeasuredHeight() + i28);
                                 int i29 = (int) (0.551f * f7);
                                 TextView textView7 = hVar.e;
                                 textView7.layout(0, i29, textView7.getMeasuredWidth(), hVar.e.getMeasuredHeight() + i29);
@@ -170,18 +164,18 @@ public final class f extends ViewGroup {
                             int measuredWidth5 = (getMeasuredWidth() - hVar.h.getMeasuredWidth()) / 2;
                             LinearLayout linearLayout2 = hVar.h;
                             linearLayout2.layout(measuredWidth5, i30, linearLayout2.getMeasuredWidth() + measuredWidth5, hVar.h.getMeasuredHeight() + i30);
-                            int measuredWidth6 = (i14 - hVar.f34033c.getMeasuredWidth()) / 2;
+                            int measuredWidth6 = (i14 - hVar.f33988c.getMeasuredWidth()) / 2;
                             int i31 = (int) (i15 * 0.853f);
-                            bi.o oVar4 = hVar.f34033c;
-                            oVar4.layout(measuredWidth6, i31, oVar4.getMeasuredWidth() + measuredWidth6, hVar.f34033c.getMeasuredHeight() + i31);
+                            bi.o oVar4 = hVar.f33988c;
+                            oVar4.layout(measuredWidth6, i31, oVar4.getMeasuredWidth() + measuredWidth6, hVar.f33988c.getMeasuredHeight() + i31);
                             return;
                         }
                     } else if (i12 > i13) {
                         float f18 = i15;
-                        int measuredHeight4 = ((int) ((0.95f * f18) - hVar.f34031a.getMeasuredHeight())) / 2;
-                        int width = (int) ((getWidth() * 0.35f) - hVar.f34031a.getMeasuredWidth());
-                        org.telegram.ui.Components.nj0 nj0Var6 = hVar.f34031a;
-                        nj0Var6.layout(width, measuredHeight4, nj0Var6.getMeasuredWidth() + width, hVar.f34031a.getMeasuredHeight() + measuredHeight4);
+                        int measuredHeight4 = ((int) ((0.95f * f18) - hVar.f33986a.getMeasuredHeight())) / 2;
+                        int width = (int) ((getWidth() * 0.35f) - hVar.f33986a.getMeasuredWidth());
+                        org.telegram.ui.Components.aj0 aj0Var6 = hVar.f33986a;
+                        aj0Var6.layout(width, measuredHeight4, aj0Var6.getMeasuredWidth() + width, hVar.f33986a.getMeasuredHeight() + measuredHeight4);
                         float f19 = i14;
                         float f20 = 0.4f * f19;
                         int i32 = (int) f20;
@@ -189,43 +183,43 @@ public final class f extends ViewGroup {
                         TextView textView8 = hVar.e;
                         textView8.layout(i32, i33, textView8.getMeasuredWidth() + i32, hVar.e.getMeasuredHeight() + i33);
                         int i34 = (int) (0.24f * f18);
-                        TextView textView9 = hVar.f34034f;
-                        textView9.layout(i32, i34, textView9.getMeasuredWidth() + i32, hVar.f34034f.getMeasuredHeight() + i34);
+                        TextView textView9 = hVar.f33989f;
+                        textView9.layout(i32, i34, textView9.getMeasuredWidth() + i32, hVar.f33989f.getMeasuredHeight() + i34);
                         float f21 = f19 * 0.6f;
-                        int A4 = (int) com.google.android.gms.internal.vision.e2.A(f21, hVar.f34033c.getMeasuredWidth(), 2.0f, f20);
+                        int A4 = (int) com.google.android.gms.internal.vision.e2.A(f21, hVar.f33988c.getMeasuredWidth(), 2.0f, f20);
                         int i35 = (int) (f18 * 0.8f);
-                        bi.o oVar5 = hVar.f34033c;
-                        oVar5.layout(A4, i35, oVar5.getMeasuredWidth() + A4, hVar.f34033c.getMeasuredHeight() + i35);
+                        bi.o oVar5 = hVar.f33988c;
+                        oVar5.layout(A4, i35, oVar5.getMeasuredWidth() + A4, hVar.f33988c.getMeasuredHeight() + i35);
                         int A5 = (int) com.google.android.gms.internal.vision.e2.A(f21, hVar.d.getMeasuredWidth(), 2.0f, f20);
-                        int x10 = org.telegram.messenger.rk.x(16.0f, hVar.d.getMeasuredHeight(), i35);
+                        int w10 = org.telegram.messenger.vl.w(16.0f, hVar.d.getMeasuredHeight(), i35);
                         TextView textView10 = hVar.d;
-                        textView10.layout(A5, x10, textView10.getMeasuredWidth() + A5, hVar.d.getMeasuredHeight() + x10);
+                        textView10.layout(A5, w10, textView10.getMeasuredWidth() + A5, hVar.d.getMeasuredHeight() + w10);
                         return;
                     } else {
                         int i36 = (int) (i15 * 0.3f);
-                        int measuredWidth7 = (i14 - hVar.f34031a.getMeasuredWidth()) / 2;
-                        org.telegram.ui.Components.nj0 nj0Var7 = hVar.f34031a;
-                        nj0Var7.layout(measuredWidth7, i36, nj0Var7.getMeasuredWidth() + measuredWidth7, hVar.f34031a.getMeasuredHeight() + i36);
-                        int C2 = org.telegram.messenger.l0.C(24.0f, hVar.f34031a.getMeasuredHeight(), i36);
+                        int measuredWidth7 = (i14 - hVar.f33986a.getMeasuredWidth()) / 2;
+                        org.telegram.ui.Components.aj0 aj0Var7 = hVar.f33986a;
+                        aj0Var7.layout(measuredWidth7, i36, aj0Var7.getMeasuredWidth() + measuredWidth7, hVar.f33986a.getMeasuredHeight() + i36);
+                        int C2 = org.telegram.messenger.y0.C(24.0f, hVar.f33986a.getMeasuredHeight(), i36);
                         TextView textView11 = hVar.e;
                         textView11.layout(0, C2, textView11.getMeasuredWidth(), hVar.e.getMeasuredHeight() + C2);
                         int textSize2 = (int) (hVar.e.getTextSize() + AndroidUtilities.dp(16.0f) + C2);
-                        TextView textView12 = hVar.f34034f;
-                        textView12.layout(0, textSize2, textView12.getMeasuredWidth(), hVar.f34034f.getMeasuredHeight() + textSize2);
-                        int measuredWidth8 = (i14 - hVar.f34033c.getMeasuredWidth()) / 2;
-                        int measuredHeight5 = (i15 - hVar.f34033c.getMeasuredHeight()) - AndroidUtilities.dp(48.0f);
-                        bi.o oVar6 = hVar.f34033c;
-                        oVar6.layout(measuredWidth8, measuredHeight5, oVar6.getMeasuredWidth() + measuredWidth8, hVar.f34033c.getMeasuredHeight() + measuredHeight5);
+                        TextView textView12 = hVar.f33989f;
+                        textView12.layout(0, textSize2, textView12.getMeasuredWidth(), hVar.f33989f.getMeasuredHeight() + textSize2);
+                        int measuredWidth8 = (i14 - hVar.f33988c.getMeasuredWidth()) / 2;
+                        int measuredHeight5 = (i15 - hVar.f33988c.getMeasuredHeight()) - AndroidUtilities.dp(48.0f);
+                        bi.o oVar6 = hVar.f33988c;
+                        oVar6.layout(measuredWidth8, measuredHeight5, oVar6.getMeasuredWidth() + measuredWidth8, hVar.f33988c.getMeasuredHeight() + measuredHeight5);
                         int measuredWidth9 = (i14 - hVar.d.getMeasuredWidth()) / 2;
-                        int x11 = org.telegram.messenger.rk.x(32.0f, hVar.d.getMeasuredHeight(), measuredHeight5);
+                        int w11 = org.telegram.messenger.vl.w(32.0f, hVar.d.getMeasuredHeight(), measuredHeight5);
                         TextView textView13 = hVar.d;
-                        textView13.layout(measuredWidth9, x11, textView13.getMeasuredWidth() + measuredWidth9, hVar.d.getMeasuredHeight() + x11);
+                        textView13.layout(measuredWidth9, w11, textView13.getMeasuredWidth() + measuredWidth9, hVar.d.getMeasuredHeight() + w11);
                         return;
                     }
                 } else if (i12 > i13) {
-                    int measuredHeight6 = (i15 - hVar.f34031a.getMeasuredHeight()) / 2;
-                    org.telegram.ui.Components.nj0 nj0Var8 = hVar.f34031a;
-                    nj0Var8.layout(0, measuredHeight6, nj0Var8.getMeasuredWidth(), hVar.f34031a.getMeasuredHeight() + measuredHeight6);
+                    int measuredHeight6 = (i15 - hVar.f33986a.getMeasuredHeight()) / 2;
+                    org.telegram.ui.Components.aj0 aj0Var8 = hVar.f33986a;
+                    aj0Var8.layout(0, measuredHeight6, aj0Var8.getMeasuredWidth(), hVar.f33986a.getMeasuredHeight() + measuredHeight6);
                     float f22 = i14;
                     float f23 = 0.4f * f22;
                     int i37 = (int) f23;
@@ -234,100 +228,100 @@ public final class f extends ViewGroup {
                     TextView textView14 = hVar.e;
                     textView14.layout(i37, i38, textView14.getMeasuredWidth() + i37, hVar.e.getMeasuredHeight() + i38);
                     int i39 = (int) (0.39f * f24);
-                    TextView textView15 = hVar.f34034f;
-                    textView15.layout(i37, i39, textView15.getMeasuredWidth() + i37, hVar.f34034f.getMeasuredHeight() + i39);
-                    int A6 = (int) com.google.android.gms.internal.vision.e2.A(f22 * 0.6f, hVar.f34033c.getMeasuredWidth(), 2.0f, f23);
+                    TextView textView15 = hVar.f33989f;
+                    textView15.layout(i37, i39, textView15.getMeasuredWidth() + i37, hVar.f33989f.getMeasuredHeight() + i39);
+                    int A6 = (int) com.google.android.gms.internal.vision.e2.A(f22 * 0.6f, hVar.f33988c.getMeasuredWidth(), 2.0f, f23);
                     int i40 = (int) (f24 * 0.69f);
-                    bi.o oVar7 = hVar.f34033c;
-                    oVar7.layout(A6, i40, oVar7.getMeasuredWidth() + A6, hVar.f34033c.getMeasuredHeight() + i40);
+                    bi.o oVar7 = hVar.f33988c;
+                    oVar7.layout(A6, i40, oVar7.getMeasuredWidth() + A6, hVar.f33988c.getMeasuredHeight() + i40);
                     return;
                 } else {
                     float f25 = i15;
                     int i41 = (int) (0.188f * f25);
-                    org.telegram.ui.Components.nj0 nj0Var9 = hVar.f34031a;
-                    nj0Var9.layout(0, i41, nj0Var9.getMeasuredWidth(), hVar.f34031a.getMeasuredHeight() + i41);
+                    org.telegram.ui.Components.aj0 aj0Var9 = hVar.f33986a;
+                    aj0Var9.layout(0, i41, aj0Var9.getMeasuredWidth(), hVar.f33986a.getMeasuredHeight() + i41);
                     int i42 = (int) (0.651f * f25);
                     TextView textView16 = hVar.e;
                     textView16.layout(0, i42, textView16.getMeasuredWidth(), hVar.e.getMeasuredHeight() + i42);
                     int i43 = (int) (0.731f * f25);
-                    TextView textView17 = hVar.f34034f;
-                    textView17.layout(0, i43, textView17.getMeasuredWidth(), hVar.f34034f.getMeasuredHeight() + i43);
-                    int measuredWidth10 = (i14 - hVar.f34033c.getMeasuredWidth()) / 2;
+                    TextView textView17 = hVar.f33989f;
+                    textView17.layout(0, i43, textView17.getMeasuredWidth(), hVar.f33989f.getMeasuredHeight() + i43);
+                    int measuredWidth10 = (i14 - hVar.f33988c.getMeasuredWidth()) / 2;
                     int i44 = (int) (f25 * 0.853f);
-                    bi.o oVar8 = hVar.f34033c;
-                    oVar8.layout(measuredWidth10, i44, oVar8.getMeasuredWidth() + measuredWidth10, hVar.f34033c.getMeasuredHeight() + i44);
+                    bi.o oVar8 = hVar.f33988c;
+                    oVar8.layout(measuredWidth10, i44, oVar8.getMeasuredWidth() + measuredWidth10, hVar.f33988c.getMeasuredHeight() + i44);
                     return;
                 }
             case 1:
-                org.telegram.ui.Components.rg0 rg0Var = (org.telegram.ui.Components.rg0) this.f33450b;
-                rg0Var.e.layout(0, 0, rg0Var.H, rg0Var.I);
+                org.telegram.ui.Components.eg0 eg0Var = (org.telegram.ui.Components.eg0) this.f33438b;
+                eg0Var.e.layout(0, 0, eg0Var.H, eg0Var.I);
                 return;
             case 2:
-                org.telegram.ui.Components.voip.j1 j1Var = (org.telegram.ui.Components.voip.j1) this.f33450b;
+                org.telegram.ui.Components.voip.j1 j1Var = (org.telegram.ui.Components.voip.j1) this.f33438b;
                 if (j1Var.e.getParent() == this) {
                     j1Var.e.layout(0, 0, j1Var.M, j1Var.N);
                     return;
                 }
                 return;
             case 3:
-                ih1 ih1Var = (ih1) this.f33450b;
-                kVar4 = ((org.telegram.ui.ActionBar.n2) ih1Var).actionBar;
-                kVar5 = ((org.telegram.ui.ActionBar.n2) ih1Var).actionBar;
-                kVar4.layout(0, 0, i12, kVar5.getMeasuredHeight());
+                hh1 hh1Var = (hh1) this.f33438b;
+                kVar = ((org.telegram.ui.ActionBar.n2) hh1Var).actionBar;
+                kVar2 = ((org.telegram.ui.ActionBar.n2) hh1Var).actionBar;
+                kVar.layout(0, 0, i12, kVar2.getMeasuredHeight());
                 int i45 = i12 - i10;
                 int i46 = i13 - i11;
                 if (i12 > i13) {
-                    int measuredHeight7 = (i46 - ih1Var.f34590a.getMeasuredHeight()) / 2;
-                    org.telegram.ui.Components.nj0 nj0Var10 = ih1Var.f34590a;
-                    nj0Var10.layout(0, measuredHeight7, nj0Var10.getMeasuredWidth(), ih1Var.f34590a.getMeasuredHeight() + measuredHeight7);
+                    int measuredHeight7 = (i46 - hh1Var.f34268a.getMeasuredHeight()) / 2;
+                    org.telegram.ui.Components.aj0 aj0Var10 = hh1Var.f34268a;
+                    aj0Var10.layout(0, measuredHeight7, aj0Var10.getMeasuredWidth(), hh1Var.f34268a.getMeasuredHeight() + measuredHeight7);
                     float f26 = i45;
                     float f27 = 0.4f * f26;
                     int i47 = (int) f27;
                     float f28 = i46;
                     int i48 = (int) (0.22f * f28);
-                    TextView textView18 = ih1Var.f34594c;
-                    textView18.layout(i47, i48, textView18.getMeasuredWidth() + i47, ih1Var.f34594c.getMeasuredHeight() + i48);
+                    TextView textView18 = hh1Var.f34272c;
+                    textView18.layout(i47, i48, textView18.getMeasuredWidth() + i47, hh1Var.f34272c.getMeasuredHeight() + i48);
                     int i49 = (int) (0.39f * f28);
-                    vh.n nVar = ih1Var.d;
-                    nVar.layout(i47, i49, nVar.getMeasuredWidth() + i47, ih1Var.d.getMeasuredHeight() + i49);
-                    int A7 = (int) com.google.android.gms.internal.vision.e2.A(f26 * 0.6f, ih1Var.f34592b.getMeasuredWidth(), 2.0f, f27);
+                    vh.o oVar9 = hh1Var.d;
+                    oVar9.layout(i47, i49, oVar9.getMeasuredWidth() + i47, hh1Var.d.getMeasuredHeight() + i49);
+                    int A7 = (int) com.google.android.gms.internal.vision.e2.A(f26 * 0.6f, hh1Var.f34270b.getMeasuredWidth(), 2.0f, f27);
                     int i50 = (int) (f28 * 0.64f);
-                    TextView textView19 = ih1Var.f34592b;
-                    textView19.layout(A7, i50, textView19.getMeasuredWidth() + A7, ih1Var.f34592b.getMeasuredHeight() + i50);
+                    TextView textView19 = hh1Var.f34270b;
+                    textView19.layout(A7, i50, textView19.getMeasuredWidth() + A7, hh1Var.f34270b.getMeasuredHeight() + i50);
                     return;
                 }
                 int i51 = (int) (i46 * 0.3f);
-                int measuredWidth11 = (i45 - ih1Var.f34590a.getMeasuredWidth()) / 2;
-                org.telegram.ui.Components.nj0 nj0Var11 = ih1Var.f34590a;
-                nj0Var11.layout(measuredWidth11, i51, nj0Var11.getMeasuredWidth() + measuredWidth11, ih1Var.f34590a.getMeasuredHeight() + i51);
-                int C3 = org.telegram.messenger.l0.C(16.0f, ih1Var.f34590a.getMeasuredHeight(), i51);
-                TextView textView20 = ih1Var.f34594c;
-                textView20.layout(0, C3, textView20.getMeasuredWidth(), ih1Var.f34594c.getMeasuredHeight() + C3);
-                int C4 = org.telegram.messenger.l0.C(12.0f, ih1Var.f34594c.getMeasuredHeight(), C3);
-                vh.n nVar2 = ih1Var.d;
-                nVar2.layout(0, C4, nVar2.getMeasuredWidth(), ih1Var.d.getMeasuredHeight() + C4);
-                int measuredWidth12 = (i45 - ih1Var.f34592b.getMeasuredWidth()) / 2;
-                int measuredHeight8 = (i46 - ih1Var.f34592b.getMeasuredHeight()) - AndroidUtilities.dp(48.0f);
-                TextView textView21 = ih1Var.f34592b;
-                textView21.layout(measuredWidth12, measuredHeight8, textView21.getMeasuredWidth() + measuredWidth12, ih1Var.f34592b.getMeasuredHeight() + measuredHeight8);
+                int measuredWidth11 = (i45 - hh1Var.f34268a.getMeasuredWidth()) / 2;
+                org.telegram.ui.Components.aj0 aj0Var11 = hh1Var.f34268a;
+                aj0Var11.layout(measuredWidth11, i51, aj0Var11.getMeasuredWidth() + measuredWidth11, hh1Var.f34268a.getMeasuredHeight() + i51);
+                int C3 = org.telegram.messenger.y0.C(16.0f, hh1Var.f34268a.getMeasuredHeight(), i51);
+                TextView textView20 = hh1Var.f34272c;
+                textView20.layout(0, C3, textView20.getMeasuredWidth(), hh1Var.f34272c.getMeasuredHeight() + C3);
+                int C4 = org.telegram.messenger.y0.C(12.0f, hh1Var.f34272c.getMeasuredHeight(), C3);
+                vh.o oVar10 = hh1Var.d;
+                oVar10.layout(0, C4, oVar10.getMeasuredWidth(), hh1Var.d.getMeasuredHeight() + C4);
+                int measuredWidth12 = (i45 - hh1Var.f34270b.getMeasuredWidth()) / 2;
+                int measuredHeight8 = (i46 - hh1Var.f34270b.getMeasuredHeight()) - AndroidUtilities.dp(48.0f);
+                TextView textView21 = hh1Var.f34270b;
+                textView21.layout(measuredWidth12, measuredHeight8, textView21.getMeasuredWidth() + measuredWidth12, hh1Var.f34270b.getMeasuredHeight() + measuredHeight8);
                 return;
             default:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f33450b;
-                org.telegram.ui.ActionBar.v1 v1Var = usersSelectActivity.f31913a;
-                v1Var.layout(0, 0, v1Var.getMeasuredWidth(), usersSelectActivity.f31913a.getMeasuredHeight());
-                usersSelectActivity.d.layout(0, usersSelectActivity.f31913a.getMeasuredHeight(), usersSelectActivity.d.getMeasuredWidth(), usersSelectActivity.d.getMeasuredHeight() + usersSelectActivity.f31913a.getMeasuredHeight());
-                usersSelectActivity.f31916f.layout(0, usersSelectActivity.f31913a.getMeasuredHeight(), usersSelectActivity.f31916f.getMeasuredWidth(), usersSelectActivity.f31916f.getMeasuredHeight() + usersSelectActivity.f31913a.getMeasuredHeight());
-                usersSelectActivity.e.layout(0, usersSelectActivity.f31913a.getMeasuredHeight(), usersSelectActivity.f31916f.getMeasuredWidth(), usersSelectActivity.e.getMeasuredHeight() + usersSelectActivity.f31913a.getMeasuredHeight());
-                org.telegram.ui.Components.y10 y10Var = usersSelectActivity.f31918r;
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f33438b;
+                org.telegram.ui.ActionBar.v1 v1Var = usersSelectActivity.f31605a;
+                v1Var.layout(0, 0, v1Var.getMeasuredWidth(), usersSelectActivity.f31605a.getMeasuredHeight());
+                usersSelectActivity.d.layout(0, usersSelectActivity.f31605a.getMeasuredHeight(), usersSelectActivity.d.getMeasuredWidth(), usersSelectActivity.d.getMeasuredHeight() + usersSelectActivity.f31605a.getMeasuredHeight());
+                usersSelectActivity.f31608f.layout(0, usersSelectActivity.f31605a.getMeasuredHeight(), usersSelectActivity.f31608f.getMeasuredWidth(), usersSelectActivity.f31608f.getMeasuredHeight() + usersSelectActivity.f31605a.getMeasuredHeight());
+                usersSelectActivity.e.layout(0, usersSelectActivity.f31605a.getMeasuredHeight(), usersSelectActivity.f31608f.getMeasuredWidth(), usersSelectActivity.e.getMeasuredHeight() + usersSelectActivity.f31605a.getMeasuredHeight());
+                org.telegram.ui.Components.y10 y10Var = usersSelectActivity.f31610r;
                 if (y10Var != null) {
                     if (LocaleController.isRTL) {
-                        measuredWidth = usersSelectActivity.f31919s.leftMargin;
+                        measuredWidth = usersSelectActivity.f31611s.leftMargin;
                     } else {
-                        measuredWidth = ((i12 - i10) - usersSelectActivity.f31919s.rightMargin) - y10Var.getMeasuredWidth();
+                        measuredWidth = ((i12 - i10) - usersSelectActivity.f31611s.rightMargin) - y10Var.getMeasuredWidth();
                     }
-                    int measuredHeight9 = ((i13 - i11) - usersSelectActivity.f31919s.bottomMargin) - usersSelectActivity.f31918r.getMeasuredHeight();
-                    org.telegram.ui.Components.y10 y10Var2 = usersSelectActivity.f31918r;
-                    y10Var2.layout(measuredWidth, measuredHeight9, y10Var2.getMeasuredWidth() + measuredWidth, usersSelectActivity.f31918r.getMeasuredHeight() + measuredHeight9);
+                    int measuredHeight9 = ((i13 - i11) - usersSelectActivity.f31611s.bottomMargin) - usersSelectActivity.f31610r.getMeasuredHeight();
+                    org.telegram.ui.Components.y10 y10Var2 = usersSelectActivity.f31610r;
+                    y10Var2.layout(measuredWidth, measuredHeight9, y10Var2.getMeasuredWidth() + measuredWidth, usersSelectActivity.f31610r.getMeasuredHeight() + measuredHeight9);
                     return;
                 }
                 return;
@@ -337,97 +331,93 @@ public final class f extends ViewGroup {
     @Override
     public final void onMeasure(int i10, int i11) {
         org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
         int i12;
         int dp;
-        switch (this.f33449a) {
+        switch (this.f33437a) {
             case 0:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
-                h hVar = (h) this.f33450b;
+                h hVar = (h) this.f33438b;
                 int i13 = hVar.v;
-                kVar = ((org.telegram.ui.ActionBar.n2) hVar).actionBar;
-                if (kVar != null) {
-                    kVar2 = ((org.telegram.ui.ActionBar.n2) hVar).actionBar;
-                    kVar2.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+                if (h.V(hVar) != null) {
+                    h.W(hVar).measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
                 }
                 if (i13 != 0) {
                     if (i13 != 3) {
                         if (i13 != 5) {
                             if (i13 == 6) {
                                 if (i13 == 6) {
-                                    hVar.f34031a.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(140.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(140.0f), 1073741824));
+                                    hVar.f33986a.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(140.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(140.0f), 1073741824));
                                 } else {
-                                    hVar.f34031a.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
+                                    hVar.f33986a.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
                                 }
                                 if (size > size2) {
                                     int i14 = (int) (size * 0.6f);
                                     hVar.e.measure(View.MeasureSpec.makeMeasureSpec(i14, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                    hVar.f34034f.measure(View.MeasureSpec.makeMeasureSpec(i14, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                    hVar.f34033c.measure(View.MeasureSpec.makeMeasureSpec(i14, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                                    hVar.f33989f.measure(View.MeasureSpec.makeMeasureSpec(i14, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                    hVar.f33988c.measure(View.MeasureSpec.makeMeasureSpec(i14, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                                 } else {
                                     hVar.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                                    hVar.f34034f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                                    hVar.f33989f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                                     if (i13 == 6) {
-                                        hVar.f34033c.measure(org.telegram.messenger.rk.c(48.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                                        hVar.f33988c.measure(org.telegram.messenger.vl.d(48.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                                     } else {
-                                        hVar.f34033c.measure(org.telegram.messenger.rk.c(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                                        hVar.f33988c.measure(org.telegram.messenger.vl.d(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                                     }
                                 }
                             }
                         } else if (size > size2) {
                             float f7 = size;
-                            hVar.f34031a.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f7), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
+                            hVar.f33986a.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f7), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
                             int i15 = (int) (f7 * 0.6f);
                             hVar.e.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                             hVar.h.measure(View.MeasureSpec.makeMeasureSpec(i15, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            hVar.f34033c.measure(View.MeasureSpec.makeMeasureSpec(i15, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                            hVar.f33988c.measure(View.MeasureSpec.makeMeasureSpec(i15, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                         } else {
-                            hVar.f34031a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
+                            hVar.f33986a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
                             hVar.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                             hVar.h.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            hVar.f34033c.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                            hVar.f33988c.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                         }
                     } else {
-                        hVar.f34031a.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), 1073741824));
+                        hVar.f33986a.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), 1073741824));
                         if (size > size2) {
                             float f10 = size;
                             hVar.d.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f10), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                             int i16 = (int) (f10 * 0.6f);
                             hVar.e.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            hVar.f34034f.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            hVar.f34033c.measure(View.MeasureSpec.makeMeasureSpec(i16, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                            hVar.f33989f.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            hVar.f33988c.measure(View.MeasureSpec.makeMeasureSpec(i16, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                         } else {
                             hVar.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            hVar.f34034f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                            hVar.f33989f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                             hVar.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                            hVar.f34033c.measure(org.telegram.messenger.rk.c(48.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                            hVar.f33988c.measure(org.telegram.messenger.vl.d(48.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                         }
                     }
                 } else if (size > size2) {
                     float f11 = size;
-                    hVar.f34031a.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f11), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
+                    hVar.f33986a.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f11), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.68f), 1073741824));
                     int i17 = (int) (f11 * 0.6f);
                     hVar.e.measure(View.MeasureSpec.makeMeasureSpec(i17, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                    hVar.f34034f.measure(View.MeasureSpec.makeMeasureSpec(i17, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                    hVar.f34033c.measure(View.MeasureSpec.makeMeasureSpec(i17, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                    hVar.f33989f.measure(View.MeasureSpec.makeMeasureSpec(i17, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                    hVar.f33988c.measure(View.MeasureSpec.makeMeasureSpec(i17, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                 } else {
-                    hVar.f34031a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
+                    hVar.f33986a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size2 * 0.399f), 1073741824));
                     hVar.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                    hVar.f34034f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
-                    hVar.f34033c.measure(org.telegram.messenger.rk.c(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                    hVar.f33989f.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                    hVar.f33988c.measure(org.telegram.messenger.vl.d(72.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                 }
                 setMeasuredDimension(size, size2);
                 return;
             case 1:
                 setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-                org.telegram.ui.Components.rg0 rg0Var = (org.telegram.ui.Components.rg0) this.f33450b;
-                rg0Var.e.measure(View.MeasureSpec.makeMeasureSpec(rg0Var.H, 1073741824), View.MeasureSpec.makeMeasureSpec(rg0Var.I, 1073741824));
+                org.telegram.ui.Components.eg0 eg0Var = (org.telegram.ui.Components.eg0) this.f33438b;
+                eg0Var.e.measure(View.MeasureSpec.makeMeasureSpec(eg0Var.H, 1073741824), View.MeasureSpec.makeMeasureSpec(eg0Var.I, 1073741824));
                 return;
             case 2:
                 setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-                org.telegram.ui.Components.voip.j1 j1Var = (org.telegram.ui.Components.voip.j1) this.f33450b;
+                org.telegram.ui.Components.voip.j1 j1Var = (org.telegram.ui.Components.voip.j1) this.f33438b;
                 if (j1Var.e.getParent() == this) {
                     j1Var.e.measure(View.MeasureSpec.makeMeasureSpec(j1Var.M, 1073741824), View.MeasureSpec.makeMeasureSpec(j1Var.N, 1073741824));
                     return;
@@ -436,34 +426,34 @@ public final class f extends ViewGroup {
             case 3:
                 int size3 = View.MeasureSpec.getSize(i10);
                 int size4 = View.MeasureSpec.getSize(i11);
-                ih1 ih1Var = (ih1) this.f33450b;
-                kVar3 = ((org.telegram.ui.ActionBar.n2) ih1Var).actionBar;
-                kVar3.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), i11);
+                hh1 hh1Var = (hh1) this.f33438b;
+                kVar = ((org.telegram.ui.ActionBar.n2) hh1Var).actionBar;
+                kVar.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), i11);
                 if (size3 > size4) {
                     float f12 = size3;
-                    ih1Var.f34590a.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f12), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size4 * 0.68f), 1073741824));
+                    hh1Var.f34268a.measure(View.MeasureSpec.makeMeasureSpec((int) (0.45f * f12), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (size4 * 0.68f), 1073741824));
                     int i18 = (int) (f12 * 0.6f);
-                    ih1Var.f34594c.measure(View.MeasureSpec.makeMeasureSpec(i18, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    ih1Var.d.measure(View.MeasureSpec.makeMeasureSpec(i18, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    ih1Var.e.measure(View.MeasureSpec.makeMeasureSpec(i18, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    ih1Var.f34592b.measure(View.MeasureSpec.makeMeasureSpec(i18, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                    hh1Var.f34272c.measure(View.MeasureSpec.makeMeasureSpec(i18, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    hh1Var.d.measure(View.MeasureSpec.makeMeasureSpec(i18, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    hh1Var.e.measure(View.MeasureSpec.makeMeasureSpec(i18, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    hh1Var.f34270b.measure(View.MeasureSpec.makeMeasureSpec(i18, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
                 } else {
-                    if (ih1Var.O == 7) {
+                    if (hh1Var.O == 7) {
                         i12 = 160;
                     } else {
                         i12 = 140;
                     }
                     float f13 = i12;
-                    ih1Var.f34590a.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f13), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f13), 1073741824));
-                    ih1Var.f34594c.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    ih1Var.d.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    ih1Var.e.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
-                    ih1Var.f34592b.measure(org.telegram.messenger.rk.c(48.0f, size3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+                    hh1Var.f34268a.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f13), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f13), 1073741824));
+                    hh1Var.f34272c.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    hh1Var.d.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    hh1Var.e.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(size4, 0));
+                    hh1Var.f34270b.measure(org.telegram.messenger.vl.d(48.0f, size3, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
                 }
                 setMeasuredDimension(size3, size4);
                 return;
             default:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f33450b;
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f33438b;
                 int size5 = View.MeasureSpec.getSize(i10);
                 int size6 = View.MeasureSpec.getSize(i11);
                 setMeasuredDimension(size5, size6);
@@ -472,13 +462,13 @@ public final class f extends ViewGroup {
                 } else {
                     dp = AndroidUtilities.dp(144.0f);
                 }
-                usersSelectActivity.f31913a.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-                usersSelectActivity.d.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.f31913a.getMeasuredHeight(), 1073741824));
-                usersSelectActivity.f31916f.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.f31913a.getMeasuredHeight(), 1073741824));
-                usersSelectActivity.e.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.f31913a.getMeasuredHeight(), 1073741824));
-                org.telegram.ui.Components.y10 y10Var = usersSelectActivity.f31918r;
+                usersSelectActivity.f31605a.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+                usersSelectActivity.d.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.f31605a.getMeasuredHeight(), 1073741824));
+                usersSelectActivity.f31608f.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.f31605a.getMeasuredHeight(), 1073741824));
+                usersSelectActivity.e.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(size6 - usersSelectActivity.f31605a.getMeasuredHeight(), 1073741824));
+                org.telegram.ui.Components.y10 y10Var = usersSelectActivity.f31610r;
                 if (y10Var != null) {
-                    int i19 = usersSelectActivity.f31919s.width;
+                    int i19 = usersSelectActivity.f31611s.width;
                     y10Var.measure(View.MeasureSpec.makeMeasureSpec(i19, 1073741824), View.MeasureSpec.makeMeasureSpec(i19, 1073741824));
                     return;
                 }

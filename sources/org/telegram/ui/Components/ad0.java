@@ -1,17 +1,20 @@
 package org.telegram.ui.Components;
-public final class ad0 implements Runnable {
-    public boolean f22637a;
-    public final fd0 f22638b;
 
-    public ad0(fd0 fd0Var) {
-        this.f22638b = fd0Var;
-    }
-
-    @Override
-    public final void run() {
-        boolean z10 = this.f22637a;
-        fd0 fd0Var = this.f22638b;
-        fd0Var.a(z10);
-        fd0Var.postDelayed(this, fd0Var.L);
-    }
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+public final class ad0 {
+    public Paint f22359a;
+    public Paint f22360b;
+    public View f22361c;
+    public i2.z d;
+    public long e;
+    public RectF f22362f;
+    public float f22363g;
+    public float h;
+    public float f22364i;
+    public Path f22365j;
+    public boolean f22366k;
+    public boolean f22367l;
 }

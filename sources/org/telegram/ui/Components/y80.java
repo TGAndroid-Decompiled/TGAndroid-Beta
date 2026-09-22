@@ -1,41 +1,24 @@
 package org.telegram.ui.Components;
+public final class y80 implements Runnable {
+    public final int f30174a;
+    public final z80 f30175b;
+    public final d90 f30176c;
 
-import android.view.KeyEvent;
-public final class y80 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.ActionBar.l1 {
-    public final int f30580a;
-    public final g90 f30581b;
-
-    public y80(g90 g90Var, int i10) {
-        this.f30580a = i10;
-        this.f30581b = g90Var;
+    public y80(z80 z80Var, d90 d90Var, int i10) {
+        this.f30174a = i10;
+        this.f30175b = z80Var;
+        this.f30176c = d90Var;
     }
 
     @Override
-    public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f30580a) {
+    public final void run() {
+        switch (this.f30174a) {
             case 0:
-                f90 f90Var = this.f30581b.f24474r;
-                if (f90Var != null) {
-                    f90Var.i();
-                    return;
-                }
+                this.f30175b.k(this.f30176c, false);
                 return;
             default:
-                f90 f90Var2 = this.f30581b.f24474r;
-                if (f90Var2 != null) {
-                    f90Var2.c();
-                    return;
-                }
+                this.f30175b.k(this.f30176c, false);
                 return;
-        }
-    }
-
-    @Override
-    public void o(KeyEvent keyEvent) {
-        g90 g90Var = this.f30581b;
-        g90Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && g90Var.f24475s.isShowing()) {
-            g90Var.f24475s.d(true);
         }
     }
 }

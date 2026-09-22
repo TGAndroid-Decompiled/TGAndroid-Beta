@@ -1,10 +1,14 @@
 package org.telegram.ui;
+public final class op implements k70 {
+    public final wp f36319a;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class op extends FrameLayout {
+    public op(wp wpVar) {
+        this.f36319a = wpVar;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void a(l70 l70Var, long j3) {
+        wp wpVar = this.f36319a;
+        wpVar.Y(wpVar.getMessagesController().getChat(Long.valueOf(j3)), l70Var);
     }
 }

@@ -1,22 +1,10 @@
 package tg;
-public final class j implements Runnable {
-    public final int f43454a;
-    public final m f43455b;
 
-    public j(m mVar, int i10) {
-        this.f43454a = i10;
-        this.f43455b = mVar;
-    }
-
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.uc0;
+public final class j extends uc0 {
     @Override
-    public final void run() {
-        switch (this.f43454a) {
-            case 0:
-                this.f43455b.dismiss();
-                return;
-            default:
-                this.f43455b.onBackPressed();
-                return;
-        }
+    public final CharSequence d(int i10) {
+        return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
     }
 }

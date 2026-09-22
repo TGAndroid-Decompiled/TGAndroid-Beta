@@ -1,29 +1,28 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class m3 extends FrameLayout {
-    public int f20660a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class m3 extends AnimatorListenerAdapter {
+    public final o3 f20413a;
 
-    public m3(Context context) {
-        this(context, 8);
+    public m3(o3 o3Var) {
+        this.f20413a = o3Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f20660a, 1073741824));
-    }
-
-    public void setHeight(int i10) {
-        if (this.f20660a != i10) {
-            this.f20660a = i10;
-            requestLayout();
+    public final void onAnimationEnd(Animator animator) {
+        o3 o3Var = this.f20413a;
+        if (o3Var.v) {
+            o3Var.e.setVisibility(4);
+            o3Var.f20542f.setVisibility(4);
+            o3Var.h.setVisibility(0);
+            return;
         }
-    }
-
-    public m3(Context context, int i10) {
-        super(context);
-        this.f20660a = i10;
+        if (o3Var.f20545s) {
+            o3Var.e.setVisibility(4);
+        } else {
+            o3Var.f20542f.setVisibility(4);
+        }
+        o3Var.h.setVisibility(8);
     }
 }

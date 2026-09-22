@@ -3,25 +3,25 @@ public class RuleAtom extends Atom {
     private static final float MAX_LENGTH = 4096.0f;
     private float h;
     private int hunit;
-    private float f15816r;
+    private float f15580r;
     private int runit;
-    private float f15817w;
+    private float f15581w;
     private int wunit;
 
     public RuleAtom(int i10, float f7, int i11, float f10, int i12, float f11) {
         this.wunit = i10;
         this.hunit = i11;
         this.runit = i12;
-        this.f15817w = f7;
+        this.f15581w = f7;
         this.h = f10;
-        this.f15816r = f11;
+        this.f15580r = f11;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        float factor = SpaceAtom.getFactor(this.wunit, teXEnvironment) * this.f15817w;
+        float factor = SpaceAtom.getFactor(this.wunit, teXEnvironment) * this.f15581w;
         float factor2 = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;
-        float factor3 = SpaceAtom.getFactor(this.runit, teXEnvironment) * this.f15816r;
+        float factor3 = SpaceAtom.getFactor(this.runit, teXEnvironment) * this.f15580r;
         return new HorizontalRule((Float.isInfinite(factor2) || Float.isNaN(factor2) || factor2 > 4096.0f) ? 4096.0f : 4096.0f, (Float.isInfinite(factor) || Float.isNaN(factor) || factor > 4096.0f) ? 4096.0f : 4096.0f, factor3);
     }
 }

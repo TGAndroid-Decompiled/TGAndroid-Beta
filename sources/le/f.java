@@ -1,14 +1,14 @@
 package le;
 public interface f {
-    void A();
+    void E();
 
     void a();
 
     void g(boolean z10);
 
-    boolean h();
+    boolean i();
 
-    boolean i(float f7);
+    boolean k(float f7);
 
-    void j();
+    void l();
 }

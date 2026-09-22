@@ -4,8 +4,8 @@ import android.app.Activity;
 public final class r60 extends rg.j0 {
     public final s60 W0;
 
-    public r60(s60 s60Var, s60 s60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(i10, i11, activity, s60Var2, f6Var);
+    public r60(s60 s60Var, s60 s60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i10, i11, activity, s60Var2, e6Var);
         this.W0 = s60Var;
     }
 

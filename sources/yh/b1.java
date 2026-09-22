@@ -5,23 +5,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.rk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.pc;
+import org.telegram.ui.Components.oc;
 import org.telegram.ui.Components.r00;
-import org.telegram.ui.Components.r50;
-import org.telegram.ui.Components.v9;
+import org.telegram.ui.Components.s50;
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.Components.xi0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
 public final class b1 implements Runnable {
-    public final int f47286a;
-    public final y3 f47287b;
+    public final int f46936a;
+    public final z3 f46937b;
 
-    public b1(y3 y3Var, int i10) {
-        this.f47286a = i10;
-        this.f47287b = y3Var;
+    public b1(z3 z3Var, int i10) {
+        this.f46936a = i10;
+        this.f46937b = z3Var;
     }
 
     @Override
@@ -30,153 +29,153 @@ public final class b1 implements Runnable {
         ImageReceiver imageReceiver;
         TL_stars.StarGift starGift;
         TLRPC.Document document;
-        f3 f3Var;
-        int i10 = this.f47286a;
-        y3 y3Var = this.f47287b;
+        g3 g3Var;
+        int i10 = this.f46936a;
+        z3 z3Var = this.f46937b;
         switch (i10) {
             case 0:
-                y3.q0(y3Var);
+                z3.q0(z3Var);
                 return;
             case 1:
-                new s(y3Var.getContext()).show();
+                new s(z3Var.getContext()).show();
                 return;
             case 2:
-                y3Var.dismiss();
+                z3Var.dismiss();
                 return;
             case 3:
-                y3.W(y3Var);
+                z3.W(z3Var);
                 return;
             case 4:
-                y3.Y(y3Var);
+                z3.Y(z3Var);
                 return;
             case 5:
-                y3Var.f48338j0.setLoading(false);
-                y3Var.q2(0, true, null);
+                z3Var.f48029j0.setLoading(false);
+                z3Var.q2(0, true, null);
                 return;
             case 6:
-                new s(y3Var.getContext()).show();
+                new s(z3Var.getContext()).show();
                 return;
             case 7:
-                y3.w0(y3Var);
+                z3.w0(z3Var);
                 return;
             case 8:
-                y3.b0(y3Var);
+                z3.b0(z3Var);
                 return;
             case 9:
-                y3Var.onBackPressed();
+                z3Var.onBackPressed();
                 return;
             case 10:
-                y3.g1(y3Var);
+                z3.g1(z3Var);
                 return;
             case 11:
-                y3Var.W1(true);
+                z3Var.W1(true);
                 return;
             case 12:
-                y3Var.U1();
+                z3Var.U1();
                 return;
             case 13:
-                y3Var.S1();
+                z3Var.S1();
                 return;
             case 14:
-                y3.o0(y3Var);
+                z3.o0(z3Var);
                 return;
             case 15:
-                y3Var.dismiss();
+                z3Var.dismiss();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                TL_stars.TL_starGiftUnique K1 = y3Var.K1();
+                TL_stars.TL_starGiftUnique K1 = z3Var.K1();
                 if (U != null && K1 != null) {
-                    uy uyVar = new uy(rk.e(4, "onlySelect", "dialogsType", true));
-                    uyVar.C2 = new r50(y3Var, K1, uyVar, 11);
+                    uy uyVar = new uy(org.telegram.messenger.y0.e(4, "onlySelect", "dialogsType", true));
+                    uyVar.C2 = new s50(z3Var, K1, uyVar, 11);
                     U.presentFragment(uyVar);
                     return;
                 }
                 return;
             case 16:
-                y3Var.Y1();
+                z3Var.Y1();
                 return;
             case 17:
-                long A1 = y3Var.A1();
+                long A1 = z3Var.A1();
                 if (A1 != 0) {
-                    y3Var.X1(A1);
+                    z3Var.X1(A1);
                     return;
                 }
                 return;
             case 18:
-                y3Var.onBackPressed();
+                z3Var.onBackPressed();
                 return;
             case 19:
-                y3Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
+                z3Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
                 return;
             case 20:
-                if (y3Var.B1() != null) {
+                if (z3Var.B1() != null) {
                     StringBuilder sb2 = new StringBuilder();
-                    sb2.append(y3Var.B1().title);
+                    sb2.append(z3Var.B1().title);
                     sb2.append(" #");
-                    str = hg.k0.j(y3Var.B1().num, ',', sb2);
+                    str = hg.c.k(z3Var.B1().num, ',', sb2);
                 } else {
                     str = "";
                 }
-                pc M = y3Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
-                M.f27311j = 5000;
-                M.f27321t = true;
+                oc M = z3Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
+                M.f26751j = 5000;
+                M.f26761t = true;
                 M.j();
-                r00 r00Var = y3Var.f48320a0;
+                r00 r00Var = z3Var.f48011a0;
                 if (r00Var != null) {
                     r00Var.c(true);
                     return;
                 }
                 return;
             case 21:
-                y3Var.d.v0(((y3) y3Var.Q0.d).P0.length - 1);
+                z3Var.d.u0(((z3) z3Var.Q0.d).P0.length - 1);
                 return;
             case 22:
-                y3Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
+                z3Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
                 return;
             case 23:
-                v3 v3Var = y3Var.f48328e0;
-                ci.d dVar = y3Var.f48338j0;
-                g3 g3Var = y3Var.M0.h;
-                if (g3Var != null && (f3Var = g3Var.f47492c) != null) {
-                    imageReceiver = ((i3) f3Var).d;
+                w3 w3Var = z3Var.f48019e0;
+                ci.d dVar = z3Var.f48029j0;
+                h3 h3Var = z3Var.M0.h;
+                if (h3Var != null && (g3Var = h3Var.f47183c) != null) {
+                    imageReceiver = ((j3) g3Var).d;
                 } else {
                     imageReceiver = null;
                 }
-                v9 v9Var = v3Var.d[0];
-                if (imageReceiver != null && v9Var != null && v9Var.getImageReceiver() != null) {
-                    kj0 lottieAnimation = imageReceiver.getLottieAnimation();
-                    kj0 lottieAnimation2 = v9Var.getImageReceiver().getLottieAnimation();
+                u9 u9Var = w3Var.d[0];
+                if (imageReceiver != null && u9Var != null && u9Var.getImageReceiver() != null) {
+                    xi0 lottieAnimation = imageReceiver.getLottieAnimation();
+                    xi0 lottieAnimation2 = u9Var.getImageReceiver().getLottieAnimation();
                     if (lottieAnimation2 != null && lottieAnimation != null) {
                         lottieAnimation2.T(lottieAnimation.t(), false);
                     } else if (lottieAnimation2 == null && lottieAnimation != null) {
                         imageReceiver.clearImage();
-                        v9Var.setImageDrawable(lottieAnimation);
+                        u9Var.setImageDrawable(lottieAnimation);
                     }
                 }
-                v3Var.f48174b.setAlpha(1.0f);
-                v3Var.f48176c.setAlpha(0.0f);
-                if (y3Var.f48350q0 && y3Var.Z != null && y3Var.D0 != null && y3Var.G1() >= 0 && y3Var.D0.b(y3Var.G1()) >= 0) {
+                w3Var.f47872b.setAlpha(1.0f);
+                w3Var.f47874c.setAlpha(0.0f);
+                if (z3Var.f48041q0 && z3Var.Z != null && z3Var.D0 != null && z3Var.G1() >= 0 && z3Var.D0.b(z3Var.G1()) >= 0) {
                     dVar.setFilled(false);
-                    int b10 = y3Var.D0.b(y3Var.G1());
+                    int b10 = z3Var.D0.b(z3Var.G1());
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2UpgradeNext));
-                    Object obj = y3Var.D0.get(b10);
+                    Object obj = z3Var.D0.get(b10);
                     if ((obj instanceof TL_stars.SavedStarGift) && (starGift = ((TL_stars.SavedStarGift) obj).gift) != null && (document = starGift.getDocument()) != null) {
                         spannableStringBuilder.append((CharSequence) " e");
-                        spannableStringBuilder.setSpan(new org.telegram.ui.Components.y5(document, dVar.getTextPaint().getFontMetricsInt()), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+                        spannableStringBuilder.setSpan(new org.telegram.ui.Components.x5(document, dVar.getTextPaint().getFontMetricsInt()), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
                     }
                     dVar.g(spannableStringBuilder, true, true);
                     dVar.f(null, true);
-                    dVar.setOnClickListener(new e1(y3Var, b10, 0));
+                    dVar.setOnClickListener(new e1(z3Var, b10, 0));
                     return;
                 }
                 dVar.setFilled(true);
                 dVar.g(LocaleController.getString(R.string.OK), true, true);
                 dVar.f(null, true);
-                dVar.setOnClickListener(new u0(y3Var, 2));
+                dVar.setOnClickListener(new u0(z3Var, 2));
                 return;
             default:
-                y3Var.getClass();
-                new rg.x0((org.telegram.ui.ActionBar.n2) new ai.y3(y3Var, 12), 12, false).show();
+                z3Var.getClass();
+                new rg.x0((org.telegram.ui.ActionBar.n2) new ai.y3(z3Var, 12), 12, false).show();
                 return;
         }
     }

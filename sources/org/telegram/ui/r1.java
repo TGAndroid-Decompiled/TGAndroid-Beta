@@ -5,24 +5,24 @@ import android.view.MotionEvent;
 import android.webkit.WebView;
 import org.telegram.tgnet.tl.TL_iv;
 public final class r1 extends WebView {
-    public final s1 f37037a;
+    public final s1 f36989a;
 
     public r1(s1 s1Var, Context context) {
         super(context);
-        this.f37037a = s1Var;
+        this.f36989a = s1Var;
         setFocusable(false);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        s1 s1Var = this.f37037a;
-        s1Var.f37293s = true;
+        s1 s1Var = this.f36989a;
+        s1Var.f37245s = true;
         TL_iv.pageBlockEmbed pageblockembed = s1Var.v;
         if (pageblockembed != null) {
             if (pageblockembed.allow_scrolling) {
                 requestDisallowInterceptTouchEvent(true);
             } else {
-                s1Var.f37295x.f34116f0.requestDisallowInterceptTouchEvent(true);
+                s1Var.f37247x.f34076f0.requestDisallowInterceptTouchEvent(true);
             }
         }
         return super.onTouchEvent(motionEvent);

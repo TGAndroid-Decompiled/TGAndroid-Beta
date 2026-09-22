@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 public final class i40 extends org.telegram.ui.Components.ju {
     public final i60 V;
 
-    public i40(i60 i60Var, LaunchActivity launchActivity, m50 m50Var, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(launchActivity, m50Var, n2Var, 5, true, f6Var);
+    public i40(i60 i60Var, LaunchActivity launchActivity, m50 m50Var, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(launchActivity, m50Var, n2Var, 5, true, e6Var);
         this.V = i60Var;
     }
 
@@ -30,8 +30,8 @@ public final class i40 extends org.telegram.ui.Components.ju {
         super.f();
         org.telegram.ui.Components.kz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f25920w0 = false;
-            emojiView.f25922w2 = false;
+            emojiView.f25762w0 = false;
+            emojiView.f25764w2 = false;
             emojiView.setShouldDrawBackground(false);
             viewGroup = ((org.telegram.ui.ActionBar.f3) this.V).containerView;
             emojiView.setBottomInset(viewGroup.getPaddingBottom());

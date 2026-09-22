@@ -19,10 +19,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.m70;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.x70;
-public class xa extends NestedScrollView implements x70 {
-    public final org.telegram.ui.Cells.ba W;
+public class xa extends NestedScrollView implements m70 {
+    public final org.telegram.ui.Cells.aa W;
     public final o1.k f1713a0;
     public final wa f1714b0;
     public boolean f1715c0;
@@ -47,7 +47,7 @@ public class xa extends NestedScrollView implements x70 {
     public boolean f1733v0;
     public boolean f1734w0;
 
-    public xa(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public xa(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         Paint paint = new Paint(1);
         this.f1728q0 = -1;
@@ -59,21 +59,21 @@ public class xa extends NestedScrollView implements x70 {
         NotificationCenter.listenEmojiLoading(this);
         wa waVar = new wa(this, getContext());
         this.f1714b0 = waVar;
-        org.telegram.ui.Cells.ba baVar = new org.telegram.ui.Cells.ba(waVar, f6Var);
-        this.W = baVar;
-        baVar.f20232i0 = false;
+        org.telegram.ui.Cells.aa aaVar = new org.telegram.ui.Cells.aa(waVar, e6Var);
+        this.W = aaVar;
+        aaVar.f19932i0 = false;
         frameLayout.addView(waVar, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
         setFadingEdgeLength(AndroidUtilities.dp(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        o1.k kVar = new o1.k(waVar, o1.h.f15520n, 0.0f);
+        o1.k kVar = new o1.k(waVar, o1.h.f15332n, 0.0f);
         this.f1713a0 = kVar;
-        kVar.f15537u.b(100.0f);
-        kVar.f15533j = 1.0f;
+        kVar.f15349u.b(100.0f);
+        kVar.f15345j = 1.0f;
         kVar.b(new qa(0, this));
-        kVar.f15537u.a(1.0f);
+        kVar.f15349u.a(1.0f);
         try {
             NestedScrollView.class.getDeclaredMethod("d", null).setAccessible(true);
         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class xa extends NestedScrollView implements x70 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new pa(this, getScrollY(), f7, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(qr.f27653f);
+        ofFloat.setInterpolator(qr.f27420f);
         ofFloat.start();
     }
 
@@ -122,7 +122,7 @@ public class xa extends NestedScrollView implements x70 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new pa(this, getScrollY(), f7, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(qr.f27653f);
+        ofFloat.setInterpolator(qr.f27420f);
         ofFloat.start();
     }
 
@@ -136,8 +136,8 @@ public class xa extends NestedScrollView implements x70 {
 
     public final void K(float f7) {
         o1.k kVar = this.f1713a0;
-        if (!kVar.f15530f) {
-            kVar.f15527a = f7;
+        if (!kVar.f15342f) {
+            kVar.f15339a = f7;
             kVar.f();
         }
         if (getScrollY() < AndroidUtilities.dp(2.0f)) {
@@ -286,7 +286,7 @@ public class xa extends NestedScrollView implements x70 {
                 boolean z10 = this.f1715c0;
                 wa waVar = this.f1714b0;
                 if (!z10) {
-                    if (!this.f1713a0.f15530f) {
+                    if (!this.f1713a0.f15342f) {
                         OverScroller overScroller = this.f1723k0;
                         if (overScroller != null) {
                             f7 = overScroller.getCurrVelocity();
@@ -371,7 +371,7 @@ public class xa extends NestedScrollView implements x70 {
         return true;
     }
 
-    public void F(org.telegram.ui.Components.y5 y5Var) {
+    public void F(org.telegram.ui.Components.x5 x5Var) {
     }
 
     public void I(sa saVar) {

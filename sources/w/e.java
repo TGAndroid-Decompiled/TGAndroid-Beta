@@ -1,63 +1,18 @@
 package w;
+public final class e {
+    public final Object f44459a;
+    public final String f44460b;
 
-import android.util.Log;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Iterator;
-public final class e implements AutoCloseable {
-    public final String[] f44783a;
-    public final ArrayDeque f44784b;
-
-    public e(Object obj, String str, ArrayDeque arrayDeque) {
-        this.f44784b = arrayDeque;
-        if (obj != null) {
-            arrayDeque.addFirst(new d(obj, str));
-            if (Log.isLoggable("CarApp.Bun", 2)) {
-                StringBuilder sb2 = new StringBuilder();
-                int min = Math.min(arrayDeque.size(), 11);
-                if (this.f44783a == null) {
-                    this.f44783a = new String[12];
-                }
-                String str2 = this.f44783a[min];
-                if (str2 == null) {
-                    char[] cArr = new char[min];
-                    Arrays.fill(cArr, ' ');
-                    String str3 = new String(cArr);
-                    if (min == 11) {
-                        str2 = str3.concat("...");
-                    } else {
-                        str2 = str3;
-                    }
-                    this.f44783a[min] = str2;
-                }
-                sb2.append(str2);
-                sb2.append(g.i(obj.getClass()) + " " + str);
-                Log.v("CarApp.Bun", sb2.toString());
-            }
-        }
+    public e(Object obj, String str) {
+        this.f44459a = obj;
+        this.f44460b = str;
     }
 
     public final String a() {
-        StringBuilder sb2 = new StringBuilder();
-        ArrayDeque arrayDeque = this.f44784b;
-        int min = Math.min(arrayDeque.size(), 8);
-        Iterator descendingIterator = arrayDeque.descendingIterator();
-        while (descendingIterator.hasNext()) {
-            int i10 = min - 1;
-            if (min <= 0) {
-                break;
-            }
-            sb2.append(((d) descendingIterator.next()).a());
-            min = i10;
-        }
-        if (descendingIterator.hasNext()) {
-            sb2.append("[...]");
-        }
-        return sb2.toString();
+        return "[" + this.f44460b + ", " + h.i(this.f44459a.getClass()) + "]";
     }
 
-    @Override
-    public final void close() {
-        this.f44784b.removeFirst();
+    public final String toString() {
+        return a();
     }
 }

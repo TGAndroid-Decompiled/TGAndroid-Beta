@@ -69,12 +69,12 @@ public class tu0 implements bv0 {
 
     @Override
     public boolean S() {
-        return !(this instanceof sl);
+        return !(this instanceof ul);
     }
 
     @Override
     public boolean T() {
-        return !(this instanceof ul);
+        return !(this instanceof wl);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class tu0 implements bv0 {
 
     @Override
     public boolean g() {
-        return !(this instanceof sl);
+        return !(this instanceof ul);
     }
 
     @Override

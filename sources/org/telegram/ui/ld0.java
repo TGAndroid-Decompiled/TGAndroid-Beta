@@ -1,42 +1,42 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class ld0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35440a;
-    public final yg0 f35441b;
+import android.os.Bundle;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import org.telegram.tgnet.TLRPC;
+public final class ld0 implements OnSuccessListener {
+    public final int f35439a = 0;
+    public final wg0 f35440b;
+    public final String f35441c;
+    public final TLRPC.auth_SentCode d;
+    public final Bundle e;
+    public final boolean f35442f;
 
-    public ld0(yg0 yg0Var, int i10) {
-        this.f35440a = i10;
-        this.f35441b = yg0Var;
+    public ld0(wg0 wg0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
+        this.f35440b = wg0Var;
+        this.e = bundle;
+        this.d = auth_sentcode;
+        this.f35441c = str;
+        this.f35442f = z10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35440a) {
+    public final void onSuccess(Object obj) {
+        switch (this.f35439a) {
             case 0:
-                yg0 yg0Var = this.f35441b;
-                yg0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yg0Var.f39933c.setAlpha(floatValue);
-                yg0Var.f39933c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
-                return;
-            case 1:
-                yg0 yg0Var2 = this.f35441b;
-                yg0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yg0Var2.f39933c.setAlpha(floatValue2);
-                yg0Var2.f39933c.setTranslationY((1.0f - floatValue2) * AndroidUtilities.dp(230.0f));
+                wg0.X(this.f35440b, this.e, this.d, this.f35441c, this.f35442f, (IntegrityTokenResponse) obj);
                 return;
             default:
-                yg0 yg0Var3 = this.f35441b;
-                yg0Var3.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f7 = (0.9f * floatValue3) + 0.1f;
-                yg0Var3.V.setScaleX(f7);
-                yg0Var3.V.setScaleY(f7);
-                yg0Var3.V.setAlpha(floatValue3);
+                wg0.V(this.f35440b, this.f35441c, this.d, this.e, this.f35442f, (m8.d) obj);
                 return;
         }
+    }
+
+    public ld0(wg0 wg0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
+        this.f35440b = wg0Var;
+        this.f35441c = str;
+        this.d = auth_sentcode;
+        this.e = bundle;
+        this.f35442f = z10;
     }
 }

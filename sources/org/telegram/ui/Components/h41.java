@@ -1,72 +1,53 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class h41 extends o6 {
-    public final Paint f24683s;
-    public final k90 v;
-    public final j41 f24684w;
+import org.telegram.messenger.R;
+public final class h41 implements Runnable {
+    public final int f24512a;
+    public final org.telegram.ui.ActionBar.f3[] f24513b;
+    public final Context f24514c;
 
-    public h41(j41 j41Var, Context context) {
-        super(context, false, false, false);
-        this.f24684w = j41Var;
-        this.f24683s = new Paint(1);
-        this.v = new k90();
+    public h41(Context context, org.telegram.ui.ActionBar.f3[] f3VarArr) {
+        this.f24512a = 3;
+        this.f24514c = context;
+        this.f24513b = f3VarArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (LocaleController.isRTL) {
-            AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-        } else {
-            AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+    public final void run() {
+        org.telegram.ui.ActionBar.f3 f3Var;
+        org.telegram.ui.ActionBar.n2 n2Var;
+        switch (this.f24512a) {
+            case 0:
+                this.f24513b[0].dismiss();
+                nf.f.s(this.f24514c, LocaleController.getString(R.string.CocoonFeature1TextLink));
+                return;
+            case 1:
+                this.f24513b[0].dismiss();
+                nf.f.u(this.f24514c, LocaleController.getString(R.string.CocoonFeature3TextLink));
+                return;
+            case 2:
+                this.f24513b[0].dismiss();
+                nf.f.s(this.f24514c, LocaleController.getString(R.string.CocoonFooterLink));
+                return;
+            default:
+                ew0 ew0Var = new ew0(this.f24514c);
+                if (!AndroidUtilities.isTablet()) {
+                    org.telegram.ui.ActionBar.f3[] f3VarArr = this.f24513b;
+                    if (!AndroidUtilities.hasDialogOnTop(f3VarArr[0].attachedFragment) && (f3Var = f3VarArr[0]) != null && (n2Var = f3Var.attachedFragment) != null) {
+                        ew0Var.makeAttached(n2Var);
+                    }
+                }
+                ew0Var.show();
+                return;
         }
-        l41 l41Var = this.f24684w.h;
-        int i10 = org.telegram.ui.ActionBar.j6.Pi;
-        String[] strArr = l41.R;
-        int l1 = org.telegram.ui.ActionBar.j6.l1(0.1175f, l41Var.getThemedColor(i10));
-        Paint paint = this.f24683s;
-        paint.setColor(l1);
-        canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-        if (this.v.f(canvas)) {
-            invalidate();
-        }
-        super.onDraw(canvas);
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.f6 f6Var;
-        l41 l41Var = this.f24684w.h;
-        int action = motionEvent.getAction();
-        k90 k90Var = this.v;
-        if (action == 0) {
-            f6Var = ((org.telegram.ui.ActionBar.f3) l41Var).resourcesProvider;
-            o90 o90Var = new o90(null, f6Var, motionEvent.getX(), motionEvent.getY(), 0);
-            o90Var.d(org.telegram.ui.ActionBar.j6.l1(0.1175f, l41Var.getThemedColor(org.telegram.ui.ActionBar.j6.Pi)));
-            h90 b10 = o90Var.b();
-            if (LocaleController.isRTL) {
-                AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-            } else {
-                AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-            }
-            b10.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
-            k90Var.a(o90Var, null);
-            invalidate();
-            return true;
-        }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (motionEvent.getAction() == 1) {
-                performClick();
-            }
-            k90Var.d(true);
-            invalidate();
-        }
-        return super.onTouchEvent(motionEvent);
+    public h41(org.telegram.ui.ActionBar.f3[] f3VarArr, Context context, int i10) {
+        this.f24512a = i10;
+        this.f24513b = f3VarArr;
+        this.f24514c = context;
     }
 }

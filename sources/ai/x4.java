@@ -44,22 +44,22 @@ public final class x4 implements ValueAnimator.AnimatorUpdateListener {
                 ci.r6 r6Var = (ci.r6) this.f1694b;
                 View view = (View) this.f1695c;
                 View view2 = (View) this.d;
-                r6Var.f5408a1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r6Var.f5406a1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 r6Var.W0.invalidate();
                 r6Var.T0.invalidate();
                 r6Var.U0.invalidate();
                 for (int i10 = 0; i10 < r6Var.W0.getChildCount(); i10++) {
                     View childAt = r6Var.W0.getChildAt(i10);
                     if (i10 == r6Var.Z0) {
-                        f7 = r6Var.f5408a1;
+                        f7 = r6Var.f5406a1;
                     } else if (i10 == r6Var.Y0) {
-                        f7 = 1.0f - r6Var.f5408a1;
+                        f7 = 1.0f - r6Var.f5406a1;
                     } else {
                         f7 = 0.0f;
                     }
                     childAt.setAlpha((f7 * 0.4f) + 0.6f);
                 }
-                float interpolation = qr.f27653f.getInterpolation(r6Var.f5408a1);
+                float interpolation = qr.f27420f.getInterpolation(r6Var.f5406a1);
                 if (view != null && view2 != null) {
                     float f11 = 1.0f - interpolation;
                     float f12 = (f11 * 0.4f) + 0.6f;
@@ -90,42 +90,42 @@ public final class x4 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 ji.m mVar = (ji.m) this.f1694b;
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f1695c;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.d;
+                org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) this.f1695c;
+                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (mVar.f13088l) {
-                    t1Var.f21122g0 = (-mVar.f13095s) * floatValue2;
-                    t1Var.f21126h0 = (-mVar.f13096t) * floatValue2;
-                    t1Var.f21136j0 = (-mVar.f13097u) * floatValue2;
-                    t1Var.f21131i0 = (-mVar.v) * floatValue2;
+                if (mVar.f13086l) {
+                    s1Var.f20844g0 = (-mVar.f13093s) * floatValue2;
+                    s1Var.f20848h0 = (-mVar.f13094t) * floatValue2;
+                    s1Var.f20858j0 = (-mVar.f13095u) * floatValue2;
+                    s1Var.f20853i0 = (-mVar.v) * floatValue2;
                 } else {
-                    t1Var.f21122g0 = ((-mVar.f13095s) * floatValue2) - u1Var.getAnimationOffsetX();
-                    t1Var.f21126h0 = ((-mVar.f13096t) * floatValue2) - u1Var.getAnimationOffsetX();
-                    t1Var.f21136j0 = ((-mVar.f13097u) * floatValue2) - u1Var.getTranslationY();
-                    t1Var.f21131i0 = ((-mVar.v) * floatValue2) - u1Var.getTranslationY();
+                    s1Var.f20844g0 = ((-mVar.f13093s) * floatValue2) - t1Var.getAnimationOffsetX();
+                    s1Var.f20848h0 = ((-mVar.f13094t) * floatValue2) - t1Var.getAnimationOffsetX();
+                    s1Var.f20858j0 = ((-mVar.f13095u) * floatValue2) - t1Var.getTranslationY();
+                    s1Var.f20853i0 = ((-mVar.v) * floatValue2) - t1Var.getTranslationY();
                 }
-                u1Var.invalidate();
+                t1Var.invalidate();
                 return;
             default:
-                qg.n0 n0Var = (qg.n0) this.f1694b;
+                qg.p0 p0Var = (qg.p0) this.f1694b;
                 View view3 = (View) this.f1695c;
                 View view4 = (View) this.d;
-                n0Var.f41820i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n0Var.f41814f1.invalidate();
-                n0Var.f41808c1.invalidate();
-                n0Var.f41810d1.invalidate();
-                for (int i11 = 0; i11 < n0Var.f41814f1.getChildCount(); i11++) {
-                    View childAt2 = n0Var.f41814f1.getChildAt(i11);
-                    if (i11 == n0Var.f41818h1) {
-                        f10 = n0Var.f41820i1;
-                    } else if (i11 == n0Var.f41816g1) {
-                        f10 = 1.0f - n0Var.f41820i1;
+                p0Var.f41526i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p0Var.f41520f1.invalidate();
+                p0Var.f41514c1.invalidate();
+                p0Var.f41516d1.invalidate();
+                for (int i11 = 0; i11 < p0Var.f41520f1.getChildCount(); i11++) {
+                    View childAt2 = p0Var.f41520f1.getChildAt(i11);
+                    if (i11 == p0Var.f41524h1) {
+                        f10 = p0Var.f41526i1;
+                    } else if (i11 == p0Var.f41522g1) {
+                        f10 = 1.0f - p0Var.f41526i1;
                     } else {
                         f10 = 0.0f;
                     }
                     childAt2.setAlpha((f10 * 0.4f) + 0.6f);
                 }
-                float interpolation2 = qr.f27653f.getInterpolation(n0Var.f41820i1);
+                float interpolation2 = qr.f27420f.getInterpolation(p0Var.f41526i1);
                 if (view3 != null && view4 != null) {
                     float f14 = 1.0f - interpolation2;
                     float f15 = (f14 * 0.4f) + 0.6f;

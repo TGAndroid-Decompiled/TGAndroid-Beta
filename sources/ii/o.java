@@ -8,20 +8,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.fk;
 import org.telegram.ui.Components.vi;
 public final class o implements fk {
-    public final vi f11525a;
-    public final r f11526b;
+    public final vi f11523a;
+    public final r f11524b;
 
     public o(r rVar, vi viVar) {
-        this.f11526b = rVar;
-        this.f11525a = viVar;
+        this.f11524b = rVar;
+        this.f11523a = viVar;
     }
 
     @Override
     public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
         String str2;
-        w3 w3Var = this.f11526b.f11592r;
+        w3 w3Var = this.f11524b.f11590r;
         if (!arrayList.isEmpty()) {
-            w3Var.d2((String) arrayList.get(0));
+            w3Var.c2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
             MessageObject messageObject = (MessageObject) arrayList3.get(0);
             w3Var.getClass();
@@ -33,10 +33,10 @@ public final class o implements fk {
                 } else {
                     str2 = null;
                 }
-                w3Var.e2(document, str2);
+                w3Var.d2(document, str2);
             }
         }
-        this.f11525a.dismiss(true);
+        this.f11523a.dismiss(true);
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class o implements fk {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f11526b.f26786b.f29096f0.startActivityForResult(intent, 21);
+            this.f11524b.f26461b.f28747f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

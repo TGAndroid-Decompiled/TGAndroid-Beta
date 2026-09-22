@@ -1,109 +1,28 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.view.View;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-public final class uq0 extends org.telegram.ui.Components.cw0 {
-    public int f38216w0;
-    public boolean f38217x0;
-    public int f38218y0;
-    public final cr0 f38219z0;
+public final class uq0 extends g.p {
+    public final ar0 f38106c;
 
-    public uq0(cr0 cr0Var, Context context) {
-        super(context, null);
-        this.f38219z0 = cr0Var;
+    public uq0(ar0 ar0Var) {
+        this.f38106c = ar0Var;
     }
 
     @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uq0.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        org.telegram.ui.Components.ju juVar;
-        int size = View.MeasureSpec.getSize(i11);
-        int size2 = View.MeasureSpec.getSize(i10);
-        boolean isTablet = AndroidUtilities.isTablet();
-        cr0 cr0Var = this.f38219z0;
-        if (isTablet) {
-            cr0Var.f32863g0 = 4;
-        } else {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                cr0Var.f32863g0 = 4;
+    public final int i(int i10) {
+        int i11;
+        ar0 ar0Var = this.f38106c;
+        if (ar0Var.L.j(i10) != 1 && !ar0Var.Y && (ar0Var.J != null || !TextUtils.isEmpty(ar0Var.v))) {
+            int i12 = ar0Var.R;
+            int i13 = ar0Var.f31903g0;
+            if (i10 % i13 != i13 - 1) {
+                i11 = AndroidUtilities.dp(2.0f);
             } else {
-                cr0Var.f32863g0 = 3;
+                i11 = 0;
             }
+            return i12 + i11;
         }
-        this.f38217x0 = true;
-        int dp = ((size2 - AndroidUtilities.dp(4.0f)) - AndroidUtilities.dp(4.0f)) / cr0Var.f32863g0;
-        cr0Var.R = dp;
-        if (this.f38218y0 != dp) {
-            this.f38218y0 = dp;
-            AndroidUtilities.runOnUIThread(new sl0(this, 12));
-        }
-        if (cr0Var.Y) {
-            cr0Var.M.y1(1);
-        } else {
-            cr0Var.M.y1(Math.max(1, ((cr0Var.f32863g0 - 1) * AndroidUtilities.dp(2.0f)) + (cr0Var.R * cr0Var.f32863g0)));
-        }
-        this.f38217x0 = false;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int size3 = View.MeasureSpec.getSize(i10);
-        int size4 = View.MeasureSpec.getSize(makeMeasureSpec);
-        setMeasuredDimension(size3, size4);
-        int R = R();
-        if (AndroidUtilities.dp(20.0f) >= 0 && !AndroidUtilities.isInMultiwindow && cr0Var.f32859d0 != null && cr0Var.Z.getParent() == this) {
-            size4 -= cr0Var.f32859d0.getEmojiPadding();
-            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size4, 1073741824);
-        }
-        int i12 = size4;
-        int i13 = makeMeasureSpec;
-        if (R > AndroidUtilities.dp(20.0f) && (juVar = cr0Var.f32859d0) != null) {
-            this.f38217x0 = true;
-            juVar.j();
-            this.f38217x0 = false;
-        }
-        org.telegram.ui.Components.ju juVar2 = cr0Var.f32859d0;
-        if (juVar2 != null && juVar2.e) {
-            cr0Var.fragmentView.setTranslationY(0.0f);
-            cr0Var.K.setTranslationY(0.0f);
-            cr0Var.N.setTranslationY(0.0f);
-        }
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                org.telegram.ui.Components.ju juVar3 = cr0Var.f32859d0;
-                if (juVar3 != null && juVar3.l(childAt)) {
-                    if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                    } else if (AndroidUtilities.isTablet()) {
-                        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size3, 1073741824);
-                        if (AndroidUtilities.isTablet()) {
-                            f7 = 200.0f;
-                        } else {
-                            f7 = 320.0f;
-                        }
-                        childAt.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f7), getPaddingTop() + (i12 - AndroidUtilities.statusBarHeight)), 1073741824));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (i12 - AndroidUtilities.statusBarHeight), 1073741824));
-                    }
-                } else {
-                    measureChildWithMargins(childAt, i10, 0, i13, 0);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f38217x0) {
-            return;
-        }
-        super.requestLayout();
+        return ar0Var.M.J;
     }
 }

@@ -1,76 +1,85 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class z70 implements RequestDelegate {
-    public final int f30835a = 1;
-    public final Context f30836b;
-    public final long f30837c;
-    public final int d;
-    public final Object e;
-    public final Object f30838f;
-    public final Object f30839g;
-    public final Object h;
-    public final Object f30840i;
+public abstract class z70 extends org.telegram.ui.ActionBar.f3 {
+    public boolean f30490b;
 
-    public z70(Context context, ai.a1 a1Var, long j3, byte[] bArr, org.telegram.messenger.video.a aVar, xc xcVar, org.telegram.messenger.video.d dVar, int i10) {
-        this.f30836b = context;
-        this.e = a1Var;
-        this.f30837c = j3;
-        this.f30838f = bArr;
-        this.f30839g = aVar;
-        this.h = xcVar;
-        this.f30840i = dVar;
-        this.d = i10;
+    public z70(Context context, TLRPC.Chat chat) {
+        super(context, true);
+        setApplyBottomPadding(false);
+        setApplyTopPadding(false);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        setCustomView(linearLayout);
+        u9 u9Var = new u9(context);
+        u9Var.setRoundRadius(AndroidUtilities.dp(45.0f));
+        linearLayout.addView(u9Var, w7.x5.t(90, 90, 49, 0, 29, 0, 0));
+        u9Var.e(chat, new f9(chat));
+        TextView textView = new TextView(context);
+        org.telegram.messenger.vl.k(18.0f, 1, textView);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.i6.f18940j5, null, false, textView, 1);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-2, -2, 49, 17, 24, 17, 0), context);
+        h.setTextSize(1, 14.0f);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.i6.f19088r5, null, false, h, 1);
+        linearLayout.addView(h, w7.x5.t(-2, -2, 49, 30, 8, 30, 0));
+        ChatObject.Call groupCall = AccountInstance.getInstance(this.currentAccount).getMessagesController().getGroupCall(chat.f18109id, false);
+        if (groupCall != null) {
+            if (TextUtils.isEmpty(groupCall.call.title)) {
+                textView.setText(chat.title);
+            } else {
+                textView.setText(groupCall.call.title);
+            }
+            int i10 = groupCall.call.participants_count;
+            if (i10 == 0) {
+                h.setText(LocaleController.getString(R.string.NoOneJoinedYet));
+            } else {
+                h.setText(LocaleController.formatPluralString("Participants", i10, new Object[0]));
+            }
+        } else {
+            textView.setText(chat.title);
+            h.setText(LocaleController.getString(R.string.NoOneJoinedYet));
+        }
+        ?? frameLayout = new FrameLayout(context);
+        View view = new View(context);
+        view.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.i6.Oh));
+        frameLayout.addView(view, w7.x5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView2 = new TextView(context);
+        frameLayout.f30168a = textView2;
+        textView2.setLines(1);
+        textView2.setSingleLine(true);
+        textView2.setGravity(1);
+        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        textView2.setGravity(17);
+        org.telegram.messenger.y0.q(textView2, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false), 1, 14.0f);
+        frameLayout.addView(textView2, w7.x5.e(-2, -2, 17));
+        frameLayout.setBackground(null);
+        if (ChatObject.isChannelOrGiga(chat)) {
+            frameLayout.setText(LocaleController.getString(R.string.VoipChannelJoinVoiceChatUrl));
+        } else {
+            frameLayout.setText(LocaleController.getString(R.string.VoipGroupJoinVoiceChatUrl));
+        }
+        view.setOnClickListener(new x70(this, 0));
+        linearLayout.addView((View) frameLayout, w7.x5.t(-1, 50, 51, 0, 30, 0, 0));
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f30835a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new ei.g1((org.telegram.ui.ActionBar.b2) this.e, tLObject, (AccountInstance) this.f30838f, (f80) this.f30839g, this.f30837c, this.f30836b, (org.telegram.ui.ActionBar.n2) this.h, this.d, (TLRPC.Peer) this.f30840i));
-                return;
-            default:
-                ai.a1 a1Var = (ai.a1) this.e;
-                byte[] bArr = (byte[]) this.f30838f;
-                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f30839g;
-                xc xcVar = (xc) this.h;
-                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f30840i;
-                Context context = this.f30836b;
-                if (tLObject != null) {
-                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.fw(tLObject, context, a1Var, this.f30837c, bArr, aVar, xcVar, dVar));
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.r31(aVar, xcVar, context, a1Var, 0), 200L);
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.fm0(aVar, xcVar, this.d, 8), 200L);
-                        return;
-                    } else {
-                        return;
-                    }
-                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.r31(aVar, xcVar, context, a1Var, 1), 200L);
-                    return;
-                } else {
-                    return;
-                }
+    public final void dismissInternal() {
+        super.dismissInternal();
+        if (this.f30490b) {
+            m();
         }
     }
 
-    public z70(org.telegram.ui.ActionBar.b2 b2Var, AccountInstance accountInstance, f80 f80Var, long j3, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, TLRPC.Peer peer) {
-        this.e = b2Var;
-        this.f30838f = accountInstance;
-        this.f30839g = f80Var;
-        this.f30837c = j3;
-        this.f30836b = context;
-        this.h = n2Var;
-        this.d = i10;
-        this.f30840i = peer;
-    }
+    public abstract void m();
 }

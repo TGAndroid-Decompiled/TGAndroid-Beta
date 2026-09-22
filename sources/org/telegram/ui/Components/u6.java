@@ -1,146 +1,90 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class u6 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final int f28677a;
-    public final n90 f28678b;
-    public final Runnable f28679c;
+public final class u6 extends View {
+    public final ImageReceiver f28293a;
+    public final Drawable f28294b;
+    public final Paint f28295c;
+    public final Paint d;
 
-    public u6(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, Runnable runnable, org.telegram.ui.dj djVar) {
+    public u6(Context context) {
         super(context);
-        int i11;
-        this.f28677a = i10;
-        this.f28679c = runnable;
-        ContactsController.getInstance(i10).loadGlobalPrivacySetting();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.y5.e(-1, -2, 17));
-        ImageView imageView = new ImageView(context);
-        imageView.setBackground(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(80.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.K7, f6Var)));
-        imageView.setImageResource(R.drawable.large_archive);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        if (djVar != null) {
-            i11 = 14;
-        } else {
-            i11 = 0;
-        }
-        linearLayout.addView(imageView, w7.y5.t(80, 80, 49, 0, i11, 0, 14));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 20.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19216j5, f6Var));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(1);
-        textView.setText(LocaleController.getString(R.string.ArchiveHintHeader1));
-        linearLayout.addView(textView, w7.y5.t(-1, -2, 1, 32, 0, 32, 9));
-        n90 n90Var = new n90(context, null);
-        this.f28678b = n90Var;
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19511z6, f6Var));
-        n90Var.setGravity(1);
-        b();
-        linearLayout.addView(n90Var, w7.y5.t(-1, -2, 1, 32, 0, 32, 25));
-        linearLayout.addView(a(R.drawable.msg_archive_archive, LocaleController.getString("ArchiveHintSection1"), LocaleController.getString("ArchiveHintSection1Info"), f6Var), w7.y5.t(-1, -2, 7, 32, 0, 32, 16));
-        linearLayout.addView(a(R.drawable.msg_archive_hide, LocaleController.getString("ArchiveHintSection2"), LocaleController.getString("ArchiveHintSection2Info"), f6Var), w7.y5.t(-1, -2, 7, 32, 0, 32, 16));
-        linearLayout.addView(a(R.drawable.msg_archive_stories, LocaleController.getString("ArchiveHintSection3"), LocaleController.getString("ArchiveHintSection3Info"), f6Var), w7.y5.t(-1, -2, 7, 32, 0, 32, 16));
-        if (djVar != null) {
-            ci.d g10 = org.telegram.messenger.rk.g(24, context, f6Var, true);
-            g10.g(LocaleController.getString("GotIt"), false, true);
-            g10.setOnClickListener(new t6(0, djVar));
-            linearLayout.addView(g10, w7.y5.k(14.0f, 18.0f, 14.0f, 0.0f, -1, 48));
-        }
-    }
-
-    public final FrameLayout a(int i10, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        ImageView imageView = new ImageView(getContext());
-        int i11 = org.telegram.ui.ActionBar.j6.f19216j5;
-        imageView.setColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        imageView.setImageResource(i10);
-        frameLayout.addView(imageView, w7.y5.d(24, 24.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(getContext());
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(0, AndroidUtilities.dp(14.0f));
-        textView.setText(str);
-        linearLayout.addView(textView, w7.y5.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
-        TextView textView2 = new TextView(getContext());
-        textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19511z6, f6Var));
-        textView2.setTextSize(0, AndroidUtilities.dp(14.0f));
-        textView2.setText(str2);
-        linearLayout.addView(textView2, w7.y5.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
-        frameLayout.addView(linearLayout, w7.y5.d(-1, -2.0f, 55, 41.0f, 0.0f, 0.0f, 0.0f));
-        return frameLayout;
-    }
-
-    public final void b() {
-        boolean z10;
-        String str;
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.f28677a).getGlobalPrivacySettings();
-        if (globalPrivacySettings != null) {
-            z10 = globalPrivacySettings.keep_archived_unmuted;
-        } else {
-            z10 = true;
-        }
-        if (z10) {
-            str = "ArchiveHintSubtitle";
-        } else {
-            str = "ArchiveHintSubtitleUnmutedMove";
-        }
-        String string = LocaleController.getString(str);
-        int i10 = org.telegram.ui.ActionBar.j6.gc;
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i10, 0, this.f28679c);
-        SpannableString spannableString = new SpannableString(">");
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
-        oq oqVar = new oq(0, mutate);
-        oqVar.setColorKey(i10);
-        oqVar.setSize(AndroidUtilities.dp(18.0f));
-        oqVar.setWidth(AndroidUtilities.dp(11.0f));
-        oqVar.setTranslateX(-AndroidUtilities.dp(5.0f));
-        spannableString.setSpan(oqVar, 0, spannableString.length(), 33);
-        this.f28678b.setText(AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString));
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.privacyRulesUpdated) {
-            b();
-        }
+        Paint paint = new Paint(1);
+        this.f28295c = paint;
+        this.d = new Paint(1);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f28293a = imageReceiver;
+        imageReceiver.setAlpha(0.0f);
+        imageReceiver.setDelegate(new s(this, 12));
+        this.f28294b = context.getDrawable(R.drawable.input_attach).mutate().getConstantState().newDrawable();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f28677a).addObserver(this, NotificationCenter.privacyRulesUpdated);
-        b();
+        this.f28293a.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f28677a).removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        this.f28293a.onDetachedFromWindow();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(400.0f), View.MeasureSpec.getSize(i10)), 1073741824), i11);
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(10.0f) + getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.d);
+        ImageReceiver imageReceiver = this.f28293a;
+        imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+        imageReceiver.draw(canvas);
+        Paint paint = this.f28295c;
+        canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), paint);
+        int dp = AndroidUtilities.dp(24.0f) + (getWidth() / 2);
+        int height = (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2);
+        int dp2 = AndroidUtilities.dp(66.0f) + (getWidth() / 2);
+        int dp3 = (AndroidUtilities.dp(42.0f) / 2) + (getHeight() / 2);
+        Drawable drawable = this.f28294b;
+        drawable.setBounds(dp, height, dp2, dp3);
+        drawable.draw(canvas);
+    }
+
+    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        TLRPC.TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
+        if (staticAttachMenuBotIcon != null) {
+            this.f28293a.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, org.telegram.ui.ActionBar.i6.f19070q5, 1.0f), "svg", tL_attachMenuBot, 0);
+        }
+    }
+
+    @Override
+    public void setBackgroundColor(int i10) {
+        this.d.setColor(i10);
+    }
+
+    public void setColor(int i10) {
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.f28294b.setColorFilter(i10, mode);
+        this.f28295c.setColor(i10);
+        this.f28293a.setColorFilter(new PorterDuffColorFilter(i10, mode));
     }
 }

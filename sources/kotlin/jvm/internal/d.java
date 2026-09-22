@@ -10,11 +10,11 @@ import rd.t;
 import rd.u;
 import rd.v;
 import rd.w;
-import w7.v6;
+import w7.u6;
 public final class d implements vd.c, c {
-    public static final Map f13885b;
-    public static final LinkedHashMap f13886c;
-    public final Class f13887a;
+    public static final Map f13675b;
+    public static final LinkedHashMap f13676c;
+    public final Class f13677a;
 
     static {
         int i10 = 0;
@@ -29,7 +29,7 @@ public final class d implements vd.c, c {
                 throw new ArithmeticException("Index overflow has happened.");
             }
         }
-        f13885b = hd.r.d(arrayList);
+        f13675b = hd.r.d(arrayList);
         HashMap hashMap = new HashMap();
         hashMap.put("boolean", "kotlin.Boolean");
         hashMap.put("char", "kotlin.Char");
@@ -79,7 +79,7 @@ public final class d implements vd.c, c {
             sb2.append("CompanionObject");
             hashMap3.put(sb2.toString(), str.concat(".Companion"));
         }
-        for (Map.Entry entry : f13885b.entrySet()) {
+        for (Map.Entry entry : f13675b.entrySet()) {
             int intValue = ((Number) entry.getValue()).intValue();
             String name = ((Class) entry.getKey()).getName();
             hashMap3.put(name, "kotlin.Function" + intValue);
@@ -91,31 +91,31 @@ public final class d implements vd.c, c {
             i.b(str2);
             linkedHashMap.put(key, xd.j.j(str2, str2));
         }
-        f13886c = linkedHashMap;
+        f13676c = linkedHashMap;
     }
 
     public d(Class jClass) {
         i.e(jClass, "jClass");
-        this.f13887a = jClass;
+        this.f13677a = jClass;
     }
 
     @Override
     public final Class a() {
-        return this.f13887a;
+        return this.f13677a;
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof d) && v6.a(this).equals(v6.a((vd.c) obj))) {
+        if ((obj instanceof d) && u6.a(this).equals(u6.a((vd.c) obj))) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return v6.a(this).hashCode();
+        return u6.a(this).hashCode();
     }
 
     public final String toString() {
-        return this.f13887a + " (Kotlin reflection is not available)";
+        return this.f13677a + " (Kotlin reflection is not available)";
     }
 }

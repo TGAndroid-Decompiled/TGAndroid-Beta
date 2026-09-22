@@ -1,13 +1,43 @@
 package w9;
-public final class t extends d {
-    public final Runnable f45296a;
 
-    public t(Runnable runnable) {
-        this.f45296a = runnable;
+import android.util.Log;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+public final class t extends d {
+    public final String f44974a;
+    public final ExecutorService f44975b;
+
+    public t(String str, ExecutorService executorService) {
+        TimeUnit timeUnit = TimeUnit.SECONDS;
+        this.f44974a = str;
+        this.f44975b = executorService;
     }
 
     @Override
     public final void a() {
-        this.f45296a.run();
+        String str = this.f44974a;
+        ExecutorService executorService = this.f44975b;
+        try {
+            String concat = "Executing shutdown hook for ".concat(str);
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", concat, null);
+            }
+            executorService.shutdown();
+            if (!executorService.awaitTermination(2L, TimeUnit.SECONDS)) {
+                String concat2 = str.concat(" did not shut down in the allocated time. Requesting immediate shutdown.");
+                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                    Log.d("FirebaseCrashlytics", concat2, null);
+                }
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException unused) {
+            Locale locale = Locale.US;
+            String q6 = a4.a.q("Interrupted while waiting for ", str, " to shut down. Requesting immediate shutdown.");
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", q6, null);
+            }
+            executorService.shutdownNow();
+        }
     }
 }

@@ -1,148 +1,58 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class hp extends org.telegram.ui.Components.yl0 {
-    public static final int f34269b3 = 0;
-    public final gp X2;
-    public boolean Y2;
-    public final Paint Z2;
-    public final ip f34270a3;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class hp implements org.telegram.ui.Components.zk0 {
+    public final jp f34339a;
 
-    public hp(ip ipVar, Context context) {
-        super(context, null);
-        this.f34270a3 = ipVar;
-        this.Y2 = false;
-        this.Z2 = new Paint(1);
-        gp gpVar = new gp(this);
-        this.X2 = gpVar;
-        setAdapter(gpVar);
-        setLayoutManager(new s4.c0());
-        setOnItemClickListener(new fp(this));
-        new s4.y(new bi.g(this, 1)).e(this);
+    public hp(jp jpVar) {
+        this.f34339a = jpVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        int S;
-        int size = this.f34270a3.N.size();
-        int i10 = Integer.MAX_VALUE;
-        int i11 = Integer.MIN_VALUE;
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt != null && (S = RecyclerView.S(childAt)) >= 1 && S <= size) {
-                i10 = Math.min(childAt.getTop(), i10);
-                i11 = Math.max(childAt.getBottom(), i11);
-            }
-        }
-        if (i10 < i11) {
-            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19109d6, this.f30704p2);
-            Paint paint = this.Z2;
-            paint.setColor(v02);
-            canvas2 = canvas;
-            canvas2.drawRect(0.0f, i10, getWidth(), i11, paint);
-        } else {
-            canvas2 = canvas;
-        }
-        super.dispatchDraw(canvas2);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
-    }
-
-    public final void x1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
-        TLRPC.TL_username tL_username2;
-        int min;
-        ip ipVar = this.f34270a3;
-        ArrayList arrayList = ipVar.N;
-        int i10 = 0;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (arrayList.get(i11) == tL_username) {
-                int i12 = i11 + 1;
-                if (i11 >= 0 && i11 < arrayList.size() && (tL_username2 = (TLRPC.TL_username) arrayList.get(i11)) != null) {
-                    int i13 = -1;
-                    if (tL_username2.active != z10) {
-                        tL_username2.active = z10;
-                        if (z10) {
-                            int i14 = 0;
-                            while (true) {
-                                if (i14 < arrayList.size()) {
-                                    if (!((TLRPC.TL_username) arrayList.get(i14)).active) {
-                                        break;
-                                    }
-                                    i14++;
-                                } else {
-                                    i14 = -1;
-                                    break;
-                                }
-                            }
-                            if (i14 >= 0) {
-                                min = Math.max(0, i14 - 1);
-                                i13 = min + 1;
-                            }
-                        } else {
-                            int i15 = -1;
-                            for (int i16 = 0; i16 < arrayList.size(); i16++) {
-                                if (((TLRPC.TL_username) arrayList.get(i16)).active) {
-                                    i15 = i16;
-                                }
-                            }
-                            if (i15 >= 0) {
-                                min = Math.min(arrayList.size() - 1, i15 + 1);
-                                i13 = min + 1;
-                            }
-                        }
-                    }
-                    int i17 = 0;
-                    while (true) {
-                        if (i17 >= getChildCount()) {
-                            break;
-                        }
-                        View childAt = getChildAt(i17);
-                        if (RecyclerView.S(childAt) == i12) {
-                            if (z11) {
-                                AndroidUtilities.shakeView(childAt);
-                            }
-                            if (childAt instanceof oa) {
-                                oa oaVar = (oa) childAt;
-                                oaVar.setLoading(ipVar.P.contains(tL_username2.username));
-                                TLRPC.TL_username tL_username3 = oaVar.v;
-                                if (tL_username3 != null) {
-                                    oaVar.a(tL_username3, oaVar.f36249w, true, oaVar.f36250x);
-                                }
-                            }
-                        } else {
-                            i17++;
-                        }
-                    }
-                    if (i13 >= 0 && i12 != i13) {
-                        int i18 = i13 - 1;
-                        gp gpVar = this.X2;
-                        ArrayList arrayList2 = gpVar.f33962c.f34270a3.N;
-                        if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
-                            arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
-                            gpVar.p(i12, i13);
-                            while (i10 < arrayList2.size()) {
-                                i10++;
-                                gpVar.m(i10);
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
+    public final void d(int i10, View view) {
+        TLRPC.TL_username tL_username;
+        int i11;
+        int i12;
+        int i13;
+        jp jpVar = this.f34339a;
+        kp kpVar = jpVar.f34960a3;
+        if ((view instanceof na) && (tL_username = ((na) view).v) != null) {
+            if (tL_username.editable) {
+                View view2 = kpVar.fragmentView;
+                if (view2 instanceof ScrollView) {
+                    ((ScrollView) view2).smoothScrollTo(0, kpVar.f35231y.getTop() - AndroidUtilities.dp(128.0f));
                 }
+                kpVar.f35203a.requestFocus();
+                AndroidUtilities.showKeyboard(kpVar.f35203a);
                 return;
             }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(jpVar.getContext(), 0, kpVar.getResourceProvider());
+            if (tL_username.active) {
+                i11 = R.string.UsernameDeactivateLink;
+            } else {
+                i11 = R.string.UsernameActivateLink;
+            }
+            alertDialog$Builder.f18435a.R = LocaleController.getString(i11);
+            if (tL_username.active) {
+                i12 = R.string.UsernameDeactivateLinkChannelMessage;
+            } else {
+                i12 = R.string.UsernameActivateLinkChannelMessage;
+            }
+            alertDialog$Builder.f18435a.T = LocaleController.getString(i12);
+            if (tL_username.active) {
+                i13 = R.string.Hide;
+            } else {
+                i13 = R.string.Show;
+            }
+            alertDialog$Builder.k(LocaleController.getString(i13), new b7(this, tL_username, view, 8));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new m4.u0(21));
+            alertDialog$Builder.o();
         }
     }
 }

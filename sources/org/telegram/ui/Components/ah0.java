@@ -1,151 +1,124 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-public abstract class ah0 extends FrameLayout {
-    public final x5 f22658a;
-    public final TextView f22659b;
-    public final org.telegram.ui.Cells.x1 f22660c;
-    public final ch0 d;
+public final class ah0 {
+    public int f22393a;
+    public final wc f22394b;
+    public final c6 e;
+    public Drawable f22398i;
+    public Drawable f22399j;
+    public xi0 f22400k;
+    public g01 f22401l;
+    public g90 f22407r;
+    public boolean f22408s;
+    public boolean f22409t;
+    public int f22410u;
+    public long f22411w;
+    public int f22412x;
+    public final dh0 f22413y;
+    public final RectF f22395c = new RectF();
+    public final RectF d = new RectF();
+    public final RectF f22396f = new RectF();
+    public final RectF f22397g = new RectF();
+    public final Rect h = new Rect();
+    public float f22402m = 1.0f;
+    public boolean f22403n = false;
+    public boolean f22404o = false;
+    public boolean f22405p = false;
+    public final float f22406q = 1.0f;
+    public int v = 0;
 
-    public ah0(ch0 ch0Var, Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        this.d = ch0Var;
-        setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19198i5, false));
-        x5 x5Var = new x5(getContext());
-        this.f22658a = x5Var;
-        x5Var.setTextSize(1, 14.0f);
-        x5Var.setTypeface(AndroidUtilities.bold());
-        int i16 = org.telegram.ui.ActionBar.j6.f7;
-        x5Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i16, false));
-        x5Var.setSingleLine(true);
-        x5Var.setEllipsize(TextUtils.TruncateAt.END);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        x5Var.setGravity(i10 | 16);
-        TextView textView = new TextView(getContext());
-        this.f22659b = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i16, false));
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        textView.setGravity(i11 | 16);
-        org.telegram.ui.Cells.x1 x1Var = new org.telegram.ui.Cells.x1(this, getContext(), 1);
-        this.f22660c = x1Var;
-        x1Var.setTextSize(AndroidUtilities.dp(14.0f));
-        x1Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i16, false));
-        if (LocaleController.isRTL) {
-            i12 = 3;
-        } else {
-            i12 = 5;
-        }
-        x1Var.setGravity(i12);
-        x1Var.setOnClickListener(new i80(this, 9));
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i13 = 5;
-        } else {
-            i13 = 3;
-        }
-        int i17 = i13 | 48;
-        if (z10) {
-            i14 = 0;
-        } else {
-            i14 = 16;
-        }
-        addView(x5Var, w7.y5.d(-2, -1.0f, i17, i14, 0.0f, z10 ? 16 : 0, 0.0f));
-        if (LocaleController.isRTL) {
-            i15 = 5;
-        } else {
-            i15 = 3;
-        }
-        addView(textView, w7.y5.d(-2, -1.0f, i15 | 48, 0.0f, 0.0f, 0.0f, 0.0f));
-        addView(x1Var, w7.y5.d(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+    public ah0(dh0 dh0Var) {
+        this.f22413y = dh0Var;
+        this.f22394b = new wc(dh0Var);
+        this.e = new c6(dh0Var, 0L, 250L, qr.f27420f);
     }
 
-    public final void a(String str, ArrayList arrayList, int i10, int i11, int i12, boolean z10) {
-        SpannableStringBuilder spannableStringBuilder;
-        x5 x5Var = this.f22658a;
-        if (arrayList != null) {
-            NotificationCenter.listenEmojiLoading(x5Var);
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str);
-            MediaDataController.addTextStyleRuns(arrayList, str, spannableStringBuilder2);
-            CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder2, x5Var.getPaint().getFontMetricsInt(), false);
-            MessageObject.replaceAnimatedEmoji(replaceEmoji, arrayList, x5Var.getPaint().getFontMetricsInt());
-            x5Var.setText(replaceEmoji);
-        } else {
-            x5Var.setText(Emoji.replaceEmoji(str, x5Var.getPaint().getFontMetricsInt(), false));
-        }
-        String format = String.format("%d", Integer.valueOf(i10));
-        if (LocaleController.isRTL) {
-            spannableStringBuilder = new SpannableStringBuilder(a4.a.m(i10, "% – "));
-        } else {
-            spannableStringBuilder = new SpannableStringBuilder(hg.k0.i(i10, " – ", "%"));
-        }
-        spannableStringBuilder.setSpan(new v51(AndroidUtilities.bold()), 3, format.length() + 3, 33);
-        this.f22659b.setText(spannableStringBuilder);
-        org.telegram.ui.Cells.x1 x1Var = this.f22660c;
-        if (i12 == 0) {
-            if (this.d.f23361r.quiz) {
-                x1Var.c(LocaleController.formatPluralString("Answer", i11, new Object[0]), z10, true);
-            } else {
-                x1Var.c(LocaleController.formatPluralString("Vote", i11, new Object[0]), z10, true);
-            }
-        } else if (i12 == 1) {
-            x1Var.c(LocaleController.getString(R.string.PollExpand), z10, true);
-        } else {
-            x1Var.c(LocaleController.getString(R.string.PollCollapse), z10, true);
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        boolean z11 = LocaleController.isRTL;
-        x5 x5Var = this.f22658a;
-        TextView textView = this.f22659b;
-        if (z11) {
-            int left = x5Var.getLeft() - textView.getMeasuredWidth();
-            textView.layout(left, textView.getTop(), textView.getMeasuredWidth() + left, textView.getBottom());
+    public final void a() {
+        float d = this.e.d(1.0f, false);
+        if (d != 1.0f) {
+            RectF rectF = this.f22397g;
+            float f7 = rectF.left;
+            RectF rectF2 = this.f22396f;
+            float lerp = AndroidUtilities.lerp(f7, rectF2.left, d);
+            RectF rectF3 = this.d;
+            rectF3.left = lerp;
+            rectF3.right = AndroidUtilities.lerp(rectF.right, rectF2.right, d);
             return;
         }
-        int right = x5Var.getRight();
-        textView.layout(right, textView.getTop(), textView.getMeasuredWidth() + right, textView.getBottom());
+        this.f22403n = false;
+        if (this.f22404o) {
+            this.f22405p = true;
+        }
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824);
-        TextView textView = this.f22659b;
-        measureChildWithMargins(textView, i10, 0, makeMeasureSpec, 0);
-        org.telegram.ui.Cells.x1 x1Var = this.f22660c;
-        measureChildWithMargins(x1Var, i10, 0, makeMeasureSpec, 0);
-        int measuredWidth = x1Var.getMeasuredWidth() + textView.getMeasuredWidth();
-        measureChildWithMargins(this.f22658a, i10, AndroidUtilities.dp(32.0f) + measuredWidth, makeMeasureSpec, 0);
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(32.0f));
+    public final float b() {
+        boolean z10 = this.f22404o;
+        c6 c6Var = this.e;
+        if (z10) {
+            return 1.0f - c6Var.d(1.0f, false);
+        }
+        if (!this.f22403n) {
+            return 1.0f;
+        }
+        return c6Var.d(1.0f, false);
+    }
+
+    public final void c(String str) {
+        g01 g01Var = new g01(str, 11.0f, AndroidUtilities.bold());
+        g01Var.n(3);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        g01Var.a();
+        this.f22401l = g01Var;
+    }
+
+    public final void d(int i10, int i11, int i12) {
+        Drawable drawable;
+        Drawable drawable2 = null;
+        dh0 dh0Var = this.f22413y;
+        if (i10 != 0) {
+            xi0 xi0Var = new xi0(i10, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
+            xi0Var.R(dh0Var);
+            xi0Var.start();
+            this.f22400k = xi0Var;
+        } else {
+            this.f22400k = null;
+        }
+        if (i11 != 0) {
+            drawable = dh0Var.getResources().getDrawable(i11).mutate();
+        } else {
+            drawable = null;
+        }
+        this.f22398i = drawable;
+        if (i12 != 0) {
+            drawable2 = dh0Var.getResources().getDrawable(i12).mutate();
+        }
+        this.f22399j = drawable2;
+        xi0 xi0Var2 = this.f22400k;
+        Rect rect = this.h;
+        if (xi0Var2 != null) {
+            xi0Var2.setBounds(rect);
+        }
+        Drawable drawable3 = this.f22398i;
+        if (drawable3 != null) {
+            drawable3.setBounds(rect);
+        }
+        Drawable drawable4 = this.f22399j;
+        if (drawable4 != null) {
+            drawable4.setBounds(rect);
+        }
+    }
+
+    public ah0(dh0 dh0Var, bh0 bh0Var) {
+        this.f22413y = dh0Var;
+        this.f22394b = new wc(dh0Var);
+        this.e = new c6(dh0Var, 0L, 250L, qr.f27420f);
+        d(0, bh0Var.f22786b, bh0Var.f22787c);
+        c(LocaleController.getString(bh0Var.f22785a));
     }
 }

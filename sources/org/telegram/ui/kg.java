@@ -1,159 +1,81 @@
 package org.telegram.ui;
 
-import android.text.style.CharacterStyle;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_account;
 public final class kg implements Utilities.Callback2 {
-    public final int f35196a = 1;
-    public final zn f35197b;
-    public final org.telegram.ui.Cells.u1 f35198c;
-    public final nf.e d;
-    public final Serializable e;
-    public final Object f35199f;
+    public final int f35143a;
+    public final int f35144b;
+    public final Object f35145c;
+    public final Object d;
 
-    public kg(zn znVar, zi ziVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
-        this.f35197b = znVar;
-        this.d = ziVar;
-        this.f35198c = u1Var;
-        this.e = str;
-        this.f35199f = characterStyle;
+    public kg(org.telegram.ui.ActionBar.n2 n2Var, int i10, TLObject tLObject, int i11) {
+        this.f35143a = i11;
+        this.f35145c = n2Var;
+        this.f35144b = i10;
+        this.d = tLObject;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        boolean z10;
-        boolean z11;
-        long j3;
-        Boolean bool;
-        boolean z12;
-        int i10;
-        int i11;
-        int i12;
-        TL_iv.RichMessage richMessage;
-        TLRPC.Message message;
-        org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f35196a) {
+        TLRPC.Updates updates;
+        int i10 = this.f35143a;
+        Object obj3 = this.d;
+        Object obj4 = this.f35145c;
+        switch (i10) {
             case 0:
-                String str = (String) this.e;
-                CharacterStyle characterStyle = (CharacterStyle) this.f35199f;
-                TLObject tLObject = (TLObject) obj;
-                Boolean bool2 = (Boolean) obj2;
-                this.d.b();
-                if (tLObject instanceof TLRPC.User) {
-                    j3 = ((TLRPC.User) tLObject).f18490id;
-                    z10 = false;
-                    z11 = true;
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                    z10 = ChatObject.isChannelAndNotMegaGroup(chat);
-                    j3 = -chat.f18343id;
-                    z11 = false;
+                AndroidUtilities.runOnUIThread(new ei.l3((bo) obj4, this.f35144b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 15));
+                return;
+            case 1:
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                ma0 ma0Var = (ma0) obj3;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                Pattern pattern = LaunchActivity.B1;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    MessagesController.getInstance(launchActivity.O).processUpdates(updates2, false);
+                    updates = updates2;
                 } else {
-                    z10 = false;
-                    z11 = false;
-                    j3 = 0;
-                }
-                zn znVar = this.f35197b;
-                org.telegram.ui.Cells.u1 u1Var2 = this.f35198c;
-                org.telegram.ui.Components.y70 I = org.telegram.ui.Components.y70.I(znVar, u1Var2);
-                org.telegram.ui.Components.om0 om0Var = new org.telegram.ui.Components.om0(znVar.getParentActivity(), znVar.f40324ea);
-                I.f30563p = new re(om0Var, 0);
-                int i13 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-                if (i13 != 0) {
-                    if (z10) {
-                        i11 = R.drawable.msg_channel;
-                    } else {
-                        i11 = R.drawable.msg_discussion;
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        AndroidUtilities.runOnUIThread(new kw(27, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
                     }
-                    if (z10) {
-                        i12 = R.string.ViewChannel;
-                    } else {
-                        i12 = R.string.SendMessage;
-                    }
-                    bool = bool2;
-                    z12 = false;
-                    I.c(i11, LocaleController.getString(i12), new le(znVar, j3, 3), false);
-                } else {
-                    bool = bool2;
-                    z12 = false;
+                    updates = null;
                 }
-                boolean z13 = z10;
-                I.c(R.drawable.msg_copy, LocaleController.getString(R.string.ProfileCopyUsername), new ye(znVar, om0Var, str, 2), z12);
-                if (bool.booleanValue()) {
-                    I.c(R.drawable.outline_gram_24, LocaleController.getString(R.string.BuyUsernameOnFragment), new te(znVar, str, 11), z12);
-                }
-                I.k();
-                if (i13 != 0) {
-                    if (z11) {
-                        i10 = R.string.ViewProfile;
-                    } else if (z13) {
-                        i10 = R.string.ViewChannelProfile;
-                    } else {
-                        i10 = R.string.ViewGroupProfile;
-                    }
-                    I.n(tLObject, LocaleController.getString(i10), new le(znVar, j3, 4));
-                } else {
-                    I.p(13, AndroidUtilities.dp(200.0f), LocaleController.getString(R.string.NoUsernameFound2));
-                }
-                om0Var.e(I);
-                om0Var.f(u1Var2, characterStyle, null, false);
-                znVar.showDialog(om0Var);
+                AndroidUtilities.runOnUIThread(new ei.l3(launchActivity, ma0Var, tL_error, updates, this.f35144b, 25));
                 return;
             default:
-                aj ajVar = (aj) this.d;
-                int[] iArr = (int[]) this.e;
-                MessageObject messageObject = (MessageObject) this.f35199f;
-                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                zn znVar2 = this.f35197b;
-                if (znVar2.f40587zb == ajVar) {
-                    iArr[0] = 0;
-                    ajVar.c(false);
-                    if (messages_messages != null) {
-                        znVar2.getMessagesController().putUsers(messages_messages.users, false);
-                        znVar2.getMessagesController().putChats(messages_messages.chats, false);
-                        int i14 = 0;
-                        while (true) {
-                            if (i14 < messages_messages.messages.size()) {
-                                TLRPC.Message message2 = messages_messages.messages.get(i14);
-                                if (message2 == null || (richMessage = message2.rich_message) == null) {
-                                    i14++;
-                                }
-                            } else {
-                                richMessage = null;
-                            }
-                        }
-                        if (richMessage != null && (message = messageObject.messageOwner) != null) {
-                            message.rich_message = richMessage;
-                            messageObject.richLayout = null;
-                            ln lnVar = znVar2.f40447oc;
-                            if (lnVar != null && (u1Var = this.f35198c) != null) {
-                                lnVar.l(u1Var, true, false, true);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
+                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                ArrayList arrayList = passkeysActivity.f30892b;
+                boolean z10 = ((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse;
+                int i11 = this.f35144b;
+                if (z10) {
+                    org.telegram.ui.Components.vc.a0(passkeysActivity).c0("FALSE", false);
+                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f30891a.Y2.N(true);
+                    return;
+                } else if (tL_error2 != null) {
+                    org.telegram.ui.Components.vc.a0(passkeysActivity).d0(tL_error2, false);
+                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f30891a.Y2.N(true);
+                    return;
+                } else {
                     return;
                 }
-                return;
         }
     }
 
-    public kg(zn znVar, aj ajVar, int[] iArr, org.telegram.ui.Cells.u1 u1Var, MessageObject messageObject) {
-        this.f35197b = znVar;
-        this.d = ajVar;
-        this.e = iArr;
-        this.f35198c = u1Var;
-        this.f35199f = messageObject;
+    public kg(LaunchActivity launchActivity, ma0 ma0Var, int i10) {
+        this.f35143a = 1;
+        this.f35145c = launchActivity;
+        this.d = ma0Var;
+        this.f35144b = i10;
     }
 }

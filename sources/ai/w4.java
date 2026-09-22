@@ -3,8 +3,8 @@ package ai;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.dm;
-import org.telegram.ui.Components.iy0;
-public final class w4 implements org.telegram.ui.Components.nb {
+import org.telegram.ui.Components.vx0;
+public final class w4 implements org.telegram.ui.Components.mb {
     public final int f1647a;
     public final Object f1648b;
 
@@ -44,12 +44,12 @@ public final class w4 implements org.telegram.ui.Components.nb {
     }
 
     @Override
-    public final void b(org.telegram.ui.Components.pc pcVar) {
+    public final void b(org.telegram.ui.Components.oc ocVar) {
         y5 y5Var;
-        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         switch (this.f1647a) {
             case 0:
-                if (pcVar.f27305a == 2 && (y5Var = ((a5) this.f1648b).f519x.Q1) != null) {
+                if (ocVar.f26745a == 2 && (y5Var = ((a5) this.f1648b).f519x.Q1) != null) {
                     jc jcVar = ((ac) y5Var).d;
                     jcVar.Y0 = true;
                     jcVar.P();
@@ -67,19 +67,19 @@ public final class w4 implements org.telegram.ui.Components.nb {
             case 9:
                 return;
             case 10:
-                org.telegram.ui.Components.tb tbVar = pcVar.e;
+                org.telegram.ui.Components.sb sbVar = ocVar.e;
                 xh.j0 j0Var = (xh.j0) this.f1648b;
-                ch.d c10 = j0Var.e.c(tbVar, null, true);
-                f6Var = ((org.telegram.ui.ActionBar.f3) j0Var).resourcesProvider;
-                dh.e eVar = new dh.e(f6Var);
+                ch.d c10 = j0Var.e.c(sbVar, null, true);
+                e6Var = ((org.telegram.ui.ActionBar.f3) j0Var).resourcesProvider;
+                dh.e eVar = new dh.e(e6Var);
                 eVar.e = new d2.c(4);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
                 float dpf22 = AndroidUtilities.dpf2(0.5f);
-                eVar.f7741f = dpf2;
+                eVar.f7739f = dpf2;
                 eVar.h = dpf22;
                 c10.o(eVar);
                 c10.q(AndroidUtilities.dp(16.0f));
-                tbVar.setCustomBackground(c10);
+                sbVar.setCustomBackground(c10);
                 return;
             default:
                 return;
@@ -92,11 +92,11 @@ public final class w4 implements org.telegram.ui.Components.nb {
     }
 
     @Override
-    public final void d(org.telegram.ui.Components.pc pcVar) {
+    public final void d(org.telegram.ui.Components.oc ocVar) {
         y5 y5Var;
         switch (this.f1647a) {
             case 0:
-                if (pcVar.f27305a == 2 && (y5Var = ((a5) this.f1648b).f519x.Q1) != null) {
+                if (ocVar.f26745a == 2 && (y5Var = ((a5) this.f1648b).f519x.Q1) != null) {
                     jc jcVar = ((ac) y5Var).d;
                     jcVar.Y0 = false;
                     jcVar.P();
@@ -163,25 +163,25 @@ public final class w4 implements org.telegram.ui.Components.nb {
             case 2:
                 return 0;
             case 3:
-                editTextHeight = ((ci.oc) this.f1648b).f5212c1.getEditTextHeight();
+                editTextHeight = ((ci.oc) this.f1648b).f5210c1.getEditTextHeight();
                 dp = AndroidUtilities.dp(12.0f);
                 break;
             case 4:
-                return ((org.telegram.ui.Components.w7) this.f1648b).e.E.getHeight();
+                return ((org.telegram.ui.Components.v7) this.f1648b).e.E.getHeight();
             case 5:
                 return ((org.telegram.ui.ActionBar.n2) this.f1648b).getBottomInset();
             case 6:
-                org.telegram.ui.Components.nb nbVar = (org.telegram.ui.Components.nb) this.f1648b;
-                if (nbVar == null) {
+                org.telegram.ui.Components.mb mbVar = (org.telegram.ui.Components.mb) this.f1648b;
+                if (mbVar == null) {
                     return 0;
                 }
-                return nbVar.f(i10);
+                return mbVar.f(i10);
             case 7:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((dm) this.f1648b).f23716c.f26786b.getBottomInset();
+                dp = ((dm) this.f1648b).f23361c.f26461b.getBottomInset();
                 break;
             case 8:
-                FrameLayout frameLayout = ((iy0) this.f1648b).f25221w;
+                FrameLayout frameLayout = ((vx0) this.f1648b).f29476w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
@@ -196,7 +196,7 @@ public final class w4 implements org.telegram.ui.Components.nb {
             case 10:
                 return 0;
             default:
-                return (int) ((zg.c0) ((yh.u3) this.f1648b).f48128c).f49320u;
+                return (int) ((zg.c0) ((yh.v3) this.f1648b).f47842c).f48993u;
         }
         return dp + editTextHeight;
     }
@@ -220,8 +220,8 @@ public final class w4 implements org.telegram.ui.Components.nb {
             case 5:
                 return false;
             case 6:
-                org.telegram.ui.Components.nb nbVar = (org.telegram.ui.Components.nb) this.f1648b;
-                if (nbVar != null && nbVar.g(i10)) {
+                org.telegram.ui.Components.mb mbVar = (org.telegram.ui.Components.mb) this.f1648b;
+                if (mbVar != null && mbVar.g(i10)) {
                     return true;
                 }
                 return false;
@@ -254,11 +254,11 @@ public final class w4 implements org.telegram.ui.Components.nb {
             case 5:
                 return 0;
             case 6:
-                org.telegram.ui.Components.nb nbVar = (org.telegram.ui.Components.nb) this.f1648b;
-                if (nbVar == null) {
+                org.telegram.ui.Components.mb mbVar = (org.telegram.ui.Components.mb) this.f1648b;
+                if (mbVar == null) {
                     return AndroidUtilities.statusBarHeight;
                 }
-                return nbVar.h(i10);
+                return mbVar.h(i10);
             case 7:
                 return 0;
             case 8:
@@ -272,49 +272,49 @@ public final class w4 implements org.telegram.ui.Components.nb {
         }
     }
 
-    private final void A(org.telegram.ui.Components.pc pcVar) {
+    private final void A(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void B(org.telegram.ui.Components.pc pcVar) {
+    private final void B(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void C(org.telegram.ui.Components.pc pcVar) {
+    private final void C(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void D(org.telegram.ui.Components.pc pcVar) {
+    private final void D(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void E(org.telegram.ui.Components.pc pcVar) {
+    private final void E(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void F(org.telegram.ui.Components.pc pcVar) {
+    private final void F(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void G(org.telegram.ui.Components.pc pcVar) {
+    private final void G(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void H(org.telegram.ui.Components.pc pcVar) {
+    private final void H(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void I(org.telegram.ui.Components.pc pcVar) {
+    private final void I(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void J(org.telegram.ui.Components.pc pcVar) {
+    private final void J(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void K(org.telegram.ui.Components.pc pcVar) {
+    private final void K(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void L(org.telegram.ui.Components.pc pcVar) {
+    private final void L(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void M(org.telegram.ui.Components.pc pcVar) {
+    private final void M(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void N(org.telegram.ui.Components.pc pcVar) {
+    private final void N(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void O(org.telegram.ui.Components.pc pcVar) {
+    private final void O(org.telegram.ui.Components.oc ocVar) {
     }
 
     private final void i(float f7) {
@@ -353,21 +353,21 @@ public final class w4 implements org.telegram.ui.Components.nb {
     private final void t(float f7) {
     }
 
-    private final void u(org.telegram.ui.Components.pc pcVar) {
+    private final void u(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void v(org.telegram.ui.Components.pc pcVar) {
+    private final void v(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void w(org.telegram.ui.Components.pc pcVar) {
+    private final void w(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void x(org.telegram.ui.Components.pc pcVar) {
+    private final void x(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void y(org.telegram.ui.Components.pc pcVar) {
+    private final void y(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void z(org.telegram.ui.Components.pc pcVar) {
+    private final void z(org.telegram.ui.Components.oc ocVar) {
     }
 }

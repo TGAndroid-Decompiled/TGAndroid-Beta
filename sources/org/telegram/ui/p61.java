@@ -1,36 +1,21 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class p61 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f36506a;
-    public final s61 f36507b;
+import android.content.Context;
+import android.view.View;
+public final class p61 extends rg.b1 {
+    public final q61 M;
 
-    public p61(s61 s61Var, int i10) {
-        this.f36506a = i10;
-        this.f36507b = s61Var;
+    public p61(q61 q61Var, Context context) {
+        super(context, 2, null);
+        this.M = q61Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f36506a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s61 s61Var = this.f36507b;
-                s61Var.N = floatValue;
-                s61Var.V.f34817h0.invalidate();
-                return;
-            case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s61 s61Var2 = this.f36507b;
-                s61Var2.N = floatValue2;
-                s61Var2.V.f34817h0.invalidate();
-                return;
-            default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s61 s61Var3 = this.f36507b;
-                s61Var3.N = floatValue3;
-                s61Var3.V.f34817h0.invalidate();
-                return;
+    public final void invalidate() {
+        super.invalidate();
+        q61 q61Var = this.M;
+        if (q61Var.getParent() instanceof View) {
+            ((View) q61Var.getParent()).invalidate();
         }
     }
 }

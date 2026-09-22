@@ -15,31 +15,31 @@ import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
-import l.x;
+import l.w;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.vl;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Cells.c1;
-import org.telegram.ui.Cells.l1;
-import org.telegram.ui.Cells.s9;
-import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.to0;
-import org.telegram.ui.Components.y5;
-import org.telegram.ui.i71;
+import org.telegram.ui.Cells.k1;
+import org.telegram.ui.Cells.r9;
+import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Components.eo0;
+import org.telegram.ui.Components.x5;
+import org.telegram.ui.g71;
 import org.telegram.ui.pv0;
-import org.telegram.ui.yd;
-public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.android.gms.common.api.internal.s, x, n6.k, q9.d, to0, l1, p2.s, OnFailureListener, r4.c, u9.a, SuccessContinuation, x9.c, y6.d, y2.j, i71 {
-    public static u f43358a;
-    public static u f43359b;
+import org.telegram.ui.xd;
+public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, w, n6.k, q9.d, eo0, k1, p2.t, OnFailureListener, r4.c, u9.a, SuccessContinuation, x9.c, y6.d, y2.j, g71 {
+    public static u f43032a;
+    public static u f43033b;
 
     public u(Object obj) {
     }
 
     @Override
-    public boolean B1() {
+    public boolean A1() {
         return false;
     }
 
@@ -89,18 +89,18 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
+    public y2.o D() {
+        return new p2.s(p2.p.f40484n, null);
+    }
+
+    @Override
     public Object G(cf.c cVar) {
-        return new qb.d(cVar.e(qb.h.class));
+        return new qb.d(cVar.c(qb.h.class));
     }
 
     @Override
-    public boolean G1(u1 u1Var, TLRPC.Chat chat) {
+    public boolean G1(t1 t1Var, TLRPC.Chat chat) {
         return false;
-    }
-
-    @Override
-    public y2.o H() {
-        return new p2.r(p2.o.f40803n, null);
     }
 
     @Override
@@ -116,42 +116,42 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public y2.o K(p2.o oVar, p2.l lVar) {
-        return new p2.r(oVar, lVar);
+    public y2.o K(p2.p pVar, p2.m mVar) {
+        return new p2.s(pVar, mVar);
     }
 
     @Override
     public int L1(int i10, int i11, int i12) {
         bg.a aVar;
         if (i11 == 6) {
-            aVar = bg.a.f3559l;
+            aVar = bg.a.f3557l;
         } else if (i11 > i12) {
-            aVar = bg.a.f3556i;
+            aVar = bg.a.f3554i;
         } else if (i11 < i12) {
-            aVar = bg.a.f3557j;
+            aVar = bg.a.f3555j;
         } else {
-            aVar = bg.a.f3558k;
+            aVar = bg.a.f3556k;
         }
         return aVar.L1(i10, i11, i12);
     }
 
     @Override
-    public boolean N0(long j3) {
+    public boolean M0(long j3) {
         return false;
     }
 
     @Override
-    public void N1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        nf.f.s(u1Var.getContext(), str);
+    public void N1(t1 t1Var, TLRPC.WebPage webPage, String str, boolean z10) {
+        nf.f.s(t1Var.getContext(), str);
     }
 
     @Override
-    public boolean O(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
+    public boolean O(t1 t1Var, TLRPC.TodoItem todoItem, boolean z10) {
         return false;
     }
 
     @Override
-    public CharacterStyle O1(u1 u1Var) {
+    public CharacterStyle O1(t1 t1Var) {
         return null;
     }
 
@@ -161,12 +161,12 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public boolean Q(u1 u1Var) {
+    public boolean Q(t1 t1Var) {
         return false;
     }
 
     @Override
-    public boolean Q1(u1 u1Var, MessageObject messageObject) {
+    public boolean Q1(t1 t1Var, MessageObject messageObject) {
         return false;
     }
 
@@ -176,18 +176,18 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void T0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
+    public void S0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
         bg.a aVar;
         if (i10 == 6) {
-            aVar = bg.a.f3559l;
+            aVar = bg.a.f3557l;
         } else if (i10 > i11) {
-            aVar = bg.a.f3556i;
+            aVar = bg.a.f3554i;
         } else if (i10 < i11) {
-            aVar = bg.a.f3557j;
+            aVar = bg.a.f3555j;
         } else {
-            aVar = bg.a.f3558k;
+            aVar = bg.a.f3556k;
         }
-        aVar.T0(shortBuffer, i10, shortBuffer2, i11);
+        aVar.S0(shortBuffer, i10, shortBuffer2, i11);
     }
 
     @Override
@@ -196,18 +196,18 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public boolean V1(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
+    public boolean V1(t1 t1Var, TLRPC.PollAnswer pollAnswer) {
+        return false;
+    }
+
+    @Override
+    public boolean W0(t1 t1Var, boolean z10) {
         return false;
     }
 
     @Override
     public void X(float f7, boolean z10) {
-        yd.f39906b = f7 * 2.0f;
-    }
-
-    @Override
-    public boolean X0(u1 u1Var, boolean z10) {
-        return false;
+        xd.f39593b = f7 * 2.0f;
     }
 
     @Override
@@ -222,24 +222,24 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
 
     @Override
     public void a() {
-        synchronized (z2.b.f48397a) {
-            Object obj = z2.b.f48398b;
+        synchronized (z2.b.f48069a) {
+            Object obj = z2.b.f48070b;
             synchronized (obj) {
-                if (z2.b.f48399c) {
+                if (z2.b.f48071c) {
                     return;
                 }
                 long a2 = z2.b.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     z2.b.d = a2;
-                    z2.b.f48399c = true;
+                    z2.b.f48071c = true;
                 }
             }
         }
     }
 
     @Override
-    public boolean a0(u1 u1Var) {
+    public boolean a0(t1 t1Var) {
         return false;
     }
 
@@ -254,11 +254,11 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
         b7.b bVar = new b7.b(1, (TaskCompletionSource) obj2);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService");
-        int i10 = j7.c.f12917a;
+        int i10 = j7.c.f12915a;
         obtain.writeStrongBinder(bVar);
         Parcel obtain2 = Parcel.obtain();
         try {
-            dVar.f12918a.transact(1, obtain, obtain2, 0);
+            dVar.f12916a.transact(1, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -267,7 +267,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public boolean b0(u1 u1Var, TLRPC.User user) {
+    public boolean b0(t1 t1Var, TLRPC.User user) {
         return false;
     }
 
@@ -277,7 +277,12 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public boolean c2(u1 u1Var, TLRPC.TodoItem todoItem) {
+    public boolean c1(int i10, t1 t1Var) {
+        return false;
+    }
+
+    @Override
+    public boolean c2(t1 t1Var, TLRPC.TodoItem todoItem) {
         return false;
     }
 
@@ -295,17 +300,12 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
             lVar.f144c = 1;
             return lVar;
         }
-        int m10 = cVar.m(context, str);
-        lVar.f142a = m10;
-        if (m10 != 0) {
+        int l4 = cVar.l(context, str);
+        lVar.f142a = l4;
+        if (l4 != 0) {
             lVar.f144c = -1;
         }
         return lVar;
-    }
-
-    @Override
-    public boolean d1(int i10, u1 u1Var) {
-        return false;
     }
 
     @Override
@@ -329,18 +329,18 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public String h(u1 u1Var) {
+    public String h(t1 t1Var) {
         return null;
     }
 
     @Override
-    public int i0(u1 u1Var) {
+    public int h0(t1 t1Var) {
         return 0;
     }
 
     @Override
-    public boolean i1(MessageObject messageObject) {
-        return c1.a(messageObject);
+    public boolean h1(MessageObject messageObject) {
+        return vl.a(messageObject);
     }
 
     @Override
@@ -349,17 +349,22 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public int l0() {
-        return 0;
-    }
-
-    @Override
-    public boolean l2(u1 u1Var, TL_iv.PageBlock pageBlock) {
+    public boolean l0() {
         return false;
     }
 
     @Override
-    public boolean m0() {
+    public boolean l2(t1 t1Var, TL_iv.PageBlock pageBlock) {
+        return false;
+    }
+
+    @Override
+    public int m0() {
+        return 0;
+    }
+
+    @Override
+    public boolean o0(x5 x5Var) {
         return false;
     }
 
@@ -369,24 +374,19 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public boolean p0(y5 y5Var) {
-        return false;
-    }
-
-    @Override
     public Object p2() {
         return new ConcurrentSkipListMap();
-    }
-
-    @Override
-    public boolean q(l.l lVar) {
-        return false;
     }
 
     @Override
     public Task then(Object obj) {
         Void r12 = (Void) obj;
         return Tasks.forResult(Boolean.TRUE);
+    }
+
+    @Override
+    public boolean v(l.k kVar) {
+        return false;
     }
 
     @Override
@@ -400,7 +400,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public boolean x0(MessageObject messageObject) {
+    public boolean w0(MessageObject messageObject) {
         return true;
     }
 
@@ -414,12 +414,8 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public s9 z2() {
+    public r9 z2() {
         return null;
-    }
-
-    @Override
-    public void A0() {
     }
 
     @Override
@@ -427,7 +423,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void D() {
+    public void H() {
     }
 
     @Override
@@ -443,11 +439,15 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void l1() {
+    public void k1() {
     }
 
     @Override
     public void p() {
+    }
+
+    @Override
+    public void q() {
     }
 
     @Override
@@ -459,31 +459,31 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void v() {
-    }
-
-    @Override
     public void x2() {
     }
 
     @Override
-    public void A(u1 u1Var) {
+    public void z0() {
     }
 
     @Override
-    public void D1(u1 u1Var) {
+    public void A(t1 t1Var) {
     }
 
     @Override
-    public void E0(u1 u1Var) {
+    public void C1(t1 t1Var) {
     }
 
     @Override
-    public void F(u1 u1Var) {
+    public void D0(t1 t1Var) {
     }
 
     @Override
-    public void G0(u1 u1Var) {
+    public void F(t1 t1Var) {
+    }
+
+    @Override
+    public void F0(t1 t1Var) {
     }
 
     @Override
@@ -491,15 +491,15 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void J0(u1 u1Var) {
+    public void I0(t1 t1Var) {
     }
 
     @Override
-    public void K1(u1 u1Var) {
+    public void K1(t1 t1Var) {
     }
 
     @Override
-    public void L(u1 u1Var) {
+    public void L(t1 t1Var) {
     }
 
     @Override
@@ -511,19 +511,19 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void O0(u1 u1Var) {
+    public void N0(t1 t1Var) {
     }
 
     @Override
-    public void T(u1 u1Var) {
+    public void T(t1 t1Var) {
     }
 
     @Override
-    public void Y0(u1 u1Var) {
+    public void X0(t1 t1Var) {
     }
 
     @Override
-    public void a1(u1 u1Var) {
+    public void Z0(t1 t1Var) {
     }
 
     @Override
@@ -531,11 +531,11 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void e2(u1 u1Var) {
+    public void e2(t1 t1Var) {
     }
 
     @Override
-    public void j0(u1 u1Var) {
+    public void i0(t1 t1Var) {
     }
 
     @Override
@@ -544,83 +544,83 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void m2(u1 u1Var) {
+    public void m2(t1 t1Var) {
     }
 
     @Override
-    public void o(u1 u1Var) {
+    public void n0(String str) {
     }
 
     @Override
-    public void o0(String str) {
+    public void o(t1 t1Var) {
     }
 
     @Override
-    public void r(u1 u1Var) {
+    public void r(t1 t1Var) {
     }
 
     @Override
-    public void t(u1 u1Var) {
+    public void t(t1 t1Var) {
     }
 
     @Override
-    public void u(u1 u1Var) {
+    public void u(t1 t1Var) {
     }
 
     @Override
-    public void z(u1 u1Var) {
+    public void y0(t1 t1Var) {
     }
 
     @Override
-    public void z0(u1 u1Var) {
+    public void z(t1 t1Var) {
     }
 
     @Override
-    public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    public void D1(t1 t1Var, boolean z10) {
     }
 
     @Override
-    public void E1(u1 u1Var, boolean z10) {
+    public void E(t1 t1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
     }
 
     @Override
-    public void H1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void H1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void M(int i10, u1 u1Var) {
+    public void M(int i10, t1 t1Var) {
     }
 
     @Override
-    public void Q0(int i10, u1 u1Var) {
+    public void P0(int i10, t1 t1Var) {
     }
 
     @Override
-    public void S0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    public void R0(t1 t1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
     @Override
-    public void T1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    public void T1(t1 t1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
     }
 
     @Override
-    public void g(l.l lVar, boolean z10) {
+    public void g(l.k kVar, boolean z10) {
     }
 
     @Override
-    public void g2(u1 u1Var, long j3) {
+    public void g2(t1 t1Var, long j3) {
     }
 
     @Override
-    public void i(u1 u1Var, bi.f fVar) {
+    public void i(t1 t1Var, bi.f fVar) {
     }
 
     @Override
-    public void n1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void m1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void q1(u1 u1Var, TLRPC.Document document) {
+    public void p1(t1 t1Var, TLRPC.Document document) {
     }
 
     @Override
@@ -628,63 +628,63 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.o, g2.g, com.google.a
     }
 
     @Override
-    public void B0(u1 u1Var, TLObject tLObject, boolean z10) {
+    public void A0(t1 t1Var, TLObject tLObject, boolean z10) {
     }
 
     @Override
-    public void C0(u1 u1Var, float f7, float f10) {
+    public void B0(t1 t1Var, float f7, float f10) {
     }
 
     @Override
-    public void W0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
+    public void V0(t1 t1Var, CharacterStyle characterStyle, boolean z10) {
     }
 
     @Override
-    public void g0(u1 u1Var, float f7, float f10) {
+    public void f0(t1 t1Var, float f7, float f10) {
     }
 
     @Override
-    public void r0(u1 u1Var, float f7, float f10) {
+    public void q0(t1 t1Var, float f7, float f10) {
     }
 
     @Override
-    public void v1(u1 u1Var, float f7, float f10) {
+    public void u1(t1 t1Var, float f7, float f10) {
     }
 
     @Override
-    public void y2(u1 u1Var, int i10, int i11) {
+    public void y2(t1 t1Var, int i10, int i11) {
     }
 
     @Override
-    public void U1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    public void U1(t1 t1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
     @Override
-    public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+    public void n(t1 t1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
     }
 
     @Override
-    public void u0(u1 u1Var, TLRPC.User user, float f7, float f10) {
+    public void t0(t1 t1Var, TLRPC.User user, float f7, float f10) {
     }
 
     @Override
-    public void w0(u1 u1Var, float f7, float f10, boolean z10) {
+    public void v0(t1 t1Var, float f7, float f10, boolean z10) {
     }
 
     @Override
-    public void b2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
+    public void b2(t1 t1Var, int i10, float f7, float f10, boolean z10) {
     }
 
     @Override
-    public void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    public void j(t1 t1Var, ArrayList arrayList, int i10, int i11, int i12) {
     }
 
     @Override
-    public void t2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    public void t2(t1 t1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 
     @Override
-    public void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    public void S(t1 t1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
     }
 
     @Override

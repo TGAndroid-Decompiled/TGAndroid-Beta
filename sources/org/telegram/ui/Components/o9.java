@@ -1,60 +1,37 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class o9 implements Runnable {
-    public final int f27012a = 0;
-    public final u9 f27013b;
-    public final Runnable[] f27014c;
-    public final j60 d;
-    public final int e;
-    public final w7.j0[] f27015f;
+public final class o9 implements s9 {
+    public final t9 f26725a;
+    public final w7.i0[] f26726b;
+    public final Runnable[] f26727c;
+    public final y50[] d;
 
-    public o9(u9 u9Var, j60 j60Var, Runnable[] runnableArr, int i10, w7.j0[] j0VarArr) {
-        this.f27013b = u9Var;
-        this.d = j60Var;
-        this.f27014c = runnableArr;
-        this.e = i10;
-        this.f27015f = j0VarArr;
+    public o9(t9 t9Var, w7.i0[] i0VarArr, Runnable[] runnableArr, y50[] y50VarArr) {
+        this.f26725a = t9Var;
+        this.f26726b = i0VarArr;
+        this.f26727c = runnableArr;
+        this.d = y50VarArr;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27012a) {
-            case 0:
-                u9 u9Var = this.f27013b;
-                j60 j60Var = this.d;
-                Runnable[] runnableArr = this.f27014c;
-                int i10 = this.e;
-                w7.j0[] j0VarArr = this.f27015f;
-                try {
-                    GradientDrawable.Orientation orientation = u9Var.getOrientation();
-                    int[] iArr = u9Var.f28698a;
-                    int i11 = j60Var.f25293a;
-                    int i12 = j60Var.f25294b;
-                    Rect e = u9.e(orientation, i11, i12);
-                    Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
-                    Utilities.drawDitheredGradient(createBitmap, iArr, e.left, e.top, e.right, e.bottom);
-                    AndroidUtilities.runOnUIThread(new ai.cb(u9Var, runnableArr, createBitmap, j60Var, i10, j0VarArr, 7));
-                    return;
-                } catch (Throwable th2) {
-                    AndroidUtilities.runOnUIThread(new o9(u9Var, runnableArr, j60Var, i10, j0VarArr));
-                    throw th2;
-                }
-            default:
-                u9.a(this.f27013b, this.f27014c, null, this.d, this.e, this.f27015f);
-                return;
+    public final void dispose() {
+        t9 t9Var = this.f26725a;
+        w7.i0[] i0VarArr = this.f26726b;
+        Runnable[] runnableArr = this.f26727c;
+        y50[] y50VarArr = this.d;
+        i0VarArr[0] = null;
+        if (t9Var.e.contains(runnableArr)) {
+            Utilities.globalQueue.cancelRunnables(runnableArr);
+            t9Var.e.remove(runnableArr);
         }
-    }
-
-    public o9(u9 u9Var, Runnable[] runnableArr, j60 j60Var, int i10, w7.j0[] j0VarArr) {
-        this.f27013b = u9Var;
-        this.f27014c = runnableArr;
-        this.d = j60Var;
-        this.e = i10;
-        this.f27015f = j0VarArr;
+        for (y50 y50Var : y50VarArr) {
+            Bitmap bitmap = (Bitmap) t9Var.f28069b.remove(y50Var);
+            t9Var.f28070c.remove(y50Var);
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
+        }
     }
 }

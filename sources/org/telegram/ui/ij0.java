@@ -1,45 +1,56 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-public final class ij0 extends org.telegram.ui.Components.eo {
-    public final mj0 f34618v0;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ij0 extends LinearLayout {
+    public static final int d = 0;
+    public final TextView[] f34681a;
+    public final TextView[] f34682b;
+    public final jj0 f34683c;
 
-    public ij0(mj0 mj0Var, Context context) {
-        super(context, null, false, null);
-        this.f34618v0 = mj0Var;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        mj0 mj0Var = this.f34618v0;
-        mj0Var.W.setImageCoords(mj0Var.f35770b0.getAvatarImageView().getX(), mj0Var.f35770b0.getAvatarImageView().getY(), mj0Var.f35770b0.getAvatarImageView().getWidth(), mj0Var.f35770b0.getAvatarImageView().getHeight());
-        if (mj0Var.Y) {
-            canvas.save();
-            canvas.scale(0.9f, 0.9f, mj0Var.W.getCenterX(), mj0Var.W.getCenterY());
-            mj0Var.W.draw(canvas);
-            canvas.restore();
+    public ij0(jj0 jj0Var, Context context) {
+        super(context);
+        float f7;
+        this.f34683c = jj0Var;
+        this.f34681a = new TextView[4];
+        this.f34682b = new TextView[4];
+        setOrientation(1);
+        setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        for (int i10 = 0; i10 < 2; i10++) {
+            LinearLayout f10 = org.telegram.messenger.vl.f(context, 0);
+            for (int i11 = 0; i11 < 2; i11++) {
+                LinearLayout f11 = org.telegram.messenger.vl.f(context, 1);
+                LinearLayout f12 = org.telegram.messenger.vl.f(context, 0);
+                int i12 = (i10 * 2) + i11;
+                this.f34681a[i12] = new TextView(context);
+                this.f34682b[i12] = new TextView(context);
+                this.f34681a[i12].setTypeface(AndroidUtilities.bold());
+                this.f34681a[i12].setTextSize(1, 17.0f);
+                this.f34682b[i12].setTextSize(1, 13.0f);
+                this.f34682b[i12].setGravity(3);
+                f12.addView(this.f34681a[i12]);
+                f11.addView(f12);
+                f11.addView(this.f34682b[i12]);
+                f10.addView(f11, w7.x5.l(1.0f, -1, -2));
+            }
+            if (i10 == 0) {
+                f7 = 16.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            addView(f10, w7.x5.d(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, f7));
         }
-        if (mj0Var.X) {
-            int centerX = (int) (mj0Var.W.getCenterX() - (org.telegram.ui.ActionBar.j6.U0.getIntrinsicWidth() / 2));
-            int centerY = (int) (mj0Var.W.getCenterY() - (org.telegram.ui.ActionBar.j6.U0.getIntrinsicHeight() / 2));
-            Drawable drawable = org.telegram.ui.ActionBar.j6.U0;
-            drawable.setBounds(centerX, centerY, drawable.getIntrinsicWidth() + centerX, org.telegram.ui.ActionBar.j6.U0.getIntrinsicHeight() + centerY);
-            org.telegram.ui.ActionBar.j6.U0.draw(canvas);
+    }
+
+    public final void a() {
+        for (int i10 = 0; i10 < 4; i10++) {
+            TextView textView = this.f34681a[i10];
+            int i11 = org.telegram.ui.ActionBar.i6.G6;
+            jj0 jj0Var = this.f34683c;
+            textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, jj0Var.getResourceProvider()));
+            this.f34682b[i10].setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19234z6, jj0Var.getResourceProvider()));
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f34618v0.W.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f34618v0.W.onDetachedFromWindow();
     }
 }

@@ -1,14 +1,14 @@
 package fi;
 
-import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.jo0;
-public final class z implements jo0 {
+import org.telegram.ui.Cells.r2;
+import org.telegram.ui.Components.un0;
+public final class z implements un0 {
     @Override
     public final void e(float f7) {
     }
 
     @Override
-    public final void f(s2 s2Var) {
+    public final void f(r2 r2Var) {
     }
 
     @Override

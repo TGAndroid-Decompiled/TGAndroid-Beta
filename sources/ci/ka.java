@@ -1,11 +1,11 @@
 package ci;
 public final class ka implements Runnable {
-    public final int f4894a;
-    public final oc f4895b;
+    public final int f4892a;
+    public final oc f4893b;
 
     public ka(oc ocVar, int i10) {
-        this.f4894a = i10;
-        this.f4895b = ocVar;
+        this.f4892a = i10;
+        this.f4893b = ocVar;
     }
 
     @Override

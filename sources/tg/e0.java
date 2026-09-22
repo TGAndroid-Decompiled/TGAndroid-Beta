@@ -1,22 +1,50 @@
 package tg;
-public final class e0 implements Runnable {
-    public final int f43438a;
-    public final g0 f43439b;
 
-    public e0(g0 g0Var, int i10) {
-        this.f43438a = i10;
-        this.f43439b = g0Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.e6;
+public final class e0 extends ci.d {
+    public final RectF f43125h0;
+    public boolean f43126i0;
+    public float f43127j0;
+    public final org.telegram.ui.Components.voip.h f43128k0;
+
+    public e0(Context context, e6 e6Var) {
+        super(context, e6Var, true);
+        this.f43125h0 = new RectF();
+        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
+        this.f43128k0 = hVar;
+        hVar.f28969n = 1.2f;
+        hVar.f28966k = false;
+        hVar.f28968m = 4.0f;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43438a) {
-            case 0:
-                g0.e0(this.f43439b);
-                return;
-            default:
-                g0.d0(this.f43439b);
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (this.f43126i0) {
+            float f7 = this.f43127j0 + 0.016f;
+            this.f43127j0 = f7;
+            if (f7 > 3.0f) {
+                this.f43126i0 = false;
+            }
+        } else {
+            float f10 = this.f43127j0 - 0.016f;
+            this.f43127j0 = f10;
+            if (f10 < 1.0f) {
+                this.f43126i0 = true;
+            }
         }
+        RectF rectF = this.f43125h0;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        rg.a1.d().f((-getMeasuredWidth()) * 0.1f * this.f43127j0, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), rg.a1.d().e());
+        int measuredWidth = getMeasuredWidth();
+        org.telegram.ui.Components.voip.h hVar = this.f43128k0;
+        hVar.f28962f = measuredWidth;
+        hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF, null);
+        super.onDraw(canvas);
+        invalidate();
     }
 }

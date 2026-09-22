@@ -1,49 +1,18 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.SurfaceView;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class hs0 extends AnimatorListenerAdapter {
-    public final int f34297a;
-    public final View f34298b;
-    public final PhotoViewer f34299c;
-
-    public hs0(PhotoViewer photoViewer, View view, int i10) {
-        this.f34297a = i10;
-        this.f34299c = photoViewer;
-        this.f34298b = view;
+import android.util.FloatProperty;
+public final class hs0 extends FloatProperty {
+    public hs0() {
+        super("progress");
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34297a) {
-            case 0:
-                PhotoViewer photoViewer = this.f34299c;
-                photoViewer.B3 = false;
-                this.f34298b.setOutlineProvider(null);
-                ImageView imageView = photoViewer.f31414x3;
-                if (imageView != null) {
-                    imageView.setOutlineProvider(null);
-                }
-                uu0 uu0Var = photoViewer.E2;
-                if (uu0Var != null) {
-                    uu0Var.setOutlineProvider(null);
-                }
-                SurfaceView surfaceView = photoViewer.C2;
-                if (surfaceView != null) {
-                    surfaceView.setVisibility(0);
-                    return;
-                }
-                return;
-            default:
-                PhotoViewer photoViewer2 = this.f34299c;
-                photoViewer2.B3 = false;
-                photoViewer2.f31281i4.run();
-                AndroidUtilities.runOnUIThread(new fj0(21, this, this.f34298b), 100L);
-                return;
-        }
+    public final Float get(Object obj) {
+        return Float.valueOf(((kv0) obj).f35264a);
+    }
+
+    @Override
+    public final void setValue(Object obj, float f7) {
+        ((kv0) obj).b(f7);
     }
 }

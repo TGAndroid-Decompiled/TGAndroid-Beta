@@ -1,23 +1,41 @@
 package w7;
 
-import java.util.Date;
-import org.json.JSONObject;
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 public abstract class z7 {
-    public static lf.h a(String str) {
-        String str2;
-        JSONObject jSONObject = new JSONObject(str);
-        String a2 = r8.a(jSONObject.getString("id"));
-        long j3 = jSONObject.getLong("created");
-        jSONObject.getBoolean("livemode");
-        if ("card".equals(r8.a(jSONObject.getString("type")))) {
-            str2 = "card";
-        } else {
-            str2 = null;
+    public static long f44879a;
+    public static Method f44880b;
+
+    public static void a(String str) {
+        if (str.length() > 127) {
+            str = str.substring(0, 127);
         }
-        Boolean valueOf = Boolean.valueOf(jSONObject.getBoolean("used"));
-        JSONObject jSONObject2 = jSONObject.getJSONObject("card");
-        uc.a aVar = new uc.a(null, Integer.valueOf(jSONObject2.getInt("exp_month")), Integer.valueOf(jSONObject2.getInt("exp_year")), null, r8.a(jSONObject2.optString("name")), r8.a(jSONObject2.optString("address_line1")), r8.a(jSONObject2.optString("address_line2")), r8.a(jSONObject2.optString("address_city")), r8.a(jSONObject2.optString("address_state")), r8.a(jSONObject2.optString("address_zip")), r8.a(jSONObject2.optString("address_country")), t8.a(r8.a(jSONObject2.optString("brand"))), r8.a(jSONObject2.optString("last4")), r8.a(jSONObject2.optString("fingerprint")), t8.b(r8.a(jSONObject2.optString("funding"))), r8.a(jSONObject2.optString("country")), r8.a(jSONObject2.optString("currency")));
-        new Date(j3 * 1000);
-        return new lf.h(a2, valueOf, aVar, str2);
+        Trace.beginSection(str);
+    }
+
+    public static boolean b() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return w4.a.a();
+        }
+        try {
+            if (f44880b == null) {
+                f44879a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                f44880b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
+            }
+            return ((Boolean) f44880b.invoke(null, Long.valueOf(f44879a))).booleanValue();
+        } catch (Exception e) {
+            if (e instanceof InvocationTargetException) {
+                Throwable cause = e.getCause();
+                if (cause instanceof RuntimeException) {
+                    throw ((RuntimeException) cause);
+                }
+                throw new RuntimeException(cause);
+            }
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e);
+            return false;
+        }
     }
 }

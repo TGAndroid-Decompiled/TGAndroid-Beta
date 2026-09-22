@@ -1,68 +1,101 @@
 package hg;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.n6;
-import org.telegram.ui.Components.qr;
-public final class b1 extends EditTextBoldCursor {
-    public final g5 f10232b;
-    public int f10233c;
-    public final n6 d;
-    public final e1 e;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.vc;
+public final class b1 implements RequestDelegate {
+    public final int f10217a;
+    public final f1 f10218b;
 
-    public b1(e1 e1Var, Activity activity) {
-        super(activity);
-        this.e = e1Var;
-        this.f10232b = new g5(this);
-        n6 n6Var = new n6(false, true, true, false);
-        this.d = n6Var;
-        n6Var.k(0.2f, 160L, qr.h);
-        n6Var.t(AndroidUtilities.dp(15.33f));
-        n6Var.setCallback(this);
-        n6Var.f26643b = 5;
+    public b1(f1 f1Var, int i10) {
+        this.f10217a = i10;
+        this.f10218b = f1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f10233c < 0) {
-            i10 = j6.f19330p7;
-        } else {
-            i10 = j6.P5;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f10217a) {
+            case 0:
+                final f1 f1Var = this.f10218b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                f1 f1Var2 = f1Var;
+                                f1Var2.f10272b.a(0.0f);
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                if (tL_error2 != null) {
+                                    vc.b0(tL_error2);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.y0.p(R.string.UnknownError, vc.a0(f1Var2), null);
+                                    return;
+                                } else {
+                                    f1Var2.finishFragment();
+                                    return;
+                                }
+                            default:
+                                f1 f1Var3 = f1Var;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null) {
+                                    f1Var3.f10272b.a(0.0f);
+                                    vc.b0(tL_error3);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    f1Var3.f10272b.a(0.0f);
+                                    org.telegram.messenger.y0.p(R.string.UnknownError, vc.a0(f1Var3), null);
+                                    return;
+                                } else {
+                                    f1Var3.finishFragment();
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
+            default:
+                final f1 f1Var2 = this.f10218b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                f1 f1Var22 = f1Var2;
+                                f1Var22.f10272b.a(0.0f);
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                if (tL_error2 != null) {
+                                    vc.b0(tL_error2);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    org.telegram.messenger.y0.p(R.string.UnknownError, vc.a0(f1Var22), null);
+                                    return;
+                                } else {
+                                    f1Var22.finishFragment();
+                                    return;
+                                }
+                            default:
+                                f1 f1Var3 = f1Var2;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null) {
+                                    f1Var3.f10272b.a(0.0f);
+                                    vc.b0(tL_error3);
+                                    return;
+                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
+                                    f1Var3.f10272b.a(0.0f);
+                                    org.telegram.messenger.y0.p(R.string.UnknownError, vc.a0(f1Var3), null);
+                                    return;
+                                } else {
+                                    f1Var3.finishFragment();
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
         }
-        int a2 = this.f10232b.a(j6.v0(i10, this.e.getResourceProvider()), false);
-        n6 n6Var = this.d;
-        n6Var.r(a2);
-        n6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        n6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        n6 n6Var = this.d;
-        if (n6Var != null) {
-            this.f10233c = 96 - charSequence.length();
-            n6Var.b();
-            String str = "";
-            if (this.f10233c <= 12) {
-                str = "" + this.f10233c;
-            }
-            n6Var.q(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

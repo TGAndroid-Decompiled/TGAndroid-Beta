@@ -1,27 +1,34 @@
 package org.telegram.ui.Components;
-public final class yo0 extends n6 {
-    public final int W = 0;
-    public final Object X;
 
-    public yo0(Runnable runnable) {
-        super(false, true, true, true);
-        this.X = runnable;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class yo0 {
+    public final nu f30310a;
+    public final long f30311b;
+    public final float f30312c;
+    public final float d;
+    public final float e;
+
+    public yo0(View view) {
+        nu nuVar = new nu(1, view);
+        this.f30311b = System.currentTimeMillis();
+        this.f30310a = nuVar;
+        this.f30312c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
-    @Override
-    public final void invalidateSelf() {
-        switch (this.W) {
-            case 0:
-                ((Runnable) this.X).run();
-                return;
-            default:
-                ((org.telegram.ui.z21) this.X).invalidate();
-                return;
+    public final void a(Canvas canvas, float f7) {
+        nu nuVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f30311b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f30312c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
+        canvas.translate(-0.0f, -0.0f);
+        if (f7 > 0.0f && (nuVar = this.f30310a) != null) {
+            nuVar.run();
         }
-    }
-
-    public yo0(org.telegram.ui.z21 z21Var) {
-        super(false, true, false, false);
-        this.X = z21Var;
     }
 }

@@ -12,17 +12,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.BubbleActivity;
 public final class l0 extends View {
-    public final Paint f4912a;
-    public final Path f4913b;
-    public final RectF f4914c;
+    public final Paint f4910a;
+    public final Path f4911b;
+    public final RectF f4912c;
     public final m0 d;
 
     public l0(m0 m0Var, Context context) {
         super(context);
         this.d = m0Var;
-        this.f4912a = new Paint(1);
-        this.f4913b = new Path();
-        this.f4914c = new RectF();
+        this.f4910a = new Paint(1);
+        this.f4911b = new Path();
+        this.f4912c = new RectF();
         new Matrix();
         new Matrix();
         new Matrix();
@@ -39,7 +39,7 @@ public final class l0 extends View {
             i10 = 0;
         }
         float f10 = f7 + i10;
-        return ((getHeight() - f10) - g0Var.f14316y) - AndroidUtilities.dp(32.0f);
+        return ((getHeight() - f10) - g0Var.f14107y) - AndroidUtilities.dp(32.0f);
     }
 
     private float getContainerWidth() {
@@ -57,46 +57,46 @@ public final class l0 extends View {
         MediaController.CropState cropState;
         float f7;
         float f10;
-        qg.y1 y1Var;
+        qg.a2 a2Var;
         float f11;
         float f12;
         m0 m0Var = this.d;
         g0 g0Var = m0Var.h;
-        int[] iArr = m0Var.f5029x;
-        d7 d7Var = m0Var.f5021a;
-        if (m0Var.f5022b == null) {
+        int[] iArr = m0Var.f5027x;
+        d7 d7Var = m0Var.f5019a;
+        if (m0Var.f5020b == null) {
             return;
         }
         canvas.save();
-        Paint paint = this.f4912a;
+        Paint paint = this.f4910a;
         paint.setColor(-16777216);
-        paint.setAlpha((int) (m0Var.f5027s * 255.0f));
+        paint.setAlpha((int) (m0Var.f5025s * 255.0f));
         canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
-        if (m0Var.f5027s < 1.0f) {
-            Path path = this.f4913b;
+        if (m0Var.f5025s < 1.0f) {
+            Path path = this.f4911b;
             path.rewind();
-            RectF rectF = this.f4914c;
+            RectF rectF = this.f4912c;
             rectF.set(0.0f, 0.0f, d7Var.getWidth(), d7Var.getHeight());
-            int[] iArr2 = m0Var.f5028w;
+            int[] iArr2 = m0Var.f5026w;
             rectF.offset(iArr2[0], iArr2[1]);
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-            AndroidUtilities.lerp(rectF, rectF2, m0Var.f5027s, rectF);
-            float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), 0, m0Var.f5027s);
+            AndroidUtilities.lerp(rectF, rectF2, m0Var.f5025s, rectF);
+            float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), 0, m0Var.f5025s);
             path.addRoundRect(rectF, lerp3, lerp3, Path.Direction.CW);
             canvas.clipPath(path);
         }
-        float f13 = m0Var.f5027s;
+        float f13 = m0Var.f5025s;
         float f14 = 1.0f - f13;
         int[] iArr3 = m0Var.v;
         canvas.translate((-iArr3[0]) * f14, (-iArr3[1]) * f14);
         int i11 = (f14 > 0.0f ? 1 : (f14 == 0.0f ? 0 : -1));
         if (i11 > 0) {
             if (m0Var.E) {
-                m0Var.f5022b.getLocationOnScreen(iArr);
+                m0Var.f5020b.getLocationOnScreen(iArr);
             }
             canvas.translate(iArr[0] * f14, iArr[1] * f14);
-            MediaController.CropState cropState2 = m0Var.f5022b.G0;
+            MediaController.CropState cropState2 = m0Var.f5020b.G0;
             if (cropState2 != null) {
                 f12 = cropState2.cropPw;
                 f11 = cropState2.cropPh;
@@ -104,10 +104,10 @@ public final class l0 extends View {
                 f11 = 1.0f;
                 f12 = 1.0f;
             }
-            float lerp4 = AndroidUtilities.lerp(1.0f, (m0Var.f5022b.getScaleX() * (y1Var.getWidth() / f12)) / d7Var.getWidth(), f14);
+            float lerp4 = AndroidUtilities.lerp(1.0f, (m0Var.f5020b.getScaleX() * (a2Var.getWidth() / f12)) / d7Var.getWidth(), f14);
             canvas.scale(lerp4, lerp4);
-            canvas.rotate(m0Var.f5022b.getRotation() * f14);
-            canvas.translate(((m0Var.f5022b.getContentWidth() * f12) / 2.0f) * f14, ((m0Var.f5022b.getContentHeight() * f11) / 2.0f) * f14);
+            canvas.rotate(m0Var.f5020b.getRotation() * f14);
+            canvas.translate(((m0Var.f5020b.getContentWidth() * f12) / 2.0f) * f14, ((m0Var.f5020b.getContentHeight() * f11) / 2.0f) * f14);
         }
         boolean z11 = getContext() instanceof BubbleActivity;
         float f15 = g0Var.E;
@@ -118,9 +118,9 @@ public final class l0 extends View {
         }
         canvas.translate(((getContainerWidth() / 2.0f) + AndroidUtilities.dp(16.0f)) * f13, (((getContainerHeight() + AndroidUtilities.dp(32.0f)) / 2.0f) + f15 + i10) * f13);
         if (i11 > 0) {
-            float contentWidth = m0Var.f5022b.getContentWidth();
-            float contentHeight = m0Var.f5022b.getContentHeight();
-            MediaController.CropState cropState3 = m0Var.f5022b.G0;
+            float contentWidth = m0Var.f5020b.getContentWidth();
+            float contentHeight = m0Var.f5020b.getContentHeight();
+            MediaController.CropState cropState3 = m0Var.f5020b.G0;
             if (cropState3 != null) {
                 f7 = cropState3.cropPw;
             } else {
@@ -137,14 +137,14 @@ public final class l0 extends View {
             canvas.clipRect((-lerp5) * lerp7, (-lerp6) * lerp7, lerp5 * lerp7, lerp6 * lerp7);
         }
         currentWidth = m0Var.getCurrentWidth();
-        lg.g gVar = m0Var.f5030y;
+        lg.g gVar = m0Var.f5028y;
         currentHeight = m0Var.getCurrentHeight();
-        int i12 = gVar.f14272i;
+        int i12 = gVar.f14063i;
         if (i12 == 90 || i12 == 270) {
             currentHeight = currentWidth;
             currentWidth = currentHeight;
         }
-        float z12 = com.google.android.gms.internal.vision.e2.z(gVar.f14275l, 1.0f, f14, 1.0f);
+        float z12 = com.google.android.gms.internal.vision.e2.z(gVar.f14066l, 1.0f, f14, 1.0f);
         float f16 = currentWidth;
         float containerWidth = getContainerWidth() / f16;
         float f17 = currentHeight;
@@ -152,27 +152,27 @@ public final class l0 extends View {
             containerWidth = getContainerHeight() / f17;
         }
         canvas.translate(gVar.d * 1.0f, gVar.e * 1.0f);
-        float f18 = (gVar.f14270f / z12) * containerWidth;
-        qg.y1 y1Var2 = m0Var.f5022b;
-        if (y1Var2 != null && (cropState = y1Var2.G0) != null) {
+        float f18 = (gVar.f14061f / z12) * containerWidth;
+        qg.a2 a2Var2 = m0Var.f5020b;
+        if (a2Var2 != null && (cropState = a2Var2.G0) != null) {
             lerp = AndroidUtilities.lerp(cropState.cropScale, f18, f13);
         } else {
             lerp = AndroidUtilities.lerp(1.0f, f18, f13);
         }
         canvas.scale(lerp, lerp);
-        canvas.translate(gVar.f14268b * f16 * 1.0f, gVar.f14269c * f17 * 1.0f);
-        float d = m0Var.d.d(i12, false) + m0Var.f5022b.getOrientation() + gVar.f14271g;
-        MediaController.CropState cropState4 = m0Var.f5022b.G0;
+        canvas.translate(gVar.f14059b * f16 * 1.0f, gVar.f14060c * f17 * 1.0f);
+        float d = m0Var.d.d(i12, false) + m0Var.f5020b.getOrientation() + gVar.f14062g;
+        MediaController.CropState cropState4 = m0Var.f5020b.G0;
         if (cropState4 == null) {
-            lerp2 = AndroidUtilities.lerp(0.0f, d, m0Var.f5027s);
+            lerp2 = AndroidUtilities.lerp(0.0f, d, m0Var.f5025s);
         } else {
-            lerp2 = AndroidUtilities.lerp(cropState4.cropRotate + cropState4.transformRotation, d, m0Var.f5027s);
+            lerp2 = AndroidUtilities.lerp(cropState4.cropRotate + cropState4.transformRotation, d, m0Var.f5025s);
         }
         canvas.rotate(lerp2);
-        canvas.rotate(m0Var.f5022b.getOrientation());
-        org.telegram.ui.Components.d6 d6Var = m0Var.f5023c;
+        canvas.rotate(m0Var.f5020b.getOrientation());
+        org.telegram.ui.Components.c6 c6Var = m0Var.f5021c;
         if (m0Var.E) {
-            MediaController.CropState cropState5 = m0Var.f5022b.G0;
+            MediaController.CropState cropState5 = m0Var.f5020b.G0;
             if (cropState5 != null && cropState5.mirrored) {
                 z10 = true;
             }
@@ -180,15 +180,15 @@ public final class l0 extends View {
         } else {
             lg.n nVar = g0Var.L;
             if (nVar != null) {
-                z10 = nVar.f14304j;
+                z10 = nVar.f14095j;
             }
             z10 = false;
         }
-        canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, d6Var.e(z10)), 1.0f);
-        canvas.translate((-m0Var.f5022b.getContentWidth()) / 2.0f, (-m0Var.f5022b.getContentHeight()) / 2.0f);
-        qg.y1 y1Var3 = m0Var.f5022b;
-        Paint paint2 = y1Var3.F0;
-        Bitmap bitmap = y1Var3.A0;
+        canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, c6Var.e(z10)), 1.0f);
+        canvas.translate((-m0Var.f5020b.getContentWidth()) / 2.0f, (-m0Var.f5020b.getContentHeight()) / 2.0f);
+        qg.a2 a2Var3 = m0Var.f5020b;
+        Paint paint2 = a2Var3.F0;
+        Bitmap bitmap = a2Var3.A0;
         if (bitmap != null) {
             paint2.setAlpha(255);
             canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint2);

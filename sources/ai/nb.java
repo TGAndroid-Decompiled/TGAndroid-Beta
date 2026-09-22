@@ -17,17 +17,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.rk;
+import org.telegram.messenger.vl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.wc;
 public final class nb extends View {
     public int f1308a;
     public int f1309b;
     public final Matrix f1310c;
     public final Paint[] d;
-    public final org.telegram.ui.Components.d6 e;
+    public final org.telegram.ui.Components.c6 e;
     public boolean f1311f;
     public int h;
     public final Drawable[] f1312n;
@@ -35,19 +35,19 @@ public final class nb extends View {
     public boolean f1314s;
     public final Paint v;
     public final Path f1315w;
-    public final yc f1316x;
+    public final wc f1316x;
 
     public nb(Context context) {
         super(context);
         this.f1310c = new Matrix();
         this.d = r0;
-        this.e = new org.telegram.ui.Components.d6(this, 0L, 260L, qr.h);
+        this.e = new org.telegram.ui.Components.c6(this, 0L, 260L, qr.h);
         this.f1312n = new Drawable[2];
         this.f1313r = new float[2];
         Paint paint = new Paint(1);
         this.v = paint;
         this.f1315w = new Path();
-        this.f1316x = new yc(this, 0.6f, 5.0f);
+        this.f1316x = new wc(this, 0.6f, 5.0f);
         Paint[] paintArr = {new Paint(1), new Paint(1)};
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -61,24 +61,24 @@ public final class nb extends View {
         this.f1311f = true;
         int i10 = 0;
         if (k9Var != null && (gaVar = k9Var.f1140c.E0) != null) {
-            int i11 = gaVar.f4724a;
-            org.telegram.ui.Components.d6 d6Var = this.e;
+            int i11 = gaVar.f4722a;
+            org.telegram.ui.Components.c6 c6Var = this.e;
             if (i11 == 1) {
                 c(15.0f, R.drawable.msg_stories_closefriends);
                 d(-7808710, -13781445);
-                d6Var.f(z11, !z11);
+                c6Var.f(z11, !z11);
             } else if (i11 == 2) {
                 c(17.33f, R.drawable.msg_folders_private);
                 d(-3905294, -6923014);
-                d6Var.f(z11, !z11);
+                c6Var.f(z11, !z11);
             } else if (i11 == 3) {
                 c(17.33f, R.drawable.msg_folders_groups);
                 d(-18621, -618956);
-                d6Var.f(z11, !z11);
+                c6Var.f(z11, !z11);
             } else if (z10) {
                 c(17.33f, R.drawable.msg_folders_channels);
                 d(-15292942, -15630089);
-                d6Var.f(z11, !z11);
+                c6Var.f(z11, !z11);
             } else {
                 this.f1311f = false;
             }
@@ -101,27 +101,27 @@ public final class nb extends View {
             this.f1311f = false;
         } else {
             boolean z12 = storyItem.close_friends;
-            org.telegram.ui.Components.d6 d6Var = this.e;
+            org.telegram.ui.Components.c6 c6Var = this.e;
             if (z12) {
                 c(15.0f, R.drawable.msg_stories_closefriends);
                 d(-7808710, -13781445);
-                d6Var.f(z11, true);
+                c6Var.f(z11, true);
             } else if (storyItem.contacts) {
                 c(17.33f, R.drawable.msg_folders_private);
                 d(-3905294, -6923014);
-                d6Var.f(z11, true);
+                c6Var.f(z11, true);
             } else if (!storyItem.selected_contacts && (!z10 || ((arrayList = storyItem.privacy) != null && !arrayList.isEmpty()))) {
                 if (z10) {
                     c(17.33f, R.drawable.msg_folders_channels);
                     d(-15292942, -15630089);
-                    d6Var.f(z11, true);
+                    c6Var.f(z11, true);
                 } else {
                     this.f1311f = false;
                 }
             } else {
                 c(17.33f, R.drawable.msg_folders_groups);
                 d(-18621, -618956);
-                d6Var.f(z11, true);
+                c6Var.f(z11, true);
             }
         }
         if (!this.f1311f) {
@@ -209,7 +209,7 @@ public final class nb extends View {
         }
         float dpf23 = AndroidUtilities.dpf2(23.66f);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(com.google.android.gms.internal.vision.e2.A(getWidth(), dpf22, 2.0f, dpf2), (getHeight() - dpf23) / 2.0f, org.telegram.messenger.l0.a(getWidth(), dpf22, 2.0f, dpf2), (getHeight() + dpf23) / 2.0f);
+        rectF.set(com.google.android.gms.internal.vision.e2.A(getWidth(), dpf22, 2.0f, dpf2), (getHeight() - dpf23) / 2.0f, org.telegram.messenger.y0.a(getWidth(), dpf22, 2.0f, dpf2), (getHeight() + dpf23) / 2.0f);
         float a2 = this.f1316x.a(0.075f);
         canvas.save();
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
@@ -238,7 +238,7 @@ public final class nb extends View {
             f10 = 0.5f;
             c10 = 0;
             f7 = 12.0f;
-            drawableArr[1].setBounds((int) rk.b(fArr[1], 2.0f, abs, centerX2), (int) (centerY - f11), (int) (f11 + centerX2), (int) a4.a.e(fArr[1], 2.0f, abs, rectF.centerY()));
+            drawableArr[1].setBounds((int) vl.c(fArr[1], 2.0f, abs, centerX2), (int) (centerY - f11), (int) (f11 + centerX2), (int) a4.a.e(fArr[1], 2.0f, abs, rectF.centerY()));
             drawableArr[1].draw(canvas);
         } else {
             c10 = 0;
@@ -253,7 +253,7 @@ public final class nb extends View {
             }
             float centerY2 = rectF.centerY();
             float f12 = (fArr[c10] / 2.0f) * abs;
-            drawableArr[c10].setBounds((int) rk.b(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f12), (int) (f12 + centerX), (int) a4.a.e(fArr[c10], 2.0f, abs, rectF.centerY()));
+            drawableArr[c10].setBounds((int) vl.c(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f12), (int) (f12 + centerX), (int) a4.a.e(fArr[c10], 2.0f, abs, rectF.centerY()));
             drawableArr[c10].draw(canvas);
         }
         if (this.f1314s) {

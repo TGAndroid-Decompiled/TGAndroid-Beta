@@ -1,18 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class j80 extends FrameLayout {
-    public TextView f25319a;
+public final class j80 implements Runnable {
+    public final int f25250a;
+    public final k80 f25251b;
+    public final boolean f25252c;
+    public final boolean d;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public j80(k80 k80Var, boolean z10, boolean z11, int i10) {
+        this.f25250a = i10;
+        this.f25251b = k80Var;
+        this.f25252c = z10;
+        this.d = z11;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f25319a.setText(charSequence);
+    @Override
+    public final void run() {
+        switch (this.f25250a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new j80(this.f25251b, this.f25252c, this.d, 1));
+                return;
+            default:
+                k80 k80Var = this.f25251b;
+                k80Var.setJoinRequest(this.f25252c);
+                k80Var.setJoinToSend(this.d);
+                return;
+        }
     }
 }

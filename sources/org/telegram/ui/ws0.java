@@ -1,14 +1,14 @@
 package org.telegram.ui;
-public final class ws0 extends org.telegram.ui.Cells.ba {
-    public final int f39251v0 = 0;
+public final class ws0 extends org.telegram.ui.Cells.aa {
+    public final int f39383v0 = 0;
 
-    public ws0(ai.wa waVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(waVar, f6Var);
+    public ws0(ai.wa waVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(waVar, e6Var);
     }
 
     @Override
     public final int p() {
-        switch (this.f39251v0) {
+        switch (this.f39383v0) {
             case 0:
                 return 0;
             default:

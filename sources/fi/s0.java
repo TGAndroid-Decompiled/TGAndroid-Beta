@@ -4,5 +4,5 @@ public interface s0 {
 
     void close();
 
-    void l();
+    void e();
 }

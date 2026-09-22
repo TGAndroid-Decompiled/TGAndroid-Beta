@@ -8,25 +8,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class m6 implements Utilities.Callback2 {
-    public final int f35636a;
-    public final Object f35637b;
-    public final Object f35638c;
+    public final int f35616a;
+    public final Object f35617b;
+    public final Object f35618c;
     public final Object d;
 
     public m6(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35636a = i10;
-        this.f35637b = obj;
-        this.f35638c = obj2;
+        this.f35616a = i10;
+        this.f35617b = obj;
+        this.f35618c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f35636a;
+        int i10 = this.f35616a;
         int i11 = 0;
         Object obj3 = this.d;
-        Object obj4 = this.f35638c;
-        Object obj5 = this.f35637b;
+        Object obj4 = this.f35618c;
+        Object obj5 = this.f35617b;
         switch (i10) {
             case 0:
                 org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) obj3;
@@ -36,28 +36,28 @@ public final class m6 implements Utilities.Callback2 {
                 AndroidUtilities.runOnUIThread(n5Var);
                 return;
             case 1:
-                zn znVar = (zn) obj5;
+                bo boVar = (bo) obj5;
                 TL_account.getWebPagePreview getwebpagepreview = (TL_account.getWebPagePreview) obj4;
-                sg sgVar = (sg) obj3;
+                kg kgVar = (kg) obj3;
                 Boolean bool = (Boolean) obj;
                 TLRPC.WebPage webPage = (TLRPC.WebPage) obj2;
                 if (bool.booleanValue() && !(webPage instanceof TLRPC.TL_webPagePending)) {
-                    Iterator it = znVar.f40410lb.keySet().iterator();
-                    while (it.hasNext() && znVar.f40410lb.size() > 5) {
+                    Iterator it = boVar.f32378lb.keySet().iterator();
+                    while (it.hasNext() && boVar.f32378lb.size() > 5) {
                         it.next();
                         it.remove();
                     }
-                    znVar.f40410lb.put(getwebpagepreview.message, webPage);
+                    boVar.f32378lb.put(getwebpagepreview.message, webPage);
                 }
-                sgVar.run(bool, webPage);
+                kgVar.run(bool, webPage);
                 return;
             case 2:
                 final uy uyVar = (uy) obj5;
-                md mdVar = (md) obj4;
+                ld ldVar = (ld) obj4;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj3;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
                 final Long l4 = (Long) obj2;
-                Utilities.doCallbacks(new ai.e4(uyVar, l4, mdVar, n2Var, 10), new y(uyVar, b2Var, l4, 6), new Utilities.Callback() {
+                Utilities.doCallbacks(new ai.e4(uyVar, l4, ldVar, n2Var, 10), new y(uyVar, b2Var, l4, 6), new Utilities.Callback() {
                     @Override
                     public final void run(Object obj6) {
                         boolean z10;
@@ -77,7 +77,7 @@ public final class m6 implements Utilities.Callback2 {
                                     } else {
                                         z10 = true;
                                     }
-                                    messagesController.setUserAdminRole(longValue, user, tL_chatAdminRights, null, false, uyVar2, z10, true, null, runnable, new mf(5, runnable));
+                                    messagesController.setUserAdminRole(longValue, user, tL_chatAdminRights, null, false, uyVar2, z10, true, null, runnable, new lf(5, runnable));
                                     return;
                                 }
                                 runnable.run();
@@ -88,7 +88,7 @@ public final class m6 implements Utilities.Callback2 {
                                 if (uyVar3.G.user_admin_rights != null) {
                                     MessagesController messagesController2 = uyVar3.getMessagesController();
                                     Long l10 = l4;
-                                    uyVar3.getMessagesController().setUserAdminRole(l10.longValue(), uyVar3.getAccountInstance().getUserConfig().getCurrentUser(), nq.s0(messagesController2.getChat(l10).admin_rights, uyVar3.G.user_admin_rights), null, true, uyVar3, false, true, null, runnable2, new mf(4, runnable2));
+                                    uyVar3.getMessagesController().setUserAdminRole(l10.longValue(), uyVar3.getAccountInstance().getUserConfig().getCurrentUser(), pq.s0(messagesController2.getChat(l10).admin_rights, uyVar3.G.user_admin_rights), null, true, uyVar3, false, true, null, runnable2, new lf(4, runnable2));
                                     return;
                                 }
                                 runnable2.run();
@@ -115,7 +115,7 @@ public final class m6 implements Utilities.Callback2 {
                                     } else {
                                         z10 = true;
                                     }
-                                    messagesController.setUserAdminRole(longValue, user, tL_chatAdminRights, null, false, uyVar2, z10, true, null, runnable, new mf(5, runnable));
+                                    messagesController.setUserAdminRole(longValue, user, tL_chatAdminRights, null, false, uyVar2, z10, true, null, runnable, new lf(5, runnable));
                                     return;
                                 }
                                 runnable.run();
@@ -126,14 +126,14 @@ public final class m6 implements Utilities.Callback2 {
                                 if (uyVar3.G.user_admin_rights != null) {
                                     MessagesController messagesController2 = uyVar3.getMessagesController();
                                     Long l10 = l4;
-                                    uyVar3.getMessagesController().setUserAdminRole(l10.longValue(), uyVar3.getAccountInstance().getUserConfig().getCurrentUser(), nq.s0(messagesController2.getChat(l10).admin_rights, uyVar3.G.user_admin_rights), null, true, uyVar3, false, true, null, runnable2, new mf(4, runnable2));
+                                    uyVar3.getMessagesController().setUserAdminRole(l10.longValue(), uyVar3.getAccountInstance().getUserConfig().getCurrentUser(), pq.s0(messagesController2.getChat(l10).admin_rights, uyVar3.G.user_admin_rights), null, true, uyVar3, false, true, null, runnable2, new lf(4, runnable2));
                                     return;
                                 }
                                 runnable2.run();
                                 return;
                         }
                     }
-                }, new ta(uyVar, b2Var, l4, mdVar, n2Var, 4));
+                }, new sa(uyVar, b2Var, l4, ldVar, n2Var, 4));
                 return;
             default:
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj5;
@@ -144,7 +144,7 @@ public final class m6 implements Utilities.Callback2 {
                 if (passkeys != null) {
                     f3Var.dismiss();
                     while (i11 < passkeys.passkeys.size()) {
-                        if (TextUtils.equals(passkeys.passkeys.get(i11).f18546id, passkey.f18546id)) {
+                        if (TextUtils.equals(passkeys.passkeys.get(i11).f18312id, passkey.f18312id)) {
                             passkeys.passkeys.remove(i11);
                             i11--;
                         }
@@ -154,12 +154,12 @@ public final class m6 implements Utilities.Callback2 {
                     if (U != null) {
                         PasskeysActivity passkeysActivity = new PasskeysActivity(passkeys.passkeys);
                         U.presentFragment(passkeysActivity);
-                        AndroidUtilities.runOnUIThread(new fj0(7, passkeysActivity, passkey), 150L);
+                        AndroidUtilities.runOnUIThread(new ml0(1, passkeysActivity, passkey), 150L);
                         return;
                     }
                     return;
                 } else if (tL_error != null) {
-                    new org.telegram.ui.Components.xc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0(str, false);
+                    new org.telegram.ui.Components.vc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0(str, false);
                     return;
                 } else {
                     return;

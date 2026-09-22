@@ -1,40 +1,201 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import android.text.TextUtils;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.LinearLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-public final class pi1 extends LinearLayout {
-    public final ti1 f36601a;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class pi1 extends FrameLayout {
+    public float f36586a;
+    public float f36587b;
+    public boolean f36588c;
+    public long d;
+    public final ui1 e;
 
-    public pi1(ti1 ti1Var, Activity activity) {
+    public pi1(ui1 ui1Var, Activity activity) {
         super(activity);
-        this.f36601a = ti1Var;
+        this.e = ui1Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        VoIPServiceState sharedState = VoIPService.getSharedState();
-        CharSequence text = this.f36601a.E.getText();
-        if (sharedState != null && !TextUtils.isEmpty(text)) {
-            StringBuilder sb2 = new StringBuilder(text);
-            sb2.append(", ");
-            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
-                sb2.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
-            } else {
-                sb2.append(LocaleController.getString(R.string.VoipInCallBranding));
-            }
-            long callDuration = sharedState.getCallDuration();
-            if (callDuration > 0) {
-                sb2.append(", ");
-                sb2.append(LocaleController.formatDuration((int) (callDuration / 1000)));
-            }
-            accessibilityNodeInfo.setText(sb2);
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        ui1 ui1Var = this.e;
+        org.telegram.ui.Components.voip.c3 c3Var = ui1Var.v;
+        if (view == c3Var && (ui1Var.f38011n0 || ui1Var.m0)) {
+            return false;
         }
+        if ((view != c3Var && view != ui1Var.f37989c0 && (view != ui1Var.Y || !ui1Var.f37983a0)) || (!ui1Var.f37999g1 && ui1Var.f38003i1 == null)) {
+            return super.drawChild(canvas, view, j3);
+        }
+        canvas.save();
+        float f7 = ui1Var.f37997f1;
+        canvas.scale(f7, f7, ui1Var.f37987b1, ui1Var.f37990c1);
+        canvas.translate(ui1Var.Y0, ui1Var.Z0);
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.restore();
+        return drawChild;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        ui1 ui1Var = this.e;
+        ei1 ei1Var = ui1Var.T0;
+        if (motionEvent.getActionMasked() == 1) {
+            ui1Var.f38026y.b(false, false);
+            ui1Var.v.a();
+            AndroidUtilities.cancelRunOnUIThread(ei1Var);
+            if (ui1Var.f38013p0 == 3) {
+                AndroidUtilities.runOnUIThread(ei1Var, 10000L);
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.Components.voip.s2 s2Var;
+        org.telegram.ui.Components.voip.d3 d3Var;
+        ui1 ui1Var = this.e;
+        ei1 ei1Var = ui1Var.T0;
+        if (motionEvent.getActionMasked() == 1) {
+            ui1Var.f38026y.b(false, false);
+            ui1Var.v.a();
+            AndroidUtilities.cancelRunOnUIThread(ei1Var);
+            if (ui1Var.f38013p0 == 3) {
+                AndroidUtilities.runOnUIThread(ei1Var, 10000L);
+            }
+        }
+        if (!ui1Var.f38001h1 && !ui1Var.f37984a1 && !ui1Var.f37999g1 && motionEvent.getActionMasked() != 0) {
+            ui1.j(ui1Var);
+            return false;
+        }
+        if (motionEvent.getActionMasked() == 0) {
+            ui1Var.f38001h1 = false;
+            ui1Var.f37984a1 = false;
+            ui1Var.f37999g1 = false;
+        }
+        if (ui1Var.m0) {
+            s2Var = ui1Var.f37989c0;
+        } else {
+            s2Var = ui1Var.f37991d0;
+        }
+        if (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5) {
+            if (motionEvent.getActionMasked() == 2 && ui1Var.f37984a1) {
+                int i10 = -1;
+                int i11 = -1;
+                for (int i12 = 0; i12 < motionEvent.getPointerCount(); i12++) {
+                    if (ui1Var.f37992d1 == motionEvent.getPointerId(i12)) {
+                        i10 = i12;
+                    }
+                    if (ui1Var.f37994e1 == motionEvent.getPointerId(i12)) {
+                        i11 = i12;
+                    }
+                }
+                if (i10 != -1 && i11 != -1) {
+                    float hypot = ((float) Math.hypot(motionEvent.getX(i11) - motionEvent.getX(i10), motionEvent.getY(i11) - motionEvent.getY(i10))) / ui1Var.X0;
+                    ui1Var.f37997f1 = hypot;
+                    if (hypot > 1.005f && !ui1Var.f37999g1) {
+                        ui1Var.X0 = (float) Math.hypot(motionEvent.getX(i11) - motionEvent.getX(i10), motionEvent.getY(i11) - motionEvent.getY(i10));
+                        float x10 = (motionEvent.getX(i11) + motionEvent.getX(i10)) / 2.0f;
+                        ui1Var.f37987b1 = x10;
+                        ui1Var.V0 = x10;
+                        float y3 = (motionEvent.getY(i11) + motionEvent.getY(i10)) / 2.0f;
+                        ui1Var.f37990c1 = y3;
+                        ui1Var.W0 = y3;
+                        ui1Var.f37997f1 = 1.0f;
+                        ui1Var.Y0 = 0.0f;
+                        ui1Var.Z0 = 0.0f;
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                        ui1Var.f37999g1 = true;
+                        ui1Var.f37984a1 = true;
+                    }
+                    float x11 = motionEvent.getX(i10);
+                    float y10 = motionEvent.getY(i10);
+                    float x12 = ui1Var.V0 - ((motionEvent.getX(i11) + x11) / 2.0f);
+                    float y11 = ui1Var.W0 - ((motionEvent.getY(i11) + y10) / 2.0f);
+                    float f7 = ui1Var.f37997f1;
+                    ui1Var.Y0 = (-x12) / f7;
+                    ui1Var.Z0 = (-y11) / f7;
+                    invalidate();
+                } else {
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                    ui1.j(ui1Var);
+                }
+            } else if (motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && motionEvent.getPointerCount() >= 2 && ((ui1Var.f37992d1 == motionEvent.getPointerId(0) && ui1Var.f37994e1 == motionEvent.getPointerId(1)) || (ui1Var.f37992d1 == motionEvent.getPointerId(1) && ui1Var.f37994e1 == motionEvent.getPointerId(0)))) || motionEvent.getActionMasked() == 3)) {
+                getParent().requestDisallowInterceptTouchEvent(false);
+                ui1.j(ui1Var);
+            }
+        } else {
+            if (motionEvent.getActionMasked() == 0) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(s2Var.getX(), s2Var.getY(), s2Var.getX() + s2Var.getMeasuredWidth(), s2Var.getY() + s2Var.getMeasuredHeight());
+                rectF.inset(((s2Var.getMeasuredHeight() * s2Var.T) - s2Var.getMeasuredHeight()) / 2.0f, ((s2Var.getMeasuredWidth() * s2Var.T) - s2Var.getMeasuredWidth()) / 2.0f);
+                if (!i60.F3) {
+                    rectF.top = Math.max(rectF.top, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
+                    rectF.bottom = Math.min(rectF.bottom, s2Var.getMeasuredHeight() - AndroidUtilities.dp(90.0f));
+                } else {
+                    rectF.top = Math.max(rectF.top, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
+                    rectF.right = Math.min(rectF.right, s2Var.getMeasuredWidth() - AndroidUtilities.dp(90.0f));
+                }
+                boolean contains = rectF.contains(motionEvent.getX(), motionEvent.getY());
+                ui1Var.f38001h1 = contains;
+                if (!contains) {
+                    ui1.j(ui1Var);
+                }
+            }
+            if (ui1Var.f38001h1 && !ui1Var.f37984a1 && motionEvent.getPointerCount() == 2) {
+                ui1Var.X0 = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
+                float x13 = (motionEvent.getX(1) + motionEvent.getX(0)) / 2.0f;
+                ui1Var.f37987b1 = x13;
+                ui1Var.V0 = x13;
+                float y12 = (motionEvent.getY(1) + motionEvent.getY(0)) / 2.0f;
+                ui1Var.f37990c1 = y12;
+                ui1Var.W0 = y12;
+                ui1Var.f37997f1 = 1.0f;
+                ui1Var.f37992d1 = motionEvent.getPointerId(0);
+                ui1Var.f37994e1 = motionEvent.getPointerId(1);
+                ui1Var.f37984a1 = true;
+            }
+        }
+        ui1Var.f38017s.invalidate();
+        int action = motionEvent.getAction();
+        if (action != 0) {
+            if (action != 1) {
+                if (action == 3) {
+                    this.f36588c = false;
+                }
+            } else if (this.f36588c) {
+                float x14 = motionEvent.getX() - this.f36586a;
+                float y13 = motionEvent.getY() - this.f36587b;
+                long currentTimeMillis = System.currentTimeMillis();
+                float f10 = (y13 * y13) + (x14 * x14);
+                float f11 = ui1Var.f38019t0;
+                if (f10 < f11 * f11 && currentTimeMillis - this.d < 300 && currentTimeMillis - ui1Var.K0 > 300) {
+                    ui1Var.K0 = System.currentTimeMillis();
+                    if (ui1Var.C0) {
+                        ui1Var.m(false);
+                    } else if (ui1Var.f38028z0) {
+                        ui1Var.A(!ui1Var.f38025x0);
+                        ui1Var.f38014q0 = ui1Var.f38013p0;
+                        if (!ui1Var.f38025x0 && (d3Var = ui1Var.N0) != null && d3Var.V) {
+                            d3Var.e(true);
+                        }
+                        ui1Var.H();
+                    }
+                }
+                this.f36588c = false;
+            }
+        } else {
+            this.f36586a = motionEvent.getX();
+            this.f36587b = motionEvent.getY();
+            this.f36588c = true;
+            this.d = System.currentTimeMillis();
+        }
+        if (!ui1Var.f38001h1 && !this.f36588c) {
+            return false;
+        }
+        return true;
     }
 }

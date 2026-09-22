@@ -2,17 +2,17 @@ package ci;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class ub implements x2 {
-    public final oc f5636a;
+    public final oc f5634a;
 
     public ub(oc ocVar) {
-        this.f5636a = ocVar;
+        this.f5634a = ocVar;
     }
 
     @Override
     public final void setInvert(float f7) {
         boolean z10;
-        oc ocVar = this.f5636a;
-        nc ncVar = ocVar.f5243n;
+        oc ocVar = this.f5634a;
+        nc ncVar = ocVar.f5241n;
         boolean z11 = false;
         int i10 = (f7 > 0.5f ? 1 : (f7 == 0.5f ? 0 : -1));
         if (i10 > 0) {
@@ -21,7 +21,7 @@ public final class ub implements x2 {
             z10 = false;
         }
         AndroidUtilities.setLightNavigationBar(ncVar, z10);
-        nc ncVar2 = ocVar.f5243n;
+        nc ncVar2 = ocVar.f5241n;
         if (i10 > 0) {
             z11 = true;
         }

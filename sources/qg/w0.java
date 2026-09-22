@@ -1,47 +1,194 @@
 package qg;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.zt0;
-public final class w0 implements pg.e1 {
-    public final x0 f42011a;
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.vl;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.hk0;
+import w7.x5;
+public final class w0 extends j {
+    public final v0 f41693q0;
+    public boolean f41694r0;
+    public int f41695s0;
+    public int f41696t0;
+    public TLRPC.MessageMedia f41697u0;
+    public TL_stories.MediaArea f41698v0;
 
-    public w0(x0 x0Var) {
-        this.f42011a = x0Var;
+    public w0(Context context, PointF pointF, int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f7, int i11) {
+        super(context, pointF);
+        v0 v0Var = new v0(context, f7);
+        this.f41693q0 = v0Var;
+        v0Var.setMaxWidth(i11);
+        r(i10, messageMedia, mediaArea);
+        v0Var.e(0, this.f41695s0);
+        addView(v0Var, x5.e(-2, -2, 51));
+        setClipChildren(false);
+        setClipToPadding(false);
+        k();
+    }
+
+    public static String q(double d) {
+        String str;
+        String str2;
+        String str3;
+        double abs = Math.abs(d);
+        double floor = Math.floor(abs);
+        String str4 = "";
+        String o9 = a4.a.o((int) floor, "°", new StringBuilder(""));
+        double floor2 = Math.floor((abs - floor) * 60.0d);
+        StringBuilder v = a4.a.v(o9);
+        if (floor2 > 0.0d) {
+            str = "";
+        } else {
+            str = "0";
+        }
+        v.append(str);
+        if (floor2 >= 10.0d) {
+            str2 = "";
+        } else {
+            str2 = "0";
+        }
+        v.append(str2);
+        String o10 = a4.a.o((int) floor2, "'", v);
+        double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
+        StringBuilder v9 = a4.a.v(o10);
+        if (floor3 > 0.0d) {
+            str3 = "";
+        } else {
+            str3 = "0";
+        }
+        v9.append(str3);
+        if (floor3 < 10.0d) {
+            str4 = "0";
+        }
+        v9.append(str4);
+        return a4.a.o((int) floor3, "\"", v9);
     }
 
     @Override
-    public final void a() {
-        x0 x0Var = this.f42011a;
-        x0Var.e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new org.telegram.ui.Components.voip.r0(x0Var, 8)).setInterpolator(qr.h);
+    public final i a() {
+        return new s0(this, getContext());
+    }
+
+    public int getColor() {
+        return this.f41695s0;
     }
 
     @Override
-    public final boolean d() {
-        return true;
+    public float getMaxScale() {
+        return 1.5f;
     }
 
     @Override
-    public final void e() {
-        x0 x0Var = this.f42011a;
-        x0Var.f42018b.f41350a.e();
-        x0Var.f42024w.setViewHidden(false);
-        PhotoViewer photoViewer = ((zt0) x0Var).K;
-        Drawable[] drawableArr = PhotoViewer.U8;
-        photoViewer.W2(true, true);
+    public hk0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float v = vl.v(dp, 2.0f, getPositionX(), scaleX);
+        return new hk0(v, vl.v(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + v) - v, dp2 * scaleX);
     }
 
     @Override
-    public final void f() {
-        this.f42011a.f42024w.setViewHidden(true);
+    public float getStickyPaddingBottom() {
+        return this.f41693q0.J;
     }
 
     @Override
-    public final void b() {
+    public float getStickyPaddingLeft() {
+        return this.f41693q0.I;
     }
 
     @Override
-    public final void c() {
+    public float getStickyPaddingRight() {
+        return this.f41693q0.I;
+    }
+
+    @Override
+    public float getStickyPaddingTop() {
+        return this.f41693q0.J;
+    }
+
+    public int getType() {
+        return this.f41696t0;
+    }
+
+    public int getTypesCount() {
+        return this.f41693q0.getTypesCount() - (!this.f41694r0 ? 1 : 0);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        k();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        k();
+    }
+
+    public final void r(int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
+        String str;
+        String str2;
+        String str3;
+        this.f41697u0 = messageMedia;
+        this.f41698v0 = mediaArea;
+        String str4 = null;
+        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
+            TLRPC.GeoPoint geoPoint = messageMedia.geo;
+            double d = geoPoint.lat;
+            double d10 = geoPoint._long;
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(q(d));
+            if (d > 0.0d) {
+                str2 = "N";
+            } else {
+                str2 = "S";
+            }
+            sb2.append(str2);
+            sb2.append(" ");
+            sb2.append(q(d10));
+            if (d10 > 0.0d) {
+                str3 = "E";
+            } else {
+                str3 = "W";
+            }
+            sb2.append(str3);
+            str = sb2.toString();
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            String upperCase = messageMedia.title.toUpperCase();
+            str4 = ((TLRPC.TL_messageMediaVenue) messageMedia).emoji;
+            str = upperCase;
+        } else {
+            str = "";
+        }
+        v0 v0Var = this.f41693q0;
+        v0Var.d(i10, str4);
+        v0Var.setText(str);
+        m();
+    }
+
+    public void setColor(int i10) {
+        this.f41694r0 = true;
+        this.f41695s0 = i10;
+    }
+
+    public void setMaxWidth(int i10) {
+        this.f41693q0.setMaxWidth(i10);
+    }
+
+    public void setType(int i10) {
+        this.f41696t0 = i10;
+        this.f41693q0.e(i10, this.f41695s0);
     }
 }

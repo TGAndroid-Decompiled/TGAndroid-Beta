@@ -1,177 +1,113 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class lp0 extends View {
-    public static final vv0 v;
-    public ImageReceiver f26158a;
-    public g9 f26159b;
-    public org.telegram.ui.Cells.z f26160c;
-    public Paint d;
-    public Paint e;
-    public o1.k f26161f;
-    public ValueAnimator h;
-    public float f26162n;
-    public boolean f26163r;
-    public boolean f26164s;
+public final class lp0 extends FrameLayout {
+    public final int f26000a;
+    public final hq0 f26001b;
 
-    static {
-        vv0 vv0Var = new vv0(new lg0(6), new lg0(7));
-        vv0Var.f29821c = 100.0f;
-        v = vv0Var;
+    public lp0(hq0 hq0Var, Context context, int i10) {
+        super(context);
+        this.f26000a = i10;
+        this.f26001b = hq0Var;
     }
 
-    public final void a(boolean z10, boolean z11, float f7) {
-        if (z10) {
-            o1.k kVar = this.f26161f;
-            if (kVar != null) {
-                kVar.c();
-            }
-            ValueAnimator valueAnimator = this.h;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            boolean z12 = false;
-            this.f26164s = false;
-            this.f26163r = false;
-            if (z11) {
-                float f10 = this.f26162n * 100.0f;
-                o1.k kVar2 = new o1.k(this, v);
-                kVar2.f15528b = f10;
-                kVar2.f15529c = true;
-                this.f26161f = kVar2;
-                if (f7 < this.f26162n) {
-                    z12 = true;
-                }
-                float f11 = f7 * 100.0f;
-                this.f26164s = z12;
-                this.f26163r = !z12;
-                o1.l lVar = new o1.l(f11);
-                lVar.f15543i = f11;
-                lVar.b(450.0f);
-                lVar.a(1.0f);
-                kVar2.f15537u = lVar;
-                this.f26161f.b(new nh(this, z12, f10, f11));
-                this.f26161f.a(new gb(this, 3));
-                this.f26161f.f();
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f26000a) {
+            case 0:
+                hq0 hq0Var = this.f26001b;
+                hq0Var.X0.setBounds(0, (int) hq0Var.f24779u0, getMeasuredWidth(), getMeasuredHeight());
+                hq0Var.X0.draw(canvas);
+                canvas.save();
+                canvas.clipRect(0.0f, hq0Var.f24779u0, getMeasuredWidth(), getMeasuredHeight());
+                super.dispatchDraw(canvas);
+                canvas.restore();
                 return;
-            }
-            ValueAnimator duration = ValueAnimator.ofFloat(this.f26162n, f7).setDuration(200L);
-            this.h = duration;
-            duration.setInterpolator(qr.f27653f);
-            this.h.addUpdateListener(new s70(this, 16));
-            this.h.addListener(new gd0(this, 12));
-            this.h.start();
-            return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        this.f26162n = f7;
-        invalidate();
     }
 
     @Override
-    public final void drawableStateChanged() {
-        super.drawableStateChanged();
-        this.f26160c.setState(getDrawableState());
-    }
-
-    public float getProgress() {
-        return this.f26162n;
-    }
-
-    @Override
-    public final void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        this.f26160c.jumpToCurrentState();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f26158a.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f26158a.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint = this.d;
-        Paint paint2 = this.e;
-        canvas.save();
-        float f7 = 1.0f;
-        if (this.f26163r) {
-            f7 = 1.0f - this.f26162n;
-        } else if (this.f26164s) {
-            f7 = this.f26162n;
+    public void onDraw(Canvas canvas) {
+        switch (this.f26000a) {
+            case 0:
+                hq0 hq0Var = this.f26001b;
+                lp0 lp0Var = hq0Var.f24757c;
+                float f7 = hq0Var.f24780v0;
+                if (f7 != 0.0f && f7 != lp0Var.getTop() + hq0Var.f24780v0) {
+                    ValueAnimator valueAnimator = hq0Var.f24782w0;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                    }
+                    float top = hq0Var.f24780v0 - (lp0Var.getTop() + hq0Var.f24779u0);
+                    hq0Var.f24779u0 = top;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                    hq0Var.f24782w0 = ofFloat;
+                    ofFloat.addUpdateListener(new h70(this, 17));
+                    hq0Var.f24782w0.setInterpolator(qr.f27420f);
+                    hq0Var.f24782w0.setDuration(200L);
+                    hq0Var.f24782w0.start();
+                    hq0Var.f24780v0 = 0.0f;
+                }
+                hq0Var.S[1].setTranslationY((-(lp0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + hq0Var.f24779u0 + hq0Var.f24778t0 + ((1.0f - getAlpha()) * (lp0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        canvas.scale(f7, f7, getWidth() / 2.0f, getHeight() / 2.0f);
-        super.onDraw(canvas);
-        this.f26158a.draw(canvas);
-        int i10 = (int) (this.f26162n * 255.0f);
-        paint.setAlpha(i10);
-        canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, paint);
-        canvas.save();
-        paint2.setAlpha(i10);
-        float strokeWidth = paint2.getStrokeWidth() + AndroidUtilities.dp(10.0f);
-        canvas.drawLine(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth, paint2);
-        canvas.drawLine(strokeWidth, getHeight() - strokeWidth, getWidth() - strokeWidth, strokeWidth, paint2);
-        canvas.restore();
-        this.f26160c.setBounds(0, 0, getWidth(), getHeight());
-        this.f26160c.draw(canvas);
-        canvas.restore();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getLayoutParams().width, 1073741824), View.MeasureSpec.makeMeasureSpec(getLayoutParams().height, 1073741824));
-        this.f26158a.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-    }
-
-    public void setAvatar(TLObject tLObject) {
-        String str;
-        g9 g9Var = this.f26159b;
-        if (tLObject instanceof TLRPC.User) {
-            str = UserObject.getFirstName((TLRPC.User) tLObject);
-        } else if (tLObject instanceof TLRPC.Chat) {
-            str = ((TLRPC.Chat) tLObject).title;
-        } else if (tLObject instanceof TLRPC.ChatInvite) {
-            str = ((TLRPC.ChatInvite) tLObject).title;
-        } else {
-            str = "";
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f26000a) {
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f26001b.U.m(), new Object[0]));
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
         }
-        setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, str));
-        g9Var.p(tLObject);
-        this.f26158a.setForUserOrChat(tLObject, g9Var);
-    }
-
-    public void setProgress(float f7) {
-        boolean z10;
-        if (f7 != 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        a(true, z10, f7);
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && this.f26160c != drawable) {
-            return false;
+    public void setAlpha(float f7) {
+        switch (this.f26000a) {
+            case 0:
+                super.setAlpha(f7);
+                invalidate();
+                return;
+            default:
+                super.setAlpha(f7);
+                return;
         }
-        return true;
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.f26000a) {
+            case 0:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    this.f26001b.S[1].setTranslationY(0.0f);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
+        }
     }
 }

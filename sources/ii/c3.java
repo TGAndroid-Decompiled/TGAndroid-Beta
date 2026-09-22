@@ -1,17 +1,17 @@
 package ii;
 public final class c3 {
-    public final w3 f11287a;
+    public final w3 f11285a;
 
     public c3(w3 w3Var) {
-        this.f11287a = w3Var;
+        this.f11285a = w3Var;
     }
 
     public final void a() {
-        w3 w3Var = this.f11287a;
+        w3 w3Var = this.f11285a;
         h2 h2Var = w3Var.J3;
         if (h2Var != null) {
             h2Var.g();
         }
-        w3Var.f11715h3.onContentChanged();
+        w3Var.f11713h3.onContentChanged();
     }
 }

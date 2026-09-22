@@ -5,7 +5,6 @@ import android.os.Bundle;
 import e9.a1;
 import e9.f0;
 import e9.i0;
-import hg.k0;
 import i2.t0;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -115,7 +114,7 @@ public abstract class d {
 
     public static void o(MediaFormat mediaFormat, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            mediaFormat.setByteBuffer(k0.h(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
+            mediaFormat.setByteBuffer(hg.c.i(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
         }
     }
 

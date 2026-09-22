@@ -1,14 +1,140 @@
 package pg;
-public final class k1 {
-    public double f41209a;
-    public double f41210b;
 
-    public k1(double d, double d10) {
-        this.f41209a = d;
-        this.f41210b = d10;
+import android.content.Context;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class k1 {
+    public static final DispatchQueue f40892m = new DispatchQueue("ShapeDetector");
+    public static final double f40893n = Math.sqrt(125000.0d) / 2.0d;
+    public int f40894a;
+    public ArrayList f40895b;
+    public ArrayList f40896c;
+    public boolean d;
+    public org.telegram.ui.web.b1 e;
+    public Context f40897f;
+    public SharedPreferences f40898g;
+    public boolean h;
+    public ArrayList f40899i;
+    public AtomicBoolean f40900j;
+    public AtomicBoolean f40901k;
+    public g1 f40902l;
+
+    public static i1 a(ArrayList arrayList) {
+        if (arrayList.size() <= 0) {
+            return null;
+        }
+        double d = ((h1) arrayList.get(0)).f40872a;
+        double d10 = ((h1) arrayList.get(0)).f40873b;
+        ?? obj = new Object();
+        obj.f40877a = d;
+        obj.f40878b = d10;
+        obj.f40879c = d;
+        obj.d = d10;
+        for (int i10 = 1; i10 < arrayList.size(); i10++) {
+            h1 h1Var = (h1) arrayList.get(i10);
+            double d11 = h1Var.f40872a;
+            double d12 = h1Var.f40873b;
+            if (obj.f40877a >= d11) {
+                obj.f40877a = d11;
+            }
+            if (obj.f40878b >= d12) {
+                obj.f40878b = d12;
+            }
+            if (obj.f40879c <= d11) {
+                obj.f40879c = d11;
+            }
+            if (obj.d <= d12) {
+                obj.d = d12;
+            }
+        }
+        return obj;
     }
 
-    public final double a(double d, double d10) {
-        return Math.sqrt(Math.pow(d10 - this.f41210b, 2.0d) + Math.pow(d - this.f41209a, 2.0d));
+    public static h1 b(ArrayList arrayList) {
+        h1 h1Var = new h1(0.0d, 0.0d);
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            h1 h1Var2 = (h1) arrayList.get(i10);
+            h1Var.f40872a += h1Var2.f40872a;
+            h1Var.f40873b += h1Var2.f40873b;
+        }
+        h1Var.f40872a /= arrayList.size();
+        h1Var.f40873b /= arrayList.size();
+        return h1Var;
+    }
+
+    public static double d(ArrayList arrayList, h1 h1Var, ArrayList arrayList2, double d) {
+        h1 h1Var2 = h1Var;
+        double cos = Math.cos(d);
+        double sin = Math.sin(d);
+        int min = Math.min(arrayList.size(), arrayList2.size());
+        double d10 = 0.0d;
+        int i10 = 0;
+        while (i10 < min) {
+            h1 h1Var3 = (h1) arrayList.get(i10);
+            double d11 = h1Var3.f40872a;
+            double d12 = cos;
+            double d13 = h1Var2.f40872a;
+            double d14 = d11 - d13;
+            double d15 = h1Var3.f40873b;
+            double d16 = h1Var2.f40873b;
+            double d17 = d15 - d16;
+            d10 += ((h1) arrayList2.get(i10)).a(((d14 * d12) - (d17 * sin)) + d13, (d17 * d12) + (d14 * sin) + d16);
+            i10++;
+            h1Var2 = h1Var;
+            cos = d12;
+        }
+        return d10 / arrayList.size();
+    }
+
+    public static int e(int i10, ArrayList arrayList) {
+        int max = Math.max(1, arrayList.size() / 4);
+        while (max < arrayList.size() - 1) {
+            h1 h1Var = (h1) arrayList.get(max - 1);
+            h1 h1Var2 = (h1) arrayList.get(max);
+            int i11 = max + 1;
+            h1 h1Var3 = (h1) arrayList.get(i11);
+            h1Var.getClass();
+            double a2 = h1Var.a(h1Var2.f40872a, h1Var2.f40873b);
+            double a10 = h1Var.a(h1Var3.f40872a, h1Var3.f40873b);
+            double a11 = h1Var2.a(h1Var3.f40872a, h1Var3.f40873b);
+            if ((Math.acos((((a10 * a10) + (a2 * a2)) - (a11 * a11)) / ((a2 * 2.0d) * a10)) / 3.141592653589793d) * 180.0d > 18.0d) {
+                if (i10 > 0) {
+                    i10--;
+                } else {
+                    return max;
+                }
+            }
+            max = i11;
+        }
+        return -1;
+    }
+
+    public static ArrayList f(ArrayList arrayList) {
+        ArrayList arrayList2 = new ArrayList();
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            h1 h1Var = (h1) arrayList.get(i10);
+            arrayList2.add(new h1(h1Var.f40872a, h1Var.f40873b));
+        }
+        return arrayList2;
+    }
+
+    public final void c() {
+        ArrayList arrayList;
+        synchronized (this) {
+            this.f40895b.clear();
+        }
+        f40892m.cancelRunnable(this.f40902l);
+        this.f40901k.set(false);
+        this.d = false;
+        if (this.h && (arrayList = this.f40899i) != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f40897f);
+            alertDialog$Builder.f18435a.R = "Shape?";
+            alertDialog$Builder.f(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new lg.j(13, this, arrayList));
+            alertDialog$Builder.o();
+            this.f40899i = null;
+        }
     }
 }

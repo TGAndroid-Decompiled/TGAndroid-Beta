@@ -5,8 +5,8 @@ import android.view.MotionEvent;
 public final class ri extends b20 {
     public final vi J;
 
-    public ri(Context context, org.telegram.ui.ActionBar.f6 f6Var, vi viVar) {
-        super(context, f6Var);
+    public ri(Context context, org.telegram.ui.ActionBar.e6 e6Var, vi viVar) {
+        super(context, e6Var);
         this.J = viVar;
     }
 
@@ -17,7 +17,7 @@ public final class ri extends b20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.t1(this.f22811r, true);
+        this.J.t1(this.f22569r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

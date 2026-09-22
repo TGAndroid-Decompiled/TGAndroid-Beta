@@ -1,122 +1,56 @@
 package tg;
 
-import ai.e4;
-import ai.t5;
-import android.content.Intent;
-import android.net.Uri;
-import ci.d9;
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.os.Bundle;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d3;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.cw0;
-import org.telegram.ui.Components.pc;
-import org.telegram.ui.Components.xl0;
-import org.telegram.ui.Components.yl0;
-import org.telegram.ui.LaunchActivity;
-public final class c0 extends ab {
-    public final TLRPC.TL_payments_checkedGiftCode X;
-    public final boolean Y;
-    public b0 Z;
-    public final String f43420a0;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.bo;
+public final class c0 extends ug.e {
+    public final d0 f43113r;
 
-    public c0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
-        super(n2Var, true);
-        boolean z10;
-        if (tL_payments_checkedGiftCode.used_date == 0) {
-            z10 = true;
+    public c0(d0 d0Var, e6 e6Var) {
+        super(e6Var);
+        this.f43113r = d0Var;
+    }
+
+    @Override
+    public final void E() {
+        String string;
+        e6 e6Var;
+        d0 d0Var = this.f43113r;
+        String str = d0Var.f43119a0;
+        if ((str == null || str.isEmpty()) && d0Var.X.to_id == -1) {
+            string = LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink);
         } else {
-            z10 = false;
+            string = LocaleController.getString(R.string.BoostingOnlyRecipientCode);
         }
-        this.Y = z10;
-        this.X = tL_payments_checkedGiftCode;
-        this.f43420a0 = str;
-        setApplyTopPadding(false);
-        setApplyBottomPadding(false);
-        fixNavigationBar();
-        N();
-        b0 b0Var = this.Z;
-        d3 d3Var = this.container;
-        b0Var.getClass();
-        b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.e = n2Var;
-        b0Var.f44044f = tL_payments_checkedGiftCode;
-        b0Var.h = str;
-        b0Var.f44045n = d3Var;
-    }
-
-    public static boolean S(Intent intent, nf.e eVar) {
-        String scheme;
-        String path;
-        Uri data = intent.getData();
-        if (data != null && (scheme = data.getScheme()) != null) {
-            if (!scheme.equals("http") && !scheme.equals("https")) {
-                if (scheme.equals("tg")) {
-                    String uri = data.toString();
-                    String lastPathSegment = data.getLastPathSegment();
-                    if ((uri.startsWith("tg:giftcode") || uri.startsWith("tg://giftcode")) && lastPathSegment != null) {
-                        T(LaunchActivity.R(), lastPathSegment, eVar);
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            String lowerCase = data.getHost().toLowerCase();
-            if ((lowerCase.equals("telegram.me") || lowerCase.equals("t.me") || lowerCase.equals("telegram.dog")) && (path = data.getPath()) != null) {
-                String lastPathSegment2 = data.getLastPathSegment();
-                if (path.startsWith("/giftcode") && lastPathSegment2 != null) {
-                    T(LaunchActivity.R(), lastPathSegment2, eVar);
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public static void T(n2 n2Var, String str, nf.e eVar) {
-        if (n2Var == null) {
-            return;
-        }
-        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
-        if (eVar != null) {
-            eVar.d();
-            eVar.f15442b = new d(atomicBoolean, 1);
-        }
-        e4 e4Var = new e4(atomicBoolean, n2Var, str, eVar, 15);
-        f fVar = new f(atomicBoolean, eVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
-        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
-        TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
-        tL_payments_checkGiftCode.slug = str;
-        connectionsManager.sendRequest(tL_payments_checkGiftCode, new t5(messagesController, e4Var, fVar, 19));
+        d3 d3Var = d0Var.container;
+        e6Var = ((f3) d0Var).resourcesProvider;
+        new vc(d3Var, e6Var).Q(R.raw.chats_infotip, 36, string).k(true);
     }
 
     @Override
-    public final void F(cw0 cw0Var) {
-        pc.a(this.container, new d9(14));
-    }
-
-    @Override
-    public final xl0 v(yl0 yl0Var) {
-        b0 b0Var = new b0(this, this.resourcesProvider);
-        this.Z = b0Var;
-        return b0Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        if (this.Y) {
-            return LocaleController.getString(R.string.BoostingGiftLink);
+    public final void F(TLObject tLObject) {
+        d0 d0Var = this.f43113r;
+        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = d0Var.X;
+        n2 n2Var = d0Var.f30525n;
+        d0Var.dismiss();
+        if (tLObject instanceof TLRPC.Chat) {
+            n2Var.presentFragment(bo.R9(-((TLRPC.Chat) tLObject).f18109id));
+        } else if (tLObject instanceof TLRPC.User) {
+            n2Var.presentFragment(bo.R9(((TLRPC.User) tLObject).f18256id));
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -DialogObject.getPeerDialogId(tL_payments_checkedGiftCode.from_id));
+            bundle.putInt("message_id", tL_payments_checkedGiftCode.giveaway_msg_id);
+            n2Var.presentFragment(new bo(bundle));
         }
-        return LocaleController.getString(R.string.BoostingUsedGiftLink);
     }
 }

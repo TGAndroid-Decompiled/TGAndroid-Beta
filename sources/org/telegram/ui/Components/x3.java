@@ -1,42 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-public final class x3 implements TextWatcher {
-    public boolean f30209a;
-    public final int f30210b;
-    public final EditTextBoldCursor f30211c;
-
-    public x3(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f30210b = i10;
-        this.f30211c = editTextBoldCursor;
-    }
-
+import org.telegram.messenger.LocaleController;
+public final class x3 extends uc0 {
     @Override
-    public final void afterTextChanged(Editable editable) {
-        if (!this.f30209a) {
-            int length = editable.length();
-            int i10 = this.f30210b;
-            if (length > i10) {
-                this.f30209a = true;
-                editable.delete(i10, editable.length());
-                EditTextBoldCursor editTextBoldCursor = this.f30211c;
-                AndroidUtilities.shakeView(editTextBoldCursor);
-                try {
-                    editTextBoldCursor.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                this.f30209a = false;
-            }
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final CharSequence d(int i10) {
+        return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
     }
 }

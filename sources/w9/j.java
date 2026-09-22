@@ -6,24 +6,24 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 public final class j {
-    public final s f45246a;
-    public final i f45247b;
+    public final r f44924a;
+    public final i f44925b;
 
-    public j(s sVar, ba.c cVar) {
-        this.f45246a = sVar;
-        this.f45247b = new i(cVar);
+    public j(r rVar, ba.c cVar) {
+        this.f44924a = rVar;
+        this.f44925b = new i(cVar);
     }
 
     public final String a(String str) {
         String substring;
-        i iVar = this.f45247b;
+        i iVar = this.f44925b;
         synchronized (iVar) {
-            if (Objects.equals(iVar.f45244b, str)) {
-                return iVar.f45245c;
+            if (Objects.equals(iVar.f44922b, str)) {
+                return iVar.f44923c;
             }
-            ba.c cVar = iVar.f45243a;
+            ba.c cVar = iVar.f44921a;
             ba.a aVar = i.d;
-            File file = new File(cVar.f3452c, str);
+            File file = new File(cVar.f3450c, str);
             file.mkdirs();
             List e = ba.c.e(file.listFiles(aVar));
             if (e.isEmpty()) {
@@ -37,11 +37,11 @@ public final class j {
     }
 
     public final void b(String str) {
-        i iVar = this.f45247b;
+        i iVar = this.f44925b;
         synchronized (iVar) {
-            if (!Objects.equals(iVar.f45244b, str)) {
-                i.a(iVar.f45243a, str, iVar.f45245c);
-                iVar.f45244b = str;
+            if (!Objects.equals(iVar.f44922b, str)) {
+                i.a(iVar.f44921a, str, iVar.f44923c);
+                iVar.f44922b = str;
             }
         }
     }

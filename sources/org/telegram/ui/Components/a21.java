@@ -1,69 +1,76 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class a21 extends xl0 {
-    public Context f22522c;
-    public ArrayList d;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public abstract class a21 extends View {
+    public final b21 f22282a;
+    public Utilities.Callback f22283b;
+    public final org.telegram.ui.ActionBar.e6 f22284c;
+    public int d;
+
+    public a21(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f22284c = e6Var;
+        b21 b21Var = new b21(i10, this, e6Var, false);
+        this.f22282a = b21Var;
+        b21Var.f22588r = new jq0(this, 18);
+    }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        org.telegram.ui.ActionBar.e6 e6Var = this.f22284c;
+        if (e6Var != null) {
+            e6Var.m(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        } else {
+            org.telegram.ui.ActionBar.i6.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        }
+        this.f22282a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f22282a.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f22282a.b();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(33.0f), 1073741824));
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f22282a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.d;
-        if (arrayList.isEmpty()) {
-            return 0;
-        }
-        return arrayList.size() + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int b10;
-        if (c1Var.f42998f == 0) {
-            boolean z10 = true;
-            org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) ((ArrayList) this.d.get(i10 - 1)).get(0);
-            if (l6Var.f19624f == org.telegram.ui.ActionBar.j6.Nd) {
-                b10 = 0;
-            } else {
-                b10 = l6Var.b();
-            }
-            org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) c1Var.f42995a;
-            a9Var.f20047a.setText(org.telegram.ui.ActionBar.g5.i(l6Var.f19624f));
-            a9Var.f20048b = b10;
-            if (b10 != 0) {
-                z10 = false;
-            }
-            a9Var.setWillNotDraw(z10);
-            a9Var.invalidate();
+    public void set(MessageObject messageObject) {
+        b21 b21Var = this.f22282a;
+        b21Var.f(messageObject);
+        if (isAttachedToWindow()) {
+            b21Var.a();
         }
     }
 
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View a9Var;
-        Context context = this.f22522c;
-        if (i10 != 0) {
-            a9Var = new View(context);
-            a9Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
-        } else {
-            a9Var = new org.telegram.ui.Cells.a9(context);
-            a9Var.setLayoutParams(new s4.p0(-1, -2));
-        }
-        return new s4.c1(a9Var);
+    public void setBackgroundHeight(int i10) {
+        this.d = i10;
+    }
+
+    public void setOnTopicClickListener(Utilities.Callback<Long> callback) {
+        this.f22283b = callback;
     }
 }

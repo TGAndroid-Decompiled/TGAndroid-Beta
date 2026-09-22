@@ -1,35 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class kg0 extends AnimatorListenerAdapter {
-    public final int f25694a;
-    public final PipRoundVideoView f25695b;
+import android.content.Context;
+public final class kg0 extends ng0 {
+    public final lg0 e;
 
-    public kg0(PipRoundVideoView pipRoundVideoView, int i10) {
-        this.f25694a = i10;
-        this.f25695b = pipRoundVideoView;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25694a) {
-            case 0:
-                PipRoundVideoView pipRoundVideoView = this.f25695b;
-                if (animator.equals(pipRoundVideoView.f22322r)) {
-                    pipRoundVideoView.f22322r = null;
-                    return;
-                }
-                return;
-            default:
-                PipRoundVideoView pipRoundVideoView2 = this.f25695b;
-                pipRoundVideoView2.a(false);
-                Runnable runnable = pipRoundVideoView2.f22323s;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
+    public kg0(lg0 lg0Var, Context context) {
+        super(lg0Var.f25919s, context);
+        this.e = lg0Var;
     }
 }

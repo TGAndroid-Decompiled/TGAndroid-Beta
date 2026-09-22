@@ -12,41 +12,41 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.ug;
+import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.tg;
 import org.telegram.ui.Components.vi;
-import org.telegram.ui.Components.y70;
-import org.telegram.ui.dj0;
-import org.telegram.ui.zn;
+import org.telegram.ui.bj0;
+import org.telegram.ui.bo;
 public final class n5 implements View.OnLongClickListener {
-    public final int f5070a;
-    public final Object f5071b;
+    public final int f5068a;
+    public final Object f5069b;
 
     public n5(Object obj, int i10) {
-        this.f5070a = i10;
-        this.f5071b = obj;
+        this.f5068a = i10;
+        this.f5069b = obj;
     }
 
     @Override
     public final boolean onLongClick(View view) {
         int e;
-        zn znVar;
+        bo boVar;
         MessageObject messageObject;
         boolean z10;
         int i10;
         int e7;
-        switch (this.f5070a) {
+        switch (this.f5068a) {
             case 0:
-                r6 r6Var = (r6) this.f5071b;
+                r6 r6Var = (r6) this.f5069b;
                 int i11 = r6Var.F1;
                 if (r6Var.I1 != null) {
-                    pg.u0 e10 = pg.u0.e(i11);
-                    e10.f41330k = !e10.f41330k;
-                    e10.f41323a.edit().putBoolean("fill_shapes", e10.f41330k).apply();
-                    boolean z11 = pg.u0.e(i11).f41330k;
+                    pg.s0 e10 = pg.s0.e(i11);
+                    e10.f40995k = !e10.f40995k;
+                    e10.f40988a.edit().putBoolean("fill_shapes", e10.f40995k).apply();
+                    boolean z11 = pg.s0.e(i11).f40995k;
                     for (int i12 = 0; i12 < r6Var.I1.getItemsCount(); i12++) {
                         View childAt = r6Var.I1.L.getChildAt(i12);
                         if (childAt instanceof o6) {
-                            pg.l lVar = (pg.l) pg.l.f41211b.get(i12);
+                            pg.l lVar = (pg.l) pg.l.f40903b.get(i12);
                             if (z11) {
                                 e = lVar.m();
                             } else {
@@ -58,91 +58,91 @@ public final class n5 implements View.OnLongClickListener {
                 }
                 return true;
             case 1:
-                oc ocVar = (oc) this.f5071b;
-                Activity activity = ocVar.f5206b;
+                oc ocVar = (oc) this.f5069b;
+                Activity activity = ocVar.f5204b;
                 rb rbVar = ocVar.B0;
                 if (rbVar == null || !rbVar.isFrontface()) {
                     return false;
                 }
                 ocVar.p();
                 ocVar.E0.setSelected(true);
-                ocVar.f5260s.e(0.85f, 240L, null);
-                y70 F = y70.F(ocVar.f5256r, ocVar.f5203a, ocVar.E0);
+                ocVar.f5258s.e(0.85f, 240L, null);
+                n70 F = n70.F(ocVar.f5254r, ocVar.f5201a, ocVar.E0);
                 i8 i8Var = new i8(activity, 1);
-                i8Var.d(ocVar.f5260s.f5816o);
+                i8Var.d(ocVar.f5258s.f5814o);
                 i8Var.h = new la(ocVar, 21);
                 F.q(i8Var);
                 F.o();
                 i8 i8Var2 = new i8(activity, 2);
-                i8Var2.f4790b = 0.65f;
-                i8Var2.f4791c = 1.0f;
-                i8Var2.d(ocVar.f5260s.f5817p);
+                i8Var2.f4788b = 0.65f;
+                i8Var2.f4789c = 1.0f;
+                i8Var2.d(ocVar.f5258s.f5815p);
                 i8Var2.h = new la(ocVar, 0);
                 F.q(i8Var2);
-                F.f30563p = new ka(ocVar, 1);
-                F.f30568s = 0;
+                F.f26362p = new ka(ocVar, 1);
+                F.f26367s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(46.0f), -AndroidUtilities.dp(4.0f));
                 F.P(-1155851493);
                 F.Z();
                 return true;
             case 2:
-                if (((ii.i1) this.f5071b).length() != 0) {
+                if (((ii.i1) this.f5069b).length() != 0) {
                     return true;
                 }
                 return false;
             case 3:
-                return ii.d2.W((ii.d2) this.f5071b, view);
+                return ii.d2.W((ii.d2) this.f5069b, view);
             case 4:
-                ii.r rVar = ((ii.m) this.f5071b).f11497a;
-                ii.b4 b4Var = rVar.f11593s;
-                org.telegram.ui.ActionBar.f6 f6Var = rVar.f26785a;
-                vi viVar = rVar.f26786b;
-                ii.w3 w3Var = rVar.f11592r;
-                int i13 = rVar.f11591n;
+                ii.r rVar = ((ii.m) this.f5069b).f11495a;
+                ii.b4 b4Var = rVar.f11591s;
+                org.telegram.ui.ActionBar.e6 e6Var = rVar.f26460a;
+                vi viVar = rVar.f26461b;
+                ii.w3 w3Var = rVar.f11590r;
+                int i13 = rVar.f11589n;
                 if (!UserConfig.getInstance(i13).isPremium()) {
-                    new rg.x0(viVar.f29096f0, rVar.getContext(), rVar.f11591n, 43, true).show();
+                    new rg.x0(viVar.f28747f0, rVar.getContext(), rVar.f11589n, 43, true).show();
                     return true;
                 }
-                if (w3Var.l3() && !w3Var.n3()) {
-                    if (!w3Var.N3()) {
+                if (w3Var.k3() && !w3Var.m3()) {
+                    if (!w3Var.M3()) {
                         if (b4Var != null) {
-                            b4Var.setSendEnabled(w3Var.N3());
+                            b4Var.setSendEnabled(w3Var.M3());
                         }
                     } else {
-                        ArrayList<TL_iv.PageBlock> a32 = w3Var.a3();
-                        if (!a32.isEmpty()) {
-                            org.telegram.ui.ActionBar.n2 n2Var = viVar.f29096f0;
-                            if (n2Var instanceof zn) {
-                                znVar = (zn) n2Var;
+                        ArrayList<TL_iv.PageBlock> Z2 = w3Var.Z2();
+                        if (!Z2.isEmpty()) {
+                            org.telegram.ui.ActionBar.n2 n2Var = viVar.f28747f0;
+                            if (n2Var instanceof bo) {
+                                boVar = (bo) n2Var;
                             } else {
-                                znVar = null;
+                                boVar = null;
                             }
-                            dj0 dj0Var = rVar.O;
-                            if (dj0Var != null) {
-                                dj0Var.h(false);
+                            bj0 bj0Var = rVar.O;
+                            if (bj0Var != null) {
+                                bj0Var.h(false);
                                 rVar.O = null;
                             }
-                            dj0 dj0Var2 = new dj0(rVar.getContext(), f6Var);
-                            rVar.O = dj0Var2;
-                            dj0Var2.setOnDismissListener(new ai.g5(rVar, 4));
+                            bj0 bj0Var2 = new bj0(rVar.getContext(), e6Var);
+                            rVar.O = bj0Var2;
+                            bj0Var2.setOnDismissListener(new ai.g5(rVar, 4));
                             long n12 = viVar.n1();
-                            if (znVar != null) {
-                                messageObject = znVar.f40430n5;
+                            if (boVar != null) {
+                                messageObject = boVar.f32398n5;
                             } else {
                                 messageObject = null;
                             }
                             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                            tL_message.f18364id = 0;
+                            tL_message.f18130id = 0;
                             tL_message.out = true;
                             tL_message.peer_id = MessagesController.getInstance(i13).getPeer(n12);
                             tL_message.from_id = MessagesController.getInstance(i13).getPeer(UserConfig.getInstance(i13).getClientUserId());
                             tL_message.flags2 |= 8192;
                             TL_iv.RichMessage richMessage = new TL_iv.RichMessage();
                             tL_message.rich_message = richMessage;
-                            richMessage.blocks = a32;
-                            richMessage.photos = w3Var.C2();
-                            tL_message.rich_message.documents = w3Var.z2();
+                            richMessage.blocks = Z2;
+                            richMessage.photos = w3Var.B2();
+                            tL_message.rich_message.documents = w3Var.y2();
                             if (messageObject != null && !messageObject.isTopicMainMessage) {
                                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                                 tL_messageReplyHeader.flags |= 16;
@@ -157,25 +157,25 @@ public final class n5 implements View.OnLongClickListener {
                             messageObject2.isOutOwnerCached = Boolean.TRUE;
                             messageObject2.generateLayout(null);
                             messageObject2.notime = true;
-                            rVar.O.q(org.telegram.messenger.l0.j(messageObject2));
-                            ug sendButton = b4Var.getSendButton();
+                            rVar.O.q(org.telegram.messenger.y0.k(messageObject2));
+                            tg sendButton = b4Var.getSendButton();
                             sendButton.setScaleX(1.0f);
                             sendButton.setScaleY(1.0f);
-                            ug r10 = rVar.O.r(sendButton, true, new ai.v0(rVar, 27));
+                            tg r10 = rVar.O.r(sendButton, true, new ai.v0(rVar, 27));
                             if (r10 != null) {
-                                r10.setBackground(new ii.c2(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var))));
-                                dj0 dj0Var3 = rVar.O;
+                                r10.setBackground(new ii.c2(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, e6Var))));
+                                bj0 bj0Var3 = rVar.O;
                                 int dp = AndroidUtilities.dp(44.0f);
-                                dj0Var3.m0 = true;
-                                dj0Var3.Y = dp;
+                                bj0Var3.m0 = true;
+                                bj0Var3.Y = dp;
                             }
-                            y70 F2 = y70.F(rVar, f6Var, sendButton);
-                            if (znVar != null && UserObject.isUserSelf(znVar.i())) {
+                            n70 F2 = n70.F(rVar, e6Var, sendButton);
+                            if (boVar != null && UserObject.isUserSelf(boVar.i())) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
-                            if (znVar != null && znVar.D6()) {
+                            if (boVar != null && boVar.D6()) {
                                 int i14 = R.drawable.msg_calendar2;
                                 if (z10) {
                                     i10 = R.string.SetReminder;
@@ -203,26 +203,26 @@ public final class n5 implements View.OnLongClickListener {
                 }
                 return false;
             case 5:
-                ((lg.f) this.f5071b).f14262c.callOnClick();
+                ((lg.f) this.f5069b).f14053c.callOnClick();
                 return true;
             default:
-                qg.n0 n0Var = (qg.n0) this.f5071b;
-                int i15 = n0Var.P1;
-                if (n0Var.S1 != null) {
-                    pg.u0 e11 = pg.u0.e(i15);
-                    e11.f41330k = !e11.f41330k;
-                    e11.f41323a.edit().putBoolean("fill_shapes", e11.f41330k).apply();
-                    boolean z12 = pg.u0.e(i15).f41330k;
-                    for (int i16 = 0; i16 < n0Var.S1.getItemsCount(); i16++) {
-                        View childAt2 = n0Var.S1.L.getChildAt(i16);
-                        if (childAt2 instanceof qg.m0) {
-                            pg.l lVar2 = (pg.l) pg.l.f41211b.get(i16);
+                qg.p0 p0Var = (qg.p0) this.f5069b;
+                int i15 = p0Var.P1;
+                if (p0Var.S1 != null) {
+                    pg.s0 e11 = pg.s0.e(i15);
+                    e11.f40995k = !e11.f40995k;
+                    e11.f40988a.edit().putBoolean("fill_shapes", e11.f40995k).apply();
+                    boolean z12 = pg.s0.e(i15).f40995k;
+                    for (int i16 = 0; i16 < p0Var.S1.getItemsCount(); i16++) {
+                        View childAt2 = p0Var.S1.L.getChildAt(i16);
+                        if (childAt2 instanceof qg.o0) {
+                            pg.l lVar2 = (pg.l) pg.l.f40903b.get(i16);
                             if (z12) {
                                 e7 = lVar2.m();
                             } else {
                                 e7 = lVar2.e();
                             }
-                            ((qg.m0) childAt2).a(e7, z12, true);
+                            ((qg.o0) childAt2).a(e7, z12, true);
                         }
                     }
                 }

@@ -1,37 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class y8 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f30577a;
-    public final float f30578b;
-    public final boolean f30579c;
-    public final d9 d;
+import j$.util.Objects;
+public final class y8 {
+    public int f30170a;
+    public boolean f30171b;
+    public int f30172c;
+    public int d;
+    public int e;
+    public int f30173f;
 
-    public y8(d9 d9Var, float f7, float f10, boolean z10) {
-        this.d = d9Var;
-        this.f30577a = f7;
-        this.f30578b = f10;
-        this.f30579c = z10;
+    public final y8 a() {
+        ?? obj = new Object();
+        obj.f30172c = this.f30172c;
+        obj.d = this.d;
+        obj.e = this.e;
+        obj.f30173f = this.f30173f;
+        obj.f30171b = this.f30171b;
+        return obj;
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        d9 d9Var = this.d;
-        d9Var.N = floatValue;
-        float lerp = AndroidUtilities.lerp(this.f30577a, this.f30578b, floatValue);
-        kVar = ((org.telegram.ui.ActionBar.n2) d9Var).actionBar;
-        kVar.getTitleTextView().setAlpha(d9Var.N);
-        if (d9Var.F && !this.f30579c) {
-            d9Var.i0(1.0f - d9Var.N, false);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        d9Var.f23611r.setTranslationY(lerp);
-        d9Var.f23614x.setTranslationY(lerp);
-        d9Var.fragmentView.invalidate();
-        kVar2 = ((org.telegram.ui.ActionBar.n2) d9Var).actionBar;
-        kVar2.invalidate();
+        if (!(obj instanceof y8)) {
+            return false;
+        }
+        y8 y8Var = (y8) obj;
+        if (this.f30172c == y8Var.f30172c && this.d == y8Var.d && this.e == y8Var.e && this.f30173f == y8Var.f30173f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f30170a), Integer.valueOf(this.f30172c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f30173f));
     }
 }

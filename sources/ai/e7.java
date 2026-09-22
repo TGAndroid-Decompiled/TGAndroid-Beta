@@ -13,13 +13,13 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.mc0;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.ac0;
+import org.telegram.ui.Components.c90;
+import org.telegram.ui.Components.kl0;
 import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.xl0;
-import org.telegram.ui.dc1;
-public final class e7 extends xl0 {
+import org.telegram.ui.Components.x70;
+import org.telegram.ui.cc1;
+public final class e7 extends kl0 {
     public final ArrayList f766c = new ArrayList();
     public final j7 d;
 
@@ -29,7 +29,7 @@ public final class e7 extends xl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42998f == 1) {
+        if (c1Var.f42674f == 1) {
             return true;
         }
         return false;
@@ -138,11 +138,11 @@ public final class e7 extends xl0 {
         TLRPC.Message message2;
         j7 j7Var = this.d;
         int i16 = j7Var.v;
-        if (c1Var.f42998f == 1 && i10 >= 0) {
+        if (c1Var.f42674f == 1 && i10 >= 0) {
             ArrayList arrayList = this.f766c;
             if (i10 < arrayList.size()) {
                 z6 z6Var = (z6) arrayList.get(i10);
-                org.telegram.ui.Cells.p6 p6Var = (org.telegram.ui.Cells.p6) c1Var.f42995a;
+                org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) c1Var.f42671a;
                 TL_stories.StoryView storyView = z6Var.f1783b;
                 TL_stories.StoryReaction storyReaction = z6Var.f1784c;
                 if (storyView != null) {
@@ -175,7 +175,7 @@ public final class e7 extends xl0 {
                 boolean remove = j7Var.F.f1004p.remove(Long.valueOf(j3));
                 if (storyView != null) {
                     TLRPC.Reaction reaction3 = storyView.reaction;
-                    if (reaction3 != null && (str2 = zg.p0.d(reaction3).f49447f) != null && str2.equals("❤")) {
+                    if (reaction3 != null && (str2 = zg.p0.d(reaction3).f49120f) != null && str2.equals("❤")) {
                         j11 = 0;
                         z11 = true;
                     } else {
@@ -186,7 +186,7 @@ public final class e7 extends xl0 {
                         TLRPC.User user2 = user;
                         i13 = 11;
                         i14 = 12;
-                        p6Var.c(user2, null, null, z11, 0L, storyView.story, false, true, remove);
+                        o6Var.c(user2, null, null, z11, 0L, storyView.story, false, true, remove);
                     } else {
                         TLRPC.User user3 = user;
                         i13 = 11;
@@ -204,14 +204,14 @@ public final class e7 extends xl0 {
                             } else {
                                 storyItem2 = q7Var.f1427a;
                             }
-                            p6Var.c(user3, null, null, z11, j12, storyItem2, true, true, remove);
+                            o6Var.c(user3, null, null, z11, j12, storyItem2, true, true, remove);
                         } else {
                             if (z11) {
                                 reaction2 = null;
                             } else {
                                 reaction2 = storyView.reaction;
                             }
-                            p6Var.c(user3, null, reaction2, z11, storyView.date, null, false, true, remove);
+                            o6Var.c(user3, null, reaction2, z11, storyView.date, null, false, true, remove);
                         }
                     }
                     if (i10 < arrayList.size() - 1) {
@@ -224,13 +224,13 @@ public final class e7 extends xl0 {
                     } else {
                         z12 = true;
                     }
-                    p6Var.f20821a = z12;
+                    o6Var.f20550a = z12;
                     if (j7Var.d(storyView)) {
                         f7 = 1.0f;
                     } else {
                         f7 = 0.5f;
                     }
-                    p6Var.a(f7, false);
+                    o6Var.a(f7, false);
                     return;
                 }
                 TLRPC.User user4 = user;
@@ -238,7 +238,7 @@ public final class e7 extends xl0 {
                     if (storyReaction instanceof TL_stories.TL_storyReaction) {
                         TL_stories.TL_storyReaction tL_storyReaction = (TL_stories.TL_storyReaction) storyReaction;
                         TLRPC.Reaction reaction4 = tL_storyReaction.reaction;
-                        if (reaction4 != null && (str = zg.p0.d(reaction4).f49447f) != null && str.equals("❤")) {
+                        if (reaction4 != null && (str = zg.p0.d(reaction4).f49120f) != null && str.equals("❤")) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -249,11 +249,11 @@ public final class e7 extends xl0 {
                             reaction = tL_storyReaction.reaction;
                         }
                         i11 = 12;
-                        p6Var.c(user4, chat, reaction, z10, tL_storyReaction.date, null, false, true, remove);
+                        o6Var.c(user4, chat, reaction, z10, tL_storyReaction.date, null, false, true, remove);
                     } else {
                         i11 = 12;
                         if (storyReaction instanceof TL_stories.TL_storyReactionPublicRepost) {
-                            p6Var.c(user4, chat, null, false, 0L, ((TL_stories.TL_storyReactionPublicRepost) storyReaction).story, false, true, remove);
+                            o6Var.c(user4, chat, null, false, 0L, ((TL_stories.TL_storyReactionPublicRepost) storyReaction).story, false, true, remove);
                         } else if (storyReaction instanceof TL_stories.TL_storyReactionPublicForward) {
                             TLRPC.Message message4 = storyReaction.message;
                             if (message4 != null) {
@@ -267,7 +267,7 @@ public final class e7 extends xl0 {
                             } else {
                                 storyItem = q7Var2.f1427a;
                             }
-                            p6Var.c(user4, chat, null, false, j10, storyItem, true, true, remove);
+                            o6Var.c(user4, chat, null, false, j10, storyItem, true, true, remove);
                         }
                     }
                     boolean z13 = true;
@@ -279,8 +279,8 @@ public final class e7 extends xl0 {
                     if (i12 != 1 && i12 != 11 && i12 != i11) {
                         z13 = false;
                     }
-                    p6Var.f20821a = z13;
-                    p6Var.a(1.0f, false);
+                    o6Var.f20550a = z13;
+                    o6Var.a(1.0f, false);
                 }
             }
         }
@@ -289,32 +289,32 @@ public final class e7 extends xl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         int i11;
-        n90 n90Var;
+        c90 c90Var;
         final j7 j7Var = this.d;
         int i12 = j7Var.v;
         d dVar = j7Var.f1050s;
         switch (i10) {
             case 0:
-                n90Var = new b7(this, j7Var.getContext(), 0);
+                c90Var = new b7(this, j7Var.getContext(), 0);
                 break;
             case 1:
-                mc0 mc0Var = org.telegram.ui.Cells.p6.G;
-                n90Var = new c7(i12, dVar, this, j7Var.getContext());
+                ac0 ac0Var = org.telegram.ui.Cells.o6.G;
+                c90Var = new c7(i12, dVar, this, j7Var.getContext());
                 break;
             case 2:
             case 9:
             default:
-                n90Var = new b7(this, j7Var.getContext(), 1);
+                c90Var = new b7(this, j7Var.getContext(), 1);
                 break;
             case 3:
-                n90Var = new org.telegram.ui.Cells.u3(j7Var.getContext(), 70);
+                c90Var = new org.telegram.ui.Cells.t3(j7Var.getContext(), 70);
                 break;
             case 4:
                 t00 t00Var = new t00(j7Var.getContext(), dVar);
                 t00Var.setIsSingleCell(true);
                 t00Var.setViewType(28);
-                t00Var.f28362w = false;
-                n90Var = t00Var;
+                t00Var.f28015w = false;
+                c90Var = t00Var;
                 break;
             case 5:
             case 7:
@@ -328,23 +328,23 @@ public final class e7 extends xl0 {
                     i11 = 1;
                 }
                 d7 d7Var = new d7(i11, dVar, this, j7Var.getContext());
-                vh.n nVar = d7Var.d;
+                vh.o oVar = d7Var.d;
                 if (i10 == 7) {
-                    nVar.setVisibility(8);
+                    oVar.setVisibility(8);
                     d7Var.setSubtitle(LocaleController.getString(R.string.NoResult));
                 } else if (i10 == 8) {
-                    nVar.setVisibility(8);
+                    oVar.setVisibility(8);
                     d7Var.setSubtitle(LocaleController.getString(R.string.NoContactsViewed));
                 } else if (i10 == 10) {
-                    nVar.setVisibility(0);
-                    nVar.setText(LocaleController.getString(R.string.ServerErrorViewersTitle));
+                    oVar.setVisibility(0);
+                    oVar.setText(LocaleController.getString(R.string.ServerErrorViewersTitle));
                     d7Var.setSubtitle(LocaleController.getString(R.string.ServerErrorViewers));
                 } else if (j7Var.F.f998j) {
-                    nVar.setVisibility(8);
+                    oVar.setVisibility(8);
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString(R.string.ExpiredViewsStub)));
                     boolean premiumFeaturesBlocked = MessagesController.getInstance(i12).premiumFeaturesBlocked();
-                    n90 n90Var2 = d7Var.e;
+                    c90 c90Var2 = d7Var.e;
                     if (!premiumFeaturesBlocked) {
                         spannableStringBuilder.append((CharSequence) "\n\n");
                         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ExpiredViewsStubPremiumDescription), new Runnable() {
@@ -374,41 +374,41 @@ public final class e7 extends xl0 {
                                 }
                             }
                         };
-                        ((LinearLayout.LayoutParams) n90Var2.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
+                        ((LinearLayout.LayoutParams) c90Var2.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
                         TextView textView = new TextView(d7Var.getContext());
                         textView.setText(string);
-                        int i13 = org.telegram.ui.ActionBar.j6.Sh;
-                        org.telegram.ui.ActionBar.f6 f6Var = d7Var.f26255n;
-                        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i13, f6Var));
+                        int i13 = org.telegram.ui.ActionBar.i6.Sh;
+                        org.telegram.ui.ActionBar.e6 e6Var = d7Var.f30419n;
+                        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i13, e6Var));
                         textView.setPadding(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f));
                         textView.setGravity(17);
                         textView.setTypeface(AndroidUtilities.bold());
                         textView.setTextSize(1, 15.0f);
                         x5 x5Var = new x5(d7Var.getContext(), 19);
-                        x5Var.setOnClickListener(new i80(runnable, 19));
+                        x5Var.setOnClickListener(new x70(runnable, 19));
                         int dp = AndroidUtilities.dp(8.0f);
-                        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var);
-                        int k10 = i0.a.k(org.telegram.ui.ActionBar.j6.v0(i13, f6Var), 30);
-                        x5Var.setBackground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, v02, k10, k10));
-                        w7.a6.b(x5Var, 0.05f, 1.5f);
+                        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, e6Var);
+                        int k10 = i0.a.k(org.telegram.ui.ActionBar.i6.v0(i13, e6Var), 30);
+                        x5Var.setBackground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, v02, k10, k10));
+                        w7.z5.b(x5Var, 0.05f, 1.5f);
                         x5Var.addView(textView);
-                        dc1 dc1Var = d7Var.f26251a;
-                        dc1Var.setClipChildren(false);
-                        dc1Var.addView(x5Var, w7.y5.t(-2, -2, 1, 0, 28, 0, 4));
+                        cc1 cc1Var = d7Var.f30415a;
+                        cc1Var.setClipChildren(false);
+                        cc1Var.addView(x5Var, w7.x5.t(-2, -2, 1, 0, 28, 0, 4));
                     }
-                    n90Var2.setText(spannableStringBuilder);
+                    c90Var2.setText(spannableStringBuilder);
                 } else {
-                    nVar.setVisibility(0);
+                    oVar.setVisibility(0);
                     if (j7Var.F.f995f) {
-                        nVar.setText(LocaleController.getString(R.string.NoReactions));
+                        oVar.setText(LocaleController.getString(R.string.NoReactions));
                         d7Var.setSubtitle(LocaleController.getString(R.string.NoReactionsStub));
                     } else {
-                        nVar.setText(LocaleController.getString(R.string.NoViews));
+                        oVar.setText(LocaleController.getString(R.string.NoViews));
                         d7Var.setSubtitle(LocaleController.getString(R.string.NoViewsStub));
                     }
                 }
                 d7Var.e(false, false);
-                n90Var = d7Var;
+                c90Var = d7Var;
                 break;
             case 6:
                 t00 t00Var2 = new t00(j7Var.getContext(), dVar);
@@ -416,30 +416,30 @@ public final class e7 extends xl0 {
                 t00Var2.setIgnoreHeightCheck(true);
                 t00Var2.setItemsCount(20);
                 t00Var2.setViewType(28);
-                t00Var2.f28362w = false;
-                n90Var = t00Var2;
+                t00Var2.f28015w = false;
+                c90Var = t00Var2;
                 break;
             case 11:
             case 12:
-                n90 n90Var3 = new n90(j7Var.getContext(), null);
-                n90Var3.setTextSize(1, 13.0f);
-                n90Var3.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19492y6, dVar));
-                n90Var3.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.J6, dVar));
+                c90 c90Var3 = new c90(j7Var.getContext(), null);
+                c90Var3.setTextSize(1, 13.0f);
+                c90Var3.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19215y6, dVar));
+                c90Var3.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.J6, dVar));
                 int dp2 = AndroidUtilities.dp(16.0f);
                 int dp3 = AndroidUtilities.dp(21.0f);
-                n90Var3.setPadding(dp3, dp2, dp3, dp2);
-                n90Var3.setMaxLines(Integer.MAX_VALUE);
-                n90Var3.setGravity(17);
-                n90Var3.setDisablePaddingsOffsetY(true);
+                c90Var3.setPadding(dp3, dp2, dp3, dp2);
+                c90Var3.setMaxLines(Integer.MAX_VALUE);
+                c90Var3.setGravity(17);
+                c90Var3.setDisablePaddingsOffsetY(true);
                 if (i10 == 11) {
-                    n90Var3.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryViewsPremiumHint), new a3.d(this, 10)));
+                    c90Var3.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryViewsPremiumHint), new a3.d(this, 10)));
                 } else {
-                    n90Var3.setText(LocaleController.getString(R.string.ServerErrorViewersFull));
+                    c90Var3.setText(LocaleController.getString(R.string.ServerErrorViewersFull));
                 }
-                n90Var3.setLayoutParams(new s4.p0(-1, -2));
-                n90Var = n90Var3;
+                c90Var3.setLayoutParams(new s4.p0(-1, -2));
+                c90Var = c90Var3;
                 break;
         }
-        return new s4.c1(n90Var);
+        return new s4.c1(c90Var);
     }
 }

@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class i2 {
-    public int f11442a;
-    public int f11443b;
-    public int f11444c;
+    public int f11440a;
+    public int f11441b;
+    public int f11442c;
     public int d;
     public int e;
 
     public static void a(TL_iv.RichText richText, int i10, i2 i2Var) {
         if (richText != null) {
-            i2Var.f11442a = f6.l(richText).length() + i2Var.f11442a;
+            i2Var.f11440a = f6.l(richText).length() + i2Var.f11440a;
             int c10 = c(richText) + i10;
-            if (c10 > i2Var.f11444c) {
-                i2Var.f11444c = c10;
+            if (c10 > i2Var.f11442c) {
+                i2Var.f11442c = c10;
             }
         }
     }
@@ -23,8 +23,8 @@ public final class i2 {
     public static void b(TL_iv.PageBlock pageBlock, int i10, i2 i2Var) {
         int i11;
         if (pageBlock != null) {
-            if (i10 > i2Var.f11444c) {
-                i2Var.f11444c = i10;
+            if (i10 > i2Var.f11442c) {
+                i2Var.f11442c = i10;
             }
             a(pageBlock.text, i10, i2Var);
             if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
@@ -36,7 +36,7 @@ public final class i2 {
                 if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
                     TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
                     a(pageblockblockquoteblocks.caption, i10, i2Var);
-                    i2Var.f11443b = pageblockblockquoteblocks.blocks.size() + i2Var.f11443b;
+                    i2Var.f11441b = pageblockblockquoteblocks.blocks.size() + i2Var.f11441b;
                     while (i12 < pageblockblockquoteblocks.blocks.size()) {
                         b(pageblockblockquoteblocks.blocks.get(i12), i10 + 1, i2Var);
                         i12++;
@@ -44,14 +44,14 @@ public final class i2 {
                 } else if (pageBlock instanceof TL_iv.pageBlockDetails) {
                     TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
                     a(pageblockdetails.title, i10, i2Var);
-                    i2Var.f11443b = pageblockdetails.blocks.size() + i2Var.f11443b;
+                    i2Var.f11441b = pageblockdetails.blocks.size() + i2Var.f11441b;
                     while (i12 < pageblockdetails.blocks.size()) {
                         b(pageblockdetails.blocks.get(i12), i10 + 1, i2Var);
                         i12++;
                     }
                 } else if (pageBlock instanceof TL_iv.pageBlockList) {
                     TL_iv.pageBlockList pageblocklist = (TL_iv.pageBlockList) pageBlock;
-                    i2Var.f11443b = pageblocklist.items.size() + i2Var.f11443b;
+                    i2Var.f11441b = pageblocklist.items.size() + i2Var.f11441b;
                     for (int i13 = 0; i13 < pageblocklist.items.size(); i13++) {
                         TL_iv.PageListItem pageListItem = pageblocklist.items.get(i13);
                         int i14 = i10 + 1;
@@ -66,7 +66,7 @@ public final class i2 {
                     }
                 } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
                     TL_iv.pageBlockOrderedList pageblockorderedlist = (TL_iv.pageBlockOrderedList) pageBlock;
-                    i2Var.f11443b = pageblockorderedlist.items.size() + i2Var.f11443b;
+                    i2Var.f11441b = pageblockorderedlist.items.size() + i2Var.f11441b;
                     for (int i16 = 0; i16 < pageblockorderedlist.items.size(); i16++) {
                         TL_iv.PageListOrderedItem pageListOrderedItem = pageblockorderedlist.items.get(i16);
                         int i17 = i10 + 1;
@@ -84,7 +84,7 @@ public final class i2 {
                     a(pageblocktable.title, i10, i2Var);
                     ArrayList<TL_iv.pageTableRow> arrayList3 = pageblocktable.rows;
                     if (arrayList3 != null) {
-                        i2Var.f11443b = arrayList3.size() + i2Var.f11443b;
+                        i2Var.f11441b = arrayList3.size() + i2Var.f11441b;
                         for (int i19 = 0; i19 < pageblocktable.rows.size(); i19++) {
                             TL_iv.pageTableRow pagetablerow = pageblocktable.rows.get(i19);
                             if (pagetablerow.cells != null) {
@@ -140,7 +140,7 @@ public final class i2 {
                 } else if (pageBlock instanceof TL_iv.pageBlockMath) {
                     String str = ((TL_iv.pageBlockMath) pageBlock).source;
                     if (str != null) {
-                        i2Var.f11442a = str.length() + i2Var.f11442a;
+                        i2Var.f11440a = str.length() + i2Var.f11440a;
                     }
                 } else {
                     TL_iv.PageCaption pageCaption3 = pageBlock.caption;

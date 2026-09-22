@@ -6,24 +6,24 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class c {
-    public static final Pattern f7495a = Pattern.compile("\\{([^}]*)\\}");
-    public static final Pattern f7496b;
-    public static final Pattern f7497c;
+    public static final Pattern f7494a = Pattern.compile("\\{([^}]*)\\}");
+    public static final Pattern f7495b;
+    public static final Pattern f7496c;
     public static final Pattern d;
 
     static {
-        String str = d0.f7887a;
+        String str = d0.f7885a;
         Locale locale = Locale.US;
-        f7496b = Pattern.compile(String.format(locale, "\\\\pos\\((%1$s),(%1$s)\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
-        f7497c = Pattern.compile(String.format(locale, "\\\\move\\(%1$s,%1$s,(%1$s),(%1$s)(?:,%1$s,%1$s)?\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
+        f7495b = Pattern.compile(String.format(locale, "\\\\pos\\((%1$s),(%1$s)\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
+        f7496c = Pattern.compile(String.format(locale, "\\\\move\\(%1$s,%1$s,(%1$s),(%1$s)(?:,%1$s,%1$s)?\\)", "\\s*\\d+(?:\\.\\d+)?\\s*"));
         d = Pattern.compile("\\\\an(\\d+)");
     }
 
     public static PointF a(String str) {
         String group;
         String group2;
-        Matcher matcher = f7496b.matcher(str);
-        Matcher matcher2 = f7497c.matcher(str);
+        Matcher matcher = f7495b.matcher(str);
+        Matcher matcher2 = f7496c.matcher(str);
         boolean find = matcher.find();
         boolean find2 = matcher2.find();
         if (find) {

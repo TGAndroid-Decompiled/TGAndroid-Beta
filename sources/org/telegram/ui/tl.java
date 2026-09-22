@@ -1,47 +1,21 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
 public final class tl extends tu0 {
-    public final ArrayList f37844a;
-    public final boolean[] f37845b;
-    public final zn f37846c;
+    public final bo f37695a;
 
-    public tl(zn znVar, ArrayList arrayList, boolean[] zArr) {
-        this.f37846c = znVar;
-        this.f37844a = arrayList;
-        this.f37845b = zArr;
+    public tl(bo boVar) {
+        this.f37695a = boVar;
     }
 
     @Override
-    public final boolean S() {
-        return false;
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return bo.A1(this.f37695a, messageObject, fileLocation, i10, z10, false);
     }
 
     @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        ArrayList arrayList = this.f37844a;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f37845b[size]) {
-                arrayList.remove(size);
-            }
-        }
-        this.f37846c.eb(arrayList, i11, z10, z11);
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        return this.f37845b[i10];
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return i10;
+    public final boolean K() {
+        return true;
     }
 }

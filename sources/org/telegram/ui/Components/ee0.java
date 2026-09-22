@@ -1,35 +1,23 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.LaunchActivity;
-public final class ee0 extends de0 {
-    public final fe0 f23944b0;
+import androidx.core.widget.NestedScrollView;
+public final class ee0 implements u0.g, b5 {
+    public final pe0 f23626a;
 
-    public ee0(fe0 fe0Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f23944b0 = fe0Var;
+    public ee0(pe0 pe0Var) {
+        this.f23626a = pe0Var;
     }
 
     @Override
-    public final void f(float f7) {
-        LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity == null) {
-            return;
-        }
-        org.telegram.ui.ActionBar.z3 z3Var = launchActivity.f31167z0;
-        z3Var.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f7));
-        z3Var.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f7));
+    public void J(int i10, int i11, boolean z10) {
+        pe0 pe0Var = this.f23626a;
+        pe0Var.K.a(pe0Var.N, z10, i10, 0L);
+        pe0Var.dismiss();
     }
 
     @Override
-    public final void h() {
-        fe0.a(this.f23944b0);
-        LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity == null) {
-            return;
-        }
-        org.telegram.ui.ActionBar.z3 z3Var = launchActivity.f31167z0;
-        z3Var.setScaleX(1.0f);
-        z3Var.setScaleY(1.0f);
+    public void a(NestedScrollView nestedScrollView) {
+        pe0 pe0Var = this.f23626a;
+        pe0Var.H(!pe0Var.f27025s);
     }
 }

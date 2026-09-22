@@ -3,16 +3,16 @@ package e2;
 import android.os.Handler;
 import java.util.ArrayList;
 public final class z {
-    public static final ArrayList f7941b = new ArrayList(50);
-    public final Handler f7942a;
+    public static final ArrayList f7939b = new ArrayList(50);
+    public final Handler f7940a;
 
     public z(Handler handler) {
-        this.f7942a = handler;
+        this.f7940a = handler;
     }
 
     public static y b() {
         y yVar;
-        ArrayList arrayList = f7941b;
+        ArrayList arrayList = f7939b;
         synchronized (arrayList) {
             try {
                 if (arrayList.isEmpty()) {
@@ -29,12 +29,12 @@ public final class z {
 
     public final y a(int i10, Object obj) {
         y b10 = b();
-        b10.f7940a = this.f7942a.obtainMessage(i10, obj);
+        b10.f7938a = this.f7940a.obtainMessage(i10, obj);
         return b10;
     }
 
     public final boolean c(Runnable runnable) {
-        return this.f7942a.post(runnable);
+        return this.f7940a.post(runnable);
     }
 
     public final void d(int i10) {
@@ -45,10 +45,10 @@ public final class z {
             z10 = false;
         }
         d.b(z10);
-        this.f7942a.removeMessages(i10);
+        this.f7940a.removeMessages(i10);
     }
 
     public final boolean e(int i10) {
-        return this.f7942a.sendEmptyMessage(i10);
+        return this.f7940a.sendEmptyMessage(i10);
     }
 }

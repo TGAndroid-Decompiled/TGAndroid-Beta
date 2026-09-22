@@ -1,23 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class n61 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final p61 f26669a;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class n61 extends b20 {
+    public final ci.h2 J;
+    public final o61 K;
 
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(this.f26669a.X((y51) obj, (View) obj2));
+    public n61(o61 o61Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.K = o61Var;
+        ci.h2 h2Var = this.f22569r;
+        this.J = h2Var;
+        h2Var.setImeOptions(268435459);
+        h2Var.setHint(LocaleController.getString(R.string.VoipGroupSearchMembers));
+        h2Var.addTextChangedListener(new ci.i2(this, 14));
+        h2Var.setOnEditorActionListener(new e1(this, 10));
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f26669a.W((y51) obj, (View) obj2);
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        this.K.E(motionEvent, this.J);
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

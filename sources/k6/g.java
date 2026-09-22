@@ -19,8 +19,8 @@ public abstract class g {
             if (!f13515c) {
                 try {
                     PackageInfo b10 = w6.b.a(context).b(64, "com.google.android.gms");
-                    h.d(context);
-                    if (b10 != null && !h.f(b10, false) && h.f(b10, true)) {
+                    h.c(context);
+                    if (b10 != null && !h.e(b10, false) && h.e(b10, true)) {
                         f13514b = true;
                     } else {
                         f13514b = false;

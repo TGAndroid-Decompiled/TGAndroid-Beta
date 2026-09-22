@@ -1,34 +1,139 @@
 package u2;
-public final class n1 implements c1 {
-    public final c1 f43761a;
-    public final long f43762b;
+public final class n1 implements d0, c0 {
+    public final d0 f43438a;
+    public final long f43439b;
+    public c0 f43440c;
 
-    public n1(c1 c1Var, long j3) {
-        this.f43761a = c1Var;
-        this.f43762b = j3;
+    public n1(d0 d0Var, long j3) {
+        this.f43438a = d0Var;
+        this.f43439b = j3;
     }
 
     @Override
-    public final void a() {
-        this.f43761a.a();
+    public final void a(d0 d0Var) {
+        c0 c0Var = this.f43440c;
+        c0Var.getClass();
+        c0Var.a(this);
     }
 
     @Override
-    public final boolean e() {
-        return this.f43761a.e();
+    public final boolean c() {
+        return this.f43438a.c();
     }
 
     @Override
-    public final int f(n4.y yVar, h2.h hVar, int i10) {
-        int f7 = this.f43761a.f(yVar, hVar, i10);
-        if (f7 == -4) {
-            hVar.e += this.f43762b;
+    public final long d() {
+        long d = this.f43438a.d();
+        if (d == Long.MIN_VALUE) {
+            return Long.MIN_VALUE;
         }
-        return f7;
+        return d + this.f43439b;
     }
 
     @Override
-    public final int j(long j3) {
-        return this.f43761a.j(j3 - this.f43762b);
+    public final void g() {
+        this.f43438a.g();
+    }
+
+    @Override
+    public final long h(long j3) {
+        long j10 = this.f43439b;
+        return this.f43438a.h(j3 - j10) + j10;
+    }
+
+    @Override
+    public final void i(long j3) {
+        this.f43438a.i(j3 - this.f43439b);
+    }
+
+    @Override
+    public final void k(c0 c0Var, long j3) {
+        this.f43440c = c0Var;
+        this.f43438a.k(this, j3 - this.f43439b);
+    }
+
+    @Override
+    public final long l() {
+        long l4 = this.f43438a.l();
+        if (l4 == -9223372036854775807L) {
+            return -9223372036854775807L;
+        }
+        return l4 + this.f43439b;
+    }
+
+    @Override
+    public final boolean m(i2.r0 r0Var) {
+        ?? obj = new Object();
+        long j3 = r0Var.f10868a;
+        obj.f10863b = r0Var.f10869b;
+        obj.f10864c = r0Var.f10870c;
+        obj.f10862a = j3 - this.f43439b;
+        return this.f43438a.m(new i2.r0(obj));
+    }
+
+    @Override
+    public final long p(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
+        b1[] b1VarArr2 = new b1[b1VarArr.length];
+        int i10 = 0;
+        while (true) {
+            b1 b1Var = null;
+            if (i10 >= b1VarArr.length) {
+                break;
+            }
+            m1 m1Var = (m1) b1VarArr[i10];
+            if (m1Var != null) {
+                b1Var = m1Var.f43432a;
+            }
+            b1VarArr2[i10] = b1Var;
+            i10++;
+        }
+        d0 d0Var = this.f43438a;
+        long j10 = this.f43439b;
+        long p5 = d0Var.p(rVarArr, zArr, b1VarArr2, zArr2, j3 - j10);
+        for (int i11 = 0; i11 < b1VarArr.length; i11++) {
+            b1 b1Var2 = b1VarArr2[i11];
+            if (b1Var2 == null) {
+                b1VarArr[i11] = null;
+            } else {
+                b1 b1Var3 = b1VarArr[i11];
+                if (b1Var3 == null || ((m1) b1Var3).f43432a != b1Var2) {
+                    b1VarArr[i11] = new m1(b1Var2, j10);
+                }
+            }
+        }
+        return p5 + j10;
+    }
+
+    @Override
+    public final o1 r() {
+        return this.f43438a.r();
+    }
+
+    @Override
+    public final long s() {
+        long s10 = this.f43438a.s();
+        if (s10 == Long.MIN_VALUE) {
+            return Long.MIN_VALUE;
+        }
+        return s10 + this.f43439b;
+    }
+
+    @Override
+    public final long t(long j3, i2.p1 p1Var) {
+        long j10 = this.f43439b;
+        return this.f43438a.t(j3 - j10, p1Var) + j10;
+    }
+
+    @Override
+    public final void u(long j3) {
+        this.f43438a.u(j3 - this.f43439b);
+    }
+
+    @Override
+    public final void v(d1 d1Var) {
+        d0 d0Var = (d0) d1Var;
+        c0 c0Var = this.f43440c;
+        c0Var.getClass();
+        c0Var.v(this);
     }
 }

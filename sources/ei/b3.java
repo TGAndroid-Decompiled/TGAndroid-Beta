@@ -5,12 +5,12 @@ import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 public final class b3 extends org.telegram.ui.web.d1 {
     public final k3 S0;
 
-    public b3(k3 k3Var, Context context, f6 f6Var, int i10) {
-        super(i10, context, f6Var, true);
+    public b3(k3 k3Var, Context context, e6 e6Var, int i10) {
+        super(i10, context, e6Var, true);
         this.S0 = k3Var;
     }
 
@@ -44,7 +44,7 @@ public final class b3 extends org.telegram.ui.web.d1 {
         k3Var.v.setWebView(z0Var);
         a1 a1Var = k3Var.B0;
         if (a1Var != null) {
-            a1Var.f8223k = z0Var;
+            a1Var.f8221k = z0Var;
         }
         k3Var.m0.setWebView(z0Var);
         k3Var.F();
@@ -54,8 +54,8 @@ public final class b3 extends org.telegram.ui.web.d1 {
     public final void L(org.telegram.ui.web.z0 z0Var) {
         k3 k3Var = this.S0;
         a1 a1Var = k3Var.B0;
-        if (a1Var != null && a1Var.f8223k == z0Var) {
-            a1Var.f8223k = null;
+        if (a1Var != null && a1Var.f8221k == z0Var) {
+            a1Var.f8221k = null;
             a1Var.b();
         }
         k3Var.m0.setWebView(null);

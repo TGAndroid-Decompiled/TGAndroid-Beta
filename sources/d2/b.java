@@ -23,44 +23,44 @@ public final class b {
     public static final String J;
     public static final String K;
     public static final String L;
-    public static final String f7426s;
-    public static final String f7427t;
-    public static final String f7428u;
+    public static final String f7425s;
+    public static final String f7426t;
+    public static final String f7427u;
     public static final String v;
-    public static final String f7429w;
-    public static final String f7430x;
-    public static final String f7431y;
-    public static final String f7432z;
-    public final CharSequence f7433a;
-    public final Layout.Alignment f7434b;
-    public final Layout.Alignment f7435c;
+    public static final String f7428w;
+    public static final String f7429x;
+    public static final String f7430y;
+    public static final String f7431z;
+    public final CharSequence f7432a;
+    public final Layout.Alignment f7433b;
+    public final Layout.Alignment f7434c;
     public final Bitmap d;
     public final float e;
-    public final int f7436f;
-    public final int f7437g;
+    public final int f7435f;
+    public final int f7436g;
     public final float h;
-    public final int f7438i;
-    public final float f7439j;
-    public final float f7440k;
-    public final boolean f7441l;
-    public final int f7442m;
-    public final int f7443n;
-    public final float f7444o;
-    public final int f7445p;
-    public final float f7446q;
-    public final int f7447r;
+    public final int f7437i;
+    public final float f7438j;
+    public final float f7439k;
+    public final boolean f7440l;
+    public final int f7441m;
+    public final int f7442n;
+    public final float f7443o;
+    public final int f7444p;
+    public final float f7445q;
+    public final int f7446r;
 
     static {
         new b("", null, null, null, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0);
-        String str = d0.f7887a;
-        f7426s = Integer.toString(0, 36);
-        f7427t = Integer.toString(17, 36);
-        f7428u = Integer.toString(1, 36);
+        String str = d0.f7885a;
+        f7425s = Integer.toString(0, 36);
+        f7426t = Integer.toString(17, 36);
+        f7427u = Integer.toString(1, 36);
         v = Integer.toString(2, 36);
-        f7429w = Integer.toString(3, 36);
-        f7430x = Integer.toString(18, 36);
-        f7431y = Integer.toString(4, 36);
-        f7432z = Integer.toString(5, 36);
+        f7428w = Integer.toString(3, 36);
+        f7429x = Integer.toString(18, 36);
+        f7430y = Integer.toString(4, 36);
+        f7431z = Integer.toString(5, 36);
         A = Integer.toString(6, 36);
         B = Integer.toString(7, 36);
         C = Integer.toString(8, 36);
@@ -88,29 +88,29 @@ public final class b {
             e2.d.b(z11);
         }
         if (charSequence instanceof Spanned) {
-            this.f7433a = SpannedString.valueOf(charSequence);
+            this.f7432a = SpannedString.valueOf(charSequence);
         } else if (charSequence != null) {
-            this.f7433a = charSequence.toString();
+            this.f7432a = charSequence.toString();
         } else {
-            this.f7433a = null;
+            this.f7432a = null;
         }
-        this.f7434b = alignment;
-        this.f7435c = alignment2;
+        this.f7433b = alignment;
+        this.f7434c = alignment2;
         this.d = bitmap;
         this.e = f7;
-        this.f7436f = i10;
-        this.f7437g = i11;
+        this.f7435f = i10;
+        this.f7436g = i11;
         this.h = f10;
-        this.f7438i = i12;
-        this.f7439j = f12;
-        this.f7440k = f13;
-        this.f7441l = z10;
-        this.f7442m = i14;
-        this.f7443n = i13;
-        this.f7444o = f11;
-        this.f7445p = i15;
-        this.f7446q = f14;
-        this.f7447r = i16;
+        this.f7437i = i12;
+        this.f7438j = f12;
+        this.f7439k = f13;
+        this.f7440l = z10;
+        this.f7441m = i14;
+        this.f7442n = i13;
+        this.f7443o = f11;
+        this.f7444p = i15;
+        this.f7445q = f14;
+        this.f7446r = i16;
     }
 
     public final Bundle a() {
@@ -118,26 +118,26 @@ public final class b {
         h[] hVarArr;
         i[] iVarArr;
         Bundle bundle = new Bundle();
-        CharSequence charSequence = this.f7433a;
+        CharSequence charSequence = this.f7432a;
         if (charSequence != null) {
-            bundle.putCharSequence(f7426s, charSequence);
+            bundle.putCharSequence(f7425s, charSequence);
             if (charSequence instanceof Spanned) {
                 Spanned spanned = (Spanned) charSequence;
-                String str = e.f7453a;
+                String str = e.f7452a;
                 ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
                 for (g gVar : (g[]) spanned.getSpans(0, spanned.length(), g.class)) {
                     gVar.getClass();
                     Bundle bundle2 = new Bundle();
-                    bundle2.putString(g.f7456c, gVar.f7457a);
-                    bundle2.putInt(g.d, gVar.f7458b);
+                    bundle2.putString(g.f7455c, gVar.f7456a);
+                    bundle2.putInt(g.d, gVar.f7457b);
                     arrayList.add(e.a(spanned, gVar, 1, bundle2));
                 }
                 for (h hVar : (h[]) spanned.getSpans(0, spanned.length(), h.class)) {
                     hVar.getClass();
                     Bundle bundle3 = new Bundle();
-                    bundle3.putInt(h.d, hVar.f7460a);
-                    bundle3.putInt(h.e, hVar.f7461b);
-                    bundle3.putInt(h.f7459f, hVar.f7462c);
+                    bundle3.putInt(h.d, hVar.f7459a);
+                    bundle3.putInt(h.e, hVar.f7460b);
+                    bundle3.putInt(h.f7458f, hVar.f7461c);
                     arrayList.add(e.a(spanned, hVar, 2, bundle3));
                 }
                 for (f fVar : (f[]) spanned.getSpans(0, spanned.length(), f.class)) {
@@ -146,30 +146,30 @@ public final class b {
                 for (i iVar : (i[]) spanned.getSpans(0, spanned.length(), i.class)) {
                     iVar.getClass();
                     Bundle bundle4 = new Bundle();
-                    bundle4.putString(i.f7463b, iVar.f7464a);
+                    bundle4.putString(i.f7462b, iVar.f7463a);
                     arrayList.add(e.a(spanned, iVar, 4, bundle4));
                 }
                 if (!arrayList.isEmpty()) {
-                    bundle.putParcelableArrayList(f7427t, arrayList);
+                    bundle.putParcelableArrayList(f7426t, arrayList);
                 }
             }
         }
-        bundle.putSerializable(f7428u, this.f7434b);
-        bundle.putSerializable(v, this.f7435c);
-        bundle.putFloat(f7431y, this.e);
-        bundle.putInt(f7432z, this.f7436f);
-        bundle.putInt(A, this.f7437g);
+        bundle.putSerializable(f7427u, this.f7433b);
+        bundle.putSerializable(v, this.f7434c);
+        bundle.putFloat(f7430y, this.e);
+        bundle.putInt(f7431z, this.f7435f);
+        bundle.putInt(A, this.f7436g);
         bundle.putFloat(B, this.h);
-        bundle.putInt(C, this.f7438i);
-        bundle.putInt(D, this.f7443n);
-        bundle.putFloat(E, this.f7444o);
-        bundle.putFloat(F, this.f7439j);
-        bundle.putFloat(G, this.f7440k);
-        bundle.putBoolean(I, this.f7441l);
-        bundle.putInt(H, this.f7442m);
-        bundle.putInt(J, this.f7445p);
-        bundle.putFloat(K, this.f7446q);
-        bundle.putInt(L, this.f7447r);
+        bundle.putInt(C, this.f7437i);
+        bundle.putInt(D, this.f7442n);
+        bundle.putFloat(E, this.f7443o);
+        bundle.putFloat(F, this.f7438j);
+        bundle.putFloat(G, this.f7439k);
+        bundle.putBoolean(I, this.f7440l);
+        bundle.putInt(H, this.f7441m);
+        bundle.putInt(J, this.f7444p);
+        bundle.putFloat(K, this.f7445q);
+        bundle.putInt(L, this.f7446r);
         return bundle;
     }
 
@@ -181,7 +181,7 @@ public final class b {
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
             Bitmap bitmap2 = bVar.d;
-            if (TextUtils.equals(this.f7433a, bVar.f7433a) && this.f7434b == bVar.f7434b && this.f7435c == bVar.f7435c && ((bitmap = this.d) != null ? !(bitmap2 == null || !bitmap.sameAs(bitmap2)) : bitmap2 == null) && this.e == bVar.e && this.f7436f == bVar.f7436f && this.f7437g == bVar.f7437g && this.h == bVar.h && this.f7438i == bVar.f7438i && this.f7439j == bVar.f7439j && this.f7440k == bVar.f7440k && this.f7441l == bVar.f7441l && this.f7442m == bVar.f7442m && this.f7443n == bVar.f7443n && this.f7444o == bVar.f7444o && this.f7445p == bVar.f7445p && this.f7446q == bVar.f7446q && this.f7447r == bVar.f7447r) {
+            if (TextUtils.equals(this.f7432a, bVar.f7432a) && this.f7433b == bVar.f7433b && this.f7434c == bVar.f7434c && ((bitmap = this.d) != null ? !(bitmap2 == null || !bitmap.sameAs(bitmap2)) : bitmap2 == null) && this.e == bVar.e && this.f7435f == bVar.f7435f && this.f7436g == bVar.f7436g && this.h == bVar.h && this.f7437i == bVar.f7437i && this.f7438j == bVar.f7438j && this.f7439k == bVar.f7439k && this.f7440l == bVar.f7440l && this.f7441m == bVar.f7441m && this.f7442n == bVar.f7442n && this.f7443o == bVar.f7443o && this.f7444p == bVar.f7444p && this.f7445q == bVar.f7445q && this.f7446r == bVar.f7446r) {
                 return true;
             }
         }
@@ -189,6 +189,6 @@ public final class b {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f7433a, this.f7434b, this.f7435c, this.d, Float.valueOf(this.e), Integer.valueOf(this.f7436f), Integer.valueOf(this.f7437g), Float.valueOf(this.h), Integer.valueOf(this.f7438i), Float.valueOf(this.f7439j), Float.valueOf(this.f7440k), Boolean.valueOf(this.f7441l), Integer.valueOf(this.f7442m), Integer.valueOf(this.f7443n), Float.valueOf(this.f7444o), Integer.valueOf(this.f7445p), Float.valueOf(this.f7446q), Integer.valueOf(this.f7447r));
+        return Objects.hash(this.f7432a, this.f7433b, this.f7434c, this.d, Float.valueOf(this.e), Integer.valueOf(this.f7435f), Integer.valueOf(this.f7436g), Float.valueOf(this.h), Integer.valueOf(this.f7437i), Float.valueOf(this.f7438j), Float.valueOf(this.f7439k), Boolean.valueOf(this.f7440l), Integer.valueOf(this.f7441m), Integer.valueOf(this.f7442n), Float.valueOf(this.f7443o), Integer.valueOf(this.f7444p), Float.valueOf(this.f7445q), Integer.valueOf(this.f7446r));
     }
 }

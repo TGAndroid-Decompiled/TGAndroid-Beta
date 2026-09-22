@@ -52,21 +52,21 @@ public final class k9 implements NotificationCenter.NotificationCenterDelegate {
     public k9(l9 l9Var, ci.o8 o8Var) {
         this.M = l9Var;
         this.f1140c = o8Var;
-        this.f1139b = o8Var.f5156g;
+        this.f1139b = o8Var.f5154g;
         File file = o8Var.N0;
         if (file != null) {
             this.f1141f = file.getAbsolutePath();
         }
-        boolean z10 = o8Var.f5185w;
+        boolean z10 = o8Var.f5183w;
         this.H = z10;
         this.I = z10;
         long j3 = o8Var.J0;
         if (j3 != 0) {
             this.J = j3;
-        } else if (o8Var.f5156g) {
+        } else if (o8Var.f5154g) {
             this.J = o8Var.e;
         } else {
-            TLRPC.InputPeer inputPeer = o8Var.f5184v0;
+            TLRPC.InputPeer inputPeer = o8Var.f5182v0;
             if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerSelf)) {
                 this.J = DialogObject.getPeerDialogId(inputPeer);
             } else {
@@ -128,11 +128,11 @@ public final class k9 implements NotificationCenter.NotificationCenterDelegate {
         boolean z11 = this.f1139b;
         ci.o8 o8Var = this.f1140c;
         if (z11 && (hashMap = (HashMap) l9Var.e.f(j3)) != null) {
-            hashMap.remove(Integer.valueOf(o8Var.f5154f));
+            hashMap.remove(Integer.valueOf(o8Var.f5152f));
         }
         if (this.L != null) {
             d9 A = l9Var.A(this.J, 4, -1, false);
-            if (o8Var != null && o8Var.f5156g) {
+            if (o8Var != null && o8Var.f5154g) {
                 if (A instanceof t8) {
                     ((t8) A).G(o8Var.L0, this.L);
                 }
@@ -157,7 +157,7 @@ public final class k9 implements NotificationCenter.NotificationCenterDelegate {
                 }
                 LongSparseArray longSparseArray6 = bi.z.E;
                 if (longSparseArray6 != null && (longSparseArray3 = (LongSparseArray) longSparseArray6.get(i10)) != null && (zVar2 = (bi.z) longSparseArray3.get(j3)) != null) {
-                    ArrayList arrayList4 = zVar2.f3609f;
+                    ArrayList arrayList4 = zVar2.f3607f;
                     for (int i12 = 0; i12 < arrayList4.size(); i12++) {
                         t8 t8Var2 = (t8) arrayList4.get(i12);
                         if (t8Var2.f715c == i10 && TextUtils.equals(t8Var2.E, str)) {
@@ -189,7 +189,7 @@ public final class k9 implements NotificationCenter.NotificationCenterDelegate {
                 }
                 LongSparseArray longSparseArray8 = bi.z.E;
                 if (longSparseArray8 != null && (longSparseArray = (LongSparseArray) longSparseArray8.get(i10)) != null && (zVar = (bi.z) longSparseArray.get(j3)) != null) {
-                    ArrayList arrayList6 = zVar.f3609f;
+                    ArrayList arrayList6 = zVar.f3607f;
                     for (int i14 = 0; i14 < arrayList6.size(); i14++) {
                         t8 t8Var4 = (t8) arrayList6.get(i14);
                         if (t8Var4.f715c == i10 && TextUtils.equals(t8Var4.E, str2)) {
@@ -215,16 +215,16 @@ public final class k9 implements NotificationCenter.NotificationCenterDelegate {
     public final void d() {
         boolean z10;
         ci.o8 o8Var = this.f1140c;
-        if (o8Var.f5145b0) {
+        if (o8Var.f5143b0) {
             TLRPC.TL_inputFileStoryDocument tL_inputFileStoryDocument = new TLRPC.TL_inputFileStoryDocument();
-            tL_inputFileStoryDocument.doc = MessagesController.toInputDocument(this.f1140c.f5148c0);
+            tL_inputFileStoryDocument.doc = MessagesController.toInputDocument(this.f1140c.f5146c0);
             c(tL_inputFileStoryDocument);
-        } else if ((o8Var.f5156g || (o8Var.f5168n && o8Var.f5180t != null)) && !o8Var.f5161j && o8Var.f5171o0 == null) {
+        } else if ((o8Var.f5154g || (o8Var.f5166n && o8Var.f5178t != null)) && !o8Var.f5159j && o8Var.f5169o0 == null) {
             c(null);
             return;
         }
         ci.ga gaVar = this.f1140c.E0;
-        if (gaVar != null && gaVar.f4724a == 1) {
+        if (gaVar != null && gaVar.f4722a == 1) {
             z10 = true;
         } else {
             z10 = false;
@@ -240,7 +240,7 @@ public final class k9 implements NotificationCenter.NotificationCenterDelegate {
         this.f1144s = E;
         if (E) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.f18364id = 1;
+            tL_message.f18130id = 1;
             String absolutePath = ci.o8.x(this.M.f1190a, true).getAbsolutePath();
             tL_message.attachPath = absolutePath;
             this.e = absolutePath;
@@ -294,9 +294,9 @@ public final class k9 implements NotificationCenter.NotificationCenterDelegate {
             if (objArr[0] == this.E) {
                 if (!this.f1139b) {
                     ci.o8 o8Var = this.f1140c;
-                    o8Var.f5185w = true;
-                    o8Var.f5187x = new TLRPC.TL_error();
-                    TLRPC.TL_error tL_error = o8Var.f5187x;
+                    o8Var.f5183w = true;
+                    o8Var.f5185x = new TLRPC.TL_error();
+                    TLRPC.TL_error tL_error = o8Var.f5185x;
                     tL_error.code = 400;
                     tL_error.text = "FILE_PREPARE_FAILED";
                     this.d = true;

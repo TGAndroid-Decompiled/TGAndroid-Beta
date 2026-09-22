@@ -12,13 +12,13 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ly;
-import org.telegram.ui.Components.u51;
-public final class f6 implements ly {
-    public final r6 f4660a;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.ky;
+public final class f6 implements ky {
+    public final r6 f4658a;
 
     public f6(r6 r6Var) {
-        this.f4660a = r6Var;
+        this.f4658a = r6Var;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class f6 implements ly {
 
     @Override
     public final boolean k() {
-        qg.b editText = ((qg.v2) this.f4660a.J0).getEditText();
+        qg.b editText = ((qg.x2) this.f4658a.J0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -68,17 +68,17 @@ public final class f6 implements ly {
 
     @Override
     public final void l(String str) {
-        qg.v2 v2Var;
+        qg.x2 x2Var;
         qg.b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        qg.j jVar = this.f4660a.J0;
-        if ((jVar instanceof qg.v2) && (editText = (v2Var = (qg.v2) jVar).getEditText()) != null) {
+        qg.j jVar = this.f4658a.J0;
+        if ((jVar instanceof qg.x2) && (editText = (x2Var = (qg.x2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
                 selectionEnd = 0;
             }
             try {
-                CharSequence replaceEmoji = Emoji.replaceEmoji(str, v2Var.getFontMetricsInt(), false);
+                CharSequence replaceEmoji = Emoji.replaceEmoji(str, x2Var.getFontMetricsInt(), false);
                 if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                     for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                         emojiSpan.scale = 0.85f;
@@ -97,12 +97,12 @@ public final class f6 implements ly {
 
     @Override
     public final void n() {
-        r6 r6Var = this.f4660a;
+        r6 r6Var = this.f4658a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(r6Var.getContext(), 0, r6Var.G1);
-        alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18669a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18435a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 19));
-        hg.k0.p(R.string.Cancel, alertDialog$Builder, null);
+        hg.c.r(R.string.Cancel, alertDialog$Builder, null);
     }
 
     @Override
@@ -112,8 +112,8 @@ public final class f6 implements ly {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.y5 y5Var;
-        qg.b editText = ((qg.v2) this.f4660a.J0).getEditText();
+        org.telegram.ui.Components.x5 x5Var;
+        qg.b editText = ((qg.x2) this.f4658a.J0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -122,12 +122,12 @@ public final class f6 implements ly {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    y5Var = new org.telegram.ui.Components.y5(document.f18349id, 1.0f, editText.getPaint().getFontMetricsInt());
-                    y5Var.document = document;
+                    x5Var = new org.telegram.ui.Components.x5(document.f18115id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    x5Var.document = document;
                 } else {
-                    y5Var = new org.telegram.ui.Components.y5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
+                    x5Var = new org.telegram.ui.Components.x5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
                 }
-                spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
+                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
                 editText.setText(editText.getText().insert(selectionEnd, spannableString));
                 int length = selectionEnd + spannableString.length();
                 editText.setSelection(length, length);
@@ -153,7 +153,11 @@ public final class f6 implements ly {
     }
 
     @Override
-    public final void o(u51 u51Var) {
+    public final void o(e51 e51Var) {
+    }
+
+    @Override
+    public final void q() {
     }
 
     @Override
@@ -169,19 +173,15 @@ public final class f6 implements ly {
     }
 
     @Override
-    public final void y(long j3) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
     public final void u() {
     }
 
     @Override
     public final void w() {
+    }
+
+    @Override
+    public final void y(long j3) {
     }
 
     @Override

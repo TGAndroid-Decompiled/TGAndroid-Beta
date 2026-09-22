@@ -8,17 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.i51;
 import org.telegram.ui.s60;
 public final class m4 implements e2.h {
-    public final int f5037a;
-    public final int f5038b;
-    public final Object f5039c;
+    public final int f5035a;
+    public final int f5036b;
+    public final Object f5037c;
 
     public m4(Object obj, int i10, int i11) {
-        this.f5037a = i11;
-        this.f5039c = obj;
-        this.f5038b = i10;
+        this.f5035a = i11;
+        this.f5037c = obj;
+        this.f5036b = i10;
     }
 
     @Override
@@ -26,21 +26,21 @@ public final class m4 implements e2.h {
         boolean z10;
         m4.l lVar;
         m4.l lVar2;
-        int i10 = this.f5037a;
-        int i11 = this.f5038b;
-        Object obj2 = this.f5039c;
+        int i10 = this.f5035a;
+        int i11 = this.f5036b;
+        Object obj2 = this.f5037c;
         switch (i10) {
             case 0:
                 u4 u4Var = (u4) obj2;
                 View view = (View) obj;
-                p4 p4Var = u4Var.f5610b;
+                p4 p4Var = u4Var.f5608b;
                 if (view instanceof t4) {
                     p4Var.getClass();
-                    int S = RecyclerView.S(view);
-                    y51 G = p4Var.Y2.G(S);
+                    int R = RecyclerView.R(view);
+                    i51 G = p4Var.Y2.G(R);
                     if (G != null) {
                         t4 t4Var = (t4) view;
-                        t4Var.setPosition(u4Var.b(S));
+                        t4Var.setPosition(u4Var.b(R));
                         if (i11 == G.d) {
                             z10 = true;
                         } else {
@@ -63,8 +63,8 @@ public final class m4 implements e2.h {
                         e = e;
                         e2.a.o("MediaSessionStub", "Library operation failed", e);
                         String str = m4.l.d;
-                        m4.n1 n1Var = new m4.n1("no error message provided", -1, Bundle.EMPTY);
-                        lVar = new m4.l(n1Var.f14861a, SystemClock.elapsedRealtime(), n1Var);
+                        m4.o1 o1Var = new m4.o1("no error message provided", -1, Bundle.EMPTY);
+                        lVar = new m4.l(o1Var.f14631a, SystemClock.elapsedRealtime(), o1Var);
                         lVar2 = lVar;
                         m4.q qVar = rVar.d;
                         e2.d.h(qVar);
@@ -73,8 +73,8 @@ public final class m4 implements e2.h {
                     } catch (CancellationException e7) {
                         e2.a.o("MediaSessionStub", "Library operation cancelled", e7);
                         String str2 = m4.l.d;
-                        m4.n1 n1Var2 = new m4.n1("no error message provided", 1, Bundle.EMPTY);
-                        lVar = new m4.l(n1Var2.f14861a, SystemClock.elapsedRealtime(), n1Var2);
+                        m4.o1 o1Var2 = new m4.o1("no error message provided", 1, Bundle.EMPTY);
+                        lVar = new m4.l(o1Var2.f14631a, SystemClock.elapsedRealtime(), o1Var2);
                         lVar2 = lVar;
                         m4.q qVar2 = rVar.d;
                         e2.d.h(qVar2);
@@ -84,8 +84,8 @@ public final class m4 implements e2.h {
                         e = e10;
                         e2.a.o("MediaSessionStub", "Library operation failed", e);
                         String str3 = m4.l.d;
-                        m4.n1 n1Var3 = new m4.n1("no error message provided", -1, Bundle.EMPTY);
-                        lVar = new m4.l(n1Var3.f14861a, SystemClock.elapsedRealtime(), n1Var3);
+                        m4.o1 o1Var3 = new m4.o1("no error message provided", -1, Bundle.EMPTY);
+                        lVar = new m4.l(o1Var3.f14631a, SystemClock.elapsedRealtime(), o1Var3);
                         lVar2 = lVar;
                         m4.q qVar22 = rVar.d;
                         e2.d.h(qVar22);

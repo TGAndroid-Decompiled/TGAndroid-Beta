@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.content.DialogInterface;
 import android.widget.ImageView;
 public final class et0 implements DialogInterface.OnDismissListener {
-    public final PhotoViewer f33425a;
+    public final PhotoViewer f33404a;
 
     public et0(PhotoViewer photoViewer) {
-        this.f33425a = photoViewer;
+        this.f33404a = photoViewer;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        ImageView imageView = this.f33425a.E3;
+        ImageView imageView = this.f33404a.E3;
         if (imageView != null) {
-            imageView.animate().alpha(0.0f).withEndAction(new sl0(this, 15)).setDuration(150L).start();
+            imageView.animate().alpha(0.0f).withEndAction(new pl0(this, 15)).setDuration(150L).start();
         }
     }
 }

@@ -21,26 +21,26 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.o80;
-import org.telegram.ui.Components.pc;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.d80;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.xo0;
+import org.telegram.ui.wo0;
 public final class u implements Runnable {
-    public final int f48110a;
-    public final Object f48111b;
-    public final Object f48112c;
+    public final int f47781a;
+    public final Object f47782b;
+    public final Object f47783c;
     public final Object d;
     public final Object e;
-    public final Object f48113f;
+    public final Object f47784f;
 
     public u(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f48110a = i10;
-        this.f48112c = obj;
+        this.f47781a = i10;
+        this.f47783c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f48113f = obj4;
-        this.f48111b = obj5;
+        this.f47784f = obj4;
+        this.f47782b = obj5;
     }
 
     @Override
@@ -49,18 +49,18 @@ public final class u implements Runnable {
         long j10;
         int i10;
         int i11;
-        int i12 = this.f48110a;
-        xo0 xo0Var = 0;
+        int i12 = this.f47781a;
+        wo0 wo0Var = 0;
         SQLiteCursor sQLiteCursor = null;
-        xo0 xo0Var2 = null;
+        wo0 wo0Var2 = null;
         r5 = null;
         TL_stars.SavedStarGift savedStarGift = null;
-        xo0 xo0Var3 = null;
-        Object obj = this.f48111b;
-        Object obj2 = this.f48113f;
+        wo0 wo0Var3 = null;
+        Object obj = this.f47782b;
+        Object obj2 = this.f47784f;
         Object obj3 = this.e;
         Object obj4 = this.d;
-        Object obj5 = this.f48112c;
+        Object obj5 = this.f47783c;
         int i13 = 0;
         switch (i12) {
             case 0:
@@ -69,7 +69,7 @@ public final class u implements Runnable {
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj3;
                 TLRPC.Updates updates = (TLRPC.Updates) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                b1 b1Var = a0Var.f47235q0;
+                b1 b1Var = a0Var.f46905q0;
                 if (b1Var != null) {
                     b1Var.run();
                 }
@@ -79,12 +79,12 @@ public final class u implements Runnable {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
                     if (updates != null) {
-                        pc M = xc.a0(U).M(LocaleController.getString(R.string.GiftOfferSentTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferSentText, a0Var.Z, DialogObject.getShortName(a0Var.f47220a0))), R.raw.forward);
-                        M.f27321t = true;
+                        oc M = vc.a0(U).M(LocaleController.getString(R.string.GiftOfferSentTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferSentText, a0Var.Z, DialogObject.getShortName(a0Var.f46890a0))), R.raw.forward);
+                        M.f26761t = true;
                         M.j();
                         return;
                     }
-                    xc.a0(U).d0(tL_error, false);
+                    vc.a0(U).d0(tL_error, false);
                     return;
                 }
                 return;
@@ -101,22 +101,22 @@ public final class u implements Runnable {
                 if (tLObject instanceof TLRPC.PaymentForm) {
                     TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
                     paymentForm.invoice.recurring = true;
-                    MessagesController.getInstance(u5Var.f48132a).putUsers(paymentForm.users, false);
-                    xo0Var = new xo0(paymentForm, tL_inputInvoiceStars, null);
+                    MessagesController.getInstance(u5Var.f47801a).putUsers(paymentForm.users, false);
+                    wo0Var = new wo0(paymentForm, tL_inputInvoiceStars, null);
                 } else if (tLObject instanceof TLRPC.PaymentReceipt) {
-                    xo0Var = new xo0((TLRPC.PaymentReceipt) tLObject);
+                    wo0Var = new wo0((TLRPC.PaymentReceipt) tLObject);
                 }
-                if (xo0Var != 0) {
-                    xo0Var.Z0 = new r5.d(m0Var, 25);
+                if (wo0Var != 0) {
+                    wo0Var.Z0 = new r5.e(m0Var, 24);
                     org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                     if (R != 0) {
                         if (AndroidUtilities.hasDialogOnTop(R)) {
                             ?? obj6 = new Object();
-                            obj6.f19592a = true;
-                            R.showAsSheet(xo0Var, obj6);
+                            obj6.f19364a = true;
+                            R.showAsSheet(wo0Var, obj6);
                             return;
                         }
-                        R.presentFragment(xo0Var);
+                        R.presentFragment(wo0Var);
                         return;
                     }
                     return;
@@ -126,37 +126,37 @@ public final class u implements Runnable {
             case 2:
                 u5 u5Var2 = (u5) obj5;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj;
-                o80 o80Var = (o80) obj4;
+                d80 d80Var = (d80) obj4;
                 TLObject tLObject2 = (TLObject) obj3;
                 TLRPC.TL_inputInvoiceStars tL_inputInvoiceStars2 = (TLRPC.TL_inputInvoiceStars) obj2;
                 if (tL_error3 != null) {
-                    o80Var.run(Boolean.FALSE, tL_error3.text);
+                    d80Var.run(Boolean.FALSE, tL_error3.text);
                     return;
                 }
                 if (tLObject2 instanceof TLRPC.PaymentForm) {
                     TLRPC.PaymentForm paymentForm2 = (TLRPC.PaymentForm) tLObject2;
                     paymentForm2.invoice.recurring = true;
-                    MessagesController.getInstance(u5Var2.f48132a).putUsers(paymentForm2.users, false);
-                    xo0Var3 = new xo0(paymentForm2, tL_inputInvoiceStars2, null);
+                    MessagesController.getInstance(u5Var2.f47801a).putUsers(paymentForm2.users, false);
+                    wo0Var3 = new wo0(paymentForm2, tL_inputInvoiceStars2, null);
                 } else if (tLObject2 instanceof TLRPC.PaymentReceipt) {
-                    xo0Var3 = new xo0((TLRPC.PaymentReceipt) tLObject2);
+                    wo0Var3 = new wo0((TLRPC.PaymentReceipt) tLObject2);
                 }
-                if (xo0Var3 != null) {
-                    xo0Var3.Z0 = new r5.d(o80Var, 26);
+                if (wo0Var3 != null) {
+                    wo0Var3.Z0 = new r5.e(d80Var, 25);
                     org.telegram.ui.ActionBar.n2 R2 = LaunchActivity.R();
                     if (R2 != 0) {
                         if (AndroidUtilities.hasDialogOnTop(R2)) {
                             ?? obj7 = new Object();
-                            obj7.f19592a = true;
-                            R2.showAsSheet(xo0Var3, obj7);
+                            obj7.f19364a = true;
+                            R2.showAsSheet(wo0Var3, obj7);
                             return;
                         }
-                        R2.presentFragment(xo0Var3);
+                        R2.presentFragment(wo0Var3);
                         return;
                     }
                     return;
                 }
-                o80Var.run(Boolean.FALSE, "UNKNOWN_RESPONSE");
+                d80Var.run(Boolean.FALSE, "UNKNOWN_RESPONSE");
                 return;
             case 3:
                 ((boolean[]) obj4)[0] = true;
@@ -167,7 +167,7 @@ public final class u implements Runnable {
                 ArrayList arrayList = (ArrayList) obj4;
                 ArrayList<TLRPC.Chat> arrayList2 = (ArrayList) obj3;
                 ArrayList<TLRPC.User> arrayList3 = (ArrayList) obj2;
-                r5.d dVar = (r5.d) obj;
+                r5.e eVar2 = (r5.e) obj;
                 try {
                     try {
                         sQLiteCursor = messagesStorage.getDatabase().queryFinalized("SELECT data, hash, time FROM star_gifts2 ORDER BY pos ASC", new Object[0]);
@@ -195,7 +195,7 @@ public final class u implements Runnable {
                                 }
                                 j10 = j3;
                                 i10 = i13;
-                                AndroidUtilities.runOnUIThread(new ei.p3(dVar, arrayList, i10, j10, arrayList3, arrayList2));
+                                AndroidUtilities.runOnUIThread(new ei.p3(eVar2, arrayList, i10, j10, arrayList3, arrayList2));
                                 return;
                             }
                         }
@@ -233,11 +233,11 @@ public final class u implements Runnable {
                         e = e7;
                         j3 = 0;
                     }
-                    AndroidUtilities.runOnUIThread(new ei.p3(dVar, arrayList, i10, j10, arrayList3, arrayList2));
+                    AndroidUtilities.runOnUIThread(new ei.p3(eVar2, arrayList, i10, j10, arrayList3, arrayList2));
                     return;
                 } catch (Throwable th2) {
                     if (0 != 0) {
-                        xo0Var.dispose();
+                        wo0Var.dispose();
                     }
                     throw th2;
                 }
@@ -245,7 +245,7 @@ public final class u implements Runnable {
                 TLObject tLObject3 = (TLObject) obj4;
                 TL_stars.InputSavedStarGift inputSavedStarGift = (TL_stars.InputSavedStarGift) obj2;
                 Utilities.Callback callback = (Utilities.Callback) obj;
-                int i16 = ((u5) obj5).f48132a;
+                int i16 = ((u5) obj5).f47801a;
                 ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
                 if (tLObject3 instanceof TL_stars.TL_payments_savedStarGifts) {
                     TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject3;
@@ -275,22 +275,22 @@ public final class u implements Runnable {
                 if (tLObject4 instanceof TLRPC.PaymentForm) {
                     TLRPC.PaymentForm paymentForm3 = (TLRPC.PaymentForm) tLObject4;
                     paymentForm3.invoice.recurring = true;
-                    MessagesController.getInstance(u5Var3.f48132a).putUsers(paymentForm3.users, false);
-                    xo0Var2 = new xo0(paymentForm3, tL_inputInvoiceStars3, null);
+                    MessagesController.getInstance(u5Var3.f47801a).putUsers(paymentForm3.users, false);
+                    wo0Var2 = new wo0(paymentForm3, tL_inputInvoiceStars3, null);
                 } else if (tLObject4 instanceof TLRPC.PaymentReceipt) {
-                    xo0Var2 = new xo0((TLRPC.PaymentReceipt) tLObject4);
+                    wo0Var2 = new wo0((TLRPC.PaymentReceipt) tLObject4);
                 }
-                if (xo0Var2 != null) {
-                    xo0Var2.Z0 = new r5.d(callback2, 24);
+                if (wo0Var2 != null) {
+                    wo0Var2.Z0 = new r5.e(callback2, 23);
                     org.telegram.ui.ActionBar.n2 R3 = LaunchActivity.R();
                     if (R3 != 0) {
                         if (AndroidUtilities.hasDialogOnTop(R3)) {
                             ?? obj9 = new Object();
-                            obj9.f19592a = true;
-                            R3.showAsSheet(xo0Var2, obj9);
+                            obj9.f19364a = true;
+                            R3.showAsSheet(wo0Var2, obj9);
                             return;
                         }
-                        R3.presentFragment(xo0Var2);
+                        R3.presentFragment(wo0Var2);
                         return;
                     }
                     return;
@@ -305,45 +305,45 @@ public final class u implements Runnable {
                 Activity activity = (Activity) obj;
                 if (list.isEmpty()) {
                     FileLog.d("StarsController.buy queryProductDetails done: no products");
-                    AndroidUtilities.runOnUIThread(new d4(2, callback22));
+                    AndroidUtilities.runOnUIThread(new e4(2, callback22));
                     return;
                 }
-                c5.n nVar = (c5.n) list.get(0);
-                c5.k a2 = nVar.a();
+                c5.o oVar = (c5.o) list.get(0);
+                c5.k a2 = oVar.a();
                 if (a2 == null) {
                     FileLog.d("StarsController.buy queryProductDetails done: no details");
-                    AndroidUtilities.runOnUIThread(new d4(3, callback22));
+                    AndroidUtilities.runOnUIThread(new e4(3, callback22));
                     return;
                 }
-                tL_inputStorePaymentStarsTopup.currency = a2.f3904c;
-                tL_inputStorePaymentStarsTopup.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption.currency)) * (a2.f3903b / Math.pow(10.0d, 6.0d)));
-                BillingController.getInstance().addResultListener(nVar.f3914c, new ci.e5(callback22, 6));
-                BillingController.getInstance().setOnCanceled(new d4(0, callback22));
+                tL_inputStorePaymentStarsTopup.currency = a2.f3903c;
+                tL_inputStorePaymentStarsTopup.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_starsTopupOption.currency)) * (a2.f3902b / Math.pow(10.0d, 6.0d)));
+                BillingController.getInstance().addResultListener(oVar.f3914c, new ci.e5(callback22, 6));
+                BillingController.getInstance().setOnCanceled(new e4(0, callback22));
                 FileLog.d("StarsController.buy launchBillingFlow");
                 BillingController billingController = BillingController.getInstance();
                 AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
                 of.b bVar = new of.b(7, false);
-                bVar.X((c5.n) list.get(0));
-                billingController.launchBillingFlow(activity, accountInstance, tL_inputStorePaymentStarsTopup, Collections.singletonList(bVar.H()));
+                bVar.U((c5.o) list.get(0));
+                billingController.launchBillingFlow(activity, accountInstance, tL_inputStorePaymentStarsTopup, Collections.singletonList(bVar.C()));
                 return;
         }
     }
 
     public u(u5 u5Var, TLRPC.TL_error tL_error, Utilities.Callback2 callback2, TLObject tLObject, TLRPC.TL_inputInvoiceStars tL_inputInvoiceStars, int i10) {
-        this.f48110a = i10;
-        this.f48112c = u5Var;
-        this.f48111b = tL_error;
+        this.f47781a = i10;
+        this.f47783c = u5Var;
+        this.f47782b = tL_error;
         this.d = callback2;
         this.e = tLObject;
-        this.f48113f = tL_inputInvoiceStars;
+        this.f47784f = tL_inputInvoiceStars;
     }
 
     public u(u5 u5Var, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, TL_stars.InputSavedStarGift inputSavedStarGift, Utilities.Callback callback) {
-        this.f48110a = 5;
-        this.f48112c = u5Var;
+        this.f47781a = 5;
+        this.f47783c = u5Var;
         this.e = b2Var;
         this.d = tLObject;
-        this.f48113f = inputSavedStarGift;
-        this.f48111b = callback;
+        this.f47784f = inputSavedStarGift;
+        this.f47782b = callback;
     }
 }

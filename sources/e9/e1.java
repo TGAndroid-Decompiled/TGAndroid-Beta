@@ -1,22 +1,22 @@
 package e9;
 
 import j$.util.Objects;
-import v7.u6;
+import v7.t6;
 public final class e1 extends i0 {
-    public final transient Object[] f8070c;
+    public final transient Object[] f8068c;
     public final transient int d;
     public final transient int e;
 
     public e1(int i10, int i11, Object[] objArr) {
-        this.f8070c = objArr;
+        this.f8068c = objArr;
         this.d = i10;
         this.e = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        u6.c(i10, this.e);
-        Object obj = this.f8070c[(i10 * 2) + this.d];
+        t6.c(i10, this.e);
+        Object obj = this.f8068c[(i10 * 2) + this.d];
         Objects.requireNonNull(obj);
         return obj;
     }

@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 public final class ho implements ImageReceiver.ImageReceiverDelegate {
-    public boolean f24858a;
-    public final hg.g f24859b;
-    public final jo f24860c;
+    public boolean f24738a;
+    public final hg.h f24739b;
+    public final jo f24740c;
 
-    public ho(hg.i iVar, hg.g gVar) {
-        this.f24860c = iVar;
-        this.f24859b = gVar;
+    public ho(hg.j jVar, hg.h hVar) {
+        this.f24740c = jVar;
+        this.f24739b = hVar;
     }
 
     @Override
     public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        kj0 kj0Var;
+        xi0 xi0Var;
         yf.e eVar;
-        if (!this.f24858a) {
+        if (!this.f24738a) {
             if ((i10 == 0 || i10 == 3) && drawable != null) {
-                this.f24858a = true;
-                boolean z10 = drawable instanceof kj0;
-                hg.g gVar = this.f24859b;
-                if (z10 && (eVar = (kj0Var = (kj0) drawable).B0) != null && eVar.g()) {
-                    kj0Var.A0 = new tc(20, this, gVar);
+                this.f24738a = true;
+                boolean z10 = drawable instanceof xi0;
+                hg.h hVar = this.f24739b;
+                if (z10 && (eVar = (xi0Var = (xi0) drawable).B0) != null && eVar.g()) {
+                    xi0Var.A0 = new oh(14, this, hVar);
                     return;
                 }
-                jo.a(this.f24860c);
-                gVar.run();
+                jo.a(this.f24740c);
+                hVar.run();
             }
         }
     }

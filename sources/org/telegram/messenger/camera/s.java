@@ -6,33 +6,33 @@ import android.os.Handler;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.camera.CameraView;
 public final class s implements Runnable {
-    public final int f16104a;
-    public final Object f16105b;
-    public final Object f16106c;
+    public final int f15864a;
+    public final Object f15865b;
+    public final Object f15866c;
 
     public s(int i10, Object obj, Object obj2) {
-        this.f16104a = i10;
-        this.f16105b = obj;
-        this.f16106c = obj2;
+        this.f15864a = i10;
+        this.f15865b = obj;
+        this.f15866c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f16104a) {
+        switch (this.f15864a) {
             case 0:
-                ((CameraView.VideoRecorder) this.f16105b).lambda$handleStopRecording$0((CountDownLatch) this.f16106c);
+                ((CameraView.VideoRecorder) this.f15865b).lambda$handleStopRecording$0((CountDownLatch) this.f15866c);
                 return;
             case 1:
-                ((Camera2Session) this.f16105b).lambda$open$1((SurfaceTexture) this.f16106c);
+                ((Camera2Session) this.f15865b).lambda$open$1((SurfaceTexture) this.f15866c);
                 return;
             case 2:
-                ((CameraController) this.f16105b).lambda$initCamera$2((Runnable) this.f16106c);
+                ((CameraController) this.f15865b).lambda$initCamera$2((Runnable) this.f15866c);
                 return;
             case 3:
-                CameraController.lambda$stopVideoRecording$16((Camera) this.f16105b, (CameraSession) this.f16106c);
+                CameraController.lambda$stopVideoRecording$16((Camera) this.f15865b, (CameraSession) this.f15866c);
                 return;
             default:
-                ((CameraView) this.f16105b).lambda$enableDualInternal$1((Handler) this.f16106c);
+                ((CameraView) this.f15865b).lambda$enableDualInternal$1((Handler) this.f15866c);
                 return;
         }
     }

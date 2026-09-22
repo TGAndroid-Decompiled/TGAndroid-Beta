@@ -7,18 +7,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class p40 implements ti {
-    public final u40 f27241a;
+    public final u40 f26940a;
 
     public p40(u40 u40Var) {
-        this.f27241a = u40Var;
+        this.f26940a = u40Var;
     }
 
     @Override
-    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         vi viVar;
-        u40 u40Var = this.f27241a;
-        org.telegram.ui.ActionBar.n2 n2Var = u40Var.f28619a;
-        if (n2Var != null && n2Var.getParentActivity() != null && (viVar = u40Var.f28621c) != null) {
+        u40 u40Var = this.f26940a;
+        org.telegram.ui.ActionBar.n2 n2Var = u40Var.f28280a;
+        if (n2Var != null && n2Var.getParentActivity() != null && (viVar = u40Var.f28282c) != null) {
             if (i10 != 8 && i10 != 7) {
                 viVar.dismissWithButtonClick(i10);
                 if (i10 == 0) {
@@ -27,8 +27,8 @@ public final class p40 implements ti {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = viVar.f29108j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = u40Var.f28621c.f29108j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = viVar.f28759j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = u40Var.f28282c.f28759j0.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
@@ -91,14 +91,14 @@ public final class p40 implements ti {
             }
             u40.b(u40Var, z14, arrayList);
             if (i10 != 8) {
-                u40Var.f28621c.dismiss(true);
+                u40Var.f28282c.dismiss(true);
             }
         }
     }
 
     @Override
-    public final void L0() {
-        AndroidUtilities.hideKeyboard(this.f27241a.f28619a.getFragmentView().findFocus());
+    public final void K0() {
+        AndroidUtilities.hideKeyboard(this.f26940a.f28280a.getFragmentView().findFocus());
     }
 
     @Override
@@ -107,26 +107,26 @@ public final class p40 implements ti {
     }
 
     @Override
-    public final boolean f0() {
+    public final boolean c0() {
         return false;
     }
 
     @Override
-    public final void v0() {
-        this.f27241a.r();
+    public final void u0() {
+        this.f26940a.r();
     }
 
     @Override
-    public final void y0(gh ghVar) {
-        ghVar.run();
+    public final void x0(fh fhVar) {
+        fhVar.run();
     }
 
     @Override
-    public final void V0(Object obj) {
+    public final void U0(Object obj) {
     }
 
     @Override
-    public final void k1(TLRPC.User user) {
+    public final void j1(TLRPC.User user) {
     }
 
     @Override

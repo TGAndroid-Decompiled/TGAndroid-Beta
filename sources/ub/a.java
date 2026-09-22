@@ -1,27 +1,27 @@
 package ub;
 
-import v7.d9;
-import v7.w8;
-import v7.z8;
+import v7.c9;
+import v7.v8;
+import v7.y8;
 public final class a {
-    public final z8 f43972a;
-    public final e f43973b;
-    public final qb.d f43974c;
+    public final y8 f43645a;
+    public final e f43646b;
+    public final qb.d f43647c;
 
     public a(e eVar, qb.d dVar) {
         String str;
-        z8 c10;
-        this.f43973b = eVar;
-        this.f43974c = dVar;
-        if (true != eVar.f43983g) {
+        y8 c10;
+        this.f43646b = eVar;
+        this.f43647c = dVar;
+        if (true != eVar.f43656g) {
             str = "play-services-mlkit-language-id";
         } else {
             str = "language-id";
         }
-        synchronized (d9.class) {
+        synchronized (c9.class) {
             byte b10 = (byte) (((byte) 1) | 2);
             if (b10 == 3) {
-                c10 = d9.c(new w8(str));
+                c10 = c9.c(new v8(str));
             } else {
                 StringBuilder sb2 = new StringBuilder();
                 if ((b10 & 1) == 0) {
@@ -33,6 +33,6 @@ public final class a {
                 throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
             }
         }
-        this.f43972a = c10;
+        this.f43645a = c10;
     }
 }

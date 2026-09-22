@@ -1,42 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.CacheFetcher;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class hx0 extends CacheFetcher {
-    @Override
-    public final void getLocal(int i10, Object obj, Utilities.Callback2 callback2) {
-        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new wm(i10, (Integer) obj, callback2, 19));
+import org.telegram.tgnet.tl.TL_account;
+public final class hx0 implements Runnable {
+    public final int f24811a;
+    public final TLObject f24812b;
+    public final Utilities.Callback f24813c;
+
+    public hx0(TLObject tLObject, Utilities.Callback callback, int i10) {
+        this.f24811a = i10;
+        this.f24812b = tLObject;
+        this.f24813c = callback;
     }
 
     @Override
-    public final void getRemote(int i10, Object obj, long j3, Utilities.Callback4 callback4) {
-        TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups;
-        Integer num = (Integer) obj;
-        if (num.intValue() == 1) {
-            TLRPC.TL_messages_getEmojiStatusGroups tL_messages_getEmojiStatusGroups = new TLRPC.TL_messages_getEmojiStatusGroups();
-            tL_messages_getEmojiStatusGroups.hash = (int) j3;
-            tL_messages_getEmojiGroups = tL_messages_getEmojiStatusGroups;
-        } else if (num.intValue() == 2) {
-            TLRPC.TL_messages_getEmojiProfilePhotoGroups tL_messages_getEmojiProfilePhotoGroups = new TLRPC.TL_messages_getEmojiProfilePhotoGroups();
-            tL_messages_getEmojiProfilePhotoGroups.hash = (int) j3;
-            tL_messages_getEmojiGroups = tL_messages_getEmojiProfilePhotoGroups;
-        } else if (num.intValue() == 3) {
-            TLRPC.TL_messages_getEmojiStickerGroups tL_messages_getEmojiStickerGroups = new TLRPC.TL_messages_getEmojiStickerGroups();
-            tL_messages_getEmojiStickerGroups.hash = (int) j3;
-            tL_messages_getEmojiGroups = tL_messages_getEmojiStickerGroups;
-        } else {
-            TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups2 = new TLRPC.TL_messages_getEmojiGroups();
-            tL_messages_getEmojiGroups2.hash = (int) j3;
-            tL_messages_getEmojiGroups = tL_messages_getEmojiGroups2;
+    public final void run() {
+        boolean z10;
+        switch (this.f24811a) {
+            case 0:
+                TLObject tLObject = this.f24812b;
+                if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
+                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
+                    MediaDataController.getInstance(UserConfig.selectedAccount).putStickerSet(tL_messages_stickerSet);
+                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f18136id)) {
+                        MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tL_messages_stickerSet, 2, null, false, false);
+                    }
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                this.f24813c.run(Boolean.valueOf(z10));
+                return;
+            default:
+                TLObject tLObject2 = this.f24812b;
+                boolean z11 = tLObject2 instanceof TL_account.paidMessagesRevenue;
+                Utilities.Callback callback = this.f24813c;
+                if (z11) {
+                    callback.run(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject2).stars_amount));
+                    return;
+                } else {
+                    callback.run(0L);
+                    return;
+                }
         }
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getEmojiGroups, new gx0(callback4, 0));
-    }
-
-    @Override
-    public final void setLocal(int i10, Object obj, Object obj2, long j3) {
-        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new wm(i10, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 18));
     }
 }

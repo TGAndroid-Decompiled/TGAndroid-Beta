@@ -1,37 +1,23 @@
 package org.telegram.ui.Components;
-public abstract class i60 extends ro0 {
-    @Override
-    public final boolean a() {
-        if (j() > 0) {
-            return true;
-        }
-        return false;
+
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+public final class i60 extends v80 {
+    public final m60 L;
+
+    public i60(m60 m60Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f3 f3Var, boolean z10) {
+        super(context, n2Var, f3Var, false, z10);
+        this.L = m60Var;
     }
 
     @Override
-    public final boolean b() {
-        if (j() < i()) {
-            return true;
-        }
-        return false;
+    public final void e(int i10, SpannableStringBuilder spannableStringBuilder) {
+        org.telegram.ui.ActionBar.e6 e6Var;
+        r60 r60Var = this.L.f26106c;
+        org.telegram.ui.ActionBar.d3 d3Var = r60Var.container;
+        e6Var = ((org.telegram.ui.ActionBar.f3) r60Var).resourcesProvider;
+        oc Q = new vc(d3Var, e6Var).Q(i10, 36, spannableStringBuilder);
+        Q.f26759r = false;
+        Q.k(true);
     }
-
-    @Override
-    public final void c(boolean z10) {
-        int h = h();
-        if (z10) {
-            h *= -1;
-        }
-        k(Math.min(i(), Math.max(0, j() + h)));
-    }
-
-    public int h() {
-        return 1;
-    }
-
-    public abstract int i();
-
-    public abstract int j();
-
-    public abstract void k(int i10);
 }

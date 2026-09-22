@@ -5,19 +5,19 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class p10 implements Runnable {
-    public final FragmentContextView f27225a;
+    public final FragmentContextView f26923a;
 
     public p10(FragmentContextView fragmentContextView) {
-        this.f27225a = fragmentContextView;
+        this.f26923a = fragmentContextView;
     }
 
     @Override
     public final void run() {
         String formatFullDuration;
-        FragmentContextView fragmentContextView = this.f27225a;
+        FragmentContextView fragmentContextView = this.f26923a;
         org.telegram.ui.ActionBar.n2 n2Var = fragmentContextView.h;
-        if (fragmentContextView.f22279f0 != null && (n2Var instanceof org.telegram.ui.zn)) {
-            ChatObject.Call groupCall = fragmentContextView.f22286n.getGroupCall();
+        if (fragmentContextView.f22039f0 != null && (n2Var instanceof org.telegram.ui.bo)) {
+            ChatObject.Call groupCall = fragmentContextView.f22046n.getGroupCall();
             if (groupCall != null && groupCall.isScheduled()) {
                 int currentTime = groupCall.call.schedule_date - n2Var.getConnectionsManager().getCurrentTime();
                 if (currentTime >= 86400) {
@@ -25,19 +25,19 @@ public final class p10 implements Runnable {
                 } else {
                     formatFullDuration = AndroidUtilities.formatFullDuration(currentTime);
                 }
-                n6 n6Var = fragmentContextView.f22282i0;
-                if (!fragmentContextView.f22281h0) {
+                m6 m6Var = fragmentContextView.f22042i0;
+                if (!fragmentContextView.f22041h0) {
                     formatFullDuration = LocaleController.getString(R.string.VoipChatNotify);
                 }
-                n6Var.q(formatFullDuration, true, true);
-                AndroidUtilities.runOnUIThread(fragmentContextView.f22285l0, 1000L);
-                fragmentContextView.f22291r.invalidate();
+                m6Var.q(formatFullDuration, true, true);
+                AndroidUtilities.runOnUIThread(fragmentContextView.f22045l0, 1000L);
+                fragmentContextView.f22051r.invalidate();
                 return;
             }
-            fragmentContextView.f22280g0 = false;
-            fragmentContextView.f22284k0 = false;
+            fragmentContextView.f22040g0 = false;
+            fragmentContextView.f22044k0 = false;
             return;
         }
-        fragmentContextView.f22284k0 = false;
+        fragmentContextView.f22044k0 = false;
     }
 }

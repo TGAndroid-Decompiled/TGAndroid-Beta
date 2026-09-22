@@ -18,12 +18,12 @@ public final class d extends v {
     @Override
     public final a0 j(long j3) {
         a0 j10 = this.f13413b.j(j3);
-        c0 c0Var = j10.f3710a;
-        long j11 = c0Var.f3739a;
-        long j12 = c0Var.f3740b;
-        long j13 = this.f13414c.f8030b;
+        c0 c0Var = j10.f3708a;
+        long j11 = c0Var.f3737a;
+        long j12 = c0Var.f3738b;
+        long j13 = this.f13414c.f8028b;
         c0 c0Var2 = new c0(j11, j12 + j13);
-        c0 c0Var3 = j10.f3711b;
-        return new a0(c0Var2, new c0(c0Var3.f3739a, c0Var3.f3740b + j13));
+        c0 c0Var3 = j10.f3709b;
+        return new a0(c0Var2, new c0(c0Var3.f3737a, c0Var3.f3738b + j13));
     }
 }

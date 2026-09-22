@@ -1,21 +1,33 @@
 package m4;
-public final class o0 implements e2.h {
-    public final int f14866a;
-    public final float f14867b;
 
-    public o0(float f7, int i10) {
-        this.f14866a = i10;
-        this.f14867b = f7;
+import android.view.View;
+public final class o0 implements e2.h {
+    public final int f14628a;
+    public final boolean f14629b;
+
+    public o0(int i10, boolean z10) {
+        this.f14628a = i10;
+        this.f14629b = z10;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f14866a) {
+        switch (this.f14628a) {
             case 0:
-                ((j1) obj).a(this.f14867b);
+                ((k1) obj).X(this.f14629b);
+                return;
+            case 1:
+                ((k1) obj).o0(this.f14629b);
+                return;
+            case 2:
+                ((k1) obj).x(this.f14629b);
                 return;
             default:
-                ((j1) obj).U(this.f14867b);
+                View view = (View) obj;
+                if (view instanceof xg.l) {
+                    ((xg.l) view).g(this.f14629b, true);
+                    return;
+                }
                 return;
         }
     }

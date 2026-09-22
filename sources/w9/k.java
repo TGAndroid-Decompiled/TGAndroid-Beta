@@ -1,35 +1,66 @@
 package w9;
 
 import android.util.Log;
-import java.util.concurrent.TimeoutException;
-import za.a0;
-public final class k {
-    public final Object f45248a;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicReference;
+public final class k implements Callable {
+    public final long f44926a;
+    public final Throwable f44927b;
+    public final Thread f44928c;
+    public final da.b d;
+    public final m e;
 
-    public k(Object obj) {
-        this.f45248a = obj;
+    public k(m mVar, long j3, Throwable th2, Thread thread, da.b bVar) {
+        this.e = mVar;
+        this.f44926a = j3;
+        this.f44927b = th2;
+        this.f44928c = thread;
+        this.d = bVar;
     }
 
-    public void a(a0 a0Var) {
-        ((l5.r) ((i5.f) ((pa.b) this.f45248a).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new r5.d(this, 28)).a(new i5.a(null, a0Var, i5.d.f10997a, null), new j2.e(22));
-    }
-
-    public void b(da.b bVar, Thread thread, Throwable th2) {
-        n nVar = (n) this.f45248a;
-        synchronized (nVar) {
-            String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
-            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                Log.d("FirebaseCrashlytics", str, null);
-            }
-            try {
-                try {
-                    x.a(nVar.e.l(new l(nVar, System.currentTimeMillis(), th2, thread, bVar)));
-                } catch (TimeoutException unused) {
-                    Log.e("FirebaseCrashlytics", "Cannot send reports. Timed out while fetching settings.", null);
-                }
-            } catch (Exception e) {
-                Log.e("FirebaseCrashlytics", "Error handling uncaught exception", e);
-            }
+    @Override
+    public final Object call() {
+        ba.c cVar;
+        String str;
+        long j3 = this.f44926a;
+        long j10 = j3 / 1000;
+        m mVar = this.e;
+        String e = mVar.e();
+        if (e == null) {
+            Log.e("FirebaseCrashlytics", "Tried to write a fatal exception while no session was open.", null);
+            return Tasks.forResult(null);
         }
+        mVar.f44934c.k();
+        com.google.firebase.messaging.n nVar = mVar.f44941m;
+        nVar.getClass();
+        String concat = "Persisting fatal event for session ".concat(e);
+        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+            Log.v("FirebaseCrashlytics", concat, null);
+        }
+        nVar.v(this.f44927b, this.f44928c, e, "crash", j10, true);
+        try {
+            cVar = mVar.f44936g;
+            str = ".ae" + j3;
+            cVar.getClass();
+        } catch (IOException e7) {
+            Log.w("FirebaseCrashlytics", "Could not create app exception marker file.", e7);
+        }
+        if (!new File(cVar.f3449b, str).createNewFile()) {
+            throw new IOException("Create new file failed.");
+        }
+        da.b bVar = this.d;
+        mVar.c(false, bVar);
+        new f(mVar.f44935f);
+        m.a(mVar, f.f44916b, Boolean.FALSE);
+        if (!mVar.f44933b.a()) {
+            return Tasks.forResult(null);
+        }
+        Executor executor = (Executor) mVar.e.f7349b;
+        return ((TaskCompletionSource) ((AtomicReference) bVar.f7583i).get()).getTask().onSuccessTask(executor, new o0.a(this, executor, e));
     }
 }

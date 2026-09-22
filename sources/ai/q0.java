@@ -113,21 +113,21 @@ public final class q0 implements Utilities.Callback3 {
                 }
                 ci.o8 o8Var = ocVar.K1;
                 if (o8Var != null) {
-                    o8Var.f5171o0 = file;
-                    o8Var.f5173p0 = str;
-                    o8Var.f5175q0 = l4.longValue();
+                    o8Var.f5169o0 = file;
+                    o8Var.f5171p0 = str;
+                    o8Var.f5173q0 = l4.longValue();
                     ci.o8 o8Var2 = ocVar.K1;
-                    o8Var2.f5179s0 = 0.0f;
-                    o8Var2.f5181t0 = 1.0f;
-                    o8Var2.f5177r0 = 0L;
-                    o8Var2.f5183u0 = 1.0f;
+                    o8Var2.f5177s0 = 0.0f;
+                    o8Var2.f5179t0 = 1.0f;
+                    o8Var2.f5175r0 = 0L;
+                    o8Var2.f5181u0 = 1.0f;
                     ocVar.u();
-                    if (ocVar.X0 != null && (qbVar = ocVar.f5271v1) != null) {
-                        qg.c2 m0 = qbVar.m0(ocVar.K1.f5173p0, true);
+                    if (ocVar.X0 != null && (qbVar = ocVar.f5269v1) != null) {
+                        qg.e2 m0 = qbVar.m0(ocVar.K1.f5171p0, true);
                         ecVar.setHasRoundVideo(true);
                         ocVar.X0.s(ocVar.K1, m0, true);
                         AndroidUtilities.cancelRunOnUIThread(pVar.h);
-                        pVar.f5348a.destroy(true, null);
+                        pVar.f5346a.destroy(true, null);
                         m0.setDraw(false);
                         pVar.post(new ba(24, pVar, m0));
                         return;
@@ -148,14 +148,14 @@ public final class q0 implements Utilities.Callback3 {
                     try {
                         int i13 = Build.VERSION.SDK_INT;
                         if (i13 < 23) {
-                            str2 = rVar.f8581g;
+                            str2 = rVar.f8579g;
                         } else {
                             if (i13 >= 30) {
                                 tVar = rVar.i(true);
                             }
                             if (tVar != null) {
-                                str2 = !TextUtils.isEmpty(rVar.f8581g) ? new String(tVar.f2071b.doFinal(Utilities.hexToBytes(rVar.f8581g)), StandardCharsets.UTF_8) : rVar.f8581g;
-                            } else if (!TextUtils.isEmpty(rVar.f8581g)) {
+                                str2 = !TextUtils.isEmpty(rVar.f8579g) ? new String(tVar.f2069b.doFinal(Utilities.hexToBytes(rVar.f8579g)), StandardCharsets.UTF_8) : rVar.f8579g;
+                            } else if (!TextUtils.isEmpty(rVar.f8579g)) {
                                 throw new RuntimeException("No cryptoObject found");
                             }
                         }

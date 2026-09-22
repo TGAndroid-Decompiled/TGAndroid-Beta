@@ -26,8 +26,8 @@ public final class n9 implements ViewTreeObserver.OnGlobalLayoutListener {
         int measuredHeight = this.f1302b.getMeasuredHeight();
         p9 p9Var = this.d;
         if (dp > measuredHeight) {
-            textView.setLayoutParams(w7.y5.k(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
-            this.f1303c.setLayoutParams(w7.y5.k(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
+            textView.setLayoutParams(w7.x5.k(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
+            this.f1303c.setLayoutParams(w7.x5.k(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
             p9Var.requestLayout();
         }
         p9Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);

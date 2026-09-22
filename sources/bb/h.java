@@ -1,32 +1,34 @@
 package bb;
 
+import a6.m;
 import android.content.Context;
 import android.os.Bundle;
-import w7.r;
+import w7.q;
 import za.b0;
+import za.r;
 public final class h {
-    public static final f f3472c = new Object();
-    public static final m1.c d = r.a(za.r.f49146b);
-    public final pb.c f3473a;
-    public final d f3474b;
+    public static final f f3470c = new Object();
+    public static final m1.c d = q.a(r.f48819b);
+    public final m f3471a;
+    public final d f3472b;
 
     public h(k9.h hVar, id.h hVar2, id.h hVar3, qa.d dVar) {
         hVar.a();
         Context context = hVar.f13548a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
-        b0 b0Var = b0.f49067a;
+        b0 b0Var = b0.f48740a;
         za.b a2 = b0.a(hVar);
-        pb.c cVar = new pb.c(context);
+        m mVar = new m(context);
         aa.a aVar = new aa.a(a2, hVar2);
-        f3472c.getClass();
-        d dVar2 = new d(hVar3, dVar, a2, aVar, d.a(context, f.f3468a[0]));
-        this.f3473a = cVar;
-        this.f3474b = dVar2;
+        f3470c.getClass();
+        d dVar2 = new d(hVar3, dVar, a2, aVar, d.a(context, f.f3466a[0]));
+        this.f3471a = mVar;
+        this.f3472b = dVar2;
     }
 
     public final double a() {
         Double d10;
-        Bundle bundle = (Bundle) this.f3473a.f41066b;
+        Bundle bundle = (Bundle) this.f3471a.f307b;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {
@@ -38,9 +40,9 @@ public final class h {
                 return doubleValue;
             }
         }
-        e eVar = this.f3474b.f3464c.f3488b;
+        e eVar = this.f3472b.f3462c.f3486b;
         if (eVar != null) {
-            Double d11 = eVar.f3466b;
+            Double d11 = eVar.f3464b;
             if (d11 != null) {
                 double doubleValue2 = d11.doubleValue();
                 if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {

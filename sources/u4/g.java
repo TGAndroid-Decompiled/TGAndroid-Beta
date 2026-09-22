@@ -9,80 +9,80 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
-import org.telegram.ui.Cells.f3;
+import n7.a1;
 import w7.ga;
 import w7.ha;
 import w7.oa;
 import w7.pa;
-import w9.n;
-import w9.p;
-import w9.s;
+import w9.m;
+import w9.o;
+import w9.r;
 public final class g implements Callable {
-    public final int f43941a;
-    public final Object f43942b;
-    public final Object f43943c;
+    public final int f43614a;
+    public final Object f43615b;
+    public final Object f43616c;
 
     public g(int i10, Object obj, Object obj2) {
-        this.f43941a = i10;
-        this.f43943c = obj;
-        this.f43942b = obj2;
+        this.f43614a = i10;
+        this.f43616c = obj;
+        this.f43615b = obj2;
     }
 
     @Override
     public final Object call() {
         ha haVar;
-        int i10 = this.f43941a;
-        Object obj = this.f43943c;
-        Object obj2 = this.f43942b;
+        int i10 = this.f43614a;
+        Object obj = this.f43616c;
+        Object obj2 = this.f43615b;
         switch (i10) {
             case 0:
-                return (h) ((ShortcutInfoCompatSaverImpl) obj).f2875b.get((String) obj2);
+                return (h) ((ShortcutInfoCompatSaverImpl) obj).f2873b.get((String) obj2);
             case 1:
-                m5.e eVar = (m5.e) obj;
-                n nVar = (n) eVar.f14969c;
+                o0.a aVar = (o0.a) obj;
+                m mVar = (m) aVar.f15299c;
                 Boolean bool = (Boolean) obj2;
                 if (!bool.booleanValue()) {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Deleting cached crash reports...", null);
                     }
-                    for (File file : ba.c.e(nVar.f45259g.f3451b.listFiles(n.f45254r))) {
+                    for (File file : ba.c.e(mVar.f44936g.f3449b.listFiles(m.f44931r))) {
                         file.delete();
                     }
-                    ba.c cVar = ((ba.b) nVar.f45264m.f7329b).f3448b;
+                    ba.c cVar = ((ba.b) mVar.f44941m.f7334b).f3446b;
                     ba.b.a(ba.c.e(cVar.d.listFiles()));
                     ba.b.a(ba.c.e(cVar.e.listFiles()));
-                    ba.b.a(ba.c.e(cVar.f3453f.listFiles()));
-                    nVar.f45268q.trySetResult(null);
+                    ba.b.a(ba.c.e(cVar.f3451f.listFiles()));
+                    mVar.f44945q.trySetResult(null);
                     return Tasks.forResult(null);
                 }
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "Sending cached crash reports...", null);
                 }
                 boolean booleanValue = bool.booleanValue();
-                s sVar = nVar.f45256b;
+                r rVar = mVar.f44933b;
                 if (booleanValue) {
-                    sVar.h.trySetResult(null);
-                    Executor executor = (Executor) nVar.e.f7344b;
-                    return ((Task) eVar.f14968b).onSuccessTask(executor, new f3(20, this, executor));
+                    rVar.h.trySetResult(null);
+                    Executor executor = (Executor) mVar.e.f7349b;
+                    return ((Task) aVar.f15298b).onSuccessTask(executor, new a1(this, executor, false, 23));
                 }
-                sVar.getClass();
+                rVar.getClass();
                 throw new IllegalStateException("An invalid data collection token was used.");
             case 2:
-                n.a((n) obj, (String) obj2, Boolean.FALSE);
+                m.a((m) obj, (String) obj2, Boolean.FALSE);
                 return null;
             case 3:
-                return p.a((p) obj, (da.b) obj2);
+                return o.a((o) obj, (da.b) obj2);
             default:
                 MobileVisionBase mobileVisionBase = (MobileVisionBase) obj2;
-                vb.a aVar = (vb.a) obj;
-                HashMap hashMap = ha.f45031f;
+                vb.a aVar2 = (vb.a) obj;
+                HashMap hashMap = ha.f44706f;
                 pa.b();
-                int i11 = oa.f45116a;
+                int i11 = oa.f44792a;
                 pa.b();
                 if (!Boolean.parseBoolean("")) {
                     haVar = ga.h;
                 } else {
-                    HashMap hashMap2 = ha.f45031f;
+                    HashMap hashMap2 = ha.f44706f;
                     if (hashMap2.get("detectorTaskWithResource#run") == null) {
                         hashMap2.put("detectorTaskWithResource#run", new ha("detectorTaskWithResource#run"));
                     }
@@ -90,7 +90,7 @@ public final class g implements Callable {
                 }
                 haVar.a();
                 try {
-                    Object e = mobileVisionBase.f7383b.e(aVar);
+                    Object e = mobileVisionBase.f7382b.e(aVar2);
                     haVar.close();
                     return e;
                 } catch (Throwable th2) {
@@ -108,8 +108,8 @@ public final class g implements Callable {
     }
 
     public g(MobileVisionBase mobileVisionBase, vb.a aVar) {
-        this.f43941a = 4;
-        this.f43942b = mobileVisionBase;
-        this.f43943c = aVar;
+        this.f43614a = 4;
+        this.f43615b = mobileVisionBase;
+        this.f43616c = aVar;
     }
 }

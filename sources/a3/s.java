@@ -4,7 +4,7 @@ import android.util.Base64;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-public final class s implements d9.j {
+public final class s implements d9.i {
     public final int f188a;
 
     public s(int i10) {
@@ -38,7 +38,7 @@ public final class s implements d9.j {
                 return new i2.k(new y2.d(), 1000, 2000);
             default:
                 byte[] bArr = new byte[12];
-                j2.h.f12587i.nextBytes(bArr);
+                j2.h.f12585i.nextBytes(bArr);
                 return Base64.encodeToString(bArr, 10);
         }
     }

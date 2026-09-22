@@ -19,7 +19,7 @@ public final class j00 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        View view = c1Var.f42995a;
+        View view = c1Var.f42671a;
         view.setPressed(false);
         view.setBackground(null);
         view.setTag(R.id.dragging, null);
@@ -29,7 +29,7 @@ public final class j00 extends s4.v {
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
         if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
             k00 k00Var = this.e;
-            if (!k00Var.f25539n || (c1Var.b() == 0 && ((g00) k00Var.h.get(0)).e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+            if (!k00Var.f25478n || (c1Var.b() == 0 && ((g00) k00Var.h.get(0)).e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
                 return s4.v.l(0, 0);
             }
         }
@@ -38,7 +38,7 @@ public final class j00 extends s4.v {
 
     @Override
     public final boolean k() {
-        return this.e.f25539n;
+        return this.e.f25478n;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class j00 extends s4.v {
         int b11 = c1Var2.b();
         k00 k00Var = f00Var.d;
         ArrayList arrayList = k00Var.h;
-        SparseIntArray sparseIntArray = k00Var.f25537k0;
+        SparseIntArray sparseIntArray = k00Var.f25476k0;
         int size = arrayList.size();
         if (b10 >= 0 && b11 >= 0 && b10 < size && b11 < size) {
             ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
@@ -65,18 +65,18 @@ public final class j00 extends s4.v {
             dialogFilters.set(b11, dialogFilter);
             g00 g00Var = (g00) arrayList.get(b10);
             g00 g00Var2 = (g00) arrayList.get(b11);
-            int i12 = g00Var.f24392a;
-            g00Var.f24392a = g00Var2.f24392a;
-            g00Var2.f24392a = i12;
+            int i12 = g00Var.f24139a;
+            g00Var.f24139a = g00Var2.f24139a;
+            g00Var2.f24139a = i12;
             int i13 = sparseIntArray.get(b10);
             sparseIntArray.put(b10, sparseIntArray.get(b11));
             sparseIntArray.put(b11, i13);
             e00 e00Var = k00Var.J;
-            int i14 = g00Var2.f24392a;
-            int i15 = g00Var.f24392a;
+            int i14 = g00Var2.f24139a;
+            int i15 = g00Var.f24139a;
             org.telegram.ui.tw twVar = (org.telegram.ui.tw) e00Var;
             while (true) {
-                org.telegram.ui.ty[] tyVarArr = twVar.f37890b.f38277e0;
+                org.telegram.ui.ty[] tyVarArr = twVar.f37741b.f38222e0;
                 if (i10 >= tyVarArr.length) {
                     break;
                 }
@@ -92,24 +92,24 @@ public final class j00 extends s4.v {
             int i17 = k00Var.K;
             if (i17 == b10) {
                 k00Var.K = b11;
-                k00Var.L = g00Var.f24392a;
+                k00Var.L = g00Var.f24139a;
             } else if (i17 == b11) {
                 k00Var.K = b10;
-                k00Var.L = g00Var2.f24392a;
+                k00Var.L = g00Var2.f24139a;
             }
-            int i18 = k00Var.f25543q0;
+            int i18 = k00Var.f25482q0;
             if (i18 == b10) {
-                k00Var.f25543q0 = b11;
-                k00Var.f25545r0 = g00Var.f24392a;
+                k00Var.f25482q0 = b11;
+                k00Var.f25484r0 = g00Var.f24139a;
             } else if (i18 == b11) {
-                k00Var.f25543q0 = b10;
-                k00Var.f25545r0 = g00Var2.f24392a;
+                k00Var.f25482q0 = b10;
+                k00Var.f25484r0 = g00Var2.f24139a;
             }
             arrayList.set(b10, g00Var2);
             arrayList.set(b11, g00Var);
             k00Var.j();
-            k00Var.f25555y = true;
-            k00Var.F.setItemAnimator(k00Var.f25547s0);
+            k00Var.f25494y = true;
+            k00Var.F.setItemAnimator(k00Var.f25486s0);
             f00Var.p(b10, b11);
         }
         return true;
@@ -120,16 +120,16 @@ public final class j00 extends s4.v {
         Boolean bool;
         if (i10 != 0) {
             k00 k00Var = this.e;
-            k00Var.F.J0(false);
-            c1Var.f42995a.setPressed(true);
-            c1Var.f42995a.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(k00Var.f25526b0, k00Var.f25523a));
+            k00Var.F.I0(false);
+            c1Var.f42671a.setPressed(true);
+            c1Var.f42671a.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(k00Var.f25465b0, k00Var.f25462a));
         } else {
             xp xpVar = this.d;
             AndroidUtilities.cancelRunOnUIThread(xpVar);
             AndroidUtilities.runOnUIThread(xpVar, 320L);
         }
         if (c1Var != null) {
-            View view = c1Var.f42995a;
+            View view = c1Var.f42671a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

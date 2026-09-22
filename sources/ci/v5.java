@@ -3,33 +3,33 @@ package ci;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.fk0;
 public final class v5 extends AnimatorListenerAdapter {
-    public final int f5653a;
-    public final sk0 f5654b;
+    public final int f5651a;
+    public final fk0 f5652b;
 
-    public v5(sk0 sk0Var, int i10) {
-        this.f5653a = i10;
-        this.f5654b = sk0Var;
+    public v5(fk0 fk0Var, int i10) {
+        this.f5651a = i10;
+        this.f5652b = fk0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f5653a) {
+        switch (this.f5651a) {
             case 0:
-                AndroidUtilities.removeFromParent(this.f5654b);
+                AndroidUtilities.removeFromParent(this.f5652b);
                 return;
             case 1:
                 super.onAnimationEnd(animator);
-                this.f5654b.L0.unlock();
+                this.f5652b.L0.unlock();
                 return;
             default:
                 super.onAnimationEnd(animator);
-                sk0 sk0Var = this.f5654b;
-                sk0Var.Q = null;
-                sk0Var.f28253n0 = 0.0f;
-                sk0Var.f28251l0 = null;
-                sk0Var.invalidate();
+                fk0 fk0Var = this.f5652b;
+                fk0Var.Q = null;
+                fk0Var.f23992n0 = 0.0f;
+                fk0Var.f23990l0 = null;
+                fk0Var.invalidate();
                 return;
         }
     }

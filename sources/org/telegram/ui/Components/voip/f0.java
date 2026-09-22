@@ -5,18 +5,18 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.ui.a40;
 public final class f0 extends ImageView {
-    public final a40 f29309a;
+    public final a40 f28941a;
 
     public f0(a40 a40Var, Context context) {
         super(context);
-        this.f29309a = a40Var;
+        this.f28941a = a40Var;
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        a40 a40Var = this.f29309a;
-        a40Var.f29430f0.invalidate();
+        a40 a40Var = this.f28941a;
+        a40Var.f29062f0.invalidate();
         a40Var.invalidate();
     }
 

@@ -1,51 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ux0 implements Runnable {
-    public final int f28904a;
-    public final TLObject f28905b;
-    public final Utilities.Callback f28906c;
+import android.animation.ValueAnimator;
+import java.util.ArrayList;
+public final class ux0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28520a;
+    public final com.google.firebase.messaging.n f28521b;
+    public final int f28522c;
 
-    public ux0(TLObject tLObject, Utilities.Callback callback, int i10) {
-        this.f28904a = i10;
-        this.f28905b = tLObject;
-        this.f28906c = callback;
+    public ux0(com.google.firebase.messaging.n nVar, int i10, int i11) {
+        this.f28520a = i11;
+        this.f28521b = nVar;
+        this.f28522c = i10;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f28904a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f28520a) {
             case 0:
-                TLObject tLObject = this.f28905b;
-                if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
-                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
-                    MediaDataController.getInstance(UserConfig.selectedAccount).putStickerSet(tL_messages_stickerSet);
-                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f18370id)) {
-                        MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tL_messages_stickerSet, 2, null, false, false);
-                    }
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                this.f28906c.run(Boolean.valueOf(z10));
+                Float f7 = (Float) valueAnimator.getAnimatedValue();
+                f7.getClass();
+                ((ArrayList) this.f28521b.d).set(this.f28522c, f7);
+                return;
+            case 1:
+                Float f10 = (Float) valueAnimator.getAnimatedValue();
+                f10.getClass();
+                ((ArrayList) this.f28521b.e).set(this.f28522c, f10);
+                return;
+            case 2:
+                Float f11 = (Float) valueAnimator.getAnimatedValue();
+                f11.getClass();
+                ((ArrayList) this.f28521b.f7336f).set(this.f28522c, f11);
+                return;
+            case 3:
+                Float f12 = (Float) valueAnimator.getAnimatedValue();
+                f12.getClass();
+                ((ArrayList) this.f28521b.d).set(this.f28522c, f12);
+                return;
+            case 4:
+                Float f13 = (Float) valueAnimator.getAnimatedValue();
+                f13.getClass();
+                ((ArrayList) this.f28521b.e).set(this.f28522c, f13);
                 return;
             default:
-                TLObject tLObject2 = this.f28905b;
-                boolean z11 = tLObject2 instanceof TL_account.paidMessagesRevenue;
-                Utilities.Callback callback = this.f28906c;
-                if (z11) {
-                    callback.run(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject2).stars_amount));
-                    return;
-                } else {
-                    callback.run(0L);
-                    return;
-                }
+                Float f14 = (Float) valueAnimator.getAnimatedValue();
+                f14.getClass();
+                ((ArrayList) this.f28521b.f7336f).set(this.f28522c, f14);
+                return;
         }
     }
 }

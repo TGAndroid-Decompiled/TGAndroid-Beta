@@ -1,13 +1,13 @@
 package zd;
 
 import java.util.concurrent.CancellationException;
-import v7.s7;
+import v7.r7;
 public abstract class l0 extends ge.i {
-    public int f49224c;
+    public int f48897c;
 
     public l0(int i10) {
-        super(0L, ge.k.f9649g);
-        this.f49224c = i10;
+        super(0L, ge.k.f9645g);
+        this.f48897c = i10;
     }
 
     public abstract void c(Object obj, CancellationException cancellationException);
@@ -24,7 +24,7 @@ public abstract class l0 extends ge.i {
         if (vVar == null) {
             return null;
         }
-        return vVar.f49258a;
+        return vVar.f48931a;
     }
 
     public final void i(Throwable th2, Throwable th3) {
@@ -32,7 +32,7 @@ public abstract class l0 extends ge.i {
             return;
         }
         if (th2 != null && th3 != null) {
-            s7.a(th2, th3);
+            r7.a(th2, th3);
         }
         if (th2 == null) {
             th2 = th3;

@@ -1,34 +1,27 @@
 package org.telegram.ui.Components;
-public final class j60 {
-    public final int f25293a;
-    public final int f25294b;
 
-    public j60(int i10, int i11) {
-        this.f25293a = i10;
-        this.f25294b = i11;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class j60 implements RequestDelegate {
+    public final int f25239a;
+    public final l60 f25240b;
+
+    public j60(l60 l60Var, int i10) {
+        this.f25239a = i10;
+        this.f25240b = l60Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f25239a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(this.f25240b, tL_error, tLObject, 19));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new ny(10, this.f25240b, tL_error));
+                return;
         }
-        if (obj != null && j60.class == obj.getClass()) {
-            j60 j60Var = (j60) obj;
-            if (this.f25293a == j60Var.f25293a && this.f25294b == j60Var.f25294b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return (this.f25293a * 31) + this.f25294b;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("IntSize(");
-        sb2.append(this.f25293a);
-        sb2.append(", ");
-        return a4.a.n(this.f25294b, ")", sb2);
     }
 }

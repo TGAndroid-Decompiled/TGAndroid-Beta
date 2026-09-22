@@ -1,15 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-public interface va0 {
-    void M(int i10, int i11, CharSequence charSequence, boolean z10);
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+public final class va0 extends i81 {
+    public final vb0 T;
 
-    void P(String str);
+    public va0(vb0 vb0Var, Context context, rb0 rb0Var) {
+        super(context, rb0Var);
+        this.T = vb0Var;
+    }
 
-    void f(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10);
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int i10 = 0;
+        while (true) {
+            View[] viewArr = this.T.f28678f.e;
+            if (i10 < viewArr.length) {
+                View view = viewArr[i10];
+                if (view != null) {
+                    pb0 pb0Var = (pb0) view;
+                    if (pb0Var.f26993a == 0) {
+                        z10 = pb0Var.e.f19931i;
+                        break;
+                    }
+                }
+                i10++;
+            } else {
+                z10 = false;
+                break;
+            }
+        }
+        if (z10) {
+            return false;
+        }
+        return A(motionEvent);
+    }
 
-    Paint.FontMetricsInt t();
+    @Override
+    public final void u() {
+        View view = this.e[0];
+        if (view instanceof pb0) {
+            ((pb0) view).e.W();
+        }
+    }
 
-    void z(TLRPC.TL_document tL_document, String str, Object obj);
+    @Override
+    public final void w(boolean z10) {
+        vb0 vb0Var = this.T;
+        vb0Var.e.setSelectedTab(vb0Var.f28678f.getPositionAnimated());
+        View[] viewArr = this.e;
+        View view = viewArr[0];
+        if (view instanceof pb0) {
+            ((pb0) view).e.H();
+        }
+        View view2 = viewArr[1];
+        if (view2 instanceof pb0) {
+            ((pb0) view2).e.H();
+        }
+    }
 }

@@ -1,36 +1,31 @@
 package v7;
 
-import w7.pa;
-import x7.ja;
-import z7.zf;
-public final class b9 implements pa.b {
-    public final int f44246a;
-    public final l5.r f44247b;
+import android.content.Context;
+public final class b9 implements x8 {
+    public final q9.n f43925a;
+    public final v8 f43926b;
 
-    public b9(l5.r rVar, int i10) {
-        this.f44246a = i10;
-        this.f44247b = rVar;
+    public b9(Context context, v8 v8Var) {
+        this.f43926b = v8Var;
+        j5.a aVar = j5.a.e;
+        l5.t.b(context);
+        l5.r c10 = l5.t.a().c(aVar);
+        if (j5.a.d.contains(new i5.c("json"))) {
+            new q9.n(new a9(c10, 0));
+        }
+        this.f43925a = new q9.n(new a9(c10, 1));
     }
 
     @Override
-    public final Object get() {
-        switch (this.f44246a) {
-            case 0:
-                return this.f44247b.a("FIREBASE_ML_SDK", new i5.c("json"), e9.e);
-            case 1:
-                return this.f44247b.a("FIREBASE_ML_SDK", new i5.c("proto"), e9.d);
-            case 2:
-                return this.f44247b.a("FIREBASE_ML_SDK", new i5.c("json"), pa.e);
-            case 3:
-                return this.f44247b.a("FIREBASE_ML_SDK", new i5.c("proto"), pa.d);
-            case 4:
-                return this.f44247b.a("FIREBASE_ML_SDK", new i5.c("json"), ja.e);
-            case 5:
-                return this.f44247b.a("FIREBASE_ML_SDK", new i5.c("proto"), ja.d);
-            case 6:
-                return this.f44247b.a("FIREBASE_ML_SDK", new i5.c("json"), zf.e);
-            default:
-                return this.f44247b.a("FIREBASE_ML_SDK", new i5.c("proto"), zf.d);
+    public final void a(a5.a aVar) {
+        i5.a aVar2;
+        this.f43926b.getClass();
+        l5.s sVar = (l5.s) this.f43925a.get();
+        if (aVar.f277b != 0) {
+            aVar2 = new i5.a(null, aVar.B(), i5.d.f10995a, null);
+        } else {
+            aVar2 = new i5.a(null, aVar.B(), i5.d.f10996b, null);
         }
+        sVar.a(aVar2, new j2.e(17));
     }
 }

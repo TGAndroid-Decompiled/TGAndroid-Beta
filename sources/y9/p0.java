@@ -2,16 +2,16 @@ package y9;
 
 import java.util.List;
 public final class p0 extends o1 {
-    public final String f46925a;
-    public final String f46926b;
-    public final List f46927c;
+    public final String f46598a;
+    public final String f46599b;
+    public final List f46600c;
     public final o1 d;
     public final int e;
 
     public p0(String str, String str2, List list, o1 o1Var, int i10) {
-        this.f46925a = str;
-        this.f46926b = str2;
-        this.f46927c = list;
+        this.f46598a = str;
+        this.f46599b = str2;
+        this.f46600c = list;
         this.d = o1Var;
         this.e = i10;
     }
@@ -25,8 +25,8 @@ public final class p0 extends o1 {
         if (obj instanceof o1) {
             p0 p0Var = (p0) ((o1) obj);
             o1 o1Var2 = p0Var.d;
-            String str2 = p0Var.f46926b;
-            if (this.f46925a.equals(p0Var.f46925a) && ((str = this.f46926b) != null ? str.equals(str2) : str2 == null) && this.f46927c.equals(p0Var.f46927c) && ((o1Var = this.d) != null ? o1Var.equals(o1Var2) : o1Var2 == null) && this.e == p0Var.e) {
+            String str2 = p0Var.f46599b;
+            if (this.f46598a.equals(p0Var.f46598a) && ((str = this.f46599b) != null ? str.equals(str2) : str2 == null) && this.f46600c.equals(p0Var.f46600c) && ((o1Var = this.d) != null ? o1Var.equals(o1Var2) : o1Var2 == null) && this.e == p0Var.e) {
                 return true;
             }
         }
@@ -35,15 +35,15 @@ public final class p0 extends o1 {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f46925a.hashCode() ^ 1000003) * 1000003;
+        int hashCode2 = (this.f46598a.hashCode() ^ 1000003) * 1000003;
         int i10 = 0;
-        String str = this.f46926b;
+        String str = this.f46599b;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
-        int hashCode3 = (((hashCode2 ^ hashCode) * 1000003) ^ this.f46927c.hashCode()) * 1000003;
+        int hashCode3 = (((hashCode2 ^ hashCode) * 1000003) ^ this.f46600c.hashCode()) * 1000003;
         o1 o1Var = this.d;
         if (o1Var != null) {
             i10 = o1Var.hashCode();
@@ -53,14 +53,14 @@ public final class p0 extends o1 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Exception{type=");
-        sb2.append(this.f46925a);
+        sb2.append(this.f46598a);
         sb2.append(", reason=");
-        sb2.append(this.f46926b);
+        sb2.append(this.f46599b);
         sb2.append(", frames=");
-        sb2.append(this.f46927c);
+        sb2.append(this.f46600c);
         sb2.append(", causedBy=");
         sb2.append(this.d);
         sb2.append(", overflowCount=");
-        return a4.a.n(this.e, "}", sb2);
+        return a4.a.o(this.e, "}", sb2);
     }
 }

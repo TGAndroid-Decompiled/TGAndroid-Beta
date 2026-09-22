@@ -1,27 +1,34 @@
 package org.telegram.ui;
+public final class qf1 implements Runnable {
+    public final int f36868a;
+    public final rf1 f36869b;
 
-import android.content.Context;
-import java.util.ArrayList;
-public final class qf1 extends dg1 {
-    public final fg1 f36926i3;
-
-    public qf1(fg1 fg1Var, Context context) {
-        super(fg1Var, context);
-        this.f36926i3 = fg1Var;
+    public qf1(rf1 rf1Var, int i10) {
+        this.f36868a = i10;
+        this.f36869b = rf1Var;
     }
 
     @Override
-    public final boolean T0() {
-        ArrayList arrayList = this.f36926i3.f33624b;
-        if (getAdapter() == null || this.X1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((wf1) arrayList.get(0)).f39163c == null || ((wf1) arrayList.get(0)).f39163c.f18395id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
-            return false;
+    public final void run() {
+        switch (this.f36868a) {
+            case 0:
+                rf1 rf1Var = this.f36869b;
+                rf1Var.F = null;
+                if (rf1Var.G != -1) {
+                    rf1Var.H.getNotificationCenter().onAnimationFinish(rf1Var.G);
+                    rf1Var.G = -1;
+                    return;
+                }
+                return;
+            default:
+                rf1 rf1Var2 = this.f36869b;
+                rf1Var2.F = null;
+                if (rf1Var2.G != -1) {
+                    rf1Var2.H.getNotificationCenter().onAnimationFinish(rf1Var2.G);
+                    rf1Var2.G = -1;
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f36926i3.y0();
     }
 }

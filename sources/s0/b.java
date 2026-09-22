@@ -1,151 +1,242 @@
 package s0;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Base64;
-import android.util.Log;
-import b2.l1;
-import c3.o;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import e9.i0;
-import e9.q;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.bd0;
-import u2.d0;
-public final class b implements s5.f, pa.a, q9.d, a2, bd0, d9.e, q3.g, Continuation {
-    public final int f42937a;
+import android.os.Build;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class b {
+    public static final b f42614c;
+    public static final b d;
+    public static final b e;
+    public static final b f42615f;
+    public static final b f42616g;
+    public static final b h;
+    public final Object f42617a;
+    public final int f42618b;
 
-    public b(int i10) {
-        this.f42937a = i10;
+    static {
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction2;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction3;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction4;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction5;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction6;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction7;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction8;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction9;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction10;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction11;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction12;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction13;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction14;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction15;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction16;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction17;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction18;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction19;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction20;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction21;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction22;
+        new b(null, 1, null, null);
+        new b(null, 2, null, null);
+        new b(null, 4, null, null);
+        new b(null, 8, null, null);
+        f42614c = new b(null, 16, null, null);
+        new b(null, 32, null, null);
+        new b(null, 64, null, null);
+        new b(null, 128, null, null);
+        new b(null, 256, null, e.class);
+        new b(null, 512, null, e.class);
+        new b(null, 1024, null, f.class);
+        new b(null, 2048, null, f.class);
+        d = new b(null, 4096, null, null);
+        e = new b(null, 8192, null, null);
+        new b(null, 16384, null, null);
+        new b(null, 32768, null, null);
+        new b(null, 65536, null, null);
+        new b(null, 131072, null, j.class);
+        new b(null, 262144, null, null);
+        new b(null, 524288, null, null);
+        new b(null, 1048576, null, null);
+        new b(null, 2097152, null, k.class);
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 23) {
+            accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_ON_SCREEN;
+        } else {
+            accessibilityAction = null;
+        }
+        new b(accessibilityAction, 16908342, null, null);
+        if (i10 >= 23) {
+            accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_TO_POSITION;
+        } else {
+            accessibilityAction2 = null;
+        }
+        new b(accessibilityAction2, 16908343, null, h.class);
+        if (i10 >= 23) {
+            accessibilityAction3 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP;
+        } else {
+            accessibilityAction3 = null;
+        }
+        f42615f = new b(accessibilityAction3, 16908344, null, null);
+        if (i10 >= 23) {
+            accessibilityAction4 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_LEFT;
+        } else {
+            accessibilityAction4 = null;
+        }
+        new b(accessibilityAction4, 16908345, null, null);
+        if (i10 >= 23) {
+            accessibilityAction5 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN;
+        } else {
+            accessibilityAction5 = null;
+        }
+        f42616g = new b(accessibilityAction5, 16908346, null, null);
+        if (i10 >= 23) {
+            accessibilityAction6 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_RIGHT;
+        } else {
+            accessibilityAction6 = null;
+        }
+        new b(accessibilityAction6, 16908347, null, null);
+        if (i10 >= 29) {
+            accessibilityAction7 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_UP;
+        } else {
+            accessibilityAction7 = null;
+        }
+        new b(accessibilityAction7, 16908358, null, null);
+        if (i10 >= 29) {
+            accessibilityAction8 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_DOWN;
+        } else {
+            accessibilityAction8 = null;
+        }
+        new b(accessibilityAction8, 16908359, null, null);
+        if (i10 >= 29) {
+            accessibilityAction9 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_LEFT;
+        } else {
+            accessibilityAction9 = null;
+        }
+        new b(accessibilityAction9, 16908360, null, null);
+        if (i10 >= 29) {
+            accessibilityAction10 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_RIGHT;
+        } else {
+            accessibilityAction10 = null;
+        }
+        new b(accessibilityAction10, 16908361, null, null);
+        if (i10 >= 23) {
+            accessibilityAction11 = AccessibilityNodeInfo.AccessibilityAction.ACTION_CONTEXT_CLICK;
+        } else {
+            accessibilityAction11 = null;
+        }
+        new b(accessibilityAction11, 16908348, null, null);
+        if (i10 >= 24) {
+            accessibilityAction12 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS;
+        } else {
+            accessibilityAction12 = null;
+        }
+        h = new b(accessibilityAction12, 16908349, null, i.class);
+        if (i10 >= 26) {
+            accessibilityAction13 = AccessibilityNodeInfo.AccessibilityAction.ACTION_MOVE_WINDOW;
+        } else {
+            accessibilityAction13 = null;
+        }
+        new b(accessibilityAction13, 16908354, null, g.class);
+        if (i10 >= 28) {
+            accessibilityAction14 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TOOLTIP;
+        } else {
+            accessibilityAction14 = null;
+        }
+        new b(accessibilityAction14, 16908356, null, null);
+        if (i10 >= 28) {
+            accessibilityAction15 = AccessibilityNodeInfo.AccessibilityAction.ACTION_HIDE_TOOLTIP;
+        } else {
+            accessibilityAction15 = null;
+        }
+        new b(accessibilityAction15, 16908357, null, null);
+        if (i10 >= 30) {
+            accessibilityAction16 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PRESS_AND_HOLD;
+        } else {
+            accessibilityAction16 = null;
+        }
+        new b(accessibilityAction16, 16908362, null, null);
+        if (i10 >= 30) {
+            accessibilityAction17 = AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER;
+        } else {
+            accessibilityAction17 = null;
+        }
+        new b(accessibilityAction17, 16908372, null, null);
+        if (i10 >= 32) {
+            accessibilityAction18 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_START;
+        } else {
+            accessibilityAction18 = null;
+        }
+        new b(accessibilityAction18, 16908373, null, null);
+        if (i10 >= 32) {
+            accessibilityAction19 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_DROP;
+        } else {
+            accessibilityAction19 = null;
+        }
+        new b(accessibilityAction19, 16908374, null, null);
+        if (i10 >= 32) {
+            accessibilityAction20 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_CANCEL;
+        } else {
+            accessibilityAction20 = null;
+        }
+        new b(accessibilityAction20, 16908375, null, null);
+        if (i10 >= 33) {
+            accessibilityAction21 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TEXT_SUGGESTIONS;
+        } else {
+            accessibilityAction21 = null;
+        }
+        new b(accessibilityAction21, 16908376, null, null);
+        if (i10 >= 34) {
+            accessibilityAction22 = g1.a.e();
+        } else {
+            accessibilityAction22 = null;
+        }
+        new b(accessibilityAction22, 16908382, null, null);
     }
 
-    @Override
-    public java.lang.Object G(cf.c r45) {
-        throw new UnsupportedOperationException("Method not decompiled: s0.b.G(cf.c):java.lang.Object");
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        byte[] decode;
-        switch (this.f42937a) {
-            case 5:
-                Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
-                try {
-                    ArrayList arrayList = new ArrayList();
-                    while (rawQuery.moveToNext()) {
-                        aa.a a2 = l5.i.a();
-                        a2.v(rawQuery.getString(1));
-                        a2.d = v5.a.b(rawQuery.getInt(2));
-                        String string = rawQuery.getString(3);
-                        if (string == null) {
-                            decode = null;
-                        } else {
-                            decode = Base64.decode(string, 0);
-                        }
-                        a2.f357c = decode;
-                        arrayList.add(a2.h());
-                    }
-                    return arrayList;
-                } finally {
-                    rawQuery.close();
-                }
-            case 16:
-                return ((o) obj).c().getClass().getSimpleName();
-            case 17:
-                return i0.v(q.w(((d0) obj).s().f43787b, new b(18)));
-            case 18:
-                return Integer.valueOf(((l1) obj).f3092c);
-            case 25:
-                return Long.valueOf(((z3.a) obj).f48401b);
-            case 26:
-                return Long.valueOf(((z3.a) obj).f48402c);
-            default:
-                return (w3.o) obj;
+    public b(Object obj, int i10, CharSequence charSequence, Class cls) {
+        this.f42618b = i10;
+        if (obj == null) {
+            this.f42617a = new AccessibilityNodeInfo.AccessibilityAction(i10, charSequence);
+        } else {
+            this.f42617a = obj;
         }
     }
 
-    @Override
-    public boolean c(int i10, int i11, int i12, int i13, int i14) {
-        if (i11 != 67 || i12 != 79 || i13 != 77 || (i14 != 77 && i10 != 2)) {
-            if (i11 == 77 && i12 == 76 && i13 == 76) {
-                if (i14 == 84 || i10 == 2) {
-                    return true;
-                }
-                return false;
-            }
+    public final boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof b)) {
             return false;
         }
-        return true;
-    }
-
-    @Override
-    public String e(int i10) {
-        switch (this.f42937a) {
-            case 12:
-                return String.valueOf(i10);
-            default:
-                return String.format("%02d", Integer.valueOf(i10 * 5));
-        }
-    }
-
-    @Override
-    public void h(pa.b bVar) {
-        switch (this.f42937a) {
-            case 6:
-                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
-                }
-                bVar.get().getClass();
-                throw new ClassCastException();
-            default:
-                bVar.get().getClass();
-                throw new ClassCastException();
-        }
-    }
-
-    @Override
-    public void k(b2 b2Var, int i10) {
-        switch (this.f42937a) {
-            case 11:
-                return;
-            case 14:
-                b2Var.dismiss();
-                return;
-            default:
-                b2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public Object then(Task task) {
-        boolean z10;
-        File file;
-        if (task.isSuccessful()) {
-            w9.b bVar = (w9.b) task.getResult();
-            t9.b bVar2 = t9.b.f43373a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f45230b);
-            z10 = true;
-            if (bVar.f45231c.delete()) {
-                bVar2.b("Deleted report file: " + file.getPath());
-            } else {
-                bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
+        Object obj2 = ((b) obj).f42617a;
+        Object obj3 = this.f42617a;
+        if (obj3 == null) {
+            if (obj2 != null) {
+                return false;
             }
+            return true;
+        } else if (!obj3.equals(obj2)) {
+            return false;
         } else {
-            Log.w("FirebaseCrashlytics", "Crashlytics report could not be enqueued to DataTransport", task.getException());
-            z10 = false;
+            return true;
         }
-        return Boolean.valueOf(z10);
     }
 
-    public b(Object obj, int i10) {
-        this.f42937a = i10;
+    public final int hashCode() {
+        Object obj = this.f42617a;
+        if (obj != null) {
+            return obj.hashCode();
+        }
+        return 0;
     }
 
-    private final void a(b2 b2Var, int i10) {
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("AccessibilityActionCompat: ");
+        String e7 = c.e(this.f42618b);
+        if (e7.equals("ACTION_UNKNOWN")) {
+            Object obj = this.f42617a;
+            if (((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
+                e7 = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
+            }
+        }
+        sb2.append(e7);
+        return sb2.toString();
     }
 }

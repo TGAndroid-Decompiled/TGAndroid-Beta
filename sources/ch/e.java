@@ -1,6 +1,6 @@
 package ch;
 
-import ah.j;
+import ah.i;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
@@ -10,7 +10,7 @@ import android.graphics.Rect;
 import android.graphics.RenderNode;
 import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.i6;
 public final class e extends d {
     public final fh.a G;
     public final Outline H = new Outline();
@@ -21,7 +21,7 @@ public final class e extends d {
     public final Paint M;
     public final Paint N;
     public boolean O;
-    public j P;
+    public i P;
 
     public e(fh.a aVar) {
         Paint paint = new Paint(1);
@@ -44,8 +44,8 @@ public final class e extends d {
 
     @Override
     public final void draw(Canvas canvas) {
-        c cVar = this.f4287j;
-        if (cVar.f4278m.isEmpty()) {
+        c cVar = this.f4285j;
+        if (cVar.f4276m.isEmpty()) {
             return;
         }
         boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
@@ -61,16 +61,16 @@ public final class e extends d {
             w();
         }
         this.O = false;
-        int l1 = j6.l1(this.J.getAlpha() * this.f4293p, this.d);
+        int l1 = i6.l1(this.J.getAlpha() * this.f4291p, this.d);
         if (Color.alpha(l1) != 0) {
-            float f7 = this.f4291n;
-            float f10 = this.f4292o;
+            float f7 = this.f4289n;
+            float f10 = this.f4290o;
             Paint paint = this.L;
             paint.setShadowLayer(f7, 0.0f, f10, l1);
-            cVar.c(canvas, paint, this.f4290m);
+            cVar.c(canvas, paint, this.f4288m);
         }
         canvas.save();
-        Rect rect = cVar.f4278m;
+        Rect rect = cVar.f4276m;
         canvas.translate(rect.left, rect.top);
         canvas.drawRenderNode(this.J);
         canvas.restore();
@@ -89,20 +89,20 @@ public final class e extends d {
     @Override
     public final void k() {
         b();
-        c cVar = this.f4287j;
-        this.M.setStrokeWidth(cVar.f4274i);
-        this.N.setStrokeWidth(cVar.f4275j);
-        int width = cVar.f4278m.width();
-        int height = cVar.f4278m.height();
+        c cVar = this.f4285j;
+        this.M.setStrokeWidth(cVar.f4272i);
+        this.N.setStrokeWidth(cVar.f4273j);
+        int width = cVar.f4276m.width();
+        int height = cVar.f4276m.height();
         Rect rect = this.I;
         rect.set(0, 0, width, height);
-        float[] fArr = cVar.f4270b;
+        float[] fArr = cVar.f4268b;
         Outline outline = this.H;
         d.h(outline, rect, fArr);
         outline.setAlpha(1.0f);
-        if (!cVar.f4278m.isEmpty()) {
-            this.K.setPosition(0, 0, cVar.f4278m.width(), cVar.f4278m.height());
-            this.J.setPosition(0, 0, cVar.f4278m.width(), cVar.f4278m.height());
+        if (!cVar.f4276m.isEmpty()) {
+            this.K.setPosition(0, 0, cVar.f4276m.width(), cVar.f4276m.height());
+            this.J.setPosition(0, 0, cVar.f4276m.width(), cVar.f4276m.height());
             this.J.setOutline(outline);
             this.O = true;
         }
@@ -127,8 +127,8 @@ public final class e extends d {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f4289l;
-        this.f4289l = i10;
+        int i11 = this.f4287l;
+        this.f4287l = i10;
         this.J.setAlpha(i10 / 255.0f);
         this.O = true;
         if (i11 == 0 && i10 > 0) {
@@ -139,19 +139,19 @@ public final class e extends d {
     @Override
     public final void v() {
         super.v();
-        this.L.setShadowLayer(this.f4291n, 0.0f, this.f4292o, this.d);
-        this.M.setColor(this.f4284f);
-        this.N.setColor(this.f4285g);
+        this.L.setShadowLayer(this.f4289n, 0.0f, this.f4290o, this.d);
+        this.M.setColor(this.f4282f);
+        this.N.setColor(this.f4283g);
         this.O = true;
     }
 
     @Override
     public final void w() {
-        float f7 = this.f4281a;
-        float f10 = this.f4282b;
-        c cVar = this.f4287j;
-        Rect rect = cVar.f4278m;
-        Rect rect2 = cVar.f4278m;
+        float f7 = this.f4279a;
+        float f10 = this.f4280b;
+        c cVar = this.f4285j;
+        Rect rect = cVar.f4276m;
+        Rect rect2 = cVar.f4276m;
         float f11 = rect.left + f7;
         float f12 = rect.top + f10;
         float f13 = rect.right + f7;
@@ -160,18 +160,18 @@ public final class e extends d {
         beginRecording.save();
         beginRecording.translate(-f11, -f12);
         if (this.P != null && Build.VERSION.SDK_INT >= 33) {
-            int i10 = cVar.f4272f;
+            int i10 = cVar.f4270f;
             if (i10 <= 0) {
                 i10 = AndroidUtilities.dp(11.0f);
             }
             int max = Math.max(Math.min(i10, Math.min(rect2.width(), rect2.height()) / 5), 1);
-            j jVar = this.P;
+            i iVar = this.P;
             float width = rect2.width();
             float height = rect2.height();
-            float[] fArr = cVar.f4271c;
-            jVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f4273g, cVar.h, this.e);
+            float[] fArr = cVar.f4269c;
+            iVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f4271g, cVar.h, this.e);
         }
-        this.G.v(beginRecording, f11, f12, f13, f14);
+        this.G.y(beginRecording, f11, f12, f13, f14);
         beginRecording.save();
         this.K.endRecording();
         RecordingCanvas beginRecording2 = this.J.beginRecording();
@@ -183,11 +183,11 @@ public final class e extends d {
                 beginRecording2.drawColor(this.e);
             }
         }
-        if (this.f4284f != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f4270b, cVar.f4274i, true, this.M);
+        if (this.f4282f != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f4268b, cVar.f4272i, true, this.M);
         }
-        if (this.f4285g != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f4270b, cVar.f4275j, false, this.N);
+        if (this.f4283g != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f4268b, cVar.f4273j, false, this.N);
         }
         this.J.endRecording();
     }

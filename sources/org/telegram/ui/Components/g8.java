@@ -1,121 +1,178 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class g8 implements Runnable {
-    public final int f24443a = 0;
-    public final h8 f24444b;
-    public final ArrayList f24445c;
-    public final String d;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class g8 extends kl0 {
+    public final Context f24243c;
+    public ArrayList d = new ArrayList();
+    public String e;
+    public e8 f24244f;
+    public boolean h;
+    public final h8 f24245n;
 
-    public g8(h8 h8Var, String str, ArrayList arrayList) {
-        this.f24444b = h8Var;
-        this.d = str;
-        this.f24445c = arrayList;
+    public g8(h8 h8Var, Context context) {
+        this.f24245n = h8Var;
+        this.f24243c = context;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        TLRPC.Document document;
-        boolean z10;
-        String str;
-        int i11 = this.f24443a;
-        String str2 = this.d;
-        ArrayList arrayList = this.f24445c;
-        h8 h8Var = this.f24444b;
-        switch (i11) {
-            case 0:
-                h8Var.getClass();
-                String lowerCase = str2.trim().toLowerCase();
-                if (lowerCase.length() == 0) {
-                    AndroidUtilities.runOnUIThread(new g8(h8Var, new ArrayList(), str2));
-                    return;
-                }
-                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
-                if (translitString != null) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
-                }
-                int i12 = i10 + 1;
-                String[] strArr = new String[i12];
-                strArr[0] = lowerCase;
-                if (translitString != null) {
-                    strArr[1] = translitString;
-                }
-                ArrayList arrayList2 = new ArrayList();
-                for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    MessageObject messageObject = (MessageObject) arrayList.get(i13);
-                    int i14 = 0;
-                    while (true) {
-                        if (i14 < i12) {
-                            String str3 = strArr[i14];
-                            String documentName = messageObject.getDocumentName();
-                            if (documentName != null && documentName.length() != 0) {
-                                if (documentName.toLowerCase().contains(str3)) {
-                                    arrayList2.add(messageObject);
-                                } else {
-                                    if (messageObject.type == 0) {
-                                        document = messageObject.messageOwner.media.webpage.document;
-                                    } else {
-                                        document = messageObject.messageOwner.media.document;
-                                    }
-                                    int i15 = 0;
-                                    while (true) {
-                                        if (i15 < document.attributes.size()) {
-                                            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i15);
-                                            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                                                String str4 = documentAttribute.performer;
-                                                if (str4 != null) {
-                                                    z10 = str4.toLowerCase().contains(str3);
-                                                } else {
-                                                    z10 = false;
-                                                }
-                                                if (!z10 && (str = documentAttribute.title) != null) {
-                                                    z10 = str.toLowerCase().contains(str3);
-                                                }
-                                            } else {
-                                                i15++;
-                                            }
-                                        } else {
-                                            z10 = false;
-                                        }
-                                    }
-                                    if (z10) {
-                                        arrayList2.add(messageObject);
-                                    }
-                                }
-                            }
-                            i14++;
-                        }
-                    }
-                }
-                AndroidUtilities.runOnUIThread(new g8(h8Var, arrayList2, str2));
-                return;
-            default:
-                i8 i8Var = h8Var.f24710n;
-                if (i8Var.h) {
-                    i8Var.f25004f = true;
-                    h8Var.d = arrayList;
-                    h8Var.e = str2;
-                    h8Var.l();
-                    i8Var.f25017r.n0(0);
-                    org.telegram.messenger.rk.q(R.string.NoAudioFoundPlayerInfo, new Object[]{str2}, i8Var.f25028y);
-                    return;
-                }
-                return;
+    public final boolean D(s4.c1 c1Var) {
+        if (this.f24245n.f24580v0 && c1Var.b() == 0) {
+            return false;
         }
+        return true;
     }
 
-    public g8(h8 h8Var, ArrayList arrayList, String str) {
-        this.f24444b = h8Var;
-        this.f24445c = arrayList;
-        this.d = str;
+    public final void E(String str) {
+        if (this.f24244f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f24244f);
+            this.f24244f = null;
+        }
+        if (str == null) {
+            this.e = null;
+            this.d.clear();
+            l();
+            return;
+        }
+        DispatchQueue dispatchQueue = Utilities.searchQueue;
+        e8 e8Var = new e8(this, str, 0);
+        this.f24244f = e8Var;
+        dispatchQueue.postRunnable(e8Var, 300L);
+    }
+
+    @Override
+    public final int h() {
+        int size;
+        h8 h8Var = this.f24245n;
+        boolean z10 = h8Var.f24580v0;
+        if (h8Var.f24561f) {
+            size = this.d.size();
+        } else if (h8Var.f24584x0.size() > 1) {
+            size = h8Var.f24584x0.size();
+        } else {
+            return 0;
+        }
+        return size + (z10 ? 1 : 0);
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (this.f24245n.f24580v0 && i10 == 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void l() {
+        boolean z10;
+        boolean z11;
+        super.l();
+        h8 h8Var = this.f24245n;
+        View view = h8Var.e;
+        n7 n7Var = h8Var.E;
+        s7 s7Var = h8Var.f24569n;
+        int i10 = 0;
+        if (h8Var.f24584x0.size() > 1) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10 != this.h) {
+            if (h8Var.f24584x0.size() > 1) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            this.h = z11;
+            if (z11) {
+                s7Var.setVisibility(0);
+                s7Var.setTranslationY(AndroidUtilities.displaySize.y);
+                s7Var.animate().translationY(0.0f).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                    public final g8 f23236b;
+
+                    {
+                        this.f23236b = this;
+                    }
+
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        ViewGroup viewGroup;
+                        ViewGroup viewGroup2;
+                        switch (r2) {
+                            case 0:
+                                viewGroup = ((org.telegram.ui.ActionBar.f3) this.f23236b.f24245n).containerView;
+                                viewGroup.invalidate();
+                                return;
+                            default:
+                                viewGroup2 = ((org.telegram.ui.ActionBar.f3) this.f23236b.f24245n).containerView;
+                                viewGroup2.invalidate();
+                                return;
+                        }
+                    }
+                }).setDuration(420L).setInterpolator(qr.h).start();
+            } else {
+                s7Var.animate().translationY(AndroidUtilities.displaySize.y).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                    public final g8 f23236b;
+
+                    {
+                        this.f23236b = this;
+                    }
+
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        ViewGroup viewGroup;
+                        ViewGroup viewGroup2;
+                        switch (r2) {
+                            case 0:
+                                viewGroup = ((org.telegram.ui.ActionBar.f3) this.f23236b.f24245n).containerView;
+                                viewGroup.invalidate();
+                                return;
+                            default:
+                                viewGroup2 = ((org.telegram.ui.ActionBar.f3) this.f23236b.f24245n).containerView;
+                                viewGroup2.invalidate();
+                                return;
+                        }
+                    }
+                }).setDuration(420L).setInterpolator(qr.h).withEndAction(new ng(this, 9)).start();
+            }
+        }
+        if (h8Var.f24584x0.size() > 1) {
+            n7Var.setBackgroundColor(h8Var.getThemedColor(org.telegram.ui.ActionBar.i6.Ri));
+            view.setVisibility(0);
+            s7Var.setPadding(0, s7Var.getPaddingTop(), 0, AndroidUtilities.dp(231.0f));
+        } else {
+            n7Var.setBackgroundColor(h8Var.getThemedColor(org.telegram.ui.ActionBar.i6.Ri));
+            view.setVisibility(0);
+            s7Var.setPadding(0, s7Var.getPaddingTop(), 0, 0);
+        }
+        h8Var.v.setVisibility((h8Var.h && h8Var.f24576s.h() == 0) ? 8 : 8);
+        h8Var.E0();
+    }
+
+    @Override
+    public final void v(s4.c1 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g8.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.ActionBar.e6 e6Var;
+        Context context = this.f24243c;
+        if (i10 == 1) {
+            kn knVar = new kn(context, 10);
+            knVar.setTag(-33024);
+            return new s4.c1(knVar);
+        }
+        boolean currentPlaylistIsGlobalSearch = MediaController.getInstance().currentPlaylistIsGlobalSearch();
+        e6Var = ((org.telegram.ui.ActionBar.f3) this.f24245n).resourcesProvider;
+        return new s4.c1(new org.telegram.ui.Cells.x(context, currentPlaylistIsGlobalSearch ? 1 : 0, e6Var));
     }
 }

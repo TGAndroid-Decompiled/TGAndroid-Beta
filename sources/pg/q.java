@@ -3,17 +3,17 @@ package pg;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.q81;
-public final class q extends q81 {
-    public final ai.d1 f41250a;
+import org.telegram.ui.Components.a81;
+public final class q extends a81 {
+    public final ai.d1 f40943a;
 
     public q(ai.d1 d1Var) {
-        this.f41250a = d1Var;
+        this.f40943a = d1Var;
     }
 
     @Override
     public final View d(int i10) {
-        ai.d1 d1Var = this.f41250a;
+        ai.d1 d1Var = this.f40943a;
         if (i10 != 1) {
             if (i10 != 2) {
                 return (t) d1Var.f683b;

@@ -1,116 +1,153 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import j$.util.Objects;
-import java.util.ArrayList;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-public class g51 extends org.telegram.ui.ActionBar.f3 {
-    public final int f24419b;
-    public final GradientDrawable f24420c;
-    public final f51 d;
-    public final u51 e;
-    public int f24421f;
+import org.telegram.messenger.UserConfig;
+public final class g51 extends lw0 {
+    public final int f24194a = UserConfig.selectedAccount;
+    public boolean f24195b = false;
+    public final float[] f24196c = new float[3];
+    public final float[] d = {0.0f, 150.0f, 300.0f};
+    public final float[] e = {0.0f, 0.0f, 0.0f};
+    public long f24197f = 0;
+    public boolean f24198g = false;
+    public final DecelerateInterpolator h = new DecelerateInterpolator();
+    public boolean f24199i;
+    public final Paint f24200j;
 
-    public g51(Context context, org.telegram.ui.ActionBar.n2 n2Var, u51 u51Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(1, context, f6Var, true);
-        this.f24419b = AndroidUtilities.dp(12.0f);
-        this.f24420c = new GradientDrawable();
-        f51 f51Var = new f51(this, context);
-        this.d = f51Var;
-        f51Var.addView(u51Var, w7.y5.c(-1.0f, -1));
-        this.containerView = f51Var;
-        this.e = u51Var;
-        u51Var.setParentFragment(n2Var);
-        u51Var.setOnScrollListener(new d51(this));
-    }
-
-    public static void m(g51 g51Var) {
-        u51 u51Var = g51Var.e;
-        if (u51Var.c()) {
-            g51Var.f24421f = u51Var.getContentTopOffset();
-            g51Var.containerView.invalidate();
+    public g51(boolean z10) {
+        if (z10) {
+            this.f24200j = new Paint(1);
         }
     }
 
     @Override
-    public final boolean canDismissWithSwipe() {
-        return false;
+    public final void b(int i10) {
+        Paint paint = this.f24200j;
+        if (paint != null) {
+            paint.setColor(i10);
+        }
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
-        u51 u51Var = this.e;
-        NotificationCenter notificationCenter = NotificationCenter.getInstance(u51Var.f28667a);
-        notificationCenter.removeObserver(u51Var, NotificationCenter.stickersDidLoad);
-        notificationCenter.removeObserver(u51Var, NotificationCenter.featuredStickersDidLoad);
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 2);
+    public final void c(boolean z10) {
+        this.f24195b = z10;
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        u51 u51Var = this.e;
-        Objects.requireNonNull(u51Var);
-        x6 x6Var = new x6(u51Var, 10);
-        j51 j51Var = u51Var.h;
-        arrayList.add(new org.telegram.ui.ActionBar.l6(j51Var.f26146a, 32, null, null, null, null, org.telegram.ui.ActionBar.j6.O5));
-        ImageView imageView = j51Var.f26147b;
-        int i10 = org.telegram.ui.ActionBar.j6.Q5;
-        arrayList.add(new org.telegram.ui.ActionBar.l6(imageView, 8, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(j51Var.f26148c, 8, null, null, null, null, i10));
-        ci.h2 h2Var = j51Var.e;
-        arrayList.add(new org.telegram.ui.ActionBar.l6(h2Var, 4, null, null, null, null, org.telegram.ui.ActionBar.j6.R5));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(h2Var, 8388608, null, null, null, null, org.telegram.ui.ActionBar.j6.P5));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(h2Var, 16777216, null, null, null, null, org.telegram.ui.ActionBar.j6.Mh));
-        t51 t51Var = u51Var.f28673s;
-        k51 k51Var = u51Var.f28671n;
-        t51Var.getClass();
-        org.telegram.ui.Cells.t3.a(arrayList, k51Var, x6Var);
-        arrayList.add(new org.telegram.ui.ActionBar.l6(k51Var, 4, new Class[]{org.telegram.ui.Cells.r3.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(k51Var, 4, new Class[]{org.telegram.ui.Cells.r3.class}, new String[]{"valueTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.f19511z6));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(k51Var, 4, new Class[]{org.telegram.ui.Cells.r3.class}, new String[]{"addButton"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.Sh));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(k51Var, 4, new Class[]{org.telegram.ui.Cells.r3.class}, new String[]{"delButton"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.Rh));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(k51Var, 0, new Class[]{org.telegram.ui.Cells.r3.class}, org.telegram.ui.ActionBar.j6.f19231k0, null, null, org.telegram.ui.ActionBar.j6.f19110d7));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(null, 0, null, null, null, x6Var, org.telegram.ui.ActionBar.j6.Nh));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(null, 0, null, null, null, x6Var, org.telegram.ui.ActionBar.j6.Qh));
-        org.telegram.ui.Cells.w3.a(arrayList, k51Var);
-        gg.g2 g2Var = u51Var.v;
-        k51 k51Var2 = u51Var.f28671n;
-        g2Var.getClass();
-        org.telegram.ui.Cells.t3.a(arrayList, k51Var2, x6Var);
-        int i11 = org.telegram.ui.ActionBar.j6.Te;
-        arrayList.add(new org.telegram.ui.ActionBar.l6(k51Var2, 4, new Class[]{org.telegram.ui.Cells.p8.class}, new String[]{"textView"}, null, null, -1, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(k51Var2, 4, new Class[]{org.telegram.ui.Cells.p8.class}, new String[]{"urlTextView"}, null, null, -1, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(k51Var2, 8, new Class[]{org.telegram.ui.Cells.p8.class}, new String[]{"buttonView"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.Ve));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(null, 0, null, null, null, x6Var, org.telegram.ui.ActionBar.j6.Ue));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(null, 0, null, null, null, x6Var, i11));
-        ImageView imageView2 = g2Var.L;
-        int i12 = org.telegram.ui.ActionBar.j6.Le;
-        arrayList.add(new org.telegram.ui.ActionBar.l6(imageView2, 8, null, null, null, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(g2Var.M, 4, null, null, null, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(u51Var.f28670f, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.V5));
-        FrameLayout frameLayout = u51Var.f28674w;
-        int i13 = org.telegram.ui.ActionBar.j6.f19180h5;
-        arrayList.add(new org.telegram.ui.ActionBar.l6(frameLayout, 1, null, null, null, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.d, 0, null, null, new Drawable[]{this.shadowDrawable}, null, i13));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.d, 0, null, null, null, null, org.telegram.ui.ActionBar.j6.Ii));
-        return arrayList;
+    public final void d() {
+        this.f24197f = System.currentTimeMillis();
+        this.f24198g = true;
+        invalidateSelf();
     }
 
     @Override
-    public final void setAllowNestedScroll(boolean z10) {
-        this.allowNestedScroll = z10;
+    public final void draw(Canvas canvas) {
+        int dp;
+        int i10;
+        int i11 = getBounds().left;
+        if (this.f24195b) {
+            dp = AndroidUtilities.dp(8.5f);
+            i10 = getBounds().top;
+        } else {
+            dp = AndroidUtilities.dp(9.3f);
+            i10 = getBounds().top;
+        }
+        int i12 = dp + i10;
+        Paint paint = this.f24200j;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.i6.f18812c2;
+            paint.setAlpha(255);
+        }
+        float f7 = i12;
+        float[] fArr = this.f24196c;
+        canvas.drawCircle(AndroidUtilities.dp(3.0f) + i11, f7, fArr[0] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(9.0f) + i11, f7, fArr[1] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(15.0f) + i11, f7, fArr[2] * AndroidUtilities.density, paint);
+        f();
     }
 
     @Override
-    public final void show() {
-        super.show();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 2);
+    public final void e() {
+        for (int i10 = 0; i10 < 3; i10++) {
+            this.e[i10] = 0.0f;
+            this.f24196c[i10] = 1.33f;
+        }
+        float[] fArr = this.d;
+        fArr[0] = 0.0f;
+        fArr[1] = 150.0f;
+        fArr[2] = 300.0f;
+        this.f24198g = false;
+    }
+
+    public final void f() {
+        if (this.f24198g) {
+            if (NotificationCenter.getInstance(this.f24194a).isAnimationInProgress() && !this.f24199i) {
+                AndroidUtilities.runOnUIThread(new jq0(this, 26), 100L);
+                return;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f24197f;
+            this.f24197f = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            for (int i10 = 0; i10 < 3; i10++) {
+                float[] fArr = this.e;
+                float f7 = fArr[i10] + ((float) j3);
+                fArr[i10] = f7;
+                float[] fArr2 = this.d;
+                float f10 = f7 - fArr2[i10];
+                float[] fArr3 = this.f24196c;
+                if (f10 > 0.0f) {
+                    DecelerateInterpolator decelerateInterpolator = this.h;
+                    if (f10 <= 320.0f) {
+                        fArr3[i10] = decelerateInterpolator.getInterpolation(f10 / 320.0f) + 1.33f;
+                    } else if (f10 <= 640.0f) {
+                        fArr3[i10] = (1.0f - decelerateInterpolator.getInterpolation((f10 - 320.0f) / 320.0f)) + 1.33f;
+                    } else if (f10 >= 800.0f) {
+                        fArr[i10] = 0.0f;
+                        fArr2[i10] = 0.0f;
+                        fArr3[i10] = 1.33f;
+                    } else {
+                        fArr3[i10] = 1.33f;
+                    }
+                } else {
+                    fArr3[i10] = 1.33f;
+                }
+            }
+            a();
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Paint paint = this.f24200j;
+        if (paint != null) {
+            paint.setColorFilter(colorFilter);
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

@@ -1,57 +1,226 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class qf0 {
-    public final rf0 f27552a = new rf0();
-    public final rf0 f27553b = new rf0();
-    public final rf0 f27554c = new rf0();
-    public final rf0 d = new rf0();
-    public final ByteBuffer e;
-    public int f27555f;
+import android.app.Activity;
+import android.os.Build;
+import android.provider.Settings;
+import android.view.MotionEvent;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.PhotoViewer;
+public abstract class qf0 extends FrameLayout {
+    public float E;
+    public boolean F;
+    public boolean G;
+    public int H;
+    public int I;
+    public float J;
+    public boolean K;
+    public bc0 L;
+    public int f27319a;
+    public PhotoViewer f27320b;
+    public LinearLayout f27321c;
+    public TextView d;
+    public TextView e;
+    public pu f27322f;
+    public ci.eb h;
+    public RadialProgressView f27323n;
+    public View f27324r;
+    public String f27325s;
+    public ArrayList v;
+    public String f27326w;
+    public boolean f27327x;
+    public TLRPC.WebPage f27328y;
 
-    public qf0() {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.e = allocateDirect;
-        allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+    public static void a(org.telegram.ui.iu0 iu0Var, String str) {
+        String str2;
+        double ceil;
+        int videoDuration = iu0Var.getVideoDuration() / 1000;
+        ArrayList arrayList = iu0Var.v;
+        arrayList.clear();
+        if (videoDuration > 15) {
+            String[] split = str.split("\\|");
+            String t10 = a4.a.t(new StringBuilder(), split[0].split("\\$")[0], "2/");
+            String str3 = split[0].split("\\$N")[1];
+            if (split.length == 3) {
+                str2 = split[2].split("M#")[1];
+            } else if (split.length == 2) {
+                str2 = split[1].split("t#")[1];
+            } else {
+                str2 = split[3].split("M#")[1];
+            }
+            if (videoDuration <= 100) {
+                ceil = Math.ceil(videoDuration / 25.0f);
+            } else if (videoDuration <= 250) {
+                ceil = Math.ceil((videoDuration / 2.0f) / 25.0f);
+            } else if (videoDuration <= 500) {
+                ceil = Math.ceil((videoDuration / 4.0f) / 25.0f);
+            } else if (videoDuration <= 1000) {
+                ceil = Math.ceil((videoDuration / 5.0f) / 25.0f);
+            } else {
+                ceil = Math.ceil((videoDuration / 10.0f) / 25.0f);
+            }
+            int i10 = (int) ceil;
+            for (int i11 = 0; i11 < i10; i11++) {
+                Locale locale = Locale.ROOT;
+                arrayList.add(t10 + "M" + i11 + str3 + "&sigh=" + str2);
+            }
+        }
     }
 
-    public final void a() {
-        ByteBuffer byteBuffer = this.e;
-        byteBuffer.position(0);
-        rf0 rf0Var = this.f27552a;
-        if (rf0Var.f27947f == null) {
-            rf0Var.a();
+    public final void b(boolean z10) {
+        bc0 bc0Var = this.L;
+        if (!z10 && this.G) {
+            AndroidUtilities.runOnUIThread(bc0Var, 500L);
+        } else if (z10 && !this.G) {
+            AndroidUtilities.cancelRunOnUIThread(bc0Var);
         }
-        float[] fArr = rf0Var.f27947f;
-        rf0 rf0Var2 = this.f27553b;
-        if (rf0Var2.f27947f == null) {
-            rf0Var2.a();
-        }
-        float[] fArr2 = rf0Var2.f27947f;
-        rf0 rf0Var3 = this.f27554c;
-        if (rf0Var3.f27947f == null) {
-            rf0Var3.a();
-        }
-        float[] fArr3 = rf0Var3.f27947f;
-        rf0 rf0Var4 = this.d;
-        if (rf0Var4.f27947f == null) {
-            rf0Var4.a();
-        }
-        float[] fArr4 = rf0Var4.f27947f;
-        for (int i10 = 0; i10 < 200; i10++) {
-            byteBuffer.put((byte) (fArr2[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr3[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr4[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr[i10] * 255.0f));
-        }
-        byteBuffer.position(0);
     }
 
-    public final boolean b() {
-        if (this.f27552a.b() && this.f27553b.b() && this.f27554c.b() && this.d.b()) {
+    public final java.lang.String c(int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qf0.c(int):java.lang.String");
+    }
+
+    public final boolean d() {
+        return this.f27327x;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.K) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public final boolean e() {
+        boolean z10;
+        if (this.f27327x && "inapp".equals(MessagesController.getInstance(this.f27319a).youtubePipType)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (!z10 && Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(getContext())) {
+            c5.B((Activity) getContext(), null, false);
+            return false;
+        } else if (this.f27323n.getVisibility() == 0) {
+            return false;
+        } else {
+            if (eg0.f23635p0.P) {
+                eg0.j(false);
+                AndroidUtilities.runOnUIThread(new mf0(this, 0), 300L);
+                return true;
+            }
+            this.h.setVisibility(0);
+            Activity activity = (Activity) getContext();
+            pu puVar = this.f27322f;
+            TLRPC.WebPage webPage = this.f27328y;
+            if (eg0.x(z10, activity, this, puVar, webPage.embed_width, webPage.embed_height, false)) {
+                eg0.w(PhotoViewer.t1());
+            }
             return true;
         }
-        return false;
+    }
+
+    public final void f() {
+        if (this.G && this.f27327x) {
+            h("pauseVideo();");
+            this.G = false;
+            b(true);
+        }
+    }
+
+    public final void g() {
+        if (!this.G && this.f27327x) {
+            h("playVideo();");
+            this.G = true;
+            b(false);
+        }
+    }
+
+    public float getBufferedPosition() {
+        return this.J;
+    }
+
+    public int getCurrentPosition() {
+        return this.I;
+    }
+
+    public int getVideoDuration() {
+        return this.H;
+    }
+
+    public WebView getWebView() {
+        return this.f27322f;
+    }
+
+    public final void h(String str) {
+        this.f27322f.evaluateJavascript(str, null);
+    }
+
+    public final void i(long j3) {
+        boolean z10 = this.G;
+        this.I = (int) j3;
+        if (z10) {
+            f();
+        }
+        if (z10) {
+            AndroidUtilities.runOnUIThread(new ai.j(this, j3, 21), 100L);
+            return;
+        }
+        h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        pu puVar = this.f27322f;
+        if (puVar.getParent() == this) {
+            TLRPC.WebPage webPage = this.f27328y;
+            int i12 = webPage.embed_width;
+            int i13 = 100;
+            if (i12 == 0) {
+                i12 = 100;
+            }
+            int i14 = webPage.embed_height;
+            if (i14 != 0) {
+                i13 = i14;
+            }
+            int size = View.MeasureSpec.getSize(i10);
+            int size2 = View.MeasureSpec.getSize(i11);
+            float f7 = i12;
+            float f10 = i13;
+            float min = Math.min(size / f7, size2 / f10);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) puVar.getLayoutParams();
+            int i15 = (int) (f7 * min);
+            layoutParams.width = i15;
+            int i16 = (int) (f10 * min);
+            layoutParams.height = i16;
+            layoutParams.topMargin = (size2 - i16) / 2;
+            layoutParams.leftMargin = (size - i15) / 2;
+        }
+        super.onMeasure(i10, i11);
+    }
+
+    public void setPlaybackSpeed(float f7) {
+        this.E = f7;
+        if (this.f27323n.getVisibility() != 0) {
+            if (this.f27327x) {
+                h("setPlaybackSpeed(" + f7 + ");");
+                return;
+            }
+            return;
+        }
+        this.F = true;
+    }
+
+    public void setTouchDisabled(boolean z10) {
+        this.K = z10;
     }
 }

@@ -3,24 +3,24 @@ package r7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.api.Status;
-import w7.f0;
+import w7.e0;
 public final class v extends o6.a implements com.google.android.gms.common.api.q {
     public static final Parcelable.Creator<v> CREATOR = new m(4);
-    public final Status f42414a;
+    public final Status f42090a;
 
     public v(Status status) {
-        this.f42414a = status;
+        this.f42090a = status;
     }
 
     @Override
     public final Status i() {
-        return this.f42414a;
+        return this.f42090a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.k(parcel, 1, this.f42414a, i10);
-        f0.r(parcel, q6);
+        int q6 = e0.q(parcel, 20293);
+        e0.k(parcel, 1, this.f42090a, i10);
+        e0.r(parcel, q6);
     }
 }

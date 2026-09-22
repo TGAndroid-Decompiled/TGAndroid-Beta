@@ -1,21 +1,20 @@
 package m4;
 
 import android.os.RemoteException;
-import b2.s1;
 import b2.x1;
 import java.lang.ref.WeakReference;
 import java.util.List;
 public final class y implements b2.z0 {
-    public final WeakReference f14954a;
-    public final WeakReference f14955b;
+    public final WeakReference f14720a;
+    public final WeakReference f14721b;
 
-    public y(a0 a0Var, j1 j1Var) {
-        this.f14954a = new WeakReference(a0Var);
-        this.f14955b = new WeakReference(j1Var);
+    public y(a0 a0Var, k1 k1Var) {
+        this.f14720a = new WeakReference(a0Var);
+        this.f14721b = new WeakReference(k1Var);
     }
 
     public final a0 a() {
-        return (a0) this.f14954a.get();
+        return (a0) this.f14720a.get();
     }
 
     @Override
@@ -25,55 +24,55 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 u0Var = h1Var.f14787a;
-            int i10 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i11 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            int i12 = h1Var.h;
-            boolean z11 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z12 = h1Var.f14802s;
-            boolean z13 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z14 = h1Var.v;
-            boolean z15 = h1Var.f14805w;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var2 = h1Var.E;
+            i1 i1Var = a2.f14463s;
+            b2.u0 u0Var = i1Var.f14555a;
+            int i10 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i11 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            int i12 = i1Var.h;
+            boolean z11 = i1Var.f14560i;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z12 = i1Var.f14570s;
+            boolean z13 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z14 = i1Var.v;
+            boolean z15 = i1Var.f14573w;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var2 = i1Var.E;
             try {
                 if (!k1Var.p()) {
                     q1Var = q1Var2;
-                    if (o1Var.f14879a.f2929b >= k1Var.o()) {
+                    if (p1Var.f14651a.f2927b >= k1Var.o()) {
                         z10 = false;
                         e2.d.g(z10);
-                        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-                        a2.f14688c.a(true, true);
-                        a2.h.f14822i.j(eVar);
+                        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+                        a2.f14450c.a(true, true);
+                        a2.h.f14595i.j(eVar);
                         return;
                     }
                 } else {
                     q1Var = q1Var2;
                 }
-                a2.h.f14822i.j(eVar);
+                a2.h.f14595i.j(eVar);
                 return;
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
@@ -81,8 +80,8 @@ public final class y implements b2.z0 {
             }
             z10 = true;
             e2.d.g(z10);
-            a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
         }
     }
 
@@ -91,7 +90,7 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
             a2.f(x0Var);
@@ -108,50 +107,50 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 u0Var = h1Var.f14787a;
-            int i10 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i11 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            int i12 = h1Var.h;
-            boolean z12 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z13 = h1Var.f14802s;
-            boolean z14 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z15 = h1Var.v;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var = h1Var.E;
-            if (!k1Var.p() && o1Var.f14879a.f2929b >= k1Var.o()) {
+            i1 i1Var = a2.f14463s;
+            b2.u0 u0Var = i1Var.f14555a;
+            int i10 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i11 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            int i12 = i1Var.h;
+            boolean z12 = i1Var.f14560i;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z13 = i1Var.f14570s;
+            boolean z14 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z15 = i1Var.v;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var = i1Var.E;
+            if (!k1Var.p() && p1Var.f14651a.f2927b >= k1Var.o()) {
                 z11 = false;
             } else {
                 z11 = true;
             }
             e2.d.g(z11);
-            a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z12, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z13, z14, i15, i16, i17, z15, z10, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z12, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z13, z14, i15, i16, i17, z15, z10, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
             try {
-                a2.h.f14822i.getClass();
+                a2.h.f14595i.getClass();
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
             }
@@ -165,51 +164,51 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 u0Var = h1Var.f14787a;
-            int i10 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i11 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            int i12 = h1Var.h;
-            boolean z12 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z13 = h1Var.f14802s;
-            boolean z14 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z15 = h1Var.f14805w;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var = h1Var.E;
-            if (!k1Var.p() && o1Var.f14879a.f2929b >= k1Var.o()) {
+            i1 i1Var = a2.f14463s;
+            b2.u0 u0Var = i1Var.f14555a;
+            int i10 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i11 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            int i12 = i1Var.h;
+            boolean z12 = i1Var.f14560i;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z13 = i1Var.f14570s;
+            boolean z14 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z15 = i1Var.f14573w;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var = i1Var.E;
+            if (!k1Var.p() && p1Var.f14651a.f2927b >= k1Var.o()) {
                 z11 = false;
             } else {
                 z11 = true;
             }
             e2.d.g(z11);
-            a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z12, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z13, z14, i15, i16, i17, z10, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z12, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z13, z14, i15, i16, i17, z10, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
             try {
-                k0 k0Var = (k0) a2.h.f14822i.e;
-                k0Var.N(k0Var.f14821g.f14702t);
+                l0 l0Var = (l0) a2.h.f14595i.e;
+                l0Var.N(l0Var.f14594g.f14464t);
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
             }
@@ -224,55 +223,55 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 u0Var = h1Var.f14787a;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i11 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            int i12 = h1Var.h;
-            boolean z11 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z12 = h1Var.f14802s;
-            boolean z13 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z14 = h1Var.v;
-            boolean z15 = h1Var.f14805w;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var2 = h1Var.E;
+            i1 i1Var = a2.f14463s;
+            b2.u0 u0Var = i1Var.f14555a;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i11 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            int i12 = i1Var.h;
+            boolean z11 = i1Var.f14560i;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z12 = i1Var.f14570s;
+            boolean z13 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z14 = i1Var.v;
+            boolean z15 = i1Var.f14573w;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var2 = i1Var.E;
             try {
                 if (!k1Var.p()) {
                     q1Var = q1Var2;
-                    if (o1Var.f14879a.f2929b >= k1Var.o()) {
+                    if (p1Var.f14651a.f2927b >= k1Var.o()) {
                         z10 = false;
                         e2.d.g(z10);
-                        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-                        a2.f14688c.a(true, true);
-                        a2.h.f14822i.l(k0Var);
+                        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+                        a2.f14450c.a(true, true);
+                        a2.h.f14595i.l(k0Var);
                         return;
                     }
                 } else {
                     q1Var = q1Var2;
                 }
-                a2.h.f14822i.l(k0Var);
+                a2.h.f14595i.l(k0Var);
                 return;
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
@@ -280,8 +279,8 @@ public final class y implements b2.z0 {
             }
             z10 = true;
             e2.d.g(z10);
-            a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
         }
     }
 
@@ -292,55 +291,55 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 u0Var = h1Var.f14787a;
-            int i10 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i11 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            int i12 = h1Var.h;
-            boolean z11 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var2 = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z12 = h1Var.f14802s;
-            boolean z13 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z14 = h1Var.v;
-            boolean z15 = h1Var.f14805w;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var2 = h1Var.E;
+            i1 i1Var = a2.f14463s;
+            b2.u0 u0Var = i1Var.f14555a;
+            int i10 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i11 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            int i12 = i1Var.h;
+            boolean z11 = i1Var.f14560i;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var2 = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z12 = i1Var.f14570s;
+            boolean z13 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z14 = i1Var.v;
+            boolean z15 = i1Var.f14573w;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var2 = i1Var.E;
             try {
                 if (!k1Var.p()) {
                     q1Var = q1Var2;
-                    if (o1Var.f14879a.f2929b >= k1Var.o()) {
+                    if (p1Var.f14651a.f2927b >= k1Var.o()) {
                         z10 = false;
                         e2.d.g(z10);
-                        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var2, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var, j3, j10, j11, s1Var, q1Var);
-                        a2.f14688c.a(true, true);
-                        a2.h.f14822i.r();
+                        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var2, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var, j3, j10, j11, s1Var, q1Var);
+                        a2.f14450c.a(true, true);
+                        a2.h.f14595i.r();
                         return;
                     }
                 } else {
                     q1Var = q1Var2;
                 }
-                a2.h.f14822i.r();
+                a2.h.f14595i.r();
                 return;
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
@@ -348,8 +347,8 @@ public final class y implements b2.z0 {
             }
             z10 = true;
             e2.d.g(z10);
-            a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var2, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var2, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
         }
     }
 
@@ -358,15 +357,15 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            a2.f14701s = h1Var.b(i10, h1Var.f14806x, z10);
-            a2.f14688c.a(true, true);
+            i1 i1Var = a2.f14463s;
+            a2.f14463s = i1Var.b(i10, i1Var.f14574x, z10);
+            a2.f14450c.a(true, true);
             try {
-                k0 k0Var = (k0) a2.h.f14822i.e;
-                k0Var.N(k0Var.f14821g.f14702t);
+                l0 l0Var = (l0) a2.h.f14595i.e;
+                l0Var.N(l0Var.f14594g.f14464t);
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
             }
@@ -380,57 +379,57 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 u0Var = h1Var.f14787a;
-            int i10 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i11 = h1Var.f14790f;
-            int i12 = h1Var.h;
-            boolean z11 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z12 = h1Var.f14802s;
-            boolean z13 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z14 = h1Var.v;
-            boolean z15 = h1Var.f14805w;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var2 = h1Var.E;
+            i1 i1Var = a2.f14463s;
+            b2.u0 u0Var = i1Var.f14555a;
+            int i10 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i11 = i1Var.f14558f;
+            int i12 = i1Var.h;
+            boolean z11 = i1Var.f14560i;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z12 = i1Var.f14570s;
+            boolean z13 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z14 = i1Var.v;
+            boolean z15 = i1Var.f14573w;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var2 = i1Var.E;
             try {
                 if (!k1Var.p()) {
                     q1Var = q1Var2;
-                    if (o1Var.f14879a.f2929b >= k1Var.o()) {
+                    if (p1Var.f14651a.f2927b >= k1Var.o()) {
                         z10 = false;
                         e2.d.g(z10);
-                        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-                        a2.f14688c.a(true, true);
-                        k0 k0Var = (k0) a2.h.f14822i.e;
-                        k0Var.N(k0Var.f14821g.f14702t);
+                        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+                        a2.f14450c.a(true, true);
+                        l0 l0Var = (l0) a2.h.f14595i.e;
+                        l0Var.N(l0Var.f14594g.f14464t);
                         return;
                     }
                 } else {
                     q1Var = q1Var2;
                 }
-                k0 k0Var2 = (k0) a2.h.f14822i.e;
-                k0Var2.N(k0Var2.f14821g.f14702t);
+                l0 l0Var2 = (l0) a2.h.f14595i.e;
+                l0Var2.N(l0Var2.f14594g.f14464t);
                 return;
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
@@ -438,8 +437,8 @@ public final class y implements b2.z0 {
             }
             z10 = true;
             e2.d.g(z10);
-            a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
         }
     }
 
@@ -449,54 +448,54 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            j1 j1Var = (j1) this.f14955b.get();
-            if (j1Var == null) {
+            k1 k1Var = (k1) this.f14721b.get();
+            if (k1Var == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 W = j1Var.W();
-            int i11 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i12 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            int i13 = h1Var.h;
-            boolean z11 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i14 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i15 = h1Var.f14801r;
-            boolean z12 = h1Var.f14802s;
-            boolean z13 = h1Var.f14803t;
-            int i16 = h1Var.f14804u;
-            boolean z14 = h1Var.f14805w;
-            int i17 = h1Var.f14806x;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var = h1Var.E;
+            i1 i1Var = a2.f14463s;
+            b2.u0 W = k1Var.W();
+            int i11 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i12 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            int i13 = i1Var.h;
+            boolean z11 = i1Var.f14560i;
+            b2.k1 k1Var2 = i1Var.f14561j;
+            int i14 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i15 = i1Var.f14569r;
+            boolean z12 = i1Var.f14570s;
+            boolean z13 = i1Var.f14571t;
+            int i16 = i1Var.f14572u;
+            boolean z14 = i1Var.f14573w;
+            int i17 = i1Var.f14574x;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var = i1Var.E;
             boolean z15 = false;
             if (i10 == 3 && z13 && i17 == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            e2.d.g((k1Var.p() || o1Var.f14879a.f2929b < k1Var.o()) ? true : true);
-            a2.f14701s = new h1(W, i11, o1Var, a1Var, a1Var2, i12, v0Var, i13, z11, x1Var, k1Var, i14, n0Var, f7, eVar, dVar, lVar, i15, z12, z13, i16, i17, i10, z10, z14, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            e2.d.g((k1Var2.p() || p1Var.f14651a.f2927b < k1Var2.o()) ? true : true);
+            a2.f14463s = new i1(W, i11, p1Var, a1Var, a1Var2, i12, v0Var, i13, z11, x1Var, k1Var2, i14, n0Var, f7, eVar, dVar, lVar, i15, z12, z13, i16, i17, i10, z10, z14, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
             try {
-                i0 i0Var = a2.h.f14822i;
-                j1Var.W();
-                k0 k0Var = (k0) i0Var.e;
-                k0Var.N(k0Var.f14821g.f14702t);
+                j0 j0Var = a2.h.f14595i;
+                k1Var.W();
+                l0 l0Var = (l0) j0Var.e;
+                l0Var.N(l0Var.f14594g.f14464t);
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
             }
@@ -508,15 +507,15 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            a2.f14701s = h1Var.b(h1Var.f14804u, i10, h1Var.f14803t);
-            a2.f14688c.a(true, true);
+            i1 i1Var = a2.f14463s;
+            a2.f14463s = i1Var.b(i1Var.f14572u, i10, i1Var.f14571t);
+            a2.f14450c.a(true, true);
             try {
-                k0 k0Var = (k0) a2.h.f14822i.e;
-                k0Var.N(k0Var.f14821g.f14702t);
+                l0 l0Var = (l0) a2.h.f14595i.e;
+                l0Var.N(l0Var.f14594g.f14464t);
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
             }
@@ -530,57 +529,57 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            int i10 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i11 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            int i12 = h1Var.h;
-            boolean z11 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z12 = h1Var.f14802s;
-            boolean z13 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z14 = h1Var.v;
-            boolean z15 = h1Var.f14805w;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var2 = h1Var.E;
+            i1 i1Var = a2.f14463s;
+            int i10 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i11 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            int i12 = i1Var.h;
+            boolean z11 = i1Var.f14560i;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z12 = i1Var.f14570s;
+            boolean z13 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z14 = i1Var.v;
+            boolean z15 = i1Var.f14573w;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var2 = i1Var.E;
             try {
                 if (!k1Var.p()) {
                     q1Var = q1Var2;
-                    if (o1Var.f14879a.f2929b >= k1Var.o()) {
+                    if (p1Var.f14651a.f2927b >= k1Var.o()) {
                         z10 = false;
                         e2.d.g(z10);
-                        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-                        a2.f14688c.a(true, true);
-                        k0 k0Var = (k0) a2.h.f14822i.e;
-                        k0Var.N(k0Var.f14821g.f14702t);
+                        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+                        a2.f14450c.a(true, true);
+                        l0 l0Var = (l0) a2.h.f14595i.e;
+                        l0Var.N(l0Var.f14594g.f14464t);
                         return;
                     }
                 } else {
                     q1Var = q1Var2;
                 }
-                k0 k0Var2 = (k0) a2.h.f14822i.e;
-                k0Var2.N(k0Var2.f14821g.f14702t);
+                l0 l0Var2 = (l0) a2.h.f14595i.e;
+                l0Var2.N(l0Var2.f14594g.f14464t);
                 return;
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
@@ -588,8 +587,8 @@ public final class y implements b2.z0 {
             }
             z10 = true;
             e2.d.g(z10);
-            a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
         }
     }
 
@@ -601,47 +600,47 @@ public final class y implements b2.z0 {
             return;
         }
         a2.v();
-        h1 h1Var = a2.f14701s;
-        b2.u0 u0Var = h1Var.f14787a;
-        int i10 = h1Var.f14788b;
-        o1 o1Var = h1Var.f14789c;
-        b2.a1 a1Var = h1Var.d;
-        b2.a1 a1Var2 = h1Var.e;
-        int i11 = h1Var.f14790f;
-        b2.v0 v0Var = h1Var.f14791g;
-        int i12 = h1Var.h;
-        boolean z11 = h1Var.f14792i;
-        b2.k1 k1Var = h1Var.f14793j;
-        int i13 = h1Var.f14794k;
-        x1 x1Var = h1Var.f14795l;
-        float f7 = h1Var.f14797n;
-        b2.e eVar = h1Var.f14798o;
-        d2.d dVar = h1Var.f14799p;
-        b2.l lVar = h1Var.f14800q;
-        int i14 = h1Var.f14801r;
-        boolean z12 = h1Var.f14802s;
-        boolean z13 = h1Var.f14803t;
-        int i15 = h1Var.f14804u;
-        boolean z14 = h1Var.v;
-        boolean z15 = h1Var.f14805w;
-        int i16 = h1Var.f14806x;
-        int i17 = h1Var.f14807y;
-        b2.n0 n0Var2 = h1Var.f14808z;
-        long j3 = h1Var.A;
-        long j10 = h1Var.B;
-        long j11 = h1Var.C;
-        s1 s1Var = h1Var.D;
-        b2.q1 q1Var = h1Var.E;
-        if (!k1Var.p() && o1Var.f14879a.f2929b >= k1Var.o()) {
+        i1 i1Var = a2.f14463s;
+        b2.u0 u0Var = i1Var.f14555a;
+        int i10 = i1Var.f14556b;
+        p1 p1Var = i1Var.f14557c;
+        b2.a1 a1Var = i1Var.d;
+        b2.a1 a1Var2 = i1Var.e;
+        int i11 = i1Var.f14558f;
+        b2.v0 v0Var = i1Var.f14559g;
+        int i12 = i1Var.h;
+        boolean z11 = i1Var.f14560i;
+        b2.k1 k1Var = i1Var.f14561j;
+        int i13 = i1Var.f14562k;
+        x1 x1Var = i1Var.f14563l;
+        float f7 = i1Var.f14565n;
+        b2.e eVar = i1Var.f14566o;
+        d2.d dVar = i1Var.f14567p;
+        b2.l lVar = i1Var.f14568q;
+        int i14 = i1Var.f14569r;
+        boolean z12 = i1Var.f14570s;
+        boolean z13 = i1Var.f14571t;
+        int i15 = i1Var.f14572u;
+        boolean z14 = i1Var.v;
+        boolean z15 = i1Var.f14573w;
+        int i16 = i1Var.f14574x;
+        int i17 = i1Var.f14575y;
+        b2.n0 n0Var2 = i1Var.f14576z;
+        long j3 = i1Var.A;
+        long j10 = i1Var.B;
+        long j11 = i1Var.C;
+        b2.s1 s1Var = i1Var.D;
+        b2.q1 q1Var = i1Var.E;
+        if (!k1Var.p() && p1Var.f14651a.f2927b >= k1Var.o()) {
             z10 = false;
         } else {
             z10 = true;
         }
         e2.d.g(z10);
-        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-        a2.f14688c.a(true, true);
+        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+        a2.f14450c.a(true, true);
         try {
-            a2.h.f14822i.n(n0Var);
+            a2.h.f14595i.n(n0Var);
         } catch (RemoteException e) {
             e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
         }
@@ -656,12 +655,12 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            oi.f fVar = a2.f14690g.f14747b;
+            ni.f fVar = a2.f14452g.f14536b;
             e9.i0 s10 = fVar.s();
             for (int i10 = 0; i10 < s10.size(); i10++) {
                 r rVar = (r) s10.get(i10);
                 fVar.v(rVar);
-                a2.c(rVar, new j2.e(26));
+                a2.c(rVar, new j2.e(21));
             }
         }
     }
@@ -673,55 +672,55 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 u0Var = h1Var.f14787a;
-            int i11 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i12 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            boolean z11 = h1Var.f14792i;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z12 = h1Var.f14802s;
-            boolean z13 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z14 = h1Var.v;
-            boolean z15 = h1Var.f14805w;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var2 = h1Var.E;
+            i1 i1Var = a2.f14463s;
+            b2.u0 u0Var = i1Var.f14555a;
+            int i11 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i12 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            boolean z11 = i1Var.f14560i;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z12 = i1Var.f14570s;
+            boolean z13 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z14 = i1Var.v;
+            boolean z15 = i1Var.f14573w;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var2 = i1Var.E;
             try {
                 if (!k1Var.p()) {
                     q1Var = q1Var2;
-                    if (o1Var.f14879a.f2929b >= k1Var.o()) {
+                    if (p1Var.f14651a.f2927b >= k1Var.o()) {
                         z10 = false;
                         e2.d.g(z10);
-                        a2.f14701s = new h1(u0Var, i11, o1Var, a1Var, a1Var2, i12, v0Var, i10, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-                        a2.f14688c.a(true, true);
-                        a2.h.f14822i.o(i10);
+                        a2.f14463s = new i1(u0Var, i11, p1Var, a1Var, a1Var2, i12, v0Var, i10, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+                        a2.f14450c.a(true, true);
+                        a2.h.f14595i.o(i10);
                         return;
                     }
                 } else {
                     q1Var = q1Var2;
                 }
-                a2.h.f14822i.o(i10);
+                a2.h.f14595i.o(i10);
                 return;
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
@@ -729,8 +728,8 @@ public final class y implements b2.z0 {
             }
             z10 = true;
             e2.d.g(z10);
-            a2.f14701s = new h1(u0Var, i11, o1Var, a1Var, a1Var2, i12, v0Var, i10, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i11, p1Var, a1Var, a1Var2, i12, v0Var, i10, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
         }
     }
 
@@ -741,55 +740,55 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            h1 h1Var = a2.f14701s;
-            b2.u0 u0Var = h1Var.f14787a;
-            int i10 = h1Var.f14788b;
-            o1 o1Var = h1Var.f14789c;
-            b2.a1 a1Var = h1Var.d;
-            b2.a1 a1Var2 = h1Var.e;
-            int i11 = h1Var.f14790f;
-            b2.v0 v0Var = h1Var.f14791g;
-            int i12 = h1Var.h;
-            b2.k1 k1Var = h1Var.f14793j;
-            int i13 = h1Var.f14794k;
-            x1 x1Var = h1Var.f14795l;
-            b2.n0 n0Var = h1Var.f14796m;
-            float f7 = h1Var.f14797n;
-            b2.e eVar = h1Var.f14798o;
-            d2.d dVar = h1Var.f14799p;
-            b2.l lVar = h1Var.f14800q;
-            int i14 = h1Var.f14801r;
-            boolean z12 = h1Var.f14802s;
-            boolean z13 = h1Var.f14803t;
-            int i15 = h1Var.f14804u;
-            boolean z14 = h1Var.v;
-            boolean z15 = h1Var.f14805w;
-            int i16 = h1Var.f14806x;
-            int i17 = h1Var.f14807y;
-            b2.n0 n0Var2 = h1Var.f14808z;
-            long j3 = h1Var.A;
-            long j10 = h1Var.B;
-            long j11 = h1Var.C;
-            s1 s1Var = h1Var.D;
-            b2.q1 q1Var2 = h1Var.E;
+            i1 i1Var = a2.f14463s;
+            b2.u0 u0Var = i1Var.f14555a;
+            int i10 = i1Var.f14556b;
+            p1 p1Var = i1Var.f14557c;
+            b2.a1 a1Var = i1Var.d;
+            b2.a1 a1Var2 = i1Var.e;
+            int i11 = i1Var.f14558f;
+            b2.v0 v0Var = i1Var.f14559g;
+            int i12 = i1Var.h;
+            b2.k1 k1Var = i1Var.f14561j;
+            int i13 = i1Var.f14562k;
+            x1 x1Var = i1Var.f14563l;
+            b2.n0 n0Var = i1Var.f14564m;
+            float f7 = i1Var.f14565n;
+            b2.e eVar = i1Var.f14566o;
+            d2.d dVar = i1Var.f14567p;
+            b2.l lVar = i1Var.f14568q;
+            int i14 = i1Var.f14569r;
+            boolean z12 = i1Var.f14570s;
+            boolean z13 = i1Var.f14571t;
+            int i15 = i1Var.f14572u;
+            boolean z14 = i1Var.v;
+            boolean z15 = i1Var.f14573w;
+            int i16 = i1Var.f14574x;
+            int i17 = i1Var.f14575y;
+            b2.n0 n0Var2 = i1Var.f14576z;
+            long j3 = i1Var.A;
+            long j10 = i1Var.B;
+            long j11 = i1Var.C;
+            b2.s1 s1Var = i1Var.D;
+            b2.q1 q1Var2 = i1Var.E;
             try {
                 if (!k1Var.p()) {
                     q1Var = q1Var2;
-                    if (o1Var.f14879a.f2929b >= k1Var.o()) {
+                    if (p1Var.f14651a.f2927b >= k1Var.o()) {
                         z11 = false;
                         e2.d.g(z11);
-                        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z10, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-                        a2.f14688c.a(true, true);
-                        a2.h.f14822i.p(z10);
+                        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z10, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+                        a2.f14450c.a(true, true);
+                        a2.h.f14595i.p(z10);
                         return;
                     }
                 } else {
                     q1Var = q1Var2;
                 }
-                a2.h.f14822i.p(z10);
+                a2.h.f14595i.p(z10);
                 return;
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
@@ -797,8 +796,8 @@ public final class y implements b2.z0 {
             }
             z11 = true;
             e2.d.g(z11);
-            a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z10, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-            a2.f14688c.a(true, true);
+            a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z10, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+            a2.f14450c.a(true, true);
         }
     }
 
@@ -807,14 +806,14 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            j1 j1Var = (j1) this.f14955b.get();
-            if (j1Var == null) {
+            k1 k1Var2 = (k1) this.f14721b.get();
+            if (k1Var2 == null) {
                 return;
             }
-            a2.f14701s = a2.f14701s.c(k1Var, j1Var.O0(), i10);
-            a2.f14688c.a(false, true);
+            a2.f14463s = a2.f14463s.c(k1Var, k1Var2.O0(), i10);
+            a2.f14450c.a(false, true);
             try {
-                a2.h.f14822i.q(k1Var);
+                a2.h.f14595i.q(k1Var);
             } catch (RemoteException e) {
                 e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
             }
@@ -826,26 +825,26 @@ public final class y implements b2.z0 {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            a2.f14701s = a2.f14701s.d(q1Var);
-            a2.f14688c.a(true, true);
-            a2.d(new j2.e(q1Var, 27));
+            a2.f14463s = a2.f14463s.d(q1Var);
+            a2.f14450c.a(true, true);
+            a2.d(new j2.e(q1Var, 22));
         }
     }
 
     @Override
-    public final void onTracksChanged(s1 s1Var) {
+    public final void onTracksChanged(b2.s1 s1Var) {
         a0 a2 = a();
         if (a2 != null) {
             a2.v();
-            if (((j1) this.f14955b.get()) == null) {
+            if (((k1) this.f14721b.get()) == null) {
                 return;
             }
-            a2.f14701s = a2.f14701s.a(s1Var);
-            a2.f14688c.a(true, false);
-            a2.d(new j2.e(s1Var, 25));
+            a2.f14463s = a2.f14463s.a(s1Var);
+            a2.f14450c.a(true, false);
+            a2.d(new j2.e(s1Var, 20));
         }
     }
 
@@ -857,47 +856,47 @@ public final class y implements b2.z0 {
             return;
         }
         a2.v();
-        h1 h1Var = a2.f14701s;
-        b2.u0 u0Var = h1Var.f14787a;
-        int i10 = h1Var.f14788b;
-        o1 o1Var = h1Var.f14789c;
-        b2.a1 a1Var = h1Var.d;
-        b2.a1 a1Var2 = h1Var.e;
-        int i11 = h1Var.f14790f;
-        b2.v0 v0Var = h1Var.f14791g;
-        int i12 = h1Var.h;
-        boolean z11 = h1Var.f14792i;
-        b2.k1 k1Var = h1Var.f14793j;
-        int i13 = h1Var.f14794k;
-        b2.n0 n0Var = h1Var.f14796m;
-        float f7 = h1Var.f14797n;
-        b2.e eVar = h1Var.f14798o;
-        d2.d dVar = h1Var.f14799p;
-        b2.l lVar = h1Var.f14800q;
-        int i14 = h1Var.f14801r;
-        boolean z12 = h1Var.f14802s;
-        boolean z13 = h1Var.f14803t;
-        int i15 = h1Var.f14804u;
-        boolean z14 = h1Var.v;
-        boolean z15 = h1Var.f14805w;
-        int i16 = h1Var.f14806x;
-        int i17 = h1Var.f14807y;
-        b2.n0 n0Var2 = h1Var.f14808z;
-        long j3 = h1Var.A;
-        long j10 = h1Var.B;
-        long j11 = h1Var.C;
-        s1 s1Var = h1Var.D;
-        b2.q1 q1Var = h1Var.E;
-        if (!k1Var.p() && o1Var.f14879a.f2929b >= k1Var.o()) {
+        i1 i1Var = a2.f14463s;
+        b2.u0 u0Var = i1Var.f14555a;
+        int i10 = i1Var.f14556b;
+        p1 p1Var = i1Var.f14557c;
+        b2.a1 a1Var = i1Var.d;
+        b2.a1 a1Var2 = i1Var.e;
+        int i11 = i1Var.f14558f;
+        b2.v0 v0Var = i1Var.f14559g;
+        int i12 = i1Var.h;
+        boolean z11 = i1Var.f14560i;
+        b2.k1 k1Var = i1Var.f14561j;
+        int i13 = i1Var.f14562k;
+        b2.n0 n0Var = i1Var.f14564m;
+        float f7 = i1Var.f14565n;
+        b2.e eVar = i1Var.f14566o;
+        d2.d dVar = i1Var.f14567p;
+        b2.l lVar = i1Var.f14568q;
+        int i14 = i1Var.f14569r;
+        boolean z12 = i1Var.f14570s;
+        boolean z13 = i1Var.f14571t;
+        int i15 = i1Var.f14572u;
+        boolean z14 = i1Var.v;
+        boolean z15 = i1Var.f14573w;
+        int i16 = i1Var.f14574x;
+        int i17 = i1Var.f14575y;
+        b2.n0 n0Var2 = i1Var.f14576z;
+        long j3 = i1Var.A;
+        long j10 = i1Var.B;
+        long j11 = i1Var.C;
+        b2.s1 s1Var = i1Var.D;
+        b2.q1 q1Var = i1Var.E;
+        if (!k1Var.p() && p1Var.f14651a.f2927b >= k1Var.o()) {
             z10 = false;
         } else {
             z10 = true;
         }
         e2.d.g(z10);
-        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-        a2.f14688c.a(true, true);
+        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+        a2.f14450c.a(true, true);
         try {
-            a2.h.f14822i.getClass();
+            a2.h.f14595i.getClass();
         } catch (RemoteException e) {
             e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
         }
@@ -911,47 +910,47 @@ public final class y implements b2.z0 {
             return;
         }
         a2.v();
-        h1 h1Var = a2.f14701s;
-        b2.u0 u0Var = h1Var.f14787a;
-        int i10 = h1Var.f14788b;
-        o1 o1Var = h1Var.f14789c;
-        b2.a1 a1Var = h1Var.d;
-        b2.a1 a1Var2 = h1Var.e;
-        int i11 = h1Var.f14790f;
-        b2.v0 v0Var = h1Var.f14791g;
-        int i12 = h1Var.h;
-        boolean z11 = h1Var.f14792i;
-        b2.k1 k1Var = h1Var.f14793j;
-        int i13 = h1Var.f14794k;
-        x1 x1Var = h1Var.f14795l;
-        b2.n0 n0Var = h1Var.f14796m;
-        b2.e eVar = h1Var.f14798o;
-        d2.d dVar = h1Var.f14799p;
-        b2.l lVar = h1Var.f14800q;
-        int i14 = h1Var.f14801r;
-        boolean z12 = h1Var.f14802s;
-        boolean z13 = h1Var.f14803t;
-        int i15 = h1Var.f14804u;
-        boolean z14 = h1Var.v;
-        boolean z15 = h1Var.f14805w;
-        int i16 = h1Var.f14806x;
-        int i17 = h1Var.f14807y;
-        b2.n0 n0Var2 = h1Var.f14808z;
-        long j3 = h1Var.A;
-        long j10 = h1Var.B;
-        long j11 = h1Var.C;
-        s1 s1Var = h1Var.D;
-        b2.q1 q1Var = h1Var.E;
-        if (!k1Var.p() && o1Var.f14879a.f2929b >= k1Var.o()) {
+        i1 i1Var = a2.f14463s;
+        b2.u0 u0Var = i1Var.f14555a;
+        int i10 = i1Var.f14556b;
+        p1 p1Var = i1Var.f14557c;
+        b2.a1 a1Var = i1Var.d;
+        b2.a1 a1Var2 = i1Var.e;
+        int i11 = i1Var.f14558f;
+        b2.v0 v0Var = i1Var.f14559g;
+        int i12 = i1Var.h;
+        boolean z11 = i1Var.f14560i;
+        b2.k1 k1Var = i1Var.f14561j;
+        int i13 = i1Var.f14562k;
+        x1 x1Var = i1Var.f14563l;
+        b2.n0 n0Var = i1Var.f14564m;
+        b2.e eVar = i1Var.f14566o;
+        d2.d dVar = i1Var.f14567p;
+        b2.l lVar = i1Var.f14568q;
+        int i14 = i1Var.f14569r;
+        boolean z12 = i1Var.f14570s;
+        boolean z13 = i1Var.f14571t;
+        int i15 = i1Var.f14572u;
+        boolean z14 = i1Var.v;
+        boolean z15 = i1Var.f14573w;
+        int i16 = i1Var.f14574x;
+        int i17 = i1Var.f14575y;
+        b2.n0 n0Var2 = i1Var.f14576z;
+        long j3 = i1Var.A;
+        long j10 = i1Var.B;
+        long j11 = i1Var.C;
+        b2.s1 s1Var = i1Var.D;
+        b2.q1 q1Var = i1Var.E;
+        if (!k1Var.p() && p1Var.f14651a.f2927b >= k1Var.o()) {
             z10 = false;
         } else {
             z10 = true;
         }
         e2.d.g(z10);
-        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-        a2.f14688c.a(true, true);
+        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+        a2.f14450c.a(true, true);
         try {
-            a2.h.f14822i.getClass();
+            a2.h.f14595i.getClass();
         } catch (RemoteException e) {
             e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
         }
@@ -966,55 +965,55 @@ public final class y implements b2.z0 {
             return;
         }
         a2.v();
-        if (((j1) this.f14955b.get()) == null) {
+        if (((k1) this.f14721b.get()) == null) {
             return;
         }
-        h1 h1Var = a2.f14701s;
-        b2.u0 u0Var = h1Var.f14787a;
-        int i10 = h1Var.f14788b;
-        o1 o1Var = h1Var.f14789c;
-        b2.a1 a1Var = h1Var.d;
-        b2.a1 a1Var2 = h1Var.e;
-        int i11 = h1Var.f14790f;
-        b2.v0 v0Var = h1Var.f14791g;
-        int i12 = h1Var.h;
-        boolean z11 = h1Var.f14792i;
-        b2.k1 k1Var = h1Var.f14793j;
-        int i13 = h1Var.f14794k;
-        x1 x1Var = h1Var.f14795l;
-        b2.n0 n0Var = h1Var.f14796m;
-        float f7 = h1Var.f14797n;
-        b2.e eVar = h1Var.f14798o;
-        b2.l lVar = h1Var.f14800q;
-        int i14 = h1Var.f14801r;
-        boolean z12 = h1Var.f14802s;
-        boolean z13 = h1Var.f14803t;
-        int i15 = h1Var.f14804u;
-        boolean z14 = h1Var.v;
-        boolean z15 = h1Var.f14805w;
-        int i16 = h1Var.f14806x;
-        int i17 = h1Var.f14807y;
-        b2.n0 n0Var2 = h1Var.f14808z;
-        long j3 = h1Var.A;
-        long j10 = h1Var.B;
-        long j11 = h1Var.C;
-        s1 s1Var = h1Var.D;
-        b2.q1 q1Var2 = h1Var.E;
+        i1 i1Var = a2.f14463s;
+        b2.u0 u0Var = i1Var.f14555a;
+        int i10 = i1Var.f14556b;
+        p1 p1Var = i1Var.f14557c;
+        b2.a1 a1Var = i1Var.d;
+        b2.a1 a1Var2 = i1Var.e;
+        int i11 = i1Var.f14558f;
+        b2.v0 v0Var = i1Var.f14559g;
+        int i12 = i1Var.h;
+        boolean z11 = i1Var.f14560i;
+        b2.k1 k1Var = i1Var.f14561j;
+        int i13 = i1Var.f14562k;
+        x1 x1Var = i1Var.f14563l;
+        b2.n0 n0Var = i1Var.f14564m;
+        float f7 = i1Var.f14565n;
+        b2.e eVar = i1Var.f14566o;
+        b2.l lVar = i1Var.f14568q;
+        int i14 = i1Var.f14569r;
+        boolean z12 = i1Var.f14570s;
+        boolean z13 = i1Var.f14571t;
+        int i15 = i1Var.f14572u;
+        boolean z14 = i1Var.v;
+        boolean z15 = i1Var.f14573w;
+        int i16 = i1Var.f14574x;
+        int i17 = i1Var.f14575y;
+        b2.n0 n0Var2 = i1Var.f14576z;
+        long j3 = i1Var.A;
+        long j10 = i1Var.B;
+        long j11 = i1Var.C;
+        b2.s1 s1Var = i1Var.D;
+        b2.q1 q1Var2 = i1Var.E;
         if (k1Var.p()) {
             q1Var = q1Var2;
         } else {
             q1Var = q1Var2;
-            if (o1Var.f14879a.f2929b >= k1Var.o()) {
+            if (p1Var.f14651a.f2927b >= k1Var.o()) {
                 z10 = false;
                 e2.d.g(z10);
-                a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-                a2.f14688c.a(true, true);
+                a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+                a2.f14450c.a(true, true);
             }
         }
         z10 = true;
         e2.d.g(z10);
-        a2.f14701s = new h1(u0Var, i10, o1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-        a2.f14688c.a(true, true);
+        a2.f14463s = new i1(u0Var, i10, p1Var, a1Var, a1Var2, i11, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+        a2.f14450c.a(true, true);
     }
 
     @Override
@@ -1026,55 +1025,55 @@ public final class y implements b2.z0 {
             return;
         }
         a2.v();
-        if (((j1) this.f14955b.get()) == null) {
+        if (((k1) this.f14721b.get()) == null) {
             return;
         }
-        h1 h1Var = a2.f14701s;
-        b2.u0 u0Var = h1Var.f14787a;
-        int i11 = h1Var.f14788b;
-        o1 o1Var = h1Var.f14789c;
-        b2.v0 v0Var = h1Var.f14791g;
-        int i12 = h1Var.h;
-        boolean z11 = h1Var.f14792i;
-        b2.k1 k1Var = h1Var.f14793j;
-        int i13 = h1Var.f14794k;
-        x1 x1Var = h1Var.f14795l;
-        b2.n0 n0Var = h1Var.f14796m;
-        float f7 = h1Var.f14797n;
-        b2.e eVar = h1Var.f14798o;
-        d2.d dVar = h1Var.f14799p;
-        b2.l lVar = h1Var.f14800q;
-        int i14 = h1Var.f14801r;
-        boolean z12 = h1Var.f14802s;
-        boolean z13 = h1Var.f14803t;
-        int i15 = h1Var.f14804u;
-        boolean z14 = h1Var.v;
-        boolean z15 = h1Var.f14805w;
-        int i16 = h1Var.f14806x;
-        int i17 = h1Var.f14807y;
-        b2.n0 n0Var2 = h1Var.f14808z;
-        long j3 = h1Var.A;
-        long j10 = h1Var.B;
-        long j11 = h1Var.C;
-        s1 s1Var = h1Var.D;
-        b2.q1 q1Var2 = h1Var.E;
+        i1 i1Var = a2.f14463s;
+        b2.u0 u0Var = i1Var.f14555a;
+        int i11 = i1Var.f14556b;
+        p1 p1Var = i1Var.f14557c;
+        b2.v0 v0Var = i1Var.f14559g;
+        int i12 = i1Var.h;
+        boolean z11 = i1Var.f14560i;
+        b2.k1 k1Var = i1Var.f14561j;
+        int i13 = i1Var.f14562k;
+        x1 x1Var = i1Var.f14563l;
+        b2.n0 n0Var = i1Var.f14564m;
+        float f7 = i1Var.f14565n;
+        b2.e eVar = i1Var.f14566o;
+        d2.d dVar = i1Var.f14567p;
+        b2.l lVar = i1Var.f14568q;
+        int i14 = i1Var.f14569r;
+        boolean z12 = i1Var.f14570s;
+        boolean z13 = i1Var.f14571t;
+        int i15 = i1Var.f14572u;
+        boolean z14 = i1Var.v;
+        boolean z15 = i1Var.f14573w;
+        int i16 = i1Var.f14574x;
+        int i17 = i1Var.f14575y;
+        b2.n0 n0Var2 = i1Var.f14576z;
+        long j3 = i1Var.A;
+        long j10 = i1Var.B;
+        long j11 = i1Var.C;
+        b2.s1 s1Var = i1Var.D;
+        b2.q1 q1Var2 = i1Var.E;
         try {
             if (k1Var.p()) {
                 q1Var = q1Var2;
             } else {
                 q1Var = q1Var2;
-                if (o1Var.f14879a.f2929b >= k1Var.o()) {
+                if (p1Var.f14651a.f2927b >= k1Var.o()) {
                     z10 = false;
                     e2.d.g(z10);
-                    a2.f14701s = new h1(u0Var, i11, o1Var, a1Var, a1Var2, i10, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-                    a2.f14688c.a(true, true);
-                    k0 k0Var = (k0) a2.h.f14822i.e;
-                    k0Var.N(k0Var.f14821g.f14702t);
+                    a2.f14463s = new i1(u0Var, i11, p1Var, a1Var, a1Var2, i10, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+                    a2.f14450c.a(true, true);
+                    l0 l0Var = (l0) a2.h.f14595i.e;
+                    l0Var.N(l0Var.f14594g.f14464t);
                     return;
                 }
             }
-            k0 k0Var2 = (k0) a2.h.f14822i.e;
-            k0Var2.N(k0Var2.f14821g.f14702t);
+            l0 l0Var2 = (l0) a2.h.f14595i.e;
+            l0Var2.N(l0Var2.f14594g.f14464t);
             return;
         } catch (RemoteException e) {
             e2.a.f("MediaSessionImpl", "Exception in using media1 API", e);
@@ -1082,8 +1081,8 @@ public final class y implements b2.z0 {
         }
         z10 = true;
         e2.d.g(z10);
-        a2.f14701s = new h1(u0Var, i11, o1Var, a1Var, a1Var2, i10, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
-        a2.f14688c.a(true, true);
+        a2.f14463s = new i1(u0Var, i11, p1Var, a1Var, a1Var2, i10, v0Var, i12, z11, x1Var, k1Var, i13, n0Var, f7, eVar, dVar, lVar, i14, z12, z13, i15, i16, i17, z14, z15, n0Var2, j3, j10, j11, s1Var, q1Var);
+        a2.f14450c.a(true, true);
     }
 
     @Override

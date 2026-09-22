@@ -1,68 +1,26 @@
 package org.telegram.ui;
+public final class bm0 implements Runnable {
+    public final int f32224a;
+    public final boolean f32225b;
+    public final Object f32226c;
+    public final Object d;
 
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bm0 implements View.OnTouchListener {
-    public final int f32516a;
-    public final pn0 f32517b;
-
-    public bm0(pn0 pn0Var, int i10) {
-        this.f32516a = i10;
-        this.f32517b = pn0Var;
+    public bm0(Object obj, Object obj2, boolean z10, int i10) {
+        this.f32224a = i10;
+        this.f32226c = obj;
+        this.d = obj2;
+        this.f32225b = z10;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f32516a;
-        pn0 pn0Var = this.f32517b;
-        switch (i10) {
-            case 0:
-                if (pn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    bu buVar = new bu(null, false);
-                    buVar.f32564r = new z10(23, pn0Var, view);
-                    pn0Var.presentFragment(buVar);
-                }
-                return true;
-            case 1:
-                if (pn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pn0Var.getParentActivity());
-                    String string = LocaleController.getString(R.string.PassportSelectGender);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18669a;
-                    b2Var.R = string;
-                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new vv(pn0Var, 2));
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
-                    pn0Var.showDialog(b2Var);
-                }
-                return true;
-            case 2:
-                if (pn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    bu buVar2 = new bu(null, false);
-                    buVar2.f32564r = new cm0(pn0Var, 2);
-                    pn0Var.presentFragment(buVar2);
-                }
-                return true;
-            default:
-                if (pn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    bu buVar3 = new bu(null, false);
-                    buVar3.f32564r = new cm0(pn0Var, 3);
-                    pn0Var.presentFragment(buVar3);
-                }
-                return true;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bm0.run():void");
+    }
+
+    public bm0(Object obj, boolean z10, Object obj2, int i10) {
+        this.f32224a = i10;
+        this.f32226c = obj;
+        this.f32225b = z10;
+        this.d = obj2;
     }
 }

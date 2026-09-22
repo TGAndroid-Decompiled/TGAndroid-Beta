@@ -1,61 +1,115 @@
 package hg;
 
 import android.content.Context;
-import android.text.Editable;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Cells.k3;
-import org.telegram.ui.Components.o61;
-public final class l extends k3 {
-    public final int f10343x;
-    public final m f10344y;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.ImageView;
+import android.widget.ToggleButton;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.Components.ju;
+public final class l extends ImageView {
+    public final int f10340a;
 
-    public l(m mVar, Context context, String str, int i10, f6 f6Var, int i11) {
-        super(context, str, false, false, i10, f6Var);
-        this.f10343x = i11;
-        switch (i11) {
+    public l(Context context, int i10) {
+        super(context);
+        this.f10340a = i10;
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f10340a) {
+            case 2:
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f10340a) {
             case 1:
-                this.f10344y = mVar;
-                super(context, str, true, false, i10, f6Var);
+                if (getAlpha() < 0.5f) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f10340a) {
+            case 4:
+                super.onDraw(canvas);
+                invalidate();
                 return;
             default:
-                this.f10344y = mVar;
+                super.onDraw(canvas);
                 return;
         }
     }
 
     @Override
-    public final void a(boolean z10) {
-        o61 o61Var;
-        o61 o61Var2;
-        switch (this.f10343x) {
-            case 0:
-                if (z10 && (o61Var = this.f10344y.f27268a) != null) {
-                    o61Var.y0(2);
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f10340a) {
+            case 5:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
+                accessibilityNodeInfo.setCheckable(true);
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    accessibilityNodeInfo.setChecked(sharedInstance.isSpeakerphoneOn());
                     return;
                 }
                 return;
             default:
-                if (z10 && (o61Var2 = this.f10344y.f27268a) != null) {
-                    o61Var2.y0(3);
-                    return;
-                }
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 return;
         }
     }
 
     @Override
-    public final void b(Editable editable) {
-        switch (this.f10343x) {
+    public void onMeasure(int i10, int i11) {
+        float f7;
+        float f10;
+        switch (this.f10340a) {
             case 0:
-                m mVar = this.f10344y;
-                mVar.f10357r.d(mVar.v.getText().toString(), mVar.f10359w.getText().toString());
-                mVar.e0(true);
+                super.onMeasure(i10, i11);
+                Matrix imageMatrix = getImageMatrix();
+                int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+                int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
+                int intrinsicWidth = getDrawable().getIntrinsicWidth();
+                int intrinsicHeight = getDrawable().getIntrinsicHeight();
+                if (intrinsicWidth * measuredHeight > intrinsicHeight * measuredWidth) {
+                    f7 = measuredHeight;
+                    f10 = intrinsicHeight;
+                } else {
+                    f7 = measuredWidth;
+                    f10 = intrinsicWidth;
+                }
+                float f11 = f7 / f10;
+                imageMatrix.setScale(f11, f11);
+                setImageMatrix(imageMatrix);
+                return;
+            case 3:
+                int size = View.MeasureSpec.getSize(i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
                 return;
             default:
-                m mVar2 = this.f10344y;
-                mVar2.f10357r.d(mVar2.v.getText().toString(), mVar2.f10359w.getText().toString());
-                mVar2.e0(true);
+                super.onMeasure(i10, i11);
                 return;
         }
+    }
+
+    public l(ju juVar, Context context) {
+        super(context);
+        this.f10340a = 2;
     }
 }

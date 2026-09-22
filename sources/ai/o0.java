@@ -30,9 +30,9 @@ public final class o0 implements Runnable {
             case 1:
                 r3 r3Var2 = this.f1322b;
                 AndroidUtilities.cancelRunOnUIThread(r3Var2.f1329d0);
-                org.telegram.ui.Components.pc pcVar = r3Var2.W;
-                if (pcVar != null) {
-                    pcVar.b();
+                org.telegram.ui.Components.oc ocVar = r3Var2.W;
+                if (ocVar != null) {
+                    ocVar.b();
                     r3Var2.W = null;
                 }
                 long j3 = r3Var2.R;

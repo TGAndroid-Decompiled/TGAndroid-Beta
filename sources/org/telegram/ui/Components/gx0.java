@@ -1,51 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gx0 implements RequestDelegate {
-    public final int f24641a;
-    public final Utilities.Callback4 f24642b;
+import org.telegram.messenger.MessagesController;
+public final class gx0 implements Runnable {
+    public final int f24467a;
+    public final vx0 f24468b;
 
-    public gx0(Utilities.Callback4 callback4, int i10) {
-        this.f24641a = i10;
-        this.f24642b = callback4;
+    public gx0(vx0 vx0Var, int i10) {
+        this.f24467a = i10;
+        this.f24468b = vx0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f24641a) {
+    public final void run() {
+        switch (this.f24467a) {
             case 0:
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
-                Utilities.Callback4 callback4 = this.f24642b;
-                if (z10) {
-                    Boolean bool = Boolean.TRUE;
-                    callback4.run(bool, null, 0L, bool);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
-                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
-                    callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
+                this.f24468b.d.l();
+                return;
+            case 1:
+                this.f24468b.d.l();
+                return;
+            case 2:
+                vx0.t(this.f24468b);
+                return;
+            case 3:
+                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f24468b.L, 1);
+                return;
             default:
-                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
-                Utilities.Callback4 callback42 = this.f24642b;
-                if (z11) {
-                    Boolean bool2 = Boolean.TRUE;
-                    callback42.run(bool2, null, 0L, bool2);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_emojiList) {
-                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
-                    callback42.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    callback42.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
+                vx0.s(this.f24468b);
+                return;
         }
     }
 }

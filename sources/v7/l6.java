@@ -1,14 +1,13 @@
 package v7;
-public final class l6 {
-    public final f8 f44356a;
-    public final k6 f44357b;
-    public final i6 f44358c;
-    public final h7 d;
 
-    public l6(oi.f fVar) {
-        this.f44356a = (f8) fVar.f15763a;
-        this.f44357b = (k6) fVar.f15764b;
-        this.f44358c = (i6) fVar.f15765c;
-        this.d = (h7) fVar.d;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public abstract class l6 {
+    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, com.google.android.gms.internal.play_billing.g4 g4Var, Object obj, Object obj2) {
+        while (!atomicReferenceFieldUpdater.compareAndSet(g4Var, obj, obj2)) {
+            if (atomicReferenceFieldUpdater.get(g4Var) != obj && atomicReferenceFieldUpdater.get(g4Var) != obj) {
+                return false;
+            }
+        }
+        return true;
     }
 }

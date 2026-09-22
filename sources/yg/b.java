@@ -13,34 +13,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.ab;
-import org.telegram.ui.Components.g9;
-import w7.y5;
+import org.telegram.ui.Components.f9;
+import w7.x5;
 public final class b extends ab {
-    public final TextView f47207a0;
-    public final FrameLayout f47208b0;
-    public Drawable f47209c0;
-    public Drawable f47210d0;
-    public TL_stories.Boost f47211e0;
-    public final a f47212f0;
+    public final TextView f46877a0;
+    public final FrameLayout f46878b0;
+    public Drawable f46879c0;
+    public Drawable f46880d0;
+    public TL_stories.Boost f46881e0;
+    public final a f46882f0;
 
     public b(Context context) {
         super(context, 0, 0, false);
         int i10;
         int i11;
-        this.f47212f0 = new a(getContext());
-        this.f47208b0 = new FrameLayout(getContext());
+        this.f46882f0 = new a(getContext());
+        this.f46878b0 = new FrameLayout(getContext());
         TextView textView = new TextView(getContext());
-        this.f47207a0 = textView;
-        textView.setTextColor(j6.v0(j6.G6, this.f20059y));
-        this.f47207a0.setTypeface(AndroidUtilities.bold());
-        this.f47207a0.setTextSize(12.0f);
-        this.f47207a0.setGravity(17);
-        this.f47208b0.addView(this.f47207a0, y5.c(22.0f, -2));
-        this.f47208b0.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        FrameLayout frameLayout = this.f47208b0;
+        this.f46877a0 = textView;
+        textView.setTextColor(i6.v0(i6.G6, this.f19802y));
+        this.f46877a0.setTypeface(AndroidUtilities.bold());
+        this.f46877a0.setTextSize(12.0f);
+        this.f46877a0.setGravity(17);
+        this.f46878b0.addView(this.f46877a0, x5.c(22.0f, -2));
+        this.f46878b0.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        FrameLayout frameLayout = this.f46878b0;
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i10 = 3;
@@ -53,22 +53,22 @@ public final class b extends ab {
         } else {
             i11 = 0;
         }
-        addView(frameLayout, y5.d(-2, -2.0f, i12, i11, 9.0f, z10 ? 0 : 9, 0.0f));
+        addView(frameLayout, x5.d(-2, -2.0f, i12, i11, 9.0f, z10 ? 0 : 9, 0.0f));
     }
 
     private void setAvatarColorByMonths(int i10) {
-        g9 g9Var = this.E;
+        f9 f9Var = this.E;
         if (i10 == 12) {
-            g9Var.i(-31392, -2796986);
+            f9Var.i(-31392, -2796986);
         } else if (i10 == 6) {
-            g9Var.i(-10703110, -12481584);
+            f9Var.i(-10703110, -12481584);
         } else {
-            g9Var.i(-6631068, -11945404);
+            f9Var.i(-6631068, -11945404);
         }
     }
 
     public TL_stories.Boost getBoost() {
-        return this.f47211e0;
+        return this.f46881e0;
     }
 
     @Override
@@ -93,83 +93,83 @@ public final class b extends ab {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, j6.f19231k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, i6.f18955k0);
         }
     }
 
     public void setStatus(TL_stories.Boost boost) {
         int i10;
-        this.f47211e0 = boost;
+        this.f46881e0 = boost;
         boolean z10 = boost.gift;
-        FrameLayout frameLayout = this.f47208b0;
-        TextView textView = this.f47207a0;
+        FrameLayout frameLayout = this.f46878b0;
+        TextView textView = this.f46877a0;
         int i11 = 0;
-        j5 j5Var = this.f20051b;
+        j5 j5Var = this.f19794b;
         if (!z10 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
             frameLayout.setVisibility(0);
             int i12 = ((boost.expires - boost.date) / 30) / 86400;
             long j3 = boost.stars;
-            z5 z5Var = this.f20050a;
-            g9 g9Var = this.E;
+            z5 z5Var = this.f19793a;
+            f9 f9Var = this.E;
             if (j3 > 0) {
                 j5Var.l(LocaleController.formatPluralString("BoostingBoostStars", (int) j3, new Object[0]), false);
-                g9Var.g(26);
-                z5Var.e(null, g9Var);
+                f9Var.g(26);
+                z5Var.e(null, f9Var);
                 j5Var.i(null);
             } else if (boost.unclaimed) {
                 j5Var.l(LocaleController.getString(R.string.BoostingUnclaimed), false);
-                g9Var.g(18);
+                f9Var.g(18);
                 setAvatarColorByMonths(i12);
-                z5Var.e(null, g9Var);
+                z5Var.e(null, f9Var);
                 j5Var.i(null);
             } else if (boost.user_id == -1) {
                 j5Var.l(LocaleController.getString(R.string.BoostingToBeDistributed), false);
-                g9Var.g(19);
+                f9Var.g(19);
                 setAvatarColorByMonths(i12);
-                z5Var.e(null, g9Var);
+                z5Var.e(null, f9Var);
                 j5Var.i(null);
             }
             String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
             long j10 = boost.stars;
-            j5 j5Var2 = this.f20052c;
+            j5 j5Var2 = this.f19795c;
             if (j10 > 0) {
                 j5Var2.l(LocaleController.formatString(R.string.BoostingStarsExpires, format), false);
             } else {
                 j5Var2.l(LocaleController.formatString(R.string.BoostingExpires, format), false);
             }
             if (boost.gift) {
-                if (this.f47210d0 == null) {
+                if (this.f46880d0 == null) {
                     Drawable drawable = getResources().getDrawable(R.drawable.mini_gift);
-                    this.f47210d0 = drawable;
+                    this.f46880d0 = drawable;
                     drawable.setColorFilter(new PorterDuffColorFilter(-3240417, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-3240417);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f47210d0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f46880d0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
                 textView.setText(LocaleController.getString(R.string.BoostingGift));
-                frameLayout.setBackground(j6.c0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), j6.l1(0.2f, -3240417)));
+                frameLayout.setBackground(i6.c0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), i6.l1(0.2f, -3240417)));
             }
             if (boost.giveaway) {
-                if (this.f47209c0 == null) {
+                if (this.f46879c0 == null) {
                     Drawable drawable2 = getResources().getDrawable(R.drawable.mini_giveaway);
-                    this.f47209c0 = drawable2;
+                    this.f46879c0 = drawable2;
                     drawable2.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-13397548);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f47209c0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f46879c0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
                 textView.setText(LocaleController.getString(R.string.BoostingGiveaway));
-                frameLayout.setBackground(j6.c0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), j6.l1(0.2f, -13397548)));
+                frameLayout.setBackground(i6.c0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), i6.l1(0.2f, -13397548)));
             }
         }
         int i13 = boost.multiplier;
         if (i13 > 0) {
             String valueOf = String.valueOf(i13);
-            a aVar = this.f47212f0;
-            aVar.f47206f = valueOf;
-            aVar.e = aVar.f47203a.measureText(valueOf);
+            a aVar = this.f46882f0;
+            aVar.f46876f = valueOf;
+            aVar.e = aVar.f46873a.measureText(valueOf);
             aVar.invalidateSelf();
             j5Var.i(aVar);
         } else {

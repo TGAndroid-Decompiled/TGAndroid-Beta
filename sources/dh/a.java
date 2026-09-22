@@ -2,9 +2,9 @@ package dh;
 public interface a {
     int H();
 
-    int b();
+    int a();
 
-    int g();
+    int c();
 
-    int x();
+    int m();
 }

@@ -1,76 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public abstract class q21 extends View {
-    public final r21 f27486a;
-    public Utilities.Callback f27487b;
-    public final org.telegram.ui.ActionBar.f6 f27488c;
-    public int d;
+import android.animation.ValueAnimator;
+public final class q21 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27233a;
+    public final s21 f27234b;
 
-    public q21(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.f27488c = f6Var;
-        r21 r21Var = new r21(i10, this, f6Var, false);
-        this.f27486a = r21Var;
-        r21Var.f27787r = new yq0(this, 19);
+    public q21(s21 s21Var, int i10) {
+        this.f27233a = i10;
+        this.f27234b = s21Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        org.telegram.ui.ActionBar.f6 f6Var = this.f27488c;
-        if (f6Var != null) {
-            f6Var.m(0.0f, 0.0f, getMeasuredWidth(), this.d);
-        } else {
-            org.telegram.ui.ActionBar.j6.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27233a) {
+            case 0:
+                ai.n4 n4Var = this.f27234b.f27754f;
+                n4Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                n4Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                n4Var.invalidate();
+                return;
+            default:
+                s21 s21Var = this.f27234b;
+                s21Var.getClass();
+                s21Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s21Var.h();
+                return;
         }
-        this.f27486a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f27486a.a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f27486a.b();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(33.0f), 1073741824));
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f27486a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
-    }
-
-    public void set(MessageObject messageObject) {
-        r21 r21Var = this.f27486a;
-        r21Var.f(messageObject);
-        if (isAttachedToWindow()) {
-            r21Var.a();
-        }
-    }
-
-    public void setBackgroundHeight(int i10) {
-        this.d = i10;
-    }
-
-    public void setOnTopicClickListener(Utilities.Callback<Long> callback) {
-        this.f27487b = callback;
     }
 }

@@ -3,25 +3,25 @@ package gg;
 import java.util.ArrayList;
 import org.telegram.ui.zs;
 public final class r1 implements b2 {
-    public final zs f9908a;
+    public final zs f9904a;
 
     public r1(zs zsVar) {
-        this.f9908a = zsVar;
+        this.f9904a = zsVar;
     }
 
     @Override
-    public final a0.i D() {
+    public final a0.i F() {
         return null;
     }
 
     @Override
-    public final boolean L(int i10) {
+    public final boolean O(int i10) {
         return true;
     }
 
     @Override
-    public final void f(int i10) {
-        zs zsVar = this.f9908a;
+    public final void h(int i10) {
+        zs zsVar = this.f9904a;
         zsVar.l();
         if (i10 != 0) {
             zsVar.F();
@@ -29,11 +29,11 @@ public final class r1 implements b2 {
     }
 
     @Override
-    public final a0.i y() {
+    public final a0.i w() {
         return null;
     }
 
     @Override
-    public final void O(ArrayList arrayList) {
+    public final void Q(ArrayList arrayList) {
     }
 }

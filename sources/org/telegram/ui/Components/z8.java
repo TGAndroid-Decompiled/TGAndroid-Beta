@@ -1,39 +1,90 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-public final class z8 {
-    public int f30842a;
-    public boolean f30843b;
-    public int f30844c;
-    public int d;
-    public int e;
-    public int f30845f;
+import android.app.Activity;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class z8 extends ll0 {
+    public final ArrayList X2;
+    public final int Y2;
+    public int Z2;
+    public final org.telegram.ui.w7 f30494a3;
+    public y8 f30495b3;
+    public final c9 f30496c3;
 
-    public final z8 a() {
-        ?? obj = new Object();
-        obj.f30844c = this.f30844c;
-        obj.d = this.d;
-        obj.e = this.e;
-        obj.f30845f = this.f30845f;
-        obj.f30843b = this.f30843b;
-        return obj;
+    public z8(c9 c9Var, Activity activity) {
+        super(activity, null);
+        this.f30496c3 = c9Var;
+        this.X2 = new ArrayList();
+        this.Y2 = 200;
+        this.Z2 = -1;
+        s4.c0 c0Var = new s4.c0();
+        c0Var.j1(0);
+        setLayoutManager(c0Var);
+        for (int i10 = 0; i10 < 7; i10++) {
+            ?? obj = new Object();
+            int i11 = this.Y2;
+            this.Y2 = i11 + 1;
+            obj.f30170a = i11;
+            int[] iArr = c9.f22977c0[i10];
+            obj.f30172c = iArr[0];
+            obj.d = iArr[1];
+            obj.e = iArr[2];
+            obj.f30173f = iArr[3];
+            this.X2.add(obj);
+        }
+        for (int i12 = 0; i12 < 30; i12++) {
+            ?? obj2 = new Object();
+            int i13 = this.Y2;
+            this.Y2 = i13 + 1;
+            obj2.f30170a = i13;
+            int[] iArr2 = c9.f22978d0[i12];
+            obj2.f30172c = iArr2[0];
+            obj2.d = iArr2[1];
+            obj2.e = 0;
+            obj2.f30173f = 0;
+            obj2.f30171b = true;
+            this.X2.add(obj2);
+        }
+        setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        setClipToPadding(false);
+        this.f25953h1 = true;
+        setOnItemClickListener(new j(this, 2));
+        org.telegram.ui.w7 w7Var = new org.telegram.ui.w7(this, 2);
+        this.f30494a3 = w7Var;
+        setAdapter(w7Var);
+        setOverScrollMode(1);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10) / this.f30494a3.h();
+        c9 c9Var = this.f30496c3;
+        c9Var.P = size;
+        if (size < AndroidUtilities.dp(39.0f)) {
+            c9Var.P = AndroidUtilities.dp(39.0f);
+        } else if (c9Var.P > AndroidUtilities.dp(150.0f)) {
+            c9Var.P = AndroidUtilities.dp(48.0f);
         }
-        if (!(obj instanceof z8)) {
-            return false;
-        }
-        z8 z8Var = (z8) obj;
-        if (this.f30844c == z8Var.f30844c && this.d == z8Var.d && this.e == z8Var.e && this.f30845f == z8Var.f30845f) {
-            return true;
-        }
-        return false;
+        super.onMeasure(i10, i11);
     }
 
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f30842a), Integer.valueOf(this.f30844c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f30845f));
+    public final void w1(y8 y8Var) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.X2;
+            if (i10 < arrayList.size()) {
+                if (((y8) arrayList.get(i10)).equals(y8Var)) {
+                    this.Z2 = ((y8) arrayList.get(i10)).f30170a;
+                    break;
+                }
+                i10++;
+            } else {
+                this.f30495b3 = y8Var;
+                this.Z2 = 1;
+                break;
+            }
+        }
+        this.f30494a3.l();
     }
 }

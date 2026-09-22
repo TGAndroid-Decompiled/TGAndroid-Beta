@@ -1,25 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.text.TextWatcher;
-public final class y11 implements TextWatcher {
-    public final int f30491a;
-    public final z11 f30492b;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class y11 extends TextView {
+    public View f30134a;
+    public ViewPropertyAnimator f30135b;
+    public boolean f30136c;
+    public jq0 d;
 
-    public y11(z11 z11Var, int i10) {
-        this.f30492b = z11Var;
-        this.f30491a = i10;
+    public final void a() {
+        if (this.f30134a == null) {
+            return;
+        }
+        View view = (View) getParent();
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        for (View view2 = this.f30134a; view2 != view; view2 = (View) view2.getParent()) {
+            i12 += view2.getTop();
+            i11 += view2.getLeft();
+        }
+        int width = ((this.f30134a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
+        if (width >= 0) {
+            if (getMeasuredWidth() + width > view.getMeasuredWidth()) {
+                i10 = (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
+            } else {
+                i10 = width;
+            }
+        }
+        setTranslationX(i10);
+        setTranslationY(i12 - getMeasuredHeight());
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y11.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        a();
     }
 }

@@ -1,32 +1,115 @@
 package org.telegram.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.text.style.ClickableSpan;
-import android.widget.TextView;
-import org.telegram.messenger.Utilities;
-public final class qr0 implements Utilities.Callback2 {
-    public final int f36984a;
-    public final PhotoViewer f36985b;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.ClippingImageView;
+public final class qr0 implements org.telegram.ui.Components.b5, org.telegram.ui.ActionBar.a2, ImageReceiver.ImageReceiverDelegate, r0.n {
+    public final PhotoViewer f36936a;
 
-    public qr0(PhotoViewer photoViewer, int i10) {
-        this.f36984a = i10;
-        this.f36985b = photoViewer;
+    public qr0(PhotoViewer photoViewer) {
+        this.f36936a = photoViewer;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10 = this.f36984a;
-        PhotoViewer photoViewer = this.f36985b;
-        switch (i10) {
-            case 0:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.W1((ClickableSpan) obj, (TextView) obj2);
-                return;
-            default:
-                Drawable[] drawableArr2 = PhotoViewer.U8;
-                photoViewer.getClass();
-                photoViewer.D0(((Boolean) obj2).booleanValue(), false, (((Float) obj).floatValue() * 2.8f) + 0.2f);
-                return;
+    public void J(int i10, int i11, boolean z10) {
+        Drawable[] drawableArr = PhotoViewer.U8;
+        this.f36936a.v2(z10, i10, i11, false, false, false);
+    }
+
+    @Override
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        PhotoViewer photoViewer = this.f36936a;
+        ir0 ir0Var = photoViewer.f31087v4;
+        Rect rect = photoViewer.f31058s2;
+        Rect rect2 = new Rect(rect);
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        int i10 = defaultWindowInsets.f10590a;
+        int i11 = defaultWindowInsets.f10591b;
+        int i12 = defaultWindowInsets.f10592c;
+        rect.set(i10, i11, i12, defaultWindowInsets.d);
+        if (!rect2.equals(rect)) {
+            int i13 = photoViewer.f31015n4;
+            if (i13 == 1 || i13 == 3) {
+                ClippingImageView clippingImageView = photoViewer.f30960h0;
+                clippingImageView.setTranslationX(clippingImageView.getTranslationX() - rect.left);
+                photoViewer.f30990k4[0][2] = photoViewer.f30960h0.getTranslationX();
+            }
+            cv0 cv0Var = photoViewer.f30951g0;
+            if (cv0Var != null) {
+                cv0Var.requestLayout();
+            }
         }
+        View view2 = photoViewer.f30978j0;
+        if (view2 != null) {
+            photoViewer.f30986k0 = rect.bottom;
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view2.getLayoutParams();
+            int i14 = photoViewer.f30986k0;
+            marginLayoutParams.height = i14;
+            marginLayoutParams.bottomMargin = (-i14) / 2;
+            photoViewer.f30978j0.setLayoutParams(marginLayoutParams);
+        }
+        photoViewer.f30934e0.setPadding(defaultWindowInsets.f10590a, 0, i12, 0);
+        if (photoViewer.F != null) {
+            AndroidUtilities.cancelRunOnUIThread(ir0Var);
+            if (photoViewer.e && photoViewer.f31015n4 == 0) {
+                AndroidUtilities.runOnUIThread(ir0Var, 200L);
+            }
+        }
+        return r0.l1.f41850b;
+    }
+
+    @Override
+    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        bv0 bv0Var;
+        int i10;
+        Bitmap bitmap;
+        boolean z13;
+        int i11;
+        PhotoViewer photoViewer = this.f36936a;
+        if (imageReceiver == photoViewer.C4 && z10 && !z11) {
+            if (!photoViewer.f31047r1 && ((photoViewer.f31078u4 == 1 || (i11 = photoViewer.f30918c2) == 1 || i11 == 11) && photoViewer.C1 != null && (bitmap = imageReceiver.getBitmap()) != null)) {
+                org.telegram.ui.Components.ue0 ue0Var = photoViewer.C1;
+                int orientation = imageReceiver.getOrientation();
+                int i12 = photoViewer.f30918c2;
+                if (i12 != 1 && i12 != 11) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                ue0Var.b(bitmap, orientation, z13, true, photoViewer.D1, null, null);
+            }
+            if (photoViewer.f31116y4.getVisibility() == 0) {
+                photoViewer.f30934e0.requestLayout();
+            }
+            photoViewer.Q0();
+        }
+        if (imageReceiver == photoViewer.C4 && z10 && (bv0Var = photoViewer.d) != null && bv0Var.J() && !photoViewer.f30991k5 && (i10 = photoViewer.f30918c2) != 1 && i10 != 11) {
+            if (!photoViewer.T5) {
+                photoViewer.U5 = true;
+            } else {
+                photoViewer.M2();
+            }
+        }
+    }
+
+    @Override
+    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.h5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        Drawable[] drawableArr = PhotoViewer.U8;
+        this.f36936a.d3(0);
+    }
+
+    @Override
+    public void onAnimationReady(ImageReceiver imageReceiver) {
+        org.telegram.messenger.h5.b(this, imageReceiver);
     }
 }

@@ -1,18 +1,18 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 public final class q extends ci.d {
-    public final int f3580h0;
+    public final int f3578h0;
 
-    public q(int i10, Context context, f6 f6Var, boolean z10) {
-        super(context, f6Var, z10);
-        this.f3580h0 = i10;
+    public q(int i10, Context context, e6 e6Var, boolean z10) {
+        super(context, e6Var, z10);
+        this.f3578h0 = i10;
     }
 
     @Override
     public boolean i() {
-        switch (this.f3580h0) {
+        switch (this.f3578h0) {
             case 1:
                 return false;
             case 2:

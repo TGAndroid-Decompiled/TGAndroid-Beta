@@ -1,30 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ej1 extends View {
-    public int f33382a;
-    public final WallpapersListActivity f33383b;
+import android.widget.EditText;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ej1 extends org.telegram.ui.ActionBar.g5 {
+    public final WallpapersListActivity f33365f;
 
-    public ej1(WallpapersListActivity wallpapersListActivity, Context context) {
-        super(context);
-        this.f33383b = wallpapersListActivity;
+    public ej1(WallpapersListActivity wallpapersListActivity) {
+        this.f33365f = wallpapersListActivity;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        WallpapersListActivity wallpapersListActivity = this.f33383b;
-        wallpapersListActivity.f31941s.setColor(this.f33382a);
-        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f31941s);
-        if (this.f33382a == org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19109d6, false)) {
-            canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.v);
-        }
+    public final void k() {
+        WallpapersListActivity wallpapersListActivity = this.f33365f;
+        jj1 jj1Var = wallpapersListActivity.J;
+        jj1Var.f34939n = null;
+        jj1Var.E(null, true);
+        wallpapersListActivity.L.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(62.0f));
+    public final void m() {
+        WallpapersListActivity wallpapersListActivity = this.f33365f;
+        wallpapersListActivity.H.setAdapter(wallpapersListActivity.I);
+        wallpapersListActivity.H.invalidate();
+        wallpapersListActivity.J.E(null, true);
+        wallpapersListActivity.L.setSearchFieldCaption(null);
+        k();
+    }
+
+    @Override
+    public final void n() {
+        WallpapersListActivity wallpapersListActivity = this.f33365f;
+        wallpapersListActivity.H.setAdapter(wallpapersListActivity.J);
+        wallpapersListActivity.H.invalidate();
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        this.f33365f.J.E(editText.getText().toString(), false);
     }
 }

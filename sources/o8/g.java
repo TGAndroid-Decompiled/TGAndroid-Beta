@@ -3,23 +3,23 @@ package o8;
 import android.os.Parcel;
 import android.os.Parcelable;
 import n6.u;
-import w7.f0;
+import w7.e0;
 public final class g extends o6.a {
     public static final Parcelable.Creator<g> CREATOR = new m8.h(24);
-    public final int f15683a;
-    public final u f15684b;
+    public final int f15495a;
+    public final u f15496b;
 
     public g(int i10, u uVar) {
-        this.f15683a = i10;
-        this.f15684b = uVar;
+        this.f15495a = i10;
+        this.f15496b = uVar;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f15683a);
-        f0.k(parcel, 2, this.f15684b, i10);
-        f0.r(parcel, q6);
+        int q6 = e0.q(parcel, 20293);
+        e0.s(parcel, 1, 4);
+        parcel.writeInt(this.f15495a);
+        e0.k(parcel, 2, this.f15496b, i10);
+        e0.r(parcel, q6);
     }
 }

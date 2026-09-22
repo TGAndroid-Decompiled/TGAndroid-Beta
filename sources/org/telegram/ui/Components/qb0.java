@@ -1,40 +1,150 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class qb0 extends org.telegram.ui.ActionBar.f1 {
-    public final int L;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class qb0 extends Drawable {
+    public final int f27299a;
+    public boolean f27300b;
+    public Object f27301c;
+    public Object d;
+    public Object e;
 
-    public qb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, boolean z11) {
-        super(i10, context, f6Var, z10, z11);
-        this.L = i11;
+    public qb0(int i10) {
+        this.f27299a = i10;
+        switch (i10) {
+            case 1:
+                this.f27301c = new Paint(1);
+                Paint paint = new Paint(1);
+                this.d = paint;
+                this.e = new Matrix();
+                paint.setStyle(Paint.Style.STROKE);
+                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{1308622847, 0, 452984831}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
+                return;
+            default:
+                return;
+        }
+    }
+
+    public void b(int i10, int i11) {
+        ((Paint) this.f27301c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     @Override
-    public final void i() {
-        switch (this.L) {
+    public final void draw(Canvas canvas) {
+        xi0 xi0Var;
+        switch (this.f27299a) {
             case 0:
-                setBackground(null);
+                xi0 xi0Var2 = (xi0) this.d;
+                xi0 xi0Var3 = (xi0) this.f27301c;
+                Rect rect = AndroidUtilities.rectTmp2;
+                rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + getBounds().centerX(), AndroidUtilities.dp(12.0f) + getBounds().centerY());
+                if (((xi0) this.e).A()) {
+                    xi0 xi0Var4 = (xi0) this.e;
+                    boolean z10 = this.f27300b;
+                    if (z10) {
+                        xi0Var = xi0Var3;
+                    } else {
+                        xi0Var = xi0Var2;
+                    }
+                    if (xi0Var4 != xi0Var) {
+                        if (z10) {
+                            xi0Var2 = xi0Var3;
+                        }
+                        this.e = xi0Var2;
+                        xi0Var2.M(xi0Var2.e[0] - 1);
+                    }
+                }
+                ((xi0) this.e).setBounds(rect);
+                ((xi0) this.e).draw(canvas);
                 return;
             default:
-                setBackground(null);
+                Paint paint = (Paint) this.d;
+                float dp = AndroidUtilities.dp(10.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(getBounds());
+                Matrix matrix = (Matrix) this.e;
+                matrix.reset();
+                matrix.postTranslate(rectF.left, rectF.top);
+                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f27301c);
+                if (this.f27300b) {
+                    float dp2 = AndroidUtilities.dp(1.0f);
+                    paint.setStrokeWidth(dp2);
+                    matrix.reset();
+                    matrix.postTranslate(rectF.left, rectF.top);
+                    float f7 = dp2 / 2.0f;
+                    rectF.inset(f7, f7);
+                    canvas.drawRoundRect(rectF, dp, dp, paint);
+                    return;
+                }
                 return;
         }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.L) {
+    public int getIntrinsicHeight() {
+        switch (this.f27299a) {
             case 0:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
+                return AndroidUtilities.dp(24.0f);
             default:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
+                return super.getIntrinsicHeight();
         }
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f27299a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return super.getIntrinsicWidth();
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f27299a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f27299a) {
+            case 0:
+                ((xi0) this.f27301c).setAlpha(i10);
+                ((xi0) this.d).setAlpha(i10);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f27299a) {
+            case 0:
+                ((xi0) this.f27301c).setColorFilter(colorFilter);
+                ((xi0) this.d).setColorFilter(colorFilter);
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void a(int i10) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
     }
 }

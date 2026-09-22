@@ -1,28 +1,33 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
+import android.content.Intent;
 import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.VideoEditedInfo;
-public final class sl extends tu0 {
-    public final Bitmap f37446a;
-    public final ArrayList f37447b;
-    public final zn f37448c;
+import org.telegram.messenger.FileLog;
+public final class sl implements iq0 {
+    public final bo f37415a;
 
-    public sl(zn znVar, Bitmap bitmap, ArrayList arrayList) {
-        this.f37448c = znVar;
-        this.f37446a = bitmap;
-        this.f37447b = arrayList;
+    public sl(bo boVar) {
+        this.f37415a = boVar;
     }
 
     @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return new ImageReceiver.BitmapHolder(this.f37446a, (String) null, 0);
+    public final void b() {
+        try {
+            Intent intent = new Intent();
+            intent.setType("video/*");
+            intent.setAction("android.intent.action.GET_CONTENT");
+            intent.putExtra("android.intent.extra.sizeLimit", 2097152000L);
+            Intent intent2 = new Intent("android.intent.action.PICK");
+            intent2.setType("image/*");
+            Intent createChooser = Intent.createChooser(intent2, null);
+            createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
+            this.f37415a.startActivityForResult(createChooser, 1);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
     @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.f37448c.q((MediaController.PhotoEntry) this.f37447b.get(0), videoEditedInfo, z10, i11, 0, z11, 0L);
+    public final void a(ArrayList arrayList) {
     }
 }

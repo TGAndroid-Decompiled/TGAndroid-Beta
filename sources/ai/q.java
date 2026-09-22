@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.ll0;
 import org.telegram.ui.lx;
-public final class q extends yl0 {
+public final class q extends ll0 {
     public final int X2;
     public final lx Y2;
 
@@ -32,17 +32,17 @@ public final class q extends yl0 {
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     a0 a0Var = (a0) getChildAt(i11);
-                    int S = RecyclerView.S(a0Var);
-                    a0Var.f494b = S;
+                    int R = RecyclerView.R(a0Var);
+                    a0Var.f494b = R;
                     boolean z11 = true;
                     a0Var.f492a = true;
-                    if (S == 0) {
+                    if (R == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (S != lxVar.f569y.size() - 1) {
+                    if (R != lxVar.f569y.size() - 1) {
                         z11 = false;
                     }
                     a0Var.f496c = z11;
@@ -102,7 +102,7 @@ public final class q extends yl0 {
     }
 
     @Override
-    public void l0(int i10, int i11) {
+    public void k0(int i10, int i11) {
         switch (this.X2) {
             case 1:
                 ci.f4 f4Var = this.Y2.J;

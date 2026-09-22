@@ -1,14 +1,72 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-public interface br0 {
-    void a();
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class br0 implements org.telegram.ui.Components.lm0 {
+    public final gr0 f32571a;
 
-    void b(Editable editable);
+    public br0(gr0 gr0Var) {
+        this.f32571a = gr0Var;
+    }
 
-    boolean e();
+    @Override
+    public final void C0(float f7) {
+        gr0 gr0Var = this.f32571a;
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        if (i10 != 0 || gr0Var.f33927n[1].getVisibility() == 0) {
+            if (gr0Var.v) {
+                er0 er0Var = gr0Var.f33927n[0];
+                er0Var.setTranslationX((-f7) * er0Var.getMeasuredWidth());
+                er0[] er0VarArr = gr0Var.f33927n;
+                er0VarArr[1].setTranslationX(er0VarArr[0].getMeasuredWidth() - (f7 * gr0Var.f33927n[0].getMeasuredWidth()));
+            } else {
+                er0 er0Var2 = gr0Var.f33927n[0];
+                er0Var2.setTranslationX(er0Var2.getMeasuredWidth() * f7);
+                er0[] er0VarArr2 = gr0Var.f33927n;
+                er0VarArr2[1].setTranslationX((f7 * er0VarArr2[0].getMeasuredWidth()) - gr0Var.f33927n[0].getMeasuredWidth());
+            }
+            if (i10 == 0) {
+                er0[] er0VarArr3 = gr0Var.f33927n;
+                er0 er0Var3 = er0VarArr3[0];
+                er0VarArr3[0] = er0VarArr3[1];
+                er0VarArr3[1] = er0Var3;
+                er0Var3.setVisibility(8);
+            }
+        }
+    }
 
-    void g();
+    @Override
+    public final void d(int i10, boolean z10) {
+        boolean z11;
+        gr0 gr0Var = this.f32571a;
+        if (gr0Var.f33927n[0].e == i10) {
+            return;
+        }
+        if (i10 == gr0Var.h.getFirstTabId()) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        gr0Var.e = z11;
+        er0 er0Var = gr0Var.f33927n[1];
+        er0Var.e = i10;
+        er0Var.setVisibility(0);
+        gr0Var.j0(true);
+        gr0Var.v = z10;
+        if (i10 == 0) {
+            gr0Var.f33925c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
+        } else {
+            gr0Var.f33925c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
+        }
+    }
 
-    void i(int i10, boolean z10, boolean z11);
+    @Override
+    public final boolean n1(int i10, View view) {
+        return false;
+    }
+
+    @Override
+    public final void C() {
+    }
 }

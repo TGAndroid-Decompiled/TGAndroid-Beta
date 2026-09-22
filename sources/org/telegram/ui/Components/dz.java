@@ -8,21 +8,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
 public final class dz implements yy {
-    public String f23779a;
-    public int f23780b;
-    public final ArrayList f23781c = new ArrayList();
+    public String f23425a;
+    public int f23426b;
+    public final ArrayList f23427c = new ArrayList();
     public final HashMap d = new HashMap();
     public final HashMap e = new HashMap();
-    public final HashMap f23782f = new HashMap();
+    public final HashMap f23428f = new HashMap();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f23783n = new ArrayList();
-    public final ArrayList f23784r = new ArrayList(0);
-    public final ArrayList f23785s = new ArrayList(0);
+    public final ArrayList f23429n = new ArrayList();
+    public final ArrayList f23430r = new ArrayList(0);
+    public final ArrayList f23431s = new ArrayList(0);
     public final LongSparseArray v = new LongSparseArray(0);
-    public final fz f23786w;
+    public final fz f23432w;
 
     public dz(fz fzVar) {
-        this.f23786w = fzVar;
+        this.f23432w = fzVar;
     }
 
     public final void a(Runnable runnable, boolean z10) {
@@ -33,26 +33,26 @@ public final class dz implements yy {
         } else {
             str = "";
         }
-        MediaDataController.getInstance(this.f23786w.Q.f25858c1).searchStickers(false, str, this.f23779a, new ci.hd(this, z10, runnable, 2), z10);
+        MediaDataController.getInstance(this.f23432w.Q.f25700c1).searchStickers(false, str, this.f23425a, new ci.hd(this, z10, runnable, 2), z10);
     }
 
     @Override
     public final void d() {
-        ww wwVar = this.f23786w.Q.G0;
-        if (wwVar.F) {
+        vw vwVar = this.f23432w.Q.G0;
+        if (vwVar.F) {
             return;
         }
-        wwVar.e(true);
+        vwVar.e(true);
         Utilities.raceCallbacks(new xp(this, 16), new cz(this, 0));
     }
 
     @Override
     public final void run() {
-        fz fzVar = this.f23786w;
+        fz fzVar = this.f23432w;
         kz kzVar = fzVar.Q;
         if (TextUtils.isEmpty(fzVar.N)) {
             s4.h0 adapter = kzVar.D0.getAdapter();
-            bz bzVar = kzVar.f25928y0;
+            bz bzVar = kzVar.f25770y0;
             if (adapter != bzVar) {
                 kzVar.D0.setAdapter(bzVar);
             }
@@ -61,19 +61,19 @@ public final class dz implements yy {
         }
         int i10 = fzVar.M + 1;
         fzVar.M = i10;
-        this.f23780b = i10;
-        this.f23779a = fzVar.N;
-        fzVar.f24380y = false;
-        this.f23781c.clear();
+        this.f23426b = i10;
+        this.f23425a = fzVar.N;
+        fzVar.f24126y = false;
+        this.f23427c.clear();
         this.d.clear();
         this.e.clear();
-        this.f23782f.clear();
+        this.f23428f.clear();
         this.h.clear();
-        this.f23784r.clear();
-        this.f23785s.clear();
+        this.f23430r.clear();
+        this.f23431s.clear();
         this.v.clear();
         kzVar.G0.e(true);
-        if ("premium".equalsIgnoreCase(this.f23779a)) {
+        if ("premium".equalsIgnoreCase(this.f23425a)) {
             Utilities.raceCallbacks(new xp(this, 16), new cz(this, 1));
         } else {
             Utilities.raceCallbacks(new xp(this, 16), new cz(this, 2), new cz(this, 3), new cz(this, 4), new cz(this, 5), new cz(this, 6), new cz(this, 7));

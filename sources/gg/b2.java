@@ -2,13 +2,13 @@ package gg;
 
 import java.util.ArrayList;
 public interface b2 {
-    a0.i D();
+    a0.i F();
 
-    boolean L(int i10);
+    boolean O(int i10);
 
-    void O(ArrayList arrayList);
+    void Q(ArrayList arrayList);
 
-    void f(int i10);
+    void h(int i10);
 
-    a0.i y();
+    a0.i w();
 }

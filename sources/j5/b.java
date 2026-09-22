@@ -4,8 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import java.net.MalformedURLException;
 import java.net.URL;
-import k2.e;
-import k5.c;
+import k5.d;
+import k5.f;
 import k5.g;
 import k5.h;
 import k5.i;
@@ -18,53 +18,53 @@ import k5.q;
 import k5.r;
 import k5.s;
 import k5.v;
-import ka.d;
-import m5.f;
-import v7.j0;
-public final class b implements f {
-    public final e f12882a;
-    public final ConnectivityManager f12883b;
-    public final Context f12884c;
+import ka.c;
+import m5.e;
+import org.telegram.ui.Cells.q3;
+public final class b implements e {
+    public final c f12880a;
+    public final ConnectivityManager f12881b;
+    public final Context f12882c;
     public final URL d;
     public final u5.a e;
-    public final u5.a f12885f;
-    public final int f12886g;
+    public final u5.a f12883f;
+    public final int f12884g;
 
     public b(Context context, u5.a aVar, u5.a aVar2) {
-        d dVar = new d();
-        c cVar = c.f13451a;
-        dVar.m(o.class, cVar);
-        dVar.m(i.class, cVar);
-        k5.f fVar = k5.f.f13461a;
-        dVar.m(s.class, fVar);
-        dVar.m(l.class, fVar);
-        k5.d dVar2 = k5.d.f13453a;
-        dVar.m(q.class, dVar2);
-        dVar.m(j.class, dVar2);
+        ka.e eVar = new ka.e();
+        k5.c cVar = k5.c.f13451a;
+        eVar.m(o.class, cVar);
+        eVar.m(i.class, cVar);
+        f fVar = f.f13461a;
+        eVar.m(s.class, fVar);
+        eVar.m(l.class, fVar);
+        d dVar = d.f13453a;
+        eVar.m(q.class, dVar);
+        eVar.m(j.class, dVar);
         k5.b bVar = k5.b.f13441a;
-        dVar.m(k5.a.class, bVar);
-        dVar.m(h.class, bVar);
-        k5.e eVar = k5.e.f13456a;
-        dVar.m(r.class, eVar);
-        dVar.m(k.class, eVar);
+        eVar.m(k5.a.class, bVar);
+        eVar.m(h.class, bVar);
+        k5.e eVar2 = k5.e.f13456a;
+        eVar.m(r.class, eVar2);
+        eVar.m(k.class, eVar2);
         g gVar = g.f13466a;
-        dVar.m(v.class, gVar);
-        dVar.m(n.class, gVar);
-        dVar.d = true;
-        this.f12882a = new e(dVar, 1);
-        this.f12884c = context;
-        this.f12883b = (ConnectivityManager) context.getSystemService("connectivity");
-        this.d = b(a.f12878c);
+        eVar.m(v.class, gVar);
+        eVar.m(n.class, gVar);
+        eVar.d = true;
+        this.f12880a = new c(eVar, 0);
+        this.f12882c = context;
+        this.f12881b = (ConnectivityManager) context.getSystemService("connectivity");
+        this.d = b(a.f12876c);
         this.e = aVar2;
-        this.f12885f = aVar;
-        this.f12886g = 130000;
+        this.f12883f = aVar;
+        this.f12884g = 130000;
     }
 
     public static URL b(String str) {
         try {
             return new URL(str);
         } catch (MalformedURLException e) {
-            throw new IllegalArgumentException(j0.g("Invalid url: ", str), e);
+            throw new IllegalArgumentException(q3.i("Invalid url: ", str), e);
         }
     }
 

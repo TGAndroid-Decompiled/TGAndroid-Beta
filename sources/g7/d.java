@@ -2,21 +2,21 @@ package g7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import w7.f0;
+import w7.e0;
 public final class d extends o6.a {
     public static final Parcelable.Creator<d> CREATOR = new e6.i(15);
-    public final boolean f9491a;
+    public final boolean f9488a;
 
     public d(boolean z10) {
-        this.f9491a = z10;
+        this.f9488a = z10;
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i10) {
         kotlin.jvm.internal.i.e(dest, "dest");
-        int q6 = f0.q(dest, 20293);
-        f0.s(dest, 1, 4);
-        dest.writeInt(this.f9491a ? 1 : 0);
-        f0.r(dest, q6);
+        int q6 = e0.q(dest, 20293);
+        e0.s(dest, 1, 4);
+        dest.writeInt(this.f9488a ? 1 : 0);
+        e0.r(dest, q6);
     }
 }

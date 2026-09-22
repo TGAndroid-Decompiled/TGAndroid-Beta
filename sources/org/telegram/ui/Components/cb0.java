@@ -1,41 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import android.view.KeyEvent;
-public final class cb0 extends ReplacementSpan {
-    public final int f23340a;
-    public final KeyEvent.Callback f23341b;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+public final class cb0 extends s4.t {
+    public final pb0 S;
 
-    public cb0(KeyEvent.Callback callback, int i10) {
-        this.f23340a = i10;
-        this.f23341b = callback;
+    public cb0(pb0 pb0Var) {
+        super(true);
+        this.S = pb0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f23340a;
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f23340a) {
-            case 0:
-                return ((eb0) this.f23341b).f23924x;
-            case 1:
-                return (int) ((org.telegram.ui.uj0) this.f23341b).f38144n0;
-            default:
-                return (int) ((tg.m1) this.f23341b).f43490t0;
+    public final boolean B1(int i10) {
+        byte b10;
+        pb0 pb0Var = this.S;
+        MessageObject messageObject = pb0Var.f27001r.previewMessages.get(i10);
+        MessageObject.GroupedMessages a2 = pb0.a(pb0Var, messageObject);
+        if (a2 != null) {
+            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = a2.posArray.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
+                    }
+                }
+            }
         }
+        return false;
     }
 
-    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final boolean C1(View view) {
+        return false;
     }
 
-    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final void b0(of.e eVar, s4.z0 z0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            super.b0(eVar, z0Var);
+            return;
+        }
+        try {
+            super.b0(eVar, z0Var);
+        } catch (Exception e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new xp(this, 28));
+        }
     }
 }

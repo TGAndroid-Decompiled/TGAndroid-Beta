@@ -1,26 +1,44 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class u60 implements RequestDelegate {
-    public final int f28680a;
-    public final w60 f28681b;
+import android.content.Context;
+import android.view.View;
+public final class u60 extends yw0 {
+    public final int K;
 
-    public u60(w60 w60Var, int i10) {
-        this.f28680a = i10;
-        this.f28681b = w60Var;
+    public u60(Context context, View view, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
+        super(context, view, i10, e6Var);
+        this.K = i11;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f28680a) {
+    public void onAttachedToWindow() {
+        switch (this.K) {
             case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o(this.f28681b, tL_error, tLObject, 22));
+                super.onAttachedToWindow();
+                this.f30416b.getImageReceiver().startAnimation();
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                this.f30416b.getImageReceiver().startAnimation();
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new bv(16, this.f28681b, tL_error));
+                super.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.K) {
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    e(false, false);
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
                 return;
         }
     }

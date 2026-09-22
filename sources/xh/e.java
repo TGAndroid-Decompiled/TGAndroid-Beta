@@ -12,26 +12,26 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.xl0;
-import org.telegram.ui.Components.y51;
-import org.telegram.ui.Components.yl0;
-import w7.y5;
-public final class e extends ab implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final y51 X;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.za;
+import w7.x5;
+public final class e extends za implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
+    public final i51 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f46156a0;
-    public m61 f46157b0;
+    public boolean f45827a0;
+    public w51 f45828b0;
 
     public e(Context context) {
         super(context, null, false, false, 2, null);
         int i10 = 0;
         this.Y = new LongSparseArray();
         this.Z = new ArrayList();
-        setBackgroundColor(j6.w0(null, j6.f19053a7, false));
+        setBackgroundColor(i6.w0(null, i6.f18778a7, false));
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
@@ -41,10 +41,10 @@ public final class e extends ab implements GiftAuctionController.OnActiveAuction
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.X = y51.j(-1, linearLayout);
+        this.X = i51.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f46157b0.N(false);
+        this.f45828b0.N(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -52,8 +52,8 @@ public final class e extends ab implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             d dVar = new d(context, auction2);
-            dVar.f46147a.setOnClickListener(new xg.e(this, context, auction2, 1));
-            linearLayout.addView(dVar, y5.n(-1, -2));
+            dVar.f45817a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            linearLayout.addView(dVar, x5.n(-1, -2));
             this.Y.put(auction2.giftId, dVar);
         }
         onActiveAuctionsUpdate(activeAuctions);
@@ -81,10 +81,10 @@ public final class e extends ab implements GiftAuctionController.OnActiveAuction
             }
             d dVar = (d) this.Y.get(auction.giftId);
             if (dVar != null) {
-                dVar.b(this.f46156a0);
+                dVar.b(this.f45827a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                dVar.a(max, this.f46156a0);
-                dVar.f46150f.a(max);
+                dVar.a(max, this.f45827a0);
+                dVar.f45820f.a(max);
             }
         }
     }
@@ -92,15 +92,15 @@ public final class e extends ab implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f46156a0 = true;
+        this.f45827a0 = true;
     }
 
     @Override
-    public final xl0 v(yl0 yl0Var) {
-        m61 m61Var = new m61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f46157b0 = m61Var;
-        m61Var.f26342r = false;
-        return m61Var;
+    public final kl0 v(ll0 ll0Var) {
+        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
+        this.f45828b0 = w51Var;
+        w51Var.f29610r = false;
+        return w51Var;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package org.webrtc;
 
-import hg.k0;
 import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 public class EncodedImage implements RefCounted {
@@ -92,7 +91,7 @@ public class EncodedImage implements RefCounted {
                     return frameType;
                 }
             }
-            throw new IllegalArgumentException(k0.h(i10, "Unknown native frame type: "));
+            throw new IllegalArgumentException(hg.c.i(i10, "Unknown native frame type: "));
         }
 
         public int getNative() {

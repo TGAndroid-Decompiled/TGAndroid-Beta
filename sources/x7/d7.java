@@ -1,40 +1,24 @@
 package x7;
+public enum d7 implements a0 {
+    UNKNOWN_FORMAT(0),
+    NV16(1),
+    NV21(2),
+    YV12(3),
+    YUV_420_888(7),
+    JPEG(8),
+    BITMAP(4),
+    CM_SAMPLE_BUFFER_REF(5),
+    UI_IMAGE(6),
+    CV_PIXEL_BUFFER_REF(9);
+    
+    public final int f45386a;
 
-import android.graphics.Rect;
-import android.view.View;
-public final class d7 implements r0.n, ce.b {
-    public Object f45702a;
-    public Object f45703b;
-
-    @Override
-    public r0.l1 P0(View view, r0.l1 l1Var) {
-        z4.g gVar = (z4.g) this.f45703b;
-        r0.l1 h = r0.i0.h(view, l1Var);
-        if (h.f42175a.n()) {
-            return h;
-        }
-        Rect rect = (Rect) this.f45702a;
-        rect.left = h.b();
-        rect.top = h.d();
-        rect.right = h.c();
-        rect.bottom = h.a();
-        int childCount = gVar.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            r0.l1 b10 = r0.i0.b(gVar.getChildAt(i10), h);
-            rect.left = Math.min(b10.b(), rect.left);
-            rect.top = Math.min(b10.d(), rect.top);
-            rect.right = Math.min(b10.c(), rect.right);
-            rect.bottom = Math.min(b10.a(), rect.bottom);
-        }
-        return h.f(rect.left, rect.top, rect.right, rect.bottom);
+    d7(int i10) {
+        this.f45386a = i10;
     }
 
     @Override
-    public Object u(ce.c cVar, kd.c cVar2) {
-        Object u10 = ((n4.y) this.f45702a).u(new k1.p(cVar, (za.y) this.f45703b), cVar2);
-        if (u10 == jd.a.f12971a) {
-            return u10;
-        }
-        return gd.i.f9621a;
+    public final int zza() {
+        return this.f45386a;
     }
 }

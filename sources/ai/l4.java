@@ -5,11 +5,11 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.rk;
-import org.telegram.ui.Components.og;
+import org.telegram.messenger.vl;
+import org.telegram.ui.Components.ng;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.co;
+import org.telegram.ui.fo;
 public final class l4 extends ImageReceiver {
     public final int f1176a;
     public final Object f1177b;
@@ -24,14 +24,14 @@ public final class l4 extends ImageReceiver {
     public void invalidate() {
         switch (this.f1176a) {
             case 3:
-                View view = ((co) this.f1177b).f32814b;
+                View view = ((fo) this.f1177b).f33638b;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             case 4:
-                ((org.telegram.ui.Components.p5) this.f1177b).k();
+                ((org.telegram.ui.Components.o5) this.f1177b).k();
                 super.invalidate();
                 return;
             default:
@@ -56,7 +56,7 @@ public final class l4 extends ImageReceiver {
                 return imageBitmapByKey;
             case 1:
                 if (drawable != null && i10 != 1) {
-                    rk.s(((hg.e1) ((z5) obj).H).f10271n.animate().alpha(1.0f).translationY(0.0f), qr.f27657k, 250L);
+                    vl.r(((hg.f1) ((z5) obj).H).f10275n.animate().alpha(1.0f).translationY(0.0f), qr.f27424k, 250L);
                 }
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 2:
@@ -64,12 +64,12 @@ public final class l4 extends ImageReceiver {
             default:
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 4:
-                org.telegram.ui.Components.p5 p5Var = (org.telegram.ui.Components.p5) obj;
-                p5Var.k();
+                org.telegram.ui.Components.o5 o5Var = (org.telegram.ui.Components.o5) obj;
+                o5Var.k();
                 boolean imageBitmapByKey2 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (p5Var.f27258m && hasImageLoaded()) {
-                    p5Var.f27258m = false;
-                    AndroidUtilities.runOnUIThread(new og(p5Var, 4));
+                if (o5Var.f26691m && hasImageLoaded()) {
+                    o5Var.f26691m = false;
+                    AndroidUtilities.runOnUIThread(new ng(o5Var, 4));
                 }
                 return imageBitmapByKey2;
             case 5:
@@ -90,16 +90,16 @@ public final class l4 extends ImageReceiver {
         switch (this.f1176a) {
             case 2:
                 super.setRoundRadius(iArr);
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f1177b;
-                int[] iArr2 = u1Var.R0;
+                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f1177b;
+                int[] iArr2 = t1Var.R0;
                 iArr2[0] = iArr[0];
                 iArr2[1] = iArr[1];
                 int dp = AndroidUtilities.dp(6.0f);
                 iArr2[3] = dp;
                 iArr2[2] = dp;
-                qh.g gVar = u1Var.f21260b6;
+                qh.g gVar = t1Var.f20976b6;
                 if (gVar != null) {
-                    gVar.f42089b.setRoundRadius(u1Var.R0);
+                    gVar.f41765b.setRoundRadius(t1Var.R0);
                     return;
                 }
                 return;

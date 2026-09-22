@@ -3,7 +3,7 @@ package kd;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import v7.u7;
+import v7.t7;
 public abstract class a implements id.c, d, Serializable {
     private final id.c completion;
 
@@ -67,20 +67,20 @@ public abstract class a implements id.c, d, Serializable {
             if (i10 >= 0) {
                 i12 = eVar.l()[i10];
             }
-            f fVar = g.f13585b;
-            f fVar2 = g.f13584a;
+            f fVar = g.f13587b;
+            f fVar2 = g.f13586a;
             if (fVar == null) {
                 try {
                     f fVar3 = new f(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    g.f13585b = fVar3;
+                    g.f13587b = fVar3;
                     fVar = fVar3;
                 } catch (Exception unused2) {
-                    g.f13585b = fVar2;
+                    g.f13587b = fVar2;
                     fVar = fVar2;
                 }
             }
-            if (fVar != fVar2 && (method = fVar.f13581a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = fVar.f13582b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = fVar.f13583c;
+            if (fVar != fVar2 && (method = fVar.f13583a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = fVar.f13584b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
+                Method method3 = fVar.f13585c;
                 if (method3 != null) {
                     obj = method3.invoke(invoke2, null);
                 } else {
@@ -111,11 +111,11 @@ public abstract class a implements id.c, d, Serializable {
             kotlin.jvm.internal.i.b(cVar2);
             try {
                 obj = aVar.invokeSuspend(obj);
-                if (obj == jd.a.f12971a) {
+                if (obj == jd.a.f12969a) {
                     return;
                 }
             } catch (Throwable th2) {
-                obj = u7.a(th2);
+                obj = t7.a(th2);
             }
             aVar.releaseIntercepted();
             if (cVar2 instanceof a) {

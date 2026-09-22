@@ -1,41 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-public final class j51 extends ln0 {
-    public final u51 h;
+import android.text.TextPaint;
+public final class j51 extends m51 {
+    public static boolean h = true;
+    public final int e;
+    public final o01 f25233f;
 
-    public j51(u51 u51Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, 14.0f, f6Var);
-        this.h = u51Var;
+    public j51(String str, int i10, o01 o01Var) {
+        super(str, (o01) null);
+        this.e = i10;
+        this.f25233f = o01Var;
     }
 
     @Override
-    public final void a(String str) {
-        gg.g2 g2Var = this.h.v;
-        gg.e2 e2Var = g2Var.S;
-        int i10 = g2Var.f9745c;
-        if (g2Var.N != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(g2Var.N, true);
-            g2Var.N = 0;
-        }
-        if (g2Var.O != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(g2Var.O, true);
-            g2Var.O = 0;
-        }
-        if (TextUtils.isEmpty(str)) {
-            g2Var.R = null;
-            g2Var.F.clear();
-            g2Var.I.clear();
-            g2Var.E.clear();
-            g2Var.e.b(false);
-            g2Var.l();
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10;
+        int i11;
+        super.updateDrawState(textPaint);
+        int i12 = this.e;
+        if (i12 == 2) {
+            textPaint.setColor(-1);
+        } else if (i12 == 1) {
+            if (h) {
+                i11 = org.telegram.ui.ActionBar.i6.f18910hc;
+            } else {
+                i11 = org.telegram.ui.ActionBar.i6.f18875fc;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         } else {
-            g2Var.R = str.toLowerCase();
+            if (h) {
+                i10 = org.telegram.ui.ActionBar.i6.gc;
+            } else {
+                i10 = org.telegram.ui.ActionBar.i6.ec;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
         }
-        AndroidUtilities.cancelRunOnUIThread(e2Var);
-        AndroidUtilities.runOnUIThread(e2Var, 300L);
+        o01 o01Var = this.f25233f;
+        if (o01Var != null) {
+            o01Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
+        }
     }
 }

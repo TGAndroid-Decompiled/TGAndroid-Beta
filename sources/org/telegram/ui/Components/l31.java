@@ -1,51 +1,111 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class l31 extends x51 {
-    public static final int f25978a = 0;
+import android.net.Uri;
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import org.json.JSONArray;
+import org.json.JSONTokener;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class l31 extends Thread {
+    public final String f25822a;
+    public final String f25823b;
+    public final String f25824c;
+    public final Utilities.Callback2 d;
 
-    static {
-        x51.setup(new x51());
+    public l31(String str, String str2, String str3, Utilities.Callback2 callback2) {
+        this.f25822a = str;
+        this.f25823b = str2;
+        this.f25824c = str3;
+        this.d = callback2;
     }
 
     @Override
-    public final void bindView(View view, y51 y51Var, boolean z10, m61 m61Var, u61 u61Var) {
-        boolean z11;
-        m31 m31Var = (m31) view;
-        boolean z12 = false;
-        if (y51Var.f30524r) {
-            m31Var.e();
-        } else {
-            Object obj = y51Var.G;
-            if (obj == null) {
-                if (y51Var.B == -2) {
-                    m31Var.b(y51Var.f30523q, y51Var.e);
-                } else {
-                    if ((y51Var.f30530y & 1) != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    m31Var.c(z11, y51Var.f30523q, y51Var.e);
+    public final void run() {
+        HttpURLConnection httpURLConnection;
+        Integer num;
+        String str;
+        Utilities.Callback2 callback2 = this.d;
+        String str2 = this.f25824c;
+        boolean z10 = false;
+        String str3 = null;
+        try {
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f25822a) + "&tl=" + Uri.encode(this.f25823b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+        } catch (Exception e) {
+            e = e;
+            httpURLConnection = null;
+        }
+        try {
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("User-Agent", v31.R[(int) Math.round(Math.random() * 5)]);
+            httpURLConnection.setRequestProperty("Content-Type", "application/json");
+            StringBuilder sb2 = new StringBuilder();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.d.f7562a));
+            while (true) {
+                int read = bufferedReader.read();
+                if (read == -1) {
+                    break;
                 }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!y51Var.I) {
-                    m31Var.f((TLRPC.TL_forumTopic) obj, y51Var.e);
-                } else {
-                    m31Var.a(y51Var.f30529x, (TLRPC.TL_forumTopic) obj, y51Var.e);
+                sb2.append((char) read);
+            }
+            bufferedReader.close();
+            JSONArray jSONArray = new JSONArray(new JSONTokener(sb2.toString()));
+            JSONArray jSONArray2 = jSONArray.getJSONArray(0);
+            try {
+                str = jSONArray.getString(2);
+            } catch (Exception unused) {
+                str = null;
+            }
+            if (str != null && str.contains("-")) {
+                str.substring(0, str.indexOf("-"));
+            }
+            String str4 = "";
+            for (int i10 = 0; i10 < jSONArray2.length(); i10++) {
+                String string = jSONArray2.getJSONArray(i10).getString(0);
+                if (string != null && !string.equals("null")) {
+                    str4 = str4 + string;
                 }
             }
+            if (str2.length() > 0 && str2.charAt(0) == '\n') {
+                str4 = "\n" + str4;
+            }
+            AndroidUtilities.runOnUIThread(new ar0(11, callback2, str4));
+        } catch (Exception e7) {
+            e = e7;
+            try {
+                StringBuilder sb3 = new StringBuilder();
+                sb3.append("failed to translate a text ");
+                if (httpURLConnection != null) {
+                    num = Integer.valueOf(httpURLConnection.getResponseCode());
+                } else {
+                    num = null;
+                }
+                sb3.append(num);
+                sb3.append(" ");
+                if (httpURLConnection != null) {
+                    str3 = httpURLConnection.getResponseMessage();
+                }
+                sb3.append(str3);
+                Log.e("translate", sb3.toString());
+            } catch (IOException e10) {
+                e10.printStackTrace();
+            }
+            e.printStackTrace();
+            if (httpURLConnection != null) {
+                try {
+                    if (httpURLConnection.getResponseCode() == 429) {
+                        z10 = true;
+                    }
+                } catch (Exception unused2) {
+                    AndroidUtilities.runOnUIThread(new jq0(callback2, 21));
+                    return;
+                }
+            }
+            AndroidUtilities.runOnUIThread(new sr0(3, callback2, z10));
         }
-        if (u61Var != null && u61Var.f28684c3 && m31Var.f26315y) {
-            z12 = true;
-        }
-        m31Var.setReorder(z12);
-    }
-
-    @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new m31(context, i10, f6Var);
     }
 }

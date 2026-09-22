@@ -1,83 +1,30 @@
 package org.telegram.ui.Cells;
 
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
+import android.content.Context;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.v51;
-public final class n3 {
-    public boolean f20702a;
-    public StaticLayout f20703b;
-    public StaticLayout f20704c;
-    public int d;
-    public int e;
-    public float f20705f;
-    public float f20706g;
-    public float h;
-    public float f20707i;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.w51;
+public final class n3 extends h51 {
+    public static final int f20455a = 0;
 
-    public final void a(u1 u1Var) {
-        TLRPC.Message message;
-        String str;
-        int parentWidth;
-        String str2;
-        SpannableStringBuilder e = ai.ia.e(R.string.ExpiredStory, false, new Object[0]);
-        MessageObject messageObject = u1Var.getMessageObject();
-        if (messageObject != null && (message = messageObject.messageOwner) != null) {
-            TLRPC.MessageMedia messageMedia = message.media;
-            if (messageMedia instanceof TLRPC.TL_messageMediaStory) {
-                TLRPC.User user = MessagesController.getInstance(u1Var.I7).getUser(Long.valueOf(((TLRPC.TL_messageMediaStory) messageMedia).user_id));
-                if (user == null) {
-                    str = "DELETED";
-                } else {
-                    str = user.first_name;
-                }
-                if (AndroidUtilities.isTablet()) {
-                    parentWidth = AndroidUtilities.getMinTabletSide();
-                } else {
-                    parentWidth = u1Var.getParentWidth();
-                }
-                int i10 = (int) (parentWidth * 0.4f);
-                String string = LocaleController.getString(R.string.From);
-                TextPaint textPaint = org.telegram.ui.ActionBar.j6.X2;
-                int ceil = (int) Math.ceil(textPaint.measureText(string + " "));
-                if (str == null) {
-                    str = "";
-                }
-                String str3 = (String) TextUtils.ellipsize(str.replace('\n', ' '), org.telegram.ui.ActionBar.j6.Y2, i10 - ceil, TextUtils.TruncateAt.END);
-                String string2 = LocaleController.getString(R.string.FromFormatted);
-                int indexOf = string2.indexOf("%1$s");
-                String format = String.format(string2, str3);
-                if (indexOf >= 0) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
-                    spannableStringBuilder.setSpan(new v51(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
-                    str2 = spannableStringBuilder;
-                } else {
-                    str2 = format;
-                }
-                TextPaint textPaint2 = org.telegram.ui.ActionBar.j6.Z2;
-                int dp = AndroidUtilities.dp(10.0f);
-                Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.f20703b = new StaticLayout(e, textPaint2, dp + ((int) (textPaint2.measureText(e, 0, e.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.f20704c = new StaticLayout(str2, textPaint2, AndroidUtilities.dp(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.e = 0;
-                this.h = AndroidUtilities.dp(4.0f);
-                this.f20707i = AndroidUtilities.dp(12.0f);
-                this.e = (int) c1.b(this.h, 2.0f, AndroidUtilities.dp(4.0f) + this.f20704c.getHeight() + AndroidUtilities.dp(2.0f) + this.f20703b.getHeight() + AndroidUtilities.dp(4.0f), this.e);
-                this.d = u1Var.getExtraTextX() + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + Math.max(this.f20703b.getWidth(), this.f20704c.getWidth());
-                return;
-            }
-        }
-        this.h = AndroidUtilities.dp(4.0f);
-        this.f20707i = AndroidUtilities.dp(12.0f);
-        this.e = 0;
-        this.d = 0;
+    static {
+        h51.setup(new h51());
+    }
+
+    @Override
+    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
+        o3 o3Var = (o3) view;
+        o3Var.a((TLRPC.StickerSetCovered) i51Var.G, z10, i51Var.f24908t, false);
+        o3Var.e.a(i51Var.f24908t, false);
+        o3Var.setAddOnClickListener(i51Var.D);
+    }
+
+    @Override
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new o3(context, e6Var);
     }
 }

@@ -11,11 +11,11 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class xm implements ly {
-    public final un f30349a;
+public final class xm implements ky {
+    public final un f30000a;
 
     public xm(un unVar) {
-        this.f30349a = unVar;
+        this.f30000a = unVar;
     }
 
     @Override
@@ -56,9 +56,9 @@ public final class xm implements ly {
         } else {
             z10 = false;
         }
-        un unVar = this.f30349a;
-        unVar.f28820h1 = z10;
-        unVar.f26786b.f29133r1.requestLayout();
+        un unVar = this.f30000a;
+        unVar.f28445h1 = z10;
+        unVar.f26461b.f28784r1.requestLayout();
     }
 
     @Override
@@ -69,8 +69,8 @@ public final class xm implements ly {
     @Override
     public final boolean k() {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.e6 e6Var = this.f30349a.f28818g1;
-        if (e6Var == null || (editField = e6Var.getEditField()) == null) {
+        org.telegram.ui.Cells.d6 d6Var = this.f30000a.f28443g1;
+        if (d6Var == null || (editField = d6Var.getEditField()) == null) {
             return false;
         }
         editField.dispatchKeyEvent(new KeyEvent(0, 67));
@@ -80,8 +80,8 @@ public final class xm implements ly {
     @Override
     public final void l(String str) {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.e6 e6Var = this.f30349a.f28818g1;
-        if (e6Var == null || (editField = e6Var.getEditField()) == null) {
+        org.telegram.ui.Cells.d6 d6Var = this.f30000a.f28443g1;
+        if (d6Var == null || (editField = d6Var.getEditField()) == null) {
             return;
         }
         int selectionEnd = editField.getSelectionEnd();
@@ -100,12 +100,12 @@ public final class xm implements ly {
 
     @Override
     public final void n() {
-        un unVar = this.f30349a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar.getContext(), 0, unVar.f26785a);
-        alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18669a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        un unVar = this.f30000a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar.getContext(), 0, unVar.f26460a);
+        alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18435a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 24));
-        hg.k0.p(R.string.Cancel, alertDialog$Builder, null);
+        hg.c.r(R.string.Cancel, alertDialog$Builder, null);
     }
 
     @Override
@@ -116,9 +116,9 @@ public final class xm implements ly {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         EditTextBoldCursor editField;
-        y5 y5Var;
-        org.telegram.ui.Cells.e6 e6Var = this.f30349a.f28818g1;
-        if (e6Var == null || (editField = e6Var.getEditField()) == null) {
+        x5 x5Var;
+        org.telegram.ui.Cells.d6 d6Var = this.f30000a.f28443g1;
+        if (d6Var == null || (editField = d6Var.getEditField()) == null) {
             return;
         }
         int selectionEnd = editField.getSelectionEnd();
@@ -128,12 +128,12 @@ public final class xm implements ly {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                y5Var = new y5(document, editField.getPaint().getFontMetricsInt());
+                x5Var = new x5(document, editField.getPaint().getFontMetricsInt());
             } else {
-                y5Var = new y5(j3, editField.getPaint().getFontMetricsInt());
+                x5Var = new x5(j3, editField.getPaint().getFontMetricsInt());
             }
-            y5Var.cacheType = 3;
-            spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
+            x5Var.cacheType = 3;
+            spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
             editField.setText(editField.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
             editField.setSelection(length, length);
@@ -144,7 +144,7 @@ public final class xm implements ly {
 
     @Override
     public final boolean z() {
-        return this.f30349a.f28820h1;
+        return this.f30000a.f28445h1;
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class xm implements ly {
     }
 
     @Override
-    public final void o(u51 u51Var) {
+    public final void o(e51 e51Var) {
     }
 
     @Override

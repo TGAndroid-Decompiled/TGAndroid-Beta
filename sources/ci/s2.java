@@ -18,28 +18,28 @@ public final class s2 extends View {
     public float F;
     public e1 G;
     public int H;
-    public final TextPaint f5484a;
-    public final Paint f5485b;
-    public StaticLayout f5486c;
+    public final TextPaint f5482a;
+    public final Paint f5483b;
+    public StaticLayout f5484c;
     public float d;
     public float e;
-    public StaticLayout f5487f;
+    public StaticLayout f5485f;
     public float h;
-    public float f5488n;
-    public StaticLayout f5489r;
-    public float f5490s;
+    public float f5486n;
+    public StaticLayout f5487r;
+    public float f5488s;
     public float v;
-    public final RectF f5491w;
-    public final RectF f5492x;
-    public final RectF f5493y;
+    public final RectF f5489w;
+    public final RectF f5490x;
+    public final RectF f5491y;
 
     public s2(Context context) {
         super(context);
-        this.f5484a = new TextPaint(1);
-        this.f5485b = new Paint(1);
-        this.f5491w = new RectF();
-        this.f5492x = new RectF();
-        this.f5493y = new RectF();
+        this.f5482a = new TextPaint(1);
+        this.f5483b = new Paint(1);
+        this.f5489w = new RectF();
+        this.f5490x = new RectF();
+        this.f5491y = new RectF();
         this.E = new RectF();
     }
 
@@ -48,13 +48,13 @@ public final class s2 extends View {
         RectF rectF;
         RectF rectF2;
         canvas.drawColor(-14737633);
-        Paint paint = this.f5485b;
+        Paint paint = this.f5483b;
         paint.setColor(-13224394);
         float f7 = this.F;
         int i10 = (int) f7;
-        RectF rectF3 = this.f5493y;
-        RectF rectF4 = this.f5492x;
-        RectF rectF5 = this.f5491w;
+        RectF rectF3 = this.f5491y;
+        RectF rectF4 = this.f5490x;
+        RectF rectF5 = this.f5489w;
         if (i10 <= 0) {
             rectF = rectF5;
         } else if (i10 == 1) {
@@ -74,27 +74,27 @@ public final class s2 extends View {
         RectF rectF6 = this.E;
         AndroidUtilities.lerp(rectF, rectF2, f10 - ((int) f10), rectF6);
         canvas.drawRoundRect(rectF6, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), paint);
-        StaticLayout staticLayout = this.f5486c;
-        TextPaint textPaint = this.f5484a;
+        StaticLayout staticLayout = this.f5484c;
+        TextPaint textPaint = this.f5482a;
         if (staticLayout != null) {
             canvas.save();
-            canvas.translate((rectF5.left + AndroidUtilities.dp(12.0f)) - this.e, com.google.android.gms.internal.vision.e2.A(rectF5.height(), this.f5486c.getHeight(), 2.0f, rectF5.top));
+            canvas.translate((rectF5.left + AndroidUtilities.dp(12.0f)) - this.e, com.google.android.gms.internal.vision.e2.A(rectF5.height(), this.f5484c.getHeight(), 2.0f, rectF5.top));
             textPaint.setColor(i0.a.d(Utilities.clamp(1.0f - Math.abs(this.F - 0.0f), 1.0f, 0.0f), -8158333, -1));
-            this.f5486c.draw(canvas);
+            this.f5484c.draw(canvas);
             canvas.restore();
         }
-        if (this.f5487f != null) {
+        if (this.f5485f != null) {
             canvas.save();
-            canvas.translate((rectF4.left + AndroidUtilities.dp(12.0f)) - this.f5488n, com.google.android.gms.internal.vision.e2.A(rectF4.height(), this.f5487f.getHeight(), 2.0f, rectF4.top));
+            canvas.translate((rectF4.left + AndroidUtilities.dp(12.0f)) - this.f5486n, com.google.android.gms.internal.vision.e2.A(rectF4.height(), this.f5485f.getHeight(), 2.0f, rectF4.top));
             textPaint.setColor(i0.a.d(Utilities.clamp(1.0f - Math.abs(this.F - 1.0f), 1.0f, 0.0f), -8158333, -1));
-            this.f5487f.draw(canvas);
+            this.f5485f.draw(canvas);
             canvas.restore();
         }
-        if (this.f5489r != null) {
+        if (this.f5487r != null) {
             canvas.save();
-            canvas.translate((rectF3.left + AndroidUtilities.dp(12.0f)) - this.v, com.google.android.gms.internal.vision.e2.A(rectF3.height(), this.f5489r.getHeight(), 2.0f, rectF3.top));
+            canvas.translate((rectF3.left + AndroidUtilities.dp(12.0f)) - this.v, com.google.android.gms.internal.vision.e2.A(rectF3.height(), this.f5487r.getHeight(), 2.0f, rectF3.top));
             textPaint.setColor(i0.a.d(Utilities.clamp(1.0f - Math.abs(this.F - 2.0f), 1.0f, 0.0f), -8158333, -1));
-            this.f5489r.draw(canvas);
+            this.f5487r.draw(canvas);
             canvas.restore();
         }
     }
@@ -107,62 +107,62 @@ public final class s2 extends View {
         float f12;
         float f13;
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(40.0f) + AndroidUtilities.navigationBarHeight);
-        if (getMeasuredWidth() != this.H || this.f5486c == null) {
-            TextPaint textPaint = this.f5484a;
+        if (getMeasuredWidth() != this.H || this.f5484c == null) {
+            TextPaint textPaint = this.f5482a;
             textPaint.setTextSize(AndroidUtilities.dp(14.0f));
             textPaint.setTypeface(AndroidUtilities.bold());
             String string = LocaleController.getString("Emoji");
             int measuredWidth = getMeasuredWidth();
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
             StaticLayout staticLayout = new StaticLayout(string, textPaint, measuredWidth, alignment, 1.0f, 0.0f, false);
-            this.f5486c = staticLayout;
+            this.f5484c = staticLayout;
             float f14 = 0.0f;
             if (staticLayout.getLineCount() >= 1) {
-                f7 = this.f5486c.getLineWidth(0);
+                f7 = this.f5484c.getLineWidth(0);
             } else {
                 f7 = 0.0f;
             }
             this.d = f7;
-            if (this.f5486c.getLineCount() >= 1) {
-                f10 = this.f5486c.getLineLeft(0);
+            if (this.f5484c.getLineCount() >= 1) {
+                f10 = this.f5484c.getLineLeft(0);
             } else {
                 f10 = 0.0f;
             }
             this.e = f10;
             StaticLayout staticLayout2 = new StaticLayout(LocaleController.getString("AccDescrStickers"), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
-            this.f5487f = staticLayout2;
+            this.f5485f = staticLayout2;
             if (staticLayout2.getLineCount() >= 1) {
-                f11 = this.f5487f.getLineWidth(0);
+                f11 = this.f5485f.getLineWidth(0);
             } else {
                 f11 = 0.0f;
             }
             this.h = f11;
-            if (this.f5487f.getLineCount() >= 1) {
-                f12 = this.f5487f.getLineLeft(0);
+            if (this.f5485f.getLineCount() >= 1) {
+                f12 = this.f5485f.getLineLeft(0);
             } else {
                 f12 = 0.0f;
             }
-            this.f5488n = f12;
+            this.f5486n = f12;
             StaticLayout staticLayout3 = new StaticLayout(LocaleController.getString(R.string.AccDescrGIFs), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
-            this.f5489r = staticLayout3;
+            this.f5487r = staticLayout3;
             if (staticLayout3.getLineCount() >= 1) {
-                f13 = this.f5489r.getLineWidth(0);
+                f13 = this.f5487r.getLineWidth(0);
             } else {
                 f13 = 0.0f;
             }
-            this.f5490s = f13;
-            if (this.f5489r.getLineCount() >= 1) {
-                f14 = this.f5489r.getLineLeft(0);
+            this.f5488s = f13;
+            if (this.f5487r.getLineCount() >= 1) {
+                f14 = this.f5487r.getLineLeft(0);
             }
             this.v = f14;
             float dp = AndroidUtilities.dp(14.0f) / 2.0f;
             float dp2 = AndroidUtilities.dp(66.0f) / 2.0f;
-            float measuredWidth2 = (getMeasuredWidth() - ((((((AndroidUtilities.dp(12.0f) + this.d) + AndroidUtilities.dp(36.0f)) + this.h) + AndroidUtilities.dp(36.0f)) + this.f5490s) + AndroidUtilities.dp(12.0f))) / 2.0f;
-            this.f5491w.set(measuredWidth2, dp, this.d + measuredWidth2 + AndroidUtilities.dp(24.0f), dp2);
+            float measuredWidth2 = (getMeasuredWidth() - ((((((AndroidUtilities.dp(12.0f) + this.d) + AndroidUtilities.dp(36.0f)) + this.h) + AndroidUtilities.dp(36.0f)) + this.f5488s) + AndroidUtilities.dp(12.0f))) / 2.0f;
+            this.f5489w.set(measuredWidth2, dp, this.d + measuredWidth2 + AndroidUtilities.dp(24.0f), dp2);
             float dp3 = this.d + AndroidUtilities.dp(36.0f) + measuredWidth2;
-            this.f5492x.set(dp3, dp, this.h + dp3 + AndroidUtilities.dp(24.0f), dp2);
+            this.f5490x.set(dp3, dp, this.h + dp3 + AndroidUtilities.dp(24.0f), dp2);
             float dp4 = this.h + AndroidUtilities.dp(36.0f) + dp3;
-            this.f5493y.set(dp4, dp, this.f5490s + dp4 + AndroidUtilities.dp(24.0f), dp2);
+            this.f5491y.set(dp4, dp, this.f5488s + dp4 + AndroidUtilities.dp(24.0f), dp2);
             AndroidUtilities.dp(36.0f);
         }
         this.H = getMeasuredWidth();
@@ -172,15 +172,15 @@ public final class s2 extends View {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() != 0) {
             if (motionEvent.getAction() == 1 && this.G != null) {
-                if (this.f5491w.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (this.f5489w.contains(motionEvent.getX(), motionEvent.getY())) {
                     this.G.run(0);
                     return true;
                 }
-                if (this.f5492x.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (this.f5490x.contains(motionEvent.getX(), motionEvent.getY())) {
                     this.G.run(1);
                     return true;
                 }
-                if (this.f5493y.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (this.f5491y.contains(motionEvent.getX(), motionEvent.getY())) {
                     this.G.run(2);
                 }
             } else {

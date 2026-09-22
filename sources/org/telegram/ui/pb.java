@@ -1,153 +1,46 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.os.Bundle;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class pb implements org.telegram.ui.Cells.t0 {
-    public final rb f36548a;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+public final class pb implements ViewTreeObserver.OnPreDrawListener {
+    public final View f36523a;
+    public final s4.c1 f36524b;
+    public final qb f36525c;
 
-    public pb(rb rbVar) {
-        this.f36548a = rbVar;
+    public pb(qb qbVar, View view, s4.c1 c1Var) {
+        this.f36525c = qbVar;
+        this.f36523a = view;
+        this.f36524b = c1Var;
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.n2 P0() {
-        return this.f36548a.f37120n;
-    }
-
-    @Override
-    public final void R0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-        Object obj;
-        vb vbVar = this.f36548a.f37120n;
-        if (vbVar.A0) {
-            return;
-        }
-        if (vbVar.f38526y0.containsKey(tL_chatInviteExported.link)) {
-            obj = vbVar.f38526y0.get(tL_chatInviteExported.link);
+    public final boolean onPreDraw() {
+        int i10;
+        View view = this.f36523a;
+        view.getViewTreeObserver().removeOnPreDrawListener(this);
+        ub ubVar = this.f36525c.f36824n;
+        int measuredHeight = ubVar.v.getMeasuredHeight();
+        int top = view.getTop();
+        view.getBottom();
+        if (top >= 0) {
+            i10 = 0;
         } else {
-            obj = null;
+            i10 = -top;
         }
-        if (obj == null) {
-            TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
-            tL_messages_getExportedChatInvite.peer = vbVar.getMessagesController().getInputPeer(-vbVar.f38501f.f18343id);
-            tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
-            vbVar.A0 = true;
-            final boolean[] zArr = new boolean[1];
-            org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(vbVar.getParentActivity(), 3, null);
-            b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public final void onCancel(DialogInterface dialogInterface) {
-                    pb.this.f36548a.f37120n.A0 = false;
-                    zArr[0] = true;
-                }
-            });
-            b2Var.q(300L);
-            vbVar.getConnectionsManager().bindRequestToGuid(vbVar.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new ai.p3(this, tL_chatInviteExported, zArr, b2Var, 4)), vb.z0(vbVar));
-        } else if (obj instanceof TLRPC.TL_messages_exportedChatInvite) {
-            vb.A0(vbVar, (TLRPC.TL_messages_exportedChatInvite) obj, vbVar.f38527z0);
+        int measuredHeight2 = view.getMeasuredHeight();
+        if (measuredHeight2 > measuredHeight) {
+            measuredHeight2 = i10 + measuredHeight;
+        }
+        View view2 = this.f36524b.f42671a;
+        if (view2 instanceof org.telegram.ui.Cells.t1) {
+            ((org.telegram.ui.Cells.t1) view).b4(i10, measuredHeight2 - i10, (ubVar.X.getHeightWithKeyboard() - AndroidUtilities.dp(48.0f)) - ubVar.v.getTop(), 0.0f, (view.getY() + ub.G0(ubVar).getMeasuredHeight()) - ubVar.X.getBackgroundTranslationY(), ubVar.X.getMeasuredWidth(), ubVar.X.getBackgroundSizeY(), 0, 0, 0);
+            return true;
+        } else if ((view2 instanceof org.telegram.ui.Cells.w0) && ub.H0(ubVar) != null && ubVar.X != null) {
+            ((org.telegram.ui.Cells.w0) view).W((view.getY() + ub.I0(ubVar).getMeasuredHeight()) - ubVar.X.getBackgroundTranslationY(), ubVar.X.getBackgroundSizeY());
+            return true;
         } else {
-            org.telegram.messenger.l0.o(R.string.LinkHashExpired, org.telegram.ui.Components.xc.a0(vbVar), R.raw.linkbroken, 36);
+            return true;
         }
-    }
-
-    @Override
-    public final long a() {
-        return -this.f36548a.f37120n.f38501f.f18343id;
-    }
-
-    @Override
-    public final long d() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final void l0(org.telegram.ui.Cells.w0 w0Var) {
-        vb vbVar = this.f36548a.f37120n;
-        MessageObject messageObject = w0Var.getMessageObject();
-        if (messageObject.type == 22) {
-            bd bdVar = new bd(a());
-            bdVar.f32387l0 = vbVar;
-            vbVar.presentFragment(bdVar);
-            return;
-        }
-        PhotoViewer.t1().J2(null, vbVar, null);
-        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
-        if (closestPhotoSizeWithSize != null) {
-            PhotoViewer.t1().d2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), vbVar.B0);
-            return;
-        }
-        PhotoViewer.t1().c2(messageObject, null, 0L, 0L, 0L, vbVar.B0);
-    }
-
-    @Override
-    public final boolean r2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
-        vb vbVar = this.f36548a.f37120n;
-        int i10 = vb.Q0;
-        return vbVar.P0(w0Var, 0.0f, 0.0f);
-    }
-
-    @Override
-    public final void y1(long j3) {
-        vb vbVar = this.f36548a.f37120n;
-        if (j3 < 0) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -j3);
-            if (MessagesController.getInstance(vb.x0(vbVar)).checkCanOpenChat(bundle, vbVar)) {
-                vbVar.presentFragment(new zn(bundle), true);
-            }
-        } else if (j3 != UserConfig.getInstance(vb.y0(vbVar)).getClientUserId()) {
-            Bundle e = v7.j0.e(j3, "user_id");
-            vb.p0(vbVar, e, j3);
-            ProfileActivity profileActivity = new ProfileActivity(e, null);
-            profileActivity.N4(0);
-            vbVar.presentFragment(profileActivity);
-        }
-    }
-
-    @Override
-    public final void Z(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void s0(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void z1(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void U(org.telegram.ui.Cells.w0 w0Var, int i10) {
-    }
-
-    @Override
-    public final void h2(org.telegram.ui.Cells.w0 w0Var, String str) {
-    }
-
-    @Override
-    public final void J1(org.telegram.ui.Cells.w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
-    }
-
-    @Override
-    public final void h0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
-    }
-
-    @Override
-    public final void h1(org.telegram.ui.Cells.w0 w0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
-    }
-
-    @Override
-    public final void u2(org.telegram.ui.Cells.w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 }

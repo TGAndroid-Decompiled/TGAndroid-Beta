@@ -1,20 +1,22 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-public final class ct0 implements View.OnLayoutChangeListener {
-    public final lv0 f23441a;
+public final class ct0 implements View.OnClickListener {
+    public final long f23133a;
+    public final org.telegram.ui.ActionBar.e6 f23134b;
+    public final Context f23135c;
+    public final yu0 d;
 
-    public ct0(lv0 lv0Var) {
-        this.f23441a = lv0Var;
+    public ct0(yu0 yu0Var, long j3, org.telegram.ui.ActionBar.e6 e6Var, Context context) {
+        this.d = yu0Var;
+        this.f23133a = j3;
+        this.f23134b = e6Var;
+        this.f23135c = context;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        lv0 lv0Var = this.f23441a;
-        org.telegram.ui.ActionBar.v0 v0Var = lv0Var.f26215n0;
-        if (v0Var == null) {
-            return;
-        }
-        lv0Var.f26215n0.setTranslationX(((View) v0Var.getParent()).getMeasuredWidth() - lv0Var.f26215n0.getRight());
+    public final void onClick(android.view.View r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ct0.onClick(android.view.View):void");
     }
 }

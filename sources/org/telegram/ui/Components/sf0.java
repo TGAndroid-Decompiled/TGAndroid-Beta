@@ -1,85 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class sf0 extends View {
-    public long E;
-    public float F;
-    public float G;
-    public float H;
-    public jc0 I;
-    public TextPaint f28171a;
-    public TextPaint f28172b;
-    public StaticLayout f28173c;
-    public float d;
-    public float e;
-    public StaticLayout f28174f;
-    public float h;
-    public float f28175n;
-    public boolean f28176r;
-    public d6 f28177s;
-    public boolean v;
-    public uf0 f28178w;
-    public ci.ka f28179x;
-    public boolean f28180y;
+public final class sf0 extends FrameLayout {
+    public final TextView f27844a;
+    public final TextView f27845b;
+    public final TextView f27846c;
+    public final boolean d;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float e = this.f28177s.e(this.f28176r);
-        if (e > 0.0f && this.f28173c != null && this.f28174f != null) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (e * 255.0f), 31);
-            canvas.save();
-            canvas.translate(((getWidth() - this.d) / 2.0f) - this.e, getHeight() * 0.22f);
-            this.f28173c.draw(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f28175n, (getHeight() * 0.22f) + AndroidUtilities.dp(60.0f));
-            this.f28174f.draw(canvas);
-            canvas.restore();
-            canvas.restore();
+    public sf0(Context context) {
+        super(context);
+        this.d = true;
+        setBackgroundColor(-15066598);
+        TextView textView = new TextView(context);
+        this.f27844a = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTextColor(-1);
+        textView.setGravity(17);
+        textView.setBackground(org.telegram.ui.ActionBar.i6.f0(-12763843, 0, -1));
+        textView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
+        textView.setTypeface(AndroidUtilities.bold());
+        addView(textView, w7.x5.e(-2, -1, 51));
+        TextView textView2 = new TextView(context);
+        this.f27845b = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTextColor(-1);
+        textView2.setGravity(17);
+        textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.f0(-12763843, 0, -1));
+        textView2.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        textView2.setText(LocaleController.getString(R.string.Send).toUpperCase());
+        textView2.setTypeface(AndroidUtilities.bold());
+        addView(textView2, w7.x5.e(-2, -1, 53));
+        TextView textView3 = new TextView(context);
+        this.f27846c = textView3;
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextSize(1, 13.0f);
+        textView3.setTextColor(-1);
+        textView3.setGravity(17);
+        textView3.setBackgroundResource(R.drawable.photobadge);
+        textView3.setMinWidth(AndroidUtilities.dp(23.0f));
+        textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
+        addView(textView3, w7.x5.d(-2, 23.0f, 53, 0.0f, 0.0f, 7.0f, 0.0f));
+    }
+
+    public final void a() {
+        int i10;
+        this.f27846c.setVisibility(8);
+        if (this.d) {
+            i10 = -1;
+        } else {
+            i10 = -15095832;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        TextPaint textPaint = this.f28171a;
-        textPaint.setColor(-1);
-        float f10 = 0.0f;
-        textPaint.setShadowLayer(AndroidUtilities.dp(8.0f), 0.0f, 0.0f, 805306368);
-        textPaint.setTextSize(AndroidUtilities.dp(34.0f));
-        TextPaint textPaint2 = this.f28172b;
-        textPaint2.setColor(-1);
-        textPaint2.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 805306368);
-        textPaint2.setTextSize(AndroidUtilities.dp(58.0f));
-        if (this.f28173c == null) {
-            StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Enhance), textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f28173c = staticLayout;
-            if (staticLayout.getLineCount() > 0) {
-                f7 = this.f28173c.getLineWidth(0);
-            } else {
-                f7 = 0.0f;
-            }
-            this.d = f7;
-            if (this.f28173c.getLineCount() > 0) {
-                f10 = this.f28173c.getLineLeft(0);
-            }
-            this.e = f10;
-        }
-    }
-
-    public void setAllowTouch(boolean z10) {
-        this.v = z10;
-    }
-
-    public void setFilterView(uf0 uf0Var) {
-        this.f28178w = uf0Var;
+        this.f27845b.setTextColor(i10);
     }
 }

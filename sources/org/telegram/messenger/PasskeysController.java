@@ -56,12 +56,12 @@ public class PasskeysController {
 
         @Override
         public void onResult(v0.p pVar) {
-            b2.g gVar = pVar.f44139a;
+            b2.g gVar = pVar.f43815a;
             TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
             finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
             try {
-                JSONObject jSONObject = new JSONObject(((Bundle) gVar.f2999a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
-                finishpasskeylogin.credential.f18550id = jSONObject.getString("id");
+                JSONObject jSONObject = new JSONObject(((Bundle) gVar.f2997a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
+                finishpasskeylogin.credential.f18316id = jSONObject.getString("id");
                 finishpasskeylogin.credential.raw_id = jSONObject.getString("rawId");
                 JSONObject jSONObject2 = jSONObject.getJSONObject("response");
                 TL_account.inputPasskeyResponseLogin inputpasskeyresponselogin = new TL_account.inputPasskeyResponseLogin();
@@ -122,7 +122,7 @@ public class PasskeysController {
     }
 
     public static <T> id.c ktxCallback(Utilities.Callback2<T, Throwable> callback2) {
-        return ktxCallback(id.i.f11085a, callback2);
+        return ktxCallback(id.i.f11083a, callback2);
     }
 
     public static void lambda$create$2(Utilities.Callback2 callback2, Throwable th2) {
@@ -183,10 +183,10 @@ public class PasskeysController {
             } else {
                 TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
                 try {
-                    JSONObject jSONObject = new JSONObject(cVar.f44131a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+                    JSONObject jSONObject = new JSONObject(cVar.f43807a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
                     TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
                     registerpasskey.credential = inputpasskeycredentialpublickey;
-                    inputpasskeycredentialpublickey.f18550id = jSONObject.getString("id");
+                    inputpasskeycredentialpublickey.f18316id = jSONObject.getString("id");
                     registerpasskey.credential.raw_id = jSONObject.getString("rawId");
                     JSONObject jSONObject2 = jSONObject.getJSONObject("response");
                     TL_account.inputPasskeyResponseRegister inputpasskeyresponseregister = new TL_account.inputPasskeyResponseRegister();
@@ -319,7 +319,7 @@ public class PasskeysController {
             @Override
             public void resumeWith(Object obj) {
                 if (obj instanceof gd.e) {
-                    callback2.run(null, ((gd.e) obj).f9615a);
+                    callback2.run(null, ((gd.e) obj).f9611a);
                 } else {
                     callback2.run(obj, null);
                 }

@@ -1,44 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-public final class f70 extends lx0 {
-    public final int K;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+public final class f70 implements View.OnClickListener {
+    public final int f23838a;
+    public final n70 f23839b;
+    public final Runnable f23840c;
 
-    public f70(Context context, View view, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
-        super(context, view, i10, f6Var);
-        this.K = i11;
+    public f70(n70 n70Var, Runnable runnable, int i10) {
+        this.f23838a = i10;
+        this.f23839b = n70Var;
+        this.f23840c = runnable;
     }
 
     @Override
-    public void onAttachedToWindow() {
-        switch (this.K) {
+    public final void onClick(View view) {
+        switch (this.f23838a) {
             case 0:
-                super.onAttachedToWindow();
-                this.f26252b.getImageReceiver().startAnimation();
+                this.f23839b.u();
+                Runnable runnable = this.f23840c;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             case 1:
-                super.onAttachedToWindow();
-                this.f26252b.getImageReceiver().startAnimation();
+                this.f23840c.run();
+                n70 n70Var = this.f23839b;
+                if (n70Var.J) {
+                    n70Var.u();
+                    return;
+                }
                 return;
-            default:
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.K) {
             case 2:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    e(false, false);
+                n70 n70Var2 = this.f23839b;
+                Runnable runnable2 = this.f23840c;
+                if (runnable2 != null) {
+                    int i10 = -n70Var2.K;
+                    n70Var2.K = i10;
+                    AndroidUtilities.shakeViewSpring(view, i10);
+                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                    runnable2.run();
+                    return;
+                }
+                n70Var2.getClass();
+                return;
+            case 3:
+                Runnable runnable3 = this.f23840c;
+                if (runnable3 != null) {
+                    runnable3.run();
+                }
+                n70 n70Var3 = this.f23839b;
+                if (n70Var3.J) {
+                    n70Var3.u();
+                    return;
+                }
+                return;
+            case 4:
+                this.f23840c.run();
+                n70 n70Var4 = this.f23839b;
+                if (n70Var4.J) {
+                    n70Var4.u();
                     return;
                 }
                 return;
             default:
-                super.setVisibility(i10);
+                Runnable runnable4 = this.f23840c;
+                if (runnable4 != null) {
+                    runnable4.run();
+                }
+                n70 n70Var5 = this.f23839b;
+                if (n70Var5.J) {
+                    n70Var5.u();
+                    return;
+                }
                 return;
         }
     }

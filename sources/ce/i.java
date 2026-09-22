@@ -1,13 +1,13 @@
 package ce;
 public final class i implements c {
-    public final kotlin.jvm.internal.n f4243a;
-    public final c f4244b;
-    public final k1.n f4245c;
+    public final kotlin.jvm.internal.n f4241a;
+    public final c f4242b;
+    public final k1.n f4243c;
 
     public i(kotlin.jvm.internal.n nVar, c cVar, k1.n nVar2) {
-        this.f4243a = nVar;
-        this.f4244b = cVar;
-        this.f4245c = nVar2;
+        this.f4241a = nVar;
+        this.f4242b = cVar;
+        this.f4243c = nVar2;
     }
 
     @Override

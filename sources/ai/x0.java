@@ -2,8 +2,8 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.m61;
-public final class x0 extends m61 {
+import org.telegram.ui.Components.w51;
+public final class x0 extends w51 {
     public final r3 N;
 
     public x0(r3 r3Var, w0 w0Var, Context context, int i10, t0 t0Var, d dVar) {
@@ -18,7 +18,7 @@ public final class x0 extends m61 {
         super.v(c1Var, i10);
         r3 r3Var = this.N;
         if (r3Var.f1339y) {
-            View view = c1Var.f42995a;
+            View view = c1Var.f42671a;
             if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1224a == r3Var.f1338x) {
                 h1Var.c();
                 r3Var.f1339y = false;
@@ -33,7 +33,7 @@ public final class x0 extends m61 {
         super.y(c1Var);
         r3 r3Var = this.N;
         if (r3Var.f1339y) {
-            View view = c1Var.f42995a;
+            View view = c1Var.f42671a;
             if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1224a == r3Var.f1338x) {
                 h1Var.c();
                 r3Var.f1339y = false;

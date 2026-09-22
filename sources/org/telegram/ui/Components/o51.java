@@ -1,26 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class o51 implements fy0 {
-    public final u51 f26992a;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class o51 extends URLSpan {
+    public final o01 f26695a;
+    public boolean f26696b;
 
-    public o51(u51 u51Var) {
-        this.f26992a = u51Var;
+    public o51(String str, o01 o01Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f26695a = o01Var;
     }
 
     @Override
-    public final boolean b() {
-        return this.f26992a.f28668b.a();
+    public final void onClick(View view) {
+        if (this.f26696b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
+        }
+        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
     @Override
-    public final boolean c() {
-        return this.f26992a.f28668b.c();
-    }
-
-    @Override
-    public final void d(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11) {
-        this.f26992a.f28668b.f(document, obj, z11, i10);
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        o01 o01Var = this.f26695a;
+        if (o01Var != null) {
+            o01Var.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            textPaint.setUnderlineText(z10);
+        }
     }
 }

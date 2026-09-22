@@ -1,155 +1,51 @@
 package v7;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-public abstract class i9 extends f9 implements List, RandomAccess {
-    public static final g9 f44325b = new g9(k9.e, 0);
+import java.util.Set;
+public abstract class i9 extends e9 implements Set {
+    public transient h9 f44002b;
 
     @Override
-    public final void add(int i10, Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(int i10, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) >= 0) {
+    public final boolean equals(Object obj) {
+        if (obj == this || obj == this) {
             return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
         }
         return false;
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        Object next;
-        Object next2;
-        if (obj != this) {
-            if (obj instanceof List) {
-                List list = (List) obj;
-                int size = size();
-                if (size == list.size()) {
-                    if (list instanceof RandomAccess) {
-                        for (int i10 = 0; i10 < size; i10++) {
-                            Object obj2 = get(i10);
-                            Object obj3 = list.get(i10);
-                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
-                            }
-                        }
-                        return true;
-                    }
-                    g9 listIterator = listIterator(0);
-                    Iterator it = list.iterator();
-                    while (true) {
-                        if (listIterator.hasNext()) {
-                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
-                                break;
-                            }
-                        } else if (!it.hasNext()) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public final int hashCode() {
-        int size = size();
-        int i10 = 1;
-        for (int i11 = 0; i11 < size; i11++) {
-            i10 = (i10 * 31) + get(i11).hashCode();
-        }
-        return i10;
-    }
-
-    @Override
-    public int i(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (obj.equals(get(i10))) {
-                return i10;
+        int i10;
+        int i11 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i10 = obj.hashCode();
+            } else {
+                i10 = 0;
             }
+            i11 += i10;
         }
-        return -1;
+        return i11;
     }
 
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
+    public final h9 q() {
+        h9 h9Var = this.f44002b;
+        if (h9Var == null) {
+            k9 k9Var = new k9((a) this);
+            this.f44002b = k9Var;
+            return k9Var;
         }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public i9 subList(int i10, int i11) {
-        w7.x7.b(i10, i11, size());
-        int i12 = i11 - i10;
-        if (i12 == size()) {
-            return this;
-        }
-        if (i12 == 0) {
-            return k9.e;
-        }
-        return new h9(this, i10, i12);
-    }
-
-    @Override
-    public final g9 listIterator(int i10) {
-        int size = size();
-        if (i10 >= 0 && i10 <= size) {
-            if (isEmpty()) {
-                return f44325b;
-            }
-            return new g9(this, i10);
-        }
-        throw new IndexOutOfBoundsException(w7.x7.c(i10, size, "index"));
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object set(int i10, Object obj) {
-        throw new UnsupportedOperationException();
+        return h9Var;
     }
 }

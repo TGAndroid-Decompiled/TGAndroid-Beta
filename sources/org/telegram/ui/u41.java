@@ -1,183 +1,133 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.view.WindowManager;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class u41 extends FrameLayout {
-    public final int f37956a;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
+public final class u41 implements Runnable {
+    public final int f37805a;
+    public final SecretMediaViewer f37806b;
 
-    public u41(Context context, int i10) {
-        super(context);
-        this.f37956a = i10;
+    public u41(SecretMediaViewer secretMediaViewer, int i10) {
+        this.f37805a = i10;
+        this.f37806b = secretMediaViewer;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f37956a) {
-            case 7:
-                org.telegram.ui.ActionBar.j6.f19196i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.j6.f19196i3.getIntrinsicHeight());
-                org.telegram.ui.ActionBar.j6.f19196i3.draw(canvas);
-                super.dispatchDraw(canvas);
+    public final void run() {
+        String format;
+        String format2;
+        int i10 = this.f37805a;
+        SecretMediaViewer secretMediaViewer = this.f37806b;
+        switch (i10) {
+            case 0:
+                secretMediaViewer.K0 = null;
+                secretMediaViewer.m0 = 0;
+                secretMediaViewer.e.setLayerType(0, null);
+                secretMediaViewer.e.setVisibility(4);
+                secretMediaViewer.f31473s = false;
+                secretMediaViewer.N = null;
+                secretMediaViewer.M = false;
+                secretMediaViewer.i();
+                new ArrayList();
+                AndroidUtilities.runOnUIThread(new u41(secretMediaViewer, 4), 50L);
                 return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f37956a) {
-            case 10:
-                return super.drawChild(canvas, view, j3);
-            case 11:
-            default:
-                return super.drawChild(canvas, view, j3);
-            case 12:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean hasOverlappingRendering() {
-        switch (this.f37956a) {
-            case 9:
-                return false;
-            default:
-                return super.hasOverlappingRendering();
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f37956a) {
-            case 6:
-                super.onDraw(canvas);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.j6.f19231k0);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f37956a) {
-            case 3:
-                int childCount = getChildCount();
-                int i14 = 0;
-                int i15 = 0;
-                for (int i16 = 0; i16 < childCount; i16++) {
-                    if (getChildAt(i16).getMeasuredWidth() + i14 > getMeasuredWidth()) {
-                        i15 += getChildAt(i16).getMeasuredHeight();
-                        i14 = 0;
-                    }
-                    getChildAt(i16).layout(i14, i15, getChildAt(i16).getMeasuredWidth() + i14, getChildAt(i16).getMeasuredHeight() + i15);
-                    i14 += getChildAt(i16).getMeasuredWidth();
-                }
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        int i12;
-        switch (this.f37956a) {
             case 1:
-                super.onMeasure(i10, org.telegram.messenger.rk.C(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
+                ci.n6 n6Var = secretMediaViewer.e;
+                if (n6Var != null) {
+                    n6Var.setLayerType(0, null);
+                    secretMediaViewer.e.setVisibility(4);
+                    secretMediaViewer.m0 = 0;
+                    secretMediaViewer.f31473s = false;
+                    secretMediaViewer.N = null;
+                    secretMediaViewer.M = false;
+                    secretMediaViewer.i();
+                    new ArrayList();
+                    AndroidUtilities.runOnUIThread(new u41(secretMediaViewer, 4), 50L);
+                    secretMediaViewer.e.setScaleX(1.0f);
+                    secretMediaViewer.e.setScaleY(1.0f);
+                    return;
+                }
                 return;
             case 2:
-                super.onMeasure(i10, i11);
+                a51 a51Var = secretMediaViewer.f31487y;
+                if (a51Var != null) {
+                    long n10 = a51Var.n();
+                    long p5 = secretMediaViewer.f31487y.p();
+                    if (p5 == -9223372036854775807L) {
+                        n10 = 0;
+                        p5 = 0;
+                    }
+                    if (p5 > 0) {
+                        org.telegram.ui.Components.i71 i71Var = secretMediaViewer.Q;
+                        if (!i71Var.f24925f) {
+                            i71Var.h(((float) n10) / ((float) p5), false);
+                            secretMediaViewer.R.invalidate();
+                        }
+                    }
+                    int[] iArr = secretMediaViewer.f31456j1;
+                    Arrays.fill(iArr, 0);
+                    int[] iArr2 = secretMediaViewer.f31458k1;
+                    Arrays.fill(iArr2, 0);
+                    a51 a51Var2 = secretMediaViewer.f31487y;
+                    if (a51Var2 != null) {
+                        long max = Math.max(0L, a51Var2.n()) / 1000;
+                        long max2 = Math.max(0L, secretMediaViewer.f31487y.p()) / 1000;
+                        iArr[0] = (int) (max / 60);
+                        iArr[1] = (int) (max % 60);
+                        iArr2[0] = (int) (max2 / 60);
+                        iArr2[1] = (int) (max2 % 60);
+                    }
+                    int i11 = iArr[0];
+                    if (i11 >= 60) {
+                        format = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i11 / 60), Integer.valueOf(iArr[0] % 60), Integer.valueOf(iArr[1]));
+                    } else {
+                        format = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i11), Integer.valueOf(iArr[1]));
+                    }
+                    int i12 = iArr2[0];
+                    if (i12 >= 60) {
+                        format2 = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i12 / 60), Integer.valueOf(iArr2[0] % 60), Integer.valueOf(iArr2[1]));
+                    } else {
+                        format2 = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i12), Integer.valueOf(iArr2[1]));
+                    }
+                    org.telegram.ui.ActionBar.j5 j5Var = secretMediaViewer.S;
+                    Locale locale = Locale.ROOT;
+                    j5Var.l(format + " / " + format2, false);
+                    if (secretMediaViewer.f31487y.y()) {
+                        AndroidUtilities.runOnUIThread(secretMediaViewer.f31454i1, 17L);
+                        return;
+                    }
+                    return;
+                }
                 return;
             case 3:
-                int size = View.MeasureSpec.getSize(i10);
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
-                int childCount = getChildCount();
-                int i13 = 0;
-                if (childCount > 0) {
-                    i12 = getChildAt(0).getMeasuredHeight();
-                } else {
-                    i12 = 0;
-                }
-                int i14 = 0;
-                int i15 = 0;
-                for (int i16 = 0; i16 < childCount; i16++) {
-                    if (getChildAt(i16).getMeasuredWidth() + i14 > size) {
-                        i15 += getChildAt(i16).getMeasuredHeight();
-                        i14 = 0;
-                    }
-                    i14 += getChildAt(i16).getMeasuredWidth();
-                }
-                int measuredWidth = getMeasuredWidth();
-                if (getChildCount() != 0) {
-                    i13 = AndroidUtilities.dp(16.0f) + i12 + i15;
-                }
-                setMeasuredDimension(measuredWidth, i13);
+                secretMediaViewer.m(false, true);
                 return;
-            case 4:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                return;
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                return;
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
             default:
-                super.onMeasure(i10, i11);
-                return;
-            case 11:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
+                ImageReceiver.BitmapHolder bitmapHolder = secretMediaViewer.f31453i0;
+                if (bitmapHolder != null) {
+                    bitmapHolder.release();
+                    secretMediaViewer.f31453i0 = null;
+                }
+                secretMediaViewer.h.setImageBitmap((Bitmap) null);
+                try {
+                    if (secretMediaViewer.d.getParent() != null) {
+                        ((WindowManager) secretMediaViewer.f31436b.getSystemService("window")).removeView(secretMediaViewer.d);
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                secretMediaViewer.f31455j0 = false;
                 return;
         }
     }
 
-    public u41(v41 v41Var, Context context, int i10, String str, CharSequence charSequence) {
-        super(context);
-        org.telegram.ui.ActionBar.f6 f6Var;
-        org.telegram.ui.ActionBar.f6 f6Var2;
-        org.telegram.ui.ActionBar.f6 f6Var3;
-        org.telegram.ui.ActionBar.f6 f6Var4;
-        this.f37956a = 0;
-        boolean z10 = LocaleController.isRTL;
-        ImageView imageView = new ImageView(getContext());
-        Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
-        int i11 = org.telegram.ui.ActionBar.j6.G6;
-        f6Var = ((org.telegram.ui.ActionBar.f3) v41Var).resourcesProvider;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), PorterDuff.Mode.MULTIPLY));
-        imageView.setImageDrawable(mutate);
-        addView(imageView, w7.y5.d(24, 24.0f, z10 ? 5 : 3, z10 ? 0.0f : 27.0f, 6.0f, z10 ? 27.0f : 0.0f, 0.0f));
-        TextView textView = new TextView(getContext());
-        textView.setText(str);
-        f6Var2 = ((org.telegram.ui.ActionBar.f3) v41Var).resourcesProvider;
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var2));
-        com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
-        addView(textView, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
-        org.telegram.ui.Components.n90 n90Var = new org.telegram.ui.Components.n90(getContext(), null);
-        n90Var.setText(charSequence);
-        n90Var.setTextSize(1, 14.0f);
-        int i12 = org.telegram.ui.ActionBar.j6.Pi;
-        f6Var3 = ((org.telegram.ui.ActionBar.f3) v41Var).resourcesProvider;
-        n90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var3));
-        int i13 = org.telegram.ui.ActionBar.j6.gc;
-        f6Var4 = ((org.telegram.ui.ActionBar.f3) v41Var).resourcesProvider;
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i13, f6Var4));
-        n90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        n90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        addView(n90Var, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, (z10 ? 27 : 68) - 4, 18.0f, (z10 ? 68 : 27) - 4, 0.0f));
+    public u41(SecretMediaViewer secretMediaViewer, dv0 dv0Var, int i10) {
+        this.f37805a = i10;
+        this.f37806b = secretMediaViewer;
     }
 }

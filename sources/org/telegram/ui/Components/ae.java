@@ -1,41 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class ae implements ei.m0, org.telegram.ui.ActionBar.a2, zt, org.telegram.ui.ActionBar.l1 {
-    public final ChatActivityEnterView f22639a;
+import android.graphics.Canvas;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_iv;
+public final class ae implements Utilities.Callback {
+    public final int f22368a;
+    public final ChatActivityEnterView f22369b;
 
-    public ae(ChatActivityEnterView chatActivityEnterView) {
-        this.f22639a = chatActivityEnterView;
+    public ae(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f22368a = i10;
+        this.f22369b = chatActivityEnterView;
     }
 
     @Override
-    public void i() {
-        ChatActivityEnterView chatActivityEnterView = this.f22639a;
-        chatActivityEnterView.E0.invalidateEffects();
-        ng ngVar = chatActivityEnterView.Z2;
-        if (ngVar != null) {
-            ngVar.w1(chatActivityEnterView.E0.getTextToUse());
-        }
-    }
-
-    @Override
-    public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11 = ChatActivityEnterView.f21967n5;
-        ChatActivityEnterView chatActivityEnterView = this.f22639a;
-        chatActivityEnterView.O();
-        pf pfVar = chatActivityEnterView.E0;
-        if (pfVar != null) {
-            pfVar.setText("");
-        }
-    }
-
-    @Override
-    public void o(KeyEvent keyEvent) {
-        ChatActivityEnterView chatActivityEnterView;
-        lf lfVar;
-        int i10 = ChatActivityEnterView.f21967n5;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (lfVar = (chatActivityEnterView = this.f22639a).N0) != null && lfVar.isShowing()) {
-            chatActivityEnterView.N0.dismiss();
+    public final void run(Object obj) {
+        int i10 = this.f22368a;
+        ChatActivityEnterView chatActivityEnterView = this.f22369b;
+        switch (i10) {
+            case 0:
+                chatActivityEnterView.R0((TL_iv.RichMessage) obj);
+                return;
+            case 1:
+                CharSequence charSequence = (CharSequence) obj;
+                chatActivityEnterView.E0.setText(charSequence);
+                chatActivityEnterView.E0.setSelection(charSequence.length(), charSequence.length());
+                return;
+            default:
+                int i11 = ChatActivityEnterView.f21727n5;
+                chatActivityEnterView.f0((Canvas) obj, false);
+                return;
         }
     }
 }

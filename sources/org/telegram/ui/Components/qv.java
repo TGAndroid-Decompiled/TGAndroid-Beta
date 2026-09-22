@@ -1,107 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public abstract class qv implements NotificationCenter.NotificationCenterDelegate {
-    public final ArrayList f27680a;
-    public ArrayList f27681b;
-    public ArrayList[] f27682c;
-    public final int d;
-    public boolean e = false;
-    public final tv f27683f;
-
-    public qv(int i10, ArrayList arrayList, tv tvVar) {
-        this.f27683f = tvVar;
-        this.d = i10;
-        this.f27680a = arrayList == null ? new ArrayList() : arrayList;
-    }
-
-    public final void a(int i10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        int i11;
-        ArrayList<Long> arrayList;
-        if (i10 >= 0) {
-            ArrayList[] arrayListArr = this.f27682c;
-            if (i10 < arrayListArr.length) {
-                if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents != null) {
-                    arrayListArr[i10] = new ArrayList();
-                    for (int i12 = 0; i12 < tL_messages_stickerSet.documents.size(); i12++) {
-                        TLRPC.Document document = tL_messages_stickerSet.documents.get(i12);
-                        if (document == null) {
-                            this.f27682c[i10].add(null);
-                        } else {
-                            ?? obj = new Object();
-                            long j3 = document.f18349id;
-                            for (int i13 = 0; i13 < tL_messages_stickerSet.packs.size() && ((arrayList = tL_messages_stickerSet.packs.get(i13).documents) == null || !arrayList.contains(Long.valueOf(j3))); i13++) {
-                            }
-                            obj.f27435a = tL_messages_stickerSet;
-                            obj.f27436b = document.f18349id;
-                            this.f27682c[i10].add(obj);
-                            if (this.f27683f.H) {
-                                TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
-                                if (stickerSet != null && !stickerSet.emojis) {
-                                    i11 = 10;
-                                } else {
-                                    i11 = 16;
-                                }
-                                if (this.f27682c[i10].size() >= i11) {
-                                    return;
-                                }
-                            } else {
-                                continue;
-                            }
-                        }
-                    }
-                    return;
-                }
-                arrayListArr[i10] = new ArrayList(12);
-                for (int i14 = 0; i14 < 12; i14++) {
-                    this.f27682c[i10].add(null);
-                }
-            }
-        }
-    }
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class qv extends LinkMovementMethod {
+    public final int f27454a;
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        TLRPC.StickerSet stickerSet;
-        org.telegram.ui.mk mkVar;
-        org.telegram.ui.ActionBar.f6 f6Var;
-        if (i10 == NotificationCenter.groupStickersDidLoad) {
-            for (int i12 = 0; i12 < this.f27681b.size(); i12++) {
-                if (this.f27681b.get(i12) == null) {
-                    TLRPC.TL_messages_stickerSet stickerSet2 = MediaDataController.getInstance(this.d).getStickerSet((TLRPC.InputStickerSet) this.f27680a.get(i12), true);
-                    if (this.f27681b.size() == 1 && stickerSet2 != null && (stickerSet = stickerSet2.set) != null && !stickerSet.emojis) {
-                        tv tvVar = this.f27683f;
-                        tvVar.dismiss();
-                        Context context = tvVar.getContext();
-                        org.telegram.ui.ActionBar.n2 n2Var = tvVar.f28535c;
-                        TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) this.f27680a.get(i12);
-                        org.telegram.ui.ActionBar.n2 n2Var2 = tvVar.f28535c;
-                        if (n2Var2 instanceof org.telegram.ui.zn) {
-                            mkVar = ((org.telegram.ui.zn) n2Var2).Y;
-                        } else {
-                            mkVar = null;
-                        }
-                        org.telegram.ui.mk mkVar2 = mkVar;
-                        f6Var = ((org.telegram.ui.ActionBar.f3) tvVar).resourcesProvider;
-                        new iy0(context, n2Var, inputStickerSet, null, mkVar2, f6Var).show();
-                        return;
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        switch (this.f27454a) {
+            case 0:
+                try {
+                    boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent;
                     }
-                    this.f27681b.set(i12, stickerSet2);
-                    if (stickerSet2 != null) {
-                        a(i12, stickerSet2);
-                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return false;
                 }
-            }
-            tv tvVar2 = ((dv) this).h;
-            tvVar2.a0();
-            ci.v vVar = tvVar2.h;
-            if (vVar != null && vVar.getAdapter() != null) {
-                vVar.getAdapter().l();
-            }
+            case 1:
+                try {
+                    return super.onTouchEvent(textView, spannable, motionEvent);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return false;
+                }
+            default:
+                try {
+                    boolean onTouchEvent2 = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent2;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent2;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return false;
+                }
         }
     }
 }

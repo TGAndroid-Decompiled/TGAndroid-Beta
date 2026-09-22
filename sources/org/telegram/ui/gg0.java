@@ -1,75 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class gg0 extends sg.e {
-    public final int f33912b0;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class gg0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33849a;
+    public final kg0 f33850b;
 
-    public gg0(Context context, int i10, int i11, int i12) {
-        super(context, i10, i11);
-        this.f33912b0 = i12;
+    public gg0(kg0 kg0Var, int i10) {
+        this.f33849a = i10;
+        this.f33850b = kg0Var;
     }
 
     @Override
-    public void k() {
-        switch (this.f33912b0) {
-            case 4:
-                return;
-            default:
-                super.k();
-                return;
-        }
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.f33912b0) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33849a) {
             case 0:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 1:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 2:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 3:
-                super.onAttachedToWindow();
-                setPaused(false);
+                kg0 kg0Var = this.f33850b;
+                kg0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kg0Var.d.setAlpha(floatValue);
+                kg0Var.e.setAlpha(floatValue);
+                kg0Var.f35149f.setProgress(floatValue);
+                FrameLayout frameLayout = kg0Var.f35153w;
+                frameLayout.setAlpha(floatValue);
+                float f7 = (floatValue * 0.5f) + 0.5f;
+                frameLayout.setScaleX(f7);
+                frameLayout.setScaleY(f7);
                 return;
             default:
-                super.onAttachedToWindow();
+                kg0 kg0Var2 = this.f33850b;
+                kg0Var2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kg0Var2.f35149f.setProgress(floatValue2);
+                kg0Var2.d.setAlpha(floatValue2);
+                kg0Var2.e.setAlpha(floatValue2);
+                FrameLayout frameLayout2 = kg0Var2.f35153w;
+                frameLayout2.setAlpha(floatValue2);
+                float f10 = (floatValue2 * 0.5f) + 0.5f;
+                frameLayout2.setScaleX(f10);
+                frameLayout2.setScaleY(f10);
                 return;
         }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.f33912b0) {
-            case 0:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 1:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 2:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 3:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    private final void l() {
     }
 }

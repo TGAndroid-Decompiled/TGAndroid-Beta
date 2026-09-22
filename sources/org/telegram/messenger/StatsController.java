@@ -89,7 +89,7 @@ public class StatsController extends BaseController {
                         StatsController.this.statsFile.seek(0L);
                         RandomAccessFile randomAccessFile = StatsController.this.statsFile;
                         yf.z zVar = StatsController.this.byteArrayOutputStream;
-                        randomAccessFile.write(zVar.f47201a, 0, zVar.f47202b);
+                        randomAccessFile.write(zVar.f46871a, 0, zVar.f46872b);
                         StatsController.this.statsFile.getFD().sync();
                     } catch (Exception unused) {
                     }
@@ -98,7 +98,7 @@ public class StatsController extends BaseController {
         };
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (i10 != 0) {
-            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), hg.k0.i(i10, "account", "/"));
+            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), hg.c.j(i10, "account", "/"));
             filesDirFixed.mkdirs();
         }
         try {
@@ -158,10 +158,10 @@ public class StatsController extends BaseController {
             long[] jArr2 = this.resetStatsDate;
             jArr2[i14] = sharedPreferences.getLong("resetStatsDate" + i14, 0L);
             for (int i15 = 0; i15 < 8; i15++) {
-                this.sentBytes[i14][i15] = sharedPreferences.getLong(a4.a.l(i14, i15, "sentBytes", "_"), 0L);
-                this.receivedBytes[i14][i15] = sharedPreferences.getLong(a4.a.l(i14, i15, "receivedBytes", "_"), 0L);
-                this.sentItems[i14][i15] = sharedPreferences.getInt(a4.a.l(i14, i15, "sentItems", "_"), 0);
-                this.receivedItems[i14][i15] = sharedPreferences.getInt(a4.a.l(i14, i15, "receivedItems", "_"), 0);
+                this.sentBytes[i14][i15] = sharedPreferences.getLong(a4.a.m(i14, i15, "sentBytes", "_"), 0L);
+                this.receivedBytes[i14][i15] = sharedPreferences.getLong(a4.a.m(i14, i15, "receivedBytes", "_"), 0L);
+                this.sentItems[i14][i15] = sharedPreferences.getInt(a4.a.m(i14, i15, "sentItems", "_"), 0);
+                this.receivedItems[i14][i15] = sharedPreferences.getInt(a4.a.m(i14, i15, "receivedItems", "_"), 0);
             }
             long[] jArr3 = this.resetStatsDate;
             if (jArr3[i14] == 0) {

@@ -1,62 +1,97 @@
 package tg;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class v implements Utilities.Callback {
-    public final int f43531a;
-    public final a0 f43532b;
+import android.view.View;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.b5;
+import org.telegram.ui.Components.n6;
+import org.telegram.ui.Components.sv0;
+public final class v implements b5, sv0, vg.f, vg.k {
+    public final b0 f43225a;
 
-    public v(a0 a0Var, int i10) {
-        this.f43531a = i10;
-        this.f43532b = a0Var;
+    public v(b0 b0Var) {
+        this.f43225a = b0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f43531a) {
-            case 0:
-                Void r42 = (Void) obj;
-                a0 a0Var = this.f43532b;
-                a0Var.dismiss();
-                AndroidUtilities.runOnUIThread(new t(a0Var, 2), 220L);
-                return;
-            case 1:
-                a0 a0Var2 = this.f43532b;
-                a0Var2.f43401q0.b(false);
-                i.j(a0Var2.getContext(), (TLRPC.TL_error) obj);
-                return;
-            case 2:
-                a0 a0Var3 = this.f43532b;
-                a0Var3.f43398n0 = a0Var3.Y.indexOf(Integer.valueOf(((TLRPC.TL_premiumGiftCodeOption) obj).users));
-                a0Var3.a0(true, true);
-                a0Var3.Z(true);
-                return;
-            case 3:
-                Void r43 = (Void) obj;
-                a0 a0Var4 = this.f43532b;
-                a0Var4.dismiss();
-                AndroidUtilities.runOnUIThread(new t(a0Var4, 1), 220L);
-                return;
-            case 4:
-                a0 a0Var5 = this.f43532b;
-                a0Var5.f43401q0.b(false);
-                i.j(a0Var5.getContext(), (TLRPC.TL_error) obj);
-                return;
-            case 5:
-                a0 a0Var6 = this.f43532b;
-                ArrayList arrayList = a0Var6.f43391f0;
-                arrayList.clear();
-                arrayList.addAll((List) obj);
-                a0Var6.a0(true, true);
-                return;
-            default:
-                a0 a0Var7 = this.f43532b;
-                a0Var7.f43401q0.b(false);
-                i.j(a0Var7.getContext(), (TLRPC.TL_error) obj);
-                return;
+    public void J(int i10, int i11, boolean z10) {
+        b0 b0Var = this.f43225a;
+        b0Var.m0 = i10 * 1000;
+        b0Var.a0(false, true);
+    }
+
+    @Override
+    public void g(int i10) {
+        String str;
+        int i11;
+        String string;
+        String str2;
+        String formatPluralString;
+        b0 b0Var = this.f43225a;
+        int i12 = b0Var.f43091h0;
+        int i13 = vg.d.f44318s;
+        if (i12 == 2) {
+            b0Var.f43096n0 = i10;
+        } else {
+            b0Var.f43097o0 = i10;
         }
+        b0Var.f43099q0.f44293a.b(b0Var.V(), true);
+        if (b0Var.f43091h0 == 3) {
+            b0Var.a0(true, true);
+        } else {
+            b0Var.a0(false, false);
+        }
+        ug.b bVar = b0Var.f43090g0;
+        int V = b0Var.V();
+        for (int i14 = 0; i14 < bVar.f43706f.getChildCount(); i14++) {
+            View childAt = bVar.f43706f.getChildAt(i14);
+            if (childAt instanceof vg.x) {
+                n6 n6Var = ((vg.x) childAt).f44361r;
+                if (V <= 0) {
+                    formatPluralString = "";
+                } else {
+                    formatPluralString = LocaleController.formatPluralString("BoostingBoostsCountTitle", V, Integer.valueOf(V));
+                }
+                n6Var.a();
+                n6Var.c(formatPluralString, true, true);
+            }
+            if (childAt instanceof vg.g) {
+                vg.g gVar = (vg.g) childAt;
+                int F = bVar.F(gVar.getChat());
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.v);
+                if (gVar.f44322w) {
+                    if (F >= 1) {
+                        if (isChannelAndNotMegaGroup) {
+                            str2 = "Subscribers";
+                        } else {
+                            str2 = "Members";
+                        }
+                        string = LocaleController.formatPluralString(str2, F, new Object[0]);
+                    } else {
+                        if (isChannelAndNotMegaGroup) {
+                            i11 = R.string.DiscussChannel;
+                        } else {
+                            i11 = R.string.AccDescrGroup;
+                        }
+                        string = LocaleController.getString(i11);
+                    }
+                    gVar.setSubtitle(string);
+                } else {
+                    if (isChannelAndNotMegaGroup) {
+                        str = "BoostingChannelWillReceiveBoost";
+                    } else {
+                        str = "BoostingGroupWillReceiveBoost";
+                    }
+                    gVar.setSubtitle(LocaleController.formatPluralString(str, V, new Object[0]));
+                }
+            }
+        }
+        bVar.m(8);
+        bVar.q(bVar.e.size() - 12, 12);
+    }
+
+    @Override
+    public void l() {
     }
 }

@@ -15,12 +15,12 @@ public final class u7 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.ui.Components.pc.a(this.f1579b.container, new w4(this, 2));
+        org.telegram.ui.Components.oc.a(this.f1579b.container, new w4(this, 2));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.pc.h(this.f1579b.container);
+        org.telegram.ui.Components.oc.h(this.f1579b.container);
     }
 }

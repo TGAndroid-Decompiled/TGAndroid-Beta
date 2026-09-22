@@ -8,8 +8,8 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import java.util.ArrayList;
 public final class h extends Binder {
-    public static final int f3005b;
-    public final e9.i0 f3006a;
+    public static final int f3003b;
+    public final e9.i0 f3004a;
 
     static {
         int i10;
@@ -18,17 +18,17 @@ public final class h extends Binder {
         } else {
             i10 = 65536;
         }
-        f3005b = i10;
+        f3003b = i10;
     }
 
     public h(ArrayList arrayList) {
-        this.f3006a = e9.i0.v(arrayList);
+        this.f3004a = e9.i0.v(arrayList);
     }
 
     public static e9.i0 a(IBinder iBinder) {
         int readInt;
         if (iBinder instanceof h) {
-            return ((h) iBinder).f3006a;
+            return ((h) iBinder).f3004a;
         }
         e9.f0 u10 = e9.i0.u();
         int i10 = 1;
@@ -73,10 +73,10 @@ public final class h extends Binder {
         if (parcel2 == null) {
             return false;
         }
-        e9.i0 i0Var = this.f3006a;
+        e9.i0 i0Var = this.f3004a;
         int size = i0Var.size();
         int readInt = parcel.readInt();
-        while (readInt < size && parcel2.dataSize() < f3005b) {
+        while (readInt < size && parcel2.dataSize() < f3003b) {
             parcel2.writeInt(1);
             parcel2.writeBundle((Bundle) i0Var.get(readInt));
             readInt++;

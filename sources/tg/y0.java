@@ -1,22 +1,41 @@
 package tg;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-public final class y0 extends xg.i {
-    public final z0 J;
+import android.util.Pair;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.Utilities;
+public final class y0 implements Utilities.Callback {
+    public final int f43238a;
+    public final a1 f43239b;
+    public final boolean f43240c;
 
-    public y0(z0 z0Var, Context context, f6 f6Var) {
-        super(context, f6Var);
-        this.J = z0Var;
+    public y0(a1 a1Var, boolean z10, int i10) {
+        this.f43238a = i10;
+        this.f43239b = a1Var;
+        this.f43240c = z10;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(78.0f) + getMeasuredHeight();
-        z0 z0Var = this.J;
-        z0Var.f43561p0 = dp;
-        z0Var.f43560o0.G();
+    public final void run(Object obj) {
+        switch (this.f43238a) {
+            case 0:
+                List list = (List) obj;
+                a1 a1Var = this.f43239b;
+                ArrayList arrayList = a1Var.f43066g0;
+                if (this.f43240c) {
+                    a1Var.f43067h0.addAll(list);
+                }
+                if (a1Var.f43076r0 == 1) {
+                    arrayList.clear();
+                    arrayList.addAll(list);
+                    a1Var.b0(true, true);
+                    a1Var.X(true);
+                    return;
+                }
+                return;
+            default:
+                a1.P(this.f43239b, this.f43240c, (Pair) obj);
+                return;
+        }
     }
 }

@@ -1,18 +1,11 @@
 package org.telegram.ui.Components;
+public final class yy0 {
+    public final ez0 f30427a;
+    public final gz0 f30428b;
+    public boolean f30429c = true;
 
-import android.text.Editable;
-public interface yy0 {
-    void a(ci.i2 i2Var);
-
-    EditTextBoldCursor getEditField();
-
-    Editable getEditText();
-
-    CharSequence getFieldText();
-
-    org.telegram.ui.ActionBar.n2 getParentFragment();
-
-    int getVisibility();
-
-    void setFieldText(CharSequence charSequence);
+    public yy0(ez0 ez0Var, gz0 gz0Var) {
+        this.f30427a = ez0Var;
+        this.f30428b = gz0Var;
+    }
 }

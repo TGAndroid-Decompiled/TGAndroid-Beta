@@ -10,25 +10,25 @@ public enum u0 extends b2 {
         m0 m0Var = b2.W;
         if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
             if (d != '/') {
-                w wVar = b2.f7648a;
+                w wVar = b2.f7646a;
                 if (d != '>') {
                     if (d != 65535) {
                         lVar.m(this);
                         aVar.q();
-                        lVar.f7698c = m0Var;
+                        lVar.f7696c = m0Var;
                         return;
                     }
                     lVar.l(this);
-                    lVar.f7698c = wVar;
+                    lVar.f7696c = wVar;
                     return;
                 }
                 lVar.k();
-                lVar.f7698c = wVar;
+                lVar.f7696c = wVar;
                 return;
             }
-            lVar.f7698c = b2.f7655e0;
+            lVar.f7696c = b2.f7653e0;
             return;
         }
-        lVar.f7698c = m0Var;
+        lVar.f7696c = m0Var;
     }
 }

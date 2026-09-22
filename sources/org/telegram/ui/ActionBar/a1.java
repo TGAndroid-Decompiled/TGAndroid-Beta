@@ -1,7 +1,7 @@
 package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ed;
+import org.telegram.ui.Components.cd;
 import org.telegram.ui.Components.u00;
 public final class a1 extends u00 {
     public final b1 e;
@@ -14,9 +14,9 @@ public final class a1 extends u00 {
     @Override
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(ed.a(this.e.getSpeed()));
+        sb2.append(cd.a(this.e.getSpeed()));
         sb2.append("x  ");
-        return org.telegram.messenger.l0.g(R.string.AccDescrSpeedSlider, sb2);
+        return org.telegram.messenger.y0.h(R.string.AccDescrSpeedSlider, sb2);
     }
 
     @Override

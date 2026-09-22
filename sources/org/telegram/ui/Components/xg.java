@@ -1,51 +1,34 @@
 package org.telegram.ui.Components;
+public final class xg {
+    public static final xg f29924a;
+    public static final xg f29925b;
+    public static final xg f29926c;
+    public static final xg d;
+    public static final xg e;
+    public static final xg f29927f;
+    public static final xg[] h;
 
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-public final class xg extends HashMap {
-    public final int f30318a;
-    public final Object f30319b;
-
-    public xg(Object obj, int i10) {
-        this.f30318a = i10;
-        this.f30319b = obj;
+    static {
+        ?? r02 = new Enum("VOICE", 0);
+        f29924a = r02;
+        ?? r12 = new Enum("VIDEO", 1);
+        f29925b = r12;
+        ?? r32 = new Enum("STICKER", 2);
+        f29926c = r32;
+        ?? r52 = new Enum("KEYBOARD", 3);
+        d = r52;
+        ?? r72 = new Enum("SMILE", 4);
+        e = r72;
+        ?? r92 = new Enum("GIF", 5);
+        f29927f = r92;
+        h = new xg[]{r02, r12, r32, r52, r72, r92};
     }
 
-    @Override
-    public Object get(Object obj) {
-        switch (this.f30318a) {
-            case 0:
-                int i10 = ((ah) this.f30319b).v;
-                kj0 kj0Var = (kj0) super.get(obj);
-                if (kj0Var == null) {
-                    zg zgVar = (zg) obj;
-                    kj0 kj0Var2 = new kj0(zgVar.f30888c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
-                    put(zgVar, kj0Var2);
-                    return kj0Var2;
-                }
-                return kj0Var;
-            default:
-                return super.get(obj);
-        }
+    public static xg valueOf(String str) {
+        return (xg) Enum.valueOf(xg.class, str);
     }
 
-    @Override
-    public Object put(Object obj, Object obj2) {
-        String lowerCase;
-        switch (this.f30318a) {
-            case 1:
-                String str = (String) obj;
-                String str2 = (String) obj2;
-                HashMap hashMap = ((yc.g) this.f30319b).f47015f;
-                if (str == null) {
-                    lowerCase = str;
-                } else {
-                    lowerCase = str.toLowerCase();
-                }
-                hashMap.put(lowerCase, str2);
-                return (String) super.put(str, str2);
-            default:
-                return super.put(obj, obj2);
-        }
+    public static xg[] values() {
+        return (xg[]) h.clone();
     }
 }

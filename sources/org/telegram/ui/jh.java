@@ -1,27 +1,42 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.regex.Pattern;
-public final class jh implements DialogInterface.OnCancelListener {
-    public final int f34951a;
-    public final boolean[] f34952b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class jh implements Runnable {
+    public final int f34909a;
+    public final EditTextBoldCursor f34910b;
 
-    public jh(int i10, boolean[] zArr) {
-        this.f34951a = i10;
-        this.f34952b = zArr;
+    public jh(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f34909a = i10;
+        this.f34910b = editTextBoldCursor;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f34951a;
-        boolean[] zArr = this.f34952b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f34909a) {
             case 0:
-                zArr[0] = true;
+                AndroidUtilities.showKeyboard(this.f34910b);
+                return;
+            case 1:
+                EditTextBoldCursor editTextBoldCursor = this.f34910b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                return;
+            case 2:
+                EditTextBoldCursor editTextBoldCursor2 = this.f34910b;
+                editTextBoldCursor2.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor2);
+                return;
+            case 3:
+                AndroidUtilities.showKeyboard(this.f34910b);
+                return;
+            case 4:
+                AndroidUtilities.showKeyboard(this.f34910b);
                 return;
             default:
-                Pattern pattern = LaunchActivity.B1;
-                zArr[0] = true;
+                EditTextBoldCursor editTextBoldCursor3 = this.f34910b;
+                editTextBoldCursor3.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor3);
                 return;
         }
     }

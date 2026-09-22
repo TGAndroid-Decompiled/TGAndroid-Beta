@@ -8,29 +8,29 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pc;
-import org.telegram.ui.Components.wq0;
-import org.telegram.ui.Components.xc;
-public final class e2 extends wq0 {
-    public final y3 f47389b1;
+import org.telegram.ui.Components.hq0;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.vc;
+public final class e2 extends hq0 {
+    public final z3 f47043b1;
 
-    public e2(y3 y3Var, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, null, null, str, null, false, str2, null, false, false, true, null, f6Var);
-        this.f47389b1 = y3Var;
-        this.f30097a0 = true;
+    public e2(z3 z3Var, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, null, null, str, null, false, str2, null, false, false, true, null, e6Var);
+        this.f47043b1 = z3Var;
+        this.f24754a0 = true;
     }
 
     @Override
     public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        xc bulletinFactory;
+        vc bulletinFactory;
         String str;
         if (z10 && (bulletinFactory = getBulletinFactory()) != null) {
             if (iVar.m() == 1) {
                 long j3 = iVar.j(0);
                 if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    pc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f27319r = false;
-                    G.f27321t = true;
+                    oc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
+                    G.f26759r = false;
+                    G.f26761t = true;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
@@ -41,20 +41,20 @@ public final class e2 extends wq0 {
                     } else {
                         str = chat.title;
                     }
-                    pc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f27319r = false;
-                    G2.f27321t = true;
+                    oc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f26759r = false;
+                    G2.f26761t = true;
                     G2.j();
                 } else {
-                    pc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f27319r = false;
-                    G3.f27321t = true;
+                    oc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
+                    G3.f26759r = false;
+                    G3.f26761t = true;
                     G3.j();
                 }
             } else {
-                pc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f27319r = false;
-                Q.f27321t = true;
+                oc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
+                Q.f26759r = false;
+                Q.f26761t = true;
                 Q.j();
             }
             try {
@@ -66,6 +66,6 @@ public final class e2 extends wq0 {
 
     @Override
     public final void S0(View view) {
-        y3.k1(this.f47389b1, view);
+        z3.k1(this.f47043b1, view);
     }
 }

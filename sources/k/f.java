@@ -3,14 +3,14 @@ package k;
 import android.view.MenuItem;
 import java.lang.reflect.Method;
 public final class f implements MenuItem.OnMenuItemClickListener {
-    public static final Class[] f13117c = {MenuItem.class};
-    public Object f13118a;
-    public Method f13119b;
+    public static final Class[] f13115c = {MenuItem.class};
+    public Object f13116a;
+    public Method f13117b;
 
     @Override
     public final boolean onMenuItemClick(MenuItem menuItem) {
-        Object obj = this.f13118a;
-        Method method = this.f13119b;
+        Object obj = this.f13116a;
+        Method method = this.f13117b;
         try {
             if (method.getReturnType() == Boolean.TYPE) {
                 return ((Boolean) method.invoke(obj, menuItem)).booleanValue();

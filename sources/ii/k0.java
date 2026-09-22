@@ -1,25 +1,25 @@
 package ii;
 
+import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Cells.r9;
 public interface k0 {
-    r9 A();
+    q9 E();
 
-    void C(CharSequence charSequence);
+    void I(CharSequence charSequence);
 
-    q9 F();
+    p9 K();
 
-    a H();
+    a N();
 
-    boolean K();
+    boolean P();
 
-    void N(int i10, int i11);
+    void S(int i10, int i11);
 
-    void T();
+    void a0();
 
     void c(i1 i1Var);
 
-    void g0();
+    void i();
 
-    void h();
+    void n0();
 }

@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.r80;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.g80;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.uy;
@@ -36,7 +36,7 @@ public final class a3 implements View.OnClickListener {
                 f6Var.J0.H(new ProfileActivity(bundle, null));
                 return;
             case 1:
-                r80.q((r80) this.f509c, this.f508b);
+                g80.q((g80) this.f509c, this.f508b);
                 return;
             case 2:
                 uy uyVar = (uy) this.f509c;
@@ -48,11 +48,11 @@ public final class a3 implements View.OnClickListener {
                 } else {
                     uyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 4);
                 }
-                xc.A(uyVar, !isDialogMuted, null).j();
+                vc.A(uyVar, !isDialogMuted, null).j();
                 uyVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((qh.p) this.f509c).f42119f;
+                Utilities.Callback callback = ((qh.p) this.f509c).f41795f;
                 if (callback != null) {
                     callback.run(Long.valueOf(this.f508b));
                     return;
@@ -62,11 +62,11 @@ public final class a3 implements View.OnClickListener {
                 xh.m.P((xh.m) this.f509c, this.f508b);
                 return;
             default:
-                xh.r1 r1Var = (xh.r1) this.f509c;
-                r1Var.getClass();
+                xh.q1 q1Var = (xh.q1) this.f509c;
+                q1Var.getClass();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    r1Var.dismiss();
+                    q1Var.dismiss();
                     U.presentFragment(ProfileActivity.m4(this.f508b));
                     return;
                 }

@@ -2,28 +2,27 @@ package be;
 
 import ee.t;
 import ee.v;
-import hg.k0;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import k1.k;
-import v7.u7;
+import v7.t7;
 import zd.i2;
 import zd.l;
 public class b {
-    public static final AtomicLongFieldUpdater f3509b = AtomicLongFieldUpdater.newUpdater(b.class, "sendersAndCloseStatus$volatile");
-    public static final AtomicLongFieldUpdater f3510c = AtomicLongFieldUpdater.newUpdater(b.class, "receivers$volatile");
+    public static final AtomicLongFieldUpdater f3507b = AtomicLongFieldUpdater.newUpdater(b.class, "sendersAndCloseStatus$volatile");
+    public static final AtomicLongFieldUpdater f3508c = AtomicLongFieldUpdater.newUpdater(b.class, "receivers$volatile");
     public static final AtomicLongFieldUpdater d = AtomicLongFieldUpdater.newUpdater(b.class, "bufferEnd$volatile");
     public static final AtomicLongFieldUpdater e = AtomicLongFieldUpdater.newUpdater(b.class, "completedExpandBuffersAndPauseFlag$volatile");
-    public static final AtomicReferenceFieldUpdater f3511f = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "sendSegment$volatile");
-    public static final AtomicReferenceFieldUpdater f3512g = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "receiveSegment$volatile");
+    public static final AtomicReferenceFieldUpdater f3509f = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "sendSegment$volatile");
+    public static final AtomicReferenceFieldUpdater f3510g = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "receiveSegment$volatile");
     public static final AtomicReferenceFieldUpdater h = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "bufferEndSegment$volatile");
-    public static final AtomicReferenceFieldUpdater f3513i = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_closeCause$volatile");
-    public static final AtomicReferenceFieldUpdater f3514j = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "closeHandler$volatile");
+    public static final AtomicReferenceFieldUpdater f3511i = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_closeCause$volatile");
+    public static final AtomicReferenceFieldUpdater f3512j = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "closeHandler$volatile");
     private volatile Object _closeCause$volatile;
-    public final int f3515a;
+    public final int f3513a;
     private volatile long bufferEnd$volatile;
     private volatile Object bufferEndSegment$volatile;
     private volatile Object closeHandler$volatile;
@@ -35,9 +34,9 @@ public class b {
 
     public b(int i10) {
         long j3;
-        this.f3515a = i10;
+        this.f3513a = i10;
         if (i10 >= 0) {
-            h hVar = d.f3517a;
+            h hVar = d.f3515a;
             if (i10 != 0) {
                 if (i10 != Integer.MAX_VALUE) {
                     j3 = i10;
@@ -53,14 +52,14 @@ public class b {
             this.sendSegment$volatile = hVar2;
             this.receiveSegment$volatile = hVar2;
             if (j()) {
-                hVar2 = d.f3517a;
+                hVar2 = d.f3515a;
                 kotlin.jvm.internal.i.c(hVar2, "null cannot be cast to non-null type kotlinx.coroutines.channels.ChannelSegment<E of kotlinx.coroutines.channels.BufferedChannel>");
             }
             this.bufferEndSegment$volatile = hVar2;
-            this._closeCause$volatile = d.f3531r;
+            this._closeCause$volatile = d.f3529r;
             return;
         }
-        throw new IllegalArgumentException(k0.i(i10, "Invalid channel capacity: ", ", should be >=0").toString());
+        throw new IllegalArgumentException(hg.c.j(i10, "Invalid channel capacity: ", ", should be >=0").toString());
     }
 
     public static void h(b bVar) {
@@ -74,8 +73,8 @@ public class b {
     public static boolean n(Object obj) {
         if (obj instanceof l) {
             l lVar = (l) obj;
-            h hVar = d.f3517a;
-            v b10 = lVar.b(null, gd.i.f9621a);
+            h hVar = d.f3515a;
+            v b10 = lVar.b(null, gd.i.f9617a);
             if (b10 != null) {
                 lVar.e(b10);
                 return true;
@@ -86,7 +85,7 @@ public class b {
     }
 
     public final boolean a(long j3) {
-        if (j3 >= d.get(this) && j3 >= f3510c.get(this) + this.f3515a) {
+        if (j3 >= d.get(this) && j3 >= f3508c.get(this) + this.f3513a) {
             return false;
         }
         return true;
@@ -95,12 +94,12 @@ public class b {
     public final h b(long j3) {
         Object obj;
         Object obj2 = h.get(this);
-        h hVar = (h) f3511f.get(this);
-        if (hVar.f8198c > ((h) obj2).f8198c) {
+        h hVar = (h) f3509f.get(this);
+        if (hVar.f8196c > ((h) obj2).f8196c) {
             obj2 = hVar;
         }
-        h hVar2 = (h) f3512g.get(this);
-        int i10 = (hVar2.f8198c > ((h) obj2).f8198c ? 1 : (hVar2.f8198c == ((h) obj2).f8198c ? 0 : -1));
+        h hVar2 = (h) f3510g.get(this);
+        int i10 = (hVar2.f8196c > ((h) obj2).f8196c ? 1 : (hVar2.f8196c == ((h) obj2).f8196c ? 0 : -1));
         h hVar3 = obj2;
         if (i10 > 0) {
             hVar3 = hVar2;
@@ -108,9 +107,9 @@ public class b {
         ee.d dVar = (ee.d) hVar3;
         loop0: while (true) {
             dVar.getClass();
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.d.f8176a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.d.f8174a;
             Object obj3 = atomicReferenceFieldUpdater.get(dVar);
-            v vVar = ee.a.f8171b;
+            v vVar = ee.a.f8169b;
             obj = null;
             if (obj3 == vVar) {
                 break;
@@ -129,29 +128,29 @@ public class b {
         h hVar4 = (h) dVar;
         h hVar5 = hVar4;
         loop2: while (hVar5 != null) {
-            int i11 = d.f3518b - 1;
+            int i11 = d.f3516b - 1;
             obj = obj;
             while (-1 < i11) {
-                if ((hVar5.f8198c * d.f3518b) + i11 < j3) {
+                if ((hVar5.f8196c * d.f3516b) + i11 < j3) {
                     break loop2;
                 }
                 while (true) {
                     Object l4 = hVar5.l(i11);
                     if (l4 != null && l4 != d.e) {
                         if (l4 instanceof j) {
-                            if (hVar5.k(i11, l4, d.f3525l)) {
-                                obj = ee.a.e(obj, ((j) l4).f3535a);
+                            if (hVar5.k(i11, l4, d.f3523l)) {
+                                obj = ee.a.e(obj, ((j) l4).f3533a);
                                 hVar5.m(i11, true);
                                 break;
                             }
                         } else if (!(l4 instanceof i2)) {
                             break;
-                        } else if (hVar5.k(i11, l4, d.f3525l)) {
+                        } else if (hVar5.k(i11, l4, d.f3523l)) {
                             obj = ee.a.e(obj, l4);
                             hVar5.m(i11, true);
                             break;
                         }
-                    } else if (hVar5.k(i11, l4, d.f3525l)) {
+                    } else if (hVar5.k(i11, l4, d.f3523l)) {
                         hVar5.i();
                         break;
                     }
@@ -159,7 +158,7 @@ public class b {
                 i11--;
                 obj = obj;
             }
-            hVar5 = (h) ((ee.d) ee.d.f8177b.get(hVar5));
+            hVar5 = (h) ((ee.d) ee.d.f8175b.get(hVar5));
             obj = obj;
         }
         if (obj != null) {
@@ -176,7 +175,7 @@ public class b {
     }
 
     public final void c() {
-        i(f3509b.get(this), false);
+        i(f3507b.get(this), false);
     }
 
     public final void d() {
@@ -188,23 +187,23 @@ public class b {
         h hVar = (h) atomicReferenceFieldUpdater.get(this);
         loop0: while (true) {
             long andIncrement = d.getAndIncrement(this);
-            long j3 = andIncrement / d.f3518b;
+            long j3 = andIncrement / d.f3516b;
             if (g() <= andIncrement) {
-                if (hVar.f8198c < j3 && hVar.c() != null) {
+                if (hVar.f8196c < j3 && hVar.c() != null) {
                     k(j3, hVar);
                 }
                 h(this);
                 return;
             }
-            if (hVar.f8198c != j3) {
-                c cVar = c.f3516a;
+            if (hVar.f8196c != j3) {
+                c cVar = c.f3514a;
                 while (true) {
                     a2 = ee.a.a(hVar, j3, cVar);
                     if (!ee.a.d(a2)) {
                         t b10 = ee.a.b(a2);
                         while (true) {
                             t tVar = (t) atomicReferenceFieldUpdater.get(this);
-                            if (tVar.f8198c >= b10.f8198c) {
+                            if (tVar.f8196c >= b10.f8196c) {
                                 break;
                             } else if (!b10.j()) {
                                 break;
@@ -232,9 +231,9 @@ public class b {
                     h(this);
                 } else {
                     h hVar3 = (h) ee.a.b(a2);
-                    long j10 = hVar3.f8198c;
+                    long j10 = hVar3.f8196c;
                     if (j10 > j3) {
-                        long j11 = j10 * d.f3518b;
+                        long j11 = j10 * d.f3516b;
                         if (d.compareAndSet(this, 1 + andIncrement, j11)) {
                             AtomicLongFieldUpdater atomicLongFieldUpdater = e;
                             if ((atomicLongFieldUpdater.addAndGet(this, j11 - andIncrement) & 4611686018427387904L) != 0) {
@@ -254,11 +253,11 @@ public class b {
                     hVar = hVar2;
                 }
             }
-            int i10 = (int) (andIncrement % d.f3518b);
+            int i10 = (int) (andIncrement % d.f3516b);
             Object l4 = hVar.l(i10);
             boolean z10 = l4 instanceof i2;
-            AtomicLongFieldUpdater atomicLongFieldUpdater2 = f3510c;
-            if (!z10 || andIncrement < atomicLongFieldUpdater2.get(this) || !hVar.k(i10, l4, d.f3521g)) {
+            AtomicLongFieldUpdater atomicLongFieldUpdater2 = f3508c;
+            if (!z10 || andIncrement < atomicLongFieldUpdater2.get(this) || !hVar.k(i10, l4, d.f3519g)) {
                 while (true) {
                     Object l10 = hVar.l(i10);
                     if (l10 instanceof i2) {
@@ -266,23 +265,23 @@ public class b {
                             if (hVar.k(i10, l10, new j((i2) l10))) {
                                 break loop0;
                             }
-                        } else if (hVar.k(i10, l10, d.f3521g)) {
+                        } else if (hVar.k(i10, l10, d.f3519g)) {
                             if (n(l10)) {
                                 hVar.o(i10, d.d);
                                 break;
                             } else {
-                                hVar.o(i10, d.f3523j);
+                                hVar.o(i10, d.f3521j);
                                 hVar.i();
                             }
                         }
-                    } else if (l10 != d.f3523j) {
+                    } else if (l10 != d.f3521j) {
                         if (l10 == null) {
                             if (hVar.k(i10, l10, d.e)) {
                                 break loop0;
                             }
-                        } else if (l10 == d.d || l10 == d.h || l10 == d.f3522i || l10 == d.f3524k || l10 == d.f3525l) {
+                        } else if (l10 == d.d || l10 == d.h || l10 == d.f3520i || l10 == d.f3522k || l10 == d.f3523l) {
                             break loop0;
-                        } else if (l10 != d.f3520f) {
+                        } else if (l10 != d.f3518f) {
                             throw new IllegalStateException(("Unexpected cell state: " + l10).toString());
                         }
                     } else {
@@ -293,7 +292,7 @@ public class b {
                 hVar.o(i10, d.d);
                 break;
             } else {
-                hVar.o(i10, d.f3523j);
+                hVar.o(i10, d.f3521j);
                 hVar.i();
                 h(this);
             }
@@ -304,16 +303,16 @@ public class b {
     public final h e(long j3, h hVar) {
         Object a2;
         long j10;
-        h hVar2 = d.f3517a;
-        c cVar = c.f3516a;
+        h hVar2 = d.f3515a;
+        c cVar = c.f3514a;
         loop0: while (true) {
             a2 = ee.a.a(hVar, j3, cVar);
             if (!ee.a.d(a2)) {
                 t b10 = ee.a.b(a2);
                 while (true) {
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f3512g;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f3510g;
                     t tVar = (t) atomicReferenceFieldUpdater.get(this);
-                    if (tVar.f8198c >= b10.f8198c) {
+                    if (tVar.f8196c >= b10.f8196c) {
                         break loop0;
                     } else if (!b10.j()) {
                         break;
@@ -336,18 +335,18 @@ public class b {
         }
         if (ee.a.d(a2)) {
             c();
-            if (hVar.f8198c * d.f3518b < g()) {
+            if (hVar.f8196c * d.f3516b < g()) {
                 hVar.b();
                 return null;
             }
         } else {
             h hVar3 = (h) ee.a.b(a2);
-            long j11 = hVar3.f8198c;
-            if (!j() && j3 <= d.get(this) / d.f3518b) {
+            long j11 = hVar3.f8196c;
+            if (!j() && j3 <= d.get(this) / d.f3516b) {
                 while (true) {
                     AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = h;
                     t tVar2 = (t) atomicReferenceFieldUpdater2.get(this);
-                    if (tVar2.f8198c >= j11 || !hVar3.j()) {
+                    if (tVar2.f8196c >= j11 || !hVar3.j()) {
                         break;
                     }
                     while (!atomicReferenceFieldUpdater2.compareAndSet(this, tVar2, hVar3)) {
@@ -363,14 +362,14 @@ public class b {
                 }
             }
             if (j11 > j3) {
-                long j12 = j11 * d.f3518b;
+                long j12 = j11 * d.f3516b;
                 do {
-                    j10 = f3510c.get(this);
+                    j10 = f3508c.get(this);
                     if (j10 >= j12) {
                         break;
                     }
-                } while (!f3510c.compareAndSet(this, j10, j12));
-                if (j11 * d.f3518b < g()) {
+                } while (!f3508c.compareAndSet(this, j10, j12));
+                if (j11 * d.f3516b < g()) {
                     hVar3.b();
                 }
             } else {
@@ -381,7 +380,7 @@ public class b {
     }
 
     public final Throwable f() {
-        Throwable th2 = (Throwable) f3513i.get(this);
+        Throwable th2 = (Throwable) f3511i.get(this);
         if (th2 == null) {
             return new IllegalStateException("Channel was closed");
         }
@@ -389,7 +388,7 @@ public class b {
     }
 
     public final long g() {
-        return f3509b.get(this) & 1152921504606846975L;
+        return f3507b.get(this) & 1152921504606846975L;
     }
 
     public final boolean i(long r15, boolean r17) {
@@ -413,14 +412,14 @@ public class b {
         if (i2Var instanceof l) {
             id.c cVar = (id.c) i2Var;
             if (z10) {
-                f7 = (Throwable) f3513i.get(this);
+                f7 = (Throwable) f3511i.get(this);
                 if (f7 == null) {
                     f7 = new NoSuchElementException("Channel was closed");
                 }
             } else {
                 f7 = f();
             }
-            cVar.resumeWith(u7.a(f7));
+            cVar.resumeWith(t7.a(f7));
             return;
         }
         throw new IllegalStateException(("Unexpected waiter: " + i2Var).toString());
@@ -429,7 +428,7 @@ public class b {
     public final boolean m(Object obj, k kVar) {
         if (obj instanceof l) {
             l lVar = (l) obj;
-            h hVar = d.f3517a;
+            h hVar = d.f3515a;
             v b10 = lVar.b(null, kVar);
             if (b10 != null) {
                 lVar.e(b10);
@@ -441,20 +440,20 @@ public class b {
     }
 
     public final Object o(h hVar, int i10, long j3, Object obj) {
-        AtomicReferenceArray atomicReferenceArray = hVar.f3534f;
+        AtomicReferenceArray atomicReferenceArray = hVar.f3532f;
         Object l4 = hVar.l(i10);
-        AtomicLongFieldUpdater atomicLongFieldUpdater = f3509b;
+        AtomicLongFieldUpdater atomicLongFieldUpdater = f3507b;
         if (l4 == null) {
             if (j3 >= (atomicLongFieldUpdater.get(this) & 1152921504606846975L)) {
                 if (obj == null) {
-                    return d.f3527n;
+                    return d.f3525n;
                 }
                 if (hVar.k(i10, l4, obj)) {
                     d();
-                    return d.f3526m;
+                    return d.f3524m;
                 }
             }
-        } else if (l4 == d.d && hVar.k(i10, l4, d.f3522i)) {
+        } else if (l4 == d.d && hVar.k(i10, l4, d.f3520i)) {
             d();
             Object obj2 = atomicReferenceArray.get(i10 * 2);
             hVar.n(i10, null);
@@ -464,30 +463,30 @@ public class b {
             Object l10 = hVar.l(i10);
             if (l10 != null && l10 != d.e) {
                 if (l10 == d.d) {
-                    if (hVar.k(i10, l10, d.f3522i)) {
+                    if (hVar.k(i10, l10, d.f3520i)) {
                         d();
                         Object obj3 = atomicReferenceArray.get(i10 * 2);
                         hVar.n(i10, null);
                         return obj3;
                     }
                 } else {
-                    v vVar = d.f3523j;
+                    v vVar = d.f3521j;
                     if (l10 == vVar) {
-                        return d.f3528o;
+                        return d.f3526o;
                     }
                     if (l10 == d.h) {
-                        return d.f3528o;
+                        return d.f3526o;
                     }
-                    if (l10 == d.f3525l) {
+                    if (l10 == d.f3523l) {
                         d();
-                        return d.f3528o;
-                    } else if (l10 != d.f3521g && hVar.k(i10, l10, d.f3520f)) {
+                        return d.f3526o;
+                    } else if (l10 != d.f3519g && hVar.k(i10, l10, d.f3518f)) {
                         boolean z10 = l10 instanceof j;
                         if (z10) {
-                            l10 = ((j) l10).f3535a;
+                            l10 = ((j) l10).f3533a;
                         }
                         if (n(l10)) {
-                            hVar.o(i10, d.f3522i);
+                            hVar.o(i10, d.f3520i);
                             d();
                             Object obj4 = atomicReferenceArray.get(i10 * 2);
                             hVar.n(i10, null);
@@ -498,20 +497,20 @@ public class b {
                         if (z10) {
                             d();
                         }
-                        return d.f3528o;
+                        return d.f3526o;
                     }
                 }
             } else if (j3 < (atomicLongFieldUpdater.get(this) & 1152921504606846975L)) {
                 if (hVar.k(i10, l10, d.h)) {
                     d();
-                    return d.f3528o;
+                    return d.f3526o;
                 }
             } else if (obj == null) {
-                return d.f3527n;
+                return d.f3525n;
             } else {
                 if (hVar.k(i10, l10, obj)) {
                     d();
-                    return d.f3526m;
+                    return d.f3524m;
                 }
             }
         }
@@ -526,7 +525,7 @@ public class b {
                         break;
                     }
                 } else if (z10) {
-                    if (hVar.k(i10, null, d.f3523j)) {
+                    if (hVar.k(i10, null, d.f3521j)) {
                         hVar.i();
                         return 4;
                     }
@@ -542,27 +541,27 @@ public class b {
                     break;
                 }
             } else {
-                v vVar = d.f3524k;
+                v vVar = d.f3522k;
                 if (l4 == vVar) {
                     hVar.n(i10, null);
                     return 5;
                 } else if (l4 == d.h) {
                     hVar.n(i10, null);
                     return 5;
-                } else if (l4 == d.f3525l) {
+                } else if (l4 == d.f3523l) {
                     hVar.n(i10, null);
                     c();
                     return 4;
                 } else {
                     hVar.n(i10, null);
                     if (l4 instanceof j) {
-                        l4 = ((j) l4).f3535a;
+                        l4 = ((j) l4).f3533a;
                     }
                     if (m(l4, kVar)) {
-                        hVar.o(i10, d.f3522i);
+                        hVar.o(i10, d.f3520i);
                         return 0;
                     }
-                    if (hVar.f3534f.getAndSet((i10 * 2) + 1, vVar) != vVar) {
+                    if (hVar.f3532f.getAndSet((i10 * 2) + 1, vVar) != vVar) {
                         hVar.m(i10, true);
                     }
                     return 5;
@@ -584,7 +583,7 @@ public class b {
                 }
                 bVar = this;
             }
-            int i10 = d.f3519c;
+            int i10 = d.f3517c;
             int i11 = 0;
             while (true) {
                 AtomicLongFieldUpdater atomicLongFieldUpdater2 = e;

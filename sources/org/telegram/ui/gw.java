@@ -1,40 +1,25 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class gw implements Runnable {
-    public final int f34010a = 0;
-    public final uy f34011b;
-    public final ArrayList f34012c;
-    public final int d;
-    public final boolean e;
-    public final HashSet f34013f;
+import android.app.Activity;
+import org.telegram.messenger.Utilities;
+public final class gw implements Utilities.Callback {
+    public final int f33958a;
+    public final Activity f33959b;
 
-    public gw(uy uyVar, int i10, ArrayList arrayList, boolean z10, HashSet hashSet) {
-        this.f34011b = uyVar;
-        this.d = i10;
-        this.f34012c = arrayList;
-        this.e = z10;
-        this.f34013f = hashSet;
+    public gw(Activity activity, int i10) {
+        this.f33958a = i10;
+        this.f33959b = activity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34010a) {
+    public final void run(Object obj) {
+        switch (this.f33958a) {
             case 0:
-                uy.p0(this.f34011b, this.d, this.f34012c, this.e, this.f34013f);
+                uy.B0(this.f33959b, (Boolean) obj);
                 return;
             default:
-                this.f34011b.r4(this.f34012c, this.d, false, this.e, this.f34013f);
+                uy.s0(this.f33959b, (Boolean) obj);
                 return;
         }
-    }
-
-    public gw(uy uyVar, ArrayList arrayList, int i10, boolean z10, HashSet hashSet) {
-        this.f34011b = uyVar;
-        this.f34012c = arrayList;
-        this.d = i10;
-        this.e = z10;
-        this.f34013f = hashSet;
     }
 }

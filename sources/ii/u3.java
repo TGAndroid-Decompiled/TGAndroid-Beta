@@ -1,35 +1,35 @@
 package ii;
 
 import android.view.View;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.n70;
 public interface u3 {
-    void D();
+    n70 D(View view);
 
-    y70 G(View view);
+    void F();
 
-    void I();
-
-    void L(t3 t3Var, View view);
+    void H(t3 t3Var, View view);
 
     void d(v3 v3Var, View view);
 
     boolean e(float f7);
 
-    void l(d6 d6Var, String str);
+    void g(d6 d6Var, String str);
 
-    void m(int i10);
+    void h(int i10);
 
-    void n();
+    void l();
+
+    void o();
 
     void onContentChanged();
 
-    void p();
-
     void q(a aVar);
 
-    void w();
+    void s();
 
-    void x(i1 i1Var, boolean z10);
+    void t(i1 i1Var, boolean z10);
 
-    void y(int i10);
+    void u(int i10);
+
+    void z();
 }

@@ -194,12 +194,12 @@ public class CompoundEmoji {
         private static Paint paint = new Paint(2);
         private static Rect rect = new Rect();
         private DrawableInfo left;
-        private org.telegram.ui.Components.d6 leftUpdateT;
+        private org.telegram.ui.Components.c6 leftUpdateT;
         private DrawableInfo newLeft;
         private DrawableInfo newRight;
         private View parent;
         private DrawableInfo right;
-        private org.telegram.ui.Components.d6 rightUpdateT;
+        private org.telegram.ui.Components.c6 rightUpdateT;
 
         public CompoundEmojiDrawable(DrawableInfo drawableInfo, DrawableInfo drawableInfo2) {
             this.left = drawableInfo;
@@ -260,7 +260,7 @@ public class CompoundEmoji {
             if (!canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
                 if (this.newLeft != null) {
                     if (this.leftUpdateT == null) {
-                        this.leftUpdateT = new org.telegram.ui.Components.d6(0.0f, new e1(this, 16), 0L, 320L, qr.f27654g);
+                        this.leftUpdateT = new org.telegram.ui.Components.c6(0.0f, new e1(this, 16), 0L, 320L, qr.f27421g);
                     }
                     float d = this.leftUpdateT.d(1.0f, false);
                     drawDrawableInfo(canvas, this.newLeft, bounds, Math.min(1.0f, d * 1.5f));
@@ -274,7 +274,7 @@ public class CompoundEmoji {
                 }
                 if (this.newRight != null) {
                     if (this.rightUpdateT == null) {
-                        this.rightUpdateT = new org.telegram.ui.Components.d6(0.0f, new e1(this, 16), 0L, 320L, qr.f27654g);
+                        this.rightUpdateT = new org.telegram.ui.Components.c6(0.0f, new e1(this, 16), 0L, 320L, qr.f27421g);
                     }
                     float d10 = this.rightUpdateT.d(1.0f, false);
                     drawDrawableInfo(canvas, this.newRight, bounds, Math.min(1.0f, 1.5f * d10));
@@ -363,9 +363,9 @@ public class CompoundEmoji {
                     this.left = drawableInfo;
                 }
                 this.newLeft = this.left.updateSkin(i10);
-                org.telegram.ui.Components.d6 d6Var = this.leftUpdateT;
-                if (d6Var != null) {
-                    d6Var.d(0.0f, true);
+                org.telegram.ui.Components.c6 c6Var = this.leftUpdateT;
+                if (c6Var != null) {
+                    c6Var.d(0.0f, true);
                 }
             }
             if (this.right.skin != i11) {
@@ -374,9 +374,9 @@ public class CompoundEmoji {
                     this.right = drawableInfo2;
                 }
                 this.newRight = this.right.updateSkin(i11);
-                org.telegram.ui.Components.d6 d6Var2 = this.rightUpdateT;
-                if (d6Var2 != null) {
-                    d6Var2.d(0.0f, true);
+                org.telegram.ui.Components.c6 c6Var2 = this.rightUpdateT;
+                if (c6Var2 != null) {
+                    c6Var2.d(0.0f, true);
                 }
             }
             invalidate();

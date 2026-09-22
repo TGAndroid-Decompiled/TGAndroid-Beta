@@ -15,13 +15,13 @@ public final class hx0 extends rg.p1 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f42755r;
+        TextView textView = this.f42432r;
         if (textView.getVisibility() == 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             ix0 ix0Var = this.N;
-            ix0Var.d.f35026n.f31477n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f42754n.h, ix0Var.d.f35026n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ix0Var.d.f35026n.f31477n0.f42875f);
+            ix0Var.d.f35009n.f31169n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f42431n.h, ix0Var.d.f35009n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ix0Var.d.f35009n.f31169n0.f42552f);
         }
         super.dispatchDraw(canvas);
     }

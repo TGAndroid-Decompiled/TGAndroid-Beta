@@ -1,36 +1,42 @@
 package pg;
+
+import android.os.Looper;
+import org.telegram.ui.Cells.l7;
 public final class z0 implements Runnable {
-    public final int f41375a;
-    public final a1 f41376b;
+    public final int f41048a;
+    public final a1 f41049b;
 
     public z0(a1 a1Var, int i10) {
-        this.f41375a = i10;
-        this.f41376b = a1Var;
+        this.f41048a = i10;
+        this.f41049b = a1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f41375a) {
+        switch (this.f41048a) {
             case 0:
-                d1 d1Var = this.f41376b.f41124b.d;
-                if (d1Var != null) {
-                    d1Var.postRunnable(d1Var.f41145w);
-                    return;
+                a1 a1Var = this.f41049b;
+                l7 l7Var = a1Var.f40810w;
+                z0 z0Var = a1Var.f40809s;
+                if (z0Var != null) {
+                    a1Var.cancelRunnable(z0Var);
+                    a1Var.f40809s = null;
                 }
+                a1Var.cancelRunnable(l7Var);
+                a1Var.postRunnable(l7Var);
                 return;
             case 1:
-                d1 d1Var2 = this.f41376b.f41124b.d;
-                if (d1Var2 != null) {
-                    d1Var2.postRunnable(d1Var2.f41145w);
-                    return;
-                }
+                a1 a1Var2 = this.f41049b;
+                a1Var2.f40809s = null;
+                a1Var2.f40810w.run();
                 return;
             default:
-                f1 f1Var = this.f41376b.f41124b;
-                d1 d1Var3 = f1Var.d;
-                d1Var3.getClass();
-                d1Var3.postRunnable(new b1(d1Var3, 2));
-                f1Var.d = null;
+                this.f41049b.finish();
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null) {
+                    myLooper.quit();
+                    return;
+                }
                 return;
         }
     }

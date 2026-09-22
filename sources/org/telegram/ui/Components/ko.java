@@ -4,45 +4,45 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.Utilities;
 public final class ko implements Utilities.Callback {
-    public final y70 f25775a;
-    public final int f25776b;
-    public final long f25777c;
+    public final n70 f25631a;
+    public final int f25632b;
+    public final long f25633c;
     public final long d;
     public final org.telegram.ui.ActionBar.n2 e;
-    public final org.telegram.ui.ActionBar.f6 f25778f;
+    public final org.telegram.ui.ActionBar.e6 f25634f;
 
-    public ko(y70 y70Var, int i10, long j3, long j10, org.telegram.ui.zn znVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f25775a = y70Var;
-        this.f25776b = i10;
-        this.f25777c = j3;
+    public ko(n70 n70Var, int i10, long j3, long j10, org.telegram.ui.bo boVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f25631a = n70Var;
+        this.f25632b = i10;
+        this.f25633c = j3;
         this.d = j10;
-        this.e = znVar;
-        this.f25778f = f6Var;
+        this.e = boVar;
+        this.f25634f = e6Var;
     }
 
     @Override
     public final void run(Object obj) {
         Integer num = (Integer) obj;
-        this.f25775a.u();
+        this.f25631a.u();
         int intValue = num.intValue();
-        int i10 = this.f25776b;
-        long j3 = this.f25777c;
+        int i10 = this.f25632b;
+        long j3 = this.f25633c;
         long j10 = this.d;
         org.telegram.ui.ActionBar.n2 n2Var = this.e;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f25778f;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f25634f;
         if (intValue == 0) {
             if (MessagesController.getInstance(i10).isDialogMuted(j3, j10)) {
                 NotificationsController.getInstance(i10).muteDialog(j3, j10, false);
             }
-            if (xc.a(n2Var)) {
-                xc.z(n2Var, 4, num.intValue(), f6Var).j();
+            if (vc.a(n2Var)) {
+                vc.z(n2Var, 4, num.intValue(), e6Var).j();
                 return;
             }
             return;
         }
         NotificationsController.getInstance(i10).muteUntil(j3, j10, num.intValue());
-        if (xc.a(n2Var)) {
-            xc.z(n2Var, 5, num.intValue(), f6Var).j();
+        if (vc.a(n2Var)) {
+            vc.z(n2Var, 5, num.intValue(), e6Var).j();
         }
     }
 }

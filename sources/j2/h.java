@@ -10,38 +10,38 @@ import java.util.Random;
 import u2.f0;
 public final class h {
     public static final s h = new s(4);
-    public static final Random f12587i = new Random();
+    public static final Random f12585i = new Random();
     public i d;
-    public String f12591f;
-    public final j1 f12588a = new j1();
-    public final h1 f12589b = new h1();
-    public final HashMap f12590c = new HashMap();
-    public k1 e = k1.f3080a;
-    public long f12592g = -1;
+    public String f12589f;
+    public final j1 f12586a = new j1();
+    public final h1 f12587b = new h1();
+    public final HashMap f12588c = new HashMap();
+    public k1 e = k1.f3078a;
+    public long f12590g = -1;
 
     public final void a(g gVar) {
-        long j3 = gVar.f12584c;
+        long j3 = gVar.f12582c;
         if (j3 != -1) {
-            this.f12592g = j3;
+            this.f12590g = j3;
         }
-        this.f12591f = null;
+        this.f12589f = null;
     }
 
     public final synchronized void b(a aVar) {
         i iVar;
         try {
-            String str = this.f12591f;
+            String str = this.f12589f;
             if (str != null) {
-                g gVar = (g) this.f12590c.get(str);
+                g gVar = (g) this.f12588c.get(str);
                 gVar.getClass();
                 a(gVar);
             }
-            Iterator it = this.f12590c.values().iterator();
+            Iterator it = this.f12588c.values().iterator();
             while (it.hasNext()) {
                 g gVar2 = (g) it.next();
                 it.remove();
                 if (gVar2.e && (iVar = this.d) != null) {
-                    iVar.t(aVar, gVar2.f12582a);
+                    iVar.t(aVar, gVar2.f12580a);
                 }
             }
         } catch (Throwable th2) {
@@ -54,18 +54,18 @@ public final class h {
     }
 
     public final synchronized String d(k1 k1Var, f0 f0Var) {
-        return c(k1Var.g(f0Var.f43674a, this.f12589b).f3013c, f0Var).f12582a;
+        return c(k1Var.g(f0Var.f43353a, this.f12587b).f3011c, f0Var).f12580a;
     }
 
     public final void e(a aVar) {
         f0 f0Var;
-        k1 k1Var = aVar.f12565b;
-        int i10 = aVar.f12566c;
+        k1 k1Var = aVar.f12563b;
+        int i10 = aVar.f12564c;
         f0 f0Var2 = aVar.d;
         boolean p5 = k1Var.p();
-        HashMap hashMap = this.f12590c;
+        HashMap hashMap = this.f12588c;
         if (p5) {
-            String str = this.f12591f;
+            String str = this.f12589f;
             if (str != null) {
                 g gVar = (g) hashMap.get(str);
                 gVar.getClass();
@@ -74,14 +74,14 @@ public final class h {
             }
             return;
         }
-        g gVar2 = (g) hashMap.get(this.f12591f);
-        this.f12591f = c(i10, f0Var2).f12582a;
+        g gVar2 = (g) hashMap.get(this.f12589f);
+        this.f12589f = c(i10, f0Var2).f12580a;
         f(aVar);
         if (f0Var2 != null) {
             long j3 = f0Var2.d;
             if (f0Var2.b()) {
-                if (gVar2 == null || gVar2.f12584c != j3 || (f0Var = gVar2.d) == null || f0Var.f43675b != f0Var2.f43675b || f0Var.f43676c != f0Var2.f43676c) {
-                    c(i10, new f0(f0Var2.f43674a, j3));
+                if (gVar2 == null || gVar2.f12582c != j3 || (f0Var = gVar2.d) == null || f0Var.f43354b != f0Var2.f43354b || f0Var.f43355c != f0Var2.f43355c) {
+                    c(i10, new f0(f0Var2.f43353a, j3));
                     this.d.getClass();
                 }
             }
@@ -101,20 +101,20 @@ public final class h {
             } else {
                 z10 = false;
             }
-            Iterator it = this.f12590c.values().iterator();
+            Iterator it = this.f12588c.values().iterator();
             while (it.hasNext()) {
                 g gVar = (g) it.next();
                 if (gVar.a(aVar)) {
                     it.remove();
                     if (gVar.e) {
-                        boolean equals = gVar.f12582a.equals(this.f12591f);
+                        boolean equals = gVar.f12580a.equals(this.f12589f);
                         if (z10 && equals) {
-                            boolean z11 = gVar.f12585f;
+                            boolean z11 = gVar.f12583f;
                         }
                         if (equals) {
                             a(gVar);
                         }
-                        this.d.t(aVar, gVar.f12582a);
+                        this.d.t(aVar, gVar.f12580a);
                     }
                 }
             }

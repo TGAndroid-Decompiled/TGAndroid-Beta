@@ -6,9 +6,9 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class a implements Continuation, com.google.android.gms.common.api.internal.s {
-    public static final a f42378a = new Object();
-    public static final a f42379b = new Object();
-    public static final a f42380c = new Object();
+    public static final a f42054a = new Object();
+    public static final a f42055b = new Object();
+    public static final a f42056c = new Object();
 
     public void a(k kVar, com.google.android.gms.common.api.internal.n nVar, boolean z10, TaskCompletionSource taskCompletionSource) {
         k6.c cVar;
@@ -19,9 +19,9 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     taskCompletionSource.setResult(Boolean.FALSE);
                     return;
                 }
-                com.google.android.gms.common.api.internal.p e = iVar.f42391b.e();
-                e.f6143b = null;
-                e.f6144c = null;
+                com.google.android.gms.common.api.internal.p e = iVar.f42067b.e();
+                e.f6141b = null;
+                e.f6142c = null;
                 if (z10) {
                     k6.c[] m10 = kVar.m();
                     if (m10 != null) {
@@ -100,7 +100,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
         Parcel obtain = Parcel.obtain();
         try {
             try {
-                zVar2.f312b.transact(7, O02, obtain, 0);
+                zVar2.f315b.transact(7, O02, obtain, 0);
                 obtain.readException();
                 O02.recycle();
                 obtain.recycle();

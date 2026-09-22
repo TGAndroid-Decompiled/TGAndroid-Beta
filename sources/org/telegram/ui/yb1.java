@@ -1,39 +1,56 @@
 package org.telegram.ui;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import org.telegram.messenger.ApplicationLoader;
-public final class yb1 implements LocationListener {
-    public final ThemeActivity f39899a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class yb1 extends View {
+    public static final int f39801c = 0;
+    public final Paint f39802a;
+    public int[] f39803b;
 
-    public yb1(ThemeActivity themeActivity) {
-        this.f39899a = themeActivity;
+    public yb1(Context context) {
+        super(context);
+        this.f39802a = new Paint(1);
+        this.f39803b = new int[7];
     }
 
     @Override
-    public final void onLocationChanged(Location location) {
-        ThemeActivity themeActivity = this.f39899a;
-        if (location == null) {
-            return;
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = getMeasuredWidth() * 0.5f;
+        float measuredHeight = getMeasuredHeight() * 0.5f;
+        float dp = AndroidUtilities.dp(5.0f);
+        float dp2 = AndroidUtilities.dp(20.0f) - dp;
+        Paint.Style style = Paint.Style.FILL;
+        Paint paint = this.f39802a;
+        paint.setStyle(style);
+        int i10 = 0;
+        paint.setColor(this.f39803b[0]);
+        canvas.drawCircle(measuredWidth, measuredHeight, dp, paint);
+        double d = 0.0d;
+        while (i10 < 6) {
+            i10++;
+            paint.setColor(this.f39803b[i10]);
+            canvas.drawCircle((((float) Math.sin(d)) * dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * dp2), dp, paint);
+            d += 1.0471975511965976d;
         }
-        themeActivity.K0 = false;
-        LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
-        locationManager.removeUpdates(themeActivity.Q0);
-        locationManager.removeUpdates(themeActivity.R0);
-        themeActivity.B0(location, false);
     }
 
     @Override
-    public final void onProviderDisabled(String str) {
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
+        accessibilityNodeInfo.setClassName(Button.class.getName());
+        accessibilityNodeInfo.setEnabled(true);
     }
 
     @Override
-    public final void onProviderEnabled(String str) {
-    }
-
-    @Override
-    public final void onStatusChanged(String str, int i10, Bundle bundle) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824));
     }
 }

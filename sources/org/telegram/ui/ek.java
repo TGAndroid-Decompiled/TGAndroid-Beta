@@ -5,26 +5,26 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class ek implements Runnable {
-    public final zn f33384a;
+    public final bo f33366a;
 
-    public ek(zn znVar) {
-        this.f33384a = znVar;
+    public ek(bo boVar) {
+        this.f33366a = boVar;
     }
 
     @Override
     public final void run() {
         String formatPluralString;
-        zn znVar = this.f33384a;
-        MessageObject messageObject = znVar.f40307d5;
-        if (messageObject != null && znVar.T8 != null) {
-            int max = Math.max(0, messageObject.messageOwner.ttl_period - (znVar.getConnectionsManager().getCurrentTime() - znVar.f40307d5.messageOwner.date));
+        bo boVar = this.f33366a;
+        MessageObject messageObject = boVar.f32276d5;
+        if (messageObject != null && boVar.T8 != null) {
+            int max = Math.max(0, messageObject.messageOwner.ttl_period - (boVar.getConnectionsManager().getCurrentTime() - boVar.f32276d5.messageOwner.date));
             if (max < 86400) {
                 formatPluralString = AndroidUtilities.formatDuration(max, false, true);
             } else {
                 formatPluralString = LocaleController.formatPluralString("Days", Math.round(max / 86400.0f), new Object[0]);
             }
-            znVar.T8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
-            AndroidUtilities.runOnUIThread(znVar.U8, 1000L);
+            boVar.T8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
+            AndroidUtilities.runOnUIThread(boVar.U8, 1000L);
         }
     }
 }

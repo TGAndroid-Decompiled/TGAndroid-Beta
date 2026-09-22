@@ -5,18 +5,18 @@ import android.widget.FrameLayout;
 import org.telegram.ui.Components.FragmentContextView;
 public final class hk extends FragmentContextView {
     public final int P0;
-    public final zn Q0;
+    public final bo Q0;
 
-    public hk(zn znVar, Context context, zn znVar2, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, znVar2, null, true, f6Var);
+    public hk(bo boVar, Context context, bo boVar2, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, boVar2, null, true, e6Var);
         this.P0 = i10;
         switch (i10) {
             case 1:
-                this.Q0 = znVar;
-                super(context, znVar2, null, false, f6Var);
+                this.Q0 = boVar;
+                super(context, boVar2, null, false, e6Var);
                 return;
             default:
-                this.Q0 = znVar;
+                this.Q0 = boVar;
                 return;
         }
     }
@@ -27,26 +27,26 @@ public final class hk extends FragmentContextView {
         boolean z11;
         switch (this.P0) {
             case 0:
-                zn znVar = this.Q0;
-                org.telegram.ui.Components.ch chVar = znVar.M0;
-                FrameLayout frameLayout = znVar.a2;
+                bo boVar = this.Q0;
+                org.telegram.ui.Components.bh bhVar = boVar.M0;
+                FrameLayout frameLayout = boVar.a2;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                chVar.i(frameLayout, z10, true);
+                bhVar.i(frameLayout, z10, true);
                 return;
             default:
-                zn znVar2 = this.Q0;
-                org.telegram.ui.Components.ch chVar2 = znVar2.M0;
-                FrameLayout frameLayout2 = znVar2.Y1;
+                bo boVar2 = this.Q0;
+                org.telegram.ui.Components.bh bhVar2 = boVar2.M0;
+                FrameLayout frameLayout2 = boVar2.Y1;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                chVar2.i(frameLayout2, z11, true);
+                bhVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

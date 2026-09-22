@@ -4,7 +4,7 @@ public interface p extends b2.k {
 
     boolean d(byte[] bArr, int i10, int i11, boolean z10);
 
-    int f(int i10, int i11, byte[] bArr);
+    int e(int i10, int i11, byte[] bArr);
 
     boolean g(int i10, boolean z10);
 
@@ -16,7 +16,7 @@ public interface p extends b2.k {
 
     long i();
 
-    void j(int i10);
+    void k(int i10);
 
     void p();
 

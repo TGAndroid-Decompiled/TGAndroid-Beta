@@ -1,110 +1,67 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
-import org.telegram.ui.Components.qr;
-public final class d4 {
-    public float f20136a;
-    public float f20137b;
-    public float f20138c;
-    public boolean e;
-    public final org.telegram.ui.Components.aa f20139f;
-    public final org.telegram.ui.Components.aa f20140g;
-    public boolean h;
-    public int f20141i;
-    public float d = 0.0f;
-    public float f20142j = 0.0f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.R;
+public final class d4 extends Drawable {
+    public final Drawable[] f19894a;
 
-    public d4(int i10, int i11) {
-        org.telegram.ui.Components.aa aaVar = new org.telegram.ui.Components.aa(6);
-        this.f20139f = aaVar;
-        org.telegram.ui.Components.aa aaVar2 = new org.telegram.ui.Components.aa(8);
-        this.f20140g = aaVar2;
-        float f7 = i10;
-        aaVar.f22580a = f7;
-        float f10 = i11;
-        aaVar.f22581b = f10;
-        aaVar2.f22580a = f7;
-        aaVar2.f22581b = f10;
-        aaVar.b();
-        aaVar2.b();
-        int i12 = org.telegram.ui.ActionBar.j6.f19357qg;
-        aaVar.d.setColor(i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, i12, false), 38));
-        aaVar2.d.setColor(i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, i12, false), 38));
+    public d4(Context context) {
+        this.f19894a = r0;
+        Drawable mutate = context.getResources().getDrawable(R.drawable.verified_area).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
+        Drawable[] drawableArr = {mutate, context.getResources().getDrawable(R.drawable.verified_check).mutate()};
     }
 
-    public final void a(android.graphics.Canvas r9, float r10, float r11, android.view.View r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.d4.a(android.graphics.Canvas, float, float, android.view.View):void");
-    }
-
-    public final float b() {
-        float interpolation = qr.f27654g.getInterpolation(this.d);
-        return com.google.android.gms.internal.vision.e2.z(1.0f, interpolation, 1.0f, ((this.f20136a * 0.2f) + 0.9f) * interpolation);
-    }
-
-    public final void c(double d) {
-        float f7 = ((float) d) / 80.0f;
-        float f10 = 0.0f;
-        if (!this.e) {
-            f7 = 0.0f;
-        }
-        if (f7 > 1.0f) {
-            f10 = 1.0f;
-        } else if (f7 >= 0.0f) {
-            f10 = f7;
-        }
-        this.f20137b = f10;
-        this.f20138c = (f10 - this.f20136a) / 200.0f;
-    }
-
-    public final void d(int i10) {
-        this.h = true;
-        this.f20139f.d.setColor(i10);
-    }
-
-    public final void e(View view, boolean z10) {
-        if (this.e != z10) {
-            view.invalidate();
-        }
-        this.e = z10;
-    }
-
-    public final void f() {
-        float f7 = this.f20137b;
-        float f10 = this.f20136a;
-        if (f7 != f10) {
-            float f11 = this.f20138c;
-            float f12 = (16.0f * f11) + f10;
-            this.f20136a = f12;
-            if (f11 > 0.0f) {
-                if (f12 > f7) {
-                    this.f20136a = f7;
-                }
-            } else if (f12 < f7) {
-                this.f20136a = f7;
-            }
-        }
-        boolean z10 = this.e;
-        if (z10) {
-            float f13 = this.d;
-            if (f13 != 1.0f) {
-                float f14 = f13 + 0.045714285f;
-                this.d = f14;
-                if (f14 > 1.0f) {
-                    this.d = 1.0f;
-                    return;
-                }
+    @Override
+    public final void draw(Canvas canvas) {
+        int i10 = 0;
+        while (true) {
+            Drawable[] drawableArr = this.f19894a;
+            if (i10 < drawableArr.length) {
+                drawableArr[i10].setBounds(getBounds());
+                drawableArr[i10].draw(canvas);
+                i10++;
+            } else {
                 return;
             }
         }
-        if (!z10) {
-            float f15 = this.d;
-            if (f15 != 0.0f) {
-                float f16 = f15 - 0.045714285f;
-                this.d = f16;
-                if (f16 < 0.0f) {
-                    this.d = 0.0f;
-                }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f19894a[0].getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f19894a[0].getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        int i11 = 0;
+        while (true) {
+            Drawable[] drawableArr = this.f19894a;
+            if (i11 < drawableArr.length) {
+                drawableArr[i11].setAlpha(i10);
+                i11++;
+            } else {
+                return;
             }
         }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

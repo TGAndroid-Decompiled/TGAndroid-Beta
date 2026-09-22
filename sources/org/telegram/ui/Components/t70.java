@@ -1,27 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-public final class t70 extends org.telegram.ui.ActionBar.n1 {
-    public final ViewGroup f28407o;
-    public final y70 f28408p;
+import androidx.recyclerview.widget.RecyclerView;
+public final class t70 extends s4.s0 {
+    public final w70 f28058a;
 
-    public t70(y70 y70Var, View view, ViewGroup viewGroup) {
-        super(view, -2, -2);
-        this.f28408p = y70Var;
-        this.f28407o = viewGroup;
+    public t70(w70 w70Var) {
+        this.f28058a = w70Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        ViewGroup viewGroup = this.f28407o;
-        y70 y70Var = this.f28408p;
-        y70.a(y70Var, viewGroup);
-        Runnable runnable = y70Var.f30563p;
-        if (runnable != null) {
-            runnable.run();
-            y70Var.f30563p = null;
-        }
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        w70.o(this.f28058a);
     }
 }

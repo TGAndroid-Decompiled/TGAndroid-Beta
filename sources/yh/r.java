@@ -6,13 +6,13 @@ import android.graphics.PorterDuffColorFilter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.c90;
 public final class r extends LinearLayout {
-    public final ImageView f47998a;
-    public final n90 f47999b;
-    public final n90 f48000c;
+    public final ImageView f47641a;
+    public final c90 f47642b;
+    public final c90 f47643c;
 
-    public r(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+    public r(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         float f7;
         float f10;
@@ -31,41 +31,41 @@ public final class r extends LinearLayout {
         }
         setPadding(dp, 0, dp2, AndroidUtilities.dp(f10));
         ImageView imageView = new ImageView(context);
-        this.f47998a = imageView;
-        int i11 = org.telegram.ui.ActionBar.j6.G6;
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i11, false), PorterDuff.Mode.SRC_IN));
+        this.f47641a = imageView;
+        int i11 = org.telegram.ui.ActionBar.i6.G6;
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, i11, false), PorterDuff.Mode.SRC_IN));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, w7.y5.t(24, 24, 51, 0, 6, 16, 0));
+        addView(imageView, w7.x5.t(24, 24, 51, 0, 6, 16, 0));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        n90 n90Var = new n90(context, null);
-        this.f47999b = n90Var;
-        n90Var.setTypeface(AndroidUtilities.bold());
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        int i12 = org.telegram.ui.ActionBar.j6.gc;
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-        linearLayout.addView(n90Var, w7.y5.t(-1, -2, 7, 0, 0, 0, 3));
-        n90 n90Var2 = new n90(context, null);
-        this.f48000c = n90Var2;
-        n90Var2.setTextSize(1, 14.0f);
-        n90Var2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19511z6, f6Var));
-        n90Var2.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-        linearLayout.addView(n90Var2, w7.y5.q(-1, -2, 7));
-        addView(linearLayout, w7.y5.p(-1, -2, 1.0f, 55, 0, 0, 0, 0));
+        c90 c90Var = new c90(context, null);
+        this.f47642b = c90Var;
+        c90Var.setTypeface(AndroidUtilities.bold());
+        c90Var.setTextSize(1, 14.0f);
+        c90Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, e6Var));
+        int i12 = org.telegram.ui.ActionBar.i6.gc;
+        c90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(i12, e6Var));
+        linearLayout.addView(c90Var, w7.x5.t(-1, -2, 7, 0, 0, 0, 3));
+        c90 c90Var2 = new c90(context, null);
+        this.f47643c = c90Var2;
+        c90Var2.setTextSize(1, 14.0f);
+        c90Var2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19234z6, e6Var));
+        c90Var2.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(i12, e6Var));
+        linearLayout.addView(c90Var2, w7.x5.q(-1, -2, 7));
+        addView(linearLayout, w7.x5.p(-1, -2, 1.0f, 55, 0, 0, 0, 0));
     }
 
     public final void a(CharSequence charSequence, CharSequence charSequence2, int i10) {
-        this.f47998a.setImageResource(i10);
-        this.f47999b.setText(charSequence);
-        this.f48000c.setText(charSequence2);
+        this.f47641a.setImageResource(i10);
+        this.f47642b.setText(charSequence);
+        this.f47643c.setText(charSequence2);
     }
 
     public void setSubtitle(CharSequence charSequence) {
-        this.f48000c.setText(charSequence);
+        this.f47643c.setText(charSequence);
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f47999b.setText(charSequence);
+        this.f47642b.setText(charSequence);
     }
 }

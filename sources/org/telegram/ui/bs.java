@@ -13,16 +13,16 @@ public final class bs extends gs {
         this.M = i10;
         this.N = i11;
         this.e = 1.0f;
-        this.f33974f = new o1.k(this, gs.I);
+        this.f33934f = new o1.k(this, gs.I);
         this.h = new o1.k(this, gs.J);
-        this.f33975n = new o1.k(this, gs.K);
-        this.f33976r = new o1.k(this, gs.L);
-        this.f33977s = true;
+        this.f33935n = new o1.k(this, gs.K);
+        this.f33936r = new o1.k(this, gs.L);
+        this.f33937s = true;
         this.v = 1.0f;
-        this.f33978w = 1.0f;
+        this.f33938w = 1.0f;
         this.H = false;
         setBackground(null);
-        setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
         setMovementMethod(null);
         addTextChangedListener(new l0(this, 5));
     }
@@ -34,44 +34,44 @@ public final class bs extends gs {
         }
         int keyCode = keyEvent.getKeyCode();
         ds dsVar = this.O;
-        int length = dsVar.f33145f.length;
+        int length = dsVar.f33081f.length;
         int i10 = this.M;
         if (i10 >= length) {
             return false;
         }
         if (keyEvent.getAction() == 1) {
-            if (keyCode == 67 && dsVar.f33145f[i10].length() == 1) {
-                dsVar.f33145f[i10].m();
-                dsVar.f33145f[i10].setText("");
+            if (keyCode == 67 && dsVar.f33081f[i10].length() == 1) {
+                dsVar.f33081f[i10].m();
+                dsVar.f33081f[i10].setText("");
                 return true;
-            } else if (keyCode == 67 && dsVar.f33145f[i10].length() == 0 && i10 > 0) {
-                gs[] gsVarArr = dsVar.f33145f;
+            } else if (keyCode == 67 && dsVar.f33081f[i10].length() == 0 && i10 > 0) {
+                gs[] gsVarArr = dsVar.f33081f;
                 gsVarArr[i10 - 1].setSelection(gsVarArr[i10 - 1].length());
                 for (int i11 = 0; i11 < i10; i11++) {
                     if (i11 == i10 - 1) {
-                        dsVar.f33145f[i10 - 1].requestFocus();
+                        dsVar.f33081f[i10 - 1].requestFocus();
                     } else {
-                        dsVar.f33145f[i11].clearFocus();
+                        dsVar.f33081f[i11].clearFocus();
                     }
                 }
-                dsVar.f33145f[i10 - 1].m();
-                dsVar.f33145f[i10 - 1].setText("");
+                dsVar.f33081f[i10 - 1].m();
+                dsVar.f33081f[i10 - 1].setText("");
                 return true;
             } else {
                 if (keyCode >= 7 && keyCode <= 16) {
                     String num = Integer.toString(keyCode - 7);
-                    if (dsVar.f33145f[i10].getText() != null && num.equals(dsVar.f33145f[i10].getText().toString())) {
+                    if (dsVar.f33081f[i10].getText() != null && num.equals(dsVar.f33081f[i10].getText().toString())) {
                         if (i10 >= this.N - 1) {
                             dsVar.a();
                         } else {
-                            dsVar.f33145f[i10 + 1].requestFocus();
+                            dsVar.f33081f[i10 + 1].requestFocus();
                         }
                         return true;
                     }
-                    if (dsVar.f33145f[i10].length() > 0) {
-                        dsVar.f33145f[i10].m();
+                    if (dsVar.f33081f[i10].length() > 0) {
+                        dsVar.f33081f[i10].m();
                     }
-                    dsVar.f33145f[i10].setText(num);
+                    dsVar.f33081f[i10].setText(num);
                 }
                 return true;
             }

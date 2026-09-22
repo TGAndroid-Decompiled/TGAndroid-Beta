@@ -1,35 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class j01 extends ReplacementSpan {
-    public float f25229a;
-    public final String f25230b;
-    public final int f25231c;
-    public final Paint d;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class j01 extends MetricAffectingSpan {
+    public TextPaint f25173a;
 
-    public j01(int i10, Paint paint, String str) {
-        this.f25230b = str;
-        this.f25231c = i10;
-        this.d = paint;
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f25173a;
+        textPaint.setColor(textPaint2.getColor());
+        textPaint.setTypeface(textPaint2.getTypeface());
+        textPaint.setFlags(textPaint2.getFlags());
+        textPaint.setTextSize(textPaint2.getTextSize());
+        textPaint.baselineShift = textPaint2.baselineShift;
+        textPaint.bgColor = textPaint2.bgColor;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        float f10 = (i12 + i14) / 2.0f;
-        paint.setColor(this.f25231c);
-        float dp = AndroidUtilities.dp(19.0f) / 2.0f;
-        canvas.drawRoundRect(f7, f10 - dp, f7 + this.f25229a + AndroidUtilities.dp(11.33f), f10 + dp, dp, dp, this.d);
-        canvas.drawText(this.f25230b, AndroidUtilities.dpf2(5.66f) + f7, i14 - AndroidUtilities.dp(6.0f), paint);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        float dpf2 = AndroidUtilities.dpf2(11.33f);
-        float measureText = paint.measureText(this.f25230b);
-        this.f25229a = measureText;
-        return (int) (dpf2 + measureText);
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f25173a;
+        textPaint.setColor(textPaint2.getColor());
+        textPaint.setTypeface(textPaint2.getTypeface());
+        textPaint.setFlags(textPaint2.getFlags());
+        textPaint.setTextSize(textPaint2.getTextSize());
+        textPaint.baselineShift = textPaint2.baselineShift;
+        textPaint.bgColor = textPaint2.bgColor;
     }
 }

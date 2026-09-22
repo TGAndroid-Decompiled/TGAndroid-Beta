@@ -2,46 +2,46 @@ package m4;
 
 import android.os.Bundle;
 public final class f {
-    public static final String f14735f;
-    public static final String f14736g;
+    public static final String f14500f;
+    public static final String f14501g;
     public static final String h;
-    public static final String f14737i;
-    public static final String f14738j;
-    public static final String f14739k;
-    public final int f14740a;
-    public final int f14741b;
-    public final String f14742c;
+    public static final String f14502i;
+    public static final String f14503j;
+    public static final String f14504k;
+    public final int f14505a;
+    public final int f14506b;
+    public final String f14507c;
     public final int d;
     public final Bundle e;
 
     static {
-        String str = e2.d0.f7887a;
-        f14735f = Integer.toString(0, 36);
-        f14736g = Integer.toString(1, 36);
+        String str = e2.d0.f7885a;
+        f14500f = Integer.toString(0, 36);
+        f14501g = Integer.toString(1, 36);
         h = Integer.toString(2, 36);
-        f14737i = Integer.toString(3, 36);
-        f14738j = Integer.toString(4, 36);
-        f14739k = Integer.toString(5, 36);
+        f14502i = Integer.toString(3, 36);
+        f14503j = Integer.toString(4, 36);
+        f14504k = Integer.toString(5, 36);
     }
 
     public f(int i10, int i11, String str, int i12, Bundle bundle, int i13) {
-        this.f14740a = i10;
-        this.f14741b = i11;
-        this.f14742c = str;
+        this.f14505a = i10;
+        this.f14506b = i11;
+        this.f14507c = str;
         this.d = i12;
         this.e = bundle;
     }
 
     public static f a(Bundle bundle) {
-        int i10 = bundle.getInt(f14735f, 0);
-        int i11 = bundle.getInt(f14738j, 0);
-        String string = bundle.getString(f14736g);
+        int i10 = bundle.getInt(f14500f, 0);
+        int i11 = bundle.getInt(f14503j, 0);
+        String string = bundle.getString(f14501g);
         string.getClass();
         String str = h;
         e2.d.b(bundle.containsKey(str));
         int i12 = bundle.getInt(str);
-        Bundle bundle2 = bundle.getBundle(f14737i);
-        int i13 = bundle.getInt(f14739k, 0);
+        Bundle bundle2 = bundle.getBundle(f14502i);
+        int i13 = bundle.getInt(f14504k, 0);
         if (bundle2 == null) {
             bundle2 = Bundle.EMPTY;
         }

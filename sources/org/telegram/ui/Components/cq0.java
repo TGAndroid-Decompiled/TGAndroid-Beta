@@ -1,47 +1,83 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
+import android.content.Context;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class cq0 implements gg.g0 {
-    public final wq0 f23428a;
+public final class cq0 extends gg.c0 {
+    public final dq0 f23125n;
 
-    public cq0(wq0 wq0Var) {
-        this.f23428a = wq0Var;
+    public cq0(dq0 dq0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i10, context, e6Var, true, true);
+        this.f23125n = dq0Var;
     }
 
     @Override
-    public final void a(a0.i iVar, ArrayList arrayList) {
-        int i10;
+    public final void v(s4.c1 c1Var, int i10) {
         int i11;
+        TLRPC.Chat chat;
         int i12;
-        int i13 = 0;
-        while (i13 < arrayList.size()) {
-            TLObject tLObject = ((gg.h0) arrayList.get(i13)).f9754a;
-            if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
-                arrayList.remove(i13);
-                i13--;
-            }
-            i13++;
+        int i13;
+        boolean z10;
+        String str;
+        int i14;
+        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) c1Var.f42671a;
+        hq0 hq0Var = this.f23125n.K;
+        boolean z11 = false;
+        TLRPC.User user = null;
+        if (hq0Var.f24764h0 || hq0Var.f24765i0) {
+            int i15 = org.telegram.ui.ActionBar.i6.f19025ng;
+            int i16 = org.telegram.ui.ActionBar.i6.f18878fg;
+            n4Var.f20457b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i15, false));
+            n4Var.H = i16;
+            n4Var.v.b(org.telegram.ui.ActionBar.i6.B5, i16, org.telegram.ui.ActionBar.i6.C5);
         }
-        wq0 wq0Var = this.f23428a;
-        wq0Var.E0 = arrayList;
-        for (int i14 = 0; i14 < wq0Var.E0.size(); i14++) {
-            gg.h0 h0Var = (gg.h0) wq0Var.E0.get(i14);
-            TLObject tLObject2 = h0Var.f9754a;
-            if (tLObject2 instanceof TLRPC.User) {
-                i12 = ((org.telegram.ui.ActionBar.f3) wq0Var).currentAccount;
-                MessagesController.getInstance(i12).putUser((TLRPC.User) h0Var.f9754a, true);
-            } else if (tLObject2 instanceof TLRPC.Chat) {
-                i11 = ((org.telegram.ui.ActionBar.f3) wq0Var).currentAccount;
-                MessagesController.getInstance(i11).putChat((TLRPC.Chat) h0Var.f9754a, true);
-            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
-                i10 = ((org.telegram.ui.ActionBar.f3) wq0Var).currentAccount;
-                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) h0Var.f9754a, true);
+        i11 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
+        TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
+        TLRPC.Peer peer = tL_topPeer.peer;
+        long j3 = peer.user_id;
+        if (j3 != 0) {
+            i14 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
+            user = MessagesController.getInstance(i14).getUser(Long.valueOf(tL_topPeer.peer.user_id));
+            chat = null;
+        } else {
+            long j10 = peer.channel_id;
+            if (j10 != 0) {
+                j3 = -j10;
+                i13 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
+                chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tL_topPeer.peer.channel_id));
+            } else {
+                long j11 = peer.chat_id;
+                if (j11 != 0) {
+                    j3 = -j11;
+                    i12 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
+                    chat = MessagesController.getInstance(i12).getChat(Long.valueOf(tL_topPeer.peer.chat_id));
+                } else {
+                    chat = null;
+                    j3 = 0;
+                }
             }
         }
-        wq0Var.M.l();
+        if (j3 == n4Var.getDialogId()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        n4Var.setTag(Long.valueOf(j3));
+        if (user != null) {
+            str = UserObject.getFirstName(user);
+        } else if (chat != null) {
+            str = chat.title;
+        } else {
+            str = "";
+        }
+        n4Var.a(j3, str);
+        if (hq0Var.U.h(j3) >= 0) {
+            z11 = true;
+        }
+        if (n4Var.f20463w) {
+            n4Var.v.a(z11, z10);
+        }
     }
 }

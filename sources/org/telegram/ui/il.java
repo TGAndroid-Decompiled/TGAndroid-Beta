@@ -1,81 +1,95 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class il extends FrameLayout {
-    public float f34630a;
-    public float f34631b;
-    public final zn f34632c;
+import android.content.Context;
+import android.os.Bundle;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.tgnet.TLRPC;
+public final class il extends org.telegram.ui.Components.vb0 {
+    public final bo H;
 
-    public il(zn znVar, Activity activity) {
-        super(activity);
-        this.f34632c = znVar;
-        setOnLongClickListener(new u(this, 2));
+    public il(bo boVar, Context context, bo boVar2, ah.c cVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, org.telegram.ui.Components.rb0 rb0Var, int i11, boolean z10) {
+        super(context, boVar2, cVar, messagePreviewParams, user, chat, i10, rb0Var, i11, z10);
+        this.H = boVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        zn znVar = this.f34632c;
-        if (view == znVar.f40578z2) {
-            canvas.save();
-            canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
+    public final void b() {
+        MessageObject messageObject;
+        rn rnVar;
+        bo boVar = this.H;
+        rn rnVar2 = boVar.f32372l5;
+        if (rnVar2 != null && (messageObject = rnVar2.f37171a) != null && ((rnVar = boVar.f32301f5.quote) == null || rnVar.f37171a == null || messageObject.getId() == boVar.f32301f5.quote.f37171a.getId())) {
+            return;
         }
-        org.telegram.ui.ActionBar.j5[] j5VarArr = znVar.D2;
-        if (view != j5VarArr[0] && view != j5VarArr[1]) {
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            if (view == znVar.f40578z2) {
-                canvas.restore();
+        boVar.f32372l5 = boVar.f32301f5.quote;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        int i10;
+        boolean z11;
+        boolean z12;
+        long peerDialogId;
+        int i11;
+        MessagePreviewParams.Messages messages;
+        int i12 = 0;
+        a(false);
+        bo boVar = this.H;
+        MessagePreviewParams messagePreviewParams = boVar.f32301f5;
+        if (messagePreviewParams != null) {
+            if (!z10) {
+                boVar.f32384m5 = true;
             }
-            return drawChild;
-        }
-        canvas.save();
-        canvas.clipRect(0, 0, getMeasuredWidth() - AndroidUtilities.dp(38.0f), getMeasuredHeight());
-        boolean drawChild2 = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild2;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        zn znVar = this.f34632c;
-        if (znVar.A2) {
-            int i12 = 0;
-            while (true) {
-                AnimatorSet[] animatorSetArr = znVar.H2;
-                if (i12 < animatorSetArr.length) {
-                    AnimatorSet animatorSet = animatorSetArr[i12];
-                    if (animatorSet != null) {
-                        animatorSet.start();
+            MessagePreviewParams.Messages messages2 = messagePreviewParams.forwardMessages;
+            if (messages2 != null) {
+                int size = messages2.messages.size();
+                i10 = 0;
+                z11 = false;
+                for (int i13 = 0; i13 < size; i13++) {
+                    MessageObject messageObject = boVar.f32301f5.forwardMessages.messages.get(i13);
+                    if (messageObject.isTodo()) {
+                        i10 = 3;
+                    } else if (messageObject.isPoll()) {
+                        if (i10 != 2) {
+                            if (messageObject.isPublicPoll()) {
+                                i10 = 2;
+                            } else {
+                                i10 = 1;
+                            }
+                        }
+                    } else if (messageObject.isInvoice()) {
+                        z11 = true;
                     }
-                    i12++;
-                } else {
-                    znVar.A2 = false;
-                    return;
+                    boVar.W5[0].put(messageObject.getId(), messageObject);
                 }
+            } else {
+                i10 = 0;
+                z11 = false;
             }
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f34630a = motionEvent.getY();
-        int action = motionEvent.getAction();
-        zn znVar = this.f34632c;
-        if (action == 1) {
-            znVar.finishPreviewFragment();
-        } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f34631b - this.f34630a;
-            znVar.movePreviewFragment(f7);
-            if (f7 < 0.0f) {
-                this.f34631b = this.f34630a;
+            Bundle e = org.telegram.messenger.y0.e(3, "onlySelect", "dialogsType", true);
+            e.putBoolean("quote", !z10);
+            if (!z10 && (messages = boVar.f32301f5.replyMessage) != null && !messages.messages.isEmpty() && boVar.f32301f5.quote == null) {
+                z12 = true;
+            } else {
+                z12 = false;
             }
+            e.putBoolean("reply_to", z12);
+            if (z12 && (DialogObject.getPeerDialogId(boVar.f32301f5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != boVar.a() && peerDialogId != boVar.getUserConfig().getClientUserId() && i11 > 0) {
+                e.putLong("reply_to_author", peerDialogId);
+            }
+            e.putInt("hasPoll", i10);
+            e.putBoolean("hasInvoice", z11);
+            MessagePreviewParams.Messages messages3 = boVar.f32301f5.forwardMessages;
+            if (messages3 != null) {
+                i12 = messages3.messages.size();
+            }
+            e.putInt("messagesCount", i12);
+            e.putBoolean("canSelectTopics", true);
+            uy uyVar = new uy(e);
+            uyVar.C2 = boVar;
+            boVar.presentFragment(uyVar);
         }
-        return super.onTouchEvent(motionEvent);
     }
 }

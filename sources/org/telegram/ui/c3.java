@@ -11,68 +11,68 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class c3 extends FrameLayout {
-    public final LinearLayout f32625a;
-    public boolean f32626b;
-    public final org.telegram.ui.Components.v9 f32627c;
+    public final LinearLayout f32642a;
+    public boolean f32643b;
+    public final org.telegram.ui.Components.u9 f32644c;
     public final TextView d;
     public final TextView e;
-    public final TextView f32628f;
+    public final TextView f32645f;
     public final ci.d h;
-    public ValueAnimator f32629n;
-    public boolean f32630r;
+    public ValueAnimator f32646n;
+    public boolean f32647r;
 
     public c3(Context context) {
         super(context);
-        this.f32630r = true;
+        this.f32647r = true;
         setVisibility(8);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f32625a = linearLayout;
+        this.f32642a = linearLayout;
         linearLayout.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f));
         linearLayout.setOrientation(1);
         linearLayout.setGravity(3);
-        addView(linearLayout, w7.y5.e(-2, -2, 17));
-        org.telegram.ui.Components.v9 v9Var = new org.telegram.ui.Components.v9(context);
-        this.f32627c = v9Var;
-        linearLayout.addView(v9Var, w7.y5.n(100, 100));
+        addView(linearLayout, w7.x5.e(-2, -2, 17));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.f32644c = u9Var;
+        linearLayout.addView(u9Var, w7.x5.n(100, 100));
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 19.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextColor(-1);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.y5.t(-2, -2, 3, 0, 4, 0, 2), context);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-2, -2, 3, 0, 4, 0, 2), context);
         this.e = h;
         h.setTextSize(1, 15.0f);
         h.setTextColor(-1);
         h.setSingleLine(false);
         h.setMaxLines(3);
-        TextView h10 = com.google.android.gms.internal.vision.e2.h(linearLayout, h, w7.y5.t(-2, -2, 3, 0, 0, 0, 1), context);
-        this.f32628f = h10;
+        TextView h10 = com.google.android.gms.internal.vision.e2.h(linearLayout, h, w7.x5.t(-2, -2, 3, 0, 0, 0, 1), context);
+        this.f32645f = h10;
         h10.setTextSize(1, 12.0f);
         h10.setTextColor(-1);
         h10.setAlpha(0.4f);
-        linearLayout.addView(h10, w7.y5.q(-2, -2, 3));
+        linearLayout.addView(h10, w7.x5.q(-2, -2, 3));
         ci.d dVar = new ci.d(context, null, true);
         this.h = dVar;
         dVar.setMinWidth(AndroidUtilities.dp(140.0f));
         dVar.g(LocaleController.getString(R.string.Refresh), false, true);
-        linearLayout.addView(dVar, w7.y5.t(-2, 40, 3, 0, 12, 0, 0));
+        linearLayout.addView(dVar, w7.x5.t(-2, 40, 3, 0, 12, 0, 0));
     }
 
     public final void a(String str, String str2) {
         this.d.setText(LocaleController.getString(R.string.WebErrorTitle));
-        org.telegram.messenger.rk.q(R.string.WebErrorInfoBot, new Object[]{str}, this.e);
-        this.f32628f.setText(str2);
+        org.telegram.messenger.vl.q(R.string.WebErrorInfoBot, new Object[]{str}, this.e);
+        this.f32645f.setText(str2);
     }
 
     public final void b(boolean z10, boolean z11) {
         int i10;
         int i11;
         float f7;
-        if (this.f32630r == z10) {
+        if (this.f32647r == z10) {
             return;
         }
-        this.f32630r = z10;
-        ValueAnimator valueAnimator = this.f32629n;
+        this.f32647r = z10;
+        ValueAnimator valueAnimator = this.f32646n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -87,9 +87,9 @@ public final class c3 extends FrameLayout {
                 f10 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, f10);
-            this.f32629n = ofFloat;
+            this.f32646n = ofFloat;
             ofFloat.addUpdateListener(new b3(this, 0));
-            this.f32629n.start();
+            this.f32646n.start();
             return;
         }
         int i12 = -1;
@@ -108,15 +108,15 @@ public final class c3 extends FrameLayout {
         if (!z10) {
             i12 = -16777216;
         }
-        this.f32628f.setTextColor(i12);
+        this.f32645f.setTextColor(i12);
     }
 
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        if (i10 == 0 && !this.f32626b) {
-            this.f32626b = true;
-            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f32627c, "tg_placeholders_android", "🧐", "100_100");
+        if (i10 == 0 && !this.f32643b) {
+            this.f32643b = true;
+            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f32644c, "tg_placeholders_android", "🧐", "100_100");
         }
     }
 }

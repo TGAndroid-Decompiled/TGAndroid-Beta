@@ -6,58 +6,58 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zk implements RequestDelegate {
-    public final int f18336a;
-    public final BaseController f18337b;
-    public final long f18338c;
+    public final int f18102a;
+    public final BaseController f18103b;
+    public final long f18104c;
     public final Object d;
 
     public zk(BaseController baseController, long j3, Object obj, int i10) {
-        this.f18336a = i10;
-        this.f18337b = baseController;
-        this.f18338c = j3;
+        this.f18102a = i10;
+        this.f18103b = baseController;
+        this.f18104c = j3;
         this.d = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18336a) {
+        switch (this.f18102a) {
             case 0:
-                ((TranslateController) this.f18337b).lambda$pushPollToTranslate$26((TranslateController.PendingPollTranslation) this.d, this.f18338c, tLObject, tL_error);
+                ((TranslateController) this.f18103b).lambda$pushPollToTranslate$26((TranslateController.PendingPollTranslation) this.d, this.f18104c, tLObject, tL_error);
                 return;
             case 1:
-                ((TranslateController) this.f18337b).lambda$pushRichMessageToTranslate$29((TranslateController.PendingRichTranslation) this.d, this.f18338c, tLObject, tL_error);
+                ((TranslateController) this.f18103b).lambda$pushRichMessageToTranslate$29((TranslateController.PendingRichTranslation) this.d, this.f18104c, tLObject, tL_error);
                 return;
             case 2:
-                ((MediaDataController) this.f18337b).lambda$loadPinnedMessageInternal$165(this.f18338c, (TLRPC.TL_messages_getMessages) this.d, tLObject, tL_error);
+                ((MediaDataController) this.f18103b).lambda$loadPinnedMessageInternal$165(this.f18104c, (TLRPC.TL_messages_getMessages) this.d, tLObject, tL_error);
                 return;
             case 3:
-                ((MessagesController) this.f18337b).lambda$updateTimerProc$155(this.f18338c, (TLRPC.TL_messages_getMessagesViews) this.d, tLObject, tL_error);
+                ((MessagesController) this.f18103b).lambda$updateTimerProc$155(this.f18104c, (TLRPC.TL_messages_getMessagesViews) this.d, tLObject, tL_error);
                 return;
             case 4:
-                ((MessagesController) this.f18337b).lambda$reloadMentionsCountForChannel$221((TLRPC.InputPeer) this.d, this.f18338c, tLObject, tL_error);
+                ((MessagesController) this.f18103b).lambda$reloadMentionsCountForChannel$221((TLRPC.InputPeer) this.d, this.f18104c, tLObject, tL_error);
                 return;
             case 5:
-                ((MessagesController) this.f18337b).lambda$getGroupCall$63(this.f18338c, (Runnable) this.d, tLObject, tL_error);
+                ((MessagesController) this.f18103b).lambda$getGroupCall$63(this.f18104c, (Runnable) this.d, tLObject, tL_error);
                 return;
             case 6:
-                ((MessagesController) this.f18337b).lambda$getSponsoredMessages$440(this.f18338c, (MessagesController.SponsoredMessagesInfo) this.d, tLObject, tL_error);
+                ((MessagesController) this.f18103b).lambda$getSponsoredMessages$440(this.f18104c, (MessagesController.SponsoredMessagesInfo) this.d, tLObject, tL_error);
                 return;
             case 7:
-                ((MessagesController) this.f18337b).lambda$loadUnknownChannel$330(this.f18338c, (TLRPC.TL_channel) this.d, tLObject, tL_error);
+                ((MessagesController) this.f18103b).lambda$loadUnknownChannel$330(this.f18104c, (TLRPC.TL_channel) this.d, tLObject, tL_error);
                 return;
             case 8:
-                ((MessagesController) this.f18337b).lambda$setChatReactions$471(this.f18338c, (TLRPC.TL_messages_setChatAvailableReactions) this.d, tLObject, tL_error);
+                ((MessagesController) this.f18103b).lambda$setChatReactions$471(this.f18104c, (TLRPC.TL_messages_setChatAvailableReactions) this.d, tLObject, tL_error);
                 return;
             default:
-                ((MessagesController) this.f18337b).lambda$checkLastDialogMessage$227((TLRPC.Dialog) this.d, this.f18338c, tLObject, tL_error);
+                ((MessagesController) this.f18103b).lambda$checkLastDialogMessage$227((TLRPC.Dialog) this.d, this.f18104c, tLObject, tL_error);
                 return;
         }
     }
 
     public zk(BaseController baseController, Object obj, long j3, int i10) {
-        this.f18336a = i10;
-        this.f18337b = baseController;
+        this.f18102a = i10;
+        this.f18103b = baseController;
         this.d = obj;
-        this.f18338c = j3;
+        this.f18104c = j3;
     }
 }

@@ -1,98 +1,77 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ep extends org.telegram.ui.Components.v80 {
-    public final Context f33405w;
-    public final ip f33406x;
+public final class ep extends org.telegram.ui.Cells.e9 {
+    public ValueAnimator v;
+    public int f33383w;
+    public final kp f33384x;
 
-    public ep(ip ipVar, Context context, TLRPC.Chat chat, Context context2) {
-        super(context, chat);
-        this.f33406x = ipVar;
-        this.f33405w = context2;
+    public ep(kp kpVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, 12, e6Var);
+        this.f33384x = kpVar;
+        this.f33383w = -1;
     }
 
     @Override
-    public final boolean a(final boolean z10, org.telegram.ui.Components.t80 t80Var) {
-        TLRPC.ChatFull chatFull;
-        int i10;
-        String str;
-        org.telegram.ui.ActionBar.f6 f6Var;
-        ip ipVar = this.f33406x;
-        if (ipVar.V && (chatFull = ipVar.Y) != null && (i10 = chatFull.invitesCount) != 0) {
-            if (ipVar.f34655a0) {
-                if (z10) {
-                    str = "ApproveNewMembersEnableForLinksChannel";
-                } else {
-                    str = "ApproveNewMembersDisableForLinksChannel";
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.f33383w != -1) {
+            kp kpVar = this.f33384x;
+            if (kpVar.h != null) {
+                ArrayList arrayList = new ArrayList();
+                boolean z11 = false;
+                for (int i14 = 0; i14 < kpVar.h.getChildCount(); i14++) {
+                    View childAt = kpVar.h.getChildAt(i14);
+                    if (z11) {
+                        arrayList.add(childAt);
+                    } else if (childAt == this) {
+                        z11 = true;
+                    }
                 }
-            } else if (z10) {
-                str = "ApproveNewMembersEnableForLinks";
-            } else {
-                str = "ApproveNewMembersDisableForLinks";
+                float height = this.f33383w - getHeight();
+                ValueAnimator valueAnimator = this.v;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.v = ofFloat;
+                ofFloat.addUpdateListener(new ng(arrayList, height, 1));
+                this.v.setInterpolator(org.telegram.ui.Components.qr.h);
+                this.v.setDuration(350L);
+                this.v.start();
             }
-            Context context = this.f33405w;
-            f6Var = ((org.telegram.ui.ActionBar.n2) ipVar).resourceProvider;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
-            alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
-            alertDialog$Builder.f18669a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
-            alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.a2(this) {
-                public final ep f33128b;
-
-                {
-                    this.f33128b = this;
-                }
-
-                @Override
-                public final void k(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
-                    switch (r3) {
-                        case 0:
-                            boolean z11 = z10;
-                            ep epVar = this.f33128b;
-                            epVar.setJoinRequest(z11);
-                            epVar.f33406x.W = true;
-                            return;
-                        default:
-                            boolean z12 = z10;
-                            ep epVar2 = this.f33128b;
-                            epVar2.setJoinRequest(z12);
-                            epVar2.f33406x.W = false;
-                            return;
-                    }
-                }
-            });
-            alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.a2(this) {
-                public final ep f33128b;
-
-                {
-                    this.f33128b = this;
-                }
-
-                @Override
-                public final void k(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
-                    switch (r3) {
-                        case 0:
-                            boolean z11 = z10;
-                            ep epVar = this.f33128b;
-                            epVar.setJoinRequest(z11);
-                            epVar.f33406x.W = true;
-                            return;
-                        default:
-                            boolean z12 = z10;
-                            ep epVar2 = this.f33128b;
-                            epVar2.setJoinRequest(z12);
-                            epVar2.f33406x.W = false;
-                            return;
-                    }
-                }
-            });
-            ipVar.showDialog(alertDialog$Builder.f18669a);
-            return false;
         }
-        return true;
+        this.f33383w = getHeight();
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence) {
+        String str;
+        if (charSequence != 0) {
+            charSequence = AndroidUtilities.replaceTags(charSequence.toString());
+            int indexOf = charSequence.toString().indexOf(10);
+            kp kpVar = this.f33384x;
+            if (indexOf >= 0) {
+                charSequence.replace(indexOf, indexOf + 1, " ");
+                charSequence.setSpan(new ForegroundColorSpan(kpVar.getThemedColor(org.telegram.ui.ActionBar.i6.f19053p7)), 0, indexOf, 33);
+            }
+            org.telegram.ui.Components.f51[] f51VarArr = (org.telegram.ui.Components.f51[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.f51.class);
+            ci.h2 h2Var = kpVar.f35203a;
+            if (h2Var != null && h2Var.getText() != null) {
+                str = kpVar.f35203a.getText().toString();
+            } else {
+                str = "";
+            }
+            for (int i10 = 0; i10 < f51VarArr.length; i10++) {
+                charSequence.setSpan(new org.telegram.ui.Cells.i(5, (Object) this, str), charSequence.getSpanStart(f51VarArr[i10]), charSequence.getSpanEnd(f51VarArr[i10]), 33);
+                charSequence.removeSpan(f51VarArr[i10]);
+            }
+        }
+        super.setText(charSequence);
     }
 }

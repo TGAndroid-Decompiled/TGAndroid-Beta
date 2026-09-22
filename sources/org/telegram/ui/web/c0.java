@@ -9,21 +9,21 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.fg1;
+import org.telegram.ui.eg1;
 import org.telegram.ui.oy;
-import org.telegram.ui.tj0;
+import org.telegram.ui.qj0;
 import org.telegram.ui.uy;
-public final class c0 implements tj0, oy {
-    public final d1 f38862a;
-    public final boolean[] f38863b;
-    public final String f38864c;
+public final class c0 implements qj0, oy {
+    public final d1 f38892a;
+    public final boolean[] f38893b;
+    public final String f38894c;
     public final TL_keyboard.TL_buttonTypeRequestPeer d;
     public final da e;
 
     public c0(d1 d1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, da daVar) {
-        this.f38862a = d1Var;
-        this.f38863b = zArr;
-        this.f38864c = str;
+        this.f38892a = d1Var;
+        this.f38893b = zArr;
+        this.f38894c = str;
         this.d = tL_buttonTypeRequestPeer;
         this.e = daVar;
     }
@@ -42,12 +42,12 @@ public final class c0 implements tj0, oy {
     public void a(ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
             int i10 = 0;
-            this.f38863b[0] = true;
+            this.f38893b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            d1 d1Var = this.f38862a;
+            d1 d1Var = this.f38892a;
             MessagesController.getInstance(d1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(d1Var.U);
-            String str = this.f38864c;
+            String str = this.f38894c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             int size = arrayList.size();
@@ -61,15 +61,15 @@ public final class c0 implements tj0, oy {
     }
 
     @Override
-    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
+    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
         if (!arrayList.isEmpty()) {
             int i12 = 0;
-            this.f38863b[0] = true;
+            this.f38893b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            d1 d1Var = this.f38862a;
+            d1 d1Var = this.f38892a;
             MessagesController.getInstance(d1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(d1Var.U);
-            String str = this.f38864c;
+            String str = this.f38894c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             HashSet hashSet = new HashSet();

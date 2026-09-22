@@ -4,7 +4,7 @@ import cc.k;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.t;
 import java.util.concurrent.Executor;
-import q9.s;
+import q9.r;
 import zd.y0;
 public final class i implements q9.d, t {
     public static final i f13555b = new i(0);
@@ -21,29 +21,29 @@ public final class i implements q9.d, t {
     public Object G(cf.c cVar) {
         switch (this.f13557a) {
             case 0:
-                Object m10 = cVar.m(new s(m9.a.class, Executor.class));
-                kotlin.jvm.internal.i.d(m10, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new y0((Executor) m10);
+                Object i10 = cVar.i(new r(m9.a.class, Executor.class));
+                kotlin.jvm.internal.i.d(i10, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new y0((Executor) i10);
             case 1:
-                Object m11 = cVar.m(new s(m9.c.class, Executor.class));
-                kotlin.jvm.internal.i.d(m11, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new y0((Executor) m11);
+                Object i11 = cVar.i(new r(m9.c.class, Executor.class));
+                kotlin.jvm.internal.i.d(i11, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new y0((Executor) i11);
             case 2:
-                Object m12 = cVar.m(new s(m9.b.class, Executor.class));
-                kotlin.jvm.internal.i.d(m12, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new y0((Executor) m12);
+                Object i12 = cVar.i(new r(m9.b.class, Executor.class));
+                kotlin.jvm.internal.i.d(i12, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new y0((Executor) i12);
             default:
-                Object m13 = cVar.m(new s(m9.d.class, Executor.class));
-                kotlin.jvm.internal.i.d(m13, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new y0((Executor) m13);
+                Object i13 = cVar.i(new r(m9.d.class, Executor.class));
+                kotlin.jvm.internal.i.d(i13, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new y0((Executor) i13);
         }
     }
 
     @Override
     public Exception a(Status status) {
-        int i10 = status.f6021a;
-        int i11 = status.f6021a;
-        String str = status.f6022b;
+        int i10 = status.f6019a;
+        int i11 = status.f6019a;
+        String str = status.f6020b;
         if (i10 == 8) {
             if (str == null) {
                 str = x8.j.a(i11);

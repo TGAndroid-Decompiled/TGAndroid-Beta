@@ -9,18 +9,18 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-public final class f50 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.f80 {
-    public final l50 f33520a;
+public final class f50 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.u70 {
+    public final l50 f33502a;
 
     public f50(l50 l50Var) {
-        this.f33520a = l50Var;
+        this.f33502a = l50Var;
     }
 
     @Override
     public void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12) {
         TLObject chat;
-        i60 i60Var = this.f33520a.f35324b;
-        ChatObject.Call call = i60Var.f34380a1;
+        i60 i60Var = this.f33502a.f35326b;
+        ChatObject.Call call = i60Var.f34428a1;
         AccountInstance accountInstance = i60Var.d;
         if (call != null) {
             boolean z13 = inputPeer instanceof TLRPC.TL_inputPeerUser;
@@ -32,7 +32,7 @@ public final class f50 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
                 chat = accountInstance.getMessagesController().getChat(Long.valueOf(inputPeer.channel_id));
             }
             TLObject tLObject = chat;
-            if (i60Var.f34380a1.isScheduled()) {
+            if (i60Var.f34428a1.isScheduled()) {
                 i60Var.k1().k(0L, 37, tLObject, i60Var.Z0, null, null);
                 if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
                     TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
@@ -63,7 +63,7 @@ public final class f50 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
                 accountInstance.getConnectionsManager().sendRequest(savedefaultgroupcalljoinas, new ai.t7(8));
                 i60Var.I1();
             } else if (VoIPService.getSharedInstance() != null && z10) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) i60Var.f34380a1.participants.f(MessageObject.getPeerId(i60Var.A0));
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) i60Var.f34428a1.participants.f(MessageObject.getPeerId(i60Var.A0));
                 VoIPService.getSharedInstance().setGroupCallPeer(inputPeer);
                 i60Var.B0 = tLObject;
             }
@@ -71,20 +71,20 @@ public final class f50 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
     }
 
     @Override
-    public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        l50 l50Var = this.f33520a;
-        i60 i60Var = l50Var.f35324b;
-        ChatObject.Call call = i60Var.f34380a1;
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        l50 l50Var = this.f33502a;
+        i60 i60Var = l50Var.f35326b;
+        ChatObject.Call call = i60Var.f34428a1;
         AccountInstance accountInstance = i60Var.d;
         if (call.isScheduled()) {
             TLRPC.ChatFull chatFull = accountInstance.getMessagesController().getChatFull(i60Var.i1());
             if (chatFull != null) {
                 chatFull.flags &= -2097153;
                 chatFull.call = null;
-                accountInstance.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(i60Var.i1()), Long.valueOf(i60Var.f34380a1.call.f18353id), Boolean.FALSE);
+                accountInstance.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(i60Var.i1()), Long.valueOf(i60Var.f34428a1.call.f18119id), Boolean.FALSE);
             }
             TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
-            discardgroupcall.call = i60Var.f34380a1.getInputGroupCall();
+            discardgroupcall.call = i60Var.f34428a1.getInputGroupCall();
             accountInstance.getConnectionsManager().sendRequest(discardgroupcall, new m(l50Var, 8));
         } else if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(1);

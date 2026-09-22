@@ -1,54 +1,97 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import java.util.HashMap;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class nm0 implements TextWatcher {
-    public final EditTextBoldCursor f36075a;
-    public final String f36076b;
-    public final pn0 f36077c;
+import org.telegram.messenger.SecureDocument;
+import org.telegram.tgnet.TLRPC;
+public final class nm0 extends tu0 {
+    public final on0 f36016a;
 
-    public nm0(pn0 pn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
-        this.f36077c = pn0Var;
-        this.f36075a = editTextBoldCursor;
-        this.f36076b = str;
+    public nm0(on0 on0Var) {
+        this.f36016a = on0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        EditTextBoldCursor editTextBoldCursor = this.f36075a;
-        int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-        int i10 = 0;
-        while (true) {
-            if (i10 < editable.length()) {
-                char charAt = editable.charAt(i10);
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != ' ' && charAt != '\'' && charAt != ',' && charAt != '.' && charAt != '&' && charAt != '-' && charAt != '/'))) {
-                    z10 = true;
-                    break;
-                }
-                i10++;
-            } else {
-                z10 = false;
-                break;
-            }
+    public final void B(int i10) {
+        SecureDocument secureDocument;
+        on0 on0Var = this.f36016a;
+        int i11 = on0Var.S0;
+        if (i11 == 1) {
+            secureDocument = on0Var.f36279j1;
+        } else if (i11 == 4) {
+            secureDocument = (SecureDocument) on0Var.f36281k1.get(i10);
+        } else if (i11 == 2) {
+            secureDocument = on0Var.l1;
+        } else if (i11 == 3) {
+            secureDocument = on0Var.f36283m1;
+        } else {
+            secureDocument = (SecureDocument) on0Var.f36277i1.get(i10);
         }
-        pn0 pn0Var = this.f36077c;
-        if (z10 && !pn0Var.f36669u0) {
-            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+        mn0 mn0Var = (mn0) on0Var.f36286n1.remove(secureDocument);
+        if (mn0Var == null) {
             return;
         }
-        pn0Var.f36667t0[intValue] = z10;
-        pn0.J0(pn0Var, editTextBoldCursor, this.f36076b, editable, false);
+        String n12 = on0.n1(secureDocument);
+        int i12 = on0Var.S0;
+        String str = null;
+        if (i12 == 1) {
+            on0Var.f36279j1 = null;
+            str = org.telegram.ui.Cells.q3.i("selfie", n12);
+        } else if (i12 == 4) {
+            str = org.telegram.ui.Cells.q3.i("translation", n12);
+        } else if (i12 == 2) {
+            on0Var.l1 = null;
+            str = org.telegram.ui.Cells.q3.i("front", n12);
+        } else if (i12 == 3) {
+            on0Var.f36283m1 = null;
+            str = org.telegram.ui.Cells.q3.i("reverse", n12);
+        } else if (i12 == 0) {
+            str = org.telegram.ui.Cells.q3.i("files", n12);
+        }
+        if (str != null) {
+            HashMap hashMap = on0Var.f36310x1;
+            if (hashMap != null) {
+                hashMap.remove(str);
+            }
+            HashMap hashMap2 = on0Var.f36313y1;
+            if (hashMap2 != null) {
+                hashMap2.remove(str);
+            }
+        }
+        on0Var.S1(on0Var.S0);
+        on0Var.f36276i0.removeView(mn0Var);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        if (i10 >= 0) {
+            on0 on0Var = this.f36016a;
+            if (i10 < on0Var.f36276i0.getChildCount()) {
+                mn0 mn0Var = (mn0) on0Var.f36276i0.getChildAt(i10);
+                int[] iArr = new int[2];
+                mn0Var.f35780c.getLocationInWindow(iArr);
+                dv0 dv0Var = new dv0();
+                dv0Var.f33097b = iArr[0];
+                dv0Var.f33098c = iArr[1];
+                dv0Var.d = on0Var.f36276i0;
+                ImageReceiver imageReceiver = mn0Var.f35780c.getImageReceiver();
+                dv0Var.f33096a = imageReceiver;
+                dv0Var.e = imageReceiver.getBitmapSafe();
+                return dv0Var;
+            }
+            return null;
+        }
+        return null;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final String a0() {
+        if (this.f36016a.S0 == 1) {
+            return LocaleController.formatString("PassportDeleteSelfieAlert", R.string.PassportDeleteSelfieAlert, new Object[0]);
+        }
+        return LocaleController.formatString("PassportDeleteScanAlert", R.string.PassportDeleteScanAlert, new Object[0]);
     }
 }

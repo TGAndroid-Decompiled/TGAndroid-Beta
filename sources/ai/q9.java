@@ -11,10 +11,10 @@ import org.telegram.tgnet.TLRPC;
 public final class q9 extends View {
     public final c6 f1432a;
     public boolean f1433b;
-    public final org.telegram.ui.Components.d6 f1434c;
+    public final org.telegram.ui.Components.c6 f1434c;
     public final ImageReceiver d;
     public final ImageReceiver e;
-    public org.telegram.ui.Components.p5 f1435f;
+    public org.telegram.ui.Components.o5 f1435f;
     public boolean h;
     public boolean f1436n;
     public boolean f1437r;
@@ -22,7 +22,7 @@ public final class q9 extends View {
 
     public q9(Context context, c6 c6Var) {
         super(context);
-        this.f1434c = new org.telegram.ui.Components.d6(this);
+        this.f1434c = new org.telegram.ui.Components.c6(this);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         this.e = new ImageReceiver(this);
@@ -38,9 +38,9 @@ public final class q9 extends View {
         this.d.onAttachedToWindow();
         this.e.onAttachedToWindow();
         this.f1438s = true;
-        org.telegram.ui.Components.p5 p5Var = this.f1435f;
-        if (p5Var != null) {
-            p5Var.a(this);
+        org.telegram.ui.Components.o5 o5Var = this.f1435f;
+        if (o5Var != null) {
+            o5Var.a(this);
         }
     }
 
@@ -50,9 +50,9 @@ public final class q9 extends View {
         this.d.onDetachedFromWindow();
         this.e.onDetachedFromWindow();
         this.f1438s = false;
-        org.telegram.ui.Components.p5 p5Var = this.f1435f;
-        if (p5Var != null) {
-            p5Var.o(this);
+        org.telegram.ui.Components.o5 o5Var = this.f1435f;
+        if (o5Var != null) {
+            o5Var.o(this);
         }
     }
 
@@ -73,33 +73,33 @@ public final class q9 extends View {
         boolean z10;
         String str;
         String str2;
-        if (p0Var != null && ((str2 = p0Var.f49447f) == null || !str2.equals("❤"))) {
+        if (p0Var != null && ((str2 = p0Var.f49120f) == null || !str2.equals("❤"))) {
             z10 = false;
         } else {
             z10 = true;
         }
         this.f1436n = z10;
-        if (p0Var != null && (str = p0Var.f49447f) != null && str.equals("❤")) {
+        if (p0Var != null && (str = p0Var.f49120f) != null && str.equals("❤")) {
             this.f1433b = true;
         } else {
             this.f1433b = false;
         }
-        org.telegram.ui.Components.p5 p5Var = this.f1435f;
-        if (p5Var != null) {
-            p5Var.o(this);
+        org.telegram.ui.Components.o5 o5Var = this.f1435f;
+        if (o5Var != null) {
+            o5Var.o(this);
         }
         this.f1435f = null;
         if (p0Var != null) {
-            if (p0Var.f49448g != 0) {
-                org.telegram.ui.Components.p5 p5Var2 = new org.telegram.ui.Components.p5(3, UserConfig.selectedAccount, p0Var.f49448g);
-                this.f1435f = p5Var2;
+            if (p0Var.f49121g != 0) {
+                org.telegram.ui.Components.o5 o5Var2 = new org.telegram.ui.Components.o5(3, UserConfig.selectedAccount, p0Var.f49121g);
+                this.f1435f = o5Var2;
                 if (this.f1438s) {
-                    p5Var2.a(this);
+                    o5Var2.a(this);
                 }
             } else {
-                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(p0Var.f49447f);
+                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(p0Var.f49120f);
                 if (tL_availableReaction != null) {
-                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.j6.f19053a7, 1.0f), "webp", tL_availableReaction, 1);
+                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.i6.f18778a7, 1.0f), "webp", tL_availableReaction, 1);
                 }
             }
         }

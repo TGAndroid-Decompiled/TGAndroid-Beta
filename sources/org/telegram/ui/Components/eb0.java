@@ -1,196 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.Rect;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.view.View;
-import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class eb0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public int E;
-    public int F;
-    public CharSequence G;
-    public int H;
-    public SpannableStringBuilder I;
-    public int J;
-    public boolean K;
-    public ValueAnimator L;
-    public float M;
-    public Rect N;
-    public Rect O;
-    public final int f23916a;
-    public TLRPC.InputStickerSet f23917b;
-    public final Rect f23918c;
-    public p5 d;
-    public boolean e;
-    public final r90 f23919f;
-    public final TextPaint h;
-    public final CharSequence f23920n;
-    public StaticLayout f23921r;
-    public final String f23922s;
-    public SpannableStringBuilder v;
-    public StaticLayout f23923w;
-    public int f23924x;
-    public int f23925y;
-
-    public eb0(int r11, android.content.Context r12, org.telegram.ui.ActionBar.f6 r13, java.util.ArrayList r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.eb0.<init>(int, android.content.Context, org.telegram.ui.ActionBar.f6, java.util.ArrayList, int):void");
-    }
-
-    public final int a(int i10, boolean z10) {
-        int i11;
-        float f7;
-        float f10;
-        int i12 = 0;
-        if (i10 <= 0) {
-            return 0;
-        }
-        CharSequence charSequence = this.G;
-        TextPaint textPaint = this.h;
-        CharSequence charSequence2 = this.f23920n;
-        if (charSequence2 != charSequence || this.F != i10) {
-            if (charSequence2 != null) {
-                StaticLayout staticLayout = new StaticLayout(charSequence2, 0, charSequence2.length(), textPaint, Math.max(i10, 0), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f23921r = staticLayout;
-                r90 r90Var = this.f23919f;
-                if (r90Var != null && this.O == null) {
-                    int lineCount = staticLayout.getLineCount() - 1;
-                    this.f23924x = AndroidUtilities.dp(2.0f) + ((int) this.f23921r.getPrimaryHorizontal(charSequence2.length()));
-                    this.f23925y = this.f23921r.getLineTop(lineCount);
-                    this.E = r3 - this.f23925y;
-                    float min = Math.min(AndroidUtilities.dp(100.0f), this.f23921r.getWidth() - this.f23924x);
-                    if (this.N == null) {
-                        this.N = new Rect();
+import org.telegram.messenger.MessageObject;
+public final class eb0 extends s4.n0 {
+    @Override
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        org.telegram.ui.Cells.t1 t1Var;
+        MessageObject.GroupedMessages currentMessagesGroup;
+        MessageObject.GroupedMessagePosition currentPosition;
+        int i10 = 0;
+        rect.bottom = 0;
+        if ((view instanceof org.telegram.ui.Cells.t1) && (currentMessagesGroup = (t1Var = (org.telegram.ui.Cells.t1) view).getCurrentMessagesGroup()) != null && (currentPosition = t1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
+            Point point = AndroidUtilities.displaySize;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int extraInsetHeight = t1Var.getExtraInsetHeight();
+            int i11 = 0;
+            while (true) {
+                float[] fArr = currentPosition.siblingHeights;
+                if (i11 >= fArr.length) {
+                    break;
+                }
+                extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
+                i11++;
+            }
+            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
+            int size = currentMessagesGroup.posArray.size();
+            while (true) {
+                if (i10 < size) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i10);
+                    byte b10 = groupedMessagePosition.minY;
+                    byte b11 = currentPosition.minY;
+                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
+                        round = org.telegram.messenger.y0.z(4.0f, (int) Math.ceil(max * groupedMessagePosition.f15598ph), round);
+                        break;
                     }
-                    Rect rect = this.N;
-                    int i13 = this.f23924x;
-                    rect.set(i13, this.f23925y, (int) (i13 + min), r3);
-                    r90Var.setBounds(this.N);
-                    this.e = true;
+                    i10++;
+                } else {
+                    break;
                 }
-            } else {
-                this.f23921r = null;
-                this.e = false;
             }
-            this.G = charSequence2;
-            this.F = i10;
+            rect.bottom = -round;
         }
-        SpannableStringBuilder spannableStringBuilder = this.v;
-        if (spannableStringBuilder != this.I || this.H != i10) {
-            if (spannableStringBuilder != null) {
-                SpannableStringBuilder spannableStringBuilder2 = this.v;
-                i11 = i10;
-                this.f23923w = new StaticLayout(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            } else {
-                i11 = i10;
-                this.f23923w = null;
-            }
-            this.I = this.v;
-            this.H = i11;
-        }
-        StaticLayout staticLayout2 = this.f23921r;
-        if (staticLayout2 != null) {
-            i12 = staticLayout2.getHeight();
-        }
-        StaticLayout staticLayout3 = this.f23923w;
-        if (staticLayout3 != null) {
-            float height = staticLayout3.getHeight() - this.E;
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = this.M;
-            }
-            f7 = height * f10;
-        } else {
-            f7 = 0.0f;
-        }
-        return i12 + ((int) f7);
-    }
-
-    @Override
-    public final void didReceivedNotification(int r9, int r10, java.lang.Object... r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.eb0.didReceivedNotification(int, int, java.lang.Object[]):void");
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        p5 p5Var = this.d;
-        if (p5Var != null) {
-            p5Var.a(this);
-        }
-        NotificationCenter.getInstance(this.f23916a).addObserver(this, NotificationCenter.groupStickersDidLoad);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        p5 p5Var = this.d;
-        if (p5Var != null) {
-            p5Var.o(this);
-        }
-        NotificationCenter.getInstance(this.f23916a).removeObserver(this, NotificationCenter.groupStickersDidLoad);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Rect rect;
-        super.onDraw(canvas);
-        if (this.f23921r != null) {
-            canvas.save();
-            canvas.translate(getPaddingLeft(), getPaddingTop());
-            TextPaint textPaint = this.h;
-            textPaint.setAlpha(255);
-            this.f23921r.draw(canvas);
-            r90 r90Var = this.f23919f;
-            if (r90Var != null && this.e) {
-                r90Var.setAlpha((int) ((1.0f - this.M) * 255.0f));
-                Rect rect2 = this.N;
-                if (rect2 != null && (rect = this.O) != null) {
-                    float f7 = this.M;
-                    Rect rect3 = AndroidUtilities.rectTmp2;
-                    AndroidUtilities.lerp(rect2, rect, f7, rect3);
-                    r90Var.setBounds(rect3);
-                }
-                r90Var.draw(canvas);
-                invalidate();
-            }
-            if (this.f23923w != null) {
-                canvas.save();
-                canvas.translate(0.0f, this.f23925y);
-                textPaint.setAlpha((int) (this.M * 255.0f));
-                this.f23923w.draw(canvas);
-                canvas.restore();
-            }
-            p5 p5Var = this.d;
-            if (p5Var != null) {
-                p5Var.setAlpha((int) (this.M * 255.0f));
-                this.d.setBounds(this.f23918c);
-                this.d.draw(canvas);
-            }
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-        int size = View.MeasureSpec.getSize(i10);
-        if (this.K && (i12 = this.J) > 0) {
-            size = Math.min(size, i12);
-        }
-        this.J = size;
-        int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        if (paddingLeft < 0) {
-            paddingLeft = 0;
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + a(paddingLeft, false), 1073741824));
     }
 }

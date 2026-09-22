@@ -26,7 +26,7 @@ public final class z extends b2.k1 {
         if (z10) {
             obj = y.h;
         }
-        h1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.b.f2934c, true);
+        h1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.b.f2932c, true);
         return h1Var;
     }
 
@@ -42,8 +42,8 @@ public final class z extends b2.k1 {
 
     @Override
     public final b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        j1Var.b(b2.j1.f3048q, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
-        j1Var.f3064k = true;
+        j1Var.b(b2.j1.f3046q, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+        j1Var.f3062k = true;
         return j1Var;
     }
 

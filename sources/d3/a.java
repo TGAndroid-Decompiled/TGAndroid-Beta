@@ -9,7 +9,6 @@ import c3.o;
 import c3.p;
 import c3.q;
 import c3.y;
-import c5.a0;
 import e2.d0;
 import e9.a1;
 import e9.g0;
@@ -19,41 +18,41 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 public final class a implements o {
-    public static final int[] f7465s = {13, 14, 16, 18, 20, 21, 27, 32, 6, 7, 6, 6, 1, 1, 1, 1};
-    public static final int[] f7466t = {18, 24, 33, 37, 41, 47, 51, 59, 61, 6, 1, 1, 1, 1, 1, 1};
-    public static final byte[] f7467u;
+    public static final int[] f7464s = {13, 14, 16, 18, 20, 21, 27, 32, 6, 7, 6, 6, 1, 1, 1, 1};
+    public static final int[] f7465t = {18, 24, 33, 37, 41, 47, 51, 59, 61, 6, 1, 1, 1, 1, 1, 1};
+    public static final byte[] f7466u;
     public static final byte[] v;
-    public final int f7469b;
-    public final n f7470c;
+    public final int f7468b;
+    public final n f7469c;
     public boolean d;
     public long e;
-    public int f7471f;
-    public int f7472g;
+    public int f7470f;
+    public int f7471g;
     public long h;
-    public int f7474j;
-    public long f7475k;
-    public q f7476l;
-    public h0 f7477m;
-    public h0 f7478n;
-    public b0 f7479o;
-    public boolean f7480p;
-    public long f7481q;
-    public boolean f7482r;
-    public final byte[] f7468a = new byte[1];
-    public int f7473i = -1;
+    public int f7473j;
+    public long f7474k;
+    public q f7475l;
+    public h0 f7476m;
+    public h0 f7477n;
+    public b0 f7478o;
+    public boolean f7479p;
+    public long f7480q;
+    public boolean f7481r;
+    public final byte[] f7467a = new byte[1];
+    public int f7472i = -1;
 
     static {
-        String str = d0.f7887a;
+        String str = d0.f7885a;
         Charset charset = StandardCharsets.UTF_8;
-        f7467u = "#!AMR\n".getBytes(charset);
+        f7466u = "#!AMR\n".getBytes(charset);
         v = "#!AMR-WB\n".getBytes(charset);
     }
 
     public a(int i10) {
-        this.f7469b = i10;
+        this.f7468b = i10;
         n nVar = new n();
-        this.f7470c = nVar;
-        this.f7478n = nVar;
+        this.f7469c = nVar;
+        this.f7477n = nVar;
     }
 
     @Override
@@ -65,16 +64,16 @@ public final class a implements o {
         String str;
         boolean z10;
         pVar.p();
-        byte[] bArr = this.f7468a;
+        byte[] bArr = this.f7467a;
         pVar.a(0, 1, bArr);
         byte b10 = bArr[0];
         if ((b10 & 131) <= 0) {
             int i10 = (b10 >> 3) & 15;
             if (i10 >= 0 && i10 <= 15 && (((z10 = this.d) && (i10 < 10 || i10 > 13)) || (!z10 && (i10 < 12 || i10 > 14)))) {
                 if (z10) {
-                    return f7466t[i10];
+                    return f7465t[i10];
                 }
-                return f7465s[i10];
+                return f7464s[i10];
             }
             StringBuilder sb2 = new StringBuilder("Illegal AMR ");
             if (this.d) {
@@ -92,7 +91,7 @@ public final class a implements o {
 
     public final boolean d(p pVar) {
         pVar.p();
-        byte[] bArr = f7467u;
+        byte[] bArr = f7466u;
         byte[] bArr2 = new byte[bArr.length];
         pVar.a(0, bArr.length, bArr2);
         if (Arrays.equals(bArr2, bArr)) {
@@ -114,46 +113,46 @@ public final class a implements o {
 
     @Override
     public final void g(q qVar) {
-        this.f7476l = qVar;
+        this.f7475l = qVar;
         h0 Z1 = qVar.Z1(0, 1);
-        this.f7477m = Z1;
-        this.f7478n = Z1;
-        qVar.f1();
+        this.f7476m = Z1;
+        this.f7477n = Z1;
+        qVar.e1();
     }
 
     @Override
     public final void h(long j3, long j10) {
         long f7;
         this.e = 0L;
-        this.f7471f = 0;
-        this.f7472g = 0;
-        this.f7481q = j10;
-        b0 b0Var = this.f7479o;
+        this.f7470f = 0;
+        this.f7471g = 0;
+        this.f7480q = j10;
+        b0 b0Var = this.f7478o;
         if (b0Var instanceof y) {
             y yVar = (y) b0Var;
-            a0 a0Var = yVar.f3827b;
-            if (a0Var.f3844b == 0) {
+            c5.b0 b0Var2 = yVar.f3825b;
+            if (b0Var2.f3843b == 0) {
                 f7 = -9223372036854775807L;
             } else {
-                f7 = a0Var.f(d0.b(yVar.f3826a, j3));
+                f7 = b0Var2.f(d0.b(yVar.f3824a, j3));
             }
-            this.f7475k = f7;
-            if (Math.abs(this.f7481q - f7) < 20000) {
+            this.f7474k = f7;
+            if (Math.abs(this.f7480q - f7) < 20000) {
                 return;
             }
-            this.f7480p = true;
-            this.f7478n = this.f7470c;
+            this.f7479p = true;
+            this.f7477n = this.f7469c;
         } else if (j3 != 0 && (b0Var instanceof k)) {
             k kVar = (k) b0Var;
-            this.f7475k = (Math.max(0L, j3 - kVar.f3781b) * 8000000) / kVar.e;
+            this.f7474k = (Math.max(0L, j3 - kVar.f3779b) * 8000000) / kVar.e;
         } else {
-            this.f7475k = 0L;
+            this.f7474k = 0L;
         }
     }
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8083b;
+        g0 g0Var = i0.f8081b;
         return a1.e;
     }
 

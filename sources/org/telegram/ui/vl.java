@@ -1,30 +1,47 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.ui.Components.UndoView;
-public final class vl extends org.telegram.ui.Components.n20 {
-    public final zn f38594b;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.VideoEditedInfo;
+public final class vl extends tu0 {
+    public final ArrayList f38577a;
+    public final boolean[] f38578b;
+    public final bo f38579c;
 
-    public vl(zn znVar, Activity activity, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(activity, n2Var);
-        this.f38594b = znVar;
+    public vl(bo boVar, ArrayList arrayList, boolean[] zArr) {
+        this.f38579c = boVar;
+        this.f38577a = arrayList;
+        this.f38578b = zArr;
     }
 
     @Override
-    public final void m() {
-        zn znVar = this.f38594b;
-        znVar.Q7();
-        UndoView undoView = znVar.y3;
-        if (undoView == null) {
-            return;
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return null;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        ArrayList arrayList = this.f38577a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (!this.f38578b[size]) {
+                arrayList.remove(size);
+            }
         }
-        undoView.j(75, 0L, null);
-        znVar.getMessagesController().removeSuggestion(znVar.T5, "CONVERT_GIGAGROUP");
+        this.f38579c.eb(arrayList, i11, z10, z11);
     }
 
     @Override
-    public final void n() {
-        zn znVar = this.f38594b;
-        znVar.getMessagesController().convertToGigaGroup(znVar.getParentActivity(), znVar.e, znVar, new y0(this, 20));
+    public final boolean x(int i10) {
+        return this.f38578b[i10];
+    }
+
+    @Override
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return i10;
     }
 }

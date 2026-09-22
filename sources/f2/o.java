@@ -6,9 +6,9 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 public abstract class o {
-    public static final byte[] f8849a = {0, 0, 0, 1};
-    public static final float[] f8850b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f8851c = new Object();
+    public static final byte[] f8847a = {0, 0, 0, 1};
+    public static final float[] f8848b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f8849c = new Object();
     public static int[] d = new int[10];
 
     public static void a(boolean[] zArr) {
@@ -78,12 +78,12 @@ public abstract class o {
 
     public static boolean c(byte[] bArr, int i10, b2.s sVar) {
         int i11;
-        if (Objects.equals(sVar.f3308r, "video/avc")) {
+        if (Objects.equals(sVar.f3306r, "video/avc")) {
             byte b10 = bArr[4];
             if (((b10 & 96) >> 5) == 0 && ((i11 = b10 & 31) == 1 || i11 == 9 || i11 == 14)) {
                 return false;
             }
-        } else if (Objects.equals(sVar.f3308r, "video/hevc")) {
+        } else if (Objects.equals(sVar.f3306r, "video/hevc")) {
             a3.l e = e(new a4.h(bArr, 4, i10 + 4));
             int i12 = e.f142a;
             if (i12 != 35) {
@@ -98,10 +98,10 @@ public abstract class o {
     }
 
     public static int d(b2.s sVar) {
-        if (Objects.equals(sVar.f3308r, "video/avc")) {
+        if (Objects.equals(sVar.f3306r, "video/avc")) {
             return 1;
         }
-        if (!Objects.equals(sVar.f3308r, "video/hevc") && r0.b(sVar.f3301k, "video/hevc") == null) {
+        if (!Objects.equals(sVar.f3306r, "video/hevc") && r0.b(sVar.f3299k, "video/hevc") == null) {
             return 0;
         }
         return 2;
@@ -200,12 +200,12 @@ public abstract class o {
         return null;
     }
 
-    public static f2.k h(byte[] r32, int r33, int r34, oi.f r35) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.o.h(byte[], int, int, oi.f):f2.k");
+    public static f2.k h(byte[] r32, int r33, int r34, ni.f r35) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.o.h(byte[], int, int, ni.f):f2.k");
     }
 
-    public static oi.f i(int r40, int r41, byte[] r42) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.o.i(int, int, byte[]):oi.f");
+    public static ni.f i(int r40, int r41, byte[] r42) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.o.i(int, int, byte[]):ni.f");
     }
 
     public static f2.n j(int r30, int r31, byte[] r32) {
@@ -255,7 +255,7 @@ public abstract class o {
 
     public static int m(int i10, byte[] bArr) {
         int i11;
-        synchronized (f8851c) {
+        synchronized (f8849c) {
             int i12 = 0;
             int i13 = 0;
             while (i12 < i10) {

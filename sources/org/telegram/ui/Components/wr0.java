@@ -1,19 +1,15 @@
 package org.telegram.ui.Components;
+public final class wr0 extends g.p {
+    public final ur0 f29771c;
+    public final yu0 d;
 
-import android.view.animation.Interpolator;
-public final class wr0 implements Interpolator {
-    public final int f30132a;
+    public wr0(yu0 yu0Var, ur0 ur0Var) {
+        this.d = yu0Var;
+        this.f29771c = ur0Var;
+    }
 
     @Override
-    public final float getInterpolation(float f7) {
-        switch (this.f30132a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            default:
-                float f10 = f7 - 1.0f;
-                return (f10 * f10 * f10 * f10 * f10) + 1.0f;
-        }
+    public final int i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wr0.i(int):int");
     }
 }

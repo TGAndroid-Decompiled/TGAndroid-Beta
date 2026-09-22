@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
-public final class mi implements bw0 {
-    public final vi f26452a;
+public final class mi implements ov0 {
+    public final vi f26162a;
 
     public mi(vi viVar) {
-        this.f26452a = viVar;
+        this.f26162a = viVar;
     }
 
     @Override
-    public final void G(int i10, boolean z10) {
-        vi viVar = this.f26452a;
-        ni niVar = viVar.f29157y0;
-        if (niVar == viVar.f29128q0) {
+    public final void H(int i10, boolean z10) {
+        vi viVar = this.f26162a;
+        ni niVar = viVar.f28808y0;
+        if (niVar == viVar.f28779q0) {
             niVar.invalidate();
         }
     }

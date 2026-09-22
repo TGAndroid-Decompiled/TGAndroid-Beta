@@ -3,23 +3,23 @@ package ii;
 import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.ca;
-public final class s0 implements ca {
-    public final Layout f11612a;
-    public final int f11613b;
-    public final int f11614c;
+import org.telegram.ui.Cells.ba;
+public final class s0 implements ba {
+    public final Layout f11610a;
+    public final int f11611b;
+    public final int f11612c;
     public final u0 d;
 
     public s0(u0 u0Var, Layout layout, int i10, int i11) {
         this.d = u0Var;
-        this.f11612a = layout;
-        this.f11613b = i10;
-        this.f11614c = i11;
+        this.f11610a = layout;
+        this.f11611b = i10;
+        this.f11612c = i11;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f11612a;
+        return this.f11610a;
     }
 
     @Override
@@ -39,9 +39,9 @@ public final class s0 implements ca {
 
     @Override
     public final CharSequence getText() {
-        a aVar = this.d.f11653f;
+        a aVar = this.d.f11651f;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f11205b;
+            TL_iv.PageBlock pageBlock = aVar.f11203b;
             if (pageBlock instanceof TL_iv.pageBlockDetails) {
                 return f6.r(((TL_iv.pageBlockDetails) pageBlock).title, null, true);
             }
@@ -52,11 +52,11 @@ public final class s0 implements ca {
 
     @Override
     public final int getX() {
-        return this.f11613b;
+        return this.f11611b;
     }
 
     @Override
     public final int getY() {
-        return this.f11614c;
+        return this.f11612c;
     }
 }

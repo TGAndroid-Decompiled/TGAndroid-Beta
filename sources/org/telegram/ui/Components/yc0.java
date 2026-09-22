@@ -1,591 +1,248 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BlendMode;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.DrawFilter;
-import android.graphics.Matrix;
-import android.graphics.NinePatch;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Picture;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
-import android.graphics.RenderNode;
-import android.graphics.fonts.Font;
-import android.graphics.text.MeasuredText;
-import android.os.Build;
-public final class yc0 extends Canvas {
-    public Canvas f30633a;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public class yc0 extends FrameLayout {
+    public static final iv0 I;
+    public static final iv0 J;
+    public static final iv0 K;
+    public boolean E;
+    public boolean F;
+    public final org.telegram.ui.ActionBar.e6 G;
+    public float H;
+    public final RectF f30207a;
+    public String f30208b;
+    public final Paint f30209c;
+    public final TextPaint d;
+    public final o1.k e;
+    public float f30210f;
+    public final o1.k h;
+    public float f30211n;
+    public final o1.k f30212r;
+    public float f30213s;
+    public final float v;
+    public final float f30214w;
+    public EditText f30215x;
+    public boolean f30216y;
 
-    @Override
-    public final boolean clipOutPath(Path path) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30633a.clipOutPath(path);
+    static {
+        iv0 iv0Var = new iv0(new o2(16), new o2(17));
+        iv0Var.f25153c = 100.0f;
+        I = iv0Var;
+        iv0 iv0Var2 = new iv0(new o2(18), new o2(19));
+        iv0Var2.f25153c = 100.0f;
+        J = iv0Var2;
+        iv0 iv0Var3 = new iv0(new o2(20), new o2(21));
+        iv0Var3.f25153c = 100.0f;
+        K = iv0Var3;
+    }
+
+    public yc0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f30207a = new RectF();
+        this.f30208b = "";
+        Paint paint = new Paint(1);
+        this.f30209c = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.d = textPaint;
+        this.e = new o1.k(this, I);
+        this.h = new o1.k(this, J);
+        this.f30212r = new o1.k(this, K);
+        float max = Math.max(2, AndroidUtilities.dp(0.5f));
+        this.v = max;
+        this.f30214w = AndroidUtilities.dp(1.6667f);
+        this.G = e6Var;
+        setWillNotDraw(false);
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(max);
+        f();
+        setPadding(0, AndroidUtilities.dp(6.0f), 0, 0);
+    }
+
+    public static void d(o1.k kVar, float f7) {
+        float f10 = f7 * 100.0f;
+        o1.l lVar = kVar.f15349u;
+        if (lVar != null && f10 == ((float) lVar.f15355i)) {
+            return;
         }
-        return false;
+        kVar.c();
+        o1.l lVar2 = new o1.l(f10);
+        lVar2.b(500.0f);
+        lVar2.a(1.0f);
+        lVar2.f15355i = f10;
+        kVar.f15349u = lVar2;
+        kVar.f();
     }
 
-    @Override
-    public final boolean clipOutRect(float f7, float f10, float f11, float f12) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30633a.clipOutRect(f7, f10, f11, f12);
+    private void setColor(int i10) {
+        this.f30209c.setColor(i10);
+        invalidate();
+    }
+
+    public final void a(float f7) {
+        d(this.f30212r, f7);
+    }
+
+    public final void b(float f7, float f10, boolean z10) {
+        if (!z10) {
+            this.f30210f = f7;
+            this.f30211n = f10;
+            if (!this.f30216y) {
+                float f11 = this.f30214w;
+                float f12 = this.v;
+                this.f30209c.setStrokeWidth(((f11 - f12) * f7) + f12);
+            }
+            f();
+            return;
         }
-        return false;
+        d(this.e, f7);
+        d(this.h, f10);
     }
 
-    @Override
-    public final boolean clipPath(Path path) {
-        return this.f30633a.clipPath(path);
-    }
-
-    @Override
-    public final boolean clipRect(float f7, float f10, float f11, float f12) {
-        return false;
-    }
-
-    @Override
-    public final void concat(Matrix matrix) {
-        this.f30633a.concat(matrix);
-    }
-
-    @Override
-    public final void disableZ() {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f30633a.disableZ();
+    public final void c(boolean z10, boolean z11) {
+        float f7;
+        float f10 = 0.0f;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
         }
-    }
-
-    @Override
-    public final void drawARGB(int i10, int i11, int i12, int i13) {
-        this.f30633a.drawARGB(i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void drawArc(RectF rectF, float f7, float f10, boolean z10, Paint paint) {
-        this.f30633a.drawArc(rectF, f7, f10, z10, paint);
-    }
-
-    @Override
-    public final void drawBitmap(Bitmap bitmap, Matrix matrix, Paint paint) {
-        this.f30633a.drawBitmap(bitmap, matrix, paint);
-    }
-
-    @Override
-    public final void drawBitmapMesh(Bitmap bitmap, int i10, int i11, float[] fArr, int i12, int[] iArr, int i13, Paint paint) {
-        this.f30633a.drawBitmapMesh(bitmap, i10, i11, fArr, i12, iArr, i13, paint);
-    }
-
-    @Override
-    public final void drawCircle(float f7, float f10, float f11, Paint paint) {
-        this.f30633a.drawCircle(f7, f10, f11, paint);
-    }
-
-    @Override
-    public final void drawColor(long j3, BlendMode blendMode) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f30633a.drawColor(j3, blendMode);
+        if (z11) {
+            f10 = 1.0f;
         }
+        b(f7, f10, true);
     }
 
-    @Override
-    public final void drawDoubleRoundRect(RectF rectF, float[] fArr, RectF rectF2, float[] fArr2, Paint paint) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f30633a.drawDoubleRoundRect(rectF, fArr, rectF2, fArr2, paint);
+    public final void e(EditTextBoldCursor editTextBoldCursor) {
+        this.f30215x = editTextBoldCursor;
+        invalidate();
+    }
+
+    public final void f() {
+        float f7;
+        int i10 = org.telegram.ui.ActionBar.i6.H6;
+        org.telegram.ui.ActionBar.e6 e6Var = this.G;
+        int v02 = org.telegram.ui.ActionBar.i6.v0(i10, e6Var);
+        int v03 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.I6, e6Var);
+        float f10 = 0.0f;
+        if (this.f30216y && !this.F) {
+            f7 = 0.0f;
+        } else {
+            f7 = this.f30211n;
         }
-    }
-
-    @Override
-    public final void drawGlyphs(int[] iArr, int i10, float[] fArr, int i11, int i12, Font font, Paint paint) {
-        this.f30633a.drawGlyphs(iArr, i10, fArr, i11, i12, font, paint);
-    }
-
-    @Override
-    public final void drawLine(float f7, float f10, float f11, float f12, Paint paint) {
-        this.f30633a.drawLine(f7, f10, f11, f12, paint);
-    }
-
-    @Override
-    public final void drawLines(float[] fArr, int i10, int i11, Paint paint) {
-        this.f30633a.drawLines(fArr, i10, i11, paint);
-    }
-
-    @Override
-    public final void drawOval(RectF rectF, Paint paint) {
-        this.f30633a.drawOval(rectF, paint);
-    }
-
-    @Override
-    public final void drawPaint(Paint paint) {
-        this.f30633a.drawPaint(paint);
-    }
-
-    @Override
-    public final void drawPatch(NinePatch ninePatch, RectF rectF, Paint paint) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            this.f30633a.drawPatch(ninePatch, rectF, paint);
+        int d = i0.a.d(f7, v02, v03);
+        int i11 = org.telegram.ui.ActionBar.i6.f19071q7;
+        this.d.setColor(i0.a.d(this.f30213s, d, org.telegram.ui.ActionBar.i6.v0(i11, e6Var)));
+        int v04 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18961k6, e6Var);
+        int v05 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18979l6, e6Var);
+        if (!this.f30216y || this.F) {
+            f10 = this.f30210f;
         }
+        setColor(i0.a.d(this.f30213s, i0.a.d(f10, v04, v05), org.telegram.ui.ActionBar.i6.v0(i11, e6Var)));
+    }
+
+    public EditText getAttachedEditText() {
+        return this.f30215x;
     }
 
     @Override
-    public final void drawPath(Path path, Paint paint) {
-        this.f30633a.drawPath(path, paint);
-    }
-
-    @Override
-    public final void drawPicture(Picture picture, RectF rectF) {
-        this.f30633a.drawPicture(picture, rectF);
-    }
-
-    @Override
-    public final void drawPoint(float f7, float f10, Paint paint) {
-        this.f30633a.drawPoint(f7, f10, paint);
-    }
-
-    @Override
-    public final void drawPoints(float[] fArr, int i10, int i11, Paint paint) {
-        this.f30633a.drawPoints(fArr, i10, i11, paint);
-    }
-
-    @Override
-    public final void drawPosText(String str, float[] fArr, Paint paint) {
-        this.f30633a.drawPosText(str, fArr, paint);
-    }
-
-    @Override
-    public final void drawRGB(int i10, int i11, int i12) {
-        this.f30633a.drawRGB(i10, i11, i12);
-    }
-
-    @Override
-    public final void drawRect(Rect rect, Paint paint) {
-        this.f30633a.drawRect(rect, paint);
-    }
-
-    @Override
-    public final void drawRenderNode(RenderNode renderNode) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f30633a.drawRenderNode(renderNode);
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        super.onDraw(canvas);
+        TextPaint textPaint = this.d;
+        float paddingTop = getPaddingTop() + ((textPaint.getTextSize() / 2.0f) - AndroidUtilities.dp(1.75f));
+        float textSize = (textPaint.getTextSize() / 2.0f) + (getHeight() / 2.0f);
+        EditText editText = this.f30215x;
+        if ((editText == null || editText.length() != 0 || !TextUtils.isEmpty(this.f30215x.getHint())) && !this.f30216y && !this.E) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
-    }
-
-    @Override
-    public final void drawRoundRect(RectF rectF, float f7, float f10, Paint paint) {
-        this.f30633a.drawRoundRect(rectF, f7, f10, paint);
-    }
-
-    @Override
-    public final void drawText(String str, float f7, float f10, Paint paint) {
-        this.f30633a.drawText(str, f7, f10, paint);
-    }
-
-    @Override
-    public final void drawTextOnPath(char[] cArr, int i10, int i11, Path path, float f7, float f10, Paint paint) {
-        this.f30633a.drawTextOnPath(cArr, i10, i11, path, f7, f10, paint);
-    }
-
-    @Override
-    public final void drawTextRun(char[] cArr, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-        this.f30633a.drawTextRun(cArr, i10, i11, i12, i13, f7, f10, z10, paint);
-    }
-
-    @Override
-    public final void drawVertices(Canvas.VertexMode vertexMode, int i10, float[] fArr, int i11, float[] fArr2, int i12, int[] iArr, int i13, short[] sArr, int i14, int i15, Paint paint) {
-        this.f30633a.drawVertices(vertexMode, i10, fArr, i11, fArr2, i12, iArr, i13, sArr, i14, i15, paint);
-    }
-
-    @Override
-    public final void enableZ() {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f30633a.enableZ();
+        if (z10) {
+            paddingTop = com.google.android.gms.internal.vision.e2.z(1.0f, this.f30211n, textSize - paddingTop, paddingTop);
         }
-    }
-
-    @Override
-    public final boolean getClipBounds(Rect rect) {
-        return this.f30633a.getClipBounds(rect);
-    }
-
-    @Override
-    public final int getDensity() {
-        return this.f30633a.getDensity();
-    }
-
-    @Override
-    public final DrawFilter getDrawFilter() {
-        return this.f30633a.getDrawFilter();
-    }
-
-    @Override
-    public final int getHeight() {
-        return this.f30633a.getHeight();
-    }
-
-    @Override
-    public final void getMatrix(Matrix matrix) {
-        this.f30633a.getMatrix(matrix);
-    }
-
-    @Override
-    public final int getMaximumBitmapHeight() {
-        return this.f30633a.getMaximumBitmapHeight();
-    }
-
-    @Override
-    public final int getMaximumBitmapWidth() {
-        return this.f30633a.getMaximumBitmapWidth();
-    }
-
-    @Override
-    public final int getSaveCount() {
-        return this.f30633a.getSaveCount();
-    }
-
-    @Override
-    public final int getWidth() {
-        return this.f30633a.getWidth();
-    }
-
-    @Override
-    public final boolean isOpaque() {
-        return this.f30633a.isOpaque();
-    }
-
-    @Override
-    public final boolean quickReject(float f7, float f10, float f11, float f12) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            return this.f30633a.quickReject(f7, f10, f11, f12);
+        float f13 = paddingTop;
+        if (z10) {
+            f7 = (1.0f - this.f30211n) * this.H;
+        } else {
+            f7 = 0.0f;
         }
-        return false;
-    }
-
-    @Override
-    public final void restore() {
-        this.f30633a.restore();
-    }
-
-    @Override
-    public final void restoreToCount(int i10) {
-        this.f30633a.restoreToCount(i10);
-    }
-
-    @Override
-    public final void rotate(float f7) {
-        this.f30633a.rotate(f7);
-    }
-
-    @Override
-    public final int save() {
-        return this.f30633a.save();
-    }
-
-    @Override
-    public final int saveLayer(float f7, float f10, float f11, float f12, Paint paint) {
-        return this.f30633a.saveLayer(f7, f10, f11, f12, paint);
-    }
-
-    @Override
-    public final int saveLayerAlpha(RectF rectF, int i10, int i11) {
-        return this.f30633a.saveLayerAlpha(rectF, i10, i11);
-    }
-
-    @Override
-    public final void scale(float f7, float f10) {
-        this.f30633a.scale(f7, f10);
-    }
-
-    @Override
-    public final void setBitmap(Bitmap bitmap) {
-        this.f30633a.setBitmap(bitmap);
-    }
-
-    @Override
-    public final void setDensity(int i10) {
-        this.f30633a.setDensity(i10);
-    }
-
-    @Override
-    public final void setDrawFilter(DrawFilter drawFilter) {
-        this.f30633a.setDrawFilter(drawFilter);
-    }
-
-    @Override
-    public final void setMatrix(Matrix matrix) {
-        this.f30633a.setMatrix(matrix);
-    }
-
-    @Override
-    public final void skew(float f7, float f10) {
-        this.f30633a.skew(f7, f10);
-    }
-
-    @Override
-    public final void translate(float f7, float f10) {
-        this.f30633a.translate(f7, f10);
-    }
-
-    @Override
-    public final boolean clipPath(Path path, Region.Op op) {
-        return this.f30633a.clipPath(path, op);
-    }
-
-    @Override
-    public final boolean clipRect(float f7, float f10, float f11, float f12, Region.Op op) {
-        return false;
-    }
-
-    @Override
-    public final void drawArc(float f7, float f10, float f11, float f12, float f13, float f14, boolean z10, Paint paint) {
-        this.f30633a.drawArc(f7, f10, f11, f12, f13, f14, z10, paint);
-    }
-
-    @Override
-    public final void drawBitmap(Bitmap bitmap, Rect rect, Rect rect2, Paint paint) {
-        this.f30633a.drawBitmap(bitmap, rect, rect2, paint);
-    }
-
-    @Override
-    public final void drawLines(float[] fArr, Paint paint) {
-        this.f30633a.drawLines(fArr, paint);
-    }
-
-    @Override
-    public final void drawOval(float f7, float f10, float f11, float f12, Paint paint) {
-        this.f30633a.drawOval(f7, f10, f11, f12, paint);
-    }
-
-    @Override
-    public final void drawPicture(Picture picture) {
-        this.f30633a.drawPicture(picture);
-    }
-
-    @Override
-    public final void drawPoints(float[] fArr, Paint paint) {
-        this.f30633a.drawPoints(fArr, paint);
-    }
-
-    @Override
-    public final void drawPosText(char[] cArr, int i10, int i11, float[] fArr, Paint paint) {
-        this.f30633a.drawPosText(cArr, i10, i11, fArr, paint);
-    }
-
-    @Override
-    public final void drawRect(RectF rectF, Paint paint) {
-        this.f30633a.drawRect(rectF, paint);
-    }
-
-    @Override
-    public final void drawRoundRect(float f7, float f10, float f11, float f12, float f13, float f14, Paint paint) {
-        this.f30633a.drawRoundRect(f7, f10, f11, f12, f13, f14, paint);
-    }
-
-    @Override
-    public final void drawText(String str, int i10, int i11, float f7, float f10, Paint paint) {
-        this.f30633a.drawText(str, i10, i11, f7, f10, paint);
-    }
-
-    @Override
-    public final void drawTextOnPath(String str, Path path, float f7, float f10, Paint paint) {
-        this.f30633a.drawTextOnPath(str, path, f7, f10, paint);
-    }
-
-    @Override
-    public final void drawTextRun(MeasuredText measuredText, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-        this.f30633a.drawTextRun(measuredText, i10, i11, i12, i13, f7, f10, z10, paint);
-    }
-
-    @Override
-    public final int saveLayer(RectF rectF, Paint paint) {
-        return this.f30633a.saveLayer(rectF, paint);
-    }
-
-    @Override
-    public final int saveLayerAlpha(float f7, float f10, float f11, float f12, int i10) {
-        return this.f30633a.saveLayerAlpha(f7, f10, f11, f12, i10);
-    }
-
-    @Override
-    public final boolean clipOutRect(int i10, int i11, int i12, int i13) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30633a.clipOutRect(i10, i11, i12, i13);
+        Paint paint = this.f30209c;
+        float strokeWidth = paint.getStrokeWidth();
+        if (z10) {
+            f10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.f30211n, 0.25f, 0.75f);
+        } else {
+            f10 = 0.75f;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean clipRect(int i10, int i11, int i12, int i13) {
-        return false;
-    }
-
-    @Override
-    public final void drawBitmap(int[] iArr, int i10, int i11, float f7, float f10, int i12, int i13, boolean z10, Paint paint) {
-        this.f30633a.drawBitmap(iArr, i10, i11, f7, f10, i12, i13, z10, paint);
-    }
-
-    @Override
-    public final void drawColor(int i10, BlendMode blendMode) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f30633a.drawColor(i10, blendMode);
+        float measureText = textPaint.measureText(this.f30208b) * f10;
+        canvas.save();
+        RectF rectF = this.f30207a;
+        rectF.set(AndroidUtilities.dp(10.0f) + getPaddingLeft(), getPaddingTop(), (getWidth() - AndroidUtilities.dp(18.0f)) - getPaddingRight(), (strokeWidth * 2.0f) + getPaddingTop());
+        canvas.clipRect(rectF, Region.Op.DIFFERENCE);
+        rectF.set(getPaddingLeft() + strokeWidth, getPaddingTop() + strokeWidth, (getWidth() - strokeWidth) - getPaddingRight(), (getHeight() - strokeWidth) - getPaddingBottom());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        canvas.restore();
+        float dp = AndroidUtilities.dp(10.0f) + getPaddingLeft();
+        float paddingTop2 = getPaddingTop() + strokeWidth;
+        float width = ((getWidth() - strokeWidth) - getPaddingRight()) - AndroidUtilities.dp(6.0f);
+        float f14 = (measureText / 2.0f) + dp;
+        float dp2 = ((dp + measureText) + AndroidUtilities.dp(10.0f)) - f14;
+        if (z10) {
+            f11 = this.f30211n;
+        } else {
+            f11 = 1.0f;
         }
-    }
-
-    @Override
-    public final void drawDoubleRoundRect(RectF rectF, float f7, float f10, RectF rectF2, float f11, float f12, Paint paint) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f30633a.drawDoubleRoundRect(rectF, f7, f10, rectF2, f11, f12, paint);
+        canvas.drawLine((dp2 * f11) + f14, paddingTop2, width, paddingTop2, paint);
+        float dp3 = f14 + AndroidUtilities.dp(4.0f);
+        float f15 = dp - dp3;
+        if (z10) {
+            f12 = this.f30211n;
+        } else {
+            f12 = 1.0f;
         }
+        canvas.drawLine(dp, paddingTop2, (f15 * f12) + dp3, paddingTop2, paint);
+        canvas.save();
+        canvas.scale(f10, f10, AndroidUtilities.dp(18.0f) + getPaddingLeft(), f13);
+        canvas.drawText(this.f30208b, AndroidUtilities.dp(14.0f) + getPaddingLeft() + f7, f13, textPaint);
+        canvas.restore();
     }
 
-    @Override
-    public final void drawPatch(NinePatch ninePatch, Rect rect, Paint paint) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            this.f30633a.drawPatch(ninePatch, rect, paint);
-        }
+    public void setForceForceUseCenter(boolean z10) {
+        this.f30216y = z10;
+        this.F = z10;
+        invalidate();
     }
 
-    @Override
-    public final void drawPicture(Picture picture, Rect rect) {
-        this.f30633a.drawPicture(picture, rect);
+    public void setForceUseCenter(boolean z10) {
+        this.f30216y = z10;
+        invalidate();
     }
 
-    @Override
-    public final void drawRect(float f7, float f10, float f11, float f12, Paint paint) {
-        this.f30633a.drawRect(f7, f10, f11, f12, paint);
+    public void setForceUseCenter2(boolean z10) {
+        this.E = z10;
     }
 
-    @Override
-    public final void drawText(char[] cArr, int i10, int i11, float f7, float f10, Paint paint) {
-        this.f30633a.drawText(cArr, i10, i11, f7, f10, paint);
+    public void setLeftPadding(float f7) {
+        this.H = f7;
+        invalidate();
     }
 
-    @Override
-    public final void drawTextRun(CharSequence charSequence, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-        this.f30633a.drawTextRun(charSequence, i10, i11, i12, i13, f7, f10, z10, paint);
-    }
-
-    @Override
-    public final boolean quickReject(RectF rectF) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            return this.f30633a.quickReject(rectF);
-        }
-        return false;
-    }
-
-    @Override
-    public final int saveLayer(float f7, float f10, float f11, float f12, Paint paint, int i10) {
-        return this.f30633a.saveLayer(f7, f10, f11, f12, paint, i10);
-    }
-
-    @Override
-    public final int saveLayerAlpha(RectF rectF, int i10) {
-        return this.f30633a.saveLayerAlpha(rectF, i10);
-    }
-
-    @Override
-    public final boolean clipRect(Rect rect) {
-        return false;
-    }
-
-    @Override
-    public final void drawBitmap(int[] iArr, int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, Paint paint) {
-        this.f30633a.drawBitmap(iArr, i10, i11, i12, i13, i14, i15, z10, paint);
-    }
-
-    @Override
-    public final void drawText(CharSequence charSequence, int i10, int i11, float f7, float f10, Paint paint) {
-        this.f30633a.drawText(charSequence, i10, i11, f7, f10, paint);
-    }
-
-    @Override
-    public final int saveLayer(RectF rectF, Paint paint, int i10) {
-        return this.f30633a.saveLayer(rectF, paint, i10);
-    }
-
-    @Override
-    public final int saveLayerAlpha(float f7, float f10, float f11, float f12, int i10, int i11) {
-        return this.f30633a.saveLayerAlpha(f7, f10, f11, f12, i10, i11);
-    }
-
-    @Override
-    public final boolean clipOutRect(RectF rectF) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30633a.clipOutRect(rectF);
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean clipRect(Rect rect, Region.Op op) {
-        return false;
-    }
-
-    @Override
-    public final void drawBitmap(Bitmap bitmap, Rect rect, RectF rectF, Paint paint) {
-        this.f30633a.drawBitmap(bitmap, rect, rectF, paint);
-    }
-
-    @Override
-    public final void drawColor(int i10) {
-        this.f30633a.drawColor(i10);
-    }
-
-    @Override
-    public final boolean quickReject(Path path) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            return this.f30633a.quickReject(path);
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean clipRect(RectF rectF) {
-        return false;
-    }
-
-    @Override
-    public final void drawBitmap(Bitmap bitmap, float f7, float f10, Paint paint) {
-        this.f30633a.drawBitmap(bitmap, f7, f10, paint);
-    }
-
-    @Override
-    public final void drawColor(int i10, PorterDuff.Mode mode) {
-        this.f30633a.drawColor(i10, mode);
-    }
-
-    @Override
-    public final boolean clipOutRect(Rect rect) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30633a.clipOutRect(rect);
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean clipRect(RectF rectF, Region.Op op) {
-        return false;
-    }
-
-    @Override
-    public final void drawColor(long j3) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f30633a.drawColor(j3);
-        }
-    }
-
-    @Override
-    public final boolean quickReject(RectF rectF, Canvas.EdgeType edgeType) {
-        return this.f30633a.quickReject(rectF, edgeType);
-    }
-
-    @Override
-    public final boolean quickReject(Path path, Canvas.EdgeType edgeType) {
-        return this.f30633a.quickReject(path, edgeType);
-    }
-
-    @Override
-    public final boolean quickReject(float f7, float f10, float f11, float f12, Canvas.EdgeType edgeType) {
-        return this.f30633a.quickReject(f7, f10, f11, f12, edgeType);
+    public void setText(String str) {
+        this.f30208b = str;
+        invalidate();
     }
 }

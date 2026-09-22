@@ -1,42 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-public class g11 extends ViewSwitcher {
-    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
-        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
-            if (z10) {
-                getNextView().setText(charSequence);
-                showNext();
-                return;
-            }
-            getCurrentView().setText(charSequence);
-        }
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class g11 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f24163a;
+
+    public g11(ThemeEditorView.EditorAlert editorAlert) {
+        this.f24163a = editorAlert;
     }
 
     @Override
-    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        if (view instanceof TextView) {
-            super.addView(view, i10, layoutParams);
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public void setText(CharSequence charSequence) {
-        a(charSequence, true, false);
-    }
-
-    @Override
-    public TextView getCurrentView() {
-        return (TextView) super.getCurrentView();
-    }
-
-    @Override
-    public TextView getNextView() {
-        return (TextView) super.getNextView();
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f24163a;
+        editorAlert.f22217c.setVisibility(4);
+        editorAlert.f22218f.setVisibility(4);
+        editorAlert.f22221s.setVisibility(4);
+        editorAlert.H = false;
     }
 }

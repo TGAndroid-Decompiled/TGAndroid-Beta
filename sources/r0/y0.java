@@ -2,43 +2,43 @@ package r0;
 
 import android.view.WindowInsets;
 public class y0 extends b1 {
-    public final WindowInsets.Builder f42206c;
+    public final WindowInsets.Builder f41882c;
 
     public y0() {
-        this.f42206c = ah.f.h();
+        this.f41882c = ah.e.h();
     }
 
     @Override
     public l1 b() {
         a();
-        l1 h = l1.h(null, this.f42206c.build());
-        h.f42175a.q(this.f42134b);
+        l1 h = l1.h(null, this.f41882c.build());
+        h.f41851a.q(this.f41810b);
         return h;
     }
 
     @Override
     public void d(i0.b bVar) {
-        this.f42206c.setMandatorySystemGestureInsets(bVar.d());
+        this.f41882c.setMandatorySystemGestureInsets(bVar.d());
     }
 
     @Override
     public void e(i0.b bVar) {
-        this.f42206c.setStableInsets(bVar.d());
+        this.f41882c.setStableInsets(bVar.d());
     }
 
     @Override
     public void f(i0.b bVar) {
-        this.f42206c.setSystemGestureInsets(bVar.d());
+        this.f41882c.setSystemGestureInsets(bVar.d());
     }
 
     @Override
     public void g(i0.b bVar) {
-        this.f42206c.setSystemWindowInsets(bVar.d());
+        this.f41882c.setSystemWindowInsets(bVar.d());
     }
 
     @Override
     public void h(i0.b bVar) {
-        this.f42206c.setTappableElementInsets(bVar.d());
+        this.f41882c.setTappableElementInsets(bVar.d());
     }
 
     public y0(l1 l1Var) {
@@ -46,10 +46,10 @@ public class y0 extends b1 {
         WindowInsets.Builder h;
         WindowInsets g10 = l1Var.g();
         if (g10 != null) {
-            h = ah.f.i(g10);
+            h = ah.e.i(g10);
         } else {
-            h = ah.f.h();
+            h = ah.e.h();
         }
-        this.f42206c = h;
+        this.f41882c = h;
     }
 }

@@ -1,4 +1,12 @@
 package z3;
-public interface e extends h2.e {
-    void b(long j3);
+
+import java.util.List;
+public interface e {
+    int A();
+
+    int d(long j3);
+
+    long g(int i10);
+
+    List l(long j3);
 }

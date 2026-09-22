@@ -1,81 +1,45 @@
 package v7;
+public final class g9 extends h9 {
+    public final transient int f43983c;
+    public final transient int d;
+    public final h9 e;
 
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-public final class g9 extends a9.o implements ListIterator {
-    public final int f44305b;
-    public int f44306c;
-    public final i9 d;
-
-    public g9(i9 i9Var, int i10) {
-        super(6);
-        int size = i9Var.size();
-        if (i10 >= 0 && i10 <= size) {
-            this.f44305b = size;
-            this.f44306c = i10;
-            this.d = i9Var;
-            return;
-        }
-        throw new IndexOutOfBoundsException(w7.x7.c(i10, size, "index"));
-    }
-
-    public final Object a(int i10) {
-        return this.d.get(i10);
+    public g9(h9 h9Var, int i10, int i11) {
+        this.e = h9Var;
+        this.f43983c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
+    public final Object get(int i10) {
+        w7.w7.a(i10, this.d);
+        return this.e.get(i10 + this.f43983c);
     }
 
     @Override
-    public final boolean hasNext() {
-        if (this.f44306c < this.f44305b) {
-            return true;
-        }
-        return false;
+    public final int n() {
+        return this.e.o() + this.f43983c + this.d;
     }
 
     @Override
-    public final boolean hasPrevious() {
-        if (this.f44306c > 0) {
-            return true;
-        }
-        return false;
+    public final int o() {
+        return this.e.o() + this.f43983c;
     }
 
     @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i10 = this.f44306c;
-            this.f44306c = i10 + 1;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
+    public final Object[] p() {
+        return this.e.p();
     }
 
     @Override
-    public final int nextIndex() {
-        return this.f44306c;
+    public final h9 subList(int i10, int i11) {
+        w7.w7.b(i10, i11, this.d);
+        int i12 = this.f43983c;
+        return this.e.subList(i10 + i12, i11 + i12);
     }
 
     @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i10 = this.f44306c - 1;
-            this.f44306c = i10;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f44306c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int size() {
+        return this.d;
     }
 }

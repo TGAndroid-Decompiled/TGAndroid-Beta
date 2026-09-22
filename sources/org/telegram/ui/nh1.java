@@ -1,47 +1,37 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class nh1 implements Utilities.Callback {
-    public final int f36051a;
-    public final UserInfoActivity f36052b;
+import android.content.Context;
+import android.text.Editable;
+public final class nh1 extends org.telegram.ui.Cells.i3 {
+    public final int f35992x;
+    public final UserInfoActivity f35993y;
 
-    public nh1(UserInfoActivity userInfoActivity, int i10) {
-        this.f36051a = i10;
-        this.f36052b = userInfoActivity;
+    public nh1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, str, false, false, -1, e6Var);
+        this.f35992x = i10;
+        this.f35993y = userInfoActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f36051a) {
+    public final void b(Editable editable) {
+        switch (this.f35992x) {
             case 0:
-                UserInfoActivity userInfoActivity = this.f36052b;
-                userInfoActivity.K = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.o61 o61Var = userInfoActivity.f31912y;
-                if (o61Var != null) {
-                    o61Var.Y2.N(true);
-                }
-                userInfoActivity.b0(true);
+                this.f35993y.b0(true);
+                return;
+            case 1:
+                this.f35993y.b0(true);
                 return;
             default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f36052b;
-                if (userInfoActivity2.L != chat) {
-                    userInfoActivity2.L = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.l0.o(R.string.EditProfileChannelSet, org.telegram.ui.Components.xc.a0(userInfoActivity2), R.raw.contact_check, 36);
-                    }
-                    userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.o61 o61Var2 = userInfoActivity2.f31912y;
-                    if (o61Var2 != null) {
-                        o61Var2.Y2.N(true);
-                        return;
-                    }
-                    return;
-                }
+                UserInfoActivity userInfoActivity = this.f35993y;
+                userInfoActivity.b0(true);
+                userInfoActivity.e0();
                 return;
         }
+    }
+
+    public nh1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, str, true, false, i10, e6Var);
+        this.f35992x = 2;
+        this.f35993y = userInfoActivity;
     }
 }

@@ -1,129 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class rf implements TextWatcher {
-    public boolean f27940a;
-    public boolean f27941b;
-    public String f27942c;
-    public boolean d;
-    public boolean e;
-    public final ChatActivityEnterView f27943f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class rf extends AnimatorListenerAdapter {
+    public final ChatActivityEnterView f27625a;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f27943f = chatActivityEnterView;
+        this.f27625a = chatActivityEnterView;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.rf.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (!this.d && this.f27943f.F2) {
-            this.f27942c = charSequence.toString();
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.f27625a;
+        v71 v71Var = chatActivityEnterView.f21762f1;
+        if (v71Var != null) {
+            v71Var.setVisibility(8);
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int currentPage;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        boolean z15;
-        boolean z16;
-        if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f27943f;
-            dg dgVar = chatActivityEnterView.U0;
-            if (dgVar == null) {
-                currentPage = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
-            } else {
-                currentPage = dgVar.getCurrentPage();
-            }
-            if (currentPage != 0 && (chatActivityEnterView.J2 || chatActivityEnterView.K2)) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (((i11 == 0 && !TextUtils.isEmpty(charSequence)) || (i11 != 0 && TextUtils.isEmpty(charSequence))) && z10) {
-                chatActivityEnterView.c1(false, true);
-            }
-            if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
-                if (chatActivityEnterView.E0.getLineCount() >= 4) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                if (chatActivityEnterView.T >= 4) {
-                    z13 = true;
-                } else {
-                    z13 = false;
-                }
-                if (z12 != z13) {
-                    z14 = true;
-                } else {
-                    z14 = false;
-                }
-                this.e = z14;
-                if (!chatActivityEnterView.S && chatActivityEnterView.E0.getMeasuredWidth() > 0) {
-                    chatActivityEnterView.C0(chatActivityEnterView.T, chatActivityEnterView.E0.getLineCount());
-                }
-                int lineCount = chatActivityEnterView.E0.getLineCount();
-                chatActivityEnterView.T = lineCount;
-                if (lineCount > 2 && charSequence != null && !TextUtils.isEmpty(charSequence.toString().trim())) {
-                    z15 = true;
-                } else {
-                    z15 = false;
-                }
-                chatActivityEnterView.o1(z15);
-                if (chatActivityEnterView.T > 2 && charSequence != null && !TextUtils.isEmpty(charSequence.toString().trim())) {
-                    z16 = true;
-                } else {
-                    z16 = false;
-                }
-                chatActivityEnterView.u1(z16);
-            } else {
-                this.e = false;
-            }
-            if (chatActivityEnterView.S2 == 1) {
-                return;
-            }
-            if (chatActivityEnterView.B2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.R2 && !chatActivityEnterView.X1 && chatActivityEnterView.Z1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f27941b = true;
-            }
-            chatActivityEnterView.X1 = false;
-            chatActivityEnterView.K(true);
-            CharSequence trimmedString = AndroidUtilities.getTrimmedString(charSequence.toString());
-            if (chatActivityEnterView.Z2 != null && !chatActivityEnterView.R2) {
-                int i13 = i12 + 1;
-                if (i11 > i13 || i12 - i11 > 2 || TextUtils.isEmpty(charSequence)) {
-                    chatActivityEnterView.Y2 = true;
-                }
-                ng ngVar = chatActivityEnterView.Z2;
-                if (i11 <= i13 && i12 - i11 <= 2) {
-                    z11 = false;
-                } else {
-                    z11 = true;
-                }
-                ngVar.m1(charSequence, z11, false);
-            }
-            if (chatActivityEnterView.S2 != 2 && i12 - i11 > 1) {
-                this.f27940a = true;
-            }
-            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f22015h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
-                chatActivityEnterView.C2 = System.currentTimeMillis();
-                ng ngVar2 = chatActivityEnterView.Z2;
-                if (ngVar2 != null) {
-                    ngVar2.F1();
-                }
-            }
-            chatActivityEnterView.R1();
+        gk0 gk0Var = chatActivityEnterView.f21774h1;
+        if (gk0Var != null) {
+            gk0Var.setVisibility(8);
+        }
+        chatActivityEnterView.f21815o4 = 0.0f;
+        chatActivityEnterView.y0();
+        chatActivityEnterView.q0();
+        ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.M1;
+        if (recordCircle != null) {
+            recordCircle.d();
         }
     }
 }

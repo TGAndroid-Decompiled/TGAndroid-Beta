@@ -1,44 +1,44 @@
 package ci;
-public final class u5 implements qg.w1 {
-    public final int f5619a;
-    public final qg.v2 f5620b;
-    public final float f5621c;
+public final class u5 implements qg.y1 {
+    public final int f5617a;
+    public final qg.x2 f5618b;
+    public final float f5619c;
 
-    public u5(qg.v2 v2Var, float f7, int i10) {
-        this.f5619a = i10;
-        this.f5620b = v2Var;
-        this.f5621c = f7;
+    public u5(qg.x2 x2Var, float f7, int i10) {
+        this.f5617a = i10;
+        this.f5618b = x2Var;
+        this.f5619c = f7;
     }
 
     @Override
     public final float get() {
         float baseFontSize;
         float f7;
-        switch (this.f5619a) {
+        switch (this.f5617a) {
             case 0:
-                baseFontSize = this.f5620b.getBaseFontSize();
-                f7 = this.f5621c;
+                baseFontSize = this.f5618b.getBaseFontSize();
+                f7 = this.f5619c;
                 break;
             default:
-                baseFontSize = this.f5620b.getBaseFontSize();
-                f7 = this.f5621c;
+                baseFontSize = this.f5618b.getBaseFontSize();
+                f7 = this.f5619c;
                 break;
         }
         return baseFontSize / f7;
     }
 
     @Override
-    public final void m(float f7) {
-        switch (this.f5619a) {
+    public final void l(float f7) {
+        switch (this.f5617a) {
             case 0:
-                qg.v2 v2Var = this.f5620b;
-                v2Var.f42007z0 = true;
-                v2Var.setBaseFontSize((int) (this.f5621c * f7));
+                qg.x2 x2Var = this.f5618b;
+                x2Var.f41711z0 = true;
+                x2Var.setBaseFontSize((int) (this.f5619c * f7));
                 return;
             default:
-                qg.v2 v2Var2 = this.f5620b;
-                v2Var2.f42007z0 = true;
-                v2Var2.setBaseFontSize((int) (this.f5621c * f7));
+                qg.x2 x2Var2 = this.f5618b;
+                x2Var2.f41711z0 = true;
+                x2Var2.setBaseFontSize((int) (this.f5619c * f7));
                 return;
         }
     }

@@ -1,28 +1,21 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
-public final class tj0 implements Runnable {
-    public final int f28479a;
-    public final ck0 f28480b;
-    public final TLObject f28481c;
+import android.animation.ValueAnimator;
+public final class tj0 implements ValueAnimator.AnimatorUpdateListener {
+    public final float f28141a;
+    public final fk0 f28142b;
 
-    public tj0(ck0 ck0Var, TLObject tLObject, int i10) {
-        this.f28479a = i10;
-        this.f28480b = ck0Var;
-        this.f28481c = tLObject;
+    public tj0(fk0 fk0Var, float f7) {
+        this.f28142b = fk0Var;
+        this.f28141a = f7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28479a) {
-            case 0:
-                ck0 ck0Var = this.f28480b;
-                NotificationCenter.getInstance(ck0Var.f23387b).doOnIdle(new tj0(ck0Var, this.f28481c, 1));
-                return;
-            default:
-                ck0.a(this.f28480b, this.f28481c);
-                return;
-        }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        fk0 fk0Var = this.f28142b;
+        fk0Var.f23993o0 = floatValue;
+        fk0Var.f23992n0 = (1.0f - fk0Var.f23993o0) * this.f28141a;
+        fk0Var.invalidate();
     }
 }

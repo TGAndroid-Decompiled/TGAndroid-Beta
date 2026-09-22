@@ -1,47 +1,30 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.ui.Components.RadialProgressView;
-public final class xl extends AnimatorListenerAdapter {
-    public final boolean f39634a;
-    public final boolean f39635b;
-    public final boolean f39636c;
-    public final zn d;
+import android.app.Activity;
+import org.telegram.ui.Components.UndoView;
+public final class xl extends org.telegram.ui.Components.n20 {
+    public final bo f39651b;
 
-    public xl(zn znVar, boolean z10, boolean z11, boolean z12) {
-        this.d = znVar;
-        this.f39634a = z10;
-        this.f39635b = z11;
-        this.f39636c = z12;
+    public xl(bo boVar, Activity activity, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(activity, n2Var);
+        this.f39651b = boVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        zn znVar = this.d;
-        znVar.M2 = null;
-        ImageView imageView = znVar.J2;
-        int i12 = 4;
-        if (this.f39634a) {
-            i10 = 0;
-        } else {
-            i10 = 4;
+    public final void m() {
+        bo boVar = this.f39651b;
+        boVar.Q7();
+        UndoView undoView = boVar.y3;
+        if (undoView == null) {
+            return;
         }
-        imageView.setVisibility(i10);
-        ImageView imageView2 = znVar.L2;
-        if (this.f39635b) {
-            i11 = 0;
-        } else {
-            i11 = 4;
-        }
-        imageView2.setVisibility(i11);
-        RadialProgressView radialProgressView = znVar.K2;
-        if (this.f39636c) {
-            i12 = 0;
-        }
-        radialProgressView.setVisibility(i12);
+        undoView.j(75, 0L, null);
+        boVar.getMessagesController().removeSuggestion(boVar.T5, "CONVERT_GIGAGROUP");
+    }
+
+    @Override
+    public final void n() {
+        bo boVar = this.f39651b;
+        boVar.getMessagesController().convertToGigaGroup(boVar.getParentActivity(), boVar.e, boVar, new y0(this, 19));
     }
 }

@@ -3,7 +3,7 @@ package ai;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.ui.il0;
+import org.telegram.ui.fl0;
 public final class s0 implements View.OnClickListener {
     public final int f1487a;
     public final Object f1488b;
@@ -26,12 +26,12 @@ public final class s0 implements View.OnClickListener {
         throw new UnsupportedOperationException("Method not decompiled: ai.s0.onClick(android.view.View):void");
     }
 
-    public s0(org.telegram.ui.ActionBar.f3 f3Var, FrameLayout frameLayout, ArrayList arrayList, int[] iArr, il0 il0Var) {
+    public s0(org.telegram.ui.ActionBar.f3 f3Var, FrameLayout frameLayout, ArrayList arrayList, int[] iArr, fl0 fl0Var) {
         this.f1487a = 15;
         this.f1490f = f3Var;
         this.f1488b = frameLayout;
         this.f1489c = arrayList;
         this.d = iArr;
-        this.e = il0Var;
+        this.e = fl0Var;
     }
 }

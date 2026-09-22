@@ -3,53 +3,53 @@ package org.telegram.ui;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ww implements Runnable {
-    public final int f39274a;
-    public final ty f39275b;
+    public final int f39392a;
+    public final ty f39393b;
 
     public ww(ty tyVar, int i10) {
-        this.f39274a = i10;
-        this.f39275b = tyVar;
+        this.f39392a = i10;
+        this.f39393b = tyVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f39274a) {
+        switch (this.f39392a) {
             case 0:
-                this.f39275b.d.l();
+                this.f39393b.d.l();
                 return;
             case 1:
-                ty tyVar = this.f39275b;
+                ty tyVar = this.f39393b;
                 uy uyVar = tyVar.K;
-                qy qyVar = tyVar.f37905a;
-                if (qyVar != null && qyVar.getScrollState() == 0 && tyVar.f37905a.getChildCount() > 0 && tyVar.f37905a.getLayoutManager() != null) {
+                qy qyVar = tyVar.f37752a;
+                if (qyVar != null && qyVar.getScrollState() == 0 && tyVar.f37752a.getChildCount() > 0 && tyVar.f37752a.getLayoutManager() != null) {
                     int i10 = 1;
-                    if (tyVar.f37911s == 0 && uyVar.Z3() && tyVar.v == 2) {
+                    if (tyVar.f37758s == 0 && uyVar.Z3() && tyVar.v == 2) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     float f7 = uyVar.N;
-                    s4.c0 c0Var = (s4.c0) tyVar.f37905a.getLayoutManager();
+                    s4.c0 c0Var = (s4.c0) tyVar.f37752a.getLayoutManager();
                     View view = null;
                     int i11 = Integer.MAX_VALUE;
                     int i12 = -1;
-                    for (int i13 = 0; i13 < tyVar.f37905a.getChildCount(); i13++) {
-                        int S = RecyclerView.S(tyVar.f37905a.getChildAt(i13));
-                        View childAt = tyVar.f37905a.getChildAt(i13);
-                        if (S != -1 && childAt != null && childAt.getTop() < i11) {
+                    for (int i13 = 0; i13 < tyVar.f37752a.getChildCount(); i13++) {
+                        int R = RecyclerView.R(tyVar.f37752a.getChildAt(i13));
+                        View childAt = tyVar.f37752a.getChildAt(i13);
+                        if (R != -1 && childAt != null && childAt.getTop() < i11) {
                             i11 = childAt.getTop();
-                            i12 = S;
+                            i12 = R;
                             view = childAt;
                         }
                     }
                     if (view != null) {
-                        float top = view.getTop() - tyVar.f37905a.getPaddingTop();
+                        float top = view.getTop() - tyVar.f37752a.getPaddingTop();
                         if (uyVar.K) {
                             f7 = 0.0f;
                         }
-                        if (tyVar.f37905a.getScrollState() != 1) {
-                            if (z10 && i12 == 0 && ((tyVar.f37905a.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f7 < 0.0f) {
+                        if (tyVar.f37752a.getScrollState() != 1) {
+                            if (z10 && i12 == 0 && ((tyVar.f37752a.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f7 < 0.0f) {
                                 top = f7;
                             } else {
                                 i10 = i12;
@@ -63,11 +63,11 @@ public final class ww implements Runnable {
                 }
                 return;
             default:
-                ty tyVar2 = this.f39275b;
+                ty tyVar2 = this.f39393b;
                 tyVar2.d.W(tyVar2.I);
                 tyVar2.K.Q = true;
-                qy qyVar2 = tyVar2.f37905a;
-                qyVar2.f37005d3 = true;
+                qy qyVar2 = tyVar2.f37752a;
+                qyVar2.f36958d3 = true;
                 tyVar2.H = false;
                 qyVar2.invalidate();
                 return;

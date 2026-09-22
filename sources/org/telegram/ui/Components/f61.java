@@ -1,34 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-public final class f61 extends c61 {
-    public final int e;
-    public final e11 f24124f;
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class f61 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f23831a;
+    public final View f23832b;
 
-    public f61(String str, int i10, e11 e11Var) {
-        super(str, (e11) null);
-        this.e = i10;
-        this.f24124f = e11Var;
+    public f61(int i10, View view) {
+        this.f23831a = i10;
+        this.f23832b = view;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        int i10 = this.e;
-        if (i10 == 3) {
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.J6, false));
-        } else if (i10 == 2) {
-            textPaint.setColor(-1);
-        } else if (i10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19186hc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.gc, false));
-        }
-        e11 e11Var = this.f24124f;
-        if (e11Var != null) {
-            e11Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f23831a) {
+            case 0:
+                g61 g61Var = (g61) this.f23832b;
+                g61Var.getClass();
+                g61Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g61Var.invalidate();
+                return;
+            case 1:
+                m61 m61Var = (m61) this.f23832b;
+                m61Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m61Var.f26108b = floatValue;
+                m61Var.setTranslationY(floatValue);
+                return;
+            default:
+                h81 h81Var = (h81) this.f23832b;
+                h81Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h81Var.setAnimationIdicatorProgress(floatValue2);
+                g81 g81Var = h81Var.f24617y;
+                if (g81Var != null) {
+                    ((ka.c) g81Var).h(floatValue2);
+                    return;
+                }
+                return;
         }
     }
 }

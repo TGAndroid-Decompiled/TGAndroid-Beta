@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class p0 implements Runnable {
-    public final int f27211a;
-    public final EditTextBoldCursor f27212b;
-    public final org.telegram.ui.ActionBar.b2 f27213c;
+    public final int f26913a;
+    public final EditTextBoldCursor f26914b;
+    public final org.telegram.ui.ActionBar.b2 f26915c;
     public final org.telegram.ui.ActionBar.n2 d;
 
     public p0(EditTextBoldCursor editTextBoldCursor, org.telegram.ui.ActionBar.b2 b2Var, org.telegram.ui.ActionBar.n2 n2Var, int i10) {
-        this.f27211a = i10;
-        this.f27212b = editTextBoldCursor;
-        this.f27213c = b2Var;
+        this.f26913a = i10;
+        this.f26914b = editTextBoldCursor;
+        this.f26915c = b2Var;
         this.d = n2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f27211a) {
+        switch (this.f26913a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new p0(this.f27212b, this.f27213c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new p0(this.f26914b, this.f26915c, this.d, 1));
                 return;
             default:
-                d5.e0(this.f27212b, this.f27213c, this.d);
+                c5.e0(this.f26914b, this.f26915c, this.d);
                 return;
         }
     }

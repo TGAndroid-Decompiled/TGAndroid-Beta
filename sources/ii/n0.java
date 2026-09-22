@@ -9,44 +9,44 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.i6;
 public final class n0 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.f6 f11510a;
-    public final ImageView f11511b;
-    public final TextView f11512c;
+    public final org.telegram.ui.ActionBar.e6 f11508a;
+    public final ImageView f11509b;
+    public final TextView f11510c;
     public final TextView d;
 
-    public n0(Context context, o0 o0Var, org.telegram.ui.ActionBar.f6 f6Var) {
+    public n0(Context context, o0 o0Var, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f11510a = f6Var;
+        this.f11508a = e6Var;
         setOrientation(0);
         ImageView imageView = new ImageView(context);
-        this.f11511b = imageView;
+        this.f11509b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, w7.y5.t(42, 42, 19, 0, 0, 0, 0));
+        addView(imageView, w7.x5.t(42, 42, 19, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        this.f11512c = textView;
+        this.f11510c = textView;
         textView.setTextSize(1, 16.0f);
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 16.0f);
         textView2.setGravity(5);
-        addView(textView, w7.y5.t(-2, -2, 19, 8, 0, 0, 0));
-        addView(new Space(context), w7.y5.o(0, -2, 1.0f, 119));
-        addView(textView2, w7.y5.t(-2, -2, 21, 8, 0, 0, 0));
-        imageView.setImageResource(o0Var.f11527a);
-        textView.setText(o0Var.f11528b);
-        textView2.setText((CharSequence) o0Var.f11529c.get(0));
+        addView(textView, w7.x5.t(-2, -2, 19, 8, 0, 0, 0));
+        addView(new Space(context), w7.x5.o(0, -2, 1.0f, 119));
+        addView(textView2, w7.x5.t(-2, -2, 21, 8, 0, 0, 0));
+        imageView.setImageResource(o0Var.f11525a);
+        textView.setText(o0Var.f11526b);
+        textView2.setText((CharSequence) o0Var.f11527c.get(0));
         e();
     }
 
     @Override
     public final void e() {
-        int i10 = j6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f11510a;
-        this.f11511b.setColorFilter(new PorterDuffColorFilter(j6.v0(i10, f6Var), PorterDuff.Mode.SRC_IN));
-        this.f11512c.setTextColor(j6.v0(i10, f6Var));
-        this.d.setTextColor(j6.l1(0.75f, j6.v0(i10, f6Var)));
+        int i10 = i6.G6;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f11508a;
+        this.f11509b.setColorFilter(new PorterDuffColorFilter(i6.v0(i10, e6Var), PorterDuff.Mode.SRC_IN));
+        this.f11510c.setTextColor(i6.v0(i10, e6Var));
+        this.d.setTextColor(i6.l1(0.75f, i6.v0(i10, e6Var)));
     }
 
     public int[] getColorKeys() {

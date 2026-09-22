@@ -1,70 +1,48 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.ImageReceiver;
-public final class tz0 extends pv0 {
-    public final ProfileActivity T;
+public final class tz0 extends AnimatorListenerAdapter {
+    public final ProfileActivity f37765a;
 
-    public tz0(ProfileActivity profileActivity, ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
-        this.T = profileActivity;
+    public tz0(ProfileActivity profileActivity) {
+        this.f37765a = profileActivity;
     }
 
     @Override
-    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
+    public final void onAnimationEnd(Animator animator) {
         org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        if (f7 > 0.0f) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            ProfileActivity profileActivity = this.T;
-            rectF.set(0.0f, 0.0f, profileActivity.f31634n0.getMeasuredWidth(), AndroidUtilities.dp(30.0f) + profileActivity.f31634n0.getMeasuredHeight());
-            canvas.saveLayerAlpha(rectF, (int) (255.0f * f7), 31);
-            profileActivity.Z.draw(canvas);
-            canvas.save();
-            kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-            float x10 = kVar.getX();
-            kVar2 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-            canvas.translate(x10, kVar2.getY());
-            kVar3 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-            kVar3.draw(canvas);
-            canvas.restore();
-            org.telegram.ui.Components.nj0 nj0Var = profileActivity.v;
-            if (nj0Var != null && nj0Var.getVisibility() == 0 && profileActivity.v.getAlpha() > 0.0f) {
-                canvas.save();
-                float f14 = (f7 * 0.5f) + 0.5f;
-                canvas.scale(f14, f14, (profileActivity.v.getMeasuredWidth() / 2.0f) + profileActivity.v.getX(), (profileActivity.v.getMeasuredHeight() / 2.0f) + profileActivity.v.getY());
-                canvas.translate(profileActivity.v.getX(), profileActivity.v.getY());
-                profileActivity.v.draw(canvas);
-                canvas.restore();
-            }
-            canvas.restore();
+        int v02;
+        ProfileActivity profileActivity = this.f37765a;
+        kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
+        if (profileActivity.f31342p2) {
+            v02 = 1090519039;
+        } else if (profileActivity.Q5 != null) {
+            v02 = 553648127;
+        } else {
+            v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18871f8, profileActivity.f31409z0);
         }
+        kVar.A(v02, false);
+        pz0 pz0Var = profileActivity.f31265e0;
+        ImageReceiver imageReceiver = pz0Var.U;
+        org.telegram.ui.Components.b6 animation = imageReceiver.getAnimation();
+        if (animation != null) {
+            animation.w(pz0Var);
+        }
+        imageReceiver.clearImage();
+        ImageReceiver.BitmapHolder bitmapHolder = pz0Var.W;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            pz0Var.W = null;
+        }
+        pz0Var.V = 0.0f;
+        pz0Var.invalidate();
+        profileActivity.H0 = false;
+        profileActivity.l5(false);
     }
 
     @Override
-    public final void e() {
-        super.e();
-        ProfileActivity profileActivity = this.T;
-        profileActivity.fragmentView.invalidate();
-        for (int i10 = 0; i10 < profileActivity.f31634n0.getChildCount(); i10++) {
-            profileActivity.f31634n0.getChildAt(i10).invalidate();
-        }
-        org.telegram.ui.Components.nj0 nj0Var = profileActivity.v;
-        if (nj0Var != null) {
-            nj0Var.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean j(View view, ImageReceiver imageReceiver) {
-        if (super.j(view, imageReceiver) && this.T.f31543a.getScrollState() != 1) {
-            return true;
-        }
-        return false;
+    public final void onAnimationStart(Animator animator) {
     }
 }

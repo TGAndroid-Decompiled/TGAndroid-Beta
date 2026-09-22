@@ -1,14 +1,89 @@
 package lf;
+public final class m {
+    public static final int[][] h = {new int[]{11025, -1, 22050, 44100}, new int[]{12000, -1, 24000, 48000}, new int[]{8000, -1, 16000, 32000}, new int[]{-1, -1, -1, -1}};
+    public static final int[][] f14027i = {new int[]{0, 0, 0, 0, 0}, new int[]{32000, 32000, 32000, 32000, 8000}, new int[]{64000, 48000, 40000, 48000, 16000}, new int[]{96000, 56000, 48000, 56000, 24000}, new int[]{128000, 64000, 56000, 64000, 32000}, new int[]{160000, 80000, 64000, 80000, 40000}, new int[]{192000, 96000, 80000, 96000, 48000}, new int[]{224000, 112000, 96000, 112000, 56000}, new int[]{256000, 128000, 112000, 128000, 64000}, new int[]{288000, 160000, 128000, 144000, 80000}, new int[]{320000, 192000, 160000, 160000, 96000}, new int[]{352000, 224000, 192000, 176000, 112000}, new int[]{384000, 256000, 224000, 192000, 128000}, new int[]{416000, 320000, 256000, 224000, 144000}, new int[]{448000, 384000, 320000, 256000, 160000}, new int[]{-1, -1, -1, -1, -1}};
+    public static final int[][] f14028j = {new int[]{-1, 4, 4, 3}, new int[]{-1, -1, -1, -1}, new int[]{-1, 4, 4, 3}, new int[]{-1, 2, 1, 0}};
+    public static final int[][] f14029k = {new int[]{-1, 72, 144, 12}, new int[]{-1, -1, -1, -1}, new int[]{-1, 72, 144, 12}, new int[]{-1, 144, 144, 12}};
+    public static final int[] f14030l = {-1, 1, 1, 4};
+    public static final int[][] f14031m = {new int[]{17, -1, 17, 32}, new int[]{17, -1, 17, 32}, new int[]{17, -1, 17, 32}, new int[]{9, -1, 9, 17}};
+    public final int f14032a;
+    public final int f14033b;
+    public final int f14034c;
+    public final int d;
+    public final int e;
+    public final int f14035f;
+    public final int f14036g;
 
-import java.util.logging.Logger;
-public final class m extends jf.a {
-    public static final Logger f14246r = Logger.getLogger(m.class.getName());
-
-    public m(java.io.BufferedInputStream r25, long r26) {
-        throw new UnsupportedOperationException("Method not decompiled: lf.m.<init>(java.io.BufferedInputStream, long):void");
+    public m(int i10, int i11, int i12) {
+        int i13 = (i10 >> 3) & 3;
+        this.f14032a = i13;
+        if (i13 != 1) {
+            int i14 = (i10 >> 1) & 3;
+            this.f14033b = i14;
+            if (i14 != 0) {
+                int i15 = (i11 >> 4) & 15;
+                this.d = i15;
+                if (i15 != 15) {
+                    if (i15 != 0) {
+                        int i16 = (i11 >> 2) & 3;
+                        this.f14034c = i16;
+                        if (i16 != 3) {
+                            int i17 = (i12 >> 6) & 3;
+                            this.e = i17;
+                            this.f14035f = (i11 >> 1) & 1;
+                            int i18 = i10 & 1;
+                            this.f14036g = i18;
+                            int i19 = i18 != 0 ? 4 : 6;
+                            i19 = i14 == 1 ? i19 + f14031m[i17][i13] : i19;
+                            if (b() >= i19) {
+                                return;
+                            }
+                            throw new Exception(hg.c.i(i19, "Frame size must be at least "));
+                        }
+                        throw new Exception("Reserved frequency");
+                    }
+                    throw new Exception("Free bitrate");
+                }
+                throw new Exception("Reserved bitrate");
+            }
+            throw new Exception("Reserved layer");
+        }
+        throw new Exception("Reserved version");
     }
 
-    public static long b(lf.n r29, long r30, c3.s r32) {
-        throw new UnsupportedOperationException("Method not decompiled: lf.m.b(lf.n, long, c3.s):long");
+    public final int a() {
+        return f14027i[this.d][f14028j[this.f14032a][this.f14033b]];
+    }
+
+    public final int b() {
+        int[][] iArr = f14029k;
+        int i10 = this.f14032a;
+        int[] iArr2 = iArr[i10];
+        int i11 = this.f14033b;
+        return (((a() * iArr2[i11]) / h[this.f14034c][i10]) + this.f14035f) * f14030l[i11];
+    }
+
+    public final long c(long j3) {
+        int i10;
+        if (this.f14033b == 3) {
+            i10 = 384;
+        } else {
+            i10 = 1152;
+        }
+        int b10 = b();
+        int[] iArr = h[this.f14034c];
+        int i11 = this.f14032a;
+        long j10 = ((i10 * j3) * 1000) / (iArr[i11] * b10);
+        if (i11 != 3 && this.e == 3) {
+            return j10 / 2;
+        }
+        return j10;
+    }
+
+    public final boolean d(m mVar) {
+        if (this.f14033b == mVar.f14033b && this.f14032a == mVar.f14032a && this.f14034c == mVar.f14034c && this.e == mVar.e) {
+            return true;
+        }
+        return false;
     }
 }

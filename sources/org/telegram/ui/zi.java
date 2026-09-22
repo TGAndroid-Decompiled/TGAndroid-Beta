@@ -5,16 +5,16 @@ import org.telegram.messenger.AndroidUtilities;
 public final class zi extends nf.e {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.u1 f40243f;
-    public final zn f40244g;
+    public final org.telegram.ui.Cells.t1 f40211f;
+    public final bo f40212g;
     public final Object h;
 
-    public zi(zn znVar, int i10, Object obj, org.telegram.ui.Cells.u1 u1Var, int i11) {
+    public zi(bo boVar, int i10, Object obj, org.telegram.ui.Cells.t1 t1Var, int i11) {
         this.d = i11;
-        this.f40244g = znVar;
+        this.f40212g = boVar;
         this.e = i10;
         this.h = obj;
-        this.f40243f = u1Var;
+        this.f40211f = t1Var;
     }
 
     @Override
@@ -40,19 +40,19 @@ public final class zi extends nf.e {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                zn znVar = this.f40244g;
-                znVar.f40535vb = i10;
-                znVar.f40549wb = 1;
-                znVar.f40562xb = (CharacterStyle) this.h;
-                this.f40243f.invalidate();
+                bo boVar = this.f40212g;
+                boVar.f32503vb = i10;
+                boVar.f32517wb = 1;
+                boVar.f32530xb = (CharacterStyle) this.h;
+                this.f40211f.invalidate();
                 return;
             default:
                 int i11 = this.e;
-                zn znVar2 = this.f40244g;
-                znVar2.f40535vb = i11;
-                znVar2.f40549wb = 3;
-                znVar2.f40574yb = (String) this.h;
-                this.f40243f.invalidate();
+                bo boVar2 = this.f40212g;
+                boVar2.f32503vb = i11;
+                boVar2.f32517wb = 3;
+                boVar2.f32542yb = (String) this.h;
+                this.f40211f.invalidate();
                 return;
         }
     }

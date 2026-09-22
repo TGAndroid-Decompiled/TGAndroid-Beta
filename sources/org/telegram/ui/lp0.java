@@ -2,69 +2,58 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class lp0 extends Drawable {
-    public final org.telegram.ui.Components.w01 f35522a;
-    public final Drawable f35523b;
-    public final rg.z0 f35524c;
+public final class lp0 extends org.telegram.ui.Components.ll0 {
+    public final int X2;
+    public final up0 Y2;
 
-    public lp0(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        String str;
-        if (z10) {
-            str = "BoostLevelPlus";
-        } else {
-            str = "BoostLevel";
+    public lp0(up0 up0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, e6Var);
+        this.Y2 = up0Var;
+        this.X2 = i10;
+    }
+
+    @Override
+    public final Integer W0(int i10) {
+        up0 up0Var = this.Y2;
+        if ((i10 >= up0Var.f38081b0 && i10 < up0Var.f38083c0) || (i10 >= up0Var.f38084d0 && i10 < up0Var.f38085e0)) {
+            return 0;
         }
-        this.f35522a = new org.telegram.ui.Components.w01(LocaleController.formatPluralString(str, i10, new Object[0]), 12.0f, AndroidUtilities.bold());
-        Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-        this.f35523b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        this.f35524c = new rg.z0(org.telegram.ui.ActionBar.j6.Lj, org.telegram.ui.ActionBar.j6.Mj, -1, -1, f6Var);
+        return super.W0(i10);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10 = getBounds().left;
-        int centerY = getBounds().centerY();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f7 = centerY;
-        rectF.set(i10, f7 - (AndroidUtilities.dp(18.33f) / 2.0f), getIntrinsicWidth() + i10, (AndroidUtilities.dp(18.33f) / 2.0f) + f7);
-        rg.z0 z0Var = this.f35524c;
-        z0Var.e(rectF);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), z0Var.f42875f);
-        Drawable drawable = this.f35523b;
-        drawable.setBounds(AndroidUtilities.dp(3.33f) + i10, (int) (f7 - ((drawable.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.33f) + i10), (int) a4.a.A(drawable.getIntrinsicHeight(), 0.875f, 2.0f, f7));
-        drawable.draw(canvas);
-        this.f35522a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i10, f7, 1.0f, -1, canvas);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        up0 up0Var = this.Y2;
+        if (up0Var.G && up0Var.E != null && up0Var.F != null) {
+            int save = canvas.save();
+            canvas.translate(up0Var.E.getLeft() + up0Var.F.getLeft(), up0Var.F.getTop());
+            up0Var.E.draw(canvas);
+            canvas.restoreToCount(save);
+        }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.33f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (this.f35522a.l() + (this.f35523b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        yh.m5 m5Var;
+        super.onLayout(z10, i10, i11, i12, i13);
+        up0 up0Var = this.Y2;
+        aq0 aq0Var = up0Var.f38097p0;
+        up0Var.h();
+        if (up0Var.K != null) {
+            if (up0Var.J != null && up0Var.c()) {
+                up0Var.J.g(false);
+                return;
+            }
+            return;
+        }
+        if (this.X2 == 1) {
+            m5Var = aq0Var.f31874c;
+        } else {
+            m5Var = aq0Var.f31872b;
+        }
+        if (m5Var != null && up0Var.c()) {
+            m5Var.a();
+        }
     }
 }

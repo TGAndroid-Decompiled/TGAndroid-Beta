@@ -6,23 +6,23 @@ import j$.util.Objects;
 public final class g0 {
     public static final g0 d = new g0(new aa.a(4));
     public static final String e;
-    public static final String f3000f;
-    public static final String f3001g;
-    public final Uri f3002a;
-    public final String f3003b;
-    public final Bundle f3004c;
+    public static final String f2998f;
+    public static final String f2999g;
+    public final Uri f3000a;
+    public final String f3001b;
+    public final Bundle f3002c;
 
     static {
-        String str = e2.d0.f7887a;
+        String str = e2.d0.f7885a;
         e = Integer.toString(0, 36);
-        f3000f = Integer.toString(1, 36);
-        f3001g = Integer.toString(2, 36);
+        f2998f = Integer.toString(1, 36);
+        f2999g = Integer.toString(2, 36);
     }
 
     public g0(aa.a aVar) {
-        this.f3002a = (Uri) aVar.f357c;
-        this.f3003b = (String) aVar.f356b;
-        this.f3004c = (Bundle) aVar.d;
+        this.f3000a = (Uri) aVar.f360c;
+        this.f3001b = (String) aVar.f359b;
+        this.f3002c = (Bundle) aVar.d;
     }
 
     public final boolean equals(Object obj) {
@@ -35,13 +35,13 @@ public final class g0 {
             return false;
         }
         g0 g0Var = (g0) obj;
-        if (Objects.equals(this.f3002a, g0Var.f3002a) && Objects.equals(this.f3003b, g0Var.f3003b)) {
-            if (this.f3004c == null) {
+        if (Objects.equals(this.f3000a, g0Var.f3000a) && Objects.equals(this.f3001b, g0Var.f3001b)) {
+            if (this.f3002c == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (g0Var.f3004c == null) {
+            if (g0Var.f3002c == null) {
                 z11 = true;
             } else {
                 z11 = false;
@@ -57,21 +57,21 @@ public final class g0 {
         int hashCode;
         int hashCode2;
         int i10 = 0;
-        Uri uri = this.f3002a;
+        Uri uri = this.f3000a;
         if (uri == null) {
             hashCode = 0;
         } else {
             hashCode = uri.hashCode();
         }
         int i11 = hashCode * 31;
-        String str = this.f3003b;
+        String str = this.f3001b;
         if (str == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = str.hashCode();
         }
         int i12 = (i11 + hashCode2) * 31;
-        if (this.f3004c != null) {
+        if (this.f3002c != null) {
             i10 = 1;
         }
         return i12 + i10;

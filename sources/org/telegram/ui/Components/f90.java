@@ -1,10 +1,6 @@
 package org.telegram.ui.Components;
 public interface f90 {
-    void a();
+    boolean c();
 
-    void c();
-
-    void h();
-
-    void i();
+    void setLoading(boolean z10);
 }

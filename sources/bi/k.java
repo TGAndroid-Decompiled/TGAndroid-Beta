@@ -3,16 +3,16 @@ package bi;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Cells.u7;
+import org.telegram.ui.Cells.t7;
 import s4.n0;
 import s4.z0;
 public final class k extends n0 {
-    public final int f3573a;
-    public final u f3574b;
+    public final int f3571a;
+    public final u f3572b;
 
     public k(u uVar, int i10) {
-        this.f3573a = i10;
-        this.f3574b = uVar;
+        this.f3571a = i10;
+        this.f3572b = uVar;
     }
 
     @Override
@@ -21,32 +21,32 @@ public final class k extends n0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        switch (this.f3573a) {
+        switch (this.f3571a) {
             case 0:
-                if (view instanceof u7) {
-                    u7 u7Var = (u7) view;
-                    u uVar = this.f3574b;
-                    uVar.f3593f.getClass();
-                    int S = RecyclerView.S(u7Var);
+                if (view instanceof t7) {
+                    t7 t7Var = (t7) view;
+                    u uVar = this.f3572b;
+                    uVar.f3591f.getClass();
+                    int R = RecyclerView.R(t7Var);
                     int i10 = uVar.h.J;
                     boolean z14 = true;
-                    if (S < i10) {
+                    if (R < i10) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    u7Var.f21635a0 = z10;
-                    int i11 = S % i10;
+                    t7Var.f21358a0 = z10;
+                    int i11 = R % i10;
                     if (i11 == 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    u7Var.V = z11;
+                    t7Var.V = z11;
                     if (i11 != i10 - 1) {
                         z14 = false;
                     }
-                    u7Var.W = z14;
+                    t7Var.W = z14;
                     rect.left = 0;
                     rect.top = 0;
                     rect.bottom = 0;
@@ -59,30 +59,30 @@ public final class k extends n0 {
                 rect.right = 0;
                 return;
             default:
-                if (view instanceof u7) {
-                    u7 u7Var2 = (u7) view;
-                    u uVar2 = this.f3574b;
-                    uVar2.f3595r.getClass();
-                    int S2 = RecyclerView.S(u7Var2);
-                    int i12 = uVar2.f3596s.J;
+                if (view instanceof t7) {
+                    t7 t7Var2 = (t7) view;
+                    u uVar2 = this.f3572b;
+                    uVar2.f3593r.getClass();
+                    int R2 = RecyclerView.R(t7Var2);
+                    int i12 = uVar2.f3594s.J;
                     boolean z15 = true;
-                    if (S2 < i12) {
+                    if (R2 < i12) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    u7Var2.f21635a0 = z12;
-                    int i13 = S2 % i12;
+                    t7Var2.f21358a0 = z12;
+                    int i13 = R2 % i12;
                     if (i13 == 0) {
                         z13 = true;
                     } else {
                         z13 = false;
                     }
-                    u7Var2.V = z13;
+                    t7Var2.V = z13;
                     if (i13 != i12 - 1) {
                         z15 = false;
                     }
-                    u7Var2.W = z15;
+                    t7Var2.W = z15;
                     rect.left = 0;
                     rect.top = 0;
                     rect.bottom = 0;

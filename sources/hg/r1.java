@@ -1,75 +1,74 @@
 package hg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.n6;
-import org.telegram.ui.Components.qr;
-public final class r1 extends EditTextBoldCursor {
-    public final g5 f10403b;
-    public int f10404c;
-    public final n6 d;
-    public final f6 e;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.Components.kz;
+import org.telegram.ui.Components.pv0;
+public final class r1 extends pv0 {
+    public final int f10398w0;
 
-    public r1(Context context, f6 f6Var) {
-        super(context);
-        this.e = f6Var;
-        this.f10403b = new g5(this);
-        n6 n6Var = new n6(false, true, true, false);
-        this.d = n6Var;
-        n6Var.k(0.2f, 160L, qr.h);
-        n6Var.t(AndroidUtilities.dp(15.33f));
-        n6Var.setCallback(this);
-        n6Var.f26643b = 5;
+    public r1(Context context, d5 d5Var, int i10) {
+        super(context, d5Var);
+        this.f10398w0 = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f10404c < 0) {
-            i10 = j6.f19330p7;
-        } else {
-            i10 = j6.P5;
-        }
-        int a2 = this.f10403b.a(j6.v0(i10, this.e), false);
-        n6 n6Var = this.d;
-        n6Var.r(a2);
-        n6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        n6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        n6 n6Var = this.d;
-        if (n6Var != null) {
-            this.f10404c = 32 - charSequence.length();
-            n6Var.b();
-            String str = "";
-            if (this.f10404c <= 4) {
-                str = "" + this.f10404c;
-            }
-            n6Var.q(str, true, true);
+    public boolean P() {
+        switch (this.f10398w0) {
+            case 2:
+                return false;
+            case 3:
+                return false;
+            case 4:
+            default:
+                return super.P();
+            case 5:
+                return false;
         }
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
+    public void addView(View view) {
+        switch (this.f10398w0) {
+            case 4:
+                if (view instanceof kz) {
+                    ViewGroup.LayoutParams layoutParams = ((kz) view).getLayoutParams();
+                    if (layoutParams == null) {
+                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
+                    }
+                    if (layoutParams instanceof FrameLayout.LayoutParams) {
+                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
+                    }
+                    view.setLayoutParams(layoutParams);
+                }
+                super.addView(view);
+                return;
+            default:
+                super.addView(view);
+                return;
         }
-        return true;
+    }
+
+    @Override
+    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: hg.r1.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f10398w0) {
+            case 0:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

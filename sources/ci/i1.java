@@ -5,43 +5,24 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.z81;
+import org.telegram.ui.Components.i81;
 import org.telegram.ui.a41;
+import org.telegram.ui.aq0;
 import org.telegram.ui.b41;
-import org.telegram.ui.bb1;
+import org.telegram.ui.bo;
 import org.telegram.ui.c41;
-import org.telegram.ui.cq0;
-import org.telegram.ui.me1;
+import org.telegram.ui.le1;
 import org.telegram.ui.mw0;
-import org.telegram.ui.wp0;
-import org.telegram.ui.zn;
-public final class i1 extends z81 {
-    public final int U;
-    public final Object V;
+import org.telegram.ui.up0;
+import org.telegram.ui.za1;
+public final class i1 extends i81 {
+    public final int T;
+    public final Object U;
 
     public i1(Object obj, Context context, int i10) {
         super(context, null);
-        this.U = i10;
-        this.V = obj;
-    }
-
-    @Override
-    public void A(int i10) {
-        switch (this.U) {
-            case 3:
-                if (i10 == 0) {
-                    zn znVar = (zn) this.V;
-                    if (znVar.f40488s1) {
-                        znVar.f40488s1 = false;
-                        znVar.f40461q1.h.clear();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+        this.T = i10;
+        this.U = obj;
     }
 
     @Override
@@ -51,7 +32,7 @@ public final class i1 extends z81 {
 
     @Override
     public boolean j(MotionEvent motionEvent) {
-        switch (this.U) {
+        switch (this.T) {
             case 2:
                 if (getCurrentPosition() != 2) {
                     return true;
@@ -64,7 +45,7 @@ public final class i1 extends z81 {
 
     @Override
     public boolean k(MotionEvent motionEvent) {
-        switch (this.U) {
+        switch (this.T) {
             case 2:
                 return false;
             case 6:
@@ -76,10 +57,10 @@ public final class i1 extends z81 {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.U) {
+        switch (this.T) {
             case 7:
                 super.onLayout(z10, i10, i11, i12, i13);
-                bb1.Y((bb1) this.V);
+                za1.Y((za1) this.U);
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -89,7 +70,7 @@ public final class i1 extends z81 {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.U) {
+        switch (this.T) {
             case 3:
                 return false;
             default:
@@ -99,9 +80,9 @@ public final class i1 extends z81 {
 
     @Override
     public void t(View view, View view2, int i10, int i11) {
-        switch (this.U) {
+        switch (this.T) {
             case 1:
-                ia iaVar = (ia) this.V;
+                ia iaVar = (ia) this.U;
                 if (ia.d0(iaVar)) {
                     iaVar.f1();
                     return;
@@ -114,18 +95,18 @@ public final class i1 extends z81 {
 
     @Override
     public void u() {
-        switch (this.U) {
+        switch (this.T) {
             case 2:
                 if (getCurrentPosition() == 1) {
-                    ((fi.k0) this.V).v.d.Y2.N(false);
+                    ((fi.k0) this.U).v.d.Y2.N(false);
                     return;
                 }
                 return;
             case 7:
-                bb1 bb1Var = (bb1) this.V;
-                bb1Var.m0(bb1Var.f32343i0.getCurrentPosition(), true);
-                bb1Var.n0(0.0f, false);
-                bb1.W(bb1Var);
+                za1 za1Var = (za1) this.U;
+                za1Var.m0(za1Var.f40120i0.getCurrentPosition(), true);
+                za1Var.n0(0.0f, false);
+                za1.W(za1Var);
                 return;
             default:
                 return;
@@ -135,9 +116,9 @@ public final class i1 extends z81 {
     @Override
     public void v() {
         a41 a41Var;
-        switch (this.U) {
+        switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof b41) && (a41Var = ((b41) getCurrentView()).f32273n) != null) {
+                if ((getCurrentView() instanceof b41) && (a41Var = ((b41) getCurrentView()).f32034n) != null) {
                     AndroidUtilities.hideKeyboard(a41Var);
                     return;
                 }
@@ -149,10 +130,10 @@ public final class i1 extends z81 {
 
     @Override
     public final void w(boolean z10) {
-        switch (this.U) {
+        switch (this.T) {
             case 0:
-                t2 t2Var = (t2) this.V;
-                i1 i1Var = t2Var.f5548f;
+                t2 t2Var = (t2) this.U;
+                i1 i1Var = t2Var.f5546f;
                 s2 s2Var = t2Var.h;
                 if (s2Var != null) {
                     s2Var.F = i1Var.getPositionAnimated();
@@ -163,59 +144,78 @@ public final class i1 extends z81 {
                 t2.G = i1Var.getCurrentPosition();
                 return;
             case 1:
-                ia.c0((ia) this.V).invalidate();
+                ia.c0((ia) this.U).invalidate();
                 return;
             case 2:
-                fi.k0.s((fi.k0) this.V).invalidate();
+                fi.k0.s((fi.k0) this.U).invalidate();
                 return;
             case 3:
-                zn znVar = (zn) this.V;
-                znVar.X0.getClass();
-                znVar.X0.getClass();
-                znVar.l7();
-                znVar.q9(1);
+                bo boVar = (bo) this.U;
+                boVar.X0.getClass();
+                boVar.X0.getClass();
+                boVar.l7();
+                boVar.q9(1);
                 return;
             case 4:
-                cq0 cq0Var = (cq0) this.V;
-                float positionAnimated = cq0Var.I.getPositionAnimated();
-                cq0Var.M.setSelected(positionAnimated);
-                cq0Var.e.setProgressToGradient(1.0f - w7.q.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
-                cq0Var.G0();
-                wp0 C0 = cq0Var.C0();
-                d dVar = cq0Var.Q;
-                if (dVar != null && C0 != null && C0 != cq0Var.R) {
-                    cq0Var.R = C0;
-                    org.telegram.ui.Cells.f3 f3Var = C0.e;
-                    dVar.g((CharSequence) f3Var.f20284b, true, true);
-                    cq0Var.Q.f((SpannableStringBuilder) f3Var.f20285c, true);
+                aq0 aq0Var = (aq0) this.U;
+                float positionAnimated = aq0Var.I.getPositionAnimated();
+                aq0Var.M.setSelected(positionAnimated);
+                aq0Var.e.setProgressToGradient(1.0f - w7.p.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                aq0Var.G0();
+                up0 C0 = aq0Var.C0();
+                d dVar = aq0Var.Q;
+                if (dVar != null && C0 != null && C0 != aq0Var.R) {
+                    aq0Var.R = C0;
+                    n7.a1 a1Var = C0.e;
+                    dVar.g((CharSequence) a1Var.f15106b, true, true);
+                    aq0Var.Q.f((SpannableStringBuilder) a1Var.f15107c, true);
                 }
-                cq0Var.D0(1);
+                aq0Var.D0(1);
                 return;
             case 5:
-                ((mw0) this.V).e();
+                ((mw0) this.U).e();
                 return;
             case 6:
-                c41.o((c41) this.V).invalidate();
+                c41.o((c41) this.U).invalidate();
                 return;
             case 7:
-                bb1 bb1Var = (bb1) this.V;
-                float positionAnimated2 = bb1Var.f32343i0.getPositionAnimated();
-                bb1Var.n0(positionAnimated2, !z10);
+                za1 za1Var = (za1) this.U;
+                float positionAnimated2 = za1Var.f40120i0.getPositionAnimated();
+                za1Var.n0(positionAnimated2, !z10);
                 if (!z10) {
-                    bb1Var.m0(Math.round(positionAnimated2), true);
+                    za1Var.m0(Math.round(positionAnimated2), true);
                 }
-                bb1.W(bb1Var);
-                bb1.Y(bb1Var);
+                za1.W(za1Var);
+                za1.Y(za1Var);
                 return;
             default:
-                ((me1) this.V).e();
+                ((le1) this.U).e();
                 return;
         }
     }
 
-    public i1(Context context, org.telegram.ui.ActionBar.f6 f6Var, zn znVar) {
-        super(context, f6Var);
-        this.U = 3;
-        this.V = znVar;
+    @Override
+    public void z(int i10) {
+        switch (this.T) {
+            case 3:
+                if (i10 == 0) {
+                    bo boVar = (bo) this.U;
+                    if (boVar.f32456s1) {
+                        boVar.f32456s1 = false;
+                        boVar.f32429q1.h.clear();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    public i1(Context context, org.telegram.ui.ActionBar.e6 e6Var, bo boVar) {
+        super(context, e6Var);
+        this.T = 3;
+        this.U = boVar;
     }
 }

@@ -7,24 +7,24 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jx0;
+import org.telegram.ui.Components.ww0;
 public final class s9 implements Utilities.Callback {
-    public final int f5520a;
-    public final long f5521b;
-    public final Object f5522c;
+    public final int f5518a;
+    public final long f5519b;
+    public final Object f5520c;
 
     public s9(Object obj, long j3, int i10) {
-        this.f5520a = i10;
-        this.f5522c = obj;
-        this.f5521b = j3;
+        this.f5518a = i10;
+        this.f5520c = obj;
+        this.f5519b = j3;
     }
 
     @Override
     public final void run(Object obj) {
         long j3;
-        switch (this.f5520a) {
+        switch (this.f5518a) {
             case 0:
-                ba baVar = (ba) this.f5522c;
+                ba baVar = (ba) this.f5520c;
                 TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) obj;
                 org.telegram.ui.ActionBar.b2 b2Var = baVar.G;
                 if (b2Var != null) {
@@ -47,23 +47,23 @@ public final class s9 implements Utilities.Callback {
                         tL_chatParticipant.user_id = j3;
                         tL_chatParticipants.participants.add(tL_chatParticipant);
                     }
-                    baVar.d(this.f5521b, tL_chatParticipants);
+                    baVar.d(this.f5519b, tL_chatParticipants);
                     return;
                 }
                 return;
             case 1:
-                ResultCallback resultCallback = (ResultCallback) this.f5522c;
+                ResultCallback resultCallback = (ResultCallback) this.f5520c;
                 dg.a aVar = (dg.a) obj;
                 if (resultCallback != null) {
-                    resultCallback.onComplete(new Pair(Long.valueOf(this.f5521b), aVar));
+                    resultCallback.onComplete(new Pair(Long.valueOf(this.f5519b), aVar));
                     return;
                 }
                 return;
             default:
-                jx0 jx0Var = (jx0) this.f5522c;
+                ww0 ww0Var = (ww0) this.f5520c;
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
                 if (tL_messages_emojiGroups != null) {
-                    NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new a3.h0(jx0Var, tL_messages_emojiGroups, this.f5521b, 23));
+                    NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new a3.h0(ww0Var, tL_messages_emojiGroups, this.f5519b, 23));
                     return;
                 }
                 return;

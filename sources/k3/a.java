@@ -12,7 +12,6 @@ import c3.t;
 import e9.a1;
 import e9.g0;
 import e9.i0;
-import hg.k0;
 import java.util.List;
 public final class a implements o {
     public final int f13401a = 0;
@@ -51,12 +50,12 @@ public final class a implements o {
             default:
                 h0 Z1 = qVar.Z1(0, 3);
                 qVar.X1(new t(-9223372036854775807L));
-                qVar.f1();
+                qVar.e1();
                 s sVar = (s) this.f13402b;
                 r a2 = sVar.a();
-                a2.f3252q = r0.n("text/x-unknown");
-                a2.f3245j = sVar.f3308r;
-                k0.s(a2, Z1);
+                a2.f3250q = r0.n("text/x-unknown");
+                a2.f3243j = sVar.f3306r;
+                hg.c.u(a2, Z1);
                 return;
         }
     }
@@ -77,7 +76,7 @@ public final class a implements o {
         switch (this.f13401a) {
             case 0:
             default:
-                g0 g0Var = i0.f8083b;
+                g0 g0Var = i0.f8081b;
                 return a1.e;
         }
     }

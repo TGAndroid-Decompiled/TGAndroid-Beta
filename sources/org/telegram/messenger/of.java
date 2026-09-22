@@ -1,29 +1,29 @@
 package org.telegram.messenger;
 public final class of implements Runnable {
-    public final int f17195a;
-    public final MessagesStorage f17196b;
-    public final a0.i f17197c;
+    public final int f16953a;
+    public final MessagesStorage f16954b;
+    public final a0.i f16955c;
 
     public of(MessagesStorage messagesStorage, a0.i iVar, int i10) {
-        this.f17195a = i10;
-        this.f17196b = messagesStorage;
-        this.f17197c = iVar;
+        this.f16953a = i10;
+        this.f16954b = messagesStorage;
+        this.f16955c = iVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f17195a) {
+        switch (this.f16953a) {
             case 0:
-                this.f17196b.lambda$getDialogs$239(this.f17197c);
+                this.f16954b.lambda$getDialogs$239(this.f16955c);
                 return;
             case 1:
-                this.f17196b.lambda$markMessagesAsDeletedInternal$225(this.f17197c);
+                this.f16954b.lambda$markMessagesAsDeletedInternal$225(this.f16955c);
                 return;
             case 2:
-                this.f17196b.lambda$putWebPages$188(this.f17197c);
+                this.f16954b.lambda$putWebPages$188(this.f16955c);
                 return;
             default:
-                this.f17196b.lambda$deleteEphemeralMessages$205(this.f17197c);
+                this.f16954b.lambda$deleteEphemeralMessages$205(this.f16955c);
                 return;
         }
     }

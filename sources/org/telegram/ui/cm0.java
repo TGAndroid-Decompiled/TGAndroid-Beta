@@ -1,84 +1,32 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class cm0 implements org.telegram.ui.ActionBar.a2, au, dn0 {
-    public final int f32810a;
-    public final pn0 f32811b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class cm0 implements RequestDelegate {
+    public final int f32836a;
+    public final on0 f32837b;
 
-    public cm0(pn0 pn0Var, int i10) {
-        this.f32810a = i10;
-        this.f32811b = pn0Var;
+    public cm0(on0 on0Var, int i10) {
+        this.f32836a = i10;
+        this.f32837b = on0Var;
     }
 
     @Override
-    public void Z0(vt vtVar) {
-        String str;
-        switch (this.f32810a) {
-            case 2:
-                pn0 pn0Var = this.f32811b;
-                pn0Var.Y[5].setText(vtVar.f38618a);
-                pn0Var.f36664s = vtVar.d;
-                return;
-            default:
-                pn0 pn0Var2 = this.f32811b;
-                pn0Var2.Y[0].setText(vtVar.f38618a);
-                if (pn0Var2.U0.indexOf(vtVar.f38618a) != -1) {
-                    pn0Var2.Z0 = true;
-                    String str2 = (String) pn0Var2.V0.get(vtVar.f38618a);
-                    pn0Var2.Y[1].setText(str2);
-                    String str3 = (String) pn0Var2.X0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = pn0Var2.Y[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
-                    }
-                    editTextBoldCursor.setHintText(str);
-                    pn0Var2.Z0 = false;
-                }
-                AndroidUtilities.runOnUIThread(new zl0(pn0Var2, 3), 300L);
-                pn0Var2.Y[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = pn0Var2.Y[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
-        }
-    }
-
-    @Override
-    public void b(String str, String str2) {
-        this.f32811b.x1();
-    }
-
-    @Override
-    public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f32810a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f32836a) {
             case 0:
-                pn0 pn0Var = this.f32811b;
-                pn0Var.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    pn0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new pf0(this.f32837b, tL_error, tLObject, 10));
+                return;
             case 1:
-                this.f32811b.finishFragment();
+                AndroidUtilities.runOnUIThread(new ml0(4, this.f32837b, tL_error));
                 return;
             case 2:
-            case 3:
-            default:
-                pn0.a0(this.f32811b);
+                AndroidUtilities.runOnUIThread(new xl0(this.f32837b, 5));
                 return;
-            case 4:
-                pn0.d0(this.f32811b);
+            default:
+                AndroidUtilities.runOnUIThread(new ml0(3, this.f32837b, tLObject));
                 return;
         }
     }

@@ -5,24 +5,24 @@ import android.os.Parcelable;
 import android.util.Log;
 public final class e extends o6.a {
     public static final Parcelable.Creator<e> CREATOR = new c(1);
-    public final f f46686a;
-    public final int f46687b;
-    public final int f46688c;
+    public final f f46359a;
+    public final int f46360b;
+    public final int f46361c;
     public final int d;
 
     public e(f fVar, int i10, int i11, int i12) {
-        this.f46686a = fVar;
-        this.f46687b = i10;
-        this.f46688c = i11;
+        this.f46359a = fVar;
+        this.f46360b = i10;
+        this.f46361c = i11;
         this.d = i12;
     }
 
     public final void b(x8.c cVar) {
-        f fVar = this.f46686a;
-        int i10 = this.f46687b;
+        f fVar = this.f46359a;
+        int i10 = this.f46360b;
         if (i10 != 1) {
             int i11 = this.d;
-            int i12 = this.f46688c;
+            int i12 = this.f46361c;
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
@@ -44,8 +44,8 @@ public final class e extends o6.a {
     public final String toString() {
         String str;
         String str2;
-        String valueOf = String.valueOf(this.f46686a);
-        int i10 = this.f46687b;
+        String valueOf = String.valueOf(this.f46359a);
+        int i10 = this.f46360b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -63,7 +63,7 @@ public final class e extends o6.a {
         } else {
             str = "CHANNEL_OPENED";
         }
-        int i11 = this.f46688c;
+        int i11 = this.f46361c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -81,24 +81,24 @@ public final class e extends o6.a {
         } else {
             str2 = "CLOSE_REASON_NORMAL";
         }
-        StringBuilder w10 = a4.a.w("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
-        w10.append(str2);
-        w10.append(", appErrorCode=");
-        w10.append(this.d);
-        w10.append("]");
-        return w10.toString();
+        StringBuilder x10 = a4.a.x("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
+        x10.append(str2);
+        x10.append(", appErrorCode=");
+        x10.append(this.d);
+        x10.append("]");
+        return x10.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.k(parcel, 2, this.f46686a, i10);
-        w7.f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f46687b);
-        w7.f0.s(parcel, 4, 4);
-        parcel.writeInt(this.f46688c);
-        w7.f0.s(parcel, 5, 4);
+        int q6 = w7.e0.q(parcel, 20293);
+        w7.e0.k(parcel, 2, this.f46359a, i10);
+        w7.e0.s(parcel, 3, 4);
+        parcel.writeInt(this.f46360b);
+        w7.e0.s(parcel, 4, 4);
+        parcel.writeInt(this.f46361c);
+        w7.e0.s(parcel, 5, 4);
         parcel.writeInt(this.d);
-        w7.f0.r(parcel, q6);
+        w7.e0.r(parcel, q6);
     }
 }

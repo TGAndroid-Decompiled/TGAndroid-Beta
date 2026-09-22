@@ -1,17 +1,27 @@
 package org.telegram.ui.Cells;
 
-import android.view.ViewGroup;
+import android.content.Context;
+import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.RadialProgressView;
 public final class s4 extends FrameLayout {
-    public TextView f21071a;
+    public final int f20942a;
 
-    public void setCellHeight(int i10) {
-        setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(54.0f), i10));
+    public s4(Context context) {
+        this(context, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(54.0f));
     }
 
-    public void setLetter(String str) {
-        this.f21071a.setText(str.toUpperCase());
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f20942a, 1073741824));
+    }
+
+    public s4(Context context, int i10, int i11) {
+        super(context);
+        this.f20942a = i11;
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        radialProgressView.setSize(i10);
+        addView(radialProgressView, w7.x5.e(-2, -2, 17));
     }
 }

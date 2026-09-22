@@ -1,4 +1,4 @@
 package ci;
 public final class x extends ad {
-    public int f5727s;
+    public int f5725s;
 }

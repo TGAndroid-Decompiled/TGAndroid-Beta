@@ -14,62 +14,62 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a0 implements Runnable {
-    public final int f15863a;
-    public final Object f15864b;
-    public final Object f15865c;
+    public final int f15627a;
+    public final Object f15628b;
+    public final Object f15629c;
     public final Object d;
     public final Object e;
-    public final Object f15866f;
+    public final Object f15630f;
     public final Object h;
 
     public a0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f15863a = i10;
-        this.f15864b = obj;
-        this.f15865c = obj2;
+        this.f15627a = i10;
+        this.f15628b = obj;
+        this.f15629c = obj2;
         this.d = obj3;
         this.e = obj4;
-        this.f15866f = obj5;
+        this.f15630f = obj5;
         this.h = obj6;
     }
 
     @Override
     public final void run() {
-        switch (this.f15863a) {
+        switch (this.f15627a) {
             case 0:
-                ((BillingController) this.f15864b).lambda$launchBillingFlow$1((Activity) this.f15865c, (AccountInstance) this.d, (TLRPC.InputStorePaymentPurpose) this.e, (List) this.f15866f, (c5.f) this.h);
+                ((BillingController) this.f15628b).lambda$launchBillingFlow$1((Activity) this.f15629c, (AccountInstance) this.d, (TLRPC.InputStorePaymentPurpose) this.e, (List) this.f15630f, (c5.f) this.h);
                 return;
             case 1:
-                LocationController.lambda$fetchLocationAddress$28((LocationController.LocationFetchCallback) this.f15864b, (String) this.f15865c, (String) this.d, (TLRPC.TL_messageMediaVenue) this.e, (TLRPC.TL_messageMediaVenue) this.f15866f, (Location) this.h);
+                LocationController.lambda$fetchLocationAddress$28((LocationController.LocationFetchCallback) this.f15628b, (String) this.f15629c, (String) this.d, (TLRPC.TL_messageMediaVenue) this.e, (TLRPC.TL_messageMediaVenue) this.f15630f, (Location) this.h);
                 return;
             case 2:
-                MediaController.lambda$saveFile$55((File) this.f15864b, (File) this.f15865c, (boolean[]) this.d, (Utilities.Callback) this.e, (org.telegram.ui.ActionBar.b2) this.f15866f, (boolean[]) this.h);
+                MediaController.lambda$saveFile$55((File) this.f15628b, (File) this.f15629c, (boolean[]) this.d, (Utilities.Callback) this.e, (org.telegram.ui.ActionBar.b2) this.f15630f, (boolean[]) this.h);
                 return;
             case 3:
-                ((MessagesController) this.f15864b).lambda$didReceivedNotification$44((TLRPC.WallPaper) this.f15865c, (TLRPC.TL_wallPaperSettings) this.d, (org.telegram.ui.ActionBar.b6) this.e, (File) this.f15866f, (String) this.h);
+                ((MessagesController) this.f15628b).lambda$didReceivedNotification$44((TLRPC.WallPaper) this.f15629c, (TLRPC.TL_wallPaperSettings) this.d, (org.telegram.ui.ActionBar.b6) this.e, (File) this.f15630f, (String) this.h);
                 return;
             case 4:
-                ((MessagesController) this.f15864b).lambda$checkCanOpenChat$451((org.telegram.ui.ActionBar.b2) this.f15865c, (nf.e) this.d, (TLObject) this.e, (org.telegram.ui.ActionBar.n2) this.f15866f, (Bundle) this.h);
+                ((MessagesController) this.f15628b).lambda$checkCanOpenChat$451((org.telegram.ui.ActionBar.b2) this.f15629c, (nf.e) this.d, (TLObject) this.e, (org.telegram.ui.ActionBar.n2) this.f15630f, (Bundle) this.h);
                 return;
             case 5:
-                ((SavedMessagesController) this.f15864b).lambda$loadCache$6((ArrayList) this.f15865c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f15866f, (Runnable) this.h);
+                ((SavedMessagesController) this.f15628b).lambda$loadCache$6((ArrayList) this.f15629c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f15630f, (Runnable) this.h);
                 return;
             case 6:
-                ((SavedMessagesController) this.f15864b).lambda$updateDialogsLastMessage$8((ArrayList) this.f15865c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f15866f, (a0.i) this.h);
+                ((SavedMessagesController) this.f15628b).lambda$updateDialogsLastMessage$8((ArrayList) this.f15629c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f15630f, (a0.i) this.h);
                 return;
             case 7:
-                ((SecretChatHelper) this.f15864b).lambda$startSecretChat$26((Context) this.f15865c, (org.telegram.ui.ActionBar.b2) this.d, (TLObject) this.e, (byte[]) this.f15866f, (TLRPC.User) this.h);
+                ((SecretChatHelper) this.f15628b).lambda$startSecretChat$26((Context) this.f15629c, (org.telegram.ui.ActionBar.b2) this.d, (TLObject) this.e, (byte[]) this.f15630f, (TLRPC.User) this.h);
                 return;
             case 8:
-                ((SendMessagesHelper) this.f15864b).lambda$processUnsentMessages$104((ArrayList) this.f15865c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f15866f, (ArrayList) this.h);
+                ((SendMessagesHelper) this.f15628b).lambda$processUnsentMessages$104((ArrayList) this.f15629c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f15630f, (ArrayList) this.h);
                 return;
             case 9:
-                ((SendMessagesHelper) this.f15864b).lambda$performSendDelayedMessage$55((TLObject) this.f15865c, (TLRPC.InputMedia) this.d, (SendMessagesHelper.DelayedMessage) this.e, (String) this.f15866f, (MessageObject) this.h);
+                ((SendMessagesHelper) this.f15628b).lambda$performSendDelayedMessage$55((TLObject) this.f15629c, (TLRPC.InputMedia) this.d, (SendMessagesHelper.DelayedMessage) this.e, (String) this.f15630f, (MessageObject) this.h);
                 return;
             case 10:
-                ((SendMessagesHelper) this.f15864b).lambda$prepareImportStickers$113((String) this.f15865c, (String) this.d, (String) this.e, (ArrayList) this.f15866f, (MessagesStorage.StringCallback) this.h);
+                ((SendMessagesHelper) this.f15628b).lambda$prepareImportStickers$113((String) this.f15629c, (String) this.d, (String) this.e, (ArrayList) this.f15630f, (MessagesStorage.StringCallback) this.h);
                 return;
             default:
-                ((SendMessagesHelper) this.f15864b).lambda$didReceivedNotification$1((TLRPC.TL_photo) this.f15865c, (MessageObject) this.d, (File) this.e, (SendMessagesHelper.DelayedMessage) this.f15866f, (String) this.h);
+                ((SendMessagesHelper) this.f15628b).lambda$didReceivedNotification$1((TLRPC.TL_photo) this.f15629c, (MessageObject) this.d, (File) this.e, (SendMessagesHelper.DelayedMessage) this.f15630f, (String) this.h);
                 return;
         }
     }

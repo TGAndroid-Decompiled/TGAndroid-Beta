@@ -6,30 +6,30 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 public final class x extends Handler {
-    public boolean f14949a;
-    public boolean f14950b;
-    public final a0 f14951c;
+    public boolean f14712a;
+    public boolean f14713b;
+    public final a0 f14714c;
 
     public x(a0 a0Var, Looper looper) {
         super(looper);
-        this.f14951c = a0Var;
-        this.f14949a = true;
-        this.f14950b = true;
+        this.f14714c = a0Var;
+        this.f14712a = true;
+        this.f14713b = true;
     }
 
     public final void a(boolean z10, boolean z11) {
         boolean z12;
         boolean z13 = false;
-        if (this.f14949a && z10) {
+        if (this.f14712a && z10) {
             z12 = true;
         } else {
             z12 = false;
         }
-        this.f14949a = z12;
-        if (this.f14950b && z11) {
+        this.f14712a = z12;
+        if (this.f14713b && z11) {
             z13 = true;
         }
-        this.f14950b = z13;
+        this.f14713b = z13;
         if (!hasMessages(1)) {
             sendEmptyMessage(1);
         }
@@ -39,16 +39,16 @@ public final class x extends Handler {
     public final void handleMessage(Message message) {
         r rVar;
         int i10;
-        h1 h1Var;
-        a0 a0Var = this.f14951c;
-        f1 f1Var = a0Var.f14690g;
+        i1 i1Var;
+        a0 a0Var = this.f14714c;
+        g1 g1Var = a0Var.f14452g;
         if (message.what == 1) {
-            h1 c10 = a0Var.f14701s.c(a0Var.f14702t.Q0(), a0Var.f14702t.O0(), a0Var.f14701s.f14794k);
-            a0Var.f14701s = c10;
-            boolean z10 = this.f14949a;
-            boolean z11 = this.f14950b;
-            h1 H0 = f1Var.H0(c10);
-            oi.f fVar = f1Var.f14747b;
+            i1 c10 = a0Var.f14463s.c(a0Var.f14464t.Q0(), a0Var.f14464t.O0(), a0Var.f14463s.f14562k);
+            a0Var.f14463s = c10;
+            boolean z10 = this.f14712a;
+            boolean z11 = this.f14713b;
+            i1 H0 = g1Var.H0(c10);
+            ni.f fVar = g1Var.f14536b;
             e9.i0 s10 = fVar.s();
             for (int i11 = 0; i11 < s10.size(); i11++) {
                 r rVar2 = (r) s10.get(i11);
@@ -61,24 +61,24 @@ public final class x extends Handler {
                     } else {
                         i10 = 0;
                     }
-                    h1 w10 = fVar.w(rVar2);
+                    i1 w10 = fVar.w(rVar2);
                     if (w10 == null) {
                         fVar.v(rVar2);
-                        b2.x0 a2 = w7.u.a(fVar.r(rVar2), a0Var.f14702t.t());
+                        b2.x0 a2 = w7.t.a(fVar.r(rVar2), a0Var.f14464t.t());
                         try {
                             q qVar = rVar2.d;
                             e2.d.h(qVar);
                             if (w10 == null) {
                                 rVar = rVar2;
-                                h1Var = H0;
+                                i1Var = H0;
                             } else {
                                 rVar = rVar2;
-                                h1Var = w10;
+                                i1Var = w10;
                             }
                             try {
-                                qVar.g(i10, h1Var, a2, z10, z11);
+                                qVar.g(i10, i1Var, a2, z10, z11);
                             } catch (DeadObjectException unused) {
-                                f1Var.f14747b.M(rVar);
+                                g1Var.f14536b.M(rVar);
                             } catch (RemoteException e) {
                                 e = e;
                                 e2.a.o("MediaSessionImpl", "Exception in " + rVar, e);
@@ -97,8 +97,8 @@ public final class x extends Handler {
                     rVar = rVar2;
                 }
             }
-            this.f14949a = true;
-            this.f14950b = true;
+            this.f14712a = true;
+            this.f14713b = true;
             return;
         }
         throw new IllegalStateException("Invalid message what=" + message.what);

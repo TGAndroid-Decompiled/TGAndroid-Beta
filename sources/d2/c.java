@@ -2,21 +2,22 @@ package d2;
 
 import android.content.pm.ShortcutManager;
 import android.window.OnBackInvokedDispatcher;
+import com.google.firebase.datatransport.TransportRegistrar;
 import ei.k3;
 import ei.k4;
 import ei.p4;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.tv0;
-import org.telegram.ui.Components.uv0;
-import org.telegram.ui.Components.vv0;
-public final class c implements d9.e, dh.d, tv0, uv0, GenericProvider {
-    public final int f7448a;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.gv0;
+import org.telegram.ui.Components.hv0;
+import org.telegram.ui.Components.iv0;
+public final class c implements d9.e, dh.d, gv0, hv0, GenericProvider, q9.d {
+    public final int f7447a;
 
     public c(int i10) {
-        this.f7448a = i10;
+        this.f7447a = i10;
     }
 
     public static ShortcutManager a(Object obj) {
@@ -32,33 +33,40 @@ public final class c implements d9.e, dh.d, tv0, uv0, GenericProvider {
     }
 
     @Override
+    public Object G(cf.c cVar) {
+        i5.f lambda$getComponents$0;
+        lambda$getComponents$0 = TransportRegistrar.lambda$getComponents$0(cVar);
+        return lambda$getComponents$0;
+    }
+
+    @Override
     public Object apply(Object obj) {
-        return Integer.valueOf(((b) obj).f7447r);
+        return Integer.valueOf(((b) obj).f7446r);
     }
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f7448a) {
-            case 18:
+        switch (this.f7447a) {
+            case 17:
                 k3 k3Var = (k3) obj;
-                k3Var.f8427b = f7;
+                k3Var.f8425b = f7;
                 k3Var.e.invalidate();
                 k3Var.W.setAlpha(f7);
                 k3Var.E();
                 k3Var.C();
                 return;
-            case 19:
+            case 18:
             default:
                 ((p4) obj).setSwipeOffsetY(f7);
                 return;
-            case 20:
+            case 19:
                 ((k4) obj).setLoadProgress(f7);
                 return;
         }
     }
 
     @Override
-    public int f(f6 f6Var, boolean z10) {
+    public int g(e6 e6Var, boolean z10) {
         float f7;
         float f10;
         float f11;
@@ -67,111 +75,103 @@ public final class c implements d9.e, dh.d, tv0, uv0, GenericProvider {
         float f14;
         float f15;
         float f16;
-        float f17;
-        switch (this.f7448a) {
+        switch (this.f7447a) {
             case 1:
                 if (LiteMode.isEnabled(262144)) {
                     f7 = 0.85f;
                 } else {
                     f7 = 0.76f;
                 }
-                return eh.b.n(f7, j6.v0(j6.f19109d6, f6Var), j6.v0(j6.Sd, f6Var));
+                return eh.b.m(f7, i6.v0(i6.f18834d6, e6Var), i6.v0(i6.Sd, e6Var));
             case 2:
                 if (!LiteMode.isEnabled(256)) {
-                    return j6.w0(null, j6.G8, false);
+                    return i6.w0(null, i6.G8, false);
                 }
-                int w02 = j6.w0(null, j6.G8, false);
+                int w02 = i6.w0(null, i6.G8, false);
                 if (z10) {
                     f10 = 0.85f;
                 } else {
                     f10 = 0.825f;
                 }
-                return j6.l1(f10, w02);
+                return i6.l1(f10, w02);
             case 3:
                 if (LiteMode.isEnabled(262144)) {
                     f11 = 0.85f;
                 } else {
                     f11 = 0.76f;
                 }
-                return eh.b.n(f11, j6.v0(j6.f19109d6, f6Var), j6.v0(j6.Zk, f6Var));
+                return eh.b.m(f11, i6.v0(i6.f18834d6, e6Var), i6.v0(i6.Zk, e6Var));
             case 4:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
                 } else {
                     f12 = 0.76f;
                 }
-                return j6.l1(f12, j6.v0(j6.Fi, f6Var));
+                return i6.l1(f12, i6.v0(i6.Fi, e6Var));
             case 5:
                 return 855638016;
             case 6:
-                if (LiteMode.isEnabled(262144)) {
+                return 1073741824;
+            case 7:
+                return i6.l1(0.075f, -16777216);
+            case 8:
+                return i6.l1(0.88f, i6.v0(i6.f18834d6, e6Var));
+            case 9:
+                int w03 = i6.w0(null, i6.G8, false);
+                if (z10) {
                     f13 = 0.85f;
                 } else {
-                    f13 = 0.8f;
+                    f13 = 0.825f;
                 }
-                return eh.b.n(f13, j6.v0(j6.f19053a7, f6Var), j6.v0(j6.f19109d6, f6Var));
-            case 7:
-                return 1073741824;
-            case 8:
-                return j6.l1(0.075f, -16777216);
-            case 9:
-                return j6.l1(0.88f, j6.v0(j6.f19109d6, f6Var));
+                return i6.l1(f13, w03);
             case 10:
-                int w03 = j6.w0(null, j6.G8, false);
-                if (z10) {
+                if (LiteMode.isEnabled(262144)) {
                     f14 = 0.85f;
                 } else {
-                    f14 = 0.825f;
+                    f14 = 0.76f;
                 }
-                return j6.l1(f14, w03);
+                return eh.b.m(f14, i6.v0(i6.f18834d6, e6Var), i6.v0(i6.Yk, e6Var));
             case 11:
                 if (LiteMode.isEnabled(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.76f;
                 }
-                return eh.b.n(f15, j6.v0(j6.f19109d6, f6Var), j6.v0(j6.Yk, f6Var));
+                return i6.l1(f15, i6.v0(i6.f18834d6, e6Var));
             case 12:
+                return i6.l1(0.78f, i6.v0(i6.f18904h5, e6Var));
+            case 13:
+                return i6.l1(0.7f, i6.v0(i6.f18834d6, e6Var));
+            case 14:
+                LiteMode.isEnabled(262144);
+                return 0;
+            default:
                 if (LiteMode.isEnabled(262144)) {
                     f16 = 0.85f;
                 } else {
                     f16 = 0.76f;
                 }
-                return j6.l1(f16, j6.v0(j6.f19109d6, f6Var));
-            case 13:
-                return j6.l1(0.78f, j6.v0(j6.f19180h5, f6Var));
-            case 14:
-                return j6.l1(0.7f, j6.v0(j6.f19109d6, f6Var));
-            case 15:
-                LiteMode.isEnabled(262144);
-                return 0;
-            default:
-                if (LiteMode.isEnabled(262144)) {
-                    f17 = 0.85f;
-                } else {
-                    f17 = 0.76f;
-                }
-                return j6.l1(f17, j6.v0(j6.f19109d6, f6Var));
+                return i6.l1(f16, i6.v0(i6.f18834d6, e6Var));
         }
     }
 
     @Override
     public float get(Object obj) {
-        switch (this.f7448a) {
+        switch (this.f7447a) {
+            case 16:
+                return ((k3) obj).f8425b;
             case 17:
-                return ((k3) obj).f8427b;
-            case 18:
             default:
                 return ((p4) obj).getSwipeOffsetY();
-            case 19:
-                return ((k4) obj).f8462c;
+            case 18:
+                return ((k4) obj).f8460c;
         }
     }
 
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        vv0 vv0Var = p4.f8545b0;
+        iv0 iv0Var = p4.f8543b0;
         return Boolean.FALSE;
     }
 }

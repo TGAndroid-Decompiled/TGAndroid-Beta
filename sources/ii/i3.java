@@ -6,27 +6,27 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class i3 implements z4 {
-    public final u f11445a;
-    public final a f11446b;
-    public final w3 f11447c;
+    public final u f11443a;
+    public final a f11444b;
+    public final w3 f11445c;
 
     public i3(a aVar, u uVar, w3 w3Var) {
-        this.f11447c = w3Var;
-        this.f11445a = uVar;
-        this.f11446b = aVar;
+        this.f11445c = w3Var;
+        this.f11443a = uVar;
+        this.f11444b = aVar;
     }
 
     @Override
     public final void a(int i10, int i11) {
         if (i10 > 0 && i11 > 0) {
-            u uVar = this.f11445a;
-            uVar.f11645j = i10;
-            uVar.f11646k = i11;
+            u uVar = this.f11443a;
+            uVar.f11643j = i10;
+            uVar.f11644k = i11;
         }
-        View A1 = this.f11447c.A1(this.f11446b);
-        if (A1 instanceof u4) {
-            A1.requestLayout();
-            A1.invalidate();
+        View z12 = this.f11445c.z1(this.f11444b);
+        if (z12 instanceof u4) {
+            z12.requestLayout();
+            z12.invalidate();
         }
     }
 
@@ -34,62 +34,62 @@ public final class i3 implements z4 {
     public final void b(TLRPC.Photo photo) {
         int i10;
         int i11;
-        u uVar = this.f11445a;
-        uVar.f11643g = photo;
-        uVar.f11639a = 2;
+        u uVar = this.f11443a;
+        uVar.f11641g = photo;
+        uVar.f11637a = 2;
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
-        if (closestPhotoSizeWithSize != null && (i10 = closestPhotoSizeWithSize.f18368w) > 0 && (i11 = closestPhotoSizeWithSize.h) > 0) {
-            uVar.f11645j = i10;
-            uVar.f11646k = i11;
+        if (closestPhotoSizeWithSize != null && (i10 = closestPhotoSizeWithSize.f18134w) > 0 && (i11 = closestPhotoSizeWithSize.h) > 0) {
+            uVar.f11643j = i10;
+            uVar.f11644k = i11;
         }
-        a aVar = this.f11446b;
-        TL_iv.PageBlock O3 = w3.O3(aVar, uVar);
-        if (O3 instanceof TL_iv.pageBlockPhoto) {
-            ((TL_iv.pageBlockPhoto) O3).photo_id = photo.f18367id;
+        a aVar = this.f11444b;
+        TL_iv.PageBlock N3 = w3.N3(aVar, uVar);
+        if (N3 instanceof TL_iv.pageBlockPhoto) {
+            ((TL_iv.pageBlockPhoto) N3).photo_id = photo.f18133id;
         }
-        w3 w3Var = this.f11447c;
+        w3 w3Var = this.f11445c;
         w3Var.Z3.remove(uVar);
-        w3Var.o4(aVar);
-        w3Var.f11715h3.onContentChanged();
+        w3Var.n4(aVar);
+        w3Var.f11713h3.onContentChanged();
     }
 
     @Override
     public final void c(TLRPC.Document document) {
-        u uVar = this.f11445a;
+        u uVar = this.f11443a;
         uVar.h = document;
-        uVar.f11639a = 2;
-        a aVar = this.f11446b;
-        TL_iv.PageBlock O3 = w3.O3(aVar, uVar);
-        if (O3 instanceof TL_iv.pageBlockVideo) {
-            ((TL_iv.pageBlockVideo) O3).video_id = document.f18349id;
+        uVar.f11637a = 2;
+        a aVar = this.f11444b;
+        TL_iv.PageBlock N3 = w3.N3(aVar, uVar);
+        if (N3 instanceof TL_iv.pageBlockVideo) {
+            ((TL_iv.pageBlockVideo) N3).video_id = document.f18115id;
         }
-        w3 w3Var = this.f11447c;
+        w3 w3Var = this.f11445c;
         w3Var.Z3.remove(uVar);
-        w3Var.o4(aVar);
-        w3Var.f11715h3.onContentChanged();
+        w3Var.n4(aVar);
+        w3Var.f11713h3.onContentChanged();
     }
 
     @Override
     public final void f(float f7) {
-        this.f11445a.f11642f = f7;
-        a aVar = this.f11446b;
-        w3 w3Var = this.f11447c;
-        View A1 = w3Var.A1(aVar);
-        if (A1 instanceof u4) {
-            A1.requestLayout();
-            A1.invalidate();
+        this.f11443a.f11640f = f7;
+        a aVar = this.f11444b;
+        w3 w3Var = this.f11445c;
+        View z12 = w3Var.z1(aVar);
+        if (z12 instanceof u4) {
+            z12.requestLayout();
+            z12.invalidate();
         }
-        w3Var.f11715h3.onContentChanged();
+        w3Var.f11713h3.onContentChanged();
     }
 
     @Override
     public final void onError() {
-        u uVar = this.f11445a;
-        uVar.f11639a = 3;
-        w3 w3Var = this.f11447c;
+        u uVar = this.f11443a;
+        uVar.f11637a = 3;
+        w3 w3Var = this.f11445c;
         w3Var.Z3.remove(uVar);
-        w3Var.r4(this.f11446b, uVar);
-        w3Var.f11715h3.onContentChanged();
+        w3Var.q4(this.f11444b, uVar);
+        w3Var.f11713h3.onContentChanged();
     }
 
     @Override

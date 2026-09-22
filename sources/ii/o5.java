@@ -16,36 +16,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.ca;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Cells.ba;
+import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Cells.r9;
-import v7.p8;
-public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
+import v7.o8;
+public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, p9 {
     public c3 E;
     public h6 F;
     public boolean G;
     public final LinkedHashSet H;
     public l5 I;
     public final i J;
-    public final org.telegram.ui.ActionBar.f6 f11543n;
-    public final i1 f11544r;
-    public final a4 f11545s;
+    public final org.telegram.ui.ActionBar.e6 f11541n;
+    public final i1 f11542r;
+    public final a4 f11543s;
     public final q5 v;
-    public final n5 f11546w;
-    public final ArrayList f11547x;
-    public boolean f11548y;
+    public final n5 f11544w;
+    public final ArrayList f11545x;
+    public boolean f11546y;
 
-    public o5(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public o5(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f11547x = new ArrayList();
+        this.f11545x = new ArrayList();
         this.H = new LinkedHashSet();
         this.J = new i(this, 3);
-        this.f11543n = f6Var;
+        this.f11541n = e6Var;
         setClipChildren(false);
         setClipToPadding(false);
-        i1 i1Var = new i1(context, f6Var);
-        this.f11544r = i1Var;
+        i1 i1Var = new i1(context, e6Var);
+        this.f11542r = i1Var;
         i1Var.setAllowNewlines(false);
         i1Var.setInputType(147457);
         i1Var.setGravity(49);
@@ -56,19 +56,19 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         i1Var.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), 0);
         i1Var.setHint(LocaleController.getString(R.string.ArticleTableTitleHint));
         i1Var.setCenterEmptyHint(true);
-        i1Var.setListener(new pb.c(this, 29));
+        i1Var.setListener(new a6.m(this, 28));
         i1Var.setDelegate(new ei.d5(this, 21));
         addView(i1Var);
         a4 a4Var = new a4(this, context, 1);
-        this.f11545s = a4Var;
+        this.f11543s = a4Var;
         a4Var.setClipChildren(false);
         a4Var.setClipToPadding(false);
         a4Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        addView(a4Var, w7.y5.d(-1, -2.0f, 51, 0.0f, 6.0f, 0.0f, 0.0f));
-        q5 q5Var = new q5(context, f6Var);
+        addView(a4Var, w7.x5.d(-1, -2.0f, 51, 0.0f, 6.0f, 0.0f, 0.0f));
+        q5 q5Var = new q5(context, e6Var);
         this.v = q5Var;
         n5 n5Var = new n5(this, context);
-        this.f11546w = n5Var;
+        this.f11544w = n5Var;
         n5Var.addView(q5Var);
         a4Var.addView(n5Var, new FrameLayout.LayoutParams(-2, -2));
         setWillNotDraw(false);
@@ -76,24 +76,24 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        r9 r9Var;
+        q9 q9Var;
         super.dispatchDraw(canvas);
         if (this.F != null) {
             c3 c3Var = this.E;
             if (c3Var != null) {
-                r9Var = c3Var.f11287a.getTextSelectionHelper();
+                q9Var = c3Var.f11285a.getTextSelectionHelper();
             } else {
-                r9Var = null;
+                q9Var = null;
             }
-            if (r9Var != null) {
-                ArrayList arrayList = this.f11547x;
+            if (q9Var != null) {
+                ArrayList arrayList = this.f11545x;
                 arrayList.clear();
                 fillTextLayoutBlocks(arrayList);
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ca caVar = (ca) arrayList.get(i10);
+                    ba baVar = (ba) arrayList.get(i10);
                     canvas.save();
-                    canvas.translate(caVar.getX(), caVar.getY());
-                    r9Var.a0(canvas, this, i10);
+                    canvas.translate(baVar.getX(), baVar.getY());
+                    q9Var.a0(canvas, this, i10);
                     canvas.restore();
                 }
             }
@@ -102,18 +102,18 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
 
     @Override
     public final void e() {
-        i1 i1Var = this.f11544r;
+        i1 i1Var = this.f11542r;
         i1Var.t();
-        int v02 = j6.v0(j6.G6, this.f11543n);
+        int v02 = i6.v0(i6.G6, this.f11541n);
         i1Var.setTextColor(v02);
-        i1Var.setHintTextColor(j6.l1(0.35f, v02));
+        i1Var.setHintTextColor(i6.l1(0.35f, v02));
         int i10 = 0;
         while (true) {
             q5 q5Var = this.v;
             if (i10 < q5Var.getChildCount()) {
                 View childAt = q5Var.getChildAt(i10);
                 if (childAt instanceof r5) {
-                    ((r5) childAt).f11607a.t();
+                    ((r5) childAt).f11605a.t();
                 }
                 i10++;
             } else {
@@ -133,20 +133,20 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         i1 i1Var;
         Layout layout;
         if (this.F != null) {
-            i1 i1Var2 = this.f11544r;
+            i1 i1Var2 = this.f11542r;
             Layout layout2 = i1Var2.getLayout();
             if (layout2 != null) {
                 arrayList.add(new j5(this, layout2, i1Var2.getPaddingLeft() + i1Var2.getLeft(), i1Var2.getPaddingTop() + i1Var2.getTop()));
             }
-            int size = this.F.f11427g.size();
+            int size = this.F.f11425g.size();
             for (int i10 = 0; i10 < size; i10++) {
-                TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) this.F.f11427g.get(i10);
+                TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) this.F.f11425g.get(i10);
                 q5 q5Var = this.v;
                 r5 m10 = q5Var.m(pagetablecell);
-                if (m10 != null && (layout = (i1Var = m10.f11607a).getLayout()) != null) {
-                    a4 a4Var = this.f11545s;
+                if (m10 != null && (layout = (i1Var = m10.f11605a).getLayout()) != null) {
+                    a4 a4Var = this.f11543s;
                     int left = a4Var.getLeft();
-                    n5 n5Var = this.f11546w;
+                    n5 n5Var = this.f11544w;
                     int paddingLeft = i1Var.getPaddingLeft() + i1Var.getLeft() + m10.getLeft() + ((q5Var.getLeft() + (n5Var.getLeft() + left)) - a4Var.getScrollX());
                     int top = a4Var.getTop();
                     arrayList.add(new k5(layout, paddingLeft, i1Var.getPaddingTop() + i1Var.getTop() + m10.getTop() + q5Var.getTop() + n5Var.getTop() + top, this.F.b(pagetablecell) + 10, pagetablecell));
@@ -168,7 +168,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
     }
 
     public a getRow() {
-        return this.f11221a;
+        return this.f11219a;
     }
 
     public Set<TL_iv.pageTableCell> getSelectedCells() {
@@ -176,16 +176,16 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
     }
 
     public i1 getTitleEditText() {
-        return this.f11544r;
+        return this.f11542r;
     }
 
     public final TL_iv.pageTableCell h(int i10) {
         int i11;
         h6 h6Var = this.F;
-        if (h6Var == null || i10 <= 0 || i10 - 1 >= h6Var.f11427g.size()) {
+        if (h6Var == null || i10 <= 0 || i10 - 1 >= h6Var.f11425g.size()) {
             return null;
         }
-        return (TL_iv.pageTableCell) this.F.f11427g.get(i11);
+        return (TL_iv.pageTableCell) this.F.f11425g.get(i11);
     }
 
     public final void i(boolean z10) {
@@ -213,7 +213,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                 }
                 linkedHashSet.clear();
                 h6 h6Var = this.F;
-                if (h6Var.f11424b != 0 && (i11 = h6Var.f11425c) != 0) {
+                if (h6Var.f11422b != 0 && (i11 = h6Var.f11423c) != 0) {
                     if (i10 < 0) {
                         i12 = 0;
                     } else {
@@ -223,8 +223,8 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                         i11 = i12;
                     }
                     IdentityHashMap identityHashMap = new IdentityHashMap();
-                    boolean[] zArr = new boolean[h6Var.f11424b];
-                    ArrayList arrayList = h6Var.f11427g;
+                    boolean[] zArr = new boolean[h6Var.f11422b];
+                    ArrayList arrayList = h6Var.f11425g;
                     int size = arrayList.size();
                     int i15 = 0;
                     while (i15 < size) {
@@ -245,7 +245,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                         }
                         if (a2 < i11 && a2 + i16 > i11) {
                             i16++;
-                            for (int i17 = b10; i17 < b10 + o9 && i17 < h6Var.f11424b; i17++) {
+                            for (int i17 = b10; i17 < b10 + o9 && i17 < h6Var.f11422b; i17++) {
                                 zArr[i17] = true;
                             }
                         }
@@ -253,7 +253,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                     }
                     int i18 = 0;
                     while (true) {
-                        i13 = h6Var.f11424b;
+                        i13 = h6Var.f11422b;
                         if (i18 >= i13) {
                             break;
                         }
@@ -265,7 +265,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                     h6Var.j(identityHashMap, i13);
                     h6Var.i();
                 } else {
-                    TL_iv.pageBlockTable pageblocktable = h6Var.f11423a;
+                    TL_iv.pageBlockTable pageblocktable = h6Var.f11421a;
                     if (pageblocktable.rows.isEmpty()) {
                         TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
                         ArrayList<TL_iv.pageTableCell> arrayList2 = new ArrayList<>();
@@ -327,8 +327,8 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                 }
                 linkedHashSet.clear();
                 h6 h6Var = this.F;
-                int i13 = h6Var.f11424b;
-                if (i13 != 0 && h6Var.f11425c != 0) {
+                int i13 = h6Var.f11422b;
+                if (i13 != 0 && h6Var.f11423c != 0) {
                     if (i10 < 0) {
                         i11 = 0;
                     } else {
@@ -338,8 +338,8 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                         i13 = i11;
                     }
                     IdentityHashMap identityHashMap = new IdentityHashMap();
-                    boolean[] zArr = new boolean[h6Var.f11425c];
-                    ArrayList arrayList = h6Var.f11427g;
+                    boolean[] zArr = new boolean[h6Var.f11423c];
+                    ArrayList arrayList = h6Var.f11425g;
                     int size = arrayList.size();
                     int i14 = 0;
                     while (i14 < size) {
@@ -360,27 +360,27 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                         }
                         if (b10 < i13 && b10 + o9 > i13) {
                             o9++;
-                            for (int i16 = a2; i16 < a2 + i15 && i16 < h6Var.f11425c; i16++) {
+                            for (int i16 = a2; i16 < a2 + i15 && i16 < h6Var.f11423c; i16++) {
                                 zArr[i16] = true;
                             }
                         }
                         identityHashMap.put(pagetablecell2, new int[]{i12, a2, o9, i15});
                     }
-                    for (int i17 = 0; i17 < h6Var.f11425c; i17++) {
+                    for (int i17 = 0; i17 < h6Var.f11423c; i17++) {
                         if (!zArr[i17]) {
                             identityHashMap.put(h6.f(), new int[]{i13, i17, 1, 1});
                         }
                     }
-                    h6Var.j(identityHashMap, h6Var.f11424b + 1);
+                    h6Var.j(identityHashMap, h6Var.f11422b + 1);
                     h6Var.i();
                 } else {
                     TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
                     pagetablerow.cells = new ArrayList<>();
-                    int max = Math.max(h6Var.f11425c, 1);
+                    int max = Math.max(h6Var.f11423c, 1);
                     for (int i18 = 0; i18 < max; i18++) {
                         pagetablerow.cells.add(h6.f());
                     }
-                    h6Var.f11423a.rows.add(pagetablerow);
+                    h6Var.f11421a.rows.add(pagetablerow);
                     h6Var.i();
                 }
                 v();
@@ -393,7 +393,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
     public final int k(TL_iv.pageTableCell pagetablecell) {
         int indexOf;
         h6 h6Var = this.F;
-        if (h6Var == null || (indexOf = h6Var.f11427g.indexOf(pagetablecell)) < 0) {
+        if (h6Var == null || (indexOf = h6Var.f11425g.indexOf(pagetablecell)) < 0) {
             return -1;
         }
         return indexOf + 1;
@@ -402,20 +402,20 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
     public final i1 l(int i10) {
         r5 m10;
         if (i10 == 0) {
-            return this.f11544r;
+            return this.f11542r;
         }
         TL_iv.pageTableCell h = h(i10);
         if (h == null || (m10 = this.v.m(h)) == null) {
             return null;
         }
-        return m10.f11607a;
+        return m10.f11605a;
     }
 
     public final TL_iv.pageTableCell m(int i10, int i11) {
         if (this.F != null) {
-            a4 a4Var = this.f11545s;
+            a4 a4Var = this.f11543s;
             int left = i10 - a4Var.getLeft();
-            n5 n5Var = this.f11546w;
+            n5 n5Var = this.f11544w;
             int left2 = left - n5Var.getLeft();
             q5 q5Var = this.v;
             int scrollX = a4Var.getScrollX() + (left2 - q5Var.getLeft());
@@ -425,7 +425,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                 if (childAt instanceof r5) {
                     r5 r5Var = (r5) childAt;
                     if (scrollX >= r5Var.getLeft() && scrollX < r5Var.getRight() && top >= r5Var.getTop() && top < r5Var.getBottom()) {
-                        return r5Var.f11608b;
+                        return r5Var.f11606b;
                     }
                 }
             }
@@ -438,15 +438,15 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         int i12;
         int a2;
         if (this.F != null) {
-            a4 a4Var = this.f11545s;
+            a4 a4Var = this.f11543s;
             int left = i10 - a4Var.getLeft();
-            n5 n5Var = this.f11546w;
+            n5 n5Var = this.f11544w;
             int left2 = left - n5Var.getLeft();
             q5 q5Var = this.v;
             int scrollX = a4Var.getScrollX() + (left2 - q5Var.getLeft());
             int top = ((i11 - a4Var.getTop()) - n5Var.getTop()) - q5Var.getTop();
-            h6 h6Var = q5Var.f11581a;
-            if (h6Var != null && top >= (i12 = q5Var.f11584f[h6Var.f11424b])) {
+            h6 h6Var = q5Var.f11579a;
+            if (h6Var != null && top >= (i12 = q5Var.f11582f[h6Var.f11422b])) {
                 if (top < AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(16.0f) + i12) {
                     int i13 = 1;
                     if (q5Var.u()) {
@@ -462,14 +462,14 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                         return -1;
                     }
                     TL_iv.pageTableCell a10 = q5Var.a();
-                    if (a10 != null && (a2 = q5Var.f11581a.a(a10)) >= 0) {
+                    if (a10 != null && (a2 = q5Var.f11579a.a(a10)) >= 0) {
                         int i14 = a10.colspan;
                         if (i14 != 0) {
                             i13 = i14;
                         }
                         int[] iArr2 = q5Var.e;
                         int i15 = iArr2[a2];
-                        int i16 = iArr2[Math.min(i13 + a2, q5Var.f11581a.f11425c)];
+                        int i16 = iArr2[Math.min(i13 + a2, q5Var.f11579a.f11423c)];
                         if (scrollX >= i15 && scrollX < i16) {
                             return a2;
                         }
@@ -513,9 +513,9 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         int i14;
         int i15;
         int i16 = i12 - i10;
-        int i17 = this.f11223c;
-        int d = p8.d(this.f11221a);
-        boolean z11 = this.f11548y;
+        int i17 = this.f11221c;
+        int d = o8.d(this.f11219a);
+        boolean z11 = this.f11546y;
         if (z11) {
             i14 = d;
         } else {
@@ -524,18 +524,18 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         if (!z11) {
             i17 = d;
         }
-        i1 i1Var = this.f11544r;
+        i1 i1Var = this.f11542r;
         int measuredHeight = i1Var.getMeasuredHeight();
-        a aVar = this.f11221a;
+        a aVar = this.f11219a;
         int i18 = 0;
-        if (aVar != null && (i15 = aVar.f11212l) > 0) {
-            i18 = AndroidUtilities.dp(hg.k0.f(i15, 1, 16, 10));
+        if (aVar != null && (i15 = aVar.f11210l) > 0) {
+            i18 = AndroidUtilities.dp(hg.c.g(i15, 1, 16, 10));
         }
         int i19 = i16 - i17;
         int i20 = measuredHeight + i18;
-        i1Var.layout(AndroidUtilities.dp(16.0f) + i14, i18, org.telegram.messenger.l0.b(16.0f, i19, AndroidUtilities.dp(16.0f) + i14), i20);
+        i1Var.layout(AndroidUtilities.dp(16.0f) + i14, i18, hg.c.f(16.0f, i19, AndroidUtilities.dp(16.0f) + i14), i20);
         int dp = AndroidUtilities.dp(9.0f) + i20;
-        a4 a4Var = this.f11545s;
+        a4 a4Var = this.f11543s;
         a4Var.layout(i14, dp, i19, a4Var.getMeasuredHeight() + dp);
     }
 
@@ -546,25 +546,25 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         int i13;
         int size = View.MeasureSpec.getSize(i10);
         int i14 = 0;
-        int max = Math.max(0, (size - this.f11223c) - p8.d(this.f11221a));
+        int max = Math.max(0, (size - this.f11221c) - o8.d(this.f11219a));
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, max - (AndroidUtilities.dp(16.0f) * 2)), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
-        i1 i1Var = this.f11544r;
+        i1 i1Var = this.f11542r;
         i1Var.measure(makeMeasureSpec, makeMeasureSpec2);
         int measuredHeight = i1Var.getMeasuredHeight();
         int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(max, 1073741824);
         int makeMeasureSpec4 = View.MeasureSpec.makeMeasureSpec(0, 0);
-        a4 a4Var = this.f11545s;
+        a4 a4Var = this.f11543s;
         a4Var.measure(makeMeasureSpec3, makeMeasureSpec4);
-        a aVar = this.f11221a;
-        if (aVar == null || (i12 = aVar.f11212l) <= 0) {
+        a aVar = this.f11219a;
+        if (aVar == null || (i12 = aVar.f11210l) <= 0) {
             dp = 0;
         } else {
-            dp = AndroidUtilities.dp(hg.k0.f(i12, 1, 16, 10));
+            dp = AndroidUtilities.dp(hg.c.g(i12, 1, 16, 10));
         }
-        a aVar2 = this.f11221a;
-        if (aVar2 != null && (i13 = aVar2.f11213m) > 0) {
-            i14 = AndroidUtilities.dp(hg.k0.f(i13, 1, 16, 10));
+        a aVar2 = this.f11219a;
+        if (aVar2 != null && (i13 = aVar2.f11211m) > 0) {
+            i14 = AndroidUtilities.dp(hg.c.g(i13, 1, 16, 10));
         }
         setMeasuredDimension(size, a4Var.getMeasuredHeight() + AndroidUtilities.dp(9.0f) + i14 + dp + measuredHeight);
     }
@@ -572,20 +572,20 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
     public final int p(int i10, int i11) {
         int b10;
         if (this.F != null) {
-            a4 a4Var = this.f11545s;
+            a4 a4Var = this.f11543s;
             int left = i10 - a4Var.getLeft();
-            n5 n5Var = this.f11546w;
+            n5 n5Var = this.f11544w;
             int left2 = left - n5Var.getLeft();
             q5 q5Var = this.v;
             int scrollX = a4Var.getScrollX() + (left2 - q5Var.getLeft());
             int top = ((i11 - a4Var.getTop()) - n5Var.getTop()) - q5Var.getTop();
-            if (q5Var.f11581a != null && scrollX >= (q5Var.e[0] - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(4.0f) && scrollX < q5Var.e[0]) {
+            if (q5Var.f11579a != null && scrollX >= (q5Var.e[0] - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(4.0f) && scrollX < q5Var.e[0]) {
                 int i12 = 1;
                 if (q5Var.v()) {
                     int k10 = q5Var.k();
                     int r10 = q5Var.r();
                     if (k10 >= 0) {
-                        int[] iArr = q5Var.f11584f;
+                        int[] iArr = q5Var.f11582f;
                         if (top >= iArr[k10] && top < iArr[r10 + 1]) {
                             return k10;
                         }
@@ -594,14 +594,14 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                     return -1;
                 }
                 TL_iv.pageTableCell a2 = q5Var.a();
-                if (a2 != null && (b10 = q5Var.f11581a.b(a2)) >= 0) {
+                if (a2 != null && (b10 = q5Var.f11579a.b(a2)) >= 0) {
                     int i13 = a2.rowspan;
                     if (i13 != 0) {
                         i12 = i13;
                     }
-                    int[] iArr2 = q5Var.f11584f;
+                    int[] iArr2 = q5Var.f11582f;
                     int i14 = iArr2[b10];
-                    int i15 = iArr2[Math.min(i12 + b10, q5Var.f11581a.f11424b)];
+                    int i15 = iArr2[Math.min(i12 + b10, q5Var.f11579a.f11422b)];
                     if (top >= i14 && top < i15) {
                         return b10;
                     }
@@ -617,8 +617,8 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
     public final void q(int i10, int i11) {
         int i12;
         h6 h6Var = this.F;
-        if (h6Var != null && (i12 = h6Var.f11424b) != 0 && h6Var.f11425c != 0) {
-            TL_iv.pageTableCell pagetablecell = this.F.d[Math.max(0, Math.min(i10, i12 - 1))][Math.max(0, Math.min(i11, this.F.f11425c - 1))];
+        if (h6Var != null && (i12 = h6Var.f11422b) != 0 && h6Var.f11423c != 0) {
+            TL_iv.pageTableCell pagetablecell = this.F.d[Math.max(0, Math.min(i10, i12 - 1))][Math.max(0, Math.min(i11, this.F.f11423c - 1))];
             if (pagetablecell != null) {
                 post(new gg.x1(19, this, pagetablecell));
             }
@@ -627,14 +627,14 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
 
     public final boolean r() {
         h6 h6Var = this.F;
-        if (h6Var == null || h6Var.f11427g.isEmpty()) {
+        if (h6Var == null || h6Var.f11425g.isEmpty()) {
             return false;
         }
-        r5 m10 = this.v.m((TL_iv.pageTableCell) this.F.f11427g.get(0));
+        r5 m10 = this.v.m((TL_iv.pageTableCell) this.F.f11425g.get(0));
         if (m10 == null) {
             return false;
         }
-        i1 i1Var = m10.f11607a;
+        i1 i1Var = m10.f11605a;
         i1Var.r();
         i1Var.setSelection(0);
         return true;
@@ -644,16 +644,16 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         int indexOf;
         int i10;
         h6 h6Var = this.F;
-        if (h6Var != null && (indexOf = h6Var.f11427g.indexOf(r5Var.f11608b)) >= 0) {
+        if (h6Var != null && (indexOf = h6Var.f11425g.indexOf(r5Var.f11606b)) >= 0) {
             if (z10) {
                 i10 = indexOf - 1;
             } else {
                 i10 = indexOf + 1;
             }
-            if (i10 >= 0 && i10 < this.F.f11427g.size()) {
-                r5 m10 = this.v.m((TL_iv.pageTableCell) this.F.f11427g.get(i10));
+            if (i10 >= 0 && i10 < this.F.f11425g.size()) {
+                r5 m10 = this.v.m((TL_iv.pageTableCell) this.F.f11425g.get(i10));
                 if (m10 != null) {
-                    i1 i1Var = m10.f11607a;
+                    i1 i1Var = m10.f11605a;
                     i1Var.r();
                     i1Var.setSelection(i1Var.length());
                     return true;
@@ -670,7 +670,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
     }
 
     public void setLocked(boolean z10) {
-        this.f11544r.setLocked(z10);
+        this.f11542r.setLocked(z10);
         int i10 = 0;
         while (true) {
             q5 q5Var = this.v;
@@ -690,23 +690,23 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         x();
         l5 l5Var = this.I;
         if (l5Var != null) {
-            w3 w3Var = ((t2) l5Var).f11632a;
-            if (this == w3Var.f11718i4) {
+            w3 w3Var = ((t2) l5Var).f11630a;
+            if (this == w3Var.f11716i4) {
                 if (this.H.isEmpty()) {
-                    w3Var.N2();
+                    w3Var.M2();
                 } else if (!w3Var.B3) {
-                    w3Var.G4(this);
+                    w3Var.F4(this);
                 }
             }
         }
     }
 
     public final void u() {
-        a aVar = this.f11221a;
+        a aVar = this.f11219a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f11205b;
+            TL_iv.PageBlock pageBlock = aVar.f11203b;
             if (pageBlock instanceof TL_iv.pageBlockTable) {
-                ((TL_iv.pageBlockTable) pageBlock).title = f6.f(this.f11544r.getText());
+                ((TL_iv.pageBlockTable) pageBlock).title = f6.f(this.f11542r.getText());
             }
         }
     }
@@ -718,7 +718,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         q5Var.invalidate();
         y();
         c3 c3Var = this.E;
-        if (c3Var != null && this.f11221a != null) {
+        if (c3Var != null && this.f11219a != null) {
             c3Var.a();
         }
     }
@@ -734,7 +734,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
             if (b10 >= 0 && a2 >= 0 && b11 >= 0 && a10 >= 0) {
                 int min = Math.min(b10, b11);
                 int min2 = Math.min(a2, a10);
-                int i11 = this.F.f11424b - 1;
+                int i11 = this.F.f11422b - 1;
                 int i12 = pagetablecell.rowspan;
                 if (i12 == 0) {
                     i12 = 1;
@@ -745,7 +745,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                     i14 = 1;
                 }
                 int min3 = Math.min(i11, Math.max(i13, (b11 + i14) - 1));
-                int i15 = this.F.f11425c - 1;
+                int i15 = this.F.f11423c - 1;
                 int i16 = pagetablecell.colspan;
                 if (i16 == 0) {
                     i16 = 1;
@@ -765,9 +765,9 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                             h6 h6Var2 = this.F;
                             TL_iv.pageTableCell pagetablecell3 = h6Var2.d[min][min2];
                             int i20 = h6Var2.e[min][min2];
-                            int i21 = h6Var2.f11426f[min][min2];
-                            int min5 = Math.min(h6Var2.f11424b - 1, (h6.o(pagetablecell3) + i20) - 1);
-                            int i22 = this.F.f11425c - 1;
+                            int i21 = h6Var2.f11424f[min][min2];
+                            int min5 = Math.min(h6Var2.f11422b - 1, (h6.o(pagetablecell3) + i20) - 1);
+                            int i22 = this.F.f11423c - 1;
                             int i23 = pagetablecell3.colspan;
                             if (i23 == 0) {
                                 i23 = 1;
@@ -826,7 +826,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         }
         setTranslationZ(dp);
         invalidate();
-        this.f11545s.invalidate();
+        this.f11543s.invalidate();
         ViewParent parent = getParent();
         if (parent instanceof View) {
             ((View) parent).invalidate();
@@ -841,7 +841,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
                 View childAt = q5Var.getChildAt(i10);
                 if (childAt instanceof r5) {
                     r5 r5Var = (r5) childAt;
-                    i1 i1Var = r5Var.f11607a;
+                    i1 i1Var = r5Var.f11605a;
                     i1Var.setListener(new i5(this, r5Var));
                     i1Var.setDelegate(new ah.b(19, this, r5Var));
                 }

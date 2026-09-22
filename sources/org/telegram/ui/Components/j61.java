@@ -1,39 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class j61 extends FrameLayout {
-    public int f25295a;
-    public boolean f25296b;
+import android.content.Context;
+import androidx.core.widget.NestedScrollView;
+public final class j61 extends NestedScrollView {
+    public boolean W;
+    public final k61 f25241a0;
+
+    public j61(k61 k61Var, Context context) {
+        super(context);
+        this.f25241a0 = k61Var;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View view;
-        int i12 = this.f25295a;
-        if (getParent() instanceof View) {
-            view = (View) getParent();
-        } else {
-            view = null;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        k61.m(this.f25241a0);
+    }
+
+    @Override
+    public final void onMeasure(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j61.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        k61.m(this.f25241a0);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.W) {
+            return;
         }
-        if (this.f25296b && view != null) {
-            i12 = view.getPaddingBottom() + view.getPaddingTop() + i12;
-        }
-        if (view != null && view.getMeasuredHeight() > 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - i12, 1073741824));
-        } else if (View.MeasureSpec.getMode(i11) != 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11) - i12, 1073741824));
-        } else {
-            int size = View.MeasureSpec.getSize(i11);
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-            measureChildren(makeMeasureSpec, i11);
-            int i13 = 0;
-            for (int i14 = 0; i14 < getChildCount(); i14++) {
-                i13 = Math.max(i13, getChildAt(i14).getMeasuredHeight());
-            }
-            if (size > 0) {
-                i13 = Math.min(i13, size - i12);
-            }
-            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
-        }
+        super.requestLayout();
     }
 }

@@ -1,42 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class o21 extends TextView {
-    public View f26975a;
-    public ViewPropertyAnimator f26976b;
-    public boolean f26977c;
-    public yq0 d;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class o21 extends AnimatorListenerAdapter {
+    public final boolean f26665a;
+    public final x21 f26666b;
 
-    public final void a() {
-        if (this.f26975a == null) {
-            return;
-        }
-        View view = (View) getParent();
-        int i10 = 0;
-        int i11 = 0;
-        int i12 = 0;
-        for (View view2 = this.f26975a; view2 != view; view2 = (View) view2.getParent()) {
-            i12 += view2.getTop();
-            i11 += view2.getLeft();
-        }
-        int width = ((this.f26975a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
-        if (width >= 0) {
-            if (getMeasuredWidth() + width > view.getMeasuredWidth()) {
-                i10 = (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
-            } else {
-                i10 = width;
-            }
-        }
-        setTranslationX(i10);
-        setTranslationY(i12 - getMeasuredHeight());
+    public o21(x21 x21Var, boolean z10) {
+        this.f26666b = x21Var;
+        this.f26665a = z10;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        a();
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        int i10;
+        x21 x21Var = this.f26666b;
+        long j3 = x21Var.f29870c;
+        if (x21Var.U == animator) {
+            boolean z10 = this.f26665a;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            x21Var.R = f7;
+            x21Var.n();
+            x21Var.S = false;
+            ImageView imageView = x21Var.E;
+            if (x21Var.P) {
+                i10 = R.drawable.menu_sidebar_top;
+            } else {
+                i10 = R.drawable.menu_sidebar_bottom;
+            }
+            imageView.setImageResource(i10);
+            x21Var.U = null;
+            MessagesController.getInstance(x21Var.f29868b).getMainSettings().edit().putBoolean(a4.a.p(j3, "topicssidetabs"), x21Var.Q).putBoolean(a4.a.p(j3, "topicssidetabsb"), x21Var.P).apply();
+            Boolean bool = x21Var.T;
+            if (bool != null && z10 != bool.booleanValue()) {
+                boolean booleanValue = x21Var.T.booleanValue();
+                x21Var.T = null;
+                x21Var.d(booleanValue);
+            }
+            AndroidUtilities.runOnUIThread(new jq0(this, 19));
+        }
     }
 }

@@ -1,7 +1,7 @@
 package vg;
 
-import org.telegram.ui.Cells.x8;
-public final class y extends x8 {
+import org.telegram.ui.Cells.w8;
+public final class y extends w8 {
     public static final int L = 0;
     public int K;
 

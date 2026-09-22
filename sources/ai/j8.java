@@ -9,7 +9,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.hi0;
+import org.telegram.ui.fi0;
 public final class j8 implements RequestDelegate {
     public final int f1054a;
     public final int f1055b;
@@ -47,7 +47,7 @@ public final class j8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ei.p3(tLObject, this.f1055b, (ci.d) this.d, (org.telegram.ui.ActionBar.f3) this.e, this.f1056c, tL_error));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new ei.p3((hi0) this.d, tL_error, tLObject, this.f1056c, this.f1055b, (TLRPC.Chat) this.e, 4));
+                AndroidUtilities.runOnUIThread(new ei.p3((fi0) this.d, tL_error, tLObject, this.f1056c, this.f1055b, (TLRPC.Chat) this.e, 4));
                 return;
             case 6:
                 AndroidUtilities.runOnUIThread(new l8((yh.o) this.d, (yh.n) this.e, this.f1055b, tLObject, this.f1056c));
@@ -74,9 +74,9 @@ public final class j8 implements RequestDelegate {
         this.f1056c = j3;
     }
 
-    public j8(hi0 hi0Var, long j3, int i10, TLRPC.Chat chat) {
+    public j8(fi0 fi0Var, long j3, int i10, TLRPC.Chat chat) {
         this.f1054a = 5;
-        this.d = hi0Var;
+        this.d = fi0Var;
         this.f1056c = j3;
         this.f1055b = i10;
         this.e = chat;

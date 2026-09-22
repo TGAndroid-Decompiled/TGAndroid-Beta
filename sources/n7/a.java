@@ -11,11 +11,12 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.telegram.ui.Cells.q3;
 public abstract class a {
-    public static volatile cc.k f15340b;
-    public static final Object f15339a = new Object();
-    public static final a1 f15341c = new a1("id");
-    public static final a1 d = new a1("type");
+    public static volatile cc.k f15102b;
+    public static final Object f15101a = new Object();
+    public static final c1 f15103c = new c1("id");
+    public static final c1 d = new c1("type");
 
     public static int a(int i10, int i11) {
         RoundingMode roundingMode = RoundingMode.CEILING;
@@ -25,7 +26,7 @@ public abstract class a {
             int i13 = i10 - (i11 * i12);
             if (i13 != 0) {
                 int i14 = ((i10 ^ i11) >> 31) | 1;
-                switch (n0.f15385a[roundingMode.ordinal()]) {
+                switch (o0.f15152a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -65,10 +66,10 @@ public abstract class a {
         throw new ArithmeticException("/ by zero");
     }
 
-    public static int b(o oVar) {
+    public static int b(p pVar) {
         int i10;
         int i11 = 0;
-        for (Object obj : oVar) {
+        for (Object obj : pVar) {
             if (obj != null) {
                 i10 = obj.hashCode();
             } else {
@@ -83,7 +84,7 @@ public abstract class a {
         int length;
         int length2;
         int indexOf;
-        String k10;
+        String j3;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -93,17 +94,17 @@ public abstract class a {
             }
             Object obj = objArr[i11];
             if (obj == null) {
-                k10 = "null";
+                j3 = "null";
             } else {
                 try {
-                    k10 = obj.toString();
+                    j3 = obj.toString();
                 } catch (Exception e) {
-                    String C = a4.a.C(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(C), (Throwable) e);
-                    k10 = org.telegram.ui.Cells.c1.k("<", C, " threw ", e.getClass().getName(), ">");
+                    String D = a4.a.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e);
+                    j3 = q3.j("<", D, " threw ", e.getClass().getName(), ">");
                 }
             }
-            objArr[i11] = k10;
+            objArr[i11] = j3;
             i11++;
         }
         StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
@@ -131,10 +132,10 @@ public abstract class a {
         return sb2.toString();
     }
 
-    public static String d(s0 s0Var) {
-        StringBuilder sb2 = new StringBuilder(s0Var.p());
-        for (int i10 = 0; i10 < s0Var.p(); i10++) {
-            byte i11 = s0Var.i(i10);
+    public static String d(t0 t0Var) {
+        StringBuilder sb2 = new StringBuilder(t0Var.p());
+        for (int i10 = 0; i10 < t0Var.p(); i10++) {
+            byte i11 = t0Var.i(i10);
             if (i11 != 34) {
                 if (i11 != 39) {
                     if (i11 != 92) {
@@ -193,7 +194,7 @@ public abstract class a {
         }
         if (i10 >= 0) {
             if (i11 < 0) {
-                throw new IllegalArgumentException(hg.k0.h(i11, "negative size: "));
+                throw new IllegalArgumentException(hg.c.i(i11, "negative size: "));
             }
             c10 = c("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
         } else {
@@ -207,7 +208,7 @@ public abstract class a {
             if (obj2 != null) {
                 return;
             }
-            throw new NullPointerException(a4.a.p("null value in entry: ", obj.toString(), "=null"));
+            throw new NullPointerException(a4.a.q("null value in entry: ", obj.toString(), "=null"));
         }
         throw new NullPointerException("null key in entry: null=".concat(String.valueOf(obj2)));
     }
@@ -245,10 +246,10 @@ public abstract class a {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = v.f15403b;
+                obj = w.f15172b;
             }
-        } else if (collection instanceof c0) {
-            obj = ((s) ((c0) collection)).d;
+        } else if (collection instanceof d0) {
+            obj = ((t) ((d0) collection)).d;
         } else {
             return false;
         }
@@ -275,15 +276,15 @@ public abstract class a {
         return bArr2;
     }
 
-    public static final c1 k(e1 e1Var) {
+    public static final e1 k(g1 g1Var) {
         long j3;
         try {
-            d1 d10 = e1Var.d();
+            f1 d10 = g1Var.d();
             if (d10 != null) {
                 try {
                     try {
-                        byte b10 = d10.f15345a;
-                        byte b11 = d10.f15346b;
+                        byte b10 = d10.f15116a;
+                        byte b11 = d10.f15117b;
                         int i10 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -292,87 +293,87 @@ public abstract class a {
                                         if (b10 != 0 && b10 != 32) {
                                             if (b10 != 64) {
                                                 if (b10 == 96) {
-                                                    e1Var.h((byte) 96);
-                                                    String str = new String(e1Var.j(), StandardCharsets.UTF_8);
+                                                    g1Var.h((byte) 96);
+                                                    String str = new String(g1Var.j(), StandardCharsets.UTF_8);
                                                     l(b11, str.length());
-                                                    return new a1(str);
+                                                    return new c1(str);
                                                 }
                                                 throw new IOException("Unidentifiable major type: " + ((b10 >> 5) & 7));
                                             }
-                                            e1Var.h((byte) 64);
-                                            byte[] j10 = e1Var.j();
+                                            g1Var.h((byte) 64);
+                                            byte[] j10 = g1Var.j();
                                             int length = j10.length;
                                             l(b11, length);
-                                            return new w0(s0.t(length, j10));
+                                            return new x0(t0.t(length, j10));
                                         }
-                                        long b12 = e1Var.b();
+                                        long b12 = g1Var.b();
                                         if (b12 > 0) {
                                             j3 = b12;
                                         } else {
                                             j3 = ~b12;
                                         }
                                         l(b11, j3);
-                                        return new y0(b12);
+                                        return new z0(b12);
                                     }
-                                    return new v0(e1Var.e());
+                                    return new w0(g1Var.e());
                                 }
                                 throw new IOException("Tags are currently unsupported");
                             }
-                            long c10 = e1Var.c();
+                            long c10 = g1Var.c();
                             if (c10 <= 1000) {
                                 l(b11, c10);
                                 int i11 = (int) c10;
-                                n4.y[] yVarArr = new n4.y[i11];
-                                c1 c1Var = null;
+                                a1[] a1VarArr = new a1[i11];
+                                e1 e1Var = null;
                                 int i12 = 0;
                                 while (i12 < c10) {
-                                    c1 k10 = k(e1Var);
-                                    if (c1Var != null && k10.compareTo(c1Var) <= 0) {
-                                        String obj = c1Var.toString();
+                                    e1 k10 = k(g1Var);
+                                    if (e1Var != null && k10.compareTo(e1Var) <= 0) {
+                                        String obj = e1Var.toString();
                                         String obj2 = k10.toString();
                                         throw new IOException("Keys in CBOR Map not in strictly ascending natural order:\nPrevious key: " + obj + "\nCurrent key: " + obj2);
                                     }
-                                    yVarArr[i12] = new n4.y(k10, k(e1Var));
+                                    a1VarArr[i12] = new a1(0, k10, k(g1Var));
                                     i12++;
-                                    c1Var = k10;
+                                    e1Var = k10;
                                 }
                                 TreeMap treeMap = new TreeMap();
                                 while (i10 < i11) {
-                                    n4.y yVar = yVarArr[i10];
-                                    if (!treeMap.containsKey((c1) yVar.f15230a)) {
-                                        treeMap.put((c1) yVar.f15230a, (c1) yVar.f15231b);
+                                    a1 a1Var = a1VarArr[i10];
+                                    if (!treeMap.containsKey((e1) a1Var.f15106b)) {
+                                        treeMap.put((e1) a1Var.f15106b, (e1) a1Var.f15107c);
                                         i10++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");
                                     }
                                 }
-                                return new z0(r.b(treeMap));
+                                return new b1(s.b(treeMap));
                             }
                             throw new IOException("Parser being asked to read a large CBOR map");
                         }
-                        long a2 = e1Var.a();
+                        long a2 = g1Var.a();
                         if (a2 <= 1000) {
                             l(b11, a2);
-                            c1[] c1VarArr = new c1[(int) a2];
+                            e1[] e1VarArr = new e1[(int) a2];
                             while (i10 < a2) {
-                                c1VarArr[i10] = k(e1Var);
+                                e1VarArr[i10] = k(g1Var);
                                 i10++;
                             }
-                            return new u0(m.u(c1VarArr));
+                            return new v0(n.u(e1VarArr));
                         }
                         throw new IOException("Parser being asked to read a large CBOR array");
                     } catch (IOException | RuntimeException e) {
                         e = e;
-                        throw new x0(e);
+                        throw new y0(e);
                     }
                 } catch (RuntimeException e7) {
                     e = e7;
-                    throw new x0(e);
+                    throw new y0(e);
                 }
             }
             throw new IOException("Parser being asked to parse an empty input stream");
         } catch (IOException e10) {
-            throw new x0(e10);
+            throw new y0(e10);
         }
     }
 
@@ -382,20 +383,20 @@ public abstract class a {
                 if (j3 >= 24) {
                     return;
                 }
-                throw new IOException(org.telegram.ui.Cells.c1.j(j3, "Integer value ", " after add info could have been represented in 0 additional bytes, but used 1"));
+                throw new IOException(q3.h(j3, "Integer value ", " after add info could have been represented in 0 additional bytes, but used 1"));
             case 25:
                 if (j3 < 256) {
-                    throw new IOException(org.telegram.ui.Cells.c1.j(j3, "Integer value ", " after add info could have been represented in 0-1 additional bytes, but used 2"));
+                    throw new IOException(q3.h(j3, "Integer value ", " after add info could have been represented in 0-1 additional bytes, but used 2"));
                 }
                 return;
             case 26:
                 if (j3 < 65536) {
-                    throw new IOException(org.telegram.ui.Cells.c1.j(j3, "Integer value ", " after add info could have been represented in 0-2 additional bytes, but used 4"));
+                    throw new IOException(q3.h(j3, "Integer value ", " after add info could have been represented in 0-2 additional bytes, but used 4"));
                 }
                 return;
             case 27:
                 if (j3 < 4294967296L) {
-                    throw new IOException(org.telegram.ui.Cells.c1.j(j3, "Integer value ", " after add info could have been represented in 0-4 additional bytes, but used 8"));
+                    throw new IOException(q3.h(j3, "Integer value ", " after add info could have been represented in 0-4 additional bytes, but used 8"));
                 }
                 return;
             default:
@@ -427,6 +428,6 @@ public abstract class a {
         if (i11 >= 0) {
             return c("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
         }
-        throw new IllegalArgumentException(hg.k0.h(i11, "negative size: "));
+        throw new IllegalArgumentException(hg.c.i(i11, "negative size: "));
     }
 }

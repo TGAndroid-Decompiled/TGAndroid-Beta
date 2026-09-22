@@ -1,32 +1,68 @@
 package w7;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 public abstract class s8 {
-    public static HashMap a(uc.a aVar) {
-        HashMap hashMap = new HashMap();
-        HashMap hashMap2 = new HashMap();
-        hashMap2.put("number", t8.e(aVar.f43990a));
-        hashMap2.put("cvc", t8.e(aVar.f43991b));
-        hashMap2.put("exp_month", aVar.f43992c);
-        hashMap2.put("exp_year", aVar.d);
-        hashMap2.put("name", t8.e(aVar.e));
-        hashMap2.put("currency", t8.e(aVar.f44000n));
-        hashMap2.put("address_line1", t8.e(aVar.f43993f));
-        hashMap2.put("address_line2", t8.e(aVar.f43994g));
-        hashMap2.put("address_city", t8.e(aVar.h));
-        hashMap2.put("address_zip", t8.e(aVar.f43996j));
-        hashMap2.put("address_state", t8.e(aVar.f43995i));
-        hashMap2.put("address_country", t8.e(aVar.f43997k));
-        Iterator it = new HashSet(hashMap2.keySet()).iterator();
-        while (it.hasNext()) {
-            String str = (String) it.next();
-            if (hashMap2.get(str) == null) {
-                hashMap2.remove(str);
+    public static String a(String str) {
+        if (d(str)) {
+            return null;
+        }
+        if ("American Express".equalsIgnoreCase(str)) {
+            return "American Express";
+        }
+        if ("MasterCard".equalsIgnoreCase(str)) {
+            return "MasterCard";
+        }
+        if ("Diners Club".equalsIgnoreCase(str)) {
+            return "Diners Club";
+        }
+        if ("Discover".equalsIgnoreCase(str)) {
+            return "Discover";
+        }
+        if ("JCB".equalsIgnoreCase(str)) {
+            return "JCB";
+        }
+        if ("Visa".equalsIgnoreCase(str)) {
+            return "Visa";
+        }
+        return "Unknown";
+    }
+
+    public static String b(String str) {
+        if (d(str)) {
+            return null;
+        }
+        if ("credit".equalsIgnoreCase(str)) {
+            return "credit";
+        }
+        if ("debit".equalsIgnoreCase(str)) {
+            return "debit";
+        }
+        if ("prepaid".equalsIgnoreCase(str)) {
+            return "prepaid";
+        }
+        return "unknown";
+    }
+
+    public static boolean c(String str, String... strArr) {
+        if (str != null) {
+            for (String str2 : strArr) {
+                if (str.startsWith(str2)) {
+                    return true;
+                }
             }
         }
-        hashMap.put("card", hashMap2);
-        return hashMap;
+        return false;
+    }
+
+    public static boolean d(String str) {
+        if (str != null && str.trim().length() != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String e(String str) {
+        if (d(str)) {
+            return null;
+        }
+        return str;
     }
 }

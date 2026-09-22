@@ -1,79 +1,122 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class w1 extends FrameLayout {
-    public final TextView f21796a;
-    public final ImageView f21797b;
-    public final FrameLayout f21798c;
-    public final org.telegram.ui.ActionBar.f6 d;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.ng0;
+import org.telegram.ui.Components.pg0;
+import org.telegram.ui.lc0;
+public final class w1 extends org.telegram.ui.Components.n6 {
+    public final int f21552s;
+    public Object v;
 
-    public w1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.d = f6Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f21798c = frameLayout;
-        frameLayout.setBackgroundResource(R.drawable.newmsg_divider);
-        Drawable background = frameLayout.getBackground();
-        int a2 = a(org.telegram.ui.ActionBar.j6.Fe);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        background.setColorFilter(new PorterDuffColorFilter(a2, mode));
-        addView(frameLayout, w7.y5.d(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f21797b = imageView;
-        imageView.setImageResource(R.drawable.ic_ab_new);
-        imageView.setColorFilter(new PorterDuffColorFilter(a(org.telegram.ui.ActionBar.j6.De), mode));
-        imageView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
-        frameLayout.addView(imageView, w7.y5.d(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f21796a = textView;
-        textView.setPadding(0, 0, 0, AndroidUtilities.dp(1.0f));
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(a(org.telegram.ui.ActionBar.j6.Ee));
-        textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, w7.y5.d(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
-    }
-
-    public final int a(int i10) {
-        Integer num;
-        org.telegram.ui.ActionBar.f6 f6Var = this.d;
-        if (f6Var != null) {
-            num = Integer.valueOf(f6Var.F0(i10));
-        } else {
-            num = null;
-        }
-        if (num != null) {
-            return num.intValue();
-        }
-        return org.telegram.ui.ActionBar.j6.w0(null, i10, false);
-    }
-
-    public FrameLayout getBackgroundLayout() {
-        return this.f21798c;
-    }
-
-    public ImageView getImageView() {
-        return this.f21797b;
-    }
-
-    public TextView getTextView() {
-        return this.f21796a;
+    public w1(Context context, boolean z10, boolean z11, boolean z12) {
+        super(context, z10, z11, z12);
+        this.f21552s = 3;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+    public void invalidate() {
+        switch (this.f21552s) {
+            case 1:
+                super.invalidate();
+                ng0 ng0Var = (ng0) this.v;
+                pg0 pg0Var = ng0Var.d;
+                if (ng0Var == pg0Var.f27032b.getPinnedHeader()) {
+                    pg0Var.f27032b.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
+                return;
+        }
     }
 
-    public void setText(String str) {
-        this.f21796a.setText(str);
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f21552s) {
+            case 0:
+                super.onDraw(canvas);
+                ((z1) this.v).f();
+                return;
+            case 1:
+            default:
+                super.onDraw(canvas);
+                return;
+            case 2:
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(15.0f), 0.0f);
+                super.onDraw(canvas);
+                canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(11.0f));
+                ((l61) this.v).f25845b.draw(canvas);
+                canvas.restore();
+                return;
+            case 3:
+                ShapeDrawable shapeDrawable = (ShapeDrawable) this.v;
+                shapeDrawable.setBounds(0, 0, (int) (getDrawable().d() + getPaddingLeft() + getPaddingRight()), getMeasuredHeight());
+                shapeDrawable.draw(canvas);
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f21552s) {
+            case 4:
+                lc0 lc0Var = (lc0) this.v;
+                int size = View.MeasureSpec.getSize(i10);
+                if (size <= 0) {
+                    size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - lc0Var.d.getPaint().measureText(lc0Var.d.getText().toString())) - lc0Var.f35398f.getPaint().measureText(lc0Var.f35398f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean post(Runnable runnable) {
+        switch (this.f21552s) {
+            case 1:
+                return pg0.p(((ng0) this.v).d).post(runnable);
+            default:
+                return super.post(runnable);
+        }
+    }
+
+    @Override
+    public boolean postDelayed(Runnable runnable, long j3) {
+        switch (this.f21552s) {
+            case 1:
+                return pg0.q(((ng0) this.v).d).postDelayed(runnable, j3);
+            default:
+                return super.postDelayed(runnable, j3);
+        }
+    }
+
+    public w1(FrameLayout frameLayout, Context context, int i10) {
+        super(context, false, false, false);
+        this.f21552s = i10;
+        this.v = frameLayout;
+    }
+
+    public w1(l61 l61Var, Context context) {
+        super(context, true, true, true);
+        this.f21552s = 2;
+        this.v = l61Var;
+    }
+
+    public w1(lc0 lc0Var, Context context) {
+        super(context, false, true, true);
+        this.f21552s = 4;
+        this.v = lc0Var;
     }
 }

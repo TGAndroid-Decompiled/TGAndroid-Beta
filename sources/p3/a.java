@@ -7,18 +7,18 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import v7.s6;
-import w7.m;
-public final class a extends m {
-    public static final Pattern f40849c = Pattern.compile("(.+?)='(.*?)';", 32);
-    public final CharsetDecoder f40850a = StandardCharsets.UTF_8.newDecoder();
-    public final CharsetDecoder f40851b = StandardCharsets.ISO_8859_1.newDecoder();
+import v7.r6;
+import w7.l;
+public final class a extends l {
+    public static final Pattern f40530c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f40531a = StandardCharsets.UTF_8.newDecoder();
+    public final CharsetDecoder f40532b = StandardCharsets.ISO_8859_1.newDecoder();
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
         String str;
-        CharsetDecoder charsetDecoder = this.f40851b;
-        CharsetDecoder charsetDecoder2 = this.f40850a;
+        CharsetDecoder charsetDecoder = this.f40532b;
+        CharsetDecoder charsetDecoder2 = this.f40531a;
         String str2 = null;
         try {
             str = charsetDecoder2.decode(byteBuffer).toString();
@@ -46,13 +46,13 @@ public final class a extends m {
         if (str == null) {
             return new p0(new c(null, null, bArr));
         }
-        Matcher matcher = f40849c.matcher(str);
+        Matcher matcher = f40530c.matcher(str);
         String str3 = null;
         for (int i10 = 0; matcher.find(i10); i10 = matcher.end()) {
             String group = matcher.group(1);
             String group2 = matcher.group(2);
             if (group != null) {
-                String b10 = s6.b(group);
+                String b10 = r6.b(group);
                 b10.getClass();
                 if (!b10.equals("streamurl")) {
                     if (b10.equals("streamtitle")) {

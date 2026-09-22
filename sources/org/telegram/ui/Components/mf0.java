@@ -1,11 +1,22 @@
 package org.telegram.ui.Components;
-public final class mf0 implements k71, if0, kf0 {
-    public final uf0 f26444a;
+public final class mf0 implements Runnable {
+    public final int f26155a;
+    public final qf0 f26156b;
+
+    public mf0(qf0 qf0Var, int i10) {
+        this.f26155a = i10;
+        this.f26156b = qf0Var;
+    }
 
     @Override
-    public void b(vz vzVar) {
-        uf0 uf0Var = this.f26444a;
-        uf0Var.f28738l0 = vzVar;
-        vzVar.f(uf0Var);
+    public final void run() {
+        switch (this.f26155a) {
+            case 0:
+                this.f26156b.e();
+                return;
+            default:
+                this.f26156b.g();
+                return;
+        }
     }
 }

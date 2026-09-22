@@ -9,46 +9,45 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.rk;
+import org.telegram.messenger.vl;
 import org.telegram.ui.Components.CheckBox;
 public abstract class fb extends FrameLayout {
-    public int f20326a;
-    public boolean f20327b;
-    public final eb[] f20328c;
+    public int f20095a;
+    public boolean f20096b;
+    public final eb[] f20097c;
     public int d;
     public boolean e;
-    public boolean f20329f;
+    public boolean f20098f;
     public int h;
-    public final Paint f20330n;
-    public final Paint f20331r;
-    public final Paint f20332s;
+    public final Paint f20099n;
+    public final Paint f20100r;
+    public final Paint f20101s;
     public final Drawable v;
 
     public fb(Context context, int i10) {
         super(context);
-        this.f20327b = true;
+        this.f20096b = true;
         this.d = 3;
-        this.f20328c = new eb[i10];
+        this.f20097c = new eb[i10];
         int i11 = 0;
         while (true) {
-            eb[] ebVarArr = this.f20328c;
+            eb[] ebVarArr = this.f20097c;
             if (i11 < ebVarArr.length) {
                 eb ebVar = new eb(this, context);
                 ebVarArr[i11] = ebVar;
-                ebVar.setClipToOutline(true);
                 addView(ebVar);
                 ebVar.setOnClickListener(new va(this, ebVar, i11, 1));
                 ebVar.setOnLongClickListener(new db(this, ebVar, i11));
                 i11++;
             } else {
                 Paint paint = new Paint();
-                this.f20330n = paint;
+                this.f20099n = paint;
                 paint.setColor(855638016);
-                this.f20331r = new Paint(1);
+                this.f20100r = new Paint(1);
                 this.v = context.getResources().getDrawable(R.drawable.background_selected).mutate();
                 Paint paint2 = new Paint();
-                this.f20332s = paint2;
-                paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Lh, false));
+                this.f20101s = paint2;
+                paint2.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Lh, false));
                 return;
             }
         }
@@ -63,22 +62,22 @@ public abstract class fb extends FrameLayout {
     public final void c(int i10, boolean z10, boolean z11) {
         float f7;
         float f10;
-        eb ebVar = this.f20328c[i10];
-        ai.z5 z5Var = ebVar.f20259a;
-        CheckBox checkBox = ebVar.f20261c;
+        eb ebVar = this.f20097c[i10];
+        ai.z5 z5Var = ebVar.f20047a;
+        CheckBox checkBox = ebVar.f20049c;
         if (checkBox.getVisibility() != 0) {
             checkBox.setVisibility(0);
         }
         checkBox.b(z10, z11);
-        AnimatorSet animatorSet = ebVar.f20262f;
+        AnimatorSet animatorSet = ebVar.f20050f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            ebVar.f20262f = null;
+            ebVar.f20050f = null;
         }
         float f11 = 1.0f;
         if (z11) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            ebVar.f20262f = animatorSet2;
+            ebVar.f20050f = animatorSet2;
             if (z10) {
                 f10 = 0.8875f;
             } else {
@@ -89,9 +88,9 @@ public abstract class fb extends FrameLayout {
                 f11 = 0.8875f;
             }
             animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(z5Var, "scaleY", f11));
-            ebVar.f20262f.setDuration(200L);
-            ebVar.f20262f.addListener(new ai.n(25, ebVar, z10));
-            ebVar.f20262f.start();
+            ebVar.f20050f.setDuration(200L);
+            ebVar.f20050f.addListener(new ai.n(25, ebVar, z10));
+            ebVar.f20050f.start();
         } else {
             if (z10) {
                 f7 = 0.8875f;
@@ -108,58 +107,23 @@ public abstract class fb extends FrameLayout {
     }
 
     public final void d(int i10, boolean z10, boolean z11) {
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        boolean z15;
         int i11;
         this.d = i10;
         this.e = z10;
-        this.f20329f = z11;
+        this.f20098f = z11;
         int i12 = 0;
         while (true) {
-            eb[] ebVarArr = this.f20328c;
+            eb[] ebVarArr = this.f20097c;
             if (i12 < ebVarArr.length) {
-                yf.i0 i0Var = null;
-                if ((!z10 && !z11) || (i12 != 0 && i12 != i10 - 1)) {
-                    ebVarArr[i12].setOutlineProvider(null);
-                    z14 = z10;
-                    z15 = z11;
-                } else {
-                    eb ebVar = ebVarArr[i12];
-                    int dp = AndroidUtilities.dp(16.0f);
-                    if (i12 == 0) {
-                        z12 = true;
-                    } else {
-                        z12 = false;
-                    }
-                    if (i12 == i10 - 1) {
-                        z13 = true;
-                    } else {
-                        z13 = false;
-                    }
-                    ai.k2 k2Var = yf.j0.f47161a;
-                    if ((!z12 && !z13) || (!z10 && !z11)) {
-                        z14 = z10;
-                        z15 = z11;
-                    } else {
-                        z14 = z10;
-                        z15 = z11;
-                        i0Var = new yf.i0(dp, z12, z14, z13, z15);
-                    }
-                    ebVar.setOutlineProvider(i0Var);
-                }
-                eb ebVar2 = ebVarArr[i12];
+                eb ebVar = ebVarArr[i12];
                 if (i12 < i10) {
                     i11 = 0;
                 } else {
                     i11 = 8;
                 }
-                ebVar2.setVisibility(i11);
+                ebVar.setVisibility(i11);
                 ebVarArr[i12].clearAnimation();
                 i12++;
-                z10 = z14;
-                z11 = z15;
             } else {
                 return;
             }
@@ -168,7 +132,7 @@ public abstract class fb extends FrameLayout {
 
     public final void e(int i10, Object obj, Object obj2, int i11) {
         this.h = i10;
-        eb[] ebVarArr = this.f20328c;
+        eb[] ebVarArr = this.f20097c;
         if (obj == null) {
             ebVarArr[i11].setVisibility(8);
             ebVarArr[i11].clearAnimation();
@@ -182,7 +146,7 @@ public abstract class fb extends FrameLayout {
     public final void invalidate() {
         super.invalidate();
         for (int i10 = 0; i10 < this.d; i10++) {
-            this.f20328c[i10].invalidate();
+            this.f20097c[i10].invalidate();
         }
     }
 
@@ -193,18 +157,18 @@ public abstract class fb extends FrameLayout {
             super.onLayout(z10, i10, i11, i12, i13);
             return;
         }
-        int dp = AndroidUtilities.dp(12.0f);
+        int dp = AndroidUtilities.dp(14.0f);
         if (this.e) {
-            i14 = AndroidUtilities.dp(12.0f);
+            i14 = AndroidUtilities.dp(14.0f);
         } else {
             i14 = 0;
         }
         for (int i15 = 0; i15 < this.d; i15++) {
-            eb[] ebVarArr = this.f20328c;
+            eb[] ebVarArr = this.f20097c;
             int measuredWidth = ebVarArr[i15].getMeasuredWidth();
             eb ebVar = ebVarArr[i15];
             ebVar.layout(dp, i14, dp + measuredWidth, ebVar.getMeasuredHeight() + i14);
-            dp = org.telegram.messenger.l0.C(3.0f, measuredWidth, dp);
+            dp = org.telegram.messenger.y0.C(6.0f, measuredWidth, dp);
         }
     }
 
@@ -213,15 +177,15 @@ public abstract class fb extends FrameLayout {
         int dp;
         int i12;
         int i13;
-        float f7 = 3.0f;
+        float f7 = 6.0f;
         int i14 = 0;
         if (this.d == 1) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f20326a, 1073741824), rk.C(3.0f, this.f20326a, 1073741824));
-            setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f20095a, 1073741824), vl.C(6.0f, this.f20095a, 1073741824));
+            setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
             return;
         }
         int size = View.MeasureSpec.getSize(i10);
-        int dp2 = size - AndroidUtilities.dp(hg.k0.f(this.d, 1, 3, 24));
+        int dp2 = size - AndroidUtilities.dp(hg.c.g(this.d, 1, 6, 28));
         int i15 = dp2 / this.d;
         int i16 = this.h;
         if (i16 != 0 && i16 != 2 && i16 != 3) {
@@ -230,19 +194,19 @@ public abstract class fb extends FrameLayout {
             dp = AndroidUtilities.dp(180.0f);
         }
         if (this.e) {
-            i12 = AndroidUtilities.dp(12.0f);
+            i12 = AndroidUtilities.dp(14.0f);
         } else {
             i12 = 0;
         }
         int i17 = i12 + dp;
-        if (this.f20329f) {
-            f7 = 12.0f;
+        if (this.f20098f) {
+            f7 = 14.0f;
         }
         setMeasuredDimension(size, AndroidUtilities.dp(f7) + i17);
         while (true) {
             int i18 = this.d;
             if (i14 < i18) {
-                eb ebVar = this.f20328c[i14];
+                eb ebVar = this.f20097c[i14];
                 if (i14 == i18 - 1) {
                     i13 = dp2;
                 } else {
@@ -258,8 +222,8 @@ public abstract class fb extends FrameLayout {
     }
 
     public void setSize(int i10) {
-        if (this.f20326a != i10) {
-            this.f20326a = i10;
+        if (this.f20095a != i10) {
+            this.f20095a = i10;
             requestLayout();
         }
     }

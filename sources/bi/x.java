@@ -7,12 +7,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.j6;
-import w7.y5;
+import org.telegram.ui.ActionBar.i6;
+import w7.x5;
 public final class x extends LinearLayout {
-    public final TextView f3603a;
-    public final TextView f3604b;
-    public boolean f3605c;
+    public final TextView f3601a;
+    public final TextView f3602b;
+    public boolean f3603c;
 
     public x(Context context) {
         super(context);
@@ -20,29 +20,29 @@ public final class x extends LinearLayout {
         setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f3603a = textView;
+        this.f3601a = textView;
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(j6.w0(null, j6.f19216j5, false));
+        textView.setTextColor(i6.w0(null, i6.f18940j5, false));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10);
-        addView(textView, y5.t(-1, -2, 51, 0, 7, 0, 0));
+        addView(textView, x5.t(-1, -2, 51, 0, 7, 0, 0));
         TextView textView2 = new TextView(context);
-        this.f3604b = textView2;
+        this.f3602b = textView2;
         textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(j6.w0(null, j6.f19347q5, false));
+        textView2.setTextColor(i6.w0(null, i6.f19070q5, false));
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        addView(textView2, y5.t(-1, -2, 51, 0, 4, 0, 0));
+        addView(textView2, x5.t(-1, -2, 51, 0, 4, 0, 0));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f3605c) {
-            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), j6.f19231k0);
+        if (this.f3603c) {
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), i6.f18955k0);
         }
     }
 

@@ -7,27 +7,27 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.bd0;
-import org.telegram.ui.Components.jl0;
-public final class v implements e2.m, d9.e, jl0, bd0, a2 {
-    public final int f10899a;
-    public final int f10900b;
+import org.telegram.ui.Components.qc0;
+import org.telegram.ui.Components.wk0;
+public final class v implements e2.m, d9.e, wk0, qc0, a2 {
+    public final int f10897a;
+    public final int f10898b;
 
     public v(int i10, int i11) {
-        this.f10899a = i11;
-        this.f10900b = i10;
+        this.f10897a = i11;
+        this.f10898b = i10;
     }
 
     @Override
     public Object apply(Object obj) {
         Integer num = (Integer) obj;
-        return Integer.valueOf(this.f10900b);
+        return Integer.valueOf(this.f10898b);
     }
 
     @Override
     public String e(int i10) {
-        int i11 = this.f10899a;
-        int i12 = this.f10900b;
+        int i11 = this.f10897a;
+        int i12 = this.f10898b;
         switch (i11) {
             case 4:
                 if (i10 == 0) {
@@ -49,24 +49,24 @@ public final class v implements e2.m, d9.e, jl0, bd0, a2 {
     }
 
     @Override
+    public void f(b2 b2Var, int i10) {
+        MessagesController.getInstance(this.f10898b).performLogout(1);
+    }
+
+    @Override
     public void invoke(Object obj) {
-        switch (this.f10899a) {
+        switch (this.f10897a) {
             case 0:
-                ((b2.z0) obj).onRepeatModeChanged(this.f10900b);
+                ((b2.z0) obj).onRepeatModeChanged(this.f10898b);
                 return;
             default:
-                ((b2.z0) obj).onAudioSessionIdChanged(this.f10900b);
+                ((b2.z0) obj).onAudioSessionIdChanged(this.f10898b);
                 return;
         }
     }
 
     @Override
-    public void k(b2 b2Var, int i10) {
-        MessagesController.getInstance(this.f10900b).performLogout(1);
-    }
-
-    @Override
     public int run() {
-        return this.f10900b;
+        return this.f10898b;
     }
 }

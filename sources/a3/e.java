@@ -14,13 +14,13 @@ public final class e implements Runnable {
     public final void run() {
         switch (this.f81a) {
             case 0:
-                ((f) this.f82b.f15231b).f101g.onFirstFrameRendered();
+                ((f) this.f82b.f14993c).f101g.onFirstFrameRendered();
                 return;
             case 1:
-                ((f) this.f82b.f15231b).f101g.B();
+                ((f) this.f82b.f14993c).f101g.B();
                 return;
             default:
-                ((f) this.f82b.f15231b).f101g.U();
+                ((f) this.f82b.f14993c).f101g.J();
                 return;
         }
     }

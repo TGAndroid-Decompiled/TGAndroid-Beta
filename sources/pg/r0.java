@@ -1,27 +1,17 @@
 package pg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class r0 extends AnimatorListenerAdapter {
-    public final int f41260a;
-    public final s0 f41261b;
+import java.util.Arrays;
+import java.util.Vector;
+public final class r0 {
+    public double f40972a;
+    public Vector f40973b;
+    public int f40974c;
+    public float d;
+    public m e;
 
-    public r0(s0 s0Var, int i10) {
-        this.f41260a = i10;
-        this.f41261b = s0Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41260a) {
-            case 0:
-                s0 s0Var = this.f41261b;
-                s0Var.K = null;
-                s0Var.f41273f.f(new org.telegram.ui.web.r0(this, 10));
-                return;
-            default:
-                this.f41261b.f41273f.f(new org.telegram.ui.web.r0(this, 11));
-                return;
-        }
+    public r0(u0[] u0VarArr) {
+        Vector vector = new Vector();
+        this.f40973b = vector;
+        vector.addAll(Arrays.asList(u0VarArr));
     }
 }

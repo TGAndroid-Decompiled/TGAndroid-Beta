@@ -11,35 +11,35 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.n70;
 public final class t5 implements View.OnClickListener {
-    public final int f11637a;
-    public final d6 f11638b;
+    public final int f11635a;
+    public final d6 f11636b;
 
     public t5(d6 d6Var, int i10) {
-        this.f11637a = i10;
-        this.f11638b = d6Var;
+        this.f11635a = i10;
+        this.f11636b = d6Var;
     }
 
     @Override
     public final void onClick(View view) {
         Set<String> languages;
-        switch (this.f11637a) {
+        switch (this.f11635a) {
             case 0:
-                d6 d6Var = this.f11638b;
-                a aVar = d6Var.f11346x;
+                d6 d6Var = this.f11636b;
+                a aVar = d6Var.f11344x;
                 if (aVar != null && aVar.e) {
-                    boolean z10 = !aVar.f11207f;
-                    aVar.f11207f = z10;
-                    ((CheckBoxBase) d6Var.e.f4612b).f(-1, z10, true);
-                    a6 a6Var = d6Var.f11347y;
+                    boolean z10 = !aVar.f11205f;
+                    aVar.f11205f = z10;
+                    ((CheckBoxBase) d6Var.e.f4610b).f(-1, z10, true);
+                    a6 a6Var = d6Var.f11345y;
                     if (a6Var != null) {
-                        a aVar2 = d6Var.f11346x;
-                        boolean z11 = aVar2.f11207f;
-                        w3 w3Var = ((e3) a6Var).f11358a;
-                        aVar2.f11207f = z11;
+                        a aVar2 = d6Var.f11344x;
+                        boolean z11 = aVar2.f11205f;
+                        w3 w3Var = ((e3) a6Var).f11356a;
+                        aVar2.f11205f = z11;
                         h2 h2Var = w3Var.J3;
                         if (h2Var != null) {
                             h2Var.d();
@@ -52,33 +52,33 @@ public final class t5 implements View.OnClickListener {
                 }
                 return;
             default:
-                d6 d6Var2 = this.f11638b;
-                a6 a6Var2 = d6Var2.f11347y;
+                d6 d6Var2 = this.f11636b;
+                a6 a6Var2 = d6Var2.f11345y;
                 if (a6Var2 != null) {
-                    a aVar3 = d6Var2.f11346x;
-                    w3 w3Var2 = ((e3) a6Var2).f11358a;
-                    if (aVar3 != null && (aVar3.f11205b instanceof TL_iv.pageBlockPreformatted) && (languages = CodeHighlighting.getLanguages()) != null) {
+                    a aVar3 = d6Var2.f11344x;
+                    w3 w3Var2 = ((e3) a6Var2).f11356a;
+                    if (aVar3 != null && (aVar3.f11203b instanceof TL_iv.pageBlockPreformatted) && (languages = CodeHighlighting.getLanguages()) != null) {
                         ArrayList arrayList = new ArrayList(languages);
                         Collections.sort(arrayList);
-                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f11205b;
-                        y70 G = w3Var2.f11715h3.G(view);
-                        G.W(j6.b0(AndroidUtilities.dp(3.0f), j6.v0(j6.f19109d6, w3Var2.f11713g3)));
-                        G.Z = true;
-                        G.X = AndroidUtilities.dp(350.0f);
-                        G.i(new o2(w3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
+                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f11203b;
+                        n70 D = w3Var2.f11713h3.D(view);
+                        D.W(i6.b0(AndroidUtilities.dp(3.0f), i6.v0(i6.f18834d6, w3Var2.f11711g3)));
+                        D.Z = true;
+                        D.X = AndroidUtilities.dp(350.0f);
+                        D.i(new o2(w3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
                         if (!TextUtils.isEmpty(pageblockpreformatted.language)) {
-                            G.i(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
+                            D.i(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
                         }
-                        G.k();
+                        D.k();
                         int size = arrayList.size();
                         int i10 = 0;
                         while (i10 < size) {
                             Object obj = arrayList.get(i10);
                             i10++;
                             String str = (String) obj;
-                            G.i(new gg.t(w3Var2, aVar3, str, 17), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
+                            D.i(new gg.t(w3Var2, aVar3, str, 17), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
                         }
-                        G.Z();
+                        D.Z();
                         return;
                     }
                     return;

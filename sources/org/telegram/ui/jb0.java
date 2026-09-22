@@ -1,22 +1,32 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class jb0 implements View.OnAttachStateChangeListener {
-    public final LaunchActivity f34912a;
+import android.window.OnBackInvokedCallback;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class jb0 implements OnBackInvokedCallback {
+    public final LaunchActivity f34836a;
 
     public jb0(LaunchActivity launchActivity) {
-        this.f34912a = launchActivity;
+        this.f34836a = launchActivity;
     }
 
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        LaunchActivity launchActivity = this.f34912a;
-        launchActivity.getWindowManager().addCrossWindowBlurEnabledListener(launchActivity.f31126d1);
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        LaunchActivity launchActivity = this.f34912a;
-        launchActivity.getWindowManager().removeCrossWindowBlurEnabledListener(launchActivity.f31126d1);
+    public final void onBackInvoked() {
+        if (AndroidUtilities.isTablet()) {
+            this.f34836a.onBackPressed();
+        } else if (!this.f34836a.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f34836a;
+            ActionBarLayout actionBarLayout = launchActivity.f30841q0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f18384c1) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.f18384c1 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
+        }
     }
 }

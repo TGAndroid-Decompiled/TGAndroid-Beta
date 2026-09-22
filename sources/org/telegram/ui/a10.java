@@ -6,10 +6,10 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class a10 implements TextWatcher {
-    public final c10 f31954a;
+    public final c10 f31648a;
 
     public a10(c10 c10Var) {
-        this.f31954a = c10Var;
+        this.f31648a = c10Var;
     }
 
     @Override
@@ -18,19 +18,19 @@ public final class a10 implements TextWatcher {
         org.telegram.ui.ActionBar.k kVar2;
         String str;
         int i10;
-        f10 f10Var = this.f31954a.e;
-        if (!TextUtils.equals(editable, f10Var.f33466w)) {
-            f10Var.f33463n = !TextUtils.isEmpty(editable);
-            f10Var.f33466w = org.telegram.ui.Components.y5.onlyEmojiSpans(editable);
+        f10 f10Var = this.f31648a.e;
+        if (!TextUtils.equals(editable, f10Var.f33454w)) {
+            f10Var.f33451n = !TextUtils.isEmpty(editable);
+            f10Var.f33454w = org.telegram.ui.Components.x5.onlyEmojiSpans(editable);
             t00 t00Var = f10Var.I;
             if (t00Var != null) {
-                t00Var.e(org.telegram.ui.Components.y5.cloneSpans(f10Var.f33466w, -1, t00Var.f37604s.getPaint().getFontMetricsInt(), 0.5f), true);
+                t00Var.e(org.telegram.ui.Components.x5.cloneSpans(f10Var.f33454w, -1, t00Var.f37519s.getPaint().getFontMetricsInt(), 0.5f), true);
             }
             u00 u00Var = f10Var.J;
             if (u00Var != null) {
-                org.telegram.ui.Cells.v3 v3Var = u00Var.f37921r;
-                if (f10.k0(f10Var.f33466w)) {
-                    if (f10Var.f33467x) {
+                org.telegram.ui.Cells.u3 u3Var = u00Var.f37769r;
+                if (f10.k0(f10Var.f33454w)) {
+                    if (f10Var.f33455x) {
                         i10 = R.string.FilterNameAnimationsDisable;
                     } else {
                         i10 = R.string.FilterNameAnimationsEnable;
@@ -39,12 +39,12 @@ public final class a10 implements TextWatcher {
                 } else {
                     str = null;
                 }
-                v3Var.setText(str);
+                u3Var.setText(str);
             }
             kVar = ((org.telegram.ui.ActionBar.n2) f10Var).actionBar;
-            CharSequence charSequence = f10Var.f33466w;
+            CharSequence charSequence = f10Var.f33454w;
             kVar2 = ((org.telegram.ui.ActionBar.n2) f10Var).actionBar;
-            kVar.setTitle(org.telegram.ui.Components.y5.cloneSpans(charSequence, -1, kVar2.getTitleFontMetricsInt()));
+            kVar.setTitle(org.telegram.ui.Components.x5.cloneSpans(charSequence, -1, kVar2.getTitleFontMetricsInt()));
         }
         f10Var.i0(true);
     }

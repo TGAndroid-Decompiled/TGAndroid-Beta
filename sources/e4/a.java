@@ -11,16 +11,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import v7.j0;
-import z3.d;
-import z3.l;
+import w.c;
+import z3.b;
+import z3.e;
 import z3.m;
-public final class a implements m {
+import z3.n;
+public final class a implements n {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f7978a = new StringBuilder();
-    public final ArrayList f7979b = new ArrayList();
-    public final v f7980c = new v();
+    public final StringBuilder f7976a = new StringBuilder();
+    public final ArrayList f7977b = new ArrayList();
+    public final v f7978c = new v();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
@@ -48,18 +49,18 @@ public final class a implements m {
     }
 
     @Override
-    public final int K() {
+    public final int A() {
         return 1;
     }
 
     @Override
-    public final void M(byte[] bArr, int i10, int i11, l lVar, h hVar) {
+    public final void B(byte[] bArr, int i10, int i11, m mVar, h hVar) {
         ArrayList arrayList;
         String k10;
         String str;
         a aVar = this;
-        long j3 = lVar.f48420a;
-        v vVar = aVar.f7980c;
+        long j3 = mVar.f48093a;
+        v vVar = aVar.f7978c;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
         Charset F = vVar.F();
@@ -67,7 +68,7 @@ public final class a implements m {
             F = StandardCharsets.UTF_8;
         }
         long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && lVar.f48421b) {
+        if (j3 != -9223372036854775807L && mVar.f48094b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -91,9 +92,9 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f7978a;
+                    StringBuilder sb2 = aVar.f7976a;
                     sb2.setLength(0);
-                    ArrayList arrayList2 = aVar.f7979b;
+                    ArrayList arrayList2 = aVar.f7977b;
                     arrayList2.clear();
                     String k12 = vVar.k(F);
                     while (!TextUtils.isEmpty(k12)) {
@@ -136,10 +137,10 @@ public final class a implements m {
                     }
                     if (j12 != j13 && b11 < j12) {
                         if (arrayList != null) {
-                            arrayList.add(new z3.a(b10, b11 - b10, i0.z(a(fromHtml, str))));
+                            arrayList.add(new b(b10, b11 - b10, i0.z(a(fromHtml, str))));
                         }
                     } else {
-                        hVar.accept(new z3.a(b10, b11 - b10, i0.z(a(fromHtml, str))));
+                        hVar.accept(new b(b10, b11 - b10, i0.z(a(fromHtml, str))));
                     }
                     aVar = this;
                     j10 = j13;
@@ -156,14 +157,14 @@ public final class a implements m {
             while (i14 < size) {
                 Object obj = arrayList.get(i14);
                 i14++;
-                hVar.accept((z3.a) obj);
+                hVar.accept((b) obj);
             }
         }
     }
 
     @Override
-    public final d u(int i10, int i11, byte[] bArr) {
-        return j0.a(this, bArr, i11);
+    public final e r(int i10, int i11, byte[] bArr) {
+        return c.a(this, bArr, i11);
     }
 
     @Override

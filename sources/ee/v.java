@@ -1,22 +1,22 @@
 package ee;
-public final class v implements fb.o {
-    public final int f8200a;
-    public final String f8201b;
+public final class v implements fb.n {
+    public final int f8198a;
+    public final String f8199b;
 
     public v(String str, int i10) {
-        this.f8200a = i10;
-        this.f8201b = str;
+        this.f8198a = i10;
+        this.f8199b = str;
     }
 
     @Override
     public Object p2() {
-        throw new RuntimeException(this.f8201b);
+        throw new RuntimeException(this.f8199b);
     }
 
     public String toString() {
-        switch (this.f8200a) {
+        switch (this.f8198a) {
             case 0:
-                return "<" + this.f8201b + '>';
+                return "<" + this.f8199b + '>';
             default:
                 return super.toString();
         }

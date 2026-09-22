@@ -1,73 +1,68 @@
 package org.telegram.ui;
 
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class zl0 implements Runnable {
-    public final int f40255a;
-    public final pn0 f40256b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class zl0 implements View.OnTouchListener {
+    public final int f40226a;
+    public final on0 f40227b;
 
-    public zl0(pn0 pn0Var, int i10) {
-        this.f40255a = i10;
-        this.f40256b = pn0Var;
+    public zl0(on0 on0Var, int i10) {
+        this.f40226a = i10;
+        this.f40227b = on0Var;
     }
 
     @Override
-    public final void run() {
-        ViewGroup viewGroup;
-        switch (this.f40255a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        int i10 = this.f40226a;
+        on0 on0Var = this.f40227b;
+        switch (i10) {
             case 0:
-                pn0 pn0Var = this.f40256b;
-                ViewGroup[] viewGroupArr = pn0Var.Z;
-                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
-                    pn0Var.Y[0].requestFocus();
-                    AndroidUtilities.showKeyboard(pn0Var.Y[0]);
-                    return;
+                if (on0Var.getParentActivity() == null) {
+                    return false;
                 }
-                return;
+                if (motionEvent.getAction() == 1) {
+                    au auVar = new au(null, false);
+                    auVar.f31938r = new d20(22, on0Var, view);
+                    on0Var.presentFragment(auVar);
+                }
+                return true;
             case 1:
-                pn0 pn0Var2 = this.f40256b;
-                pn0Var2.presentFragment(pn0Var2.f36643h1, true);
-                pn0Var2.f36643h1 = null;
-                return;
+                if (on0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(on0Var.getParentActivity());
+                    String string = LocaleController.getString(R.string.PassportSelectGender);
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
+                    b2Var.R = string;
+                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new uv(on0Var, 2));
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
+                    on0Var.showDialog(b2Var);
+                }
+                return true;
             case 2:
-                pn0 pn0Var3 = this.f40256b;
-                EditTextBoldCursor[] editTextBoldCursorArr = pn0Var3.f36625a0;
-                if (editTextBoldCursorArr != null) {
-                    pn0Var3.I1(editTextBoldCursorArr[0]);
-                    return;
+                if (on0Var.getParentActivity() == null) {
+                    return false;
                 }
-                return;
-            case 3:
-                AndroidUtilities.showKeyboard(this.f40256b.Y[2]);
-                return;
-            case 4:
-                this.f40256b.x1();
-                return;
-            case 5:
-                int i10 = 0;
-                while (true) {
-                    pn0 pn0Var4 = this.f40256b;
-                    if (i10 < pn0Var4.f36631c0.getChildCount()) {
-                        View childAt = pn0Var4.f36631c0.getChildAt(i10);
-                        if (childAt instanceof on0) {
-                            pn0Var4.f36631c0.removeView(childAt);
-                            i10--;
-                        }
-                        i10++;
-                    } else {
-                        pn0Var4.x1();
-                        pn0Var4.f36660q1.clear();
-                        pn0Var4.f36658p1.clear();
-                        pn0Var4.f36679y.values.clear();
-                        pn0Var4.Q1();
-                        return;
-                    }
+                if (motionEvent.getAction() == 1) {
+                    au auVar2 = new au(null, false);
+                    auVar2.f31938r = new am0(on0Var, 2);
+                    on0Var.presentFragment(auVar2);
                 }
+                return true;
             default:
-                this.f40256b.finishFragment();
-                return;
+                if (on0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    au auVar3 = new au(null, false);
+                    auVar3.f31938r = new am0(on0Var, 3);
+                    on0Var.presentFragment(auVar3);
+                }
+                return true;
         }
     }
 }

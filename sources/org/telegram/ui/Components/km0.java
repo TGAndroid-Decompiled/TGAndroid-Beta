@@ -2,58 +2,46 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
+import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
-public final class km0 extends FrameLayout {
-    public final Paint f25761a;
-    public final f50 f25762b;
-    public final RectF f25763c;
-    public final float d;
-    public float e;
+public final class km0 extends w5 {
+    public final c6 d;
+    public final int e;
+    public final ScrollSlidingTextTabStrip f25629f;
 
-    public km0(Context context) {
+    public km0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i10) {
         super(context);
-        Paint paint = new Paint(1);
-        this.f25761a = paint;
-        f50 f50Var = new f50(this, 1);
-        this.f25762b = f50Var;
-        this.f25763c = new RectF();
-        this.d = (AndroidUtilities.dp(3.0f) * 0.5f) + AndroidUtilities.dp(5.0f);
-        a(paint, 0.2f);
-        a(f50Var, 1.0f);
-        setWillNotDraw(false);
-    }
-
-    public static void a(Paint paint, float f7) {
-        paint.setColor(-1);
-        paint.setAlpha(Math.round(f7 * 255.0f));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
+        this.f25629f = scrollSlidingTextTabStrip;
+        this.e = i10;
+        this.d = new c6(this, 360L, qr.h);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        float f7 = this.d;
-        RectF rectF = this.f25763c;
-        rectF.set(f7, f7, getWidth() - f7, getHeight() - f7);
-        canvas.drawOval(rectF, this.f25761a);
-        canvas.drawArc(rectF, -90.0f, this.e * 360.0f, false, this.f25762b);
-    }
-
-    public Paint getPaint() {
-        return this.f25762b;
-    }
-
-    public void setProgress(float f7) {
-        float max = Math.max(0.0f, Math.min(1.0f, f7));
-        if (this.e == max) {
-            return;
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.d.e(this.f25629f.f22180n0);
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (AndroidUtilities.lerp(1.0f, 0.5f, e) * 255.0f));
+        } else {
+            canvas2 = canvas;
         }
-        this.e = max;
-        invalidate();
+        super.onDraw(canvas2);
+        if (i10 > 0) {
+            canvas2.restore();
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f25629f.f22181r == this.e) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        accessibilityNodeInfo.setSelected(z10);
     }
 }

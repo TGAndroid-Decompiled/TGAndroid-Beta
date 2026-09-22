@@ -2,30 +2,30 @@ package yh;
 
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.y51;
-import org.telegram.ui.ih1;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.hh1;
 public final class d implements org.telegram.ui.ActionBar.a2, Utilities.Callback5, Utilities.Callback5Return {
-    public final g f47337a;
+    public final g f46998a;
 
     public d(g gVar) {
-        this.f47337a = gVar;
+        this.f46998a = gVar;
     }
 
     @Override
-    public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        g gVar = this.f47337a;
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        g gVar = this.f46998a;
         gVar.getClass();
-        gVar.presentFragment(new ih1(6, null));
+        gVar.presentFragment(new hh1(6, null));
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        y51 y51Var = (y51) obj;
+        i51 i51Var = (i51) obj;
         View view = (View) obj2;
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f47337a.getClass();
+        this.f46998a.getClass();
         return Boolean.FALSE;
     }
 
@@ -35,6 +35,6 @@ public final class d implements org.telegram.ui.ActionBar.a2, Utilities.Callback
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        g.W(this.f47337a, (y51) obj);
+        g.W(this.f46998a, (i51) obj);
     }
 }

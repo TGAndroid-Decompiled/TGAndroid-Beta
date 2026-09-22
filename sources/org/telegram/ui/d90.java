@@ -1,82 +1,29 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class d90 implements RequestDelegate {
-    public final int f32990a;
-    public final LaunchActivity f32991b;
-    public final int f32992c;
-    public final r80 d;
-    public final Object e;
-    public final Object f32993f;
-    public final Object f32994g;
-    public final Object h;
-    public final Object f32995i;
+public final class d90 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f32984a;
+    public final LaunchActivity f32985b;
 
-    public d90(LaunchActivity launchActivity, r80 r80Var, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
-        this.f32990a = 0;
-        this.f32991b = launchActivity;
-        this.d = r80Var;
-        this.f32992c = i10;
-        this.f32995i = authorizationform;
-        this.e = getauthorizationform;
-        this.f32993f = str;
-        this.f32994g = str2;
-        this.h = str3;
+    public d90(LaunchActivity launchActivity, int i10) {
+        this.f32984a = i10;
+        this.f32985b = launchActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f32990a;
-        Object obj = this.h;
-        Object obj2 = this.f32994g;
-        Object obj3 = this.f32993f;
-        Object obj4 = this.e;
-        Object obj5 = this.f32995i;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f32984a;
+        LaunchActivity launchActivity = this.f32985b;
         switch (i10) {
             case 0:
-                Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f32991b, this.d, tLObject, this.f32992c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 2));
-                return;
-            case 1:
-                int[] iArr = (int[]) obj5;
-                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
-                String str = (String) obj3;
-                String str2 = (String) obj2;
-                String str3 = (String) obj;
-                Pattern pattern2 = LaunchActivity.B1;
-                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
-                LaunchActivity launchActivity = this.f32991b;
-                r80 r80Var = this.d;
-                if (authorizationform != null) {
-                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                    int i11 = this.f32992c;
-                    iArr[0] = ConnectionsManager.getInstance(i11).sendRequest(getpassword, new d90(launchActivity, r80Var, i11, authorizationform, getauthorizationform, str, str2, str3));
-                    return;
-                }
-                AndroidUtilities.runOnUIThread(new vq(launchActivity, r80Var, tL_error, 14));
+                launchActivity.f30853w0.invalidate();
                 return;
             default:
-                Pattern pattern3 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f32991b, tLObject, (int[]) obj5, this.f32992c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 3));
+                Pattern pattern = LaunchActivity.B1;
+                launchActivity.getClass();
+                launchActivity.z0(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
         }
-    }
-
-    public d90(LaunchActivity launchActivity, int[] iArr, int i10, r80 r80Var, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f32990a = i11;
-        this.f32991b = launchActivity;
-        this.f32995i = iArr;
-        this.f32992c = i10;
-        this.d = r80Var;
-        this.e = obj;
-        this.f32993f = obj2;
-        this.f32994g = obj3;
-        this.h = obj4;
     }
 }

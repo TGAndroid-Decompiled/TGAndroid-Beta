@@ -1,30 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class g31 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24406a;
-    public final i31 f24407b;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.Utilities;
+public final class g31 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final String f24174a;
+    public final String f24175b;
+    public final Utilities.Callback2 f24176c;
 
-    public g31(i31 i31Var, int i10) {
-        this.f24406a = i10;
-        this.f24407b = i31Var;
+    public g31(String str, String str2, Utilities.Callback2 callback2) {
+        this.f24174a = str;
+        this.f24175b = str2;
+        this.f24176c = callback2;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f24406a) {
-            case 0:
-                ai.n4 n4Var = this.f24407b.f24955f;
-                n4Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                n4Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                n4Var.invalidate();
-                return;
-            default:
-                i31 i31Var = this.f24407b;
-                i31Var.getClass();
-                i31Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                i31Var.h();
-                return;
-        }
+    public void run(String str) {
+        v31.x(this.f24174a, str, this.f24175b, this.f24176c);
+    }
+
+    @Override
+    public void run(Exception exc) {
+        v31.x(this.f24174a, "en", this.f24175b, this.f24176c);
     }
 }

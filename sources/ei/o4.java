@@ -1,4 +1,4 @@
 package ei;
 public interface o4 {
-    void f(boolean z10);
+    void j(boolean z10);
 }

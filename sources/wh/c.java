@@ -1,4 +1,4 @@
 package wh;
 public interface c {
-    void f(boolean z10, boolean z11);
+    void h(boolean z10, boolean z11);
 }

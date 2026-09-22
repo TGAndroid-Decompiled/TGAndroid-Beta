@@ -1,174 +1,411 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.Camera;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PointF;
+import android.graphics.RadialGradient;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
+import android.text.Layout;
 import android.view.View;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.l20;
-public final class n3 extends View {
-    public float E;
-    public final Camera F;
-    public final l20 G;
-    public final RectF H;
-    public i3 f47817a;
-    public i3 f47818b;
-    public i3 f47819c;
-    public float d;
-    public float e;
-    public float f47820f;
-    public boolean h;
-    public boolean f47821n;
-    public boolean f47822r;
-    public h3 f47823s;
-    public h3 v;
-    public h3 f47824w;
-    public float f47825x;
-    public float f47826y;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.g01;
+import org.telegram.ui.Components.rq;
+public final class n3 extends rq {
+    public final Path f47457b;
+    public final RectF f47458c;
+    public final j8 d;
+    public final int e;
+    public final View f47459f;
+    public final ImageReceiver f47460g;
+    public final org.telegram.ui.Components.m5 h;
+    public RadialGradient f47461i;
+    public final Matrix f47462j;
+    public final g01 f47463k;
+    public final g01 f47464l;
+    public org.telegram.ui.Components.m6 f47465m;
+    public final float f47466n;
+    public yf.n f47467o;
+    public int f47468p;
+    public int f47469q;
+    public final Paint f47470r;
+    public int f47471s;
+    public int f47472t;
 
-    public n3(Context context) {
-        super(context);
-        this.F = new Camera();
-        this.G = new l20();
-        this.H = new RectF();
-    }
-
-    public final void a(Canvas canvas, h3 h3Var, float f7, float f10, float f11, int[] iArr, int[] iArr2, int[] iArr3) {
+    public n3(View view, TL_stars.StarGift starGift, int i10, float f7) {
+        super(view);
+        float f10;
+        String formatPluralString;
+        int i11;
+        float f11;
         float f12;
-        float f13;
-        float f14;
-        if (h3Var != null) {
-            Matrix matrix = h3Var.d;
-            Paint paint = h3Var.f47526c;
-            if (paint != null) {
-                float f15 = (f7 - 0.5f) / 1.5f;
-                float clamp01 = Utilities.clamp01(1.0f - Math.abs(f15));
-                float max = Math.max(0.8f * f10, AndroidUtilities.dp(180.0f));
-                float f16 = (f10 / 2.0f) - ((f15 * max) * 1.8f);
-                float f17 = f16 - max;
-                float f18 = f16 + max;
-                canvas.saveLayerAlpha(f17, 0.0f, f18, f11, 255, 31);
-                matrix.reset();
-                matrix.postTranslate(f16, Math.min(AndroidUtilities.dp(176.0f), f11) / 2.0f);
-                h3Var.e.setLocalMatrix(matrix);
-                paint.setAlpha((int) (clamp01 * 255.0f));
-                canvas.drawRect(f17, 0.0f, f18, f11, paint);
-                canvas.save();
-                float dp = AndroidUtilities.dp(90.0f);
-                RectF rectF = this.H;
-                rectF.set(f17, 0.0f, f17 + dp, f11);
-                l20 l20Var = this.G;
-                l20Var.b(canvas, rectF, 0, 1.0f);
-                rectF.set(f18 - dp, 0.0f, f18, f11);
-                l20Var.b(canvas, rectF, 2, 1.0f);
-                canvas.restore();
-                canvas.restore();
-                for (int i10 = 0; i10 < iArr.length; i10++) {
-                    float width = (getWidth() / (iArr.length - 1)) * i10;
-                    if (width >= f17 && width <= f18) {
-                        f14 = Math.min(Utilities.clamp01((width - f17) / max), Utilities.clamp01(1.0f - ((width - (f18 - max)) / max)));
-                    } else {
-                        f14 = 0.0f;
-                    }
-                    iArr[i10] = org.telegram.ui.ActionBar.j6.v(iArr[i10], org.telegram.ui.ActionBar.j6.l1(clamp01 * f14, h3Var.f47528g));
-                }
-                for (int i11 = 0; i11 < iArr2.length; i11++) {
-                    float width2 = (getWidth() / (iArr2.length - 1)) * i11;
-                    if (width2 >= f17 && width2 <= f18) {
-                        f13 = Math.min(Utilities.clamp01((width2 - f17) / max), Utilities.clamp01(1.0f - ((width2 - (f18 - max)) / max)));
-                    } else {
-                        f13 = 0.0f;
-                    }
-                    iArr2[i11] = org.telegram.ui.ActionBar.j6.v(iArr2[i11], org.telegram.ui.ActionBar.j6.l1(clamp01 * f13, h3Var.f47527f));
-                }
-                for (int i12 = 0; i12 < iArr3.length; i12++) {
-                    float width3 = (getWidth() / (iArr2.length - 1)) * i12;
-                    if (width3 >= f17 && width3 <= f18) {
-                        f12 = Math.min(Utilities.clamp01((width3 - f17) / max), Utilities.clamp01(1.0f - ((width3 - (f18 - max)) / max)));
-                    } else {
-                        f12 = 0.0f;
-                    }
-                    iArr3[i12] = org.telegram.ui.ActionBar.j6.v(iArr3[i12], org.telegram.ui.ActionBar.j6.l1(clamp01 * f12, h3Var.h));
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        this.f47457b = new Path();
+        this.f47458c = new RectF();
+        this.f47462j = new Matrix();
+        this.f47470r = new Paint(1);
+        this.f47471s = AndroidUtilities.dp(16.0f);
+        this.f47472t = 0;
+        this.f47459f = view;
+        this.f47466n = f7;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f47460g = imageReceiver;
+        if (i10 > 180) {
+            f10 = 24.0f;
+        } else {
+            f10 = 18.0f;
+        }
+        org.telegram.ui.Components.m5 m5Var = new org.telegram.ui.Components.m5(view, AndroidUtilities.dp(f10), false);
+        this.h = m5Var;
+        this.e = i10;
+        if (starGift instanceof TL_stars.TL_starGift) {
+            float f13 = i10;
+            x7.Z0(imageReceiver, starGift.sticker, (int) (0.75f * f13));
+            String str = starGift.title;
+            g01 g01Var = new g01(str == null ? "Gift" : str, 16.0f, AndroidUtilities.bold());
+            this.f47463k = g01Var;
+            g01Var.o(-1);
+            float f14 = i10 - 30;
+            g01Var.q(AndroidUtilities.dp(f14));
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+            g01Var.a();
+            g01Var.n(1);
+            if (starGift.sold_out) {
+                formatPluralString = LocaleController.getString(R.string.Gift2SoldOutTitle);
+            } else {
+                formatPluralString = LocaleController.formatPluralString("Gift2SoldAuctionPreviewGifts", starGift.availability_total, new Object[0]);
+            }
+            g01 g01Var2 = new g01(formatPluralString, 13.0f, null);
+            this.f47464l = g01Var2;
+            g01Var2.q(AndroidUtilities.dp(f14));
+            g01Var2.a();
+            g01Var2.n(1);
+            j8 j8Var = new j8(1, 40);
+            this.d = j8Var;
+            float f15 = 0.45f * f13;
+            j8Var.f(-AndroidUtilities.dp(f15), -AndroidUtilities.dp(f15), AndroidUtilities.dp(f15), AndroidUtilities.dp(f13 * 0.25f));
+            float dp = AndroidUtilities.dp(30.0f);
+            RectF rectF = j8Var.f47286c;
+            int width = (int) rectF.width();
+            int height = (int) rectF.height();
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            PointF pointF = new PointF(AndroidUtilities.lerp(0, width, Utilities.fastRandom.nextFloat()), AndroidUtilities.lerp(0, height, Utilities.fastRandom.nextFloat()));
+            float floor = (float) Math.floor(dp / Math.sqrt(2));
+            int ceil = (int) Math.ceil(width / floor);
+            int i16 = ceil + 1;
+            int ceil2 = (int) Math.ceil(height / floor);
+            int i17 = ceil2 + 1;
+            PointF[][] pointFArr = (PointF[][]) Array.newInstance(PointF.class, i16, i17);
+            for (int i18 = 0; i18 < i16; i18++) {
+                for (int i19 = 0; i19 < i17; i19++) {
+                    pointFArr[i18][i19] = null;
                 }
             }
+            pointFArr[(int) Math.floor(pointF.x / floor)][(int) Math.floor(pointF.y / floor)] = pointF;
+            arrayList.add(pointF);
+            arrayList2.add(pointF);
+            while (!arrayList2.isEmpty()) {
+                if (arrayList2.size() > 1) {
+                    i11 = Utilities.fastRandom.nextInt(arrayList2.size() - 1);
+                } else {
+                    i11 = 0;
+                }
+                PointF pointF2 = (PointF) arrayList2.get(i11);
+                int i20 = 0;
+                while (true) {
+                    if (i20 < 15) {
+                        f11 = dp;
+                        f12 = floor;
+                        int i21 = i20;
+                        double lerp = AndroidUtilities.lerp(1, 2, Utilities.fastRandom.nextFloat()) * f11;
+                        double lerp2 = AndroidUtilities.lerp(0, 360, Utilities.fastRandom.nextFloat());
+                        PointF pointF3 = new PointF((float) ((Math.cos(Math.toRadians(lerp2)) * lerp) + pointF2.x), (float) ((Math.sin(Math.toRadians(lerp2)) * lerp) + pointF2.y));
+                        int dp2 = AndroidUtilities.dp(15.0f) / 2;
+                        float f16 = pointF3.x;
+                        float f17 = dp2;
+                        if (f16 >= f17 && f16 < width - dp2) {
+                            float f18 = pointF3.y;
+                            if (f18 >= f17 && f18 < height - dp2) {
+                                int floor2 = (int) Math.floor(f16 / f12);
+                                int floor3 = (int) Math.floor(pointF3.y / f12);
+                                int max = Math.max(floor2 - 1, 0);
+                                int min = Math.min(floor2 + 1, ceil);
+                                int max2 = Math.max(floor3 - 1, 0);
+                                int min2 = Math.min(floor3 + 1, ceil2);
+                                while (max <= min) {
+                                    int i22 = min;
+                                    int i23 = max2;
+                                    while (i23 <= min2) {
+                                        int i24 = i23;
+                                        PointF pointF4 = pointFArr[max][i24];
+                                        int i25 = max2;
+                                        if (pointF4 != null) {
+                                            i14 = ceil;
+                                            i15 = width;
+                                            if (v7.z6.a(pointF4.x, pointF4.y, pointF3.x, pointF3.y) < f11) {
+                                                break;
+                                            }
+                                        } else {
+                                            i14 = ceil;
+                                            i15 = width;
+                                        }
+                                        i23 = i24 + 1;
+                                        max2 = i25;
+                                        ceil = i14;
+                                        width = i15;
+                                    }
+                                    max++;
+                                    min = i22;
+                                }
+                                i12 = ceil;
+                                i13 = width;
+                                arrayList.add(pointF3);
+                                pointFArr[(int) Math.floor(pointF3.x / f12)][(int) Math.floor(pointF3.y / f12)] = pointF3;
+                                arrayList2.add(pointF3);
+                                break;
+                            }
+                        }
+                        i14 = ceil;
+                        i15 = width;
+                        i20 = i21 + 1;
+                        floor = f12;
+                        dp = f11;
+                        ceil = i14;
+                        width = i15;
+                    } else {
+                        f11 = dp;
+                        f12 = floor;
+                        i12 = ceil;
+                        i13 = width;
+                        arrayList2.remove(i11);
+                        break;
+                    }
+                }
+                floor = f12;
+                dp = f11;
+                ceil = i12;
+                width = i13;
+            }
+            int size = arrayList.size();
+            ArrayList arrayList3 = j8Var.f47285b;
+            int size2 = size - arrayList3.size();
+            for (int i26 = 0; i26 < size2; i26++) {
+                arrayList3.add(new i8(j8Var));
+            }
+            int size3 = arrayList.size();
+            j8Var.f47290j = size3;
+            if (j8Var.f47292l != null) {
+                e0.i0 i0Var = new e0.i0(size3);
+                j8Var.f47292l = i0Var;
+                Bitmap bitmap = j8Var.d;
+                float width2 = bitmap.getWidth();
+                float height2 = bitmap.getHeight();
+                int i27 = 0;
+                while (i27 < i0Var.f7786a) {
+                    int i28 = i27;
+                    e0.i0.c((float[]) i0Var.f7788c, i28, 0.0f, 0.0f, width2, height2);
+                    i27 = i28 + 1;
+                }
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            for (int i29 = 0; i29 < j8Var.f47290j; i29++) {
+                i8 i8Var = (i8) arrayList3.get(i29);
+                PointF pointF5 = (PointF) arrayList.get(i29);
+                j8Var.c(i8Var, currentTimeMillis, true);
+                i8Var.f47252a = pointF5.x + rectF.left;
+                i8Var.f47253b = pointF5.y + rectF.top;
+                i8Var.h = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
+                i8Var.e *= 1.25f;
+            }
+        } else if (starGift != null) {
+            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) u5.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) u5.l(starGift.attributes, TL_stars.starGiftAttributePattern.class);
+            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) u5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class);
+            if (stargiftattributepattern != null) {
+                m5Var.i(stargiftattributepattern.document, false);
+            }
+            if (stargiftattributebackdrop != null) {
+                this.f47461i = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(i10) / 2.0f, new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                m5Var.k(Integer.valueOf(stargiftattributebackdrop.pattern_color | (-16777216)));
+            }
+            if (stargiftattributemodel != null) {
+                x7.Z0(imageReceiver, stargiftattributemodel.document, (int) (i10 * 0.75f));
+            }
         }
-    }
-
-    public final void b(Canvas canvas, i3 i3Var, float f7, boolean z10) {
-        if (i3Var == null) {
-            return;
-        }
-        ImageReceiver imageReceiver = i3Var.d;
-        float f10 = f7;
-        if (z10) {
-            f10 = Math.max(0.5f, f10);
-        }
-        float imageX = imageReceiver.getImageX();
-        float imageY = imageReceiver.getImageY();
-        float imageWidth = imageReceiver.getImageWidth();
-        float imageHeight = imageReceiver.getImageHeight();
-        float alpha = imageReceiver.getAlpha();
-        float f11 = (f10 - 0.5f) / 1.5f;
-        float clamp01 = Utilities.clamp01(1.0f - Math.abs(f11));
-        float width = (getWidth() / 2.0f) - (AndroidUtilities.dp(220.0f) * f11);
-        float dp = AndroidUtilities.dp(80.0f);
-        float lerp = AndroidUtilities.lerp(0.85f, 1.0f, clamp01);
-        float dp2 = AndroidUtilities.dp(160.0f);
-        canvas.save();
-        float f12 = ((dp2 / 2.0f) * f11) + width;
-        canvas.translate(f12, dp);
-        Camera camera = this.F;
-        camera.save();
-        camera.rotateY(f11 * (-30.0f));
-        camera.applyToCanvas(canvas);
-        camera.restore();
-        canvas.translate(-f12, -dp);
-        float f13 = dp2 * lerp;
-        float f14 = f13 / 2.0f;
-        imageReceiver.setImageCoords(width - f14, dp - f14, f13, f13);
-        imageReceiver.setAlpha(clamp01);
-        imageReceiver.draw(canvas);
-        imageReceiver.setImageCoords(imageX, imageY, imageWidth, imageHeight);
-        imageReceiver.setAlpha(alpha);
-        canvas.restore();
-    }
-
-    public final void c() {
-        boolean z10;
-        if (this.f47817a == null && this.f47818b == null && this.f47819c == null && this.f47823s == null && this.v == null && this.f47824w == null) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        this.f47819c = null;
-        this.f47818b = null;
-        this.f47817a = null;
-        this.f47820f = 0.0f;
-        this.e = 0.0f;
-        this.d = 0.0f;
-        this.f47822r = false;
-        this.f47821n = false;
-        this.h = false;
-        this.f47824w = null;
-        this.v = null;
-        this.f47823s = null;
-        this.E = 0.0f;
-        this.f47826y = 0.0f;
-        this.f47825x = 0.0f;
-        if (z10) {
-            invalidate();
+        this.f27661a.setShader(this.f47461i);
+        if (view.isAttachedToWindow()) {
+            a();
         }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f47817a, this.d, this.h);
-        b(canvas, this.f47818b, this.e, this.f47821n);
-        b(canvas, this.f47819c, this.f47820f, this.f47822r);
+    public final void a() {
+        this.h.a();
+        this.f47460g.onAttachedToWindow();
+        if (this.f47467o != null) {
+            int currentTime = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
+            int i10 = this.f47469q;
+            if (currentTime >= i10) {
+                i10 = this.f47468p;
+            }
+            this.f47467o.a(i10 - currentTime);
+        }
+    }
+
+    @Override
+    public final void b() {
+        this.h.b();
+        this.f47460g.onDetachedFromWindow();
+        yf.n nVar = this.f47467o;
+        if (nVar != null) {
+            nVar.b();
+        }
+    }
+
+    public final void c(int i10) {
+        g01 g01Var = this.f47464l;
+        if (g01Var != null) {
+            g01Var.o(i10 | (-16777216));
+        }
+    }
+
+    public final void d(int i10, int i11) {
+        int i12;
+        this.f47469q = i10;
+        this.f47468p = i11;
+        if (this.f47467o == null) {
+            this.f47467o = new yf.n(new r5.e(this, 20));
+        }
+        int currentTime = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
+        if (currentTime < i10) {
+            i12 = i10 - currentTime;
+        } else {
+            i12 = i11 - currentTime;
+        }
+        this.f47467o.a(i12);
+        if (this.f47465m == null) {
+            org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, false, false, false);
+            this.f47465m = m6Var;
+            m6Var.r(-1);
+            this.f47465m.t(AndroidUtilities.dp(12.0f));
+            this.f47465m.setCallback(new i.f(this, 9));
+        }
+        h();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        g01 g01Var;
+        Rect bounds = getBounds();
+        RectF rectF = this.f47458c;
+        rectF.set(bounds);
+        canvas.save();
+        Path path = this.f47457b;
+        path.rewind();
+        float f7 = this.f47471s;
+        path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+        canvas.clipPath(path);
+        RadialGradient radialGradient = this.f47461i;
+        Paint paint = this.f27661a;
+        if (radialGradient != null) {
+            Matrix matrix = this.f47462j;
+            matrix.reset();
+            matrix.postTranslate(rectF.centerX(), rectF.centerY());
+            this.f47461i.setLocalMatrix(matrix);
+            paint.setShader(this.f47461i);
+        }
+        canvas.drawPaint(paint);
+        canvas.save();
+        canvas.translate(rectF.centerX(), rectF.centerY());
+        j0.a(canvas, this.f47472t, this.h, rectF.width(), rectF.height(), 1.0f, this.f47466n);
+        j8 j8Var = this.d;
+        if (j8Var != null) {
+            j8Var.b(canvas, -1, 1.0f);
+        }
+        canvas.restore();
+        g01 g01Var2 = this.f47463k;
+        ImageReceiver imageReceiver = this.f47460g;
+        if (g01Var2 != null && (g01Var = this.f47464l) != null) {
+            if (this.f47465m != null) {
+                Paint paint2 = this.f47470r;
+                paint2.setColor(1342177280);
+                canvas.drawRoundRect(rectF.left + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f) + rectF.top, rectF.left + AndroidUtilities.dp(20.0f) + Math.max(this.f47465m.d(), AndroidUtilities.dp(3.0f)), rectF.top + AndroidUtilities.dp(23.0f), AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), paint2);
+                canvas.save();
+                canvas.translate(rectF.left + AndroidUtilities.dp(13.0f), rectF.top + AndroidUtilities.dp(14.0f));
+                this.f47465m.draw(canvas);
+                canvas.restore();
+            }
+            float min = Math.min(rectF.width(), rectF.height()) * 0.6f;
+            imageReceiver.setImageCoords(rectF.centerX() - (min / 2.0f), (rectF.height() * 0.12f) + rectF.top, min, min);
+            imageReceiver.draw(canvas);
+            g01Var2.e(canvas, rectF.centerX() - (g01Var2.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(50.0f));
+            g01Var.e(canvas, rectF.centerX() - (g01Var.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(30.0f));
+        } else {
+            float min2 = Math.min(rectF.width(), rectF.height()) * 0.75f;
+            float f10 = min2 / 2.0f;
+            imageReceiver.setImageCoords(rectF.centerX() - f10, rectF.centerY() - f10, min2, min2);
+            imageReceiver.draw(canvas);
+        }
+        canvas.restore();
+    }
+
+    public final void e(int i10, int i11) {
+        RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(this.e) / 2.0f, new int[]{i10 | (-16777216), i11 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f47461i = radialGradient;
+        this.f27661a.setShader(radialGradient);
+    }
+
+    public final void f() {
+        this.f47472t = 3;
+    }
+
+    public final void g(int i10) {
+        this.f47471s = i10;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(this.e);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(this.e);
+    }
+
+    public final void h() {
+        g01 g01Var;
+        int currentTime = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
+        int i10 = this.f47468p;
+        if (currentTime > i10) {
+            this.f47465m.q(LocaleController.getString(R.string.Gift2AuctionCountdownFinished), true, true);
+        } else {
+            int i11 = this.f47469q;
+            if (currentTime < i11) {
+                this.f47465m.q(LocaleController.formatString(R.string.Gift2AuctionCountdownStartsIn, AndroidUtilities.formatDuration(i11 - currentTime, true)), true, true);
+            } else {
+                this.f47465m.q(AndroidUtilities.formatDuration(i10 - currentTime, true), true, true);
+            }
+        }
+        if (currentTime > this.f47468p && (g01Var = this.f47464l) != null) {
+            g01Var.r(LocaleController.getString(R.string.Gift2SoldOutTitle));
+        }
     }
 }

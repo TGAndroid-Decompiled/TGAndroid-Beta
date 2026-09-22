@@ -44,13 +44,13 @@ public class PushListenerController {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 k9.h.f(ApplicationLoader.applicationContext);
-                android.support.v4.media.c cVar = FirebaseMessaging.f7265l;
+                com.google.firebase.messaging.v vVar = FirebaseMessaging.f7263l;
                 synchronized (FirebaseMessaging.class) {
                     firebaseMessaging = FirebaseMessaging.getInstance(k9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7271f.execute(new ci.b9(5, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.f7269f.execute(new ci.b9(5, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new c0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
@@ -551,9 +551,9 @@ public class PushListenerController {
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            StringBuilder v = a4.a.v("finished ", str3, " service, time = ");
-            v.append(SystemClock.elapsedRealtime() - elapsedRealtime);
-            FileLog.d(v.toString());
+            StringBuilder w10 = a4.a.w("finished ", str3, " service, time = ");
+            w10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
+            FileLog.d(w10.toString());
         }
     }
 

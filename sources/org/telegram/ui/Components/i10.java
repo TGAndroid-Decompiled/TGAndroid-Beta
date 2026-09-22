@@ -12,61 +12,61 @@ import android.text.StaticLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class i10 {
-    public int f24938a;
-    public final Object f24939b;
-    public final Object f24940c;
+    public int f24862a;
+    public final Object f24863b;
+    public final Object f24864c;
     public final Object d;
     public final Object e;
-    public final Object f24941f;
-    public Object f24942g;
+    public final Object f24865f;
+    public Object f24866g;
     public Object h;
 
-    public i10(org.telegram.ui.Cells.u1 u1Var) {
-        this.f24940c = new Path();
+    public i10(org.telegram.ui.Cells.t1 t1Var) {
+        this.f24864c = new Path();
         this.d = new Rect();
-        this.f24941f = new RectF();
-        this.f24939b = u1Var;
-        this.e = new yc(u1Var, 0.8f, 1.4f);
+        this.f24865f = new RectF();
+        this.f24863b = t1Var;
+        this.e = new wc(t1Var, 0.8f, 1.4f);
     }
 
     public void a(Canvas canvas, boolean z10) {
         Rect rect = (Rect) this.d;
         canvas.save();
-        Path path = (Path) this.f24940c;
+        Path path = (Path) this.f24864c;
         canvas.clipPath(path);
-        org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f24942g;
+        org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f24866g;
         if (zVar != null) {
             zVar.setBounds(rect);
-            ((org.telegram.ui.Cells.z) this.f24942g).draw(canvas);
+            ((org.telegram.ui.Cells.z) this.f24866g).draw(canvas);
         }
         if (z10) {
-            r90 r90Var = (r90) this.h;
-            if (r90Var == null) {
-                r90 r90Var2 = new r90();
-                this.h = r90Var2;
-                r90Var2.C = true;
-            } else if (r90Var.b() || ((r90) this.h).c()) {
-                r90 r90Var3 = (r90) this.h;
-                r90Var3.f27855b = -1L;
-                r90Var3.f27856c = -1L;
+            g90 g90Var = (g90) this.h;
+            if (g90Var == null) {
+                g90 g90Var2 = new g90();
+                this.h = g90Var2;
+                g90Var2.C = true;
+            } else if (g90Var.b() || ((g90) this.h).c()) {
+                g90 g90Var3 = (g90) this.h;
+                g90Var3.f24259b = -1L;
+                g90Var3.f24260c = -1L;
             }
         } else {
-            r90 r90Var4 = (r90) this.h;
-            if (r90Var4 != null && !r90Var4.c() && !((r90) this.h).b()) {
-                ((r90) this.h).a();
+            g90 g90Var4 = (g90) this.h;
+            if (g90Var4 != null && !g90Var4.c() && !((g90) this.h).b()) {
+                ((g90) this.h).a();
             }
         }
         canvas.restore();
-        r90 r90Var5 = (r90) this.h;
-        if (r90Var5 != null && !r90Var5.b()) {
-            r90 r90Var6 = (r90) this.h;
-            r90Var6.f27873x = path;
-            r90Var6.f(org.telegram.ui.ActionBar.j6.l1(0.7f, this.f24938a), org.telegram.ui.ActionBar.j6.l1(1.3f, this.f24938a), org.telegram.ui.ActionBar.j6.l1(1.5f, this.f24938a), org.telegram.ui.ActionBar.j6.l1(2.0f, this.f24938a));
-            ((r90) this.h).setBounds(rect);
+        g90 g90Var5 = (g90) this.h;
+        if (g90Var5 != null && !g90Var5.b()) {
+            g90 g90Var6 = (g90) this.h;
+            g90Var6.f24277x = path;
+            g90Var6.f(org.telegram.ui.ActionBar.i6.l1(0.7f, this.f24862a), org.telegram.ui.ActionBar.i6.l1(1.3f, this.f24862a), org.telegram.ui.ActionBar.i6.l1(1.5f, this.f24862a), org.telegram.ui.ActionBar.i6.l1(2.0f, this.f24862a));
+            ((g90) this.h).setBounds(rect);
             canvas.save();
-            ((r90) this.h).draw(canvas);
+            ((g90) this.h).draw(canvas);
             canvas.restore();
-            ((org.telegram.ui.Cells.u1) this.f24939b).invalidate();
+            ((org.telegram.ui.Cells.t1) this.f24863b).invalidate();
         }
     }
 
@@ -74,8 +74,8 @@ public final class i10 {
         float e;
         float f7;
         float dp;
-        RectF rectF = (RectF) this.f24941f;
-        int textSize = (((int) org.telegram.ui.ActionBar.j6.X2.getTextSize()) * 2) + AndroidUtilities.dp(4.0f);
+        RectF rectF = (RectF) this.f24865f;
+        int textSize = (((int) org.telegram.ui.ActionBar.i6.X2.getTextSize()) * 2) + AndroidUtilities.dp(4.0f);
         float max = Math.max(0, Math.min(6, SharedConfig.bubbleRadius) - 1);
         float min = Math.min(9, SharedConfig.bubbleRadius);
         float min2 = Math.min(3, SharedConfig.bubbleRadius);
@@ -84,7 +84,7 @@ public final class i10 {
         float dp2 = AndroidUtilities.dp(5.0f) + textSize;
         float lineWidth = staticLayoutArr[0].getLineWidth(0) + AndroidUtilities.dp(e);
         float lineWidth2 = staticLayoutArr[1].getLineWidth(0) + AndroidUtilities.dp(e);
-        Path path = (Path) this.f24940c;
+        Path path = (Path) this.f24864c;
         path.rewind();
         if (!z10) {
             max = SharedConfig.bubbleRadius / 2.0f;
@@ -141,15 +141,15 @@ public final class i10 {
     }
 
     public void c(int i10) {
-        if (this.f24938a != i10) {
-            org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f24942g;
+        if (this.f24862a != i10) {
+            org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f24866g;
             if (zVar == null) {
-                this.f24942g = org.telegram.ui.ActionBar.j6.f0(i10, 2, -1);
+                this.f24866g = org.telegram.ui.ActionBar.i6.f0(i10, 2, -1);
             } else {
-                org.telegram.ui.ActionBar.j6.B1(zVar, i10, true);
+                org.telegram.ui.ActionBar.i6.B1(zVar, i10, true);
             }
-            ((org.telegram.ui.Cells.z) this.f24942g).setCallback((org.telegram.ui.Cells.u1) this.f24939b);
-            this.f24938a = i10;
+            ((org.telegram.ui.Cells.z) this.f24866g).setCallback((org.telegram.ui.Cells.t1) this.f24863b);
+            this.f24862a = i10;
         }
     }
 
@@ -158,26 +158,26 @@ public final class i10 {
         Rect rect = (Rect) this.d;
         float centerX = rect.centerX();
         float centerY = rect.centerY();
-        ((yc) this.e).c(z10);
-        if (z10 && (zVar = (org.telegram.ui.Cells.z) this.f24942g) != null) {
+        ((wc) this.e).c(z10);
+        if (z10 && (zVar = (org.telegram.ui.Cells.z) this.f24866g) != null) {
             zVar.setHotspot(centerX, centerY);
         }
-        org.telegram.ui.Cells.z zVar2 = (org.telegram.ui.Cells.z) this.f24942g;
+        org.telegram.ui.Cells.z zVar2 = (org.telegram.ui.Cells.z) this.f24866g;
         if (zVar2 != null) {
             zVar2.setState(z10 ? new int[]{16842910, 16842919} : new int[0]);
         }
-        ((org.telegram.ui.Cells.u1) this.f24939b).invalidate();
+        ((org.telegram.ui.Cells.t1) this.f24863b).invalidate();
     }
 
     public i10() {
         Paint paint = new Paint();
-        this.f24939b = paint;
+        this.f24863b = paint;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f24940c = new rc0(tileMode);
-        this.d = new rc0(tileMode);
-        this.e = new rc0(Shader.TileMode.REPEAT);
-        this.f24941f = new Object();
-        this.f24942g = new Object();
+        this.f24864c = new gc0(tileMode);
+        this.d = new gc0(tileMode);
+        this.e = new gc0(Shader.TileMode.REPEAT);
+        this.f24865f = new Object();
+        this.f24866g = new Object();
         this.h = new float[4];
         paint.setFilterBitmap(true);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));

@@ -4,47 +4,47 @@ import android.content.Context;
 import android.net.Uri;
 import org.telegram.tgnet.TLRPC;
 public final class p2 implements Runnable {
-    public final int f27227a = 0;
-    public final long f27228b;
-    public final boolean f27229c;
+    public final int f26927a = 0;
+    public final long f26928b;
+    public final boolean f26929c;
     public final Object d;
     public final Object e;
-    public final Object f27230f;
+    public final Object f26930f;
 
     public p2(Context context, String str, long j3, boolean z10, nf.e eVar) {
         this.d = context;
         this.e = str;
-        this.f27228b = j3;
-        this.f27229c = z10;
-        this.f27230f = eVar;
+        this.f26928b = j3;
+        this.f26929c = z10;
+        this.f26930f = eVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f27227a) {
+        switch (this.f26927a) {
             case 0:
                 Context context = (Context) this.d;
-                nf.e eVar = (nf.e) this.f27230f;
+                nf.e eVar = (nf.e) this.f26930f;
                 Uri parse = Uri.parse((String) this.e);
-                if (this.f27228b == 0) {
+                if (this.f26928b == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                nf.f.q(context, parse, z10, this.f27229c, eVar);
+                nf.f.q(context, parse, z10, this.f26929c, eVar);
                 return;
             default:
-                i8.z((i8) this.d, this.f27228b, this.f27229c, (TLRPC.Document) this.e, (Runnable) this.f27230f);
+                h8.z((h8) this.d, this.f26928b, this.f26929c, (TLRPC.Document) this.e, (Runnable) this.f26930f);
                 return;
         }
     }
 
-    public p2(i8 i8Var, long j3, boolean z10, TLRPC.Document document, Runnable runnable) {
-        this.d = i8Var;
-        this.f27228b = j3;
-        this.f27229c = z10;
+    public p2(h8 h8Var, long j3, boolean z10, TLRPC.Document document, Runnable runnable) {
+        this.d = h8Var;
+        this.f26928b = j3;
+        this.f26929c = z10;
         this.e = document;
-        this.f27230f = runnable;
+        this.f26930f = runnable;
     }
 }

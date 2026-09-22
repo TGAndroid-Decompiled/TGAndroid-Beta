@@ -7,18 +7,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class m10 implements View.OnLongClickListener {
-    public final int f26276a;
-    public final Object f26277b;
+    public final int f26035a;
+    public final Object f26036b;
 
     public m10(Object obj, int i10) {
-        this.f26276a = i10;
-        this.f26277b = obj;
+        this.f26035a = i10;
+        this.f26036b = obj;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        int i10 = this.f26276a;
-        Object obj = this.f26277b;
+        int i10 = this.f26035a;
+        Object obj = this.f26036b;
         switch (i10) {
             case 0:
                 final FragmentContextView fragmentContextView = (FragmentContextView) obj;
@@ -26,18 +26,18 @@ public final class m10 implements View.OnLongClickListener {
                 final float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(fragmentContextView.V);
                 fragmentContextView.H.d(playbackSpeed, false);
                 org.telegram.ui.ActionBar.b1 b1Var = fragmentContextView.H;
-                int i11 = org.telegram.ui.ActionBar.j6.G8;
-                b1Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i11, fragmentContextView.f22289p0));
+                int i11 = org.telegram.ui.ActionBar.i6.G8;
+                b1Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(i11, fragmentContextView.f22049p0));
                 org.telegram.ui.ActionBar.b1 b1Var2 = fragmentContextView.H;
-                b1Var2.N = fragmentContextView.h instanceof org.telegram.ui.zn;
+                b1Var2.N = fragmentContextView.h instanceof org.telegram.ui.bo;
                 b1Var2.F.setShader(null);
                 b1Var2.h = null;
-                Bitmap bitmap = b1Var2.f18769f;
+                Bitmap bitmap = b1Var2.f18535f;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    b1Var2.f18769f = null;
+                    b1Var2.f18535f = null;
                 }
-                fragmentContextView.F.B(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+                fragmentContextView.F.B(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
                 fragmentContextView.F.N();
                 fragmentContextView.r(false);
                 fragmentContextView.F.setDimMenu(0.3f);
@@ -56,16 +56,16 @@ public final class m10 implements View.OnLongClickListener {
                 MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
                 return true;
             case 1:
-                de0 de0Var = (de0) obj;
-                de0Var.f23672r.setText("");
-                ci.m9.a(de0Var.f23673s, true);
-                Drawable drawable = de0Var.f23667a;
-                if (drawable instanceof nc0) {
-                    ((nc0) drawable).y();
+                sd0 sd0Var = (sd0) obj;
+                sd0Var.f27834r.setText("");
+                ci.m9.a(sd0Var.f27835s, true);
+                Drawable drawable = sd0Var.f27829a;
+                if (drawable instanceof cc0) {
+                    ((cc0) drawable).y();
                 }
                 return true;
             default:
-                return wq0.n((wq0) obj);
+                return hq0.n((hq0) obj);
         }
     }
 }

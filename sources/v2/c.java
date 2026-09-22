@@ -7,16 +7,16 @@ import c3.n;
 import e2.d0;
 import e2.v;
 public final class c implements h0 {
-    public final int f44151a;
-    public final s f44152b;
-    public final n f44153c = new n();
+    public final int f43827a;
+    public final s f43828b;
+    public final n f43829c = new n();
     public s d;
     public h0 e;
-    public long f44154f;
+    public long f43830f;
 
     public c(int i10, int i11, s sVar) {
-        this.f44151a = i11;
-        this.f44152b = sVar;
+        this.f43827a = i11;
+        this.f43828b = sVar;
     }
 
     @Override
@@ -26,24 +26,24 @@ public final class c implements h0 {
 
     @Override
     public final void b(s sVar) {
-        s sVar2 = this.f44152b;
+        s sVar2 = this.f43828b;
         if (sVar2 != null) {
             sVar = sVar.d(sVar2);
         }
         this.d = sVar;
         h0 h0Var = this.e;
-        String str = d0.f7887a;
+        String str = d0.f7885a;
         h0Var.b(sVar);
     }
 
     @Override
     public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
-        long j10 = this.f44154f;
+        long j10 = this.f43830f;
         if (j10 != -9223372036854775807L && j3 >= j10) {
-            this.e = this.f44153c;
+            this.e = this.f43829c;
         }
         h0 h0Var = this.e;
-        String str = d0.f7887a;
+        String str = d0.f7885a;
         h0Var.c(j3, i10, i11, i12, g0Var);
     }
 
@@ -55,14 +55,14 @@ public final class c implements h0 {
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
         h0 h0Var = this.e;
-        String str = d0.f7887a;
+        String str = d0.f7885a;
         return h0Var.a(kVar, i10, z10);
     }
 
     @Override
     public final void f(v vVar, int i10, int i11) {
         h0 h0Var = this.e;
-        String str = d0.f7887a;
+        String str = d0.f7885a;
         h0Var.d(i10, vVar);
     }
 }

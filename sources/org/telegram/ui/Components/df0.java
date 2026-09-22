@@ -1,25 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class df0 extends AnimatorListenerAdapter {
-    public final int f23678a;
-    public final ff0 f23679b;
+import android.content.Context;
+import android.graphics.Matrix;
+import android.view.TextureView;
+import android.view.View;
+public final class df0 extends TextureView {
+    public final jf0 f23316a;
 
-    public df0(ff0 ff0Var, int i10) {
-        this.f23678a = i10;
-        this.f23679b = ff0Var;
+    public df0(jf0 jf0Var, Context context) {
+        super(context);
+        this.f23316a = jf0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f23678a) {
-            case 0:
-                this.f23679b.f24222s = null;
-                return;
-            default:
-                this.f23679b.v = null;
-                return;
+    public final void onMeasure(int i10, int i11) {
+        View.MeasureSpec.getSize(i10);
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void setTransform(Matrix matrix) {
+        super.setTransform(matrix);
+        vz vzVar = this.f23316a.f25322l0;
+        if (vzVar != null) {
+            int width = getWidth();
+            int height = getHeight();
+            na naVar = vzVar.I;
+            if (naVar != null) {
+                Matrix matrix2 = naVar.v;
+                matrix.invert(matrix2);
+                float f7 = width;
+                float f10 = height;
+                matrix2.preScale(f7, f10);
+                matrix2.postScale(1.0f / f7, 1.0f / f10);
+                naVar.c(matrix2);
+                vzVar.e(false, false, false);
+            }
         }
     }
 }

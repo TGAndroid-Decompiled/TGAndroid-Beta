@@ -13,7 +13,7 @@ public final class b3 extends s4.n0 {
         rect.right = dp;
         rect.left = dp;
         recyclerView.getClass();
-        if (RecyclerView.S(view) % 3 != 2) {
+        if (RecyclerView.R(view) % 3 != 2) {
             rect.right = 0;
         }
     }

@@ -6,5 +6,5 @@ public interface a {
 
     ch.d l();
 
-    void v(Canvas canvas, float f7, float f10, float f11, float f12);
+    void y(Canvas canvas, float f7, float f10, float f11, float f12);
 }

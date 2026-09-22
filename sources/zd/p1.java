@@ -2,15 +2,15 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class p1 extends ee.b {
-    public final k1 f49238b;
-    public v1 f49239c;
+    public final k1 f48911b;
+    public v1 f48912c;
     public final u1 d;
     public final a1 e;
 
     public p1(k1 k1Var, u1 u1Var, a1 a1Var) {
         this.d = u1Var;
         this.e = a1Var;
-        this.f49238b = k1Var;
+        this.f48911b = k1Var;
     }
 
     @Override
@@ -23,21 +23,21 @@ public final class p1 extends ee.b {
         } else {
             z10 = false;
         }
-        k1 k1Var = this.f49238b;
+        k1 k1Var = this.f48911b;
         if (z10) {
             a1Var = k1Var;
         } else {
-            a1Var = this.f49239c;
+            a1Var = this.f48912c;
         }
         if (a1Var != null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.k.f8186a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.k.f8184a;
             while (!atomicReferenceFieldUpdater.compareAndSet(kVar, this, a1Var)) {
                 if (atomicReferenceFieldUpdater.get(kVar) != this) {
                     return;
                 }
             }
             if (z10) {
-                v1 v1Var = this.f49239c;
+                v1 v1Var = this.f48912c;
                 kotlin.jvm.internal.i.b(v1Var);
                 k1Var.e(v1Var);
             }

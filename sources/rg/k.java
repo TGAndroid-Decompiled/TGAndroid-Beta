@@ -5,39 +5,39 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.tgnet.TLRPC;
 public final class k {
-    public final TLRPC.TL_premiumGiftOption f42655a;
-    public final TLRPC.TL_premiumGiftCodeOption f42656b;
-    public final TLRPC.TL_premiumGiftOption f42657c;
+    public final TLRPC.TL_premiumGiftOption f42332a;
+    public final TLRPC.TL_premiumGiftCodeOption f42333b;
+    public final TLRPC.TL_premiumGiftOption f42334c;
     public final TLRPC.TL_premiumGiftCodeOption d;
     public int e;
-    public long f42658f;
-    public long f42659g;
-    public c5.n h;
+    public long f42335f;
+    public long f42336g;
+    public c5.o h;
 
     public k(TLRPC.TL_premiumGiftOption tL_premiumGiftOption) {
-        this.f42655a = tL_premiumGiftOption;
-        this.f42656b = null;
-        this.f42657c = null;
+        this.f42332a = tL_premiumGiftOption;
+        this.f42333b = null;
+        this.f42334c = null;
         this.d = null;
     }
 
     public final String a() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42655a;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42332a;
         if (tL_premiumGiftOption != null) {
             if (BuildVars.useInvoiceBilling() || tL_premiumGiftOption.store_product == null) {
                 return tL_premiumGiftOption.currency;
             }
         } else {
-            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f42656b;
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f42333b;
             if (tL_premiumGiftCodeOption != null && (BuildVars.useInvoiceBilling() || tL_premiumGiftCodeOption.store_product == null)) {
                 return tL_premiumGiftCodeOption.currency;
             }
         }
-        c5.n nVar = this.h;
-        if (nVar == null) {
+        c5.o oVar = this.h;
+        if (oVar == null) {
             return "";
         }
-        return nVar.a().f3904c;
+        return oVar.a().f3903c;
     }
 
     public final int b() {
@@ -45,8 +45,8 @@ public final class k {
             if (f() == 0) {
                 return 0;
             }
-            if (this.f42659g != 0) {
-                int f7 = (int) ((1.0d - (f() / this.f42659g)) * 100.0d);
+            if (this.f42336g != 0) {
+                int f7 = (int) ((1.0d - (f() / this.f42336g)) * 100.0d);
                 this.e = f7;
                 if (f7 == 0) {
                     this.e = -1;
@@ -59,7 +59,7 @@ public final class k {
     public final String c() {
         TLRPC.TL_premiumGiftOption tL_premiumGiftOption;
         TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
-        if (!BuildVars.useInvoiceBilling() && (((tL_premiumGiftOption = this.f42655a) == null || tL_premiumGiftOption.store_product != null) && ((tL_premiumGiftCodeOption = this.f42656b) == null || tL_premiumGiftCodeOption.store_product != null))) {
+        if (!BuildVars.useInvoiceBilling() && (((tL_premiumGiftOption = this.f42332a) == null || tL_premiumGiftOption.store_product != null) && ((tL_premiumGiftCodeOption = this.f42333b) == null || tL_premiumGiftCodeOption.store_product != null))) {
             if (this.h == null) {
                 return "";
             }
@@ -69,11 +69,11 @@ public final class k {
     }
 
     public final int d() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42655a;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42332a;
         if (tL_premiumGiftOption != null) {
             return tL_premiumGiftOption.months;
         }
-        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f42656b;
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f42333b;
         if (tL_premiumGiftCodeOption != null) {
             return tL_premiumGiftCodeOption.months;
         }
@@ -81,36 +81,36 @@ public final class k {
     }
 
     public final long e() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42655a;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42332a;
         if (tL_premiumGiftOption != null) {
             if (BuildVars.useInvoiceBilling() || tL_premiumGiftOption.store_product == null) {
                 return tL_premiumGiftOption.amount;
             }
         } else {
-            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f42656b;
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f42333b;
             if (tL_premiumGiftCodeOption != null && (BuildVars.useInvoiceBilling() || tL_premiumGiftCodeOption.store_product == null)) {
                 return tL_premiumGiftCodeOption.amount;
             }
         }
-        c5.n nVar = this.h;
-        if (nVar == null) {
+        c5.o oVar = this.h;
+        if (oVar == null) {
             return 0L;
         }
-        return nVar.a().f3903b;
+        return oVar.a().f3902b;
     }
 
     public final long f() {
-        if (this.f42658f == 0) {
+        if (this.f42335f == 0) {
             long e = e();
             if (e != 0) {
-                this.f42658f = e / d();
+                this.f42335f = e / d();
             }
         }
-        return this.f42658f;
+        return this.f42335f;
     }
 
     public final long g() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42657c;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42334c;
         if (tL_premiumGiftOption != null) {
             return tL_premiumGiftOption.amount;
         }
@@ -122,11 +122,11 @@ public final class k {
     }
 
     public final String h() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42655a;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f42332a;
         if (tL_premiumGiftOption != null) {
             return tL_premiumGiftOption.store_product;
         }
-        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f42656b;
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f42333b;
         if (tL_premiumGiftCodeOption != null) {
             return tL_premiumGiftCodeOption.store_product;
         }
@@ -134,9 +134,9 @@ public final class k {
     }
 
     public k(TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2) {
-        this.f42655a = null;
-        this.f42656b = tL_premiumGiftCodeOption;
-        this.f42657c = null;
+        this.f42332a = null;
+        this.f42333b = tL_premiumGiftCodeOption;
+        this.f42334c = null;
         this.d = e2.u(tL_premiumGiftCodeOption2) ? tL_premiumGiftCodeOption2 : null;
     }
 }

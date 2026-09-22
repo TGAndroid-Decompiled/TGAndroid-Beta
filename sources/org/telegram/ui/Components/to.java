@@ -4,9 +4,9 @@ import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class to extends FrameLayout {
-    public y81 f28504a;
-    public float f28505b;
-    public boolean f28506c;
+    public h81 f28152a;
+    public float f28153b;
+    public boolean f28154c;
     public float d;
     public ValueAnimator e;
 
@@ -14,7 +14,7 @@ public abstract class to extends FrameLayout {
 
     public final void b(boolean z10) {
         float f7;
-        this.f28506c = z10;
+        this.f28154c = z10;
         ValueAnimator valueAnimator = this.e;
         if (valueAnimator != null) {
             this.e = null;
@@ -31,37 +31,37 @@ public abstract class to extends FrameLayout {
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
         this.e = ofFloat;
-        ofFloat.addUpdateListener(new j6(this, 12));
+        ofFloat.addUpdateListener(new i6(this, 12));
         this.e.setInterpolator(qr.h);
         this.e.setDuration(320L);
-        this.e.addListener(new ba(4, this, z10));
+        this.e.addListener(new aa(4, this, z10));
         this.e.start();
     }
 
     public int getCurrentHeight() {
-        return (int) (getMeasuredHeight() * this.f28505b);
+        return (int) (getMeasuredHeight() * this.f28153b);
     }
 
     @Override
     public final boolean isShown() {
-        return this.f28506c;
+        return this.f28154c;
     }
 
     public void setShown(float f7) {
-        this.f28505b = f7;
-        y81 y81Var = this.f28504a;
-        if (y81Var != null) {
-            y81Var.setPivotX(y81Var.getWidth() / 2.0f);
-            this.f28504a.setPivotY(0.0f);
-            this.f28504a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
-            this.f28504a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+        this.f28153b = f7;
+        h81 h81Var = this.f28152a;
+        if (h81Var != null) {
+            h81Var.setPivotX(h81Var.getWidth() / 2.0f);
+            this.f28152a.setPivotY(0.0f);
+            this.f28152a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+            this.f28152a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
         }
         setAlpha(f7);
         invalidate();
     }
 
-    public void setTabs(y81 y81Var) {
-        this.f28504a = y81Var;
-        addView(y81Var, w7.y5.c(-1.0f, -1));
+    public void setTabs(h81 h81Var) {
+        this.f28152a = h81Var;
+        addView(h81Var, w7.x5.c(-1.0f, -1));
     }
 }

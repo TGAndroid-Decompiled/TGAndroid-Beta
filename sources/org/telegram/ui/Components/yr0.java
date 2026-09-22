@@ -1,32 +1,13 @@
 package org.telegram.ui.Components;
+public final class yr0 extends org.telegram.ui.tu0 {
+    public final yu0 f30322a;
 
-import android.content.Context;
-public final class yr0 extends iv0 {
-    public final lv0 G;
-
-    public yr0(lv0 lv0Var, Context context) {
-        super(lv0Var, context, 0, true);
-        this.G = lv0Var;
+    public yr0(yu0 yu0Var) {
+        this.f30322a = yu0Var;
     }
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        lv0 lv0Var = this.G;
-        eu0 W = lv0Var.W(9);
-        if (W != null && W.f24043r.getVisibility() == 0) {
-            lv0Var.f26200f0.l();
-        }
-        if (W != null) {
-            vs0 vs0Var = W.f24045w;
-            ai.d9 d9Var = this.f25184s;
-            if (d9Var != null && (d9Var.k() || (lv0Var.i0() && this.f25184s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            vs0Var.e(z10, true);
-        }
+    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r19, org.telegram.tgnet.TLRPC.FileLocation r20, int r21, boolean r22, boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yr0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
     }
 }

@@ -9,20 +9,20 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.fg1;
+import org.telegram.ui.eg1;
 import org.telegram.ui.uy;
 public final class v1 implements Utilities.Callback {
-    public final fg1 f8673a;
-    public final uy f8674b;
-    public final long f8675c;
+    public final eg1 f8671a;
+    public final uy f8672b;
+    public final long f8673c;
     public final int d;
 
-    public v1(fg1 fg1Var, uy uyVar, long j3, int i10) {
-        this.f8673a = fg1Var;
-        this.f8674b = uyVar;
-        this.f8675c = j3;
+    public v1(eg1 eg1Var, uy uyVar, long j3, int i10) {
+        this.f8671a = eg1Var;
+        this.f8672b = uyVar;
+        this.f8673c = j3;
         this.d = i10;
     }
 
@@ -32,10 +32,10 @@ public final class v1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        fg1 fg1Var = this.f8673a;
-        uy uyVar = this.f8674b;
-        if (fg1Var != null) {
-            fg1Var.finishFragment();
+        eg1 eg1Var = this.f8671a;
+        uy uyVar = this.f8672b;
+        if (eg1Var != null) {
+            eg1Var.finishFragment();
             uyVar.removeSelfFromStack();
         } else {
             uyVar.finishFragment();
@@ -44,7 +44,7 @@ public final class v1 implements Utilities.Callback {
         if (U == null) {
             return;
         }
-        long j3 = this.f8675c;
+        long j3 = this.f8673c;
         int i11 = this.d;
         if (j3 >= 0) {
             TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
@@ -60,7 +60,7 @@ public final class v1 implements Utilities.Callback {
                 user = chat;
             }
         }
-        xc a02 = xc.a0(U);
+        vc a02 = vc.a0(U);
         if (bool.booleanValue()) {
             i10 = R.string.BotSentRevokeVerifyRequest;
         } else {

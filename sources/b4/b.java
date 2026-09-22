@@ -1,22 +1,22 @@
 package b4;
 
 import android.text.TextUtils;
-import v7.s6;
+import v7.r6;
 public final class b {
-    public final int f3376a;
-    public final int f3377b;
-    public final int f3378c;
+    public final int f3374a;
+    public final int f3375b;
+    public final int f3376c;
     public final int d;
     public final int e;
-    public final int f3379f;
+    public final int f3377f;
 
     public b(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f3376a = i10;
-        this.f3377b = i11;
-        this.f3378c = i12;
+        this.f3374a = i10;
+        this.f3375b = i11;
+        this.f3376c = i12;
         this.d = i13;
         this.e = i14;
-        this.f3379f = i15;
+        this.f3377f = i15;
     }
 
     public static b a(String str) {
@@ -29,7 +29,7 @@ public final class b {
         int i13 = -1;
         int i14 = -1;
         for (int i15 = 0; i15 < split.length; i15++) {
-            String b10 = s6.b(split[i15].trim());
+            String b10 = r6.b(split[i15].trim());
             b10.getClass();
             switch (b10.hashCode()) {
                 case 100571:

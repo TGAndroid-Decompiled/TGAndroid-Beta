@@ -3,6 +3,7 @@ package of;
 import a3.h0;
 import a3.j0;
 import a3.l0;
+import ai.f6;
 import ai.ic;
 import ai.jc;
 import ai.r5;
@@ -10,6 +11,7 @@ import ai.w5;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,23 +24,26 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
-import android.view.animation.Animation;
-import b2.p;
 import b2.q;
 import b2.x1;
-import c5.e0;
+import c5.f0;
+import c5.o;
+import c6.e0;
 import com.google.android.gms.cast.CastDevice;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.s;
 import com.google.android.gms.internal.cast.f1;
 import com.google.android.gms.internal.cast.f2;
 import com.google.android.gms.internal.play_billing.a4;
+import com.google.android.gms.internal.play_billing.b4;
+import com.google.android.gms.internal.play_billing.f3;
 import com.google.android.gms.internal.play_billing.g3;
 import com.google.android.gms.internal.play_billing.i3;
 import com.google.android.gms.internal.play_billing.l3;
 import com.google.android.gms.internal.play_billing.o3;
 import com.google.android.gms.internal.play_billing.p3;
 import com.google.android.gms.internal.play_billing.u;
+import com.google.android.gms.internal.play_billing.v3;
 import com.google.android.gms.internal.play_billing.w3;
 import com.google.android.gms.internal.play_billing.x3;
 import com.google.android.gms.tasks.Continuation;
@@ -47,15 +52,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import d6.h;
 import d6.j;
-import e0.i0;
+import e2.d0;
 import e2.v;
-import e9.a1;
-import g2.i;
-import g2.o;
+import e9.g0;
+import e9.i0;
+import ed.i;
 import g6.n;
-import i9.w;
-import i9.y;
-import ii.b4;
+import g6.w;
 import ii.d6;
 import ii.i1;
 import ii.j3;
@@ -63,52 +66,50 @@ import ii.j4;
 import ii.r;
 import ii.t3;
 import ii.u3;
-import ii.v3;
 import j$.util.Objects;
 import j4.a0;
 import j4.b0;
-import j4.d0;
-import j4.f0;
+import j6.m;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import l5.t;
-import le.k;
-import le.l;
-import m4.q0;
+import m4.u0;
+import n2.p;
+import n4.y;
+import n6.l;
+import n7.a1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Cells.f3;
+import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.Components.vi;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y70;
 import org.telegram.ui.PhotoViewer;
 import p4.x;
 import p4.z;
-import z3.m;
-public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.internal.clearcut.h, cf.b, f6.a, g2.g, n, m, u3, a0, Continuation, le.f {
+import u2.t;
+public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.internal.clearcut.h, cf.b, f6.a, g2.g, n, z3.n, u3, a0, Continuation {
     public static volatile b d;
-    public final int f15696a;
-    public Object f15697b;
-    public Object f15698c;
+    public final int f15508a;
+    public Object f15509b;
+    public Object f15510c;
 
     public b(int i10, Object obj, Object obj2) {
-        this.f15696a = i10;
-        this.f15698c = obj;
-        this.f15697b = obj2;
+        this.f15508a = i10;
+        this.f15510c = obj;
+        this.f15509b = obj2;
     }
 
-    public static String J(Class cls) {
+    public static String E(Class cls) {
         int modifiers = cls.getModifiers();
         if (Modifier.isInterface(modifiers)) {
             return "Interfaces can't be instantiated! Register an InstanceCreator or a TypeAdapter for this type. Interface name: ".concat(cls.getName());
@@ -119,7 +120,7 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
         return null;
     }
 
-    public static b S() {
+    public static b M() {
         b bVar;
         b bVar2 = d;
         if (bVar2 == null) {
@@ -140,137 +141,101 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
     }
 
     @Override
-    public void A() {
-        ((k) this.f15697b).c((l) this.f15698c);
+    public int A() {
+        return 1;
     }
 
     @Override
-    public void B(d6.f fVar) {
-        Log.d("CAST_SESSION", "onSessionEnding " + ((d6.c) fVar).a());
+    public void B(byte[] r19, int r20, int r21, z3.m r22, e2.h r23) {
+        throw new UnsupportedOperationException("Method not decompiled: of.b.B(byte[], int, int, z3.m, e2.h):void");
     }
 
-    @Override
-    public void C(d6.f fVar, String str) {
-        d6.c cVar = (d6.c) fVar;
-        Log.d("CAST_SESSION", "onSessionStarted " + cVar.a() + " " + str);
-        Y(cVar);
-    }
-
-    @Override
-    public void D() {
-        b4 b4Var = ((r) this.f15698c).f11593s;
-        if (b4Var != null) {
-            int i10 = 0;
-            b4Var.e(false, true);
-            int i11 = b4Var.f11262b0;
-            if (i11 != 2) {
-                i10 = i11;
-            }
-            b4Var.f(i10, true);
-        }
-    }
-
-    @Override
-    public void E(String str, long j3, int i10, Object obj, long j10, long j11) {
-        ((g6.m) this.f15698c).f9440g = null;
-        n nVar = (n) this.f15697b;
-        if (nVar != null) {
-            nVar.E(str, j3, i10, obj, j10, j11);
-        }
-    }
-
-    @Override
-    public void F(d6.f fVar, int i10) {
-        Log.d("CAST_SESSION", "onSessionStartSuspended " + ((d6.c) fVar).a() + " " + i10);
-    }
-
-    @Override
-    public y70 G(View view) {
-        r rVar = (r) this.f15698c;
-        y70 y70Var = new y70(rVar, (f6) this.f15697b, view, false, false, true);
-        rVar.H = y70Var;
-        return y70Var;
-    }
-
-    public c5.e H() {
-        if (((c5.n) this.f15697b) != null) {
+    public c5.e C() {
+        if (((o) this.f15509b) != null) {
             return new c5.e(this);
         }
         throw new NullPointerException("ProductDetails is required for constructing ProductDetailsParams.");
     }
 
     @Override
-    public void I() {
-        r rVar = (r) this.f15698c;
+    public n70 D(View view) {
+        r rVar = (r) this.f15510c;
+        n70 n70Var = new n70(rVar, (e6) this.f15509b, view, false, false, true);
+        rVar.H = n70Var;
+        return n70Var;
+    }
+
+    @Override
+    public void F() {
+        r rVar = (r) this.f15510c;
         rVar.X();
         rVar.Y();
     }
 
     @Override
-    public int K() {
-        return 1;
-    }
-
-    @Override
-    public void L(t3 t3Var, View view) {
-        r rVar = (r) this.f15698c;
-        y70 y70Var = new y70(rVar, (f6) this.f15697b, view, false, false, true);
-        y70Var.Q = true;
-        rVar.H = j4.c(y70Var, rVar.f26786b.f29096f0, rVar.getContext(), (f6) this.f15697b, t3Var, true);
-    }
-
-    @Override
-    public void M(byte[] r19, int r20, int r21, z3.l r22, e2.h r23) {
-        throw new UnsupportedOperationException("Method not decompiled: of.b.M(byte[], int, int, z3.l, e2.h):void");
-    }
-
-    public boolean N(int i10) {
-        return ((q) this.f15697b).f3201a.get(i10);
-    }
-
-    public w O(byte[] bArr) {
-        byte[] bArr2;
-        lf.h hVar = (lf.h) this.f15698c;
-        if (hVar != null && (bArr2 = (byte[]) hVar.f14230b) != null && Arrays.equals(bArr2, bArr)) {
-            w wVar = (w) ((lf.h) this.f15698c).d;
-            e2.d.h(wVar);
-            return wVar;
+    public cf.a F1(a1 a1Var) {
+        int i10;
+        List list = (List) this.f15510c;
+        List list2 = (List) a1Var.f15106b;
+        if (list2 != null) {
+            i10 = list2.size();
+        } else {
+            i10 = 0;
         }
-        i iVar = (i) this.f15697b;
-        w a2 = ((y) iVar.f9366a).a(new com.google.firebase.messaging.h(1, iVar, bArr));
-        this.f15698c = new lf.h(bArr, a2);
-        return a2;
+        if (i10 > 0) {
+            ArrayList arrayList = new ArrayList(list.size() + i10);
+            arrayList.addAll(list);
+            arrayList.addAll(list2);
+            list = arrayList;
+        }
+        return new i(a1Var, (List) this.f15509b, list);
     }
 
-    public void P(i2.g gVar) {
+    public boolean G(int i10) {
+        return ((q) this.f15509b).f3199a.get(i10);
+    }
+
+    @Override
+    public void H(t3 t3Var, View view) {
+        r rVar = (r) this.f15510c;
+        n70 n70Var = new n70(rVar, (e6) this.f15509b, view, false, false, true);
+        n70Var.Q = true;
+        rVar.H = j4.c(n70Var, rVar.f26461b.f28747f0, rVar.getContext(), (e6) this.f15509b, t3Var, true);
+    }
+
+    public void I(i2.g gVar) {
         synchronized (gVar) {
         }
-        Handler handler = (Handler) this.f15697b;
+        Handler handler = (Handler) this.f15509b;
         if (handler != null) {
             handler.post(new j0(this, gVar, 1));
         }
     }
 
-    public fb.o Q(kb.a r8) {
-        throw new UnsupportedOperationException("Method not decompiled: of.b.Q(kb.a):fb.o");
+    public com.google.android.datatransport.cct.CctBackendFactory J(java.lang.String r14) {
+        throw new UnsupportedOperationException("Method not decompiled: of.b.J(java.lang.String):com.google.android.datatransport.cct.CctBackendFactory");
     }
 
-    public dc.b R() {
-        if (((dc.b) this.f15698c) == null) {
-            dc.f fVar = (dc.f) this.f15697b;
-            int[] iArr = fVar.f7633c;
-            cc.d dVar = fVar.f7631a;
-            int i10 = dVar.f4202a;
-            int i11 = dVar.f4203b;
+    public fb.n K(kb.a r9) {
+        throw new UnsupportedOperationException("Method not decompiled: of.b.K(kb.a):fb.n");
+    }
+
+    public dc.b L() {
+        if (((dc.b) this.f15510c) == null) {
+            dc.f fVar = (dc.f) this.f15509b;
+            int[] iArr = fVar.f7631c;
+            cc.d dVar = fVar.f7629a;
+            int i10 = dVar.f4200a;
+            int i11 = dVar.f4201b;
             dc.b bVar = new dc.b(i10, i11);
-            if (fVar.f7632b.length < i10) {
-                fVar.f7632b = new byte[i10];
+            if (fVar.f7630b.length < i10) {
+                fVar.f7630b = new byte[i10];
             }
             for (int i12 = 0; i12 < 32; i12++) {
                 iArr[i12] = 0;
             }
             for (int i13 = 1; i13 < 5; i13++) {
-                byte[] b10 = dVar.b((i11 * i13) / 5, fVar.f7632b);
+                byte[] b10 = dVar.b((i11 * i13) / 5, fVar.f7630b);
                 int i14 = (i10 * 4) / 5;
                 for (int i15 = i10 / 5; i15 < i14; i15++) {
                     int i16 = (b10[i15] & 255) >> 3;
@@ -325,64 +290,107 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
                     int i35 = i34 * i10;
                     for (int i36 = 0; i36 < i10; i36++) {
                         if ((a2[i35 + i36] & 255) < i33) {
-                            int i37 = (i36 / 32) + (bVar.f7619c * i34);
+                            int i37 = (i36 / 32) + (bVar.f7617c * i34);
                             int[] iArr2 = bVar.d;
                             iArr2[i37] = iArr2[i37] | (1 << (i36 & 31));
                         }
                     }
                 }
-                this.f15698c = bVar;
+                this.f15510c = bVar;
             } else {
                 throw cc.e.a();
             }
         }
-        return (dc.b) this.f15698c;
+        return (dc.b) this.f15510c;
     }
 
-    public boolean T() {
-        if (((a) ((lf.h) this.f15697b).d) != null) {
+    public String N(String str) {
+        Resources resources = (Resources) this.f15509b;
+        int identifier = resources.getIdentifier(str, "string", (String) this.f15510c);
+        if (identifier == 0) {
+            return null;
+        }
+        return resources.getString(identifier);
+    }
+
+    public boolean O() {
+        if (((a) ((lf.i) this.f15509b).d) != null) {
             return true;
         }
         return false;
     }
 
-    public void U(boolean z10, boolean z11, float f7) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f15697b;
-        w5 w5Var = (w5) this.f15698c;
+    public void P(Exception exc, boolean z10) {
+        int i10;
+        this.f15510c = null;
+        HashSet hashSet = (HashSet) this.f15509b;
+        i0 v = i0.v(hashSet);
+        hashSet.clear();
+        g0 listIterator = v.listIterator(0);
+        while (listIterator.hasNext()) {
+            n2.b bVar = (n2.b) listIterator.next();
+            bVar.getClass();
+            if (z10) {
+                i10 = 1;
+            } else {
+                i10 = 3;
+            }
+            bVar.l(i10, exc);
+        }
+    }
+
+    public void Q(boolean z10, boolean z11, float f7) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f15509b;
+        w5 w5Var = (w5) this.f15510c;
         jc jcVar = w5Var.e;
         jc.B1 = f7;
         ic icVar = jcVar.f1120z0;
         if (icVar != null) {
             icVar.setSpeed(f7);
         }
-        ai.f6.a0(w5Var.f1655l, z10);
+        f6.a0(w5Var.f1655l, z10);
         if (z11 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
         }
     }
 
-    public void V(Object obj) {
-        Handler handler = (Handler) this.f15697b;
+    public void R(n2.b bVar) {
+        ((HashSet) this.f15509b).add(bVar);
+        if (((n2.b) this.f15510c) != null) {
+            return;
+        }
+        this.f15510c = bVar;
+        p m10 = bVar.f14865b.m();
+        bVar.f14883x = m10;
+        android.support.v4.media.session.f fVar = bVar.f14878r;
+        String str = d0.f7885a;
+        m10.getClass();
+        fVar.getClass();
+        fVar.obtainMessage(1, new n2.a(t.f43480b.getAndIncrement(), true, SystemClock.elapsedRealtime(), m10)).sendToTarget();
+    }
+
+    public void S(Object obj) {
+        Handler handler = (Handler) this.f15509b;
         if (handler != null) {
             handler.post(new h0(this, obj, SystemClock.elapsedRealtime(), 0));
         }
     }
 
-    public void W(g gVar) {
+    public void T(g gVar) {
         d dVar;
         g gVar2;
         Log.d("CAST_CONTROLLER", "set current media");
-        lf.h hVar = (lf.h) this.f15697b;
-        g gVar3 = (g) hVar.f14231c;
+        lf.i iVar = (lf.i) this.f15509b;
+        g gVar3 = (g) iVar.f14022c;
         if (b5.d.u()) {
             if (gVar3 != null || gVar != null) {
                 if (gVar3 != null) {
-                    ArrayList arrayList = gVar3.f15718a;
-                    if (gVar != null && arrayList.size() == gVar.f15718a.size()) {
+                    ArrayList arrayList = gVar3.f15530a;
+                    if (gVar != null && arrayList.size() == gVar.f15530a.size()) {
                         for (int i10 = 0; i10 < arrayList.size(); i10++) {
                             f a2 = gVar3.a(i10);
                             f a10 = gVar.a(i10);
-                            if ((a2 == null && a10 == null) || (a2 != null && a10 != null && Objects.equals(a2.f15714a, a10.f15714a) && Objects.equals(a2.f15715b, a10.f15715b) && Objects.equals(a2.f15716c, a10.f15716c) && Objects.equals(a2.d, a10.d) && a2.e == a10.e && a2.f15717f == a10.f15717f)) {
+                            if ((a2 == null && a10 == null) || (a2 != null && a10 != null && Objects.equals(a2.f15526a, a10.f15526a) && Objects.equals(a2.f15527b, a10.f15527b) && Objects.equals(a2.f15528c, a10.f15528c) && Objects.equals(a2.d, a10.d) && a2.e == a10.e && a2.f15529f == a10.f15529f)) {
                             }
                         }
                         return;
@@ -392,50 +400,50 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
                 return;
             }
         }
-        if (((a) hVar.d) != null && gVar != null) {
-            hVar.r(gVar);
+        if (((a) iVar.d) != null && gVar != null) {
+            iVar.r(gVar);
         }
-        if (((a) hVar.d) != null && (gVar2 = (g) hVar.f14231c) != null) {
-            hVar.T(gVar2);
+        if (((a) iVar.d) != null && (gVar2 = (g) iVar.f14022c) != null) {
+            iVar.T(gVar2);
         }
-        if (gVar != null && gVar.f15718a.size() > 0 && !gVar.a(0).f15714a.startsWith("audio/") && (dVar = (d) hVar.f14230b) != null) {
+        if (gVar != null && gVar.f15530a.size() > 0 && !gVar.a(0).f15526a.startsWith("audio/") && (dVar = (d) iVar.f14021b) != null) {
             dVar.l(null, null);
         }
-        a aVar = (a) hVar.d;
+        a aVar = (a) iVar.d;
         if (aVar != null && gVar != null) {
             aVar.d = gVar;
-            aVar.f15695g = 0;
+            aVar.f15507g = 0;
             aVar.h = 0;
             aVar.p();
         }
-        hVar.f14231c = gVar;
+        iVar.f14022c = gVar;
     }
 
-    public void X(c5.n nVar) {
-        this.f15697b = nVar;
-        if (nVar.a() != null) {
-            nVar.a().getClass();
-            String str = nVar.a().d;
+    public void U(o oVar) {
+        this.f15509b = oVar;
+        if (oVar.a() != null) {
+            oVar.a().getClass();
+            String str = oVar.a().d;
             if (str != null) {
-                this.f15698c = str;
+                this.f15510c = str;
             }
         }
     }
 
-    public void Y(d6.c cVar) {
+    public void V(d6.c cVar) {
         String str;
         String string;
-        lf.h hVar = (lf.h) this.f15697b;
+        lf.i iVar = (lf.i) this.f15509b;
         if (cVar != null) {
-            n6.l.e("Must be called from the main thread.");
-            e6.h hVar2 = cVar.f7535j;
+            l.e("Must be called from the main thread.");
+            e6.h hVar = cVar.f7534j;
             String a2 = cVar.a();
-            if (!TextUtils.isEmpty(a2) && hVar2 != null) {
-                a aVar = (a) hVar.d;
-                if (aVar == null || !TextUtils.equals(aVar.f15693c.a(), a2)) {
-                    hVar.W(new a(cVar, (d6.g) this.f15698c, hVar2));
-                    n6.l.e("Must be called from the main thread.");
-                    CastDevice castDevice = cVar.f7536k;
+            if (!TextUtils.isEmpty(a2) && hVar != null) {
+                a aVar = (a) iVar.d;
+                if (aVar == null || !TextUtils.equals(aVar.f15505c.a(), a2)) {
+                    iVar.W(new a(cVar, (d6.g) this.f15510c, hVar));
+                    l.e("Must be called from the main thread.");
+                    CastDevice castDevice = cVar.f7535k;
                     if (castDevice != null) {
                         str = castDevice.d;
                     } else {
@@ -443,76 +451,84 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
                     }
                     PhotoViewer t12 = PhotoViewer.t1();
                     d.i();
-                    if (t12.E != null && t12.f31242e0 != null && t12.Q1()) {
-                        xc xcVar = new xc(t12.f31242e0, new ai.d());
+                    if (t12.E != null && t12.f30934e0 != null && t12.Q1()) {
+                        vc vcVar = new vc(t12.f30934e0, new ai.d());
                         int i10 = R.raw.forward;
                         if (!TextUtils.isEmpty(str)) {
                             string = LocaleController.formatString(R.string.ChromecastStartedTo, str);
                         } else {
                             string = LocaleController.getString(R.string.ChromecastStarted);
                         }
-                        xcVar.Q(i10, 36, string).j();
+                        vcVar.Q(i10, 36, string).j();
                     }
                 }
             }
         }
     }
 
-    public void Z(x1 x1Var) {
-        Handler handler = (Handler) this.f15697b;
+    public void W(x1 x1Var) {
+        Handler handler = (Handler) this.f15509b;
         if (handler != null) {
             handler.post(new a1.e(2, this, x1Var));
         }
     }
 
-    @Override
-    public void a() {
-        ((k) this.f15697b).a();
+    public void X(g3 g3Var) {
+        try {
+            e0(g3Var, (p3) this.f15509b);
+        } catch (Throwable th2) {
+            u.i("BillingLogger", "Unable to log.", th2);
+        }
     }
 
-    public void a0(g3 g3Var) {
+    public void Y(g3 g3Var, int i10, long j3) {
         try {
-            i0(g3Var, (p3) this.f15697b);
+            o3 o3Var = (o3) ((p3) this.f15509b).g();
+            o3Var.c();
+            p3.p((p3) o3Var.f6894b, i10);
+            p3 p3Var = (p3) o3Var.a();
+            this.f15509b = p3Var;
+            if (j3 != 0) {
+                o3 o3Var2 = (o3) p3Var.g();
+                o3Var2.c();
+                p3.r((p3) o3Var2.f6894b, j3);
+                p3Var = (p3) o3Var2.a();
+            }
+            e0(g3Var, p3Var);
+        } catch (Throwable th2) {
+            u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    public void Z(g3 g3Var, long j3, boolean z10) {
+        p3 p3Var;
+        try {
+            f3 f3Var = (f3) g3Var.g();
+            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
+            t3Var.c();
+            v3.n((v3) t3Var.f6894b, z10);
+            f3Var.c();
+            g3.r((g3) f3Var.f6894b, (v3) t3Var.a());
+            g3 g3Var2 = (g3) f3Var.a();
+            if (j3 == 0) {
+                p3Var = (p3) this.f15509b;
+            } else {
+                o3 o3Var = (o3) ((p3) this.f15509b).g();
+                o3Var.c();
+                p3.r((p3) o3Var.f6894b, j3);
+                p3Var = (p3) o3Var.a();
+            }
+            e0(g3Var2, p3Var);
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
     }
 
     @Override
-    public void accept(Object obj, Object obj2) {
-        boolean z10;
-        c6.e0 e0Var = (c6.e0) this.f15697b;
-        String str = (String) this.f15698c;
-        g6.w wVar = (g6.w) obj;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        if (e0Var.F == 2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        n6.l.j("Not connected to device", z10);
-        g6.f fVar = (g6.f) wVar.u();
-        Parcel O0 = fVar.O0();
-        O0.writeString(str);
-        fVar.T0(O0, 5);
-        synchronized (e0Var.f3987s) {
-            try {
-                if (e0Var.f3984p != null) {
-                    taskCompletionSource.setException(n6.l.m(new Status(2001, null, null, null)));
-                } else {
-                    e0Var.f3984p = taskCompletionSource;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    @Override
-    public void b(v vVar) {
-        d0 d0Var = (d0) this.f15698c;
+    public void a(v vVar) {
+        j4.d0 d0Var = (j4.d0) this.f15510c;
         SparseArray sparseArray = d0Var.h;
-        a4.h hVar = (a4.h) this.f15697b;
+        a4.h hVar = (a4.h) this.f15509b;
         if (vVar.x() == 0 && (vVar.x() & 128) != 0) {
             vVar.K(6);
             int a2 = vVar.a() / 4;
@@ -526,89 +542,129 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
                 } else {
                     int i12 = hVar.i(13);
                     if (sparseArray.get(i12) == null) {
-                        sparseArray.put(i12, new b0(new i0(d0Var, i12)));
-                        d0Var.f12652n++;
+                        sparseArray.put(i12, new b0(new e0.i0(d0Var, i12)));
+                        d0Var.f12650n++;
                     }
                 }
             }
-            if (d0Var.f12642a != 2) {
+            if (d0Var.f12640a != 2) {
                 sparseArray.remove(0);
             }
         }
     }
 
-    public void b0(g3 g3Var, int i10, long j3) {
+    public void a0(g3 g3Var, int i10, long j3, boolean z10) {
+        p3 p3Var;
         try {
-            o3 o3Var = (o3) ((p3) this.f15697b).g();
+            o3 o3Var = (o3) ((p3) this.f15509b).g();
             o3Var.c();
-            p3.p((p3) o3Var.f6896b, i10);
-            p3 p3Var = (p3) o3Var.a();
-            this.f15697b = p3Var;
-            if (j3 != 0) {
-                o3 o3Var2 = (o3) p3Var.g();
+            p3.p((p3) o3Var.f6894b, i10);
+            this.f15509b = (p3) o3Var.a();
+            f3 f3Var = (f3) g3Var.g();
+            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
+            t3Var.c();
+            v3.n((v3) t3Var.f6894b, z10);
+            f3Var.c();
+            g3.r((g3) f3Var.f6894b, (v3) t3Var.a());
+            g3 g3Var2 = (g3) f3Var.a();
+            if (j3 == 0) {
+                p3Var = (p3) this.f15509b;
+            } else {
+                o3 o3Var2 = (o3) ((p3) this.f15509b).g();
                 o3Var2.c();
-                p3.r((p3) o3Var2.f6896b, j3);
+                p3.r((p3) o3Var2.f6894b, j3);
                 p3Var = (p3) o3Var2.a();
             }
-            i0(g3Var, p3Var);
+            e0(g3Var2, p3Var);
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
     }
 
     @Override
-    public cf.a c0(f3 f3Var) {
-        int i10;
-        List list = (List) this.f15698c;
-        List list2 = (List) f3Var.f20284b;
-        if (list2 != null) {
-            i10 = list2.size();
+    public void accept(Object obj, Object obj2) {
+        boolean z10;
+        e0 e0Var = (e0) this.f15509b;
+        String str = (String) this.f15510c;
+        w wVar = (w) obj;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
+        if (e0Var.F == 2) {
+            z10 = true;
         } else {
-            i10 = 0;
+            z10 = false;
         }
-        if (i10 > 0) {
-            ArrayList arrayList = new ArrayList(list.size() + i10);
-            arrayList.addAll(list);
-            arrayList.addAll(list2);
-            list = arrayList;
+        l.j("Not connected to device", z10);
+        g6.f fVar = (g6.f) wVar.u();
+        Parcel O0 = fVar.O0();
+        O0.writeString(str);
+        fVar.T0(O0, 5);
+        synchronized (e0Var.f3985s) {
+            try {
+                if (e0Var.f3982p != null) {
+                    taskCompletionSource.setException(l.m(new Status(2001, null, null, null)));
+                } else {
+                    e0Var.f3982p = taskCompletionSource;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
-        return new ed.i(f3Var, (List) this.f15697b, list);
+    }
+
+    public void b0(l3 l3Var) {
+        try {
+            w3 t10 = x3.t();
+            t10.d((p3) this.f15509b);
+            t10.c();
+            x3.p((x3) t10.f6894b, l3Var);
+            ((b2.p) this.f15510c).i((x3) t10.a());
+        } catch (Throwable th2) {
+            u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public void c(d6.f fVar, String str) {
+        Log.d("CAST_SESSION", "onSessionResuming " + ((d6.c) fVar).a() + " " + str);
+    }
+
+    public void c0(a4 a4Var) {
+        try {
+            w3 t10 = x3.t();
+            t10.d((p3) this.f15509b);
+            t10.c();
+            x3.r((x3) t10.f6894b, a4Var);
+            ((b2.p) this.f15510c).i((x3) t10.a());
+        } catch (Throwable th2) {
+            u.i("BillingLogger", "Unable to log.", th2);
+        }
     }
 
     @Override
     public g2.h createDataSource() {
-        return new g2.n((Context) this.f15697b, ((o) this.f15698c).createDataSource());
+        return new g2.n((Context) this.f15509b, ((g2.o) this.f15510c).createDataSource());
     }
 
     @Override
-    public void d(v3 v3Var, View view) {
-        r rVar = (r) this.f15698c;
-        y70 y70Var = new y70(rVar, (f6) this.f15697b, view, false, false, true);
-        y70Var.Q = true;
-        n2 n2Var = rVar.f26786b.f29096f0;
+    public void d(ii.v3 v3Var, View view) {
+        r rVar = (r) this.f15510c;
+        n70 n70Var = new n70(rVar, (e6) this.f15509b, view, false, false, true);
+        n70Var.Q = true;
+        n2 n2Var = rVar.f26461b.f28747f0;
         rVar.getContext();
-        rVar.H = j4.b(y70Var, n2Var, v3Var, true);
+        rVar.H = j4.b(n70Var, n2Var, v3Var, true);
     }
 
-    public void d0(g3 g3Var, long j3, boolean z10) {
-        p3 p3Var;
+    public void d0(b4 b4Var) {
+        if (b4Var == null) {
+            return;
+        }
         try {
-            com.google.android.gms.internal.play_billing.f3 f3Var = (com.google.android.gms.internal.play_billing.f3) g3Var.g();
-            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
-            t3Var.c();
-            com.google.android.gms.internal.play_billing.v3.n((com.google.android.gms.internal.play_billing.v3) t3Var.f6896b, z10);
-            f3Var.c();
-            g3.r((g3) f3Var.f6896b, (com.google.android.gms.internal.play_billing.v3) t3Var.a());
-            g3 g3Var2 = (g3) f3Var.a();
-            if (j3 == 0) {
-                p3Var = (p3) this.f15697b;
-            } else {
-                o3 o3Var = (o3) ((p3) this.f15697b).g();
-                o3Var.c();
-                p3.r((p3) o3Var.f6896b, j3);
-                p3Var = (p3) o3Var.a();
-            }
-            i0(g3Var2, p3Var);
+            w3 t10 = x3.t();
+            t10.d((p3) this.f15509b);
+            t10.c();
+            x3.s((x3) t10.f6894b, b4Var);
+            ((b2.p) this.f15510c).i((x3) t10.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -619,89 +675,7 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
         throw new UnsupportedOperationException("Method not decompiled: of.b.e(float):boolean");
     }
 
-    public void e0(g3 g3Var, int i10, long j3, boolean z10) {
-        p3 p3Var;
-        try {
-            o3 o3Var = (o3) ((p3) this.f15697b).g();
-            o3Var.c();
-            p3.p((p3) o3Var.f6896b, i10);
-            this.f15697b = (p3) o3Var.a();
-            com.google.android.gms.internal.play_billing.f3 f3Var = (com.google.android.gms.internal.play_billing.f3) g3Var.g();
-            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
-            t3Var.c();
-            com.google.android.gms.internal.play_billing.v3.n((com.google.android.gms.internal.play_billing.v3) t3Var.f6896b, z10);
-            f3Var.c();
-            g3.r((g3) f3Var.f6896b, (com.google.android.gms.internal.play_billing.v3) t3Var.a());
-            g3 g3Var2 = (g3) f3Var.a();
-            if (j3 == 0) {
-                p3Var = (p3) this.f15697b;
-            } else {
-                o3 o3Var2 = (o3) ((p3) this.f15697b).g();
-                o3Var2.c();
-                p3.r((p3) o3Var2.f6896b, j3);
-                p3Var = (p3) o3Var2.a();
-            }
-            i0(g3Var2, p3Var);
-        } catch (Throwable th2) {
-            u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public void f(d6.f fVar, String str) {
-        Log.d("CAST_SESSION", "onSessionResuming " + ((d6.c) fVar).a() + " " + str);
-    }
-
-    public void f0(l3 l3Var) {
-        try {
-            w3 t10 = x3.t();
-            t10.d((p3) this.f15697b);
-            t10.c();
-            x3.p((x3) t10.f6896b, l3Var);
-            ((p) this.f15698c).i((x3) t10.a());
-        } catch (Throwable th2) {
-            u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    public void g0(a4 a4Var) {
-        try {
-            w3 t10 = x3.t();
-            t10.d((p3) this.f15697b);
-            t10.c();
-            x3.r((x3) t10.f6896b, a4Var);
-            ((p) this.f15698c).i((x3) t10.a());
-        } catch (Throwable th2) {
-            u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public boolean h() {
-        return false;
-    }
-
-    public void h0(com.google.android.gms.internal.play_billing.b4 b4Var) {
-        if (b4Var == null) {
-            return;
-        }
-        try {
-            w3 t10 = x3.t();
-            t10.d((p3) this.f15697b);
-            t10.c();
-            x3.s((x3) t10.f6896b, b4Var);
-            ((p) this.f15698c).i((x3) t10.a());
-        } catch (Throwable th2) {
-            u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public boolean i(float f7) {
-        return false;
-    }
-
-    public void i0(g3 g3Var, p3 p3Var) {
+    public void e0(g3 g3Var, p3 p3Var) {
         if (g3Var == null) {
             return;
         }
@@ -709,60 +683,78 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
             w3 t10 = x3.t();
             t10.d(p3Var);
             t10.c();
-            x3.n((x3) t10.f6896b, g3Var);
-            ((p) this.f15698c).i((x3) t10.a());
+            x3.n((x3) t10.f6894b, g3Var);
+            ((b2.p) this.f15510c).i((x3) t10.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
     }
 
-    public void j0(i3 i3Var, p3 p3Var) {
+    @Override
+    public void f(d6.f fVar, int i10) {
+        Log.d("CAST_SESSION", "onSessionStartFailed " + ((d6.c) fVar).a() + " " + i10);
+    }
+
+    public void f0(i3 i3Var, p3 p3Var) {
         try {
             w3 t10 = x3.t();
             t10.d(p3Var);
             t10.c();
-            x3.o((x3) t10.f6896b, i3Var);
-            ((p) this.f15698c).i((x3) t10.a());
+            x3.o((x3) t10.f6894b, i3Var);
+            ((b2.p) this.f15510c).i((x3) t10.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
     }
 
     @Override
-    public void k(d6.f fVar, int i10) {
-        Log.d("CAST_SESSION", "onSessionStartFailed " + ((d6.c) fVar).a() + " " + i10);
-    }
-
-    @Override
-    public void l(d6 d6Var, String str) {
-        r rVar = (r) this.f15698c;
+    public void g(d6 d6Var, String str) {
+        r rVar = (r) this.f15510c;
         if (rVar.v == null) {
-            f6 f6Var = (f6) this.f15697b;
-            rVar.v = new m.p3(new ah.b(16, this, f6Var), f6Var);
+            e6 e6Var = (e6) this.f15509b;
+            rVar.v = new m.p3(new ah.b(16, this, e6Var), e6Var);
         }
         rVar.v.d(d6Var, str);
     }
 
     @Override
-    public void m(int i10) {
-        r.O((r) this.f15698c, 74, i10);
+    public void h(int i10) {
+        r.O((r) this.f15510c, 74, i10);
     }
 
     @Override
-    public void n() {
+    public void i(d6.f fVar, boolean z10) {
+        Log.d("CAST_SESSION", "onSessionResumed " + ((d6.c) fVar).a() + " " + z10);
+    }
+
+    @Override
+    public void j(d6.f fVar, int i10) {
+        Log.d("CAST_SESSION", "onSessionEnded " + ((d6.c) fVar).a() + " " + i10);
+        ((lf.i) this.f15509b).W(null);
+    }
+
+    @Override
+    public void k(d6.f fVar) {
+        d6.c cVar = (d6.c) fVar;
+        Log.d("CAST_SESSION", "onSessionStarting " + cVar.a());
+        V(cVar);
+    }
+
+    @Override
+    public void l() {
         int i10;
-        r rVar = (r) this.f15698c;
-        ii.w3 w3Var = rVar.f11592r;
-        b4 b4Var = rVar.f11593s;
+        r rVar = (r) this.f15510c;
+        ii.w3 w3Var = rVar.f11590r;
+        ii.b4 b4Var = rVar.f11591s;
         if (b4Var != null) {
-            j3 j3Var = w3Var.f11725n3;
-            if (j3Var != null && j3Var.y() && w3Var.D4()) {
+            j3 j3Var = w3Var.f11723n3;
+            if (j3Var != null && j3Var.y() && w3Var.C4()) {
                 i10 = 1;
             } else {
                 i10 = 0;
             }
-            if (b4Var.f11260a0 == 2) {
-                b4Var.f11262b0 = i10;
+            if (b4Var.f11258a0 == 2) {
+                b4Var.f11260b0 = i10;
             } else {
                 b4Var.f(i10, true);
             }
@@ -774,8 +766,31 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
     }
 
     @Override
-    public void o(d6.f fVar, boolean z10) {
-        Log.d("CAST_SESSION", "onSessionResumed " + ((d6.c) fVar).a() + " " + z10);
+    public void m(d6.f fVar, int i10) {
+        Log.d("CAST_SESSION", "onSessionResumeFailed " + ((d6.c) fVar).a() + " " + i10);
+    }
+
+    @Override
+    public void n(Bitmap bitmap) {
+        y yVar = (y) this.f15509b;
+        yVar.f14993c = bitmap;
+        f6.g gVar = (f6.g) this.f15510c;
+        gVar.f8980l = yVar;
+        gVar.b();
+    }
+
+    @Override
+    public void o() {
+        ii.b4 b4Var = ((r) this.f15510c).f11591s;
+        if (b4Var != null) {
+            int i10 = b4Var.f11258a0;
+            if (i10 == 2) {
+                i10 = 0;
+            }
+            b4Var.f11260b0 = i10;
+            b4Var.e(false, false);
+            b4Var.f(2, true);
+        }
     }
 
     @Override
@@ -785,10 +800,10 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
         d6.b bVar;
         boolean z12;
         String str;
-        com.google.android.gms.internal.cast.r rVar = (com.google.android.gms.internal.cast.r) this.f15697b;
-        d6.b bVar2 = (d6.b) this.f15698c;
-        x xVar = rVar.f6473c;
-        g6.b bVar3 = com.google.android.gms.internal.cast.r.f6472j;
+        com.google.android.gms.internal.cast.r rVar = (com.google.android.gms.internal.cast.r) this.f15509b;
+        d6.b bVar2 = (d6.b) this.f15510c;
+        x xVar = rVar.f6471c;
+        g6.b bVar3 = com.google.android.gms.internal.cast.r.f6470j;
         if (task.isSuccessful()) {
             Bundle bundle = (Bundle) task.getResult();
             if (bundle != null && bundle.containsKey("com.google.android.gms.cast.FLAG_OUTPUT_SWITCHER_ENABLED")) {
@@ -804,34 +819,34 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
             bVar3.b("The module-to-client output switcher flag %s", str);
             if (z12) {
                 z10 = bundle.getBoolean("com.google.android.gms.cast.FLAG_OUTPUT_SWITCHER_ENABLED");
-                Log.i(bVar3.f9430a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z10), Boolean.valueOf(bVar2.f7527x)));
-                if (!z10 && bVar2.f7527x) {
+                Log.i(bVar3.f9427a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z10), Boolean.valueOf(bVar2.f7526x)));
+                if (!z10 && bVar2.f7526x) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (xVar == null && (bVar = rVar.d) != null) {
                     boolean z13 = bVar.v;
-                    boolean z14 = bVar.f7525s;
+                    boolean z14 = bVar.f7524s;
                     p4.y yVar = new p4.y();
                     int i10 = Build.VERSION.SDK_INT;
                     if (i10 >= 30) {
-                        yVar.f41001b = z11;
+                        yVar.f40682b = z11;
                     }
                     if (i10 >= 30) {
                         yVar.d = z13;
                     }
                     if (i10 >= 30) {
-                        yVar.f41002c = z14;
+                        yVar.f40683c = z14;
                     }
                     x.i(new z(yVar));
-                    Log.i(bVar3.f9430a, bVar3.d("media transfer = %b, session transfer = %b, transfer to local = %b, in-app output switcher = %b", Boolean.valueOf(rVar.f6475i), Boolean.valueOf(z11), Boolean.valueOf(z13), Boolean.valueOf(z14)));
+                    Log.i(bVar3.f9427a, bVar3.d("media transfer = %b, session transfer = %b, transfer to local = %b, in-app output switcher = %b", Boolean.valueOf(rVar.f6473i), Boolean.valueOf(z11), Boolean.valueOf(z13), Boolean.valueOf(z14)));
                     if (z13) {
-                        com.google.android.gms.internal.cast.u uVar = rVar.f6474f;
-                        n6.l.h(uVar);
+                        com.google.android.gms.internal.cast.u uVar = rVar.f6472f;
+                        l.h(uVar);
                         com.google.android.gms.internal.cast.q qVar = new com.google.android.gms.internal.cast.q(uVar);
                         x.b();
-                        x.c().f40870f = qVar;
+                        x.c().f40551f = qVar;
                         f2.a(f1.CAST_TRANSFER_TO_LOCAL_ENABLED);
                         return;
                     }
@@ -840,7 +855,7 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
             }
         }
         z10 = true;
-        Log.i(bVar3.f9430a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z10), Boolean.valueOf(bVar2.f7527x)));
+        Log.i(bVar3.f9427a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z10), Boolean.valueOf(bVar2.f7526x)));
         if (!z10) {
         }
         z11 = false;
@@ -850,10 +865,10 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
 
     @Override
     public void onContentChanged() {
-        r rVar = (r) this.f15698c;
-        b4 b4Var = rVar.f11593s;
+        r rVar = (r) this.f15510c;
+        ii.b4 b4Var = rVar.f11591s;
         if (b4Var != null) {
-            b4Var.setSendLoading(rVar.f11592r.n3());
+            b4Var.setSendLoading(rVar.f11590r.m3());
         }
         rVar.V(true);
         rVar.Y();
@@ -863,134 +878,133 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
     }
 
     @Override
-    public void p() {
-        b4 b4Var = ((r) this.f15698c).f11593s;
-        if (b4Var != null) {
-            int i10 = b4Var.f11260a0;
-            if (i10 == 2) {
-                i10 = 0;
-            }
-            b4Var.f11262b0 = i10;
-            b4Var.e(false, false);
-            b4Var.f(2, true);
+    public void p(String str, long j3, long j10, long j11) {
+        n nVar = (n) this.f15509b;
+        if (nVar != null) {
+            nVar.p(str, j3, j10, j11);
         }
     }
 
     @Override
     public void q(ii.a aVar) {
-        r rVar = (r) this.f15698c;
-        vi viVar = rVar.f26786b;
-        n2 n2Var = viVar.f29096f0;
-        if (n2Var != null && aVar != null && (aVar.f11205b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(n2Var)) {
-            vi viVar2 = new vi(rVar.getContext(), viVar.f29096f0, false, false, false, null);
+        r rVar = (r) this.f15510c;
+        vi viVar = rVar.f26461b;
+        n2 n2Var = viVar.f28747f0;
+        if (n2Var != null && aVar != null && (aVar.f11203b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(n2Var)) {
+            vi viVar2 = new vi(rVar.getContext(), viVar.f28747f0, false, false, false, null);
             viVar2.Z1 = new ob.a(11);
             viVar2.P = true;
-            viVar2.f29154x1.setVisibility(8);
-            viVar2.f29141t2 = new r5(rVar, aVar, viVar2, 10);
+            viVar2.f28805x1.setVisibility(8);
+            viVar2.f28792t2 = new r5(rVar, aVar, viVar2, 10);
             viVar2.r1();
             viVar2.show();
         }
     }
 
     @Override
-    public void r(Bitmap bitmap) {
-        n4.y yVar = (n4.y) this.f15697b;
-        yVar.f15231b = bitmap;
-        f6.g gVar = (f6.g) this.f15698c;
-        gVar.f8982l = yVar;
-        gVar.b();
+    public z3.e r(int i10, int i11, byte[] bArr) {
+        return w.c.a(this, bArr, i11);
     }
 
     @Override
-    public void s(d6.f fVar, int i10) {
-        Log.d("CAST_SESSION", "onSessionEnded " + ((d6.c) fVar).a() + " " + i10);
-        ((lf.h) this.f15697b).W(null);
-    }
-
-    @Override
-    public void t(String str, long j3, long j10, long j11) {
-        n nVar = (n) this.f15697b;
-        if (nVar != null) {
-            nVar.t(str, j3, j10, j11);
+    public void s() {
+        r rVar = (r) this.f15510c;
+        if (rVar.getCurrentItemTop() != rVar.I) {
+            rVar.f26461b.X1(rVar, 0);
         }
+        rVar.a0();
+        r.K(rVar);
+    }
+
+    @Override
+    public void t(i1 i1Var, boolean z10) {
+        ((r) this.f15510c).f26461b.t1(i1Var, z10);
     }
 
     @Override
     public Object then(Task task) {
-        j6.a aVar = (j6.a) this.f15697b;
-        Bundle bundle = (Bundle) this.f15698c;
+        j6.a aVar = (j6.a) this.f15509b;
+        Bundle bundle = (Bundle) this.f15510c;
         aVar.getClass();
         if (!task.isSuccessful()) {
             return task;
         }
         Bundle bundle2 = (Bundle) task.getResult();
         if (bundle2 != null && bundle2.containsKey("google.messenger")) {
-            return aVar.a(bundle).onSuccessTask(j6.m.f12914a, j6.b.f12895b);
+            return aVar.a(bundle).onSuccessTask(m.f12912a, j6.b.f12893b);
         }
         return task;
     }
 
     public String toString() {
-        switch (this.f15696a) {
+        switch (this.f15508a) {
             case 10:
                 try {
-                    return R().toString();
+                    return L().toString();
                 } catch (cc.e unused) {
                     return "";
                 }
             case 17:
-                return ((HashMap) this.f15697b).toString();
+                return ((HashMap) this.f15509b).toString();
             default:
                 return super.toString();
         }
     }
 
     @Override
-    public z3.d u(int i10, int i11, byte[] bArr) {
-        return v7.j0.a(this, bArr, i11);
+    public void u(int i10) {
+        r rVar = (r) this.f15510c;
+        rVar.f26461b.X1(rVar, i10);
+        rVar.a0();
+        r.K(rVar);
     }
 
     @Override
     public void v(d6.f fVar) {
+        Log.d("CAST_SESSION", "onSessionEnding " + ((d6.c) fVar).a());
+    }
+
+    @Override
+    public void w(d6.f fVar, String str) {
         d6.c cVar = (d6.c) fVar;
-        Log.d("CAST_SESSION", "onSessionStarting " + cVar.a());
-        Y(cVar);
+        Log.d("CAST_SESSION", "onSessionStarted " + cVar.a() + " " + str);
+        V(cVar);
     }
 
     @Override
-    public void w() {
-        r rVar = (r) this.f15698c;
-        if (rVar.getCurrentItemTop() != rVar.I) {
-            rVar.f26786b.X1(rVar, 0);
+    public void x(d6.f fVar, int i10) {
+        Log.d("CAST_SESSION", "onSessionStartSuspended " + ((d6.c) fVar).a() + " " + i10);
+    }
+
+    @Override
+    public void y(String str, long j3, int i10, Object obj, long j10, long j11) {
+        ((g6.m) this.f15510c).f9437g = null;
+        n nVar = (n) this.f15509b;
+        if (nVar != null) {
+            nVar.y(str, j3, i10, obj, j10, j11);
         }
-        rVar.a0();
-        r.K(rVar);
     }
 
     @Override
-    public void x(i1 i1Var, boolean z10) {
-        ((r) this.f15698c).f26786b.t1(i1Var, z10);
-    }
-
-    @Override
-    public void y(int i10) {
-        r rVar = (r) this.f15698c;
-        rVar.f26786b.X1(rVar, i10);
-        rVar.a0();
-        r.K(rVar);
-    }
-
-    @Override
-    public void z(d6.f fVar, int i10) {
-        Log.d("CAST_SESSION", "onSessionResumeFailed " + ((d6.c) fVar).a() + " " + i10);
+    public void z() {
+        ii.b4 b4Var = ((r) this.f15510c).f11591s;
+        if (b4Var != null) {
+            int i10 = 0;
+            b4Var.e(false, true);
+            int i11 = b4Var.f11260b0;
+            if (i11 != 2) {
+                i10 = i11;
+            }
+            b4Var.f(i10, true);
+        }
     }
 
     @Override
     public Object zzp() {
         boolean z10;
         Map map;
-        com.google.android.gms.internal.clearcut.d dVar = (com.google.android.gms.internal.clearcut.d) this.f15697b;
-        com.google.android.gms.internal.clearcut.b bVar = (com.google.android.gms.internal.clearcut.b) this.f15698c;
+        com.google.android.gms.internal.clearcut.d dVar = (com.google.android.gms.internal.clearcut.d) this.f15509b;
+        com.google.android.gms.internal.clearcut.b bVar = (com.google.android.gms.internal.clearcut.b) this.f15510c;
         bVar.getClass();
         if (com.google.android.gms.internal.clearcut.d.e()) {
             z10 = ((Boolean) com.google.android.gms.internal.clearcut.d.c(new com.google.android.gms.internal.clearcut.e("gms:phenotype:phenotype_flag:debug_disable_caching"))).booleanValue();
@@ -1019,99 +1033,106 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
         if (map == null) {
             map = Collections.EMPTY_MAP;
         }
-        return (String) map.get(dVar.f6587b);
+        return (String) map.get(dVar.f6585b);
     }
 
     public b(int i10, boolean z10) {
-        this.f15696a = i10;
+        this.f15508a = i10;
     }
 
     public b(Object obj, int i10) {
-        this.f15696a = i10;
-        this.f15697b = obj;
+        this.f15508a = i10;
+        this.f15509b = obj;
+        this.f15510c = null;
     }
 
     public b(Object obj, Object obj2, boolean z10, int i10) {
-        this.f15696a = i10;
-        this.f15697b = obj;
-        this.f15698c = obj2;
+        this.f15508a = i10;
+        this.f15509b = obj;
+        this.f15510c = obj2;
     }
 
     public b(Context context, p3 p3Var) {
-        this.f15696a = 8;
-        p pVar = new p(1);
+        this.f15508a = 8;
+        b2.p pVar = new b2.p(1);
         try {
-            t.b(context);
-            pVar.f3176c = t.a().c(j5.a.e).a("PLAY_BILLING_LIBRARY", new i5.c("proto"), new rb.a(5));
+            l5.t.b(context);
+            pVar.f3174c = l5.t.a().c(j5.a.e).a("PLAY_BILLING_LIBRARY", new i5.c("proto"), new rb.a(5));
         } catch (Throwable unused) {
-            pVar.f3175b = true;
+            pVar.f3173b = true;
         }
-        this.f15698c = pVar;
-        this.f15697b = p3Var;
+        this.f15510c = pVar;
+        this.f15509b = p3Var;
+    }
+
+    public b(dc.f fVar) {
+        this.f15508a = 10;
+        this.f15509b = fVar;
     }
 
     public b(int i10) {
-        this.f15696a = i10;
+        this.f15508a = i10;
         switch (i10) {
             case 21:
-                this.f15697b = new v();
-                this.f15698c = new i4.a();
+                this.f15509b = new v();
+                this.f15510c = new i4.a();
+                return;
+            case 28:
+                this.f15509b = new HashSet();
                 return;
             default:
                 d6.a c10 = d6.a.c(ApplicationLoader.applicationContext);
-                q0 q0Var = new q0(15);
+                u0 u0Var = new u0(10);
                 c10.getClass();
-                n6.l.e("Must be called from the main thread.");
-                d6.g gVar = c10.f7512c;
+                l.e("Must be called from the main thread.");
+                d6.g gVar = c10.f7511c;
                 gVar.getClass();
                 try {
-                    d6.y yVar = gVar.f7544a;
-                    j jVar = new j(q0Var);
+                    d6.y yVar = gVar.f7543a;
+                    j jVar = new j(u0Var);
                     Parcel O0 = yVar.O0();
                     com.google.android.gms.internal.cast.v.d(O0, jVar);
                     yVar.S0(O0, 4);
                 } catch (RemoteException e) {
-                    d6.g.f7543c.a(e, "Unable to call %s on %s.", "addCastStateListener", d6.y.class.getSimpleName());
+                    d6.g.f7542c.a(e, "Unable to call %s on %s.", "addCastStateListener", d6.y.class.getSimpleName());
                 }
-                this.f15697b = new lf.h(10, false);
+                this.f15509b = new lf.i(11, false);
                 d6.g b10 = c10.b();
-                this.f15698c = b10;
+                this.f15510c = b10;
                 b10.a(this);
-                Y(b10.c());
+                V(b10.c());
                 return;
         }
-    }
-
-    @Override
-    public void j() {
     }
 
     @Override
     public void reset() {
     }
 
-    @Override
-    public void g(boolean z10) {
-    }
-
     public b(Context context, int i10) {
-        this.f15696a = i10;
+        this.f15508a = i10;
         switch (i10) {
             case 26:
-                this.f15697b = context == null ? null : context.getApplicationContext();
+                this.f15509b = context == null ? null : context.getApplicationContext();
+                return;
+            case 29:
+                l.h(context);
+                Resources resources = context.getResources();
+                this.f15509b = resources;
+                this.f15510c = resources.getResourcePackageName(2131689566);
                 return;
             default:
-                o oVar = new o();
-                this.f15697b = context.getApplicationContext();
-                this.f15698c = oVar;
+                g2.o oVar = new g2.o();
+                this.f15509b = context.getApplicationContext();
+                this.f15510c = oVar;
                 return;
         }
     }
 
     public b(q qVar, SparseArray sparseArray) {
-        this.f15696a = 23;
-        this.f15697b = qVar;
-        SparseBooleanArray sparseBooleanArray = qVar.f3201a;
+        this.f15508a = 23;
+        this.f15509b = qVar;
+        SparseBooleanArray sparseBooleanArray = qVar.f3199a;
         SparseArray sparseArray2 = new SparseArray(sparseBooleanArray.size());
         for (int i10 = 0; i10 < sparseBooleanArray.size(); i10++) {
             int a2 = qVar.a(i10);
@@ -1119,70 +1140,64 @@ public class b implements h, e0, s, OnCompleteListener, com.google.android.gms.i
             aVar.getClass();
             sparseArray2.append(a2, aVar);
         }
-        this.f15698c = sparseArray2;
+        this.f15510c = sparseArray2;
     }
 
     public b(Handler handler, l0 l0Var) {
-        this.f15696a = 1;
+        this.f15508a = 1;
         if (l0Var != null) {
             handler.getClass();
         } else {
             handler = null;
         }
-        this.f15697b = handler;
-        this.f15698c = l0Var;
-    }
-
-    public b(Animation animation) {
-        this.f15696a = 4;
-        this.f15697b = animation;
-        this.f15698c = null;
+        this.f15509b = handler;
+        this.f15510c = l0Var;
     }
 
     public b(Animator animator) {
-        this.f15696a = 4;
-        this.f15697b = null;
+        this.f15508a = 4;
+        this.f15509b = null;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f15698c = animatorSet;
+        this.f15510c = animatorSet;
         animatorSet.play(animator);
     }
 
     public b(ArrayList arrayList, ArrayList arrayList2) {
-        this.f15696a = 20;
+        this.f15508a = 20;
         int size = arrayList.size();
-        this.f15697b = new int[size];
-        this.f15698c = new float[size];
+        this.f15509b = new int[size];
+        this.f15510c = new float[size];
         for (int i10 = 0; i10 < size; i10++) {
-            ((int[]) this.f15697b)[i10] = ((Integer) arrayList.get(i10)).intValue();
-            ((float[]) this.f15698c)[i10] = ((Float) arrayList2.get(i10)).floatValue();
+            ((int[]) this.f15509b)[i10] = ((Integer) arrayList.get(i10)).intValue();
+            ((float[]) this.f15510c)[i10] = ((Float) arrayList2.get(i10)).floatValue();
         }
     }
 
     public b(int i10, int i11) {
-        this.f15696a = 20;
-        this.f15697b = new int[]{i10, i11};
-        this.f15698c = new float[]{0.0f, 1.0f};
-    }
-
-    public b(int i10, int i11, int i12) {
-        this.f15696a = 20;
-        this.f15697b = new int[]{i10, i11, i12};
-        this.f15698c = new float[]{0.0f, 0.5f, 1.0f};
+        this.f15508a = 20;
+        this.f15509b = new int[]{i10, i11};
+        this.f15510c = new float[]{0.0f, 1.0f};
     }
 
     @Override
-    public void c(e2.b0 b0Var, c3.q qVar, f0 f0Var) {
+    public void b(e2.b0 b0Var, c3.q qVar, j4.f0 f0Var) {
     }
 
-    public b(a1 a1Var, int[] iArr) {
-        this.f15696a = 15;
-        this.f15697b = e9.i0.v(a1Var);
-        this.f15698c = iArr;
+    public b(int i10, int i11, int i12) {
+        this.f15508a = 20;
+        this.f15509b = new int[]{i10, i11, i12};
+        this.f15510c = new float[]{0.0f, 0.5f, 1.0f};
     }
 
-    public b(d0 d0Var) {
-        this.f15696a = 24;
-        this.f15698c = d0Var;
-        this.f15697b = new a4.h(new byte[4], 4);
+    public b(e9.a1 a1Var, int[] iArr) {
+        this.f15508a = 15;
+        this.f15509b = i0.v(a1Var);
+        this.f15510c = iArr;
+    }
+
+    public b(j4.d0 d0Var) {
+        this.f15508a = 24;
+        this.f15510c = d0Var;
+        this.f15509b = new a4.h(new byte[4], 4);
     }
 }

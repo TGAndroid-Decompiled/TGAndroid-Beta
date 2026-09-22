@@ -1,36 +1,84 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.view.View;
+import android.graphics.Canvas;
+import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
-public final class u3 extends View {
-    public final int f21616a;
-    public final int f21617b;
+public final class u3 extends org.telegram.ui.Components.n6 {
+    public final int f21410s;
 
-    public u3(Context context, int i10, int i11) {
-        super(context);
-        this.f21616a = i11;
-        this.f21617b = i10;
+    public u3(Context context, boolean z10, boolean z11, boolean z12, int i10) {
+        super(context, z10, z11, z12);
+        this.f21410s = i10;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f21616a) {
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f21410s) {
             case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f21617b), 1073741824));
-                return;
+                return Button.class.getName();
             case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f21617b), 1073741824));
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
+        }
+    }
+
+    @Override
+    public void invalidate() {
+        switch (this.f21410s) {
+            case 4:
+                if (zg.f0.b(this)) {
+                    return;
+                }
+                super.invalidate();
                 return;
             default:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f21617b, 1073741824));
+                super.invalidate();
                 return;
         }
     }
 
-    public u3(Context context, int i10) {
-        super(context);
-        this.f21616a = 0;
-        this.f21617b = i10;
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f21410s) {
+            case 2:
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(17.0f), 0.0f);
+                super.onDraw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f21410s) {
+            case 3:
+                super.onMeasure(i10, i11);
+                setPivotX(getMeasuredWidth());
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void invalidate(int i10, int i11, int i12, int i13) {
+        switch (this.f21410s) {
+            case 4:
+                if (zg.f0.b(this)) {
+                    return;
+                }
+                super.invalidate(i10, i11, i12, i13);
+                return;
+            default:
+                super.invalidate(i10, i11, i12, i13);
+                return;
+        }
     }
 }

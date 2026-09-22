@@ -1,9 +1,9 @@
 package w7;
 public final class s3 implements ia.d {
-    public static final s3 f45147a = new Object();
+    public static final s3 f44823a = new Object();
 
     static {
-        v7.j0.q(v7.j0.j(d.class, new a(1)));
+        org.telegram.ui.Cells.q3.t(w.c.j(d.class, new a(1)));
     }
 
     @Override

@@ -5,29 +5,29 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d6;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.hk0;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.uk0;
 public abstract class i extends FrameLayout {
-    public final Paint f41693a;
-    public final Paint f41694b;
-    public final Paint f41695c;
+    public final Paint f41379a;
+    public final Paint f41380b;
+    public final Paint f41381c;
     public int d;
-    public final d6 e;
-    public boolean f41696f;
+    public final c6 e;
+    public boolean f41382f;
     public final j h;
 
     public i(j jVar, Context context) {
         super(context);
         this.h = jVar;
         Paint paint = new Paint(1);
-        this.f41693a = paint;
+        this.f41379a = paint;
         Paint paint2 = new Paint(1);
-        this.f41694b = paint2;
+        this.f41380b = paint2;
         Paint paint3 = new Paint(1);
-        this.f41695c = paint3;
-        this.e = new d6(this, 0L, 250L, qr.h);
-        this.f41696f = true;
+        this.f41381c = paint3;
+        this.e = new c6(this, 0L, 250L, qr.h);
+        this.f41382f = true;
         setWillNotDraw(false);
         paint.setColor(-1);
         Paint.Style style = Paint.Style.STROKE;
@@ -47,18 +47,18 @@ public abstract class i extends FrameLayout {
 
     public final void b() {
         j jVar = this.h;
-        uk0 selectionBounds = jVar.getSelectionBounds();
+        hk0 selectionBounds = jVar.getSelectionBounds();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
-        layoutParams.leftMargin = (int) selectionBounds.f28794a;
-        layoutParams.topMargin = (int) selectionBounds.f28795b;
-        layoutParams.width = (int) selectionBounds.f28796c;
+        layoutParams.leftMargin = (int) selectionBounds.f24712a;
+        layoutParams.topMargin = (int) selectionBounds.f24713b;
+        layoutParams.width = (int) selectionBounds.f24714c;
         layoutParams.height = (int) selectionBounds.d;
         setLayoutParams(layoutParams);
         setRotation(jVar.getRotation());
     }
 
     public float getShowAlpha() {
-        return this.e.e(this.f41696f);
+        return this.e.e(this.f41382f);
     }
 
     @Override

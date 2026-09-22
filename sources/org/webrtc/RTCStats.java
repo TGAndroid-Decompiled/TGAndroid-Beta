@@ -2,7 +2,7 @@ package org.webrtc;
 
 import java.util.Map;
 public class RTCStats {
-    private final String f40660id;
+    private final String f40338id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
@@ -10,7 +10,7 @@ public class RTCStats {
     public RTCStats(long j3, String str, String str2, Map<String, Object> map) {
         this.timestampUs = j3;
         this.type = str;
-        this.f40660id = str2;
+        this.f40338id = str2;
         this.members = map;
     }
 
@@ -39,7 +39,7 @@ public class RTCStats {
     }
 
     public String getId() {
-        return this.f40660id;
+        return this.f40338id;
     }
 
     public Map<String, Object> getMembers() {
@@ -55,19 +55,19 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder u10 = a4.a.u("{ timestampUs: ");
-        u10.append(this.timestampUs);
-        u10.append(", type: ");
-        u10.append(this.type);
-        u10.append(", id: ");
-        u10.append(this.f40660id);
+        StringBuilder v = a4.a.v("{ timestampUs: ");
+        v.append(this.timestampUs);
+        v.append(", type: ");
+        v.append(this.type);
+        v.append(", id: ");
+        v.append(this.f40338id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
-            u10.append(", ");
-            u10.append(entry.getKey());
-            u10.append(": ");
-            appendValue(u10, entry.getValue());
+            v.append(", ");
+            v.append(entry.getKey());
+            v.append(": ");
+            appendValue(v, entry.getValue());
         }
-        u10.append(" }");
-        return u10.toString();
+        v.append(" }");
+        return v.toString();
     }
 }

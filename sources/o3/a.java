@@ -8,23 +8,23 @@ import e2.v;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class a implements o0 {
-    public final int f15652a;
-    public final String f15653b;
-    public final String f15654c;
+    public final int f15464a;
+    public final String f15465b;
+    public final String f15466c;
     public final int d;
     public final int e;
-    public final int f15655f;
-    public final int f15656g;
+    public final int f15467f;
+    public final int f15468g;
     public final byte[] h;
 
     public a(int i10, String str, String str2, int i11, int i12, int i13, int i14, byte[] bArr) {
-        this.f15652a = i10;
-        this.f15653b = str;
-        this.f15654c = str2;
+        this.f15464a = i10;
+        this.f15465b = str;
+        this.f15466c = str2;
         this.d = i11;
         this.e = i12;
-        this.f15655f = i13;
-        this.f15656g = i14;
+        this.f15467f = i13;
+        this.f15468g = i14;
         this.h = bArr;
     }
 
@@ -49,7 +49,7 @@ public final class a implements o0 {
 
     @Override
     public final void b(m0 m0Var) {
-        m0Var.a(this.f15652a, this.h);
+        m0Var.a(this.f15464a, this.h);
     }
 
     @Override
@@ -63,7 +63,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f15652a == aVar.f15652a && this.f15653b.equals(aVar.f15653b) && this.f15654c.equals(aVar.f15654c) && this.d == aVar.d && this.e == aVar.e && this.f15655f == aVar.f15655f && this.f15656g == aVar.f15656g && Arrays.equals(this.h, aVar.h)) {
+            if (this.f15464a == aVar.f15464a && this.f15465b.equals(aVar.f15465b) && this.f15466c.equals(aVar.f15466c) && this.d == aVar.d && this.e == aVar.e && this.f15467f == aVar.f15467f && this.f15468g == aVar.f15468g && Arrays.equals(this.h, aVar.h)) {
                 return true;
             }
         }
@@ -71,10 +71,10 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((a4.a.h(a4.a.h((527 + this.f15652a) * 31, 31, this.f15653b), 31, this.f15654c) + this.d) * 31) + this.e) * 31) + this.f15655f) * 31) + this.f15656g) * 31);
+        return Arrays.hashCode(this.h) + ((((((((a4.a.h(a4.a.h((527 + this.f15464a) * 31, 31, this.f15465b), 31, this.f15466c) + this.d) * 31) + this.e) * 31) + this.f15467f) * 31) + this.f15468g) * 31);
     }
 
     public final String toString() {
-        return "Picture: mimeType=" + this.f15653b + ", description=" + this.f15654c;
+        return "Picture: mimeType=" + this.f15465b + ", description=" + this.f15466c;
     }
 }

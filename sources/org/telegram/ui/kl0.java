@@ -1,32 +1,41 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public final class kl0 extends Drawable {
-    public final org.telegram.ui.Components.w01 f35225a;
-    public final org.telegram.ui.ActionBar.f6 f35226b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class kl0 implements Runnable {
+    public final int f35182a;
+    public final PasscodeActivity f35183b;
+    public final boolean f35184c;
 
-    public kl0(org.telegram.ui.Components.w01 w01Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f35225a = w01Var;
-        this.f35226b = f6Var;
+    public kl0(PasscodeActivity passcodeActivity, boolean z10, int i10) {
+        this.f35182a = i10;
+        this.f35183b = passcodeActivity;
+        this.f35184c = z10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        this.f35225a.c(getBounds().centerX() - (this.f35225a.f29862c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, this.f35226b), canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void run() {
+        switch (this.f35182a) {
+            case 0:
+                PasscodeActivity passcodeActivity = this.f35183b;
+                passcodeActivity.getMediaDataController().buildShortcuts();
+                if (this.f35184c) {
+                    passcodeActivity.presentFragment(new PasscodeActivity(0), true);
+                    ac0 ac0Var = passcodeActivity.Q;
+                    if (ac0Var != null) {
+                        AndroidUtilities.runOnUIThread(ac0Var);
+                        passcodeActivity.Q = null;
+                    }
+                } else {
+                    passcodeActivity.finishFragment();
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
+                return;
+            default:
+                PasscodeActivity passcodeActivity2 = this.f35183b;
+                passcodeActivity2.f30888w.e(true, this.f35184c);
+                AndroidUtilities.cancelRunOnUIThread(passcodeActivity2.P);
+                return;
+        }
     }
 }

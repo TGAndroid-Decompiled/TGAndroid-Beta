@@ -1,72 +1,51 @@
 package gg;
 
 import android.animation.ValueAnimator;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import ci.n6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.b31;
+import org.telegram.ui.Components.c81;
 import org.telegram.ui.Components.d00;
+import org.telegram.ui.Components.fk0;
+import org.telegram.ui.Components.h81;
 import org.telegram.ui.Components.k00;
-import org.telegram.ui.Components.s81;
-import org.telegram.ui.Components.sk0;
-import org.telegram.ui.Components.xa0;
-import org.telegram.ui.Components.y70;
-import org.telegram.ui.Components.y81;
-import org.telegram.ui.Components.ya0;
+import org.telegram.ui.Components.l21;
+import org.telegram.ui.Components.ma0;
+import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.na0;
 import org.telegram.ui.StickersActivity;
-import org.telegram.ui.sr;
 import org.telegram.ui.tw;
-import org.telegram.ui.z6;
+import org.telegram.ui.ur;
 public final class j0 extends s4.c0 {
     public final int I;
     public final Object J;
 
-    public j0(int i10, n2 n2Var) {
-        super(1, false);
+    public j0(ViewGroup viewGroup, int i10) {
+        super(0, false);
         this.I = i10;
-        this.J = n2Var;
+        this.J = viewGroup;
     }
 
     @Override
-    public void P(View view) {
-        switch (this.I) {
-            case 1:
-                z6 z6Var = (z6) this.J;
-                if (view == z6Var.M) {
-                    view.measure(View.MeasureSpec.makeMeasureSpec(z6Var.f40131b.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(z6Var.f40131b.getMeasuredHeight(), 1073741824));
-                    return;
-                } else {
-                    super.P(view);
-                    return;
-                }
-            default:
-                super.P(view);
-                return;
-        }
-    }
-
-    @Override
-    public void S(of.e eVar, s4.z0 z0Var, s0.d dVar) {
+    public void S(of.e eVar, s4.z0 z0Var, s0.c cVar) {
         switch (this.I) {
             case 0:
-                super.S(eVar, z0Var, dVar);
+                super.S(eVar, z0Var, cVar);
                 if (!((s0) this.J).isEnabled()) {
-                    dVar.p(false);
+                    cVar.p(false);
                     return;
                 }
                 return;
-            case 7:
-                super.S(eVar, z0Var, dVar);
-                if (((y81) this.J).V) {
-                    dVar.p(false);
+            case 6:
+                super.S(eVar, z0Var, cVar);
+                if (((h81) this.J).V) {
+                    cVar.p(false);
                     return;
                 }
                 return;
             default:
-                super.S(eVar, z0Var, dVar);
+                super.S(eVar, z0Var, cVar);
                 return;
         }
     }
@@ -74,8 +53,8 @@ public final class j0 extends s4.c0 {
     @Override
     public int W0(s4.z0 z0Var) {
         switch (this.I) {
-            case 6:
-                if (((b31) this.J).f28682a3) {
+            case 5:
+                if (((l21) this.J).f23555a3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(z0Var);
@@ -88,15 +67,15 @@ public final class j0 extends s4.c0 {
     public void k1(boolean z10) {
         int i10;
         switch (this.I) {
-            case 4:
+            case 3:
                 super.k1(z10);
-                xa0 xa0Var = ((ya0) this.J).f30616b;
+                ma0 ma0Var = ((na0) this.J).f26422b;
                 if (z10) {
                     i10 = -1;
                 } else {
                     i10 = 1;
                 }
-                xa0Var.setTranslationY(AndroidUtilities.dp(6.0f) * i10);
+                ma0Var.setTranslationY(AndroidUtilities.dp(6.0f) * i10);
                 return;
             default:
                 super.k1(z10);
@@ -111,23 +90,23 @@ public final class j0 extends s4.c0 {
         boolean z11;
         boolean z12;
         switch (this.I) {
-            case 3:
-                y70 y70Var = ((tw) ((k00) this.J).J).f37890b.L0;
-                if (y70Var != null && y70Var.D()) {
+            case 2:
+                n70 n70Var = ((tw) ((k00) this.J).J).f37741b.L0;
+                if (n70Var != null && n70Var.D()) {
                     i10 = 0;
                 }
                 return super.m0(i10, eVar, z0Var);
-            case 4:
+            case 3:
             default:
                 return super.m0(i10, eVar, z0Var);
-            case 5:
-                sk0 sk0Var = (sk0) this.J;
-                ai.w0 w0Var = sk0Var.f28229b;
+            case 4:
+                fk0 fk0Var = (fk0) this.J;
+                ai.w0 w0Var = fk0Var.f23968b;
                 boolean z13 = false;
-                if (i10 < 0 && sk0Var.B0 != 0.0f) {
-                    float pullingLeftProgress = sk0Var.getPullingLeftProgress();
-                    sk0Var.B0 += i10;
-                    float pullingLeftProgress2 = sk0Var.getPullingLeftProgress();
+                if (i10 < 0 && fk0Var.B0 != 0.0f) {
+                    float pullingLeftProgress = fk0Var.getPullingLeftProgress();
+                    fk0Var.B0 += i10;
+                    float pullingLeftProgress2 = fk0Var.getPullingLeftProgress();
                     if (pullingLeftProgress > 1.0f) {
                         z11 = true;
                     } else {
@@ -144,34 +123,34 @@ public final class j0 extends s4.c0 {
                         } catch (Exception unused) {
                         }
                     }
-                    float f10 = sk0Var.B0;
+                    float f10 = fk0Var.B0;
                     if (f10 < 0.0f) {
                         i10 = (int) f10;
-                        sk0Var.B0 = 0.0f;
+                        fk0Var.B0 = 0.0f;
                     } else {
                         i10 = 0;
                     }
-                    n6 n6Var = sk0Var.S;
+                    n6 n6Var = fk0Var.S;
                     if (n6Var != null) {
                         n6Var.invalidate();
                     }
                     w0Var.invalidate();
                 }
                 int m0 = super.m0(i10, eVar, z0Var);
-                if (i10 > 0 && m0 == 0 && w0Var.getScrollState() == 1 && sk0Var.q()) {
-                    ValueAnimator valueAnimator = sk0Var.f28269y0;
+                if (i10 > 0 && m0 == 0 && w0Var.getScrollState() == 1 && fk0Var.q()) {
+                    ValueAnimator valueAnimator = fk0Var.f24008y0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        sk0Var.f28269y0.cancel();
+                        fk0Var.f24008y0.cancel();
                     }
-                    int i11 = (sk0Var.getPullingLeftProgress() > 1.0f ? 1 : (sk0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
+                    int i11 = (fk0Var.getPullingLeftProgress() > 1.0f ? 1 : (fk0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i11 > 0) {
                         f7 = 0.05f;
                     } else {
                         f7 = 0.6f;
                     }
-                    sk0Var.B0 = (i10 * f7) + sk0Var.B0;
-                    float pullingLeftProgress3 = sk0Var.getPullingLeftProgress();
+                    fk0Var.B0 = (i10 * f7) + fk0Var.B0;
+                    float pullingLeftProgress3 = fk0Var.getPullingLeftProgress();
                     if (i11 > 0) {
                         z10 = true;
                     } else {
@@ -186,7 +165,7 @@ public final class j0 extends s4.c0 {
                         } catch (Exception unused2) {
                         }
                     }
-                    n6 n6Var2 = sk0Var.S;
+                    n6 n6Var2 = fk0Var.S;
                     if (n6Var2 != null) {
                         n6Var2.invalidate();
                     }
@@ -199,9 +178,9 @@ public final class j0 extends s4.c0 {
     @Override
     public int o0(int i10, of.e eVar, s4.z0 z0Var) {
         switch (this.I) {
-            case 2:
-                sr srVar = (sr) this.J;
-                if (!srVar.R && srVar.O == 0 && srVar.F.size() == 0) {
+            case 1:
+                ur urVar = (ur) this.J;
+                if (!urVar.R && urVar.O == 0 && urVar.F.size() == 0) {
                     return 0;
                 }
                 return super.o0(i10, eVar, z0Var);
@@ -213,15 +192,15 @@ public final class j0 extends s4.c0 {
     @Override
     public void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
         switch (this.I) {
-            case 3:
+            case 2:
                 d00 d00Var = new d00(this, recyclerView.getContext());
-                d00Var.f43145a = i10;
+                d00Var.f42821a = i10;
                 w0(d00Var);
                 return;
-            case 7:
-                s81 s81Var = new s81(this, recyclerView.getContext());
-                s81Var.f43145a = i10;
-                w0(s81Var);
+            case 6:
+                c81 c81Var = new c81(this, recyclerView.getContext());
+                c81Var.f42821a = i10;
+                w0(c81Var);
                 return;
             default:
                 super.v0(recyclerView, z0Var, i10);
@@ -234,11 +213,11 @@ public final class j0 extends s4.c0 {
         switch (this.I) {
             case 0:
                 return false;
-            case 3:
+            case 2:
                 return true;
-            case 4:
+            case 3:
                 return false;
-            case 8:
+            case 7:
                 return false;
             default:
                 return super.y0();
@@ -248,8 +227,8 @@ public final class j0 extends s4.c0 {
     @Override
     public void z0(s4.z0 z0Var, int[] iArr) {
         switch (this.I) {
-            case 8:
-                iArr[1] = ((StickersActivity) this.J).f31813a.getHeight();
+            case 7:
+                iArr[1] = ((StickersActivity) this.J).f31505a.getHeight();
                 return;
             default:
                 super.z0(z0Var, iArr);
@@ -257,14 +236,14 @@ public final class j0 extends s4.c0 {
         }
     }
 
-    public j0(ViewGroup viewGroup, int i10) {
-        super(0, false);
-        this.I = i10;
-        this.J = viewGroup;
-    }
-
     public j0(Object obj, int i10) {
         this.I = i10;
         this.J = obj;
+    }
+
+    public j0(ur urVar) {
+        super(1, false);
+        this.I = 1;
+        this.J = urVar;
     }
 }

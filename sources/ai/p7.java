@@ -66,7 +66,7 @@ public final class p7 extends FrameLayout implements r0.m {
 
     @Override
     public final void o(int i10, View view) {
-        this.f1391a.f3202a = 0;
+        this.f1391a.f3200a = 0;
     }
 
     @Override
@@ -79,7 +79,7 @@ public final class p7 extends FrameLayout implements r0.m {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f1391a.f3202a = i10;
+        this.f1391a.f3200a = i10;
     }
 
     @Override

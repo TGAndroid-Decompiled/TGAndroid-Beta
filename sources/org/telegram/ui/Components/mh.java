@@ -1,55 +1,65 @@
 package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class mh implements Utilities.Callback4 {
-    public final int f26448a;
-    public final KeyEvent.Callback f26449b;
+public final class mh implements o1.g {
+    public final int f26158a = 0;
+    public final boolean f26159b;
+    public final float f26160c;
+    public final float d;
+    public final KeyEvent.Callback e;
 
-    public mh(KeyEvent.Callback callback, int i10) {
-        this.f26448a = i10;
-        this.f26449b = callback;
+    public mh(vi viVar, float f7, float f10, boolean z10) {
+        this.e = viVar;
+        this.f26160c = f7;
+        this.d = f10;
+        this.f26159b = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f26448a) {
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f26158a) {
             case 0:
-                vi viVar = (vi) this.f26449b;
-                CharSequence charSequence = (CharSequence) obj;
-                Integer num = (Integer) obj2;
-                Integer num2 = (Integer) obj3;
-                Boolean bool = (Boolean) obj4;
-                ai aiVar = viVar.E0;
-                aiVar.setText(charSequence);
-                aiVar.w(charSequence.length(), charSequence.length());
-                viVar.z1();
-                return;
-            case 1:
-                vi viVar2 = (vi) this.f26449b;
-                CharSequence charSequence2 = (CharSequence) obj;
-                Integer num3 = (Integer) obj2;
-                Integer num4 = (Integer) obj3;
-                Boolean bool2 = (Boolean) obj4;
-                di diVar = viVar2.P0;
-                diVar.setText(charSequence2);
-                diVar.w(charSequence2.length(), charSequence2.length());
-                viVar2.z1();
+                vi viVar = (vi) this.e;
+                LinearLayout linearLayout = viVar.l1;
+                LinearLayout linearLayout2 = viVar.f28771n1;
+                float f11 = f7 / 500.0f;
+                viVar.f28743e0.set(viVar.f28808y0, Float.valueOf(f11));
+                viVar.X0.setAlpha(AndroidUtilities.lerp(this.f26160c, this.d, f11));
+                viVar.X1(viVar.f28808y0, 0);
+                viVar.X1(viVar.f28811z0, 0);
+                if (!(viVar.f28811z0 instanceof qm) || this.f26159b) {
+                    f11 = 1.0f - f11;
+                }
+                float clamp = Utilities.clamp(f11, 1.0f, 0.0f);
+                linearLayout2.setAlpha(clamp);
+                float f12 = 1.0f - clamp;
+                linearLayout.setAlpha(f12);
+                linearLayout.setTranslationX(clamp * (-AndroidUtilities.dp(16.0f)));
+                linearLayout2.setTranslationX(f12 * AndroidUtilities.dp(16.0f));
                 return;
             default:
-                ld ldVar = (ld) this.f26449b;
-                Integer num5 = (Integer) obj2;
-                Integer num6 = (Integer) obj3;
-                Boolean bool3 = (Boolean) obj4;
-                ci.g gVar = ldVar.f4994f;
-                gVar.setText((CharSequence) obj);
-                gVar.d();
-                gVar.k(true);
-                ci.e eVar = ldVar.f4991c0;
-                AndroidUtilities.cancelRunOnUIThread(eVar);
-                eVar.run();
+                wo0 wo0Var = (wo0) this.e;
+                boolean z10 = this.f26159b;
+                if (z10) {
+                    if (f7 > this.f26160c / 2.0f || !wo0Var.f29764s) {
+                        return;
+                    }
+                } else if (f7 < this.d / 2.0f || !wo0Var.f29763r) {
+                    return;
+                }
+                wo0Var.f29764s = !z10;
+                wo0Var.f29763r = z10;
                 return;
         }
+    }
+
+    public mh(wo0 wo0Var, boolean z10, float f7, float f10) {
+        this.e = wo0Var;
+        this.f26159b = z10;
+        this.f26160c = f7;
+        this.d = f10;
     }
 }

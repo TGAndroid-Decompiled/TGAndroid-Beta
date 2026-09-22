@@ -1,33 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class y01 extends MetricAffectingSpan {
-    public TextPaint f30478a;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class y01 extends FrameLayout {
+    public static final int e = 0;
+    public float f30119a;
+    public float f30120b;
+    public boolean f30121c;
+    public final ThemeEditorView d;
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f30478a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public y01(ThemeEditorView themeEditorView, Activity activity) {
+        super(activity);
+        this.d = themeEditorView;
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f30478a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y01.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

@@ -9,11 +9,11 @@ public final class c extends a {
         char c10;
         char c11;
         if (obj instanceof c) {
-            char c12 = this.f44001a;
-            char c13 = this.f44002b;
-            if (c12 < c13 || c12 == c13 || (c10 = (cVar = (c) obj).f44001a) < (c11 = cVar.f44002b) || c10 == c11) {
+            char c12 = this.f43674a;
+            char c13 = this.f43675b;
+            if (c12 < c13 || c12 == c13 || (c10 = (cVar = (c) obj).f43674a) < (c11 = cVar.f43675b) || c10 == c11) {
                 c cVar2 = (c) obj;
-                if (c12 == cVar2.f44001a && c13 == cVar2.f44002b) {
+                if (c12 == cVar2.f43674a && c13 == cVar2.f43675b) {
                     return true;
                 }
                 return false;
@@ -24,8 +24,8 @@ public final class c extends a {
     }
 
     public final int hashCode() {
-        char c10 = this.f44001a;
-        char c11 = this.f44002b;
+        char c10 = this.f43674a;
+        char c11 = this.f43675b;
         if (c10 < c11 || c10 == c11) {
             return (c10 * 31) + c11;
         }
@@ -33,6 +33,6 @@ public final class c extends a {
     }
 
     public final String toString() {
-        return this.f44001a + ".." + this.f44002b;
+        return this.f43674a + ".." + this.f43675b;
     }
 }

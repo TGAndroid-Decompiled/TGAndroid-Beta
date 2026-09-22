@@ -1,34 +1,49 @@
 package org.telegram.ui.Components;
-public final class ew0 extends i60 {
-    public final gw0 d;
 
-    public ew0(gw0 gw0Var) {
-        this.d = gw0Var;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class ew0 extends za {
+    public rs X;
+
+    public ew0(Context context) {
+        super(context, null, true, false, null);
+        fixNavigationBar();
+        this.E = true;
+        this.f30530y = true;
+        K();
+        ll0 ll0Var = this.d;
+        int i10 = this.backgroundPaddingLeft;
+        ll0Var.setPadding(i10, 0, i10, 0);
+        this.d.j(new kb0(this, 6));
+        this.d.setOnItemClickListener(new j(this, 14));
     }
 
-    @Override
-    public final CharSequence d() {
-        gw0 gw0Var = this.d;
-        int i10 = gw0Var.I;
-        String[] strArr = gw0Var.F;
-        if (i10 < strArr.length) {
-            return strArr[i10];
+    public static void P(ew0 ew0Var, int i10) {
+        Object obj;
+        i51 G = ew0Var.X.G(i10 - 1);
+        if (G != null) {
+            obj = G.G;
+        } else {
+            obj = null;
         }
-        return null;
+        if (obj instanceof TLRPC.User) {
+            MessagesController.getInstance(ew0Var.currentAccount).openApp(ew0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
+        }
     }
 
     @Override
-    public final int i() {
-        return this.d.F.length - 1;
+    public final kl0 v(ll0 ll0Var) {
+        rs rsVar = new rs(ll0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
+        this.X = rsVar;
+        rsVar.f29610r = false;
+        return rsVar;
     }
 
     @Override
-    public final int j() {
-        return this.d.I;
-    }
-
-    @Override
-    public final void k(int i10) {
-        this.d.setOption(i10);
+    public final CharSequence y() {
+        return LocaleController.getString(R.string.SearchAppsExamples);
     }
 }

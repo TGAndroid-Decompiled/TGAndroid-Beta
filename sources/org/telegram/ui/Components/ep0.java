@@ -1,26 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class ep0 extends LinearLayout {
-    public final int f24012a;
-    public final int f24013b;
+public final class ep0 implements ah.m {
+    public final int f23729a;
+    public final ll0 f23730b;
 
-    public ep0(Context context, int i10, int i11) {
-        super(context);
-        this.f24012a = i10;
-        this.f24013b = i11;
+    public ep0(ll0 ll0Var, int i10) {
+        this.f23729a = i10;
+        this.f23730b = ll0Var;
     }
 
     @Override
-    public final int getSuggestedMinimumWidth() {
-        return AndroidUtilities.dp(260.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f24012a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), this.f24013b), View.MeasureSpec.getMode(i11)));
+    public final boolean a(Canvas canvas, View view, long j3) {
+        switch (this.f23729a) {
+            case 0:
+                return ((jp0) this.f23730b).drawChild(canvas, view, j3);
+            default:
+                return ((qt0) this.f23730b).drawChild(canvas, view, j3);
+        }
     }
 }

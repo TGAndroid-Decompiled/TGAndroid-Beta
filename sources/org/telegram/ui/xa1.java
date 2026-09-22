@@ -1,19 +1,31 @@
 package org.telegram.ui;
-public final class xa1 {
-    public String f39459a;
-    public String f39460b;
-    public String f39461c;
-    public boolean d;
-    public String e;
-    public String f39462f;
-    public String f39463g;
-    public boolean h;
-    public String f39464i;
-    public String f39465j;
-    public String f39466k;
-    public boolean f39467l;
-    public String f39468m;
-    public String f39469n;
-    public String f39470o;
-    public boolean f39471p;
+
+import android.content.Context;
+public final class xa1 extends ja1 {
+    public final int v;
+    public final int f39571w;
+    public int f39572x;
+    public org.telegram.ui.Components.s51 f39573y;
+
+    public xa1(Context context, int i10, int i11, ig.f fVar, int i12) {
+        super(context, i11, fVar, null);
+        this.v = i10;
+        this.f39571w = i12;
+    }
+
+    @Override
+    public final void b(la1 la1Var) {
+        int i10;
+        if (la1Var != null && (i10 = this.f39572x) >= 0) {
+            la1Var.a(this.v, this.f39571w, i10, this.f39573y);
+        }
+    }
+
+    @Override
+    public final void c() {
+    }
+
+    @Override
+    public final void f() {
+    }
 }

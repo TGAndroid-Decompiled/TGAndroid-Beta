@@ -17,21 +17,21 @@ public final class p5 implements SensorEventListener {
         }
         if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
             if (f7 > 500.0f) {
-                j6.h = 1.0f;
+                i6.h = 1.0f;
             } else {
-                j6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
+                i6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
             }
             long j3 = 1800;
-            if (j6.h <= j6.f19341q) {
+            if (i6.h <= i6.f19064q) {
                 if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
-                    if (j6.f19211j) {
-                        j6.f19211j = false;
-                        AndroidUtilities.cancelRunOnUIThread(j6.f19250l);
+                    if (i6.f18935j) {
+                        i6.f18935j = false;
+                        AndroidUtilities.cancelRunOnUIThread(i6.f18974l);
                     }
-                    if (!j6.f19230k) {
-                        j6.f19230k = true;
-                        z9 z9Var = j6.f19268m;
-                        if (Math.abs(j6.f19192i - SystemClock.elapsedRealtime()) < 12000) {
+                    if (!i6.f18954k) {
+                        i6.f18954k = true;
+                        z9 z9Var = i6.f18992m;
+                        if (Math.abs(i6.f18916i - SystemClock.elapsedRealtime()) < 12000) {
                             j3 = 12000;
                         }
                         AndroidUtilities.runOnUIThread(z9Var, j3);
@@ -41,14 +41,14 @@ public final class p5 implements SensorEventListener {
                 }
                 return;
             }
-            if (j6.f19230k) {
-                j6.f19230k = false;
-                AndroidUtilities.cancelRunOnUIThread(j6.f19268m);
+            if (i6.f18954k) {
+                i6.f18954k = false;
+                AndroidUtilities.cancelRunOnUIThread(i6.f18992m);
             }
-            if (!j6.f19211j) {
-                j6.f19211j = true;
-                z9 z9Var2 = j6.f19250l;
-                if (Math.abs(j6.f19192i - SystemClock.elapsedRealtime()) < 12000) {
+            if (!i6.f18935j) {
+                i6.f18935j = true;
+                z9 z9Var2 = i6.f18974l;
+                if (Math.abs(i6.f18916i - SystemClock.elapsedRealtime()) < 12000) {
                     j3 = 12000;
                 }
                 AndroidUtilities.runOnUIThread(z9Var2, j3);

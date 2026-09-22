@@ -3,7 +3,7 @@ package ci;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.tp;
 public final class u8 extends tp {
-    public final int f5632i = 0;
+    public final int f5630i = 0;
 
     public u8(float f7, float f10, int i10) {
         super(f7, f10, i10);
@@ -11,21 +11,21 @@ public final class u8 extends tp {
 
     @Override
     public final int getIntrinsicHeight() {
-        switch (this.f5632i) {
+        switch (this.f5630i) {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28508b * 2.0f) + this.f28507a);
+                return (int) ((this.f28158b * 2.0f) + this.f28157a);
         }
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        switch (this.f5632i) {
+        switch (this.f5630i) {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28508b * 2.0f) + this.f28507a);
+                return (int) ((this.f28158b * 2.0f) + this.f28157a);
         }
     }
 

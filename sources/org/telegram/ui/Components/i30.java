@@ -7,16 +7,16 @@ import android.graphics.RectF;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class i30 extends TextView {
-    public final Paint[] f24950a;
-    public final l30 f24951b;
+    public final Paint[] f24876a;
+    public final l30 f24877b;
 
     public i30(l30 l30Var, Context context) {
         super(context);
-        this.f24951b = l30Var;
-        this.f24950a = new Paint[l30Var.e.length];
+        this.f24877b = l30Var;
+        this.f24876a = new Paint[l30Var.e.length];
         int i10 = 0;
         while (true) {
-            Paint[] paintArr = this.f24950a;
+            Paint[] paintArr = this.f24876a;
             if (i10 < paintArr.length) {
                 paintArr[i10] = new Paint(1);
                 i10++;
@@ -30,12 +30,12 @@ public final class i30 extends TextView {
     public final void onDraw(Canvas canvas) {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        l30 l30Var = this.f24951b;
+        l30 l30Var = this.f24877b;
         int i10 = l30Var.h;
-        Paint[] paintArr = this.f24950a;
+        Paint[] paintArr = this.f24876a;
         paintArr[i10].setAlpha(255);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[l30Var.h]);
-        float f7 = l30Var.f25977f;
+        float f7 = l30Var.f25821f;
         if (f7 > 0.0f) {
             int i11 = l30Var.h;
             if (i11 + 1 < paintArr.length) {

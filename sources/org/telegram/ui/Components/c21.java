@@ -1,7 +1,33 @@
 package org.telegram.ui.Components;
-public final class c21 extends fq {
+
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class c21 implements le.d, Utilities.Callback5, Utilities.Callback5Return {
+    public final x21 f22938a;
+
     @Override
-    public final int a() {
-        return -6182737;
+    public void D(int i10, float f7, float f10, le.e eVar) {
+        this.f22938a.g();
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(x21.c(this.f22938a, (i51) obj, (View) obj2));
+    }
+
+    @Override
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        x21.a(this.f22938a, (i51) obj);
+    }
+
+    @Override
+    public void C(float f7, int i10) {
     }
 }

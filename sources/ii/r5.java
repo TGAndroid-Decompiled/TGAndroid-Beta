@@ -7,26 +7,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 public final class r5 extends FrameLayout {
-    public final i1 f11607a;
-    public TL_iv.pageTableCell f11608b;
+    public final i1 f11605a;
+    public TL_iv.pageTableCell f11606b;
 
-    public r5(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public r5(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        i1 i1Var = new i1(context, f6Var);
-        this.f11607a = i1Var;
+        i1 i1Var = new i1(context, e6Var);
+        this.f11605a = i1Var;
         i1Var.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
         i1Var.setAllowNewlines(true);
         setCompact(false);
-        addView(i1Var, w7.y5.e(-1, -2, 51));
+        addView(i1Var, w7.x5.e(-1, -2, 51));
     }
 
     public final void a() {
         int i10;
         int i11;
         int i12;
-        i1 i1Var = this.f11607a;
+        i1 i1Var = this.f11605a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) i1Var.getLayoutParams();
-        TL_iv.pageTableCell pagetablecell = this.f11608b;
+        TL_iv.pageTableCell pagetablecell = this.f11606b;
         if (pagetablecell.align_right) {
             i10 = 5;
         } else if (pagetablecell.align_center) {
@@ -43,7 +43,7 @@ public final class r5 extends FrameLayout {
         }
         layoutParams.gravity = i11;
         i1Var.setLayoutParams(layoutParams);
-        TL_iv.pageTableCell pagetablecell2 = this.f11608b;
+        TL_iv.pageTableCell pagetablecell2 = this.f11606b;
         if (pagetablecell2.align_right) {
             i12 = 53;
         } else if (pagetablecell2.align_center) {
@@ -62,7 +62,7 @@ public final class r5 extends FrameLayout {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        i1 i1Var = this.f11607a;
+        i1 i1Var = this.f11605a;
         if (i1Var.getVisibility() == 0 && motionEvent.getActionMasked() != 3) {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
@@ -87,7 +87,7 @@ public final class r5 extends FrameLayout {
     }
 
     public void setCompact(boolean z10) {
-        i1 i1Var = this.f11607a;
+        i1 i1Var = this.f11605a;
         if (z10) {
             i1Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
             i1Var.setMinHeight(AndroidUtilities.dp(18.0f));
@@ -98,6 +98,6 @@ public final class r5 extends FrameLayout {
     }
 
     public void setLocked(boolean z10) {
-        this.f11607a.setLocked(z10);
+        this.f11605a.setLocked(z10);
     }
 }

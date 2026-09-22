@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class k31 extends a71 {
+public final class k31 extends y61 {
     public final m31 e;
 
     public k31(m31 m31Var, j31 j31Var) {
@@ -10,6 +10,6 @@ public final class k31 extends a71 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f35615n = null;
+        this.e.f35593n = null;
     }
 }

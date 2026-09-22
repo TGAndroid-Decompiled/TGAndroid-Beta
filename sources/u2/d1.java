@@ -1,4 +1,12 @@
 package u2;
 public interface d1 {
-    void l(e1 e1Var);
+    boolean c();
+
+    long d();
+
+    boolean m(i2.r0 r0Var);
+
+    long s();
+
+    void u(long j3);
 }

@@ -22,14 +22,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.bu;
-import org.telegram.ui.Components.go0;
-import org.telegram.ui.Components.l71;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.sg0;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.fg0;
+import org.telegram.ui.Components.rn0;
 import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.bo;
 import org.telegram.ui.ey;
 import org.telegram.ui.uy;
-import org.telegram.ui.zn;
 public final class y1 implements Utilities.Callback {
     public final int f1741a;
     public final Object f1742b;
@@ -43,14 +43,14 @@ public final class y1 implements Utilities.Callback {
     public final void run(Object obj) {
         int i10;
         float f7;
-        m61 m61Var;
+        w51 w51Var;
         boolean z10;
         TL_account.TL_connectedBot tL_connectedBot;
         TLRPC.User user;
         TL_account.TL_businessBotRights makeDefault;
         boolean z11;
         boolean z12;
-        m61 m61Var2;
+        w51 w51Var2;
         Editable editable;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = null;
         ii.a aVar = null;
@@ -75,7 +75,7 @@ public final class y1 implements Utilities.Callback {
                     }
                     d2Var.c();
                     d2Var.k();
-                    NotificationCenter.getInstance(d2Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.f688f.f18360id));
+                    NotificationCenter.getInstance(d2Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.f688f.f18126id));
                     return;
                 }
                 return;
@@ -84,8 +84,8 @@ public final class y1 implements Utilities.Callback {
                 f6Var.L3 = ((Long) obj).longValue();
                 a4 a4Var = f6Var.f797b2;
                 if (a4Var != null) {
-                    a4Var.K(true);
-                    f6Var.f797b2.R1();
+                    a4Var.L(true);
+                    f6Var.f797b2.S1();
                 }
                 f6Var.r0(true);
                 return;
@@ -135,21 +135,21 @@ public final class y1 implements Utilities.Callback {
                 return;
             case 6:
                 ci.e0 e0Var = (ci.e0) this.f1742b;
-                e0Var.f4566j0.f4473n.P = ((Float) obj).floatValue();
-                ci.d0 d0Var = e0Var.f4566j0;
+                e0Var.f4564j0.f4471n.P = ((Float) obj).floatValue();
+                ci.d0 d0Var = e0Var.f4564j0;
                 ci.c0 c0Var = d0Var.d;
                 if (c0Var != null) {
-                    c0Var.setVolume(d0Var.f4473n.P);
+                    c0Var.setVolume(d0Var.f4471n.P);
                     return;
                 }
                 return;
             case 7:
                 ci.r0 r0Var = (ci.r0) this.f1742b;
                 VideoEditedInfo videoEditedInfo = (VideoEditedInfo) obj;
-                MessageObject messageObject = r0Var.f5395c;
+                MessageObject messageObject = r0Var.f5393c;
                 if (messageObject != null) {
                     messageObject.videoEditedInfo = videoEditedInfo;
-                    MediaController.getInstance().scheduleVideoConvert(r0Var.f5395c);
+                    MediaController.getInstance().scheduleVideoConvert(r0Var.f5393c);
                     return;
                 }
                 return;
@@ -159,7 +159,7 @@ public final class y1 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new ba(16, y2Var, (Runnable) obj), 80L);
                 return;
             case 9:
-                ((ci.x3) this.f1742b).f5747s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f19714w).start();
+                ((ci.x3) this.f1742b).f5745s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f19476w).start();
                 return;
             case 10:
                 ci.qb qbVar = (ci.qb) ((ci.r6) this.f1742b);
@@ -167,11 +167,11 @@ public final class y1 implements Utilities.Callback {
                 ocVar.X0.q((MessageObject) obj);
                 ci.o8 o8Var = ocVar.K1;
                 if (o8Var != null && ocVar.O1 != 1) {
-                    boolean isEmpty = TextUtils.isEmpty(o8Var.f5189y);
+                    boolean isEmpty = TextUtils.isEmpty(o8Var.f5187y);
                     boolean z14 = !isEmpty;
-                    ((sg0) ocVar.f5234j1.f5516c).a(!ocVar.X0.k(), false);
-                    ocVar.f5234j1.setVisibility(0);
-                    ViewPropertyAnimator animate = ocVar.f5234j1.animate();
+                    ((fg0) ocVar.f5232j1.f5514c).a(!ocVar.X0.k(), false);
+                    ocVar.f5232j1.setVisibility(0);
+                    ViewPropertyAnimator animate = ocVar.f5232j1.animate();
                     if (!isEmpty) {
                         f7 = 1.0f;
                     } else {
@@ -186,9 +186,9 @@ public final class y1 implements Utilities.Callback {
                         if (i11 < size) {
                             Object obj2 = arrayList2.get(i11);
                             i11++;
-                            ci.o8 o8Var2 = ((ci.d0) obj2).f4473n;
+                            ci.o8 o8Var2 = ((ci.d0) obj2).f4471n;
                             if (o8Var2 != null && o8Var2.K) {
-                                if (!TextUtils.isEmpty(ocVar.K1.f5189y)) {
+                                if (!TextUtils.isEmpty(ocVar.K1.f5187y)) {
                                     i10 = 2;
                                 }
                             }
@@ -200,36 +200,36 @@ public final class y1 implements Utilities.Callback {
                 return;
             case 11:
                 ci.n8 n8Var = (ci.n8) obj;
-                l71 l71Var = ((ci.d7) this.f1742b).f4519n;
-                if (l71Var != null) {
-                    l71Var.setHDRInfo(n8Var);
+                u61 u61Var = ((ci.d7) this.f1742b).f4517n;
+                if (u61Var != null) {
+                    u61Var.setHDRInfo(n8Var);
                     return;
                 }
                 return;
             case 12:
                 ci.x8 x8Var = (ci.x8) this.f1742b;
-                qg.o0 o0Var = (qg.o0) obj;
-                if (o0Var == null) {
+                qg.q0 q0Var = (qg.q0) obj;
+                if (q0Var == null) {
                     x8Var.U();
                     return;
                 }
-                x8Var.f5775o0 = o0Var.e;
-                x8Var.f5774n0 = o0Var.f41876f;
+                x8Var.f5773o0 = q0Var.e;
+                x8Var.f5772n0 = q0Var.f41581f;
                 return;
             case 13:
-                ((ci.x9) this.f1742b).f5777n.W.H = ((Integer) obj).intValue();
+                ((ci.x9) this.f1742b).f5775n.W.H = ((Integer) obj).intValue();
                 return;
             case 14:
                 ((ci.jb) this.f1742b).g((Utilities.Callback) obj);
                 return;
             case 15:
                 ei.u uVar = (ei.u) this.f1742b;
-                ArrayList arrayList3 = uVar.f8637b;
+                ArrayList arrayList3 = uVar.f8635b;
                 arrayList3.clear();
                 arrayList3.addAll((ArrayList) obj);
-                u61 u61Var = uVar.f8636a;
-                if (u61Var != null && (m61Var = u61Var.Y2) != null) {
-                    m61Var.N(true);
+                e61 e61Var = uVar.f8634a;
+                if (e61Var != null && (w51Var = e61Var.Y2) != null) {
+                    w51Var.N(true);
                     return;
                 }
                 return;
@@ -239,9 +239,9 @@ public final class y1 implements Utilities.Callback {
                 ArrayList arrayList5 = fVar.h;
                 z13 = (arrayList5 == null || arrayList5.isEmpty()) ? true : true;
                 fVar.h = arrayList4;
-                u61 u61Var2 = fVar.e;
-                if (u61Var2 != null) {
-                    u61Var2.Y2.N(z13);
+                e61 e61Var2 = fVar.e;
+                if (e61Var2 != null) {
+                    e61Var2.Y2.N(z13);
                     return;
                 }
                 return;
@@ -250,29 +250,29 @@ public final class y1 implements Utilities.Callback {
                 return;
             case 18:
                 TLRPC.User user2 = (TLRPC.User) obj;
-                go0 go0Var = (go0) ((gg.i0) this.f1742b);
-                ey eyVar = go0Var.K0;
+                rn0 rn0Var = (rn0) ((gg.i0) this.f1742b);
+                ey eyVar = rn0Var.K0;
                 if (user2 != null) {
-                    uy uyVar = eyVar.K0;
+                    uy uyVar = eyVar.J0;
                     if (uyVar != null) {
                         uyVar.K3();
                     }
-                    MessagesController.getInstance(eyVar.I0).openApp(user2, 0);
-                    go0Var.R(user2.f18490id, user2);
+                    MessagesController.getInstance(eyVar.H0).openApp(user2, 0);
+                    rn0Var.R(user2.f18256id, user2);
                     return;
                 }
                 return;
             case 19:
-                hg.m mVar = (hg.m) this.f1742b;
+                hg.n nVar = (hg.n) this.f1742b;
                 if (((Integer) obj).intValue() > AndroidUtilities.dp(20.0f)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (mVar.G != z10) {
-                    mVar.G = z10;
+                if (nVar.F != z10) {
+                    nVar.F = z10;
                     if (!z10) {
-                        mVar.f27268a.y0(0);
+                        nVar.f30482a.x0(0);
                         return;
                     }
                     return;
@@ -280,143 +280,143 @@ public final class y1 implements Utilities.Callback {
                 return;
             case 20:
                 Object[] objArr = (Object[]) obj;
-                AndroidUtilities.forEachViews((RecyclerView) ((hg.i0) this.f1742b).f10313s, (e2.h) new i(3));
+                AndroidUtilities.forEachViews((RecyclerView) ((hg.k0) this.f1742b).f10326s, (e2.h) new i(3));
                 return;
             case 21:
-                hg.u0 u0Var = (hg.u0) this.f1742b;
+                hg.v0 v0Var = (hg.v0) this.f1742b;
                 TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
-                u0Var.G = connectedbots;
+                v0Var.G = connectedbots;
                 if (connectedbots != null && !connectedbots.connected_bots.isEmpty()) {
-                    tL_connectedBot = u0Var.G.connected_bots.get(0);
+                    tL_connectedBot = v0Var.G.connected_bots.get(0);
                 } else {
                     tL_connectedBot = null;
                 }
-                u0Var.H = tL_connectedBot;
+                v0Var.H = tL_connectedBot;
                 if (tL_connectedBot == null) {
                     user = null;
                 } else {
-                    user = u0Var.getMessagesController().getUser(Long.valueOf(u0Var.H.bot_id));
+                    user = v0Var.getMessagesController().getUser(Long.valueOf(v0Var.H.bot_id));
                 }
-                u0Var.M = user;
-                TL_account.TL_connectedBot tL_connectedBot2 = u0Var.H;
+                v0Var.M = user;
+                TL_account.TL_connectedBot tL_connectedBot2 = v0Var.H;
                 if (tL_connectedBot2 != null) {
                     makeDefault = TL_account.TL_businessBotRights.clone(tL_connectedBot2.rights);
                 } else {
                     makeDefault = TL_account.TL_businessBotRights.makeDefault();
                 }
-                u0Var.J = makeDefault;
-                TL_account.TL_connectedBot tL_connectedBot3 = u0Var.H;
+                v0Var.J = makeDefault;
+                TL_account.TL_connectedBot tL_connectedBot3 = v0Var.H;
                 if (tL_connectedBot3 != null) {
                     z11 = tL_connectedBot3.recipients.exclude_selected;
                 } else {
                     z11 = true;
                 }
-                u0Var.I = z11;
-                hg.a0 a0Var = u0Var.v;
-                if (a0Var != null) {
+                v0Var.I = z11;
+                hg.c0 c0Var2 = v0Var.v;
+                if (c0Var2 != null) {
                     if (tL_connectedBot3 != null) {
                         tL_businessBotRecipients = tL_connectedBot3.recipients;
                     }
-                    a0Var.i(tL_businessBotRecipients);
+                    c0Var2.i(tL_businessBotRecipients);
                 }
-                u61 u61Var3 = u0Var.f10435c;
-                if (u61Var3 != null && (m61Var2 = u61Var3.Y2) != null) {
+                e61 e61Var3 = v0Var.f10439c;
+                if (e61Var3 != null && (w51Var2 = e61Var3.Y2) != null) {
                     z12 = true;
-                    m61Var2.N(true);
+                    w51Var2.N(true);
                 } else {
                     z12 = true;
                 }
-                u0Var.Y(z12);
-                u0Var.T = z12;
+                v0Var.Y(z12);
+                v0Var.T = z12;
                 return;
             case 22:
-                hg.w0 w0Var = (hg.w0) this.f1742b;
-                w0Var.f10467w = w0Var.e[((Integer) obj).intValue()];
-                w0Var.V(true);
+                hg.x0 x0Var = (hg.x0) this.f1742b;
+                x0Var.f10469w = x0Var.e[((Integer) obj).intValue()];
+                x0Var.V(true);
                 return;
             case 23:
-                hg.y1 y1Var = (hg.y1) this.f1742b;
-                y1Var.getClass();
+                hg.z1 z1Var = (hg.z1) this.f1742b;
+                z1Var.getClass();
                 Bundle bundle = new Bundle();
                 bundle.putInt("chatMode", 5);
-                bundle.putLong("user_id", y1Var.getUserConfig().getClientUserId());
+                bundle.putLong("user_id", z1Var.getUserConfig().getClientUserId());
                 bundle.putString("quick_reply", (String) obj);
-                zn znVar = new zn(bundle);
-                znVar.C9 = true;
-                y1Var.presentFragment(znVar);
+                bo boVar = new bo(bundle);
+                boVar.C9 = true;
+                z1Var.presentFragment(boVar);
                 return;
             case 24:
-                AndroidUtilities.hideKeyboard((hg.r1) this.f1742b);
+                AndroidUtilities.hideKeyboard((hg.s1) this.f1742b);
                 AndroidUtilities.runOnUIThread((Runnable) obj, 80L);
                 return;
             case 25:
                 ii.n3 n3Var = (ii.n3) this.f1742b;
                 TL_iv.RichMessage richMessage = (TL_iv.RichMessage) obj;
-                int i14 = n3Var.f11520b;
-                int i15 = n3Var.f11519a;
+                int i14 = n3Var.f11518b;
+                int i15 = n3Var.f11517a;
                 ii.w3 w3Var = n3Var.e;
                 if (richMessage != null) {
-                    ArrayList arrayList6 = w3Var.f11722l3;
-                    ArrayList arrayList7 = w3Var.f11722l3;
+                    ArrayList arrayList6 = w3Var.f11720l3;
+                    ArrayList arrayList7 = w3Var.f11720l3;
                     if (i15 < arrayList6.size() && i14 < arrayList7.size()) {
                         ii.h2 h2Var = w3Var.J3;
                         if (h2Var != null) {
                             h2Var.d();
                         }
-                        ii.j3 j3Var = w3Var.f11725n3;
+                        ii.j3 j3Var = w3Var.f11723n3;
                         if (j3Var != null) {
                             j3Var.f(false);
                         }
                         ii.a aVar2 = (ii.a) arrayList7.get(i15);
                         ii.a aVar3 = (ii.a) arrayList7.get(i14);
                         CharSequence charSequence = "";
-                        if (!ii.w3.B3(aVar2.f11205b)) {
+                        if (!ii.w3.A3(aVar2.f11203b)) {
                             editable = "";
                         } else {
-                            editable = w3Var.N4(aVar2);
+                            editable = w3Var.M4(aVar2);
                         }
-                        if (ii.w3.B3(aVar3.f11205b)) {
-                            charSequence = w3Var.N4(aVar3);
+                        if (ii.w3.A3(aVar3.f11203b)) {
+                            charSequence = w3Var.M4(aVar3);
                         }
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(editable.subSequence(0, Math.max(0, Math.min(n3Var.f11521c, editable.length()))));
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(editable.subSequence(0, Math.max(0, Math.min(n3Var.f11519c, editable.length()))));
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence.subSequence(Math.max(0, Math.min(n3Var.d, charSequence.length())), charSequence.length()));
                         ArrayList arrayList8 = new ArrayList();
-                        ii.w3.X2(arrayList8, richMessage.blocks, null);
+                        ii.w3.W2(arrayList8, richMessage.blocks, null);
                         if (arrayList8.isEmpty()) {
                             SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(spannableStringBuilder);
                             spannableStringBuilder3.append((CharSequence) spannableStringBuilder2);
                             TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
                             ii.d6.d(pageblockparagraph, spannableStringBuilder3);
-                            arrayList8.add(new ii.a(pageblockparagraph, aVar2.f11206c, aVar2.d));
+                            arrayList8.add(new ii.a(pageblockparagraph, aVar2.f11204c, aVar2.d));
                         } else {
                             if (spannableStringBuilder.length() > 0) {
                                 ii.a aVar4 = (ii.a) arrayList8.get(0);
-                                if (ii.w3.B3(aVar4.f11205b)) {
+                                if (ii.w3.A3(aVar4.f11203b)) {
                                     SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(spannableStringBuilder);
-                                    spannableStringBuilder4.append((CharSequence) ii.d6.A(aVar4.f11205b));
-                                    ii.d6.d(aVar4.f11205b, spannableStringBuilder4);
+                                    spannableStringBuilder4.append((CharSequence) ii.d6.A(aVar4.f11203b));
+                                    ii.d6.d(aVar4.f11203b, spannableStringBuilder4);
                                 } else {
                                     TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
                                     ii.d6.d(pageblockparagraph2, spannableStringBuilder);
-                                    arrayList8.add(0, new ii.a(pageblockparagraph2, aVar2.f11206c, aVar2.d));
+                                    arrayList8.add(0, new ii.a(pageblockparagraph2, aVar2.f11204c, aVar2.d));
                                 }
                             }
                             if (spannableStringBuilder2.length() > 0) {
-                                ii.a aVar5 = (ii.a) hg.k0.g(1, arrayList8);
-                                if (ii.w3.B3(aVar5.f11205b)) {
-                                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(ii.d6.A(aVar5.f11205b));
+                                ii.a aVar5 = (ii.a) hg.c.h(1, arrayList8);
+                                if (ii.w3.A3(aVar5.f11203b)) {
+                                    SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder(ii.d6.A(aVar5.f11203b));
                                     spannableStringBuilder5.append((CharSequence) spannableStringBuilder2);
-                                    ii.d6.d(aVar5.f11205b, spannableStringBuilder5);
+                                    ii.d6.d(aVar5.f11203b, spannableStringBuilder5);
                                 } else {
                                     TL_iv.pageBlockParagraph pageblockparagraph3 = new TL_iv.pageBlockParagraph();
                                     ii.d6.d(pageblockparagraph3, spannableStringBuilder2);
-                                    arrayList8.add(new ii.a(pageblockparagraph3, aVar3.f11206c, aVar3.d));
+                                    arrayList8.add(new ii.a(pageblockparagraph3, aVar3.f11204c, aVar3.d));
                                 }
                             }
                         }
-                        TL_iv.RichMessage richMessage2 = w3Var.f11720k3;
+                        TL_iv.RichMessage richMessage2 = w3Var.f11718k3;
                         if (richMessage2 == null) {
-                            w3Var.f11720k3 = richMessage;
+                            w3Var.f11718k3 = richMessage;
                         } else {
                             ArrayList<TLRPC.Photo> arrayList9 = richMessage.photos;
                             if (arrayList9 != null) {
@@ -424,26 +424,26 @@ public final class y1 implements Utilities.Callback {
                             }
                             ArrayList<TLRPC.Document> arrayList10 = richMessage.documents;
                             if (arrayList10 != null) {
-                                w3Var.f11720k3.documents.addAll(arrayList10);
+                                w3Var.f11718k3.documents.addAll(arrayList10);
                             }
                         }
                         for (int i16 = 0; i16 < arrayList8.size(); i16++) {
-                            w3Var.w4((ii.a) arrayList8.get(i16));
+                            w3Var.v4((ii.a) arrayList8.get(i16));
                         }
                         while (i14 >= i15) {
                             arrayList7.remove(i14);
                             i14--;
                         }
                         arrayList7.addAll(i15, arrayList8);
-                        w3Var.t4();
+                        w3Var.s4();
                         w3Var.Y2.N(false);
                         ii.h2 h2Var2 = w3Var.J3;
                         if (h2Var2 != null) {
                             h2Var2.h();
                         }
-                        w3Var.f11715h3.onContentChanged();
+                        w3Var.f11713h3.onContentChanged();
                         if (!arrayList8.isEmpty()) {
-                            aVar = (ii.a) hg.k0.g(1, arrayList8);
+                            aVar = (ii.a) hg.c.h(1, arrayList8);
                         }
                         w3Var.post(new gg.x1(16, n3Var, aVar));
                         return;
@@ -452,10 +452,10 @@ public final class y1 implements Utilities.Callback {
                 }
                 return;
             case 26:
-                ((ii.m) this.f1742b).f11497a.f11592r.V1((TL_iv.RichMessage) obj);
+                ((ii.m) this.f1742b).f11495a.f11590r.U1((TL_iv.RichMessage) obj);
                 return;
             case 27:
-                ((ii.d2) this.f1742b).P.V1((TL_iv.RichMessage) obj);
+                ((ii.d2) this.f1742b).P.U1((TL_iv.RichMessage) obj);
                 return;
             case 28:
                 ii.w3 w3Var2 = (ii.w3) this.f1742b;
@@ -464,7 +464,7 @@ public final class y1 implements Utilities.Callback {
                 if (!TextUtils.isEmpty(str2)) {
                     TL_iv.pageBlockMath pageblockmath = new TL_iv.pageBlockMath();
                     pageblockmath.source = str2;
-                    w3Var2.S1(pageblockmath);
+                    w3Var2.R1(pageblockmath);
                     return;
                 }
                 return;

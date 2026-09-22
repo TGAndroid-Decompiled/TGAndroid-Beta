@@ -1,42 +1,98 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.graphics.Rect;
-import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.content.Context;
+import android.util.SparseIntArray;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class e61 extends ViewOutlineProvider {
-    public final Rect f33259a = new Rect();
-    public final Integer f33260b;
-    public final j71 f33261c;
+public final class e61 extends j61 {
+    public final int f33179f3;
+    public final h71 f33180g3;
 
-    public e61(j71 j71Var, Integer num) {
-        this.f33261c = j71Var;
-        this.f33260b = num;
+    public e61(h71 h71Var, Context context, int i10) {
+        super(h71Var, context);
+        this.f33180g3 = h71Var;
+        this.f33179f3 = i10;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        float intValue;
-        Integer num = this.f33260b;
-        if (num == null) {
-            intValue = view.getWidth() / 2.0f;
-        } else {
-            intValue = num.intValue();
+    public final void j0(int i10) {
+        int i11;
+        h71 h71Var = this.f33180g3;
+        y51 y51Var = h71Var.f34128f0;
+        if (i10 == 0) {
+            h71Var.f34165w1 = false;
+            if (h71Var.f34114a != -1 && y51Var.getVisibility() == 0 && y51Var.getTranslationY() > (-AndroidUtilities.dp(51.0f))) {
+                if (y51Var.getTranslationY() > (-AndroidUtilities.dp(16.0f))) {
+                    i11 = 0;
+                } else {
+                    i11 = 1;
+                }
+                h71.a(h71Var, i11, 0);
+            }
         }
-        float dp = intValue + AndroidUtilities.dp(20.0f);
-        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
-        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
-        j71 j71Var = this.f33261c;
-        boolean n10 = j71Var.n();
-        Rect rect = this.f33259a;
-        if (n10) {
-            int paddingLeft = (int) ((dp - (j71Var.f34801a1 * dp)) + view.getPaddingLeft());
-            float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, j71Var.f34804b1, height, view.getPaddingTop());
-            rect.set(paddingLeft, (int) com.google.android.gms.internal.vision.e2.z(1.0f, j71Var.f34804b1, AndroidUtilities.dp(j71Var.f34809d1), z10), (int) (((width - dp) * j71Var.f34801a1) + view.getPaddingLeft() + dp), (int) com.google.android.gms.internal.vision.e2.z(1.0f, j71Var.f34804b1, AndroidUtilities.dp(j71Var.f34809d1), view.getPaddingTop() + height));
-        } else {
-            rect.set((int) ((dp - (j71Var.f34801a1 * dp)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - dp) * j71Var.f34801a1) + view.getPaddingLeft() + dp), (int) ((height * j71Var.f34804b1) + view.getPaddingTop()));
+    }
+
+    @Override
+    public final void k0(int i10, int i11) {
+        int i12;
+        org.telegram.ui.Components.wx wxVar;
+        int i13;
+        int i14;
+        h71 h71Var = this.f33180g3;
+        h71Var.h();
+        boolean z10 = false;
+        if (!h71Var.f34165w1) {
+            int I0 = h71Var.f34152r0.I0();
+            ArrayList arrayList = h71Var.D0;
+            SparseIntArray sparseIntArray = h71Var.f34164w0;
+            if (I0 != -1) {
+                int i15 = 40;
+                if (arrayList.size() <= 40 || h71Var.C0) {
+                    i15 = arrayList.size() + (h71Var.N0 ? 1 : 0);
+                }
+                if (I0 > i15 && I0 > h71Var.I0.size()) {
+                    int i16 = 0;
+                    while (true) {
+                        if (i16 >= sparseIntArray.size()) {
+                            break;
+                        }
+                        int keyAt = sparseIntArray.keyAt(i16);
+                        int valueAt = sparseIntArray.valueAt(i16);
+                        if (valueAt >= 0) {
+                            wxVar = (org.telegram.ui.Components.wx) h71Var.M0.get(valueAt);
+                        } else {
+                            wxVar = null;
+                        }
+                        if (wxVar != null) {
+                            boolean z11 = wxVar.h;
+                            int size = wxVar.f29821c.size();
+                            if (!z11) {
+                                size = Math.min(24, size);
+                            }
+                            if (I0 > keyAt && I0 <= keyAt + 1 + size) {
+                                org.telegram.ui.Components.cw cwVar = h71Var.f34123d0;
+                                if (cwVar.f23154y != null) {
+                                    i13 = 1;
+                                } else {
+                                    i13 = 0;
+                                }
+                                if (cwVar.E != null && cwVar.f23146b0) {
+                                    i14 = 1;
+                                } else {
+                                    i14 = 0;
+                                }
+                                cwVar.j(i14 + i13 + valueAt, true);
+                            }
+                        }
+                        i16++;
+                    }
+                } else {
+                    h71Var.f34123d0.j(0, true);
+                }
+            }
         }
-        outline.setRoundRect(rect, AndroidUtilities.dp(12.0f));
+        h71Var.C();
+        AndroidUtilities.updateViewVisibilityAnimated(h71Var.f34125e0, (h71Var.f34132h0.computeVerticalScrollOffset() != 0 || (i12 = this.f33179f3) == 0 || i12 == 12 || i12 == 10 || i12 == 1 || i12 == 11 || i12 == 6) ? true : true, 1.0f, true);
+        h71Var.m();
     }
 }

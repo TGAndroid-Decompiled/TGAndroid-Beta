@@ -1,30 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class r8 extends org.telegram.ui.ActionBar.f3 {
-    public final d9 f27845b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class r8 extends AnimatorListenerAdapter {
+    public final int f27599a;
+    public final c9 f27600b;
 
-    public r8(d9 d9Var, Activity activity) {
-        super(activity, true);
-        this.f27845b = d9Var;
+    public r8(c9 c9Var, int i10) {
+        this.f27599a = i10;
+        this.f27600b = c9Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        d9 d9Var = this.f27845b;
-        d9Var.J.x1(d9Var.Y);
-        d9Var.f23609f = true;
-        d9Var.fragmentView.invalidate();
-        d9Var.e.animate().setListener(new q8(this, 0)).alpha(0.0f).setDuration(200L).start();
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        d9 d9Var = this.f27845b;
-        AndroidUtilities.requestAdjustResize(d9Var.getParentActivity(), d9Var.getClassGuid());
-        d9Var.S = null;
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        switch (this.f27599a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f27600b.f22984f = false;
+                return;
+            default:
+                c9 c9Var = this.f27600b;
+                if (c9Var.F) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                c9Var.i0(f7, false);
+                c9Var.F = false;
+                return;
+        }
     }
 }

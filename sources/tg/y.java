@@ -1,42 +1,32 @@
 package tg;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.le;
-import org.telegram.ui.zn;
-public final class y implements Utilities.Callback {
-    public final a0 f43544a;
-    public final TL_stories.TL_prepaidStarsGiveaway f43545b;
-    public final long f43546c;
-    public final long d;
-    public final TL_stories.PrepaidGiveaway e;
+import android.content.DialogInterface;
+public final class y implements DialogInterface.OnShowListener {
+    public final int f43236a;
+    public final b0 f43237b;
 
-    public y(a0 a0Var, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j3, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f43544a = a0Var;
-        this.f43545b = tL_prepaidStarsGiveaway;
-        this.f43546c = j3;
-        this.d = j10;
-        this.e = prepaidGiveaway;
+    public y(b0 b0Var, int i10) {
+        this.f43236a = i10;
+        this.f43237b = b0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        Void r62 = (Void) obj;
-        a0 a0Var = this.f43544a;
-        a0Var.dismiss();
-        if (this.f43545b != null) {
-            n2 U = LaunchActivity.U();
-            if (U != null) {
-                zn R9 = zn.R9(this.f43546c);
-                R9.whenFullyVisible(new le(R9, this.d, 6));
-                U.presentFragment(R9);
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f43236a) {
+            case 0:
+                vg.r rVar = this.f43237b.f43090g0.f43708r;
+                if (rVar != null) {
+                    rVar.setPaused(true);
+                    return;
+                }
                 return;
-            }
-            return;
+            default:
+                vg.r rVar2 = this.f43237b.f43090g0.f43708r;
+                if (rVar2 != null) {
+                    rVar2.setPaused(true);
+                    return;
+                }
+                return;
         }
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.web.g1(28, a0Var, this.e), 220L);
     }
 }

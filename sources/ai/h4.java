@@ -8,7 +8,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.fh;
 import org.telegram.ui.Components.ti;
 public final class h4 implements ti {
     public final f6 f940a;
@@ -18,7 +18,7 @@ public final class h4 implements ti {
     }
 
     @Override
-    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         TL_stories.StoryItem storyItem;
         boolean z14;
         boolean z15;
@@ -28,7 +28,7 @@ public final class h4 implements ti {
         String str2;
         f6 f6Var = this.f940a;
         if (f6Var.J0.m0 && (storyItem = f6Var.O1.f703a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f29108j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f28759j0.getSelectedPhotos().isEmpty())) {
                 g4 g4Var = f6Var.I2;
                 if (g4Var != null) {
                     g4Var.dismissWithButtonClick(i10);
@@ -39,8 +39,8 @@ public final class h4 implements ti {
             if (i10 != 8) {
                 f6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = f6Var.I2.f29108j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f29108j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = f6Var.I2.f28759j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f28759j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -115,8 +115,8 @@ public final class h4 implements ti {
     }
 
     @Override
-    public final void L0() {
-        this.f940a.f797b2.P();
+    public final void K0() {
+        this.f940a.f797b2.Q();
     }
 
     @Override
@@ -149,24 +149,24 @@ public final class h4 implements ti {
     }
 
     @Override
-    public final boolean f0() {
+    public final boolean c0() {
         return this.f940a.N0();
     }
 
     @Override
-    public final void y0(gh ghVar) {
-        NotificationCenter.getInstance(this.f940a.C2).doOnIdle(ghVar);
+    public final void x0(fh fhVar) {
+        NotificationCenter.getInstance(this.f940a.C2).doOnIdle(fhVar);
     }
 
     @Override
-    public final void V0(Object obj) {
+    public final void U0(Object obj) {
     }
 
     @Override
-    public final void k1(TLRPC.User user) {
+    public final void j1(TLRPC.User user) {
     }
 
     @Override
-    public final void v0() {
+    public final void u0() {
     }
 }

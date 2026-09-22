@@ -11,16 +11,16 @@ import android.view.ViewConfiguration;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-public final class ku extends vh.n {
-    public final k90 R;
-    public o90 S;
+public final class ku extends vh.o {
+    public final z80 R;
+    public d90 S;
     public boolean T;
     public boolean U;
     public boolean V;
 
     public ku(Context context) {
         super(context, null, true);
-        this.R = new k90(this);
+        this.R = new z80(this);
     }
 
     @Override
@@ -70,27 +70,27 @@ public final class ku extends vh.n {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         CharacterStyle characterStyle;
-        k90 k90Var = this.R;
-        if (k90Var != null) {
+        z80 z80Var = this.R;
+        if (z80Var != null) {
             Layout layout = getLayout();
             ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
             if (a2 != null && motionEvent.getAction() == 0) {
-                o90 o90Var = new o90(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.S = o90Var;
-                k90Var.a(o90Var, null);
+                d90 d90Var = new d90(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
+                this.S = d90Var;
+                z80Var.a(d90Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.S.f27022i);
-                int spanEnd = spannableString.getSpanEnd(this.S.f27022i);
-                h90 b10 = this.S.b();
+                int spanStart = spannableString.getSpanStart(this.S.f23247i);
+                int spanEnd = spannableString.getSpanEnd(this.S.f23247i);
+                w80 b10 = this.S.b();
                 b10.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b10);
-                AndroidUtilities.runOnUIThread(new xp(this, o90Var, a2), ViewConfiguration.getLongPressTimeout());
+                AndroidUtilities.runOnUIThread(new xp(this, d90Var, a2), ViewConfiguration.getLongPressTimeout());
                 return true;
             }
             if (motionEvent.getAction() == 1) {
-                k90Var.d(true);
-                o90 o90Var2 = this.S;
-                if (o90Var2 != null && (characterStyle = o90Var2.f27022i) == a2) {
+                z80Var.d(true);
+                d90 d90Var2 = this.S;
+                if (d90Var2 != null && (characterStyle = d90Var2.f23247i) == a2) {
                     if (characterStyle != null) {
                         ((ClickableSpan) characterStyle).onClick(this);
                     }
@@ -100,7 +100,7 @@ public final class ku extends vh.n {
                 this.S = null;
             }
             if (motionEvent.getAction() == 3) {
-                k90Var.d(true);
+                z80Var.d(true);
                 this.S = null;
             }
         }

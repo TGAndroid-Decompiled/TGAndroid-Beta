@@ -1,34 +1,46 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class sp implements Runnable {
-    public final int f37461a;
-    public final tp f37462b;
-    public final String f37463c;
+import android.content.Context;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class sp extends org.telegram.ui.Components.k80 {
+    public final TLRPC.Chat f37430w;
+    public final tp f37431x;
 
-    public sp(tp tpVar, String str, int i10) {
-        this.f37461a = i10;
-        this.f37462b = tpVar;
-        this.f37463c = str;
+    public sp(tp tpVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.f37431x = tpVar;
+        this.f37430w = chat2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37461a) {
-            case 0:
-                tp tpVar = this.f37462b;
-                String str = this.f37463c;
-                tpVar.getClass();
-                AndroidUtilities.runOnUIThread(new sp(tpVar, str, 1));
-                return;
-            default:
-                tp tpVar2 = this.f37462b;
-                String str2 = this.f37463c;
-                tpVar2.f37863f = null;
-                Utilities.searchQueue.postRunnable(new q1(tpVar2, str2, new ArrayList(tpVar2.h.v), 28));
-                return;
+    public final boolean a(boolean z10, org.telegram.ui.Components.i80 i80Var) {
+        wp wpVar = this.f37431x.d;
+        if (wpVar.P) {
+            return false;
+        }
+        wpVar.P = true;
+        e(new uh(15, this, i80Var), new ai.s4(this, this.f37430w, z10, i80Var, 15));
+        return true;
+    }
+
+    @Override
+    public final boolean b(boolean z10, org.telegram.ui.Components.j80 j80Var) {
+        wp wpVar = this.f37431x.d;
+        if (wpVar.O) {
+            return false;
+        }
+        wpVar.O = true;
+        e(new uh(15, this, j80Var), new ai.s4(this, this.f37430w, z10, j80Var, 14));
+        return true;
+    }
+
+    public final void e(uh uhVar, Runnable runnable) {
+        wp wpVar = this.f37431x.d;
+        if (!ChatObject.isChannel(wpVar.f39346f)) {
+            wpVar.getMessagesController().convertToMegaGroup(wpVar.getParentActivity(), this.f37430w.f18109id, wpVar, new x5(15, this, runnable), uhVar);
+        } else {
+            runnable.run();
         }
     }
 }

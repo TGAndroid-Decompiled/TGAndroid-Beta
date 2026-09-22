@@ -4,32 +4,27 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.y70;
-import org.telegram.ui.of;
+import org.telegram.ui.Components.n70;
+import org.telegram.ui.nf;
 import org.telegram.ui.qt;
 public final class s1 implements qt {
     @Override
-    public final MessageObject A() {
-        return null;
-    }
-
-    @Override
-    public final boolean B() {
+    public final boolean A() {
         return false;
     }
 
     @Override
-    public final boolean D() {
+    public final boolean C() {
         return false;
     }
 
     @Override
-    public final boolean E(TLRPC.Document document) {
+    public final boolean D(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final String G(boolean z10) {
+    public final String F(boolean z10) {
         return null;
     }
 
@@ -99,7 +94,7 @@ public final class s1 implements qt {
     }
 
     @Override
-    public final y70 i(n6 n6Var) {
+    public final n70 i(n6 n6Var) {
         return null;
     }
 
@@ -119,20 +114,33 @@ public final class s1 implements qt {
     }
 
     @Override
-    public final boolean y() {
+    public final boolean x() {
         return true;
     }
 
     @Override
-    public final void C(TLRPC.Document document) {
+    public final MessageObject z() {
+        return null;
     }
 
     @Override
-    public final void F(TLRPC.Document document) {
+    public final void B(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void E(TLRPC.Document document) {
     }
 
     @Override
     public final void H(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
     }
 
     @Override
@@ -156,22 +164,6 @@ public final class s1 implements qt {
     }
 
     @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
     public final void r() {
     }
 
@@ -180,19 +172,27 @@ public final class s1 implements qt {
     }
 
     @Override
+    public final void u(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void y(String str) {
+    }
+
+    @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
     }
 
     @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    public final void v(TLRPC.StickerSet stickerSet, String str) {
     }
 
     @Override
-    public final void x(TLObject tLObject, Object obj) {
+    public final void w(TLObject tLObject, Object obj) {
     }
 
     @Override
-    public final void u(CharSequence charSequence, String str, of ofVar) {
+    public final void G(CharSequence charSequence, String str, nf nfVar) {
     }
 
     @Override

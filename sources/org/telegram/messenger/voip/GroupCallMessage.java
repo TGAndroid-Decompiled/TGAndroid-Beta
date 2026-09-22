@@ -21,19 +21,19 @@ public class GroupCallMessage {
     }
 
     public boolean isOut() {
-        return w7.d0.a(this.flags, 1);
+        return w7.c0.a(this.flags, 1);
     }
 
     public boolean isSendConfirmed() {
-        return w7.d0.a(this.flags, 8);
+        return w7.c0.a(this.flags, 8);
     }
 
     public boolean isSendDelayed() {
-        return w7.d0.a(this.flags, 2);
+        return w7.c0.a(this.flags, 2);
     }
 
     public boolean isSendError() {
-        return w7.d0.a(this.flags, 4);
+        return w7.c0.a(this.flags, 4);
     }
 
     public void notifyStateUpdate() {
@@ -48,19 +48,19 @@ public class GroupCallMessage {
     }
 
     public void setIsOut(boolean z10) {
-        this.flags = w7.d0.b(this.flags, 1, z10);
+        this.flags = w7.c0.b(this.flags, 1, z10);
     }
 
     public void setIsSendConfirmed(boolean z10) {
-        this.flags = w7.d0.b(this.flags, 8, z10);
+        this.flags = w7.c0.b(this.flags, 8, z10);
     }
 
     public void setIsSendDelayed(boolean z10) {
-        this.flags = w7.d0.b(this.flags, 2, z10);
+        this.flags = w7.c0.b(this.flags, 2, z10);
     }
 
     public void setIsSendError(boolean z10) {
-        this.flags = w7.d0.b(this.flags, 4, z10);
+        this.flags = w7.c0.b(this.flags, 4, z10);
     }
 
     public void subscribeToStateUpdates(Runnable runnable) {

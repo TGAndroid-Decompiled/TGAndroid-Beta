@@ -1,26 +1,52 @@
 package xh;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class z3 implements Runnable {
-    public final int f46545a;
-    public final h4 f46546b;
+import java.util.Comparator;
+import org.telegram.tgnet.tl.TL_stars;
+public final class z3 implements Comparator {
+    public final int f46237a;
+    public final f4 f46238b;
 
-    public z3(h4 h4Var, int i10) {
-        this.f46545a = i10;
-        this.f46546b = h4Var;
+    public z3(f4 f4Var, int i10) {
+        this.f46237a = i10;
+        this.f46238b = f4Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46545a) {
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f46237a) {
             case 0:
-                this.f46546b.Z();
-                return;
+                f4 f4Var = this.f46238b;
+                Integer num = (Integer) f4Var.f45865c.f46149n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                Integer num2 = (Integer) f4Var.f45865c.f46149n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                if (num == null) {
+                    return 1;
+                }
+                if (num2 == null) {
+                    return -1;
+                }
+                return num2.intValue() - num.intValue();
+            case 1:
+                f4 f4Var2 = this.f46238b;
+                Integer num3 = (Integer) f4Var2.f45865c.f46150o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f18115id));
+                Integer num4 = (Integer) f4Var2.f45865c.f46150o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f18115id));
+                if (num3 == null) {
+                    return 1;
+                }
+                if (num4 == null) {
+                    return -1;
+                }
+                return num4.intValue() - num3.intValue();
             default:
-                h4 h4Var = this.f46546b;
-                h4Var.f46217i0.N(true);
-                AndroidUtilities.runOnUIThread(new z3(h4Var, 0), 150L);
-                return;
+                f4 f4Var3 = this.f46238b;
+                Integer num5 = (Integer) f4Var3.f45865c.f46148m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f18115id));
+                Integer num6 = (Integer) f4Var3.f45865c.f46148m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f18115id));
+                if (num5 == null) {
+                    return 1;
+                }
+                if (num6 == null) {
+                    return -1;
+                }
+                return num6.intValue() - num5.intValue();
         }
     }
 }

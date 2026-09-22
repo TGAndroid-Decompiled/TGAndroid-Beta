@@ -1,40 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-public final class rs0 implements pl0 {
-    public final hs0 f28048a;
-    public final lv0 f28049b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class rs0 extends AnimatorListenerAdapter {
+    public final int f27676a;
+    public final yu0 f27677b;
 
-    public rs0(lv0 lv0Var, hs0 hs0Var) {
-        this.f28049b = lv0Var;
-        this.f28048a = hs0Var;
+    public rs0(yu0 yu0Var, int i10) {
+        this.f27676a = i10;
+        this.f27677b = yu0Var;
     }
 
     @Override
-    public final boolean mo18c(float r18, float r19, int r20, android.view.View r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.rs0.mo18c(float, float, int, android.view.View):boolean");
-    }
-
-    @Override
-    public final void g() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28049b.f26234v1;
-        if (n2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                n2Var.finishPreviewFragment();
-            }
-        }
-    }
-
-    @Override
-    public final void q(float f7) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28049b.f26234v1;
-        if (n2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                n2Var.movePreviewFragment(f7);
-            }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27676a) {
+            case 0:
+                this.f27677b.L0 = null;
+                return;
+            default:
+                yu0 yu0Var = this.f27677b;
+                org.telegram.ui.ActionBar.v0 v0Var = yu0Var.f30370n0;
+                rt0[] rt0VarArr = yu0Var.f30365k0;
+                yu0Var.f30356f1 = null;
+                int i10 = 4;
+                if (yu0Var.f30362i1) {
+                    rt0VarArr[1].setVisibility(8);
+                    if (v0Var != null && !yu0Var.D()) {
+                        if (yu0Var.v0()) {
+                            i10 = 8;
+                        }
+                        v0Var.setVisibility(i10);
+                        yu0Var.f30372o0 = 0.0f;
+                    } else {
+                        yu0Var.f30372o0 = yu0Var.b0(0.0f);
+                        yu0Var.s1(0.0f);
+                    }
+                    yu0Var.q1(false);
+                    yu0Var.f30394x0 = 0;
+                } else {
+                    rt0 rt0Var = rt0VarArr[0];
+                    rt0VarArr[0] = rt0VarArr[1];
+                    rt0VarArr[1] = rt0Var;
+                    rt0Var.setVisibility(8);
+                    if (v0Var != null && yu0Var.f30394x0 == 2) {
+                        if (yu0Var.v0()) {
+                            i10 = 8;
+                        }
+                        v0Var.setVisibility(i10);
+                    }
+                    yu0Var.f30394x0 = 0;
+                    yu0Var.Z0(1.0f, rt0VarArr[0].F);
+                    yu0Var.L0();
+                    yu0Var.f1();
+                }
+                yu0Var.f30358g1 = false;
+                yu0Var.f30398y1 = false;
+                yu0Var.f30395x1 = false;
+                yu0Var.N0(false);
+                yu0Var.G.setEnabled(true);
+                yu0Var.I0.setEnabled(true);
+                return;
         }
     }
 }

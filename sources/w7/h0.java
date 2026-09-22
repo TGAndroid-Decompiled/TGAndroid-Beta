@@ -1,15 +1,7 @@
 package w7;
-
-import android.os.StrictMode;
-import java.util.concurrent.Callable;
 public abstract class h0 {
-    public static Object a(Callable callable) {
-        StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
-        try {
-            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
-            return callable.call();
-        } finally {
-            StrictMode.setThreadPolicy(threadPolicy);
-        }
+    public abstract void a(boolean z10);
+
+    public void b() {
     }
 }

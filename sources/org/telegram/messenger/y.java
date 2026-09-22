@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class y implements Runnable {
-    public final int f18155a;
-    public final BillingController f18156b;
+    public final int f17914a;
+    public final BillingController f17915b;
 
     public y(BillingController billingController, int i10) {
-        this.f18155a = i10;
-        this.f18156b = billingController;
+        this.f17914a = i10;
+        this.f17915b = billingController;
     }
 
     @Override
     public final void run() {
-        switch (this.f18155a) {
+        switch (this.f17914a) {
             case 0:
-                this.f18156b.lambda$onQueriedPremiumProductDetails$14();
+                this.f17915b.lambda$onQueriedPremiumProductDetails$14();
                 return;
             default:
-                this.f18156b.lambda$onBillingServiceDisconnected$13();
+                this.f17915b.lambda$onBillingServiceDisconnected$13();
                 return;
         }
     }

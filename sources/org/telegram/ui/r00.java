@@ -13,38 +13,38 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
-public final class r00 extends org.telegram.ui.Components.ab {
+public final class r00 extends org.telegram.ui.Components.za {
     public final MessagesController.DialogFilter X;
     public final ArrayList Y;
     public final FrameLayout Z;
-    public p00 f37031a0;
-    public final TextView f37032b0;
-    public final ArrayList f37033c0;
-    public final ArrayList f37034d0;
+    public p00 f36985a0;
+    public final TextView f36986b0;
+    public final ArrayList f36987c0;
+    public final ArrayList f36988d0;
 
     public r00(org.telegram.ui.ActionBar.n2 n2Var, MessagesController.DialogFilter dialogFilter, ArrayList arrayList) {
         super(n2Var, false);
         ArrayList arrayList2 = new ArrayList();
         this.Y = arrayList2;
-        this.f37033c0 = new ArrayList();
-        this.f37034d0 = new ArrayList();
+        this.f36987c0 = new ArrayList();
+        this.f36988d0 = new ArrayList();
         this.X = dialogFilter;
         if (arrayList != null) {
             arrayList2.addAll(arrayList);
         }
         U(false);
         this.e.setTitle(R(null));
-        fixNavigationBar(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19180h5, false));
+        fixNavigationBar(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18904h5, false));
         TextView textView = new TextView(getContext());
-        this.f37032b0 = textView;
+        this.f36986b0 = textView;
         textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{8.0f}, org.telegram.ui.ActionBar.j6.Oh));
+        textView.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{8.0f}, org.telegram.ui.ActionBar.i6.Oh));
         textView.setText(LocaleController.getString(R.string.FolderLinkShareButton));
         textView.setGravity(17);
         textView.setOnClickListener(new a(this, 22));
-        FrameLayout.LayoutParams d = w7.y5.d(-1, 48.0f, 87, 16.0f, 10.0f, 16.0f, 10.0f);
+        FrameLayout.LayoutParams d = w7.x5.d(-1, 48.0f, 87, 16.0f, 10.0f, 16.0f, 10.0f);
         int i10 = d.leftMargin;
         int i11 = this.backgroundPaddingLeft;
         d.leftMargin = i10 + i11;
@@ -52,7 +52,7 @@ public final class r00 extends org.telegram.ui.Components.ab {
         this.containerView.addView(textView, d);
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.Z = frameLayout;
-        this.containerView.addView(frameLayout, w7.y5.d(-1, 100.0f, 80, 6.0f, 0.0f, 6.0f, 0.0f));
+        this.containerView.addView(frameLayout, w7.x5.d(-1, 100.0f, 80, 6.0f, 0.0f, 6.0f, 0.0f));
         T();
     }
 
@@ -61,21 +61,21 @@ public final class r00 extends org.telegram.ui.Components.ab {
         TL_chatlists.TL_chatlists_getExportedInvites tL_chatlists_getExportedInvites = new TL_chatlists.TL_chatlists_getExportedInvites();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_getExportedInvites.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = dialogFilter.f15837id;
+        tL_inputChatlistDialogFilter.filter_id = dialogFilter.f15601id;
         n2Var.getConnectionsManager().sendRequest(tL_chatlists_getExportedInvites, new org.telegram.messenger.ja(n2Var, dialogFilter, g10Var, currentTimeMillis, 5));
     }
 
     @Override
-    public final void F(org.telegram.ui.Components.cw0 cw0Var) {
-        org.telegram.ui.Components.yl0 yl0Var = this.d;
-        yl0Var.setOverScrollMode(2);
-        yl0Var.setOnItemClickListener(new i(this, 10));
+    public final void G(org.telegram.ui.Components.pv0 pv0Var) {
+        org.telegram.ui.Components.ll0 ll0Var = this.d;
+        ll0Var.setOverScrollMode(2);
+        ll0Var.setOnItemClickListener(new i(this, 10));
         s4.j jVar = new s4.j();
-        jVar.f43030m = false;
+        jVar.f42706m = false;
         jVar.C = false;
         jVar.o(org.telegram.ui.Components.qr.h);
         jVar.n(350L);
-        yl0Var.setItemAnimator(jVar);
+        ll0Var.setItemAnimator(jVar);
     }
 
     public final void Q() {
@@ -86,7 +86,7 @@ public final class r00 extends org.telegram.ui.Components.ab {
         while (true) {
             dialogFilter = this.X;
             int size = dialogFilter.alwaysShow.size();
-            n2Var = this.f22602n;
+            n2Var = this.f30525n;
             if (i10 >= size) {
                 break;
             }
@@ -104,21 +104,21 @@ public final class r00 extends org.telegram.ui.Components.ab {
         TL_chatlists.TL_chatlists_exportChatlistInvite tL_chatlists_exportChatlistInvite = new TL_chatlists.TL_chatlists_exportChatlistInvite();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_exportChatlistInvite.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = dialogFilter.f15837id;
+        tL_inputChatlistDialogFilter.filter_id = dialogFilter.f15601id;
         tL_chatlists_exportChatlistInvite.peers = arrayList;
         tL_chatlists_exportChatlistInvite.title = "";
         n2Var.getConnectionsManager().sendRequest(tL_chatlists_exportChatlistInvite, new m(this, 7));
     }
 
-    public final CharSequence R(vh.n nVar) {
+    public final CharSequence R(vh.o oVar) {
         Object obj;
         Paint.FontMetricsInt fontMetricsInt;
         MessagesController.DialogFilter dialogFilter = this.X;
         if (dialogFilter != null) {
-            if (nVar == null) {
+            if (oVar == null) {
                 fontMetricsInt = null;
             } else {
-                fontMetricsInt = nVar.getPaint().getFontMetricsInt();
+                fontMetricsInt = oVar.getPaint().getFontMetricsInt();
             }
             obj = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(new SpannableStringBuilder(dialogFilter.name), fontMetricsInt, false), dialogFilter.entities, fontMetricsInt);
         } else {
@@ -136,7 +136,7 @@ public final class r00 extends org.telegram.ui.Components.ab {
         } else {
             i10 = 8;
         }
-        this.f37032b0.setVisibility(i10);
+        this.f36986b0.setVisibility(i10);
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(6.0f);
         if (arrayList.isEmpty()) {
@@ -148,9 +148,9 @@ public final class r00 extends org.telegram.ui.Components.ab {
     }
 
     public final void U(boolean z10) {
-        ArrayList arrayList = this.f37033c0;
+        ArrayList arrayList = this.f36987c0;
         arrayList.clear();
-        ArrayList arrayList2 = this.f37034d0;
+        ArrayList arrayList2 = this.f36988d0;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         ?? aVar = new og.a(0, false);
@@ -162,11 +162,11 @@ public final class r00 extends org.telegram.ui.Components.ab {
             arrayList2.add(new og.a(8, false));
             for (int i10 = 0; i10 < arrayList3.size(); i10++) {
                 ?? aVar2 = new og.a(7, false);
-                aVar2.f38658m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i10);
+                aVar2.f38671m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i10);
                 arrayList2.add(aVar2);
             }
         }
-        p00 p00Var = this.f37031a0;
+        p00 p00Var = this.f36985a0;
         if (p00Var != null) {
             if (z10) {
                 p00Var.E(arrayList, arrayList2);
@@ -177,9 +177,9 @@ public final class r00 extends org.telegram.ui.Components.ab {
     }
 
     @Override
-    public final org.telegram.ui.Components.xl0 v(org.telegram.ui.Components.yl0 yl0Var) {
+    public final org.telegram.ui.Components.kl0 v(org.telegram.ui.Components.ll0 ll0Var) {
         p00 p00Var = new p00(this);
-        this.f37031a0 = p00Var;
+        this.f36985a0 = p00Var;
         return p00Var;
     }
 

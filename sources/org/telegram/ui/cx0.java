@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class cx0 extends org.telegram.ui.Components.xl0 {
-    public final PremiumPreviewFragment f32905c;
+public final class cx0 extends org.telegram.ui.Components.kl0 {
+    public final PremiumPreviewFragment f32884c;
 
     public cx0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f32905c = premiumPreviewFragment;
+        this.f32884c = premiumPreviewFragment;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42998f;
+        int i10 = c1Var.f42674f;
         if (i10 == 1 || i10 == 8) {
             return true;
         }
@@ -21,25 +21,25 @@ public final class cx0 extends org.telegram.ui.Components.xl0 {
 
     @Override
     public final int h() {
-        return this.f32905c.h;
+        return this.f32884c.h;
     }
 
     @Override
     public final int j(int i10) {
         if (i10 != 0) {
-            PremiumPreviewFragment premiumPreviewFragment = this.f32905c;
-            if (i10 < premiumPreviewFragment.f31476n || i10 >= premiumPreviewFragment.f31481r) {
-                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f31488w) {
+            PremiumPreviewFragment premiumPreviewFragment = this.f32884c;
+            if (i10 < premiumPreviewFragment.f31168n || i10 >= premiumPreviewFragment.f31173r) {
+                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f31180w) {
                     return 1;
                 }
                 if (i10 == 0) {
                     return 4;
                 }
-                if (i10 != premiumPreviewFragment.f31490x && i10 != premiumPreviewFragment.f31492y && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
+                if (i10 != premiumPreviewFragment.f31182x && i10 != premiumPreviewFragment.f31184y && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
                     if (i10 == premiumPreviewFragment.F) {
                         return 6;
                     }
-                    if (i10 != premiumPreviewFragment.f31483s && i10 != premiumPreviewFragment.G) {
+                    if (i10 != premiumPreviewFragment.f31175s && i10 != premiumPreviewFragment.G) {
                         if (i10 == premiumPreviewFragment.showAdsRow) {
                             return 8;
                         }
@@ -62,14 +62,14 @@ public final class cx0 extends org.telegram.ui.Components.xl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View bx0Var;
-        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         Context context = viewGroup.getContext();
         switch (i10) {
             case 1:
                 bx0Var = new bx0(this, context);
                 break;
             case 2:
-                bx0Var = new org.telegram.ui.Cells.c7(context, 0, 0);
+                bx0Var = new org.telegram.ui.Cells.a7(context, 0, 0);
                 break;
             case 3:
             default:
@@ -80,18 +80,18 @@ public final class cx0 extends org.telegram.ui.Components.xl0 {
                 bx0Var = new rg.a(context);
                 break;
             case 5:
-                bx0Var = new org.telegram.ui.Cells.f9(context);
+                bx0Var = new org.telegram.ui.Cells.e9(context);
                 break;
             case 6:
                 bx0Var = new View(context);
                 bx0Var.setTag(-33024);
                 break;
             case 7:
-                bx0Var = new org.telegram.ui.Cells.n4(context);
+                bx0Var = new org.telegram.ui.Cells.m4(context);
                 break;
             case 8:
-                f6Var = ((org.telegram.ui.ActionBar.n2) this.f32905c).resourceProvider;
-                bx0Var = new org.telegram.ui.Cells.s8(23, context, f6Var, false, true);
+                e6Var = ((org.telegram.ui.ActionBar.n2) this.f32884c).resourceProvider;
+                bx0Var = new org.telegram.ui.Cells.r8(23, context, e6Var, false, true);
                 break;
         }
         return com.google.android.gms.internal.vision.e2.k(bx0Var, bx0Var, -1, -2);

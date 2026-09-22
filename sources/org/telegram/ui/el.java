@@ -1,15 +1,39 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-public final class el implements MessagesStorage.IntCallback {
-    public final zn f33386a;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class el implements org.telegram.ui.Components.ek0 {
+    public final bo f33371a;
 
-    public el(zn znVar) {
-        this.f33386a = znVar;
+    public el(bo boVar) {
+        this.f33371a = boVar;
     }
 
     @Override
-    public final void run(int i10) {
-        this.f33386a.G9(i10);
+    public final void h(android.view.View r24, zg.p0 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.el.h(android.view.View, zg.p0, boolean, boolean):void");
+    }
+
+    @Override
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final void o() {
+    }
+
+    @Override
+    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

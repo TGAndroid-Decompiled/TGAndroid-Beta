@@ -1,42 +1,121 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
+import android.view.View;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-public final class b11 implements z4.e {
-    public int f32254a;
-    public final c11 f32255b;
+public final class b11 extends View implements org.telegram.ui.Components.jh0 {
+    public boolean E;
+    public float F;
+    public float G;
+    public float[] H;
+    public long I;
+    public float J;
+    public int K;
+    public float L;
+    public int M;
+    public float N;
+    public int O;
+    public final ProfileActivity P;
+    public final int f32006a;
+    public final Rect f32007b;
+    public final Rect f32008c;
+    public final RectF d;
+    public final GradientDrawable e;
+    public final GradientDrawable f32009f;
+    public final ValueAnimator h;
+    public final float[] f32010n;
+    public final Paint f32011r;
+    public final Paint f32012s;
+    public final Paint v;
+    public final GradientDrawable[] f32013w;
+    public final boolean[] f32014x;
+    public final float[] f32015y;
 
-    public b11(c11 c11Var) {
-        this.f32255b = c11Var;
+    public b11(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b11.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
     }
 
     @Override
-    public final void a(int i10) {
-        boolean z10;
-        c11 c11Var = this.f32255b;
-        ProfileActivity profileActivity = c11Var.f32612n;
-        int k10 = profileActivity.f31634n0.D0.k(i10);
-        if (this.f32254a != k10) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void a() {
+        Arrays.fill(this.f32014x, false);
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void b(boolean z10) {
+        this.f32014x[!z10 ? 1 : 0] = true;
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void c() {
+        this.P.i5(false);
+    }
+
+    @Override
+    public final void d() {
+        invalidate();
+    }
+
+    public final void e(float f7, boolean z10) {
+        int i10 = (int) (255.0f * f7);
+        this.e.setAlpha(i10);
+        this.f32009f.setAlpha(i10);
+        this.f32011r.setAlpha((int) (66.0f * f7));
+        this.f32012s.setAlpha((int) (85.0f * f7));
+        this.v.setAlpha(i10);
+        this.G = f7;
+        if (!z10) {
+            this.F = f7;
         }
-        c11Var.a(z10);
-        this.f32254a = k10;
-        if (profileActivity.f31654q0 == null) {
-            return;
-        }
-        if (profileActivity.T0.t()) {
-            AndroidUtilities.runOnUIThread(new e01(c11Var, 2), 500L);
-        } else {
-            c11Var.c();
+        invalidate();
+    }
+
+    public final void f(float f7, boolean z10) {
+        if (z10 != this.E) {
+            this.E = z10;
+            ValueAnimator valueAnimator = this.h;
+            valueAnimator.cancel();
+            float f10 = this.F;
+            float[] fArr = this.f32010n;
+            float lerp = AndroidUtilities.lerp(fArr, f10);
+            float f11 = 1.0f;
+            if (z10) {
+                valueAnimator.setDuration(((1.0f - lerp) * 250.0f) / f7);
+            } else {
+                valueAnimator.setDuration((250.0f * lerp) / f7);
+            }
+            fArr[0] = lerp;
+            if (!z10) {
+                f11 = 0.0f;
+            }
+            fArr[1] = f11;
+            valueAnimator.start();
         }
     }
 
     @Override
-    public final void c(int i10) {
+    public final void onDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b11.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f32006a;
+        Rect rect = this.f32007b;
+        rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
+        Rect rect2 = this.f32008c;
+        rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
+        this.e.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
+        this.f32009f.setBounds(0, ((i11 - this.P.O3()) - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.f32013w;
+        int i14 = i10 / 5;
+        gradientDrawableArr[0].setBounds(0, 0, i14, i11);
+        gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);
     }
 }

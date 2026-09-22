@@ -6,17 +6,17 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class fj extends FrameLayout {
-    public final zn f33684a;
+    public final bo f33614a;
 
-    public fj(zn znVar, Activity activity) {
+    public fj(bo boVar, Activity activity) {
         super(activity);
-        this.f33684a = znVar;
+        this.f33614a = boVar;
     }
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            this.f33684a.A7(true);
+            this.f33614a.A7(true);
         }
         return super.dispatchKeyEvent(keyEvent);
     }

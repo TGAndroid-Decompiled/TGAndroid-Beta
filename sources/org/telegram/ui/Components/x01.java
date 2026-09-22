@@ -1,69 +1,97 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.style.ReplacementSpan;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.TextureView;
 import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class x01 extends ReplacementSpan {
-    public static final int f30179f = 0;
-    public ImageReceiver f30180a;
-    public int f30181b;
-    public int f30182c;
-    public final boolean d;
-    public final int e;
+import org.telegram.messenger.MessagesController;
+public final class x01 extends TextureView {
+    public static Boolean f29836f;
+    public v01 f29837a;
+    public final o1.a f29838b;
+    public final ArrayList f29839c;
+    public Runnable d;
+    public boolean e;
 
-    public x01(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f30181b = i10;
-        this.f30182c = i11;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f30180a = imageReceiver;
-        imageReceiver.setInvalidateAll(true);
-        imageReceiver.setImageBitmap(bitmap);
-        imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
-        this.e = i13;
-        this.d = true;
+    public x01(Context context, Runnable runnable) {
+        super(context);
+        this.f29838b = new o1.a(this, 1);
+        this.f29839c = new ArrayList();
+        this.d = runnable;
+        setOpaque(false);
+        setSurfaceTextureListener(new j50(this, 2));
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f30181b;
-        int i16 = this.f30182c;
-        ImageReceiver imageReceiver = this.f30180a;
-        canvas.save();
-        if (this.d) {
-            imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.e), i15, i16);
-        } else {
-            imageReceiver.setImageCoords((int) f7, hg.k0.z(org.telegram.messenger.l0.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
+    public static void b(Runnable runnable) {
+        if (runnable == null) {
+            return;
         }
-        imageReceiver.draw(canvas);
-        canvas.restore();
+        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+            AndroidUtilities.runOnUIThread(runnable);
+        } else {
+            runnable.run();
+        }
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        int i12 = this.f30182c;
-        if (fontMetricsInt != null) {
-            if (this.d) {
-                int i13 = this.e;
-                int i14 = -(i12 - i13);
-                fontMetricsInt.ascent = i14;
-                fontMetricsInt.top = i14;
-                fontMetricsInt.descent = i13;
-                fontMetricsInt.bottom = i13;
-            } else {
-                int dp = ((-i12) / 2) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.ascent = dp;
-                fontMetricsInt.top = dp;
-                int dp2 = (i12 - (i12 / 2)) - AndroidUtilities.dp(4.0f);
-                fontMetricsInt.descent = dp2;
-                fontMetricsInt.bottom = dp2;
+    public static boolean c() {
+        if (f29836f == null) {
+            f29836f = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
+        }
+        Boolean bool = f29836f;
+        if (bool != null && bool.booleanValue()) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void a(View view) {
+        int i10 = 0;
+        int i11 = 0;
+        boolean z10 = false;
+        while (true) {
+            ArrayList arrayList = this.f29839c;
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            w01 w01Var = (w01) arrayList.get(i11);
+            if (w01Var.f29505a == view) {
+                Runnable runnable = w01Var.d;
+                if (runnable != null) {
+                    b(runnable);
+                    w01Var.d = null;
+                }
+                arrayList.remove(i11);
+                i11--;
+                z10 = true;
+            }
+            i11++;
+        }
+        if (!z10) {
+            v01 v01Var = this.f29837a;
+            ArrayList arrayList2 = v01Var.W;
+            if (v01Var.f28542b.get()) {
+                Handler handler = v01Var.getHandler();
+                if (handler == null) {
+                    while (i10 < arrayList2.size()) {
+                        u01 u01Var = (u01) arrayList2.get(i10);
+                        if (u01Var.f28223a.contains(view)) {
+                            Runnable runnable2 = u01Var.f28226f;
+                            if (runnable2 != null) {
+                                b(runnable2);
+                                u01Var.f28226f = null;
+                            }
+                            arrayList2.remove(i10);
+                            i10--;
+                        }
+                        i10++;
+                    }
+                    return;
+                }
+                handler.sendMessage(handler.obtainMessage(5, view));
             }
         }
-        return this.f30181b;
     }
 }

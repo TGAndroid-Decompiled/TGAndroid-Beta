@@ -1,44 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class c41 extends ClickableSpan {
-    public final URLSpan f23176a;
-    public final l41 f23177b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class c41 extends vh.o {
+    public final org.telegram.ui.l20 R;
+    public final f41 S;
 
-    public c41(l41 l41Var, URLSpan uRLSpan) {
-        this.f23177b = l41Var;
-        this.f23176a = uRLSpan;
+    public c41(f41 f41Var, Context context) {
+        super(context);
+        this.S = f41Var;
+        this.R = new org.telegram.ui.l20();
     }
 
     @Override
-    public final void onClick(View view) {
-        l41 l41Var = this.f23177b;
-        Utilities.CallbackReturn callbackReturn = l41Var.N;
-        URLSpan uRLSpan = this.f23176a;
-        if (callbackReturn != null) {
-            if (((Boolean) callbackReturn.run(uRLSpan)).booleanValue()) {
-                l41Var.dismiss();
-                return;
-            }
-            return;
-        }
-        org.telegram.ui.ActionBar.n2 n2Var = l41Var.M;
-        if (n2Var != null) {
-            d5.q0(n2Var, uRLSpan.getURL(), false, false);
-        }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
-        if (!(this.f23176a instanceof c61)) {
-            textPaint.setUnderlineText(true);
-        }
-        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19236k5, false));
-        textPaint.setAlpha(min);
+    public final void onDraw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(8.0f) + this.S.d.getWidth();
+        canvas.saveLayerAlpha(getScrollX(), 0.0f, (getWidth() + getScrollX()) - dp, getHeight(), 255, 31);
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        bw0.a(canvas, getLayout());
+        canvas.restore();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((getWidth() - dp) - AndroidUtilities.dp(24.0f), 0.0f, getWidth() - dp, getHeight());
+        this.R.b(canvas, rectF, 2, 1.0f);
+        canvas.restore();
     }
 }

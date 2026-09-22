@@ -11,14 +11,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b70 implements Runnable {
-    public final int f32288a;
-    public final c70 f32289b;
-    public final String f32290c;
+    public final int f32059a;
+    public final c70 f32060b;
+    public final String f32061c;
 
     public b70(c70 c70Var, String str, int i10) {
-        this.f32288a = i10;
-        this.f32289b = c70Var;
-        this.f32290c = str;
+        this.f32059a = i10;
+        this.f32060b = c70Var;
+        this.f32061c = str;
     }
 
     @Override
@@ -30,17 +30,17 @@ public final class b70 implements Runnable {
         ArrayList arrayList;
         char c10;
         Object obj;
-        switch (this.f32288a) {
+        switch (this.f32059a) {
             case 0:
-                c70 c70Var = this.f32289b;
-                String str2 = this.f32290c;
+                c70 c70Var = this.f32060b;
+                String str2 = this.f32061c;
                 c70Var.getClass();
                 AndroidUtilities.runOnUIThread(new b70(c70Var, str2, 1));
                 return;
             case 1:
-                c70 c70Var2 = this.f32289b;
-                String str3 = this.f32290c;
-                gg.c2 c2Var = c70Var2.f32674f;
+                c70 c70Var2 = this.f32060b;
+                String str3 = this.f32061c;
+                gg.c2 c2Var = c70Var2.f32693f;
                 e70 e70Var = c70Var2.I;
                 if (!e70Var.O && !e70Var.P) {
                     z10 = false;
@@ -54,12 +54,12 @@ public final class b70 implements Runnable {
                 dispatchQueue.postRunnable(b70Var);
                 return;
             default:
-                c70 c70Var3 = this.f32289b;
-                String str4 = this.f32290c;
-                ArrayList arrayList2 = c70Var3.f32676r;
+                c70 c70Var3 = this.f32060b;
+                String str4 = this.f32061c;
+                ArrayList arrayList2 = c70Var3.f32695r;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
-                    AndroidUtilities.runOnUIThread(new vq(c70Var3, new ArrayList(), new ArrayList(), 10));
+                    AndroidUtilities.runOnUIThread(new xq(c70Var3, new ArrayList(), new ArrayList(), 10));
                     return;
                 }
                 String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
@@ -104,7 +104,7 @@ public final class b70 implements Runnable {
                     char c11 = 0;
                     while (i11 < i12) {
                         String str5 = strArr[i11];
-                        if (!str.startsWith(str5) && !org.telegram.messenger.l0.v(" ", str5, str) && (translitString2 == null || (!translitString2.startsWith(str5) && !org.telegram.messenger.l0.v(" ", str5, translitString2)))) {
+                        if (!str.startsWith(str5) && !org.telegram.messenger.y0.w(" ", str5, str) && (translitString2 == null || (!translitString2.startsWith(str5) && !org.telegram.messenger.y0.w(" ", str5, translitString2)))) {
                             if (publicUsername != null && publicUsername.startsWith(str5)) {
                                 c10 = 2;
                             } else {
@@ -126,8 +126,8 @@ public final class b70 implements Runnable {
                                 obj = null;
                             } else {
                                 obj = null;
-                                String g10 = v7.j0.g("@", publicUsername);
-                                arrayList4.add(AndroidUtilities.generateSearchName(g10, null, "@" + str5));
+                                String i14 = org.telegram.ui.Cells.q3.i("@", publicUsername);
+                                arrayList4.add(AndroidUtilities.generateSearchName(i14, null, "@" + str5));
                             }
                             arrayList3.add(tLObject);
                             i13++;
@@ -144,7 +144,7 @@ public final class b70 implements Runnable {
                     arrayList2 = arrayList;
                     i11 = 0;
                 }
-                AndroidUtilities.runOnUIThread(new vq(c70Var3, arrayList3, arrayList4, 10));
+                AndroidUtilities.runOnUIThread(new xq(c70Var3, arrayList3, arrayList4, 10));
                 return;
         }
     }

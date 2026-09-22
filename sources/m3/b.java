@@ -8,21 +8,21 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import w7.m;
-public final class b extends m {
-    public final int f14684a;
+import w7.l;
+public final class b extends l {
+    public final int f14446a;
 
     public static n3.a c(v vVar) {
         String s10 = vVar.s();
         s10.getClass();
         String s11 = vVar.s();
         s11.getClass();
-        return new n3.a(s10, s11, vVar.r(), vVar.r(), Arrays.copyOfRange(vVar.f7933a, vVar.f7934b, vVar.f7935c));
+        return new n3.a(s10, s11, vVar.r(), vVar.r(), Arrays.copyOfRange(vVar.f7931a, vVar.f7932b, vVar.f7933c));
     }
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
-        switch (this.f14684a) {
+        switch (this.f14446a) {
             case 0:
                 if (byteBuffer.get() != 116) {
                     return null;

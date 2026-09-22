@@ -15,7 +15,7 @@ public final class ob extends Drawable {
     public final View f1367b;
     public final Paint f1368c;
     public final Paint d;
-    public final org.telegram.ui.Components.d6 f1370g;
+    public final org.telegram.ui.Components.c6 f1370g;
     public boolean h;
     public Paint f1371i;
     public int e = 255;
@@ -24,7 +24,7 @@ public final class ob extends Drawable {
 
     public ob(View view) {
         this.f1367b = view;
-        this.f1370g = new org.telegram.ui.Components.d6(view, 350L, qr.h);
+        this.f1370g = new org.telegram.ui.Components.c6(view, 350L, qr.h);
         Paint paint = new Paint(1);
         this.f1368c = paint;
         paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);

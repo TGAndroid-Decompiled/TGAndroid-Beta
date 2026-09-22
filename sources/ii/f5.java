@@ -5,31 +5,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.y51;
-import org.telegram.ui.Components.yl0;
-public final class f5 extends x51 {
-    public static final int f11382a = 0;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.w51;
+public final class f5 extends h51 {
+    public static final int f11380a = 0;
 
     static {
-        x51.setup(new x51());
+        h51.setup(new h51());
     }
 
     @Override
-    public final void bindView(View view, y51 y51Var, boolean z10, m61 m61Var, u61 u61Var) {
+    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
         TL_iv.RichText richText;
         g5 g5Var = (g5) view;
-        a aVar = (a) y51Var.G;
-        e5 e5Var = (e5) y51Var.H;
-        i1 i1Var = g5Var.f11396r;
-        g5Var.f11221a = aVar;
-        g5Var.f11397s = e5Var;
+        a aVar = (a) i51Var.G;
+        e5 e5Var = (e5) i51Var.H;
+        i1 i1Var = g5Var.f11394r;
+        g5Var.f11219a = aVar;
+        g5Var.f11395s = e5Var;
         g5Var.g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         g5Var.c(aVar);
         if (e5Var != null) {
-            richText = (TL_iv.RichText) ((b3) e5Var).f11258a.f11723m3.get(Long.valueOf(aVar.f11220t));
+            richText = (TL_iv.RichText) ((b3) e5Var).f11256a.f11721m3.get(Long.valueOf(aVar.f11218t));
         } else {
             richText = null;
         }
@@ -40,8 +40,8 @@ public final class f5 extends x51 {
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new g5(context, f6Var);
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new g5(context, e6Var);
     }
 
     @Override

@@ -1,36 +1,39 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class v81 implements Runnable {
-    public final int f38456a;
-    public final i91 f38457b;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class v81 implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
+    public final f91 f38422a;
 
-    public v81(i91 i91Var, int i10) {
-        this.f38456a = i10;
-        this.f38457b = i91Var;
+    public v81(f91 f91Var) {
+        this.f38422a = f91Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38456a) {
-            case 0:
-                this.f38457b.f34526c.Y2.N(true);
-                return;
-            case 1:
-                nf.f.s(this.f38457b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
-                return;
-            case 2:
-                i91 i91Var = this.f38457b;
-                i91Var.f34526c.postOnAnimation(new v81(i91Var, 3));
-                return;
-            case 3:
-                this.f38457b.i0();
-                return;
-            default:
-                MessagesController.getInstance(this.f38457b.currentAccount).deleteUserPhoto(null);
-                return;
-        }
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        int i10 = defaultWindowInsets.d;
+        f91 f91Var = this.f38422a;
+        f91Var.S = i10;
+        f91Var.f33546c.setPadding(0, AndroidUtilities.dp(12.0f) + defaultWindowInsets.f10591b, 0, f91Var.S + f91Var.T);
+        return r0.l1.f41850b;
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(f91.U(this.f38422a, (org.telegram.ui.Components.i51) obj, (View) obj2));
+    }
+
+    @Override
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        f91.f0(this.f38422a, (org.telegram.ui.Components.i51) obj);
     }
 }

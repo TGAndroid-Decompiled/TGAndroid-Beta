@@ -13,30 +13,30 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class r implements RequestDelegate {
-    public final int f9904a;
-    public final Object f9905b;
-    public final Object f9906c;
+    public final int f9900a;
+    public final Object f9901b;
+    public final Object f9902c;
     public final int d;
     public final int e;
-    public final TLObject f9907f;
+    public final TLObject f9903f;
 
     public r(Object obj, Object obj2, int i10, int i11, TLObject tLObject, int i12) {
-        this.f9904a = i12;
-        this.f9905b = obj;
-        this.f9906c = obj2;
+        this.f9900a = i12;
+        this.f9901b = obj;
+        this.f9902c = obj2;
         this.d = i10;
         this.e = i11;
-        this.f9907f = tLObject;
+        this.f9903f = tLObject;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         ConcurrentHashMap<Long, Integer> concurrentHashMap;
-        switch (this.f9904a) {
+        switch (this.f9900a) {
             case 0:
-                i0 i0Var = (i0) this.f9905b;
-                String str = (String) this.f9906c;
-                TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) this.f9907f;
+                i0 i0Var = (i0) this.f9901b;
+                String str = (String) this.f9902c;
+                TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) this.f9903f;
                 ArrayList arrayList = new ArrayList();
                 if (tL_error == null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
@@ -45,15 +45,15 @@ public final class r implements RequestDelegate {
                     int i10 = 0;
                     for (int i11 = 0; i11 < messages_messages.chats.size(); i11++) {
                         TLRPC.Chat chat = messages_messages.chats.get(i11);
-                        iVar.k(chat, chat.f18343id);
+                        iVar.k(chat, chat.f18109id);
                     }
                     for (int i12 = 0; i12 < messages_messages.users.size(); i12++) {
                         TLRPC.User user = messages_messages.users.get(i12);
-                        iVar2.k(user, user.f18490id);
+                        iVar2.k(user, user.f18256id);
                     }
                     while (i10 < messages_messages.messages.size()) {
                         a0.i iVar3 = iVar;
-                        MessageObject messageObject = new MessageObject(i0Var.f9784s0, messages_messages.messages.get(i10), iVar2, iVar3, false, true);
+                        MessageObject messageObject = new MessageObject(i0Var.f9780s0, messages_messages.messages.get(i10), iVar2, iVar3, false, true);
                         arrayList.add(messageObject);
                         messageObject.setQuery(str);
                         i10++;
@@ -63,10 +63,10 @@ public final class r implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new s(i0Var, this.d, this.e, tL_error, str, tLObject, tL_messages_search, arrayList, 0));
                 return;
             case 1:
-                i0 i0Var2 = (i0) this.f9905b;
-                String str2 = (String) this.f9906c;
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f9907f;
-                int i13 = i0Var2.f9784s0;
+                i0 i0Var2 = (i0) this.f9901b;
+                String str2 = (String) this.f9902c;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f9903f;
+                int i13 = i0Var2.f9780s0;
                 ArrayList arrayList2 = new ArrayList();
                 if (tL_error == null) {
                     TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
@@ -74,16 +74,16 @@ public final class r implements RequestDelegate {
                     a0.i iVar5 = new a0.i();
                     for (int i14 = 0; i14 < messages_messages2.chats.size(); i14++) {
                         TLRPC.Chat chat2 = messages_messages2.chats.get(i14);
-                        iVar4.k(chat2, chat2.f18343id);
+                        iVar4.k(chat2, chat2.f18109id);
                     }
                     for (int i15 = 0; i15 < messages_messages2.users.size(); i15++) {
                         TLRPC.User user2 = messages_messages2.users.get(i15);
-                        iVar5.k(user2, user2.f18490id);
+                        iVar5.k(user2, user2.f18256id);
                     }
                     int i16 = 0;
                     while (i16 < messages_messages2.messages.size()) {
                         a0.i iVar6 = iVar4;
-                        MessageObject messageObject2 = new MessageObject(i0Var2.f9784s0, messages_messages2.messages.get(i16), iVar5, iVar6, false, true);
+                        MessageObject messageObject2 = new MessageObject(i0Var2.f9780s0, messages_messages2.messages.get(i16), iVar5, iVar6, false, true);
                         arrayList2.add(messageObject2);
                         messageObject2.setQuery(str2);
                         i16++;
@@ -115,7 +115,7 @@ public final class r implements RequestDelegate {
                     return;
                 }
             default:
-                ((FileLoadOperation) this.f9905b).lambda$startDownloadRequest$29((FileLoadOperation.RequestInfo) this.f9906c, this.d, this.e, this.f9907f, tLObject, tL_error);
+                ((FileLoadOperation) this.f9901b).lambda$startDownloadRequest$29((FileLoadOperation.RequestInfo) this.f9902c, this.d, this.e, this.f9903f, tLObject, tL_error);
                 return;
         }
     }

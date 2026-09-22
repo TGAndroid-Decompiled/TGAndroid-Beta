@@ -1,34 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class np0 {
-    public final nu f26864a;
-    public final long f26865b;
-    public final float f26866c;
-    public final float d;
-    public final float e;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class np0 implements gg.g0 {
+    public final hq0 f26549a;
 
-    public np0(View view) {
-        nu nuVar = new nu(1, view);
-        this.f26865b = System.currentTimeMillis();
-        this.f26864a = nuVar;
-        this.f26866c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
-        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
-        this.e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+    public np0(hq0 hq0Var) {
+        this.f26549a = hq0Var;
     }
 
-    public final void a(Canvas canvas, float f7) {
-        nu nuVar;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f26865b)) / 1000.0f;
-        canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.f26866c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
-        canvas.translate(-0.0f, -0.0f);
-        if (f7 > 0.0f && (nuVar = this.f26864a) != null) {
-            nuVar.run();
+    @Override
+    public final void a(a0.i iVar, ArrayList arrayList) {
+        int i10;
+        int i11;
+        int i12;
+        int i13 = 0;
+        while (i13 < arrayList.size()) {
+            TLObject tLObject = ((gg.h0) arrayList.get(i13)).f9750a;
+            if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
+                arrayList.remove(i13);
+                i13--;
+            }
+            i13++;
         }
+        hq0 hq0Var = this.f26549a;
+        hq0Var.E0 = arrayList;
+        for (int i14 = 0; i14 < hq0Var.E0.size(); i14++) {
+            gg.h0 h0Var = (gg.h0) hq0Var.E0.get(i14);
+            TLObject tLObject2 = h0Var.f9750a;
+            if (tLObject2 instanceof TLRPC.User) {
+                i12 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
+                MessagesController.getInstance(i12).putUser((TLRPC.User) h0Var.f9750a, true);
+            } else if (tLObject2 instanceof TLRPC.Chat) {
+                i11 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
+                MessagesController.getInstance(i11).putChat((TLRPC.Chat) h0Var.f9750a, true);
+            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
+                i10 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
+                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) h0Var.f9750a, true);
+            }
+        }
+        hq0Var.M.l();
     }
 }

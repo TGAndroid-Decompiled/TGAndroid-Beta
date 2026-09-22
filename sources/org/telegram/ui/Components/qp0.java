@@ -1,48 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.WindowInsets;
-public final class qp0 implements r0.n, org.telegram.ui.ActionBar.l1 {
-    public final int f27648a;
-    public final wq0 f27649b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.widget.FrameLayout;
+public final class qp0 extends AnimatorListenerAdapter {
+    public final int f27412a;
+    public final boolean f27413b;
+    public final hq0 f27414c;
 
-    public qp0(wq0 wq0Var, int i10) {
-        this.f27648a = i10;
-        this.f27649b = wq0Var;
+    public qp0(hq0 hq0Var, boolean z10, int i10) {
+        this.f27412a = i10;
+        this.f27414c = hq0Var;
+        this.f27413b = z10;
     }
 
     @Override
-    public r0.l1 P0(View view, r0.l1 l1Var) {
-        WindowInsets g10 = l1Var.g();
-        wq0 wq0Var = this.f27649b;
-        wq0Var.processLegacyContainerInsets(g10);
-        i0.b f7 = l1Var.f42175a.f(519);
-        if (!wq0Var.G0.equals(f7)) {
-            wq0Var.G0 = f7;
-            wq0Var.container.requestLayout();
-        }
-        return r0.l1.f42174b;
-    }
-
-    @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        org.telegram.ui.ActionBar.n1 n1Var2;
-        switch (this.f27648a) {
-            case 1:
-                wq0 wq0Var = this.f27649b;
-                wq0Var.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = wq0Var.J0) != null && n1Var.isShowing()) {
-                    wq0Var.J0.d(true);
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f27412a) {
+            case 0:
+                AnimatorSet[] animatorSetArr = this.f27414c.T;
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    animatorSetArr[0] = null;
                     return;
                 }
                 return;
             default:
-                wq0 wq0Var2 = this.f27649b;
-                wq0Var2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var2 = wq0Var2.J0) != null && n1Var2.isShowing()) {
-                    wq0Var2.J0.d(true);
+                hq0 hq0Var = this.f27414c;
+                if (animator.equals(hq0Var.f24785y)) {
+                    hq0Var.f24785y = null;
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27412a) {
+            case 0:
+                hq0 hq0Var = this.f27414c;
+                AnimatorSet[] animatorSetArr = hq0Var.T;
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f27413b) {
+                        hq0Var.S[0].setVisibility(4);
+                    }
+                    animatorSetArr[0] = null;
+                    return;
+                }
+                return;
+            default:
+                hq0 hq0Var2 = this.f27414c;
+                FrameLayout frameLayout = hq0Var2.h;
+                if (animator.equals(hq0Var2.f24785y)) {
+                    if (!this.f27413b) {
+                        hq0Var2.f24757c.setVisibility(4);
+                        FrameLayout frameLayout2 = hq0Var2.f24758c0;
+                        if (frameLayout2 != null && frameLayout == null) {
+                            frameLayout2.setVisibility(4);
+                        }
+                        hq0Var2.f24761f.setVisibility(4);
+                    } else if (frameLayout != null) {
+                        frameLayout.setVisibility(4);
+                    }
+                    hq0Var2.f24785y = null;
                     return;
                 }
                 return;

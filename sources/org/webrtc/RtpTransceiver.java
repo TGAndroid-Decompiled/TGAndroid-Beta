@@ -1,6 +1,5 @@
 package org.webrtc;
 
-import hg.k0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +31,7 @@ public class RtpTransceiver {
                     return rtpTransceiverDirection;
                 }
             }
-            throw new IllegalArgumentException(k0.h(i10, "Uknown native RtpTransceiverDirection type"));
+            throw new IllegalArgumentException(hg.c.i(i10, "Uknown native RtpTransceiverDirection type"));
         }
 
         public int getNativeIndex() {

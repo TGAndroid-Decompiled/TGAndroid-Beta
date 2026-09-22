@@ -7,25 +7,24 @@ import android.os.IInterface;
 import android.os.Parcel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import hg.k0;
 import kotlin.jvm.internal.i;
-import v7.h5;
+import v7.g5;
 public final class e extends Binder implements b, IInterface {
-    public final int f308a;
-    public final TaskCompletionSource f309b;
+    public final int f311a;
+    public final TaskCompletionSource f312b;
 
     public e(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f308a = i10;
-        this.f309b = taskCompletionSource;
+        this.f311a = i10;
+        this.f312b = taskCompletionSource;
         attachInterface(this, "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseCallbacks");
     }
 
     @Override
     public final void S(Status status, l8.b bVar) {
-        switch (this.f308a) {
+        switch (this.f311a) {
             case 0:
                 i.e(status, "status");
-                h5.a(status, bVar, this.f309b);
+                g5.a(status, bVar, this.f312b);
                 return;
             default:
                 return;
@@ -52,7 +51,7 @@ public final class e extends Binder implements b, IInterface {
                 S(status, bVar);
                 return true;
             }
-            throw new BadParcelableException(k0.h(dataAvail, "Parcel data not fully consumed, unread size: "));
+            throw new BadParcelableException(hg.c.i(dataAvail, "Parcel data not fully consumed, unread size: "));
         }
         Status status2 = (Status) a.a(parcel, Status.CREATOR);
         l8.d dVar = (l8.d) a.a(parcel, l8.d.CREATOR);
@@ -61,17 +60,17 @@ public final class e extends Binder implements b, IInterface {
             s(status2, dVar);
             return true;
         }
-        throw new BadParcelableException(k0.h(dataAvail2, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(hg.c.i(dataAvail2, "Parcel data not fully consumed, unread size: "));
     }
 
     @Override
     public final void s(Status status, l8.d dVar) {
-        switch (this.f308a) {
+        switch (this.f311a) {
             case 0:
                 return;
             default:
                 i.e(status, "status");
-                h5.a(status, dVar, this.f309b);
+                g5.a(status, dVar, this.f312b);
                 return;
         }
     }

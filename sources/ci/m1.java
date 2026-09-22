@@ -1,59 +1,59 @@
 package ci;
 
 import android.content.Context;
-import org.telegram.ui.Components.kx;
+import org.telegram.ui.Components.jx;
 import org.telegram.ui.Components.kz;
-import org.telegram.ui.j71;
-import org.telegram.ui.x51;
+import org.telegram.ui.h71;
+import org.telegram.ui.v51;
 public final class m1 extends ji.o {
-    public final int f5031q;
-    public final Object f5032r;
+    public final int f5029q;
+    public final Object f5030r;
 
     public m1(Object obj, Context context, int i10) {
         super(context, 2);
-        this.f5031q = i10;
-        this.f5032r = obj;
+        this.f5029q = i10;
+        this.f5030r = obj;
     }
 
     @Override
     public void e() {
-        switch (this.f5031q) {
+        switch (this.f5029q) {
             case 0:
-                ((p1) this.f5032r).f5294b3 = true;
+                ((p1) this.f5030r).f5292b3 = true;
                 return;
             case 1:
-                ((kz) this.f5032r).f25867f0 = true;
+                ((kz) this.f5030r).f25709f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((j71) this.f5032r).f34850w1 = true;
+                ((h71) this.f5030r).f34165w1 = true;
                 return;
         }
     }
 
     @Override
     public final void i() {
-        switch (this.f5031q) {
+        switch (this.f5029q) {
             case 0:
-                ((p1) this.f5032r).f5294b3 = false;
+                ((p1) this.f5030r).f5292b3 = false;
                 return;
             case 1:
-                ((kz) this.f5032r).f25867f0 = false;
+                ((kz) this.f5030r).f25709f0 = false;
                 return;
             case 2:
-                ((kx) this.f5032r).Q.f25867f0 = false;
+                ((jx) this.f5030r).Q.f25709f0 = false;
                 return;
             case 3:
-                ((x51) this.f5032r).R.f34850w1 = false;
+                ((v51) this.f5030r).R.f34165w1 = false;
                 return;
             case 4:
-                ((j71) this.f5032r).f34850w1 = false;
+                ((h71) this.f5030r).f34165w1 = false;
                 return;
             default:
-                ((x51) this.f5032r).R.f34850w1 = false;
+                ((v51) this.f5030r).R.f34165w1 = false;
                 return;
         }
     }

@@ -1,26 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class zl extends tu0 {
-    public final zn f40254a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
+public final class zl extends AnimatorListenerAdapter {
+    public final boolean f40223a;
+    public final boolean f40224b;
+    public final boolean f40225c;
+    public final bo d;
 
-    public zl(zn znVar) {
-        this.f40254a = znVar;
+    public zl(bo boVar, boolean z10, boolean z11, boolean z12) {
+        this.d = boVar;
+        this.f40223a = z10;
+        this.f40224b = z11;
+        this.f40225c = z12;
     }
 
     @Override
-    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zl.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        if (i10 >= 0) {
-            zn znVar = this.f40254a;
-            if (i10 < znVar.Ha.size()) {
-                znVar.cb((TLRPC.BotInlineResult) znVar.Ha.get(i10), z10, i11, 0L);
-            }
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        bo boVar = this.d;
+        boVar.M2 = null;
+        ImageView imageView = boVar.J2;
+        int i12 = 4;
+        if (this.f40223a) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
+        imageView.setVisibility(i10);
+        ImageView imageView2 = boVar.L2;
+        if (this.f40224b) {
+            i11 = 0;
+        } else {
+            i11 = 4;
+        }
+        imageView2.setVisibility(i11);
+        RadialProgressView radialProgressView = boVar.K2;
+        if (this.f40225c) {
+            i12 = 0;
+        }
+        radialProgressView.setVisibility(i12);
     }
 }

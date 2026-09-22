@@ -1,143 +1,32 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.animation.AccelerateInterpolator;
-import android.widget.FrameLayout;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class e8 extends FrameLayout {
-    public org.telegram.ui.Components.v9 f20208a;
-    public TLRPC.Document f20209b;
-    public Object f20210c;
-    public long d;
-    public boolean e;
-    public float f20211f;
-    public boolean h;
-    public rg.b1 f20212n;
-    public boolean f20213r;
-    public boolean f20214s;
-    public org.telegram.ui.ActionBar.f6 v;
+public final class e8 extends ImageReceiver {
+    public final org.telegram.ui.ActionBar.e6 f20028a;
+    public final f8 f20029b;
 
-    static {
-        new AccelerateInterpolator(0.5f);
+    public e8(f8 f8Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f20029b = f8Var;
+        this.f20028a = e6Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        boolean z10;
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        org.telegram.ui.Components.v9 v9Var = this.f20208a;
-        if (view == v9Var && (((z10 = this.e) && this.f20211f != 0.8f) || (!z10 && this.f20211f != 1.0f))) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j10 = currentTimeMillis - this.d;
-            this.d = currentTimeMillis;
-            if (this.e) {
-                float f7 = this.f20211f;
-                if (f7 != 0.8f) {
-                    float f10 = f7 - (((float) j10) / 400.0f);
-                    this.f20211f = f10;
-                    if (f10 < 0.8f) {
-                        this.f20211f = 0.8f;
-                    }
-                    v9Var.setScaleX(this.f20211f);
-                    v9Var.setScaleY(this.f20211f);
-                    v9Var.invalidate();
-                    invalidate();
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
+        if (drawable instanceof BitmapDrawable) {
+            f8 f8Var = this.f20029b;
+            if (f8Var.K == 0) {
+                f8Var.K = AndroidUtilities.getDominantColor(((BitmapDrawable) drawable).getBitmap());
+                int i12 = f8Var.K;
+                if (i12 == -1 || i12 == 0) {
+                    f8Var.K = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19070q5, this.f20028a);
                 }
-            }
-            float f11 = (((float) j10) / 400.0f) + this.f20211f;
-            this.f20211f = f11;
-            if (f11 > 1.0f) {
-                this.f20211f = 1.0f;
-            }
-            v9Var.setScaleX(this.f20211f);
-            v9Var.setScaleY(this.f20211f);
-            v9Var.invalidate();
-            invalidate();
-        }
-        return drawChild;
-    }
-
-    public Object getParentObject() {
-        return this.f20210c;
-    }
-
-    public MessageObject.SendAnimationData getSendAnimationData() {
-        org.telegram.ui.Components.v9 v9Var = this.f20208a;
-        ImageReceiver imageReceiver = v9Var.getImageReceiver();
-        if (!imageReceiver.hasNotThumb()) {
-            return null;
-        }
-        MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
-        int[] iArr = new int[2];
-        v9Var.getLocationInWindow(iArr);
-        sendAnimationData.f15835x = imageReceiver.getCenterX() + iArr[0];
-        sendAnimationData.f15836y = imageReceiver.getCenterY() + iArr[1];
-        sendAnimationData.width = imageReceiver.getImageWidth();
-        sendAnimationData.height = imageReceiver.getImageHeight();
-        return sendAnimationData;
-    }
-
-    public TLRPC.Document getSticker() {
-        return this.f20209b;
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f20209b == null) {
-            return;
-        }
-        String str = null;
-        for (int i10 = 0; i10 < this.f20209b.attributes.size(); i10++) {
-            TLRPC.DocumentAttribute documentAttribute = this.f20209b.attributes.get(i10);
-            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
-                String str2 = documentAttribute.alt;
-                if (str2 != null && str2.length() > 0) {
-                    str = documentAttribute.alt;
-                } else {
-                    str = null;
-                }
+                f8Var.J.setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(12.0f), f8Var.K));
+                invalidate();
             }
         }
-        if (str != null) {
-            StringBuilder h = v7.j0.h(str, " ");
-            h.append(LocaleController.getString(R.string.AttachSticker));
-            accessibilityNodeInfo.setText(h.toString());
-        } else {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachSticker));
-        }
-        accessibilityNodeInfo.setEnabled(true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + AndroidUtilities.dp(76.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f), 1073741824));
-    }
-
-    public void setClearsInputField(boolean z10) {
-        this.h = z10;
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        org.telegram.ui.Components.v9 v9Var = this.f20208a;
-        if (v9Var.getImageReceiver().getPressed() != z10) {
-            v9Var.getImageReceiver().setPressed(z10 ? 1 : 0);
-            v9Var.invalidate();
-        }
-        super.setPressed(z10);
-    }
-
-    public void setScaled(boolean z10) {
-        this.e = z10;
-        this.d = System.currentTimeMillis();
-        invalidate();
+        return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
     }
 }

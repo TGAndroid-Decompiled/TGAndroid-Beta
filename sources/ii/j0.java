@@ -3,23 +3,23 @@ package ii;
 import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.ca;
-public final class j0 implements ca {
-    public final Layout f11452a;
-    public final int f11453b;
-    public final int f11454c;
+import org.telegram.ui.Cells.ba;
+public final class j0 implements ba {
+    public final Layout f11450a;
+    public final int f11451b;
+    public final int f11452c;
     public final l0 d;
 
     public j0(l0 l0Var, Layout layout, int i10, int i11) {
         this.d = l0Var;
-        this.f11452a = layout;
-        this.f11453b = i10;
-        this.f11454c = i11;
+        this.f11450a = layout;
+        this.f11451b = i10;
+        this.f11452c = i11;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f11452a;
+        return this.f11450a;
     }
 
     @Override
@@ -42,8 +42,8 @@ public final class j0 implements ca {
         TL_iv.PageBlock pageBlock;
         TL_iv.PageCaption pageCaption;
         TL_iv.RichText richText;
-        a H = this.d.f11489c.H();
-        if (H != null && (pageBlock = H.f11205b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
+        a N = this.d.f11487c.N();
+        if (N != null && (pageBlock = N.f11203b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
             return f6.r(richText, null, true);
         }
         return "";
@@ -51,11 +51,11 @@ public final class j0 implements ca {
 
     @Override
     public final int getX() {
-        return this.f11453b;
+        return this.f11451b;
     }
 
     @Override
     public final int getY() {
-        return this.f11454c;
+        return this.f11452c;
     }
 }

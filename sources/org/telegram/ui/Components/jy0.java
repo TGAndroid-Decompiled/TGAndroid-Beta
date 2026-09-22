@@ -1,46 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class jy0 extends xl0 {
-    public final Context f25514c;
-    public final ky0 d;
+import android.view.MotionEvent;
+public final class jy0 extends ll0 {
+    public boolean X2;
+    public boolean Y2;
+    public final ny0 Z2;
 
-    public jy0(ky0 ky0Var, Activity activity) {
-        this.d = ky0Var;
-        this.f25514c = activity;
+    public jy0(ny0 ny0Var, Context context) {
+        super(context, null);
+        this.Z2 = ny0Var;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f25848c.size();
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) c1Var.f42995a;
-        ArrayList arrayList = this.d.f25848c;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
-        boolean z10 = true;
-        if (i10 == arrayList.size() - 1) {
-            z10 = false;
+    public final void k0(int i10, int i11) {
+        boolean canScrollHorizontally = canScrollHorizontally(-1);
+        boolean canScrollHorizontally2 = canScrollHorizontally(1);
+        if (this.X2 == canScrollHorizontally && this.Y2 == canScrollHorizontally2) {
+            return;
         }
-        wVar.b(stickerSetCovered, z10);
+        ai.f0 f0Var = this.Z2.d;
+        if (f0Var != null) {
+            f0Var.invalidate();
+        }
+        this.X2 = canScrollHorizontally;
+        this.Y2 = canScrollHorizontally2;
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.w wVar = new org.telegram.ui.Cells.w(this.f25514c, false);
-        wVar.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(82.0f)));
-        return new s4.c1(wVar);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.qt previewDelegate;
+        org.telegram.ui.st q6 = org.telegram.ui.st.q();
+        ny0 ny0Var = this.Z2;
+        jy0 jy0Var = ny0Var.e;
+        previewDelegate = ny0Var.getPreviewDelegate();
+        boolean r10 = q6.r(motionEvent, jy0Var, previewDelegate, this.f25969p2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
+            return false;
+        }
+        return true;
     }
 }

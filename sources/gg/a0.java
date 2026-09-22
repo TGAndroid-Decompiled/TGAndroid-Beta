@@ -1,8 +1,8 @@
 package gg;
 
 import android.content.Context;
-import org.telegram.ui.Cells.s2;
-public final class a0 extends s2 {
+import org.telegram.ui.Cells.r2;
+public final class a0 extends r2 {
     public final int W4;
 
     public a0(int i10, Context context, boolean z10) {

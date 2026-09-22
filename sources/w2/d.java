@@ -1,4 +1,6 @@
 package w2;
+
+import v8.s;
 public interface d {
-    public static final o0.b C = new o0.b(22);
+    public static final s C = new s(1);
 }

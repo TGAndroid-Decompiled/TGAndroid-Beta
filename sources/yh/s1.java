@@ -4,37 +4,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.pc;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.zn;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.bo;
 public final class s1 implements Runnable {
-    public final int f48053a;
-    public final y3 f48054b;
-    public final zn f48055c;
+    public final int f47719a;
+    public final z3 f47720b;
+    public final bo f47721c;
     public final long d;
 
-    public s1(y3 y3Var, zn znVar, long j3, int i10) {
-        this.f48053a = i10;
-        this.f48054b = y3Var;
-        this.f48055c = znVar;
+    public s1(z3 z3Var, bo boVar, long j3, int i10) {
+        this.f47719a = i10;
+        this.f47720b = z3Var;
+        this.f47721c = boVar;
         this.d = j3;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f48053a;
+        int i10 = this.f47719a;
         long j3 = this.d;
-        zn znVar = this.f48055c;
-        y3 y3Var = this.f48054b;
+        bo boVar = this.f47721c;
+        z3 z3Var = this.f47720b;
         switch (i10) {
             case 0:
-                pc M = xc.a0(znVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, y3Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
-                M.f27321t = true;
+                oc M = vc.a0(boVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, z3Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
+                M.f26761t = true;
                 M.j();
                 return;
             default:
-                pc M2 = xc.a0(znVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, y3Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
-                M2.f27321t = true;
+                oc M2 = vc.a0(boVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, z3Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
+                M2.f26761t = true;
                 M2.j();
                 return;
         }

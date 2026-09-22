@@ -1,9 +1,9 @@
 package v7;
 public final class q4 implements ia.d {
-    public static final q4 f44397a = new Object();
+    public static final q4 f44071a = new Object();
 
     static {
-        j0.q(org.telegram.ui.Cells.c1.l(h.class, j0.m(6, org.telegram.ui.Cells.c1.l(h.class, j0.m(5, org.telegram.ui.Cells.c1.l(h.class, j0.m(4, org.telegram.ui.Cells.c1.l(h.class, j0.m(3, org.telegram.ui.Cells.c1.l(h.class, j0.m(2, org.telegram.ui.Cells.c1.l(h.class, new e(1)))))))))))));
+        org.telegram.ui.Cells.q3.t(org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(12, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(11, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(10, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(9, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(8, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(7, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(6, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(5, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(4, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(3, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(2, org.telegram.ui.Cells.q3.k(h.class, new e(1)))))))))))))))))))))))));
     }
 
     @Override

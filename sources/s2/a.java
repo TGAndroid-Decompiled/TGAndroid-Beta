@@ -1,15 +1,15 @@
 package s2;
 
 import b2.s;
+import org.telegram.ui.Cells.q3;
 import q3.i;
 import s3.c;
-import v7.j0;
-import w7.m;
+import w7.l;
 public final class a {
-    public static final a f42948a = new Object();
+    public static final a f42624a = new Object();
 
-    public final m a(s sVar) {
-        String str = sVar.f3308r;
+    public final l a(s sVar) {
+        String str = sVar.f3306r;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -57,11 +57,11 @@ public final class a {
                     return new c();
             }
         }
-        throw new IllegalArgumentException(j0.g("Attempted to create decoder for unsupported MIME type: ", str));
+        throw new IllegalArgumentException(q3.i("Attempted to create decoder for unsupported MIME type: ", str));
     }
 
     public final boolean b(s sVar) {
-        String str = sVar.f3308r;
+        String str = sVar.f3306r;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

@@ -1,7 +1,8 @@
 package w7;
 public abstract class i0 {
-    public abstract void a(boolean z10);
+    public void a() {
+    }
 
-    public void b() {
+    public void b(int i10, int i11) {
     }
 }

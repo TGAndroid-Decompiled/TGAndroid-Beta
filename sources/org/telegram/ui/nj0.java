@@ -1,25 +1,12 @@
 package org.telegram.ui;
-public final class nj0 implements Runnable {
-    public final int f36060a;
-    public final uj0 f36061b;
 
-    public nj0(uj0 uj0Var, int i10) {
-        this.f36060a = i10;
-        this.f36061b = uj0Var;
-    }
-
+import org.telegram.messenger.AndroidUtilities;
+public final class nj0 extends xg.c {
     @Override
-    public final void run() {
-        switch (this.f36060a) {
-            case 0:
-                this.f36061b.dismiss();
-                return;
-            case 1:
-                this.f36061b.U(true, false);
-                return;
-            default:
-                this.f36061b.U(true, false);
-                return;
+    public final int getHeaderHeight() {
+        if (getResources().getConfiguration().orientation == 2) {
+            return AndroidUtilities.dp(48.0f);
         }
+        return AndroidUtilities.dp(54.0f);
     }
 }

@@ -11,11 +11,11 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class hu implements ly {
-    public final ju f24891a;
+public final class hu implements ky {
+    public final ju f24808a;
 
     public hu(ju juVar) {
-        this.f24891a = juVar;
+        this.f24808a = juVar;
     }
 
     @Override
@@ -51,18 +51,18 @@ public final class hu implements ly {
     @Override
     public final void i(int i10) {
         boolean z10;
-        ju juVar = this.f24891a;
+        ju juVar = this.f24808a;
         if (juVar.b()) {
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            juVar.f25466x = z10;
+            juVar.f25427x = z10;
             juVar.y();
-            cw0 cw0Var = juVar.f25461f;
-            if (cw0Var != null) {
-                cw0Var.S();
+            pv0 pv0Var = juVar.f25422f;
+            if (pv0Var != null) {
+                pv0Var.S();
             }
         }
     }
@@ -74,7 +74,7 @@ public final class hu implements ly {
 
     @Override
     public final boolean k() {
-        eu euVar = this.f24891a.f25458a;
+        eu euVar = this.f24808a.f25419a;
         if (euVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class hu implements ly {
 
     @Override
     public final void l(String str) {
-        eu euVar = this.f24891a.f25458a;
+        eu euVar = this.f24808a.f25419a;
         int selectionEnd = euVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class hu implements ly {
 
     @Override
     public final void n() {
-        ju juVar = this.f24891a;
+        ju juVar = this.f24808a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(juVar.getContext(), 0, juVar.M);
-        alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18669a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 29));
+        alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18435a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new r81(this));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         org.telegram.ui.ActionBar.n2 n2Var = juVar.h;
         if (n2Var != null) {
-            n2Var.showDialog(alertDialog$Builder.f18669a);
+            n2Var.showDialog(alertDialog$Builder.f18435a);
         } else {
             alertDialog$Builder.o();
         }
@@ -122,7 +122,7 @@ public final class hu implements ly {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f24891a.h;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f24808a.h;
         if (n2Var == null) {
             new rg.x0((org.telegram.ui.ActionBar.n2) new ai.y3(this, 4), 11, false).show();
         } else {
@@ -132,9 +132,9 @@ public final class hu implements ly {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        y5 y5Var;
-        ju juVar = this.f24891a;
-        eu euVar = juVar.f25458a;
+        x5 x5Var;
+        ju juVar = this.f24808a;
+        eu euVar = juVar.f25419a;
         int selectionEnd = euVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -142,12 +142,12 @@ public final class hu implements ly {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                y5Var = new y5(document, euVar.getPaint().getFontMetricsInt());
+                x5Var = new x5(document, euVar.getPaint().getFontMetricsInt());
             } else {
-                y5Var = new y5(j3, euVar.getPaint().getFontMetricsInt());
+                x5Var = new x5(j3, euVar.getPaint().getFontMetricsInt());
             }
-            y5Var.cacheType = juVar.d.f25856c;
-            spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
+            x5Var.cacheType = juVar.d.f25698c;
+            spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
             euVar.setText(euVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
             euVar.setSelection(length, length);
@@ -160,7 +160,7 @@ public final class hu implements ly {
 
     @Override
     public final boolean z() {
-        return this.f24891a.f25466x;
+        return this.f24808a.f25427x;
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class hu implements ly {
     }
 
     @Override
-    public final void o(u51 u51Var) {
+    public final void o(e51 e51Var) {
     }
 
     @Override

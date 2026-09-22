@@ -1,9 +1,18 @@
 package v7;
-public abstract class h6 {
-    public static boolean a(byte b10) {
-        if (b10 > -65) {
-            return true;
-        }
-        return false;
+public enum h6 implements f {
+    TYPE_UNKNOWN(0),
+    TYPE_THIN(1),
+    TYPE_THICK(2),
+    TYPE_GMV(3);
+    
+    public final int f43990a;
+
+    h6(int i10) {
+        this.f43990a = i10;
+    }
+
+    @Override
+    public final int zza() {
+        return this.f43990a;
     }
 }

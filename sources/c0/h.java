@@ -12,16 +12,15 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import v7.e5;
-import v7.j0;
+import v7.d5;
 public abstract class h implements w {
     public static final boolean d = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", "false"));
     public static final Logger e = Logger.getLogger(h.class.getName());
-    public static final e5 f3634f;
+    public static final d5 f3632f;
     public static final Object h;
-    public volatile Object f3635a;
-    public volatile d f3636b;
-    public volatile g f3637c;
+    public volatile Object f3633a;
+    public volatile d f3634b;
+    public volatile g f3635c;
 
     static {
         e eVar;
@@ -32,7 +31,7 @@ public abstract class h implements w {
             th = th2;
             eVar = new Object();
         }
-        f3634f = eVar;
+        f3632f = eVar;
         if (th != null) {
             e.log(Level.SEVERE, "SafeAtomicHelper is broken!", th);
         }
@@ -45,36 +44,36 @@ public abstract class h implements w {
         d dVar2;
         d dVar3;
         do {
-            gVar = hVar.f3637c;
-        } while (!f3634f.c(hVar, gVar, g.f3631c));
+            gVar = hVar.f3635c;
+        } while (!f3632f.c(hVar, gVar, g.f3629c));
         while (true) {
             dVar = null;
             if (gVar == null) {
                 break;
             }
-            Thread thread = gVar.f3632a;
+            Thread thread = gVar.f3630a;
             if (thread != null) {
-                gVar.f3632a = null;
+                gVar.f3630a = null;
                 LockSupport.unpark(thread);
             }
-            gVar = gVar.f3633b;
+            gVar = gVar.f3631b;
         }
         hVar.d();
         do {
-            dVar2 = hVar.f3636b;
-        } while (!f3634f.a(hVar, dVar2, d.d));
+            dVar2 = hVar.f3634b;
+        } while (!f3632f.a(hVar, dVar2, d.d));
         while (true) {
             dVar3 = dVar;
             dVar = dVar2;
             if (dVar == null) {
                 break;
             }
-            dVar2 = dVar.f3627c;
-            dVar.f3627c = dVar3;
+            dVar2 = dVar.f3625c;
+            dVar.f3625c = dVar3;
         }
         while (dVar3 != null) {
-            d dVar4 = dVar3.f3627c;
-            f(dVar3.f3625a, dVar3.f3626b);
+            d dVar4 = dVar3.f3625c;
+            f(dVar3.f3623a, dVar3.f3624b);
             dVar3 = dVar4;
         }
     }
@@ -96,9 +95,9 @@ public abstract class h implements w {
                 }
                 return obj;
             }
-            throw new ExecutionException(((c) obj).f3624a);
+            throw new ExecutionException(((c) obj).f3622a);
         }
-        Throwable th2 = ((a) obj).f3622b;
+        Throwable th2 = ((a) obj).f3620b;
         CancellationException cancellationException = new CancellationException("Task was cancelled.");
         cancellationException.initCause(th2);
         throw cancellationException;
@@ -129,16 +128,16 @@ public abstract class h implements w {
     @Override
     public final void a(Runnable runnable, Executor executor) {
         executor.getClass();
-        d dVar = this.f3636b;
+        d dVar = this.f3634b;
         d dVar2 = d.d;
         if (dVar != dVar2) {
             d dVar3 = new d(runnable, executor);
             do {
-                dVar3.f3627c = dVar;
-                if (f3634f.a(this, dVar, dVar3)) {
+                dVar3.f3625c = dVar;
+                if (f3632f.a(this, dVar, dVar3)) {
                     return;
                 }
-                dVar = this.f3636b;
+                dVar = this.f3634b;
             } while (dVar != dVar2);
             f(runnable, executor);
         }
@@ -174,7 +173,7 @@ public abstract class h implements w {
     public final boolean cancel(boolean z10) {
         boolean z11;
         a aVar;
-        Object obj = this.f3635a;
+        Object obj = this.f3633a;
         if (obj == null) {
             z11 = true;
         } else {
@@ -184,11 +183,11 @@ public abstract class h implements w {
             if (d) {
                 aVar = new a(new CancellationException("Future.cancel() was called."), z10);
             } else if (z10) {
-                aVar = a.f3620c;
+                aVar = a.f3618c;
             } else {
                 aVar = a.d;
             }
-            if (f3634f.b(this, obj, aVar)) {
+            if (f3632f.b(this, obj, aVar)) {
                 e(this);
                 return true;
             }
@@ -198,26 +197,26 @@ public abstract class h implements w {
 
     @Override
     public final Object get(long j3, TimeUnit timeUnit) {
-        g gVar = g.f3631c;
+        g gVar = g.f3629c;
         long nanos = timeUnit.toNanos(j3);
         if (!Thread.interrupted()) {
-            Object obj = this.f3635a;
+            Object obj = this.f3633a;
             if (obj != null) {
                 return g(obj);
             }
             long nanoTime = nanos > 0 ? System.nanoTime() + nanos : 0L;
             if (nanos >= 1000) {
-                g gVar2 = this.f3637c;
+                g gVar2 = this.f3635c;
                 if (gVar2 != gVar) {
                     g gVar3 = new g();
                     do {
-                        e5 e5Var = f3634f;
-                        e5Var.d(gVar3, gVar2);
-                        if (e5Var.c(this, gVar2, gVar3)) {
+                        d5 d5Var = f3632f;
+                        d5Var.d(gVar3, gVar2);
+                        if (d5Var.c(this, gVar2, gVar3)) {
                             while (true) {
                                 LockSupport.parkNanos(this, nanos);
                                 if (!Thread.interrupted()) {
-                                    Object obj2 = this.f3635a;
+                                    Object obj2 = this.f3633a;
                                     if (obj2 != null) {
                                         return g(obj2);
                                     }
@@ -234,15 +233,15 @@ public abstract class h implements w {
                                 }
                             }
                         } else {
-                            gVar2 = this.f3637c;
+                            gVar2 = this.f3635c;
                         }
                     } while (gVar2 != gVar);
-                    return g(this.f3635a);
+                    return g(this.f3633a);
                 }
-                return g(this.f3635a);
+                return g(this.f3633a);
             }
             while (nanos > 0) {
-                Object obj3 = this.f3635a;
+                Object obj3 = this.f3633a;
                 if (obj3 != null) {
                     return g(obj3);
                 }
@@ -256,32 +255,32 @@ public abstract class h implements w {
             String obj4 = timeUnit.toString();
             Locale locale = Locale.ROOT;
             String lowerCase = obj4.toLowerCase(locale);
-            StringBuilder t10 = a4.a.t(j3, "Waited ", " ");
-            t10.append(timeUnit.toString().toLowerCase(locale));
-            String sb2 = t10.toString();
+            StringBuilder u10 = a4.a.u(j3, "Waited ", " ");
+            u10.append(timeUnit.toString().toLowerCase(locale));
+            String sb2 = u10.toString();
             if (nanos + 1000 < 0) {
-                String s10 = j0.s(sb2, " (plus ");
+                String g10 = w.c.g(sb2, " (plus ");
                 long j10 = -nanos;
                 long convert = timeUnit.convert(j10, TimeUnit.NANOSECONDS);
                 long nanos2 = j10 - timeUnit.toNanos(convert);
                 int i10 = (convert > 0L ? 1 : (convert == 0L ? 0 : -1));
                 boolean z10 = i10 == 0 || nanos2 > 1000;
                 if (i10 > 0) {
-                    String str = s10 + convert + " " + lowerCase;
+                    String str = g10 + convert + " " + lowerCase;
                     if (z10) {
-                        str = j0.s(str, ",");
+                        str = w.c.g(str, ",");
                     }
-                    s10 = j0.s(str, " ");
+                    g10 = w.c.g(str, " ");
                 }
                 if (z10) {
-                    s10 = s10 + nanos2 + " nanoseconds ";
+                    g10 = g10 + nanos2 + " nanoseconds ";
                 }
-                sb2 = j0.s(s10, "delay)");
+                sb2 = w.c.g(g10, "delay)");
             }
             if (isDone()) {
-                throw new TimeoutException(j0.s(sb2, " but future completed as timeout expired"));
+                throw new TimeoutException(w.c.g(sb2, " but future completed as timeout expired"));
             }
-            throw new TimeoutException(a4.a.C(sb2, " for ", hVar));
+            throw new TimeoutException(a4.a.D(sb2, " for ", hVar));
         }
         throw new InterruptedException();
     }
@@ -295,33 +294,33 @@ public abstract class h implements w {
 
     @Override
     public final boolean isCancelled() {
-        return this.f3635a instanceof a;
+        return this.f3633a instanceof a;
     }
 
     @Override
     public final boolean isDone() {
-        if (this.f3635a != null) {
+        if (this.f3633a != null) {
             return true;
         }
         return false;
     }
 
     public final void j(g gVar) {
-        gVar.f3632a = null;
+        gVar.f3630a = null;
         while (true) {
-            g gVar2 = this.f3637c;
-            if (gVar2 != g.f3631c) {
+            g gVar2 = this.f3635c;
+            if (gVar2 != g.f3629c) {
                 g gVar3 = null;
                 while (gVar2 != null) {
-                    g gVar4 = gVar2.f3633b;
-                    if (gVar2.f3632a != null) {
+                    g gVar4 = gVar2.f3631b;
+                    if (gVar2.f3630a != null) {
                         gVar3 = gVar2;
                     } else if (gVar3 != null) {
-                        gVar3.f3633b = gVar4;
-                        if (gVar3.f3632a == null) {
+                        gVar3.f3631b = gVar4;
+                        if (gVar3.f3630a == null) {
                             break;
                         }
-                    } else if (!f3634f.c(this, gVar2, gVar4)) {
+                    } else if (!f3632f.c(this, gVar2, gVar4)) {
                         break;
                     }
                     gVar2 = gVar4;
@@ -336,7 +335,7 @@ public abstract class h implements w {
         if (obj == null) {
             obj = h;
         }
-        if (f3634f.b(this, null, obj)) {
+        if (f3632f.b(this, null, obj)) {
             e(this);
             return true;
         }
@@ -344,7 +343,7 @@ public abstract class h implements w {
     }
 
     public boolean l(Throwable th2) {
-        if (f3634f.b(this, null, new c(th2))) {
+        if (f3632f.b(this, null, new c(th2))) {
             e(this);
             return true;
         }
@@ -356,7 +355,7 @@ public abstract class h implements w {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(super.toString());
         sb2.append("[status=");
-        if (this.f3635a instanceof a) {
+        if (this.f3633a instanceof a) {
             sb2.append("CANCELLED");
         } else if (isDone()) {
             c(sb2);
@@ -386,23 +385,23 @@ public abstract class h implements w {
     @Override
     public final Object get() {
         Object obj;
-        g gVar = g.f3631c;
+        g gVar = g.f3629c;
         if (!Thread.interrupted()) {
-            Object obj2 = this.f3635a;
+            Object obj2 = this.f3633a;
             if (obj2 != null) {
                 return g(obj2);
             }
-            g gVar2 = this.f3637c;
+            g gVar2 = this.f3635c;
             if (gVar2 != gVar) {
                 g gVar3 = new g();
                 do {
-                    e5 e5Var = f3634f;
-                    e5Var.d(gVar3, gVar2);
-                    if (e5Var.c(this, gVar2, gVar3)) {
+                    d5 d5Var = f3632f;
+                    d5Var.d(gVar3, gVar2);
+                    if (d5Var.c(this, gVar2, gVar3)) {
                         do {
                             LockSupport.park(this);
                             if (!Thread.interrupted()) {
-                                obj = this.f3635a;
+                                obj = this.f3633a;
                             } else {
                                 j(gVar3);
                                 throw new InterruptedException();
@@ -410,11 +409,11 @@ public abstract class h implements w {
                         } while (obj == null);
                         return g(obj);
                     }
-                    gVar2 = this.f3637c;
+                    gVar2 = this.f3635c;
                 } while (gVar2 != gVar);
-                return g(this.f3635a);
+                return g(this.f3633a);
             }
-            return g(this.f3635a);
+            return g(this.f3633a);
         }
         throw new InterruptedException();
     }

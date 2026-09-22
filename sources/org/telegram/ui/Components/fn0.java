@@ -1,83 +1,61 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class fn0 extends s4.o {
-    public final int f24304b;
-    public final int f24305c;
-    public final int d;
-    public final int e;
-    public final int f24306f;
-    public final ArrayList f24307g;
-    public final int h;
-    public final int f24308i;
-    public final ArrayList f24309j;
-    public final kn0 f24310k;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class fn0 extends zg.n0 {
+    public final gn0 f24021h0;
 
-    public fn0(kn0 kn0Var, int i10, int i11, int i12, int i13, int i14, ArrayList arrayList, int i15, int i16, ArrayList arrayList2) {
-        this.f24310k = kn0Var;
-        this.f24304b = i10;
-        this.f24305c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f24306f = i14;
-        this.f24307g = arrayList;
-        this.h = i15;
-        this.f24308i = i16;
-        this.f24309j = arrayList2;
+    public fn0(gn0 gn0Var, int i10, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(null, i10, view, tL_reactionCount, false, true, e6Var);
+        this.f24021h0 = gn0Var;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return b(i10, i11);
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        MessageObject messageObject;
-        kn0 kn0Var = this.f24310k;
-        if (i10 >= 0 && i11 >= 0) {
-            if (i10 == this.f24305c && i11 == kn0Var.f25771s) {
-                return true;
-            }
-            if (i10 == this.d && i11 == kn0Var.f25773x) {
-                return true;
-            }
+    public final boolean e() {
+        if (this.f49110w <= 0 && !this.f49109u && this.F.f29398l == 1.0f) {
+            return false;
         }
-        MessageObject messageObject2 = null;
-        int i12 = this.e;
-        if (i10 >= i12 && i10 < this.f24306f) {
-            messageObject = (MessageObject) this.f24307g.get(i10 - i12);
+        return true;
+    }
+
+    @Override
+    public final boolean i() {
+        return !e();
+    }
+
+    @Override
+    public final int j() {
+        return 18;
+    }
+
+    @Override
+    public final void s(float f7) {
+        int i10;
+        int i11;
+        int v02;
+        int i12 = this.f49097i;
+        gn0 gn0Var = this.f24021h0;
+        if (gn0Var.e) {
+            i10 = org.telegram.ui.ActionBar.i6.Fj;
         } else {
-            int i13 = this.h;
-            if (i10 >= i13 && i10 < this.f24308i) {
-                messageObject = (MessageObject) this.f24309j.get(i10 - i13);
-            } else {
-                messageObject = null;
-            }
+            i10 = org.telegram.ui.ActionBar.i6.f19166va;
         }
-        int i14 = kn0Var.v;
-        if (i11 >= i14 && i11 < kn0Var.f25772w) {
-            messageObject2 = (MessageObject) kn0Var.e.get(i11 - i14);
+        this.N = i0.a.d(f7, i12, org.telegram.ui.ActionBar.i6.v0(i10, gn0Var.f24427s.f24730c));
+        int i13 = this.f49095g;
+        if (gn0Var.e) {
+            i11 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Cj, gn0Var.f24427s.f24730c);
         } else {
-            int i15 = kn0Var.f25774y;
-            if (i11 >= i15 && i11 < kn0Var.E) {
-                messageObject2 = (MessageObject) kn0Var.f25768f.get(i11 - i15);
-            }
+            i11 = 0;
         }
-        if (messageObject2 != null && messageObject != null && messageObject2.getDocument() != null && messageObject.getDocument() != null && messageObject2.getDocument().f18349id == messageObject.getDocument().f18349id) {
-            return true;
+        int d = i0.a.d(f7, i13, i11);
+        this.O = d;
+        this.N = org.telegram.ui.ActionBar.i6.v(d, this.N);
+        int i14 = this.h;
+        if (gn0Var.e) {
+            v02 = 1526726655;
+        } else {
+            v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19185wa, gn0Var.f24427s.f24730c);
         }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f24310k.f25770r;
-    }
-
-    @Override
-    public final int e() {
-        return this.f24304b;
+        this.P = i0.a.d(f7, i14, v02);
     }
 }

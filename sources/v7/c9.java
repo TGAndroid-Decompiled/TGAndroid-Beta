@@ -1,31 +1,57 @@
 package v7;
 
-import android.content.Context;
-public final class c9 implements y8 {
-    public final q9.n f44257a;
-    public final w8 f44258b;
+import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.RemoteException;
+public abstract class c9 {
+    public static t7.r f43934a;
+    public static s7.e f43935b;
 
-    public c9(Context context, w8 w8Var) {
-        this.f44258b = w8Var;
-        j5.a aVar = j5.a.e;
-        l5.t.b(context);
-        l5.r c10 = l5.t.a().c(aVar);
-        if (j5.a.d.contains(new i5.c("json"))) {
-            new q9.n(new b9(c10, 0));
+    public static xa.c a(Bitmap bitmap) {
+        n6.l.i(bitmap, "image must not be null");
+        try {
+            s7.e eVar = f43935b;
+            n6.l.i(eVar, "IBitmapDescriptorFactory is not initialized");
+            s7.c cVar = (s7.c) eVar;
+            Parcel O0 = cVar.O0();
+            s7.b.b(O0, bitmap);
+            Parcel N0 = cVar.N0(O0, 6);
+            x6.a L0 = x6.b.L0(N0.readStrongBinder());
+            N0.recycle();
+            return new xa.c(L0);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
-        this.f44257a = new q9.n(new b9(c10, 1));
     }
 
-    @Override
-    public final void a(a5.a aVar) {
-        i5.a aVar2;
-        this.f44258b.getClass();
-        l5.s sVar = (l5.s) this.f44257a.get();
-        if (aVar.f276b != 0) {
-            aVar2 = new i5.a(null, aVar.B(), i5.d.f10997a, null);
-        } else {
-            aVar2 = new i5.a(null, aVar.B(), i5.d.f10998b, null);
+    public static xa.c b(int i10) {
+        try {
+            s7.e eVar = f43935b;
+            n6.l.i(eVar, "IBitmapDescriptorFactory is not initialized");
+            s7.c cVar = (s7.c) eVar;
+            Parcel O0 = cVar.O0();
+            O0.writeInt(i10);
+            Parcel N0 = cVar.N0(O0, 1);
+            x6.a L0 = x6.b.L0(N0.readStrongBinder());
+            N0.recycle();
+            return new xa.c(L0);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
         }
-        sVar.a(aVar2, new j2.e(22));
+    }
+
+    public static synchronized y8 c(v8 v8Var) {
+        y8 y8Var;
+        synchronized (c9.class) {
+            try {
+                if (f43934a == null) {
+                    f43934a = new t7.r(1);
+                }
+                y8Var = (y8) f43934a.O0(v8Var);
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return y8Var;
     }
 }

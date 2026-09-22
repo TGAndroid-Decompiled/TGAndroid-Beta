@@ -2,19 +2,19 @@ package bf;
 
 import v7.i0;
 public final class k extends p {
-    public final int f3545g;
+    public final int f3543g;
     public final String h;
-    public final String f3546i;
+    public final String f3544i;
 
     public k(int i10, String str, String str2) {
-        this.f3545g = i10;
+        this.f3543g = i10;
         this.h = str;
-        this.f3546i = str2;
+        this.f3544i = str2;
     }
 
     @Override
     public final void a(i0 i0Var) {
-        switch (this.f3545g) {
+        switch (this.f3543g) {
             case 0:
                 i0Var.i(this);
                 return;
@@ -26,11 +26,11 @@ public final class k extends p {
 
     @Override
     public final String f() {
-        switch (this.f3545g) {
+        switch (this.f3543g) {
             case 0:
-                return "destination=" + this.h + ", title=" + this.f3546i;
+                return "destination=" + this.h + ", title=" + this.f3544i;
             default:
-                return "destination=" + this.h + ", title=" + this.f3546i;
+                return "destination=" + this.h + ", title=" + this.f3544i;
         }
     }
 }

@@ -1,17 +1,17 @@
 package org.telegram.ui.ActionBar;
 public final class a4 {
-    public static final a4 f18675a;
-    public static final a4 f18676b;
-    public static final a4 f18677c;
+    public static final a4 f18441a;
+    public static final a4 f18442b;
+    public static final a4 f18443c;
     public static final a4[] d;
 
     static {
         ?? r02 = new Enum("NONE", 0);
-        f18675a = r02;
+        f18441a = r02;
         ?? r12 = new Enum("VERTICAL", 1);
-        f18676b = r12;
+        f18442b = r12;
         ?? r32 = new Enum("FULL", 2);
-        f18677c = r32;
+        f18443c = r32;
         d = new a4[]{r02, r12, r32};
     }
 

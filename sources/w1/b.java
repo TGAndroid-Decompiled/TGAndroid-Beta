@@ -5,7 +5,7 @@ import a6.d;
 import androidx.lifecycle.p0;
 import b2.p;
 public class b extends p0 {
-    public static final qb.b f44792f = new qb.b(24);
+    public static final qb.b f44470f = new qb.b(24);
     public final n d = new n();
     public boolean e = false;
 
@@ -15,23 +15,23 @@ public class b extends p0 {
         int i10 = nVar.f33c;
         for (int i11 = 0; i11 < i10; i11++) {
             a aVar = (a) nVar.f32b[i11];
-            d dVar = aVar.f44789l;
+            d dVar = aVar.f44467l;
             dVar.a();
-            dVar.f291c = true;
-            p pVar = aVar.f44791n;
+            dVar.f292c = true;
+            p pVar = aVar.f44469n;
             if (pVar != null) {
                 aVar.i(pVar);
             }
-            a aVar2 = dVar.f289a;
+            a aVar2 = dVar.f290a;
             if (aVar2 != null) {
                 if (aVar2 == aVar) {
-                    dVar.f289a = null;
+                    dVar.f290a = null;
                     if (pVar != null) {
-                        boolean z10 = pVar.f3175b;
+                        boolean z10 = pVar.f3173b;
                     }
                     dVar.d = true;
-                    dVar.f290b = false;
-                    dVar.f291c = false;
+                    dVar.f291b = false;
+                    dVar.f292c = false;
                     dVar.e = false;
                 } else {
                     throw new IllegalArgumentException("Attempting to unregister the wrong listener");

@@ -23,33 +23,33 @@ public final class r2 extends FrameLayout {
 
     public r2(Context context, dh.b bVar) {
         super(context);
-        w7.a6.a(this);
+        w7.z5.a(this);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f1452a = frameLayout;
-        ah.m mVar = new ah.m();
-        mVar.a(bVar);
-        mVar.f482g.setColor(-14670806);
-        mVar.invalidateSelf();
-        mVar.f481f = AndroidUtilities.dp(1.0f);
-        frameLayout.setBackground(mVar);
-        addView(frameLayout, w7.y5.e(40, 40, 17));
+        ah.l lVar = new ah.l();
+        lVar.a(bVar);
+        lVar.f482g.setColor(-14670806);
+        lVar.invalidateSelf();
+        lVar.f481f = AndroidUtilities.dp(1.0f);
+        frameLayout.setBackground(lVar);
+        addView(frameLayout, w7.x5.e(40, 40, 17));
         View view = new View(context);
         this.f1453b = view;
-        view.setBackground(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(40.0f), -13522392));
-        frameLayout.addView(view, w7.y5.e(38, 38, 17));
+        view.setBackground(org.telegram.ui.ActionBar.i6.K(AndroidUtilities.dp(40.0f), -13522392));
+        frameLayout.addView(view, w7.x5.e(38, 38, 17));
         view.setAlpha(0.0f);
         view.setScaleX(0.0f);
         view.setScaleY(0.0f);
         q2 q2Var = new q2(context);
         this.d = q2Var;
-        addView(q2Var, w7.y5.e(42, 42, 17));
+        addView(q2Var, w7.x5.e(42, 42, 17));
         ImageView imageView = new ImageView(context);
         this.f1454c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setScaleX(0.75f);
         imageView.setScaleY(0.75f);
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, PorterDuff.Mode.SRC_IN));
-        frameLayout.addView(imageView, w7.y5.e(40, 40, 17));
+        frameLayout.addView(imageView, w7.x5.e(40, 40, 17));
         b(false, false);
     }
 

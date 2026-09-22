@@ -1,62 +1,36 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.widget.LinearLayout;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class c7 extends LinearLayout {
-    public final Path f47332a;
-    public final Matrix f47333b;
-    public final RadialGradient f47334c;
-    public final Paint d;
-    public final org.telegram.ui.Components.n5 e;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.xi0;
+public final class c7 implements ImageReceiver.ImageReceiverDelegate {
+    public final boolean[] f46994a;
 
-    public c7(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.n5 n5Var) {
-        super(context);
-        this.f47333b = matrix;
-        this.f47334c = radialGradient;
-        this.d = paint;
-        this.e = n5Var;
-        this.f47332a = new Path();
+    public c7(boolean[] zArr) {
+        this.f46994a = zArr;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float dp = AndroidUtilities.dp(10.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, AndroidUtilities.dp(2.0f) + 1, getWidth(), getHeight() + dp);
-        Path path = this.f47332a;
-        path.rewind();
-        path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        Matrix matrix = this.f47333b;
-        matrix.reset();
-        matrix.postTranslate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
-        this.f47334c.setLocalMatrix(matrix);
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
-        canvas.save();
-        canvas.translate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
-        j0.a(canvas, 0, this.e, getWidth(), AndroidUtilities.dp(180.0f), 1.0f, 1.0f);
-        canvas.restore();
-        super.dispatchDraw(canvas);
-        canvas.restore();
+    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        xi0 lottieAnimation;
+        if (z10 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
+            boolean[] zArr = this.f46994a;
+            if (!zArr[0]) {
+                lottieAnimation.N(0, false, false);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Cells.q0(lottieAnimation, 0));
+                zArr[0] = true;
+            }
+        }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.e.a();
+    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.h5.a(this, i10, str, drawable);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.e.b();
+    public final void onAnimationReady(ImageReceiver imageReceiver) {
+        org.telegram.messenger.h5.b(this, imageReceiver);
     }
 }

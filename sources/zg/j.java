@@ -5,49 +5,48 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.x8;
-import org.telegram.ui.Components.y5;
-import org.telegram.ui.fm0;
-import yh.s5;
+import org.telegram.ui.Cells.w8;
+import org.telegram.ui.Components.x5;
+import org.telegram.ui.em0;
 public final class j implements Utilities.Callback {
-    public final int f49372a;
-    public final q f49373b;
+    public final int f49045a;
+    public final q f49046b;
 
     public j(q qVar, int i10) {
-        this.f49372a = i10;
-        this.f49373b = qVar;
+        this.f49045a = i10;
+        this.f49046b = qVar;
     }
 
     @Override
     public final void run(Object obj) {
-        y5[] y5VarArr;
-        x8 x8Var;
+        x5[] x5VarArr;
+        w8 w8Var;
         long j3;
-        switch (this.f49372a) {
+        switch (this.f49045a) {
             case 0:
                 Boolean bool = (Boolean) obj;
-                q qVar = this.f49373b;
+                q qVar = this.f49046b;
                 h hVar = qVar.U;
                 if (!qVar.a0()) {
-                    int editTextSelectionEnd = qVar.f49453n.getEditTextSelectionEnd();
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar.f49453n.getText());
-                    for (y5 y5Var : (y5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), y5.class)) {
-                        if (spannableStringBuilder.getSpanEnd(y5Var) == editTextSelectionEnd) {
-                            qVar.E.remove(Long.valueOf(y5Var.documentId));
-                            qVar.F.remove(Long.valueOf(y5Var.documentId));
-                            qVar.f49450b.A(Long.valueOf(y5Var.documentId));
-                            if (y5Var.documentId == -1 && (x8Var = qVar.f49455s) != null) {
-                                x8Var.setChecked(false);
-                                qVar.f49453n.setMaxLength(qVar.J);
+                    int editTextSelectionEnd = qVar.f49126n.getEditTextSelectionEnd();
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar.f49126n.getText());
+                    for (x5 x5Var : (x5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), x5.class)) {
+                        if (spannableStringBuilder.getSpanEnd(x5Var) == editTextSelectionEnd) {
+                            qVar.E.remove(Long.valueOf(x5Var.documentId));
+                            qVar.F.remove(Long.valueOf(x5Var.documentId));
+                            qVar.f49123b.A(Long.valueOf(x5Var.documentId));
+                            if (x5Var.documentId == -1 && (w8Var = qVar.f49128s) != null) {
+                                w8Var.setChecked(false);
+                                qVar.f49126n.setMaxLength(qVar.J);
                             }
                             if (bool.booleanValue()) {
-                                qVar.f49453n.dispatchKeyEvent(new KeyEvent(0, 67));
+                                qVar.f49126n.dispatchKeyEvent(new KeyEvent(0, 67));
                                 AndroidUtilities.cancelRunOnUIThread(hVar);
                                 AndroidUtilities.runOnUIThread(hVar, 350L);
                                 return;
                             }
-                            y5Var.setRemoved(new fm0(qVar, y5Var, editTextSelectionEnd, 19));
-                            qVar.W(y5Var);
+                            x5Var.setRemoved(new em0(qVar, x5Var, editTextSelectionEnd, 19));
+                            qVar.W(x5Var);
                             qVar.Y(false);
                             return;
                         }
@@ -57,25 +56,25 @@ public final class j implements Utilities.Callback {
                 return;
             case 1:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                q qVar2 = this.f49373b;
+                q qVar2 = this.f49046b;
                 if (!qVar2.isFinishing()) {
                     qVar2.v.setLoading(false);
                     if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
                         qVar2.finishFragment();
                         return;
                     }
-                    s5 s5Var = new s5(4, qVar2, tL_error);
+                    uh.i iVar = new uh.i(28, qVar2, tL_error);
                     if (qVar2.Q == null) {
                         j3 = 200;
                     } else {
                         j3 = 0;
                     }
-                    AndroidUtilities.runOnUIThread(s5Var, j3);
+                    AndroidUtilities.runOnUIThread(iVar, j3);
                     return;
                 }
                 return;
             default:
-                q qVar3 = this.f49373b;
+                q qVar3 = this.f49046b;
                 qVar3.getClass();
                 qVar3.O = ((Integer) obj).intValue();
                 return;

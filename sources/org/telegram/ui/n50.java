@@ -30,10 +30,10 @@ public final class n50 extends org.telegram.ui.ActionBar.j5 {
             float f7 = textWidth;
             this.T0 = 1.3f * f7;
             float f10 = f7 * 2.0f;
-            int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19209ih, false);
-            int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19248kh, false);
-            int i11 = org.telegram.ui.ActionBar.j6.f19228jh;
-            this.M0 = new LinearGradient(0.0f, getTextHeight(), f10, 0.0f, new int[]{w02, w03, org.telegram.ui.ActionBar.j6.w0(null, i11, false), org.telegram.ui.ActionBar.j6.w0(null, i11, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
+            int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18933ih, false);
+            int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18972kh, false);
+            int i11 = org.telegram.ui.ActionBar.i6.f18952jh;
+            this.M0 = new LinearGradient(0.0f, getTextHeight(), f10, 0.0f, new int[]{w02, w03, org.telegram.ui.ActionBar.i6.w0(null, i11, false), org.telegram.ui.ActionBar.i6.w0(null, i11, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
             getPaint().setShader(this.M0);
             this.N0 = textWidth;
         }

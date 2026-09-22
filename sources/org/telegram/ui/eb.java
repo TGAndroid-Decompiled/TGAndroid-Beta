@@ -1,52 +1,20 @@
 package org.telegram.ui;
+public final class eb extends org.telegram.ui.ActionBar.n1 {
+    public final ub f33258o;
 
-import android.content.Context;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-public final class eb extends org.telegram.ui.Components.so {
-    public final int f33318s;
-    public final org.telegram.ui.ActionBar.n2 v;
-
-    public eb(int i10, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(context);
-        this.f33318s = i10;
-        this.v = n2Var;
-        setOrientation(1);
+    public eb(ub ubVar, db dbVar) {
+        super(dbVar, -2, -2);
+        this.f33258o = ubVar;
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        fb fbVar;
-        switch (this.f33318s) {
-            case 0:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (fbVar = ((vb) this.v).F0) != null) {
-                    fbVar.dismiss();
-                }
-                return super.dispatchKeyEvent(keyEvent);
-            default:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-                    ((zn) this.v).A7(true);
-                }
-                return super.dispatchKeyEvent(keyEvent);
+    public final void dismiss() {
+        d(true);
+        ub ubVar = this.f33258o;
+        if (ubVar.F0 != this) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        fb fbVar;
-        switch (this.f33318s) {
-            case 0:
-                boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
-                if (motionEvent.getAction() == 0 && !dispatchTouchEvent && (fbVar = ((vb) this.v).F0) != null) {
-                    fbVar.dismiss();
-                }
-                return dispatchTouchEvent;
-            default:
-                boolean dispatchTouchEvent2 = super.dispatchTouchEvent(motionEvent);
-                if (motionEvent.getAction() == 0 && !dispatchTouchEvent2) {
-                    ((zn) this.v).A7(true);
-                }
-                return dispatchTouchEvent2;
-        }
+        org.telegram.ui.Components.oc.e();
+        ubVar.F0 = null;
     }
 }

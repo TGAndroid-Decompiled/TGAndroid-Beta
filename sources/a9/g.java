@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Iterator;
 public abstract class g {
-    public static final j0 f331a = new j0("PhoneskyVerificationUtils");
+    public static final j0 f334a = new j0("PhoneskyVerificationUtils");
 
     public static int a(Context context) {
         try {
@@ -29,7 +29,7 @@ public abstract class g {
 
     public static boolean b(Signature[] signatureArr) {
         String str;
-        j0 j0Var = f331a;
+        j0 j0Var = f334a;
         if (signatureArr != null && (r2 = signatureArr.length) != 0) {
             ArrayList arrayList = new ArrayList();
             for (Signature signature : signatureArr) {
@@ -62,7 +62,7 @@ public abstract class g {
                     sb2.append((CharSequence) ", ");
                 }
             }
-            j0Var.c(a4.a.p("Play Store package certs are not valid. Found these sha256 certs: [", sb2.toString(), "]."), new Object[0]);
+            j0Var.c(a4.a.q("Play Store package certs are not valid. Found these sha256 certs: [", sb2.toString(), "]."), new Object[0]);
             return false;
         }
         j0Var.c("Play Store package is not signed -- possibly self-built package. Could not verify.", new Object[0]);

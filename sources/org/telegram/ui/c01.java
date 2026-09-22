@@ -2,24 +2,23 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
+import android.animation.AnimatorSet;
 public final class c01 extends AnimatorListenerAdapter {
-    public final int f32595a;
-    public final boolean f32596b;
-    public final ProfileActivity f32597c;
+    public final int f32609a;
+    public final ProfileActivity f32610b;
 
-    public c01(ProfileActivity profileActivity, boolean z10, int i10) {
-        this.f32595a = i10;
-        this.f32597c = profileActivity;
-        this.f32596b = z10;
+    public c01(ProfileActivity profileActivity, int i10) {
+        this.f32609a = i10;
+        this.f32610b = profileActivity;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f32595a) {
-            case 1:
-                this.f32597c.f31581f0 = null;
+        switch (this.f32609a) {
+            case 2:
+                ProfileActivity profileActivity = this.f32610b;
+                profileActivity.O1 = false;
+                profileActivity.f31235a.N0 = true;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -29,43 +28,54 @@ public final class c01 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10;
-        org.telegram.ui.Cells.a4 a4Var;
-        switch (this.f32595a) {
+        switch (this.f32609a) {
             case 0:
-                ProfileActivity profileActivity = this.f32597c;
-                boolean z10 = this.f32596b;
-                ProfileActivity.n1(profileActivity, z10);
-                profileActivity.Y.setClickable(true);
-                if (z10) {
-                    org.telegram.ui.ActionBar.v0 v0Var = profileActivity.U0;
-                    if (v0Var.F.getWidth() != 0 && !v0Var.e.isFocused()) {
-                        v0Var.e.requestFocus();
-                        AndroidUtilities.showKeyboard(v0Var.e);
-                    }
-                }
-                profileActivity.k4(true);
-                profileActivity.V1 = null;
-                profileActivity.fragmentView.invalidate();
-                if (z10) {
-                    profileActivity.U4 = true;
-                    profileActivity.F4();
-                    Activity parentActivity = profileActivity.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) profileActivity).classGuid;
-                    AndroidUtilities.requestAdjustResize(parentActivity, i10);
-                    profileActivity.P.setPreventMoving(false);
+                super.onAnimationEnd(animator);
+                this.f32610b.k4(true);
+                return;
+            case 1:
+                ProfileActivity profileActivity = this.f32610b;
+                AnimatorSet animatorSet = profileActivity.f31389w;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    profileActivity.f31389w = null;
                     return;
                 }
                 return;
+            case 2:
+                ProfileActivity profileActivity2 = this.f32610b;
+                profileActivity2.O1 = false;
+                profileActivity2.f31235a.N0 = true;
+                profileActivity2.f31303j2.removeListener(this);
+                profileActivity2.f31259d1.setBackgroundColor(-16777216);
+                profileActivity2.Y.setVisibility(8);
+                profileActivity2.f31326n0.setVisibility(0);
+                profileActivity2.f31326n0.setAlpha(1.0f);
+                return;
+            case 3:
+                ProfileActivity profileActivity3 = this.f32610b;
+                profileActivity3.f31303j2.removeListener(this);
+                profileActivity3.f31326n0.setVisibility(8);
+                profileActivity3.f31326n0.setAlpha(1.0f);
+                return;
             default:
-                ProfileActivity profileActivity2 = this.f32597c;
-                if (profileActivity2.f31581f0 != null && (a4Var = profileActivity2.f31588g0) != null) {
-                    if (!this.f32596b) {
-                        a4Var.setVisibility(4);
-                    }
-                    profileActivity2.f31581f0 = null;
-                    return;
-                }
+                ProfileActivity profileActivity4 = this.f32610b;
+                profileActivity4.f31390w0 = null;
+                profileActivity4.fragmentView.invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f32609a) {
+            case 2:
+                ProfileActivity profileActivity = this.f32610b;
+                ProfileActivity.s3(profileActivity, false);
+                profileActivity.f31326n0.setAnimatedFileMaybe(profileActivity.f31265e0.getImageReceiver().getAnimation());
+                profileActivity.f31326n0.L();
+                return;
+            default:
+                super.onAnimationStart(animator);
                 return;
         }
     }

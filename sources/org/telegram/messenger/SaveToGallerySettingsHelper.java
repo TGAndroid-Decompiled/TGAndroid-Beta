@@ -113,7 +113,7 @@ public class SaveToGallerySettingsHelper {
         }
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(v7.j0.s(str, "_save_gallery_photo"), this.savePhoto).putBoolean(v7.j0.s(str, "_save_gallery_video"), this.saveVideo).putLong(v7.j0.s(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(w.c.g(str, "_save_gallery_photo"), this.savePhoto).putBoolean(w.c.g(str, "_save_gallery_video"), this.saveVideo).putLong(w.c.g(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
         }
 
         @Override
@@ -259,7 +259,7 @@ public class SaveToGallerySettingsHelper {
         edit.putInt("count", longSparseArray.size());
         for (int i10 = 0; i10 < longSparseArray.size(); i10++) {
             DialogException valueAt = longSparseArray.valueAt(i10);
-            edit.putLong(a4.a.m(i10, "_dialog_id"), valueAt.dialogId);
+            edit.putLong(a4.a.n(i10, "_dialog_id"), valueAt.dialogId);
             edit.putBoolean(i10 + "_photo", valueAt.savePhoto);
             edit.putBoolean(i10 + "_video", valueAt.saveVideo);
             edit.putLong(i10 + "_limitVideo", valueAt.limitVideo);

@@ -1,3 +1,23 @@
 package org.telegram.ui.Components;
-public interface f60 {
+
+import androidx.recyclerview.widget.RecyclerView;
+public final class f60 extends s4.s0 {
+    public final s4.c0 f23829a;
+    public final r60 f23830b;
+
+    public f60(r60 r60Var, s4.c0 c0Var) {
+        this.f23830b = r60Var;
+        this.f23829a = c0Var;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        r60 r60Var = this.f23830b;
+        r60.O(r60Var);
+        if (r60Var.R && !r60Var.Q) {
+            if (r60Var.S - this.f23829a.N0() < 10) {
+                r60Var.X();
+            }
+        }
+    }
 }

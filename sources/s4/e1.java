@@ -14,19 +14,19 @@ public final class e1 extends r0.b {
     @Override
     public final void b(View view, AccessibilityEvent accessibilityEvent) {
         super.b(view, accessibilityEvent);
-        if ((view instanceof RecyclerView) && !this.d.a0()) {
+        if ((view instanceof RecyclerView) && !this.d.Z()) {
             RecyclerView recyclerView = (RecyclerView) view;
             if (recyclerView.getLayoutManager() != null) {
                 c0 c0Var = (c0) recyclerView.getLayoutManager();
-                RecyclerView recyclerView2 = c0Var.f43088b;
-                of.e eVar = recyclerView2.f2839b;
+                RecyclerView recyclerView2 = c0Var.f42764b;
+                of.e eVar = recyclerView2.f2837b;
                 if (accessibilityEvent != null) {
                     boolean z10 = true;
-                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f43088b.canScrollVertically(-1) && !c0Var.f43088b.canScrollHorizontally(-1) && !c0Var.f43088b.canScrollHorizontally(1)) {
+                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f42764b.canScrollVertically(-1) && !c0Var.f42764b.canScrollHorizontally(-1) && !c0Var.f42764b.canScrollHorizontally(1)) {
                         z10 = false;
                     }
                     accessibilityEvent.setScrollable(z10);
-                    h0 h0Var = c0Var.f43088b.f2865w;
+                    h0 h0Var = c0Var.f42764b.f2863w;
                     if (h0Var != null) {
                         accessibilityEvent.setItemCount(h0Var.h());
                     }
@@ -40,13 +40,13 @@ public final class e1 extends r0.b {
     }
 
     @Override
-    public final void c(View view, s0.d dVar) {
-        this.f42131a.onInitializeAccessibilityNodeInfo(view, dVar.f42944a);
+    public final void c(View view, s0.c cVar) {
+        this.f41807a.onInitializeAccessibilityNodeInfo(view, cVar.f42620a);
         RecyclerView recyclerView = this.d;
-        if (!recyclerView.a0() && recyclerView.getLayoutManager() != null) {
+        if (!recyclerView.Z() && recyclerView.getLayoutManager() != null) {
             o0 layoutManager = recyclerView.getLayoutManager();
-            RecyclerView recyclerView2 = layoutManager.f43088b;
-            layoutManager.S(recyclerView2.f2839b, recyclerView2.f2862t0, dVar);
+            RecyclerView recyclerView2 = layoutManager.f42764b;
+            layoutManager.S(recyclerView2.f2837b, recyclerView2.f2860t0, cVar);
         }
     }
 

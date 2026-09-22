@@ -1,47 +1,45 @@
 package org.telegram.ui.Components;
-public final class uz0 {
-    public static final uz0 e = new uz0(false, new rz0(Integer.MIN_VALUE, -2147483647), xz0.R, 0.0f);
-    public final boolean f28921a;
-    public final rz0 f28922b;
-    public final jz0 f28923c;
-    public final float d;
 
-    public uz0(boolean z10, rz0 rz0Var, jz0 jz0Var, float f7) {
-        this.f28921a = z10;
-        this.f28922b = rz0Var;
-        this.f28923c = jz0Var;
-        this.d = f7;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class uz0 implements TextWatcher {
+    public final b01 f28529a;
+
+    public uz0(b01 b01Var) {
+        this.f28529a = b01Var;
     }
 
-    public static jz0 a(uz0 uz0Var, boolean z10) {
-        jz0 jz0Var = uz0Var.f28923c;
-        if (jz0Var != xz0.R) {
-            return jz0Var;
-        }
-        if (uz0Var.d == 0.0f) {
-            if (z10) {
-                return xz0.S;
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        b01 b01Var = this.f28529a;
+        n6 n6Var = b01Var.f22549n;
+        if (!b01Var.f22553x) {
+            String trim = editable.toString().trim();
+            if (trim.length() > 16) {
+                n6Var.setText("-" + (trim.length() - 16));
+                trim = trim.substring(0, 16);
+            } else {
+                n6Var.setText("");
             }
-            return xz0.T;
+            Utilities.Callback callback = b01Var.f22552w;
+            if (callback != null) {
+                callback.run(trim);
+            }
+            MessageObject messageObject = b01Var.f22550r;
+            if (messageObject != null) {
+                messageObject.forceUpdate = true;
+                b01Var.d.X3(messageObject, null, false, false, false, false);
+            }
         }
-        return xz0.U;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || uz0.class != obj.getClass()) {
-            return false;
-        }
-        uz0 uz0Var = (uz0) obj;
-        if (this.f28923c.equals(uz0Var.f28923c) && this.f28922b.equals(uz0Var.f28922b)) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
-    public final int hashCode() {
-        return this.f28923c.hashCode() + (this.f28922b.hashCode() * 31);
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

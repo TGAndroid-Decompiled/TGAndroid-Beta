@@ -4,10 +4,10 @@ import android.os.Bundle;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import v7.q7;
-import v7.z7;
+import v7.p7;
+import v7.y7;
 public abstract class g implements b1 {
-    public Object f2999a;
+    public Object f2997a;
 
     @Override
     public long A() {
@@ -16,7 +16,7 @@ public abstract class g implements b1 {
         if (w02.p()) {
             return -9223372036854775807L;
         }
-        return e2.d0.e0(w02.m(e0Var.l0(), (j1) this.f2999a, 0L).f3066m);
+        return e2.d0.e0(w02.m(e0Var.l0(), (j1) this.f2997a, 0L).f3064m);
     }
 
     @Override
@@ -68,7 +68,7 @@ public abstract class g implements b1 {
     public void F0() {
         i2.e0 e0Var = (i2.e0) this;
         e0Var.B1();
-        X0(12, e0Var.f10678w);
+        X0(12, e0Var.f10676w);
     }
 
     @Override
@@ -87,7 +87,7 @@ public abstract class g implements b1 {
     public boolean M0() {
         i2.e0 e0Var = (i2.e0) this;
         k1 w02 = e0Var.w0();
-        if (!w02.p() && w02.m(e0Var.l0(), (j1) this.f2999a, 0L).a()) {
+        if (!w02.p() && w02.m(e0Var.l0(), (j1) this.f2997a, 0L).a()) {
             return true;
         }
         return false;
@@ -96,13 +96,13 @@ public abstract class g implements b1 {
     public abstract Object N0(Object obj);
 
     public Object O0(Object obj) {
-        synchronized (((HashMap) this.f2999a)) {
+        synchronized (((HashMap) this.f2997a)) {
             try {
-                if (((HashMap) this.f2999a).containsKey(obj)) {
-                    return ((HashMap) this.f2999a).get(obj);
+                if (((HashMap) this.f2997a).containsKey(obj)) {
+                    return ((HashMap) this.f2997a).get(obj);
                 }
                 Object N0 = N0(obj);
-                ((HashMap) this.f2999a).put(obj, N0);
+                ((HashMap) this.f2997a).put(obj, N0);
                 return N0;
             } catch (Throwable th2) {
                 throw th2;
@@ -173,7 +173,7 @@ public abstract class g implements b1 {
     public abstract r0.l1 T0(r0.l1 l1Var, List list);
 
     public void U0() {
-        synchronized (this.f2999a) {
+        synchronized (this.f2997a) {
         }
     }
 
@@ -194,7 +194,7 @@ public abstract class g implements b1 {
             if (Q0) {
                 long J0 = e0Var.J0();
                 e0Var.B1();
-                if (J0 <= e0Var.f10679x) {
+                if (J0 <= e0Var.f10677x) {
                     Y0(7);
                     return;
                 }
@@ -254,14 +254,14 @@ public abstract class g implements b1 {
     @Override
     public void a(float f7) {
         i2.e0 e0Var = (i2.e0) this;
-        e0Var.f(new v0(f7, e0Var.h().f3336b));
+        e0Var.f(new v0(f7, e0Var.h().f3334b));
     }
 
     @Override
     public boolean d0() {
         i2.e0 e0Var = (i2.e0) this;
         k1 w02 = e0Var.w0();
-        if (!w02.p() && w02.m(e0Var.l0(), (j1) this.f2999a, 0L).h) {
+        if (!w02.p() && w02.m(e0Var.l0(), (j1) this.f2997a, 0L).h) {
             return true;
         }
         return false;
@@ -331,13 +331,13 @@ public abstract class g implements b1 {
 
     @Override
     public long p() {
-        j1 j1Var = (j1) this.f2999a;
+        j1 j1Var = (j1) this.f2997a;
         i2.e0 e0Var = (i2.e0) this;
         k1 w02 = e0Var.w0();
-        if (w02.p() || w02.m(e0Var.l0(), j1Var, 0L).f3060f == -9223372036854775807L) {
+        if (w02.p() || w02.m(e0Var.l0(), j1Var, 0L).f3058f == -9223372036854775807L) {
             return -9223372036854775807L;
         }
-        return (e2.d0.A(j1Var.f3061g) - j1Var.f3060f) - e0Var.a0();
+        return (e2.d0.A(j1Var.f3059g) - j1Var.f3058f) - e0Var.a0();
     }
 
     @Override
@@ -366,7 +366,7 @@ public abstract class g implements b1 {
     public boolean t0() {
         i2.e0 e0Var = (i2.e0) this;
         k1 w02 = e0Var.w0();
-        if (!w02.p() && w02.m(e0Var.l0(), (j1) this.f2999a, 0L).f3062i) {
+        if (!w02.p() && w02.m(e0Var.l0(), (j1) this.f2997a, 0L).f3060i) {
             return true;
         }
         return false;
@@ -389,7 +389,7 @@ public abstract class g implements b1 {
         if (w02.p()) {
             return null;
         }
-        return w02.m(e0Var.l0(), (j1) this.f2999a, 0L).f3059c;
+        return w02.m(e0Var.l0(), (j1) this.f2997a, 0L).f3057c;
     }
 
     @Override
@@ -404,36 +404,36 @@ public abstract class g implements b1 {
         if (duration == 0) {
             return 100;
         }
-        String str = e2.d0.f7887a;
-        long d = q7.d(c02, 100L);
+        String str = e2.d0.f7885a;
+        long d = p7.d(c02, 100L);
         if (d != Long.MAX_VALUE && d != Long.MIN_VALUE) {
             j3 = d / duration;
         } else {
             j3 = c02 / (duration / 100);
         }
-        return e2.d0.h(z7.b(j3), 0, 100);
+        return e2.d0.h(y7.b(j3), 0, 100);
     }
 
     public g(String str, Bundle data) {
         kotlin.jvm.internal.i.e(data, "data");
-        this.f2999a = data;
+        this.f2997a = data;
     }
 
     public g(int i10) {
         switch (i10) {
             case 3:
-                this.f2999a = new Object();
+                this.f2997a = new Object();
                 return;
             case 4:
-                this.f2999a = new HashMap();
+                this.f2997a = new HashMap();
                 return;
             case 5:
             case 6:
             default:
-                this.f2999a = new j1();
+                this.f2997a = new j1();
                 return;
             case 7:
-                this.f2999a = new LinkedHashMap();
+                this.f2997a = new LinkedHashMap();
                 return;
         }
     }

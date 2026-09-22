@@ -11,19 +11,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.uf0;
-import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.jf0;
+import org.telegram.ui.Components.l70;
 public final class gc extends FrameLayout {
-    public float f4729a;
-    public float f4730b;
-    public final Paint f4731c;
+    public float f4727a;
+    public float f4728b;
+    public final Paint f4729c;
     public LinearGradient d;
     public final oc e;
 
     public gc(oc ocVar, Activity activity) {
         super(activity);
         this.e = ocVar;
-        this.f4731c = new Paint(1);
+        this.f4729c = new Paint(1);
     }
 
     public static void a(View view, int i10, int i11) {
@@ -31,14 +31,14 @@ public final class gc extends FrameLayout {
     }
 
     public final void b(float f7) {
-        float f10 = this.f4729a;
-        this.f4730b = f7;
+        float f10 = this.f4727a;
+        this.f4728b = f7;
         super.setTranslationY(f10 + f7);
     }
 
     public final void c() {
         if (this.e.J == 0) {
-            setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(12.0f), -16777216));
+            setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(12.0f), -16777216));
         } else {
             setBackground(null);
         }
@@ -49,14 +49,14 @@ public final class gc extends FrameLayout {
         float f7;
         boolean drawChild = super.drawChild(canvas, view, j3);
         oc ocVar = this.e;
-        if (view == ocVar.f5227h0) {
+        if (view == ocVar.f5225h0) {
             if (ocVar.V) {
                 f7 = AndroidUtilities.statusBarHeight;
             } else {
                 f7 = 0.0f;
             }
             LinearGradient linearGradient = this.d;
-            Paint paint = this.f4731c;
+            Paint paint = this.f4729c;
             if (linearGradient == null) {
                 LinearGradient linearGradient2 = new LinearGradient(0.0f, f7, 0.0f, f7 + AndroidUtilities.dp(72.0f), new int[]{1073741824, 0}, new float[]{f7 / (AndroidUtilities.dp(72.0f) + f7), 1.0f}, Shader.TileMode.CLAMP);
                 this.d = linearGradient2;
@@ -90,37 +90,37 @@ public final class gc extends FrameLayout {
         }
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        ocVar.f5227h0.layout(0, 0, ocVar.S, ocVar.T);
-        ocVar.f5227h0.setPivotX(ocVar.S * 0.5f);
-        FrameLayout frameLayout = ocVar.f5230i0;
+        ocVar.f5225h0.layout(0, 0, ocVar.S, ocVar.T);
+        ocVar.f5225h0.setPivotX(ocVar.S * 0.5f);
+        FrameLayout frameLayout = ocVar.f5228i0;
         frameLayout.layout(0, i14, ocVar.S, frameLayout.getMeasuredHeight() + i14);
-        FrameLayout frameLayout2 = ocVar.f5236k0;
+        FrameLayout frameLayout2 = ocVar.f5234k0;
         frameLayout2.layout(0, ocVar.T - frameLayout2.getMeasuredHeight(), ocVar.S, ocVar.T);
         FrameLayout frameLayout3 = ocVar.m0;
         int i15 = ocVar.T;
         frameLayout3.layout(0, i15, ocVar.S, frameLayout3.getMeasuredHeight() + i15);
-        ocVar.f5239l0.layout(0, 0, ocVar.S, ocVar.T);
-        eb ebVar = ocVar.f5264t0;
+        ocVar.f5237l0.layout(0, 0, ocVar.S, ocVar.T);
+        eb ebVar = ocVar.f5262t0;
         if (ebVar != null) {
             ebVar.layout(0, 0, measuredWidth, measuredHeight);
         }
-        ocVar.f5260s.f5807c.layout(0, 0, measuredWidth, measuredHeight);
-        i iVar = ocVar.f5212c1.M;
+        ocVar.f5258s.f5805c.layout(0, 0, measuredWidth, measuredHeight);
+        i iVar = ocVar.f5210c1.M;
         if (iVar != null) {
             iVar.layout(0, 0, ocVar.S, ocVar.T);
-            ocVar.f5212c1.y();
+            ocVar.f5210c1.y();
         }
-        uf0 uf0Var = ocVar.B1;
-        if (uf0Var != null) {
-            uf0Var.layout(0, 0, uf0Var.getMeasuredWidth(), ocVar.B1.getMeasuredHeight());
+        jf0 jf0Var = ocVar.B1;
+        if (jf0Var != null) {
+            jf0Var.layout(0, 0, jf0Var.getMeasuredWidth(), ocVar.B1.getMeasuredHeight());
         }
-        qb qbVar = ocVar.f5271v1;
+        qb qbVar = ocVar.f5269v1;
         if (qbVar != null) {
-            qbVar.layout(0, 0, qbVar.getMeasuredWidth(), ocVar.f5271v1.getMeasuredHeight());
+            qbVar.layout(0, 0, qbVar.getMeasuredWidth(), ocVar.f5269v1.getMeasuredHeight());
         }
         for (int i16 = 0; i16 < getChildCount(); i16++) {
             View childAt = getChildAt(i16);
-            if (childAt instanceof w70) {
+            if (childAt instanceof l70) {
                 childAt.layout(0, 0, measuredWidth, measuredHeight);
             }
         }
@@ -133,32 +133,32 @@ public final class gc extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         oc ocVar = this.e;
-        a(ocVar.f5227h0, ocVar.S, ocVar.T);
+        a(ocVar.f5225h0, ocVar.S, ocVar.T);
         ocVar.j();
-        a(ocVar.f5230i0, ocVar.S, AndroidUtilities.dp(150.0f));
-        a(ocVar.f5236k0, ocVar.S, AndroidUtilities.dp(220.0f));
+        a(ocVar.f5228i0, ocVar.S, AndroidUtilities.dp(150.0f));
+        a(ocVar.f5234k0, ocVar.S, AndroidUtilities.dp(220.0f));
         a(ocVar.m0, ocVar.S, ocVar.U);
-        a(ocVar.f5239l0, ocVar.S, ocVar.T);
-        a(ocVar.f5260s.f5807c, size, size2);
-        eb ebVar = ocVar.f5264t0;
+        a(ocVar.f5237l0, ocVar.S, ocVar.T);
+        a(ocVar.f5258s.f5805c, size, size2);
+        eb ebVar = ocVar.f5262t0;
         if (ebVar != null) {
             a(ebVar, size, size2);
         }
-        i iVar = ocVar.f5212c1.M;
+        i iVar = ocVar.f5210c1.M;
         if (iVar != null) {
             a(iVar, ocVar.S, ocVar.T);
         }
-        uf0 uf0Var = ocVar.B1;
-        if (uf0Var != null) {
-            a(uf0Var, size, size2);
+        jf0 jf0Var = ocVar.B1;
+        if (jf0Var != null) {
+            a(jf0Var, size, size2);
         }
-        qb qbVar = ocVar.f5271v1;
+        qb qbVar = ocVar.f5269v1;
         if (qbVar != null) {
             a(qbVar, size, size2);
         }
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             View childAt = getChildAt(i12);
-            if (childAt instanceof w70) {
+            if (childAt instanceof l70) {
                 a(childAt, size, size2);
             }
         }
@@ -167,13 +167,13 @@ public final class gc extends FrameLayout {
 
     @Override
     public final void setTranslationY(float f7) {
-        this.f4729a = f7;
-        super.setTranslationY(this.f4730b + f7);
+        this.f4727a = f7;
+        super.setTranslationY(this.f4728b + f7);
         float clamp = Utilities.clamp((f7 / getMeasuredHeight()) * 4.0f, 1.0f, 0.0f);
         oc ocVar = this.e;
         ocVar.K = clamp;
         ocVar.o();
-        ocVar.f5243n.invalidate();
+        ocVar.f5241n.invalidate();
         float clamp2 = 1.0f - (Utilities.clamp(getTranslationY() / AndroidUtilities.dp(320.0f), 1.0f, 0.0f) * 0.1f);
         setScaleX(clamp2);
         setScaleY(clamp2);

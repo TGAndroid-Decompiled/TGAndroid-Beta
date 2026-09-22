@@ -8,7 +8,7 @@ public final class z30 extends s4.n0 {
     @Override
     public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
         recyclerView.getClass();
-        RecyclerView.S(view);
+        RecyclerView.R(view);
         if (!i60.F3) {
             rect.set(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         } else {

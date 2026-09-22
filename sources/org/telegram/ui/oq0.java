@@ -1,87 +1,39 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class oq0 extends org.telegram.ui.ActionBar.n2 {
-    public Bitmap f36382a;
-    public BitmapDrawable f36383b;
-    public nq0 f36384c;
-    public mq0 d;
-    public boolean e;
-    public boolean f36385f;
+public final class oq0 extends s4.s0 {
+    public final ar0 f36323a;
 
-    @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackgroundColor(-13421773);
-        this.actionBar.A(-12763843, false);
-        this.actionBar.setTitleColor(-1);
-        this.actionBar.B(-1, false);
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
-        this.actionBar.setActionBarMenuOnItemClick(new v70(this, 14));
-        this.actionBar.n().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
-        mq0 mq0Var = new mq0(this, context);
-        this.d = mq0Var;
-        this.fragmentView = mq0Var;
-        mq0Var.G = getArguments().getBoolean("freeform", false);
-        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
-        return this.fragmentView;
+    public oq0(ar0 ar0Var) {
+        this.f36323a = ar0Var;
     }
 
     @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            AndroidUtilities.hideKeyboard(this.f36323a.getParentActivity().getCurrentFocus());
+        }
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        int max;
-        if (this.f36382a == null) {
-            String string = getArguments().getString("photoPath");
-            Uri uri = (Uri) getArguments().getParcelable("photoUri");
-            if (string == null && uri == null) {
-                return false;
-            }
-            if (string != null && !v7.j0.r(string)) {
-                return false;
-            }
-            if (AndroidUtilities.isTablet()) {
-                max = AndroidUtilities.dp(520.0f);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int abs;
+        ar0 ar0Var = this.f36323a;
+        if (ar0Var.J == null) {
+            int L0 = ar0Var.M.L0();
+            boolean z10 = false;
+            if (L0 == -1) {
+                abs = 0;
             } else {
-                Point point = AndroidUtilities.displaySize;
-                max = Math.max(point.x, point.y);
+                abs = Math.abs(ar0Var.M.N0() - L0) + 1;
             }
-            float f7 = max;
-            Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
-            this.f36382a = loadBitmap;
-            if (loadBitmap == null) {
-                return false;
+            if (abs > 0 && L0 + abs > ar0Var.M.B() - 2 && !ar0Var.f31914r && !ar0Var.f31916s) {
+                if (ar0Var.f31893a == 1) {
+                    z10 = true;
+                }
+                ar0Var.d0(ar0Var.v, ar0Var.f31921w, z10, true);
             }
         }
-        this.f36383b = new BitmapDrawable(this.f36382a);
-        super.onFragmentCreate();
-        return true;
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        Bitmap bitmap = this.f36382a;
-        if (bitmap != null && !this.e) {
-            bitmap.recycle();
-            this.f36382a = null;
-        }
-        this.f36383b = null;
     }
 }

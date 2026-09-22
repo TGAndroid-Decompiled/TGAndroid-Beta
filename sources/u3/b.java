@@ -2,17 +2,18 @@ package u3;
 
 import c3.p;
 import java.util.ArrayDeque;
+import k2.c0;
 public final class b {
-    public final byte[] f43863a = new byte[8];
-    public final ArrayDeque f43864b = new ArrayDeque();
-    public final e f43865c = new e();
-    public o0.b d;
+    public final byte[] f43536a = new byte[8];
+    public final ArrayDeque f43537b = new ArrayDeque();
+    public final e f43538c = new e();
+    public c0 d;
     public int e;
-    public int f43866f;
-    public long f43867g;
+    public int f43539f;
+    public long f43540g;
 
     public final long a(p pVar, int i10) {
-        byte[] bArr = this.f43863a;
+        byte[] bArr = this.f43536a;
         pVar.readFully(bArr, 0, i10);
         long j3 = 0;
         for (int i11 = 0; i11 < i10; i11++) {

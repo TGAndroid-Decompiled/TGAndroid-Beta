@@ -5,19 +5,19 @@ import android.graphics.PointF;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 public final class dt0 extends s4.y0 {
-    public final float f33151k;
-    public final LinearInterpolator f33149i = new LinearInterpolator();
-    public final DecelerateInterpolator f33150j = new DecelerateInterpolator(1.5f);
-    public int f33152l = 0;
-    public int f33153m = 0;
+    public final float f33088k;
+    public final LinearInterpolator f33086i = new LinearInterpolator();
+    public final DecelerateInterpolator f33087j = new DecelerateInterpolator(1.5f);
+    public int f33089l = 0;
+    public int f33090m = 0;
 
     public dt0(Context context) {
-        this.f33151k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+        this.f33088k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
     }
 
     @Override
     public final PointF a(int i10) {
-        s4.o0 o0Var = this.f43147c;
+        s4.o0 o0Var = this.f42823c;
         if (o0Var instanceof s4.c0) {
             return ((s4.c0) o0Var).E0(i10);
         }
@@ -26,41 +26,41 @@ public final class dt0 extends s4.y0 {
 
     @Override
     public final void d(int i10, int i11, s4.x0 x0Var) {
-        if (this.f43146b.f2867x.r() == 0) {
+        if (this.f42822b.f2865x.r() == 0) {
             h();
             return;
         }
-        int i12 = this.f33152l;
+        int i12 = this.f33089l;
         int i13 = i12 - i10;
         int i14 = 0;
         if (i12 * i13 <= 0) {
             i13 = 0;
         }
-        this.f33152l = i13;
-        int i15 = this.f33153m;
+        this.f33089l = i13;
+        int i15 = this.f33090m;
         int i16 = i15 - i11;
         if (i15 * i16 > 0) {
             i14 = i16;
         }
-        this.f33153m = i14;
+        this.f33090m = i14;
         if (i13 == 0 && i14 == 0) {
-            PointF a2 = a(this.f43145a);
+            PointF a2 = a(this.f42821a);
             if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
                 s4.y0.b(a2);
-                this.f33152l = (int) (a2.x * 10000.0f);
-                this.f33153m = (int) (a2.y * 10000.0f);
-                x0Var.b((int) (this.f33152l * 1.2f), (int) (this.f33153m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f33151k)) * 1.2f), this.f33149i);
+                this.f33089l = (int) (a2.x * 10000.0f);
+                this.f33090m = (int) (a2.y * 10000.0f);
+                x0Var.b((int) (this.f33089l * 1.2f), (int) (this.f33090m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f33088k)) * 1.2f), this.f33086i);
                 return;
             }
-            x0Var.d = this.f43145a;
+            x0Var.d = this.f42821a;
             h();
         }
     }
 
     @Override
     public final void f() {
-        this.f33153m = 0;
-        this.f33152l = 0;
+        this.f33090m = 0;
+        this.f33089l = 0;
     }
 
     @Override

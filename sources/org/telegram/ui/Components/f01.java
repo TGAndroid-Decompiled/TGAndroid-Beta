@@ -1,0 +1,39 @@
+package org.telegram.ui.Components;
+
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class f01 extends FrameLayout {
+    public static final int e = 0;
+    public TextView f23772a;
+    public e01 f23773b;
+    public TLRPC.TL_help_termsOfService f23774c;
+    public int d;
+
+    public final void a() {
+        e01 e01Var = this.f23773b;
+        int i10 = this.d;
+        org.telegram.ui.xa0 xa0Var = (org.telegram.ui.xa0) e01Var;
+        xa0Var.getClass();
+        UserConfig.getInstance(i10).unacceptedTermsOfService = null;
+        UserConfig.getInstance(i10).saveConfig(false);
+        LaunchActivity launchActivity = xa0Var.f39570a;
+        ArrayList arrayList = launchActivity.f30817d0;
+        if (!arrayList.isEmpty()) {
+            ((org.telegram.ui.ActionBar.n2) hg.c.h(1, arrayList)).onResume();
+        }
+        launchActivity.C0.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new org.telegram.ui.g10(xa0Var, 15)).start();
+        TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
+        tL_help_acceptTermsOfService.f18164id = this.f23774c.f18166id;
+        ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new ai.t7(16));
+    }
+
+    public void setDelegate(e01 e01Var) {
+        this.f23773b = e01Var;
+    }
+}

@@ -18,7 +18,7 @@ import android.os.Build;
 import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.List;
-import w7.a7;
+import w7.z6;
 public abstract class c {
     public static void a(Context context, boolean z10, TaskCompletionSource taskCompletionSource) {
         try {
@@ -67,7 +67,7 @@ public abstract class c {
                     break;
                 }
             }
-            if (i12 == 1 && a7.f44923a == null) {
+            if (i12 == 1 && z6.f44878a == null) {
                 if (Build.VERSION.SDK_INT < 35) {
                     int c10 = c(false);
                     int c11 = c(true);
@@ -75,12 +75,12 @@ public abstract class c {
                         if (c11 == 0) {
                         }
                     }
-                    a7.f44923a = Boolean.valueOf(z10);
+                    z6.f44878a = Boolean.valueOf(z10);
                     if (!z10) {
                     }
                 }
                 z10 = false;
-                a7.f44923a = Boolean.valueOf(z10);
+                z6.f44878a = Boolean.valueOf(z10);
                 if (!z10) {
                 }
             }
@@ -95,9 +95,9 @@ public abstract class c {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             r rVar = new r();
-            rVar.f3252q = r0.n("video/avc");
+            rVar.f3250q = r0.n("video/avc");
             s sVar = new s(rVar);
-            String str = sVar.f3308r;
+            String str = sVar.f3306r;
             if (str != null) {
                 List d10 = r2.w.d(str, z10, false);
                 String b10 = r2.w.b(sVar);
@@ -130,16 +130,16 @@ public abstract class c {
     public static e9.a1 d(e eVar) {
         e9.f0 u10 = e9.i0.u();
         e9.k0 k0Var = k2.b.e;
-        e9.m0 m0Var = k0Var.f8092b;
+        e9.m0 m0Var = k0Var.f8090b;
         if (m0Var == null) {
             m0Var = k0Var.c();
-            k0Var.f8092b = m0Var;
+            k0Var.f8090b = m0Var;
         }
         e9.o1 it = m0Var.iterator();
         while (it.hasNext()) {
             Integer num = (Integer) it.next();
             int intValue = num.intValue();
-            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f3343a)) {
+            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f3341a)) {
                 u10.b(num);
             }
         }
@@ -150,20 +150,20 @@ public abstract class c {
     public static int e(int i10, int i11, e eVar) {
         for (int i12 = 10; i12 > 0; i12--) {
             int s10 = e2.d0.s(i12);
-            if (s10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(s10).build(), (AudioAttributes) eVar.b().f3343a)) {
+            if (s10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(s10).build(), (AudioAttributes) eVar.b().f3341a)) {
                 return i12;
             }
         }
         return 0;
     }
 
-    public static k2.f f(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
+    public static k2.e f(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
         if (!AudioManager.isOffloadedPlaybackSupported(audioFormat, audioAttributes)) {
-            return k2.f.d;
+            return k2.e.d;
         }
         ?? obj = new Object();
-        obj.f379a = true;
-        obj.f381c = z10;
+        obj.f382a = true;
+        obj.f384c = z10;
         return obj.a();
     }
 

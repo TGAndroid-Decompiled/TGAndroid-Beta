@@ -1,28 +1,10 @@
 package org.telegram.ui;
+public final class fr0 {
+    public final int f33662a;
+    public final gr0 f33663b;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class fr0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.n2 f33735a;
-    public FrameLayout f33736b;
-    public org.telegram.ui.ActionBar.k f33737c;
-    public org.telegram.ui.Components.yl0 d;
-    public int e;
-    public final hr0 f33738f;
-
-    public fr0(hr0 hr0Var, Context context) {
-        super(context);
-        this.f33738f = hr0Var;
-    }
-
-    @Override
-    public final void setTranslationX(float f7) {
-        fr0 fr0Var;
-        super.setTranslationX(f7);
-        hr0 hr0Var = this.f33738f;
-        fr0[] fr0VarArr = hr0Var.f34287n;
-        if (hr0Var.f34289s && (fr0Var = fr0VarArr[0]) == this) {
-            hr0Var.h.j(Math.abs(fr0Var.getTranslationX()) / fr0VarArr[0].getMeasuredWidth(), fr0VarArr[1].e);
-        }
+    public fr0(gr0 gr0Var, int i10) {
+        this.f33662a = i10;
+        this.f33663b = gr0Var;
     }
 }

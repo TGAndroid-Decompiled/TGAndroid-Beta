@@ -1,82 +1,78 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.Scroller;
-import org.telegram.messenger.Utilities;
-public final class zc1 implements org.telegram.ui.Components.to0, org.telegram.ui.Components.i20 {
-    public final xd1 f40202a;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class zc1 implements org.telegram.ui.Components.lq {
+    public final wd1 f40153a;
 
-    public zc1(xd1 xd1Var) {
-        this.f40202a = xd1Var;
+    public zc1(wd1 wd1Var) {
+        this.f40153a = wd1Var;
     }
 
     @Override
-    public void X(float f7, boolean z10) {
-        xd1 xd1Var = this.f40202a;
-        xd1Var.l1 = f7;
-        xd1Var.k1();
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public int l0() {
+    public final int K0(int i10) {
+        org.telegram.ui.ActionBar.g6 g6Var;
+        wd1 wd1Var = this.f40153a;
+        if (wd1Var.f38823n == 3) {
+            org.telegram.ui.ActionBar.h6 h6Var = wd1Var.f38800e0;
+            if (h6Var.S && i10 == 0 && (g6Var = (org.telegram.ui.ActionBar.g6) h6Var.f18728a0.get(org.telegram.ui.ActionBar.i6.f19011n)) != null) {
+                return g6Var.e;
+            }
+            return 0;
+        }
         return 0;
     }
 
     @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        Scroller scroller = this.f40202a.f39501c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            return true;
+    public final void l(boolean z10) {
+        int i10;
+        int i11;
+        wd1 wd1Var = this.f40153a;
+        org.telegram.ui.ActionBar.g6 g6Var = wd1Var.f38835s;
+        if (z10) {
+            if (g6Var.f18704r == null) {
+                wd1Var.finishFragment();
+                i11 = ((org.telegram.ui.ActionBar.n2) wd1Var).currentAccount;
+                MessagesController.getInstance(i11).saveThemeToServer(g6Var.f18691b, g6Var);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, g6Var.f18691b, g6Var);
+                return;
+            }
+            StringBuilder sb2 = new StringBuilder("https://");
+            i10 = ((org.telegram.ui.ActionBar.n2) wd1Var).currentAccount;
+            sb2.append(MessagesController.getInstance(i10).linkPrefix);
+            sb2.append("/addtheme/");
+            sb2.append(g6Var.f18704r.slug);
+            String sb3 = sb2.toString();
+            wd1Var.showDialog(new org.telegram.ui.Components.hq0(wd1Var.getParentActivity(), null, sb3, false, sb3, false, null));
+            return;
         }
-        return true;
+        org.telegram.ui.Components.c5.W(wd1Var, 1, null, null);
     }
 
     @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        xd1 xd1Var = this.f40202a;
-        Scroller scroller = xd1Var.f39501c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            xd1Var.f39501c.fling((int) xd1Var.X1, 0, Math.round(-f7), Math.round(f10), 0, (int) xd1Var.W1, 0, Integer.MAX_VALUE);
-            xd1Var.f39556x0.postInvalidate();
-            return true;
+    public final void x0(int r15, int r16, boolean r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zc1.x0(int, int, boolean):void");
+    }
+
+    @Override
+    public final void y() {
+        wd1 wd1Var = this.f40153a;
+        if (wd1Var.getParentActivity() != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wd1Var.getParentActivity());
+            alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.DeleteThemeTitle);
+            alertDialog$Builder.f18435a.T = LocaleController.getString(R.string.DeleteThemeAlert);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new tl0(this, 21));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
+            wd1Var.showDialog(b2Var);
+            TextView textView = (TextView) b2Var.d(-1);
+            if (textView != null) {
+                textView.setTextColor(wd1Var.getThemedColor(org.telegram.ui.ActionBar.i6.f19071q7));
+            }
         }
-        return true;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        xd1 xd1Var = this.f40202a;
-        Scroller scroller = xd1Var.f39501c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-        }
-        xd1Var.X1 = Utilities.clamp(xd1Var.X1 + f7, xd1Var.W1, 0.0f);
-        xd1Var.V0();
-        xd1Var.f39556x0.invalidate();
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public void B() {
-    }
-
-    @Override
-    public void b1() {
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
     }
 }

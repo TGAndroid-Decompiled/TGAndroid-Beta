@@ -4,9 +4,9 @@ public interface m0 {
 
     void B();
 
-    void J();
+    void C();
 
-    void U();
+    void J();
 
     void onFirstFrameRendered();
 }

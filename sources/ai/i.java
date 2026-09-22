@@ -6,7 +6,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.sh;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.bd;
+import org.telegram.ui.ad;
 public final class i implements e2.h {
     public final int f963a;
 
@@ -33,56 +33,56 @@ public final class i implements e2.h {
                 return;
             case 3:
                 View view2 = (View) obj;
-                if (view2 instanceof hg.x1) {
-                    ((hg.x1) view2).f10478c.invalidate();
+                if (view2 instanceof hg.y1) {
+                    ((hg.y1) view2).f10481c.invalidate();
                     return;
                 }
                 return;
             case 4:
                 View view3 = (View) obj;
-                if (view3 instanceof hg.x1) {
-                    ((hg.x1) view3).d.a(false, true);
+                if (view3 instanceof hg.y1) {
+                    ((hg.y1) view3).d.a(false, true);
                     return;
                 }
                 return;
             case 5:
-                ((m4.j1) obj).e();
+                ((m4.k1) obj).e();
                 return;
             case 6:
-                ((m4.j1) obj).e0();
+                ((m4.k1) obj).e0();
                 return;
             case 7:
-                ((m4.j1) obj).z0();
+                ((m4.k1) obj).z0();
                 return;
             case 8:
-                ((m4.j1) obj).G0();
+                ((m4.k1) obj).G0();
                 return;
             case 9:
-                ((m4.j1) obj).V();
+                ((m4.k1) obj).V();
                 return;
             case 10:
-                ((m4.j1) obj).F();
+                ((m4.k1) obj).F();
                 return;
             case 11:
-                ((m4.j1) obj).F0();
+                ((m4.k1) obj).F0();
                 return;
             case 12:
-                ((m4.j1) obj).E0();
+                ((m4.k1) obj).E0();
                 return;
             case 13:
-                ((m4.j1) obj).L();
+                ((m4.k1) obj).L();
                 return;
             case 14:
-                ((m4.j1) obj).stop();
+                ((m4.k1) obj).stop();
                 return;
             case 15:
-                ((m4.j1) obj).b();
+                ((m4.k1) obj).b();
                 return;
             case 16:
-                ((m4.j1) obj).H();
+                ((m4.k1) obj).H();
                 return;
             case 17:
-                ((m4.j1) obj).v();
+                ((m4.k1) obj).v();
                 return;
             case 18:
                 ((View) obj).invalidate();
@@ -91,20 +91,20 @@ public final class i implements e2.h {
                 ((n2.j) obj).a();
                 return;
             case 20:
-                bd.Y0((View) obj);
+                ad.Y0((View) obj);
                 return;
             case 21:
                 View view4 = (View) obj;
-                if ((view4 instanceof org.telegram.ui.Cells.u1) && (messageObject = ((org.telegram.ui.Cells.u1) view4).getMessageObject()) != null) {
+                if ((view4 instanceof org.telegram.ui.Cells.t1) && (messageObject = ((org.telegram.ui.Cells.t1) view4).getMessageObject()) != null) {
                     messageObject.forceUpdate = true;
-                    messageObject.reactionsChanged = true;
                     return;
                 }
                 return;
             case 22:
                 View view5 = (View) obj;
-                if ((view5 instanceof org.telegram.ui.Cells.u1) && (messageObject2 = ((org.telegram.ui.Cells.u1) view5).getMessageObject()) != null) {
+                if ((view5 instanceof org.telegram.ui.Cells.t1) && (messageObject2 = ((org.telegram.ui.Cells.t1) view5).getMessageObject()) != null) {
                     messageObject2.forceUpdate = true;
+                    messageObject2.reactionsChanged = true;
                     return;
                 }
                 return;
@@ -119,13 +119,13 @@ public final class i implements e2.h {
                 }
             case 24:
                 View view7 = (View) obj;
-                if (view7 instanceof org.telegram.ui.Cells.i5) {
-                    org.telegram.ui.Cells.i5 i5Var = (org.telegram.ui.Cells.i5) view7;
-                    i5Var.f20443b.invalidate();
-                    i5Var.f20444c.invalidate();
+                if (view7 instanceof org.telegram.ui.Cells.h5) {
+                    org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
+                    h5Var.f20167b.invalidate();
+                    h5Var.f20168c.invalidate();
                     return;
-                } else if (view7 instanceof hg.x1) {
-                    ((hg.x1) view7).f10478c.invalidate();
+                } else if (view7 instanceof hg.y1) {
+                    ((hg.y1) view7).f10481c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -133,15 +133,15 @@ public final class i implements e2.h {
                 }
             case 25:
                 View view8 = (View) obj;
-                if (view8 instanceof org.telegram.ui.Cells.g8) {
-                    ((org.telegram.ui.Cells.g8) view8).a(true);
+                if (view8 instanceof org.telegram.ui.Cells.f8) {
+                    ((org.telegram.ui.Cells.f8) view8).a(true);
                     return;
                 }
                 return;
             case 26:
                 View view9 = (View) obj;
-                if (view9 instanceof org.telegram.ui.Cells.g8) {
-                    ((org.telegram.ui.Cells.g8) view9).c(true);
+                if (view9 instanceof org.telegram.ui.Cells.f8) {
+                    ((org.telegram.ui.Cells.f8) view9).c(true);
                     return;
                 }
                 return;
@@ -155,7 +155,7 @@ public final class i implements e2.h {
                     }
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new sh(27));
+                AndroidUtilities.runOnUIThread(new sh(25));
                 return;
             case 28:
                 Boolean bool = (Boolean) obj;
@@ -168,7 +168,7 @@ public final class i implements e2.h {
         }
     }
 
-    public i(bd bdVar) {
+    public i(ad adVar) {
         this.f963a = 20;
     }
 }

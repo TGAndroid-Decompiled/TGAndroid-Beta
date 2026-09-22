@@ -1,30 +1,97 @@
 package n7;
-public final class k0 extends m0 {
-    public final char[] e;
 
-    public k0(j0 j0Var) {
-        super(j0Var, (Character) null);
-        this.e = new char[512];
-        char[] cArr = j0Var.f15370b;
-        if (cArr.length == 16) {
-            for (int i10 = 0; i10 < 256; i10++) {
-                char[] cArr2 = this.e;
-                cArr2[i10] = cArr[i10 >>> 4];
-                cArr2[i10 | 256] = cArr[i10 & 15];
-            }
-            return;
-        }
-        throw new IllegalArgumentException();
+import java.math.RoundingMode;
+import java.util.Arrays;
+public final class k0 {
+    public final String f15136a;
+    public final char[] f15137b;
+    public final int f15138c;
+    public final int d;
+    public final int e;
+    public final int f15139f;
+    public final byte[] f15140g;
+    public final boolean h;
+
+    public k0(java.lang.String r9, char[] r10) {
+        throw new UnsupportedOperationException("Method not decompiled: n7.k0.<init>(java.lang.String, char[]):void");
     }
 
-    @Override
-    public final void a(StringBuilder sb2, byte[] bArr, int i10) {
-        a.m(0, i10, bArr.length);
-        for (int i11 = 0; i11 < i10; i11++) {
-            int i12 = bArr[i11] & 255;
-            char[] cArr = this.e;
-            sb2.append(cArr[i12]);
-            sb2.append(cArr[i12 | 256]);
+    public final boolean equals(Object obj) {
+        if (obj instanceof k0) {
+            k0 k0Var = (k0) obj;
+            if (this.h == k0Var.h && Arrays.equals(this.f15137b, k0Var.f15137b)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i10;
+        int hashCode = Arrays.hashCode(this.f15137b);
+        if (true != this.h) {
+            i10 = 1237;
+        } else {
+            i10 = 1231;
+        }
+        return hashCode + i10;
+    }
+
+    public final String toString() {
+        return this.f15136a;
+    }
+
+    public k0(String str, char[] cArr, byte[] bArr, boolean z10) {
+        int numberOfLeadingZeros;
+        this.f15136a = str;
+        cArr.getClass();
+        this.f15137b = cArr;
+        try {
+            int length = cArr.length;
+            RoundingMode roundingMode = RoundingMode.UNNECESSARY;
+            if (length > 0) {
+                switch (o0.f15152a[roundingMode.ordinal()]) {
+                    case 1:
+                        if (((length - 1) & length) != 0) {
+                            throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
+                        }
+                    case 2:
+                    case 3:
+                        numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(length);
+                        break;
+                    case 4:
+                    case 5:
+                        numberOfLeadingZeros = 32 - Integer.numberOfLeadingZeros(length - 1);
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                        int numberOfLeadingZeros2 = Integer.numberOfLeadingZeros(length);
+                        numberOfLeadingZeros = (31 - numberOfLeadingZeros2) + ((((-1257966797) >>> numberOfLeadingZeros2) - length) >>> 31);
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                this.d = numberOfLeadingZeros;
+                int numberOfTrailingZeros = Integer.numberOfTrailingZeros(numberOfLeadingZeros);
+                int i10 = 1 << (3 - numberOfTrailingZeros);
+                this.e = i10;
+                this.f15139f = numberOfLeadingZeros >> numberOfTrailingZeros;
+                this.f15138c = length - 1;
+                this.f15140g = bArr;
+                boolean[] zArr = new boolean[i10];
+                for (int i11 = 0; i11 < this.f15139f; i11++) {
+                    int i12 = this.d;
+                    RoundingMode roundingMode2 = RoundingMode.CEILING;
+                    zArr[a.a(i11 * 8, i12)] = true;
+                }
+                this.h = z10;
+                return;
+            }
+            throw new IllegalArgumentException("x (0) must be > 0");
+        } catch (ArithmeticException e) {
+            throw new IllegalArgumentException(hg.c.i(cArr.length, "Illegal alphabet length "), e);
         }
     }
 }

@@ -14,7 +14,7 @@ import org.telegram.messenger.video.VideoAds;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.n70;
 public final class i5 implements Runnable {
     public final int f978a;
     public final Object f979b;
@@ -32,37 +32,37 @@ public final class i5 implements Runnable {
 
     private final void a() {
         AudioTrack audioTrack = (AudioTrack) this.f979b;
-        k2.o oVar = (k2.o) this.f980c;
+        k2.n nVar = (k2.n) this.f980c;
         Handler handler = (Handler) this.d;
-        k2.l lVar = (k2.l) this.e;
+        k2.k kVar = (k2.k) this.e;
         try {
             audioTrack.flush();
             audioTrack.release();
-            if (oVar != null && handler.getLooper().getThread().isAlive()) {
-                handler.post(new gg.x1(26, oVar, lVar));
+            if (nVar != null && handler.getLooper().getThread().isAlive()) {
+                handler.post(new gg.x1(26, nVar, kVar));
             }
-            synchronized (k2.f0.f13251o0) {
+            synchronized (k2.g0.f13255o0) {
                 try {
-                    int i10 = k2.f0.f13253q0 - 1;
-                    k2.f0.f13253q0 = i10;
+                    int i10 = k2.g0.f13257q0 - 1;
+                    k2.g0.f13257q0 = i10;
                     if (i10 == 0) {
-                        k2.f0.f13252p0.shutdown();
-                        k2.f0.f13252p0 = null;
+                        k2.g0.f13256p0.shutdown();
+                        k2.g0.f13256p0 = null;
                     }
                 } finally {
                 }
             }
         } catch (Throwable th2) {
-            if (oVar != null && handler.getLooper().getThread().isAlive()) {
-                handler.post(new gg.x1(26, oVar, lVar));
+            if (nVar != null && handler.getLooper().getThread().isAlive()) {
+                handler.post(new gg.x1(26, nVar, kVar));
             }
-            synchronized (k2.f0.f13251o0) {
+            synchronized (k2.g0.f13255o0) {
                 try {
-                    int i11 = k2.f0.f13253q0 - 1;
-                    k2.f0.f13253q0 = i11;
+                    int i11 = k2.g0.f13257q0 - 1;
+                    k2.g0.f13257q0 = i11;
                     if (i11 == 0) {
-                        k2.f0.f13252p0.shutdown();
-                        k2.f0.f13252p0 = null;
+                        k2.g0.f13256p0.shutdown();
+                        k2.g0.f13256p0 = null;
                     }
                     throw th2;
                 } finally {
@@ -80,8 +80,8 @@ public final class i5 implements Runnable {
     }
 
     private final void e() {
-        oi.f fVar = (oi.f) this.f979b;
-        ((ArrayDeque) fVar.f15763a).addLast(new oi.e((k2.v) this.f980c, (oi.b) this.d, (RequestTimeDelegate) this.e));
+        ni.f fVar = (ni.f) this.f979b;
+        ((ArrayDeque) fVar.f15255a).addLast(new ni.e((k2.v) this.f980c, (ni.b) this.d, (RequestTimeDelegate) this.e));
         fVar.K();
     }
 
@@ -94,7 +94,7 @@ public final class i5 implements Runnable {
     }
 
     private final void h() {
-        ((VideoAds) this.f979b).lambda$show$14((Context) this.f980c, (TLRPC.TL_sponsoredMessage) this.d, (y70) this.e);
+        ((VideoAds) this.f979b).lambda$show$14((Context) this.f980c, (TLRPC.TL_sponsoredMessage) this.d, (n70) this.e);
     }
 
     @Override

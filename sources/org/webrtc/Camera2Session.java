@@ -12,7 +12,6 @@ import android.hardware.camera2.CaptureRequest;
 import android.os.Handler;
 import android.util.Range;
 import android.view.Surface;
-import hg.k0;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -67,7 +66,7 @@ public class Camera2Session implements CameraSession {
                     if (i10 != 3) {
                         if (i10 != 4) {
                             if (i10 != 5) {
-                                return k0.h(i10, "Unknown camera error: ");
+                                return hg.c.i(i10, "Unknown camera error: ");
                             }
                             return "Camera service has encountered a fatal error.";
                         }

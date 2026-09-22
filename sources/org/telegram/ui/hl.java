@@ -1,33 +1,35 @@
 package org.telegram.ui;
+public final class hl implements Runnable {
+    public final int f34319a;
+    public final il f34320b;
 
-import android.app.Activity;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class hl extends UndoView {
-    public final zn f34254f0;
-
-    public hl(zn znVar, Activity activity, zn znVar2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(activity, znVar2, true, f6Var);
-        this.f34254f0 = znVar;
+    public hl(il ilVar, int i10) {
+        this.f34319a = i10;
+        this.f34320b = ilVar;
     }
 
     @Override
-    public final void b(CharacterStyle characterStyle) {
-        this.f34254f0.U7(characterStyle, false, null, null);
-    }
-
-    @Override
-    public final void k(long j3, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        float f7;
-        int i11;
-        hk hkVar = this.f34254f0.X1;
-        if (hkVar != null && (((i11 = hkVar.T) == 1 || i11 == 3) && hkVar.S)) {
-            f7 = AndroidUtilities.dp(hkVar.getStyleHeight());
-        } else {
-            f7 = 0.0f;
+    public final void run() {
+        switch (this.f34319a) {
+            case 0:
+                mk mkVar = this.f34320b.H.Y;
+                if (mkVar != null) {
+                    mkVar.T0 = false;
+                    org.telegram.ui.Components.cg cgVar = mkVar.U0;
+                    if (cgVar != null) {
+                        cgVar.u(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                mk mkVar2 = this.f34320b.H.Y;
+                if (mkVar2 != null) {
+                    mkVar2.I0();
+                    return;
+                }
+                return;
         }
-        setAdditionalTranslationY(f7);
-        super.k(j3, i10, obj, obj2, runnable, runnable2);
     }
 }

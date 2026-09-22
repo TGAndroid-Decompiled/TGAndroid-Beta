@@ -2,40 +2,40 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessagesStorage;
 public final class ch implements MessagesStorage.IntCallback {
-    public final int f32780a;
-    public final zn f32781b;
+    public final int f32790a;
+    public final bo f32791b;
 
-    public ch(zn znVar, int i10) {
-        this.f32780a = i10;
-        this.f32781b = znVar;
+    public ch(bo boVar, int i10) {
+        this.f32790a = i10;
+        this.f32791b = boVar;
     }
 
     @Override
     public final void run(int i10) {
-        switch (this.f32780a) {
+        switch (this.f32790a) {
             case 0:
-                zn znVar = this.f32781b;
-                if (znVar.getParentActivity() != null && znVar.fragmentView != null && i10 > 0) {
-                    org.telegram.ui.Components.xc.a0(znVar).m(org.telegram.ui.Components.wc.f29995r, i10, 0, 0, znVar.f40324ea).j();
+                bo boVar = this.f32791b;
+                if (boVar.getParentActivity() != null && boVar.fragmentView != null && i10 > 0) {
+                    org.telegram.ui.Components.vc.a0(boVar).m(org.telegram.ui.Components.uc.f28333r, i10, 0, 0, boVar.f32293ea).j();
                     return;
                 }
                 return;
             case 1:
-                zn znVar2 = this.f32781b;
+                bo boVar2 = this.f32791b;
                 if (i10 == 0) {
-                    znVar2.f40417m6 = false;
-                    znVar2.H9();
+                    boVar2.f32385m6 = false;
+                    boVar2.H9();
                     return;
                 }
-                znVar2.E(i10, 0, 0, 0, false, true);
+                boVar2.F(i10, 0, 0, 0, false, true);
                 return;
             default:
-                zn znVar3 = this.f32781b;
+                bo boVar3 = this.f32791b;
                 if (i10 == 0) {
-                    znVar3.Qc(true);
+                    boVar3.Qc(true);
                     return;
                 } else {
-                    znVar3.finishFragment();
+                    boVar3.finishFragment();
                     return;
                 }
         }

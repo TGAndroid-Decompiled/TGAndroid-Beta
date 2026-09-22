@@ -2,16 +2,16 @@ package y9;
 
 import java.util.List;
 public final class n0 extends s1 {
-    public final List f46913a;
-    public final o1 f46914b;
-    public final g1 f46915c;
+    public final List f46586a;
+    public final o1 f46587b;
+    public final g1 f46588c;
     public final p1 d;
     public final List e;
 
     public n0(List list, p0 p0Var, g1 g1Var, q0 q0Var, List list2) {
-        this.f46913a = list;
-        this.f46914b = p0Var;
-        this.f46915c = g1Var;
+        this.f46586a = list;
+        this.f46587b = p0Var;
+        this.f46588c = g1Var;
         this.d = q0Var;
         this.e = list2;
     }
@@ -22,12 +22,12 @@ public final class n0 extends s1 {
         }
         if (obj instanceof s1) {
             s1 s1Var = (s1) obj;
-            List list = this.f46913a;
-            if (list != null ? list.equals(((n0) s1Var).f46913a) : ((n0) s1Var).f46913a == null) {
-                o1 o1Var = this.f46914b;
-                if (o1Var != null ? o1Var.equals(((n0) s1Var).f46914b) : ((n0) s1Var).f46914b == null) {
-                    g1 g1Var = this.f46915c;
-                    if (g1Var != null ? g1Var.equals(((n0) s1Var).f46915c) : ((n0) s1Var).f46915c == null) {
+            List list = this.f46586a;
+            if (list != null ? list.equals(((n0) s1Var).f46586a) : ((n0) s1Var).f46586a == null) {
+                o1 o1Var = this.f46587b;
+                if (o1Var != null ? o1Var.equals(((n0) s1Var).f46587b) : ((n0) s1Var).f46587b == null) {
+                    g1 g1Var = this.f46588c;
+                    if (g1Var != null ? g1Var.equals(((n0) s1Var).f46588c) : ((n0) s1Var).f46588c == null) {
                         n0 n0Var = (n0) s1Var;
                         if (this.d.equals(n0Var.d) && this.e.equals(n0Var.e)) {
                             return true;
@@ -43,21 +43,21 @@ public final class n0 extends s1 {
         int hashCode;
         int hashCode2;
         int i10 = 0;
-        List list = this.f46913a;
+        List list = this.f46586a;
         if (list == null) {
             hashCode = 0;
         } else {
             hashCode = list.hashCode();
         }
         int i11 = (hashCode ^ 1000003) * 1000003;
-        o1 o1Var = this.f46914b;
+        o1 o1Var = this.f46587b;
         if (o1Var == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = o1Var.hashCode();
         }
         int i12 = (i11 ^ hashCode2) * 1000003;
-        g1 g1Var = this.f46915c;
+        g1 g1Var = this.f46588c;
         if (g1Var != null) {
             i10 = g1Var.hashCode();
         }
@@ -65,6 +65,6 @@ public final class n0 extends s1 {
     }
 
     public final String toString() {
-        return "Execution{threads=" + this.f46913a + ", exception=" + this.f46914b + ", appExitInfo=" + this.f46915c + ", signal=" + this.d + ", binaries=" + this.e + "}";
+        return "Execution{threads=" + this.f46586a + ", exception=" + this.f46587b + ", appExitInfo=" + this.f46588c + ", signal=" + this.d + ", binaries=" + this.e + "}";
     }
 }

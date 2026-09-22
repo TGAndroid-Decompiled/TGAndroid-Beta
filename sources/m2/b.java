@@ -2,15 +2,15 @@ package m2;
 
 import j$.util.Objects;
 public final class b {
-    public final String f14626a;
-    public final String f14627b;
-    public final int f14628c;
+    public final String f14388a;
+    public final String f14389b;
+    public final int f14390c;
     public final int d;
 
     public b(int i10, int i11, String str, String str2) {
-        this.f14626a = str;
-        this.f14627b = str2;
-        this.f14628c = i10;
+        this.f14388a = str;
+        this.f14389b = str2;
+        this.f14390c = i10;
         this.d = i11;
     }
 
@@ -22,13 +22,13 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (this.f14628c == bVar.f14628c && this.d == bVar.d && Objects.equals(this.f14626a, bVar.f14626a) && Objects.equals(this.f14627b, bVar.f14627b)) {
+        if (this.f14390c == bVar.f14390c && this.d == bVar.d && Objects.equals(this.f14388a, bVar.f14388a) && Objects.equals(this.f14389b, bVar.f14389b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f14626a, this.f14627b, Integer.valueOf(this.f14628c), Integer.valueOf(this.d));
+        return Objects.hash(this.f14388a, this.f14389b, Integer.valueOf(this.f14390c), Integer.valueOf(this.d));
     }
 }

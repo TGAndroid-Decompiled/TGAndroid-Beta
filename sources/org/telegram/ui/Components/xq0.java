@@ -1,217 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class xq0 extends Drawable {
-    public long f30396a = 0;
-    public final float[] f30397b = {0.0f, -0.5f};
-    public final Drawable f30398c;
-    public final Drawable d;
-    public final Drawable e;
-    public final int f30399f;
+import java.util.Collections;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class xq0 implements Runnable {
+    public final int f30038a;
+    public final yu0 f30039b;
+    public final TLRPC.TL_error f30040c;
+    public final int d;
+    public final int e;
+    public final TLObject f30041f;
 
-    public xq0(Context context, int i10) {
-        this.f30399f = i10;
-        if (i10 == 4) {
-            this.f30398c = context.getResources().getDrawable(R.drawable.filled_extend_location).mutate();
-            this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
-        } else if (i10 == 5) {
-            this.f30398c = context.getResources().getDrawable(R.drawable.filled_stop_location).mutate();
-            this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
-        } else if (i10 == 1) {
-            this.f30398c = context.getResources().getDrawable(R.drawable.smallanimationpin).mutate();
-            this.d = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-            this.e = context.getResources().getDrawable(R.drawable.smallanimationpinright).mutate();
-        } else {
-            this.f30398c = context.getResources().getDrawable(R.drawable.animationpin).mutate();
-            this.d = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
-            this.e = context.getResources().getDrawable(R.drawable.animationpinright).mutate();
-        }
+    public xq0(yu0 yu0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
+        this.f30038a = i12;
+        this.f30039b = yu0Var;
+        this.f30040c = tL_error;
+        this.d = i10;
+        this.e = i11;
+        this.f30041f = tLObject;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int dp;
-        float[] fArr;
-        int dp2;
-        int dp3;
-        int dp4;
-        int D;
-        int i10;
-        float x10;
-        Drawable drawable = this.f30398c;
-        int intrinsicWidth = drawable.getIntrinsicWidth();
-        int intrinsicHeight = drawable.getIntrinsicHeight();
-        int i11 = 3;
-        int i12 = 5;
-        int i13 = 1;
-        int i14 = this.f30399f;
-        int i15 = 4;
-        if (i14 != 4 && i14 != 5) {
-            if (i14 == 3) {
-                dp = AndroidUtilities.dp(44.0f);
-            } else if (i14 == 2) {
-                dp = AndroidUtilities.dp(32.0f);
-            } else if (i14 == 1) {
-                dp = AndroidUtilities.dp(30.0f);
-            } else {
-                dp = AndroidUtilities.dp(120.0f);
-            }
-        } else {
-            dp = AndroidUtilities.dp(24.0f);
-        }
-        int intrinsicHeight2 = ((getIntrinsicHeight() - dp) / 2) + getBounds().top;
-        int intrinsicWidth2 = ((getIntrinsicWidth() - dp) / 2) + getBounds().left;
-        int i16 = intrinsicWidth + intrinsicWidth2;
-        drawable.setBounds(intrinsicWidth2, intrinsicHeight2, i16, intrinsicHeight2 + intrinsicHeight);
-        drawable.draw(canvas);
-        int i17 = 0;
-        while (true) {
-            fArr = this.f30397b;
-            if (i17 >= 2) {
-                break;
-            }
-            float f7 = fArr[i17];
-            if (f7 >= 0.0f) {
-                float f10 = (f7 * 0.5f) + 0.5f;
-                if (i14 != i15 && i14 != i12) {
-                    if (i14 == i11) {
-                        i10 = AndroidUtilities.dp(5.0f * f10);
-                        dp2 = AndroidUtilities.dp(f10 * 18.0f);
-                        int dp5 = AndroidUtilities.dp(fArr[i17] * 15.0f);
-                        dp3 = (AndroidUtilities.dp(2.0f) + intrinsicWidth2) - dp5;
-                        dp4 = ((intrinsicHeight / 2) + intrinsicHeight2) - AndroidUtilities.dp(7.0f);
-                        D = org.telegram.messenger.rk.D(2.0f, i16, dp5);
-                    } else if (i14 == 2) {
-                        i10 = AndroidUtilities.dp(5.0f * f10);
-                        dp2 = AndroidUtilities.dp(f10 * 18.0f);
-                        int dp6 = AndroidUtilities.dp(fArr[i17] * 15.0f);
-                        dp3 = (AndroidUtilities.dp(2.0f) + intrinsicWidth2) - dp6;
-                        dp4 = (intrinsicHeight / 2) + intrinsicHeight2;
-                        D = org.telegram.messenger.rk.D(2.0f, i16, dp6);
-                    } else if (i14 == i13) {
-                        int dp7 = AndroidUtilities.dp(2.5f * f10);
-                        dp2 = AndroidUtilities.dp(f10 * 6.5f);
-                        int dp8 = AndroidUtilities.dp(fArr[i17] * 6.0f);
-                        dp3 = (AndroidUtilities.dp(7.0f) + intrinsicWidth2) - dp8;
-                        dp4 = (intrinsicHeight / 2) + intrinsicHeight2;
-                        i10 = dp7;
-                        D = org.telegram.messenger.rk.D(7.0f, i16, dp8);
-                    } else {
-                        i10 = AndroidUtilities.dp(5.0f * f10);
-                        dp2 = AndroidUtilities.dp(f10 * 18.0f);
-                        int dp9 = AndroidUtilities.dp(fArr[i17] * 15.0f);
-                        dp3 = (AndroidUtilities.dp(42.0f) + intrinsicWidth2) - dp9;
-                        dp4 = ((intrinsicHeight / 2) + intrinsicHeight2) - AndroidUtilities.dp(7.0f);
-                        D = org.telegram.messenger.rk.D(42.0f, i16, dp9);
+    public final void run() {
+        switch (this.f30038a) {
+            case 0:
+                yu0 yu0Var = this.f30039b;
+                NotificationCenter.getInstance(yu0Var.f30389v1.getCurrentAccount()).doOnIdle(new xq0(yu0Var, this.f30040c, this.d, this.e, this.f30041f, 1));
+                return;
+            default:
+                yu0 yu0Var2 = this.f30039b;
+                nu0[] nu0VarArr = yu0Var2.f30385t1;
+                if (this.f30040c == null) {
+                    int i10 = this.e;
+                    nu0 nu0Var = nu0VarArr[i10];
+                    if (this.d == nu0Var.f26587p) {
+                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f30041f;
+                        nu0Var.e.clear();
+                        int size = tL_messages_searchResultsPositions.positions.size();
+                        int i11 = 0;
+                        for (int i12 = 0; i12 < size; i12++) {
+                            TLRPC.TL_searchResultPosition tL_searchResultPosition = tL_messages_searchResultsPositions.positions.get(i12);
+                            int i13 = tL_searchResultPosition.date;
+                            if (i13 != 0) {
+                                ?? obj = new Object();
+                                obj.f29781c = i13;
+                                obj.d = tL_searchResultPosition.msg_id;
+                                obj.f29780b = tL_searchResultPosition.offset;
+                                obj.f29779a = LocaleController.formatYearMont(i13, true);
+                                nu0VarArr[i10].e.add(obj);
+                            }
+                        }
+                        Collections.sort(nu0VarArr[i10].e, new org.telegram.ui.df(17));
+                        nu0 nu0Var2 = nu0VarArr[i10];
+                        nu0Var2.f26578f[0] = tL_messages_searchResultsPositions.count;
+                        nu0Var2.h = true;
+                        if (!nu0Var2.e.isEmpty()) {
+                            while (true) {
+                                rt0[] rt0VarArr = yu0Var2.f30365k0;
+                                if (i11 < rt0VarArr.length) {
+                                    rt0 rt0Var = rt0VarArr[i11];
+                                    if (rt0Var.F == i10) {
+                                        rt0Var.f27681b = true;
+                                        yu0Var2.o1(rt0Var, true);
+                                    }
+                                    i11++;
+                                }
+                            }
+                        }
+                        yu0Var2.H.l();
+                        return;
                     }
-                } else {
-                    int dp10 = AndroidUtilities.dp(2.5f * f10);
-                    dp2 = AndroidUtilities.dp(f10 * 6.5f);
-                    int dp11 = AndroidUtilities.dp(fArr[i17] * 6.0f);
-                    dp3 = (AndroidUtilities.dp(3.0f) + intrinsicWidth2) - dp11;
-                    dp4 = ((intrinsicHeight / 2) + intrinsicHeight2) - AndroidUtilities.dp(2.0f);
-                    D = org.telegram.messenger.rk.D(3.0f, i16, dp11);
-                    i10 = dp10;
+                    return;
                 }
-                float f11 = fArr[i17];
-                if (f11 < 0.5f) {
-                    x10 = f11 / 0.5f;
-                } else {
-                    x10 = org.telegram.messenger.l0.x(f11, 0.5f, 0.5f, 1.0f);
-                }
-                int i18 = (int) (x10 * 255.0f);
-                Drawable drawable2 = this.d;
-                drawable2.setAlpha(i18);
-                int i19 = dp4 - dp2;
-                int i20 = dp4 + dp2;
-                drawable2.setBounds(dp3 - i10, i19, dp3 + i10, i20);
-                drawable2.draw(canvas);
-                Drawable drawable3 = this.e;
-                drawable3.setAlpha(i18);
-                drawable3.setBounds(D - i10, i19, D + i10, i20);
-                drawable3.draw(canvas);
-            }
-            i17++;
-            i11 = 3;
-            i12 = 5;
-            i13 = 1;
-            i15 = 4;
+                return;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f30396a;
-        this.f30396a = currentTimeMillis;
-        if (j3 > 16) {
-            j3 = 16;
-        }
-        for (int i21 = 0; i21 < 2; i21++) {
-            if (fArr[i21] >= 1.0f) {
-                fArr[i21] = 0.0f;
-            }
-            float f12 = (((float) j3) / 1300.0f) + fArr[i21];
-            fArr[i21] = f12;
-            if (f12 > 1.0f) {
-                fArr[i21] = 1.0f;
-            }
-        }
-        invalidateSelf();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        int i10 = this.f30399f;
-        if (i10 != 4 && i10 != 5) {
-            if (i10 == 3) {
-                return AndroidUtilities.dp(100.0f);
-            }
-            if (i10 == 2) {
-                return AndroidUtilities.dp(74.0f);
-            }
-            if (i10 == 1) {
-                return AndroidUtilities.dp(40.0f);
-            }
-            return AndroidUtilities.dp(180.0f);
-        }
-        return AndroidUtilities.dp(42.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        int i10 = this.f30399f;
-        if (i10 != 4 && i10 != 5) {
-            if (i10 == 3) {
-                return AndroidUtilities.dp(100.0f);
-            }
-            if (i10 == 2) {
-                return AndroidUtilities.dp(74.0f);
-            }
-            if (i10 == 1) {
-                return AndroidUtilities.dp(40.0f);
-            }
-            return AndroidUtilities.dp(120.0f);
-        }
-        return AndroidUtilities.dp(42.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f30398c.setColorFilter(colorFilter);
-        this.d.setColorFilter(colorFilter);
-        this.e.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
     }
 }

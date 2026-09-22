@@ -1,45 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class h01 implements TextWatcher {
-    public final o01 f24666a;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class h01 extends ReplacementSpan {
+    public static final int f24488f = 0;
+    public ImageReceiver f24489a;
+    public int f24490b;
+    public int f24491c;
+    public final boolean d;
+    public final int e;
 
-    public h01(o01 o01Var) {
-        this.f24666a = o01Var;
+    public h01(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
+        this.f24490b = i10;
+        this.f24491c = i11;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f24489a = imageReceiver;
+        imageReceiver.setInvalidateAll(true);
+        imageReceiver.setImageBitmap(bitmap);
+        imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
+        this.e = i13;
+        this.d = true;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        o01 o01Var = this.f24666a;
-        o6 o6Var = o01Var.f26945n;
-        if (!o01Var.f26949x) {
-            String trim = editable.toString().trim();
-            if (trim.length() > 16) {
-                o6Var.setText("-" + (trim.length() - 16));
-                trim = trim.substring(0, 16);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = this.f24490b;
+        int i16 = this.f24491c;
+        ImageReceiver imageReceiver = this.f24489a;
+        canvas.save();
+        if (this.d) {
+            imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.e), i15, i16);
+        } else {
+            imageReceiver.setImageCoords((int) f7, hg.c.C(org.telegram.messenger.y0.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
+        }
+        imageReceiver.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        int i12 = this.f24491c;
+        if (fontMetricsInt != null) {
+            if (this.d) {
+                int i13 = this.e;
+                int i14 = -(i12 - i13);
+                fontMetricsInt.ascent = i14;
+                fontMetricsInt.top = i14;
+                fontMetricsInt.descent = i13;
+                fontMetricsInt.bottom = i13;
             } else {
-                o6Var.setText("");
-            }
-            Utilities.Callback callback = o01Var.f26948w;
-            if (callback != null) {
-                callback.run(trim);
-            }
-            MessageObject messageObject = o01Var.f26946r;
-            if (messageObject != null) {
-                messageObject.forceUpdate = true;
-                o01Var.d.X3(messageObject, null, false, false, false, false);
+                int dp = ((-i12) / 2) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.ascent = dp;
+                fontMetricsInt.top = dp;
+                int dp2 = (i12 - (i12 / 2)) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.descent = dp2;
+                fontMetricsInt.bottom = dp2;
             }
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        return this.f24490b;
     }
 }

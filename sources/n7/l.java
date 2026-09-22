@@ -1,45 +1,57 @@
 package n7;
-public final class l extends m {
-    public final transient int f15376c;
-    public final transient int d;
-    public final m e;
+public final class l extends n {
+    public final transient n f15143c;
 
-    public l(m mVar, int i10, int i11) {
-        this.e = mVar;
-        this.f15376c = i10;
-        this.d = i11;
+    public l(n nVar) {
+        this.f15143c = nVar;
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        return this.f15143c.contains(obj);
     }
 
     @Override
     public final Object get(int i10) {
-        a.e(i10, this.d);
-        return this.e.get(i10 + this.f15376c);
+        n nVar = this.f15143c;
+        a.e(i10, nVar.size());
+        return nVar.get((nVar.size() - 1) - i10);
     }
 
     @Override
-    public final int n() {
-        return this.e.o() + this.f15376c + this.d;
+    public final int indexOf(Object obj) {
+        n nVar = this.f15143c;
+        int lastIndexOf = nVar.lastIndexOf(obj);
+        if (lastIndexOf < 0) {
+            return -1;
+        }
+        return (nVar.size() - 1) - lastIndexOf;
     }
 
     @Override
-    public final int o() {
-        return this.e.o() + this.f15376c;
+    public final int lastIndexOf(Object obj) {
+        n nVar = this.f15143c;
+        int indexOf = nVar.indexOf(obj);
+        if (indexOf < 0) {
+            return -1;
+        }
+        return (nVar.size() - 1) - indexOf;
     }
 
     @Override
-    public final Object[] q() {
-        return this.e.q();
+    public final n r() {
+        return this.f15143c;
     }
 
     @Override
-    public final m subList(int i10, int i11) {
-        a.m(i10, i11, this.d);
-        int i12 = this.f15376c;
-        return this.e.subList(i10 + i12, i11 + i12);
+    public final n subList(int i10, int i11) {
+        n nVar = this.f15143c;
+        a.m(i10, i11, nVar.size());
+        return nVar.subList(nVar.size() - i11, nVar.size() - i10).r();
     }
 
     @Override
     public final int size() {
-        return this.d;
+        return this.f15143c.size();
     }
 }

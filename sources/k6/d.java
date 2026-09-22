@@ -18,7 +18,6 @@ import androidx.fragment.app.l0;
 import androidx.fragment.app.v;
 import com.google.android.gms.common.api.GoogleApiActivity;
 import e0.t;
-import hg.k0;
 import n6.q;
 import n6.r;
 public final class d extends e {
@@ -48,7 +47,7 @@ public final class d extends e {
         if (d10 != null) {
             builder.setTitle(d10);
         }
-        Log.w("GoogleApiAvailability", k0.h(i10, "Creating dialog for Google Play services availability issue. ConnectionResult="), new IllegalArgumentException());
+        Log.w("GoogleApiAvailability", hg.c.i(i10, "Creating dialog for Google Play services availability issue. ConnectionResult="), new IllegalArgumentException());
         return builder.create();
     }
 
@@ -62,11 +61,11 @@ public final class d extends e {
                 alertDialog.setOnDismissListener(null);
                 iVar.A0 = alertDialog;
                 iVar.B0 = onCancelListener;
-                iVar.f2475x0 = false;
-                iVar.f2476y0 = true;
+                iVar.f2473x0 = false;
+                iVar.f2474y0 = true;
                 s10.getClass();
                 androidx.fragment.app.a aVar = new androidx.fragment.app.a(s10);
-                aVar.f2379o = true;
+                aVar.f2377o = true;
                 aVar.f(0, iVar, str);
                 aVar.e(false, true);
                 return;
@@ -100,7 +99,7 @@ public final class d extends e {
         String d10;
         String e;
         int i11;
-        Log.w("GoogleApiAvailability", k0.i(i10, "GMS core API Availability. ConnectionResult=", ", tag=null"), new IllegalArgumentException());
+        Log.w("GoogleApiAvailability", hg.c.j(i10, "GMS core API Availability. ConnectionResult=", ", tag=null"), new IllegalArgumentException());
         if (i10 == 18) {
             new j(this, context).sendEmptyMessageDelayed(1, 120000L);
         } else if (pendingIntent == null) {
@@ -126,29 +125,29 @@ public final class d extends e {
             n6.l.h(systemService);
             NotificationManager notificationManager = (NotificationManager) systemService;
             t tVar = new t(context, null);
-            tVar.f7850t = true;
+            tVar.f7848t = true;
             tVar.h(16, true);
             tVar.e = t.d(d10);
             e0.o oVar = new e0.o(false);
-            oVar.f7820f = t.d(e);
+            oVar.f7818f = t.d(e);
             tVar.n(oVar);
             PackageManager packageManager = context.getPackageManager();
-            if (u6.b.f43949b == null) {
-                u6.b.f43949b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+            if (u6.b.f43622b == null) {
+                u6.b.f43622b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
             }
-            if (u6.b.f43949b.booleanValue()) {
+            if (u6.b.f43622b.booleanValue()) {
                 tVar.E.icon = context.getApplicationInfo().icon;
-                tVar.f7840j = 2;
+                tVar.f7838j = 2;
                 if (u6.b.f(context)) {
                     tVar.a(2131230970, resources.getString(2131689573), pendingIntent);
                 } else {
-                    tVar.f7838g = pendingIntent;
+                    tVar.f7836g = pendingIntent;
                 }
             } else {
                 tVar.E.icon = 17301642;
                 tVar.p(resources.getString(2131689565));
                 tVar.E.when = System.currentTimeMillis();
-                tVar.f7838g = pendingIntent;
+                tVar.f7836g = pendingIntent;
                 tVar.f(e);
             }
             if (u6.b.d()) {
@@ -163,7 +162,7 @@ public final class d extends e {
                     notificationChannel.setName(string);
                     notificationManager.createNotificationChannel(notificationChannel);
                 }
-                tVar.f7854y = "com.google.android.gms.availability";
+                tVar.f7852y = "com.google.android.gms.availability";
             }
             Notification b10 = tVar.b();
             if (i10 != 1 && i10 != 2 && i10 != 3) {

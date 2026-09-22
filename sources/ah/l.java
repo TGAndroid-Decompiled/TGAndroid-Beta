@@ -1,41 +1,91 @@
 package ah;
 
-import android.graphics.RenderNode;
-public final class l {
-    public final RenderNode f474a;
-    public final k f475b;
-    public final a f476c = new Object();
-    public long d = 0;
-    public int e;
-    public int f477f;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.i6;
+public final class l extends Drawable {
+    public dh.a f478a;
+    public int f479b;
+    public int f480c;
+    public int f481f;
+    public boolean f484j;
+    public float f485k;
+    public float d = 1.0f;
+    public final RectF e = new RectF();
+    public final Paint f482g = new Paint(1);
+    public final Paint h = new Paint(1);
+    public final Paint f483i = new Paint(1);
 
-    public l(RenderNode renderNode, k kVar) {
-        this.f474a = renderNode;
-        this.f475b = kVar;
+    public final void a(dh.a aVar) {
+        this.f478a = aVar;
+        Paint.Style style = Paint.Style.STROKE;
+        this.h.setStyle(style);
+        this.f483i.setStyle(style);
+        b();
     }
 
-    public final void a() {
-        long j3;
-        int width = this.f474a.getWidth();
-        int height = this.f474a.getHeight();
-        a aVar = this.f476c;
-        aVar.f415b = 0L;
-        boolean z10 = false;
-        aVar.f414a = false;
-        k kVar = this.f475b;
-        kVar.y(aVar);
-        if (aVar.f414a) {
-            j3 = -1;
+    public final void b() {
+        dh.a aVar = this.f478a;
+        if (aVar == null) {
+            return;
+        }
+        this.f479b = i6.l1(this.d, aVar.a());
+        this.f480c = i6.l1(this.d, this.f478a.c());
+        int i10 = this.f479b;
+        Paint paint = this.h;
+        paint.setColor(i10);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        int i11 = this.f480c;
+        Paint paint2 = this.f483i;
+        paint2.setColor(i11);
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Canvas canvas2;
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f481f;
+        RectF rectF = this.e;
+        rectF.set(centerX - min, centerY - min, centerX + min, centerY + min);
+        if (this.f484j) {
+            rectF.set(getBounds());
+            min = this.f485k;
+        }
+        float f7 = min;
+        Paint paint = this.f482g;
+        if (Color.alpha(paint.getColor()) > 0) {
+            canvas.drawCircle(centerX, centerY, f7, paint);
+        }
+        if (this.f479b != 0) {
+            canvas2 = canvas;
+            ch.d.f(canvas2, rectF, f7, AndroidUtilities.dpf2(1.0f), true, this.h);
         } else {
-            j3 = aVar.f415b;
+            canvas2 = canvas;
         }
-        z10 = (this.f474a.hasDisplayList() && width == this.e && height == this.f477f && j3 == this.d && j3 != -1) ? true : true;
-        this.e = width;
-        this.f477f = height;
-        this.d = j3;
-        if (z10) {
-            kVar.b(this.f474a.beginRecording());
-            this.f474a.endRecording();
+        if (this.f480c != 0) {
+            ch.d.f(canvas2, rectF, f7, AndroidUtilities.dpf2(0.6666667f), false, this.f483i);
         }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10 / 255.0f;
+        b();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

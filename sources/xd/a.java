@@ -2,12 +2,12 @@ package xd;
 
 import java.nio.charset.Charset;
 public abstract class a {
-    public static final Charset f46061a;
+    public static final Charset f45738a;
 
     static {
         Charset forName = Charset.forName("UTF-8");
         kotlin.jvm.internal.i.d(forName, "forName(...)");
-        f46061a = forName;
+        f45738a = forName;
         kotlin.jvm.internal.i.d(Charset.forName("UTF-16"), "forName(...)");
         kotlin.jvm.internal.i.d(Charset.forName("UTF-16BE"), "forName(...)");
         kotlin.jvm.internal.i.d(Charset.forName("UTF-16LE"), "forName(...)");

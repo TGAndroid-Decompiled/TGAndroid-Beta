@@ -1,141 +1,87 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class mp0 extends yw0 {
-    public boolean f26512a = false;
-    public long f26513b = 0;
-    public boolean f26514c = false;
-    public float d;
-    public final Paint e;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+public final class mp0 extends ju {
+    public boolean V;
+    public int W;
+    public int f26209a0;
+    public ValueAnimator f26210b0;
+    public final hq0 f26211c0;
 
-    public mp0(boolean z10) {
-        if (z10) {
-            Paint paint = new Paint(1);
-            this.e = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    public mp0(hq0 hq0Var, Context context, sp0 sp0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, sp0Var, null, 1, true, e6Var);
+        this.f26211c0 = hq0Var;
+    }
+
+    @Override
+    public final void c(float f7) {
+        this.f26211c0.Y0();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.V) {
+            bu editText = this.f26211c0.d.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f26209a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new h70(editText, 18));
+            ValueAnimator valueAnimator = this.f26210b0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f26210b0 = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(qr.f27420f);
+            ofFloat.start();
+            this.V = false;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        kz emojiView = getEmojiView();
+        hq0 hq0Var = this.f26211c0;
+        if (emojiView != null) {
+            emojiView.f25762w0 = false;
+            emojiView.f25764w2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(hq0Var.G0.d);
+        }
+        FrameLayout frameLayout = hq0Var.f24758c0;
+        if (frameLayout != null) {
+            frameLayout.bringToFront();
+        }
+        lp0 lp0Var = hq0Var.f24757c;
+        if (lp0Var != null) {
+            lp0Var.bringToFront();
+        }
+        lp0 lp0Var2 = hq0Var.f24761f;
+        if (lp0Var2 != null) {
+            lp0Var2.bringToFront();
         }
     }
 
     @Override
-    public final void b(int i10) {
-        Paint paint = this.e;
-        if (paint != null) {
-            paint.setColor(i10);
+    public final void q(int i10, int i11) {
+        hq0 hq0Var = this.f26211c0;
+        lp0 lp0Var = hq0Var.f24757c;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.V = true;
+            this.W = getEditText().getMeasuredHeight();
+            this.f26209a0 = getEditText().getScrollY();
+            invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.V = false;
         }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        this.f26512a = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f26513b = System.currentTimeMillis();
-        this.f26514c = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        float f10;
-        float f11;
-        Paint paint = this.e;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.j6.f19105d2;
-        }
-        Paint paint2 = paint;
-        int i10 = 0;
-        while (i10 < 3) {
-            if (i10 == 0) {
-                paint2.setAlpha((int) (this.d * 255.0f));
-            } else if (i10 == 2) {
-                paint2.setAlpha((int) ((1.0f - this.d) * 255.0f));
-            } else {
-                paint2.setAlpha(255);
-            }
-            float dp = (AndroidUtilities.dp(5.0f) * i10) + (AndroidUtilities.dp(5.0f) * this.d);
-            if (this.f26512a) {
-                f7 = 3.0f;
-            } else {
-                f7 = 4.0f;
-            }
-            float dp2 = AndroidUtilities.dp(f7);
-            float dp3 = dp + AndroidUtilities.dp(4.0f);
-            float f12 = 8.0f;
-            if (this.f26512a) {
-                f10 = 7.0f;
-            } else {
-                f10 = 8.0f;
-            }
-            float dp4 = AndroidUtilities.dp(f10);
-            Canvas canvas2 = canvas;
-            canvas2.drawLine(dp, dp2, dp3, dp4, paint2);
-            if (this.f26512a) {
-                f11 = 11.0f;
-            } else {
-                f11 = 12.0f;
-            }
-            float dp5 = AndroidUtilities.dp(f11);
-            float dp6 = dp + AndroidUtilities.dp(4.0f);
-            if (this.f26512a) {
-                f12 = 7.0f;
-            }
-            canvas2.drawLine(dp, dp5, dp6, AndroidUtilities.dp(f12), paint2);
-            i10++;
-            canvas = canvas2;
-        }
-        if (this.f26514c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f26513b;
-            this.f26513b = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            this.d = (((float) j3) / 500.0f) + this.d;
-            while (true) {
-                float f13 = this.d;
-                if (f13 > 1.0f) {
-                    this.d = f13 - 1.0f;
-                } else {
-                    a();
-                    return;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void e() {
-        this.f26514c = false;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(14.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        hq0Var.f24780v0 = lp0Var.getTop() + hq0Var.f24779u0;
+        lp0Var.invalidate();
     }
 }

@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-public final class ok extends org.telegram.ui.Components.pd {
-    public final zn d;
+public final class ok extends org.telegram.ui.Components.nd {
+    public final bo d;
 
-    public ok(zn znVar, Context context) {
+    public ok(bo boVar, Context context) {
         super(context);
-        this.d = znVar;
+        this.d = boVar;
     }
 
     @Override
@@ -19,20 +19,20 @@ public final class ok extends org.telegram.ui.Components.pd {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        zn znVar = this.d;
-        mk mkVar = znVar.Y;
+        bo boVar = this.d;
+        mk mkVar = boVar.Y;
         if (mkVar != null) {
             mkVar.invalidate();
         }
         if (getVisibility() != 8) {
-            znVar.h9(true);
-            FrameLayout frameLayout = znVar.P;
+            boVar.h9(true);
+            FrameLayout frameLayout = boVar.P;
             if (frameLayout != null) {
                 frameLayout.setTranslationY(f7);
             }
-            znVar.o9();
-            znVar.r9();
-            View view = znVar.fragmentView;
+            boVar.o9();
+            boVar.r9();
+            View view = boVar.fragmentView;
             if (view != null) {
                 view.invalidate();
             }

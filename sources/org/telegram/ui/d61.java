@@ -1,69 +1,105 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.widget.FrameLayout;
+import android.graphics.ColorFilter;
+import android.util.SparseIntArray;
 import org.telegram.messenger.AndroidUtilities;
-public final class d61 extends FrameLayout {
-    public final Path f32964a;
-    public final Paint f32965b;
-    public final boolean f32966c;
-    public final boolean d;
-    public final org.telegram.ui.ActionBar.f6 e;
-    public final Integer f32967f;
-    public final j71 h;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class d61 extends org.telegram.ui.Components.cw {
+    public final int f32950g0;
+    public final h71 f32951h0;
 
-    public d61(j71 j71Var, Context context, boolean z10, boolean z11, org.telegram.ui.ActionBar.f6 f6Var, Integer num) {
-        super(context);
-        this.h = j71Var;
-        this.f32966c = z10;
-        this.d = z11;
-        this.e = f6Var;
-        this.f32967f = num;
-        this.f32964a = new Path();
-        this.f32965b = new Paint(1);
+    public d61(h71 h71Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, boolean z11, int i10, iy0 iy0Var, int i11, int i12) {
+        super(context, e6Var, z10, z11, false, true, i10, iy0Var, i11, false);
+        this.f32951h0 = h71Var;
+        this.f32950g0 = i12;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float intValue;
-        j71 j71Var = this.h;
-        if (!j71Var.Q0) {
-            super.dispatchDraw(canvas);
-        } else if (this.f32966c) {
-            canvas.save();
-            boolean z10 = this.d;
-            Paint paint = this.f32965b;
-            if (z10) {
-                org.telegram.ui.ActionBar.j6.m(paint);
-            }
-            paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G8, this.e));
-            paint.setAlpha((int) (getAlpha() * 255.0f));
-            Integer num = this.f32967f;
-            if (num == null) {
-                intValue = getWidth() / 2.0f;
-            } else {
-                intValue = num.intValue();
-            }
-            float dp = intValue + AndroidUtilities.dp(20.0f);
-            float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
-            float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
-            if (j71Var.n()) {
-                AndroidUtilities.rectTmp.set((dp - (j71Var.f34801a1 * dp)) + getPaddingLeft(), com.google.android.gms.internal.vision.e2.z(1.0f, j71Var.f34804b1, height, getPaddingTop()), ((width - dp) * j71Var.f34801a1) + getPaddingLeft() + dp, getPaddingTop() + height);
-            } else {
-                AndroidUtilities.rectTmp.set((dp - (j71Var.f34801a1 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * j71Var.f34801a1) + getPaddingLeft() + dp, (height * j71Var.f34804b1) + getPaddingTop());
-            }
-            Path path = this.f32964a;
-            path.rewind();
-            path.addRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
-            canvas.drawPath(path, paint);
-            canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-        } else {
-            super.dispatchDraw(canvas);
+    public final ColorFilter getEmojiColorFilter() {
+        return this.f32951h0.f34139k1;
+    }
+
+    @Override
+    public final boolean h(int i10) {
+        int i11;
+        int i12;
+        v61 v61Var;
+        int i13;
+        int i14;
+        h71 h71Var = this.f32951h0;
+        SparseIntArray sparseIntArray = h71Var.f34167x0;
+        int i15 = 0;
+        if (h71Var.f34165w1) {
+            return false;
         }
+        int i16 = this.f32950g0;
+        if (i16 == 4 && i10 == 0) {
+            h71Var.Q = !h71Var.Q;
+            h71Var.f34123d0.setVisibility(8);
+            org.telegram.ui.Components.cw cwVar = h71Var.f34121c0[h71Var.Q ? 1 : 0];
+            h71Var.f34123d0 = cwVar;
+            cwVar.setVisibility(0);
+            org.telegram.ui.Components.yv yvVar = h71Var.f34123d0.f23153x;
+            Context context = getContext();
+            if (h71Var.Q) {
+                i13 = R.drawable.msg_emoji_stickers;
+            } else {
+                i13 = R.drawable.msg_emoji_smiles;
+            }
+            yvVar.setDrawable(context.getDrawable(i13));
+            org.telegram.ui.Components.yv yvVar2 = h71Var.f34123d0.f23153x;
+            if (h71Var.Q) {
+                i14 = R.string.AccDescrStickers;
+            } else {
+                i14 = R.string.Emoji;
+            }
+            yvVar2.setContentDescription(LocaleController.getString(i14));
+            h71Var.B(true, false, false);
+            h71Var.f34152r0.h1(0, 0);
+            return true;
+        }
+        org.telegram.ui.Components.yv yvVar3 = this.E;
+        if (yvVar3 != null && this.f23146b0) {
+            i11 = 1;
+        } else {
+            i11 = 0;
+        }
+        int i17 = i11 + 1;
+        if (yvVar3 != null && this.f23146b0 && i10 == 1) {
+            i12 = h71Var.f34142n;
+        } else {
+            if ((i16 != 4 || i10 != 0) && i10 > 0) {
+                int i18 = i10 - i17;
+                if (sparseIntArray.indexOfKey(i18) >= 0) {
+                    i12 = sparseIntArray.get(i18);
+                }
+            }
+            i12 = 0;
+        }
+        if (i16 == 6) {
+            i15 = 7;
+        }
+        h71.a(h71Var, i12, AndroidUtilities.dp(i15 - 2));
+        h71Var.f34123d0.j(i10, true);
+        h71Var.f34132h0.L1 = true;
+        h71Var.v(null, true, true);
+        y51 y51Var = h71Var.f34128f0;
+        if (y51Var != null && (v61Var = y51Var.f38706n) != null) {
+            v61Var.F1(null);
+        }
+        return true;
+    }
+
+    @Override
+    public final void i(org.telegram.ui.Components.yv yvVar) {
+        ValueAnimator valueAnimator = this.f32951h0.U1;
+        if (valueAnimator != null && !valueAnimator.isRunning()) {
+            return;
+        }
+        yvVar.setScaleX(0.0f);
+        yvVar.setScaleY(0.0f);
     }
 }

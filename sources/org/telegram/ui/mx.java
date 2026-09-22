@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class mx extends org.telegram.ui.Components.ha {
+public final class mx extends org.telegram.ui.Components.ga {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         return false;
@@ -20,7 +20,7 @@ public final class mx extends org.telegram.ui.Components.ha {
     }
 
     @Override
-    public final int x1() {
+    public final int w1() {
         return AndroidUtilities.dp(48.0f);
     }
 

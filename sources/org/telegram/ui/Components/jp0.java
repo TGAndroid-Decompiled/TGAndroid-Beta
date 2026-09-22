@@ -1,44 +1,91 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-public final class jp0 extends LinearLayout {
-    public final sv0 f25429a;
-    public final TextView f25430b;
-    public final TextView f25431c;
+public final class jp0 extends ll0 {
+    public final int X2;
+    public final hq0 Y2;
 
-    public jp0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        setLayoutParams(new s4.p0(-1, -2));
-        setOrientation(0);
-        setGravity(16);
-        int dp = AndroidUtilities.dp(14.0f);
-        int i10 = dp / 2;
-        setPadding(dp, i10, dp, i10);
-        sv0 sv0Var = new sv0(context);
-        this.f25429a = sv0Var;
-        addView(sv0Var, w7.y5.c(40.0f, 40));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.y5.m(1.0f, 0, -1, 12, 0, 0));
-        TextView textView = new TextView(context);
-        this.f25430b = textView;
-        int i11 = org.telegram.ui.ActionBar.j6.E8;
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        textView.setTextSize(1, 16.0f);
-        textView.setTag(textView);
-        textView.setMaxLines(1);
-        linearLayout.addView(textView);
-        TextView textView2 = new TextView(context);
-        this.f25431c = textView2;
-        textView2.setTextColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), 102));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTag(textView2);
-        textView2.setMaxLines(1);
-        textView2.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(textView2);
+    public jp0(hq0 hq0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, e6Var);
+        this.X2 = i10;
+        this.Y2 = hq0Var;
+    }
+
+    @Override
+    public final boolean E0(float f7) {
+        float f10;
+        float f11;
+        switch (this.X2) {
+            case 0:
+                hq0 hq0Var = this.Y2;
+                if (hq0Var.f24764h0 && hq0Var.f24771o0[1] != null) {
+                    f10 = 111.0f;
+                } else {
+                    f10 = 58.0f;
+                }
+                if (f7 >= AndroidUtilities.dp(f10) + hq0Var.G0.f10591b) {
+                    return true;
+                }
+                return false;
+            default:
+                hq0 hq0Var2 = this.Y2;
+                if (hq0Var2.f24764h0 && hq0Var2.f24771o0[1] != null) {
+                    f11 = 111.0f;
+                } else {
+                    f11 = 58.0f;
+                }
+                if (f7 >= AndroidUtilities.dp(f11) + hq0Var2.G0.f10591b) {
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7;
+        float f10;
+        switch (this.X2) {
+            case 0:
+                hq0 hq0Var = this.Y2;
+                ll0 ll0Var = hq0Var.E;
+                if (ll0Var.getVisibility() != 8) {
+                    canvas.save();
+                    int i10 = hq0Var.f24772p0;
+                    if (hq0Var.f24764h0 && hq0Var.f24771o0[1] != null) {
+                        f7 = 111.0f;
+                    } else {
+                        f7 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f7) + i10, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (ll0Var.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
+                return;
+            default:
+                hq0 hq0Var2 = this.Y2;
+                ll0 ll0Var2 = hq0Var2.E;
+                if (ll0Var2.getVisibility() != 8) {
+                    canvas.save();
+                    int i11 = hq0Var2.f24772p0;
+                    if (hq0Var2.f24764h0 && hq0Var2.f24771o0[1] != null) {
+                        f10 = 111.0f;
+                    } else {
+                        f10 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f10) + i11, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (ll0Var2.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
+                return;
+        }
     }
 }

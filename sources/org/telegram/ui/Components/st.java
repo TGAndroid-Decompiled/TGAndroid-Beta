@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class st extends n6 {
+public final class st extends m6 {
     public final int W;
     public final EditTextBoldCursor X;
 

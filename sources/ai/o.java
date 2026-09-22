@@ -26,17 +26,17 @@ public final class o extends pq {
         lx lxVar = this.G;
         int i12 = lxVar.f539b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.j6.f19387s8;
+            i10 = org.telegram.ui.ActionBar.i6.f19110s8;
         } else {
-            i10 = org.telegram.ui.ActionBar.j6.M8;
+            i10 = org.telegram.ui.ActionBar.i6.M8;
         }
         int f7 = lxVar.f(i10);
         if (this.f1320y != f7) {
             this.f1320y = f7;
             if (i12 == 0) {
-                i11 = org.telegram.ui.ActionBar.j6.A8;
+                i11 = org.telegram.ui.ActionBar.i6.A8;
             } else {
-                i11 = org.telegram.ui.ActionBar.j6.P8;
+                i11 = org.telegram.ui.ActionBar.i6.P8;
             }
             int d = i0.a.d(0.1f, lxVar.f(i11), f7);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;

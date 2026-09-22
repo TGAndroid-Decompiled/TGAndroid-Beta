@@ -5,7 +5,7 @@ import e9.x0;
 import e9.y0;
 import e9.z;
 import j$.util.Objects;
-public final class e extends o implements Comparable {
+public final class e extends n implements Comparable {
     public final int E;
     public final int F;
     public final boolean G;
@@ -17,18 +17,18 @@ public final class e extends o implements Comparable {
     public final boolean M;
     public final boolean N;
     public final int e;
-    public final boolean f45477f;
+    public final boolean f45157f;
     public final String h;
-    public final j f45478n;
-    public final boolean f45479r;
-    public final int f45480s;
+    public final i f45158n;
+    public final boolean f45159r;
+    public final int f45160s;
     public final int v;
-    public final int f45481w;
-    public final boolean f45482x;
-    public final boolean f45483y;
+    public final int f45161w;
+    public final boolean f45162x;
+    public final boolean f45163y;
 
-    public e(int r8, b2.l1 r9, int r10, x2.j r11, int r12, boolean r13, x2.d r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: x2.e.<init>(int, b2.l1, int, x2.j, int, boolean, x2.d, int):void");
+    public e(int r8, b2.l1 r9, int r10, x2.i r11, int r12, boolean r13, x2.d r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: x2.e.<init>(int, b2.l1, int, x2.i, int, boolean, x2.d, int):void");
     }
 
     @Override
@@ -37,16 +37,16 @@ public final class e extends o implements Comparable {
     }
 
     @Override
-    public final boolean b(o oVar) {
+    public final boolean b(n nVar) {
         int i10;
         String str;
-        e eVar = (e) oVar;
+        e eVar = (e) nVar;
         b2.s sVar = eVar.d;
-        this.f45478n.getClass();
+        this.f45158n.getClass();
         b2.s sVar2 = this.d;
         int i11 = sVar2.J;
         if (i11 != -1 && i11 == sVar.J) {
-            if ((this.f45482x || ((str = sVar2.f3308r) != null && TextUtils.equals(str, sVar.f3308r))) && (i10 = sVar2.K) != -1 && i10 == sVar.K && this.L == eVar.L && this.M == eVar.M) {
+            if ((this.f45162x || ((str = sVar2.f3306r) != null && TextUtils.equals(str, sVar.f3306r))) && (i10 = sVar2.K) != -1 && i10 == sVar.K && this.L == eVar.L && this.M == eVar.M) {
                 return true;
             }
             return false;
@@ -57,24 +57,24 @@ public final class e extends o implements Comparable {
     @Override
     public final int compareTo(e eVar) {
         y0 a2;
-        boolean z10 = this.f45479r;
-        boolean z11 = this.f45477f;
+        boolean z10 = this.f45159r;
+        boolean z11 = this.f45157f;
         if (z11 && z10) {
-            a2 = q.f45520l;
+            a2 = p.f45199l;
         } else {
-            a2 = q.f45520l.a();
+            a2 = p.f45199l.a();
         }
-        boolean z12 = eVar.f45479r;
+        boolean z12 = eVar.f45159r;
         int i10 = eVar.J;
-        z c10 = z.f8145a.c(z10, z12);
+        z c10 = z.f8143a.c(z10, z12);
         Integer valueOf = Integer.valueOf(this.v);
         Integer valueOf2 = Integer.valueOf(eVar.v);
-        x0 x0Var = x0.f8143c;
-        z b10 = c10.b(valueOf, valueOf2, x0Var).a(this.f45480s, eVar.f45480s).a(this.f45481w, eVar.f45481w).c(this.G, eVar.G).c(this.f45483y, eVar.f45483y).b(Integer.valueOf(this.E), Integer.valueOf(eVar.E), x0Var).a(this.F, eVar.F).c(z11, eVar.f45477f).b(Integer.valueOf(this.K), Integer.valueOf(eVar.K), x0Var);
-        boolean z13 = this.f45478n.B;
+        x0 x0Var = x0.f8141c;
+        z b10 = c10.b(valueOf, valueOf2, x0Var).a(this.f45160s, eVar.f45160s).a(this.f45161w, eVar.f45161w).c(this.G, eVar.G).c(this.f45163y, eVar.f45163y).b(Integer.valueOf(this.E), Integer.valueOf(eVar.E), x0Var).a(this.F, eVar.F).c(z11, eVar.f45157f).b(Integer.valueOf(this.K), Integer.valueOf(eVar.K), x0Var);
+        boolean z13 = this.f45158n.B;
         int i11 = this.J;
         if (z13) {
-            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), q.f45520l.a());
+            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), p.f45199l.a());
         }
         z b11 = b10.c(this.L, eVar.L).c(this.M, eVar.M).c(this.N, eVar.N).b(Integer.valueOf(this.H), Integer.valueOf(eVar.H), a2).b(Integer.valueOf(this.I), Integer.valueOf(eVar.I), a2);
         if (Objects.equals(this.h, eVar.h)) {

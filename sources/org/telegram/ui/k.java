@@ -14,7 +14,7 @@ public final class k extends og.b {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42998f;
+        int i10 = c1Var.f42674f;
         if (i10 != 2 && i10 != 0) {
             return true;
         }
@@ -31,7 +31,7 @@ public final class k extends og.b {
         if (i10 >= 0) {
             l lVar = this.d;
             if (i10 < lVar.h.size()) {
-                return ((j) lVar.h.get(i10)).f15719a;
+                return ((j) lVar.h.get(i10)).f15531a;
             }
             return 0;
         }
@@ -48,59 +48,59 @@ public final class k extends og.b {
             j jVar = (j) arrayList.get(i10);
             int i11 = i10 + 1;
             int i12 = 0;
-            if (i11 < arrayList.size() && ((j) arrayList.get(i11)).f15719a == jVar.f15719a) {
+            if (i11 < arrayList.size() && ((j) arrayList.get(i11)).f15531a == jVar.f15531a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i13 = c1Var.f42998f;
-            View view = c1Var.f42995a;
+            int i13 = c1Var.f42674f;
+            View view = c1Var.f42671a;
             if (i13 == 0) {
-                ((org.telegram.ui.Cells.n4) view).setText(jVar.f34730c);
+                ((org.telegram.ui.Cells.m4) view).setText(jVar.f34738c);
             } else if (i13 == 2) {
-                org.telegram.ui.Cells.f9 f9Var = (org.telegram.ui.Cells.f9) view;
-                if (TextUtils.isEmpty(jVar.f34730c)) {
-                    f9Var.setFixedSize(12);
-                    f9Var.setText(null);
+                org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+                if (TextUtils.isEmpty(jVar.f34738c)) {
+                    e9Var.setFixedSize(12);
+                    e9Var.setText(null);
                     return;
                 }
-                f9Var.setFixedSize(0);
-                f9Var.setText(jVar.f34730c);
+                e9Var.setFixedSize(0);
+                e9Var.setText(jVar.f34738c);
             } else if (i13 == 1) {
-                org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) view;
+                org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
                 int i14 = jVar.d;
                 if (i14 == 1) {
                     z11 = lVar.d.keep_archived_unmuted;
-                    x8Var.setCheckBoxIcon(0);
+                    w8Var.setCheckBoxIcon(0);
                 } else if (i14 == 4) {
                     z11 = lVar.d.keep_archived_folders;
-                    x8Var.setCheckBoxIcon(0);
+                    w8Var.setCheckBoxIcon(0);
                 } else if (i14 == 7) {
                     boolean z12 = lVar.d.archive_and_mute_new_noncontact_peers;
                     if (!lVar.getUserConfig().isPremium() && !lVar.getMessagesController().autoarchiveAvailable) {
                         i12 = R.drawable.permission_locked;
                     }
-                    x8Var.setCheckBoxIcon(i12);
+                    w8Var.setCheckBoxIcon(i12);
                     z11 = z12;
                 } else {
                     return;
                 }
-                x8Var.f(jVar.f34730c, z11, z10);
+                w8Var.f(jVar.f34738c, z11, z10);
             }
         }
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View f9Var;
+        View e9Var;
         l lVar = this.d;
         if (i10 == 0) {
-            f9Var = new org.telegram.ui.Cells.n4(lVar.getParentActivity());
+            e9Var = new org.telegram.ui.Cells.m4(lVar.getParentActivity());
         } else if (i10 == 1) {
-            f9Var = new org.telegram.ui.Cells.x8(lVar.getParentActivity());
+            e9Var = new org.telegram.ui.Cells.w8(lVar.getParentActivity());
         } else {
-            f9Var = new org.telegram.ui.Cells.f9(lVar.getParentActivity());
+            e9Var = new org.telegram.ui.Cells.e9(lVar.getParentActivity());
         }
-        return new s4.c1(f9Var);
+        return new s4.c1(e9Var);
     }
 }

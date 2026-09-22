@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 public abstract class i {
-    public static final Object[] f13888a = new Object[0];
+    public static final Object[] f13678a = new Object[0];
 
     public static boolean a(Object obj, Object obj2) {
         if (obj == null) {
@@ -56,9 +56,9 @@ public abstract class i {
                 i10++;
             }
             StackTraceElement stackTraceElement = stackTrace[i10];
-            StringBuilder w10 = a4.a.w("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
-            w10.append(str);
-            NullPointerException nullPointerException = new NullPointerException(w10.toString());
+            StringBuilder x10 = a4.a.x("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
+            x10.append(str);
+            NullPointerException nullPointerException = new NullPointerException(x10.toString());
             f(nullPointerException, i.class.getName());
             throw nullPointerException;
         }
@@ -81,7 +81,7 @@ public abstract class i {
     }
 
     public static void h(String str) {
-        RuntimeException runtimeException = new RuntimeException(a4.a.p("lateinit property ", str, " has not been initialized"));
+        RuntimeException runtimeException = new RuntimeException(a4.a.q("lateinit property ", str, " has not been initialized"));
         f(runtimeException, i.class.getName());
         throw runtimeException;
     }
@@ -118,7 +118,7 @@ public abstract class i {
                 }
             }
         }
-        return f13888a;
+        return f13678a;
     }
 
     public static final Object[] j(Collection collection, Object[] objArr) {

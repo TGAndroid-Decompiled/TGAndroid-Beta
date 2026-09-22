@@ -1,81 +1,73 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SavedMessagesController;
-public final class tu0 extends s4.v {
-    public final vu0 d;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.tl.TL_stories;
+public final class tu0 extends ai.sc {
+    public final vu0 h;
 
-    public tu0(vu0 vu0Var) {
-        this.d = vu0Var;
+    public tu0(vu0 vu0Var, ai.l9 l9Var, long j3, int i10) {
+        super(i10, j3, l9Var);
+        this.h = vu0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        c1Var.f42995a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        SavedMessagesController.SavedDialog r10;
-        int l4 = s4.v.l(0, 0);
-        lv0 lv0Var = this.d.f29812x;
-        if (lv0Var.C1 && recyclerView.getAdapter() != lv0Var.S && (r10 = r(c1Var)) != null && r10.pinned) {
-            return s4.v.l(3, 0);
-        }
-        return l4;
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        vu0 vu0Var = this.d;
-        ArrayList arrayList = vu0Var.f29807f;
-        lv0 lv0Var = vu0Var.f29812x;
-        if (lv0Var.C1 && recyclerView.getAdapter() != lv0Var.S) {
-            SavedMessagesController.SavedDialog r10 = r(c1Var);
-            SavedMessagesController.SavedDialog r11 = r(c1Var2);
-            if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
-                int b10 = c1Var.b();
-                int b11 = c1Var2.b();
-                arrayList.remove(b10);
-                arrayList.add(b11, r10);
-                vu0Var.p(b10, b11);
-                vu0Var.h = true;
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        du0 du0Var;
-        vu0 vu0Var = this.d;
-        yq0 yq0Var = vu0Var.f29808n;
-        if (c1Var != null && (du0Var = vu0Var.f29810s) != null) {
-            du0Var.e1(false);
-        }
-        if (i10 == 0) {
-            AndroidUtilities.cancelRunOnUIThread(yq0Var);
-            AndroidUtilities.runOnUIThread(yq0Var, 300L);
-        }
-    }
-
-    public final SavedMessagesController.SavedDialog r(s4.c1 c1Var) {
-        int b10;
-        if (c1Var != null && (b10 = c1Var.b()) >= 0) {
-            vu0 vu0Var = this.d;
-            if (b10 < vu0Var.f29807f.size()) {
-                return (SavedMessagesController.SavedDialog) vu0Var.f29807f.get(b10);
+    public final void a(ArrayList arrayList) {
+        xr0 xr0Var;
+        MessageObject messageObject;
+        vu0 vu0Var = this.h;
+        yu0 yu0Var = vu0Var.F;
+        int i10 = 0;
+        while (true) {
+            rt0[] rt0VarArr = yu0Var.f30365k0;
+            if (i10 < rt0VarArr.length) {
+                xr0 xr0Var2 = rt0VarArr[i10].h;
+                if (xr0Var2 != null && xr0Var2.getAdapter() == vu0Var) {
+                    xr0Var = yu0Var.f30365k0[i10].h;
+                    break;
+                }
+                i10++;
+            } else {
+                xr0Var = null;
+                break;
             }
         }
-        return null;
+        if (xr0Var != null) {
+            for (int i11 = 0; i11 < xr0Var.getChildCount(); i11++) {
+                View childAt = xr0Var.getChildAt(i11);
+                if ((childAt instanceof org.telegram.ui.Cells.t7) && (messageObject = ((org.telegram.ui.Cells.t7) childAt).getMessageObject()) != null && messageObject.isStory()) {
+                    arrayList.add(Integer.valueOf(messageObject.storyItem.f18344id));
+                }
+            }
+        }
     }
 
     @Override
-    public final void q(s4.c1 c1Var) {
+    public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
+        TL_stories.StoryItem storyItem;
+        ai.d9 d9Var = this.h.f29438s;
+        ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
+        d9Var.getClass();
+        if (arrayList != null && arrayList2 != null) {
+            boolean z10 = false;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                Integer num = (Integer) arrayList.get(i10);
+                num.intValue();
+                if (i10 >= arrayList2.size()) {
+                    break;
+                }
+                TL_stories.StoryViews storyViews = arrayList2.get(i10);
+                MessageObject messageObject = (MessageObject) d9Var.f719j.get(num);
+                if (messageObject != null && (storyItem = messageObject.storyItem) != null) {
+                    storyItem.views = storyViews;
+                    z10 = true;
+                }
+            }
+            if (z10) {
+                d9Var.x();
+            }
+        }
+        return true;
     }
 }

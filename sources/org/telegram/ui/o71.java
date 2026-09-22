@@ -1,13 +1,20 @@
 package org.telegram.ui;
-public final class o71 extends s4.j {
-    public final t71 F;
 
-    public o71(t71 t71Var) {
-        this.F = t71Var;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class o71 extends s4.s0 {
+    public final r71 f36127a;
+
+    public o71(r71 r71Var) {
+        this.f36127a = r71Var;
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        t71.S(this.F);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        r71 r71Var = this.f36127a;
+        if (r71Var.d.K1) {
+            AndroidUtilities.hideKeyboard(r71Var.f37053c0);
+        }
+        r71.S(r71Var);
     }
 }

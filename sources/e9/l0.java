@@ -10,20 +10,20 @@ public final class l0 extends com.google.android.gms.common.api.internal.w {
     }
 
     public final m0 i() {
-        int i10 = this.f6183a;
+        int i10 = this.f6181a;
         if (i10 != 0) {
             if (i10 != 1) {
-                m0 u10 = m0.u(i10, this.f6185c);
-                this.f6183a = u10.size();
-                this.f6184b = true;
+                m0 u10 = m0.u(i10, this.f6183c);
+                this.f6181a = u10.size();
+                this.f6182b = true;
                 return u10;
             }
-            Object obj = this.f6185c[0];
+            Object obj = this.f6183c[0];
             Objects.requireNonNull(obj);
-            int i11 = m0.f8099c;
+            int i11 = m0.f8097c;
             return new m1(obj);
         }
-        int i12 = m0.f8099c;
-        return g1.f8077s;
+        int i12 = m0.f8097c;
+        return g1.f8075s;
     }
 }

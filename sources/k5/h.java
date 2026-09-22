@@ -196,6 +196,6 @@ public final class h extends a {
         sb2.append(", mccMnc=");
         sb2.append(this.f13476k);
         sb2.append(", applicationBuild=");
-        return a4.a.s(sb2, this.f13477l, "}");
+        return a4.a.t(sb2, this.f13477l, "}");
     }
 }

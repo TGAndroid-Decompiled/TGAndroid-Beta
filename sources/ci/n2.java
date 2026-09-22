@@ -4,18 +4,18 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.ui.Components.qr;
 public abstract class n2 {
-    public int f5062a;
-    public float f5063b;
-    public float f5064c;
+    public int f5060a;
+    public float f5061b;
+    public float f5062c;
     public float d = 0.0f;
     public int e = 0;
-    public final RectF f5065f = new RectF();
-    public final org.telegram.ui.Components.yc f5066g;
-    public final org.telegram.ui.Components.d6 h;
+    public final RectF f5063f = new RectF();
+    public final org.telegram.ui.Components.wc f5064g;
+    public final org.telegram.ui.Components.c6 h;
 
     public n2(r2 r2Var) {
-        this.f5066g = new org.telegram.ui.Components.yc(r2Var);
-        this.h = new org.telegram.ui.Components.d6(r2Var, 350L, qr.h);
+        this.f5064g = new org.telegram.ui.Components.wc(r2Var);
+        this.h = new org.telegram.ui.Components.c6(r2Var, 350L, qr.h);
     }
 
     public abstract void a(Canvas canvas, float f7, float f10);

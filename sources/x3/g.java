@@ -5,7 +5,7 @@ import c3.p;
 public interface g {
     void B(long j3);
 
-    long c(p pVar);
+    long b(p pVar);
 
-    b0 l();
+    b0 g();
 }

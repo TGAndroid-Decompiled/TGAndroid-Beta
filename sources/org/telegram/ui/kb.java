@@ -1,52 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class kb extends tb {
-    public final vb X2;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class kb extends ji.n {
+    public int W;
+    public mu0 X;
+    public final ub Y;
 
-    public kb(vb vbVar, Context context) {
-        super(context, null);
-        this.X2 = vbVar;
+    public kb(ub ubVar, jb jbVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(null, jbVar, e6Var);
+        this.Y = ubVar;
+        this.W = -1;
     }
 
     @Override
-    public final boolean drawChild(android.graphics.Canvas r12, android.view.View r13, long r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kb.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        MessageObject messageObject;
-        vb vbVar = this.X2;
-        if (vbVar.v != null && vbVar.f38523x != null && (i14 = vbVar.N0) >= 0) {
-            if (vbVar.M0 != 0) {
-                int i15 = 0;
-                while (true) {
-                    rb rbVar = vbVar.E;
-                    if (i15 < rbVar.d) {
-                        if (i15 >= rbVar.f37119f && i15 < rbVar.h) {
-                            ArrayList arrayList = rbVar.f37120n.f38511o0;
-                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - rbVar.f37119f)) - 1);
-                        } else {
-                            messageObject = null;
-                        }
-                        if (messageObject != null && messageObject.eventId == vbVar.M0) {
-                            i14 = i15;
-                            break;
-                        }
-                        i15++;
-                    } else {
-                        break;
-                    }
-                }
-            }
-            vbVar.f38523x.i1(i14, vbVar.O0, true);
-            vbVar.N0 = -1;
-            vbVar.M0 = 0L;
+    public final void N() {
+        super.N();
+        mu0 mu0Var = this.X;
+        if (mu0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(mu0Var);
         }
-        super.onLayout(z10, i10, i11, i12, i13);
+        mu0 mu0Var2 = new mu0(this, 20);
+        this.X = mu0Var2;
+        AndroidUtilities.runOnUIThread(mu0Var2);
+    }
+
+    @Override
+    public final void W() {
+        if (this.W == -1) {
+            this.W = this.Y.getNotificationCenter().setAnimationInProgress(this.W, ub.R0, false);
+        }
+        mu0 mu0Var = this.X;
+        if (mu0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(mu0Var);
+            this.X = null;
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("admin logs chatItemAnimator disable notifications");
+        }
     }
 }

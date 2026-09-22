@@ -1,18 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ha0 extends org.telegram.ui.m01 {
+import org.telegram.tgnet.TLRPC;
+public final class ha0 extends g.p {
+    public final na0 f24658c;
+
+    public ha0(na0 na0Var) {
+        this.f24658c = na0Var;
+    }
+
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
-            return;
+    public final int i(int i10) {
+        na0 na0Var = this.f24658c;
+        gg.k1 k1Var = na0Var.f26424f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = k1Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
+            }
+            if (J instanceof TLRPC.Document) {
+                return 20;
+            }
+            if (k1Var.I() != null || k1Var.U != null) {
+                i10 = i11;
+            }
+            ga0 ga0Var = na0Var.d;
+            ga0Var.B1();
+            return ga0Var.R.get(i10);
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
+        return 100;
     }
 }

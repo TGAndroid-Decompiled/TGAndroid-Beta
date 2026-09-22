@@ -1,37 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class b9 extends TextView {
-    public final Paint f32308a;
-    public final org.telegram.ui.ActionBar.f6 f32309b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class b9 extends AnimatorListenerAdapter {
+    public final AtomicBoolean f32080a;
+    public final org.telegram.ui.Components.c90 f32081b;
+    public final String f32082c;
 
-    public b9(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.f32309b = f6Var;
-        this.f32308a = new Paint(1);
+    public b9(AtomicBoolean atomicBoolean, org.telegram.ui.Components.c90 c90Var, String str) {
+        this.f32080a = atomicBoolean;
+        this.f32081b = c90Var;
+        this.f32082c = str;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int l1 = org.telegram.ui.ActionBar.j6.l1(0.8f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19511z6, this.f32309b));
-        Paint paint = this.f32308a;
-        paint.setColor(l1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.0f);
-        float height = getHeight() / 2.0f;
-        Layout layout = getLayout();
-        int i10 = 0;
-        for (int i11 = 0; i11 < layout.getLineCount(); i11++) {
-            i10 = Math.max(i10, (int) layout.getLineWidth(i11));
+    public final void onAnimationEnd(Animator animator) {
+        AtomicBoolean atomicBoolean = this.f32080a;
+        if (!atomicBoolean.get()) {
+            atomicBoolean.set(true);
+            this.f32081b.setText(this.f32082c);
         }
-        float f7 = i10 / 2.0f;
-        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f7) - AndroidUtilities.dp(8.0f), height, paint);
-        canvas.drawLine((getWidth() / 2.0f) + f7 + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
-        super.dispatchDraw(canvas);
     }
 }

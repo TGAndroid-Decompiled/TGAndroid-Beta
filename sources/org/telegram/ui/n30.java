@@ -4,11 +4,11 @@ import android.view.animation.OvershootInterpolator;
 public final class n30 extends kh.b {
     public final OvershootInterpolator d;
     public int e;
-    public final i60 f35907f;
+    public final i60 f35885f;
 
     public n30(i60 i60Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f35907f = i60Var;
+        this.f35885f = i60Var;
         this.d = new OvershootInterpolator(1.5f);
     }
 

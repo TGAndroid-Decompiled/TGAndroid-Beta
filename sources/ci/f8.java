@@ -4,18 +4,18 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class f8 extends s4.s0 {
-    public final g8 f4664a;
+    public final g8 f4662a;
 
     public f8(g8 g8Var) {
-        this.f4664a = g8Var;
+        this.f4662a = g8Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            g8 g8Var = this.f4664a;
-            if (g8Var.f4706i0) {
-                g8Var.f4706i0 = false;
+            g8 g8Var = this.f4662a;
+            if (g8Var.f4704i0) {
+                g8Var.f4704i0 = false;
             }
         }
     }
@@ -23,10 +23,10 @@ public final class f8 extends s4.s0 {
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ViewGroup viewGroup;
-        g8 g8Var = this.f4664a;
+        g8 g8Var = this.f4662a;
         g8Var.d0();
         g8Var.X();
-        if (g8Var.d.K1 && !g8Var.f4706i0) {
+        if (g8Var.d.K1 && !g8Var.f4704i0) {
             viewGroup = ((org.telegram.ui.ActionBar.f3) g8Var).containerView;
             AndroidUtilities.hideKeyboard(viewGroup);
         }

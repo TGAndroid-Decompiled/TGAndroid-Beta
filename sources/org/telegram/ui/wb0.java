@@ -1,12 +1,11 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class wb0 extends org.telegram.ui.Cells.x8 {
-    @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipRect(0, 0, getWidth(), getHeight());
-        super.onDraw(canvas);
-        canvas.restore();
-    }
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface wb0 {
+    void a(TLRPC.TL_chatInviteExported tL_chatInviteExported);
+
+    void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
+
+    void c(TLObject tLObject);
 }

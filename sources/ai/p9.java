@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.xi0;
 public final class p9 extends FrameLayout {
     public final ArrayList f1396a;
     public ValueAnimator f1397b;
@@ -46,13 +46,13 @@ public final class p9 extends FrameLayout {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.StoriesIntroHeader));
         textView.setTextSize(1, 20.0f);
-        linearLayout.addView(textView, w7.y5.n(-2, -2));
+        linearLayout.addView(textView, w7.x5.n(-2, -2));
         TextView textView2 = new TextView(context);
         textView2.setTextColor(-1761607681);
         textView2.setText(LocaleController.getString(R.string.StoriesIntroSubHeader));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
-        linearLayout.addView(textView2, w7.y5.k(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
+        linearLayout.addView(textView2, w7.x5.k(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
         ArrayList arrayList = new ArrayList(4);
         this.f1396a = arrayList;
         arrayList.add(new o9(context, R.raw.stories_intro_go_forward, LocaleController.getString(R.string.StoriesIntroGoForwardHeader), LocaleController.getString(R.string.StoriesIntroGoForwardSubHeader)));
@@ -94,8 +94,8 @@ public final class p9 extends FrameLayout {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString(R.string.StoriesIntroDismiss));
         textView3.setTextSize(1, 14.0f);
-        linearLayout.addView(textView3, w7.y5.k(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
-        addView(linearLayout, w7.y5.e(-1, -2, 17));
+        linearLayout.addView(textView3, w7.x5.k(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
+        addView(linearLayout, w7.x5.e(-1, -2, 17));
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), AndroidUtilities.makeBlurBitmap(xbVar, 12.0f, 10));
         bitmapDrawable.setColorFilter(new PorterDuffColorFilter(-587202560, PorterDuff.Mode.DST_OVER));
         imageView.setImageDrawable(bitmapDrawable);
@@ -132,16 +132,16 @@ public final class p9 extends FrameLayout {
         ArrayList arrayList = this.f1396a;
         if (i10 != -1) {
             o9 o9Var = (o9) arrayList.get(i10);
-            kj0 kj0Var = o9Var.f1358c;
-            kj0Var.M(0);
-            kj0Var.stop();
+            xi0 xi0Var = o9Var.f1358c;
+            xi0Var.M(0);
+            xi0Var.stop();
             o9Var.f1360n = 0.0f;
             o9Var.invalidate();
         }
         o9 o9Var2 = (o9) arrayList.get(this.d);
-        kj0 kj0Var2 = o9Var2.f1358c;
-        kj0Var2.M(0);
-        kj0Var2.stop();
+        xi0 xi0Var2 = o9Var2.f1358c;
+        xi0Var2.M(0);
+        xi0Var2.stop();
         o9Var2.f1360n = 0.0f;
         o9Var2.invalidate();
         c();

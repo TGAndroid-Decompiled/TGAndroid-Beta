@@ -26,7 +26,7 @@ public final class st0 extends k4 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         PhotoViewer photoViewer = this.h;
-        if (view == photoViewer.E3 && photoViewer.f31263g4) {
+        if (view == photoViewer.E3 && photoViewer.f30955g4) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -36,14 +36,14 @@ public final class st0 extends k4 {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         PhotoViewer photoViewer = this.h;
-        ImageView imageView = photoViewer.f31414x3;
+        ImageView imageView = photoViewer.f31106x3;
         if (imageView != null) {
             ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
             layoutParams.width = getMeasuredWidth();
             layoutParams.height = getMeasuredHeight();
         }
         TextureView textureView = photoViewer.B2;
-        if (textureView instanceof org.telegram.ui.Components.l71) {
+        if (textureView instanceof org.telegram.ui.Components.u61) {
             textureView.setPivotX(textureView.getMeasuredWidth() / 2);
             photoViewer.E2.setPivotX(photoViewer.B2.getMeasuredWidth() / 2);
         } else {

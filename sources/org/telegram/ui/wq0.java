@@ -1,28 +1,45 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class wq0 extends g.p {
-    public final cr0 f39244c;
+public final class wq0 extends org.telegram.ui.Components.t00 {
+    public final int U;
 
-    public wq0(cr0 cr0Var) {
-        this.f39244c = cr0Var;
+    public wq0(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.U = i10;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        cr0 cr0Var = this.f39244c;
-        if (cr0Var.L.j(i10) != 1 && !cr0Var.Y && (cr0Var.J != null || !TextUtils.isEmpty(cr0Var.v))) {
-            int i12 = cr0Var.R;
-            int i13 = cr0Var.f32863g0;
-            if (i10 % i13 != i13 - 1) {
-                i11 = AndroidUtilities.dp(2.0f);
-            } else {
-                i11 = 0;
-            }
-            return i12 + i11;
+    public int getColumnsCount() {
+        switch (this.U) {
+            case 0:
+                return 3;
+            default:
+                return super.getColumnsCount();
         }
-        return cr0Var.M.J;
+    }
+
+    @Override
+    public int getViewType() {
+        switch (this.U) {
+            case 0:
+                return 2;
+            default:
+                return super.getViewType();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.U) {
+            case 1:
+                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

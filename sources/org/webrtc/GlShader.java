@@ -54,7 +54,7 @@ public class GlShader {
             if (glGetAttribLocation >= 0) {
                 return glGetAttribLocation;
             }
-            throw new RuntimeException(a4.a.p("Could not locate '", str, "' in program"));
+            throw new RuntimeException(a4.a.q("Could not locate '", str, "' in program"));
         }
         throw new RuntimeException("The program has been released");
     }
@@ -66,7 +66,7 @@ public class GlShader {
             if (glGetUniformLocation >= 0) {
                 return glGetUniformLocation;
             }
-            throw new RuntimeException(a4.a.p("Could not locate uniform '", str, "' in program"));
+            throw new RuntimeException(a4.a.q("Could not locate uniform '", str, "' in program"));
         }
         throw new RuntimeException("The program has been released");
     }

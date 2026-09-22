@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k3 implements org.telegram.ui.web.h0 {
-    public final l3 f35044a;
+    public final l3 f35035a;
 
     public k3(l3 l3Var) {
-        this.f35044a = l3Var;
+        this.f35035a = l3Var;
     }
 
     @Override
     public final void b() {
-        u3 u3Var = this.f35044a.K.K;
+        u3 u3Var = this.f35035a.K.K;
         if (u3Var != null) {
             u3Var.dismiss(true);
         }
@@ -30,7 +30,7 @@ public final class k3 implements org.telegram.ui.web.h0 {
 
     @Override
     public final void j() {
-        l3 l3Var = this.f35044a;
+        l3 l3Var = this.f35035a;
         h4 h4Var = l3Var.K;
         u3 u3Var = h4Var.K;
         if (u3Var != null) {
@@ -39,21 +39,21 @@ public final class k3 implements org.telegram.ui.web.h0 {
                 u3Var.release();
                 u3Var.K.s();
             }
-        } else if (h4Var.f34130u0[0] == l3Var) {
+        } else if (h4Var.f34090u0[0] == l3Var) {
             h4Var.G();
         }
     }
 
     @Override
     public final void o(int i10, boolean z10) {
-        l3.a(this.f35044a, z10, i10);
+        l3.a(this.f35035a, z10, i10);
     }
 
     @Override
     public final void y() {
-        l3 l3Var = this.f35044a;
+        l3 l3Var = this.f35035a;
         h4 h4Var = l3Var.K;
-        if (h4Var.f34130u0[0] == l3Var) {
+        if (h4Var.f34090u0[0] == l3Var) {
             h4Var.G();
         }
     }

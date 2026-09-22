@@ -60,7 +60,7 @@ public class VideoCapturerDevice {
     public VideoCapturerDevice(boolean z10) {
         Logging.enableLogToDebugOutput(Logging.Severity.LS_VERBOSE);
         Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
-        AndroidUtilities.runOnUIThread(new bi.f(15, this, z10));
+        AndroidUtilities.runOnUIThread(new bi.f(14, this, z10));
     }
 
     public static void checkScreenCapturerSize() {
@@ -74,7 +74,7 @@ public class VideoCapturerDevice {
             }
             videoCapturerDevice.currentWidth = i11;
             videoCapturerDevice.currentHeight = screenCaptureSize.y;
-            videoCapturerDevice.handler.post(new ki.l(19, videoCapturerDevice, screenCaptureSize));
+            videoCapturerDevice.handler.post(new m4.g0(13, videoCapturerDevice, screenCaptureSize));
         }
     }
 
@@ -192,7 +192,7 @@ public class VideoCapturerDevice {
                     return;
                 }
                 FileLog.d("VideoCapturerDevice init(" + j3 + "): videoCapturer.switchCamera CAMERA");
-                this.handler.post(new ki.l(20, this, str2));
+                this.handler.post(new m4.g0(14, this, str2));
             }
         }
     }
@@ -282,7 +282,7 @@ public class VideoCapturerDevice {
     private static native CapturerObserver nativeGetJavaVideoCapturerObserver(long j3);
 
     private void onDestroy() {
-        hg.k0.u(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
+        hg.c.w(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
         this.nativePtr = 0L;
         AndroidUtilities.runOnUIThread(new j(this, 1));
     }

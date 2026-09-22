@@ -1,47 +1,59 @@
 package fb;
 
 import db.u;
-public final class f extends u {
-    public volatile u f9021a;
-    public final boolean f9022b;
-    public final boolean f9023c;
-    public final db.g d;
-    public final kb.a e;
-    public final g f9024f;
+import db.v;
+import java.lang.reflect.Modifier;
+import java.util.Collections;
+import java.util.List;
+import v7.m8;
+public final class f implements v, Cloneable {
+    public static final f f9022c = new f();
+    public List f9023a;
+    public final List f9024b;
 
-    public f(g gVar, boolean z10, boolean z11, db.g gVar2, kb.a aVar) {
-        this.f9024f = gVar;
-        this.f9022b = z10;
-        this.f9023c = z11;
-        this.d = gVar2;
-        this.e = aVar;
+    public f() {
+        List list = Collections.EMPTY_LIST;
+        this.f9023a = list;
+        this.f9024b = list;
+    }
+
+    public final f clone() {
+        try {
+            return (f) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    public final boolean b(Class cls, boolean z10) {
+        List<db.a> list;
+        if (!z10 && !Enum.class.isAssignableFrom(cls)) {
+            m8 m8Var = ib.c.f11068a;
+            if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
+                return true;
+            }
+        }
+        if (z10) {
+            list = this.f9023a;
+        } else {
+            list = this.f9024b;
+        }
+        for (db.a aVar : list) {
+            if (aVar.shouldSkipClass(cls)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public final Object read(lb.a aVar) {
-        if (this.f9022b) {
-            aVar.C();
+    public final u create(db.g gVar, kb.a aVar) {
+        Class cls = aVar.f13577a;
+        boolean b10 = b(cls, true);
+        boolean b11 = b(cls, false);
+        if (!b10 && !b11) {
             return null;
         }
-        u uVar = this.f9021a;
-        if (uVar == null) {
-            uVar = this.d.c(this.f9024f, this.e);
-            this.f9021a = uVar;
-        }
-        return uVar.read(aVar);
-    }
-
-    @Override
-    public final void write(lb.b bVar, Object obj) {
-        if (this.f9023c) {
-            bVar.i();
-            return;
-        }
-        u uVar = this.f9021a;
-        if (uVar == null) {
-            uVar = this.d.c(this.f9024f, this.e);
-            this.f9021a = uVar;
-        }
-        uVar.write(bVar, obj);
+        return new e(this, b11, b10, gVar, aVar);
     }
 }

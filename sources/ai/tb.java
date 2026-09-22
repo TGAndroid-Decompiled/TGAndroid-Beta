@@ -54,7 +54,7 @@ public final class tb implements GestureDetector.OnGestureListener {
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         float f11;
-        org.telegram.ui.Components.pc pcVar;
+        org.telegram.ui.Components.oc ocVar;
         jc jcVar = this.f1558a;
         if (!jcVar.f1086j0) {
             return false;
@@ -88,9 +88,9 @@ public final class tb implements GestureDetector.OnGestureListener {
                 jcVar.f1075e0 = f12 + f10;
             }
             xb xbVar = jcVar.f1104s;
-            org.telegram.ui.Components.pc pcVar2 = org.telegram.ui.Components.pc.f27304w;
-            if (pcVar2 != null && pcVar2.h == xbVar) {
-                pcVar2.b();
+            org.telegram.ui.Components.oc ocVar2 = org.telegram.ui.Components.oc.f26744w;
+            if (ocVar2 != null && ocVar2.h == xbVar) {
+                ocVar2.b();
             }
             if (jcVar.f1093n0.getCurrentPeerView() != null) {
                 jcVar.f1093n0.getCurrentPeerView().invalidate();
@@ -108,9 +108,9 @@ public final class tb implements GestureDetector.OnGestureListener {
                 f11 = 0.3f;
                 jcVar.W -= f10 * f11;
                 xb xbVar2 = jcVar.f1104s;
-                pcVar = org.telegram.ui.Components.pc.f27304w;
-                if (pcVar != null && pcVar.h == xbVar2) {
-                    pcVar.b();
+                ocVar = org.telegram.ui.Components.oc.f26744w;
+                if (ocVar != null && ocVar.h == xbVar2) {
+                    ocVar.b();
                 }
                 jc.k(jcVar);
                 return true;
@@ -119,9 +119,9 @@ public final class tb implements GestureDetector.OnGestureListener {
         f11 = 0.6f;
         jcVar.W -= f10 * f11;
         xb xbVar22 = jcVar.f1104s;
-        pcVar = org.telegram.ui.Components.pc.f27304w;
-        if (pcVar != null) {
-            pcVar.b();
+        ocVar = org.telegram.ui.Components.oc.f26744w;
+        if (ocVar != null) {
+            ocVar.b();
         }
         jc.k(jcVar);
         return true;

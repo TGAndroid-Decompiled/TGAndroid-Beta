@@ -1,44 +1,77 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
+import android.view.KeyEvent;
+import java.util.HashSet;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class ye implements Runnable {
-    public final int f39913a;
-    public final zn f39914b;
-    public final org.telegram.ui.Components.om0 f39915c;
-    public final String d;
+    public final int f39821a;
+    public final Object f39822b;
+    public final Object f39823c;
+    public final Object d;
+    public final Object e;
+    public final Object f39824f;
+    public final Object h;
+    public final Object f39825n;
 
-    public ye(zn znVar, org.telegram.ui.Components.om0 om0Var, String str, int i10) {
-        this.f39913a = i10;
-        this.f39914b = znVar;
-        this.f39915c = om0Var;
-        this.d = str;
+    public ye(KeyEvent.Callback callback, Object obj, Object obj2, String str, Object obj3, TLObject tLObject, Object obj4, int i10) {
+        this.f39821a = i10;
+        this.f39822b = callback;
+        this.d = obj;
+        this.e = obj2;
+        this.f39823c = str;
+        this.f39824f = obj3;
+        this.h = tLObject;
+        this.f39825n = obj4;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.xc a02;
-        int i10;
-        switch (this.f39913a) {
-            case 0:
-                this.f39915c.dismiss();
-                AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f39914b);
-                i10 = R.string.RelativeDateCopied;
-                break;
-            case 1:
-                this.f39915c.dismiss();
-                AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f39914b);
-                i10 = R.string.CardNumberCopied;
-                break;
-            default:
-                this.f39915c.dismiss();
-                AndroidUtilities.addToClipboard("@" + this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f39914b);
-                i10 = R.string.UsernameCopied;
-                break;
-        }
-        org.telegram.messenger.rk.o(i10, a02);
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ye.run():void");
+    }
+
+    public ye(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
+        this.f39821a = i10;
+        this.f39822b = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f39824f = obj4;
+        this.f39823c = obj5;
+        this.h = obj6;
+        this.f39825n = obj7;
+    }
+
+    public ye(Object obj, Object obj2, String str, TLObject tLObject, Object obj3, Object obj4, Object obj5, int i10) {
+        this.f39821a = i10;
+        this.f39822b = obj;
+        this.d = obj2;
+        this.f39823c = str;
+        this.e = tLObject;
+        this.f39824f = obj3;
+        this.h = obj4;
+        this.f39825n = obj5;
+    }
+
+    public ye(nn nnVar, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
+        this.f39821a = 2;
+        this.f39822b = nnVar;
+        this.d = b2Var;
+        this.f39824f = tLObject;
+        this.f39823c = hashSet;
+        this.h = tL_inputGroupCallInviteMessage;
+        this.e = messageObject;
+        this.f39825n = tL_error;
+    }
+
+    public ye(bo boVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, mg mgVar, String str, nf.e eVar) {
+        this.f39821a = 1;
+        this.f39822b = boVar;
+        this.d = tL_error;
+        this.e = tLObject;
+        this.f39824f = tLObject2;
+        this.h = mgVar;
+        this.f39823c = str;
+        this.f39825n = eVar;
     }
 }

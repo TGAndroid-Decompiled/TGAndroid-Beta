@@ -10,21 +10,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.h90;
-import org.telegram.ui.Components.r90;
-import org.telegram.ui.yg0;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.g90;
+import org.telegram.ui.Components.w80;
+import org.telegram.ui.wg0;
 public class n2 extends TextView {
-    public final int f29476a = 0;
-    public final Object f29477b;
-    public final Object f29478c;
+    public final int f29108a = 0;
+    public final Object f29109b;
+    public final Object f29110c;
     public final Object d;
 
     public n2(p2 p2Var, Activity activity, q1 q1Var) {
         super(activity);
         this.d = p2Var;
-        this.f29478c = q1Var;
-        this.f29477b = new RectF();
+        this.f29110c = q1Var;
+        this.f29109b = new RectF();
         q1Var.a(this);
     }
 
@@ -38,45 +38,45 @@ public class n2 extends TextView {
 
     public void c() {
         CharSequence text;
-        r90 r90Var = (r90) this.f29478c;
+        g90 g90Var = (g90) this.f29110c;
         Layout layout = getLayout();
         if (layout == null || (text = layout.getText()) == null) {
             return;
         }
-        h90 h90Var = new h90(0);
-        h90Var.f24753q = AndroidUtilities.dp(3.0f);
-        h90Var.f24754r = AndroidUtilities.dp(6.0f);
+        w80 w80Var = new w80(0);
+        w80Var.f29660q = AndroidUtilities.dp(3.0f);
+        w80Var.f29661r = AndroidUtilities.dp(6.0f);
         int length = text.length();
-        h90Var.d(layout, 0, 0.0f);
-        layout.getSelectionPath(0, length, h90Var);
+        w80Var.d(layout, 0, 0.0f);
+        layout.getSelectionPath(0, length, w80Var);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(h90Var.f24755s, h90Var.f24757u, h90Var.f24756t, h90Var.v);
-        ((org.telegram.ui.Cells.z) this.f29477b).setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        r90Var.f27873x = h90Var;
-        r90Var.j(4.0f);
-        int themedColor = ((yg0) this.d).getThemedColor(j6.Ld);
-        r90Var.f(j6.l1(0.85f, themedColor), j6.l1(2.0f, themedColor), j6.l1(3.5f, themedColor), j6.l1(6.0f, themedColor));
-        r90Var.k();
+        rectF.set(w80Var.f29662s, w80Var.f29664u, w80Var.f29663t, w80Var.v);
+        ((org.telegram.ui.Cells.z) this.f29109b).setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        g90Var.f24277x = w80Var;
+        g90Var.j(4.0f);
+        int themedColor = ((wg0) this.d).getThemedColor(i6.Ld);
+        g90Var.f(i6.l1(0.85f, themedColor), i6.l1(2.0f, themedColor), i6.l1(3.5f, themedColor), i6.l1(6.0f, themedColor));
+        g90Var.k();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float paddingTop;
-        switch (this.f29476a) {
+        switch (this.f29108a) {
             case 0:
-                RectF rectF = (RectF) this.f29477b;
+                RectF rectF = (RectF) this.f29109b;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                 float x10 = ((View) getParent()).getX() + getX();
                 p2 p2Var = (p2) this.d;
                 float x11 = ((View) p2Var.getParent()).getX() + p2Var.getX() + x10;
                 float y3 = ((View) p2Var.getParent()).getY() + p2Var.getY() + ((View) getParent()).getY() + getY();
-                q1 q1Var = (q1) this.f29478c;
+                q1 q1Var = (q1) this.f29110c;
                 q1Var.d(x11, y3);
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), q1Var.b());
                 super.onDraw(canvas);
                 return;
             default:
-                r90 r90Var = (r90) this.f29478c;
+                g90 g90Var = (g90) this.f29110c;
                 canvas.save();
                 if ((getGravity() & 16) != 0 && getLayout() != null) {
                     paddingTop = ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f) + getPaddingTop();
@@ -84,13 +84,13 @@ public class n2 extends TextView {
                     paddingTop = getPaddingTop();
                 }
                 canvas.translate(getPaddingLeft(), paddingTop);
-                ((org.telegram.ui.Cells.z) this.f29477b).draw(canvas);
+                ((org.telegram.ui.Cells.z) this.f29109b).draw(canvas);
                 canvas.restore();
                 super.onDraw(canvas);
-                if (a() || r90Var.c()) {
+                if (a() || g90Var.c()) {
                     canvas.save();
                     canvas.translate(getPaddingLeft(), paddingTop);
-                    r90Var.draw(canvas);
+                    g90Var.draw(canvas);
                     canvas.restore();
                     invalidate();
                     return;
@@ -101,7 +101,7 @@ public class n2 extends TextView {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f29476a) {
+        switch (this.f29108a) {
             case 1:
                 super.onLayout(z10, i10, i11, i12, i13);
                 c();
@@ -114,9 +114,9 @@ public class n2 extends TextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29476a) {
+        switch (this.f29108a) {
             case 1:
-                org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f29477b;
+                org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f29109b;
                 if (b() && motionEvent.getAction() == 0) {
                     zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
                     zVar.setState(new int[]{16842910, 16842919});
@@ -131,7 +131,7 @@ public class n2 extends TextView {
 
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f29476a) {
+        switch (this.f29108a) {
             case 1:
                 super.setText(charSequence, bufferType);
                 c();
@@ -144,9 +144,9 @@ public class n2 extends TextView {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f29476a) {
+        switch (this.f29108a) {
             case 1:
-                if (drawable != ((org.telegram.ui.Cells.z) this.f29477b) && !super.verifyDrawable(drawable)) {
+                if (drawable != ((org.telegram.ui.Cells.z) this.f29109b) && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
@@ -155,15 +155,15 @@ public class n2 extends TextView {
         }
     }
 
-    public n2(yg0 yg0Var, Context context) {
+    public n2(wg0 wg0Var, Context context) {
         super(context);
-        this.d = yg0Var;
-        org.telegram.ui.Cells.z f02 = j6.f0(j6.l1(0.1f, j6.w0(null, j6.I6, false)), 7, -1);
-        this.f29477b = f02;
-        r90 r90Var = new r90();
-        this.f29478c = r90Var;
+        this.d = wg0Var;
+        org.telegram.ui.Cells.z f02 = i6.f0(i6.l1(0.1f, i6.w0(null, i6.I6, false)), 7, -1);
+        this.f29109b = f02;
+        g90 g90Var = new g90();
+        this.f29110c = g90Var;
         f02.setCallback(this);
-        r90Var.C = true;
-        r90Var.f27871u = 0.8f;
+        g90Var.C = true;
+        g90Var.f24275u = 0.8f;
     }
 }

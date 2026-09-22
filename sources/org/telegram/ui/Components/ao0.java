@@ -1,51 +1,6 @@
 package org.telegram.ui.Components;
+public interface ao0 {
+    void b(float f7);
 
-import android.content.Context;
-public final class ao0 extends lx0 {
-    public final int K;
-    public final org.telegram.ui.ey L;
-
-    public ao0(org.telegram.ui.ey eyVar, Context context, t00 t00Var, int i10) {
-        super(context, t00Var, 1, null);
-        this.K = i10;
-        this.L = eyVar;
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        switch (this.K) {
-            case 0:
-                if (this.L.N0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 1:
-                if (this.L.N0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 2:
-                if (this.L.N0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            default:
-                if (this.L.N0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-        }
-    }
+    void d(float f7);
 }

@@ -1,37 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.ChatMessageSharedResources;
-import org.telegram.messenger.MessageObject;
-public final class xb0 extends org.telegram.ui.Cells.u1 {
-    public final zb0 Ge;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class xb0 implements View.OnClickListener {
+    public final int f29913a = 1;
+    public final boolean f29914b;
+    public final Object f29915c;
+    public final Object d;
 
-    public xb0(zb0 zb0Var, Context context, int i10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, i10, false, chatMessageSharedResources, f6Var);
-        this.Ge = zb0Var;
+    public xb0(org.telegram.ui.ot otVar, ArrayList arrayList, boolean z10) {
+        this.f29915c = otVar;
+        this.d = arrayList;
+        this.f29914b = z10;
     }
 
     @Override
-    public final void X3(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z10, boolean z11, boolean z12, boolean z13) {
-        super.X3(messageObject, groupedMessages, z10, z11, z12, z13);
-        ac0.b(this.Ge.f30871c, this);
+    public final void onClick(View view) {
+        String str;
+        switch (this.f29913a) {
+            case 0:
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f29915c;
+                Runnable runnable = (Runnable) this.d;
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (R != null) {
+                    if (this.f29914b) {
+                        str = "lastseen";
+                    } else {
+                        str = "readtime";
+                    }
+                    R.presentFragment(new PremiumPreviewFragment(0, str));
+                    f3Var.dismiss();
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                ArrayList arrayList = (ArrayList) this.d;
+                org.telegram.ui.st stVar = ((org.telegram.ui.ot) this.f29915c).f36339a;
+                if (stVar.f37483w != null && stVar.f37473l != null) {
+                    int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
+                    if (intValue == 0) {
+                        stVar.f37473l.B(stVar.W);
+                    } else if (intValue == 1) {
+                        stVar.f37473l.u(stVar.W);
+                    } else if (intValue == 2) {
+                        stVar.f37473l.u(null);
+                    } else if (intValue == 3) {
+                        stVar.f37473l.H(stVar.W);
+                    } else if (intValue == 4) {
+                        stVar.f37473l.q(stVar.W);
+                    } else if (intValue == 5) {
+                        MediaDataController.getInstance(stVar.f37479r).addRecentSticker(2, stVar.f37463b0, stVar.W, (int) (System.currentTimeMillis() / 1000), this.f29914b);
+                    }
+                    stVar.p();
+                    return;
+                }
+                return;
+        }
     }
 
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.Ge.f30871c.f22626f.invalidate();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ac0.b(this.Ge.f30871c, this);
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        super.invalidate(i10, i11, i12, i13);
-        this.Ge.f30871c.f22626f.invalidate();
+    public xb0(boolean z10, org.telegram.ui.ActionBar.f3 f3Var, Runnable runnable) {
+        this.f29914b = z10;
+        this.f29915c = f3Var;
+        this.d = runnable;
     }
 }

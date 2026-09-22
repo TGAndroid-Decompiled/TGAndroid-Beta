@@ -2,88 +2,122 @@ package v7;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Typeface;
-import j$.util.concurrent.ConcurrentHashMap;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
+import android.os.Process;
+import android.os.StrictMode;
+import android.util.Log;
+import java.io.Closeable;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 public abstract class i8 {
-    public i8() {
-        new ConcurrentHashMap();
+    public static void a(Closeable closeable) {
+        if (closeable != null) {
+            try {
+                closeable.close();
+            } catch (IOException unused) {
+            }
+        }
     }
 
-    public abstract Typeface a(Context context, h0.e eVar, Resources resources, int i10);
-
-    public abstract Typeface b(Context context, o0.i[] iVarArr, int i10);
-
-    public Typeface c(Context context, List list, int i10) {
-        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
+    public static boolean b(File file, Resources resources, int i10) {
+        InputStream inputStream;
+        try {
+            inputStream = resources.openRawResource(i10);
+            try {
+                boolean c10 = c(inputStream, file);
+                a(inputStream);
+                return c10;
+            } catch (Throwable th2) {
+                th = th2;
+                a(inputStream);
+                throw th;
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            inputStream = null;
+        }
     }
 
-    public Typeface d(Context context, InputStream inputStream) {
-        File d = j8.d(context);
-        if (d == null) {
-            return null;
+    public static boolean c(InputStream inputStream, File file) {
+        FileOutputStream fileOutputStream;
+        StrictMode.ThreadPolicy allowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
+        FileOutputStream fileOutputStream2 = null;
+        try {
+            try {
+                fileOutputStream = new FileOutputStream(file, false);
+            } catch (IOException e) {
+                e = e;
+            }
+        } catch (Throwable th2) {
+            th = th2;
         }
         try {
-            if (!j8.c(inputStream, d)) {
-                return null;
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = inputStream.read(bArr);
+                if (read != -1) {
+                    fileOutputStream.write(bArr, 0, read);
+                } else {
+                    a(fileOutputStream);
+                    StrictMode.setThreadPolicy(allowThreadDiskWrites);
+                    return true;
+                }
             }
-            return Typeface.createFromFile(d.getPath());
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            d.delete();
+        } catch (IOException e7) {
+            e = e7;
+            fileOutputStream2 = fileOutputStream;
+            Log.e("TypefaceCompatUtil", "Error copying resource contents to temp file: " + e.getMessage());
+            a(fileOutputStream2);
+            StrictMode.setThreadPolicy(allowThreadDiskWrites);
+            return false;
+        } catch (Throwable th3) {
+            th = th3;
+            fileOutputStream2 = fileOutputStream;
+            a(fileOutputStream2);
+            StrictMode.setThreadPolicy(allowThreadDiskWrites);
+            throw th;
         }
     }
 
-    public Typeface e(Context context, Resources resources, int i10, String str, int i11) {
-        File d = j8.d(context);
-        if (d == null) {
+    public static File d(Context context) {
+        File cacheDir = context.getCacheDir();
+        if (cacheDir == null) {
             return null;
         }
+        String str = ".font" + Process.myPid() + "-" + Process.myTid() + "-";
+        for (int i10 = 0; i10 < 100; i10++) {
+            File file = new File(cacheDir, str + i10);
+            if (file.createNewFile()) {
+                return file;
+            }
+        }
+        return null;
+    }
+
+    public static MappedByteBuffer e(Context context, Uri uri) {
+        ParcelFileDescriptor openFileDescriptor;
         try {
-            if (!j8.b(d, resources, i10)) {
+            openFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r", null);
+        } catch (IOException unused) {
+        }
+        if (openFileDescriptor == null) {
+            if (openFileDescriptor != null) {
+                openFileDescriptor.close();
                 return null;
             }
-            return Typeface.createFromFile(d.getPath());
-        } catch (RuntimeException unused) {
             return null;
-        } finally {
-            d.delete();
         }
-    }
-
-    public o0.i f(o0.i[] iVarArr, int i10) {
-        int i11;
-        boolean z10;
-        int i12;
-        new ob.a(10);
-        if ((i10 & 1) == 0) {
-            i11 = 400;
-        } else {
-            i11 = 700;
-        }
-        if ((i10 & 2) != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        o0.i iVar = null;
-        int i13 = Integer.MAX_VALUE;
-        for (o0.i iVar2 : iVarArr) {
-            int abs = Math.abs(iVar2.f15506c - i11) * 2;
-            if (iVar2.d == z10) {
-                i12 = 0;
-            } else {
-                i12 = 1;
-            }
-            int i14 = abs + i12;
-            if (iVar == null || i13 > i14) {
-                iVar = iVar2;
-                i13 = i14;
-            }
-        }
-        return iVar;
+        FileInputStream fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
+        FileChannel channel = fileInputStream.getChannel();
+        MappedByteBuffer map = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
+        fileInputStream.close();
+        openFileDescriptor.close();
+        return map;
     }
 }

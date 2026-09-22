@@ -1,7 +1,6 @@
 package xd;
 
 import com.google.android.gms.internal.vision.e2;
-import hg.k0;
 public abstract class j extends i {
     public static boolean b(String str, String str2) {
         kotlin.jvm.internal.i.e(str, "<this>");
@@ -38,8 +37,8 @@ public abstract class j extends i {
         }
         ud.d dVar = new ud.d(i10, length, 1);
         boolean z13 = charSequence instanceof String;
-        int i11 = dVar.f44009c;
-        int i12 = dVar.f44008b;
+        int i11 = dVar.f43682c;
+        int i12 = dVar.f43681b;
         if (z13 && e2.u(string)) {
             if ((i11 > 0 && i10 <= i12) || (i11 < 0 && i12 <= i10)) {
                 int i13 = i10;
@@ -132,7 +131,7 @@ public abstract class j extends i {
             }
             return charSequence.toString();
         }
-        throw new IllegalArgumentException(k0.i(i10, "Desired length ", " is less than zero."));
+        throw new IllegalArgumentException(hg.c.j(i10, "Desired length ", " is less than zero."));
     }
 
     public static String g(String str, String str2, String newValue) {

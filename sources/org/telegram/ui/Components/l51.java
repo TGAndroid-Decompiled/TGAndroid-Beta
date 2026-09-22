@@ -1,68 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class l51 extends oz {
-    public final u51 Y;
+import org.telegram.messenger.SharedConfig;
+public final class l51 extends MetricAffectingSpan {
+    public final CharSequence f25838a;
+    public final int f25839b;
+    public final int f25840c;
+    public final byte d;
+    public final o01 e;
 
-    public l51(u51 u51Var, int i10, k51 k51Var) {
-        super(5, i10, k51Var);
-        this.Y = u51Var;
+    public l51(CharSequence charSequence, int i10, int i11, byte b10, o01 o01Var) {
+        this.f25838a = charSequence;
+        this.f25839b = i10;
+        this.f25840c = i11;
+        this.d = b10;
+        this.e = o01Var;
     }
 
     @Override
-    public final boolean D1() {
-        u51 u51Var = this.Y;
-        if (u51Var.f28671n.getAdapter() == u51Var.v) {
-            return true;
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
+        byte b10 = this.d;
+        if (b10 == 2) {
+            textPaint.setColor(-1);
+        } else if (b10 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18875fc, false));
+        } else {
+            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.ec, false));
         }
-        return false;
+        o01 o01Var = this.e;
+        if (o01Var != null) {
+            o01Var.a(textPaint);
+            return;
+        }
+        textPaint.setTypeface(Typeface.MONOSPACE);
+        textPaint.setUnderlineText(false);
     }
 
     @Override
-    public final boolean Y0() {
-        return LocaleController.isRTL;
-    }
-
-    @Override
-    public final int o0(int i10, of.e eVar, s4.z0 z0Var) {
-        int i11;
-        View m10;
-        u51 u51Var = this.Y;
-        if (u51Var.N) {
-            return super.o0(i10, eVar, z0Var);
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        o01 o01Var = this.e;
+        if (o01Var != null) {
+            o01Var.a(textPaint);
+        } else {
+            textPaint.setTypeface(Typeface.MONOSPACE);
         }
-        int i12 = 0;
-        if (u51Var.L != null) {
-            return 0;
-        }
-        if (u51Var.M) {
-            while (true) {
-                i11 = 1;
-                if (i12 >= r()) {
-                    break;
-                }
-                k51 k51Var = u51Var.f28671n;
-                View q6 = q(i12);
-                k51Var.getClass();
-                int S = RecyclerView.S(q6);
-                if (S < 1) {
-                    i11 = S;
-                    break;
-                }
-                i12++;
-            }
-            if (i11 == 0 && (m10 = u51Var.f28672r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
-                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
-            }
-        }
-        return super.o0(i10, eVar, z0Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
     }
 }

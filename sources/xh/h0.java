@@ -7,21 +7,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.o6;
-import org.telegram.ui.pn;
-public final class h0 implements ng {
-    public final TL_stars.TL_starGiftUnique f46201a;
-    public final j0 f46202b;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.mg;
+import org.telegram.ui.Components.n6;
+import org.telegram.ui.rn;
+public final class h0 implements mg {
+    public final TL_stars.TL_starGiftUnique f45885a;
+    public final j0 f45886b;
 
     public h0(j0 j0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f46202b = j0Var;
-        this.f46201a = tL_starGiftUnique;
+        this.f45886b = j0Var;
+        this.f45885a = tL_starGiftUnique;
     }
 
     @Override
-    public final boolean D0() {
+    public final boolean C0() {
         return true;
     }
 
@@ -34,11 +34,11 @@ public final class h0 implements ng {
         int i10;
         int i11;
         boolean z10;
-        j0 j0Var = this.f46202b;
-        o6 o6Var = j0Var.f46240w;
-        a5 a5Var = j0Var.f46234b;
+        j0 j0Var = this.f45886b;
+        n6 n6Var = j0Var.f45934w;
+        z4 z4Var = j0Var.f45928b;
         i10 = ((org.telegram.ui.ActionBar.f3) j0Var).currentAccount;
-        a5Var.a(this.f46201a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f46237n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        z4Var.a(this.f45885a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f45931n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         j0Var.F = codePointCount;
         int i12 = j0Var.E;
@@ -47,49 +47,54 @@ public final class h0 implements ng {
                 i11 = -9999;
             }
             String formatNumber = LocaleController.formatNumber(i11, ',');
-            if (o6Var.getVisibility() == 0) {
+            if (n6Var.getVisibility() == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            o6Var.c(formatNumber, z10, true);
-            if (o6Var.getVisibility() != 0) {
-                o6Var.setVisibility(0);
-                o6Var.setAlpha(0.0f);
-                o6Var.setScaleX(0.5f);
-                o6Var.setScaleY(0.5f);
+            n6Var.c(formatNumber, z10, true);
+            if (n6Var.getVisibility() != 0) {
+                n6Var.setVisibility(0);
+                n6Var.setAlpha(0.0f);
+                n6Var.setScaleX(0.5f);
+                n6Var.setScaleY(0.5f);
             }
-            o6Var.animate().setListener(null).cancel();
-            o6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            n6Var.animate().setListener(null).cancel();
+            n6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                o6Var.setTextColor(j0Var.getThemedColor(j6.f19330p7));
+                n6Var.setTextColor(j0Var.getThemedColor(i6.f19053p7));
                 return;
             } else {
-                o6Var.setTextColor(j0Var.getThemedColor(j6.f19492y6));
+                n6Var.setTextColor(j0Var.getThemedColor(i6.f19215y6));
                 return;
             }
         }
-        o6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new pg.d0(this, 9));
+        n6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new qg.n0(this, 8));
     }
 
     @Override
-    public final int c1() {
+    public final int b1() {
         return 0;
     }
 
     @Override
-    public final TL_stories.StoryItem e1() {
+    public final TL_stories.StoryItem d1() {
         return null;
     }
 
     @Override
-    public final boolean g1(long j3) {
+    public final boolean f1(long j3) {
         return false;
     }
 
     @Override
-    public final boolean j1() {
+    public final boolean i1() {
         return false;
+    }
+
+    @Override
+    public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
+        a(charSequence);
     }
 
     @Override
@@ -98,13 +103,13 @@ public final class h0 implements ng {
     }
 
     @Override
-    public final void m1(CharSequence charSequence, boolean z10, boolean z11) {
-        a(charSequence);
+    public final boolean o1() {
+        return false;
     }
 
     @Override
-    public final boolean p1() {
-        return false;
+    public final rn p0() {
+        return null;
     }
 
     @Override
@@ -113,27 +118,18 @@ public final class h0 implements ng {
     }
 
     @Override
-    public final pn q0() {
-        return null;
-    }
-
-    @Override
     public final TLRPC.Peer v() {
         return null;
     }
 
     @Override
-    public final void w1(CharSequence charSequence) {
+    public final void v1(CharSequence charSequence) {
         a(charSequence);
     }
 
     @Override
-    public final boolean x1() {
+    public final boolean w1() {
         return false;
-    }
-
-    @Override
-    public final void A1() {
     }
 
     @Override
@@ -145,19 +141,19 @@ public final class h0 implements ng {
     }
 
     @Override
-    public final void F1() {
+    public final void E1() {
     }
 
     @Override
-    public final void H0() {
+    public final void G0() {
     }
 
     @Override
-    public final void K0() {
+    public final void J0() {
     }
 
     @Override
-    public final void U0() {
+    public final void T0() {
     }
 
     @Override
@@ -181,11 +177,11 @@ public final class h0 implements ng {
     }
 
     @Override
-    public final void n0() {
+    public final void m0() {
     }
 
     @Override
-    public final void o1() {
+    public final void n1() {
     }
 
     @Override
@@ -193,19 +189,19 @@ public final class h0 implements ng {
     }
 
     @Override
+    public final void q1() {
+    }
+
+    @Override
     public final void r1() {
     }
 
     @Override
+    public final void s0() {
+    }
+
+    @Override
     public final void s1() {
-    }
-
-    @Override
-    public final void t0() {
-    }
-
-    @Override
-    public final void t1() {
     }
 
     @Override
@@ -217,6 +213,10 @@ public final class h0 implements ng {
     }
 
     @Override
+    public final void z1() {
+    }
+
+    @Override
     public final void B(boolean z10) {
     }
 
@@ -225,7 +225,7 @@ public final class h0 implements ng {
     }
 
     @Override
-    public final void b1(int i10) {
+    public final void a1(int i10) {
     }
 
     @Override
@@ -241,7 +241,7 @@ public final class h0 implements ng {
     }
 
     @Override
-    public final void F0(int i10, int i11) {
+    public final void E0(int i10, int i11) {
     }
 
     @Override
@@ -249,7 +249,7 @@ public final class h0 implements ng {
     }
 
     @Override
-    public final void u1(View view, CharSequence charSequence, boolean z10) {
+    public final void t1(View view, CharSequence charSequence, boolean z10) {
     }
 
     @Override

@@ -6,36 +6,36 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.Components.nk;
 public final class t3 implements Runnable {
-    public final int f8624a = 0;
-    public final int f8625b;
-    public final TLRPC.TL_error f8626c;
+    public final int f8622a = 0;
+    public final int f8623b;
+    public final TLRPC.TL_error f8624c;
     public final TLObject d;
     public final boolean e;
-    public final long f8627f;
+    public final long f8625f;
     public final long h;
-    public final Object f8628n;
-    public final Object f8629r;
-    public final Object f8630s;
+    public final Object f8626n;
+    public final Object f8627r;
+    public final Object f8628s;
     public final Object v;
-    public final Object f8631w;
-    public final Object f8632x;
+    public final Object f8629w;
+    public final Object f8630x;
 
-    public t3(ci.d dVar, TLObject tLObject, int i10, long j3, org.telegram.ui.ActionBar.f3 f3Var, TL_payments.starRefProgram starrefprogram, long j10, boolean z10, Context context, f6 f6Var, TLRPC.User user, TLRPC.TL_error tL_error) {
-        this.f8628n = dVar;
+    public t3(ci.d dVar, TLObject tLObject, int i10, long j3, org.telegram.ui.ActionBar.f3 f3Var, TL_payments.starRefProgram starrefprogram, long j10, boolean z10, Context context, e6 e6Var, TLRPC.User user, TLRPC.TL_error tL_error) {
+        this.f8626n = dVar;
         this.d = tLObject;
-        this.f8625b = i10;
-        this.f8627f = j3;
-        this.f8629r = f3Var;
-        this.f8630s = starrefprogram;
+        this.f8623b = i10;
+        this.f8625f = j3;
+        this.f8627r = f3Var;
+        this.f8628s = starrefprogram;
         this.h = j10;
         this.e = z10;
         this.v = context;
-        this.f8631w = f6Var;
-        this.f8632x = user;
-        this.f8626c = tL_error;
+        this.f8629w = e6Var;
+        this.f8630x = user;
+        this.f8624c = tL_error;
     }
 
     @Override
@@ -44,17 +44,17 @@ public final class t3 implements Runnable {
     }
 
     public t3(nk nkVar, int i10, TLRPC.TL_error tL_error, TLObject tLObject, AccountInstance accountInstance, boolean z10, String str, ArrayList arrayList, long j3, long j10, ArrayList arrayList2, ArrayList arrayList3) {
-        this.f8628n = nkVar;
-        this.f8625b = i10;
-        this.f8626c = tL_error;
+        this.f8626n = nkVar;
+        this.f8623b = i10;
+        this.f8624c = tL_error;
         this.d = tLObject;
-        this.f8629r = accountInstance;
+        this.f8627r = accountInstance;
         this.e = z10;
-        this.f8630s = str;
+        this.f8628s = str;
         this.v = arrayList;
-        this.f8627f = j3;
+        this.f8625f = j3;
         this.h = j10;
-        this.f8631w = arrayList2;
-        this.f8632x = arrayList3;
+        this.f8629w = arrayList2;
+        this.f8630x = arrayList3;
     }
 }

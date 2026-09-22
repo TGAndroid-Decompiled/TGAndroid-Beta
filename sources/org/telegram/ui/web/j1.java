@@ -1,30 +1,28 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.ui.pj0;
+import org.telegram.messenger.Utilities;
 public final class j1 extends AsyncTask {
-    public final HashMap f38970a = new HashMap();
-    public final pj0 f38971b;
-    public Exception f38972c;
+    public final HashMap f39000a = new HashMap();
+    public final Utilities.Callback f39001b;
+    public Exception f39002c;
 
-    public j1(pj0 pj0Var) {
-        this.f38971b = pj0Var;
+    public j1(Utilities.Callback callback) {
+        this.f39001b = callback;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
+        BufferedReader bufferedReader;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f38970a.entrySet()) {
+            for (Map.Entry entry : this.f39000a.entrySet()) {
                 if (entry.getKey() != null && entry.getValue() != null) {
                     httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                 }
@@ -33,28 +31,35 @@ public final class j1 extends AsyncTask {
             httpURLConnection.setDoInput(true);
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode >= 200 && responseCode < 300) {
-                if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                    return SvgHelper.getBitmap((InputStream) new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64, false);
-                }
-                return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
+                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            } else {
+                bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
             }
-            httpURLConnection.disconnect();
-            return null;
+            StringBuilder sb2 = new StringBuilder();
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine != null) {
+                    sb2.append(readLine);
+                } else {
+                    bufferedReader.close();
+                    return sb2.toString();
+                }
+            }
         } catch (Exception e) {
-            this.f38972c = e;
+            this.f39002c = e;
             return null;
         }
     }
 
     @Override
     public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        pj0 pj0Var = this.f38971b;
-        if (pj0Var != null) {
-            if (this.f38972c == null) {
-                pj0Var.run(bitmap);
+        String str = (String) obj;
+        Utilities.Callback callback = this.f39001b;
+        if (callback != null) {
+            if (this.f39002c == null) {
+                callback.run(str);
             } else {
-                pj0Var.run(null);
+                callback.run(null);
             }
         }
     }

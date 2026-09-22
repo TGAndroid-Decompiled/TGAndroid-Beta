@@ -1,21 +1,17 @@
 package v7;
 public abstract class o7 {
-    public static long a(double d) {
-        if (b(d)) {
-            int exponent = Math.getExponent(d);
-            long doubleToRawLongBits = Double.doubleToRawLongBits(d) & 4503599627370495L;
-            if (exponent == -1023) {
-                return doubleToRawLongBits << 1;
-            }
-            return doubleToRawLongBits | 4503599627370496L;
+    public static int a(int i10, int i11) {
+        boolean z10;
+        long j3 = i10 + i11;
+        int i12 = (int) j3;
+        if (j3 == i12) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        throw new IllegalArgumentException("not a normal value");
-    }
-
-    public static boolean b(double d) {
-        if (Math.getExponent(d) <= 1023) {
-            return true;
+        if (z10) {
+            return i12;
         }
-        return false;
+        throw new ArithmeticException("overflow: checkedAdd(" + i10 + ", " + i11 + ")");
     }
 }

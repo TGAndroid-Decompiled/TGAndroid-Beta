@@ -5,31 +5,31 @@ import java.util.HashMap;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.fh;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.vi;
 public final class z implements ti {
-    public final vi f42050a;
-    public final n0 f42051b;
+    public final vi f41718a;
+    public final p0 f41719b;
 
-    public z(n0 n0Var, vi viVar) {
-        this.f42051b = n0Var;
-        this.f42050a = viVar;
+    public z(p0 p0Var, vi viVar) {
+        this.f41719b = p0Var;
+        this.f41718a = viVar;
     }
 
     @Override
-    public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        vi viVar = this.f42050a;
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        vi viVar = this.f41718a;
         try {
-            HashMap<Object, Object> selectedPhotos = viVar.f29108j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = viVar.f28759j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
                 if (str == null) {
                     str = photoEntry.path;
                 }
-                n0 n0Var = this.f42051b;
-                n0Var.f0(n0Var.h0(str, true));
+                p0 p0Var = this.f41719b;
+                p0Var.f0(p0Var.h0(str, true));
                 viVar.dismiss();
             }
         } catch (Throwable th2) {
@@ -44,29 +44,29 @@ public final class z implements ti {
     }
 
     @Override
-    public final boolean f0() {
+    public final boolean c0() {
         return false;
     }
 
     @Override
-    public final void y0(gh ghVar) {
-        ghVar.run();
+    public final void x0(fh fhVar) {
+        fhVar.run();
     }
 
     @Override
-    public final void L0() {
+    public final void K0() {
     }
 
     @Override
-    public final void V0(Object obj) {
+    public final void U0(Object obj) {
     }
 
     @Override
-    public final void k1(TLRPC.User user) {
+    public final void j1(TLRPC.User user) {
     }
 
     @Override
-    public final void v0() {
+    public final void u0() {
     }
 
     @Override

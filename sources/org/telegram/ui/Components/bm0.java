@@ -1,34 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.widget.ImageView;
-public final class bm0 extends hc {
-    public final cm0 f23039c;
+import android.view.View;
+import org.telegram.messenger.R;
+public final class bm0 implements View.OnClickListener {
+    public final int f22822a;
+    public final im0 f22823b;
 
-    public bm0(Activity activity, String str) {
-        super(activity, null);
-        this.f24778b.setText(str);
-        this.f24778b.setTranslationY(-1.0f);
-        ImageView imageView = this.f24777a;
-        cm0 cm0Var = new cm0();
-        this.f23039c = cm0Var;
-        imageView.setImageDrawable(cm0Var);
+    public bm0(im0 im0Var, int i10) {
+        this.f22822a = i10;
+        this.f22823b = im0Var;
     }
 
     @Override
-    public final void onEnterTransitionEnd() {
-        super.onEnterTransitionEnd();
-        cm0 cm0Var = this.f23039c;
-        cm0Var.getClass();
-        cm0Var.f23407g = System.currentTimeMillis();
-        cm0Var.invalidateSelf();
-    }
-
-    @Override
-    public final void onExitTransitionEnd() {
-        super.onExitTransitionEnd();
-        cm0 cm0Var = this.f23039c;
-        cm0Var.f23407g = -1L;
-        cm0Var.invalidateSelf();
+    public final void onClick(View view) {
+        switch (this.f22822a) {
+            case 0:
+                this.f22823b.f25068f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            case 1:
+                this.f22823b.f25068f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            case 2:
+                this.f22823b.f25068f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            case 3:
+                this.f22823b.f25068f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            default:
+                this.f22823b.f25068f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+        }
     }
 }

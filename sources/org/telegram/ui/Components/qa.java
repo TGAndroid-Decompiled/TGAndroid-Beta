@@ -3,280 +3,85 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.StaticLayout;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public abstract class qa extends View {
-    public final org.telegram.ui.ActionBar.f6 f27530a;
-    public final pa[] f27531b;
-    public final Paint f27532c;
-    public float d;
-    public int e;
-    public boolean f27533f;
-    public final d6 h;
-    public Utilities.Callback f27534n;
-    public boolean f27535r;
+public final class qa extends View {
+    public final Paint f27289a;
+    public float f27290b;
+    public int f27291c;
+    public int d;
+    public final RectF e;
+    public final z4.g f27292f;
+    public final int h;
+    public int f27293n;
+    public int f27294r;
 
-    public qa(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public qa(Context context, z4.g gVar, int i10) {
         super(context);
-        this.f27532c = new Paint(1);
-        this.h = new d6(this, 0L, 210L, qr.h);
-        this.f27530a = f6Var;
-        la0 la0Var = (la0) this;
-        this.f27531b = new pa[]{new pa(la0Var, 0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new pa(la0Var, 1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
-        setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        a(0.0f, false);
-    }
-
-    public final void a(float f7, boolean z10) {
-        float f10;
-        boolean z11;
-        pa[] paVarArr = this.f27531b;
-        float clamp = Utilities.clamp(f7, paVarArr.length, 0.0f);
-        this.d = clamp;
-        this.e = Math.round(clamp);
-        for (int i10 = 0; i10 < paVarArr.length; i10++) {
-            pa paVar = paVarArr[i10];
-            float abs = Math.abs(this.e - i10);
-            if (paVarArr[i10].f27297l) {
-                f10 = 0.25f;
-            } else {
-                f10 = 0.35f;
-            }
-            if (abs < f10) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            int i11 = paVar.f27296k;
-            int i12 = paVar.f27295j;
-            kj0 kj0Var = paVar.f27290b;
-            if (paVar.f27297l != z11) {
-                if (paVar.f27299n.f27531b[paVar.f27289a].f27295j != 0) {
-                    if (z11) {
-                        kj0Var.P(i12);
-                        if (kj0Var.f25711a0 >= i11 - 2) {
-                            kj0Var.N(0, false, false);
-                        }
-                        if (kj0Var.f25711a0 <= i12) {
-                            kj0Var.start();
-                        } else {
-                            kj0Var.M(i12);
-                        }
-                    } else if (kj0Var.f25711a0 >= i12 - 1) {
-                        kj0Var.P(i11 - 1);
-                        kj0Var.start();
-                    } else {
-                        kj0Var.P(0);
-                        kj0Var.M(0);
-                    }
-                } else if (z11) {
-                    kj0Var.M(0);
-                    if (z10) {
-                        kj0Var.start();
-                    }
-                }
-                paVar.f27297l = z11;
-            }
-        }
-        invalidate();
+        this.f27289a = new Paint(1);
+        new DecelerateInterpolator();
+        this.e = new RectF();
+        this.f27293n = -1;
+        this.f27294r = -1;
+        this.f27292f = gVar;
+        this.h = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.f6 f6Var;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        boolean z10;
-        float f13;
-        qa qaVar = this;
-        int i10 = org.telegram.ui.ActionBar.j6.f19109d6;
-        org.telegram.ui.ActionBar.f6 f6Var2 = qaVar.f27530a;
-        canvas.drawColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var2));
-        canvas.drawRect(0.0f, 0.0f, qaVar.getWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.j6.f19231k0);
-        int width = (qaVar.getWidth() - qaVar.getPaddingLeft()) - qaVar.getPaddingRight();
-        pa[] paVarArr = qaVar.f27531b;
-        int length = width / paVarArr.length;
-        int min = Math.min(AndroidUtilities.dp(64.0f), length);
-        float e = qaVar.h.e(qaVar.f27533f);
-        Paint paint = qaVar.f27532c;
-        float f14 = 0.0f;
-        if (e > 0.0f) {
-            f7 = 9.0f;
-            f10 = 16.0f;
-            paint.setColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var2), (int) (((Math.abs((Math.floor(qaVar.d) + 0.5d) - qaVar.d) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * e)));
-            float f15 = length;
-            float f16 = f15 / 2.0f;
-            f6Var = f6Var2;
-            f11 = 41.0f;
-            float lerp = AndroidUtilities.lerp((((float) Math.floor(qaVar.d)) * f15) + f16, (f15 * ((float) Math.ceil(qaVar.d))) + f16, qaVar.d - ((int) f13)) + qaVar.getPaddingLeft();
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f17 = min / 2.0f;
-            rectF.set(lerp - f17, AndroidUtilities.dp(9.0f), lerp + f17, AndroidUtilities.dp(41.0f));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint);
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        RectF rectF;
+        int dp;
+        AndroidUtilities.dp(5.0f);
+        int i11 = this.f27293n;
+        Paint paint = this.f27289a;
+        if (i11 >= 0) {
+            paint.setColor((org.telegram.ui.ActionBar.i6.w0(null, i11, false) & 16777215) | (-1275068416));
         } else {
-            f6Var = f6Var2;
-            f7 = 9.0f;
-            f10 = 16.0f;
-            f11 = 41.0f;
-        }
-        int i11 = 0;
-        while (i11 < paVarArr.length) {
-            pa paVar = paVarArr[i11];
-            int paddingLeft = (i11 * length) + qaVar.getPaddingLeft();
-            RectF rectF2 = paVar.h;
-            StaticLayout staticLayout = paVar.e;
-            org.telegram.ui.Cells.z zVar = paVar.f27291c;
-            kj0 kj0Var = paVar.f27290b;
-            int i12 = length;
-            rectF2.set(paddingLeft, f14, paddingLeft + length, qaVar.getHeight());
-            float min2 = 1.0f - Math.min(1.0f, Math.abs(qaVar.d - i11));
-            org.telegram.ui.ActionBar.f6 f6Var3 = f6Var;
-            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.D6, f6Var3);
-            int i13 = org.telegram.ui.ActionBar.j6.G6;
-            int d = i0.a.d(min2, v02, org.telegram.ui.ActionBar.j6.v0(i13, f6Var3));
-            paVar.d.setColor(d);
-            if (paVar.f27298m != d) {
-                paVar.f27298m = d;
-                f12 = min2;
-                kj0Var.setColorFilter(new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN));
+            if (org.telegram.ui.ActionBar.i6.A0().q()) {
+                i10 = -11184811;
             } else {
-                f12 = min2;
+                i10 = -4473925;
             }
-            Rect rect = AndroidUtilities.rectTmp2;
-            float f18 = min / 2.0f;
-            pa[] paVarArr2 = paVarArr;
-            int i14 = min;
-            rect.set((int) (rectF2.centerX() - f18), AndroidUtilities.dp(f7), (int) (rectF2.centerX() + f18), AndroidUtilities.dp(f11));
-            d6 d6Var = paVar.f27294i;
-            if (f12 > 0.6f) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            float e7 = d6Var.e(z10);
-            if (e < 1.0f) {
-                paint.setColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(i13, f6Var3), (int) ((1.0f - e) * e7 * 18.0f)));
-                RectF rectF3 = AndroidUtilities.rectTmp;
-                rectF3.set(rect);
-                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(f10), AndroidUtilities.dp(f10), paint);
-            }
-            zVar.setBounds(rect);
-            zVar.draw(canvas);
-            float dp = AndroidUtilities.dp(29.0f) / 2.0f;
-            rect.set((int) (rectF2.centerX() - dp), (int) (AndroidUtilities.dpf2(24.66f) - dp), (int) (rectF2.centerX() + dp), (int) (AndroidUtilities.dpf2(24.66f) + dp));
-            kj0Var.setBounds(rect);
-            kj0Var.draw(canvas);
-            canvas.save();
-            canvas.translate((rectF2.centerX() - (paVar.f27292f / 2.0f)) - paVar.f27293g, AndroidUtilities.dp(50.0f) - (staticLayout.getHeight() / 2.0f));
-            staticLayout.draw(canvas);
-            canvas.restore();
-            i11++;
-            qaVar = this;
-            f6Var = f6Var3;
-            length = i12;
-            paVarArr = paVarArr2;
-            min = i14;
-            f14 = 0.0f;
+            paint.setColor(i10);
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.getShadowHeight() + AndroidUtilities.dp(64.0f));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        Utilities.Callback callback;
-        if (motionEvent.getAction() == 0) {
-            this.f27535r = true;
-            return true;
-        }
-        int action = motionEvent.getAction();
-        pa[] paVarArr = this.f27531b;
-        if (action != 1 && motionEvent.getAction() != 2) {
-            if (motionEvent.getAction() == 3) {
-                for (pa paVar : paVarArr) {
-                    paVar.f27291c.setState(new int[0]);
-                }
-                this.f27535r = false;
-                return true;
-            }
-        } else {
-            float x10 = motionEvent.getX();
-            int i10 = 0;
-            while (true) {
-                if (i10 < paVarArr.length) {
-                    RectF rectF = paVarArr[i10].h;
-                    if (rectF.left < x10 && rectF.right > x10) {
-                        if (motionEvent.getAction() != 1) {
-                            if (this.f27535r) {
-                                paVarArr[i10].f27291c.setState(new int[0]);
-                            }
-                            paVarArr[i10].f27291c.setState(new int[]{16842919, 16842910});
-                        }
-                    } else {
-                        i10++;
-                    }
-                } else {
-                    i10 = -1;
-                    break;
-                }
-            }
-            for (int i11 = 0; i11 < paVarArr.length; i11++) {
-                if (i11 != i10 || motionEvent.getAction() == 1) {
-                    paVarArr[i11].f27291c.setState(new int[0]);
-                }
-            }
-            if (i10 >= 0 && this.e != i10 && (callback = this.f27534n) != null) {
-                callback.run(Integer.valueOf(i10));
-            }
-            this.f27535r = false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.f27534n = callback;
-    }
-
-    public void setProgress(float f7) {
-        a(f7, true);
-    }
-
-    public void setScrolling(boolean z10) {
-        if (this.f27533f == z10) {
-            return;
-        }
-        this.f27533f = z10;
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        int i10 = 0;
+        this.d = this.f27292f.getCurrentItem();
+        int i12 = 0;
         while (true) {
-            pa[] paVarArr = this.f27531b;
-            if (i10 < paVarArr.length) {
-                if (paVarArr[i10].f27291c == drawable) {
-                    return true;
-                }
-                i10++;
-            } else {
-                return super.verifyDrawable(drawable);
+            int i13 = this.h;
+            rectF = this.e;
+            if (i12 >= i13) {
+                break;
             }
+            if (i12 != this.d) {
+                rectF.set(AndroidUtilities.dp(11.0f) * i12, 0.0f, AndroidUtilities.dp(5.0f) + dp, AndroidUtilities.dp(5.0f));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), paint);
+            }
+            i12++;
         }
+        int i14 = this.f27294r;
+        if (i14 >= 0) {
+            paint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i14, false));
+        } else {
+            paint.setColor(-14509328);
+        }
+        int dp2 = AndroidUtilities.dp(11.0f) * this.d;
+        if (this.f27290b != 0.0f) {
+            if (this.f27291c >= this.d) {
+                rectF.set(dp2, 0.0f, (AndroidUtilities.dp(11.0f) * this.f27290b) + AndroidUtilities.dp(5.0f) + dp2, AndroidUtilities.dp(5.0f));
+            } else {
+                rectF.set(com.google.android.gms.internal.vision.e2.b(1.0f, this.f27290b, AndroidUtilities.dp(11.0f), dp2), 0.0f, AndroidUtilities.dp(5.0f) + dp2, AndroidUtilities.dp(5.0f));
+            }
+        } else {
+            rectF.set(dp2, 0.0f, AndroidUtilities.dp(5.0f) + dp2, AndroidUtilities.dp(5.0f));
+        }
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), paint);
+    }
+
+    public void setCurrentPage(int i10) {
+        this.d = i10;
+        invalidate();
     }
 }

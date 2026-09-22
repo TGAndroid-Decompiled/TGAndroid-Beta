@@ -19,18 +19,17 @@ import java.util.zip.GZIPOutputStream;
 import n6.l;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.c1;
-import v7.j0;
+import org.telegram.ui.Cells.q3;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f43209a;
-    public final pa.b f43210b;
-    public final d f43211c = new d();
+    public final Context f42882a;
+    public final pa.b f42883b;
+    public final d f42884c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f43209a = context;
-        this.f43210b = bVar;
+        this.f42882a = context;
+        this.f42883b = bVar;
     }
 
     public static URL a(String str) {
@@ -42,7 +41,7 @@ public final class c {
     }
 
     public static void b(HttpURLConnection httpURLConnection, String str, String str2, String str3) {
-        String g10;
+        String i10;
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
@@ -74,11 +73,11 @@ public final class c {
         if (!TextUtils.isEmpty(str4)) {
             Log.w("Firebase-Installations", str4);
             if (TextUtils.isEmpty(str)) {
-                g10 = "";
+                i10 = "";
             } else {
-                g10 = j0.g(", ", str);
+                i10 = q3.i(", ", str);
             }
-            Log.w("Firebase-Installations", c1.k("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, g10));
+            Log.w("Firebase-Installations", q3.j("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, i10));
         }
     }
 
@@ -112,7 +111,7 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f277c = jsonReader.nextString();
+                        a2.f278c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
@@ -140,7 +139,7 @@ public final class c {
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f277c = jsonReader.nextString();
+                a2.f278c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -150,7 +149,7 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f276b = 1;
+        a2.f277b = 1;
         return a2.c();
     }
 

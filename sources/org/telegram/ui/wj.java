@@ -5,18 +5,18 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class wj extends ji.n {
     public Runnable W;
-    public final zn X;
+    public final bo X;
 
-    public wj(zn znVar, zn znVar2, uj ujVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(znVar2, ujVar, f6Var);
-        this.X = znVar;
+    public wj(bo boVar, bo boVar2, uj ujVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(boVar2, ujVar, e6Var);
+        this.X = boVar;
     }
 
     @Override
     public final void F() {
-        zn znVar = this.X;
-        if (znVar.H9 == -1) {
-            znVar.H9 = znVar.getNotificationCenter().setAnimationInProgress(znVar.H9, zn.Mc, false);
+        bo boVar = this.X;
+        if (boVar.H9 == -1) {
+            boVar.H9 = boVar.getNotificationCenter().setAnimationInProgress(boVar.H9, bo.Mc, false);
         }
     }
 
@@ -35,8 +35,8 @@ public final class wj extends ji.n {
 
     @Override
     public final void W() {
-        zn znVar = this.X;
-        znVar.H9 = znVar.getNotificationCenter().setAnimationInProgress(znVar.H9, zn.Mc, false);
+        bo boVar = this.X;
+        boVar.H9 = boVar.getNotificationCenter().setAnimationInProgress(boVar.H9, bo.Mc, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -45,12 +45,12 @@ public final class wj extends ji.n {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("chatItemAnimator disable notifications");
         }
-        org.telegram.ui.ActionBar.v2 v2Var = znVar.Y.getAdjustPanLayoutHelper().h;
+        org.telegram.ui.ActionBar.v2 v2Var = boVar.Y.getAdjustPanLayoutHelper().h;
         AndroidUtilities.cancelRunOnUIThread(v2Var);
         v2Var.run();
-        org.telegram.ui.Components.af afVar = znVar.Y.Y3;
-        AndroidUtilities.cancelRunOnUIThread(afVar);
-        afVar.run();
+        org.telegram.ui.Components.ye yeVar = boVar.Y.X3;
+        AndroidUtilities.cancelRunOnUIThread(yeVar);
+        yeVar.run();
     }
 
     @Override

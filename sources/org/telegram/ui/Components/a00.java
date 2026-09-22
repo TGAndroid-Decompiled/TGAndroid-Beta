@@ -3,40 +3,35 @@ package org.telegram.ui.Components;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class a00 implements nl0, ol0 {
-    public final k00 f22486a;
+public final class a00 implements al0, bl0 {
+    public final k00 f22246a;
 
     public a00(k00 k00Var) {
-        this.f22486a = k00Var;
+        this.f22246a = k00Var;
     }
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        k00 k00Var = this.f22486a;
+        k00 k00Var = this.f22246a;
         e00 e00Var = k00Var.J;
-        if (!((org.telegram.ui.tw) e00Var).f37890b.f38305j2) {
+        if (!((org.telegram.ui.tw) e00Var).f37741b.f38250j2) {
             i00 i00Var = (i00) view;
-            if (k00Var.f25539n) {
+            if (k00Var.f25478n) {
                 if (i10 != 0) {
                     int dp = AndroidUtilities.dp(6.0f);
-                    RectF rectF = i00Var.f24921f;
+                    RectF rectF = i00Var.f24844f;
                     float f11 = dp;
                     if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
                         org.telegram.ui.tw twVar = (org.telegram.ui.tw) k00Var.J;
-                        twVar.d(twVar.f37890b.getMessagesController().getDialogFilters().get(i00Var.f24915b.f24392a));
+                        twVar.d(twVar.f37741b.getMessagesController().getDialogFilters().get(i00Var.f24838b.f24139a));
                     }
                 }
             } else if (i10 == k00Var.K && e00Var != null) {
-                ((org.telegram.ui.tw) e00Var).f37890b.x4(true, false);
+                ((org.telegram.ui.tw) e00Var).f37741b.x4(true, false);
             } else {
-                k00Var.f(i00Var.f24915b, i10);
+                k00Var.f(i00Var.f24838b, i10);
             }
         }
-    }
-
-    @Override
-    public boolean c1(View view) {
-        return false;
     }
 
     @Override
@@ -45,6 +40,11 @@ public final class a00 implements nl0, ol0 {
     }
 
     @Override
-    public void q0(View view, float f7, float f10) {
+    public boolean d1(View view) {
+        return false;
+    }
+
+    @Override
+    public void r0(View view, float f7, float f10) {
     }
 }

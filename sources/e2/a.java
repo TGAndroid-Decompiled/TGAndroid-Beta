@@ -11,17 +11,16 @@ import java.net.UnknownHostException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import v7.j0;
 public abstract class a {
-    public static ExecutorService f7871a;
-    public static final Object f7872b = new Object();
+    public static ExecutorService f7869a;
+    public static final Object f7870b = new Object();
 
     public static String a(String str, Throwable th2) {
         String replace;
         if (th2 == null) {
             replace = null;
         } else {
-            synchronized (f7872b) {
+            synchronized (f7870b) {
                 Throwable th3 = th2;
                 while (true) {
                     if (th3 != null) {
@@ -41,7 +40,7 @@ public abstract class a {
             }
         }
         if (!TextUtils.isEmpty(replace)) {
-            StringBuilder h = j0.h(str, "\n  ");
+            StringBuilder h = w.c.h(str, "\n  ");
             h.append(replace.replace("\n", "\n  "));
             h.append('\n');
             return h.toString();
@@ -82,19 +81,19 @@ public abstract class a {
     }
 
     public static void d(String str, String str2) {
-        synchronized (f7872b) {
+        synchronized (f7870b) {
             Log.d(str, a(str2, null));
         }
     }
 
     public static void e(String str, String str2) {
-        synchronized (f7872b) {
+        synchronized (f7870b) {
             Log.e(str, a(str2, null));
         }
     }
 
     public static void f(String str, String str2, Throwable th2) {
-        synchronized (f7872b) {
+        synchronized (f7870b) {
             Log.e(str, a(str2, th2));
         }
     }
@@ -103,11 +102,11 @@ public abstract class a {
         ExecutorService executorService;
         synchronized (a.class) {
             try {
-                if (f7871a == null) {
-                    String str = d0.f7887a;
-                    f7871a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
+                if (f7869a == null) {
+                    String str = d0.f7885a;
+                    f7869a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
                 }
-                executorService = f7871a;
+                executorService = f7869a;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -156,7 +155,7 @@ public abstract class a {
     }
 
     public static void i(String str, String str2) {
-        synchronized (f7872b) {
+        synchronized (f7870b) {
             Log.i(str, a(str2, null));
         }
     }
@@ -281,13 +280,13 @@ public abstract class a {
     }
 
     public static void n(String str, String str2) {
-        synchronized (f7872b) {
+        synchronized (f7870b) {
             Log.w(str, a(str2, null));
         }
     }
 
     public static void o(String str, String str2, Throwable th2) {
-        synchronized (f7872b) {
+        synchronized (f7870b) {
             Log.w(str, a(str2, th2));
         }
     }

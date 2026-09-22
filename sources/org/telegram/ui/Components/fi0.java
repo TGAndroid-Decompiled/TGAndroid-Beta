@@ -1,112 +1,88 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.os.Build;
-import android.widget.FrameLayout;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotchInfoUtils;
-import org.telegram.messenger.SharedConfig;
-public final class fi0 extends FrameLayout {
-    public final Paint f24232a;
-    public final Path f24233b;
-    public final ei0 f24234c;
-    public float d;
-    public float e;
-    public float f24235f;
+import org.telegram.messenger.R;
+public final class fi0 extends Drawable {
+    public final Drawable f23947a;
+    public final Drawable f23948b;
+    public final Paint f23949c;
+    public final RectF d;
+    public int e;
+    public long f23950f;
+    public float f23951g;
     public boolean h;
-    public NotchInfoUtils.NotchInfo f24236n;
+    public boolean f23952i;
 
     public fi0(Context context) {
-        super(context);
-        float f7;
         Paint paint = new Paint(1);
-        this.f24232a = paint;
-        this.f24233b = new Path();
-        paint.setColor(-16777216);
-        if (Build.VERSION.SDK_INT >= 31 && SharedConfig.getDevicePerformanceClass() >= 1) {
-            if (SharedConfig.getDevicePerformanceClass() == 2) {
+        this.f23949c = paint;
+        this.d = new RectF();
+        this.e = 0;
+        this.f23947a = context.getResources().getDrawable(R.drawable.outline_shield_plain_24).mutate();
+        this.f23948b = context.getResources().getDrawable(R.drawable.outline_shield_check).mutate();
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        this.f23950f = SystemClock.elapsedRealtime();
+    }
+
+    public final void a(Drawable drawable) {
+        Rect bounds = getBounds();
+        drawable.setBounds(org.telegram.messenger.vl.x(2, bounds.centerX(), drawable), org.telegram.messenger.vl.e(2, bounds.centerY(), drawable), org.telegram.messenger.vl.B(2, bounds.centerX(), drawable), org.telegram.messenger.vl.z(2, bounds.centerY(), drawable));
+    }
+
+    public final void b(boolean z10, boolean z11, boolean z12) {
+        float f7;
+        this.f23952i = z10;
+        this.h = z11;
+        this.f23950f = SystemClock.elapsedRealtime();
+        if (!z12) {
+            if (this.h) {
                 f7 = 1.0f;
             } else {
-                f7 = 1.5f;
+                f7 = 0.0f;
             }
-            this.f24234c = new di0(this, f7);
-        } else {
-            this.f24234c = new ci0(this);
+            this.f23951g = f7;
         }
-        setIntensity(15.0f);
-        setBlurIntensity(0.0f);
-        setWillNotDraw(false);
-    }
-
-    public static void a(fi0 fi0Var, Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, AndroidUtilities.dp(32.0f));
-        super.draw(canvas);
-        canvas.restore();
+        invalidateSelf();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (!this.h) {
-            super.draw(canvas);
-            return;
-        }
-        this.f24234c.c(new mv(this, 13), canvas);
-    }
-
-    public float getAvatarEndScale() {
-        float min;
-        int dp;
-        NotchInfoUtils.NotchInfo notchInfo = this.f24236n;
-        if (notchInfo == null) {
-            return 0.8f;
-        }
-        if (notchInfo.isLikelyCircle) {
-            min = notchInfo.bounds.width() - AndroidUtilities.dp(2.0f);
-            dp = AndroidUtilities.dp(100.0f);
-        } else {
-            min = Math.min(notchInfo.bounds.width(), this.f24236n.bounds.height());
-            dp = AndroidUtilities.dp(100.0f);
-        }
-        return Math.min(0.8f, min / dp);
+    public final void draw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fi0.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        NotchInfoUtils.NotchInfo info = NotchInfoUtils.getInfo(getContext());
-        this.f24236n = info;
-        if ((info != null && info.gravity != 17) || getWidth() > getHeight()) {
-            this.f24236n = null;
-        }
-        this.f24234c.d(i10, i11);
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
-    public void setBlurIntensity(float f7) {
-        this.f24235f = f7;
-        this.f24234c.b(f7);
-        invalidate();
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
     }
 
-    public void setGooeyEnabled(boolean z10) {
-        if (this.h == z10) {
-            return;
-        }
-        this.h = z10;
-        invalidate();
+    @Override
+    public final int getOpacity() {
+        return -2;
     }
 
-    public void setIntensity(float f7) {
-        this.d = f7;
-        this.f24234c.a(f7);
-        invalidate();
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f23947a.setColorFilter(colorFilter);
+        this.f23948b.setColorFilter(colorFilter);
+        this.f23949c.setColorFilter(colorFilter);
     }
 
-    public void setPullProgress(float f7) {
-        this.e = f7;
-        invalidate();
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

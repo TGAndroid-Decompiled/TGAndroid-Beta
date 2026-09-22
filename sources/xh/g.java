@@ -2,26 +2,26 @@ package xh;
 
 import android.view.View;
 public final class g implements View.OnClickListener {
-    public final int f46189a;
-    public final m f46190b;
+    public final int f45866a;
+    public final m f45867b;
 
     public g(m mVar, int i10) {
-        this.f46189a = i10;
-        this.f46190b = mVar;
+        this.f45866a = i10;
+        this.f45867b = mVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f46189a) {
+        switch (this.f45866a) {
             case 0:
-                this.f46190b.dismiss();
+                this.f45867b.dismiss();
                 return;
             case 1:
-                m.Q(this.f46190b);
+                m.Q(this.f45867b);
                 return;
             default:
-                m mVar = this.f46190b;
-                mVar.f46303c0.setValueAnimated((int) mVar.f46312l0.getMinimumBid());
+                m mVar = this.f45867b;
+                mVar.f45982c0.setValueAnimated((int) mVar.f45991l0.getMinimumBid());
                 return;
         }
     }

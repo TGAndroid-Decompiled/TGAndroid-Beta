@@ -1,10 +1,24 @@
 package x7;
-public final class h8 {
-    public final i8 f45764a;
-    public final s f45765b;
 
-    public h8(org.telegram.ui.Cells.f3 f3Var) {
-        this.f45764a = (i8) f3Var.f20284b;
-        this.f45765b = (s) f3Var.f20285c;
+import java.util.Arrays;
+public final class h8 {
+    public final Float f45445a;
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof h8)) {
+            return false;
+        }
+        h8 h8Var = (h8) obj;
+        if (n6.l.l(null, null) && n6.l.l(this.f45445a, h8Var.f45445a) && n6.l.l(null, null)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{null, this.f45445a, null});
     }
 }

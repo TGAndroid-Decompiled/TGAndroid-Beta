@@ -5,18 +5,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.Iterator;
 public final class c {
-    public final fh.a f419a;
-    public int f420b;
-    public int f421c;
+    public final fh.a f422a;
+    public int f423b;
+    public int f424c;
     public pe.b d;
     public pe.b e;
-    public hh.k f422f;
-    public ViewGroup f423g;
-    public li.i h;
-    public boolean f424i;
+    public hh.k f425f;
+    public ViewGroup f426g;
+    public ki.e h;
+    public boolean f427i;
 
     public c(fh.a aVar) {
-        this.f419a = aVar;
+        this.f422a = aVar;
     }
 
     public final ch.d a(View view) {
@@ -29,26 +29,26 @@ public final class c {
 
     public final ch.d c(View view, dh.a aVar, boolean z10) {
         ViewGroup viewGroup;
-        ch.d l4 = this.f419a.l();
-        if (this.f424i && Build.VERSION.SDK_INT >= 33 && (l4 instanceof ch.e)) {
+        ch.d l4 = this.f422a.l();
+        if (this.f427i && Build.VERSION.SDK_INT >= 33 && (l4 instanceof ch.e)) {
             ch.e eVar = (ch.e) l4;
-            eVar.P = new j(eVar.K);
+            eVar.P = new i(eVar.K);
         }
         l4.o(aVar);
-        int i10 = this.f420b;
-        int i11 = this.f421c;
+        int i10 = this.f423b;
+        int i11 = this.f424c;
         l4.h = i10;
-        l4.f4286i = i11;
+        l4.f4284i = i11;
         pe.b bVar = this.e;
         if (bVar != null && view != null) {
             bVar.add(view);
         }
-        li.i iVar = this.h;
-        if (iVar != null && view != null) {
-            iVar.f14353c.add(new li.h(view, l4));
+        ki.e eVar2 = this.h;
+        if (eVar2 != null && view != null) {
+            eVar2.d.add(new ki.d(view, l4));
         }
-        hh.k kVar = this.f422f;
-        if (kVar != null && (viewGroup = this.f423g) != null && view != null) {
+        hh.k kVar = this.f425f;
+        if (kVar != null && (viewGroup = this.f426g) != null && view != null) {
             kVar.d(view, viewGroup, new b(0, l4, view), z10);
         }
         pe.b bVar2 = this.d;
@@ -73,7 +73,7 @@ public final class c {
     }
 
     public final void f(hh.k kVar, ViewGroup viewGroup) {
-        this.f422f = kVar;
-        this.f423g = viewGroup;
+        this.f425f = kVar;
+        this.f426g = viewGroup;
     }
 }

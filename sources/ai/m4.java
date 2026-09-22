@@ -35,15 +35,15 @@ public final class m4 extends FrameLayout {
                     canvas.save();
                     float f7 = 0.0f;
                     canvas.translate((getMeasuredWidth() - f6Var2.R0.d()) - AndroidUtilities.dp(6.0f), 0.0f);
-                    org.telegram.ui.Components.d6 d6Var = f6Var2.T0;
+                    org.telegram.ui.Components.c6 c6Var = f6Var2.T0;
                     if (f6Var2.V0) {
                         f7 = 1.0f;
                     }
-                    float d = d6Var.d(f7, false);
+                    float d = c6Var.d(f7, false);
                     canvas.scale(d, d, f6Var2.R0.d() / 2.0f, AndroidUtilities.dp(20.0f));
-                    org.telegram.ui.Components.n6 n6Var = f6Var2.R0;
-                    n6Var.f26660w = 255;
-                    n6Var.draw(canvas);
+                    org.telegram.ui.Components.m6 m6Var = f6Var2.R0;
+                    m6Var.f26102w = 255;
+                    m6Var.draw(canvas);
                     canvas.restore();
                     return;
                 }
@@ -55,15 +55,15 @@ public final class m4 extends FrameLayout {
                     canvas.save();
                     float f10 = 0.0f;
                     canvas.translate((getMeasuredWidth() - f6Var3.Q0.d()) - AndroidUtilities.dp(6.0f), 0.0f);
-                    org.telegram.ui.Components.d6 d6Var2 = f6Var3.S0;
+                    org.telegram.ui.Components.c6 c6Var2 = f6Var3.S0;
                     if (f6Var3.U0) {
                         f10 = 1.0f;
                     }
-                    float d10 = d6Var2.d(f10, false);
+                    float d10 = c6Var2.d(f10, false);
                     canvas.scale(d10, d10, f6Var3.Q0.d() / 2.0f, AndroidUtilities.dp(20.0f));
-                    org.telegram.ui.Components.n6 n6Var2 = f6Var3.Q0;
-                    n6Var2.f26660w = 255;
-                    n6Var2.draw(canvas);
+                    org.telegram.ui.Components.m6 m6Var2 = f6Var3.Q0;
+                    m6Var2.f26102w = 255;
+                    m6Var2.draw(canvas);
                     canvas.restore();
                     return;
                 }

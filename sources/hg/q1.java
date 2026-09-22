@@ -1,74 +1,53 @@
 package hg;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.d5;
-import org.telegram.ui.Components.cw0;
-import org.telegram.ui.Components.kz;
-public final class q1 extends cw0 {
-    public final int f10395w0;
+import android.app.Activity;
+import ci.b7;
+import ei.d5;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.n2;
+public final class q1 extends org.telegram.ui.ActionBar.j {
+    public final z1 f10394a;
 
-    public q1(Context context, d5 d5Var, int i10) {
-        super(context, d5Var);
-        this.f10395w0 = i10;
+    public q1(z1 z1Var) {
+        this.f10394a = z1Var;
     }
 
     @Override
-    public boolean P() {
-        switch (this.f10395w0) {
-            case 2:
-                return false;
-            case 3:
-                return false;
-            case 4:
-            default:
-                return super.P();
-            case 5:
-                return false;
-        }
-    }
-
-    @Override
-    public void addView(View view) {
-        switch (this.f10395w0) {
-            case 4:
-                if (view instanceof kz) {
-                    ViewGroup.LayoutParams layoutParams = ((kz) view).getLayoutParams();
-                    if (layoutParams == null) {
-                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
-                    }
-                    if (layoutParams instanceof FrameLayout.LayoutParams) {
-                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
-                    }
-                    view.setLayoutParams(layoutParams);
+    public final void b(int i10) {
+        int i11;
+        int i12;
+        e6 e6Var;
+        z1 z1Var = this.f10394a;
+        ArrayList arrayList = z1Var.f10491b;
+        if (i10 == -1) {
+            if (arrayList.isEmpty()) {
+                z1Var.finishFragment();
+            } else {
+                z1.X(z1Var);
+            }
+        } else if (i10 == 1) {
+            if (arrayList.size() == 1) {
+                int intValue = ((Integer) arrayList.get(0)).intValue();
+                i11 = ((n2) z1Var).currentAccount;
+                b2 c10 = c2.f(i11).c(intValue);
+                if (c10 != null) {
+                    Activity parentActivity = z1Var.getParentActivity();
+                    i12 = ((n2) z1Var).currentAccount;
+                    e6Var = ((n2) z1Var).resourceProvider;
+                    z1.d0(parentActivity, i12, null, c10, e6Var, new b7(this, intValue, 1));
                 }
-                super.addView(view);
-                return;
-            default:
-                super.addView(view);
-                return;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: hg.q1.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f10395w0) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+            }
+        } else if (i10 == 2) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(z1Var.getParentActivity(), 0, z1Var.getResourceProvider());
+            alertDialog$Builder.f18435a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
+            alertDialog$Builder.f18435a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new d5(this, 5));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            z1Var.showDialog(alertDialog$Builder.f18435a);
         }
     }
 }

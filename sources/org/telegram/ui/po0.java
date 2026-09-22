@@ -1,91 +1,90 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import java.util.HashMap;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class po0 implements TextWatcher {
-    public final xo0 f36687a;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class po0 extends WebViewClient {
+    public final Context f36626a;
+    public final wo0 f36627b;
 
-    public po0(xo0 xo0Var) {
-        this.f36687a = xo0Var;
+    public po0(wo0 wo0Var, Context context) {
+        this.f36627b = wo0Var;
+        this.f36626a = context;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        String str;
+    public final void onPageFinished(WebView webView, String str) {
+        super.onPageFinished(webView, str);
+        wo0 wo0Var = this.f36627b;
+        wo0Var.f39342z0 = false;
+        wo0Var.H0(true, false);
+        wo0Var.K0();
+    }
+
+    @Override
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        wo0 wo0Var = this.f36627b;
+        try {
+            if (!AndroidUtilities.isSafeToShow(wo0Var.getParentActivity())) {
+                return true;
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wo0Var.getParentActivity(), 0, wo0Var.Y0);
+            alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f18435a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new pl0(this, 9));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        Uri parse;
         boolean z10;
-        String str2;
-        xo0 xo0Var = this.f36687a;
-        HashMap hashMap = xo0Var.f39669c;
-        if (xo0Var.m0) {
-            return;
+        wo0 wo0Var = this.f36627b;
+        wo0Var.f39340y = !str.equals(wo0Var.f39338x);
+        try {
+            parse = Uri.parse(str);
+        } catch (Exception unused) {
         }
-        xo0Var.m0 = true;
-        String d = gf.b.d(xo0Var.f39676f[8].getText().toString(), false);
-        xo0Var.f39676f[8].setText(d);
-        org.telegram.ui.Components.f40 f40Var = (org.telegram.ui.Components.f40) xo0Var.f39676f[9];
-        if (d.length() == 0) {
-            f40Var.setHintText((String) null);
-            f40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-        } else {
-            int i10 = 4;
-            if (d.length() > 4) {
-                while (true) {
-                    if (i10 >= 1) {
-                        String substring = d.substring(0, i10);
-                        if (((String) hashMap.get(substring)) != null) {
-                            xo0Var.f39676f[8].setText(substring);
-                            str = d.substring(i10) + xo0Var.f39676f[9].getText().toString();
-                            d = substring;
-                            z10 = true;
-                            break;
-                        }
-                        i10--;
+        if ("t.me".equals(parse.getHost())) {
+            wo0Var.t0();
+            return true;
+        }
+        if (!wo0.f39301h1.contains(parse.getScheme())) {
+            if (!wo0.f39300g1.contains(parse.getScheme())) {
+                try {
+                    if (wo0Var.getParentActivity() != null) {
+                        z10 = true;
                     } else {
-                        str = null;
                         z10 = false;
-                        break;
                     }
+                    if (z10) {
+                        wo0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
+                        return true;
+                    }
+                } catch (ActivityNotFoundException unused2) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f36626a);
+                    alertDialog$Builder.f18435a.R = wo0Var.f39327p0;
+                    alertDialog$Builder.f18435a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                    alertDialog$Builder.o();
                 }
-                if (!z10) {
-                    str = d.substring(1) + xo0Var.f39676f[9].getText().toString();
-                    EditTextBoldCursor editTextBoldCursor = xo0Var.f39676f[8];
-                    d = d.substring(0, 1);
-                    editTextBoldCursor.setText(d);
-                }
-            } else {
-                str = null;
-                z10 = false;
             }
-            String str3 = (String) hashMap.get(d);
-            if (str3 != null && xo0Var.f39663a.indexOf(str3) != -1 && (str2 = (String) xo0Var.d.get(d)) != null) {
-                f40Var.setHintText(str2.replace('X', (char) 8211));
-                f40Var.setHint((CharSequence) null);
-            } else {
-                f40Var.setHintText((String) null);
-                f40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-            }
-            if (!z10) {
-                EditTextBoldCursor editTextBoldCursor2 = xo0Var.f39676f[8];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-            }
-            if (str != null) {
-                f40Var.requestFocus();
-                f40Var.setText(str);
-                f40Var.setSelection(f40Var.length());
-            }
+            return super.shouldOverrideUrlLoading(webView, str);
         }
-        xo0Var.m0 = false;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        return true;
     }
 }

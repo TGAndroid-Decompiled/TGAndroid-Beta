@@ -6,9 +6,9 @@ public interface h1 {
 
     int N(View view);
 
-    int k(View view);
+    int d(View view);
 
-    int s();
+    int u();
 
-    int v();
+    int x();
 }

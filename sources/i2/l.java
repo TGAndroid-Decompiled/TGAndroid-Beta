@@ -3,16 +3,16 @@ package i2;
 import ai.e6;
 import android.content.Context;
 public class l {
-    public final Context f10773a;
-    public final k6.h f10774b;
-    public int f10775c = 0;
+    public final Context f10771a;
+    public final k2.c0 f10772b;
+    public int f10773c = 0;
 
     public l(Context context) {
-        this.f10773a = context;
-        this.f10774b = new k6.h(context, (char) 0);
+        this.f10771a = context;
+        this.f10772b = new k2.c0(context, 21);
     }
 
-    public k2.f0 a(Context context) {
+    public k2.g0 a(Context context) {
         return new e6(context).a();
     }
 

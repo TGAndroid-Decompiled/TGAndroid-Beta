@@ -1,27 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public class ah extends nj0 {
-    public yg f22655r;
-    public zg f22656s;
-    public final int v;
-    public final xg f22657w;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public interface ah {
+    void F(int i10, int i11, int i12, int i13, boolean z10, boolean z11);
 
-    public ah(Context context) {
-        this(context, 32);
-    }
+    boolean G();
 
-    public yg getCurrentState() {
-        return this.f22655r;
-    }
+    long I();
 
-    public final void j(org.telegram.ui.Components.yg r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ah.j(org.telegram.ui.Components.yg, boolean):void");
-    }
+    long a();
 
-    public ah(Context context, int i10) {
-        super(context);
-        this.f22657w = new xg(this, 0);
-        this.v = i10;
-    }
+    long d();
+
+    TLRPC.Chat g();
+
+    ChatObject.Call getGroupCall();
+
+    TLRPC.User i();
+
+    boolean m();
+
+    eo n();
+
+    void o();
+
+    pv0 y();
 }

@@ -2,62 +2,59 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class jg0 extends org.telegram.ui.k4 {
-    public final int h;
-    public final Object f25377n;
+public final class jg0 extends ll0 {
+    public final yf.y X2;
+    public long Y2;
+    public final pg0 Z2;
 
-    public jg0(Object obj, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f25377n = obj;
+    public jg0(pg0 pg0Var, Context context) {
+        super(context, null);
+        this.Z2 = pg0Var;
+        this.X2 = new yf.y(8);
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        MessageObject playingMessageObject;
-        switch (this.h) {
-            case 0:
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f25377n;
-                if (view == pipRoundVideoView.f22319c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
-                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.j6.f19233k2);
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
+    public final boolean E0(float f7) {
+        if (f7 >= this.Z2.E + AndroidUtilities.statusBarHeight) {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.h) {
-            case 1:
-                super.onMeasure(i10, i11);
-                r91 r91Var = (r91) this.f25377n;
-                if (r91Var.f27898f != null) {
-                    ViewGroup.LayoutParams layoutParams = r91Var.d.getLayoutParams();
-                    layoutParams.width = getMeasuredWidth();
-                    layoutParams.height = getMeasuredHeight();
-                    ImageView imageView = r91Var.e;
-                    if (imageView != null) {
-                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
-                        layoutParams2.width = getMeasuredWidth();
-                        layoutParams2.height = getMeasuredHeight();
-                        return;
-                    }
-                    return;
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        pg0 pg0Var = this.Z2;
+        if (pg0Var.L) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long abs = Math.abs(this.Y2 - elapsedRealtime);
+            if (abs > 17) {
+                abs = 16;
+            }
+            this.Y2 = elapsedRealtime;
+            pg0Var.J += (((float) abs) * pg0Var.K) / 1800.0f;
+            while (true) {
+                f7 = pg0Var.J;
+                float f10 = pg0Var.K * 2.0f;
+                if (f7 < f10) {
+                    break;
                 }
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+                pg0Var.J = f7 - f10;
+            }
+            pg0Var.I.setTranslate(f7, 0.0f);
+            pg0Var.H.setLocalMatrix(pg0Var.I);
+            f1();
+            invalidate();
         }
+        super.dispatchDraw(canvas);
+        int measuredHeight = getMeasuredHeight() - AndroidUtilities.navigationBarHeight;
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight2 = getMeasuredHeight();
+        yf.y yVar = this.X2;
+        yVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
+        yVar.b(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18922i5, this.f25969p2));
+        yVar.draw(canvas);
     }
 }

@@ -3,12 +3,12 @@ package fg;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
 public final class b {
-    public final String f9066a;
-    public final String f9067b;
+    public final String f9063a;
+    public final String f9064b;
 
     public b(String str, String str2) {
-        this.f9066a = str;
-        this.f9067b = str2;
+        this.f9063a = str;
+        this.f9064b = str2;
     }
 
     public static boolean a(b bVar, b bVar2) {
@@ -36,7 +36,7 @@ public final class b {
     }
 
     public final boolean b() {
-        if (TextUtils.isEmpty(this.f9066a) && TextUtils.isEmpty(this.f9067b)) {
+        if (TextUtils.isEmpty(this.f9063a) && TextUtils.isEmpty(this.f9064b)) {
             return true;
         }
         return false;
@@ -45,7 +45,7 @@ public final class b {
     public final boolean equals(Object obj) {
         if (obj instanceof b) {
             b bVar = (b) obj;
-            if (TextUtils.equals(this.f9066a, bVar.f9066a) && TextUtils.equals(this.f9067b, bVar.f9067b)) {
+            if (TextUtils.equals(this.f9063a, bVar.f9063a) && TextUtils.equals(this.f9064b, bVar.f9064b)) {
                 return true;
             }
         }
@@ -55,13 +55,13 @@ public final class b {
     public final int hashCode() {
         int i10;
         int i11 = 0;
-        String str = this.f9066a;
+        String str = this.f9063a;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        String str2 = this.f9067b;
+        String str2 = this.f9064b;
         if (str2 != null) {
             i11 = str2.hashCode();
         }

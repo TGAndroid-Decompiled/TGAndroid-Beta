@@ -7,30 +7,30 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Shader;
 import android.view.View;
 public final class q20 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27482a;
-    public final int f27483b;
-    public final int f27484c;
+    public final int f27229a;
+    public final int f27230b;
+    public final int f27231c;
     public final int d;
     public final int e;
-    public final View f27485f;
+    public final View f27232f;
 
     public q20(View view, int i10, int i11, int i12, int i13, int i14) {
-        this.f27482a = i14;
-        this.f27485f = view;
-        this.f27483b = i10;
-        this.f27484c = i11;
+        this.f27229a = i14;
+        this.f27232f = view;
+        this.f27230b = i10;
+        this.f27231c = i11;
         this.d = i12;
         this.e = i13;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f27482a;
+        int i10 = this.f27229a;
         int i11 = this.e;
         int i12 = this.d;
-        int i13 = this.f27484c;
-        int i14 = this.f27483b;
-        View view = this.f27485f;
+        int i13 = this.f27231c;
+        int i14 = this.f27230b;
+        View view = this.f27232f;
         switch (i10) {
             case 0:
                 r20 r20Var = (r20) view;
@@ -38,7 +38,7 @@ public final class q20 implements ValueAnimator.AnimatorUpdateListener {
                 r20Var.M = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
                 r20Var.F.setColorFilter(new PorterDuffColorFilter(r20Var.L, PorterDuff.Mode.MULTIPLY));
                 r20Var.E.setColor(r20Var.L);
-                r20Var.f27768r.setColor(r20Var.M);
+                r20Var.f27517r.setColor(r20Var.M);
                 r20Var.J.d(i0.a.k(r20Var.M, 38));
                 r20Var.invalidate();
                 return;
@@ -56,13 +56,13 @@ public final class q20 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             default:
-                yh.l8 l8Var = (yh.l8) view;
-                l8Var.getClass();
+                yh.m8 m8Var = (yh.m8) view;
+                m8Var.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l8Var.f47743r = i0.a.d(floatValue2, i14, i13);
-                l8Var.f47744s = i0.a.d(floatValue2, i12, i11);
-                l8Var.f47747y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{l8Var.f47743r, l8Var.f47744s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                l8Var.invalidate();
+                m8Var.f47442r = i0.a.d(floatValue2, i14, i13);
+                m8Var.f47443s = i0.a.d(floatValue2, i12, i11);
+                m8Var.f47446y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{m8Var.f47442r, m8Var.f47443s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                m8Var.invalidate();
                 return;
         }
     }

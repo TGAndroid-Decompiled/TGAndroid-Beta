@@ -10,42 +10,42 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.rk;
+import org.telegram.messenger.vl;
 public final class x1 extends FrameLayout {
-    public final TextView f19906a;
-    public final ImageView f19907b;
+    public final TextView f19668a;
+    public final ImageView f19669b;
 
-    public x1(Context context, f6 f6Var) {
+    public x1(Context context, e6 e6Var) {
         super(context);
         int i10;
-        setBackground(j6.f0(j6.v0(j6.I5, f6Var), 2, -1));
+        setBackground(i6.f0(i6.v0(i6.I5, e6Var), 2, -1));
         setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
         ImageView imageView = new ImageView(context);
-        this.f19907b = imageView;
+        this.f19669b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.J5, f6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.J5, e6Var), PorterDuff.Mode.MULTIPLY));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        addView(imageView, w7.y5.e(-2, 40, i10 | 16));
+        addView(imageView, w7.x5.e(-2, 40, i10 | 16));
         TextView textView = new TextView(context);
-        this.f19906a = textView;
+        this.f19668a = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        rk.n(j6.f19216j5, f6Var, textView, 1, 16.0f);
-        addView(textView, w7.y5.e(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
+        vl.o(i6.f18940j5, e6Var, textView, 1, 16.0f);
+        addView(textView, w7.x5.e(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
     }
 
     public final void a(int i10, CharSequence charSequence) {
         int dp;
         int i11;
-        TextView textView = this.f19906a;
+        TextView textView = this.f19668a;
         textView.setText(charSequence);
-        ImageView imageView = this.f19907b;
+        ImageView imageView = this.f19669b;
         if (i10 != 0) {
             imageView.setImageResource(i10);
             imageView.setVisibility(0);
@@ -72,10 +72,10 @@ public final class x1 extends FrameLayout {
     }
 
     public void setGravity(int i10) {
-        this.f19906a.setGravity(i10);
+        this.f19668a.setGravity(i10);
     }
 
     public void setTextColor(int i10) {
-        this.f19906a.setTextColor(i10);
+        this.f19668a.setTextColor(i10);
     }
 }

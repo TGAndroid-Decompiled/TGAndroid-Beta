@@ -8,19 +8,19 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
 public final class gg implements Runnable {
-    public final int f16477a;
-    public final long f16478b;
-    public final boolean f16479c;
+    public final int f16231a;
+    public final long f16232b;
+    public final boolean f16233c;
     public final int d;
     public final Object e;
-    public final Object f16480f;
+    public final Object f16234f;
 
     public gg(BaseController baseController, long j3, List list, boolean z10, int i10, int i11) {
-        this.f16477a = i11;
+        this.f16231a = i11;
         this.e = baseController;
-        this.f16478b = j3;
-        this.f16480f = list;
-        this.f16479c = z10;
+        this.f16232b = j3;
+        this.f16234f = list;
+        this.f16233c = z10;
         this.d = i10;
     }
 
@@ -28,15 +28,15 @@ public final class gg implements Runnable {
     public final void run() {
         ai.u9 u9Var;
         TL_stories.StoryItem storyItem;
-        int i10 = this.f16477a;
-        Object obj = this.f16480f;
+        int i10 = this.f16231a;
+        Object obj = this.f16234f;
         Object obj2 = this.e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj2).lambda$saveTopics$47(this.f16478b, (List) obj, this.f16479c, this.d);
+                ((MessagesStorage) obj2).lambda$saveTopics$47(this.f16232b, (List) obj, this.f16233c, this.d);
                 return;
             case 1:
-                ((TopicsController) obj2).lambda$loadTopics$0(this.f16478b, (ArrayList) obj, this.f16479c, this.d);
+                ((TopicsController) obj2).lambda$loadTopics$0(this.f16232b, (ArrayList) obj, this.f16233c, this.d);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj2;
@@ -48,7 +48,7 @@ public final class gg implements Runnable {
                     while (true) {
                         u9Var = null;
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f18578id == this.d) {
+                            if (tL_stories_stories.stories.get(i11).f18344id == this.d) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -58,7 +58,7 @@ public final class gg implements Runnable {
                         }
                     }
                     if (storyItem != null) {
-                        long j3 = this.f16478b;
+                        long j3 = this.f16232b;
                         storyItem.dialogId = j3;
                         org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                         if (R != null) {
@@ -72,7 +72,7 @@ public final class gg implements Runnable {
                             R.getOrCreateStoryViewer().v();
                             ArrayList arrayList = new ArrayList();
                             arrayList.add(Long.valueOf(j3));
-                            if (this.f16479c) {
+                            if (this.f16233c) {
                                 R.getOrCreateStoryViewer().f1115w1 = true;
                             }
                             R.getOrCreateStoryViewer().G(launchActivity, storyItem, arrayList, 0, null, null, u9Var2, false);
@@ -81,17 +81,17 @@ public final class gg implements Runnable {
                         return;
                     }
                 }
-                org.telegram.ui.Components.xc.X().Q(R.raw.error, 36, LocaleController.getString(R.string.StoryNotFound)).k(false);
+                org.telegram.ui.Components.vc.X().Q(R.raw.error, 36, LocaleController.getString(R.string.StoryNotFound)).k(false);
                 return;
         }
     }
 
     public gg(LaunchActivity launchActivity, TLObject tLObject, int i10, long j3, boolean z10) {
-        this.f16477a = 2;
+        this.f16231a = 2;
         this.e = launchActivity;
-        this.f16480f = tLObject;
+        this.f16234f = tLObject;
         this.d = i10;
-        this.f16478b = j3;
-        this.f16479c = z10;
+        this.f16232b = j3;
+        this.f16233c = z10;
     }
 }

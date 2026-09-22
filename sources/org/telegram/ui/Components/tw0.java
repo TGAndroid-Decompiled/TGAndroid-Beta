@@ -1,42 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class tw0 {
-    public MessagesController.PeerColor f28543a;
-    public org.telegram.ui.ActionBar.f6 f28544b;
-    public int f28545c;
-    public int d;
-    public float e;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class tw0 implements RequestDelegate {
+    public final int f28198a;
+    public final Utilities.Callback4 f28199b;
 
-    public final void a(MessagesController.PeerColor peerColor) {
-        int b10;
-        int i10;
-        this.f28543a = peerColor;
-        if (peerColor == null) {
-            this.f28545c = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.A8, this.f28544b);
-            this.d = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19387s8, this.f28544b);
-            this.f28545c = i0.a.d(this.e, this.f28545c, 603979776);
-            this.d = i0.a.d(this.e, this.d, -1);
-            return;
+    public tw0(Utilities.Callback4 callback4, int i10) {
+        this.f28198a = i10;
+        this.f28199b = callback4;
+    }
+
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f28198a) {
+            case 0:
+                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
+                Utilities.Callback4 callback4 = this.f28199b;
+                if (z10) {
+                    Boolean bool = Boolean.TRUE;
+                    callback4.run(bool, null, 0L, bool);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
+                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
+                    callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
+                    return;
+                }
+            default:
+                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
+                Utilities.Callback4 callback42 = this.f28199b;
+                if (z11) {
+                    Boolean bool2 = Boolean.TRUE;
+                    callback42.run(bool2, null, 0L, bool2);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_emojiList) {
+                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
+                    callback42.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    callback42.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
+                    return;
+                }
         }
-        int bgColor1 = peerColor.getBgColor1(org.telegram.ui.ActionBar.j6.I.q());
-        int bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.j6.I.q());
-        org.telegram.ui.ActionBar.f6 f6Var = this.f28544b;
-        int d = i0.a.d(0.75f, bgColor2, bgColor1);
-        if (AndroidUtilities.computePerceivedBrightness(d) > 0.721f) {
-            b10 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19440v6, f6Var);
-        } else {
-            b10 = org.telegram.ui.ActionBar.j6.b(0.08f, -0.08f, d);
-        }
-        this.f28545c = b10;
-        if (AndroidUtilities.computePerceivedBrightness(b10) > 0.721f) {
-            i10 = -16777216;
-        } else {
-            i10 = -1;
-        }
-        this.d = i10;
-        this.f28545c = i0.a.d(this.e, this.f28545c, 603979776);
-        this.d = i0.a.d(this.e, this.d, -1);
     }
 }

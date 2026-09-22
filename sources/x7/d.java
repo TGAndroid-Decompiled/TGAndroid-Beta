@@ -2,17 +2,17 @@ package x7;
 
 import java.util.Map;
 public abstract class d implements Map.Entry {
-    public final int f45694a;
+    public final int f45374a;
 
     @Override
     public final boolean equals(Object obj) {
-        switch (this.f45694a) {
+        switch (this.f45374a) {
             case 0:
                 if (!(obj instanceof Map.Entry)) {
                     return false;
                 }
                 Map.Entry entry = (Map.Entry) obj;
-                if (!w7.m8.a(getKey(), entry.getKey()) || !w7.m8.a(getValue(), entry.getValue())) {
+                if (!w7.l8.a(getKey(), entry.getKey()) || !w7.l8.a(getValue(), entry.getValue())) {
                     return false;
                 }
                 return true;
@@ -21,7 +21,7 @@ public abstract class d implements Map.Entry {
                     return false;
                 }
                 Map.Entry entry2 = (Map.Entry) obj;
-                if (!w7.j9.a(getKey(), entry2.getKey()) || !w7.j9.a(getValue(), entry2.getValue())) {
+                if (!w7.i9.a(getKey(), entry2.getKey()) || !w7.i9.a(getValue(), entry2.getValue())) {
                     return false;
                 }
                 return true;
@@ -32,7 +32,7 @@ public abstract class d implements Map.Entry {
     public final int hashCode() {
         int hashCode;
         int hashCode2;
-        switch (this.f45694a) {
+        switch (this.f45374a) {
             case 0:
                 Object key = getKey();
                 Object value = getValue();
@@ -63,15 +63,15 @@ public abstract class d implements Map.Entry {
     }
 
     public final String toString() {
-        switch (this.f45694a) {
+        switch (this.f45374a) {
             case 0:
                 return getKey() + "=" + getValue();
             default:
-                return a4.a.C(String.valueOf(getKey()), "=", String.valueOf(getValue()));
+                return a4.a.D(String.valueOf(getKey()), "=", String.valueOf(getValue()));
         }
     }
 
     public d(int i10, boolean z10) {
-        this.f45694a = i10;
+        this.f45374a = i10;
     }
 }

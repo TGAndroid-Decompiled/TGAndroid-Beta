@@ -2,15 +2,15 @@ package q9;
 
 import java.util.Set;
 public interface b {
-    Object b(Class cls);
+    Object a(Class cls);
 
-    q c(s sVar);
+    p b(r rVar);
 
-    pa.b e(Class cls);
+    pa.b c(Class cls);
 
-    pa.b i(s sVar);
+    pa.b e(r rVar);
 
-    Set l(s sVar);
+    Set f(r rVar);
 
-    Object m(s sVar);
+    Object i(r rVar);
 }

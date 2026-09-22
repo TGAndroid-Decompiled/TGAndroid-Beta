@@ -1,46 +1,46 @@
 package org.telegram.ui;
 public final class ri extends org.telegram.ui.ActionBar.n1 {
-    public final org.telegram.ui.Components.sk0 f37196o;
-    public final zn f37197p;
+    public final org.telegram.ui.Components.fk0 f37138o;
+    public final bo f37139p;
 
-    public ri(zn znVar, eb ebVar, org.telegram.ui.Components.sk0 sk0Var) {
-        super(ebVar, -2, -2);
-        this.f37197p = znVar;
-        this.f37196o = sk0Var;
+    public ri(bo boVar, db dbVar, org.telegram.ui.Components.fk0 fk0Var) {
+        super(dbVar, -2, -2);
+        this.f37139p = boVar;
+        this.f37138o = fk0Var;
     }
 
     @Override
     public final void d(boolean z10) {
         super.d(true);
-        org.telegram.ui.Components.sk0 sk0Var = this.f37196o;
-        if (sk0Var != null) {
-            sk0Var.d();
+        org.telegram.ui.Components.fk0 fk0Var = this.f37138o;
+        if (fk0Var != null) {
+            fk0Var.d();
         }
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        zn znVar = this.f37197p;
-        if (znVar.Q8 == this) {
-            org.telegram.ui.Components.pc pcVar = org.telegram.ui.Components.pc.f27304w;
-            org.telegram.ui.Components.pc pcVar2 = znVar.f40426n1;
-            if (pcVar == pcVar2 && pcVar2 != null) {
-                pcVar2.b();
-                znVar.f40426n1 = null;
+        bo boVar = this.f37139p;
+        if (boVar.Q8 == this) {
+            org.telegram.ui.Components.oc ocVar = org.telegram.ui.Components.oc.f26744w;
+            org.telegram.ui.Components.oc ocVar2 = boVar.f32394n1;
+            if (ocVar == ocVar2 && ocVar2 != null) {
+                ocVar2.b();
+                boVar.f32394n1 = null;
             }
-            znVar.Q8 = null;
-            znVar.T8 = null;
-            znVar.S8 = null;
-            znVar.f40576z0.R = true;
-            if (znVar.R8) {
-                znVar.g8(false, true, 0.0f);
+            boVar.Q8 = null;
+            boVar.T8 = null;
+            boVar.S8 = null;
+            boVar.f32544z0.R = true;
+            if (boVar.R8) {
+                boVar.g8(false, true, 0.0f);
             } else {
-                znVar.R8 = true;
+                boVar.R8 = true;
             }
-            mk mkVar = znVar.Y;
+            mk mkVar = boVar.Y;
             if (mkVar != null && mkVar.getEditField() != null) {
-                znVar.Y.getEditField().setAllowDrawCursor(true);
+                boVar.Y.getEditField().setAllowDrawCursor(true);
             }
         }
     }

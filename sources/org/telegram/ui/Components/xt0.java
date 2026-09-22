@@ -1,19 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public interface xt0 {
-    void D();
-
-    void R();
-
-    boolean T();
-
-    yl0 f();
-
-    TLRPC.Chat g();
-
-    boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view);
-
-    boolean p();
+public final class xt0 extends org.telegram.ui.id0 {
+    @Override
+    public final boolean h0() {
+        return true;
+    }
 }

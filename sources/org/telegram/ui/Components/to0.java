@@ -1,10 +1,28 @@
 package org.telegram.ui.Components;
-public interface to0 {
-    void B();
+public final class to0 implements pb {
+    public final oc f28155a;
+    public final cf f28156b;
 
-    void X(float f7, boolean z10);
+    public to0(cf cfVar, oc ocVar) {
+        this.f28156b = cfVar;
+        this.f28155a = ocVar;
+    }
 
-    CharSequence getContentDescription();
+    @Override
+    public final void c() {
+        this.f28156b.G.remove(this.f28155a);
+    }
 
-    int l0();
+    @Override
+    public final void d() {
+        this.f28156b.G.add(this.f28155a);
+    }
+
+    @Override
+    public final void a(oc ocVar) {
+    }
+
+    @Override
+    public final void b() {
+    }
 }

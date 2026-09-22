@@ -1,153 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.io.File;
-import java.net.URLEncoder;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class t71 {
-    public int f28409a;
-    public boolean f28410b;
-    public long f28411c;
-    public Uri d;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class t71 extends View {
+    public ShapeDrawable f28059a;
+    public Drawable f28060b;
+    public StaticLayout f28061c;
+    public TextPaint d;
     public long e;
-    public Uri f28412f;
-    public TLRPC.Document f28413g;
-    public TLRPC.Document h;
-    public int f28414i;
-    public int f28415j;
-    public long f28416k;
-    public double f28417l;
-    public String f28418m;
+    public float f28062f;
+    public float h;
+    public boolean f28063n;
 
-    public static Uri a(int i10, int i11, TLRPC.Document document) {
-        StringBuilder k10 = hg.k0.k(i10, "?account=", "&id=");
-        k10.append(document.f18349id);
-        k10.append("&hash=");
-        k10.append(document.access_hash);
-        k10.append("&dc=");
-        k10.append(document.dc_id);
-        k10.append("&size=");
-        k10.append(document.size);
-        k10.append("&mime=");
-        k10.append(URLEncoder.encode(document.mime_type, "UTF-8"));
-        k10.append("&rid=");
-        k10.append(i11);
-        k10.append("&name=");
-        k10.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
-        k10.append("&reference=");
-        byte[] bArr = document.file_reference;
-        if (bArr == null) {
-            bArr = new byte[0];
-        }
-        k10.append(Utilities.bytesToHex(bArr));
-        String sb2 = k10.toString();
-        return Uri.parse("tg://" + MessageObject.getFileName(document) + sb2);
+    public final void a(boolean z10) {
+        this.f28063n = z10;
+        invalidate();
     }
 
-    public static t71 d(int i10, TLRPC.Document document, TLRPC.Document document2, int i11, boolean z10) {
-        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
-        String str;
-        String str2;
-        ?? obj = new Object();
-        int i12 = 0;
-        while (true) {
-            if (i12 < document.attributes.size()) {
-                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i12);
-                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                    tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentAttribute;
-                    break;
+    public final void b() {
+        this.d.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19061pf, false));
+        int dp = AndroidUtilities.dp(5.0f);
+        int i10 = org.telegram.ui.ActionBar.i6.f19079qf;
+        this.f28059a = org.telegram.ui.ActionBar.i6.b0(dp, org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+        this.f28060b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        Drawable drawable = this.f28060b;
+        if (this.f28061c != null) {
+            if (this.f28063n) {
+                float f10 = this.h;
+                if (f10 != 1.0f) {
+                    float f11 = f10 + 0.12f;
+                    this.h = f11;
+                    if (f11 > 1.0f) {
+                        this.h = 1.0f;
+                    }
+                    invalidate();
                 }
-                i12++;
             } else {
-                tL_documentAttributeVideo = null;
-                break;
-            }
-        }
-        if (tL_documentAttributeVideo != null && (str2 = tL_documentAttributeVideo.video_codec) != null) {
-            str = str2.toLowerCase();
-        } else {
-            str = null;
-        }
-        obj.f28409a = i10;
-        obj.f28413g = document;
-        obj.f28411c = document.f18349id;
-        obj.d = a(i10, i11, document);
-        if (document2 != null) {
-            obj.h = document2;
-            obj.e = document2.f18349id;
-            obj.f28412f = a(i10, i11, document2);
-            File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(document2, null, false, z10);
-            if (pathToAttach != null && pathToAttach.exists()) {
-                obj.f28412f = Uri.fromFile(pathToAttach);
-            } else {
-                File pathToAttach2 = FileLoader.getInstance(i10).getPathToAttach(document2, null, true, z10);
-                if (pathToAttach2 != null && pathToAttach2.exists()) {
-                    obj.f28412f = Uri.fromFile(pathToAttach2);
+                float f12 = this.h;
+                if (f12 != 0.0f) {
+                    float f13 = f12 - 0.12f;
+                    this.h = f13;
+                    if (f13 < 0.0f) {
+                        this.h = 0.0f;
+                    }
+                    invalidate();
+                }
+                if (this.h == 0.0f) {
+                    return;
                 }
             }
-        }
-        obj.f28418m = str;
-        long j3 = document.size;
-        obj.f28416k = j3;
-        if (tL_documentAttributeVideo != null) {
-            double d = tL_documentAttributeVideo.duration;
-            obj.f28414i = tL_documentAttributeVideo.f18350w;
-            obj.f28415j = tL_documentAttributeVideo.h;
-            obj.f28417l = j3 / d;
-        }
-        File pathToAttach3 = FileLoader.getInstance(i10).getPathToAttach(document, null, false, z10);
-        if (pathToAttach3 != null && pathToAttach3.exists()) {
-            obj.d = Uri.fromFile(pathToAttach3);
-            return obj;
-        }
-        File pathToAttach4 = FileLoader.getInstance(i10).getPathToAttach(document, null, true, z10);
-        if (pathToAttach4 != null && pathToAttach4.exists()) {
-            obj.d = Uri.fromFile(pathToAttach4);
-        }
-        return obj;
-    }
-
-    public final boolean b() {
-        Uri uri = this.d;
-        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean c() {
-        Uri uri = this.f28412f;
-        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void e(boolean z10) {
-        if (!b() && this.f28413g != null) {
-            File pathToAttach = FileLoader.getInstance(this.f28409a).getPathToAttach(this.f28413g, null, false, z10);
-            if (pathToAttach != null && pathToAttach.exists()) {
-                this.d = Uri.fromFile(pathToAttach);
+            float f14 = this.h;
+            if (f14 > 0.5f) {
+                f7 = 1.0f;
             } else {
-                File pathToAttach2 = FileLoader.getInstance(this.f28409a).getPathToAttach(this.f28413g, null, true, z10);
-                if (pathToAttach2 != null && pathToAttach2.exists()) {
-                    this.d = Uri.fromFile(pathToAttach2);
-                }
+                f7 = f14 / 0.5f;
             }
+            int i10 = (int) (f7 * 255.0f);
+            canvas.save();
+            float f15 = this.h;
+            canvas.scale(f15, f15, this.f28062f, getMeasuredHeight());
+            canvas.translate(this.f28062f - (this.f28061c.getWidth() / 2.0f), 0.0f);
+            this.f28059a.setBounds(-AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f) + this.f28061c.getWidth(), (int) (AndroidUtilities.dpf2(4.0f) + this.f28061c.getHeight()));
+            drawable.setBounds(org.telegram.messenger.vl.x(2, this.f28061c.getWidth() / 2, drawable), (int) (AndroidUtilities.dpf2(4.0f) + this.f28061c.getHeight()), org.telegram.messenger.vl.B(2, this.f28061c.getWidth() / 2, drawable), drawable.getIntrinsicHeight() + ((int) (AndroidUtilities.dpf2(4.0f) + this.f28061c.getHeight())));
+            drawable.setAlpha(i10);
+            this.f28059a.setAlpha(i10);
+            this.d.setAlpha(i10);
+            drawable.draw(canvas);
+            this.f28059a.draw(canvas);
+            canvas.translate(0.0f, AndroidUtilities.dpf2(1.0f));
+            this.f28061c.draw(canvas);
+            canvas.restore();
         }
-        if (!c() && this.h != null) {
-            File pathToAttach3 = FileLoader.getInstance(this.f28409a).getPathToAttach(this.h, null, false, z10);
-            if (pathToAttach3 != null && pathToAttach3.exists()) {
-                this.f28412f = Uri.fromFile(pathToAttach3);
-                return;
-            }
-            File pathToAttach4 = FileLoader.getInstance(this.f28409a).getPathToAttach(this.h, null, true, z10);
-            if (pathToAttach4 != null && pathToAttach4.exists()) {
-                this.f28412f = Uri.fromFile(pathToAttach4);
-            }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f28060b.getIntrinsicHeight() + AndroidUtilities.dp(4.0f) + this.f28061c.getHeight(), 1073741824));
+    }
+
+    public void setCx(float f7) {
+        this.f28062f = f7;
+        invalidate();
+    }
+
+    public void setTime(int i10) {
+        long j3 = i10;
+        if (j3 != this.e) {
+            this.e = j3;
+            String formatShortDuration = AndroidUtilities.formatShortDuration(i10);
+            TextPaint textPaint = this.d;
+            this.f28061c = new StaticLayout(formatShortDuration, textPaint, (int) textPaint.measureText(formatShortDuration), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
         }
     }
 }

@@ -8,10 +8,10 @@ public enum q extends b2 {
     public final void d(l lVar, a aVar) {
         if (aVar.m('/')) {
             lVar.e();
-            lVar.a(b2.f7680y);
+            lVar.a(b2.f7678y);
             return;
         }
         lVar.f('<');
-        lVar.f7698c = b2.e;
+        lVar.f7696c = b2.e;
     }
 }

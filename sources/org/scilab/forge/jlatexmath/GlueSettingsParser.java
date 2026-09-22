@@ -35,7 +35,7 @@ public class GlueSettingsParser {
         if (obj != null) {
             return;
         }
-        throw new XMLResourceParseException("GlueSettings.xml", str, str2, a.p("has an unknown value '", str3, "'!"));
+        throw new XMLResourceParseException("GlueSettings.xml", str, str2, a.q("has an unknown value '", str3, "'!"));
     }
 
     private Glue createGlue(Element element, String str) {
@@ -53,7 +53,7 @@ public class GlueSettingsParser {
                 }
                 fArr[i10] = (float) d;
             } catch (NumberFormatException unused) {
-                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i10], a.p("has an invalid real value '", str2, "'!"));
+                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i10], a.q("has an invalid real value '", str2, "'!"));
             }
         }
         return new Glue(fArr[0], fArr[1], fArr[2], str);

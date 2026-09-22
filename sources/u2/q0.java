@@ -1,31 +1,14 @@
 package u2;
-public final class q0 implements Runnable {
-    public final int f43789a;
-    public final v0 f43790b;
+public final class q0 extends c3.v {
+    public final u0 f43465b;
 
-    public q0(v0 v0Var, int i10) {
-        this.f43789a = i10;
-        this.f43790b = v0Var;
+    public q0(u0 u0Var, c3.b0 b0Var) {
+        super(b0Var);
+        this.f43465b = u0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43789a) {
-            case 0:
-                this.f43790b.Z = true;
-                return;
-            case 1:
-                this.f43790b.w();
-                return;
-            default:
-                v0 v0Var = this.f43790b;
-                if (!v0Var.f43826f0) {
-                    c0 c0Var = v0Var.I;
-                    c0Var.getClass();
-                    c0Var.l(v0Var);
-                    return;
-                }
-                return;
-        }
+    public final long l() {
+        return this.f43465b.S;
     }
 }

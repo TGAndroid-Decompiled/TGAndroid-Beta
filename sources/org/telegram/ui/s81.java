@@ -1,58 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class s81 implements u9 {
-    public TLObject f37359a = null;
-    public TLRPC.TL_error f37360b = null;
-    public final SessionsActivity f37361c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class s81 implements Runnable {
+    public final int f37295a;
+    public final f91 f37296b;
 
-    public s81(SessionsActivity sessionsActivity) {
-        this.f37361c = sessionsActivity;
+    public s81(f91 f91Var, int i10) {
+        this.f37295a = i10;
+        this.f37296b = f91Var;
     }
 
     @Override
-    public final String I0() {
-        return null;
-    }
-
-    @Override
-    public final void K(String str) {
-        TLObject tLObject = this.f37359a;
-        if (tLObject instanceof TLRPC.TL_authorization) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
-            boolean z10 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f37361c;
-            if (z10) {
-                sessionsActivity.f31804f.add(0, tL_authorization);
-                sessionsActivity.V = 4;
-                sessionsActivity.k0(false);
-            } else {
-                sessionsActivity.e.add(0, tL_authorization);
-            }
-            sessionsActivity.m0();
-            sessionsActivity.f31801a.l();
-            sessionsActivity.f31807s.m(0L, this.f37359a, 11);
-        } else if (this.f37360b != null) {
-            AndroidUtilities.runOnUIThread(new r81(this, 0));
+    public final void run() {
+        switch (this.f37295a) {
+            case 0:
+                this.f37296b.f33546c.Y2.N(true);
+                return;
+            case 1:
+                nf.f.s(this.f37296b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                return;
+            case 2:
+                f91 f91Var = this.f37296b;
+                f91Var.f33546c.postOnAnimation(new s81(f91Var, 3));
+                return;
+            case 3:
+                this.f37296b.i0();
+                return;
+            default:
+                MessagesController.getInstance(this.f37296b.currentAccount).deleteUserPhoto(null);
+                return;
         }
-    }
-
-    @Override
-    public final boolean e1(String str, m9 m9Var) {
-        this.f37359a = null;
-        this.f37360b = null;
-        AndroidUtilities.runOnUIThread(new rf0(this, str, m9Var, 29), 750L);
-        return true;
-    }
-
-    @Override
-    public final void T0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

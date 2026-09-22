@@ -1,80 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.View;
+import android.animation.TimeAnimator;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class dw0 extends cw0 {
-    public Activity f23770w0;
-    public final Rect f23771x0;
-    public int f23772y0;
-    public boolean f23773z0;
+public final class dw0 extends TimeAnimator {
+    public int f23400a;
+    public int f23401b;
+    public ValueAnimator.AnimatorUpdateListener f23402c;
+    public Float d;
+    public float[] e;
 
-    public dw0(Context context, Activity activity) {
-        super(context, null);
-        this.f23771x0 = new Rect();
-        setActivity(activity);
+    @Override
+    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
+        this.f23402c = animatorUpdateListener;
     }
 
     @Override
-    public int R() {
-        View rootView = getRootView();
-        Rect rect = this.f23771x0;
-        getWindowVisibleDisplayFrame(rect);
-        int i10 = 0;
-        if (this.f23773z0) {
-            int height = rootView.getHeight();
-            if (rect.top != 0) {
-                i10 = AndroidUtilities.statusBarHeight;
+    public final void end() {
+        this.f23402c = null;
+        super.end();
+    }
+
+    @Override
+    public final Object getAnimatedValue() {
+        return this.d;
+    }
+
+    @Override
+    public final void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.e = fArr;
+    }
+
+    @Override
+    public final void start() {
+        setTimeListener(new TimeAnimator.TimeListener() {
+            @Override
+            public final void onTimeUpdate(TimeAnimator timeAnimator, long j3, long j10) {
+                int i10;
+                dw0 dw0Var = dw0.this;
+                int i11 = dw0Var.f23400a;
+                if (i11 > 0 && (i10 = dw0Var.f23401b) > 0) {
+                    int i12 = i11 - 1;
+                    dw0Var.f23400a = i12;
+                    if (dw0Var.f23402c != null) {
+                        float[] fArr = dw0Var.e;
+                        if (fArr != null && fArr.length == 2) {
+                            float interpolation = dw0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
+                            float[] fArr2 = dw0Var.e;
+                            float f7 = fArr2[0];
+                            dw0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
+                            dw0Var.f23402c.onAnimationUpdate(dw0Var);
+                            return;
+                        }
+                        dw0Var.end();
+                        return;
+                    }
+                    return;
+                }
+                dw0Var.end();
             }
-            return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
-        }
-        int height2 = (this.f23770w0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
-        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
-            return 0;
-        }
-        return height2;
-    }
-
-    @Override
-    public void S() {
-        boolean z10;
-        if (this.f23473n == null && this.f23478r.isEmpty()) {
-            return;
-        }
-        this.f23772y0 = R();
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        post(new as0(3, this, z10));
-    }
-
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public int getKeyboardHeight() {
-        return this.f23772y0;
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        S();
-    }
-
-    public void setActivity(Activity activity) {
-        this.f23770w0 = activity;
-    }
-
-    public void setWithoutWindow(boolean z10) {
-        this.f23773z0 = z10;
+        });
+        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
+        this.f23400a = duration;
+        this.f23401b = duration;
+        super.start();
     }
 }

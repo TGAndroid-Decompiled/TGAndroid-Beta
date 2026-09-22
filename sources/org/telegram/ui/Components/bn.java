@@ -8,36 +8,31 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bn implements org.telegram.ui.qt {
-    public final int f23040a;
-    public final un f23041b;
+    public final int f22824a;
+    public final un f22825b;
 
     public bn(un unVar, int i10) {
-        this.f23041b = unVar;
-        this.f23040a = i10;
+        this.f22825b = unVar;
+        this.f22824a = i10;
     }
 
     @Override
-    public final MessageObject A() {
-        return null;
-    }
-
-    @Override
-    public final boolean B() {
+    public final boolean A() {
         return false;
     }
 
     @Override
-    public final boolean D() {
+    public final boolean C() {
         return false;
     }
 
     @Override
-    public final boolean E(TLRPC.Document document) {
+    public final boolean D(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final String G(boolean z10) {
+    public final String F(boolean z10) {
         return null;
     }
 
@@ -107,47 +102,47 @@ public final class bn implements org.telegram.ui.qt {
     }
 
     @Override
-    public final y70 i(ci.n6 n6Var) {
-        y70 F = y70.F(n6Var, null, new View(this.f23041b.getContext()));
-        F.f30568s = 0;
-        F.f30569t = false;
+    public final n70 i(ci.n6 n6Var) {
+        n70 F = n70.F(n6Var, null, new View(this.f22825b.getContext()));
+        F.f26367s = 0;
+        F.f26368t = false;
         int i10 = R.drawable.msg_replace;
         String string = LocaleController.getString(R.string.ReplaceAttachedPollMedia);
-        final int i11 = this.f23040a;
+        final int i11 = this.f22824a;
         F.c(i10, string, new Runnable(this) {
-            public final bn f22700b;
+            public final bn f22444b;
 
             {
-                this.f22700b = this;
+                this.f22444b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f22700b.f23041b.b0(i11);
+                        this.f22444b.f22825b.b0(i11);
                         return;
                     default:
-                        this.f22700b.f23041b.e0(i11, null);
+                        this.f22444b.f22825b.e0(i11, null);
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-            public final bn f22700b;
+            public final bn f22444b;
 
             {
-                this.f22700b = this;
+                this.f22444b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f22700b.f23041b.b0(i11);
+                        this.f22444b.f22825b.b0(i11);
                         return;
                     default:
-                        this.f22700b.f23041b.e0(i11, null);
+                        this.f22444b.f22825b.e0(i11, null);
                         return;
                 }
             }
@@ -171,16 +166,21 @@ public final class bn implements org.telegram.ui.qt {
     }
 
     @Override
-    public final boolean y() {
+    public final boolean x() {
         return true;
     }
 
     @Override
-    public final void C(TLRPC.Document document) {
+    public final MessageObject z() {
+        return null;
     }
 
     @Override
-    public final void F(TLRPC.Document document) {
+    public final void B(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void E(TLRPC.Document document) {
     }
 
     @Override
@@ -224,11 +224,11 @@ public final class bn implements org.telegram.ui.qt {
     }
 
     @Override
-    public final void v(TLRPC.Document document) {
+    public final void u(TLRPC.Document document) {
     }
 
     @Override
-    public final void z(String str) {
+    public final void y(String str) {
     }
 
     @Override
@@ -236,15 +236,15 @@ public final class bn implements org.telegram.ui.qt {
     }
 
     @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    public final void v(TLRPC.StickerSet stickerSet, String str) {
     }
 
     @Override
-    public final void x(TLObject tLObject, Object obj) {
+    public final void w(TLObject tLObject, Object obj) {
     }
 
     @Override
-    public final void u(CharSequence charSequence, String str, org.telegram.ui.of ofVar) {
+    public final void G(CharSequence charSequence, String str, org.telegram.ui.nf nfVar) {
     }
 
     @Override

@@ -1,20 +1,24 @@
 package tg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class q0 extends AnimatorListenerAdapter {
-    public final o0 f43512a;
-    public final r0 f43513b;
-
-    public q0(r0 r0Var, o0 o0Var) {
-        this.f43513b = r0Var;
-        this.f43512a = o0Var;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class q0 extends View {
+    public Paint f43206a;
+    public Drawable f43207b;
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        o0 o0Var = this.f43512a;
-        o0Var.setLayerType(0, null);
-        this.f43513b.d.removeView(o0Var);
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = getMeasuredWidth() / 2.0f;
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, this.f43206a);
+        rg.a1.d().f(-AndroidUtilities.dp(10.0f), 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(2.0f), rg.a1.d().e());
+        float dp = AndroidUtilities.dp(18.0f) / 2.0f;
+        Drawable drawable = this.f43207b;
+        drawable.setBounds((int) (measuredWidth - dp), (int) (measuredHeight - dp), (int) (measuredWidth + dp), (int) (measuredHeight + dp));
+        drawable.draw(canvas);
     }
 }

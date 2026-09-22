@@ -1,50 +1,25 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class jj0 implements Runnable {
-    public final int f25389a;
-    public final kj0 f25390b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class jj0 extends s4.s0 {
+    public final s4.c0 f25356a;
+    public final pj0 f25357b;
 
-    public jj0(kj0 kj0Var, int i10) {
-        this.f25389a = i10;
-        this.f25390b = kj0Var;
+    public jj0(pj0 pj0Var, s4.c0 c0Var) {
+        this.f25357b = pj0Var;
+        this.f25356a = c0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25389a) {
-            case 0:
-                kj0 kj0Var = this.f25390b;
-                kj0Var.getClass();
-                try {
-                    yf.e eVar = kj0Var.B0;
-                    if (eVar != null) {
-                        eVar.b();
-                    }
-                } catch (Throwable unused) {
-                }
-                AndroidUtilities.runOnUIThread(kj0Var.f25744z0);
-                return;
-            case 1:
-                kj0 kj0Var2 = this.f25390b;
-                kj0Var2.P = null;
-                kj0Var2.p();
-                return;
-            case 2:
-                kj0.h(this.f25390b);
-                return;
-            case 3:
-                kj0.e(this.f25390b);
-                return;
-            case 4:
-                kj0.d(this.f25390b);
-                return;
-            case 5:
-                kj0.f(this.f25390b);
-                return;
-            default:
-                this.f25390b.m();
-                return;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int loadCount;
+        pj0 pj0Var = this.f25357b;
+        if (pj0Var.f27063w && pj0Var.f27064x && !pj0Var.v) {
+            int N0 = this.f25356a.N0();
+            loadCount = pj0Var.getLoadCount();
+            if (N0 >= (pj0Var.f27059f.h() - 1) - loadCount) {
+                pj0Var.c();
+            }
         }
     }
 }

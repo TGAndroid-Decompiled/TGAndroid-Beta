@@ -1,33 +1,22 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-public final class sa0 extends g.p {
-    public final ya0 f28150c;
+public final class sa0 extends x5 {
+    public final ta0 f27820a;
 
-    public sa0(ya0 ya0Var) {
-        this.f28150c = ya0Var;
+    public sa0(ta0 ta0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        super(document, fontMetricsInt);
+        this.f27820a = ta0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        ya0 ya0Var = this.f28150c;
-        gg.k1 k1Var = ya0Var.f30618f;
-        if (i10 != 0) {
-            int i11 = i10 - 1;
-            Object J = k1Var.J(i11);
-            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
-                return 100;
-            }
-            if (J instanceof TLRPC.Document) {
-                return 20;
-            }
-            if (k1Var.I() != null || k1Var.U != null) {
-                i10 = i11;
-            }
-            ra0 ra0Var = ya0Var.d;
-            ra0Var.B1();
-            return ra0Var.R.get(i10);
-        }
-        return 100;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        ta0 ta0Var = this.f27820a;
+        int i15 = ta0Var.f28084y;
+        int i16 = i14 + i12;
+        int i17 = this.measuredSize;
+        ta0Var.f28077c.set((int) f7, hg.c.C(i16, i17, 2, i15), (int) (f7 + i17), ((i16 + i17) / 2) + i15);
     }
 }

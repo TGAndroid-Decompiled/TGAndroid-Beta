@@ -1,24 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-public final class fz0 extends fd0 {
-    public final gz0 f24381w0;
+import android.view.ViewGroup;
+public final class fz0 extends ViewGroup.MarginLayoutParams {
+    public hz0 f24127a;
+    public hz0 f24128b;
 
-    public fz0(gz0 gz0Var, Context context) {
-        super(context, 13, null);
-        this.f24381w0 = gz0Var;
+    public fz0() {
+        super(-2, -2);
+        hz0 hz0Var = hz0.e;
+        this.f24127a = hz0Var;
+        this.f24128b = hz0Var;
+        setMargins(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
+        this.f24127a = hz0Var;
+        this.f24128b = hz0Var;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float dp = AndroidUtilities.dp(31.0f);
-        gz0 gz0Var = this.f24381w0;
-        gz0Var.d.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19182h7, false));
-        canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, gz0Var.d);
-        float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
-        canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, gz0Var.d);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || fz0.class != obj.getClass()) {
+            return false;
+        }
+        fz0 fz0Var = (fz0) obj;
+        if (this.f24128b.equals(fz0Var.f24128b) && this.f24127a.equals(fz0Var.f24127a)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f24128b.hashCode() + (this.f24127a.hashCode() * 31);
     }
 }

@@ -4,14 +4,14 @@ import android.view.View;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.no0;
+import org.telegram.ui.Components.yn0;
 import org.telegram.ui.p10;
 import org.telegram.ui.w10;
 public final class a0 implements w10 {
-    public final k0 f9085a;
+    public final k0 f9082a;
 
     public a0(k0 k0Var) {
-        this.f9085a = k0Var;
+        this.f9082a = k0Var;
     }
 
     @Override
@@ -22,10 +22,10 @@ public final class a0 implements w10 {
     @Override
     public final void d(MessageObject messageObject) {
         int i10;
-        k0 k0Var = this.f9085a;
-        n2 n2Var = k0Var.f9130s;
+        k0 k0Var = this.f9082a;
+        n2 n2Var = k0Var.f9127s;
         i10 = ((f3) k0Var).currentAccount;
-        n2Var.presentFragment(no0.L(messageObject, i10));
+        n2Var.presentFragment(yn0.K(messageObject, i10));
         k0Var.dismiss();
     }
 

@@ -5,20 +5,20 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class e41 extends org.telegram.ui.Components.xl0 {
-    public final Context f33240c;
+public final class e41 extends org.telegram.ui.Components.kl0 {
+    public final Context f33167c;
     public final boolean d;
     public final f41 e;
 
     public e41(f41 f41Var, Context context, boolean z10) {
         this.e = f41Var;
-        this.f33240c = context;
+        this.f33167c = context;
         this.d = z10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42998f == 0) {
+        if (c1Var.f42674f == 0) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public final class e41 extends org.telegram.ui.Components.xl0 {
         int i10 = 0;
         f41 f41Var = this.e;
         if (z10) {
-            ArrayList arrayList = f41Var.f33515f;
+            ArrayList arrayList = f41Var.f33497f;
             if (arrayList == null) {
                 return 0;
             }
@@ -57,19 +57,19 @@ public final class e41 extends org.telegram.ui.Components.xl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.n4 n4Var;
-        Context context = this.f33240c;
+        org.telegram.ui.Cells.m4 m4Var;
+        Context context = this.f33167c;
         if (i10 != 0) {
             if (i10 != 2) {
-                n4Var = new org.telegram.ui.Cells.c7(context, (org.telegram.ui.Cells.c1) null);
+                m4Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.q3) null);
             } else {
-                org.telegram.ui.Cells.n4 n4Var2 = new org.telegram.ui.Cells.n4(context);
-                n4Var2.setText(LocaleController.getString(R.string.ChooseLanguages));
-                n4Var = n4Var2;
+                org.telegram.ui.Cells.m4 m4Var2 = new org.telegram.ui.Cells.m4(context);
+                m4Var2.setText(LocaleController.getString(R.string.ChooseLanguages));
+                m4Var = m4Var2;
             }
         } else {
-            n4Var = new org.telegram.ui.Cells.y8(context);
+            m4Var = new org.telegram.ui.Cells.x8(context);
         }
-        return new s4.c1(n4Var);
+        return new s4.c1(m4Var);
     }
 }

@@ -1,57 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class nw extends yl0 {
-    public boolean X2;
-    public boolean Y2;
-    public final kz Z2;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class nw extends s4.n0 {
+    public final kz f26604a;
 
-    public nw(kz kzVar, Context context) {
-        super(context, null);
-        this.Z2 = kzVar;
+    public nw(kz kzVar) {
+        this.f26604a = kzVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.st q6 = org.telegram.ui.st.q();
-        kz kzVar = this.Z2;
-        boolean r10 = q6.r(motionEvent, kzVar.f25873h0, kzVar.f25872g2, this.f30704p2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        kz kzVar = this.Z2;
-        if (kzVar.f25899q0 && kzVar.f25890n0.G > 1) {
-            this.X2 = true;
-            kzVar.f25876i0.h1(0, 0);
-            kzVar.f25893o0.setVisibility(0);
-            kzVar.f25896p0.k(0, 0);
-            kzVar.f25899q0 = false;
-            this.X2 = false;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        kz.f(kzVar, true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (!this.Y2) {
-            this.Z2.f25890n0.l();
-            this.Y2 = true;
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.X2) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        recyclerView.getClass();
+        int R = RecyclerView.R(view);
+        kz kzVar = this.f26604a;
+        s4.h0 adapter = kzVar.f25715h0.getAdapter();
+        py pyVar = kzVar.f25732n0;
+        int i10 = 0;
+        if (adapter == pyVar && R == pyVar.I) {
+            rect.set(0, 0, 0, 0);
             return;
         }
-        super.requestLayout();
+        if (R == 0) {
+            pyVar.getClass();
+        }
+        rect.left = 0;
+        rect.bottom = 0;
+        rect.top = AndroidUtilities.dp(2.0f);
+        qy qyVar = kzVar.f25718i0;
+        pyVar.getClass();
+        if (!qyVar.E1(R)) {
+            i10 = AndroidUtilities.dp(2.0f);
+        }
+        rect.right = i10;
     }
 }

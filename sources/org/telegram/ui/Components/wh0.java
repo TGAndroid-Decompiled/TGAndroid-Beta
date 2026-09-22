@@ -1,10 +1,5 @@
 package org.telegram.ui.Components;
-public interface wh0 {
-    void a();
 
-    void b(boolean z10);
-
-    void c();
-
-    void d();
+import android.widget.FrameLayout;
+public abstract class wh0 extends FrameLayout {
 }

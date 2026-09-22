@@ -1,5 +1,5 @@
 package a4;
-public final class j extends z3.i implements Comparable {
+public final class j extends z3.j implements Comparable {
     public long f267s;
 
     @Override

@@ -10,118 +10,118 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class z8 implements Runnable {
-    public final int f18290a;
-    public final Object f18291b;
-    public final Object f18292c;
+    public final int f18046a;
+    public final Object f18047b;
+    public final Object f18048c;
     public final Object d;
 
     public z8(int i10, Object obj, Object obj2, ArrayList arrayList) {
-        this.f18290a = i10;
-        this.f18291b = obj;
+        this.f18046a = i10;
+        this.f18047b = obj;
         this.d = obj2;
-        this.f18292c = arrayList;
+        this.f18048c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18290a) {
+        switch (this.f18046a) {
             case 0:
-                ((MediaDataController) this.f18291b).lambda$clearBotKeyboard$193((ArrayList) this.f18292c, (MessagesStorage.TopicKey) this.d);
+                ((MediaDataController) this.f18047b).lambda$clearBotKeyboard$193((ArrayList) this.f18048c, (MessagesStorage.TopicKey) this.d);
                 return;
             case 1:
-                ((MediaDataController) this.f18291b).lambda$findStickerSetByNameInCache$30((String) this.f18292c, (Utilities.Callback) this.d);
+                ((MediaDataController) this.f18047b).lambda$findStickerSetByNameInCache$30((String) this.f18048c, (Utilities.Callback) this.d);
                 return;
             case 2:
-                ((MediaDataController) this.f18291b).lambda$preloadPremiumPreviewStickers$205((TLRPC.TL_error) this.f18292c, (TLObject) this.d);
+                ((MediaDataController) this.f18047b).lambda$preloadPremiumPreviewStickers$205((TLRPC.TL_error) this.f18048c, (TLObject) this.d);
                 return;
             case 3:
-                ((MediaDataController) this.f18291b).lambda$processLoadedMedia$135((ArrayList) this.f18292c, (y6) this.d);
+                ((MediaDataController) this.f18047b).lambda$processLoadedMedia$135((ArrayList) this.f18048c, (y6) this.d);
                 return;
             case 4:
-                ((MediaDataController) this.f18291b).lambda$saveToRingtones$203((TLObject) this.f18292c, (TLRPC.Document) this.d);
+                ((MediaDataController) this.f18047b).lambda$saveToRingtones$203((TLObject) this.f18048c, (TLRPC.Document) this.d);
                 return;
             case 5:
-                ((MediaDataController) this.f18291b).lambda$findStickerSetByNameInCache$29((TLRPC.TL_messages_stickerSet) this.f18292c, (Utilities.Callback) this.d);
+                ((MediaDataController) this.f18047b).lambda$findStickerSetByNameInCache$29((TLRPC.TL_messages_stickerSet) this.f18048c, (Utilities.Callback) this.d);
                 return;
             case 6:
-                ((MessagesController) this.f18291b).lambda$requestIsUserContactBlocked$494((TLObject) this.d, (ArrayList) this.f18292c);
+                ((MessagesController) this.f18047b).lambda$requestIsUserContactBlocked$494((TLObject) this.d, (ArrayList) this.f18048c);
                 return;
             case 7:
-                ((MessagesController) this.f18291b).lambda$setUserAdminRole$104((TLRPC.TL_channels_editAdmin) this.f18292c, (cb) this.d);
+                ((MessagesController) this.f18047b).lambda$setUserAdminRole$104((TLRPC.TL_channels_editAdmin) this.f18048c, (cb) this.d);
                 return;
             case 8:
-                ((MessagesController) this.f18291b).lambda$setUserAdminRole$109((TLRPC.TL_messages_editChatAdmin) this.f18292c, (db) this.d);
+                ((MessagesController) this.f18047b).lambda$setUserAdminRole$109((TLRPC.TL_messages_editChatAdmin) this.f18048c, (db) this.d);
                 return;
             case 9:
-                ((MessagesController) this.f18291b).lambda$updateChatAbout$289((TLRPC.ChatFull) this.f18292c, (String) this.d);
+                ((MessagesController) this.f18047b).lambda$updateChatAbout$289((TLRPC.ChatFull) this.f18048c, (String) this.d);
                 return;
             case 10:
-                ((MessagesController) this.f18291b).lambda$addUsersToChat$296((TLRPC.Chat) this.f18292c, (TLRPC.TL_messages_invitedUsers) this.d);
+                ((MessagesController) this.f18047b).lambda$addUsersToChat$296((TLRPC.Chat) this.f18048c, (TLRPC.TL_messages_invitedUsers) this.d);
                 return;
             case 11:
-                MessagesController.lambda$openByUserName$458((org.telegram.ui.ActionBar.b2[]) this.f18291b, (boolean[]) this.f18292c, (org.telegram.ui.ActionBar.n2) this.d);
+                MessagesController.lambda$openByUserName$458((org.telegram.ui.ActionBar.b2[]) this.f18047b, (boolean[]) this.f18048c, (org.telegram.ui.ActionBar.n2) this.d);
                 return;
             case 12:
-                ((MessagesController) this.f18291b).lambda$didReceivedNotification$50((org.telegram.ui.ActionBar.i6) this.f18292c, (org.telegram.ui.ActionBar.h6) this.d);
+                ((MessagesController) this.f18047b).lambda$didReceivedNotification$50((org.telegram.ui.ActionBar.h6) this.f18048c, (org.telegram.ui.ActionBar.g6) this.d);
                 return;
             case 13:
-                ((MessagesController) this.f18291b).lambda$processDialogsUpdateRead$223((LongSparseIntArray) this.f18292c, (LongSparseIntArray) this.d);
+                ((MessagesController) this.f18047b).lambda$processDialogsUpdateRead$223((LongSparseIntArray) this.f18048c, (LongSparseIntArray) this.d);
                 return;
             case 14:
-                ((MessagesController) this.f18291b).lambda$getDifference$353((ArrayList) this.f18292c, (TLRPC.updates_Difference) this.d);
+                ((MessagesController) this.f18047b).lambda$getDifference$353((ArrayList) this.f18048c, (TLRPC.updates_Difference) this.d);
                 return;
             case 15:
-                ((MessagesController) this.f18291b).lambda$getChannelDifference$342((ArrayList) this.f18292c, (TLRPC.updates_ChannelDifference) this.d);
+                ((MessagesController) this.f18047b).lambda$getChannelDifference$342((ArrayList) this.f18048c, (TLRPC.updates_ChannelDifference) this.d);
                 return;
             case 16:
-                ((MessagesController.SavedMusicList) this.f18291b).lambda$load$0((TLObject) this.d, (ArrayList) this.f18292c);
+                ((MessagesController.SavedMusicList) this.f18047b).lambda$load$0((TLObject) this.d, (ArrayList) this.f18048c);
                 return;
             case 17:
-                ((MessagesStorage) this.f18291b).lambda$saveBotCache$126((TLObject) this.f18292c, (String) this.d);
+                ((MessagesStorage) this.f18047b).lambda$saveBotCache$126((TLObject) this.f18048c, (String) this.d);
                 return;
             case 18:
-                ((MessagesStorage) this.f18291b).lambda$applyPhoneBookUpdates$148((String) this.f18292c, (String) this.d);
+                ((MessagesStorage) this.f18047b).lambda$applyPhoneBookUpdates$148((String) this.f18048c, (String) this.d);
                 return;
             case 19:
-                ((MessagesStorage) this.f18291b).lambda$replaceMessageIfExists$232((MessageObject) this.d, (ArrayList) this.f18292c);
+                ((MessagesStorage) this.f18047b).lambda$replaceMessageIfExists$232((MessageObject) this.d, (ArrayList) this.f18048c);
                 return;
             case 20:
-                ((MessagesStorage) this.f18291b).lambda$getNewTask$111((a0.i) this.f18292c, (a0.i) this.d);
+                ((MessagesStorage) this.f18047b).lambda$getNewTask$111((a0.i) this.f18048c, (a0.i) this.d);
                 return;
             case 21:
-                ((SavedMessagesController) this.f18291b).lambda$saveCache$11((MessagesStorage) this.d, (ArrayList) this.f18292c);
+                ((SavedMessagesController) this.f18047b).lambda$saveCache$11((MessagesStorage) this.d, (ArrayList) this.f18048c);
                 return;
             case 22:
-                ((SecretChatHelper) this.f18291b).lambda$processUpdateEncryption$2((TLRPC.EncryptedChat) this.f18292c, (TLRPC.EncryptedChat) this.d);
+                ((SecretChatHelper) this.f18047b).lambda$processUpdateEncryption$2((TLRPC.EncryptedChat) this.f18048c, (TLRPC.EncryptedChat) this.d);
                 return;
             case 23:
-                ((SendMessagesHelper) this.f18291b).lambda$sendVote$31((String) this.f18292c, (Runnable) this.d);
+                ((SendMessagesHelper) this.f18047b).lambda$sendVote$31((String) this.f18048c, (Runnable) this.d);
                 return;
             case 24:
-                ((SendMessagesHelper) this.f18291b).lambda$performSendDelayedMessage$49((TLObject) this.f18292c, (SendMessagesHelper.DelayedMessage) this.d);
+                ((SendMessagesHelper) this.f18047b).lambda$performSendDelayedMessage$49((TLObject) this.f18048c, (SendMessagesHelper.DelayedMessage) this.d);
                 return;
             case 25:
-                ((SendMessagesHelper) this.f18291b).lambda$sendMessage$14((TLRPC.TL_error) this.f18292c, (TLRPC.TL_messages_forwardMessages) this.d);
+                ((SendMessagesHelper) this.f18047b).lambda$sendMessage$14((TLRPC.TL_error) this.f18048c, (TLRPC.TL_messages_forwardMessages) this.d);
                 return;
             case 26:
-                ((TelegramMediaSession) this.f18291b).lambda$loadBrowseChildren$3((TelegramMediaSession.BrowseChildrenCallback) this.f18292c, (String) this.d);
+                ((TelegramMediaSession) this.f18047b).lambda$loadBrowseChildren$3((TelegramMediaSession.BrowseChildrenCallback) this.f18048c, (String) this.d);
                 return;
             case 27:
-                ((TranslateController) this.f18291b).lambda$checkDialogMessageSure$10((ArrayList) this.f18292c, (ArrayList) this.d);
+                ((TranslateController) this.f18047b).lambda$checkDialogMessageSure$10((ArrayList) this.f18048c, (ArrayList) this.d);
                 return;
             case 28:
-                Utilities.lambda$raceCallbacks$1((int[]) this.f18291b, (Utilities.Callback[]) this.f18292c, (Runnable) this.d);
+                Utilities.lambda$raceCallbacks$1((int[]) this.f18047b, (Utilities.Callback[]) this.f18048c, (Runnable) this.d);
                 return;
             default:
-                WearAuthListenerService.a((String) this.f18291b, (String) this.f18292c, (byte[]) this.d);
+                WearAuthListenerService.a((String) this.f18047b, (String) this.f18048c, (byte[]) this.d);
                 return;
         }
     }
 
     public z8(Object obj, Object obj2, Object obj3, int i10) {
-        this.f18290a = i10;
-        this.f18291b = obj;
-        this.f18292c = obj2;
+        this.f18046a = i10;
+        this.f18047b = obj;
+        this.f18048c = obj2;
         this.d = obj3;
     }
 }

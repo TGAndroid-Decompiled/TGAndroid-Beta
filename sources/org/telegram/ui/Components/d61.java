@@ -1,16 +1,42 @@
 package org.telegram.ui.Components;
+public final class d61 extends s4.j {
+    public final e61 F;
 
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-public final class d61 extends c61 {
-    public d61(String str) {
-        super(str != null ? str.replace((char) 8238, ' ') : str, (e11) null);
+    public d61(e61 e61Var) {
+        this.F = e61Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setUnderlineText(false);
+    public final void M() {
+        e61 e61Var = this.F;
+        if (e61Var.b1()) {
+            e61Var.invalidate();
+        }
+        e61Var.C1();
+    }
+
+    @Override
+    public final void O() {
+        e61 e61Var = this.F;
+        if (e61Var.b1()) {
+            e61Var.invalidate();
+        }
+        e61Var.C1();
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        e61 e61Var = this.F;
+        e61Var.invalidate();
+        e61Var.C1();
+    }
+
+    @Override
+    public final void Q() {
+        e61 e61Var = this.F;
+        if (e61Var.b1()) {
+            e61Var.invalidate();
+        }
+        e61Var.C1();
     }
 }

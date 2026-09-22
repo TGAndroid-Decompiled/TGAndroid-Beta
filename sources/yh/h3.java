@@ -1,31 +1,169 @@
 package yh;
 
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stars;
-public final class h3 extends f3 {
-    public final Paint f47526c;
-    public final Matrix d;
-    public final RadialGradient e;
-    public final int f47527f;
-    public final int f47528g;
-    public final int h;
+import org.telegram.ui.Components.qr;
+public final class h3 {
+    public final Runnable f47181a;
+    public g3 f47182b;
+    public g3 f47183c;
+    public g3 d;
+    public int e;
+    public float f47184f;
+    public final ArrayList f47185g;
+    public final g3 h;
+    public final g3 f47186i;
+    public final float f47187j;
+    public final int f47188k;
+    public int f47189l;
+    public final org.telegram.ui.Components.c6 f47190m;
+    public int f47191n = -1;
 
-    public h3(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f47429a = stargiftattributebackdrop.name;
-        this.f47430b = stargiftattributebackdrop.getRarityPermille();
-        Paint paint = new Paint(1);
-        this.f47526c = paint;
-        this.d = new Matrix();
-        RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(200.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.e = radialGradient;
-        paint.setShader(radialGradient);
-        this.f47528g = stargiftattributebackdrop.text_color | (-16777216);
-        int i10 = stargiftattributebackdrop.pattern_color;
-        this.h = i10 | (-16777216);
-        this.f47527f = i0.a.d(0.25f, stargiftattributebackdrop.edge_color | (-16777216), i10 | (-16777216));
+    public h3(Runnable runnable, ArrayList arrayList, g3 g3Var, g3 g3Var2, float f7, int i10) {
+        this.f47184f = 0.0f;
+        this.f47181a = runnable;
+        this.f47185g = arrayList;
+        this.h = g3Var;
+        this.f47186i = g3Var2;
+        this.f47187j = f7;
+        this.f47188k = i10;
+        org.telegram.ui.Components.c6 c6Var = new org.telegram.ui.Components.c6(runnable, 300L, qr.h);
+        this.f47190m = c6Var;
+        c6Var.a(true);
+        this.f47184f = -0.5f;
+        this.e = 1;
+        this.f47189l = i10;
+        this.f47182b = g3Var;
+        this.f47183c = d(false);
+        this.d = d(false);
+    }
+
+    public final void a() {
+        g3 g3Var = this.h;
+        if (g3Var != null) {
+            g3Var.a();
+        }
+        g3 g3Var2 = this.f47186i;
+        if (g3Var2 != null) {
+            g3Var2.a();
+        }
+    }
+
+    public final boolean b(float f7) {
+        if (this.f47183c == this.f47186i && this.f47184f + f7 >= this.e + 0.5f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean c() {
+        if (this.f47183c == this.f47186i && this.f47184f >= this.e + 0.5f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final g3 d(boolean z10) {
+        ArrayList arrayList;
+        if (z10) {
+            g3 g3Var = this.f47186i;
+            if (g3Var.b()) {
+                int i10 = this.f47189l;
+                if (i10 <= 0) {
+                    return g3Var;
+                }
+                this.f47189l = i10 - 1;
+            }
+        }
+        ArrayList arrayList2 = new ArrayList();
+        int i11 = 0;
+        while (true) {
+            arrayList = this.f47185g;
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            if (i11 != this.f47191n && ((g3) arrayList.get(i11)).b()) {
+                arrayList2.add(Integer.valueOf(i11));
+            }
+            i11++;
+        }
+        if (arrayList2.isEmpty()) {
+            for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                if (((g3) arrayList.get(i12)).b()) {
+                    arrayList2.add(Integer.valueOf(i12));
+                }
+            }
+            if (arrayList2.isEmpty()) {
+                return this.h;
+            }
+        }
+        int intValue = ((Integer) AndroidUtilities.randomOf(arrayList2)).intValue();
+        this.f47191n = intValue;
+        return (g3) arrayList.get(intValue);
+    }
+
+    public final void e() {
+        this.f47182b = this.f47183c;
+        this.f47183c = this.f47186i;
+        this.d = null;
+        int i10 = this.e + 1;
+        this.e = i10;
+        this.f47184f = i10 + 0.5f;
+    }
+
+    public final float f(float f7, boolean z10) {
+        int i10;
+        long j3;
+        boolean z11;
+        float f10;
+        g3 g3Var;
+        g3 d;
+        int i11 = this.f47189l;
+        int i12 = this.f47188k;
+        if (i11 >= i12) {
+            j3 = 450;
+        } else {
+            if (i12 == 3) {
+                i10 = 4500;
+            } else {
+                i10 = 2500;
+            }
+            j3 = i10;
+        }
+        org.telegram.ui.Components.c6 c6Var = this.f47190m;
+        c6Var.f22953g = j3;
+        if (i11 >= i12) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        float e = c6Var.e(z11);
+        if (i12 == 3) {
+            f10 = 0.75f;
+        } else {
+            f10 = 2.0f;
+        }
+        float lerp = (f7 * AndroidUtilities.lerp(f10, 7.5f, e) * this.f47187j) + this.f47184f;
+        this.f47184f = lerp;
+        g3 g3Var2 = this.f47186i;
+        if (lerp >= 0.0f) {
+            double d10 = lerp;
+            if (Math.floor(d10) + 1.0d > this.e && (g3Var = this.f47183c) != g3Var2) {
+                this.f47182b = g3Var;
+                g3 g3Var3 = this.d;
+                this.f47183c = g3Var3;
+                if (g3Var3 == g3Var2) {
+                    d = null;
+                } else {
+                    d = d(z10);
+                }
+                this.d = d;
+                this.e = ((int) Math.floor(d10)) + 1;
+            }
+        }
+        if (this.f47183c == g3Var2) {
+            return Math.min(lerp, this.e + 0.5f);
+        }
+        return lerp;
     }
 }

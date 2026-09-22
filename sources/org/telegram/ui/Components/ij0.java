@@ -1,183 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.text.TextUtils;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueuePoolBackground;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public class ij0 extends kj0 {
-    public volatile RLottieNative U0;
-    public boolean V0;
-    public boolean W0;
-    public volatile boolean X0;
-    public boolean Y0;
-    public final int Z0;
-    public int f25146a1;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class ij0 extends s4.h0 {
+    public final int f25046c;
+    public final Context d;
+    public final org.telegram.ui.ActionBar.e6 e;
+    public final boolean f25047f;
+    public final pj0 h;
 
-    public ij0(String str, int i10, int i11) {
-        super(i10, i11);
-        String str2;
-        this.Z0 = -1;
-        this.J = 1;
-        if ("🎲".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.diceloop);
-            this.Z0 = 60;
-        } else if ("🎯".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.dartloop);
-        } else {
-            str2 = null;
-        }
-        getPaint().setFlags(2);
-        if (TextUtils.isEmpty(str2)) {
-            return;
-        }
-        this.m0 = RLottieNative.b(str2, this.e, null, null);
+    public ij0(pj0 pj0Var, int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        this.h = pj0Var;
+        this.f25046c = i10;
+        this.d = context;
+        this.e = e6Var;
+        this.f25047f = z10;
     }
 
     @Override
-    public int B(Bitmap bitmap, boolean z10) {
-        RLottieNative rLottieNative;
-        int i10 = this.J;
-        if (i10 == 1) {
-            rLottieNative = this.m0;
-        } else if (i10 == 2) {
-            rLottieNative = this.U0;
-            if (this.X0) {
-                this.f25711a0 = this.f25146a1 - 1;
-            }
+    public final int h() {
+        int i10;
+        pj0 pj0Var = this.h;
+        int size = pj0Var.f27060n.size();
+        if (!pj0Var.H.isEmpty() && !MessagesController.getInstance(this.f25046c).premiumFeaturesBlocked()) {
+            i10 = 1;
         } else {
-            rLottieNative = this.m0;
+            i10 = 0;
         }
-        if (rLottieNative.c(this.f25711a0, bitmap, z10) < 0) {
-            return 2;
+        return size + i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 < this.h.f27060n.size()) {
+            return 0;
         }
         return 1;
     }
 
     @Override
-    public void C(boolean z10) {
-        this.f25724k0 = false;
-        this.f25725l0 = true;
-        n();
-        l();
-        if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f25741x0) {
-                D(z10);
-                yf.e eVar = this.B0;
-                if (eVar != null) {
-                    RandomAccessFile randomAccessFile = eVar.f47134s;
-                    if (randomAccessFile != null) {
-                        try {
-                            randomAccessFile.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        eVar.f47134s = null;
-                    }
-                    eVar.f47133r = true;
-                    this.B0 = null;
+    public final void v(s4.c1 c1Var, int i10) {
+        if (c1Var.f42674f == 0) {
+            ((org.telegram.ui.Cells.o6) c1Var.f42671a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f27060n.get(i10));
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout o6Var;
+        if (i10 != 0) {
+            pj0 pj0Var = this.h;
+            ta0 ta0Var = pj0Var.J;
+            if (ta0Var != null) {
+                if (ta0Var.getParent() != null) {
+                    ((ViewGroup) pj0Var.J.getParent()).removeView(pj0Var.J);
                 }
-                E();
-                return;
+            } else {
+                pj0Var.i();
             }
-            this.V = true;
-            return;
-        }
-        this.W0 = true;
-    }
-
-    @Override
-    public final void D(boolean z10) {
-        RLottieNative rLottieNative = this.m0;
-        RLottieNative rLottieNative2 = this.U0;
-        this.m0 = null;
-        this.U0 = null;
-        if (rLottieNative == null && rLottieNative2 == null) {
-            return;
-        }
-        bv bvVar = new bv(28, rLottieNative, rLottieNative2);
-        if (z10) {
-            DispatchQueuePoolBackground.execute(bvVar);
+            Context context = this.d;
+            o6Var = new FrameLayout(context);
+            View view = new View(context);
+            view.setBackgroundColor(org.telegram.ui.ActionBar.i6.l1(0.06f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.E8, this.e)));
+            o6Var.addView(view, w7.x5.c(8.0f, -1));
+            o6Var.addView(pj0Var.J, w7.x5.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
         } else {
-            Utilities.globalQueue.postRunnable(bvVar);
+            o6Var = new org.telegram.ui.Cells.o6(0, this.f25046c, this.d, this.e, true, this.f25047f);
         }
-    }
-
-    @Override
-    public void i() {
-        int i10 = this.J;
-        if (i10 == 1) {
-            int i11 = this.f25711a0 + 1;
-            int i12 = this.Z0;
-            if (i12 == -1) {
-                i12 = this.e[0];
-            }
-            if (i11 < i12) {
-                this.f25711a0 = i11;
-                return;
-            }
-            this.f25711a0 = 0;
-            this.N = false;
-            if (this.U0 != null) {
-                this.J = 2;
-            }
-            if (this.f25742y) {
-                this.f25740x = null;
-                this.f25742y = false;
-            }
-        } else if (i10 == 2) {
-            int i13 = this.f25711a0 + 1;
-            if (i13 < this.f25146a1) {
-                this.f25711a0 = i13;
-                return;
-            }
-            this.N = true;
-            this.M++;
-        }
-    }
-
-    @Override
-    public int j() {
-        if (this.f25725l0) {
-            return 3;
-        }
-        if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void p() {
-        if (this.V) {
-            n();
-            if (this.P == null && this.m0 != null) {
-                D(true);
-            }
-        }
-        if (this.m0 == null && this.U0 == null && this.B0 == null) {
-            E();
-            return;
-        }
-        this.T = true;
-        if (!v()) {
-            stop();
-        }
-        if (this.f25724k0) {
-            I();
-        }
-    }
-
-    @Override
-    public final boolean w() {
-        return this.Y0;
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
+        return new s4.c1(o6Var);
     }
 }

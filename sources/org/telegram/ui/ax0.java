@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class ax0 extends a71 {
+public final class ax0 extends y61 {
     public final PremiumPreviewFragment e;
 
     public ax0(PremiumPreviewFragment premiumPreviewFragment, zw0 zw0Var) {
@@ -10,6 +10,6 @@ public final class ax0 extends a71 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f31484s0 = null;
+        this.e.f31176s0 = null;
     }
 }

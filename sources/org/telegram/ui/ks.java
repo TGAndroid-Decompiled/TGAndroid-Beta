@@ -2,31 +2,31 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class ks implements Runnable {
-    public final int f35246a;
-    public final ss f35247b;
+    public final int f35250a;
+    public final ss f35251b;
 
     public ks(ss ssVar, int i10) {
-        this.f35246a = i10;
-        this.f35247b = ssVar;
+        this.f35250a = i10;
+        this.f35251b = ssVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f35246a) {
+        switch (this.f35250a) {
             case 0:
-                ss ssVar = this.f35247b;
+                ss ssVar = this.f35251b;
                 if (ssVar.J) {
-                    ssVar.d.f20542b.requestFocus();
-                    AndroidUtilities.showKeyboard(ssVar.d.f20542b);
+                    ssVar.d.f20190b.requestFocus();
+                    AndroidUtilities.showKeyboard(ssVar.d.f20190b);
                     return;
                 }
                 return;
             case 1:
-                ss.Z(this.f35247b);
+                ss.Z(this.f35251b);
                 return;
             default:
-                ss ssVar2 = this.f35247b;
-                ssVar2.presentFragment(zn.R9(ssVar2.H), true);
+                ss ssVar2 = this.f35251b;
+                ssVar2.presentFragment(bo.R9(ssVar2.H), true);
                 return;
         }
     }

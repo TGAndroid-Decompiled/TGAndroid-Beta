@@ -1,26 +1,26 @@
 package v7;
-public final class w8 {
-    public final String f44451a;
 
-    public w8(String str) {
-        this.f44451a = str;
+import android.content.Context;
+import java.util.ArrayList;
+public final class w8 implements x8 {
+    public final ArrayList f44171a;
+
+    public w8(Context context, v8 v8Var) {
+        ArrayList arrayList = new ArrayList();
+        this.f44171a = arrayList;
+        v8Var.getClass();
+        arrayList.add(new b9(context, v8Var));
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    @Override
+    public final void a(a5.a aVar) {
+        ArrayList arrayList = this.f44171a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((x8) obj).a(aVar);
         }
-        if ((obj instanceof w8) && this.f44451a.equals(((w8) obj).f44451a)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((((this.f44451a.hashCode() ^ 1000003) * 1000003) ^ 1231) * 1000003) ^ 1;
-    }
-
-    public final String toString() {
-        return a4.a.p("MLKitLoggingOptions{libraryName=", this.f44451a, ", enableFirelog=true, firelogEventType=1}");
     }
 }

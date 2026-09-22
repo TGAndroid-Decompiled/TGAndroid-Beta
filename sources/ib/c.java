@@ -4,9 +4,9 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import v7.n8;
+import v7.m8;
 public abstract class c {
-    public static final n8 f11070a;
+    public static final m8 f11068a;
 
     static {
         b bVar;
@@ -15,7 +15,7 @@ public abstract class c {
         } catch (ReflectiveOperationException unused) {
             bVar = new Object();
         }
-        f11070a = bVar;
+        f11068a = bVar;
     }
 
     public static void a(AccessibleObject accessibleObject, StringBuilder sb2) {
@@ -83,9 +83,9 @@ public abstract class c {
         try {
             accessibleObject.setAccessible(true);
         } catch (Exception e) {
-            StringBuilder v = a4.a.v("Failed making ", d(accessibleObject, false), " accessible; either increase its visibility or write a custom TypeAdapter for its declaring type.");
-            v.append(e(e));
-            throw new RuntimeException(v.toString(), e);
+            StringBuilder w10 = a4.a.w("Failed making ", d(accessibleObject, false), " accessible; either increase its visibility or write a custom TypeAdapter for its declaring type.");
+            w10.append(e(e));
+            throw new RuntimeException(w10.toString(), e);
         }
     }
 }

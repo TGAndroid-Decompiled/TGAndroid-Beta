@@ -1,124 +1,136 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class w9 extends Drawable implements Drawable.Callback {
-    public static int[] f29979s;
-    public final Context f29980a;
-    public final n6 f29981b;
-    public Drawable f29982c;
-    public Drawable d;
-    public int e;
-    public int f29983f;
-    public int h;
-    public int f29984n;
-    public int f29985r;
+public final class w9 extends Drawable {
+    public TextPaint f29668a;
+    public final Paint f29669b;
+    public final Paint f29670c;
+    public final Paint d;
+    public final float e;
+    public float f29671f;
+    public float f29672g;
+    public final RectF h;
+    public ValueAnimator f29673i;
 
-    public w9(Context context) {
-        this.f29980a = context;
-        n6 n6Var = new n6(false, false, false, false);
-        this.f29981b = n6Var;
-        n6Var.u(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-        n6Var.k(0.2f, 160L, qr.h);
-        n6Var.t(AndroidUtilities.dp(10.0f));
-        n6Var.f26643b = 17;
-        n6Var.setCallback(this);
-        n6Var.N = true;
-        if (f29979s != null) {
+    public w9() {
+        Paint paint = new Paint(1);
+        this.f29669b = paint;
+        this.f29670c = new Paint(1);
+        this.d = new Paint(1);
+        this.e = 1.0f;
+        this.f29671f = 0.0f;
+        this.f29672g = 1.0f;
+        this.h = new RectF();
+        paint.setStyle(Paint.Style.STROKE);
+    }
+
+    public final void a(float f7, boolean z10) {
+        float max = Math.max(Math.min(f7, 1.0f), 0.0f);
+        ValueAnimator valueAnimator = this.f29673i;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f29673i = null;
+        }
+        if (!z10) {
+            this.f29672g = max;
+            invalidateSelf();
             return;
         }
-        f29979s = new int[]{R.drawable.profile_level1_inner, R.drawable.profile_level1_outer, R.drawable.profile_level2_inner, R.drawable.profile_level2_outer, R.drawable.profile_level3_inner, R.drawable.profile_level3_outer, R.drawable.profile_level4_inner, R.drawable.profile_level4_outer, R.drawable.profile_level5_inner, R.drawable.profile_level5_outer, R.drawable.profile_level6_inner, R.drawable.profile_level6_outer, R.drawable.profile_level7_inner, R.drawable.profile_level7_outer, R.drawable.profile_level8_inner, R.drawable.profile_level8_outer, R.drawable.profile_level9_inner, R.drawable.profile_level9_outer, R.drawable.profile_level10_inner, R.drawable.profile_level10_outer, R.drawable.profile_level20_inner, R.drawable.profile_level20_outer, R.drawable.profile_level30_inner, R.drawable.profile_level30_outer, R.drawable.profile_level40_inner, R.drawable.profile_level40_outer, R.drawable.profile_level50_inner, R.drawable.profile_level50_outer, R.drawable.profile_level60_inner, R.drawable.profile_level60_outer, R.drawable.profile_level70_inner, R.drawable.profile_level70_outer, R.drawable.profile_level80_inner, R.drawable.profile_level80_outer, R.drawable.profile_level90_inner, R.drawable.profile_level90_outer, R.drawable.profile_level_minus_inner, R.drawable.profile_level_minus_outer};
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f29672g, max);
+        this.f29673i = ofFloat;
+        ofFloat.addUpdateListener(new i6(this, 5));
+        this.f29673i.addListener(new org.telegram.ui.ActionBar.z0(this, max, 4));
+        this.f29673i.setInterpolator(qr.h);
+        this.f29673i.setDuration(200L);
+        this.f29673i.start();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.d;
-        if (drawable != null && this.f29982c != null) {
-            drawable.draw(canvas);
-            this.f29982c.draw(canvas);
-            canvas.save();
-            canvas.translate(getBounds().exactCenterX(), getBounds().exactCenterY());
-            this.f29981b.draw(canvas);
-            canvas.restore();
+        if (getBounds() != null) {
+            int i10 = getBounds().left;
+            int i11 = getBounds().top + ((int) this.f29671f);
+            int width = getBounds().width();
+            int height = getBounds().height();
+            int centerX = getBounds().centerX();
+            int centerY = getBounds().centerY() + ((int) this.f29671f);
+            TextPaint textPaint = this.f29668a;
+            Paint paint = this.d;
+            Paint paint2 = this.f29670c;
+            Paint paint3 = this.f29669b;
+            if (textPaint != null) {
+                int color = textPaint.getColor();
+                paint3.setColor(color);
+                paint2.setColor(color);
+                paint.setColor(color);
+            }
+            if (this.e != 1.0f) {
+                canvas.save();
+                float f7 = this.e;
+                canvas.scale(f7, f7, centerX, centerY);
+            }
+            paint3.setStrokeWidth(AndroidUtilities.dpf2(1.1f));
+            float f10 = i10;
+            float f11 = width;
+            float f12 = i11;
+            float f13 = height;
+            RectF rectF = this.h;
+            rectF.set((((f11 - AndroidUtilities.dpf2(16.33f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.33f), ((f13 - AndroidUtilities.dpf2(10.33f)) / 2.0f) + f12, (((AndroidUtilities.dpf2(16.33f) + f11) / 2.0f) + f10) - AndroidUtilities.dpf2(1.33f), ((AndroidUtilities.dpf2(10.33f) + f13) / 2.0f) + f12);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(2.33f), paint3);
+            rectF.set((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f), ((f13 - AndroidUtilities.dpf2(7.33f)) / 2.0f) + f12, Math.max(AndroidUtilities.dpf2(1.1f), this.f29672g * AndroidUtilities.dpf2(13.0f)) + ((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f)), ((AndroidUtilities.dpf2(7.33f) + f13) / 2.0f) + f12);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(0.83f), AndroidUtilities.dpf2(0.83f), paint);
+            float f14 = centerY;
+            rectF.set((((AndroidUtilities.dpf2(17.5f) + f11) - AndroidUtilities.dpf2(4.66f)) / 2.0f) + f10, f14 - AndroidUtilities.dpf2(2.65f), ((AndroidUtilities.dpf2(4.66f) + (AndroidUtilities.dpf2(17.5f) + f11)) / 2.0f) + f10, AndroidUtilities.dpf2(2.65f) + f14);
+            canvas.drawArc(rectF, -90.0f, 180.0f, false, paint2);
+            if (this.e != 1.0f) {
+                canvas.restore();
+            }
         }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+        return AndroidUtilities.dp(this.e * 24.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+        return AndroidUtilities.dp(this.e * 24.0f);
     }
 
     @Override
     public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        Drawable drawable = this.f29982c;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-        }
-        Drawable drawable2 = this.d;
-        if (drawable2 != null) {
-            drawable2.setBounds(getBounds());
-        }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
+        return -2;
     }
 
     @Override
     public final void setAlpha(int i10) {
-        int k10 = i0.a.k(this.e, i10);
-        if (this.e != k10) {
-            this.e = k10;
-            Drawable drawable = this.f29982c;
-            if (drawable != null) {
-                drawable.setColorFilter(k10, PorterDuff.Mode.MULTIPLY);
-                invalidateSelf();
-            }
-        }
-        int k11 = i0.a.k(this.f29983f, i10);
-        if (this.f29983f != k11) {
-            this.f29983f = k11;
-            if (this.f29982c != null) {
-                this.d.setColorFilter(k11, PorterDuff.Mode.MULTIPLY);
-                invalidateSelf();
-            }
-        }
-        int k12 = i0.a.k(this.h, i10);
-        if (this.h != k12) {
-            this.h = k12;
-            this.f29981b.s(k12, false);
-            invalidateSelf();
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
+        this.f29669b.setAlpha(i10);
+        this.f29670c.setAlpha(i10);
+        this.d.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29669b.setColorFilter(colorFilter);
+        this.f29670c.setColorFilter(colorFilter);
+        this.d.setColorFilter(colorFilter);
+    }
+
+    public w9(float f7, int i10) {
+        this();
+        a(f7, false);
+        this.f29669b.setColor(-1);
+        this.f29670c.setColor(-1);
+        this.d.setColor(i10);
+        this.e = 1.3f;
+        invalidateSelf();
     }
 }

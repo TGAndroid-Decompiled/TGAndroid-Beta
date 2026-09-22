@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class g50 extends o50 {
-    public final c60 d;
+public final class g50 extends p50 {
+    public final w50 d;
 
-    public g50(c60 c60Var, Context context) {
-        super(c60Var, context);
-        this.d = c60Var;
+    public g50(w50 w50Var, Context context) {
+        super(w50Var, context);
+        this.d = w50Var;
     }
 
     @Override

@@ -5,20 +5,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.y51;
-import org.telegram.ui.Components.yl0;
-public final class v8 extends x51 {
-    public static final int f5663a = 0;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.w51;
+public final class v8 extends h51 {
+    public static final int f5661a = 0;
 
     static {
-        x51.setup(new x51());
+        h51.setup(new h51());
     }
 
     @Override
-    public final void bindView(View view, y51 y51Var, boolean z10, m61 m61Var, u61 u61Var) {
+    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
         TLRPC.WebPage webPage;
         boolean z11;
         float f7;
@@ -27,17 +27,17 @@ public final class v8 extends x51 {
         float f12;
         String str;
         w8 w8Var = (w8) view;
-        Object obj = y51Var.G;
+        Object obj = i51Var.G;
         if (obj instanceof TLRPC.WebPage) {
             webPage = (TLRPC.WebPage) obj;
         } else {
             webPage = null;
         }
-        View.OnClickListener onClickListener = y51Var.D;
-        org.telegram.ui.Components.o6 o6Var = w8Var.e;
-        org.telegram.ui.Components.o6 o6Var2 = w8Var.d;
-        ImageView imageView = w8Var.f5712c;
-        ImageView imageView2 = w8Var.f5711b;
+        View.OnClickListener onClickListener = i51Var.D;
+        org.telegram.ui.Components.n6 n6Var = w8Var.e;
+        org.telegram.ui.Components.n6 n6Var2 = w8Var.d;
+        ImageView imageView = w8Var.f5710c;
+        ImageView imageView2 = w8Var.f5709b;
         if (webPage != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
             z11 = true;
         } else {
@@ -83,17 +83,17 @@ public final class v8 extends x51 {
             } else {
                 str = webPage.site_name;
             }
-            o6Var2.c(str, false, true);
-            o6Var.c(webPage.description, false, true);
+            n6Var2.c(str, false, true);
+            n6Var.c(webPage.description, false, true);
         } else {
-            o6Var2.c(w8Var.h, false, true);
-            o6Var.c(w8Var.f5714n, false, true);
+            n6Var2.c(w8Var.h, false, true);
+            n6Var.c(w8Var.f5712n, false, true);
         }
-        w8Var.f5713f.setOnClickListener(onClickListener);
+        w8Var.f5711f.setOnClickListener(onClickListener);
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
         return new w8(context);
     }
 }

@@ -1,46 +1,25 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class p60 extends yl0 {
-    public int X2;
-    public final c70 Y2;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+public final class p60 extends org.telegram.ui.Cells.ab {
+    public final TextView f26952a0;
+    public final TextView f26953b0;
 
-    public p60(c70 c70Var, Context context) {
-        super(context, null);
-        this.Y2 = c70Var;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        c70 c70Var = this.Y2;
-        p60 p60Var = c70Var.V;
-        if (this.X2 != View.MeasureSpec.getSize(i11)) {
-            this.X2 = View.MeasureSpec.getSize(i11);
-            c70Var.f23267a0 = true;
-            p60Var.setPadding(0, 0, 0, 0);
-            c70Var.f23267a0 = false;
-            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-            int measuredHeight = getMeasuredHeight();
-            int i12 = this.X2;
-            int i13 = (int) ((i12 / 5.0f) * 2.0f);
-            if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
-                i13 = this.X2 - measuredHeight;
-            }
-            c70Var.f23267a0 = true;
-            p60Var.setPadding(0, i13, 0, 0);
-            c70Var.f23267a0 = false;
-            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-        }
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.Y2.f23267a0) {
-            return;
-        }
-        super.requestLayout();
+    public p60(Context context) {
+        super(context, 6, 0, true);
+        LinearLayout f7 = org.telegram.messenger.vl.f(context, 1);
+        TextView textView = new TextView(context);
+        this.f26952a0 = textView;
+        org.telegram.messenger.y0.q(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false), 1, 16.0f);
+        f7.addView(textView, w7.x5.q(-2, -2, 5));
+        TextView textView2 = new TextView(context);
+        this.f26953b0 = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19234z6, false));
+        textView2.setTextSize(1, 13.0f);
+        f7.addView(textView2, w7.x5.t(-2, -2, 5, 0, 1, 0, 0));
+        addView(f7, w7.x5.d(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
     }
 }

@@ -1,8 +1,27 @@
 package org.telegram.ui.Components;
-public interface jo0 {
-    void e(float f7);
+public final class jo0 extends m6 {
+    public final int W = 0;
+    public final Object X;
 
-    void f(org.telegram.ui.Cells.s2 s2Var);
+    public jo0(Runnable runnable) {
+        super(false, true, true, true);
+        this.X = runnable;
+    }
 
-    void finish();
+    @Override
+    public final void invalidateSelf() {
+        switch (this.W) {
+            case 0:
+                ((Runnable) this.X).run();
+                return;
+            default:
+                ((org.telegram.ui.z21) this.X).invalidate();
+                return;
+        }
+    }
+
+    public jo0(org.telegram.ui.z21 z21Var) {
+        super(false, true, false, false);
+        this.X = z21Var;
+    }
 }

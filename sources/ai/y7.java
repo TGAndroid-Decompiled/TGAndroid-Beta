@@ -13,10 +13,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.lv0;
+import org.telegram.ui.Components.yu0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.aa0;
-import org.telegram.ui.zn;
+import org.telegram.ui.bo;
+import org.telegram.ui.z90;
 public final class y7 implements Runnable {
     public final int f1759a;
     public final int f1760b;
@@ -66,24 +66,24 @@ public final class y7 implements Runnable {
                 SendMessagesHelper.lambda$finishGroup$117((AccountInstance) this.d, this.f1761c, this.f1760b);
                 return;
             case 6:
-                BotForumHelper.BotDraftAnimationsPool botDraftAnimationsPool = ((org.telegram.ui.Cells.u1) this.d).Pd;
+                BotForumHelper.BotDraftAnimationsPool botDraftAnimationsPool = ((org.telegram.ui.Cells.t1) this.d).Pd;
                 if (botDraftAnimationsPool != null) {
                     botDraftAnimationsPool.removeAnimator(this.f1761c, this.f1760b);
                     return;
                 }
                 return;
             case 7:
-                lv0.n((lv0) this.d, this.f1761c, this.f1760b);
+                yu0.n((yu0) this.d, this.f1761c, this.f1760b);
                 return;
             default:
                 Long l4 = (Long) this.d;
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    zn R9 = zn.R9(l4.longValue());
+                    bo R9 = bo.R9(l4.longValue());
                     U.presentFragment(R9);
                     TLRPC.Chat chat = MessagesController.getInstance(this.f1760b).getChat(Long.valueOf(-l4.longValue()));
                     if (chat != null) {
-                        AndroidUtilities.runOnUIThread(new aa0(R9, this.f1761c, chat, 1), 250L);
+                        AndroidUtilities.runOnUIThread(new z90(R9, this.f1761c, chat, 1), 250L);
                         return;
                     }
                     return;

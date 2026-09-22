@@ -1,128 +1,150 @@
 package rg;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import java.util.ArrayList;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-public class v1 {
-    public boolean B;
-    public Matrix[] C;
-    public float[][] D;
-    public int[] E;
-    public float[] F;
-    public boolean G;
-    public f6 O;
-    public long Q;
-    public long R;
-    public boolean f42825g;
-    public boolean h;
-    public Utilities.CallbackReturn f42829l;
-    public boolean f42830m;
-    public final int f42833p;
-    public boolean f42834q;
-    public int f42842z;
-    public final RectF f42821a = new RectF();
-    public final RectF f42822b = new RectF();
-    public final RectF f42823c = new RectF();
-    public Bitmap[] d = new Bitmap[3];
-    public boolean[] e = new boolean[3];
-    public boolean[] f42824f = new boolean[3];
-    public final Paint f42826i = new Paint();
-    public float f42827j = 0.0f;
-    public float f42828k = 0.0f;
-    public final ArrayList f42831n = new ArrayList();
-    public float f42832o = 1.0f;
-    public int f42835r = 14;
-    public int f42836s = 12;
-    public int f42837t = 10;
-    public float f42838u = 0.85f;
-    public float v = 0.85f;
-    public float f42839w = 0.9f;
-    public long f42840x = 2000;
-    public int f42841y = 1000;
-    public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
-    public boolean H = false;
-    public boolean I = true;
-    public boolean J = true;
-    public boolean K = false;
-    public boolean L = false;
-    public boolean M = true;
-    public int N = -1;
-    public int P = j6.Uj;
-    public int S = 0;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.SharedConfig;
+public class v1 extends View {
+    public u1 f42518a;
+    public int f42519b;
+    public org.telegram.ui.web.b1 f42520c;
+    public boolean d;
+    public Paint e;
+    public LinearGradient f42521f;
+    public Matrix h;
 
-    public v1(int i10) {
-        this.f42833p = i10;
-        this.B = i10 < 50;
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: rg.v1.a():void");
-    }
-
-    public int b() {
-        if (this.N == 100) {
-            return i0.a.k(j6.v0(this.P, this.O), 200);
+    public v1(Context context) {
+        super(context);
+        int i10;
+        if (SharedConfig.getDevicePerformanceClass() == 2) {
+            i10 = 200;
+        } else if (SharedConfig.getDevicePerformanceClass() == 1) {
+            i10 = 100;
+        } else {
+            i10 = 50;
         }
-        return j6.v0(this.P, this.O);
-    }
-
-    public final void c() {
+        this.d = true;
+        this.f42518a = new u1(i10);
         a();
-        boolean z10 = this.G;
-        int i10 = this.f42833p;
-        if (z10) {
-            int length = this.d.length;
-            this.C = new Matrix[length];
-            this.D = new float[length];
-            this.E = new int[length];
-            this.F = new float[length];
-            for (int i11 = 0; i11 < length; i11++) {
-                this.C[i11] = new Matrix();
-                this.D[i11] = new float[i10 * 2];
-            }
+    }
+
+    public void a() {
+        u1 u1Var = this.f42518a;
+        u1Var.N = 100;
+        u1Var.M = true;
+        u1Var.G = true;
+        u1Var.K = true;
+        u1Var.H = true;
+        u1Var.f42506r = 4;
+        u1Var.f42510w = 0.98f;
+        u1Var.v = 0.98f;
+        u1Var.f42509u = 0.98f;
+        u1Var.c();
+    }
+
+    public final void b() {
+        Paint paint = new Paint(1);
+        this.e = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f42521f = linearGradient;
+        this.e.setShader(linearGradient);
+        this.h = new Matrix();
+    }
+
+    public int getStarsRectWidth() {
+        return AndroidUtilities.dp(140.0f);
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        org.telegram.ui.web.b1 b1Var = new org.telegram.ui.web.b1(this, 9);
+        this.f42520c = b1Var;
+        LiteMode.addOnPowerSaverAppliedListener(b1Var);
+        boolean isEnabled = LiteMode.isEnabled(131072);
+        if (this.d != isEnabled) {
+            this.d = isEnabled;
+            invalidate();
         }
-        ArrayList arrayList = this.f42831n;
-        if (arrayList.isEmpty()) {
-            for (int i12 = 0; i12 < i10; i12++) {
-                arrayList.add(new u1(this));
-            }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.ui.web.b1 b1Var = this.f42520c;
+        if (b1Var != null) {
+            LiteMode.removeOnPowerSaverAppliedListener(b1Var);
         }
     }
 
-    public final void d(Canvas canvas) {
-        e(canvas, 1.0f);
-    }
-
-    public final void e(android.graphics.Canvas r19, float r20) {
-        throw new UnsupportedOperationException("Method not decompiled: rg.v1.e(android.graphics.Canvas, float):void");
-    }
-
-    public final void f() {
-        long currentTimeMillis = System.currentTimeMillis();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f42831n;
-            if (i10 < arrayList.size()) {
-                ((u1) arrayList.get(i10)).b(currentTimeMillis);
-                i10++;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        super.onDraw(canvas);
+        if (this.d) {
+            if (this.e != null) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                canvas2 = canvas;
             } else {
-                return;
+                canvas2 = canvas;
+            }
+            this.f42518a.d(canvas2);
+            if (this.e != null) {
+                canvas2.save();
+                this.h.reset();
+                this.h.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
+                this.f42521f.setLocalMatrix(this.h);
+                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.e);
+                this.h.reset();
+                this.h.postRotate(180.0f);
+                this.h.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
+                this.f42521f.setLocalMatrix(this.h);
+                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.e);
+                canvas2.restore();
+                canvas2.restore();
+            }
+            if (!this.f42518a.f42496g) {
+                invalidate();
             }
         }
     }
 
-    public final void g() {
-        int v02 = j6.v0(this.P, this.O);
-        if (this.f42842z != v02) {
-            this.f42842z = v02;
-            a();
+    @Override
+    public void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
+        this.f42518a.f42492a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
+        this.f42518a.f42492a.offset((getMeasuredWidth() - this.f42518a.f42492a.width()) / 2.0f, (getMeasuredHeight() - this.f42518a.f42492a.height()) / 2.0f);
+        this.f42518a.f42493b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
+        if (this.f42519b != measuredHeight) {
+            this.f42519b = measuredHeight;
+            this.f42518a.f();
         }
+    }
+
+    public void setPaused(boolean z10) {
+        u1 u1Var = this.f42518a;
+        if (z10 == u1Var.f42496g) {
+            return;
+        }
+        u1Var.f42496g = z10;
+        if (z10) {
+            u1Var.Q = System.currentTimeMillis();
+            return;
+        }
+        for (int i10 = 0; i10 < this.f42518a.f42502n.size(); i10++) {
+            t1 t1Var = (t1) this.f42518a.f42502n.get(i10);
+            t1Var.f42471a = (System.currentTimeMillis() - this.f42518a.Q) + t1Var.f42471a;
+        }
+        invalidate();
     }
 }

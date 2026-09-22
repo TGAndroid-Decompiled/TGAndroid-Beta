@@ -1,190 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.TextPaint;
-import android.view.MotionEvent;
+import android.content.Context;
 import android.view.View;
-import java.util.Locale;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class lf0 extends View {
-    public int f26094a;
-    public boolean f26095b;
-    public boolean f26096c;
-    public float d;
-    public uk0 e;
-    public Paint f26097f;
-    public Paint h;
-    public Paint f26098n;
-    public TextPaint f26099r;
-    public Path f26100s;
-    public kf0 v;
-    public qf0 f26101w;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class lf0 extends LinearLayout {
+    public final LinearLayout f25915a;
+    public final LinearLayout f25916b;
 
-    public final void a(int i10, MotionEvent motionEvent) {
-        rf0 rf0Var;
-        float x10 = motionEvent.getX();
-        float y3 = motionEvent.getY();
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if ((i10 == 3 || i10 == 4 || i10 == 5) && this.f26094a != 0) {
-                    this.f26094a = 0;
-                    return;
-                }
-                return;
-            }
-            float min = Math.min(2.0f, (this.d - y3) / 8.0f);
-            qf0 qf0Var = this.f26101w;
-            int i11 = qf0Var.f27555f;
-            if (i11 != 0) {
-                if (i11 != 1) {
-                    if (i11 != 2) {
-                        if (i11 != 3) {
-                            rf0Var = null;
-                        } else {
-                            rf0Var = qf0Var.d;
-                        }
-                    } else {
-                        rf0Var = qf0Var.f27554c;
-                    }
-                } else {
-                    rf0Var = qf0Var.f27553b;
-                }
-            } else {
-                rf0Var = qf0Var.f27552a;
-            }
-            int i12 = this.f26094a;
-            if (i12 != 1) {
-                if (i12 != 2) {
-                    if (i12 != 3) {
-                        if (i12 != 4) {
-                            if (i12 == 5) {
-                                rf0Var.e = Math.max(0.0f, Math.min(100.0f, rf0Var.e + min));
-                            }
-                        } else {
-                            rf0Var.d = Math.max(0.0f, Math.min(100.0f, rf0Var.d + min));
-                        }
-                    } else {
-                        rf0Var.f27946c = Math.max(0.0f, Math.min(100.0f, rf0Var.f27946c + min));
-                    }
-                } else {
-                    rf0Var.f27945b = Math.max(0.0f, Math.min(100.0f, rf0Var.f27945b + min));
-                }
-            } else {
-                rf0Var.f27944a = Math.max(0.0f, Math.min(100.0f, rf0Var.f27944a + min));
-            }
-            invalidate();
-            kf0 kf0Var = this.v;
-            if (kf0Var != null) {
-                uf0 uf0Var = ((mf0) kf0Var).f26444a;
-                uf0Var.g();
-                vz vzVar = uf0Var.f28738l0;
-                if (vzVar != null) {
-                    vzVar.e(false, false, false);
-                }
-            }
-            this.d = y3;
-        } else if (this.f26094a != 0) {
-        } else {
-            uk0 uk0Var = this.e;
-            this.f26094a = (int) Math.floor(com.google.android.gms.internal.vision.e2.A(x10, uk0Var.f28794a, uk0Var.f28796c / 5.0f, 1.0f));
-        }
+    public lf0(Context context) {
+        super(context);
+        setOrientation(0);
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
+        this.f25916b = a2;
+        addView(a2, w7.x5.n(-2, -1));
+        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
+        this.f25915a = a10;
+        addView(a10, w7.x5.n(-2, -1));
+    }
+
+    public final LinearLayout a(int i10, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i10);
+        linearLayout.addView(imageView, w7.x5.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, w7.x5.n(-2, -2));
+        w7.z5.a(linearLayout);
+        return linearLayout;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        rf0 rf0Var;
-        String format;
-        TextPaint textPaint = this.f26099r;
-        Path path = this.f26100s;
-        Paint paint = this.f26098n;
-        qf0 qf0Var = this.f26101w;
-        uk0 uk0Var = this.e;
-        float f7 = uk0Var.f28796c / 5.0f;
-        for (int i10 = 0; i10 < 4; i10++) {
-            float f10 = uk0Var.f28794a;
-            float f11 = i10 * f7;
-            float f12 = f10 + f7 + f11;
-            float f13 = uk0Var.f28795b;
-            canvas.drawLine(f12, f13, f11 + f10 + f7, f13 + uk0Var.d, this.f26097f);
-        }
-        float f14 = uk0Var.f28794a;
-        float f15 = uk0Var.f28795b;
-        canvas.drawLine(f14, f15 + uk0Var.d, f14 + uk0Var.f28796c, f15, this.h);
-        int i11 = qf0Var.f27555f;
-        int i12 = 3;
-        int i13 = 2;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 != 2) {
-                    if (i11 != 3) {
-                        rf0Var = null;
-                    } else {
-                        paint.setColor(-13404165);
-                        rf0Var = qf0Var.d;
-                    }
-                } else {
-                    paint.setColor(-15667555);
-                    rf0Var = qf0Var.f27554c;
-                }
-            } else {
-                paint.setColor(-1229492);
-                rf0Var = qf0Var.f27553b;
-            }
-        } else {
-            paint.setColor(-1);
-            rf0Var = qf0Var.f27552a;
-        }
-        int i14 = 0;
-        while (i14 < 5) {
-            if (i14 != 0) {
-                if (i14 != 1) {
-                    if (i14 != i13) {
-                        if (i14 != i12) {
-                            if (i14 != 4) {
-                                format = "";
-                            } else {
-                                format = String.format(Locale.US, "%.2f", Float.valueOf(rf0Var.e / 100.0f));
-                            }
-                        } else {
-                            format = String.format(Locale.US, "%.2f", Float.valueOf(rf0Var.d / 100.0f));
-                        }
-                    } else {
-                        format = String.format(Locale.US, "%.2f", Float.valueOf(rf0Var.f27946c / 100.0f));
-                    }
-                } else {
-                    format = String.format(Locale.US, "%.2f", Float.valueOf(rf0Var.f27945b / 100.0f));
-                }
-            } else {
-                format = String.format(Locale.US, "%.2f", Float.valueOf(rf0Var.f27944a / 100.0f));
-            }
-            canvas.drawText(format, (i14 * f7) + com.google.android.gms.internal.vision.e2.A(f7, textPaint.measureText(format), 2.0f, uk0Var.f28794a), (uk0Var.f28795b + uk0Var.d) - AndroidUtilities.dp(4.0f), textPaint);
-            i14++;
-            i12 = 3;
-            i13 = 2;
-        }
-        float[] a2 = rf0Var.a();
-        invalidate();
-        path.reset();
-        for (int i15 = 0; i15 < a2.length / 2; i15++) {
-            if (i15 == 0) {
-                int i16 = i15 * 2;
-                path.moveTo((a2[i16] * uk0Var.f28796c) + uk0Var.f28794a, ((1.0f - a2[i16 + 1]) * uk0Var.d) + uk0Var.f28795b);
-            } else {
-                int i17 = i15 * 2;
-                path.lineTo((a2[i17] * uk0Var.f28796c) + uk0Var.f28794a, ((1.0f - a2[i17 + 1]) * uk0Var.d) + uk0Var.f28795b);
-            }
-        }
-        canvas.drawPath(path, paint);
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lf0.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    public void setDelegate(kf0 kf0Var) {
-        this.v = kf0Var;
+    public final void onMeasure(int i10, int i11) {
+        LinearLayout linearLayout = this.f25915a;
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int max = Math.max(0, size - paddingRight);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+        LinearLayout linearLayout2 = this.f25916b;
+        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+        layoutParams2.width = min;
+        layoutParams.width = min;
+        super.onMeasure(i10, i11);
     }
 }

@@ -1,41 +1,34 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.widget.TextView;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ProfileActivity;
-public final class so0 extends c8 {
-    public final Context E;
-    public final Object F;
-    public final int f28287y;
+public final class so0 extends FrameLayout {
+    public final cf f27939a;
 
-    public so0(Object obj, Context context, Context context2, int i10) {
+    public so0(cf cfVar, Context context) {
         super(context);
-        this.f28287y = i10;
-        this.F = obj;
-        this.E = context2;
+        this.f27939a = cfVar;
     }
 
     @Override
-    public final TextView a() {
-        switch (this.f28287y) {
-            case 0:
-                ca0 ca0Var = new ca0(this.E);
-                ca0Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Si, ((uo0) this.F).M));
-                ca0Var.setTextSize(1, 12.0f);
-                ca0Var.setEllipsize(TextUtils.TruncateAt.END);
-                ca0Var.setSingleLine(true);
-                ca0Var.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
-                return ca0Var;
-            default:
-                TextView textView = new TextView(this.E);
-                textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Pi, ((ProfileActivity) this.F).f31717z0));
-                textView.setTextSize(0, AndroidUtilities.dp(13.5f));
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                textView.setGravity(3);
-                return textView;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        cf cfVar = this.f27939a;
+        View contentView = cfVar.getContentView();
+        contentView.getLocationInWindow(r3);
+        int[] iArr = {iArr[0] + cfVar.E, iArr[1] + cfVar.F};
+        int[] iArr2 = new int[2];
+        getLocationInWindow(iArr2);
+        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
+            return contentView.dispatchTouchEvent(motionEvent);
         }
+        if (!cfVar.A && !cfVar.D) {
+            cfVar.D = true;
+            cfVar.l(new o1.k[0]);
+        }
+        return true;
     }
 }

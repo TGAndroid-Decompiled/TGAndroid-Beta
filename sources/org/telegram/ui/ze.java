@@ -1,77 +1,53 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import java.util.HashSet;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ze implements Runnable {
-    public final int f40209a;
-    public final Object f40210b;
-    public final Object f40211c;
-    public final Object d;
-    public final Object e;
-    public final Object f40212f;
-    public final Object h;
-    public final Object f40213n;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import org.telegram.messenger.Utilities;
+public final class ze implements Utilities.Callback2 {
+    public final int f40157a;
+    public final bo f40158b;
 
-    public ze(KeyEvent.Callback callback, Object obj, Object obj2, String str, Object obj3, TLObject tLObject, Object obj4, int i10) {
-        this.f40209a = i10;
-        this.f40210b = callback;
-        this.d = obj;
-        this.e = obj2;
-        this.f40211c = str;
-        this.f40212f = obj3;
-        this.h = tLObject;
-        this.f40213n = obj4;
+    public ze(bo boVar, int i10) {
+        this.f40157a = i10;
+        this.f40158b = boVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ze.run():void");
-    }
-
-    public ze(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f40209a = i10;
-        this.f40210b = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f40212f = obj4;
-        this.f40211c = obj5;
-        this.h = obj6;
-        this.f40213n = obj7;
-    }
-
-    public ze(Object obj, Object obj2, String str, TLObject tLObject, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f40209a = i10;
-        this.f40210b = obj;
-        this.d = obj2;
-        this.f40211c = str;
-        this.e = tLObject;
-        this.f40212f = obj3;
-        this.h = obj4;
-        this.f40213n = obj5;
-    }
-
-    public ze(ln lnVar, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
-        this.f40209a = 2;
-        this.f40210b = lnVar;
-        this.d = b2Var;
-        this.f40212f = tLObject;
-        this.f40211c = hashSet;
-        this.h = tL_inputGroupCallInviteMessage;
-        this.e = messageObject;
-        this.f40213n = tL_error;
-    }
-
-    public ze(zn znVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, kg kgVar, String str, nf.e eVar) {
-        this.f40209a = 1;
-        this.f40210b = znVar;
-        this.d = tL_error;
-        this.e = tLObject;
-        this.f40212f = tLObject2;
-        this.h = kgVar;
-        this.f40211c = str;
-        this.f40213n = eVar;
+    public final void run(Object obj, Object obj2) {
+        switch (this.f40157a) {
+            case 0:
+                bo.g1(this.f40158b, (Integer) obj, (Boolean) obj2);
+                return;
+            case 1:
+                bo.O0(this.f40158b, (Long) obj, (Boolean) obj2);
+                return;
+            case 2:
+                Bitmap bitmap = (Bitmap) obj;
+                bo boVar = this.f40158b;
+                fh.b bVar = boVar.f32552z8;
+                bVar.a((Bitmap) obj2);
+                gh.d.c(bVar, boVar.fragmentView);
+                boVar.A8.d();
+                return;
+            default:
+                bo boVar2 = this.f40158b;
+                boVar2.B8 = (Bitmap) obj;
+                Paint paint = new Paint(1);
+                boVar2.D8 = paint;
+                Bitmap bitmap2 = boVar2.B8;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+                boVar2.C8 = bitmapShader;
+                paint.setShader(bitmapShader);
+                boVar2.E8 = new Matrix();
+                fh.b bVar2 = boVar2.f32552z8;
+                bVar2.a((Bitmap) obj2);
+                gh.d.c(bVar2, boVar2.fragmentView);
+                boVar2.A8.d();
+                return;
+        }
     }
 }

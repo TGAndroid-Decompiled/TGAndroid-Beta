@@ -1,18 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class k01 extends org.telegram.ui.Cells.u1 {
-    @Override
-    public final int getParentWidth() {
-        return org.telegram.messenger.rk.z(128.0f, AndroidUtilities.displaySize.x, 2);
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public class k01 extends MetricAffectingSpan {
+    public final TextPaint f25497a;
+    public final String f25498b;
+
+    public k01(TextPaint textPaint, String str) {
+        this.f25497a = textPaint;
+        this.f25498b = str;
     }
 
     @Override
-    public final boolean isPressed() {
-        return false;
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f25497a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
     }
 
     @Override
-    public final void y4() {
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f25497a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
     }
 }

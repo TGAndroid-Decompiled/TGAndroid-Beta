@@ -22,7 +22,7 @@ public final class z5 extends t2 {
         if (num.intValue() == 3) {
             int i10 = 0;
             for (int i11 = 0; i11 < k6Var.getChildCount(); i11++) {
-                if (k6Var.getChildAt(i11) instanceof qg.b2) {
+                if (k6Var.getChildAt(i11) instanceof qg.d2) {
                     i10++;
                 }
             }
@@ -32,14 +32,14 @@ public final class z5 extends t2 {
                     this.container.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                new org.telegram.ui.Components.xc(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.j6.gc, 0, new androidx.fragment.app.a0(this, 10), this.resourcesProvider), R.raw.star_premium_2).k(true);
+                new org.telegram.ui.Components.vc(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.i6.gc, 0, new androidx.fragment.app.a0(this, 10), this.resourcesProvider), R.raw.star_premium_2).k(true);
                 return false;
             } else if (i10 >= MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium) {
                 try {
                     this.container.performHapticFeedback(3);
                 } catch (Exception unused2) {
                 }
-                new org.telegram.ui.Components.xc(this.container, this.resourcesProvider).M(LocaleController.getString("LimitReached", R.string.LimitReached), LocaleController.formatPluralString("StoryReactionsWidgetLimit2", MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium, new Object[0]), R.raw.chats_infotip).k(true);
+                new org.telegram.ui.Components.vc(this.container, this.resourcesProvider).M(LocaleController.getString("LimitReached", R.string.LimitReached), LocaleController.formatPluralString("StoryReactionsWidgetLimit2", MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium, new Object[0]), R.raw.chats_infotip).k(true);
                 return false;
             }
         }
@@ -60,7 +60,7 @@ public final class z5 extends t2 {
             while (true) {
                 if (i10 >= k6Var.getChildCount()) {
                     break;
-                } else if (k6Var.getChildAt(i10) instanceof qg.w2) {
+                } else if (k6Var.getChildAt(i10) instanceof qg.y2) {
                     z10 = true;
                     break;
                 } else {

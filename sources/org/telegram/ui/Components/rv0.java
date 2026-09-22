@@ -1,22 +1,34 @@
 package org.telegram.ui.Components;
-public final class rv0 {
-    public static final rv0 f28055a;
-    public static final rv0 f28056b;
-    public static final rv0[] f28057c;
+public final class rv0 extends x50 {
+    public final tv0 d;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f28055a = r02;
-        ?? r12 = new Enum("RECORDING", 1);
-        f28056b = r12;
-        f28057c = new rv0[]{r02, r12};
+    public rv0(tv0 tv0Var) {
+        this.d = tv0Var;
     }
 
-    public static rv0 valueOf(String str) {
-        return (rv0) Enum.valueOf(rv0.class, str);
+    @Override
+    public final CharSequence d() {
+        tv0 tv0Var = this.d;
+        int i10 = tv0Var.I;
+        String[] strArr = tv0Var.F;
+        if (i10 < strArr.length) {
+            return strArr[i10];
+        }
+        return null;
     }
 
-    public static rv0[] values() {
-        return (rv0[]) f28057c.clone();
+    @Override
+    public final int i() {
+        return this.d.F.length - 1;
+    }
+
+    @Override
+    public final int j() {
+        return this.d.I;
+    }
+
+    @Override
+    public final void k(int i10) {
+        this.d.setOption(i10);
     }
 }

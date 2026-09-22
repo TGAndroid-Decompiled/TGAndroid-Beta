@@ -1,21 +1,21 @@
 package ci;
 public final class pc implements Runnable {
-    public final int f5319a;
-    public final zc f5320b;
+    public final int f5317a;
+    public final zc f5318b;
 
     public pc(zc zcVar, int i10) {
-        this.f5319a = i10;
-        this.f5320b = zcVar;
+        this.f5317a = i10;
+        this.f5318b = zcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f5319a) {
+        switch (this.f5317a) {
             case 0:
-                zc zcVar = this.f5320b;
+                zc zcVar = this.f5318b;
                 xc xcVar = zcVar.M;
                 if (xcVar != null) {
-                    long j3 = xcVar.f5787a;
+                    long j3 = xcVar.f5785a;
                     if (j3 > 0) {
                         zcVar.H = j3;
                         return;
@@ -24,16 +24,16 @@ public final class pc implements Runnable {
                 }
                 return;
             case 1:
-                sc scVar = this.f5320b.f5882a;
+                sc scVar = this.f5318b.f5880a;
                 if (scVar != null) {
-                    scVar.Y();
+                    scVar.f0();
                     return;
                 }
                 return;
             default:
-                sc scVar2 = this.f5320b.f5882a;
+                sc scVar2 = this.f5318b.f5880a;
                 if (scVar2 != null) {
-                    scVar2.r();
+                    scVar2.s();
                     return;
                 }
                 return;

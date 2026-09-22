@@ -1,37 +1,75 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-public final class ag implements View.OnClickListener {
-    public final int f32071a;
-    public final zn f32072b;
-    public final ArrayList f32073c;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class ag implements org.telegram.ui.Components.oj0, org.telegram.ui.ActionBar.a2 {
+    public final int f31799a;
+    public final bo f31800b;
+    public final MessageObject f31801c;
 
-    public ag(zn znVar, ArrayList arrayList, int i10) {
-        this.f32071a = i10;
-        this.f32072b = znVar;
-        this.f32073c = arrayList;
+    public ag(bo boVar, MessageObject messageObject, int i10) {
+        this.f31799a = i10;
+        this.f31800b = boVar;
+        this.f31801c = messageObject;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f32071a) {
+    public void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
+        switch (this.f31799a) {
             case 0:
-                zn znVar = this.f32072b;
-                pi piVar = new pi(znVar, znVar, znVar.getParentActivity(), znVar.f40324ea, this.f32073c);
-                piVar.setCalcMandatoryInsets(znVar.x9());
-                piVar.setDimBehind(false);
-                znVar.A7(false);
-                znVar.showDialog(piVar);
+                Bundle bundle = new Bundle();
+                if (j3 > 0) {
+                    bundle.putLong("user_id", j3);
+                } else {
+                    bundle.putLong("chat_id", -j3);
+                }
+                bo boVar = this.f31800b;
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
+                    bundle.putInt("report_reaction_message_id", this.f31801c.getId());
+                    bundle.putLong("report_reaction_from_dialog_id", boVar.T5);
+                }
+                boVar.presentFragment(new ProfileActivity(bundle, null));
+                boVar.A7(true);
                 return;
             default:
-                zn znVar2 = this.f32072b;
-                if (znVar2.getParentActivity() != null && znVar2.getParentActivity() != null) {
-                    new org.telegram.ui.Components.tv(znVar2, znVar2.getParentActivity(), znVar2.f40324ea, this.f32073c).show();
-                    znVar2.A7(true);
-                    return;
+                bo boVar2 = this.f31800b;
+                boVar2.getClass();
+                Bundle bundle2 = new Bundle();
+                if (j3 > 0) {
+                    bundle2.putLong("user_id", j3);
+                } else {
+                    bundle2.putLong("chat_id", -j3);
                 }
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
+                    bundle2.putInt("report_reaction_message_id", this.f31801c.getId());
+                    bundle2.putLong("report_reaction_from_dialog_id", boVar2.T5);
+                }
+                boVar2.presentFragment(new ProfileActivity(bundle2, null));
+                boVar2.A7(true);
                 return;
         }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        bo boVar = this.f31800b;
+        org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(boVar.getParentActivity(), 3, boVar.f32293ea)};
+        TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
+        MessageObject messageObject = this.f31801c;
+        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
+        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
+        tL_inputMediaPoll.poll = tL_poll;
+        TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
+        tL_poll.f18135id = poll.f18135id;
+        tL_poll.question = poll.question;
+        tL_poll.answers = poll.answers;
+        tL_poll.closed = true;
+        tL_messages_editMessage.media = tL_inputMediaPoll;
+        tL_messages_editMessage.peer = boVar.getMessagesController().getInputPeer(boVar.T5);
+        tL_messages_editMessage.f18192id = messageObject.getId();
+        tL_messages_editMessage.flags |= 16384;
+        AndroidUtilities.runOnUIThread(new wg(boVar, b2VarArr, boVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new aa(boVar, b2VarArr, tL_messages_editMessage, 5)), 2), 500L);
     }
 }

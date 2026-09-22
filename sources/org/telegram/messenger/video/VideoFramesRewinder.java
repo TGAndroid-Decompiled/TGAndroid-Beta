@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-import hg.k0;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,7 +29,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f17788w;
+    int f17556w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -95,7 +94,7 @@ public class VideoFramesRewinder {
             }
         }
         while (!arrayList.isEmpty() && this.frames.size() < this.maxFramesCount) {
-            this.frames.add((Frame) k0.x(1, arrayList));
+            this.frames.add((Frame) hg.c.z(1, arrayList));
         }
         if (arrayList.size() > 0) {
             FileLog.d("[VideoFramesRewinder] prepared " + arrayList.size() + " more frames than I could fit :(");
@@ -115,7 +114,7 @@ public class VideoFramesRewinder {
         int[] iArr = this.meta;
         int i12 = iArr[4];
         int i13 = 0;
-        int min = Math.min(this.f17788w / 4, iArr[0]);
+        int min = Math.min(this.f17556w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i14 = this.maxFrameSide;
         if (min > i14 || min2 > i14) {
@@ -195,7 +194,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i10, int i11) {
-        this.f17788w = i10;
+        this.f17556w = i10;
         this.h = i11;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();

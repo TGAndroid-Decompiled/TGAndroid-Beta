@@ -1,27 +1,50 @@
 package org.telegram.messenger;
 
+import android.content.SharedPreferences;
 import org.telegram.messenger.ChatObject;
-public final class u0 implements Runnable {
-    public final int f17658a;
-    public final ChatObject.Call f17659b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class u0 implements RequestDelegate {
+    public final int f17420a;
+    public final boolean f17421b;
+    public final Object f17422c;
+    public final Object d;
 
-    public u0(ChatObject.Call call, int i10) {
-        this.f17658a = i10;
-        this.f17659b = call;
+    public u0(Object obj, Object obj2, boolean z10, int i10) {
+        this.f17420a = i10;
+        this.f17422c = obj;
+        this.d = obj2;
+        this.f17421b = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17658a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17420a) {
             case 0:
-                ChatObject.Call.j(this.f17659b);
+                ((ChatObject.Call) this.f17422c).lambda$loadMembers$3(this.f17421b, (TL_phone.getGroupParticipants) this.d, tLObject, tL_error);
                 return;
             case 1:
-                ChatObject.Call.a(this.f17659b);
+                ((MediaDataController) this.f17422c).lambda$loadAvatarConstructor$242((SharedPreferences) this.d, this.f17421b, tLObject, tL_error);
+                return;
+            case 2:
+                ((MediaDataController) this.f17422c).lambda$loadStickersByEmojiOrName$85((String) this.d, this.f17421b, tLObject, tL_error);
+                return;
+            case 3:
+                ((MessagesController) this.f17422c).lambda$getBlockedPeers$113(this.f17421b, (TLRPC.TL_contacts_getBlocked) this.d, tLObject, tL_error);
                 return;
             default:
-                ChatObject.Call.c(this.f17659b);
+                ((MessagesController.CommonChatsList) this.f17422c).lambda$load$1((int[]) this.d, this.f17421b, tLObject, tL_error);
                 return;
         }
+    }
+
+    public u0(Object obj, boolean z10, TLObject tLObject, int i10) {
+        this.f17420a = i10;
+        this.f17422c = obj;
+        this.f17421b = z10;
+        this.d = tLObject;
     }
 }

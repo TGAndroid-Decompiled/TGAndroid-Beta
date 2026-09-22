@@ -1,21 +1,54 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class ye1 extends org.telegram.ui.Components.cw0 {
-    public boolean f39917w0;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.Utilities;
+public final class ye1 extends FrameLayout {
+    public ValueAnimator f39828a;
+    public boolean f39829b;
+    public float f39830c;
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        R();
-        if (getKeyboardHeight() == 0 && !this.f39917w0) {
-            int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
-            this.f23465f = i12;
-            setPadding(0, 0, 0, i12);
-        } else {
-            this.f39917w0 = true;
-            setPadding(0, 0, 0, 0);
+    public final void dispatchDraw(Canvas canvas) {
+        float f7 = ((1.0f - this.f39830c) * 0.2f) + 0.8f;
+        canvas.save();
+        canvas.scale(f7, f7, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+        if (isPressed()) {
+            float f10 = this.f39830c;
+            if (f10 != 1.0f) {
+                this.f39830c = Utilities.clamp(f10 + 0.16f, 1.0f, 0.0f);
+                invalidate();
+            }
         }
-        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
+        ValueAnimator valueAnimator;
+        super.setPressed(z10);
+        if (this.f39829b != z10) {
+            this.f39829b = z10;
+            invalidate();
+            if (z10 && (valueAnimator = this.f39828a) != null) {
+                valueAnimator.removeAllListeners();
+                this.f39828a.cancel();
+            }
+            if (!z10) {
+                float f7 = this.f39830c;
+                if (f7 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
+                    this.f39828a = ofFloat;
+                    ofFloat.addUpdateListener(new a21(this, 16));
+                    this.f39828a.addListener(new cr0(this, 23));
+                    this.f39828a.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.f39828a.setDuration(350L);
+                    this.f39828a.start();
+                }
+            }
+        }
     }
 }

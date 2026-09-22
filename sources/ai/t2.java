@@ -47,8 +47,8 @@ public final class t2 extends AnimatorListenerAdapter {
                 ocVar.L = null;
                 ocVar.I = f7;
                 ocVar.k();
-                ocVar.f5256r.invalidate();
-                ocVar.f5243n.invalidate();
+                ocVar.f5254r.invalidate();
+                ocVar.f5241n.invalidate();
                 runnable.run();
                 ocVar.P.unlock();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
@@ -59,23 +59,23 @@ public final class t2 extends AnimatorListenerAdapter {
                     runnable2.run();
                     ocVar.Q = null;
                 }
-                ocVar.f5256r.invalidate();
-                ocVar.f5227h0.invalidate();
+                ocVar.f5254r.invalidate();
+                ocVar.f5225h0.invalidate();
                 return;
             case 3:
                 r50 r50Var = (r50) obj;
                 r50Var.h = f7;
-                r50Var.f37069a.invalidate();
+                r50Var.f37027a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                yh.c4 c4Var = (yh.c4) obj;
-                c4Var.f47325y = f7;
-                c4Var.invalidate();
-                if (animator == c4Var.E && runnable != null) {
+                yh.d4 d4Var = (yh.d4) obj;
+                d4Var.f47017y = f7;
+                d4Var.invalidate();
+                if (animator == d4Var.E && runnable != null) {
                     runnable.run();
                     return;
                 }

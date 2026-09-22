@@ -14,33 +14,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.qr;
 public final class v0 extends View {
-    public final Paint f5639a;
-    public final TextPaint f5640b;
-    public final StaticLayout f5641c;
+    public final Paint f5637a;
+    public final TextPaint f5638b;
+    public final StaticLayout f5639c;
     public final float d;
     public final float e;
-    public final Path f5642f;
+    public final Path f5640f;
     public androidx.fragment.app.a0 h;
-    public boolean f5643n;
-    public final org.telegram.ui.Components.d6 f5644r;
+    public boolean f5641n;
+    public final org.telegram.ui.Components.c6 f5642r;
 
     public v0(Context context) {
         super(context);
         float f7;
         float f10;
         Paint paint = new Paint(1);
-        this.f5639a = paint;
+        this.f5637a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f5640b = textPaint;
-        this.f5642f = new Path();
-        org.telegram.ui.Components.d6 d6Var = new org.telegram.ui.Components.d6(this);
-        this.f5644r = d6Var;
+        this.f5638b = textPaint;
+        this.f5640f = new Path();
+        org.telegram.ui.Components.c6 c6Var = new org.telegram.ui.Components.c6(this);
+        this.f5642r = c6Var;
         paint.setColor(-869783512);
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(6.0f)));
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         textPaint.setColor(-1);
         StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(LocaleController.getString("StoryDraftSaved"), textPaint, AndroidUtilities.displaySize.x, TextUtils.TruncateAt.END), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f5641c = staticLayout;
+        this.f5639c = staticLayout;
         if (staticLayout.getLineCount() > 0) {
             f7 = staticLayout.getLineWidth(0);
         } else {
@@ -53,7 +53,7 @@ public final class v0 extends View {
             f10 = 0.0f;
         }
         this.e = f10;
-        d6Var.d(0.0f, true);
+        c6Var.d(0.0f, true);
     }
 
     public final void a(boolean z10) {
@@ -62,20 +62,20 @@ public final class v0 extends View {
             AndroidUtilities.cancelRunOnUIThread(a0Var);
             this.h = null;
         }
-        this.f5643n = z10;
+        this.f5641n = z10;
         invalidate();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        float e = this.f5644r.e(this.f5643n);
+        float e = this.f5642r.e(this.f5641n);
         if (e <= 0.0f) {
             return;
         }
         canvas.save();
-        if (this.f5643n) {
-            f7 = qr.f27657k.getInterpolation(e);
+        if (this.f5641n) {
+            f7 = qr.f27424k.getInterpolation(e);
         } else {
             f7 = 1.0f;
         }
@@ -86,7 +86,7 @@ public final class v0 extends View {
         float dp = AndroidUtilities.dp(22.0f) + this.d;
         float min = (measuredWidth / 2.0f) - Math.min(AndroidUtilities.dp(135.0f), 0.35f * measuredWidth);
         float max = Math.max(AndroidUtilities.dp(8.0f), min - (dp / 2.0f));
-        Path path = this.f5642f;
+        Path path = this.f5640f;
         path.rewind();
         path.moveTo(max, 0.0f);
         float f10 = dp + max;
@@ -98,13 +98,13 @@ public final class v0 extends View {
         path.lineTo(min - AndroidUtilities.dp(7.0f), measuredHeight - AndroidUtilities.dp(18.0f));
         path.lineTo(max, measuredHeight - AndroidUtilities.dp(18.0f));
         path.close();
-        Paint paint = this.f5639a;
+        Paint paint = this.f5637a;
         paint.setAlpha((int) (204.0f * interpolation));
         canvas.drawPath(path, paint);
         canvas.save();
-        StaticLayout staticLayout = this.f5641c;
+        StaticLayout staticLayout = this.f5639c;
         canvas.translate((max + AndroidUtilities.dp(11.0f)) - this.e, ((measuredHeight - AndroidUtilities.dp(18.0f)) - staticLayout.getHeight()) / 2.0f);
-        this.f5640b.setAlpha((int) (interpolation * 255.0f));
+        this.f5638b.setAlpha((int) (interpolation * 255.0f));
         staticLayout.draw(canvas);
         canvas.restore();
         canvas.restore();

@@ -1,12 +1,13 @@
 package z3;
+public final class d extends k {
+    public final w2.b f48079c;
 
-import java.util.List;
-public interface d {
-    int a(long j3);
+    public d(w2.b bVar) {
+        this.f48079c = bVar;
+    }
 
-    long d(int i10);
-
-    List f(long j3);
-
-    int g();
+    @Override
+    public final void release() {
+        this.f48079c.n(this);
+    }
 }

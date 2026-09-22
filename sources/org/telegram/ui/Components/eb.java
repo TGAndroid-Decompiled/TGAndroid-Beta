@@ -1,21 +1,35 @@
 package org.telegram.ui.Components;
-public final class eb implements Runnable {
-    public final int f23914a;
-    public final tb f23915b;
+public final class eb implements q0.a {
+    public final int f23613a;
+    public final Object f23614b;
 
-    public eb(tb tbVar, int i10) {
-        this.f23914a = i10;
-        this.f23915b = tbVar;
+    public eb(Object obj, int i10) {
+        this.f23613a = i10;
+        this.f23614b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f23914a) {
+    public final void accept(Object obj) {
+        switch (this.f23613a) {
             case 0:
-                this.f23915b.onExitTransitionStart();
+                oc ocVar = (oc) this.f23614b;
+                Float f7 = (Float) obj;
+                mb mbVar = ocVar.f26757p;
+                if (mbVar != null) {
+                    sb sbVar = ocVar.e;
+                    if (!sbVar.top) {
+                        mbVar.c(sbVar.getHeight() - f7.floatValue());
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                this.f23915b.onEnterTransitionStart();
+                ti tiVar = ((vi) this.f23614b).Z1;
+                if (tiVar != null) {
+                    tiVar.U0(obj);
+                    return;
+                }
                 return;
         }
     }

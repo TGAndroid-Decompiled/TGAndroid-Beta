@@ -1,9 +1,9 @@
 package zd;
 public final class q0 implements a1 {
-    public final boolean f49240a;
+    public final boolean f48913a;
 
     public q0(boolean z10) {
-        this.f49240a = z10;
+        this.f48913a = z10;
     }
 
     @Override
@@ -13,13 +13,13 @@ public final class q0 implements a1 {
 
     @Override
     public final boolean isActive() {
-        return this.f49240a;
+        return this.f48913a;
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("Empty{");
-        if (this.f49240a) {
+        if (this.f48913a) {
             str = "Active";
         } else {
             str = "New";

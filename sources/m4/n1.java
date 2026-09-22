@@ -1,35 +1,19 @@
 package m4;
 
-import android.os.Bundle;
 import j$.util.Objects;
+import java.util.HashSet;
 public final class n1 {
-    public static final String d;
-    public static final String e;
-    public static final String f14860f;
-    public final int f14861a;
-    public final String f14862b;
-    public final Bundle f14863c;
+    public static final String f14624b;
+    public final e9.m0 f14625a;
 
     static {
-        String str = e2.d0.f7887a;
-        d = Integer.toString(0, 36);
-        e = Integer.toString(1, 36);
-        f14860f = Integer.toString(2, 36);
+        new n1(new HashSet());
+        String str = e2.d0.f7885a;
+        f14624b = Integer.toString(0, 36);
     }
 
-    public n1(int i10) {
-        this("no error message provided", i10, Bundle.EMPTY);
-    }
-
-    public final Bundle a() {
-        Bundle bundle = new Bundle();
-        bundle.putInt(d, this.f14861a);
-        bundle.putString(e, this.f14862b);
-        Bundle bundle2 = this.f14863c;
-        if (!bundle2.isEmpty()) {
-            bundle.putBundle(f14860f, bundle2);
-        }
-        return bundle;
+    public n1(HashSet hashSet) {
+        this.f14625a = e9.m0.v(hashSet);
     }
 
     public final boolean equals(Object obj) {
@@ -39,25 +23,10 @@ public final class n1 {
         if (!(obj instanceof n1)) {
             return false;
         }
-        n1 n1Var = (n1) obj;
-        if (this.f14861a == n1Var.f14861a && Objects.equals(this.f14862b, n1Var.f14862b)) {
-            return true;
-        }
-        return false;
+        return this.f14625a.equals(((n1) obj).f14625a);
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f14861a), this.f14862b);
-    }
-
-    public n1(String str, int i10, Bundle bundle) {
-        boolean z10 = true;
-        if (i10 >= 0 && i10 != 1) {
-            z10 = false;
-        }
-        e2.d.b(z10);
-        this.f14861a = i10;
-        this.f14862b = str;
-        this.f14863c = bundle;
+        return Objects.hash(this.f14625a);
     }
 }

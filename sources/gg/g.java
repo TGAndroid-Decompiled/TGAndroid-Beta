@@ -3,30 +3,30 @@ package gg;
 import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.tx;
-import org.telegram.ui.Components.ul0;
-import org.telegram.ui.j71;
+import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.sx;
+import org.telegram.ui.h71;
 public final class g extends s4.o {
-    public final int f9738b;
-    public ArrayList f9739c;
+    public final int f9734b;
+    public ArrayList f9735c;
     public Object d;
 
     public g() {
-        this.f9738b = 1;
+        this.f9734b = 1;
     }
 
     @Override
     public final boolean a(int i10, int i11) {
-        switch (this.f9738b) {
+        switch (this.f9734b) {
             case 0:
-                if (((k) ((m) this.d).N.get(i10)).f15719a == ((k) this.f9739c.get(i11)).f15719a) {
+                if (((k) ((m) this.d).N.get(i10)).f15531a == ((k) this.f9735c.get(i11)).f15531a) {
                     return true;
                 }
                 return false;
             case 1:
-                og.a aVar = (og.a) this.f9739c.get(i10);
+                og.a aVar = (og.a) this.f9735c.get(i10);
                 og.a aVar2 = (og.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f15719a != aVar2.f15719a) {
+                if (aVar.f15531a != aVar2.f15531a) {
                     return false;
                 }
                 return aVar.a(aVar2);
@@ -45,69 +45,69 @@ public final class g extends s4.o {
         TLRPC.TL_contact tL_contact2;
         TLRPC.RecentMeUrl recentMeUrl;
         String str;
-        switch (this.f9738b) {
+        switch (this.f9734b) {
             case 0:
                 k kVar = (k) ((m) this.d).N.get(i10);
-                k kVar2 = (k) this.f9739c.get(i11);
-                TLRPC.Dialog dialog = kVar.f9803c;
-                int i12 = kVar.f15719a;
-                int i13 = kVar2.f15719a;
-                TLRPC.Dialog dialog2 = kVar2.f9803c;
-                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f9807j == kVar2.f9807j : (tL_contact = kVar.e) != null && (tL_contact2 = kVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f18347id == dialog2.f18347id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f18347id == dialog2.f18347id && kVar.h == kVar2.h && kVar.f9804f == kVar2.f9804f && kVar.f9805g == kVar2.f9805g))) {
+                k kVar2 = (k) this.f9735c.get(i11);
+                TLRPC.Dialog dialog = kVar.f9799c;
+                int i12 = kVar.f15531a;
+                int i13 = kVar2.f15531a;
+                TLRPC.Dialog dialog2 = kVar2.f9799c;
+                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f9803j == kVar2.f9803j : (tL_contact = kVar.e) != null && (tL_contact2 = kVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f18113id == dialog2.f18113id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f18113id == dialog2.f18113id && kVar.h == kVar2.h && kVar.f9800f == kVar2.f9800f && kVar.f9801g == kVar2.f9801g))) {
                     return false;
                 }
                 return true;
             case 1:
-                og.a aVar = (og.a) this.f9739c.get(i10);
+                og.a aVar = (og.a) this.f9735c.get(i10);
                 og.a aVar2 = (og.a) ((ArrayList) this.d).get(i11);
-                if (aVar.f15719a != aVar2.f15719a) {
+                if (aVar.f15531a != aVar2.f15531a) {
                     return false;
                 }
                 return aVar.equals(aVar2);
             case 2:
-                return ((Integer) this.f9739c.get(i10)).equals(((tx) this.d).f28548n.get(i11));
+                return ((Integer) this.f9735c.get(i10)).equals(((sx) this.d).f27985n.get(i11));
             case 3:
-                return Objects.equals(this.f9739c.get(i10), ((ul0) this.d).f28801n.get(i11));
+                return Objects.equals(this.f9735c.get(i10), ((hl0) this.d).f24719n.get(i11));
             default:
-                return ((Long) this.f9739c.get(i10)).equals(((j71) this.d).f34846v0.get(i11));
+                return ((Long) this.f9735c.get(i10)).equals(((h71) this.d).f34161v0.get(i11));
         }
     }
 
     @Override
     public final int d() {
-        switch (this.f9738b) {
+        switch (this.f9734b) {
             case 0:
-                return this.f9739c.size();
+                return this.f9735c.size();
             case 1:
                 return ((ArrayList) this.d).size();
             case 2:
-                return ((tx) this.d).f28548n.size();
+                return ((sx) this.d).f27985n.size();
             case 3:
-                return ((ul0) this.d).f28801n.size();
+                return ((hl0) this.d).f24719n.size();
             default:
-                return ((j71) this.d).f34846v0.size();
+                return ((h71) this.d).f34161v0.size();
         }
     }
 
     @Override
     public final int e() {
-        switch (this.f9738b) {
+        switch (this.f9734b) {
             case 0:
                 return ((m) this.d).N.size();
             case 1:
-                return this.f9739c.size();
+                return this.f9735c.size();
             case 2:
-                return this.f9739c.size();
+                return this.f9735c.size();
             case 3:
-                return this.f9739c.size();
+                return this.f9735c.size();
             default:
-                return this.f9739c.size();
+                return this.f9735c.size();
         }
     }
 
     public g(Object obj, ArrayList arrayList, int i10) {
-        this.f9738b = i10;
+        this.f9734b = i10;
         this.d = obj;
-        this.f9739c = arrayList;
+        this.f9735c = arrayList;
     }
 }

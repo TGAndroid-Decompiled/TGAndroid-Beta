@@ -10,15 +10,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class eu extends bu {
-    public Drawable f24037c;
+    public Drawable f23752c;
     public final int d;
     public final ju e;
 
-    public eu(ju juVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, f6Var);
+    public eu(ju juVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, e6Var);
         this.e = juVar;
         this.d = i10;
-        this.f24037c = null;
+        this.f23752c = null;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class eu extends bu {
             } else {
                 z10 = false;
             }
-            org.telegram.ui.zn.k8(menu, null, z10, true, true, true);
+            org.telegram.ui.bo.k8(menu, null, z10, true, true, true);
             return;
         }
         juVar.i(menu);
@@ -61,8 +61,8 @@ public final class eu extends bu {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         ju juVar = this.e;
-        dm0 dm0Var = juVar.f25460c;
-        if (dm0Var != null) {
+        ql0 ql0Var = juVar.f25421c;
+        if (ql0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
                 z10 = true;
@@ -73,15 +73,15 @@ public final class eu extends bu {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (juVar.f25462n != z11) {
-                juVar.f25462n = z11;
+            if (juVar.f25423n != z11) {
+                juVar.f25423n = z11;
                 if (z11) {
-                    this.f24037c = dm0Var.d;
-                    dm0Var.a(R.drawable.msg_edit, true);
+                    this.f23752c = ql0Var.d;
+                    ql0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                dm0Var.b(this.f24037c, true);
-                this.f24037c = null;
+                ql0Var.b(this.f23752c, true);
+                this.f23752c = null;
             }
         }
     }
@@ -93,9 +93,9 @@ public final class eu extends bu {
         ju juVar = this.e;
         if (juVar.e && motionEvent.getAction() == 0) {
             juVar.u();
-            if (juVar.f25466x && (fuVar = juVar.d) != null) {
+            if (juVar.f25427x && (fuVar = juVar.d) != null) {
                 fuVar.t(false);
-                juVar.f25466x = false;
+                juVar.f25427x = false;
                 juVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {

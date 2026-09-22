@@ -1,24 +1,24 @@
 package org.telegram.ui.ActionBar;
 public enum a6 {
-    DEFAULT(j6.Af, j6.Bf, j6.Cf, j6.Pf, j6.Qf, j6.Rf),
-    PRIMARY(j6.Df, j6.Ef, j6.Ff, j6.Sf, j6.Tf, j6.Uf),
-    DANGER(j6.Gf, j6.Hf, j6.If, j6.Vf, j6.Wf, j6.Xf),
-    SUCCESS(j6.Jf, j6.Kf, j6.Lf, j6.Yf, j6.Zf, j6.f19062ag),
-    DEFAULT_IN_TEXT(j6.Mf, j6.Nf, j6.Of, j6.f19081bg, j6.f19100cg, j6.f19119dg);
+    DEFAULT(i6.Af, i6.Bf, i6.Cf, i6.Pf, i6.Qf, i6.Rf),
+    PRIMARY(i6.Df, i6.Ef, i6.Ff, i6.Sf, i6.Tf, i6.Uf),
+    DANGER(i6.Gf, i6.Hf, i6.If, i6.Vf, i6.Wf, i6.Xf),
+    SUCCESS(i6.Jf, i6.Kf, i6.Lf, i6.Yf, i6.Zf, i6.f18787ag),
+    DEFAULT_IN_TEXT(i6.Mf, i6.Nf, i6.Of, i6.f18806bg, i6.f18825cg, i6.f18844dg);
     
-    public final int f18682a;
-    public final int f18683b;
-    public final int f18684c;
+    public final int f18448a;
+    public final int f18449b;
+    public final int f18450c;
     public final int d;
     public final int e;
-    public final int f18685f;
+    public final int f18451f;
 
     a6(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f18682a = i10;
-        this.f18683b = i11;
-        this.f18684c = i12;
+        this.f18448a = i10;
+        this.f18449b = i11;
+        this.f18450c = i12;
         this.d = i13;
         this.e = i14;
-        this.f18685f = i15;
+        this.f18451f = i15;
     }
 }

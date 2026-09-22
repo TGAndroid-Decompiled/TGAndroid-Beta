@@ -1,38 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AnimationNotificationsLocker;
-public final class fr extends s4.j {
-    public final AnimationNotificationsLocker F = new AnimationNotificationsLocker();
-    public final sr G;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class fr implements mq {
+    public final TLObject f33660a;
+    public final ur f33661b;
 
-    public fr(sr srVar) {
-        this.G = srVar;
+    public fr(ur urVar, TLObject tLObject) {
+        this.f33661b = urVar;
+        this.f33660a = tLObject;
     }
 
     @Override
-    public final void N() {
-        this.F.unlock();
+    public final void a(TLRPC.User user) {
+        ur.c0(this.f33661b, user);
     }
 
     @Override
-    public final void O() {
-        this.G.f37477c.invalidate();
-    }
-
-    @Override
-    public final void P(s4.c1 c1Var) {
-        this.G.f37477c.invalidate();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f43053p.isEmpty();
-        boolean isEmpty2 = this.f43055r.isEmpty();
-        boolean isEmpty3 = this.f43056s.isEmpty();
-        boolean isEmpty4 = this.f43054q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            this.F.lock();
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLObject tLObject = this.f33660a;
+        if (tLObject instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+            channelParticipant.admin_rights = tL_chatAdminRights;
+            channelParticipant.banned_rights = tL_chatBannedRights;
+            channelParticipant.rank = str;
+            ur.W(this.f33661b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
         }
-        super.m();
     }
 }

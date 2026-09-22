@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public abstract class v4 {
-    public static final HashMap f11696a = new HashMap();
-    public static final HashMap f11697b = new HashMap();
+    public static final HashMap f11694a = new HashMap();
+    public static final HashMap f11695b = new HashMap();
 
     public static synchronized void a(ArrayList arrayList, ArrayList arrayList2) {
         synchronized (v4.class) {
             try {
-                f11696a.clear();
-                f11697b.clear();
+                f11694a.clear();
+                f11695b.clear();
                 int i10 = 0;
                 if (arrayList != null) {
                     int size = arrayList.size();
@@ -21,7 +21,7 @@ public abstract class v4 {
                         i11++;
                         TLRPC.Photo photo = (TLRPC.Photo) obj;
                         if (photo != null) {
-                            f11696a.put(Long.valueOf(photo.f18367id), photo);
+                            f11694a.put(Long.valueOf(photo.f18133id), photo);
                         }
                     }
                 }
@@ -32,7 +32,7 @@ public abstract class v4 {
                         i10++;
                         TLRPC.Document document = (TLRPC.Document) obj2;
                         if (document != null) {
-                            f11697b.put(Long.valueOf(document.f18349id), document);
+                            f11695b.put(Long.valueOf(document.f18115id), document);
                         }
                     }
                 }

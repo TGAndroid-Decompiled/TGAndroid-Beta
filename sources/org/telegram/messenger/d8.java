@@ -4,26 +4,26 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class d8 implements RequestDelegate {
-    public final int f16190a;
-    public final boolean f16191b;
-    public final long f16192c;
+    public final int f15947a;
+    public final boolean f15948b;
+    public final long f15949c;
     public final BaseController d;
 
     public d8(BaseController baseController, boolean z10, long j3, int i10) {
-        this.f16190a = i10;
+        this.f15947a = i10;
         this.d = baseController;
-        this.f16191b = z10;
-        this.f16192c = j3;
+        this.f15948b = z10;
+        this.f15949c = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16190a) {
+        switch (this.f15947a) {
             case 0:
-                ((MediaDataController) this.d).lambda$loadFeaturedStickers$58(this.f16191b, this.f16192c, tLObject, tL_error);
+                ((MediaDataController) this.d).lambda$loadFeaturedStickers$58(this.f15948b, this.f15949c, tLObject, tL_error);
                 return;
             default:
-                ((MessagesController) this.d).lambda$getChannelRecommendations$482(this.f16191b, this.f16192c, tLObject, tL_error);
+                ((MessagesController) this.d).lambda$getChannelRecommendations$482(this.f15948b, this.f15949c, tLObject, tL_error);
                 return;
         }
     }

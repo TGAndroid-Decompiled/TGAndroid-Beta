@@ -1,28 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class h5 implements m5 {
-    public final int f24685a;
-    public final p5 f24686b;
+import java.util.ArrayList;
+public final class h5 implements Runnable {
+    public final int f24515a;
+    public final k5 f24516b;
+    public final ArrayList f24517c;
 
-    public h5(p5 p5Var, int i10) {
-        this.f24685a = i10;
-        this.f24686b = p5Var;
+    public h5(k5 k5Var, ArrayList arrayList, int i10) {
+        this.f24515a = i10;
+        this.f24516b = k5Var;
+        this.f24517c = arrayList;
     }
 
     @Override
-    public final void a(TLRPC.Document document) {
-        switch (this.f24685a) {
-            case 0:
-                p5 p5Var = this.f24686b;
-                p5Var.e = document;
-                p5Var.j(false);
-                return;
-            default:
-                p5 p5Var2 = this.f24686b;
-                p5Var2.e = document;
-                p5Var2.j(false);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h5.run():void");
     }
 }

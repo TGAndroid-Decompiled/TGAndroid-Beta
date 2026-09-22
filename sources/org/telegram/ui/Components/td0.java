@@ -1,41 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class td0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28451a;
-    public final de0 f28452b;
+import org.telegram.ui.LaunchActivity;
+public final class td0 extends sd0 {
+    public final ud0 f28100b0;
 
-    public td0(de0 de0Var, int i10) {
-        this.f28451a = i10;
-        this.f28452b = de0Var;
+    public td0(ud0 ud0Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f28100b0 = ud0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28451a) {
-            case 0:
-                de0 de0Var = this.f28452b;
-                de0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                de0Var.P = floatValue;
-                de0Var.f(floatValue);
-                de0Var.setAlpha(de0Var.P);
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                de0 de0Var2 = this.f28452b;
-                ai.x5 x5Var = de0Var2.e;
-                x5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
-                x5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
-                x5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
-                TextView textView = de0Var2.f23674w;
-                textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
-                textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
-                textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue2));
-                de0Var2.f23673s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
-                return;
+    public final void f(float f7) {
+        LaunchActivity launchActivity = LaunchActivity.G1;
+        if (launchActivity == null) {
+            return;
         }
+        org.telegram.ui.ActionBar.z3 z3Var = launchActivity.f30859z0;
+        z3Var.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f7));
+        z3Var.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f7));
+    }
+
+    @Override
+    public final void h() {
+        ud0.a(this.f28100b0);
+        LaunchActivity launchActivity = LaunchActivity.G1;
+        if (launchActivity == null) {
+            return;
+        }
+        org.telegram.ui.ActionBar.z3 z3Var = launchActivity.f30859z0;
+        z3Var.setScaleX(1.0f);
+        z3Var.setScaleY(1.0f);
     }
 }

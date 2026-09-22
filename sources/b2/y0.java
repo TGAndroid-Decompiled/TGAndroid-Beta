@@ -1,9 +1,9 @@
 package b2;
 public final class y0 {
-    public final q f3358a;
+    public final q f3356a;
 
     public y0(q qVar) {
-        this.f3358a = qVar;
+        this.f3356a = qVar;
     }
 
     public final boolean equals(Object obj) {
@@ -13,10 +13,10 @@ public final class y0 {
         if (!(obj instanceof y0)) {
             return false;
         }
-        return this.f3358a.equals(((y0) obj).f3358a);
+        return this.f3356a.equals(((y0) obj).f3356a);
     }
 
     public final int hashCode() {
-        return this.f3358a.hashCode();
+        return this.f3356a.hashCode();
     }
 }

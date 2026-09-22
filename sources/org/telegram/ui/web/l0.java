@@ -4,22 +4,22 @@ import android.view.View;
 import android.webkit.WebView;
 import org.telegram.messenger.AndroidUtilities;
 public final class l0 implements View.OnLongClickListener {
-    public final z0 f38997a;
+    public final z0 f39024a;
 
     public l0(z0 z0Var) {
-        this.f38997a = z0Var;
+        this.f39024a = z0Var;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        WebView.HitTestResult hitTestResult = this.f38997a.getHitTestResult();
+        WebView.HitTestResult hitTestResult = this.f39024a.getHitTestResult();
         if (hitTestResult.getType() == 7) {
             final String extra = hitTestResult.getExtra();
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final l0 f38968b;
+                public final l0 f38998b;
 
                 {
-                    this.f38968b = this;
+                    this.f38998b = this;
                 }
 
                 @Override
@@ -31,10 +31,10 @@ public final class l0 implements View.OnLongClickListener {
         } else if (hitTestResult.getType() == 5) {
             final String extra2 = hitTestResult.getExtra();
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final l0 f38968b;
+                public final l0 f38998b;
 
                 {
-                    this.f38968b = this;
+                    this.f38998b = this;
                 }
 
                 @Override

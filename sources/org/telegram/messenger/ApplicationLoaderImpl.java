@@ -12,8 +12,8 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.IUpdateLayout;
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
@@ -65,7 +65,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean checkApkInstallPermissions(Context context) {
         if (Build.VERSION.SDK_INT >= 26 && !ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
-            org.telegram.ui.Components.d5.j(context, null).show();
+            org.telegram.ui.Components.c5.j(context, null).show();
             return false;
         }
         return true;
@@ -175,7 +175,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i10) {
         try {
-            new a71(context, betaUpdate).show();
+            new k61(context, betaUpdate).show();
             return true;
         } catch (Exception e) {
             FileLog.e(e);
@@ -228,7 +228,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (!isCustomUpdate()) {
             return null;
         }
-        return new b71(activity, viewGroup);
+        return new l61(activity, viewGroup);
     }
 
     @Override

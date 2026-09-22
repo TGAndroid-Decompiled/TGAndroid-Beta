@@ -13,76 +13,75 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.rk;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.n6;
+import org.telegram.messenger.vl;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.m6;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.tp;
-import org.telegram.ui.Components.y5;
+import org.telegram.ui.Components.x5;
 public abstract class x extends FrameLayout {
-    public final Paint f8712a;
-    public final Paint f8713b;
-    public final d6 f8714c;
-    public final g5 d;
+    public final Paint f8710a;
+    public final Paint f8711b;
+    public final c6 f8712c;
+    public final org.telegram.ui.Components.f5 d;
     public a5.a e;
-    public final v[] f8715f;
+    public final v[] f8713f;
     public v h;
-    public Utilities.Callback f8716n;
-    public Runnable f8717r;
+    public Utilities.Callback f8714n;
+    public Runnable f8715r;
 
-    public x(Context context, f6 f6Var) {
+    public x(Context context, e6 e6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f8712a = paint;
+        this.f8710a = paint;
         Paint paint2 = new Paint(1);
-        this.f8713b = paint2;
+        this.f8711b = paint2;
         qr qrVar = qr.h;
-        this.f8714c = new d6(this, 0L, 320L, qrVar);
-        this.d = new g5(this, 320L, qrVar, 0);
+        this.f8712c = new c6(this, 0L, 320L, qrVar);
+        this.d = new org.telegram.ui.Components.f5(this, 320L, qrVar, 0);
         a5.a aVar = new a5.a((char) 0, 6);
-        aVar.f277c = new Object();
+        aVar.f278c = new Object();
         aVar.d = new Object();
         this.e = aVar;
-        this.f8715f = r2;
+        this.f8713f = r2;
         setWillNotDraw(false);
-        paint2.setColor(j6.l1(0.1f, -16777216));
+        paint2.setColor(i6.l1(0.1f, -16777216));
         a5.a aVar2 = this.e;
-        int v02 = j6.v0(j6.f19109d6, f6Var);
-        aVar2.f276b = v02;
+        int v02 = i6.v0(i6.f18834d6, e6Var);
+        aVar2.f277b = v02;
         paint.setColor(v02);
         v[] vVarArr = {new v(this), new v(this)};
     }
 
-    public static void b(n6 n6Var, w wVar, boolean z10) {
-        n6Var.b();
-        if (wVar.f8693f != 0) {
+    public static void b(m6 m6Var, w wVar, boolean z10) {
+        m6Var.b();
+        if (wVar.f8691f != 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) wVar.e);
-            spannableStringBuilder.setSpan(new y5(wVar.f8693f, 1.4f, n6Var.f26642a.getFontMetricsInt()), 0, 1, 33);
-            n6Var.q(spannableStringBuilder, z10, true);
+            spannableStringBuilder.setSpan(new x5(wVar.f8691f, 1.4f, m6Var.f26084a.getFontMetricsInt()), 0, 1, 33);
+            m6Var.q(spannableStringBuilder, z10, true);
             return;
         }
-        n6Var.q(wVar.e, z10, true);
+        m6Var.q(wVar.e, z10, true);
     }
 
     public final v a(float f7, float f10) {
         Object obj;
         int i10 = 0;
         while (true) {
-            v[] vVarArr = this.f8715f;
+            v[] vVarArr = this.f8713f;
             if (i10 < vVarArr.length) {
                 a5.a aVar = this.e;
                 if (i10 == 0) {
-                    obj = aVar.f277c;
+                    obj = aVar.f278c;
                 } else {
                     obj = aVar.d;
                 }
                 w wVar = (w) obj;
-                if (vVarArr[i10].f8656a.contains(f7, f10) && wVar.f8690a && wVar.f8691b) {
+                if (vVarArr[i10].f8654a.contains(f7, f10) && wVar.f8688a && wVar.f8689b) {
                     return vVarArr[i10];
                 }
                 i10++;
@@ -96,7 +95,7 @@ public abstract class x extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         Object obj;
-        n6 n6Var;
+        m6 m6Var;
         float f7;
         float d;
         int i11;
@@ -108,17 +107,17 @@ public abstract class x extends FrameLayout {
         String str;
         org.telegram.ui.Cells.z zVar;
         int i13;
-        float height = getHeight() - this.f8714c.d(getTotalHeight(), false);
-        canvas.drawRect(0.0f, height - 1.0f, getWidth(), height, this.f8713b);
-        int a2 = this.d.a(this.e.f276b, false);
-        Paint paint = this.f8712a;
+        float height = getHeight() - this.f8712c.d(getTotalHeight(), false);
+        canvas.drawRect(0.0f, height - 1.0f, getWidth(), height, this.f8711b);
+        int a2 = this.d.a(this.e.f277b, false);
+        Paint paint = this.f8710a;
         paint.setColor(a2);
         canvas.drawRect(0.0f, height, getWidth(), getHeight(), paint);
         float f12 = height;
-        String str2 = ((w) this.e.d).f8695i;
-        v[] vVarArr = this.f8715f;
+        String str2 = ((w) this.e.d).f8693i;
+        v[] vVarArr = this.f8713f;
         int i14 = 1;
-        if (vVarArr[1].f8657b.f23570c < vVarArr[0].f8657b.f23570c) {
+        if (vVarArr[1].f8655b.f22951c < vVarArr[0].f8655b.f22951c) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -135,34 +134,34 @@ public abstract class x extends FrameLayout {
             v vVar = vVarArr[i15];
             a5.a aVar = this.e;
             if (i15 == 0) {
-                obj = aVar.f277c;
+                obj = aVar.f278c;
             } else {
                 obj = aVar.d;
             }
             w wVar = (w) obj;
-            d6 d6Var = vVar.f8657b;
-            org.telegram.ui.Components.voip.h hVar = vVar.f8668p;
-            Paint paint2 = vVar.f8663k;
-            d6 d6Var2 = vVar.e;
-            d6 d6Var3 = vVar.d;
-            d6 d6Var4 = vVar.f8658c;
-            org.telegram.ui.Cells.z zVar2 = vVar.f8666n;
+            c6 c6Var = vVar.f8655b;
+            org.telegram.ui.Components.voip.h hVar = vVar.f8666p;
+            Paint paint2 = vVar.f8661k;
+            c6 c6Var2 = vVar.e;
+            c6 c6Var3 = vVar.d;
+            c6 c6Var4 = vVar.f8656c;
+            org.telegram.ui.Cells.z zVar2 = vVar.f8664n;
             v[] vVarArr2 = vVarArr;
-            tp tpVar = vVar.f8667o;
+            tp tpVar = vVar.f8665o;
             float f13 = f12;
-            g5 g5Var = vVar.f8660g;
+            org.telegram.ui.Components.f5 f5Var = vVar.f8658g;
             int i16 = i10;
-            n6 n6Var2 = vVar.f8664l;
+            m6 m6Var2 = vVar.f8662l;
             int i17 = i15;
-            RectF rectF = vVar.f8656a;
-            float e = d6Var.e(wVar.f8690a);
-            if (!wVar.f8690a) {
-                d = d6Var4.f23570c;
-                n6Var = n6Var2;
+            RectF rectF = vVar.f8654a;
+            float e = c6Var.e(wVar.f8688a);
+            if (!wVar.f8688a) {
+                d = c6Var4.f22951c;
+                m6Var = m6Var2;
             } else {
                 a5.a aVar2 = this.e;
-                n6Var = n6Var2;
-                if (((w) aVar2.d).f8690a && ((w) aVar2.f277c).f8690a) {
+                m6Var = m6Var2;
+                if (((w) aVar2.d).f8688a && ((w) aVar2.f278c).f8688a) {
                     if (!"left".equalsIgnoreCase(str2) ? !(!"right".equalsIgnoreCase(str2) || i17 == 0) : i17 == 0) {
                         i11 = 1;
                     } else {
@@ -172,13 +171,13 @@ public abstract class x extends FrameLayout {
                 } else {
                     f7 = 0.0f;
                 }
-                d = d6Var4.d(f7, false);
+                d = c6Var4.d(f7, false);
             }
-            if (!wVar.f8690a) {
-                d10 = d6Var3.f23570c;
+            if (!wVar.f8688a) {
+                d10 = c6Var3.f22951c;
             } else {
                 a5.a aVar3 = this.e;
-                if (((w) aVar3.d).f8690a && ((w) aVar3.f277c).f8690a) {
+                if (((w) aVar3.d).f8688a && ((w) aVar3.f278c).f8688a) {
                     if (!"top".equalsIgnoreCase(str2) ? !(!"bottom".equalsIgnoreCase(str2) || i17 == 0) : i17 == 0) {
                         i12 = 1;
                     } else {
@@ -188,30 +187,30 @@ public abstract class x extends FrameLayout {
                 } else {
                     f10 = 0.0f;
                 }
-                d10 = d6Var3.d(f10, false);
+                d10 = c6Var3.d(f10, false);
             }
-            if (!wVar.f8690a) {
-                d11 = d6Var2.f23570c;
+            if (!wVar.f8688a) {
+                d11 = c6Var2.f22951c;
             } else {
                 a5.a aVar4 = this.e;
-                if (((w) aVar4.d).f8690a && ((w) aVar4.f277c).f8690a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
+                if (((w) aVar4.d).f8688a && ((w) aVar4.f278c).f8688a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
                     f11 = 0.0f;
                 } else {
                     f11 = 1.0f;
                 }
-                d11 = d6Var2.d(f11, false);
+                d11 = c6Var2.d(f11, false);
             }
             float lerp = AndroidUtilities.lerp((getWidth() - AndroidUtilities.dp(26.0f)) / 2.0f, getWidth() - AndroidUtilities.dp(16.0f), d11) / 2.0f;
             float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), ((getWidth() - AndroidUtilities.dp(26.0f)) / 2.0f) + AndroidUtilities.dp(18.0f), d) + lerp;
             float dp = AndroidUtilities.dp(44.0f) / 2.0f;
             float lerp3 = f13 + AndroidUtilities.lerp(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(58.0f), d10) + dp;
             rectF.set(lerp2 - lerp, lerp3 - dp, lerp + lerp2, dp + lerp3);
-            float e7 = vVar.h.e(wVar.f8692c);
-            float e10 = vVar.f8661i.e(wVar.d);
+            float e7 = vVar.h.e(wVar.f8690c);
+            float e10 = vVar.f8659i.e(wVar.d);
             canvas.save();
-            float lerp4 = AndroidUtilities.lerp(0.7f, 1.0f, e) * vVar.f8662j.a(0.02f);
+            float lerp4 = AndroidUtilities.lerp(0.7f, 1.0f, e) * vVar.f8660j.a(0.02f);
             canvas.scale(lerp4, lerp4, lerp2, lerp3);
-            paint2.setColor(j6.l1(e, vVar.f8659f.a(wVar.f8694g, false)));
+            paint2.setColor(i6.l1(e, vVar.f8657f.a(wVar.f8692g, false)));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
             if (e7 < 1.0f) {
                 canvas.save();
@@ -220,18 +219,18 @@ public abstract class x extends FrameLayout {
                 canvas.scale(lerp5, lerp5, lerp2, lerp3);
                 canvas.translate(0.0f, AndroidUtilities.dp(-10.0f) * e7);
                 float f15 = f14 * e;
-                int l1 = j6.l1(f15, g5Var.a(wVar.h, false));
-                n6 n6Var3 = n6Var;
-                if (n6Var3.T != l1) {
-                    n6Var3.T = l1;
+                int l1 = i6.l1(f15, f5Var.a(wVar.h, false));
+                m6 m6Var3 = m6Var;
+                if (m6Var3.T != l1) {
+                    m6Var3.T = l1;
                     str = str2;
-                    n6Var3.U = new PorterDuffColorFilter(l1, PorterDuff.Mode.SRC_IN);
+                    m6Var3.U = new PorterDuffColorFilter(l1, PorterDuff.Mode.SRC_IN);
                 } else {
                     str = str2;
                 }
-                n6Var3.r(j6.l1(f15, g5Var.a(wVar.h, false)));
-                n6Var3.m(rectF);
-                n6Var3.draw(canvas);
+                m6Var3.r(i6.l1(f15, f5Var.a(wVar.h, false)));
+                m6Var3.m(rectF);
+                m6Var3.draw(canvas);
                 canvas.restore();
             } else {
                 str = str2;
@@ -241,21 +240,21 @@ public abstract class x extends FrameLayout {
                 float lerp6 = AndroidUtilities.lerp(0.75f, 1.0f, e7);
                 canvas.scale(lerp6, lerp6, lerp2, lerp3);
                 canvas.translate(0.0f, (1.0f - e7) * AndroidUtilities.dp(10.0f));
-                tpVar.b(j6.l1(e7 * e, g5Var.a(wVar.h, false)));
+                tpVar.b(i6.l1(e7 * e, f5Var.a(wVar.h, false)));
                 tpVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                 tpVar.draw(canvas);
                 canvas.restore();
             }
             if (e10 > 0.0f) {
-                hVar.b(j6.l1(e * e10, g5Var.a(wVar.h, false)), 64);
+                hVar.b(i6.l1(e * e10, f5Var.a(wVar.h, false)), 64);
                 hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF, this);
             }
-            if (vVar.f8665m != j6.l1(0.15f, wVar.h)) {
-                int l12 = j6.l1(0.15f, wVar.h);
-                vVar.f8665m = l12;
+            if (vVar.f8663m != i6.l1(0.15f, wVar.h)) {
+                int l12 = i6.l1(0.15f, wVar.h);
+                vVar.f8663m = l12;
                 zVar = zVar2;
                 i14 = 1;
-                j6.B1(zVar, l12, true);
+                i6.B1(zVar, l12, true);
             } else {
                 zVar = zVar2;
                 i14 = 1;
@@ -277,21 +276,21 @@ public abstract class x extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f8714c.f23570c;
+        return this.f8712c.f22951c;
     }
 
     public int getTotalHeight() {
         int i10;
         a5.a aVar = this.e;
-        boolean z10 = ((w) aVar.f277c).f8690a;
-        if (!z10 && !((w) aVar.d).f8690a) {
+        boolean z10 = ((w) aVar.f278c).f8688a;
+        if (!z10 && !((w) aVar.d).f8688a) {
             i10 = 0;
         } else {
             i10 = 1;
         }
         if (z10) {
             w wVar = (w) aVar.d;
-            if (wVar.f8690a && ("top".equalsIgnoreCase(wVar.f8695i) || "bottom".equalsIgnoreCase(((w) this.e.d).f8695i))) {
+            if (wVar.f8688a && ("top".equalsIgnoreCase(wVar.f8693i) || "bottom".equalsIgnoreCase(((w) this.e.d).f8693i))) {
                 i10++;
             }
         }
@@ -306,7 +305,7 @@ public abstract class x extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), rk.C(109.0f, 1, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), vl.C(109.0f, 1, 1073741824));
     }
 
     @Override
@@ -317,16 +316,16 @@ public abstract class x extends FrameLayout {
             v a2 = a(motionEvent.getX(), motionEvent.getY());
             this.h = a2;
             if (a2 != null) {
-                a2.f8662j.c(true);
-                this.h.f8666n.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.h.f8666n.setState(new int[]{16842919, 16842910});
+                a2.f8660j.c(true);
+                this.h.f8664n.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.h.f8664n.setState(new int[]{16842919, 16842910});
             }
         } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.h != null) {
             if (motionEvent.getAction() == 1) {
                 v a10 = a(motionEvent.getX(), motionEvent.getY());
                 v vVar = this.h;
-                if (a10 == vVar && (callback = this.f8716n) != null) {
-                    if (vVar == this.f8715f[0]) {
+                if (a10 == vVar && (callback = this.f8714n) != null) {
+                    if (vVar == this.f8713f[0]) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -334,8 +333,8 @@ public abstract class x extends FrameLayout {
                     callback.run(Boolean.valueOf(z10));
                 }
             }
-            this.h.f8662j.c(false);
-            this.h.f8666n.setState(new int[0]);
+            this.h.f8660j.c(false);
+            this.h.f8664n.setState(new int[0]);
             this.h = null;
         }
         if (this.h == null) {
@@ -345,20 +344,20 @@ public abstract class x extends FrameLayout {
     }
 
     public void setOnButtonClickListener(Utilities.Callback<Boolean> callback) {
-        this.f8716n = callback;
+        this.f8714n = callback;
     }
 
     public void setOnResizeListener(Runnable runnable) {
-        this.f8717r = runnable;
+        this.f8715r = runnable;
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        v[] vVarArr = this.f8715f;
+        v[] vVarArr = this.f8713f;
         v vVar = vVarArr[0];
-        if (vVar.f8666n != drawable && vVar.f8667o != drawable) {
+        if (vVar.f8664n != drawable && vVar.f8665o != drawable) {
             v vVar2 = vVarArr[1];
-            if (vVar2.f8666n != drawable && vVar2.f8667o != drawable && !super.verifyDrawable(drawable)) {
+            if (vVar2.f8664n != drawable && vVar2.f8665o != drawable && !super.verifyDrawable(drawable)) {
                 return false;
             }
         }

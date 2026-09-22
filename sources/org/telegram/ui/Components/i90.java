@@ -1,78 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ComposeShader;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-public class i90 extends org.telegram.ui.ActionBar.j5 {
-    public final k90 M0;
-    public final Paint N0;
-    public o90 O0;
+import org.telegram.messenger.SvgHelper;
+public final class i90 extends Drawable {
+    public final Bitmap f24975a;
+    public long f24977c;
+    public LinearGradient d;
+    public float f24978f;
+    public float f24979g;
+    public final u9 h;
+    public int f24980i;
+    public int f24981j;
+    public final Paint f24976b = new Paint(2);
+    public final Matrix e = new Matrix();
 
-    public i90(Context context) {
-        super(context);
-        this.M0 = new k90(this);
-        this.N0 = new Paint(1);
-    }
-
-    private int getLinkColor() {
-        return i0.a.k(getTextColor(), (int) (Color.alpha(getTextColor()) * 0.1175f));
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (isClickable()) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight());
-            int linkColor = getLinkColor();
-            Paint paint = this.N0;
-            paint.setColor(linkColor);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-        }
-        super.onDraw(canvas);
-        if (isClickable() && this.M0.f(canvas)) {
-            invalidate();
-        }
+    public i90(u9 u9Var, String str, int i10, int i11) {
+        this.f24975a = SvgHelper.getBitmapByPathOnly(str, 512, 512, i10, i11);
+        this.h = u9Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!isClickable()) {
-            return super.onTouchEvent(motionEvent);
+    public final void draw(Canvas canvas) {
+        Bitmap bitmap = this.f24975a;
+        if (bitmap == null) {
+            return;
         }
-        k90 k90Var = this.M0;
-        if (k90Var != null) {
-            if (motionEvent.getAction() == 0) {
-                o90 o90Var = new o90(null, null, motionEvent.getX(), motionEvent.getY(), 0);
-                o90Var.d(getLinkColor());
-                this.O0 = o90Var;
-                k90Var.a(o90Var, null);
-                h90 b10 = this.O0.b();
-                b10.e(null, 0, 0.0f, 0.0f);
-                b10.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
-                AndroidUtilities.runOnUIThread(new bv(19, this, o90Var), ViewConfiguration.getLongPressTimeout());
-                return true;
-            } else if (motionEvent.getAction() == 1) {
-                k90Var.d(true);
-                if (this.O0 != null) {
-                    performClick();
-                }
-                this.O0 = null;
-                return true;
-            } else if (motionEvent.getAction() == 3) {
-                k90Var.d(true);
-                this.O0 = null;
-                return true;
+        int i10 = org.telegram.ui.ActionBar.i6.f18904h5;
+        int i11 = org.telegram.ui.ActionBar.i6.f18922i5;
+        int w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
+        int w03 = org.telegram.ui.ActionBar.i6.w0(null, i11, false);
+        int i12 = this.f24980i;
+        Paint paint = this.f24976b;
+        Matrix matrix = this.e;
+        if (i12 != w02 || this.f24981j != w03) {
+            this.f24980i = w02;
+            this.f24981j = w03;
+            int averageColor = AndroidUtilities.getAverageColor(w03, w02);
+            paint.setColor(w03);
+            float dp = AndroidUtilities.dp(500.0f);
+            this.f24979g = dp;
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{w03, averageColor, w03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
+            this.d = linearGradient;
+            linearGradient.setLocalMatrix(matrix);
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
+        }
+        Rect bounds = getBounds();
+        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long abs = Math.abs(this.f24977c - elapsedRealtime);
+        if (abs > 17) {
+            abs = 16;
+        }
+        this.f24977c = elapsedRealtime;
+        this.f24978f = a4.a.B((float) abs, this.f24979g, 1800.0f, this.f24978f);
+        while (true) {
+            float f7 = this.f24978f;
+            float f10 = this.f24979g * 2.0f;
+            if (f7 >= f10) {
+                this.f24978f = f7 - f10;
+            } else {
+                matrix.setTranslate(f7, 0.0f);
+                this.d.setLocalMatrix(matrix);
+                this.h.invalidate();
+                return;
             }
         }
-        if (this.O0 == null && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

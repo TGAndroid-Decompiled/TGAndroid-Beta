@@ -1,59 +1,43 @@
 package q9;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.concurrent.ExecutorsRegistrar;
-import com.google.firebase.installations.FirebaseInstallationsRegistrar;
-import java.util.concurrent.ScheduledExecutorService;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import qg.n2;
-public final class p implements pa.a, d, OnFailureListener, androidx.car.app.utils.b, a2 {
-    public final int f41526a;
+import org.telegram.ui.js0;
+import org.telegram.ui.rv0;
+public final class p implements pa.b {
+    public static final js0 f41199c = new js0(21);
+    public static final f d = new f(1);
+    public pa.a f41200a;
+    public volatile pa.b f41201b;
 
-    public p(int i10) {
-        this.f41526a = i10;
+    public p(js0 js0Var, pa.b bVar) {
+        this.f41200a = js0Var;
+        this.f41201b = bVar;
     }
 
-    @Override
-    public Object G(cf.c cVar) {
-        switch (this.f41526a) {
-            case 1:
-                return FirebaseInstallationsRegistrar.a(cVar);
-            case 8:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7259a.get();
-            case 9:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7261c.get();
-            case 10:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7260b.get();
-            default:
-                n nVar = ExecutorsRegistrar.f7259a;
-                return r9.j.f42492a;
+    public final void a(pa.a aVar) {
+        pa.b bVar;
+        pa.b bVar2;
+        pa.b bVar3 = this.f41201b;
+        f fVar = d;
+        if (bVar3 != fVar) {
+            aVar.j(bVar3);
+            return;
+        }
+        synchronized (this) {
+            bVar = this.f41201b;
+            if (bVar != fVar) {
+                bVar2 = bVar;
+            } else {
+                this.f41200a = new rv0(24, this.f41200a, aVar);
+                bVar2 = null;
+            }
+        }
+        if (bVar2 != null) {
+            aVar.j(bVar);
         }
     }
 
     @Override
-    public void call() {
-        throw null;
-    }
-
-    @Override
-    public void k(b2 b2Var, int i10) {
-        switch (this.f41526a) {
-            case 12:
-                b2Var.dismiss();
-                return;
-            default:
-                b2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        int i10 = n2.f41843r0;
-    }
-
-    @Override
-    public void h(pa.b bVar) {
+    public final Object get() {
+        return this.f41201b.get();
     }
 }

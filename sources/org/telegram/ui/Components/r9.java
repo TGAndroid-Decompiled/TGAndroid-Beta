@@ -1,17 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class r9 extends w7.j0 {
-    public final ViewGroup f27852a;
-    public final u9 f27853b;
+import android.graphics.drawable.GradientDrawable;
+public abstract class r9 {
+    public static final int[] f27605a;
 
-    public r9(u9 u9Var, ViewGroup viewGroup) {
-        this.f27853b = u9Var;
-        this.f27852a = viewGroup;
-    }
-
-    @Override
-    public final void a() {
-        this.f27852a.invalidate();
+    static {
+        int[] iArr = new int[GradientDrawable.Orientation.values().length];
+        f27605a = iArr;
+        try {
+            iArr[GradientDrawable.Orientation.TOP_BOTTOM.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
+        }
+        try {
+            f27605a[GradientDrawable.Orientation.TR_BL.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            f27605a[GradientDrawable.Orientation.RIGHT_LEFT.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            f27605a[GradientDrawable.Orientation.BR_TL.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            f27605a[GradientDrawable.Orientation.BOTTOM_TOP.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            f27605a[GradientDrawable.Orientation.BL_TR.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            f27605a[GradientDrawable.Orientation.LEFT_RIGHT.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
     }
 }

@@ -1,30 +1,50 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class so extends org.telegram.ui.Cells.s8 {
-    public so(Context context) {
-        super(context);
+import org.telegram.tgnet.TLRPC;
+public final class so extends tu0 {
+    public final wo f37426a;
+
+    public so(wo woVar) {
+        this.f37426a = woVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (LocaleController.isRTL) {
-            dp = 0.0f;
-        } else {
-            dp = AndroidUtilities.dp(20.0f);
+    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r9, org.telegram.tgnet.TLRPC.FileLocation r10, int r11, boolean r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.so.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
+    }
+
+    @Override
+    public final void G() {
+        this.f37426a.e.getImageReceiver().setVisible(true, true);
+    }
+
+    @Override
+    public final boolean M() {
+        wo woVar = this.f37426a;
+        long j3 = woVar.C0;
+        if (j3 == 0) {
+            return true;
         }
-        float measuredHeight = getMeasuredHeight() - 1;
-        int measuredWidth = getMeasuredWidth();
-        if (LocaleController.isRTL) {
-            i10 = AndroidUtilities.dp(20.0f);
-        } else {
-            i10 = 0;
-        }
-        canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f19231k0);
+        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+        tL_photos_updateProfilePhoto.bot = woVar.getMessagesController().getInputUser(j3);
+        tL_photos_updateProfilePhoto.flags |= 2;
+        tL_photos_updateProfilePhoto.f18241id = new TLRPC.TL_inputPhotoEmpty();
+        woVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new m(this, 2));
+        return false;
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f37426a.f39288s.q(str, str2, z10);
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 }

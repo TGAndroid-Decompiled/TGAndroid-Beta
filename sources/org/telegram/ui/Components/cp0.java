@@ -1,33 +1,37 @@
 package org.telegram.ui.Components;
-public final class cp0 implements o1.f {
-    public final int f23419a;
-    public final kp0 f23420b;
-    public final o1.k f23421c;
 
-    public cp0(kp0 kp0Var, o1.k kVar, int i10) {
-        this.f23419a = i10;
-        this.f23420b = kp0Var;
-        this.f23421c = kVar;
+import org.telegram.messenger.AndroidUtilities;
+public final class cp0 implements Runnable {
+    public final int f23117a;
+    public final hq0 f23118b;
+
+    public cp0(hq0 hq0Var, int i10) {
+        this.f23117a = i10;
+        this.f23118b = hq0Var;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f23419a) {
+    public final void run() {
+        switch (this.f23117a) {
             case 0:
-                if (!z10) {
-                    this.f23420b.f25796z.remove(this.f23421c);
-                    hVar.c();
-                    return;
-                }
+                hq0 hq0Var = this.f23118b;
+                hq0Var.A0 = true;
+                b20 b20Var = hq0Var.f24786y0;
+                b20Var.f22569r.setText("");
+                AndroidUtilities.showKeyboard(b20Var.f22569r);
                 return;
             default:
-                kp0 kp0Var = this.f23420b;
-                if (!z10) {
-                    kp0Var.f25796z.remove(this.f23421c);
-                    hVar.c();
+                sh shVar = new sh(7);
+                hq0 hq0Var2 = this.f23118b;
+                if (hq0Var2.isKeyboardVisible()) {
+                    b20 b20Var2 = hq0Var2.f24786y0;
+                    if (b20Var2 != null) {
+                        AndroidUtilities.hideKeyboard(b20Var2.f22569r);
+                    }
+                    AndroidUtilities.runOnUIThread(shVar, 300L);
                     return;
                 }
-                kp0Var.getClass();
+                shVar.run();
                 return;
         }
     }

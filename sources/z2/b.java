@@ -1,7 +1,7 @@
 package z2;
 
 import android.os.SystemClock;
-import hg.k0;
+import hg.c;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -9,9 +9,9 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.util.Arrays;
 public abstract class b {
-    public static final Object f48397a = new Object();
-    public static final Object f48398b = new Object();
-    public static boolean f48399c;
+    public static final Object f48069a = new Object();
+    public static final Object f48070b = new Object();
+    public static boolean f48071c;
     public static long d;
 
     public static long a() {
@@ -20,7 +20,7 @@ public abstract class b {
         byte[] bArr;
         DatagramSocket datagramSocket = new DatagramSocket();
         try {
-            synchronized (f48398b) {
+            synchronized (f48070b) {
             }
             datagramSocket.setSoTimeout(1000);
             c();
@@ -105,7 +105,7 @@ public abstract class b {
     public static void b(byte b10, byte b11, int i10, long j3) {
         if (b10 != 3) {
             if (b11 != 4 && b11 != 5) {
-                throw new IOException(k0.h(b11, "SNTP: Untrusted mode: "));
+                throw new IOException(c.i(b11, "SNTP: Untrusted mode: "));
             }
             if (i10 != 0 && i10 <= 15) {
                 if (j3 != 0) {
@@ -113,13 +113,13 @@ public abstract class b {
                 }
                 throw new IOException("SNTP: Zero transmitTime");
             }
-            throw new IOException(k0.h(i10, "SNTP: Untrusted stratum: "));
+            throw new IOException(c.i(i10, "SNTP: Untrusted stratum: "));
         }
         throw new IOException("SNTP: Unsynchronized server");
     }
 
     public static void c() {
-        synchronized (f48398b) {
+        synchronized (f48070b) {
         }
     }
 

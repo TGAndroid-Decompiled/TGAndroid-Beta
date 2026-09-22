@@ -2,29 +2,29 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class kk extends org.telegram.ui.Components.to {
-    public final zn f35223f;
+    public final bo f35174f;
 
-    public kk(zn znVar, Context context) {
+    public kk(bo boVar, Context context) {
         super(context);
-        this.f35223f = znVar;
+        this.f35174f = boVar;
     }
 
     @Override
     public final void a(boolean z10) {
-        zn znVar = this.f35223f;
-        znVar.t7();
-        znVar.r7();
-        znVar.u7();
-        znVar.v7();
-        cl clVar = znVar.f40273ab;
-        if (clVar != null) {
-            clVar.setTranslationY(znVar.f40547w9 + getCurrentHeight());
+        bo boVar = this.f35174f;
+        boVar.t7();
+        boVar.r7();
+        boVar.u7();
+        boVar.v7();
+        dl dlVar = boVar.f32242ab;
+        if (dlVar != null) {
+            dlVar.setTranslationY(boVar.f32515w9 + getCurrentHeight());
         }
         if (z10) {
-            znVar.D9 = true;
-            znVar.jc();
+            boVar.D9 = true;
+            boVar.jc();
             return;
         }
-        znVar.o9();
+        boVar.o9();
     }
 }

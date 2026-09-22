@@ -3,9 +3,9 @@ package k6;
 import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import hg.k0;
 import java.util.Arrays;
-import w7.f0;
+import n4.y;
+import w7.e0;
 public final class a extends o6.a {
     public final int f13500a;
     public final int f13501b;
@@ -80,7 +80,7 @@ public final class a extends o6.a {
                             case 25:
                                 return "API_INSTALL_REQUIRED";
                             default:
-                                return k0.i(i10, "UNKNOWN_ERROR_CODE(", ")");
+                                return hg.c.j(i10, "UNKNOWN_ERROR_CODE(", ")");
                         }
                 }
             }
@@ -122,23 +122,23 @@ public final class a extends o6.a {
     }
 
     public final String toString() {
-        m5.e eVar = new m5.e(this);
-        eVar.c(d(this.f13501b), "statusCode");
-        eVar.c(this.f13502c, "resolution");
-        eVar.c(this.d, "message");
-        return eVar.toString();
+        y yVar = new y(this);
+        yVar.e(d(this.f13501b), "statusCode");
+        yVar.e(this.f13502c, "resolution");
+        yVar.e(this.d, "message");
+        return yVar.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.s(parcel, 1, 4);
+        int q6 = e0.q(parcel, 20293);
+        e0.s(parcel, 1, 4);
         parcel.writeInt(this.f13500a);
-        f0.s(parcel, 2, 4);
+        e0.s(parcel, 2, 4);
         parcel.writeInt(this.f13501b);
-        f0.k(parcel, 3, this.f13502c, i10);
-        f0.l(parcel, 4, this.d);
-        f0.r(parcel, q6);
+        e0.k(parcel, 3, this.f13502c, i10);
+        e0.l(parcel, 4, this.d);
+        e0.r(parcel, q6);
     }
 
     public a(int i10) {

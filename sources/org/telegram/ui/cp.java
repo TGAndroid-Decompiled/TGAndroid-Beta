@@ -1,77 +1,40 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.text.style.ForegroundColorSpan;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class cp extends org.telegram.ui.Cells.f9 {
-    public ValueAnimator v;
-    public int f32821w;
-    public final ip f32822x;
+public final class cp extends org.telegram.ui.Components.zn0 {
+    public final kp f32842r;
 
-    public cp(ip ipVar, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, 12, f6Var);
-        this.f32822x = ipVar;
-        this.f32821w = -1;
+    public cp(kp kpVar, Context context, xd xdVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, xdVar, e6Var, false);
+        this.f32842r = kpVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f32821w != -1) {
-            ip ipVar = this.f32822x;
-            if (ipVar.h != null) {
-                ArrayList arrayList = new ArrayList();
-                boolean z11 = false;
-                for (int i14 = 0; i14 < ipVar.h.getChildCount(); i14++) {
-                    View childAt = ipVar.h.getChildAt(i14);
-                    if (z11) {
-                        arrayList.add(childAt);
-                    } else if (childAt == this) {
-                        z11 = true;
-                    }
-                }
-                float height = this.f32821w - getHeight();
-                ValueAnimator valueAnimator = this.v;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.v = ofFloat;
-                ofFloat.addUpdateListener(new lg(arrayList, height, 1));
-                this.v.setInterpolator(org.telegram.ui.Components.qr.h);
-                this.v.setDuration(350L);
-                this.v.start();
-            }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!this.f32842r.L && super.onInterceptTouchEvent(motionEvent)) {
+            return true;
         }
-        this.f32821w = getHeight();
+        return false;
     }
 
     @Override
-    public final void setText(CharSequence charSequence) {
-        String str;
-        if (charSequence != 0) {
-            charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-            int indexOf = charSequence.toString().indexOf(10);
-            ip ipVar = this.f32822x;
-            if (indexOf >= 0) {
-                charSequence.replace(indexOf, indexOf + 1, " ");
-                charSequence.setSpan(new ForegroundColorSpan(ipVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19330p7)), 0, indexOf, 33);
-            }
-            org.telegram.ui.Components.v51[] v51VarArr = (org.telegram.ui.Components.v51[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.v51.class);
-            ci.h2 h2Var = ipVar.f34654a;
-            if (h2Var != null && h2Var.getText() != null) {
-                str = ipVar.f34654a.getText().toString();
-            } else {
-                str = "";
-            }
-            for (int i10 = 0; i10 < v51VarArr.length; i10++) {
-                charSequence.setSpan(new org.telegram.ui.Cells.i(5, (Object) this, str), charSequence.getSpanStart(v51VarArr[i10]), charSequence.getSpanEnd(v51VarArr[i10]), 33);
-                charSequence.removeSpan(v51VarArr[i10]);
-            }
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0) {
+            return super.onTouchEvent(motionEvent);
         }
-        super.setText(charSequence);
+        if (!this.f32842r.L && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
+        return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 }

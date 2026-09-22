@@ -7,10 +7,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class c40 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final d40 f23175a;
+    public final d40 f22943a;
 
     public c40(d40 d40Var) {
-        this.f23175a = d40Var;
+        this.f22943a = d40Var;
     }
 
     @Override
@@ -19,16 +19,16 @@ public final class c40 implements Utilities.Callback5, Utilities.Callback5Return
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        int i10 = ((y51) obj).d;
-        d40 d40Var = this.f23175a;
+        int i10 = ((i51) obj).d;
+        d40 d40Var = this.f22943a;
         if (i10 == 0) {
-            HashtagSearchController.getInstance(d40Var.f23558a).clearHistory();
-            d40Var.f23561f.N(true);
+            HashtagSearchController.getInstance(d40Var.f23211a).clearHistory();
+            d40Var.f23214f.N(true);
             return;
         }
         Utilities.Callback callback = d40Var.h;
         if (callback != null) {
-            callback.run((String) d40Var.f23560c.get(i10 - 1));
+            callback.run((String) d40Var.f23213c.get(i10 - 1));
         }
     }
 
@@ -38,17 +38,17 @@ public final class c40 implements Utilities.Callback5, Utilities.Callback5Return
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        int i10 = ((y51) obj).d;
+        int i10 = ((i51) obj).d;
         boolean z10 = false;
         if (i10 != 0) {
-            d40 d40Var = this.f23175a;
-            String str = (String) d40Var.f23560c.get(i10 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(d40Var.getContext(), 0, d40Var.f23559b);
+            d40 d40Var = this.f22943a;
+            String str = (String) d40Var.f23213c.get(i10 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(d40Var.getContext(), 0, d40Var.f23212b);
             String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18669a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
             b2Var.R = string;
             b2Var.T = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new a3(12, d40Var, str));
+            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new mf(11, d40Var, str));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             b2Var.show();
             z10 = true;

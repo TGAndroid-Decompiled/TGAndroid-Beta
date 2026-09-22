@@ -10,7 +10,7 @@ import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.fk;
-import org.telegram.ui.pn;
+import org.telegram.ui.rn;
 public final class i4 implements fk {
     public final f6 f977a;
 
@@ -26,7 +26,7 @@ public final class i4 implements fk {
         TL_stories.StoryItem storyItem = f6Var.O1.f703a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = f6Var.getAccountInstance();
-            SendMessagesHelper.prepareSendingDocuments(accountInstance, (ArrayList<String>) arrayList, (ArrayList<String>) arrayList, (ArrayList<Uri>) null, str, (String) null, f6Var.B1, (MessageObject) null, (MessageObject) null, storyItem, (pn) null, (MessageObject) null, z10, i10, (t0.i) null, (SendMessageChatArguments) null, 0L, false, j10);
+            SendMessagesHelper.prepareSendingDocuments(accountInstance, (ArrayList<String>) arrayList, (ArrayList<String>) arrayList, (ArrayList<Uri>) null, str, (String) null, f6Var.B1, (MessageObject) null, (MessageObject) null, storyItem, (rn) null, (MessageObject) null, z10, i10, (t0.j) null, (SendMessageChatArguments) null, 0L, false, j10);
             if (j10 <= 0) {
                 z12 = true;
             } else {

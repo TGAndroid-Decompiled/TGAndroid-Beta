@@ -1,18 +1,42 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class q01 {
-    public final long f27471a;
-    public final TLRPC.InputFile f27472b;
-    public final TLRPC.InputEncryptedFile f27473c;
-    public final byte[] d;
-    public final byte[] e;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+public class q01 extends ViewSwitcher {
+    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
+        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
+            if (z10) {
+                getNextView().setText(charSequence);
+                showNext();
+                return;
+            }
+            getCurrentView().setText(charSequence);
+        }
+    }
 
-    public q01(long j3, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
-        this.f27471a = j3;
-        this.f27472b = inputFile;
-        this.f27473c = inputEncryptedFile;
-        this.d = bArr;
-        this.e = bArr2;
+    @Override
+    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
+        if (view instanceof TextView) {
+            super.addView(view, i10, layoutParams);
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public void setText(CharSequence charSequence) {
+        a(charSequence, true, false);
+    }
+
+    @Override
+    public TextView getCurrentView() {
+        return (TextView) super.getCurrentView();
+    }
+
+    @Override
+    public TextView getNextView() {
+        return (TextView) super.getNextView();
     }
 }

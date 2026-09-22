@@ -1,21 +1,22 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class hb0 implements View.OnLayoutChangeListener {
-    public boolean f34176a;
+public final class hb0 implements View.OnAttachStateChangeListener {
+    public final LaunchActivity f34213a;
+
+    public hb0(LaunchActivity launchActivity) {
+        this.f34213a = launchActivity;
+    }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10;
-        if (i13 - i11 > i12 - i10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10 != this.f34176a) {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.sh(this, 23));
-            this.f34176a = z10;
-        }
+    public final void onViewAttachedToWindow(View view) {
+        LaunchActivity launchActivity = this.f34213a;
+        launchActivity.getWindowManager().addCrossWindowBlurEnabledListener(launchActivity.f30818d1);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        LaunchActivity launchActivity = this.f34213a;
+        launchActivity.getWindowManager().removeCrossWindowBlurEnabledListener(launchActivity.f30818d1);
     }
 }

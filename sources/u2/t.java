@@ -5,16 +5,16 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 public final class t {
-    public static final AtomicLong f43805b = new AtomicLong();
-    public final long f43806a;
+    public static final AtomicLong f43480b = new AtomicLong();
+    public final long f43481a;
 
     public t(g2.m mVar) {
         this(0L);
-        Uri uri = mVar.f9380a;
+        Uri uri = mVar.f9377a;
         Map map = Collections.EMPTY_MAP;
     }
 
     public t(long j3) {
-        this.f43806a = j3;
+        this.f43481a = j3;
     }
 }

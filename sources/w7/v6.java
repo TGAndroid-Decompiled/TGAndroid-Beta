@@ -1,58 +1,68 @@
 package w7;
+
+import android.os.Build;
+import android.util.SparseArray;
+import android.view.KeyEvent;
+import android.view.View;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
 public abstract class v6 {
-    public static final Class a(vd.c cVar) {
-        kotlin.jvm.internal.i.e(cVar, "<this>");
-        Class a2 = ((kotlin.jvm.internal.c) cVar).a();
-        if (a2.isPrimitive()) {
-            String name = a2.getName();
-            switch (name.hashCode()) {
-                case -1325958191:
-                    if (name.equals("double")) {
-                        return Double.class;
-                    }
-                    break;
-                case 104431:
-                    if (name.equals("int")) {
-                        return Integer.class;
-                    }
-                    break;
-                case 3039496:
-                    if (name.equals("byte")) {
-                        return Byte.class;
-                    }
-                    break;
-                case 3052374:
-                    if (name.equals("char")) {
-                        return Character.class;
-                    }
-                    break;
-                case 3327612:
-                    if (name.equals("long")) {
-                        return Long.class;
-                    }
-                    break;
-                case 3625364:
-                    if (name.equals("void")) {
-                        return Void.class;
-                    }
-                    break;
-                case 64711720:
-                    if (name.equals("boolean")) {
-                        return Boolean.class;
-                    }
-                    break;
-                case 97526364:
-                    if (name.equals("float")) {
-                        return Float.class;
-                    }
-                    break;
-                case 109413500:
-                    if (name.equals("short")) {
-                        return Short.class;
-                    }
-                    break;
+    public static boolean f44847a = false;
+    public static Method f44848b = null;
+    public static boolean f44849c = false;
+    public static Field d;
+
+    public static boolean a(View view, KeyEvent keyEvent) {
+        ArrayList arrayList;
+        int size;
+        int indexOfKey;
+        WeakHashMap weakHashMap = r0.i0.f41839a;
+        if (Build.VERSION.SDK_INT < 28) {
+            ArrayList arrayList2 = r0.h0.d;
+            r0.h0 h0Var = (r0.h0) view.getTag(2131296694);
+            WeakReference weakReference = null;
+            r0.h0 h0Var2 = h0Var;
+            if (h0Var == null) {
+                ?? obj = new Object();
+                obj.f41834a = null;
+                obj.f41835b = null;
+                obj.f41836c = null;
+                view.setTag(2131296694, obj);
+                h0Var2 = obj;
             }
+            WeakReference weakReference2 = h0Var2.f41836c;
+            if (weakReference2 == null || weakReference2.get() != keyEvent) {
+                h0Var2.f41836c = new WeakReference(keyEvent);
+                if (h0Var2.f41835b == null) {
+                    h0Var2.f41835b = new SparseArray();
+                }
+                SparseArray sparseArray = h0Var2.f41835b;
+                if (keyEvent.getAction() == 1 && (indexOfKey = sparseArray.indexOfKey(keyEvent.getKeyCode())) >= 0) {
+                    weakReference = (WeakReference) sparseArray.valueAt(indexOfKey);
+                    sparseArray.removeAt(indexOfKey);
+                }
+                if (weakReference == null) {
+                    weakReference = (WeakReference) sparseArray.get(keyEvent.getKeyCode());
+                }
+                if (weakReference != null) {
+                    View view2 = (View) weakReference.get();
+                    if (view2 == null || !view2.isAttachedToWindow() || (arrayList = (ArrayList) view2.getTag(2131296695)) == null || (size = arrayList.size() - 1) < 0) {
+                        return true;
+                    }
+                    arrayList.get(size).getClass();
+                    throw new ClassCastException();
+                }
+                return false;
+            }
+            return false;
         }
-        return a2;
+        return false;
+    }
+
+    public static boolean b(r0.j r7, android.view.View r8, android.view.Window.Callback r9, android.view.KeyEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: w7.v6.b(r0.j, android.view.View, android.view.Window$Callback, android.view.KeyEvent):boolean");
     }
 }

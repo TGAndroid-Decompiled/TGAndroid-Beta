@@ -1,28 +1,31 @@
 package org.telegram.ui.Components;
-public final class lb0 implements Runnable {
-    public final int f26048a;
-    public final ac0 f26049b;
 
-    public lb0(ac0 ac0Var, int i10) {
-        this.f26048a = i10;
-        this.f26049b = ac0Var;
+import android.view.View;
+public final class lb0 implements zk0 {
+    public final pb0 f25904a;
+
+    public lb0(pb0 pb0Var) {
+        this.f25904a = pb0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26048a) {
-            case 0:
-                ac0 ac0Var = this.f26049b;
-                sb0 sb0Var = ac0Var.f22626f;
-                if (ac0Var.f22625c0.d.webpageTop) {
-                    sb0Var.x0(-sb0Var.computeVerticalScrollOffset(), 250, ji.n.V);
-                    return;
+    public final void d(int i10, View view) {
+        pb0 pb0Var = this.f25904a;
+        if (pb0Var.f26993a == 1 && pb0Var.f27001r.previewMessages.size() > 1) {
+            int id2 = pb0Var.f27001r.previewMessages.get(i10).getId();
+            boolean z10 = pb0Var.f27001r.selectedIds.get(id2, false);
+            boolean z11 = !z10;
+            if (pb0Var.f27001r.selectedIds.size() != 1 || !z10) {
+                if (z10) {
+                    pb0Var.f27001r.selectedIds.delete(id2);
+                } else {
+                    pb0Var.f27001r.selectedIds.put(id2, z11);
                 }
-                sb0Var.x0(sb0Var.computeVerticalScrollRange() - (sb0Var.computeVerticalScrollExtent() + sb0Var.computeVerticalScrollOffset()), 250, ji.n.V);
-                return;
-            default:
-                this.f26049b.g(true, false);
-                return;
+                if (view instanceof org.telegram.ui.Cells.t1) {
+                    ((org.telegram.ui.Cells.t1) view).L3(z11, z11, true);
+                }
+                pb0Var.k(true);
+            }
         }
     }
 }

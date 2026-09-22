@@ -5,15 +5,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.chromium.support_lib_boundary.FeatureFlagHolderBoundaryInterface;
 public final class a implements InvocationHandler {
-    public final FeatureFlagHolderBoundaryInterface f43223a;
+    public final FeatureFlagHolderBoundaryInterface f42896a;
 
     public a(FeatureFlagHolderBoundaryInterface featureFlagHolderBoundaryInterface) {
-        this.f43223a = featureFlagHolderBoundaryInterface;
+        this.f42896a = featureFlagHolderBoundaryInterface;
     }
 
     @Override
     public final Object invoke(Object obj, Method method, Object[] objArr) {
-        FeatureFlagHolderBoundaryInterface featureFlagHolderBoundaryInterface = this.f43223a;
+        FeatureFlagHolderBoundaryInterface featureFlagHolderBoundaryInterface = this.f42896a;
         try {
             return Class.forName(method.getDeclaringClass().getName(), true, featureFlagHolderBoundaryInterface.getClass().getClassLoader()).getDeclaredMethod(method.getName(), method.getParameterTypes()).invoke(featureFlagHolderBoundaryInterface, objArr);
         } catch (InvocationTargetException e) {

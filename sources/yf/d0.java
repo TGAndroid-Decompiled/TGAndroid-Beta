@@ -15,7 +15,7 @@ public abstract class d0 {
         TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
         user.photo = tL_userProfilePhoto;
         tL_userProfilePhoto.personal = z10;
-        tL_userProfilePhoto.photo_id = photo.f18367id;
+        tL_userProfilePhoto.photo_id = photo.f18133id;
         ArrayList<TLRPC.VideoSize> arrayList2 = photo.video_sizes;
         if (arrayList2 != null && arrayList2.size() > 0) {
             z11 = true;
@@ -41,22 +41,22 @@ public abstract class d0 {
             StringBuilder sb2 = new StringBuilder();
             sb2.append(closestPhotoSizeWithSize.location.volume_id);
             sb2.append("_");
-            String n10 = a4.a.n(closestPhotoSizeWithSize.location.local_id, "@50_50", sb2);
+            String o9 = a4.a.o(closestPhotoSizeWithSize.location.local_id, "@50_50", sb2);
             StringBuilder sb3 = new StringBuilder();
             sb3.append(closestPhotoSizeWithSize3.location.volume_id);
             sb3.append("_");
-            ImageLoader.getInstance().replaceImageInCache(n10, a4.a.n(closestPhotoSizeWithSize3.location.local_id, "@50_50", sb3), ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), false);
+            ImageLoader.getInstance().replaceImageInCache(o9, a4.a.o(closestPhotoSizeWithSize3.location.local_id, "@50_50", sb3), ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), false);
         }
         if (closestPhotoSizeWithSize4 != null && closestPhotoSizeWithSize2 != null) {
             FileLoader.getInstance(i10).getPathToAttach(closestPhotoSizeWithSize2, true).renameTo(FileLoader.getInstance(i10).getPathToAttach(closestPhotoSizeWithSize4, true));
             StringBuilder sb4 = new StringBuilder();
             sb4.append(closestPhotoSizeWithSize2.location.volume_id);
             sb4.append("_");
-            String n11 = a4.a.n(closestPhotoSizeWithSize2.location.local_id, "@150_150", sb4);
+            String o10 = a4.a.o(closestPhotoSizeWithSize2.location.local_id, "@150_150", sb4);
             StringBuilder sb5 = new StringBuilder();
             sb5.append(closestPhotoSizeWithSize4.location.volume_id);
             sb5.append("_");
-            ImageLoader.getInstance().replaceImageInCache(n11, a4.a.n(closestPhotoSizeWithSize4.location.local_id, "@150_150", sb5), ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), false);
+            ImageLoader.getInstance().replaceImageInCache(o10, a4.a.o(closestPhotoSizeWithSize4.location.local_id, "@150_150", sb5), ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), false);
         }
     }
 }

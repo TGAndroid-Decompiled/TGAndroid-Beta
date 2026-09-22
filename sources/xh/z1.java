@@ -1,64 +1,69 @@
 package xh;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.bs0;
-import org.telegram.ui.Components.pc;
-import org.telegram.ui.Components.wq0;
-import org.telegram.ui.Components.xc;
-public final class z1 extends wq0 {
-    public final org.telegram.ui.ActionBar.n2 f46542b1;
-    public final bs0 f46543c1;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.bu;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.m6;
+import org.telegram.ui.Components.qr;
+public final class z1 extends bu {
+    public final f5 f46233c;
+    public int d;
+    public final m6 e;
+    public final r2 f46234f;
 
-    public z1(bs0 bs0Var, Context context, String str, String str2, f6 f6Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(context, null, str, false, str2, false, f6Var);
-        this.f46543c1 = bs0Var;
-        this.f46542b1 = n2Var;
+    public z1(r2 r2Var, Context context, e6 e6Var) {
+        super(context, e6Var);
+        this.f46234f = r2Var;
+        this.f46233c = new f5(this);
+        m6 m6Var = new m6(false, true, true, false);
+        this.e = m6Var;
+        m6Var.k(0.2f, 160L, qr.h);
+        m6Var.t(AndroidUtilities.dp(15.33f));
+        m6Var.setCallback(this);
+        m6Var.f26085b = 5;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        xc a02;
-        String str;
-        if (z10 && (a02 = xc.a0(this.f46542b1)) != null) {
-            if (iVar.m() == 1) {
-                long j3 = iVar.j(0);
-                if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    pc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
-                    G.f27319r = false;
-                    G.j();
-                } else if (j3 < 0) {
-                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-                    int i11 = R.raw.forward;
-                    int i12 = R.string.GiftCollectionSharedTo;
-                    if (tL_forumTopic != null) {
-                        str = tL_forumTopic.title;
-                    } else {
-                        str = chat.title;
-                    }
-                    pc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f27319r = false;
-                    G2.j();
-                } else {
-                    pc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f27319r = false;
-                    G3.j();
-                }
-            } else {
-                pc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f27319r = false;
-                Q.j();
-            }
-            try {
-                this.f46543c1.performHapticFeedback(3);
-            } catch (Exception unused) {
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.d < 0) {
+            i10 = i6.f19053p7;
+        } else {
+            i10 = i6.P5;
         }
+        int a2 = this.f46233c.a(i6.v0(i10, this.f46234f.f46104f), false);
+        m6 m6Var = this.e;
+        m6Var.r(a2);
+        m6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        m6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        m6 m6Var = this.e;
+        if (m6Var != null) {
+            this.d = 12 - charSequence.length();
+            m6Var.b();
+            String str = "";
+            if (this.d <= 4) {
+                str = "" + this.d;
+            }
+            m6Var.q(str, true, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.e && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

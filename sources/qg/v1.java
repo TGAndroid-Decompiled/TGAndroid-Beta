@@ -1,65 +1,36 @@
 package qg;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-public final class v1 extends GestureDetector.SimpleOnGestureListener {
-    public float f41995a;
-    public boolean f41996b;
-    public float f41997c;
-    public final x1 d;
-
-    public v1(x1 x1Var) {
-        this.d = x1Var;
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.kl0;
+public final class v1 extends kl0 {
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        return true;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        float f7;
-        x1 x1Var = this.d;
-        boolean contains = x1Var.e.contains(motionEvent.getX(), motionEvent.getY());
-        if (x1Var.f42030f != contains) {
-            x1Var.f42030f = contains;
-            x1Var.invalidate();
-            if (contains) {
-                w1 w1Var = x1Var.K;
-                if (w1Var != null) {
-                    f7 = w1Var.get();
-                } else {
-                    f7 = x1Var.H.f41316c;
-                }
-                this.f41995a = f7;
-                this.f41996b = false;
-            }
-        }
-        return x1Var.f42030f;
+    public final int h() {
+        return pg.j0.c().size();
     }
 
     @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        x1 x1Var = this.d;
-        if (x1Var.f42030f) {
-            if (!this.f41996b) {
-                this.f41997c = motionEvent.getY() - motionEvent2.getY();
-                this.f41996b = true;
-            }
-            float f11 = this.f41995a;
-            float y3 = ((motionEvent.getY() - motionEvent2.getY()) - this.f41997c) / x1Var.e.height();
-            float f12 = x1Var.G;
-            float f13 = x1Var.F;
-            float a2 = w7.q.a(com.google.android.gms.internal.vision.e2.z(f12, f13, y3, f11), f13, f12);
-            w1 w1Var = x1Var.K;
-            if (w1Var != null) {
-                w1Var.m(a2);
-            } else {
-                x1Var.H.f41316c = a2;
-            }
-            x1Var.f42034w.d(a2, true);
-            Runnable runnable = x1Var.I;
-            if (runnable != null) {
-                runnable.run();
-            }
-            x1Var.invalidate();
+    public final void v(s4.c1 c1Var, int i10) {
+        q1 q1Var = (q1) c1Var.f42671a;
+        pg.j0 j0Var = (pg.j0) pg.j0.c().get(i10);
+        q1Var.getClass();
+        q1Var.setTypeface(j0Var.d());
+        String str = j0Var.f40885c;
+        if (str == null) {
+            str = LocaleController.getString(j0Var.f40884b);
         }
-        return x1Var.f42030f;
+        q1Var.setText(str);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        q1 q1Var = new q1(viewGroup.getContext());
+        q1Var.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(q1Var);
     }
 }

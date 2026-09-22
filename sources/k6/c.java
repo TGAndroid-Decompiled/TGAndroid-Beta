@@ -3,7 +3,8 @@ package k6;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
-import w7.f0;
+import n4.y;
+import w7.e0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new g8.j(18);
     public final String f13506a;
@@ -41,22 +42,22 @@ public final class c extends o6.a {
     }
 
     public final String toString() {
-        m5.e eVar = new m5.e(this);
-        eVar.c(this.f13506a, "name");
-        eVar.c(Long.valueOf(b()), "version");
-        return eVar.toString();
+        y yVar = new y(this);
+        yVar.e(this.f13506a, "name");
+        yVar.e(Long.valueOf(b()), "version");
+        return yVar.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 1, this.f13506a);
-        f0.s(parcel, 2, 4);
+        int q6 = e0.q(parcel, 20293);
+        e0.l(parcel, 1, this.f13506a);
+        e0.s(parcel, 2, 4);
         parcel.writeInt(this.f13507b);
         long b10 = b();
-        f0.s(parcel, 3, 8);
+        e0.s(parcel, 3, 8);
         parcel.writeLong(b10);
-        f0.r(parcel, q6);
+        e0.r(parcel, q6);
     }
 
     public c(String str, long j3) {

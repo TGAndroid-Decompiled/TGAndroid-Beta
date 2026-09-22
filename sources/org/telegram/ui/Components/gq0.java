@@ -1,85 +1,68 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class gq0 extends org.telegram.ui.ActionBar.p1 {
-    public final hq0 f24605x;
+public abstract class gq0 extends FrameLayout {
+    public org.telegram.ui.ActionBar.j5 f24440a;
+    public org.telegram.ui.ActionBar.j5 f24441b;
+    public ci.eb f24442c;
+    public int d;
+    public AnimatorSet e;
+    public Paint f24443f;
+    public RectF h;
 
-    public gq0(hq0 hq0Var, hq0 hq0Var2) {
-        super(hq0Var2);
-        this.f24605x = hq0Var;
-    }
-
-    @Override
-    public final boolean b() {
-        wq0 wq0Var = this.f24605x.H0;
-        if (!wq0Var.isDismissed() && wq0Var.Y) {
-            return !wq0Var.d.m();
+    public final void a(int i10) {
+        float measuredWidth;
+        if (this.d == i10) {
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final void e(float r9, float r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gq0.e(float, float, boolean):void");
-    }
-
-    @Override
-    public final void f() {
-        wq0 wq0Var = this.f24605x.H0;
-        bq0 bq0Var = wq0Var.d;
-        if (bq0Var == null || !bq0Var.m()) {
-            int i10 = wq0Var.N0;
-            AndroidUtilities.dp(20.0f);
+        this.d = i10;
+        AnimatorSet animatorSet = this.e;
+        if (animatorSet != null) {
+            animatorSet.cancel();
         }
-        wq0Var.f30118r0 = false;
-        int i11 = wq0Var.f30115p0;
-        wq0Var.f30116q0 = i11;
-        wq0Var.F.setTopGlowOffset(i11);
-        wq0Var.f30098b.setTranslationY(wq0Var.f30115p0);
-        wq0Var.Q.setTranslationY(wq0Var.f30115p0);
-        wq0Var.F.setTranslationY(0.0f);
-        wq0Var.G.setTranslationY(0.0f);
-        wq0Var.Y0();
-    }
-
-    @Override
-    public final void g(int i10, boolean z10) {
-        int i11;
-        hq0 hq0Var = this.f24605x;
-        wq0 wq0Var = hq0Var.H0;
-        int i12 = wq0Var.f30116q0;
-        int i13 = wq0Var.f30115p0;
-        if (i12 != i13) {
-            hq0Var.B0 = i12;
-            hq0Var.C0 = i13;
-            wq0Var.f30118r0 = true;
-            wq0Var.f30115p0 = i12;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.e = animatorSet2;
+        ci.eb ebVar = this.f24442c;
+        if (this.d == 0) {
+            measuredWidth = 0.0f;
         } else {
-            hq0Var.B0 = -1;
+            measuredWidth = ebVar.getMeasuredWidth();
         }
-        int i14 = hq0Var.f24869z0;
-        int i15 = hq0Var.A0;
-        if (i14 != i15) {
-            hq0Var.D0 = 0;
-            hq0Var.E0 = 0;
-            wq0Var.f30118r0 = true;
-            if (!z10) {
-                hq0Var.E0 = 0 - (i14 - i15);
-            } else {
-                hq0Var.E0 = i14 - i15;
-            }
-            if (z10) {
-                i11 = hq0Var.B0;
-            } else {
-                i11 = hq0Var.C0;
-            }
-            wq0Var.f30115p0 = i11;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(ebVar, View.TRANSLATION_X, measuredWidth));
+        this.e.setDuration(180L);
+        this.e.setInterpolator(qr.f27421g);
+        this.e.addListener(new jd0(this, 12));
+        this.e.start();
+        ((tp0) this).f28162n.Z0();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int size = (View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(28.0f)) / 2;
+        ((FrameLayout.LayoutParams) this.f24441b.getLayoutParams()).width = size;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f24440a.getLayoutParams();
+        layoutParams.width = size;
+        layoutParams.leftMargin = AndroidUtilities.dp(14.0f) + size;
+        ci.eb ebVar = this.f24442c;
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) ebVar.getLayoutParams();
+        layoutParams2.width = size;
+        AnimatorSet animatorSet = this.e;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        if (this.d == 0) {
+            f7 = 0.0f;
         } else {
-            hq0Var.D0 = -1;
+            f7 = layoutParams2.width;
         }
-        wq0Var.F.setTopGlowOffset((int) (wq0Var.f30121t0 + wq0Var.f30115p0));
-        wq0Var.f30098b.setTranslationY(wq0Var.f30121t0 + wq0Var.f30115p0);
-        wq0Var.Q.setTranslationY(wq0Var.f30121t0 + wq0Var.f30115p0);
-        hq0Var.invalidate();
+        ebVar.setTranslationX(f7);
+        super.onMeasure(i10, i11);
     }
 }

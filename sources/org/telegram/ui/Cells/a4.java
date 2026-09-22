@@ -1,76 +1,67 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.i91;
-import org.telegram.ui.oz0;
-public final class a4 extends RadialProgressView {
-    public final int K = 0;
-    public final Paint L;
-    public final Object M;
+public final class a4 extends org.telegram.ui.ActionBar.j5 {
+    public float M0;
+    public final int N0;
+    public final e4 O0;
 
-    public a4(f4 f4Var, Context context) {
-        super(context, null);
-        this.M = f4Var;
-        Paint paint = new Paint(1);
-        this.L = paint;
-        paint.setColor(1426063360);
+    public a4(e4 e4Var, Context context, int i10) {
+        super(context);
+        this.O0 = e4Var;
+        this.N0 = i10;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.K) {
-            case 0:
-                f4 f4Var = (f4) this.M;
-                org.telegram.ui.Components.v9 v9Var = f4Var.f20288b;
-                if (v9Var.getImageReceiver().hasNotThumb() && v9Var.getAlpha() > 0.0f) {
-                    int alpha = (int) (v9Var.getAlpha() * v9Var.getImageReceiver().getCurrentAlpha() * 85.0f);
-                    Paint paint = this.L;
-                    paint.setAlpha(alpha);
-                    canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
+    public final float getAlpha() {
+        return this.M0;
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        this.M0 = f7;
+        e4 e4Var = this.O0;
+        if (this.N0 == 4) {
+            float fullAlpha = e4Var.d[4].getFullAlpha();
+            if (e4Var.c()) {
+                float f10 = e4Var.f20011e0;
+                if (f10 > 0.0f) {
+                    super.setAlpha(1.0f - f10);
+                    return;
                 }
-                f4Var.f20299x.setProgressColor(i0.a.k(-1, (int) (v9Var.getAlpha() * v9Var.getImageReceiver().getCurrentAlpha() * 255.0f)));
-                super.onDraw(canvas);
+            }
+            if (fullAlpha > 0.0f) {
+                super.setAlpha(Math.max(f7, fullAlpha));
                 return;
-            case 1:
-                ProfileActivity profileActivity = (ProfileActivity) this.M;
-                oz0 oz0Var = profileActivity.f31573e0;
-                if (oz0Var != null && oz0Var.getImageReceiver().hasNotThumb()) {
-                    Paint paint2 = this.L;
-                    paint2.setAlpha((int) (profileActivity.f31573e0.getImageReceiver().getCurrentAlpha() * 85.0f));
-                    canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint2);
-                }
-                super.onDraw(canvas);
+            } else {
+                super.setAlpha(f7);
                 return;
-            default:
-                i91 i91Var = (i91) this.M;
-                org.telegram.ui.Components.v9 v9Var2 = i91Var.F;
-                if (v9Var2 != null && v9Var2.getImageReceiver().hasNotThumb()) {
-                    Paint paint3 = this.L;
-                    paint3.setAlpha((int) (i91Var.F.getImageReceiver().getCurrentAlpha() * 85.0f));
-                    canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint3);
-                }
-                super.onDraw(canvas);
+            }
+        }
+        super.setAlpha((1.0f - e4Var.d[4].getFullAlpha()) * f7);
+    }
+
+    @Override
+    public final void setFullAlpha(float f7) {
+        super.setFullAlpha(f7);
+        int i10 = 0;
+        while (true) {
+            org.telegram.ui.ActionBar.j5[] j5VarArr = this.O0.d;
+            if (i10 < j5VarArr.length) {
+                org.telegram.ui.ActionBar.j5 j5Var = j5VarArr[i10];
+                j5Var.setAlpha(j5Var.getAlpha());
+                i10++;
+            } else {
                 return;
+            }
         }
     }
 
-    public a4(i91 i91Var, Context context) {
-        super(context, null);
-        this.M = i91Var;
-        Paint paint = new Paint(1);
-        this.L = paint;
-        paint.setColor(1426063360);
-    }
-
-    public a4(ProfileActivity profileActivity, Context context) {
-        super(context, null);
-        this.M = profileActivity;
-        Paint paint = new Paint(1);
-        this.L = paint;
-        paint.setColor(1426063360);
+    @Override
+    public final void setTranslationY(float f7) {
+        if (this.N0 == 4 && getFullAlpha() > 0.0f) {
+            f7 = 0.0f;
+        }
+        super.setTranslationY(f7);
     }
 }

@@ -21,20 +21,20 @@ import org.telegram.messenger.UserConfig;
 public class PipRoundVideoView implements NotificationCenter.NotificationCenterDelegate {
     public static PipRoundVideoView F;
     public final RectF E = new RectF();
-    public ig0 f22317a;
-    public int f22318b;
-    public TextureView f22319c;
+    public wf0 f22077a;
+    public int f22078b;
+    public TextureView f22079c;
     public ImageView d;
-    public jg0 e;
-    public Bitmap f22320f;
+    public xf0 e;
+    public Bitmap f22080f;
     public int h;
-    public int f22321n;
-    public AnimatorSet f22322r;
-    public Runnable f22323s;
+    public int f22081n;
+    public AnimatorSet f22082r;
+    public Runnable f22083s;
     public WindowManager.LayoutParams v;
-    public WindowManager f22324w;
-    public SharedPreferences f22325x;
-    public DecelerateInterpolator f22326y;
+    public WindowManager f22084w;
+    public SharedPreferences f22085x;
+    public DecelerateInterpolator f22086y;
 
     public static int b(boolean z10, int i10, float f7, int i11) {
         int i12;
@@ -61,19 +61,19 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
 
     public final void a(boolean z10) {
         if (z10) {
-            TextureView textureView = this.f22319c;
+            TextureView textureView = this.f22079c;
             if (textureView != null && textureView.getParent() != null) {
-                if (this.f22319c.getWidth() > 0 && this.f22319c.getHeight() > 0) {
-                    this.f22320f = Bitmaps.createBitmap(this.f22319c.getWidth(), this.f22319c.getHeight(), Bitmap.Config.ARGB_8888);
+                if (this.f22079c.getWidth() > 0 && this.f22079c.getHeight() > 0) {
+                    this.f22080f = Bitmaps.createBitmap(this.f22079c.getWidth(), this.f22079c.getHeight(), Bitmap.Config.ARGB_8888);
                 }
                 try {
-                    this.f22319c.getBitmap(this.f22320f);
+                    this.f22079c.getBitmap(this.f22080f);
                 } catch (Throwable unused) {
-                    this.f22320f = null;
+                    this.f22080f = null;
                 }
-                this.d.setImageBitmap(this.f22320f);
+                this.d.setImageBitmap(this.f22080f);
                 try {
-                    this.e.removeView(this.f22319c);
+                    this.e.removeView(this.f22079c);
                 } catch (Exception unused2) {
                 }
                 this.d.setVisibility(0);
@@ -82,31 +82,31 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             }
             return;
         }
-        if (this.f22320f != null) {
+        if (this.f22080f != null) {
             this.d.setImageDrawable(null);
-            this.f22320f.recycle();
-            this.f22320f = null;
+            this.f22080f.recycle();
+            this.f22080f = null;
         }
         try {
-            this.f22324w.removeView(this.f22317a);
+            this.f22084w.removeView(this.f22077a);
         } catch (Exception unused3) {
         }
         if (F == this) {
             F = null;
         }
-        NotificationCenter.getInstance(this.f22318b).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
+        NotificationCenter.getInstance(this.f22078b).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
     }
 
     public final void c(boolean z10) {
         float f7;
         float f10;
-        AnimatorSet animatorSet = this.f22322r;
+        AnimatorSet animatorSet = this.f22082r;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f22322r = animatorSet2;
-        ig0 ig0Var = this.f22317a;
+        this.f22082r = animatorSet2;
+        wf0 wf0Var = this.f22077a;
         Property property = View.ALPHA;
         float f11 = 1.0f;
         if (z10) {
@@ -114,28 +114,28 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         } else {
             f7 = 0.0f;
         }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ig0Var, property, f7);
-        ig0 ig0Var2 = this.f22317a;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(wf0Var, property, f7);
+        wf0 wf0Var2 = this.f22077a;
         Property property2 = View.SCALE_X;
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.8f;
         }
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(ig0Var2, property2, f10);
-        ig0 ig0Var3 = this.f22317a;
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(wf0Var2, property2, f10);
+        wf0 wf0Var3 = this.f22077a;
         Property property3 = View.SCALE_Y;
         if (!z10) {
             f11 = 0.8f;
         }
-        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(ig0Var3, property3, f11));
-        this.f22322r.setDuration(150L);
-        if (this.f22326y == null) {
-            this.f22326y = new DecelerateInterpolator();
+        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(wf0Var3, property3, f11));
+        this.f22082r.setDuration(150L);
+        if (this.f22086y == null) {
+            this.f22086y = new DecelerateInterpolator();
         }
-        this.f22322r.addListener(new ba(17, this, z10));
-        this.f22322r.setInterpolator(this.f22326y);
-        this.f22322r.start();
+        this.f22082r.addListener(new aa(17, this, z10));
+        this.f22082r.setInterpolator(this.f22086y);
+        this.f22082r.start();
     }
 
     public final void d(Activity activity, Runnable runnable) {
@@ -143,54 +143,54 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             return;
         }
         F = this;
-        this.f22323s = runnable;
-        ig0 ig0Var = new ig0(this, activity);
-        this.f22317a = ig0Var;
-        ig0Var.setWillNotDraw(false);
+        this.f22083s = runnable;
+        wf0 wf0Var = new wf0(this, activity);
+        this.f22077a = wf0Var;
+        wf0Var.setWillNotDraw(false);
         this.h = AndroidUtilities.dp(126.0f);
-        this.f22321n = AndroidUtilities.dp(126.0f);
-        jg0 jg0Var = new jg0(this, activity, 0);
-        this.e = jg0Var;
-        jg0Var.setOutlineProvider(new ai.k2(14));
+        this.f22081n = AndroidUtilities.dp(126.0f);
+        xf0 xf0Var = new xf0(this, activity, 0);
+        this.e = xf0Var;
+        xf0Var.setOutlineProvider(new ai.k2(12));
         this.e.setClipToOutline(true);
         this.e.a(1.0f, 0);
-        this.f22317a.addView(this.e, w7.y5.d(120, 120.0f, 51, 3.0f, 3.0f, 0.0f, 0.0f));
-        this.f22317a.setAlpha(1.0f);
-        this.f22317a.setScaleX(0.8f);
-        this.f22317a.setScaleY(0.8f);
-        this.f22319c = new TextureView(activity);
+        this.f22077a.addView(this.e, w7.x5.d(120, 120.0f, 51, 3.0f, 3.0f, 0.0f, 0.0f));
+        this.f22077a.setAlpha(1.0f);
+        this.f22077a.setScaleX(0.8f);
+        this.f22077a.setScaleY(0.8f);
+        this.f22079c = new TextureView(activity);
         float dpf2 = (AndroidUtilities.dpf2(2.0f) + AndroidUtilities.dpf2(120.0f)) / AndroidUtilities.dpf2(120.0f);
-        this.f22319c.setScaleX(dpf2);
-        this.f22319c.setScaleY(dpf2);
-        this.e.addView(this.f22319c, w7.y5.c(-1.0f, -1));
+        this.f22079c.setScaleX(dpf2);
+        this.f22079c.setScaleY(dpf2);
+        this.e.addView(this.f22079c, w7.x5.c(-1.0f, -1));
         ImageView imageView = new ImageView(activity);
         this.d = imageView;
-        this.e.addView(imageView, w7.y5.c(-1.0f, -1));
+        this.e.addView(imageView, w7.x5.c(-1.0f, -1));
         this.d.setVisibility(4);
-        this.f22324w = (WindowManager) activity.getSystemService("window");
+        this.f22084w = (WindowManager) activity.getSystemService("window");
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("pipconfig", 0);
-        this.f22325x = sharedPreferences;
+        this.f22085x = sharedPreferences;
         int i10 = sharedPreferences.getInt("sidex", 1);
-        int i11 = this.f22325x.getInt("sidey", 0);
-        float f7 = this.f22325x.getFloat("px", 0.0f);
-        float f10 = this.f22325x.getFloat("py", 0.0f);
+        int i11 = this.f22085x.getInt("sidey", 0);
+        float f7 = this.f22085x.getFloat("px", 0.0f);
+        float f10 = this.f22085x.getFloat("py", 0.0f);
         try {
             WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
             this.v = layoutParams;
             int i12 = this.h;
             layoutParams.width = i12;
-            layoutParams.height = this.f22321n;
+            layoutParams.height = this.f22081n;
             layoutParams.x = b(true, i10, f7, i12);
-            this.v.y = b(false, i11, f10, this.f22321n);
+            this.v.y = b(false, i11, f10, this.f22081n);
             WindowManager.LayoutParams layoutParams2 = this.v;
             layoutParams2.format = -3;
             layoutParams2.gravity = 51;
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
-            AndroidUtilities.setPreferredMaxRefreshRate(this.f22324w, this.f22317a, layoutParams2);
-            this.f22324w.addView(this.f22317a, this.v);
+            AndroidUtilities.setPreferredMaxRefreshRate(this.f22084w, this.f22077a, layoutParams2);
+            this.f22084w.addView(this.f22077a, this.v);
             int i13 = UserConfig.selectedAccount;
-            this.f22318b = i13;
+            this.f22078b = i13;
             NotificationCenter.getInstance(i13).addObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
             c(true);
         } catch (Exception e) {
@@ -200,22 +200,22 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        jg0 jg0Var;
-        if (i10 == NotificationCenter.messagePlayingProgressDidChanged && (jg0Var = this.e) != null) {
-            jg0Var.invalidate();
+        xf0 xf0Var;
+        if (i10 == NotificationCenter.messagePlayingProgressDidChanged && (xf0Var = this.e) != null) {
+            xf0Var.invalidate();
         }
     }
 
     public final void e(boolean z10) {
         float f7;
         float f10;
-        AnimatorSet animatorSet = this.f22322r;
+        AnimatorSet animatorSet = this.f22082r;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f22322r = animatorSet2;
-        ig0 ig0Var = this.f22317a;
+        this.f22082r = animatorSet2;
+        wf0 wf0Var = this.f22077a;
         Property property = View.ALPHA;
         float f11 = 1.0f;
         if (z10) {
@@ -223,28 +223,28 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         } else {
             f7 = 0.0f;
         }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ig0Var, property, f7);
-        ig0 ig0Var2 = this.f22317a;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(wf0Var, property, f7);
+        wf0 wf0Var2 = this.f22077a;
         Property property2 = View.SCALE_X;
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.8f;
         }
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(ig0Var2, property2, f10);
-        ig0 ig0Var3 = this.f22317a;
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(wf0Var2, property2, f10);
+        wf0 wf0Var3 = this.f22077a;
         Property property3 = View.SCALE_Y;
         if (!z10) {
             f11 = 0.8f;
         }
-        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(ig0Var3, property3, f11));
-        this.f22322r.setDuration(150L);
-        if (this.f22326y == null) {
-            this.f22326y = new DecelerateInterpolator();
+        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(wf0Var3, property3, f11));
+        this.f22082r.setDuration(150L);
+        if (this.f22086y == null) {
+            this.f22086y = new DecelerateInterpolator();
         }
-        this.f22322r.addListener(new kg0(this, 0));
-        this.f22322r.setInterpolator(this.f22326y);
-        this.f22322r.start();
+        this.f22082r.addListener(new yf0(this, 0));
+        this.f22082r.setInterpolator(this.f22086y);
+        this.f22082r.start();
     }
 
     public int getX() {
@@ -259,7 +259,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         WindowManager.LayoutParams layoutParams = this.v;
         layoutParams.x = i10;
         try {
-            this.f22324w.updateViewLayout(this.f22317a, layoutParams);
+            this.f22084w.updateViewLayout(this.f22077a, layoutParams);
         } catch (Exception unused) {
         }
     }
@@ -268,7 +268,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         WindowManager.LayoutParams layoutParams = this.v;
         layoutParams.y = i10;
         try {
-            this.f22324w.updateViewLayout(this.f22317a, layoutParams);
+            this.f22084w.updateViewLayout(this.f22077a, layoutParams);
         } catch (Exception unused) {
         }
     }

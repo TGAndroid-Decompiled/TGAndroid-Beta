@@ -3,15 +3,15 @@ package t3;
 import b2.m0;
 import b2.o0;
 import b2.s;
-import v7.s6;
-import v7.z7;
+import v7.r6;
+import v7.y7;
 public final class a implements o0 {
-    public final String f43327a;
-    public final String f43328b;
+    public final String f43001a;
+    public final String f43002b;
 
     public a(String str, String str2) {
-        this.f43327a = s6.c(str);
-        this.f43328b = str2;
+        this.f43001a = r6.c(str);
+        this.f43002b = str2;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class a implements o0 {
 
     @Override
     public final void b(m0 m0Var) {
-        String str = this.f43327a;
+        String str = this.f43001a;
         str.getClass();
         char c10 = 65535;
         switch (str.hashCode()) {
@@ -86,43 +86,43 @@ public final class a implements o0 {
                 }
                 break;
         }
-        String str2 = this.f43328b;
+        String str2 = this.f43002b;
         switch (c10) {
             case 0:
-                Integer g10 = z7.g(str2);
+                Integer g10 = y7.g(str2);
                 if (g10 != null) {
-                    m0Var.f3105o = g10;
+                    m0Var.f3103o = g10;
                     return;
                 }
                 return;
             case 1:
-                Integer g11 = z7.g(str2);
+                Integer g11 = y7.g(str2);
                 if (g11 != null) {
                     m0Var.C = g11;
                     return;
                 }
                 return;
             case 2:
-                Integer g12 = z7.g(str2);
+                Integer g12 = y7.g(str2);
                 if (g12 != null) {
-                    m0Var.f3104n = g12;
+                    m0Var.f3102n = g12;
                     return;
                 }
                 return;
             case 3:
-                m0Var.f3096c = str2;
+                m0Var.f3094c = str2;
                 return;
             case 4:
                 m0Var.D = str2;
                 return;
             case 5:
-                m0Var.f3094a = str2;
+                m0Var.f3092a = str2;
                 return;
             case 6:
-                m0Var.f3098g = str2;
+                m0Var.f3096g = str2;
                 return;
             case 7:
-                Integer g13 = z7.g(str2);
+                Integer g13 = y7.g(str2);
                 if (g13 != null) {
                     m0Var.B = g13;
                     return;
@@ -132,7 +132,7 @@ public final class a implements o0 {
                 m0Var.d = str2;
                 return;
             case '\t':
-                m0Var.f3095b = str2;
+                m0Var.f3093b = str2;
                 return;
             default:
                 return;
@@ -150,7 +150,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f43327a.equals(aVar.f43327a) && this.f43328b.equals(aVar.f43328b)) {
+            if (this.f43001a.equals(aVar.f43001a) && this.f43002b.equals(aVar.f43002b)) {
                 return true;
             }
         }
@@ -158,10 +158,10 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        return this.f43328b.hashCode() + a4.a.h(527, 31, this.f43327a);
+        return this.f43002b.hashCode() + a4.a.h(527, 31, this.f43001a);
     }
 
     public final String toString() {
-        return "VC: " + this.f43327a + "=" + this.f43328b;
+        return "VC: " + this.f43001a + "=" + this.f43002b;
     }
 }

@@ -1,36 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class m81 implements Utilities.Callback {
-    public final int f35651a;
-    public final SessionsActivity f35652b;
+import org.telegram.ui.Components.UndoView;
+public final class m81 extends UndoView {
+    public final SessionsActivity f35628f0;
 
-    public m81(SessionsActivity sessionsActivity, int i10) {
-        this.f35651a = i10;
-        this.f35652b = sessionsActivity;
+    public m81(SessionsActivity sessionsActivity, Context context) {
+        super(context);
+        this.f35628f0 = sessionsActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f35651a) {
-            case 0:
-                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
-                SessionsActivity sessionsActivity = this.f35652b;
-                sessionsActivity.getClass();
-                if (connectedbots != null) {
-                    sessionsActivity.h = connectedbots.connected_bots;
-                    if (sessionsActivity.f31801a != null) {
-                        sessionsActivity.m0();
-                        sessionsActivity.f31801a.l();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                SessionsActivity.V(this.f35652b, (Boolean) obj);
-                return;
+    public final void e(int i10, boolean z10) {
+        int i11;
+        if (!z10 && getCurrentInfoObject() != null) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
+            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
+            resetauthorization.hash = tL_authorization.hash;
+            i11 = ((org.telegram.ui.ActionBar.n2) this.f35628f0).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new bc0(19, this, tL_authorization));
         }
+        super.e(i10, z10);
     }
 }

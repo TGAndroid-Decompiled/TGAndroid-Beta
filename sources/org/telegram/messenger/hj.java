@@ -1,67 +1,76 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
-import org.telegram.messenger.SendMessagesHelper;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Collections;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.LaunchActivity;
 public final class hj implements Runnable {
-    public final int f16584a = 0;
-    public final SendMessagesHelper f16585b;
-    public final MessageObject f16586c;
-    public final String d;
-    public final SendMessagesHelper.DelayedMessage e;
-    public final boolean f16587f;
-    public final SendMessagesHelper.DelayedMessage h;
-    public final Object f16588n;
-    public final HashMap f16589r;
-    public final boolean f16590s;
-    public final Object v;
-    public final TLObject f16591w;
-    public final TLObject f16592x;
+    public final int f16338a = 1;
+    public final int f16339b;
+    public final boolean f16340c;
+    public final boolean d;
+    public final Object e;
+    public final Object f16341f;
+    public final Object h;
+    public final Object f16342n;
 
-    public hj(SendMessagesHelper sendMessagesHelper, TLObject tLObject, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLObject tLObject2, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
-        this.f16585b = sendMessagesHelper;
-        this.v = tLObject;
-        this.f16592x = tL_messages_addPollAnswer;
-        this.f16591w = tLObject2;
-        this.f16586c = messageObject;
-        this.d = str;
-        this.e = delayedMessage;
-        this.f16587f = z10;
-        this.h = delayedMessage2;
-        this.f16588n = obj;
-        this.f16589r = hashMap;
-        this.f16590s = z11;
+    public hj(int i10, ci.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z10, boolean z11, org.telegram.ui.ActionBar.f3[] f3VarArr) {
+        this.e = dVar;
+        this.f16341f = f3VarArr;
+        this.f16339b = i10;
+        this.f16340c = z10;
+        this.h = starsSubscription;
+        this.d = z11;
+        this.f16342n = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f16584a) {
+        String formatString;
+        int i10 = this.f16338a;
+        Object obj = this.f16342n;
+        Object obj2 = this.h;
+        Object obj3 = this.f16341f;
+        Object obj4 = this.e;
+        switch (i10) {
             case 0:
-                HashMap hashMap = this.f16589r;
-                boolean z10 = this.f16590s;
-                this.f16585b.lambda$performSendMessageRequest$75((TLObject) this.v, (TLRPC.TL_messages_addPollAnswer) this.f16592x, this.f16591w, this.f16586c, this.d, this.e, this.f16587f, this.h, this.f16588n, hashMap, z10);
+                ((SendMessagesHelper) obj4).lambda$performSendMessageRequest$95(this.f16340c, (TLRPC.Message) obj3, (ArrayList) obj2, this.d, (ArrayList) obj, this.f16339b);
                 return;
             default:
-                HashMap hashMap2 = this.f16589r;
-                boolean z11 = this.f16590s;
-                this.f16585b.lambda$performSendMessageRequest$83((org.telegram.ui.ActionBar.n2) this.v, (TLRPC.TL_inputMediaStakeDice) this.f16591w, (TLRPC.TL_messages_sendMedia) this.f16592x, this.f16586c, this.d, this.e, this.f16587f, this.h, this.f16588n, hashMap2, z11);
+                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) obj2;
+                TLObject tLObject = (TLObject) obj;
+                ((ci.d) obj4).setLoading(false);
+                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) obj3)[0];
+                if (f3Var != null) {
+                    f3Var.dismiss();
+                }
+                yh.u5.y(this.f16339b, false).S();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    if (this.f16340c && !TextUtils.isEmpty(starsSubscription.title)) {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBizToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                    } else if (this.d && !TextUtils.isEmpty(starsSubscription.title)) {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBotToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
+                    } else {
+                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledToastText, LocaleController.formatDateChat(starsSubscription.until_date));
+                    }
+                    org.telegram.ui.Components.vc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionCancelledToast), AndroidUtilities.replaceTags(formatString), null).k(false);
+                    return;
+                }
                 return;
         }
     }
 
-    public hj(SendMessagesHelper sendMessagesHelper, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_inputMediaStakeDice tL_inputMediaStakeDice, TLRPC.TL_messages_sendMedia tL_messages_sendMedia, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
-        this.f16585b = sendMessagesHelper;
-        this.v = n2Var;
-        this.f16591w = tL_inputMediaStakeDice;
-        this.f16592x = tL_messages_sendMedia;
-        this.f16586c = messageObject;
-        this.d = str;
-        this.e = delayedMessage;
-        this.f16587f = z10;
-        this.h = delayedMessage2;
-        this.f16588n = obj;
-        this.f16589r = hashMap;
-        this.f16590s = z11;
+    public hj(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
+        this.e = sendMessagesHelper;
+        this.f16340c = z10;
+        this.f16341f = message;
+        this.h = arrayList;
+        this.d = z11;
+        this.f16342n = arrayList2;
+        this.f16339b = i10;
     }
 }

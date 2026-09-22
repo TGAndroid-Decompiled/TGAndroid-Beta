@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.wd1;
-public final class cp implements wd1 {
-    public final int f23417a;
-    public final dp f23418b;
+import org.telegram.ui.vd1;
+public final class cp implements vd1 {
+    public final int f23115a;
+    public final dp f23116b;
 
     public cp(dp dpVar, int i10) {
-        this.f23417a = i10;
-        this.f23418b = dpVar;
+        this.f23115a = i10;
+        this.f23116b = dpVar;
     }
 
     @Override
     public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f23417a) {
+        switch (this.f23115a) {
             case 0:
-                mp mpVar = this.f23418b.f23728a;
+                mp mpVar = this.f23116b.f23368a;
                 mpVar.Y.dismissInternal();
                 mpVar.dismiss();
                 return;
             default:
-                mp mpVar2 = this.f23418b.f23728a;
+                mp mpVar2 = this.f23116b.f23368a;
                 mpVar2.Y.dismissInternal();
                 mpVar2.dismiss();
                 return;

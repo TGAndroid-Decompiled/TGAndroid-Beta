@@ -1,53 +1,49 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public abstract class h7 extends g7 {
-    public final ArrayList f34148f;
-    public final t7 h;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class h7 extends tu0 {
+    public org.telegram.ui.Components.ll0 f34107a;
+    public final s7 f34108b;
 
-    public h7(t7 t7Var, int i10) {
-        super(i10);
-        this.h = t7Var;
-        this.f34148f = new ArrayList();
+    public h7(s7 s7Var) {
+        this.f34108b = s7Var;
     }
 
     @Override
-    public boolean D(s4.c1 c1Var) {
-        return !(this instanceof p7);
-    }
-
-    @Override
-    public void F() {
-        ArrayList arrayList;
-        ArrayList arrayList2 = this.f34148f;
-        arrayList2.clear();
-        ArrayList arrayList3 = this.e;
-        arrayList2.addAll(arrayList3);
-        arrayList3.clear();
-        zh.b bVar = this.h.f37672f;
-        if (bVar != null) {
-            int i10 = this.d;
-            if (i10 == 1) {
-                arrayList = bVar.d;
-            } else if (i10 == 2) {
-                arrayList = bVar.e;
-            } else if (i10 == 3) {
-                arrayList = bVar.f49520f;
-            } else if (i10 == 5) {
-                arrayList = bVar.f49521g;
-            } else if (i10 == 4) {
-                arrayList = bVar.h;
-            } else {
-                arrayList = null;
-            }
-            if (arrayList != null) {
-                for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    ?? aVar = new og.a(2, true);
-                    aVar.d = (zh.a) arrayList.get(i11);
-                    arrayList3.add(aVar);
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        org.telegram.ui.Cells.t7 t7Var;
+        org.telegram.ui.Components.ll0 listView = this.f34108b.getListView();
+        int i11 = 0;
+        while (true) {
+            if (i11 < listView.getChildCount()) {
+                View childAt = listView.getChildAt(i11);
+                if (RecyclerView.R(childAt) == i10 && (childAt instanceof org.telegram.ui.Cells.t7)) {
+                    t7Var = (org.telegram.ui.Cells.t7) childAt;
+                    break;
                 }
+                i11++;
+            } else {
+                t7Var = null;
+                break;
             }
         }
-        E(arrayList2, arrayList3);
+        if (t7Var == null) {
+            return null;
+        }
+        int[] iArr = new int[2];
+        t7Var.getLocationInWindow(iArr);
+        dv0 dv0Var = new dv0();
+        dv0Var.f33097b = iArr[0];
+        dv0Var.f33098c = iArr[1];
+        dv0Var.d = this.f34107a;
+        ImageReceiver imageReceiver = t7Var.f21361c;
+        dv0Var.f33096a = imageReceiver;
+        dv0Var.e = imageReceiver.getBitmapSafe();
+        dv0Var.f33103k = t7Var.getScaleX();
+        return dv0Var;
     }
 }

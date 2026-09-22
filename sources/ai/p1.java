@@ -133,7 +133,7 @@ public final class p1 implements NativeInstance.PayloadCallback, RequestDelegate
                 }
                 tL_upload_getFile.location = tL_inputGroupCallStream;
                 if (i10 == 0) {
-                    str = a4.a.o(j3, "");
+                    str = a4.a.p(j3, "");
                 } else {
                     str = i10 + "_" + j3 + "_" + i11;
                 }
@@ -229,7 +229,7 @@ public final class p1 implements NativeInstance.PayloadCallback, RequestDelegate
                 StringBuilder sb3 = new StringBuilder("[LivePlayer] cancelling getFile time_ms=");
                 sb3.append(j3);
                 sb3.append(j10 == 500 ? ", scale = 1" : "");
-                sb3.append(i10 != 0 ? a4.a.l(i10, i11, ", video_channel = ", ", video_quality = ") : "");
+                sb3.append(i10 != 0 ? a4.a.m(i10, i11, ", video_channel = ", ", video_quality = ") : "");
                 FileLog.d(sb3.toString());
                 AndroidUtilities.runOnUIThread(new a2(i10, i11, 0, j3, this.f1381b));
                 return;

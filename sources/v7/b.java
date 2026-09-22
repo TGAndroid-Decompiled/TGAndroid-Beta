@@ -1,18 +1,18 @@
 package v7;
 
 import java.util.Iterator;
-public final class b extends j9 {
-    public final transient d f44235c;
+public final class b extends i9 {
+    public final transient d f43911c;
     public final transient c d;
 
     public b(d dVar, c cVar) {
-        this.f44235c = dVar;
+        this.f43911c = dVar;
         this.d = cVar;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        if (this.f44235c.get(obj) != null) {
+        if (this.f43911c.get(obj) != null) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public final class b extends j9 {
 
     @Override
     public final int size() {
-        this.f44235c.getClass();
+        this.f43911c.getClass();
         return 1;
     }
 }

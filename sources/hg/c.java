@@ -1,451 +1,462 @@
 package hg;
 
-import ai.m8;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import ci.uc;
+import android.media.MediaMetadataRetriever;
+import com.google.android.gms.internal.cast.k4;
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.tp;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.y51;
-import w7.y5;
-public final class c extends n2 implements NotificationCenter.NotificationCenterDelegate {
-    public int E;
-    public int F;
-    public int G;
-    public pr f10239a;
-    public org.telegram.ui.ActionBar.v0 f10240b;
-    public u61 f10241c;
-    public a0 d;
-    public boolean e;
-    public boolean f10242f;
-    public int h;
-    public TL_account.TL_businessAwayMessage f10243n;
-    public int f10244r;
-    public boolean f10245s;
-    public boolean v;
-    public boolean f10246w;
-    public int f10247x;
-    public int f10248y;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.vc;
+public abstract class c {
+    public static void A(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
+        alertDialog$Builder.k(LocaleController.getString(i10), a2Var);
+        alertDialog$Builder.o();
+    }
 
-    public static void U(c cVar, ArrayList arrayList, m61 m61Var) {
-        boolean z10;
-        boolean z11;
-        String string = LocaleController.getString(R.string.BusinessAway);
-        String string2 = LocaleController.getString(R.string.BusinessAwayInfo);
-        y51 y51Var = new y51(2);
-        y51Var.f30518l = string;
-        y51Var.f30521o = string2;
-        y51Var.f30519m = "RestrictedEmoji";
-        y51Var.f30520n = "💤";
-        arrayList.add(y51Var);
-        y51 i10 = y51.i(1, LocaleController.getString(R.string.BusinessAwaySend));
-        i10.K(cVar.f10245s);
-        arrayList.add(i10);
-        arrayList.add(y51.B(null));
-        if (cVar.f10245s) {
-            a2 d = b2.f(cVar.currentAccount).d("away");
-            if (d != null) {
-                y51 y51Var2 = new y51(17);
-                y51Var2.G = d;
-                arrayList.add(y51Var2);
-            } else {
-                y51 c10 = y51.c(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessAwayCreate));
-                c10.f30523q = true;
-                arrayList.add(c10);
+    public static int B(int i10, int i11, int i12, int i13) {
+        return Math.max(i13, Math.min(Math.min(i10, i11), i12));
+    }
+
+    public static int C(int i10, int i11, int i12, int i13) {
+        return ((i10 - i11) / i12) + i13;
+    }
+
+    public static void D(n2.g gVar, n2.g gVar2) {
+        if (gVar != gVar2) {
+            if (gVar2 != null) {
+                gVar2.b(null);
             }
-            arrayList.add(y51.B(null));
-            com.google.android.gms.internal.vision.e2.n(R.string.BusinessAwaySchedule, arrayList);
-            y51 w10 = y51.w(3, LocaleController.getString(R.string.BusinessAwayScheduleAlways));
-            boolean z12 = false;
-            if (cVar.f10247x == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
+            if (gVar != null) {
+                gVar.a(null);
             }
-            w10.K(z10);
-            arrayList.add(w10);
-            if (cVar.e) {
-                y51 w11 = y51.w(4, LocaleController.getString(R.string.BusinessAwayScheduleOutsideHours));
-                if (cVar.f10247x == 1) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                w11.K(z11);
-                arrayList.add(w11);
-            }
-            y51 w12 = y51.w(5, LocaleController.getString(R.string.BusinessAwayScheduleCustom));
-            if (cVar.f10247x == 2) {
-                z12 = true;
-            }
-            w12.K(z12);
-            arrayList.add(w12);
-            if (cVar.f10247x == 2) {
-                arrayList.add(y51.B(null));
-                com.google.android.gms.internal.vision.e2.n(R.string.BusinessAwaySchedule, arrayList);
-                arrayList.add(y51.f(LocaleController.getString(R.string.BusinessAwayScheduleCustomStart), LocaleController.formatShortDateTime(cVar.F), 8));
-                arrayList.add(y51.f(LocaleController.getString(R.string.BusinessAwayScheduleCustomEnd), LocaleController.formatShortDateTime(cVar.G), 9));
-            }
-            arrayList.add(y51.B(null));
-            y51 i11 = y51.i(10, LocaleController.getString(R.string.BusinessAwayOnlyOffline));
-            i11.K(cVar.f10246w);
-            arrayList.add(i11);
-            com.google.android.gms.internal.vision.e2.w(R.string.BusinessAwayOnlyOfflineInfo, arrayList);
-            com.google.android.gms.internal.vision.e2.n(R.string.BusinessRecipients, arrayList);
-            y51 w13 = y51.w(6, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
-            w13.K(cVar.v);
-            arrayList.add(w13);
-            y51 w14 = y51.w(7, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
-            w14.K(!cVar.v);
-            arrayList.add(w14);
-            arrayList.add(y51.B(null));
-            cVar.d.a(arrayList, m61Var, true);
-            arrayList.add(y51.B(null));
         }
     }
 
-    public final void V(boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        if (this.f10240b == null) {
-            return;
+    public static String E(int i10) {
+        switch (i10) {
+            case 1:
+                return "BEGIN_ARRAY";
+            case 2:
+                return "END_ARRAY";
+            case 3:
+                return "BEGIN_OBJECT";
+            case 4:
+                return "END_OBJECT";
+            case 5:
+                return "NAME";
+            case 6:
+                return "STRING";
+            case 7:
+                return "NUMBER";
+            case 8:
+                return "BOOLEAN";
+            case 9:
+                return "NULL";
+            case 10:
+                return "END_DOCUMENT";
+            default:
+                return "null";
         }
-        boolean W = W();
-        this.f10240b.setEnabled(W);
-        float f13 = 0.0f;
-        if (z10) {
-            ViewPropertyAnimator animate = this.f10240b.animate();
-            if (W) {
-                f11 = 1.0f;
-            } else {
-                f11 = 0.0f;
-            }
-            ViewPropertyAnimator alpha = animate.alpha(f11);
-            if (W) {
-                f12 = 1.0f;
-            } else {
-                f12 = 0.0f;
-            }
-            ViewPropertyAnimator scaleX = alpha.scaleX(f12);
-            if (W) {
-                f13 = 1.0f;
-            }
-            scaleX.scaleY(f13).setDuration(180L).start();
-            return;
-        }
-        org.telegram.ui.ActionBar.v0 v0Var = this.f10240b;
-        if (W) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        v0Var.setAlpha(f7);
-        org.telegram.ui.ActionBar.v0 v0Var2 = this.f10240b;
-        if (W) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        v0Var2.setScaleX(f10);
-        org.telegram.ui.ActionBar.v0 v0Var3 = this.f10240b;
-        if (W) {
-            f13 = 1.0f;
-        }
-        v0Var3.setScaleY(f13);
     }
 
-    public final boolean W() {
-        boolean z10;
-        a0 a0Var;
-        if (this.f10242f) {
-            boolean z11 = this.f10245s;
-            TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.f10243n;
-            if (tL_businessAwayMessage != null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (z11 == z10) {
-                if (z11 && tL_businessAwayMessage != null) {
-                    if (tL_businessAwayMessage.recipients.exclude_selected == this.v && ((a0Var = this.d) == null || !a0Var.g())) {
-                        int i10 = this.f10244r;
-                        int i11 = this.f10247x;
-                        if (i10 == i11 && this.f10243n.offline_only == this.f10246w && (i11 != 2 || (this.f10248y == this.F && this.E == this.G))) {
-                        }
-                    }
-                }
+    public static int a(int i10) {
+        int[] d = m1.j.d(126);
+        if (i10 >= 0 && i10 < d.length) {
+            return d[i10];
+        }
+        return 0;
+    }
+
+    public static int b(int i10, int i11, int i12, int i13) {
+        return i10 | i11 | i12 | 128 | i13;
+    }
+
+    public static String c(int i10) {
+        switch (i10) {
+            case 1:
+                return "Blues";
+            case 2:
+                return "Classic Rock";
+            case 3:
+                return "Country";
+            case 4:
+                return "Dance";
+            case 5:
+                return "Disco";
+            case 6:
+                return "Funk";
+            case 7:
+                return "Grunge";
+            case 8:
+                return "Hip-Hop";
+            case 9:
+                return "Jazz";
+            case 10:
+                return "Metal";
+            case 11:
+                return "New Age";
+            case 12:
+                return "Oldies";
+            case 13:
+                return "Other";
+            case 14:
+                return "Pop";
+            case 15:
+                return "R&B";
+            case 16:
+                return "Rap";
+            case 17:
+                return "Reggae";
+            case 18:
+                return "Rock";
+            case 19:
+                return "Techno";
+            case 20:
+                return "Industrial";
+            case 21:
+                return "Alternative";
+            case 22:
+                return "Ska";
+            case 23:
+                return "Death Metal";
+            case 24:
+                return "Pranks";
+            case 25:
+                return "Soundtrack";
+            case 26:
+                return "Euro-Techno";
+            case 27:
+                return "Ambient";
+            case 28:
+                return "Trip-Hop";
+            case 29:
+                return "Vocal";
+            case 30:
+                return "Jazz+Funk";
+            case 31:
+                return "Fusion";
+            case 32:
+                return "Trance";
+            case 33:
+                return "Classical";
+            case 34:
+                return "Instrumental";
+            case 35:
+                return "Acid";
+            case 36:
+                return "House";
+            case 37:
+                return "Game";
+            case 38:
+                return "Sound Clip";
+            case 39:
+                return "Gospel";
+            case 40:
+                return "Noise";
+            case 41:
+                return "AlternRock";
+            case 42:
+                return "Bass";
+            case 43:
+                return "Soul";
+            case 44:
+                return "Punk";
+            case 45:
+                return "Space";
+            case 46:
+                return "Meditative";
+            case 47:
+                return "Instrumental Pop";
+            case 48:
+                return "Instrumental Rock";
+            case 49:
+                return "Ethnic";
+            case 50:
+                return "Gothic";
+            case 51:
+                return "Darkwave";
+            case 52:
+                return "Techno-Industrial";
+            case 53:
+                return "Electronic";
+            case 54:
+                return "Pop-Folk";
+            case 55:
+                return "Eurodance";
+            case 56:
+                return "Dream";
+            case 57:
+                return "Southern Rock";
+            case 58:
+                return "Comedy";
+            case 59:
+                return "Cult";
+            case 60:
+                return "Gangsta";
+            case 61:
+                return "Top 40";
+            case 62:
+                return "Christian Rap";
+            case 63:
+                return "Pop/Funk";
+            case 64:
+                return "Jungle";
+            case 65:
+                return "Native American";
+            case 66:
+                return "Cabaret";
+            case 67:
+                return "New Wave";
+            case 68:
+                return "Psychadelic";
+            case 69:
+                return "Rave";
+            case 70:
+                return "Showtunes";
+            case 71:
+                return "Trailer";
+            case 72:
+                return "Lo-Fi";
+            case 73:
+                return "Tribal";
+            case 74:
+                return "Acid Punk";
+            case 75:
+                return "Acid Jazz";
+            case 76:
+                return "Polka";
+            case 77:
+                return "Retro";
+            case 78:
+                return "Musical";
+            case 79:
+                return "Rock & Roll";
+            case 80:
+                return "Hard Rock";
+            case 81:
+                return "Folk";
+            case 82:
+                return "Folk-Rock";
+            case 83:
+                return "National Folk";
+            case 84:
+                return "Swing";
+            case 85:
+                return "Fast Fusion";
+            case 86:
+                return "Bebop";
+            case 87:
+                return "Latin";
+            case 88:
+                return "Revival";
+            case 89:
+                return "Celtic";
+            case 90:
+                return "Bluegrass";
+            case 91:
+                return "Avantgarde";
+            case 92:
+                return "Gothic Rock";
+            case 93:
+                return "Progressive Rock";
+            case 94:
+                return "Psychedelic Rock";
+            case 95:
+                return "Symphonic Rock";
+            case 96:
+                return "Slow Rock";
+            case 97:
+                return "Big Band";
+            case 98:
+                return "Chorus";
+            case 99:
+                return "Easy Listening";
+            case 100:
+                return "Acoustic";
+            case 101:
+                return "Humour";
+            case 102:
+                return "Speech";
+            case 103:
+                return "Chanson";
+            case 104:
+                return "Opera";
+            case 105:
+                return "Chamber Music";
+            case 106:
+                return "Sonata";
+            case 107:
+                return "Symphony";
+            case 108:
+                return "Booty Bass";
+            case 109:
+                return "Primus";
+            case 110:
+                return "Porn Groove";
+            case 111:
+                return "Satire";
+            case 112:
+                return "Slow Jam";
+            case 113:
+                return "Club";
+            case 114:
+                return "Tango";
+            case 115:
+                return "Samba";
+            case 116:
+                return "Folklore";
+            case 117:
+                return "Ballad";
+            case 118:
+                return "Power Ballad";
+            case 119:
+                return "Rhythmic Soul";
+            case 120:
+                return "Freestyle";
+            case 121:
+                return "Duet";
+            case 122:
+                return "Punk Rock";
+            case 123:
+                return "Drum Solo";
+            case 124:
+                return "A capella";
+            case 125:
+                return "Euro-House";
+            case 126:
+                return "Dance Hall";
+            default:
+                throw null;
+        }
+    }
+
+    public static boolean d(int i10, boolean z10) {
+        int i11 = i10 & 7;
+        if (i11 != 4) {
+            if (!z10 || i11 != 3) {
+                return false;
             }
             return true;
         }
-        return false;
-    }
-
-    public final void X() {
-        if (this.f10239a.f27411c <= 0.0f) {
-            if (!W()) {
-                finishFragment();
-                return;
-            }
-            a2 d = b2.f(this.currentAccount).d("away");
-            boolean z10 = this.f10245s;
-            if (z10 && d == null) {
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                View z12 = this.f10241c.z1(2);
-                int i10 = -this.h;
-                this.h = i10;
-                AndroidUtilities.shakeViewSpring(z12, i10);
-                u61 u61Var = this.f10241c;
-                u61Var.y0(u61Var.y1(2));
-            } else if (z10 && !this.d.k(this.f10241c)) {
-            } else {
-                this.f10239a.a(1.0f);
-                TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-                TL_account.updateBusinessAwayMessage updatebusinessawaymessage = new TL_account.updateBusinessAwayMessage();
-                if (this.f10245s) {
-                    TL_account.TL_inputBusinessAwayMessage tL_inputBusinessAwayMessage = new TL_account.TL_inputBusinessAwayMessage();
-                    updatebusinessawaymessage.message = tL_inputBusinessAwayMessage;
-                    tL_inputBusinessAwayMessage.offline_only = this.f10246w;
-                    tL_inputBusinessAwayMessage.shortcut_id = d.f10223a;
-                    tL_inputBusinessAwayMessage.recipients = this.d.e();
-                    int i11 = this.f10247x;
-                    if (i11 == 0) {
-                        updatebusinessawaymessage.message.schedule = new TL_account.TL_businessAwayMessageScheduleAlways();
-                    } else if (i11 == 1) {
-                        updatebusinessawaymessage.message.schedule = new TL_account.TL_businessAwayMessageScheduleOutsideWorkHours();
-                    } else if (i11 == 2) {
-                        TL_account.TL_businessAwayMessageScheduleCustom tL_businessAwayMessageScheduleCustom = new TL_account.TL_businessAwayMessageScheduleCustom();
-                        tL_businessAwayMessageScheduleCustom.start_date = this.F;
-                        tL_businessAwayMessageScheduleCustom.end_date = this.G;
-                        updatebusinessawaymessage.message.schedule = tL_businessAwayMessageScheduleCustom;
-                    }
-                    updatebusinessawaymessage.flags |= 1;
-                    if (userFull != null) {
-                        userFull.flags2 |= 8;
-                        TL_account.TL_businessAwayMessage tL_businessAwayMessage = new TL_account.TL_businessAwayMessage();
-                        userFull.business_away_message = tL_businessAwayMessage;
-                        tL_businessAwayMessage.offline_only = this.f10246w;
-                        tL_businessAwayMessage.shortcut_id = d.f10223a;
-                        tL_businessAwayMessage.recipients = this.d.f();
-                        userFull.business_away_message.schedule = updatebusinessawaymessage.message.schedule;
-                    }
-                } else if (userFull != null) {
-                    userFull.flags2 &= -9;
-                    userFull.business_away_message = null;
-                }
-                getConnectionsManager().sendRequest(updatebusinessawaymessage, new m8(this, 10));
-                getMessagesStorage().updateUserInfo(userFull, false);
-            }
-        }
-    }
-
-    public final void Y() {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        u61 u61Var;
-        m61 m61Var;
-        TL_account.TL_businessRecipients tL_businessRecipients;
-        if (this.f10242f) {
-            return;
-        }
-        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
-        if (userFull == null) {
-            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
-            return;
-        }
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage = userFull.business_away_message;
-        this.f10243n = tL_businessAwayMessage;
-        if (userFull.business_work_hours != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.e = z10;
-        if (tL_businessAwayMessage != null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f10245s = z11;
-        if (tL_businessAwayMessage != null) {
-            z12 = tL_businessAwayMessage.recipients.exclude_selected;
-        } else {
-            z12 = true;
-        }
-        this.v = z12;
-        if (tL_businessAwayMessage != null) {
-            z13 = tL_businessAwayMessage.offline_only;
-        } else {
-            z13 = true;
-        }
-        this.f10246w = z13;
-        a0 a0Var = this.d;
-        if (a0Var != null) {
-            if (tL_businessAwayMessage == null) {
-                tL_businessRecipients = null;
-            } else {
-                tL_businessRecipients = tL_businessAwayMessage.recipients;
-            }
-            a0Var.j(tL_businessRecipients);
-        }
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage2 = this.f10243n;
-        if (tL_businessAwayMessage2 != null) {
-            TL_account.BusinessAwayMessageSchedule businessAwayMessageSchedule = tL_businessAwayMessage2.schedule;
-            if (businessAwayMessageSchedule instanceof TL_account.TL_businessAwayMessageScheduleCustom) {
-                this.f10244r = 2;
-                this.f10247x = 2;
-                TL_account.TL_businessAwayMessageScheduleCustom tL_businessAwayMessageScheduleCustom = (TL_account.TL_businessAwayMessageScheduleCustom) businessAwayMessageSchedule;
-                int i10 = tL_businessAwayMessageScheduleCustom.start_date;
-                this.f10248y = i10;
-                this.F = i10;
-                int i11 = tL_businessAwayMessageScheduleCustom.end_date;
-                this.E = i11;
-                this.G = i11;
-                u61Var = this.f10241c;
-                if (u61Var != null && (m61Var = u61Var.Y2) != null) {
-                    m61Var.N(true);
-                }
-                V(true);
-                this.f10242f = true;
-            }
-        }
-        this.F = getConnectionsManager().getCurrentTime();
-        this.G = getConnectionsManager().getCurrentTime() + 86400;
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage3 = this.f10243n;
-        if (tL_businessAwayMessage3 != null && (tL_businessAwayMessage3.schedule instanceof TL_account.TL_businessAwayMessageScheduleAlways)) {
-            this.f10244r = 0;
-            this.f10247x = 0;
-        } else if (tL_businessAwayMessage3 != null && (tL_businessAwayMessage3.schedule instanceof TL_account.TL_businessAwayMessageScheduleOutsideWorkHours)) {
-            this.f10244r = 1;
-            this.f10247x = 1;
-        } else {
-            this.f10244r = 0;
-            this.f10247x = 0;
-        }
-        u61Var = this.f10241c;
-        if (u61Var != null) {
-            m61Var.N(true);
-        }
-        V(true);
-        this.f10242f = true;
-    }
-
-    @Override
-    public final View createView(Context context) {
-        TL_account.TL_businessRecipients tL_businessRecipients;
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.BusinessAway));
-        this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 9));
-        Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = j6.f19442v8;
-        mutate.setColorFilter(new PorterDuffColorFilter(j6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.f10239a = new pr(mutate, new tp(j6.w0(null, i10, false)));
-        this.f10240b = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f10239a);
-        V(false);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f19053a7, false));
-        a0 a0Var = new a0(this, new uc(this, 18));
-        this.d = a0Var;
-        a0Var.h = this.v;
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.f10243n;
-        if (tL_businessAwayMessage == null) {
-            tL_businessRecipients = null;
-        } else {
-            tL_businessRecipients = tL_businessAwayMessage.recipients;
-        }
-        a0Var.j(tL_businessRecipients);
-        u61 u61Var = new u61(this, new bi.v(this, 21), new a(this, 0), null);
-        this.f10241c = u61Var;
-        u61Var.q1();
-        u61 u61Var2 = this.f10241c;
-        u61Var2.Y2.f26342r = false;
-        frameLayout.addView(u61Var2, y5.c(-1.0f, -1));
-        this.actionBar.z(this.f10241c, true);
-        Y();
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        m61 m61Var;
-        if (i10 == NotificationCenter.quickRepliesUpdated) {
-            u61 u61Var = this.f10241c;
-            if (u61Var != null && (m61Var = u61Var.Y2) != null) {
-                m61Var.N(true);
-            }
-            V(true);
-        } else if (i10 == NotificationCenter.userInfoDidLoad) {
-            Y();
-        }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
         return true;
     }
 
-    @Override
-    public final boolean onBackPressed(boolean z10) {
-        if (W()) {
-            if (z10) {
-                if (!this.f10245s) {
-                    X();
-                    return false;
-                }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f18669a.T = LocaleController.getString(R.string.BusinessAwayUnsavedChanges);
-                alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new a(this, 1));
-                alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new a(this, 2));
-                showDialog(alertDialog$Builder.f18669a);
-            }
-            return false;
+    public static double e(double d, double d10, double d11) {
+        return (Math.cos(d) * d10) + d11;
+    }
+
+    public static int f(float f7, int i10, int i11) {
+        return Math.max(i11, i10 - AndroidUtilities.dp(f7));
+    }
+
+    public static int g(int i10, int i11, int i12, int i13) {
+        return ((i10 - i11) * i12) + i13;
+    }
+
+    public static Object h(int i10, ArrayList arrayList) {
+        return arrayList.get(arrayList.size() - i10);
+    }
+
+    public static String i(int i10, String str) {
+        return str + i10;
+    }
+
+    public static String j(int i10, String str, String str2) {
+        return str + i10 + str2;
+    }
+
+    public static String k(long j3, char c10, StringBuilder sb2) {
+        sb2.append(LocaleController.formatNumber(j3, c10));
+        return sb2.toString();
+    }
+
+    public static StringBuilder l(int i10, String str, String str2) {
+        StringBuilder sb2 = new StringBuilder(str);
+        sb2.append(i10);
+        sb2.append(str2);
+        return sb2;
+    }
+
+    public static StringBuilder m(String str, int i10, String str2, int i11, String str3) {
+        StringBuilder sb2 = new StringBuilder(str);
+        sb2.append(i10);
+        sb2.append(str2);
+        sb2.append(i11);
+        sb2.append(str3);
+        return sb2;
+    }
+
+    public static HashMap n(Class cls, la.a aVar) {
+        HashMap hashMap = new HashMap();
+        hashMap.put(cls, aVar);
+        return hashMap;
+    }
+
+    public static Map o(HashMap hashMap) {
+        return DesugarCollections.unmodifiableMap(new HashMap(hashMap));
+    }
+
+    public static void p(int i10, ArrayList arrayList) {
+        arrayList.add(i51.B(LocaleController.getString(i10)));
+    }
+
+    public static void q(int i10, HashMap hashMap, String str, int i11, String str2) {
+        hashMap.put(Integer.valueOf(i10), str);
+        hashMap.put(Integer.valueOf(i11), str2);
+    }
+
+    public static void r(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
+        alertDialog$Builder.h(LocaleController.getString(i10), a2Var);
+        alertDialog$Builder.o();
+    }
+
+    public static void s(int i10, Object[] objArr, vc vcVar, int i11, int i12) {
+        vcVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
+    }
+
+    public static void t(MediaMetadataRetriever mediaMetadataRetriever) {
+        if (mediaMetadataRetriever instanceof AutoCloseable) {
+            mediaMetadataRetriever.close();
+        } else if (mediaMetadataRetriever instanceof ExecutorService) {
+            k4.b();
+        } else if (com.google.android.gms.internal.vision.e2.u(mediaMetadataRetriever)) {
+            mediaMetadataRetriever.release();
+        } else {
+            throw new IllegalArgumentException();
         }
-        return super.onBackPressed(z10);
     }
 
-    @Override
-    public final boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.quickRepliesUpdated);
-        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
-        b2.f(this.currentAccount).h();
-        Y();
-        return super.onFragmentCreate();
+    public static void u(b2.r rVar, c3.h0 h0Var) {
+        h0Var.b(new b2.s(rVar));
     }
 
-    @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        super.onFragmentDestroy();
+    public static void v(StringBuilder sb2, int i10, String str, int i11, String str2) {
+        sb2.append(i10);
+        sb2.append(str);
+        sb2.append(i11);
+        sb2.append(str2);
     }
 
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f10241c.setPadding(0, 0, 0, i13);
-        this.f10241c.setClipToPadding(false);
+    public static void w(StringBuilder sb2, long j3) {
+        sb2.append(j3);
+        FileLog.d(sb2.toString());
+    }
+
+    public static void x(boolean z10, org.telegram.ui.ActionBar.k kVar) {
+        kVar.setBackButtonDrawable(new org.telegram.ui.ActionBar.g2(z10));
+    }
+
+    public static int y(int i10, int i11, int i12, int i13) {
+        return Math.max(i13, Math.min(Math.max(i10, i11), i12));
+    }
+
+    public static Object z(int i10, ArrayList arrayList) {
+        return arrayList.remove(arrayList.size() - i10);
     }
 }

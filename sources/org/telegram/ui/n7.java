@@ -1,32 +1,16 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class n7 extends og.a {
-    public s6 f35921c;
-    public zh.a d;
+import android.content.Context;
+public final class n7 extends org.telegram.ui.Cells.t7 {
+    public final o7 G0;
 
-    public final boolean equals(Object obj) {
-        zh.a aVar;
-        zh.a aVar2;
-        s6 s6Var;
-        s6 s6Var2;
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && n7.class == obj.getClass()) {
-            n7 n7Var = (n7) obj;
-            int i10 = this.f15719a;
-            if (i10 == n7Var.f15719a) {
-                if (i10 == 1 && (s6Var = this.f35921c) != null && (s6Var2 = n7Var.f35921c) != null) {
-                    if (s6Var.f37324a == s6Var2.f37324a) {
-                        return true;
-                    }
-                    return false;
-                } else if (i10 == 2 && (aVar = this.d) != null && (aVar2 = n7Var.d) != null) {
-                    return Objects.equals(aVar.f49512a, aVar2.f49512a);
-                }
-            }
-        }
-        return false;
+    public n7(o7 o7Var, Context context, org.telegram.ui.Cells.s7 s7Var, int i10) {
+        super(context, s7Var, i10);
+        this.G0 = o7Var;
+    }
+
+    @Override
+    public final void h() {
+        this.G0.v.v.H0(null, (zh.a) getTag(), true);
     }
 }

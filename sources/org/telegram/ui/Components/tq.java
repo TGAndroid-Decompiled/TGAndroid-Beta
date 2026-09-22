@@ -7,23 +7,23 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class tq extends View {
-    public final Paint f28514a;
-    public final Paint f28515b;
-    public final RectF f28516c;
+    public final Paint f28163a;
+    public final Paint f28164b;
+    public final RectF f28165c;
     public int d;
     public long e;
-    public int f28517f;
+    public int f28166f;
     public int h;
-    public int f28518n;
-    public int f28519r;
+    public int f28167n;
+    public int f28168r;
 
     public tq(Context context, int i10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f28514a = paint;
+        this.f28163a = paint;
         Paint paint2 = new Paint(1);
-        this.f28515b = paint2;
-        this.f28516c = new RectF();
+        this.f28164b = paint2;
+        this.f28165c = new RectF();
         this.d = 0;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -32,43 +32,43 @@ public final class tq extends View {
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setStrokeCap(Paint.Cap.ROUND);
         if (i10 == 0) {
-            this.f28517f = org.telegram.ui.ActionBar.j6.B7;
-            this.h = org.telegram.ui.ActionBar.j6.C7;
+            this.f28166f = org.telegram.ui.ActionBar.i6.B7;
+            this.h = org.telegram.ui.ActionBar.i6.C7;
         } else if (i10 == 1) {
-            this.f28517f = org.telegram.ui.ActionBar.j6.D7;
-            this.h = org.telegram.ui.ActionBar.j6.E7;
+            this.f28166f = org.telegram.ui.ActionBar.i6.D7;
+            this.h = org.telegram.ui.ActionBar.i6.E7;
         } else if (i10 == 2) {
-            this.f28517f = org.telegram.ui.ActionBar.j6.F7;
-            this.h = org.telegram.ui.ActionBar.j6.G7;
+            this.f28166f = org.telegram.ui.ActionBar.i6.F7;
+            this.h = org.telegram.ui.ActionBar.i6.G7;
         } else if (i10 == 3) {
-            this.f28517f = org.telegram.ui.ActionBar.j6.H7;
-            this.h = org.telegram.ui.ActionBar.j6.I7;
+            this.f28166f = org.telegram.ui.ActionBar.i6.H7;
+            this.h = org.telegram.ui.ActionBar.i6.I7;
         }
         b();
     }
 
     public final void a(int i10, int i11) {
-        this.f28517f = -1;
+        this.f28166f = -1;
         this.h = -1;
-        this.f28518n = i10;
-        this.f28519r = i11;
+        this.f28167n = i10;
+        this.f28168r = i11;
         b();
     }
 
     public final void b() {
-        int i10 = this.f28517f;
-        Paint paint = this.f28514a;
+        int i10 = this.f28166f;
+        Paint paint = this.f28163a;
         if (i10 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+            paint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
         } else {
-            paint.setColor(this.f28518n);
+            paint.setColor(this.f28167n);
         }
         int i11 = this.h;
-        Paint paint2 = this.f28515b;
+        Paint paint2 = this.f28164b;
         if (i11 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+            paint2.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         } else {
-            paint2.setColor(this.f28519r);
+            paint2.setColor(this.f28168r);
         }
         invalidate();
     }
@@ -91,10 +91,10 @@ public final class tq extends View {
         this.d = (int) ((((float) (j3 * 360)) / 1000.0f) + this.d);
         int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
         int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f28516c;
+        RectF rectF = this.f28165c;
         rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f28514a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f28515b);
+        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f28163a);
+        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f28164b);
         invalidate();
     }
 

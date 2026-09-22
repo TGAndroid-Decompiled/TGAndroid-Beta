@@ -1,39 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public class a11 extends MetricAffectingSpan {
-    public final TextPaint f22517a;
-    public final String f22518b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class a11 extends AnimatorListenerAdapter {
+    public final int f22277a;
+    public final ThemeEditorView f22278b;
 
-    public a11(TextPaint textPaint, String str) {
-        this.f22517a = textPaint;
-        this.f22518b = str;
+    public a11(ThemeEditorView themeEditorView, int i10) {
+        this.f22277a = i10;
+        this.f22278b = themeEditorView;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f22517a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f22517a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f22277a) {
+            case 0:
+                ThemeEditorView themeEditorView = this.f22278b;
+                y01 y01Var = themeEditorView.f22206a;
+                if (y01Var != null) {
+                    y01Var.setBackground(null);
+                    themeEditorView.h.removeView(themeEditorView.f22206a);
+                    return;
+                }
+                return;
+            default:
+                ThemeEditorView themeEditorView2 = this.f22278b;
+                org.telegram.ui.ActionBar.i6.r1(themeEditorView2.f22215m, true, false, false);
+                themeEditorView2.a();
+                return;
         }
     }
 }

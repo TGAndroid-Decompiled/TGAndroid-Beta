@@ -4,14 +4,14 @@ import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.zn;
-public final class y extends zn {
-    public final n0 Pc;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.bo;
+public final class y extends bo {
+    public final p0 Pc;
 
-    public y(n0 n0Var) {
+    public y(p0 p0Var) {
         super(null);
-        this.Pc = n0Var;
+        this.Pc = p0Var;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class y extends zn {
     }
 
     @Override
-    public final f6 getResourceProvider() {
+    public final e6 getResourceProvider() {
         return this.Pc.Q1;
     }
 

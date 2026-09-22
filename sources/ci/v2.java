@@ -5,28 +5,28 @@ import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class v2 extends View {
-    public final int f5648a;
-    public final y2 f5649b;
+    public final int f5646a;
+    public final y2 f5647b;
 
     public v2(y2 y2Var, Context context, int i10) {
         super(context);
-        this.f5648a = i10;
-        this.f5649b = y2Var;
+        this.f5646a = i10;
+        this.f5647b = y2Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        switch (this.f5648a) {
+        switch (this.f5646a) {
             case 0:
-                y2 y2Var = this.f5649b;
-                y2Var.f5818q.reset();
+                y2 y2Var = this.f5647b;
+                y2Var.f5816q.reset();
                 y2Var.b(canvas, true);
                 return;
             default:
-                y2 y2Var2 = this.f5649b;
-                y2Var2.f5818q.reset();
-                y2Var2.f5818q.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
-                y2Var2.f5818q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
+                y2 y2Var2 = this.f5647b;
+                y2Var2.f5816q.reset();
+                y2Var2.f5816q.postTranslate(-getX(), (-getY()) + AndroidUtilities.statusBarHeight);
+                y2Var2.f5816q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
                 y2Var2.b(canvas, false);
                 return;
         }
@@ -34,10 +34,10 @@ public final class v2 extends View {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f5648a) {
+        switch (this.f5646a) {
             case 0:
                 super.onMeasure(i10, i11);
-                this.f5649b.g();
+                this.f5647b.g();
                 return;
             default:
                 super.onMeasure(i10, i11);

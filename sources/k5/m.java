@@ -46,6 +46,6 @@ public final class m {
     }
 
     public final String toString() {
-        return a4.a.r(new StringBuilder("LogResponse{nextRequestWaitMillis="), this.f13489a, "}");
+        return a4.a.s(new StringBuilder("LogResponse{nextRequestWaitMillis="), this.f13489a, "}");
     }
 }

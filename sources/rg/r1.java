@@ -1,63 +1,38 @@
 package rg;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.s8;
-import org.telegram.ui.Components.nj0;
-import yh.i8;
-public final class r1 extends s8 {
-    public final i8 Q;
-    public final int R;
-    public final q1 S;
+import org.telegram.messenger.Utilities;
+public final class r1 {
+    public float f42448a;
+    public float f42449b;
+    public float f42450c;
+    public float d;
+    public long e;
+    public float f42451f;
+    public final s1 f42452g;
 
-    public r1(Context context, int i10, f6 f6Var) {
-        super(context, f6Var);
-        int i11;
-        this.Q = new i8(1, 15);
-        this.S = new q1(this, 0);
-        if (i10 == 1) {
-            i11 = j6.fk;
+    public r1(s1 s1Var) {
+        this.f42452g = s1Var;
+    }
+
+    public final void a(long j3, boolean z10) {
+        RectF rectF;
+        s1 s1Var = this.f42452g;
+        RectF rectF2 = s1Var.f42463a;
+        this.e = j3 + s1Var.h + Utilities.fastRandom.nextInt(1000);
+        if (z10) {
+            rectF = s1Var.f42464b;
         } else {
-            i11 = j6.Mj;
+            rectF = rectF2;
         }
-        this.R = i11;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean isEnabled = LiteMode.isEnabled(131072);
-        q1 q1Var = this.S;
-        if (isEnabled) {
-            i8 i8Var = this.Q;
-            i8Var.d();
-            i8Var.a(canvas, j6.w0(null, this.R, false));
-            yf.h.d().a(15, q1Var);
-        } else {
-            yf.h.d().f(q1Var);
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        yf.h.d().f(this.S);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        nj0 nj0Var = this.e;
-        float width = (nj0Var.getWidth() / 2.0f) + nj0Var.getX();
-        float y3 = nj0Var.getY();
-        float height = ((nj0Var.getHeight() / 2.0f) + (y3 + nj0Var.getPaddingTop())) - AndroidUtilities.dp(3.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(width - AndroidUtilities.dp(16.0f), height - AndroidUtilities.dp(16.0f), width + AndroidUtilities.dp(16.0f), height + AndroidUtilities.dp(16.0f));
-        this.Q.g(rectF);
+        float abs = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+        float f7 = rectF.top;
+        this.f42448a = abs;
+        this.f42449b = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + f7;
+        double atan2 = Math.atan2(abs - rectF2.centerX(), this.f42449b - rectF2.centerY());
+        this.f42450c = (float) Math.sin(atan2);
+        this.d = (float) Math.cos(atan2);
+        Utilities.fastRandom.nextInt(50);
+        this.f42451f = 0.0f;
     }
 }

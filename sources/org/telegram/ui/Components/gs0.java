@@ -1,37 +1,56 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Rect;
-public final class gs0 extends org.telegram.ui.a21 {
-    public final lv0 H;
+import android.graphics.Canvas;
+public final class gs0 extends t00 {
+    public final ur0 U;
+    public final yu0 V;
 
-    public gs0(lv0 lv0Var, Context context, cw0 cw0Var, ai.x8 x8Var, fs0 fs0Var) {
-        super(context, cw0Var, x8Var, fs0Var);
-        this.H = lv0Var;
+    public gs0(yu0 yu0Var, Context context, ur0 ur0Var) {
+        super(context, null);
+        this.V = yu0Var;
+        this.U = ur0Var;
     }
 
     @Override
-    public final void a() {
-        ks0 ks0Var;
-        Rect rect = this.F;
-        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
-        setClipBounds(rect);
-        invalidate();
-        lv0 lv0Var = this.H;
-        eu0[] eu0VarArr = lv0Var.f26210k0;
-        if (eu0VarArr != null) {
-            for (eu0 eu0Var : eu0VarArr) {
-                if (eu0Var != null && (ks0Var = eu0Var.h) != null) {
-                    int paddingLeft = ks0Var.getPaddingLeft();
-                    int Z = lv0Var.Z(eu0Var.F);
-                    int paddingRight = eu0Var.h.getPaddingRight();
-                    ks0 ks0Var2 = eu0Var.h;
-                    int Y = lv0Var.Y(lv0Var.v0());
-                    ks0Var2.f23747e3 = Y;
-                    ks0Var.setPadding(paddingLeft, Z, paddingRight, Y);
+    public final int getColumnsCount() {
+        return this.V.f30368m1[yu0.p0(this.U.F) ? 1 : 0];
+    }
+
+    @Override
+    public final int getViewType() {
+        setIsSingleCell(false);
+        int i10 = this.U.F;
+        if (i10 == 0 || i10 == 5) {
+            return 2;
+        }
+        if (i10 == 1) {
+            return 3;
+        }
+        if (i10 != 2 && i10 != 4) {
+            if (i10 == 3) {
+                return 5;
+            }
+            if (i10 != 7) {
+                if (i10 == 6) {
+                    if (this.V.I0.getTabsCount() == 1) {
+                        setIsSingleCell(true);
+                        return 1;
+                    }
+                } else if (yu0.p0(i10)) {
+                    return 27;
                 }
+                return 1;
             }
         }
-        lv0Var.K();
+        return 6;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        yu0 yu0Var = this.V;
+        yu0Var.T0.setColor(yu0Var.h0(org.telegram.ui.ActionBar.i6.f18834d6));
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), yu0Var.T0);
+        super.onDraw(canvas);
     }
 }

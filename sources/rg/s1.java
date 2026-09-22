@@ -1,38 +1,18 @@
 package rg;
 
+import android.graphics.Paint;
 import android.graphics.RectF;
-import org.telegram.messenger.Utilities;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 public final class s1 {
-    public float f42783a;
-    public float f42784b;
-    public float f42785c;
-    public float d;
-    public long e;
-    public float f42786f;
-    public final t1 f42787g;
-
-    public s1(t1 t1Var) {
-        this.f42787g = t1Var;
-    }
-
-    public final void a(long j3, boolean z10) {
-        RectF rectF;
-        t1 t1Var = this.f42787g;
-        RectF rectF2 = t1Var.f42789a;
-        this.e = j3 + t1Var.h + Utilities.fastRandom.nextInt(1000);
-        if (z10) {
-            rectF = t1Var.f42790b;
-        } else {
-            rectF = rectF2;
-        }
-        float abs = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
-        float f7 = rectF.top;
-        this.f42783a = abs;
-        this.f42784b = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + f7;
-        double atan2 = Math.atan2(abs - rectF2.centerX(), this.f42784b - rectF2.centerY());
-        this.f42785c = (float) Math.sin(atan2);
-        this.d = (float) Math.cos(atan2);
-        Utilities.fastRandom.nextInt(50);
-        this.f42786f = 0.0f;
-    }
+    public int f42468i;
+    public final RectF f42463a = new RectF();
+    public final RectF f42464b = new RectF();
+    public final Paint f42465c = new Paint();
+    public final ArrayList e = new ArrayList();
+    public float f42466f = 1.0f;
+    public final long h = 2000;
+    public final float f42469j = 1000.0f / AndroidUtilities.screenRefreshRate;
+    public final int f42467g = 200;
+    public final float[] d = new float[800];
 }

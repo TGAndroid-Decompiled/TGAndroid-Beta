@@ -1,35 +1,35 @@
 package m4;
 public final class f0 implements Runnable {
-    public final int f14743a;
-    public final k0 f14744b;
-    public final j1 f14745c;
+    public final int f14508a;
+    public final l0 f14509b;
+    public final k1 f14510c;
 
-    public f0(k0 k0Var, j1 j1Var, int i10) {
-        this.f14743a = i10;
-        this.f14744b = k0Var;
-        this.f14745c = j1Var;
+    public f0(l0 l0Var, k1 k1Var, int i10) {
+        this.f14508a = i10;
+        this.f14509b = l0Var;
+        this.f14510c = k1Var;
     }
 
     @Override
     public final void run() {
         b2.k1 k1Var;
-        switch (this.f14743a) {
+        switch (this.f14508a) {
             case 0:
-                k0 k0Var = this.f14744b;
-                n4.y yVar = k0Var.f14824k;
-                j1 j1Var = this.f14745c;
-                yVar.a0(k0Var.G(j1Var));
-                i0 i0Var = k0Var.f14822i;
-                if (j1Var.t().a(17)) {
-                    k1Var = j1Var.w0();
+                l0 l0Var = this.f14509b;
+                n4.y yVar = l0Var.f14597k;
+                k1 k1Var2 = this.f14510c;
+                yVar.Y(l0Var.G(k1Var2));
+                j0 j0Var = l0Var.f14595i;
+                if (k1Var2.t().a(17)) {
+                    k1Var = k1Var2.w0();
                 } else {
-                    k1Var = b2.k1.f3080a;
+                    k1Var = b2.k1.f3078a;
                 }
-                i0Var.s(k1Var);
+                j0Var.s(k1Var);
                 return;
             default:
-                k0 k0Var2 = this.f14744b;
-                k0Var2.f14824k.a0(k0Var2.G(this.f14745c));
+                l0 l0Var2 = this.f14509b;
+                l0Var2.f14597k.Y(l0Var2.G(this.f14510c));
                 return;
         }
     }

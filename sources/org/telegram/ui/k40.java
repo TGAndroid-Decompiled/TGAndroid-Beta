@@ -6,18 +6,18 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.widget.FrameLayout;
 public final class k40 extends FrameLayout {
-    public final RectF f35050a;
-    public final RectF f35051b;
-    public final RectF f35052c;
+    public final RectF f35041a;
+    public final RectF f35042b;
+    public final RectF f35043c;
     public final Paint d;
     public final i60 e;
 
     public k40(i60 i60Var, LaunchActivity launchActivity) {
         super(launchActivity);
         this.e = i60Var;
-        this.f35050a = new RectF();
-        this.f35051b = new RectF();
-        this.f35052c = new RectF();
+        this.f35041a = new RectF();
+        this.f35042b = new RectF();
+        this.f35043c = new RectF();
         this.d = new Paint(1);
     }
 
@@ -27,12 +27,12 @@ public final class k40 extends FrameLayout {
         l40 l40Var = i60Var.F;
         float y3 = l40Var.getY() + l40Var.getMeasuredHeight();
         le.e eVar = i60Var.B3;
-        RectF rectF = this.f35050a;
+        RectF rectF = this.f35041a;
         rectF.set(0.0f, y3 - eVar.e, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f35051b;
+        RectF rectF2 = this.f35042b;
         rectF2.set(0.0f, l40Var.getY() + l40Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y10 = l40Var.getY() + l40Var.getMeasuredHeight();
-        RectF rectF3 = this.f35052c;
+        RectF rectF3 = this.f35043c;
         rectF3.set(0.0f, (l40Var.getY() + l40Var.getMeasuredHeight()) - eVar.e, getMeasuredWidth(), y10);
         int i10 = Build.VERSION.SDK_INT;
         Paint paint = this.d;

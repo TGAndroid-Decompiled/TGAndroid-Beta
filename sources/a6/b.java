@@ -17,18 +17,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class b {
-    public static final ReentrantLock f283c = new ReentrantLock();
+    public static final ReentrantLock f284c = new ReentrantLock();
     public static b d;
-    public final ReentrantLock f284a = new ReentrantLock();
-    public final SharedPreferences f285b;
+    public final ReentrantLock f285a = new ReentrantLock();
+    public final SharedPreferences f286b;
 
     public b(Context context) {
-        this.f285b = context.getSharedPreferences("com.google.android.gms.signin", 0);
+        this.f286b = context.getSharedPreferences("com.google.android.gms.signin", 0);
     }
 
     public static b a(Context context) {
         n6.l.h(context);
-        ReentrantLock reentrantLock = f283c;
+        ReentrantLock reentrantLock = f284c;
         reentrantLock.lock();
         try {
             if (d == null) {
@@ -44,7 +44,7 @@ public final class b {
     }
 
     public static final String f(String str, String str2) {
-        return a4.a.C(str, ":", str2);
+        return a4.a.D(str, ":", str2);
     }
 
     public final GoogleSignInAccount b() {
@@ -62,16 +62,16 @@ public final class b {
     public final void c(GoogleSignInAccount googleSignInAccount, GoogleSignInOptions googleSignInOptions) {
         n6.l.h(googleSignInAccount);
         n6.l.h(googleSignInOptions);
-        String str = googleSignInAccount.f5956r;
+        String str = googleSignInAccount.f5954r;
         e("defaultGoogleSignInAccount", str);
         String f7 = f("googleSignInAccount", str);
         JSONObject jSONObject = new JSONObject();
         try {
-            String str2 = googleSignInAccount.f5952b;
+            String str2 = googleSignInAccount.f5950b;
             if (str2 != null) {
                 jSONObject.put("id", str2);
             }
-            String str3 = googleSignInAccount.f5953c;
+            String str3 = googleSignInAccount.f5951c;
             if (str3 != null) {
                 jSONObject.put("tokenId", str3);
             }
@@ -87,11 +87,11 @@ public final class b {
             if (str6 != null) {
                 jSONObject.put("givenName", str6);
             }
-            String str7 = googleSignInAccount.f5958w;
+            String str7 = googleSignInAccount.f5956w;
             if (str7 != null) {
                 jSONObject.put("familyName", str7);
             }
-            Uri uri = googleSignInAccount.f5954f;
+            Uri uri = googleSignInAccount.f5952f;
             if (uri != null) {
                 jSONObject.put("photoUrl", uri.toString());
             }
@@ -99,23 +99,23 @@ public final class b {
             if (str8 != null) {
                 jSONObject.put("serverAuthCode", str8);
             }
-            jSONObject.put("expirationTime", googleSignInAccount.f5955n);
+            jSONObject.put("expirationTime", googleSignInAccount.f5953n);
             jSONObject.put("obfuscatedIdentifier", str);
             JSONArray jSONArray = new JSONArray();
-            List list = googleSignInAccount.f5957s;
+            List list = googleSignInAccount.f5955s;
             Scope[] scopeArr = (Scope[]) list.toArray(new Scope[list.size()]);
-            Arrays.sort(scopeArr, z5.c.f48480b);
+            Arrays.sort(scopeArr, z5.c.f48153b);
             int i10 = 0;
             for (Scope scope : scopeArr) {
-                jSONArray.put(scope.f6017b);
+                jSONArray.put(scope.f6015b);
             }
             jSONObject.put("grantedScopes", jSONArray);
             jSONObject.remove("serverAuthCode");
             e(f7, jSONObject.toString());
             String f10 = f("googleSignInOptions", str);
-            String str9 = googleSignInOptions.f5967n;
+            String str9 = googleSignInOptions.f5965n;
             String str10 = googleSignInOptions.h;
-            ArrayList arrayList = googleSignInOptions.f5964b;
+            ArrayList arrayList = googleSignInOptions.f5962b;
             JSONObject jSONObject2 = new JSONObject();
             try {
                 JSONArray jSONArray2 = new JSONArray();
@@ -124,15 +124,15 @@ public final class b {
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    jSONArray2.put(((Scope) obj).f6017b);
+                    jSONArray2.put(((Scope) obj).f6015b);
                 }
                 jSONObject2.put("scopes", jSONArray2);
-                Account account = googleSignInOptions.f5965c;
+                Account account = googleSignInOptions.f5963c;
                 if (account != null) {
                     jSONObject2.put("accountName", account.name);
                 }
                 jSONObject2.put("idTokenRequested", googleSignInOptions.d);
-                jSONObject2.put("forceCodeForRefreshToken", googleSignInOptions.f5966f);
+                jSONObject2.put("forceCodeForRefreshToken", googleSignInOptions.f5964f);
                 jSONObject2.put("serverAuthRequested", googleSignInOptions.e);
                 if (!TextUtils.isEmpty(str10)) {
                     jSONObject2.put("serverClientId", str10);
@@ -150,20 +150,20 @@ public final class b {
     }
 
     public final String d(String str) {
-        ReentrantLock reentrantLock = this.f284a;
+        ReentrantLock reentrantLock = this.f285a;
         reentrantLock.lock();
         try {
-            return this.f285b.getString(str, null);
+            return this.f286b.getString(str, null);
         } finally {
             reentrantLock.unlock();
         }
     }
 
     public final void e(String str, String str2) {
-        ReentrantLock reentrantLock = this.f284a;
+        ReentrantLock reentrantLock = this.f285a;
         reentrantLock.lock();
         try {
-            this.f285b.edit().putString(str, str2).apply();
+            this.f286b.edit().putString(str, str2).apply();
         } finally {
             reentrantLock.unlock();
         }

@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ly;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.ky;
 import org.telegram.ui.StickersActivity;
-public final class u1 implements ly {
-    public final d2 f11655a;
+public final class u1 implements ky {
+    public final d2 f11653a;
 
     public u1(d2 d2Var) {
-        this.f11655a = d2Var;
+        this.f11653a = d2Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class u1 implements ly {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        d2 d2Var = this.f11655a;
+        d2 d2Var = this.f11653a;
         if (i10 != 0 && (focusedEditTextOrNull = d2Var.P.getFocusedEditTextOrNull()) != null) {
             d2Var.R0 = focusedEditTextOrNull;
             d2Var.S0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,7 +70,7 @@ public final class u1 implements ly {
 
     @Override
     public final boolean k() {
-        i1 a02 = d2.a0(this.f11655a);
+        i1 a02 = d2.a0(this.f11653a);
         if (a02 == null || a02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class u1 implements ly {
 
     @Override
     public final void l(String str) {
-        d2 d2Var = this.f11655a;
+        d2 d2Var = this.f11653a;
         i1 a02 = d2.a0(d2Var);
         if (a02 != null) {
             int b02 = d2.b0(d2Var, a02);
@@ -104,18 +104,18 @@ public final class u1 implements ly {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f11655a.presentFragment(new StickersActivity(5, arrayList));
+        this.f11653a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f11655a.presentFragment(new StickersActivity(0, null));
+        this.f11653a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.y5 y5Var;
-        d2 d2Var = this.f11655a;
+        org.telegram.ui.Components.x5 x5Var;
+        d2 d2Var = this.f11653a;
         i1 a02 = d2.a0(d2Var);
         if (a02 != null) {
             int b02 = d2.b0(d2Var, a02);
@@ -125,12 +125,12 @@ public final class u1 implements ly {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    y5Var = new org.telegram.ui.Components.y5(document, a02.getPaint().getFontMetricsInt());
+                    x5Var = new org.telegram.ui.Components.x5(document, a02.getPaint().getFontMetricsInt());
                 } else {
-                    y5Var = new org.telegram.ui.Components.y5(j3, a02.getPaint().getFontMetricsInt());
+                    x5Var = new org.telegram.ui.Components.x5(j3, a02.getPaint().getFontMetricsInt());
                 }
-                y5Var.cacheType = org.telegram.ui.Components.p5.g();
-                spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
+                x5Var.cacheType = org.telegram.ui.Components.o5.g();
+                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
                 a02.setText(a02.getText().insert(b02, spannableString));
                 int length = b02 + spannableString.length();
                 a02.setSelection(length, length);
@@ -144,7 +144,7 @@ public final class u1 implements ly {
 
     @Override
     public final boolean z() {
-        return this.f11655a.C0;
+        return this.f11653a.C0;
     }
 
     @Override
@@ -152,7 +152,15 @@ public final class u1 implements ly {
     }
 
     @Override
-    public final void o(u51 u51Var) {
+    public final void n() {
+    }
+
+    @Override
+    public final void o(e51 e51Var) {
+    }
+
+    @Override
+    public final void q() {
     }
 
     @Override
@@ -164,19 +172,11 @@ public final class u1 implements ly {
     }
 
     @Override
-    public final void y(long j3) {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
     public final void u() {
+    }
+
+    @Override
+    public final void y(long j3) {
     }
 
     @Override

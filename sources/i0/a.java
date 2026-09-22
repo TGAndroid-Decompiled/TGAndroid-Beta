@@ -2,9 +2,8 @@ package i0;
 
 import android.graphics.Color;
 import com.google.android.gms.internal.vision.e2;
-import hg.k0;
 public abstract class a {
-    public static final ThreadLocal f10591a = new ThreadLocal();
+    public static final ThreadLocal f10589a = new ThreadLocal();
 
     public static int a(float[] fArr) {
         int round;
@@ -150,7 +149,7 @@ public abstract class a {
         double pow;
         double pow2;
         double pow3;
-        ThreadLocal threadLocal = f10591a;
+        ThreadLocal threadLocal = f10589a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];
@@ -220,7 +219,7 @@ public abstract class a {
         if (i14 == 0) {
             return 0;
         }
-        return k0.f(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
+        return hg.c.g(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
     }
 
     public static int j(int i10) {

@@ -10,21 +10,21 @@ public final class zs extends gg.u1 {
         this.d = new ArrayList();
         this.e = new ArrayList();
         this.H = new ArrayList();
-        this.f9947c = context;
+        this.f9943c = context;
         this.h = iVar;
-        this.f9950r = z10;
-        this.f9951s = z11;
-        this.f9953x = 0;
+        this.f9946r = z10;
+        this.f9947s = z11;
+        this.f9949x = 0;
         this.v = z12;
-        this.f9952w = true;
+        this.f9948w = true;
         gg.c2 c2Var = new gg.c2(true);
-        this.f9948f = c2Var;
-        c2Var.f9690a = new gg.r1(this);
+        this.f9944f = c2Var;
+        c2Var.f9686a = new gg.r1(this);
     }
 
     @Override
     public final void F() {
-        if (!this.f9954y && !this.f9948f.e() && h() == 0) {
+        if (!this.f9950y && !this.f9944f.e() && h() == 0) {
             this.K.e.e(false, true);
         }
     }

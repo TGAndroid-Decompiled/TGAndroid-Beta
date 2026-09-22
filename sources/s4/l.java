@@ -1,12 +1,12 @@
 package s4;
 public final class l {
-    public final int f43068a;
-    public int f43069b;
-    public final boolean f43070c;
+    public final int f42744a;
+    public int f42745b;
+    public final boolean f42746c;
 
     public l(int i10, int i11, boolean z10) {
-        this.f43068a = i10;
-        this.f43069b = i11;
-        this.f43070c = z10;
+        this.f42744a = i10;
+        this.f42745b = i11;
+        this.f42746c = z10;
     }
 }

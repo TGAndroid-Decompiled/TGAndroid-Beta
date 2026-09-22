@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 public final class l6 extends FrameLayout {
-    public final qb f4938a;
+    public final qb f4936a;
 
     public l6(qb qbVar, Context context) {
         super(context);
-        this.f4938a = qbVar;
+        this.f4936a = qbVar;
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f4938a.f5431m2) {
+        if (this.f4936a.f5429m2) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);

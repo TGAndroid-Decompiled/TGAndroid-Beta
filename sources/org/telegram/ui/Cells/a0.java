@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.zv0;
-public abstract class a0 extends ViewGroup implements zv0 {
-    public boolean f20012a;
-    public androidx.emoji2.text.j f20013b;
-    public int f20014c;
+import org.telegram.ui.Components.mv0;
+public abstract class a0 extends ViewGroup implements mv0 {
+    public boolean f19774a;
+    public androidx.emoji2.text.j f19775b;
+    public int f19776c;
     public ai.q4 d;
     public Runnable e;
 
     public a0(Context context) {
         super(context);
-        this.f20012a = false;
-        this.f20013b = null;
-        this.f20014c = 0;
+        this.f19774a = false;
+        this.f19775b = null;
+        this.f19776c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements zv0 {
     }
 
     public final void k() {
-        this.f20012a = false;
-        androidx.emoji2.text.j jVar = this.f20013b;
+        this.f19774a = false;
+        androidx.emoji2.text.j jVar = this.f19775b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,12 +89,12 @@ public abstract class a0 extends ViewGroup implements zv0 {
     }
 
     public final void q() {
-        if (this.f20012a) {
+        if (this.f19774a) {
             return;
         }
-        this.f20012a = true;
+        this.f19774a = true;
         if (this.d == null) {
-            this.d = new ai.q4(this, 28);
+            this.d = new ai.q4(this, 27);
         }
         postDelayed(this.d, ViewConfiguration.getTapTimeout());
     }

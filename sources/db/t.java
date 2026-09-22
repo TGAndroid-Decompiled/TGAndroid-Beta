@@ -2,16 +2,16 @@ package db;
 
 import java.io.IOException;
 public abstract class t {
-    public static final p f7611a;
-    public static final q f7612b;
-    public static final t[] f7613c;
+    public static final p f7609a;
+    public static final q f7610b;
+    public static final t[] f7611c;
 
     static {
         p pVar = new p();
-        f7611a = pVar;
+        f7609a = pVar;
         q qVar = new q();
-        f7612b = qVar;
-        f7613c = new t[]{pVar, qVar, new t() {
+        f7610b = qVar;
+        f7611c = new t[]{pVar, qVar, new t() {
             public static Double b(String str, lb.a aVar) {
                 try {
                     Double valueOf = Double.valueOf(str);
@@ -20,9 +20,9 @@ public abstract class t {
                     }
                     throw new IOException("JSON forbids NaN and infinities: " + valueOf + "; at path " + aVar.j());
                 } catch (NumberFormatException e) {
-                    StringBuilder v = a4.a.v("Cannot parse ", str, "; at path ");
-                    v.append(aVar.j());
-                    throw new RuntimeException(v.toString(), e);
+                    StringBuilder w10 = a4.a.w("Cannot parse ", str, "; at path ");
+                    w10.append(aVar.j());
+                    throw new RuntimeException(w10.toString(), e);
                 }
             }
 
@@ -45,9 +45,9 @@ public abstract class t {
                 try {
                     return fb.d.i(v);
                 } catch (NumberFormatException e) {
-                    StringBuilder v9 = a4.a.v("Cannot parse ", v, "; at path ");
-                    v9.append(aVar.j());
-                    throw new RuntimeException(v9.toString(), e);
+                    StringBuilder w10 = a4.a.w("Cannot parse ", v, "; at path ");
+                    w10.append(aVar.j());
+                    throw new RuntimeException(w10.toString(), e);
                 }
             }
         }};
@@ -58,7 +58,7 @@ public abstract class t {
     }
 
     public static t[] values() {
-        return (t[]) f7613c.clone();
+        return (t[]) f7611c.clone();
     }
 
     public abstract Number a(lb.a aVar);

@@ -12,8 +12,8 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import v7.i8;
-public final class j extends i8 {
+import v7.h8;
+public final class j extends h8 {
     public static Font g(FontFamily fontFamily, int i10) {
         int i11;
         int i12;
@@ -46,7 +46,7 @@ public final class j extends i8 {
         FontFamily.Builder builder = null;
         for (o0.i iVar : iVarArr) {
             try {
-                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f15504a, "r", null);
+                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f15316a, "r", null);
             } catch (IOException e) {
                 Log.w("TypefaceCompatApi29Impl", "Font load failed", e);
             }
@@ -54,7 +54,7 @@ public final class j extends i8 {
                 if (openFileDescriptor == null) {
                 }
             } else {
-                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f15506c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f15505b).build();
+                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f15318c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f15317b).build();
                 if (builder == null) {
                     builder = new FontFamily.Builder(build);
                 } else {
@@ -85,9 +85,9 @@ public final class j extends i8 {
         h0.f[] fVarArr;
         try {
             FontFamily.Builder builder = null;
-            for (h0.f fVar : eVar.f10055a) {
+            for (h0.f fVar : eVar.f10051a) {
                 try {
-                    Font build = new Font.Builder(resources, fVar.f10059f).setWeight(fVar.f10057b).setSlant(fVar.f10058c ? 1 : 0).setTtcIndex(fVar.e).setFontVariationSettings(fVar.d).build();
+                    Font build = new Font.Builder(resources, fVar.f10055f).setWeight(fVar.f10053b).setSlant(fVar.f10054c ? 1 : 0).setTtcIndex(fVar.e).setFontVariationSettings(fVar.d).build();
                     if (builder == null) {
                         builder = new FontFamily.Builder(build);
                     } else {

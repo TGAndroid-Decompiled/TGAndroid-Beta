@@ -14,44 +14,44 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 public final class l40 extends HorizontalScrollView {
     public static final RectF v = new RectF();
-    public final org.telegram.ui.ActionBar.f6 f25980a;
-    public final d6 f25981b;
-    public final d6 f25982c;
+    public final org.telegram.ui.ActionBar.e6 f25826a;
+    public final c6 f25827b;
+    public final c6 f25828c;
     public final LinearLayout d;
     public final Paint e;
-    public final TextPaint f25983f;
+    public final TextPaint f25829f;
     public boolean h;
-    public int f25984n;
-    public final Path f25985r;
-    public final Path f25986s;
+    public int f25830n;
+    public final Path f25831r;
+    public final Path f25832s;
 
-    public l40(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public l40(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.e = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
-        this.f25983f = textPaint;
-        this.f25985r = new Path();
-        this.f25986s = new Path();
-        this.f25980a = f6Var;
+        this.f25829f = textPaint;
+        this.f25831r = new Path();
+        this.f25832s = new Path();
+        this.f25826a = e6Var;
         LinearLayout linearLayout = new LinearLayout(context);
         this.d = linearLayout;
         linearLayout.setLayerType(0, null);
         linearLayout.setOrientation(0);
-        addView(linearLayout, w7.y5.x(-1, -1, 8388611));
+        addView(linearLayout, w7.x5.x(-1, -1, 8388611));
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        d6 d6Var = new d6(new Runnable(this) {
-            public final l40 f25620b;
+        c6 c6Var = new c6(new Runnable(this) {
+            public final l40 f25534b;
 
             {
-                this.f25620b = this;
+                this.f25534b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        l40 l40Var = this.f25620b;
+                        l40 l40Var = this.f25534b;
                         l40Var.invalidate();
                         LinearLayout linearLayout2 = l40Var.d;
                         linearLayout2.invalidate();
@@ -60,7 +60,7 @@ public final class l40 extends HorizontalScrollView {
                         }
                         return;
                     default:
-                        l40 l40Var2 = this.f25620b;
+                        l40 l40Var2 = this.f25534b;
                         l40Var2.invalidate();
                         LinearLayout linearLayout3 = l40Var2.d;
                         linearLayout3.invalidate();
@@ -71,20 +71,20 @@ public final class l40 extends HorizontalScrollView {
                 }
             }
         });
-        this.f25981b = d6Var;
-        d6Var.f23572g = 180L;
-        d6 d6Var2 = new d6(new Runnable(this) {
-            public final l40 f25620b;
+        this.f25827b = c6Var;
+        c6Var.f22953g = 180L;
+        c6 c6Var2 = new c6(new Runnable(this) {
+            public final l40 f25534b;
 
             {
-                this.f25620b = this;
+                this.f25534b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        l40 l40Var = this.f25620b;
+                        l40 l40Var = this.f25534b;
                         l40Var.invalidate();
                         LinearLayout linearLayout2 = l40Var.d;
                         linearLayout2.invalidate();
@@ -93,7 +93,7 @@ public final class l40 extends HorizontalScrollView {
                         }
                         return;
                     default:
-                        l40 l40Var2 = this.f25620b;
+                        l40 l40Var2 = this.f25534b;
                         l40Var2.invalidate();
                         LinearLayout linearLayout3 = l40Var2.d;
                         linearLayout3.invalidate();
@@ -104,18 +104,18 @@ public final class l40 extends HorizontalScrollView {
                 }
             }
         });
-        this.f25982c = d6Var2;
-        d6Var2.f23572g = 180L;
+        this.f25828c = c6Var2;
+        c6Var2.f22953g = 180L;
         setVerticalScrollBarEnabled(false);
         setHorizontalScrollBarEnabled(false);
     }
 
     public final void a(int i10, boolean z10) {
-        this.f25984n = i10;
+        this.f25830n = i10;
         LinearLayout linearLayout = this.d;
         boolean z11 = !z10;
-        this.f25981b.d(linearLayout.getChildAt(i10).getLeft(), z11);
-        this.f25982c.d(linearLayout.getChildAt(i10).getRight(), z11);
+        this.f25827b.d(linearLayout.getChildAt(i10).getLeft(), z11);
+        this.f25828c.d(linearLayout.getChildAt(i10).getRight(), z11);
     }
 
     public final void b(ArrayList arrayList, MessagesStorage.IntCallback intCallback) {
@@ -127,11 +127,11 @@ public final class l40 extends HorizontalScrollView {
             ebVar.setDrawingCacheEnabled(false);
             ebVar.setOnClickListener(new org.telegram.ui.Cells.va(this, i10, intCallback, 7));
             ebVar.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
-            LinearLayout.LayoutParams n10 = w7.y5.n(-2, -2);
+            LinearLayout.LayoutParams n10 = w7.x5.n(-2, -2);
             if (i10 < arrayList.size() - 1) {
                 n10.rightMargin = AndroidUtilities.dp(4.0f);
             }
-            ebVar.f4612b = new w01(charSequence, this.f25983f);
+            ebVar.f4610b = new g01(charSequence, this.f25829f);
             linearLayout.addView(ebVar, n10);
         }
     }
@@ -141,39 +141,39 @@ public final class l40 extends HorizontalScrollView {
         int v02;
         int v03;
         RectF rectF = v;
-        rectF.set(this.f25981b.c(), 0.0f, this.f25982c.c(), getMeasuredHeight());
-        Path path = this.f25985r;
+        rectF.set(this.f25827b.c(), 0.0f, this.f25828c.c(), getMeasuredHeight());
+        Path path = this.f25831r;
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), direction);
         path.close();
-        Path path2 = this.f25986s;
+        Path path2 = this.f25832s;
         path2.rewind();
         LinearLayout linearLayout = this.d;
         path2.addRect(0.0f, 0.0f, linearLayout.getMeasuredWidth(), getMeasuredHeight(), direction);
         path2.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CCW);
         path2.close();
         boolean z10 = this.h;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f25980a;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f25826a;
         if (z10) {
-            v02 = org.telegram.ui.ActionBar.j6.l1(0.1f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var));
+            v02 = org.telegram.ui.ActionBar.i6.l1(0.1f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, e6Var));
         } else {
-            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19492y6, f6Var) & 520093695;
+            v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19215y6, e6Var) & 520093695;
         }
         Paint paint = this.e;
         paint.setColor(v02);
         canvas.drawPath(path, paint);
-        int v04 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19492y6, f6Var);
-        TextPaint textPaint = this.f25983f;
+        int v04 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19215y6, e6Var);
+        TextPaint textPaint = this.f25829f;
         textPaint.setColor(v04);
         canvas.save();
         canvas.clipPath(path2);
         super.dispatchDraw(canvas);
         canvas.restore();
         if (this.h) {
-            v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var);
+            v03 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, e6Var);
         } else {
-            v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Y8, f6Var);
+            v03 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Y8, e6Var);
         }
         textPaint.setColor(v03);
         canvas.save();
@@ -193,7 +193,7 @@ public final class l40 extends HorizontalScrollView {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        a(this.f25984n, false);
+        a(this.f25830n, false);
     }
 
     public void setAccent(boolean z10) {

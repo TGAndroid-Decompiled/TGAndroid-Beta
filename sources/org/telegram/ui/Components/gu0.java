@@ -1,63 +1,81 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class gu0 extends org.telegram.ui.Cells.k7 {
-    public final int f24623l0;
-    public final xl0 m0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SavedMessagesController;
+public final class gu0 extends s4.v {
+    public final iu0 d;
 
-    public gu0(xl0 xl0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, 0, f6Var);
-        this.f24623l0 = i10;
-        this.m0 = xl0Var;
+    public gu0(iu0 iu0Var) {
+        this.d = iu0Var;
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        ArrayList<MessageObject> arrayList2;
-        switch (this.f24623l0) {
-            case 0:
-                hu0 hu0Var = (hu0) this.m0;
-                if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
-                    if (!messageObject.isMusic()) {
-                        return false;
-                    }
-                    return MediaController.getInstance().setPlaylist(hu0Var.d, messageObject, hu0Var.v.f26193c1);
-                }
-                boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-                MediaController mediaController = MediaController.getInstance();
-                if (playMessage) {
-                    arrayList = hu0Var.d;
-                } else {
-                    arrayList = null;
-                }
-                mediaController.setVoiceMessagesPlaylist(arrayList, false);
-                if (messageObject.isRoundVideo()) {
-                    MediaController.getInstance().setCurrentVideoVisible(false);
-                }
-                return playMessage;
-            default:
-                yu0 yu0Var = (yu0) this.m0;
-                int i10 = yu0Var.d;
-                lv0 lv0Var = yu0Var.f30756f;
-                if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
-                    if (!messageObject.isMusic()) {
-                        return false;
-                    }
-                    return MediaController.getInstance().setPlaylist(lv0Var.f26230t1[i10].f22744a, messageObject, lv0Var.f26193c1);
-                }
-                boolean playMessage2 = MediaController.getInstance().playMessage(messageObject);
-                MediaController mediaController2 = MediaController.getInstance();
-                if (playMessage2) {
-                    arrayList2 = lv0Var.f26230t1[i10].f22744a;
-                } else {
-                    arrayList2 = null;
-                }
-                mediaController2.setVoiceMessagesPlaylist(arrayList2, false);
-                return playMessage2;
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        c1Var.f42671a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        SavedMessagesController.SavedDialog r10;
+        int l4 = s4.v.l(0, 0);
+        yu0 yu0Var = this.d.f25140x;
+        if (yu0Var.C1 && recyclerView.getAdapter() != yu0Var.S && (r10 = r(c1Var)) != null && r10.pinned) {
+            return s4.v.l(3, 0);
         }
+        return l4;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        iu0 iu0Var = this.d;
+        ArrayList arrayList = iu0Var.f25135f;
+        yu0 yu0Var = iu0Var.f25140x;
+        if (yu0Var.C1 && recyclerView.getAdapter() != yu0Var.S) {
+            SavedMessagesController.SavedDialog r10 = r(c1Var);
+            SavedMessagesController.SavedDialog r11 = r(c1Var2);
+            if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
+                int b10 = c1Var.b();
+                int b11 = c1Var2.b();
+                arrayList.remove(b10);
+                arrayList.add(b11, r10);
+                iu0Var.p(b10, b11);
+                iu0Var.h = true;
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        qt0 qt0Var;
+        iu0 iu0Var = this.d;
+        jq0 jq0Var = iu0Var.f25136n;
+        if (c1Var != null && (qt0Var = iu0Var.f25138s) != null) {
+            qt0Var.d1(false);
+        }
+        if (i10 == 0) {
+            AndroidUtilities.cancelRunOnUIThread(jq0Var);
+            AndroidUtilities.runOnUIThread(jq0Var, 300L);
+        }
+    }
+
+    public final SavedMessagesController.SavedDialog r(s4.c1 c1Var) {
+        int b10;
+        if (c1Var != null && (b10 = c1Var.b()) >= 0) {
+            iu0 iu0Var = this.d;
+            if (b10 < iu0Var.f25135f.size()) {
+                return (SavedMessagesController.SavedDialog) iu0Var.f25135f.get(b10);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

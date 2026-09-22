@@ -1,96 +1,75 @@
 package yh;
 
 import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.q81;
-import org.telegram.ui.Components.y51;
-public final class u7 extends q81 {
-    public final Context f48156a;
-    public final int f48157b;
-    public final boolean f48158c;
+import android.widget.FrameLayout;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.kb0;
+import org.telegram.ui.Components.t00;
+public final class u7 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final e61 f47825a;
+    public final org.telegram.ui.ActionBar.e6 f47826b;
+    public final int f47827c;
     public final int d;
-    public final org.telegram.ui.ActionBar.f6 e;
-    public final long f48159f;
-    public final ArrayList f48160g = new ArrayList();
+    public final boolean e;
+    public final long f47828f;
+    public final s7 h;
 
-    public u7(Context context, int i10, boolean z10, long j3, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f48156a = context;
-        this.f48157b = i10;
-        this.f48158c = z10;
-        this.d = i11;
-        this.e = f6Var;
-        this.f48159f = j3;
-        i();
+    public u7(Context context, boolean z10, long j3, int i10, int i11, int i12, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.d = i10;
+        this.e = z10;
+        this.f47827c = i11;
+        this.f47828f = j3;
+        this.f47826b = e6Var;
+        this.h = new s7(j3, i11, i10, z10);
+        e61 e61Var = new e61(context, i11, i12, true, new t7(this, 0), new r5.e(this, 26), null, e6Var);
+        this.f47825a = e61Var;
+        addView(e61Var, w7.x5.c(-1.0f, -1));
+        e61Var.setOnScrollListener(new kb0(this, 21));
     }
 
     @Override
-    public final View d(int i10) {
-        return new t7(this.f48156a, this.f48158c, this.f48159f, i10, this.f48157b, this.d, this.e);
-    }
-
-    @Override
-    public final int e() {
-        return this.f48160g.size();
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        int h = h(i10);
-        if (h != 0) {
-            if (h != 1) {
-                if (h != 2) {
-                    return "";
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.starTransactionsLoaded;
+        e61 e61Var = this.f47825a;
+        if (i10 == i12) {
+            e61Var.Y2.N(true);
+            if (e61Var.canScrollVertically(1)) {
+                for (int i13 = 0; i13 < e61Var.getChildCount(); i13++) {
+                    if (!(e61Var.getChildAt(i13) instanceof t00)) {
+                    }
                 }
-                return LocaleController.getString(R.string.StarsTransactionsOutgoing);
-            }
-            return LocaleController.getString(R.string.StarsTransactionsIncoming);
-        }
-        return LocaleController.getString(R.string.StarsTransactionsAll);
-    }
-
-    @Override
-    public final int h(int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.f48160g;
-            if (i10 < arrayList.size()) {
-                return ((y51) arrayList.get(i10)).f30531z;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    public final void i() {
-        ArrayList arrayList = this.f48160g;
-        arrayList.clear();
-        int i10 = this.f48157b;
-        long j3 = this.f48159f;
-        if (j3 == 0) {
-            u5 y3 = u5.y(i10, this.f48158c);
-            arrayList.add(y51.C(0));
-            if (y3.O(1)) {
-                arrayList.add(y51.C(1));
-            }
-            if (y3.O(2)) {
-                arrayList.add(y51.C(2));
                 return;
             }
-            return;
-        }
-        o g10 = o.g(i10);
-        arrayList.add(y51.C(0));
-        if (!g10.k(j3).f47806a[1].isEmpty()) {
-            arrayList.add(y51.C(1));
-        }
-        if (!g10.k(j3).f47806a[2].isEmpty()) {
-            arrayList.add(y51.C(2));
+            this.h.run();
+        } else if (i10 == NotificationCenter.botStarsTransactionsLoaded && ((Long) objArr[0]).longValue() == this.f47828f) {
+            e61Var.Y2.N(true);
         }
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        long j3 = this.f47828f;
+        int i10 = this.f47827c;
+        if (j3 != 0) {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.botStarsTransactionsLoaded);
+        } else {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starTransactionsLoaded);
+        }
+        this.f47825a.Y2.N(false);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        long j3 = this.f47828f;
+        int i10 = this.f47827c;
+        if (j3 != 0) {
+            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.botStarsTransactionsLoaded);
+        } else {
+            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starTransactionsLoaded);
+        }
     }
 }

@@ -17,55 +17,55 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class l extends o6.a {
     public static final aa.a e;
-    public final List f4013a;
-    public final Bundle f4014b;
-    public int f4015c;
+    public final List f4011a;
+    public final Bundle f4012b;
+    public int f4013c;
     public static final String[] d = {"none", "String", "int", "double", "ISO-8601 date String", "Time in milliseconds as long"};
     public static final Parcelable.Creator<l> CREATOR = new v(11);
 
     static {
         aa.a aVar = new aa.a();
-        aVar.w(4, "com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime");
-        aVar.w(4, "com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate");
-        aVar.w(4, "com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate");
-        aVar.w(1, "com.google.android.gms.cast.metadata.TITLE", "title");
-        aVar.w(1, "com.google.android.gms.cast.metadata.SUBTITLE", "subtitle");
-        aVar.w(1, "com.google.android.gms.cast.metadata.ARTIST", "artist");
-        aVar.w(1, "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist");
-        aVar.w(1, "com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName");
-        aVar.w(1, "com.google.android.gms.cast.metadata.COMPOSER", "composer");
-        aVar.w(2, "com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber");
-        aVar.w(2, "com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber");
-        aVar.w(2, "com.google.android.gms.cast.metadata.SEASON_NUMBER", "season");
-        aVar.w(2, "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode");
-        aVar.w(1, "com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle");
-        aVar.w(1, "com.google.android.gms.cast.metadata.STUDIO", "studio");
-        aVar.w(2, "com.google.android.gms.cast.metadata.WIDTH", "width");
-        aVar.w(2, "com.google.android.gms.cast.metadata.HEIGHT", "height");
-        aVar.w(1, "com.google.android.gms.cast.metadata.LOCATION_NAME", "location");
-        aVar.w(3, "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude");
-        aVar.w(3, "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude");
-        aVar.w(5, "com.google.android.gms.cast.metadata.SECTION_DURATION", "sectionDuration");
-        aVar.w(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "sectionStartTimeInMedia");
-        aVar.w(5, "com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "sectionStartAbsoluteTime");
-        aVar.w(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "sectionStartTimeInContainer");
-        aVar.w(2, "com.google.android.gms.cast.metadata.QUEUE_ITEM_ID", "queueItemId");
-        aVar.w(1, "com.google.android.gms.cast.metadata.BOOK_TITLE", "bookTitle");
-        aVar.w(2, "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "chapterNumber");
-        aVar.w(1, "com.google.android.gms.cast.metadata.CHAPTER_TITLE", "chapterTitle");
+        aVar.v(4, "com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime");
+        aVar.v(4, "com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate");
+        aVar.v(4, "com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate");
+        aVar.v(1, "com.google.android.gms.cast.metadata.TITLE", "title");
+        aVar.v(1, "com.google.android.gms.cast.metadata.SUBTITLE", "subtitle");
+        aVar.v(1, "com.google.android.gms.cast.metadata.ARTIST", "artist");
+        aVar.v(1, "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist");
+        aVar.v(1, "com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName");
+        aVar.v(1, "com.google.android.gms.cast.metadata.COMPOSER", "composer");
+        aVar.v(2, "com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber");
+        aVar.v(2, "com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber");
+        aVar.v(2, "com.google.android.gms.cast.metadata.SEASON_NUMBER", "season");
+        aVar.v(2, "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode");
+        aVar.v(1, "com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle");
+        aVar.v(1, "com.google.android.gms.cast.metadata.STUDIO", "studio");
+        aVar.v(2, "com.google.android.gms.cast.metadata.WIDTH", "width");
+        aVar.v(2, "com.google.android.gms.cast.metadata.HEIGHT", "height");
+        aVar.v(1, "com.google.android.gms.cast.metadata.LOCATION_NAME", "location");
+        aVar.v(3, "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude");
+        aVar.v(3, "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude");
+        aVar.v(5, "com.google.android.gms.cast.metadata.SECTION_DURATION", "sectionDuration");
+        aVar.v(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "sectionStartTimeInMedia");
+        aVar.v(5, "com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "sectionStartAbsoluteTime");
+        aVar.v(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "sectionStartTimeInContainer");
+        aVar.v(2, "com.google.android.gms.cast.metadata.QUEUE_ITEM_ID", "queueItemId");
+        aVar.v(1, "com.google.android.gms.cast.metadata.BOOK_TITLE", "bookTitle");
+        aVar.v(2, "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "chapterNumber");
+        aVar.v(1, "com.google.android.gms.cast.metadata.CHAPTER_TITLE", "chapterTitle");
         e = aVar;
     }
 
     public l(ArrayList arrayList, Bundle bundle, int i10) {
-        this.f4013a = arrayList;
-        this.f4014b = bundle;
-        this.f4015c = i10;
+        this.f4011a = arrayList;
+        this.f4012b = bundle;
+        this.f4013c = i10;
     }
 
     public static void c(int i10, String str) {
         int i11;
         if (!TextUtils.isEmpty(str)) {
-            Integer num = (Integer) ((HashMap) e.f356b).get(str);
+            Integer num = (Integer) ((HashMap) e.f359b).get(str);
             if (num != null) {
                 i11 = num.intValue();
             } else {
@@ -103,7 +103,7 @@ public final class l extends o6.a {
 
     public final void b(String str, String str2) {
         c(1, str);
-        this.f4014b.putString(str, str2);
+        this.f4012b.putString(str, str2);
     }
 
     public final JSONObject d() {
@@ -111,10 +111,10 @@ public final class l extends o6.a {
         int i10;
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("metadataType", this.f4015c);
+            jSONObject.put("metadataType", this.f4013c);
         } catch (JSONException unused) {
         }
-        JSONArray b10 = h6.a.b(this.f4013a);
+        JSONArray b10 = h6.a.b(this.f4011a);
         if (b10.length() != 0) {
             try {
                 jSONObject.put("images", b10);
@@ -122,7 +122,7 @@ public final class l extends o6.a {
             }
         }
         ArrayList arrayList = new ArrayList();
-        int i11 = this.f4015c;
+        int i11 = this.f4013c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -151,7 +151,7 @@ public final class l extends o6.a {
             int size = arrayList.size();
             int i12 = 0;
             while (true) {
-                bundle = this.f4014b;
+                bundle = this.f4012b;
                 if (i12 >= size) {
                     break;
                 }
@@ -160,9 +160,9 @@ public final class l extends o6.a {
                 String str = (String) obj;
                 if (str != null && bundle.containsKey(str)) {
                     aa.a aVar = e;
-                    String str2 = (String) ((HashMap) aVar.f357c).get(str);
+                    String str2 = (String) ((HashMap) aVar.f360c).get(str);
                     if (str2 != null) {
-                        Integer num = (Integer) ((HashMap) aVar.f356b).get(str);
+                        Integer num = (Integer) ((HashMap) aVar.f359b).get(str);
                         if (num != null) {
                             i10 = num.intValue();
                         } else {
@@ -174,7 +174,7 @@ public final class l extends o6.a {
                                     if (i10 != 4) {
                                         if (i10 == 5) {
                                             long j3 = bundle.getLong(str);
-                                            Pattern pattern = g6.a.f9428a;
+                                            Pattern pattern = g6.a.f9425a;
                                             jSONObject.put(str2, j3 / 1000.0d);
                                         }
                                     }
@@ -209,13 +209,13 @@ public final class l extends o6.a {
     public final void e(JSONObject jSONObject) {
         HashSet hashSet;
         int i10;
-        Bundle bundle = this.f4014b;
+        Bundle bundle = this.f4012b;
         bundle.clear();
-        List list = this.f4013a;
+        List list = this.f4011a;
         list.clear();
-        this.f4015c = 0;
+        this.f4013c = 0;
         try {
-            this.f4015c = jSONObject.getInt("metadataType");
+            this.f4013c = jSONObject.getInt("metadataType");
         } catch (JSONException unused) {
         }
         JSONArray optJSONArray = jSONObject.optJSONArray("images");
@@ -223,7 +223,7 @@ public final class l extends o6.a {
             h6.a.c(list, optJSONArray);
         }
         ArrayList arrayList = new ArrayList();
-        int i11 = this.f4015c;
+        int i11 = this.f4013c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -261,7 +261,7 @@ public final class l extends o6.a {
                             try {
                                 Object obj = jSONObject.get(next);
                                 if (obj != null) {
-                                    Integer num = (Integer) ((HashMap) aVar.f356b).get(str);
+                                    Integer num = (Integer) ((HashMap) aVar.f359b).get(str);
                                     if (num != null) {
                                         i10 = num.intValue();
                                     } else {
@@ -273,7 +273,7 @@ public final class l extends o6.a {
                                                 if (i10 != 4) {
                                                     if (i10 == 5) {
                                                         long optLong = jSONObject.optLong(next);
-                                                        Pattern pattern = g6.a.f9428a;
+                                                        Pattern pattern = g6.a.f9425a;
                                                         hashSet = hashSet2;
                                                         try {
                                                             bundle.putLong(str, optLong * 1000);
@@ -335,7 +335,7 @@ public final class l extends o6.a {
         if (this != obj) {
             if (obj instanceof l) {
                 l lVar = (l) obj;
-                if (f(this.f4014b, lVar.f4014b) && this.f4013a.equals(lVar.f4013a)) {
+                if (f(this.f4012b, lVar.f4012b) && this.f4011a.equals(lVar.f4011a)) {
                     return true;
                 }
                 return false;
@@ -348,7 +348,7 @@ public final class l extends o6.a {
     public final int hashCode() {
         int i10;
         int i11 = 17;
-        Bundle bundle = this.f4014b;
+        Bundle bundle = this.f4012b;
         if (bundle != null) {
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
@@ -361,18 +361,18 @@ public final class l extends o6.a {
                 i11 = i12 + i10;
             }
         }
-        return this.f4013a.hashCode() + (i11 * 31);
+        return this.f4011a.hashCode() + (i11 * 31);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.p(parcel, 2, this.f4013a);
-        w7.f0.b(parcel, 3, this.f4014b);
-        int i11 = this.f4015c;
-        w7.f0.s(parcel, 4, 4);
+        int q6 = w7.e0.q(parcel, 20293);
+        w7.e0.p(parcel, 2, this.f4011a);
+        w7.e0.b(parcel, 3, this.f4012b);
+        int i11 = this.f4013c;
+        w7.e0.s(parcel, 4, 4);
         parcel.writeInt(i11);
-        w7.f0.r(parcel, q6);
+        w7.e0.r(parcel, q6);
     }
 
     public l(int i10) {

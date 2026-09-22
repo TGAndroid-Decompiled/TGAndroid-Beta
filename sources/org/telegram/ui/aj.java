@@ -4,14 +4,14 @@ import org.telegram.messenger.AndroidUtilities;
 public final class aj extends nf.e {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.u1 f32128f;
-    public final zn f32129g;
+    public final org.telegram.ui.Cells.t1 f31837f;
+    public final bo f31838g;
 
-    public aj(zn znVar, int i10, org.telegram.ui.Cells.u1 u1Var, int i11) {
+    public aj(bo boVar, int i10, org.telegram.ui.Cells.t1 t1Var, int i11) {
         this.d = i11;
-        this.f32129g = znVar;
+        this.f31838g = boVar;
         this.e = i10;
-        this.f32128f = u1Var;
+        this.f31837f = t1Var;
     }
 
     @Override
@@ -43,25 +43,25 @@ public final class aj extends nf.e {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                zn znVar = this.f32129g;
-                znVar.f40535vb = i10;
-                znVar.f40549wb = 6;
-                this.f32128f.invalidate();
+                bo boVar = this.f31838g;
+                boVar.f32503vb = i10;
+                boVar.f32517wb = 6;
+                this.f31837f.invalidate();
                 return;
             case 1:
                 int i11 = this.e;
-                zn znVar2 = this.f32129g;
-                znVar2.f40535vb = i11;
-                znVar2.f40549wb = 5;
-                znVar2.f40574yb = null;
-                this.f32128f.invalidate();
+                bo boVar2 = this.f31838g;
+                boVar2.f32503vb = i11;
+                boVar2.f32517wb = 5;
+                boVar2.f32542yb = null;
+                this.f31837f.invalidate();
                 return;
             default:
                 int i12 = this.e;
-                zn znVar3 = this.f32129g;
-                znVar3.f40535vb = i12;
-                znVar3.f40549wb = 7;
-                this.f32128f.invalidate();
+                bo boVar3 = this.f31838g;
+                boVar3.f32503vb = i12;
+                boVar3.f32517wb = 7;
+                this.f31837f.invalidate();
                 return;
         }
     }

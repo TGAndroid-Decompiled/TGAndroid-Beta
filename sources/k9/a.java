@@ -36,6 +36,6 @@ public final class a {
         sb2.append(", elapsedRealtime=");
         sb2.append(this.f13537b);
         sb2.append(", uptimeMillis=");
-        return a4.a.r(sb2, this.f13538c, "}");
+        return a4.a.s(sb2, this.f13538c, "}");
     }
 }

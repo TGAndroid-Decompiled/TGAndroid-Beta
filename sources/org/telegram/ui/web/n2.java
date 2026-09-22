@@ -1,112 +1,56 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
-import android.text.TextUtils;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
-public final class n2 extends TLObject {
-    public long f39015a = System.currentTimeMillis();
-    public String f39016b;
-    public String f39017c;
-    public String d;
-    public int e;
-    public int f39018f;
-    public Bitmap f39019i;
-    public byte[] f39020j;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.Utilities;
+public final class n2 {
+    public static n2 e;
+    public HashMap f39044a;
+    public boolean f39045b;
+    public boolean f39046c;
+    public boolean d;
 
-    public static n2 a(z0 z0Var) {
-        n2 n2Var = new n2();
-        String hostAuthority = AndroidUtilities.getHostAuthority(z0Var.getUrl(), true);
-        n2Var.f39016b = hostAuthority;
-        if (TextUtils.isEmpty(hostAuthority)) {
+    public static n2 b() {
+        if (e == null) {
+            e = new Object();
+        }
+        return e;
+    }
+
+    public final m2 a(String str) {
+        c();
+        m2 m2Var = (m2) this.f39044a.get(str);
+        if (m2Var == null) {
             return null;
         }
-        if (z0Var.J) {
-            n2Var.f39017c = z0Var.K;
-        }
-        n2Var.d = z0Var.f39149r;
-        if (z0Var.f39150s) {
-            n2Var.e = z0Var.f39151w;
-        }
-        if (z0Var.v) {
-            n2Var.f39018f = z0Var.f39152x;
-        }
-        if (z0Var.M) {
-            n2Var.f39019i = z0Var.O;
-        }
-        return n2Var;
+        m2Var.f39034a = Math.max(m2Var.f39034a, System.currentTimeMillis());
+        d();
+        return m2Var;
     }
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.f39015a = inputSerializedData.readInt64(z10);
-        this.f39016b = inputSerializedData.readString(z10);
-        this.f39017c = inputSerializedData.readString(z10);
-        this.d = inputSerializedData.readString(z10);
-        this.e = inputSerializedData.readInt32(z10);
-        this.f39018f = inputSerializedData.readInt32(z10);
-        if (inputSerializedData.readInt32(z10) == 1450380236) {
-            this.f39019i = null;
-            return;
+    public final void c() {
+        if (!this.f39045b && !this.f39046c) {
+            this.f39046c = true;
+            if (this.f39044a == null) {
+                this.f39044a = new HashMap();
+            }
+            Utilities.globalQueue.postRunnable(new j2(this, 1));
         }
-        this.f39020j = inputSerializedData.readByteArray(z10);
-        this.f39019i = BitmapFactory.decodeStream(new ByteArrayInputStream(this.f39020j));
     }
 
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        Bitmap.CompressFormat compressFormat;
-        outputSerializedData.writeInt64(this.f39015a);
-        String str = this.f39016b;
-        String str2 = "";
-        if (str == null) {
-            str = "";
-        }
-        outputSerializedData.writeString(str);
-        String str3 = this.f39017c;
-        if (str3 == null) {
-            str3 = "";
-        }
-        outputSerializedData.writeString(str3);
-        String str4 = this.d;
-        if (str4 != null) {
-            str2 = str4;
-        }
-        outputSerializedData.writeString(str2);
-        outputSerializedData.writeInt32(this.e);
-        outputSerializedData.writeInt32(this.f39018f);
-        if (this.f39019i == null) {
-            outputSerializedData.writeInt32(1450380236);
+    public final void d() {
+        long j3;
+        AndroidUtilities.cancelRunOnUIThread(new j2(this, 0));
+        if (this.d) {
             return;
         }
-        outputSerializedData.writeInt32(953850003);
-        byte[] bArr = this.f39020j;
-        if (bArr != null) {
-            outputSerializedData.writeByteArray(bArr);
-            return;
-        }
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        if (Build.VERSION.SDK_INT >= 30) {
-            Bitmap bitmap = this.f39019i;
-            compressFormat = Bitmap.CompressFormat.WEBP_LOSSY;
-            bitmap.compress(compressFormat, 80, byteArrayOutputStream);
+        j2 j2Var = new j2(this, 0);
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            j3 = 1;
         } else {
-            this.f39019i.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
+            j3 = 1000;
         }
-        byte[] byteArray = byteArrayOutputStream.toByteArray();
-        this.f39020j = byteArray;
-        outputSerializedData.writeByteArray(byteArray);
-        try {
-            byteArrayOutputStream.close();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+        AndroidUtilities.runOnUIThread(j2Var, j3);
     }
 }

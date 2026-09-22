@@ -7,42 +7,42 @@ import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.wc;
 public final class f0 {
-    public final long f47413a;
-    public final TLRPC.Document f47414b;
-    public final long f47415c;
+    public final long f47075a;
+    public final TLRPC.Document f47076b;
+    public final long f47077c;
     public final int d;
     public final String e;
-    public i8 f47416f;
-    public int f47417g = -1;
+    public j8 f47078f;
+    public int f47079g = -1;
     public RadialGradient h;
-    public Paint f47418i;
-    public org.telegram.ui.Components.p5 f47419j;
-    public org.telegram.ui.Components.d6 f47420k;
-    public final RectF f47421l;
-    public final yc f47422m;
+    public Paint f47080i;
+    public org.telegram.ui.Components.o5 f47081j;
+    public org.telegram.ui.Components.c6 f47082k;
+    public final RectF f47083l;
+    public final wc f47084m;
 
     public f0(g0 g0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         long j3;
         new Matrix();
-        this.f47421l = new RectF();
-        this.f47422m = new yc(g0Var);
-        this.f47413a = tL_starGiftUnique.f18568id;
+        this.f47083l = new RectF();
+        this.f47084m = new wc(g0Var);
+        this.f47075a = tL_starGiftUnique.f18334id;
         TLRPC.Document document = tL_starGiftUnique.getDocument();
-        this.f47414b = document;
+        this.f47076b = document;
         if (document == null) {
             j3 = 0;
         } else {
-            j3 = document.f18349id;
+            j3 = document.f18115id;
         }
-        this.f47415c = j3;
+        this.f47077c = j3;
         this.d = ((TL_stars.starGiftAttributeBackdrop) u5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);
         this.e = tL_starGiftUnique.slug;
-        this.f47416f = new i8(1, 6);
+        this.f47078f = new j8(1, 6);
         float dp = AndroidUtilities.dp(36.0f);
         float f7 = (-dp) / 2.0f;
         float f10 = dp / 2.0f;
-        this.f47416f.f47590c.set(f7, f7, f10, f10);
+        this.f47078f.f47286c.set(f7, f7, f10, f10);
     }
 }

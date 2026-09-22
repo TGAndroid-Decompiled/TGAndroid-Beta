@@ -5,32 +5,32 @@ import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoipAudioManager;
 import org.telegram.ui.Components.kz;
 public final class k implements Runnable {
-    public final int f17815a;
-    public final boolean f17816b;
-    public final boolean f17817c;
+    public final int f17583a;
+    public final boolean f17584b;
+    public final boolean f17585c;
     public final Object d;
 
     public k(Object obj, boolean z10, boolean z11, int i10) {
-        this.f17815a = i10;
+        this.f17583a = i10;
         this.d = obj;
-        this.f17816b = z10;
-        this.f17817c = z11;
+        this.f17584b = z10;
+        this.f17585c = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f17815a) {
+        switch (this.f17583a) {
             case 0:
-                ((VideoPlayerHolderBase) this.d).lambda$setAudioEnabled$8(this.f17816b, this.f17817c);
+                ((VideoPlayerHolderBase) this.d).lambda$setAudioEnabled$8(this.f17584b, this.f17585c);
                 return;
             case 1:
-                NativeInstance.d((NativeInstance) this.d, this.f17816b, this.f17817c);
+                NativeInstance.d((NativeInstance) this.d, this.f17584b, this.f17585c);
                 return;
             case 2:
-                VoipAudioManager.b((Utilities.Callback2) this.d, this.f17816b, this.f17817c);
+                VoipAudioManager.b((Utilities.Callback2) this.d, this.f17584b, this.f17585c);
                 return;
             default:
-                ((kz) this.d).P(false, this.f17816b, this.f17817c);
+                ((kz) this.d).P(false, this.f17584b, this.f17585c);
                 return;
         }
     }

@@ -1,63 +1,67 @@
 package yh;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class f7 extends FrameLayout {
-    public final org.telegram.ui.Components.o6 f47446a;
-    public final ImageView f47447b;
-    public int f47448c;
-    public boolean d;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.w51;
+public final class f7 extends h51 {
+    public static final int f47109a = 0;
 
-    public f7(Context context) {
-        super(context);
-        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, false, false);
-        this.f47446a = o6Var;
-        o6Var.getDrawable().o(true, true, false);
-        o6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        addView(o6Var, w7.y5.i(-1.0f, -1.0f, 8388627, 22.0f, 0.0f, 58.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f47447b = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.arrow_more);
-        addView(imageView, w7.y5.i(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 17.0f, 0.0f));
+    static {
+        h51.setup(new h51());
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f47448c = Integer.MAX_VALUE;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
+    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
+        boolean z11;
         int i10;
-        super.onDraw(canvas);
-        if (this.d) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(22.0f);
-            }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(22.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawRect(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f19231k0);
+        g7 g7Var = (g7) view;
+        org.telegram.ui.Components.n6 n6Var = g7Var.f47169a;
+        ImageView imageView = g7Var.f47170b;
+        int i11 = g7Var.f47171c;
+        int i12 = i51Var.d;
+        if (i11 == i12) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
+        g7Var.f47171c = i12;
+        n6Var.c(i51Var.f24900l, z11, true);
+        if (i51Var.f24905q) {
+            i10 = org.telegram.ui.ActionBar.i6.f19035o6;
+        } else {
+            i10 = org.telegram.ui.ActionBar.i6.G6;
+        }
+        int w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
+        n6Var.setTextColor(w02);
+        imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+        float f7 = 180.0f;
+        if (z11) {
+            ViewPropertyAnimator animate = imageView.animate();
+            if (i51Var.f24895f) {
+                f7 = 0.0f;
+            }
+            animate.rotation(f7).setDuration(340L).setInterpolator(qr.h);
+        } else {
+            if (i51Var.f24895f) {
+                f7 = 0.0f;
+            }
+            imageView.setRotation(f7);
+        }
+        g7Var.d = z10;
+        g7Var.setWillNotDraw(!z10);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new g7(context);
     }
 }

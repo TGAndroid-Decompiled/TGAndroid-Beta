@@ -8,17 +8,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 public final class t extends c {
-    public RandomAccessFile f9407a;
-    public Uri f9408b;
-    public long f9409c;
+    public RandomAccessFile f9404a;
+    public Uri f9405b;
+    public long f9406c;
     public boolean d;
 
     @Override
     public final void close() {
-        this.f9408b = null;
+        this.f9405b = null;
         try {
             try {
-                RandomAccessFile randomAccessFile = this.f9407a;
+                RandomAccessFile randomAccessFile = this.f9404a;
                 if (randomAccessFile != null) {
                     randomAccessFile.close();
                 }
@@ -26,7 +26,7 @@ public final class t extends c {
                 throw new j(e, 2000);
             }
         } finally {
-            this.f9407a = null;
+            this.f9404a = null;
             if (this.d) {
                 this.d = false;
                 transferEnded();
@@ -36,32 +36,32 @@ public final class t extends c {
 
     @Override
     public final Uri getUri() {
-        return this.f9408b;
+        return this.f9405b;
     }
 
     @Override
     public final long open(m mVar) {
-        Uri uri = mVar.f9380a;
+        Uri uri = mVar.f9377a;
         long j3 = mVar.e;
-        this.f9408b = uri;
+        this.f9405b = uri;
         transferInitializing(mVar);
         int i10 = 2006;
         try {
             String path = uri.getPath();
             path.getClass();
             RandomAccessFile randomAccessFile = new RandomAccessFile(path, "r");
-            this.f9407a = randomAccessFile;
+            this.f9404a = randomAccessFile;
             try {
                 randomAccessFile.seek(j3);
-                long j10 = mVar.f9383f;
+                long j10 = mVar.f9380f;
                 if (j10 == -1) {
-                    j10 = this.f9407a.length() - j3;
+                    j10 = this.f9404a.length() - j3;
                 }
-                this.f9409c = j10;
+                this.f9406c = j10;
                 if (j10 >= 0) {
                     this.d = true;
                     transferStarted(mVar);
-                    return this.f9409c;
+                    return this.f9406c;
                 }
                 throw new j(null, null, 2008);
             } catch (IOException e) {
@@ -74,9 +74,9 @@ public final class t extends c {
             String path2 = uri.getPath();
             String query = uri.getQuery();
             String fragment = uri.getFragment();
-            StringBuilder w10 = a4.a.w("uri has query and/or fragment, which are not supported. Did you call Uri.parse() on a string containing '?' or '#'? Use Uri.fromFile(new File(path)) to avoid this. path=", path2, ",query=", query, ",fragment=");
-            w10.append(fragment);
-            throw new j(w10.toString(), e7, 1004);
+            StringBuilder x10 = a4.a.x("uri has query and/or fragment, which are not supported. Did you call Uri.parse() on a string containing '?' or '#'? Use Uri.fromFile(new File(path)) to avoid this. path=", path2, ",query=", query, ",fragment=");
+            x10.append(fragment);
+            throw new j(x10.toString(), e7, 1004);
         } catch (SecurityException e10) {
             throw new j(e10, 2006);
         } catch (RuntimeException e11) {
@@ -89,16 +89,16 @@ public final class t extends c {
         if (i11 == 0) {
             return 0;
         }
-        long j3 = this.f9409c;
+        long j3 = this.f9406c;
         if (j3 == 0) {
             return -1;
         }
         try {
-            RandomAccessFile randomAccessFile = this.f9407a;
-            String str = e2.d0.f7887a;
+            RandomAccessFile randomAccessFile = this.f9404a;
+            String str = e2.d0.f7885a;
             int read = randomAccessFile.read(bArr, i10, (int) Math.min(j3, i11));
             if (read > 0) {
-                this.f9409c -= read;
+                this.f9406c -= read;
                 bytesTransferred(read);
             }
             return read;

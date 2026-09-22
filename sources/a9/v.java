@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 public abstract class v {
-    public static final int f351a = 0;
+    public static final int f354a = 0;
 
     static {
         v.class.getClassLoader();
@@ -24,6 +24,6 @@ public abstract class v {
         if (dataAvail <= 0) {
             return;
         }
-        throw new BadParcelableException(hg.k0.h(dataAvail, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(hg.c.i(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 }

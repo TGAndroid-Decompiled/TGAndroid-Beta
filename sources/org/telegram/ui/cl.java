@@ -1,68 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class cl extends org.telegram.ui.Components.sk0 {
-    public final int[] l1;
-    public ValueAnimator f32799m1;
-    public boolean f32800n1;
-    public final zn f32801o1;
+import android.animation.LayoutTransition;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+public final class cl implements LayoutTransition.TransitionListener {
+    public bl f32828a;
+    public int f32829b;
+    public final org.telegram.ui.ActionBar.z f32830c;
+    public final bo d;
 
-    public cl(zn znVar, zn znVar2, Activity activity, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(3, i10, activity, znVar2, f6Var);
-        this.f32801o1 = znVar;
-        this.l1 = new int[2];
-        this.f32800n1 = true;
+    public cl(bo boVar, org.telegram.ui.ActionBar.z zVar) {
+        this.d = boVar;
+        this.f32830c = zVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        org.telegram.ui.ActionBar.k kVar;
-        int i14;
-        super.onLayout(z10, i10, i11, i12, i13);
-        kVar = ((org.telegram.ui.ActionBar.n2) this.f32801o1).actionBar;
-        org.telegram.ui.ActionBar.v0 k10 = kVar.j(null).k(28);
-        if (k10 != null) {
-            int[] iArr = this.l1;
-            getLocationInWindow(iArr);
-            float x10 = getX();
-            float width = getWidth() + x10;
-            k10.getLocationInWindow(iArr);
-            float width2 = (k10.getWidth() / 2.0f) + iArr[0];
-            int dp = AndroidUtilities.dp(20.0f);
-            boolean z11 = LocaleController.isRTL;
-            if (z11) {
-                i14 = -1;
-            } else {
-                i14 = 1;
-            }
-            float f7 = width2 + (dp * i14);
-            if (z11) {
-                s(f7 - x10, !this.f32800n1);
-            } else {
-                s(f7 - width, !this.f32800n1);
-            }
-            this.f32800n1 = false;
+    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
+        int i11 = this.f32829b - 1;
+        this.f32829b = i11;
+        if (i11 == 0 && this.f32828a != null) {
+            this.f32830c.getViewTreeObserver().removeOnPreDrawListener(this.f32828a);
+            this.f32828a = null;
         }
     }
 
-    public final void s(float f7, boolean z10) {
-        ValueAnimator valueAnimator = this.f32799m1;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f32799m1 = null;
+    @Override
+    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
+        if (this.f32829b == 0 && this.f32828a == null) {
+            this.f32828a = new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public final boolean onPreDraw() {
+                    org.telegram.ui.ActionBar.k kVar;
+                    kVar = ((org.telegram.ui.ActionBar.n2) cl.this.d).actionBar;
+                    kVar.invalidate();
+                    return true;
+                }
+            };
+            this.f32830c.getViewTreeObserver().addOnPreDrawListener(this.f32828a);
         }
-        if (!z10) {
-            setBubbleOffset(f7);
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.U0, f7);
-        this.f32799m1 = ofFloat;
-        ofFloat.addUpdateListener(new b3(this, 5));
-        this.f32799m1.setInterpolator(org.telegram.ui.Components.qr.h);
-        this.f32799m1.setDuration(420L);
-        this.f32799m1.start();
+        this.f32829b++;
     }
 }

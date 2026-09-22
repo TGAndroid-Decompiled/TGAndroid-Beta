@@ -10,7 +10,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.dj;
-import org.telegram.ui.mh1;
+import org.telegram.ui.lh1;
 public final class z8 implements Runnable {
     public final int f1789a;
     public final Object f1790b;
@@ -38,17 +38,17 @@ public final class z8 implements Runnable {
         c5.h hVar = (c5.h) this.f1792f;
         Activity activity = (Activity) this.h;
         if (list.isEmpty()) {
-            AndroidUtilities.runOnUIThread(new yh.k4(m0Var, 0));
+            AndroidUtilities.runOnUIThread(new yh.l4(m0Var, 0));
             return;
         }
-        c5.n nVar = (c5.n) list.get(0);
-        if (nVar.a() == null) {
-            AndroidUtilities.runOnUIThread(new yh.k4(m0Var, 1));
+        c5.o oVar = (c5.o) list.get(0);
+        if (oVar.a() == null) {
+            AndroidUtilities.runOnUIThread(new yh.l4(m0Var, 1));
             return;
         }
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(u5Var.f48132a).sendRequest(tL_payments_canPurchaseStore, new mh1(nVar, hVar, m0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
+        ConnectionsManager.getInstance(u5Var.f47801a).sendRequest(tL_payments_canPurchaseStore, new lh1(oVar, hVar, m0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
     }
 
     private final void b() {
@@ -97,13 +97,13 @@ public final class z8 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: ai.z8.run():void");
     }
 
-    public z8(org.telegram.ui.vb vbVar, TLRPC.ChannelParticipant channelParticipant, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, org.telegram.ui.sa saVar) {
+    public z8(org.telegram.ui.ub ubVar, TLRPC.ChannelParticipant channelParticipant, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, org.telegram.ui.ra raVar) {
         this.f1789a = 5;
-        this.f1790b = vbVar;
+        this.f1790b = ubVar;
         this.f1792f = channelParticipant;
         this.f1791c = arrayList;
         this.d = arrayList2;
         this.e = arrayList3;
-        this.h = saVar;
+        this.h = raVar;
     }
 }

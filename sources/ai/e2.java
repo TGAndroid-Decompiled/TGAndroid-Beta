@@ -10,11 +10,11 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
+import org.telegram.ui.Components.eg0;
 import org.telegram.ui.Components.mq;
-import org.telegram.ui.Components.rg0;
 import org.telegram.ui.Components.ur;
 import org.telegram.ui.Components.vu;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -39,7 +39,7 @@ public final class e2 implements View.OnClickListener {
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 3:
-                int i11 = ei.n.f8494n;
+                int i11 = ei.n.f8492n;
                 return;
             case 4:
                 return;
@@ -68,35 +68,35 @@ public final class e2 implements View.OnClickListener {
                 }
                 return;
             case 9:
-                int i14 = mq.f26515e0;
+                int i14 = mq.f26212e0;
                 return;
             case 10:
-                int i15 = ur.f28883s;
+                int i15 = ur.f28488s;
                 return;
             case 11:
                 float[] fArr = FragmentContextView.O0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 12:
-                rg0 rg0Var = rg0.f27960p0;
-                vu vuVar = rg0Var.U;
+                eg0 eg0Var = eg0.f23635p0;
+                vu vuVar = eg0Var.U;
                 if (vuVar != null) {
-                    vuVar.G();
+                    vuVar.H();
                 } else {
-                    PhotoViewer photoViewer = rg0Var.V;
+                    PhotoViewer photoViewer = eg0Var.V;
                     if (photoViewer != null) {
                         photoViewer.P0();
                         MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                rg0.j(false);
+                eg0.j(false);
                 return;
             case 13:
                 org.telegram.ui.Components.voip.j1.j();
                 return;
             case 14:
-                org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) view;
-                a2Var.c(!a2Var.b(), true);
+                org.telegram.ui.Cells.z1 z1Var = (org.telegram.ui.Cells.z1) view;
+                z1Var.c(!z1Var.b(), true);
                 return;
             case 15:
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -108,10 +108,10 @@ public final class e2 implements View.OnClickListener {
                     return;
                 }
             case 16:
-                tg.m1.e0(0, null);
+                tg.n1.e0(0, null);
                 return;
             case 17:
-                ArrayList arrayList = ExternalActionActivity.f31094x;
+                ArrayList arrayList = ExternalActionActivity.f30786x;
                 return;
             case 18:
                 return;
@@ -143,10 +143,10 @@ public final class e2 implements View.OnClickListener {
                 int i16 = xh.m.A0;
                 return;
             case 25:
-                zc[] zcVarArr = xh.v.f46469p0;
+                xc[] xcVarArr = xh.v.f46157p0;
                 return;
             case 26:
-                int i17 = xh.c0.f46135f0;
+                int i17 = xh.c0.f45809f0;
                 return;
             case 27:
                 int i18 = yh.s0.D0;

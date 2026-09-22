@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.i51;
 public final class f3 implements e2.h {
     public final int f787a;
     public final Object f788b;
@@ -75,23 +75,23 @@ public final class f3 implements e2.h {
             case 3:
                 ci.u4 u4Var = (ci.u4) this.f788b;
                 View view2 = (View) obj;
-                ci.p4 p4Var = u4Var.f5610b;
+                ci.p4 p4Var = u4Var.f5608b;
                 if (view2 instanceof ci.t4) {
                     p4Var.getClass();
-                    int S = RecyclerView.S(view2);
-                    y51 G = p4Var.Y2.G(S);
+                    int R = RecyclerView.R(view2);
+                    i51 G = p4Var.Y2.G(R);
                     if (G != null) {
                         ci.t4 t4Var = (ci.t4) view2;
-                        t4Var.setPosition(u4Var.b(S));
-                        if (u4Var.f5612f == G.d) {
+                        t4Var.setPosition(u4Var.b(R));
+                        if (u4Var.f5610f == G.d) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         t4Var.b(z10, true);
                         boolean contains = u4Var.e.contains(Integer.valueOf(G.d));
-                        if (t4Var.f5560f != contains) {
-                            t4Var.f5560f = contains;
+                        if (t4Var.f5558f != contains) {
+                            t4Var.f5558f = contains;
                             t4Var.invalidate();
                         }
                         view2.setPressed(false);
@@ -104,9 +104,9 @@ public final class f3 implements e2.h {
                 ci.p4 p4Var2 = (ci.p4) this.f788b;
                 View view3 = (View) obj;
                 if (view3 instanceof ci.t4) {
-                    ci.fb fbVar = p4Var2.f5304f3;
-                    fbVar.f5610b.getClass();
-                    ((ci.t4) view3).setPosition(fbVar.b(RecyclerView.S(view3)));
+                    ci.fb fbVar = p4Var2.f5302f3;
+                    fbVar.f5608b.getClass();
+                    ((ci.t4) view3).setPosition(fbVar.b(RecyclerView.R(view3)));
                     view3.setPressed(false);
                     return;
                 }
@@ -115,27 +115,27 @@ public final class f3 implements e2.h {
                 ci.g8.P((ci.g8) this.f788b, (Long) obj);
                 return;
             case 6:
-                ((m4.j1) obj).f((b2.v0) this.f788b);
+                ((m4.k1) obj).f((b2.v0) this.f788b);
                 return;
             case 7:
-                ((m4.j1) obj).n((Surface) this.f788b);
+                ((m4.k1) obj).n((Surface) this.f788b);
                 return;
             case 8:
-                ((m4.j1) obj).C((b2.n0) this.f788b);
+                ((m4.k1) obj).C((b2.n0) this.f788b);
                 return;
             case 9:
-                z3.h hVar = (z3.h) this.f788b;
-                z3.a aVar = (z3.a) obj;
-                z3.g gVar = new z3.g(aVar.f48401b, ob.a.C2(aVar.f48400a, aVar.f48402c));
-                hVar.f48411c.add(gVar);
-                long j3 = hVar.f48415j;
-                if (j3 == -9223372036854775807L || aVar.d >= j3) {
-                    hVar.b(gVar);
+                z3.i iVar = (z3.i) this.f788b;
+                z3.b bVar = (z3.b) obj;
+                z3.h hVar = new z3.h(bVar.f48074b, ob.a.C2(bVar.f48073a, bVar.f48075c));
+                iVar.f48084c.add(hVar);
+                long j3 = iVar.f48088j;
+                if (j3 == -9223372036854775807L || bVar.d >= j3) {
+                    iVar.b(hVar);
                     return;
                 }
                 return;
             case 10:
-                ((e9.f0) this.f788b).b((z3.a) obj);
+                ((e9.f0) this.f788b).b((z3.b) obj);
                 return;
             default:
                 zg.q qVar = (zg.q) this.f788b;

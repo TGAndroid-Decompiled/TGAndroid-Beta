@@ -13,19 +13,19 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import org.xmlpull.v1.XmlPullParser;
-import v7.s8;
+import v7.r8;
 public final class d extends g implements Animatable {
-    public final Context f45591c;
-    public final ah.d d = new ah.d(this, 9);
-    public final b f45590b = new Drawable.ConstantState();
+    public final Context f45270c;
+    public final i.f d = new i.f(this, 8);
+    public final b f45269b = new Drawable.ConstantState();
 
     public d(Context context) {
-        this.f45591c = context;
+        this.f45270c = context;
     }
 
     @Override
     public final void applyTheme(Resources.Theme theme) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.applyTheme(theme);
         }
@@ -33,7 +33,7 @@ public final class d extends g implements Animatable {
 
     @Override
     public final boolean canApplyTheme() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.canApplyTheme();
         }
@@ -42,80 +42,80 @@ public final class d extends g implements Animatable {
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.draw(canvas);
             return;
         }
-        b bVar = this.f45590b;
-        bVar.f45586a.draw(canvas);
-        if (bVar.f45587b.isStarted()) {
+        b bVar = this.f45269b;
+        bVar.f45265a.draw(canvas);
+        if (bVar.f45266b.isStarted()) {
             invalidateSelf();
         }
     }
 
     @Override
     public final int getAlpha() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.getAlpha();
         }
-        return this.f45590b.f45586a.getAlpha();
+        return this.f45269b.f45265a.getAlpha();
     }
 
     @Override
     public final int getChangingConfigurations() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.getChangingConfigurations();
         }
         int changingConfigurations = super.getChangingConfigurations();
-        this.f45590b.getClass();
+        this.f45269b.getClass();
         return changingConfigurations;
     }
 
     @Override
     public final ColorFilter getColorFilter() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.getColorFilter();
         }
-        return this.f45590b.f45586a.getColorFilter();
+        return this.f45269b.f45265a.getColorFilter();
     }
 
     @Override
     public final Drawable.ConstantState getConstantState() {
-        if (this.f45594a != null && Build.VERSION.SDK_INT >= 24) {
-            return new c(this.f45594a.getConstantState());
+        if (this.f45273a != null && Build.VERSION.SDK_INT >= 24) {
+            return new c(this.f45273a.getConstantState());
         }
         return null;
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.getIntrinsicHeight();
         }
-        return this.f45590b.f45586a.getIntrinsicHeight();
+        return this.f45269b.f45265a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.getIntrinsicWidth();
         }
-        return this.f45590b.f45586a.getIntrinsicWidth();
+        return this.f45269b.f45265a.getIntrinsicWidth();
     }
 
     @Override
     public final int getOpacity() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.getOpacity();
         }
-        return this.f45590b.f45586a.getOpacity();
+        return this.f45269b.f45265a.getOpacity();
     }
 
     @Override
@@ -125,34 +125,34 @@ public final class d extends g implements Animatable {
 
     @Override
     public final boolean isAutoMirrored() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.isAutoMirrored();
         }
-        return this.f45590b.f45586a.isAutoMirrored();
+        return this.f45269b.f45265a.isAutoMirrored();
     }
 
     @Override
     public final boolean isRunning() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return ((AnimatedVectorDrawable) drawable).isRunning();
         }
-        return this.f45590b.f45587b.isRunning();
+        return this.f45269b.f45266b.isRunning();
     }
 
     @Override
     public final boolean isStateful() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.isStateful();
         }
-        return this.f45590b.f45586a.isStateful();
+        return this.f45269b.f45265a.isStateful();
     }
 
     @Override
     public final Drawable mutate() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.mutate();
         }
@@ -161,124 +161,124 @@ public final class d extends g implements Animatable {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.setBounds(rect);
         } else {
-            this.f45590b.f45586a.setBounds(rect);
+            this.f45269b.f45265a.setBounds(rect);
         }
     }
 
     @Override
     public final boolean onLevelChange(int i10) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.setLevel(i10);
         }
-        return this.f45590b.f45586a.setLevel(i10);
+        return this.f45269b.f45265a.setLevel(i10);
     }
 
     @Override
     public final boolean onStateChange(int[] iArr) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.setState(iArr);
         }
-        return this.f45590b.f45586a.setState(iArr);
+        return this.f45269b.f45265a.setState(iArr);
     }
 
     @Override
     public final void setAlpha(int i10) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.setAlpha(i10);
         } else {
-            this.f45590b.f45586a.setAlpha(i10);
+            this.f45269b.f45265a.setAlpha(i10);
         }
     }
 
     @Override
     public final void setAutoMirrored(boolean z10) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.setAutoMirrored(z10);
         } else {
-            this.f45590b.f45586a.setAutoMirrored(z10);
+            this.f45269b.f45265a.setAutoMirrored(z10);
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);
         } else {
-            this.f45590b.f45586a.setColorFilter(colorFilter);
+            this.f45269b.f45265a.setColorFilter(colorFilter);
         }
     }
 
     @Override
     public final void setTint(int i10) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
-            s8.c(i10, drawable);
+            r8.c(i10, drawable);
         } else {
-            this.f45590b.f45586a.setTint(i10);
+            this.f45269b.f45265a.setTint(i10);
         }
     }
 
     @Override
     public final void setTintList(ColorStateList colorStateList) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.setTintList(colorStateList);
         } else {
-            this.f45590b.f45586a.setTintList(colorStateList);
+            this.f45269b.f45265a.setTintList(colorStateList);
         }
     }
 
     @Override
     public final void setTintMode(PorterDuff.Mode mode) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             drawable.setTintMode(mode);
         } else {
-            this.f45590b.f45586a.setTintMode(mode);
+            this.f45269b.f45265a.setTintMode(mode);
         }
     }
 
     @Override
     public final boolean setVisible(boolean z10, boolean z11) {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             return drawable.setVisible(z10, z11);
         }
-        this.f45590b.f45586a.setVisible(z10, z11);
+        this.f45269b.f45265a.setVisible(z10, z11);
         return super.setVisible(z10, z11);
     }
 
     @Override
     public final void start() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             ((AnimatedVectorDrawable) drawable).start();
             return;
         }
-        b bVar = this.f45590b;
-        if (bVar.f45587b.isStarted()) {
+        b bVar = this.f45269b;
+        if (bVar.f45266b.isStarted()) {
             return;
         }
-        bVar.f45587b.start();
+        bVar.f45266b.start();
         invalidateSelf();
     }
 
     @Override
     public final void stop() {
-        Drawable drawable = this.f45594a;
+        Drawable drawable = this.f45273a;
         if (drawable != null) {
             ((AnimatedVectorDrawable) drawable).stop();
         } else {
-            this.f45590b.f45587b.end();
+            this.f45269b.f45266b.end();
         }
     }
 

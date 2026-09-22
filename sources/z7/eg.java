@@ -7,8 +7,8 @@ public final class eg extends a9.a implements gg {
     public final dg W0(x6.b bVar, jg jgVar) {
         dg aVar;
         Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.f313c);
-        int i10 = t.f48931a;
+        obtain.writeInterfaceToken(this.f316c);
+        int i10 = t.f48604a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         jgVar.writeToParcel(obtain, 0);

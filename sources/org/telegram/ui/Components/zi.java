@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class zi implements Utilities.Callback5, Utilities.Callback5Return {
-    public final gj f30893a;
+    public final gj f30595a;
 
     public zi(gj gjVar) {
-        this.f30893a = gjVar;
+        this.f30595a = gjVar;
     }
 
     @Override
@@ -14,7 +14,7 @@ public final class zi implements Utilities.Callback5, Utilities.Callback5Return 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        this.f30893a.M((y51) obj, (View) obj2);
+        this.f30595a.M((i51) obj, (View) obj2);
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class zi implements Utilities.Callback5, Utilities.Callback5Return 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        this.f30893a.M((y51) obj, (View) obj2);
+        this.f30595a.M((i51) obj, (View) obj2);
         return Boolean.TRUE;
     }
 }

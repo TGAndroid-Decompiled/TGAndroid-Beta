@@ -12,16 +12,16 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.wc;
 import org.telegram.ui.LaunchActivity;
 public class ca {
     public int A;
     public boolean D;
     public final boolean E;
     public float G;
-    public yc H;
-    public org.telegram.ui.ActionBar.f6 J;
+    public wc H;
+    public org.telegram.ui.ActionBar.e6 J;
     public float K;
     public boolean L;
     public float M;
@@ -61,9 +61,9 @@ public class ca {
     public final RectF F = new RectF();
     public boolean I = false;
 
-    public ca(org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+    public ca(org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
         this.E = z10;
-        this.J = f6Var;
+        this.J = e6Var;
     }
 
     public final boolean a(MotionEvent motionEvent, View view) {
@@ -96,11 +96,11 @@ public class ca {
                     z10 = z11;
                 }
                 if (this.f666x != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z10) {
-                    yc ycVar = this.H;
-                    if (ycVar == null) {
-                        this.H = new yc(view, 1.5f, 5.0f);
+                    wc wcVar = this.H;
+                    if (wcVar == null) {
+                        this.H = new wc(view, 1.5f, 5.0f);
                     } else {
-                        ycVar.f30627a = view;
+                        wcVar.f29685a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -122,10 +122,10 @@ public class ca {
         }
         if (motionEvent.getAction() == 2 && this.N) {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
-                yc ycVar2 = this.H;
-                if (ycVar2 != null) {
-                    ycVar2.f30627a = view;
-                    ycVar2.c(false);
+                wc wcVar2 = this.H;
+                if (wcVar2 != null) {
+                    wcVar2.f29685a = view;
+                    wcVar2.c(false);
                 }
                 ba baVar3 = this.Q;
                 if (baVar3 != null) {
@@ -135,10 +135,10 @@ public class ca {
                 this.N = false;
             }
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            yc ycVar3 = this.H;
-            if (ycVar3 != null) {
-                ycVar3.f30627a = view;
-                ycVar3.c(false);
+            wc wcVar3 = this.H;
+            if (wcVar3 != null) {
+                wcVar3.f29685a = view;
+                wcVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f666x)) {
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -178,11 +178,11 @@ public class ca {
     }
 
     public final float b() {
-        yc ycVar = this.H;
-        if (ycVar == null) {
+        wc wcVar = this.H;
+        if (wcVar == null) {
             return 1.0f;
         }
-        return ycVar.a(0.08f);
+        return wcVar.a(0.08f);
     }
 
     public boolean c(TLRPC.Chat chat, TLRPC.User user) {
@@ -200,7 +200,7 @@ public class ca {
             R.getOrCreateStoryViewer().getClass();
             ViewParent parent = this.R.getParent();
             if (parent instanceof RecyclerView) {
-                u9Var = u9.a((yl0) parent);
+                u9Var = u9.a((ll0) parent);
             } else {
                 u9Var = null;
             }

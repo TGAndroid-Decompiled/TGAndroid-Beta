@@ -1,8 +1,8 @@
 package b5;
 public abstract class m {
-    public static final b f3423a;
-    public static final b f3424b;
-    public static final b f3425c;
+    public static final b f3421a;
+    public static final b f3422b;
+    public static final b f3423c;
     public static final b d;
     public static final b e;
 
@@ -35,7 +35,7 @@ public abstract class m {
         new b(4, "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL", "SAFE_BROWSING_RESPONSE_SHOW_INTERSTITIAL");
         new b(0, "WEB_MESSAGE_PORT_POST_MESSAGE", "WEB_MESSAGE_PORT_POST_MESSAGE");
         new b(0, "WEB_MESSAGE_PORT_CLOSE", "WEB_MESSAGE_PORT_CLOSE");
-        f3423a = new b(2, "WEB_MESSAGE_ARRAY_BUFFER", "WEB_MESSAGE_ARRAY_BUFFER");
+        f3421a = new b(2, "WEB_MESSAGE_ARRAY_BUFFER", "WEB_MESSAGE_ARRAY_BUFFER");
         new b(0, "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK", "WEB_MESSAGE_PORT_SET_MESSAGE_CALLBACK");
         new b(0, "CREATE_WEB_MESSAGE_CHANNEL", "CREATE_WEB_MESSAGE_CHANNEL");
         new b(0, "POST_WEB_MESSAGE", "POST_WEB_MESSAGE");
@@ -51,10 +51,10 @@ public abstract class m {
         new b(6, "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE", "WEB_VIEW_RENDERER_CLIENT_BASIC_USAGE");
         new k();
         new b(2, "PROXY_OVERRIDE", "PROXY_OVERRIDE:3");
-        f3424b = new b(2, "MULTI_PROCESS", "MULTI_PROCESS_QUERY");
+        f3422b = new b(2, "MULTI_PROCESS", "MULTI_PROCESS_QUERY");
         new b(6, "FORCE_DARK", "FORCE_DARK");
         new b(2, "FORCE_DARK_STRATEGY", "FORCE_DARK_BEHAVIOR");
-        f3425c = new b(2, "WEB_MESSAGE_LISTENER", "WEB_MESSAGE_LISTENER");
+        f3423c = new b(2, "WEB_MESSAGE_LISTENER", "WEB_MESSAGE_LISTENER");
         d = new b(2, "DOCUMENT_START_SCRIPT", "DOCUMENT_START_SCRIPT:1");
         new b(2, "PROXY_OVERRIDE_REVERSE_BYPASS", "PROXY_OVERRIDE_REVERSE_BYPASS");
         new b(2, "GET_VARIATIONS_HEADER", "GET_VARIATIONS_HEADER");

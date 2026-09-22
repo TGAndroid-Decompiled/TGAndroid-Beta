@@ -27,9 +27,9 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.g10;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.n70;
 import org.telegram.ui.IUpdateLayout;
-import org.telegram.ui.nb0;
+import org.telegram.ui.lb0;
 public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -503,7 +503,7 @@ public class ApplicationLoader extends Application {
             StringBuilder sb2 = new StringBuilder("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
-            hg.k0.u(sb2, elapsedRealtime);
+            hg.c.w(sb2, elapsedRealtime);
             try {
                 PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
                 int i11 = packageInfo.versionCode % 10;
@@ -552,16 +552,16 @@ public class ApplicationLoader extends Application {
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
             AndroidUtilities.runOnUIThread(new v1(6));
-            nb0[] values = nb0.values();
+            lb0[] values = lb0.values();
             int length = values.length;
             while (true) {
                 if (i10 < length) {
-                    if (w7.f6.a(values[i10])) {
+                    if (w7.e6.a(values[i10])) {
                         break;
                     }
                     i10++;
                 } else {
-                    w7.f6.b(nb0.h);
+                    w7.e6.b(lb0.h);
                     break;
                 }
             }
@@ -673,7 +673,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(y70 y70Var) {
+    public void addItemOptions(n70 n70Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {
