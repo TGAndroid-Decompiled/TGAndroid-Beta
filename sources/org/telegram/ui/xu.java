@@ -3,11 +3,11 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class xu extends org.telegram.ui.Components.o81 {
-    public final av f39735a;
+public final class xu extends org.telegram.ui.Components.q81 {
+    public final av f39755a;
 
     public xu(av avVar) {
-        this.f39735a = avVar;
+        this.f39755a = avVar;
     }
 
     @Override
@@ -15,13 +15,13 @@ public final class xu extends org.telegram.ui.Components.o81 {
         boolean z10;
         wu wuVar = (wu) view;
         wuVar.Y2 = i10;
-        wuVar.f39238f3.clear();
+        wuVar.f39262f3.clear();
         if (wuVar.x1(6) + wuVar.z1(6) <= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        wuVar.f39244m3 = z10;
+        wuVar.f39268m3 = z10;
         wuVar.A1();
         wuVar.B1(false);
         wuVar.v0(0);
@@ -29,7 +29,7 @@ public final class xu extends org.telegram.ui.Components.o81 {
 
     @Override
     public final View d(int i10) {
-        av avVar = this.f39735a;
+        av avVar = this.f39755a;
         wu wuVar = new wu(avVar, avVar.getParentActivity());
         avVar.e.add(wuVar);
         return wuVar;

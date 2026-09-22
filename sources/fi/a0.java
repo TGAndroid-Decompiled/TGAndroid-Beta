@@ -4,7 +4,7 @@ import android.view.View;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.lo0;
+import org.telegram.ui.Components.no0;
 import org.telegram.ui.p10;
 import org.telegram.ui.w10;
 public final class a0 implements w10 {
@@ -25,7 +25,7 @@ public final class a0 implements w10 {
         k0 k0Var = this.f9085a;
         n2 n2Var = k0Var.f9130s;
         i10 = ((f3) k0Var).currentAccount;
-        n2Var.presentFragment(lo0.L(messageObject, i10));
+        n2Var.presentFragment(no0.L(messageObject, i10));
         k0Var.dismiss();
     }
 

@@ -2,44 +2,51 @@ package ki;
 
 import android.hardware.camera2.CameraDevice;
 public final class d extends CameraDevice.StateCallback {
-    public final h f13666a;
+    public final h f13664a;
 
     public d(h hVar) {
-        this.f13666a = hVar;
+        this.f13664a = hVar;
     }
 
     @Override
     public final void onClosed(CameraDevice cameraDevice) {
-        h hVar = this.f13666a;
-        if (hVar.O) {
-            hVar.O = false;
-            if (hVar.M) {
-                hVar.q();
+        h hVar = this.f13664a;
+        if (hVar.T) {
+            hVar.T = false;
+            if (hVar.R) {
+                hVar.s();
+            }
+        } else if (hVar.U) {
+            hVar.U = false;
+            if (hVar.R) {
+                hVar.s();
             }
         }
     }
 
     @Override
     public final void onDisconnected(CameraDevice cameraDevice) {
-        h hVar = this.f13666a;
-        hVar.N = false;
-        k kVar = hVar.f13707j;
+        h hVar = this.f13664a;
+        hVar.S = false;
+        k kVar = hVar.f13704j;
         kVar.b("camera disconnected: id=" + cameraDevice.getId());
-        cameraDevice.close();
-        if (hVar.f13723x == cameraDevice) {
-            hVar.f13723x = null;
+        if (hVar.f13730x == cameraDevice) {
+            hVar.i();
+            hVar.f13730x = null;
         }
+        cameraDevice.close();
     }
 
     @Override
     public final void onError(CameraDevice cameraDevice, int i10) {
         String str;
-        h hVar = this.f13666a;
-        hVar.N = false;
-        cameraDevice.close();
-        if (hVar.f13723x == cameraDevice) {
-            hVar.f13723x = null;
+        h hVar = this.f13664a;
+        hVar.S = false;
+        if (hVar.f13730x == cameraDevice) {
+            hVar.i();
+            hVar.f13730x = null;
         }
+        cameraDevice.close();
         StringBuilder sb2 = new StringBuilder("Camera device error: ");
         if (i10 != 1) {
             if (i10 != 2) {
@@ -66,18 +73,18 @@ public final class d extends CameraDevice.StateCallback {
         sb2.append(" (");
         sb2.append(i10);
         sb2.append(")");
-        hVar.s(new IllegalStateException(sb2.toString()));
+        hVar.u(new IllegalStateException(sb2.toString()));
     }
 
     @Override
     public final void onOpened(CameraDevice cameraDevice) {
-        h hVar = this.f13666a;
-        hVar.N = false;
-        k kVar = hVar.f13707j;
-        kVar.b("camera opened: id=" + cameraDevice.getId() + ", elapsedMs=" + h.l(hVar.Y));
-        if (hVar.M && !hVar.O) {
-            hVar.f13723x = cameraDevice;
-            hVar.j();
+        h hVar = this.f13664a;
+        hVar.S = false;
+        k kVar = hVar.f13704j;
+        kVar.b("camera opened: id=" + cameraDevice.getId() + ", elapsedMs=" + h.n(hVar.f13696e0));
+        if (hVar.R && !hVar.T) {
+            hVar.f13730x = cameraDevice;
+            hVar.k();
             return;
         }
         cameraDevice.close();

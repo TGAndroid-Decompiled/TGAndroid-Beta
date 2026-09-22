@@ -10,12 +10,17 @@ public final class r1 implements b2 {
     }
 
     @Override
-    public final boolean F(int i10) {
+    public final a0.i D() {
+        return null;
+    }
+
+    @Override
+    public final boolean L(int i10) {
         return true;
     }
 
     @Override
-    public final void a(int i10) {
+    public final void f(int i10) {
         zs zsVar = this.f9908a;
         zsVar.l();
         if (i10 != 0) {
@@ -24,16 +29,11 @@ public final class r1 implements b2 {
     }
 
     @Override
-    public final a0.i l() {
+    public final a0.i y() {
         return null;
     }
 
     @Override
-    public final a0.i w() {
-        return null;
-    }
-
-    @Override
-    public final void G(ArrayList arrayList) {
+    public final void O(ArrayList arrayList) {
     }
 }

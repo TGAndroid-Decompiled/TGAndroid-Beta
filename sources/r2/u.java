@@ -10,5 +10,5 @@ public interface u {
 
     boolean n0();
 
-    boolean v(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
+    boolean x(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
 }

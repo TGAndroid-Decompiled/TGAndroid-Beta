@@ -14,7 +14,7 @@ public abstract class e {
         if (i10 != 1380533830 && i10 != 1380333108) {
             return false;
         }
-        pVar.a(0, 4, vVar.f7934a);
+        pVar.a(0, 4, vVar.f7933a);
         vVar.J(0);
         int j3 = vVar.j();
         if (j3 != 1463899717) {

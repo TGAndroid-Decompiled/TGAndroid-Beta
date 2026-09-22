@@ -10,34 +10,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pc;
 import org.telegram.ui.Components.qr;
 public final class u3 extends FrameLayout {
-    public final int f48105a = 0;
-    public Object f48106b;
-    public Object f48107c;
+    public final int f48126a = 0;
+    public Object f48127b;
+    public Object f48128c;
 
     public u3(Context context) {
         super(context);
     }
 
     public void b(int i10, CharSequence charSequence, boolean z10) {
-        ImageView imageView = (ImageView) this.f48106b;
+        ImageView imageView = (ImageView) this.f48127b;
         if (z10) {
             AndroidUtilities.updateImageViewImageAnimated(imageView, i10);
         } else {
             imageView.setImageResource(i10);
         }
-        ((TextView) this.f48107c).setText(charSequence);
+        ((TextView) this.f48128c).setText(charSequence);
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        switch (this.f48105a) {
+        switch (this.f48126a) {
             case 2:
                 if (keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 4) {
-                    zg.b0 b0Var = (zg.b0) this.f48107c;
-                    if (!b0Var.f49279k) {
+                    zg.c0 c0Var = (zg.c0) this.f48128c;
+                    if (!c0Var.f49310k) {
                         return true;
                     }
-                    b0Var.d();
+                    c0Var.d();
                     return true;
                 }
                 return super.dispatchKeyEvent(keyEvent);
@@ -48,7 +48,7 @@ public final class u3 extends FrameLayout {
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f48105a) {
+        switch (this.f48126a) {
             case 2:
                 return;
             default:
@@ -59,30 +59,30 @@ public final class u3 extends FrameLayout {
 
     @Override
     public boolean fitSystemWindows(Rect rect) {
-        switch (this.f48105a) {
+        switch (this.f48126a) {
             case 2:
-                zg.b0 b0Var = (zg.b0) this.f48107c;
-                float f7 = b0Var.f49289u;
+                zg.c0 c0Var = (zg.c0) this.f48128c;
+                float f7 = c0Var.f49320u;
                 float f10 = rect.bottom;
-                if (f7 != f10 && b0Var.v) {
-                    b0Var.f49289u = f10;
-                    u3 u3Var = b0Var.f49274c;
-                    zg.a0 a0Var = b0Var.f49272a;
-                    if (!b0Var.f49285q) {
-                        float f11 = b0Var.f49288t;
+                if (f7 != f10 && c0Var.v) {
+                    c0Var.f49320u = f10;
+                    u3 u3Var = c0Var.f49305c;
+                    zg.b0 b0Var = c0Var.f49303a;
+                    if (!c0Var.f49316q) {
+                        float f11 = c0Var.f49319t;
                         int dp = AndroidUtilities.dp(32.0f);
-                        int i10 = b0Var.f49292y;
+                        int i10 = c0Var.f49323y;
                         if (i10 == 1 || i10 == 2) {
                             dp = AndroidUtilities.dp(24.0f);
                         }
                         float f12 = dp;
-                        if (a0Var.getMeasuredHeight() + f11 > (u3Var.getMeasuredHeight() - b0Var.f49289u) - f12) {
-                            f11 = ((u3Var.getMeasuredHeight() - b0Var.f49289u) - a0Var.getMeasuredHeight()) - f12;
+                        if (b0Var.getMeasuredHeight() + f11 > (u3Var.getMeasuredHeight() - c0Var.f49320u) - f12) {
+                            f11 = ((u3Var.getMeasuredHeight() - c0Var.f49320u) - b0Var.getMeasuredHeight()) - f12;
                         }
                         if (f11 < 0.0f) {
                             f11 = 0.0f;
                         }
-                        a0Var.animate().translationY(f11).setDuration(250L).setUpdateListener(new zg.v(b0Var, 1)).setInterpolator(qr.f27642f).start();
+                        b0Var.animate().translationY(f11).setDuration(250L).setUpdateListener(new zg.w(c0Var, 1)).setInterpolator(qr.f27653f).start();
                     }
                 }
                 return super.fitSystemWindows(rect);
@@ -93,14 +93,14 @@ public final class u3 extends FrameLayout {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f48105a) {
+        switch (this.f48126a) {
             case 1:
                 super.onAttachedToWindow();
-                ((zg.n) this.f48106b).c();
+                ((zg.n) this.f48127b).c();
                 return;
             case 2:
                 super.onAttachedToWindow();
-                pc.a(this, (ai.w4) this.f48106b);
+                pc.a(this, (ai.w4) this.f48127b);
                 return;
             default:
                 super.onAttachedToWindow();
@@ -110,10 +110,10 @@ public final class u3 extends FrameLayout {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f48105a) {
+        switch (this.f48126a) {
             case 1:
                 super.onDetachedFromWindow();
-                ((zg.n) this.f48106b).d();
+                ((zg.n) this.f48127b).d();
                 return;
             case 2:
                 super.onDetachedFromWindow();
@@ -125,16 +125,16 @@ public final class u3 extends FrameLayout {
         }
     }
 
-    public u3(zg.b0 b0Var, Context context) {
+    public u3(zg.c0 c0Var, Context context) {
         super(context);
-        this.f48107c = b0Var;
-        this.f48106b = new ai.w4(this, 11);
+        this.f48128c = c0Var;
+        this.f48127b = new ai.w4(this, 11);
     }
 
     public u3(zg.q qVar, Context context) {
         super(context);
-        this.f48107c = qVar;
-        this.f48106b = new zg.n(this, this);
+        this.f48128c = qVar;
+        this.f48127b = new zg.n(this, this);
     }
 
     private final void a(boolean z10) {

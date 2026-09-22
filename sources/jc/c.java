@@ -1,7 +1,7 @@
 package jc;
 
 import b2.q0;
-import c5.b0;
+import c5.a0;
 import dc.h;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -14,7 +14,7 @@ public abstract class c {
     }
 
     public static boolean b(String str) {
-        byte[] bytes = str.getBytes(h.f7642b);
+        byte[] bytes = str.getBytes(h.f7641b);
         int length = bytes.length;
         if (length % 2 != 0) {
             return false;
@@ -30,11 +30,11 @@ public abstract class c {
 
     public static boolean c(int i10, hc.f fVar, hc.c cVar) {
         int i11 = fVar.d;
-        b0 b0Var = fVar.f10185c[cVar.ordinal()];
-        int i12 = b0Var.f3847b;
+        a0 a0Var = fVar.f10185c[cVar.ordinal()];
+        int i12 = a0Var.f3844b;
         int i13 = 0;
-        for (q0 q0Var : (q0[]) b0Var.f3848c) {
-            i13 += q0Var.f3203a;
+        for (q0 q0Var : (q0[]) a0Var.f3845c) {
+            i13 += q0Var.f3202a;
         }
         if (i11 - (i13 * i12) < (i10 + 7) / 8) {
             return false;

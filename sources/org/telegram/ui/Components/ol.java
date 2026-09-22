@@ -5,26 +5,26 @@ import java.util.Comparator;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
 public final class ol implements Comparator {
-    public final int f26970a;
-    public final Object f26971b;
+    public final int f27123a;
+    public final Object f27124b;
 
     public ol(Object obj, int i10) {
-        this.f26970a = i10;
-        this.f26971b = obj;
+        this.f27123a = i10;
+        this.f27124b = obj;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int indexOf;
         int indexOf2;
-        int i10 = this.f26970a;
-        Object obj3 = this.f26971b;
+        int i10 = this.f27123a;
+        Object obj3 = this.f27124b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj3;
                 MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
                 MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
-                boolean z10 = ChatAttachAlertPhotoLayout.f22119q1;
+                boolean z10 = ChatAttachAlertPhotoLayout.f22135q1;
                 int i11 = albumEntry.bucketId;
                 if (i11 != 0 || albumEntry2.bucketId == 0) {
                     if ((i11 != 0 && albumEntry2.bucketId == 0) || (indexOf = arrayList.indexOf(albumEntry)) > (indexOf2 = arrayList.indexOf(albumEntry2))) {
@@ -37,8 +37,8 @@ public final class ol implements Comparator {
                 return -1;
             default:
                 kz kzVar = ((xw) obj3).G0;
-                int indexOf3 = kzVar.f25901d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int indexOf4 = kzVar.f25901d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                int indexOf3 = kzVar.f25861d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = kzVar.f25861d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
                 if (indexOf3 < 0 || indexOf4 < 0) {
                     return 0;
                 }

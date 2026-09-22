@@ -3,26 +3,26 @@ package gi;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.w51;
-public final class i extends v51 {
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.yl0;
+public final class i extends x51 {
     public static final int f10041a = 0;
 
     static {
-        v51.setup(new v51());
+        x51.setup(new x51());
     }
 
     @Override
-    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
-        long j3 = w51Var.B;
-        ((j) view).a((int) j3, (int) (j3 >>> 32), w51Var.f29947k, w51Var.f29948l, w51Var.f29950n, w51Var.f29953q);
+    public final void bindView(View view, y51 y51Var, boolean z10, m61 m61Var, u61 u61Var) {
+        long j3 = y51Var.B;
+        ((j) view).a((int) j3, (int) (j3 >>> 32), y51Var.f30517k, y51Var.f30518l, y51Var.f30520n, y51Var.f30523q);
     }
 
     @Override
-    public final View createView(Context context, vl0 vl0Var, int i10, int i11, f6 f6Var) {
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, f6 f6Var) {
         return new j(context, f6Var, false);
     }
 }

@@ -11,58 +11,58 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.kb;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.r00;
-import org.telegram.ui.Components.ul0;
-import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.wa;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.lk;
+import org.telegram.ui.mk;
 import org.telegram.ui.o20;
 import org.telegram.ui.zn;
 public final class l7 extends ab implements NotificationCenter.NotificationCenterDelegate {
     public final long X;
     public final o20 Y;
     public final FrameLayout Z;
-    public final r00 f47699a0;
-    public Runnable f47700b0;
-    public final TLRPC.InputPeer f47701c0;
-    public final boolean f47702d0;
-    public k61 f47703e0;
-    public boolean f47704f0;
+    public final r00 f47720a0;
+    public Runnable f47721b0;
+    public final TLRPC.InputPeer f47722c0;
+    public final boolean f47723d0;
+    public m61 f47724e0;
+    public boolean f47725f0;
 
     public l7(android.content.Context r16, org.telegram.ui.ActionBar.f6 r17, long r18, int r20, java.lang.String r21, java.lang.Runnable r22, long r23) {
         throw new UnsupportedOperationException("Method not decompiled: yh.l7.<init>(android.content.Context, org.telegram.ui.ActionBar.f6, long, int, java.lang.String, java.lang.Runnable, long):void");
     }
 
     public static void P(l7 l7Var, int i10) {
-        w51 G;
-        k61 k61Var = l7Var.f47703e0;
-        if (k61Var != null && (G = k61Var.G(i10 - 1)) != null) {
-            k61 k61Var2 = l7Var.f47703e0;
+        y51 G;
+        m61 m61Var = l7Var.f47724e0;
+        if (m61Var != null && (G = m61Var.G(i10 - 1)) != null) {
+            m61 m61Var2 = l7Var.f47724e0;
             if (G.d == -1) {
-                l7Var.f47704f0 = !l7Var.f47704f0;
-                k61Var2.N(true);
+                l7Var.f47725f0 = !l7Var.f47725f0;
+                m61Var2.N(true);
             } else if (G.G(i7.class) && (G.G instanceof TL_stars.TL_starsTopupOption)) {
                 Activity findActivity = AndroidUtilities.findActivity(l7Var.getContext());
                 if (findActivity == null) {
                     findActivity = LaunchActivity.G1;
                 }
                 if (findActivity != null) {
-                    u5.y(l7Var.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new ai.m0(25, l7Var, G), l7Var.f47701c0);
+                    u5.y(l7Var.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new ai.m0(25, l7Var, G), l7Var.f47722c0);
                 }
             }
         }
     }
 
-    public static void Q(l7 l7Var, w51 w51Var, Boolean bool, String str) {
+    public static void Q(l7 l7Var, y51 y51Var, Boolean bool, String str) {
         if (l7Var.getContext() != null) {
             if (bool.booleanValue()) {
-                new xc((FrameLayout) l7Var.containerView, l7Var.resourcesProvider).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) w51Var.B, new Object[0])), R.raw.stars_topup).j();
-                l7Var.f47699a0.c(true);
+                new xc((FrameLayout) l7Var.containerView, l7Var.resourcesProvider).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) y51Var.B, new Object[0])), R.raw.stars_topup).j();
+                l7Var.f47720a0.c(true);
                 u5.y(l7Var.currentAccount, false).T(true);
             } else if (str != null) {
                 hg.k0.q(R.string.UnknownErrorCode, new Object[]{str}, new xc((FrameLayout) l7Var.containerView, l7Var.resourcesProvider), R.raw.error, 36);
@@ -70,13 +70,13 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
         }
     }
 
-    public final void R(ArrayList arrayList, k61 k61Var) {
+    public final void R(ArrayList arrayList, m61 m61Var) {
         long j3;
         int i10;
         int i11;
         o20 o20Var = this.Y;
-        arrayList.add(w51.l(o20Var));
-        boolean z10 = this.f47702d0;
+        arrayList.add(y51.l(o20Var));
+        boolean z10 = this.f47723d0;
         if (z10) {
             com.google.android.gms.internal.vision.e2.n(R.string.TelegramStarsChoose, arrayList);
         }
@@ -97,7 +97,7 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
                     }
                     TL_stars.TL_starsTopupOption tL_starsTopupOption = (TL_stars.TL_starsTopupOption) z11.get(i13);
                     if (tL_starsTopupOption.stars >= j3) {
-                        if (tL_starsTopupOption.extended && !this.f47704f0 && z12) {
+                        if (tL_starsTopupOption.extended && !this.f47725f0 && z12) {
                             i15++;
                         } else {
                             arrayList.add(i7.a(i13, i16, tL_starsTopupOption));
@@ -110,7 +110,7 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
                 }
                 if (i14 < 3) {
                     arrayList.clear();
-                    arrayList.add(w51.k(o20Var));
+                    arrayList.add(y51.k(o20Var));
                     com.google.android.gms.internal.vision.e2.n(R.string.TelegramStarsChoose, arrayList);
                     int i17 = 0;
                     for (int i18 = 0; i18 < z11.size(); i18++) {
@@ -127,7 +127,7 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
                             i12++;
                             i16++;
                         }
-                        boolean z13 = this.f47704f0;
+                        boolean z13 = this.f47725f0;
                         if (!z13 && i15 > 0) {
                             if (z13) {
                                 i11 = R.string.NotifyLessOptions;
@@ -135,19 +135,19 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
                                 i11 = R.string.NotifyMoreOptions;
                             }
                             String string = LocaleController.getString(i11);
-                            int i19 = e7.f47387a;
-                            w51 J = w51.J(e7.class);
+                            int i19 = e7.f47408a;
+                            y51 J = y51.J(e7.class);
                             J.d = -1;
-                            J.f29948l = string;
-                            J.f29943f = !this.f47704f0;
-                            J.f29953q = true;
+                            J.f30518l = string;
+                            J.f30513f = !this.f47725f0;
+                            J.f30523q = true;
                             arrayList.add(J);
                         }
                     } else {
-                        this.f47704f0 = true;
+                        this.f47725f0 = true;
                     }
                 } else if (i14 > 0) {
-                    boolean z14 = this.f47704f0;
+                    boolean z14 = this.f47725f0;
                     if (!z14 && i15 > 0) {
                         if (z14) {
                             i10 = R.string.NotifyLessOptions;
@@ -155,12 +155,12 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
                             i10 = R.string.NotifyMoreOptions;
                         }
                         String string2 = LocaleController.getString(i10);
-                        int i20 = e7.f47387a;
-                        w51 J2 = w51.J(e7.class);
+                        int i20 = e7.f47408a;
+                        y51 J2 = y51.J(e7.class);
                         J2.d = -1;
-                        J2.f29948l = string2;
-                        J2.f29943f = !this.f47704f0;
-                        J2.f29953q = true;
+                        J2.f30518l = string2;
+                        J2.f30513f = !this.f47725f0;
+                        J2.f30523q = true;
                         arrayList.add(J2);
                     }
                 } else {
@@ -171,32 +171,32 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
                     }
                 }
             } else {
-                arrayList.add(w51.n(31));
-                arrayList.add(w51.n(31));
-                arrayList.add(w51.n(31));
+                arrayList.add(y51.n(31));
+                arrayList.add(y51.n(31));
+                arrayList.add(y51.n(31));
             }
         }
-        arrayList.add(w51.k(this.Z));
+        arrayList.add(y51.k(this.Z));
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         Runnable runnable;
         if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            k61 k61Var = this.f47703e0;
-            if (k61Var != null) {
-                k61Var.N(true);
+            m61 m61Var = this.f47724e0;
+            if (m61Var != null) {
+                m61Var.N(true);
             }
             long j3 = u5.y(this.currentAccount, false).p().amount;
             long j10 = this.X;
-            ((TextView) this.Y.f36169b).setText(LocaleController.formatPluralStringComma("StarsNeededTitle", (int) (j10 - j3)));
+            ((TextView) this.Y.f36187b).setText(LocaleController.formatPluralStringComma("StarsNeededTitle", (int) (j10 - j3)));
             wa waVar = this.e;
             if (waVar != null) {
                 waVar.setTitle(y());
             }
-            if (j3 >= j10 && (runnable = this.f47700b0) != null) {
+            if (j3 >= j10 && (runnable = this.f47721b0) != null) {
                 runnable.run();
-                this.f47700b0 = null;
+                this.f47721b0 = null;
                 dismiss();
             }
         }
@@ -207,7 +207,7 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
         super.dismiss();
         o20 o20Var = this.Y;
         if (o20Var != null) {
-            ((sg.e) o20Var.f36170c).setPaused(true);
+            ((sg.e) o20Var.f36188c).setPaused(true);
         }
     }
 
@@ -220,21 +220,21 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
 
     @Override
     public final void show() {
-        lk lkVar;
-        if (!this.f47702d0) {
+        mk mkVar;
+        if (!this.f47723d0) {
             org.telegram.messenger.l0.o(R.string.PaymentInvoiceDisabledStarsText, new xc(kb.a(getContext()), this.resourcesProvider), R.raw.stars_topup, 36);
         } else if (u5.y(this.currentAccount, false).p().amount >= this.X) {
-            Runnable runnable = this.f47700b0;
+            Runnable runnable = this.f47721b0;
             if (runnable != null) {
                 runnable.run();
-                this.f47700b0 = null;
+                this.f47721b0 = null;
             }
         } else {
             org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
             if (R instanceof zn) {
                 zn znVar = (zn) R;
-                if (znVar.x9() && (lkVar = znVar.Y) != null) {
-                    lkVar.P();
+                if (znVar.x9() && (mkVar = znVar.Y) != null) {
+                    mkVar.P();
                 }
             }
             super.show();
@@ -244,10 +244,10 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
     }
 
     @Override
-    public final ul0 v(vl0 vl0Var) {
-        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 28), this.resourcesProvider);
-        this.f47703e0 = k61Var;
-        return k61Var;
+    public final xl0 v(yl0 yl0Var) {
+        m61 m61Var = new m61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 28), this.resourcesProvider);
+        this.f47724e0 = m61Var;
+        return m61Var;
     }
 
     @Override
@@ -256,6 +256,6 @@ public final class l7 extends ab implements NotificationCenter.NotificationCente
         if (o20Var == null) {
             return null;
         }
-        return ((TextView) o20Var.f36169b).getText();
+        return ((TextView) o20Var.f36187b).getText();
     }
 }

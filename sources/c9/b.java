@@ -9,15 +9,15 @@ import android.os.IInterface;
 import android.os.Parcel;
 import android.util.Log;
 public final class b implements ServiceConnection {
-    public b9.c f4181a;
-    public final c f4182b;
+    public b9.c f4179a;
+    public final c f4180b;
 
     public b(c cVar) {
-        this.f4182b = cVar;
+        this.f4180b = cVar;
     }
 
     public static boolean a(b bVar) {
-        if (bVar.f4181a != null) {
+        if (bVar.f4179a != null) {
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ public final class b implements ServiceConnection {
 
     public final boolean b(Intent intent, Bundle bundle) {
         boolean z10;
-        b9.c cVar = this.f4181a;
+        b9.c cVar = this.f4179a;
         if (cVar != null) {
             b9.a aVar = (b9.a) cVar;
             Parcel obtain = Parcel.obtain();
@@ -57,11 +57,11 @@ public final class b implements ServiceConnection {
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         boolean z10;
         b9.c aVar;
-        z10 = this.f4182b.dbg;
+        z10 = this.f4180b.dbg;
         if (z10) {
             Log.d("SAVerificationClientS", "onServiceConnected");
         }
-        int i10 = b9.b.f3443a;
+        int i10 = b9.b.f3442a;
         if (iBinder == null) {
             aVar = null;
         } else {
@@ -72,14 +72,14 @@ public final class b implements ServiceConnection {
                 aVar = new b9.a(iBinder);
             }
         }
-        this.f4181a = aVar;
+        this.f4179a = aVar;
     }
 
     @Override
     public final void onServiceDisconnected(ComponentName componentName) {
         boolean z10;
-        this.f4181a = null;
-        z10 = this.f4182b.dbg;
+        this.f4179a = null;
+        z10 = this.f4180b.dbg;
         if (z10) {
             Log.d("SAVerificationClientS", "onServiceDisconnected");
         }

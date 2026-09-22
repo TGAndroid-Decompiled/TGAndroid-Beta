@@ -60,10 +60,10 @@ public final class l0 {
 
     public final void b() {
         TL_iv.PageBlock pageBlock;
-        a M = this.f11489c.M();
-        if (M != null && (pageBlock = M.f11205b) != null) {
+        a H = this.f11489c.H();
+        if (H != null && (pageBlock = H.f11205b) != null) {
             d(pageBlock);
-            TL_iv.RichText richText = M.f11205b.caption.text;
+            TL_iv.RichText richText = H.f11205b.caption.text;
             String l4 = f6.l(richText);
             i1 i1Var = this.f11487a;
             if (!String.valueOf(i1Var.getText()).equals(l4)) {
@@ -75,13 +75,13 @@ public final class l0 {
 
     public final void c(Canvas canvas) {
         k0 k0Var = this.f11489c;
-        r9 B = k0Var.B();
-        if (B != null) {
+        r9 A = k0Var.A();
+        if (A != null) {
             i1 i1Var = this.f11487a;
             if (i1Var.getLayout() != null) {
                 canvas.save();
                 canvas.translate(i1Var.getPaddingLeft() + i1Var.getLeft(), i1Var.getPaddingTop() + i1Var.getTop());
-                B.a0(canvas, k0Var.I(), 0);
+                A.a0(canvas, k0Var.F(), 0);
                 canvas.restore();
             }
         }
@@ -131,10 +131,10 @@ public final class l0 {
 
     public final void i() {
         TL_iv.PageBlock pageBlock;
-        a M = this.f11489c.M();
-        if (M != null && (pageBlock = M.f11205b) != null) {
+        a H = this.f11489c.H();
+        if (H != null && (pageBlock = H.f11205b) != null) {
             d(pageBlock);
-            M.f11205b.caption.text = f6.f(this.f11487a.getText());
+            H.f11205b.caption.text = f6.f(this.f11487a.getText());
         }
     }
 }

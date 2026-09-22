@@ -23,33 +23,33 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.qr;
 public final class u6 extends View {
-    public final Paint f5624a;
-    public final Paint f5625b;
-    public final StaticLayout f5626c;
+    public final Paint f5622a;
+    public final Paint f5623b;
+    public final StaticLayout f5624c;
     public final float d;
     public final float e;
-    public final int f5627f;
+    public final int f5625f;
     public final int h;
-    public final boolean f5628n;
-    public final org.telegram.ui.Components.d6 f5629r;
-    public boolean f5630s;
+    public final boolean f5626n;
+    public final org.telegram.ui.Components.d6 f5627r;
+    public boolean f5628s;
     public float v;
-    public ValueAnimator f5631w;
-    public final v6 f5632x;
+    public ValueAnimator f5629w;
+    public final v6 f5630x;
 
     public u6(v6 v6Var, Context context, String str, boolean z10) {
         super(context);
         CharSequence upperCase;
         float f7;
-        this.f5632x = v6Var;
+        this.f5630x = v6Var;
         TextPaint textPaint = new TextPaint(1);
         Paint paint = new Paint(1);
-        this.f5624a = paint;
+        this.f5622a = paint;
         Paint paint2 = new Paint(1);
-        this.f5625b = paint2;
-        this.f5629r = new org.telegram.ui.Components.d6(this, 0L, 220L, qr.h);
-        this.f5630s = true;
-        this.f5628n = z10;
+        this.f5623b = paint2;
+        this.f5627r = new org.telegram.ui.Components.d6(this, 0L, 220L, qr.h);
+        this.f5628s = true;
+        this.f5626n = z10;
         paint.setColor(-15098625);
         paint2.setColor(1610612736);
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -70,7 +70,7 @@ public final class u6 extends View {
             upperCase = str.toUpperCase();
         }
         StaticLayout staticLayout = new StaticLayout(upperCase, textPaint, AndroidUtilities.dp(180.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f5626c = staticLayout;
+        this.f5624c = staticLayout;
         if (staticLayout.getLineCount() > 0) {
             f7 = staticLayout.getLineLeft(0);
         } else {
@@ -80,9 +80,9 @@ public final class u6 extends View {
         float lineWidth = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
         this.e = lineWidth;
         int dp = AndroidUtilities.dp(48.0f) + ((int) lineWidth);
-        this.f5627f = dp;
+        this.f5625f = dp;
         if (!z10) {
-            this.f5627f = Math.max(AndroidUtilities.dp(80.0f), dp);
+            this.f5625f = Math.max(AndroidUtilities.dp(80.0f), dp);
         }
         this.h = AndroidUtilities.dp(40.0f);
         setOnClickListener(new ai.v0(this, 11));
@@ -101,12 +101,12 @@ public final class u6 extends View {
                 invalidate();
             }
         }
-        if (this.f5630s) {
+        if (this.f5628s) {
             f7 = 1.0f;
         } else {
             f7 = 0.5f;
         }
-        float d = this.f5629r.d(f7, false);
+        float d = this.f5627r.d(f7, false);
         int saveCount = canvas.getSaveCount();
         if (d < 1.0f) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (d * 255.0f), 31);
@@ -114,19 +114,19 @@ public final class u6 extends View {
         float f12 = ((1.0f - this.v) * 0.1f) + 0.9f;
         canvas.save();
         canvas.scale(f12, f12, getWidth() / 2.0f, getHeight() / 2.0f);
-        canvas.drawRect(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(4.0f), getWidth() - AndroidUtilities.dp(25.0f), getHeight() - AndroidUtilities.dp(4.0f), this.f5625b);
+        canvas.drawRect(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(4.0f), getWidth() - AndroidUtilities.dp(25.0f), getHeight() - AndroidUtilities.dp(4.0f), this.f5623b);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), getWidth() - AndroidUtilities.dp(10.0f), getHeight() - AndroidUtilities.dp(4.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), this.f5624a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), this.f5622a);
         canvas.save();
-        float f13 = (this.f5627f - this.e) / 2.0f;
-        if (this.f5628n) {
+        float f13 = (this.f5625f - this.e) / 2.0f;
+        if (this.f5626n) {
             f10 = 3.0f;
         }
         float dp = (f13 + AndroidUtilities.dp(f10)) - this.d;
         int height = getHeight();
-        StaticLayout staticLayout = this.f5626c;
+        StaticLayout staticLayout = this.f5624c;
         canvas.translate(dp, (height - staticLayout.getHeight()) / 2.0f);
         staticLayout.draw(canvas);
         canvas.restore();
@@ -141,7 +141,7 @@ public final class u6 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f5627f, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f5625f, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
     }
 
     @Override
@@ -150,20 +150,20 @@ public final class u6 extends View {
         if (isPressed() != z10) {
             super.setPressed(z10);
             invalidate();
-            if (z10 && (valueAnimator = this.f5631w) != null) {
+            if (z10 && (valueAnimator = this.f5629w) != null) {
                 valueAnimator.removeAllListeners();
-                this.f5631w.cancel();
+                this.f5629w.cancel();
             }
             if (!z10) {
                 float f7 = this.v;
                 if (f7 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.f5631w = ofFloat;
+                    this.f5629w = ofFloat;
                     ofFloat.addUpdateListener(new ai.a(this, 22));
-                    this.f5631w.addListener(new ai.b(this, 16));
-                    this.f5631w.setInterpolator(new OvershootInterpolator(1.5f));
-                    this.f5631w.setDuration(350L);
-                    this.f5631w.start();
+                    this.f5629w.addListener(new ai.b(this, 16));
+                    this.f5629w.setInterpolator(new OvershootInterpolator(1.5f));
+                    this.f5629w.setDuration(350L);
+                    this.f5629w.start();
                 }
             }
         }

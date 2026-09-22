@@ -12,19 +12,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void D(i1 i1Var, int i10, int i11) {
-        d3 d3Var;
-        r9 textSelectionHelper;
-        u0 u0Var = this.f11597a;
-        if (!u0Var.f11654n && i10 != i11 && (d3Var = u0Var.h) != null && (textSelectionHelper = d3Var.f11334a.getTextSelectionHelper()) != null) {
-            if (!textSelectionHelper.y() || textSelectionHelper.W != u0Var) {
-                u0Var.post(new ei.x4(this, i1Var, i11, textSelectionHelper, i10, 2));
-            }
-        }
-    }
-
-    @Override
-    public final void K(CharSequence charSequence) {
+    public final void I(CharSequence charSequence) {
         d3 d3Var = this.f11597a.h;
         if (d3Var != null && charSequence != null && charSequence.length() > 0) {
             d3Var.f11334a.u4(charSequence.toString());
@@ -32,7 +20,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void U(Editable editable) {
+    public final void R(Editable editable) {
         u0 u0Var = this.f11597a;
         a aVar = u0Var.f11653f;
         if (aVar != null) {
@@ -57,7 +45,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final boolean Y(boolean z10) {
+    public final boolean V(boolean z10) {
         return false;
     }
 
@@ -72,7 +60,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final boolean f() {
+    public final boolean d() {
         u0 u0Var = this.f11597a;
         d3 d3Var = u0Var.h;
         if (d3Var != null && u0Var.f11653f != null) {
@@ -82,7 +70,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void n(i1 i1Var) {
+    public final void l(i1 i1Var) {
         a aVar;
         w3 w3Var;
         ArrayList arrayList;
@@ -103,12 +91,12 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final boolean p(i1 i1Var) {
+    public final boolean o(i1 i1Var) {
         return false;
     }
 
     @Override
-    public final boolean t(i1 i1Var) {
+    public final boolean s(i1 i1Var) {
         u0 u0Var = this.f11597a;
         if (u0Var.h != null && u0Var.f11653f != null && i1Var.length() == 0) {
             u0Var.h.a(u0Var.f11653f);
@@ -118,7 +106,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void y() {
+    public final void v() {
         a aVar;
         u0 u0Var = this.f11597a;
         d3 d3Var = u0Var.h;
@@ -128,6 +116,18 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void j(int i10, int i11) {
+    public final void z(i1 i1Var, int i10, int i11) {
+        d3 d3Var;
+        r9 textSelectionHelper;
+        u0 u0Var = this.f11597a;
+        if (!u0Var.f11654n && i10 != i11 && (d3Var = u0Var.h) != null && (textSelectionHelper = d3Var.f11334a.getTextSelectionHelper()) != null) {
+            if (!textSelectionHelper.y() || textSelectionHelper.W != u0Var) {
+                u0Var.post(new ei.x4(this, i1Var, i11, textSelectionHelper, i10, 2));
+            }
+        }
+    }
+
+    @Override
+    public final void i(int i10, int i11) {
     }
 }

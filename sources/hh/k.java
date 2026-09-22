@@ -127,7 +127,7 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
                             rectF.set(rectF2);
                             jVar.e = true;
                             try {
-                                jVar.f10537b.i(new RectF(rectF2), view);
+                                jVar.f10537b.j(new RectF(rectF2), view);
                             } catch (Throwable unused) {
                             }
                         }

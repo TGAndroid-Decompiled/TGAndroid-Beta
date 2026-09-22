@@ -14,47 +14,47 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class il0 implements Utilities.Callback {
-    public final int f34608a = 1;
-    public final String f34609b;
-    public final boolean f34610c;
+    public final int f34633a = 1;
+    public final String f34634b;
+    public final boolean f34635c;
     public final boolean d;
     public final Object e;
-    public final Object f34611f;
-    public final Object f34612g;
+    public final Object f34636f;
+    public final Object f34637g;
     public final Serializable h;
-    public final Object f34613i;
-    public final Object f34614j;
-    public final Object f34615k;
-    public final Object f34616l;
+    public final Object f34638i;
+    public final Object f34639j;
+    public final Object f34640k;
+    public final Object f34641l;
 
     public il0(j71 j71Var, String str, boolean z10, ArrayList arrayList, HashMap hashMap, ArrayList arrayList2, LinkedHashSet linkedHashSet, LinkedHashSet linkedHashSet2, ArrayList arrayList3, ArrayList arrayList4, boolean z11) {
         this.e = j71Var;
-        this.f34609b = str;
-        this.f34610c = z10;
-        this.f34611f = arrayList;
-        this.f34612g = hashMap;
+        this.f34634b = str;
+        this.f34635c = z10;
+        this.f34636f = arrayList;
+        this.f34637g = hashMap;
         this.h = arrayList2;
-        this.f34613i = linkedHashSet;
-        this.f34614j = linkedHashSet2;
-        this.f34615k = arrayList3;
-        this.f34616l = arrayList4;
+        this.f34638i = linkedHashSet;
+        this.f34639j = linkedHashSet2;
+        this.f34640k = arrayList3;
+        this.f34641l = arrayList4;
         this.d = z11;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f34608a) {
+        switch (this.f34633a) {
             case 0:
-                final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.f34611f;
-                final org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f34612g;
-                final boolean z10 = this.f34610c;
-                final String str = this.f34609b;
-                final TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) this.f34613i;
-                final String[] strArr = (String[]) this.f34614j;
+                final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.f34636f;
+                final org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f34637g;
+                final boolean z10 = this.f34635c;
+                final String str = this.f34634b;
+                final TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) this.f34638i;
+                final String[] strArr = (String[]) this.f34639j;
                 final boolean z11 = this.d;
-                final org.telegram.ui.web.d1 d1Var = (org.telegram.ui.web.d1) this.f34615k;
+                final org.telegram.ui.web.d1 d1Var = (org.telegram.ui.web.d1) this.f34640k;
                 final String str2 = (String) this.h;
-                final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f34616l;
+                final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f34641l;
                 final Integer num = (Integer) obj;
                 if (((int[]) this.e)[0] != num.intValue()) {
                     final org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(ApplicationLoader.applicationContext, 3, null);
@@ -94,15 +94,15 @@ public final class il0 implements Utilities.Callback {
                 return;
             default:
                 final j71 j71Var = (j71) this.e;
-                final String str3 = this.f34609b;
-                final boolean z12 = this.f34610c;
-                final ArrayList arrayList = (ArrayList) this.f34611f;
-                final HashMap hashMap = (HashMap) this.f34612g;
+                final String str3 = this.f34634b;
+                final boolean z12 = this.f34635c;
+                final ArrayList arrayList = (ArrayList) this.f34636f;
+                final HashMap hashMap = (HashMap) this.f34637g;
                 final ArrayList arrayList2 = (ArrayList) this.h;
-                final LinkedHashSet linkedHashSet = (LinkedHashSet) this.f34613i;
-                final LinkedHashSet linkedHashSet2 = (LinkedHashSet) this.f34614j;
-                final ArrayList arrayList3 = (ArrayList) this.f34615k;
-                final ArrayList arrayList4 = (ArrayList) this.f34616l;
+                final LinkedHashSet linkedHashSet = (LinkedHashSet) this.f34638i;
+                final LinkedHashSet linkedHashSet2 = (LinkedHashSet) this.f34639j;
+                final ArrayList arrayList3 = (ArrayList) this.f34640k;
+                final ArrayList arrayList4 = (ArrayList) this.f34641l;
                 final boolean z13 = this.d;
                 Runnable runnable = (Runnable) obj;
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -114,14 +114,14 @@ public final class il0 implements Utilities.Callback {
                             AndroidUtilities.cancelRunOnUIThread(n51Var);
                             j71Var2.I1 = null;
                         }
-                        String str4 = j71Var2.f34833z1;
+                        String str4 = j71Var2.f34858z1;
                         String str5 = str3;
                         if (str5 != str4) {
                             return;
                         }
-                        j71Var2.f34831y1 = true;
+                        j71Var2.f34856y1 = true;
                         j71Var2.z(true, z12);
-                        a61 a61Var = j71Var2.f34788f0;
+                        a61 a61Var = j71Var2.f34813f0;
                         if (a61Var != null) {
                             a61Var.d(true);
                         }
@@ -150,7 +150,7 @@ public final class il0 implements Utilities.Callback {
                             arrayList8.clear();
                         }
                         int i10 = 0;
-                        j71Var2.f34794i0.v0(0);
+                        j71Var2.f34819i0.v0(0);
                         int i11 = j71Var2.W;
                         if (i11 == 1 || i11 == 14 || i11 == 11 || i11 == 2) {
                             ArrayList arrayList9 = arrayList;
@@ -159,7 +159,7 @@ public final class il0 implements Utilities.Callback {
                             } else {
                                 TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(str5);
                                 if (tL_availableReaction != null) {
-                                    j71Var2.A1.add(zg.o0.c(tL_availableReaction));
+                                    j71Var2.A1.add(zg.p0.c(tL_availableReaction));
                                 }
                             }
                             ArrayList arrayList10 = arrayList2;
@@ -174,13 +174,13 @@ public final class il0 implements Utilities.Callback {
                             ArrayList arrayList11 = j71Var2.A1;
                             ?? obj2 = new Object();
                             long longValue = l4.longValue();
-                            obj2.f49424g = longValue;
+                            obj2.f49448g = longValue;
                             obj2.h = longValue;
                             arrayList11.add(obj2);
                         }
                         Iterator it2 = linkedHashSet2.iterator();
                         while (it2.hasNext()) {
-                            j71Var2.A1.add(zg.o0.b((String) it2.next()));
+                            j71Var2.A1.add(zg.p0.b((String) it2.next()));
                         }
                         j71Var2.D1.addAll(arrayList3);
                         ArrayList arrayList12 = arrayList4;
@@ -190,7 +190,7 @@ public final class il0 implements Utilities.Callback {
                             i10++;
                             j71Var2.C1.addAll((ArrayList) obj3);
                         }
-                        j71Var2.f34809q0.E(true ^ z13);
+                        j71Var2.f34834q0.E(true ^ z13);
                     }
                 });
                 return;
@@ -199,15 +199,15 @@ public final class il0 implements Utilities.Callback {
 
     public il0(int[] iArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.ActionBar.f3 f3Var, boolean z10, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z11, org.telegram.ui.web.d1 d1Var, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
         this.e = iArr;
-        this.f34611f = tL_messages_requestUrlAuth;
-        this.f34612g = f3Var;
-        this.f34610c = z10;
-        this.f34609b = str;
-        this.f34613i = urlAuthResult;
-        this.f34614j = strArr;
+        this.f34636f = tL_messages_requestUrlAuth;
+        this.f34637g = f3Var;
+        this.f34635c = z10;
+        this.f34634b = str;
+        this.f34638i = urlAuthResult;
+        this.f34639j = strArr;
         this.d = z11;
-        this.f34615k = d1Var;
+        this.f34640k = d1Var;
         this.h = str2;
-        this.f34616l = f6Var;
+        this.f34641l = f6Var;
     }
 }

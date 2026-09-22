@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 public interface oo {
     void dismiss();
 
-    void m();
+    void k();
 
     void n();
 

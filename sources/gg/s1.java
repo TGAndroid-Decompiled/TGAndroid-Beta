@@ -5,17 +5,17 @@ import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.yt;
 import org.telegram.ui.zt;
 public final class s1 extends TimerTask {
     public final int f9924a;
     public final String f9925b;
-    public final ul0 f9926c;
+    public final xl0 f9926c;
 
-    public s1(ul0 ul0Var, String str, int i10) {
+    public s1(xl0 xl0Var, String str, int i10) {
         this.f9924a = i10;
-        this.f9926c = ul0Var;
+        this.f9926c = xl0Var;
         this.f9925b = str;
     }
 

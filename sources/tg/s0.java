@@ -18,9 +18,9 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ab;
 import org.telegram.ui.Components.pc;
-import org.telegram.ui.Components.ul0;
-import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.o20;
 import org.telegram.ui.vy0;
 import w7.y5;
@@ -28,9 +28,9 @@ public final class s0 extends ab {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final d0 f43500a0;
-    public r0 f43501b0;
-    public l0 f43502c0;
+    public final d0 f43521a0;
+    public r0 f43522b0;
+    public l0 f43523c0;
 
     public s0(n2 n2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(n2Var, false);
@@ -46,7 +46,7 @@ public final class s0 extends ab {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f18328id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f18343id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
@@ -54,9 +54,9 @@ public final class s0 extends ab {
         o20Var.setClickable(true);
         o20Var.setOrientation(1);
         o20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        o20Var.setBackgroundColor(j6.v0(j6.f19165h5, this.resourcesProvider));
+        o20Var.setBackgroundColor(j6.v0(j6.f19180h5, this.resourcesProvider));
         d0 d0Var = new d0(getContext(), this.resourcesProvider);
-        this.f43500a0 = d0Var;
+        this.f43521a0 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new vy0(17, this, chat));
@@ -64,9 +64,9 @@ public final class s0 extends ab {
         ViewGroup viewGroup = this.containerView;
         int i11 = this.backgroundPaddingLeft;
         viewGroup.addView(o20Var, y5.f(-2.0f, 87, i11, 0, i11, 0));
-        vl0 vl0Var = this.d;
+        yl0 yl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        vl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
+        yl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new o6(24, this, chat));
         fixNavigationBar();
         N();
@@ -89,16 +89,16 @@ public final class s0 extends ab {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             s0Var.S(true);
-            s0Var.f43501b0.a(arrayList, chat);
+            s0Var.f43522b0.a(arrayList, chat);
         }
     }
 
     public static void Q(s0 s0Var, TLRPC.Chat chat, ArrayList arrayList, HashSet hashSet, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
-        MessagesController.getInstance(s0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f18328id, new c5(s0Var, tL_premium_myBoosts, arrayList, hashSet, 1));
+        MessagesController.getInstance(s0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f18343id, new c5(s0Var, tL_premium_myBoosts, arrayList, hashSet, 1));
     }
 
     public final void S(boolean z10) {
-        d0 d0Var = this.f43500a0;
+        d0 d0Var = this.f43521a0;
         boolean z11 = false;
         d0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -117,22 +117,22 @@ public final class s0 extends ab {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f43502c0 = new l0(this);
+        this.f43523c0 = new l0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f43502c0.cancel();
+        this.f43523c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f43502c0.start();
+        this.f43523c0.start();
     }
 
     @Override
-    public final ul0 v(vl0 vl0Var) {
+    public final xl0 v(yl0 yl0Var) {
         return new m0(this);
     }
 

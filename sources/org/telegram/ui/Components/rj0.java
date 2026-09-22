@@ -1,23 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class rj0 extends vl0 {
-    public final zj0 X2;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rj0 {
+    public final TLObject f28000a;
+    public final long f28001b;
+    public int f28002c;
 
-    public rj0(zj0 zj0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.X2 = zj0Var;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        zj0 zj0Var = this.X2;
-        bb0 bb0Var = zj0Var.J;
-        if (bb0Var != null) {
-            bb0Var.measure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 0));
+    public rj0(int i10, TLObject tLObject) {
+        this.f28000a = tLObject;
+        this.f28002c = i10;
+        if (tLObject instanceof TLRPC.User) {
+            this.f28001b = ((TLRPC.User) tLObject).f18490id;
+        } else if (tLObject instanceof TLRPC.Chat) {
+            this.f28001b = -((TLRPC.Chat) tLObject).f18343id;
         }
-        super.onMeasure(i10, i11);
-        zj0Var.j();
     }
 }

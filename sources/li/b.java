@@ -11,39 +11,39 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.k;
 import org.telegram.ui.ActionBar.n;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.yl0;
 import w7.y5;
 public final class b {
-    public final i f14321a;
-    public final ah.c f14322b;
-    public final ah.c f14323c;
+    public final i f14336a;
+    public final ah.c f14337b;
+    public final ah.c f14338c;
     public final ah.i d;
     public FrameLayout e;
-    public ViewGroup f14324f;
-    public bh.a f14325g;
+    public ViewGroup f14339f;
+    public bh.a f14340g;
 
     public b(i iVar, n nVar) {
         int i10;
-        this.f14321a = iVar;
-        iVar.f14336a = new v(this, 2);
+        this.f14336a = iVar;
+        iVar.f14351a = new v(this, 2);
         iVar.d = new mi.b(AndroidUtilities.dp(48.0f));
         fh.c cVar = new fh.c();
-        cVar.a(nVar.f19633a.getThemedColor(j6.f19038a7));
-        iVar.f14351s.add(new g(cVar, nVar));
-        this.f14323c = new ah.c(cVar);
+        cVar.a(nVar.f19648a.getThemedColor(j6.f19053a7));
+        iVar.f14366s.add(new g(cVar, nVar));
+        this.f14338c = new ah.c(cVar);
         if (Build.VERSION.SDK_INT >= 31 && SharedConfig.chatBlurEnabled()) {
             ah.i iVar2 = new ah.i(false);
             this.d = iVar2;
-            iVar.f14341i.add(iVar2);
+            iVar.f14356i.add(iVar2);
             fh.d dVar = new fh.d(cVar);
             dVar.f9077f = cVar;
             ah.c cVar2 = new ah.c(dVar);
-            this.f14322b = cVar2;
+            this.f14337b = cVar2;
             cVar2.h = iVar;
             int dp = AndroidUtilities.dp(LiteMode.isEnabled(262144) ? 8.0f : 48.0f);
-            cVar2.f423b = dp;
-            cVar2.f424c = dp;
-            cVar2.f427i = LiteMode.isEnabled(262144);
+            cVar2.f420b = dp;
+            cVar2.f421c = dp;
+            cVar2.f424i = LiteMode.isEnabled(262144);
             if (LiteMode.isEnabled(262144)) {
                 i10 = -2;
             } else {
@@ -55,7 +55,7 @@ public final class b {
         }
         this.d = null;
         ah.c cVar3 = new ah.c(cVar);
-        this.f14322b = cVar3;
+        this.f14337b = cVar3;
         cVar3.h = iVar;
     }
 
@@ -66,22 +66,22 @@ public final class b {
         viewGroup.setPadding(0, (i10 + i12) - min, 0, i11 - min2);
     }
 
-    public final void b(FrameLayout frameLayout, vl0 vl0Var, k kVar, f6 f6Var) {
+    public final void b(FrameLayout frameLayout, yl0 yl0Var, k kVar, f6 f6Var) {
         this.e = frameLayout;
-        this.f14324f = vl0Var;
-        vl0Var.setCaptureSectionsDecoratorAllowed(true);
-        this.f14325g = new a(0, vl0Var, frameLayout);
-        this.f14321a.a(vl0Var);
+        this.f14339f = yl0Var;
+        yl0Var.setCaptureSectionsDecoratorAllowed(true);
+        this.f14340g = new a(0, yl0Var, frameLayout);
+        this.f14336a.a(yl0Var);
         kVar.setCenterTitleAndGlass(true);
-        kVar.M(this.f14322b, eh.b.m(f6Var), false);
+        kVar.M(this.f14337b, eh.b.m(f6Var), false);
         kVar.setAddToContainer(false);
         AndroidUtilities.removeFromParent(kVar);
         frameLayout.addView(kVar, y5.e(-1, -2, 48));
-        ah.e eVar = new ah.e(this.f14323c.c(kVar, null, false));
+        ah.e eVar = new ah.e(this.f14338c.c(kVar, null, false));
         eVar.b(-AndroidUtilities.dp(50.0f), true);
-        eVar.f443q = 224;
+        eVar.f440q = 224;
         kVar.setBackground(eVar);
         kVar.setExtraHeight(AndroidUtilities.dp(12.0f));
-        vl0Var.setClipToPadding(false);
+        yl0Var.setClipToPadding(false);
     }
 }

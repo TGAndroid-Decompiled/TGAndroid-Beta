@@ -3,13 +3,13 @@ package f5;
 import com.google.android.gms.internal.vision.e2;
 import java.nio.ByteBuffer;
 public final class s extends a {
-    public static final ka.c f8946f;
-    public static final ka.c h;
+    public static final o0.b f8945f;
+    public static final o0.b h;
     public float e;
 
     static {
         re.a aVar = new re.a(s.class, "SoundMediaHeaderBox.java");
-        f8946f = aVar.e(aVar.d("getBalance", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "float"));
+        f8945f = aVar.e(aVar.d("getBalance", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "float"));
         h = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SoundMediaHeaderBox", "", "", "java.lang.String"));
     }
 
@@ -37,7 +37,7 @@ public final class s extends a {
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("SoundMediaHeaderBox[balance=");
-        e2.q(re.a.b(f8946f, this, this));
+        e2.q(re.a.b(f8945f, this, this));
         sb2.append(this.e);
         sb2.append("]");
         return sb2.toString();

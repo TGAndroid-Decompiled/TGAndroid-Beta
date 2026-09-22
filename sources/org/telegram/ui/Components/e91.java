@@ -1,51 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import java.io.File;
-import org.telegram.ui.WallpapersListActivity;
-public final class e91 {
-    public String f23793a;
-    public final Activity f23794b;
-    public final org.telegram.ui.ActionBar.n2 f23795c;
-    public final d91 d;
-    public File e;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+public final class e91 implements org.telegram.ui.kq0 {
+    public final g91 f23890a;
 
-    public e91(Activity activity, WallpapersListActivity wallpapersListActivity, d91 d91Var) {
-        this.f23794b = activity;
-        this.f23795c = wallpapersListActivity;
-        this.d = d91Var;
+    public e91(g91 g91Var) {
+        this.f23890a = g91Var;
     }
 
-    public final void a(int r9, int r10, android.content.Intent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e91.a(int, int, android.content.Intent):void");
-    }
-
-    public final void b() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f23795c;
-        if (n2Var != null) {
-            Activity parentActivity = n2Var.getParentActivity();
-            if (parentActivity != null) {
-                int i10 = Build.VERSION.SDK_INT;
-                if (i10 >= 33) {
-                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
-                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES"}, 4);
-                        return;
-                    }
-                } else if (i10 >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                    parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                    return;
+    @Override
+    public final void a(ArrayList arrayList) {
+        g91 g91Var = this.f23890a;
+        try {
+            if (!arrayList.isEmpty()) {
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
+                if (sendingMediaInfo.path != null) {
+                    File directory = FileLoader.getDirectory(4);
+                    g91Var.e = new File(directory, Utilities.random.nextInt() + ".jpg");
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    Bitmap loadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(g91Var.e));
+                    g91Var.d.b(g91Var.e, loadBitmap, true);
                 }
             }
-            org.telegram.ui.lq0 lq0Var = new org.telegram.ui.lq0(2, false, false, null);
-            lq0Var.f35513x = false;
-            lq0Var.V = new c91(this);
-            n2Var.presentFragment(lq0Var);
-            return;
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
-        Intent intent = new Intent("android.intent.action.PICK");
-        intent.setType("image/*");
-        this.f23794b.startActivityForResult(intent, 11);
+    }
+
+    @Override
+    public final void b() {
+        try {
+            Intent intent = new Intent("android.intent.action.PICK");
+            intent.setType("image/*");
+            this.f23890a.f24480b.startActivityForResult(intent, 11);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 }

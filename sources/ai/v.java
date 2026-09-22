@@ -23,23 +23,23 @@ public final class v extends og.b {
         boolean z10 = this.d;
         lx lxVar = this.e;
         if (z10) {
-            arrayList = lxVar.f572y;
+            arrayList = lxVar.f569y;
         } else {
-            arrayList = lxVar.f570x;
+            arrayList = lxVar.f567x;
         }
         return arrayList.size();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        a0 a0Var = (a0) c1Var.f42974a;
-        a0Var.f497b = i10;
+        a0 a0Var = (a0) c1Var.f42995a;
+        a0Var.f494b = i10;
         boolean z10 = this.d;
         lx lxVar = this.e;
         if (z10) {
-            a0Var.setDialogId(((w) lxVar.f572y.get(i10)).f1639c);
+            a0Var.setDialogId(((w) lxVar.f569y.get(i10)).f1636c);
         } else {
-            a0Var.setDialogId(((w) lxVar.f570x.get(i10)).f1639c);
+            a0Var.setDialogId(((w) lxVar.f567x.get(i10)).f1636c);
         }
     }
 

@@ -10,18 +10,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class la extends FrameLayout {
-    public final EditTextBoldCursor f35383a;
-    public final TextView f35384b;
-    public final ra f35385c;
+    public final EditTextBoldCursor f35401a;
+    public final TextView f35402b;
+    public final ra f35403c;
 
     public la(ra raVar, Activity activity) {
         super(activity);
         int i10;
-        this.f35385c = raVar;
+        this.f35403c = raVar;
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(0);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
-        this.f35383a = editTextBoldCursor;
+        this.f35401a = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 17.0f);
         editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
         int i11 = org.telegram.ui.ActionBar.j6.G6;
@@ -44,8 +44,8 @@ public final class la extends FrameLayout {
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(19.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.setOnEditorActionListener(new ja(this, 0));
-        String str = raVar.f37083r;
-        long j3 = raVar.f37086x;
+        String str = raVar.f37106r;
+        long j3 = raVar.f37109x;
         editTextBoldCursor.setText(str);
         editTextBoldCursor.addTextChangedListener(new ka(this));
         int i12 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
@@ -53,7 +53,7 @@ public final class la extends FrameLayout {
             editTextBoldCursor.setEnabled(false);
         }
         TextView textView = new TextView(getContext());
-        this.f35384b = textView;
+        this.f35402b = textView;
         textView.setMaxLines(1);
         textView.setLines(1);
         textView.setPadding(0, 0, 0, 0);

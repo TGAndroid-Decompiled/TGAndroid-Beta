@@ -199,7 +199,7 @@ public final class ExtendedDefaultDataSource implements h {
             mVar = a2.d();
         }
         String scheme = uri.getScheme();
-        String str = d0.f7888a;
+        String str = d0.f7887a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {

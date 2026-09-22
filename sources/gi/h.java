@@ -49,7 +49,7 @@ public final class h extends FrameLayout implements z5 {
         if (Build.VERSION.SDK_INT >= 31) {
             fh.d dVar = new fh.d(null);
             this.f10037s = dVar;
-            dVar.i(AndroidUtilities.dp(7.0f), f0.a());
+            dVar.h(AndroidUtilities.dp(7.0f), f0.a());
             dVar.h = true;
             cVar = new ah.c(dVar);
         } else {
@@ -79,14 +79,14 @@ public final class h extends FrameLayout implements z5 {
         ch.d c10 = cVar.c(textView, null, false);
         dh.e eVar = new dh.e(f6Var);
         eVar.e = new d2.c(8);
-        eVar.f(1627389951, 1358954495);
-        eVar.e(603979776, 603979776);
+        eVar.e(1627389951, 1358954495);
+        eVar.d(603979776, 603979776);
         eVar.c(0, 0);
-        eVar.f7743n = 0.0f;
-        eVar.f7744r = 0.0f;
+        eVar.f7742n = 0.0f;
+        eVar.f7743r = 0.0f;
         float dpf2 = AndroidUtilities.dpf2(0.43f);
         float dpf22 = AndroidUtilities.dpf2(0.43f);
-        eVar.f7742f = dpf2;
+        eVar.f7741f = dpf2;
         eVar.h = dpf22;
         c10.o(eVar);
         c10.q(AndroidUtilities.dp(7.0f));
@@ -123,7 +123,7 @@ public final class h extends FrameLayout implements z5 {
                             long j3 = hVar.E;
                             s0 s0Var = ((t0) eVar2).h;
                             if (s0Var != null) {
-                                s0Var.e(j3);
+                                s0Var.a(j3);
                                 return;
                             }
                             return;
@@ -136,7 +136,7 @@ public final class h extends FrameLayout implements z5 {
                             long j10 = hVar2.E;
                             s0 s0Var2 = ((t0) eVar3).h;
                             if (s0Var2 != null) {
-                                s0Var2.e(j10);
+                                s0Var2.a(j10);
                                 return;
                             }
                             return;
@@ -184,7 +184,7 @@ public final class h extends FrameLayout implements z5 {
                             long j3 = hVar.E;
                             s0 s0Var = ((t0) eVar2).h;
                             if (s0Var != null) {
-                                s0Var.e(j3);
+                                s0Var.a(j3);
                                 return;
                             }
                             return;
@@ -197,7 +197,7 @@ public final class h extends FrameLayout implements z5 {
                             long j10 = hVar2.E;
                             s0 s0Var2 = ((t0) eVar3).h;
                             if (s0Var2 != null) {
-                                s0Var2.e(j10);
+                                s0Var2.a(j10);
                                 return;
                             }
                             return;
@@ -243,7 +243,7 @@ public final class h extends FrameLayout implements z5 {
         dVar2.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         dVar2.e();
         dVar2.d();
-        dVar2.setColor(j6.l1(0.14f, j6.v0(j6.f19496z6, f6Var)));
+        dVar2.setColor(j6.l1(0.14f, j6.v0(j6.f19511z6, f6Var)));
         dVar2.setTextColor(j6.w0(null, j6.G6, false));
         dVar2.g(LocaleController.getString(R.string.Decline), false, true);
         dVar2.setOnClickListener(new View.OnClickListener(this) {
@@ -263,7 +263,7 @@ public final class h extends FrameLayout implements z5 {
                             long j3 = hVar.E;
                             s0 s0Var = ((t0) eVar2).h;
                             if (s0Var != null) {
-                                s0Var.e(j3);
+                                s0Var.a(j3);
                                 return;
                             }
                             return;
@@ -276,7 +276,7 @@ public final class h extends FrameLayout implements z5 {
                             long j10 = hVar2.E;
                             s0 s0Var2 = ((t0) eVar3).h;
                             if (s0Var2 != null) {
-                                s0Var2.e(j10);
+                                s0Var2.a(j10);
                                 return;
                             }
                             return;
@@ -324,7 +324,7 @@ public final class h extends FrameLayout implements z5 {
                             long j3 = hVar.E;
                             s0 s0Var = ((t0) eVar2).h;
                             if (s0Var != null) {
-                                s0Var.e(j3);
+                                s0Var.a(j3);
                                 return;
                             }
                             return;
@@ -337,7 +337,7 @@ public final class h extends FrameLayout implements z5 {
                             long j10 = hVar2.E;
                             s0 s0Var2 = ((t0) eVar3).h;
                             if (s0Var2 != null) {
-                                s0Var2.e(j10);
+                                s0Var2.a(j10);
                                 return;
                             }
                             return;
@@ -373,7 +373,7 @@ public final class h extends FrameLayout implements z5 {
         Canvas canvas2;
         if (this.f10038w) {
             canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, j6.f19216k0);
+            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, j6.f19231k0);
         } else {
             canvas2 = canvas;
         }
@@ -391,14 +391,14 @@ public final class h extends FrameLayout implements z5 {
             int dp2 = (dp * 2) + AndroidUtilities.dp(52.0f);
             RecordingCanvas a2 = dVar.a(dp2, dp2);
             a2.translate(-left, -top);
-            a2.drawColor(j6.v0(j6.f19094d6, this.f10031a));
+            a2.drawColor(j6.v0(j6.f19109d6, this.f10031a));
             a2.save();
             float f7 = dp2 / 2.0f;
             a2.scale(1.125f, 1.125f, f7, f7);
             super.drawChild(a2, view, j3);
             a2.restore();
             a2.drawColor(536870912);
-            dVar.c();
+            dVar.b();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -408,7 +408,7 @@ public final class h extends FrameLayout implements z5 {
         int i10 = j6.G6;
         f6 f6Var = this.f10031a;
         this.f10034f.setTextColor(j6.v0(i10, f6Var));
-        int i11 = j6.f19496z6;
+        int i11 = j6.f19511z6;
         this.h.setTextColor(j6.v0(i11, f6Var));
         this.f10035n.setTextColor(j6.v0(i11, f6Var));
     }

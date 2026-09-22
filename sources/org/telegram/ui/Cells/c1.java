@@ -13,7 +13,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.k90;
+import org.telegram.ui.Components.n90;
 import org.telegram.ui.Components.t00;
 import org.telegram.ui.Components.xc;
 public abstract class c1 {
@@ -102,8 +102,8 @@ public abstract class c1 {
         textView.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void r(int i10, k90 k90Var) {
-        k90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void r(int i10, n90 n90Var) {
+        n90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
     public static void s(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.TL_error tL_error, boolean z10) {

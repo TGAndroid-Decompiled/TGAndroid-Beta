@@ -5,21 +5,21 @@ import e9.i0;
 import java.util.ArrayList;
 import java.util.List;
 public final class l extends m {
-    public final j f14649n;
-    public final l.d f14650r;
+    public final j f14664n;
+    public final l.d f14665r;
 
     public l(b2.s sVar, i0 i0Var, r rVar, ArrayList arrayList, List list, List list2) {
         super(sVar, i0Var, rVar, arrayList, list, list2);
         j jVar;
-        Uri.parse(((b) i0Var.get(0)).f14611a);
+        Uri.parse(((b) i0Var.get(0)).f14626a);
         long j3 = rVar.e;
         if (j3 <= 0) {
             jVar = null;
         } else {
             jVar = new j(rVar.d, j3, null);
         }
-        this.f14649n = jVar;
-        this.f14650r = jVar == null ? new l.d(new j(0L, -1L, null)) : null;
+        this.f14664n = jVar;
+        this.f14665r = jVar == null ? new l.d(new j(0L, -1L, null), 4) : null;
     }
 
     @Override
@@ -29,11 +29,11 @@ public final class l extends m {
 
     @Override
     public final l2.h d() {
-        return this.f14650r;
+        return this.f14665r;
     }
 
     @Override
     public final j f() {
-        return this.f14649n;
+        return this.f14664n;
     }
 }

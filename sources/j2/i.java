@@ -74,7 +74,7 @@ public final class i implements b {
 
     @Override
     public final void b(b0 b0Var) {
-        this.M = b0Var.f43611a;
+        this.M = b0Var.f43632a;
     }
 
     @Override
@@ -82,11 +82,11 @@ public final class i implements b {
         a5.a aVar = this.F;
         if (aVar != null) {
             s sVar = (s) aVar.d;
-            if (sVar.f3316z == -1) {
+            if (sVar.f3315z == -1) {
                 r a2 = sVar.a();
-                a2.f3259x = x1Var.f3352a;
-                a2.f3260y = x1Var.f3353b;
-                this.F = new a5.a(new s(a2), aVar.f277b, (String) aVar.f278c, 9);
+                a2.f3258x = x1Var.f3351a;
+                a2.f3259y = x1Var.f3352b;
+                this.F = new a5.a(new s(a2), aVar.f276b, (String) aVar.f277c, 9);
             }
         }
     }
@@ -100,13 +100,13 @@ public final class i implements b {
     public final void e(a aVar, b0 b0Var) {
         f0 f0Var = aVar.d;
         if (f0Var != null) {
-            s sVar = b0Var.f43613c;
+            s sVar = b0Var.f43634c;
             sVar.getClass();
             int i10 = b0Var.d;
             k1 k1Var = aVar.f12565b;
             f0Var.getClass();
             a5.a aVar2 = new a5.a(sVar, i10, this.f12595c.d(k1Var, f0Var), 9);
-            int i11 = b0Var.f43612b;
+            int i11 = b0Var.f43633b;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -165,7 +165,7 @@ public final class i implements b {
     public final boolean n(a5.a aVar) {
         String str;
         if (aVar != null) {
-            String str2 = (String) aVar.f278c;
+            String str2 = (String) aVar.f277c;
             h hVar = this.f12595c;
             synchronized (hVar) {
                 str = hVar.f12591f;
@@ -230,19 +230,19 @@ public final class i implements b {
     public final void r(k1 k1Var, f0 f0Var) {
         int b10;
         PlaybackMetrics.Builder builder = this.v;
-        if (f0Var == null || (b10 = k1Var.b(f0Var.f43653a)) == -1) {
+        if (f0Var == null || (b10 = k1Var.b(f0Var.f43674a)) == -1) {
             return;
         }
         h1 h1Var = this.h;
         int i10 = 0;
         k1Var.f(b10, h1Var, false);
-        int i11 = h1Var.f3014c;
+        int i11 = h1Var.f3013c;
         j1 j1Var = this.f12596f;
         k1Var.n(i11, j1Var);
-        b2.f0 f0Var2 = j1Var.f3060c.f3078b;
+        b2.f0 f0Var2 = j1Var.f3059c.f3077b;
         int i12 = 2;
         if (f0Var2 != null) {
-            int I = d0.I(f0Var2.f2993a, f0Var2.f2994b);
+            int I = d0.I(f0Var2.f2992a, f0Var2.f2993b);
             if (I != 0) {
                 if (I != 1) {
                     if (I != 2) {
@@ -258,8 +258,8 @@ public final class i implements b {
             }
         }
         builder.setStreamType(i10);
-        if (j1Var.f3067m != -9223372036854775807L && !j1Var.f3065k && !j1Var.f3063i && !j1Var.a()) {
-            builder.setMediaDurationMillis(d0.e0(j1Var.f3067m));
+        if (j1Var.f3066m != -9223372036854775807L && !j1Var.f3064k && !j1Var.f3062i && !j1Var.a()) {
+            builder.setMediaDurationMillis(d0.e0(j1Var.f3066m));
         }
         if (!j1Var.a()) {
             i12 = 1;
@@ -307,27 +307,27 @@ public final class i implements b {
                 i12 = 2;
             }
             timeSinceCreatedMillis.setTrackChangeReason(i12);
-            String str2 = sVar.f3308q;
+            String str2 = sVar.f3307q;
             if (str2 != null) {
                 timeSinceCreatedMillis.setContainerMimeType(str2);
             }
-            String str3 = sVar.f3309r;
+            String str3 = sVar.f3308r;
             if (str3 != null) {
                 timeSinceCreatedMillis.setSampleMimeType(str3);
             }
-            String str4 = sVar.f3302k;
+            String str4 = sVar.f3301k;
             if (str4 != null) {
                 timeSinceCreatedMillis.setCodecName(str4);
             }
-            int i13 = sVar.f3301j;
+            int i13 = sVar.f3300j;
             if (i13 != -1) {
                 timeSinceCreatedMillis.setBitrate(i13);
             }
-            int i14 = sVar.f3315y;
+            int i14 = sVar.f3314y;
             if (i14 != -1) {
                 timeSinceCreatedMillis.setWidth(i14);
             }
-            int i15 = sVar.f3316z;
+            int i15 = sVar.f3315z;
             if (i15 != -1) {
                 timeSinceCreatedMillis.setHeight(i15);
             }
@@ -341,7 +341,7 @@ public final class i implements b {
             }
             String str5 = sVar.d;
             if (str5 != null) {
-                String str6 = d0.f7888a;
+                String str6 = d0.f7887a;
                 String[] split = str5.split("-", -1);
                 String str7 = split[0];
                 if (split.length >= 2) {

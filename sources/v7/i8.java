@@ -14,7 +14,7 @@ public abstract class i8 {
 
     public abstract Typeface a(Context context, h0.e eVar, Resources resources, int i10);
 
-    public abstract Typeface b(Context context, o0.h[] hVarArr, int i10);
+    public abstract Typeface b(Context context, o0.i[] iVarArr, int i10);
 
     public Typeface c(Context context, List list, int i10) {
         throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
@@ -54,7 +54,7 @@ public abstract class i8 {
         }
     }
 
-    public o0.h f(o0.h[] hVarArr, int i10) {
+    public o0.i f(o0.i[] iVarArr, int i10) {
         int i11;
         boolean z10;
         int i12;
@@ -69,21 +69,21 @@ public abstract class i8 {
         } else {
             z10 = false;
         }
-        o0.h hVar = null;
+        o0.i iVar = null;
         int i13 = Integer.MAX_VALUE;
-        for (o0.h hVar2 : hVarArr) {
-            int abs = Math.abs(hVar2.f15491c - i11) * 2;
-            if (hVar2.d == z10) {
+        for (o0.i iVar2 : iVarArr) {
+            int abs = Math.abs(iVar2.f15506c - i11) * 2;
+            if (iVar2.d == z10) {
                 i12 = 0;
             } else {
                 i12 = 1;
             }
             int i14 = abs + i12;
-            if (hVar == null || i13 > i14) {
-                hVar = hVar2;
+            if (iVar == null || i13 > i14) {
+                iVar = iVar2;
                 i13 = i14;
             }
         }
-        return hVar;
+        return iVar;
     }
 }

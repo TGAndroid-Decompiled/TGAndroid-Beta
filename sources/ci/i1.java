@@ -5,7 +5,7 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.x81;
+import org.telegram.ui.Components.z81;
 import org.telegram.ui.a41;
 import org.telegram.ui.b41;
 import org.telegram.ui.bb1;
@@ -15,7 +15,7 @@ import org.telegram.ui.me1;
 import org.telegram.ui.mw0;
 import org.telegram.ui.wp0;
 import org.telegram.ui.zn;
-public final class i1 extends x81 {
+public final class i1 extends z81 {
     public final int U;
     public final Object V;
 
@@ -31,9 +31,9 @@ public final class i1 extends x81 {
             case 3:
                 if (i10 == 0) {
                     zn znVar = (zn) this.V;
-                    if (znVar.f40467s1) {
-                        znVar.f40467s1 = false;
-                        znVar.f40440q1.h.clear();
+                    if (znVar.f40488s1) {
+                        znVar.f40488s1 = false;
+                        znVar.f40461q1.h.clear();
                         return;
                     }
                     return;
@@ -123,7 +123,7 @@ public final class i1 extends x81 {
                 return;
             case 7:
                 bb1 bb1Var = (bb1) this.V;
-                bb1Var.m0(bb1Var.f32325i0.getCurrentPosition(), true);
+                bb1Var.m0(bb1Var.f32343i0.getCurrentPosition(), true);
                 bb1Var.n0(0.0f, false);
                 bb1.W(bb1Var);
                 return;
@@ -137,7 +137,7 @@ public final class i1 extends x81 {
         a41 a41Var;
         switch (this.U) {
             case 6:
-                if ((getCurrentView() instanceof b41) && (a41Var = ((b41) getCurrentView()).f32255n) != null) {
+                if ((getCurrentView() instanceof b41) && (a41Var = ((b41) getCurrentView()).f32273n) != null) {
                     AndroidUtilities.hideKeyboard(a41Var);
                     return;
                 }
@@ -152,7 +152,7 @@ public final class i1 extends x81 {
         switch (this.U) {
             case 0:
                 t2 t2Var = (t2) this.V;
-                i1 i1Var = t2Var.f5550f;
+                i1 i1Var = t2Var.f5548f;
                 s2 s2Var = t2Var.h;
                 if (s2Var != null) {
                     s2Var.F = i1Var.getPositionAnimated();
@@ -186,8 +186,8 @@ public final class i1 extends x81 {
                 if (dVar != null && C0 != null && C0 != cq0Var.R) {
                     cq0Var.R = C0;
                     org.telegram.ui.Cells.f3 f3Var = C0.e;
-                    dVar.g((CharSequence) f3Var.f20269b, true, true);
-                    cq0Var.Q.f((SpannableStringBuilder) f3Var.f20270c, true);
+                    dVar.g((CharSequence) f3Var.f20284b, true, true);
+                    cq0Var.Q.f((SpannableStringBuilder) f3Var.f20285c, true);
                 }
                 cq0Var.D0(1);
                 return;
@@ -199,7 +199,7 @@ public final class i1 extends x81 {
                 return;
             case 7:
                 bb1 bb1Var = (bb1) this.V;
-                float positionAnimated2 = bb1Var.f32325i0.getPositionAnimated();
+                float positionAnimated2 = bb1Var.f32343i0.getPositionAnimated();
                 bb1Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     bb1Var.m0(Math.round(positionAnimated2), true);

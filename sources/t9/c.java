@@ -13,7 +13,7 @@ import kotlin.jvm.internal.i;
 import y9.t0;
 import y9.t1;
 public final class c {
-    public static final c f43353a = new Object();
+    public static final c f43374a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -54,9 +54,9 @@ public final class c {
             ?? obj3 = new Object();
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                obj3.f15748a = str2;
-                obj3.f15749b = Integer.valueOf(runningAppProcessInfo.pid);
-                obj3.f15750c = Integer.valueOf(runningAppProcessInfo.importance);
+                obj3.f15763a = str2;
+                obj3.f15764b = Integer.valueOf(runningAppProcessInfo.pid);
+                obj3.f15765c = Integer.valueOf(runningAppProcessInfo.importance);
                 obj3.d = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
                 arrayList2.add(obj3.f());
             } else {
@@ -78,7 +78,7 @@ public final class c {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((t0) ((t1) obj)).f46934b == myPid) {
+                if (((t0) ((t1) obj)).f46955b == myPid) {
                     break;
                 }
             } else {
@@ -97,9 +97,9 @@ public final class c {
             }
             i.e(processName, "processName");
             ?? obj2 = new Object();
-            obj2.f15748a = processName;
-            obj2.f15749b = Integer.valueOf(myPid);
-            obj2.f15750c = 0;
+            obj2.f15763a = processName;
+            obj2.f15764b = Integer.valueOf(myPid);
+            obj2.f15765c = 0;
             obj2.d = false;
             return obj2.f();
         }

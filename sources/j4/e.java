@@ -46,7 +46,7 @@ public final class e implements i {
         boolean z10;
         int i12;
         this.h.getClass();
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         while (vVar.a() > 0) {
             int i13 = this.f12666j;
             e2.v vVar2 = this.f12662c;
@@ -103,15 +103,15 @@ public final class e implements i {
                                     byte[] bArr2 = {(byte) (((i19 << 3) & 248) | ((i21 >> 1) & 7)), (byte) (((i20 << 3) & 120) | ((i21 << 7) & 128))};
                                     c3.a n10 = c3.b.n(new a4.h(bArr2, 2), false);
                                     b2.r rVar = new b2.r();
-                                    rVar.f3240a = this.f12664g;
-                                    rVar.f3252p = r0.n(this.f12663f);
-                                    rVar.f3253q = r0.n("audio/mp4a-latm");
-                                    rVar.f3246j = n10.f3708a;
-                                    rVar.I = n10.f3710c;
-                                    rVar.J = n10.f3709b;
-                                    rVar.f3256t = Collections.singletonList(bArr2);
+                                    rVar.f3239a = this.f12664g;
+                                    rVar.f3251p = r0.n(this.f12663f);
+                                    rVar.f3252q = r0.n("audio/mp4a-latm");
+                                    rVar.f3245j = n10.f3707a;
+                                    rVar.I = n10.f3709c;
+                                    rVar.J = n10.f3708b;
+                                    rVar.f3255t = Collections.singletonList(bArr2);
                                     rVar.d = this.d;
-                                    rVar.f3243f = this.e;
+                                    rVar.f3242f = this.e;
                                     b2.s sVar = new b2.s(rVar);
                                     this.f12675s = 1024000000 / sVar.K;
                                     this.h.b(sVar);
@@ -135,7 +135,7 @@ public final class e implements i {
                             }
                         }
                     } else {
-                        byte[] bArr3 = vVar2.f7934a;
+                        byte[] bArr3 = vVar2.f7933a;
                         int min3 = Math.min(vVar.a(), 10 - this.f12667k);
                         vVar.h(this.f12667k, min3, bArr3);
                         int i24 = this.f12667k + min3;
@@ -152,7 +152,7 @@ public final class e implements i {
                         }
                     }
                 } else if (vVar.a() != 0) {
-                    hVar.f256b[0] = vVar.f7934a[vVar.f7935b];
+                    hVar.f256b[0] = vVar.f7933a[vVar.f7934b];
                     hVar.q(2);
                     int i25 = hVar.i(4);
                     int i26 = this.f12672p;
@@ -172,9 +172,9 @@ public final class e implements i {
                     }
                 }
             } else {
-                byte[] bArr4 = vVar.f7934a;
-                int i27 = vVar.f7935b;
-                int i28 = vVar.f7936c;
+                byte[] bArr4 = vVar.f7933a;
+                int i27 = vVar.f7934b;
+                int i28 = vVar.f7935c;
                 while (true) {
                     if (i27 < i28) {
                         i11 = i27 + 1;
@@ -211,8 +211,8 @@ public final class e implements i {
                                             hVar.q(14);
                                             int i33 = hVar.i(13);
                                             if (i33 >= 7) {
-                                                byte[] bArr8 = vVar.f7934a;
-                                                int i34 = vVar.f7936c;
+                                                byte[] bArr8 = vVar.f7933a;
+                                                int i34 = vVar.f7935c;
                                                 int i35 = i30 + i33;
                                                 if (i35 >= i34) {
                                                     break;
@@ -337,9 +337,9 @@ public final class e implements i {
             this.f12665i = Z12;
             b2.r rVar = new b2.r();
             f0Var.b();
-            rVar.f3240a = f0Var.e;
-            rVar.f3252p = r0.n(this.f12663f);
-            rVar.f3253q = r0.n("application/id3");
+            rVar.f3239a = f0Var.e;
+            rVar.f3251p = r0.n(this.f12663f);
+            rVar.f3252q = r0.n("application/id3");
             k0.s(rVar, Z12);
             return;
         }

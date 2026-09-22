@@ -4,12 +4,12 @@ import ai.e6;
 import android.content.Context;
 public class l {
     public final Context f10773a;
-    public final ka.c f10774b;
+    public final k6.h f10774b;
     public int f10775c = 0;
 
     public l(Context context) {
         this.f10773a = context;
-        this.f10774b = new ka.c(context, 17);
+        this.f10774b = new k6.h(context, (char) 0);
     }
 
     public k2.f0 a(Context context) {

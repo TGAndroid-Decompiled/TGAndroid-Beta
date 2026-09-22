@@ -6,25 +6,25 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.v9;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.zn;
 public final class s2 implements Runnable {
-    public final int f48035a;
-    public final Object f48036b;
+    public final int f48056a;
+    public final Object f48057b;
 
     public s2(Object obj, int i10) {
-        this.f48035a = i10;
-        this.f48036b = obj;
+        this.f48056a = i10;
+        this.f48057b = obj;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f48035a;
-        Object obj = this.f48036b;
+        int i10 = this.f48056a;
+        Object obj = this.f48057b;
         switch (i10) {
             case 0:
                 ((t2) obj).invalidate();
@@ -34,40 +34,40 @@ public final class s2 implements Runnable {
                 return;
             case 2:
                 v3 v3Var = (v3) obj;
-                s2 s2Var = v3Var.f48163i0;
+                s2 s2Var = v3Var.f48184i0;
                 v9[] v9VarArr = v3Var.d;
-                if (v9VarArr[2 - v3Var.f48173r0].getImageReceiver().hasImageLoaded()) {
+                if (v9VarArr[2 - v3Var.f48194r0].getImageReceiver().hasImageLoaded()) {
                     f4.d dVar = v3Var.U;
-                    if (dVar != null && dVar.f8876b == 1 && v3Var.isAttachedToWindow()) {
+                    if (dVar != null && dVar.f8875b == 1 && v3Var.isAttachedToWindow()) {
                         AndroidUtilities.cancelRunOnUIThread(s2Var);
-                        ValueAnimator valueAnimator = v3Var.f48162h0;
+                        ValueAnimator valueAnimator = v3Var.f48183h0;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
-                            v3Var.f48162h0 = null;
+                            v3Var.f48183h0 = null;
                         }
-                        int i11 = 1 - v3Var.f48173r0;
-                        v3Var.f48173r0 = i11;
-                        hj0 lottieAnimation = v9VarArr[2 - i11].getImageReceiver().getLottieAnimation();
-                        hj0 lottieAnimation2 = v9VarArr[v3Var.f48173r0 + 1].getImageReceiver().getLottieAnimation();
+                        int i11 = 1 - v3Var.f48194r0;
+                        v3Var.f48194r0 = i11;
+                        kj0 lottieAnimation = v9VarArr[2 - i11].getImageReceiver().getLottieAnimation();
+                        kj0 lottieAnimation2 = v9VarArr[v3Var.f48194r0 + 1].getImageReceiver().getLottieAnimation();
                         if (lottieAnimation2 != null && lottieAnimation != null) {
                             lottieAnimation2.T(lottieAnimation.t(), false);
                         }
                         v3Var.W.c();
-                        int i12 = v3Var.f48173r0 + 1;
+                        int i12 = v3Var.f48194r0 + 1;
                         TL_stars.starGiftAttributeBackdrop[] stargiftattributebackdropArr = v3Var.V;
-                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) v3Var.f48154b0.c();
+                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) v3Var.f48175b0.c();
                         stargiftattributebackdropArr[i12] = stargiftattributebackdrop;
                         v3Var.e(i12, stargiftattributebackdrop);
-                        v3Var.g(1, (TL_stars.starGiftAttributePattern) v3Var.f48152a0.c(), true);
+                        v3Var.g(1, (TL_stars.starGiftAttributePattern) v3Var.f48173a0.c(), true);
                         v3Var.a();
-                        float f7 = v3Var.f48173r0;
+                        float f7 = v3Var.f48194r0;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f - f7, f7);
-                        v3Var.f48162h0 = ofFloat;
+                        v3Var.f48183h0 = ofFloat;
                         ofFloat.addUpdateListener(new r3(v3Var, 2));
-                        v3Var.f48162h0.addListener(new t3(v3Var));
-                        v3Var.f48162h0.setDuration(320L);
-                        v3Var.f48162h0.setInterpolator(qr.h);
-                        v3Var.f48162h0.start();
+                        v3Var.f48183h0.addListener(new t3(v3Var));
+                        v3Var.f48183h0.setDuration(320L);
+                        v3Var.f48183h0.setInterpolator(qr.h);
+                        v3Var.f48183h0.start();
                         return;
                     }
                     return;
@@ -88,7 +88,7 @@ public final class s2 implements Runnable {
                 di.f fVar = (di.f) obj;
                 fVar.getClass();
                 try {
-                    vl0 currentListView = ((w7) fVar.L0).R.getCurrentListView();
+                    yl0 currentListView = ((w7) fVar.L0).R.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -104,18 +104,18 @@ public final class s2 implements Runnable {
                 nf.f.s(((m7) obj).getContext(), LocaleController.getString(R.string.StarsTOSLink));
                 return;
             case 9:
-                zg.t tVar = (zg.t) ((n2.e) obj).f15112b;
-                zg.s sVar = tVar.f49467b;
+                zg.u uVar = (zg.u) ((zg.t) obj).f49488a;
+                zg.s sVar = uVar.f49490b;
                 if (sVar != null) {
                     sVar.d();
                 }
-                tVar.f49466a.z7(true);
+                uVar.f49489a.z7(true);
                 return;
             case 10:
                 ((ValueAnimator) obj).start();
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 n2Var = ((zg.x) obj).f49485f2.f49286r;
+                org.telegram.ui.ActionBar.n2 n2Var = ((zg.y) obj).f49508f2.f49317r;
                 if (n2Var instanceof zn) {
                     n2Var.showDialog(new rg.x0(n2Var, 11, false));
                     return;

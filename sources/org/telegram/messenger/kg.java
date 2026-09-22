@@ -3,37 +3,37 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kg implements Runnable {
-    public final int f16815a = 0;
-    public final long f16816b;
-    public final long f16817c;
+    public final int f16830a = 0;
+    public final long f16831b;
+    public final long f16832c;
     public final boolean d;
     public final Object e;
-    public final TLObject f16818f;
+    public final TLObject f16833f;
 
     public kg(MessagesStorage messagesStorage, long j3, boolean z10, TLRPC.InputPeer inputPeer, long j10) {
         this.e = messagesStorage;
-        this.f16816b = j3;
+        this.f16831b = j3;
         this.d = z10;
-        this.f16818f = inputPeer;
-        this.f16817c = j10;
+        this.f16833f = inputPeer;
+        this.f16832c = j10;
     }
 
     @Override
     public final void run() {
         TLRPC.PeerSettings peerSettings;
-        int i10 = this.f16815a;
-        TLObject tLObject = this.f16818f;
+        int i10 = this.f16830a;
+        TLObject tLObject = this.f16833f;
         Object obj = this.e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f16816b, this.d, (TLRPC.InputPeer) tLObject, this.f16817c);
+                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f16831b, this.d, (TLRPC.InputPeer) tLObject, this.f16832c);
                 return;
             default:
                 yh.u5 u5Var = (yh.u5) obj;
-                int i11 = u5Var.f48111a;
+                int i11 = u5Var.f48132a;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    long j3 = this.f16816b;
-                    long j10 = this.f16817c;
+                    long j3 = this.f16831b;
+                    long j10 = this.f16832c;
                     if (j3 != 0) {
                         u5Var.b0(-j3, j10, this.d);
                         return;
@@ -55,9 +55,9 @@ public final class kg implements Runnable {
 
     public kg(yh.u5 u5Var, TLObject tLObject, long j3, long j10, boolean z10) {
         this.e = u5Var;
-        this.f16818f = tLObject;
-        this.f16816b = j3;
-        this.f16817c = j10;
+        this.f16833f = tLObject;
+        this.f16831b = j3;
+        this.f16832c = j10;
         this.d = z10;
     }
 }

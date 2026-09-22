@@ -1,68 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class bl extends org.telegram.ui.Components.pk0 {
-    public final int[] l1;
-    public ValueAnimator f32480m1;
-    public boolean f32481n1;
-    public final zn f32482o1;
+import android.animation.LayoutTransition;
+import android.view.View;
+import android.view.ViewGroup;
+public final class bl implements LayoutTransition.TransitionListener {
+    public g6 f32500a;
+    public int f32501b;
+    public final org.telegram.ui.ActionBar.z f32502c;
+    public final zn d;
 
-    public bl(zn znVar, zn znVar2, Activity activity, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(3, i10, activity, znVar2, f6Var);
-        this.f32482o1 = znVar;
-        this.l1 = new int[2];
-        this.f32481n1 = true;
+    public bl(zn znVar, org.telegram.ui.ActionBar.z zVar) {
+        this.d = znVar;
+        this.f32502c = zVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        org.telegram.ui.ActionBar.k kVar;
-        int i14;
-        super.onLayout(z10, i10, i11, i12, i13);
-        kVar = ((org.telegram.ui.ActionBar.n2) this.f32482o1).actionBar;
-        org.telegram.ui.ActionBar.v0 k10 = kVar.j(null).k(28);
-        if (k10 != null) {
-            int[] iArr = this.l1;
-            getLocationInWindow(iArr);
-            float x10 = getX();
-            float width = getWidth() + x10;
-            k10.getLocationInWindow(iArr);
-            float width2 = (k10.getWidth() / 2.0f) + iArr[0];
-            int dp = AndroidUtilities.dp(20.0f);
-            boolean z11 = LocaleController.isRTL;
-            if (z11) {
-                i14 = -1;
-            } else {
-                i14 = 1;
-            }
-            float f7 = width2 + (dp * i14);
-            if (z11) {
-                s(f7 - x10, !this.f32481n1);
-            } else {
-                s(f7 - width, !this.f32481n1);
-            }
-            this.f32481n1 = false;
+    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
+        int i11 = this.f32501b - 1;
+        this.f32501b = i11;
+        if (i11 == 0 && this.f32500a != null) {
+            this.f32502c.getViewTreeObserver().removeOnPreDrawListener(this.f32500a);
+            this.f32500a = null;
         }
     }
 
-    public final void s(float f7, boolean z10) {
-        ValueAnimator valueAnimator = this.f32480m1;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f32480m1 = null;
+    @Override
+    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
+        if (this.f32501b == 0 && this.f32500a == null) {
+            this.f32500a = new g6(this, 1);
+            this.f32502c.getViewTreeObserver().addOnPreDrawListener(this.f32500a);
         }
-        if (!z10) {
-            setBubbleOffset(f7);
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.U0, f7);
-        this.f32480m1 = ofFloat;
-        ofFloat.addUpdateListener(new b3(this, 5));
-        this.f32480m1.setInterpolator(org.telegram.ui.Components.qr.h);
-        this.f32480m1.setDuration(420L);
-        this.f32480m1.start();
+        this.f32501b++;
     }
 }

@@ -8,16 +8,16 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import androidx.appcompat.view.menu.ExpandedMenuView;
 public final class h implements y, AdapterView.OnItemClickListener {
-    public Context f13923a;
-    public LayoutInflater f13924b;
-    public l f13925c;
+    public Context f13937a;
+    public LayoutInflater f13938b;
+    public l f13939c;
     public ExpandedMenuView d;
     public x e;
-    public g f13926f;
+    public g f13940f;
 
     public h(ContextWrapper contextWrapper) {
-        this.f13923a = contextWrapper;
-        this.f13924b = LayoutInflater.from(contextWrapper);
+        this.f13937a = contextWrapper;
+        this.f13938b = LayoutInflater.from(contextWrapper);
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class h implements y, AdapterView.OnItemClickListener {
 
     @Override
     public final void d() {
-        g gVar = this.f13926f;
+        g gVar = this.f13940f;
         if (gVar != null) {
             gVar.notifyDataSetChanged();
         }
@@ -53,14 +53,14 @@ public final class h implements y, AdapterView.OnItemClickListener {
 
     @Override
     public final void i(Context context, l lVar) {
-        if (this.f13923a != null) {
-            this.f13923a = context;
-            if (this.f13924b == null) {
-                this.f13924b = LayoutInflater.from(context);
+        if (this.f13937a != null) {
+            this.f13937a = context;
+            if (this.f13938b == null) {
+                this.f13938b = LayoutInflater.from(context);
             }
         }
-        this.f13925c = lVar;
-        g gVar = this.f13926f;
+        this.f13939c = lVar;
+        g gVar = this.f13940f;
         if (gVar != null) {
             gVar.notifyDataSetChanged();
         }
@@ -69,42 +69,42 @@ public final class h implements y, AdapterView.OnItemClickListener {
     @Override
     public final boolean j(e0 e0Var) {
         boolean hasVisibleItems = e0Var.hasVisibleItems();
-        Context context = e0Var.f13932a;
+        Context context = e0Var.f13946a;
         if (!hasVisibleItems) {
             return false;
         }
         ?? obj = new Object();
-        obj.f13952a = e0Var;
-        c5.b0 b0Var = new c5.b0(context);
-        g.c cVar = (g.c) b0Var.f3848c;
+        obj.f13966a = e0Var;
+        c5.a0 a0Var = new c5.a0(context);
+        g.c cVar = (g.c) a0Var.f3845c;
         h hVar = new h(cVar.f9228a);
-        obj.f13954c = hVar;
+        obj.f13968c = hVar;
         hVar.e = obj;
         e0Var.b(hVar, context);
-        h hVar2 = obj.f13954c;
-        if (hVar2.f13926f == null) {
-            hVar2.f13926f = new g(hVar2);
+        h hVar2 = obj.f13968c;
+        if (hVar2.f13940f == null) {
+            hVar2.f13940f = new g(hVar2);
         }
-        cVar.f9233i = hVar2.f13926f;
+        cVar.f9233i = hVar2.f13940f;
         cVar.f9234j = obj;
-        View view = e0Var.f13943o;
+        View view = e0Var.f13957o;
         if (view != null) {
             cVar.e = view;
         } else {
-            cVar.f9230c = e0Var.f13942n;
-            cVar.d = e0Var.f13941m;
+            cVar.f9230c = e0Var.f13956n;
+            cVar.d = e0Var.f13955m;
         }
         cVar.h = obj;
-        g.g e = b0Var.e();
-        obj.f13953b = e;
+        g.g e = a0Var.e();
+        obj.f13967b = e;
         e.setOnDismissListener(obj);
-        WindowManager.LayoutParams attributes = obj.f13953b.getWindow().getAttributes();
+        WindowManager.LayoutParams attributes = obj.f13967b.getWindow().getAttributes();
         attributes.type = 1003;
         attributes.flags |= 131072;
-        obj.f13953b.show();
+        obj.f13967b.show();
         x xVar = this.e;
         if (xVar != null) {
-            xVar.v(e0Var);
+            xVar.q(e0Var);
             return true;
         }
         return true;
@@ -117,6 +117,6 @@ public final class h implements y, AdapterView.OnItemClickListener {
 
     @Override
     public final void onItemClick(AdapterView adapterView, View view, int i10, long j3) {
-        this.f13925c.q(this.f13926f.getItem(i10), this, 0);
+        this.f13939c.q(this.f13940f.getItem(i10), this, 0);
     }
 }

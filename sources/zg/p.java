@@ -16,28 +16,28 @@ import org.telegram.ui.Components.y5;
 import org.telegram.ui.j71;
 import yh.s5;
 public final class p extends j71 {
-    public boolean f49425d2;
-    public final q f49426e2;
+    public boolean f49442d2;
+    public final q f49443e2;
 
     public p(q qVar, q qVar2, Activity activity, f6 f6Var, int i10) {
         super(qVar2, activity, false, null, 6, false, f6Var, 16, i10);
-        this.f49426e2 = qVar;
-        this.f49425d2 = true;
+        this.f49443e2 = qVar;
+        this.f49442d2 = true;
         setDrawBackground(false);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f49425d2) {
-            this.f49425d2 = false;
-            this.f49426e2.f49453b.s(null);
+        if (this.f49442d2) {
+            this.f49442d2 = false;
+            this.f49443e2.f49450b.s(null);
         }
     }
 
     @Override
     public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        q qVar = this.f49426e2;
+        q qVar = this.f49443e2;
         int i10 = qVar.J;
         ArrayList arrayList = qVar.F;
         LinkedHashMap linkedHashMap = qVar.E;
@@ -46,23 +46,23 @@ public final class p extends j71 {
             y5 y5Var = (y5) linkedHashMap.remove(l4);
             y5Var.setRemoved(new s5(5, this, y5Var));
             qVar.W(y5Var);
-            qVar.f49453b.x(l4, true);
+            qVar.f49450b.x(l4, true);
             qVar.Y(false);
         } else if (linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0) >= i10) {
             xc.a0(qVar).t(LocaleController.formatPluralString("ReactionMaxCountError", i10, new Object[0]), null).j();
         } else {
             try {
-                int editTextSelectionEnd = qVar.f49456n.getEditTextSelectionEnd();
+                int editTextSelectionEnd = qVar.f49453n.getEditTextSelectionEnd();
                 SpannableString spannableString = new SpannableString("b");
-                y5 e = q0.e(document, l4, qVar.f49456n.getFontMetricsInt());
+                y5 e = r0.e(document, l4, qVar.f49453n.getFontMetricsInt());
                 e.cacheType = p5.g();
                 e.setAdded();
                 arrayList.add(w7.q.b(editTextSelectionEnd, 0, arrayList.size()), l4);
                 linkedHashMap.put(l4, e);
                 spannableString.setSpan(e, 0, spannableString.length(), 33);
-                qVar.f49456n.getText().insert(editTextSelectionEnd, spannableString);
-                qVar.f49456n.setSelection(editTextSelectionEnd + spannableString.length());
-                qVar.f49453b.x(l4, true);
+                qVar.f49453n.getText().insert(editTextSelectionEnd, spannableString);
+                qVar.f49453n.setSelection(editTextSelectionEnd + spannableString.length());
+                qVar.f49450b.x(l4, true);
                 qVar.Y(true);
                 qVar.W(e);
             } catch (Exception e7) {

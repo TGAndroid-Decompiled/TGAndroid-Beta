@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.regex.Pattern;
+import ki.q0;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileUploadOperation;
@@ -18,9 +19,9 @@ import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.n01;
 import org.telegram.ui.Components.p01;
 import org.telegram.ui.Components.po;
+import org.telegram.ui.Components.r01;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.fg1;
 import org.telegram.ui.uy;
@@ -48,8 +49,8 @@ public final class g0 implements Runnable {
                 String str = (String) this.e;
                 long j3 = this.f117b;
                 long j10 = this.f118c;
-                String str2 = e2.d0.f7888a;
-                j2.f fVar = ((i2.b0) ((l0) ((of.b) this.d).f15683c)).f10625a.f10675s;
+                String str2 = e2.d0.f7887a;
+                j2.f fVar = ((i2.b0) ((l0) ((of.b) this.d).f15698c)).f10625a.f10675s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j10, j3));
                 return;
@@ -60,25 +61,25 @@ public final class g0 implements Runnable {
                 String str3 = (String) this.e;
                 long j11 = this.f117b;
                 long j12 = this.f118c;
-                String str4 = e2.d0.f7888a;
-                j2.f fVar2 = ((i2.b0) ((k2.j) ((n4.y) this.d).f15218b)).f10625a.f10675s;
+                String str4 = e2.d0.f7887a;
+                j2.f fVar2 = ((i2.b0) ((k2.k) ((n4.y) this.d).f15231b)).f10625a.f10675s;
                 j2.a p10 = fVar2.p();
                 fVar2.q(p10, 1008, new ga.a(p10, str3, j12, j11));
                 return;
             case 3:
-                ki.k0 k0Var = (ki.k0) this.e;
+                ki.m0 m0Var = (ki.m0) this.e;
                 long j13 = this.f117b;
                 long j14 = this.f118c;
-                ki.l0 l0Var = ((ki.o0) this.d).d;
-                long j15 = k0Var.f13762a;
-                File file = k0Var.f13763b;
-                p01 p01Var = (p01) l0Var;
-                synchronized (p01Var) {
-                    n01 n01Var = (n01) p01Var.f27108c.get(Long.valueOf(j15));
-                    if (!p01Var.d && n01Var != null && !n01Var.e) {
-                        p01Var.c(n01Var);
-                        n01Var.f26528b = Math.max(n01Var.f26528b, j13 + j14);
-                        FileLoader.getInstance(p01Var.f27106a).checkUploadNewDataAvailable(file.getAbsolutePath(), p01Var.f27107b, n01Var.f26528b, 0L);
+                ki.n0 n0Var = ((q0) this.d).d;
+                long j15 = m0Var.f13780a;
+                File file = m0Var.f13781b;
+                r01 r01Var = (r01) n0Var;
+                synchronized (r01Var) {
+                    p01 p01Var = (p01) r01Var.f27748c.get(Long.valueOf(j15));
+                    if (!r01Var.d && p01Var != null && !p01Var.e) {
+                        r01Var.c(p01Var);
+                        p01Var.f27218b = Math.max(p01Var.f27218b, j13 + j14);
+                        FileLoader.getInstance(r01Var.f27746a).checkUploadNewDataAvailable(file.getAbsolutePath(), r01Var.f27747b, p01Var.f27218b, 0L);
                         return;
                     }
                     return;
@@ -122,7 +123,7 @@ public final class g0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j16, j17));
                     uyVar.C2.u(uyVar, arrayList, null, false, uyVar.J2, uyVar.K2, uyVar.L2, fg1Var);
-                    if (uyVar.f38279i2) {
+                    if (uyVar.f38300i2) {
                         uyVar.C2 = null;
                         return;
                     }
@@ -142,7 +143,7 @@ public final class g0 implements Runnable {
                 t10.append(" TL_forumTopic ");
                 t10.append(findTopic);
                 FileLog.d(t10.toString());
-                if (launchActivity.f31128q0 != null) {
+                if (launchActivity.f31149q0 != null) {
                     ng.d.a(znVar, MessagesStorage.TopicKey.of(-j18, j19));
                     ((ActionBarLayout) launchActivity.O()).P(znVar);
                     return;

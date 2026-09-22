@@ -40,9 +40,9 @@ public final class t extends yh.v3 {
     @Override
     public final void j(int i10) {
         v vVar = this.C0;
-        TextView textView = vVar.f46451b0;
+        TextView textView = vVar.f46472b0;
         if (textView != null && j6.B1(textView.getBackground(), i10, false)) {
-            vVar.f46451b0.invalidate();
+            vVar.f46472b0.invalidate();
         }
     }
 

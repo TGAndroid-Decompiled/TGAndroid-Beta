@@ -1,24 +1,42 @@
 package w7;
 
-import java.util.List;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Looper;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 public abstract class e9 {
-    public static void a(z3.d dVar, int i10, e2.h hVar) {
-        long g10 = dVar.g(i10);
-        List s10 = dVar.s(g10);
-        if (!s10.isEmpty()) {
-            if (i10 != dVar.v() - 1) {
-                long g11 = dVar.g(i10 + 1) - dVar.g(i10);
-                if (g11 > 0) {
-                    hVar.accept(new z3.a(g10, g11, s10));
-                    return;
-                }
-                return;
-            }
-            throw new IllegalStateException();
-        }
+    public static com.google.android.gms.internal.clearcut.v0 a(Context context, GoogleSignInOptions googleSignInOptions) {
+        n6.l.h(googleSignInOptions);
+        return new com.google.android.gms.common.api.j(context, w5.a.f44909a, googleSignInOptions, new com.google.android.gms.common.api.i(new Object(), Looper.getMainLooper()));
     }
 
-    public static void b(z3.d r12, z3.l r13, e2.h r14) {
-        throw new UnsupportedOperationException("Method not decompiled: w7.e9.b(z3.d, z3.l, e2.h):void");
+    public static Task b(Intent intent) {
+        z5.b bVar;
+        GoogleSignInAccount googleSignInAccount;
+        a5.a aVar = a6.h.f299a;
+        Status status = Status.h;
+        if (intent == null) {
+            bVar = new z5.b(null, status);
+        } else {
+            Status status2 = (Status) intent.getParcelableExtra("googleSignInStatus");
+            GoogleSignInAccount googleSignInAccount2 = (GoogleSignInAccount) intent.getParcelableExtra("googleSignInAccount");
+            if (googleSignInAccount2 == null) {
+                if (status2 != null) {
+                    status = status2;
+                }
+                bVar = new z5.b(null, status);
+            } else {
+                bVar = new z5.b(googleSignInAccount2, Status.e);
+            }
+        }
+        Status status3 = bVar.f48478a;
+        if (status3.b() && (googleSignInAccount = bVar.f48479b) != null) {
+            return Tasks.forResult(googleSignInAccount);
+        }
+        return Tasks.forException(n6.l.m(status3));
     }
 }

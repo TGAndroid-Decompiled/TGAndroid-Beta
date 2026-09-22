@@ -1,42 +1,64 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class r01 implements org.telegram.ui.ActionBar.a2 {
-    public final int f27715a;
-    public final t01 f27716b;
+import java.util.HashMap;
+import java.util.Iterator;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.NotificationCenter;
+public final class r01 implements ki.n0, NotificationCenter.NotificationCenterDelegate {
+    public final int f27746a;
+    public final boolean f27747b;
+    public final HashMap f27748c = new HashMap();
+    public boolean d;
 
-    public r01(t01 t01Var, int i10) {
-        this.f27715a = i10;
-        this.f27716b = t01Var;
+    public r01(int i10, boolean z10) {
+        this.f27746a = i10;
+        this.f27747b = z10;
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
+    }
+
+    public final synchronized void a(long j3) {
+        p01 p01Var = (p01) this.f27748c.remove(Long.valueOf(j3));
+        if (p01Var == null) {
+            return;
+        }
+        p01Var.e = true;
+        if (p01Var.d) {
+            FileLoader.getInstance(this.f27746a).cancelFileUpload(p01Var.f27217a.getAbsolutePath(), this.f27747b);
+        }
+    }
+
+    public final synchronized void b(boolean z10) {
+        try {
+            if (this.d) {
+                return;
+            }
+            this.d = true;
+            NotificationCenter.getInstance(this.f27746a).removeObserver(this, NotificationCenter.fileUploaded);
+            if (z10) {
+                Iterator it = this.f27748c.values().iterator();
+                while (it.hasNext()) {
+                    p01 p01Var = (p01) it.next();
+                    if (p01Var.d && !p01Var.e) {
+                        FileLoader.getInstance(this.f27746a).cancelFileUpload(p01Var.f27217a.getAbsolutePath(), this.f27747b);
+                    }
+                    it.remove();
+                }
+            }
+        } catch (Throwable th2) {
+            throw th2;
+        }
+    }
+
+    public final void c(p01 p01Var) {
+        if (p01Var.d) {
+            return;
+        }
+        p01Var.d = true;
+        FileLoader.getInstance(this.f27746a).uploadFile(p01Var.f27217a.getAbsolutePath(), this.f27747b, false, 1L, 33554432, false);
     }
 
     @Override
-    public final void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f27715a) {
-            case 0:
-                this.f27716b.a();
-                return;
-            case 1:
-                t01 t01Var = this.f27716b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(t01Var.getContext());
-                alertDialog$Builder.f18654a.T = LocaleController.getString(R.string.TosDeclineDeleteAccount);
-                alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Deactivate), new r01(t01Var, 2));
-                hg.k0.p(R.string.Cancel, alertDialog$Builder, null);
-                return;
-            default:
-                t01 t01Var2 = this.f27716b;
-                org.telegram.ui.ActionBar.b2 b2Var2 = new org.telegram.ui.ActionBar.b2(t01Var2.getContext(), 3, null);
-                b2Var2.f18690g0 = false;
-                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
-                deleteaccount.reason = "Decline ToS update";
-                ConnectionsManager.getInstance(t01Var2.d).sendRequest(deleteaccount, new org.telegram.ui.oo(16, t01Var2, b2Var2));
-                b2Var2.show();
-                return;
-        }
+    public final synchronized void didReceivedNotification(int r4, int r5, java.lang.Object... r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r01.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 }

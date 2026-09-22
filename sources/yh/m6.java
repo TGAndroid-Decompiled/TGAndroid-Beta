@@ -11,48 +11,48 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.zn;
 public final class m6 implements View.OnClickListener {
-    public final int f47759a = 0;
-    public final int f47760b;
-    public final boolean f47761c;
+    public final int f47780a = 0;
+    public final int f47781b;
+    public final boolean f47782c;
     public final org.telegram.ui.ActionBar.f6 d;
     public final long e;
-    public final KeyEvent.Callback f47762f;
+    public final KeyEvent.Callback f47783f;
     public final Object h;
-    public final Object f47763n;
-    public final Context f47764r;
-    public final Object f47765s;
+    public final Object f47784n;
+    public final Context f47785r;
+    public final Object f47786s;
 
     public m6(ci.d dVar, int i10, TL_stars.StarsSubscription starsSubscription, org.telegram.ui.ActionBar.f3[] f3VarArr, long j3, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, String str) {
-        this.f47762f = dVar;
-        this.f47760b = i10;
+        this.f47783f = dVar;
+        this.f47781b = i10;
         this.h = starsSubscription;
-        this.f47763n = f3VarArr;
+        this.f47784n = f3VarArr;
         this.e = j3;
-        this.f47764r = activity;
+        this.f47785r = activity;
         this.d = f6Var;
-        this.f47761c = z10;
-        this.f47765s = str;
+        this.f47782c = z10;
+        this.f47786s = str;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
         String str;
-        switch (this.f47759a) {
+        switch (this.f47780a) {
             case 0:
-                ci.d dVar = (ci.d) this.f47762f;
+                ci.d dVar = (ci.d) this.f47783f;
                 TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) this.h;
-                org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) this.f47763n;
-                Activity activity = (Activity) this.f47764r;
-                String str2 = (String) this.f47765s;
+                org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) this.f47784n;
+                Activity activity = (Activity) this.f47785r;
+                String str2 = (String) this.f47786s;
                 if (!dVar.N) {
-                    int i11 = this.f47760b;
+                    int i11 = this.f47781b;
                     u5 y3 = u5.y(i11, false);
                     long j3 = this.e;
                     ai.l8 l8Var = new ai.l8(dVar, starsSubscription, i11, f3VarArr, j3, 12);
-                    if (y3.f48114f.amount < starsSubscription.pricing.amount) {
+                    if (y3.f48135f.amount < starsSubscription.pricing.amount) {
                         long j10 = starsSubscription.pricing.amount;
-                        if (this.f47761c) {
+                        if (this.f47782c) {
                             i10 = 8;
                         } else if (j3 < 0) {
                             i10 = 2;
@@ -67,14 +67,14 @@ public final class m6 implements View.OnClickListener {
                 }
                 return;
             default:
-                o8 o8Var = (o8) this.f47762f;
+                o8 o8Var = (o8) this.f47783f;
                 MessageObject messageObject = (MessageObject) this.h;
-                zn znVar = (zn) this.f47763n;
-                TLRPC.Chat chat = (TLRPC.Chat) this.f47765s;
+                zn znVar = (zn) this.f47784n;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f47786s;
                 if (!o8Var.R) {
-                    long value = o8Var.f47871r.getValue();
+                    long value = o8Var.f47892r.getValue();
                     if ((o8Var.P != null || (messageObject != null && znVar != null)) && o8Var.V == null) {
-                        int i12 = this.f47760b;
+                        int i12 = this.f47781b;
                         if (MessagesController.getInstance(i12).isFrozen()) {
                             org.telegram.ui.b.b(i12);
                             return;
@@ -82,8 +82,8 @@ public final class m6 implements View.OnClickListener {
                         u5 y10 = u5.y(i12, false);
                         org.telegram.messenger.voip.f fVar = new org.telegram.messenger.voip.f(o8Var, value, y10, messageObject, znVar, 15);
                         if (y10.e && y10.p().amount < value) {
-                            boolean z10 = this.f47761c;
-                            Context context = this.f47764r;
+                            boolean z10 = this.f47782c;
+                            Context context = this.f47785r;
                             org.telegram.ui.ActionBar.f6 f6Var = this.d;
                             long j11 = this.e;
                             if (z10) {
@@ -108,14 +108,14 @@ public final class m6 implements View.OnClickListener {
     }
 
     public m6(o8 o8Var, MessageObject messageObject, zn znVar, int i10, boolean z10, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j3, TLRPC.Chat chat) {
-        this.f47762f = o8Var;
+        this.f47783f = o8Var;
         this.h = messageObject;
-        this.f47763n = znVar;
-        this.f47760b = i10;
-        this.f47761c = z10;
-        this.f47764r = context;
+        this.f47784n = znVar;
+        this.f47781b = i10;
+        this.f47782c = z10;
+        this.f47785r = context;
         this.d = f6Var;
         this.e = j3;
-        this.f47765s = chat;
+        this.f47786s = chat;
     }
 }

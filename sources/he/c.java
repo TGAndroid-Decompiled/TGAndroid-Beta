@@ -1,4 +1,3 @@
 package he;
-public final class c implements b {
-    public final Object f10207a;
+public interface c {
 }

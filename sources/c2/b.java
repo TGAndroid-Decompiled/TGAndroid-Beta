@@ -6,18 +6,18 @@ import android.os.Handler;
 import android.os.Looper;
 import e2.d0;
 public final class b implements AudioManager.OnAudioFocusChangeListener {
-    public final Handler f3659a;
-    public final AudioManager.OnAudioFocusChangeListener f3660b;
+    public final Handler f3658a;
+    public final AudioManager.OnAudioFocusChangeListener f3659b;
 
     public b(AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler) {
-        this.f3660b = onAudioFocusChangeListener;
+        this.f3659b = onAudioFocusChangeListener;
         Looper looper = handler.getLooper();
-        String str = d0.f7888a;
-        this.f3659a = new Handler(looper, null);
+        String str = d0.f7887a;
+        this.f3658a = new Handler(looper, null);
     }
 
     @Override
     public final void onAudioFocusChange(int i10) {
-        d0.U(this.f3659a, new n8(this, i10, 1));
+        d0.U(this.f3658a, new n8(this, i10, 1));
     }
 }

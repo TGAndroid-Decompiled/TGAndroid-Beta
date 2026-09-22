@@ -1,7 +1,7 @@
 package g2;
 
 import java.util.Map;
-public final class p implements d9.f {
+public final class p implements d9.g {
     public final int f9396a;
 
     @Override

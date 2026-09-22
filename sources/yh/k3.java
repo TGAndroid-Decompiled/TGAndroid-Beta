@@ -4,50 +4,50 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class k3 {
-    public final v3 f47625a;
-    public p3 f47626b;
-    public p3 f47627c;
+    public final v3 f47646a;
+    public p3 f47647b;
+    public p3 f47648c;
     public p3 d;
     public g3 h;
-    public g3 f47630i;
-    public g3 f47631j;
-    public g3 f47632k;
-    public TL_stars.TL_starGiftUnique f47633l;
-    public long f47634m;
-    public b1 f47639r;
-    public b1 f47640s;
-    public float f47641t;
-    public boolean f47642u;
+    public g3 f47651i;
+    public g3 f47652j;
+    public g3 f47653k;
+    public TL_stars.TL_starGiftUnique f47654l;
+    public long f47655m;
+    public b1 f47660r;
+    public b1 f47661s;
+    public float f47662t;
+    public boolean f47663u;
     public boolean v;
     public final ArrayList e = new ArrayList();
-    public final ArrayList f47628f = new ArrayList();
-    public final ArrayList f47629g = new ArrayList();
-    public float f47635n = 0.0f;
-    public boolean f47636o = false;
-    public boolean f47637p = false;
-    public boolean f47638q = false;
+    public final ArrayList f47649f = new ArrayList();
+    public final ArrayList f47650g = new ArrayList();
+    public float f47656n = 0.0f;
+    public boolean f47657o = false;
+    public boolean f47658p = false;
+    public boolean f47659q = false;
 
     public k3(v3 v3Var) {
-        this.f47625a = v3Var;
-        v3Var.f48155c.addOnAttachStateChangeListener(new ai.u2(this, 15));
+        this.f47646a = v3Var;
+        v3Var.f48176c.addOnAttachStateChangeListener(new ai.u2(this, 15));
     }
 
     public final void a() {
-        this.f47636o = false;
-        this.f47625a.f48155c.c();
+        this.f47657o = false;
+        this.f47646a.f48176c.c();
         g3 g3Var = this.h;
         if (g3Var != null) {
             g3Var.a();
         }
-        g3 g3Var2 = this.f47630i;
+        g3 g3Var2 = this.f47651i;
         if (g3Var2 != null) {
             g3Var2.a();
         }
-        g3 g3Var3 = this.f47631j;
+        g3 g3Var3 = this.f47652j;
         if (g3Var3 != null) {
             g3Var3.a();
         }
-        g3 g3Var4 = this.f47632k;
+        g3 g3Var4 = this.f47653k;
         if (g3Var4 != null) {
             g3Var4.a();
         }
@@ -55,14 +55,14 @@ public final class k3 {
     }
 
     public final void b() {
-        if (this.f47636o && !this.v) {
+        if (this.f47657o && !this.v) {
             this.v = true;
             AndroidUtilities.runOnUIThread(new e3(this, 1));
         }
     }
 
     public final void c() {
-        if (this.f47636o) {
+        if (this.f47657o) {
             return;
         }
         ArrayList arrayList = this.e;
@@ -74,7 +74,7 @@ public final class k3 {
             ((i3) obj).a();
         }
         arrayList.clear();
-        this.f47628f.clear();
-        this.f47629g.clear();
+        this.f47649f.clear();
+        this.f47650g.clear();
     }
 }

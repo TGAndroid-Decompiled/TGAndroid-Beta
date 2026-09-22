@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import m.j1;
 import m.l3;
 import r0.i0;
-import w7.x6;
+import w7.w6;
 public abstract class u extends androidx.activity.m {
     public s d;
     public final t e;
@@ -65,7 +65,7 @@ public abstract class u extends androidx.activity.m {
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        return x6.b(this.e, getWindow().getDecorView(), this, keyEvent);
+        return w6.b(this.e, getWindow().getDecorView(), this, keyEvent);
     }
 
     @Override
@@ -130,14 +130,14 @@ public abstract class u extends androidx.activity.m {
         b0 b0Var = sVar.f9306n;
         if (b0Var != null) {
             l3 l3Var = (l3) b0Var.e;
-            if (l3Var.f14448g) {
+            if (l3Var.f14463g) {
                 return;
             }
-            Toolbar toolbar = l3Var.f14444a;
+            Toolbar toolbar = l3Var.f14459a;
             l3Var.h = charSequence;
-            if ((l3Var.f14445b & 8) != 0) {
+            if ((l3Var.f14460b & 8) != 0) {
                 toolbar.setTitle(charSequence);
-                if (l3Var.f14448g) {
+                if (l3Var.f14463g) {
                     i0.l(toolbar.getRootView(), charSequence);
                     return;
                 }
@@ -186,14 +186,14 @@ public abstract class u extends androidx.activity.m {
         b0 b0Var = sVar.f9306n;
         if (b0Var != null) {
             l3 l3Var = (l3) b0Var.e;
-            if (l3Var.f14448g) {
+            if (l3Var.f14463g) {
                 return;
             }
-            Toolbar toolbar = l3Var.f14444a;
+            Toolbar toolbar = l3Var.f14459a;
             l3Var.h = string;
-            if ((l3Var.f14445b & 8) != 0) {
+            if ((l3Var.f14460b & 8) != 0) {
                 toolbar.setTitle(string);
-                if (l3Var.f14448g) {
+                if (l3Var.f14463g) {
                     i0.l(toolbar.getRootView(), string);
                     return;
                 }

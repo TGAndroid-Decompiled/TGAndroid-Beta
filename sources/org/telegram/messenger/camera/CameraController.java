@@ -523,7 +523,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     }
 
     public void lambda$recordVideo$12(ICameraView iCameraView, File file, boolean z10, Runnable runnable) {
-        iCameraView.startRecording(file, new bi.f(13, this, z10));
+        iCameraView.startRecording(file, new bi.f(14, this, z10));
         if (runnable != null) {
             runnable.run();
         }

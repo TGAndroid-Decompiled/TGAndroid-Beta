@@ -9,11 +9,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.h90;
 import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.v51;
 import org.telegram.ui.md;
-public final class y1 extends k90 {
+public final class y1 extends n90 {
     public final int L;
     public final Object M;
 
@@ -27,7 +27,7 @@ public final class y1 extends k90 {
     public int a() {
         switch (this.L) {
             case 4:
-                return ((UndoView) this.M).f22450a;
+                return ((UndoView) this.M).f22466a;
             default:
                 return super.a();
         }
@@ -83,12 +83,12 @@ public final class y1 extends k90 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.qa) this.M).e.getThemedColor(org.telegram.ui.ActionBar.j6.f19315p7)), 0, indexOf, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.qa) this.M).e.getThemedColor(org.telegram.ui.ActionBar.j6.f19330p7)), 0, indexOf, 33);
                     }
-                    t51[] t51VarArr = (t51[]) charSequence.getSpans(0, charSequence.length(), t51.class);
-                    for (int i10 = 0; i10 < t51VarArr.length; i10++) {
-                        charSequence.setSpan(new dc(this, 2), charSequence.getSpanStart(t51VarArr[i10]), charSequence.getSpanEnd(t51VarArr[i10]), 33);
-                        charSequence.removeSpan(t51VarArr[i10]);
+                    v51[] v51VarArr = (v51[]) charSequence.getSpans(0, charSequence.length(), v51.class);
+                    for (int i10 = 0; i10 < v51VarArr.length; i10++) {
+                        charSequence.setSpan(new dc(this, 2), charSequence.getSpanStart(v51VarArr[i10]), charSequence.getSpanEnd(v51VarArr[i10]), 33);
+                        charSequence.removeSpan(v51VarArr[i10]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -100,18 +100,18 @@ public final class y1 extends k90 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(mdVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19315p7)), 0, indexOf2, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(mdVar.getThemedColor(org.telegram.ui.ActionBar.j6.f19330p7)), 0, indexOf2, 33);
                     }
-                    t51[] t51VarArr2 = (t51[]) charSequence.getSpans(0, charSequence.length(), t51.class);
-                    EditTextBoldCursor editTextBoldCursor = mdVar.f35685w;
+                    v51[] v51VarArr2 = (v51[]) charSequence.getSpans(0, charSequence.length(), v51.class);
+                    EditTextBoldCursor editTextBoldCursor = mdVar.f35708w;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = mdVar.f35685w.getText().toString();
+                        str = mdVar.f35708w.getText().toString();
                     } else {
                         str = "";
                     }
-                    for (int i11 = 0; i11 < t51VarArr2.length; i11++) {
-                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(t51VarArr2[i11]), charSequence.getSpanEnd(t51VarArr2[i11]), 33);
-                        charSequence.removeSpan(t51VarArr2[i11]);
+                    for (int i11 = 0; i11 < v51VarArr2.length; i11++) {
+                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(v51VarArr2[i11]), charSequence.getSpanEnd(v51VarArr2[i11]), 33);
+                        charSequence.removeSpan(v51VarArr2[i11]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -119,8 +119,8 @@ public final class y1 extends k90 {
         }
     }
 
-    public y1(f9 f9Var, Context context, h90 h90Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, h90Var, f6Var);
+    public y1(f9 f9Var, Context context, k90 k90Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, k90Var, f6Var);
         this.L = 1;
         this.M = f9Var;
     }

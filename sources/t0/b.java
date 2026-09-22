@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.inputmethod.EditorInfo;
 public abstract class b {
-    public static final String[] f43298a = new String[0];
+    public static final String[] f43319a = new String[0];
 
     public static String[] a(EditorInfo editorInfo) {
         int i10 = Build.VERSION.SDK_INT;
-        String[] strArr = f43298a;
+        String[] strArr = f43319a;
         if (i10 >= 25) {
             String[] strArr2 = editorInfo.contentMimeTypes;
             if (strArr2 != null) {

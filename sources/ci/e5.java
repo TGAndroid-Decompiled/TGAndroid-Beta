@@ -8,20 +8,20 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.ka0;
 public final class e5 implements q0.a {
-    public final int f4598a;
-    public final Object f4599b;
+    public final int f4596a;
+    public final Object f4597b;
 
     public e5(Object obj, int i10) {
-        this.f4598a = i10;
-        this.f4599b = obj;
+        this.f4596a = i10;
+        this.f4597b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
         String responseCodeString;
-        int i10 = this.f4598a;
+        int i10 = this.f4596a;
         boolean z10 = false;
-        Object obj2 = this.f4599b;
+        Object obj2 = this.f4597b;
         switch (i10) {
             case 0:
                 r6.a0((qb) obj2, (Integer) obj);
@@ -29,10 +29,10 @@ public final class e5 implements q0.a {
             case 1:
                 ei.k3 k3Var = (ei.k3) obj2;
                 Float f7 = (Float) obj;
-                k3Var.f8458y.setLoadProgressAnimated(f7.floatValue());
+                k3Var.f8457y.setLoadProgressAnimated(f7.floatValue());
                 if (f7.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(qr.f27642f);
+                    duration.setInterpolator(qr.f27653f);
                     duration.addUpdateListener(new ei.d2(k3Var, 1));
                     duration.addListener(new ai.b(k3Var, 21));
                     duration.start();
@@ -45,7 +45,7 @@ public final class e5 implements q0.a {
                 q4Var.I.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(qr.f27642f);
+                    duration2.setInterpolator(qr.f27653f);
                     duration2.addUpdateListener(new ei.h4(q4Var, 0));
                     duration2.addListener(new ai.b(q4Var, 22));
                     duration2.start();

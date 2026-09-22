@@ -1,53 +1,41 @@
 package w9;
 
-import android.content.SharedPreferences;
 import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import org.telegram.ui.Cells.c1;
-public final class r {
-    public final SharedPreferences f45270a;
-    public final k9.h f45271b;
-    public final Object f45272c;
-    public TaskCompletionSource d;
-    public boolean e;
-    public boolean f45273f;
-    public Boolean f45274g;
-    public final TaskCompletionSource h;
+import java.lang.Thread;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class r implements Thread.UncaughtExceptionHandler {
+    public final k f45288a;
+    public final da.b f45289b;
+    public final Thread.UncaughtExceptionHandler f45290c;
+    public final t9.a d;
+    public final AtomicBoolean e = new AtomicBoolean(false);
 
-    public r(k9.h r8) {
-        throw new UnsupportedOperationException("Method not decompiled: w9.r.<init>(k9.h):void");
+    public r(k kVar, da.b bVar, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, t9.a aVar) {
+        this.f45288a = kVar;
+        this.f45289b = bVar;
+        this.f45290c = uncaughtExceptionHandler;
+        this.d = aVar;
     }
 
-    public final synchronized boolean a() {
-        boolean z10;
-        String str;
-        String str2;
-        Boolean bool = this.f45274g;
-        if (bool != null) {
-            z10 = bool.booleanValue();
-        } else {
-            try {
-                z10 = this.f45271b.h();
-            } catch (IllegalStateException unused) {
-                z10 = false;
+    public final boolean a(Thread thread, Throwable th2) {
+        if (thread == null) {
+            Log.e("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; null thread", null);
+            return false;
+        } else if (th2 == null) {
+            Log.e("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; null throwable", null);
+            return false;
+        } else if (this.d.b()) {
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; native crash exists for session.", null);
             }
-        }
-        if (z10) {
-            str = "ENABLED";
+            return false;
         } else {
-            str = "DISABLED";
+            return true;
         }
-        if (this.f45274g == null) {
-            str2 = "global Firebase setting";
-        } else if (this.f45273f) {
-            str2 = "firebase_crashlytics_collection_enabled manifest flag";
-        } else {
-            str2 = "API";
-        }
-        String k10 = c1.k("Crashlytics automatic data collection ", str, " by ", str2, ".");
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", k10, null);
-        }
-        return z10;
+    }
+
+    @Override
+    public final void uncaughtException(java.lang.Thread r10, java.lang.Throwable r11) {
+        throw new UnsupportedOperationException("Method not decompiled: w9.r.uncaughtException(java.lang.Thread, java.lang.Throwable):void");
     }
 }

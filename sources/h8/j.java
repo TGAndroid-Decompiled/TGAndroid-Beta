@@ -19,8 +19,8 @@ public final class j {
     public LinkedList f10153c;
     public final d e;
     public final Context f10154f;
-    public n2.e f10155g;
-    public final n2.e d = new n2.e(this, 25);
+    public l.d f10155g;
+    public final l.d d = new l.d(this, 27);
     public final ArrayList h = new ArrayList();
 
     public j(d dVar, Context context) {
@@ -86,13 +86,13 @@ public final class j {
                 }
                 i8.g X0 = k8.a(context).X0(new x6.b(context));
                 if (X0 != null) {
-                    this.f10155g.E(new aa.a(this.e, X0));
+                    this.f10155g.b0(new aa.a(this.e, X0));
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        this.f10151a.o((f) obj);
+                        this.f10151a.q((f) obj);
                     }
                     arrayList.clear();
                 }

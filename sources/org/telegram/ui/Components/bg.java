@@ -8,18 +8,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.LaunchActivity;
 public final class bg implements Runnable {
-    public final MessageObject f22996a;
-    public final long f22997b;
-    public final TL_keyboard.KeyboardButtonProto f22998c;
+    public final MessageObject f22979a;
+    public final long f22980b;
+    public final TL_keyboard.KeyboardButtonProto f22981c;
     public final MessageObject d;
     public final TLRPC.User e;
-    public final ChatActivityEnterView f22999f;
+    public final ChatActivityEnterView f22982f;
 
     public bg(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, long j3, TL_keyboard.KeyboardButtonProto keyboardButtonProto, MessageObject messageObject2, TLRPC.User user) {
-        this.f22999f = chatActivityEnterView;
-        this.f22996a = messageObject;
-        this.f22997b = j3;
-        this.f22998c = keyboardButtonProto;
+        this.f22982f = chatActivityEnterView;
+        this.f22979a = messageObject;
+        this.f22980b = j3;
+        this.f22981c = keyboardButtonProto;
         this.d = messageObject2;
         this.e = user;
     }
@@ -29,19 +29,19 @@ public final class bg implements Runnable {
         int i10;
         long N8;
         String restrictionReason;
-        ChatActivityEnterView chatActivityEnterView = this.f22999f;
-        org.telegram.ui.zn znVar = chatActivityEnterView.O2;
-        if (chatActivityEnterView.l1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
+        ChatActivityEnterView chatActivityEnterView = this.f22982f;
+        org.telegram.ui.zn znVar = chatActivityEnterView.P2;
+        if (chatActivityEnterView.f22040m1.R() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.t0()) {
             if (znVar != null) {
                 int i11 = chatActivityEnterView.Q;
-                long j3 = this.f22996a.messageOwner.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f22998c;
+                long j3 = this.f22979a.messageOwner.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f22981c;
                 String text = keyboardButtonProto.getText();
                 String url = keyboardButtonProto.getUrl();
                 boolean c10 = zf.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
                 MessageObject messageObject = this.d;
                 if (messageObject != null) {
-                    i10 = messageObject.messageOwner.f18349id;
+                    i10 = messageObject.messageOwner.f18364id;
                 } else {
                     i10 = 0;
                 }
@@ -50,10 +50,10 @@ public final class bg implements Runnable {
                 } else {
                     N8 = znVar.N8();
                 }
-                ei.f5 b10 = ei.f5.b(i11, j3, this.f22997b, text, url, c10 ? 1 : 0, i10, N8, null, false, null, null, 0, false, false);
+                ei.f5 b10 = ei.f5.b(i11, j3, this.f22980b, text, url, c10 ? 1 : 0, i10, N8, null, false, null, null, 0, false, false);
                 LaunchActivity launchActivity = LaunchActivity.G1;
                 if (launchActivity != null && launchActivity.P() != null && LaunchActivity.G1.P().k(b10) != null) {
-                    ei.c0 c0Var = chatActivityEnterView.f22021l0;
+                    ei.c0 c0Var = chatActivityEnterView.f22036l0;
                     if (c0Var != null) {
                         c0Var.setOpened(false);
                         return;
@@ -71,8 +71,8 @@ public final class bg implements Runnable {
                     MessagesController.showCantOpenAlert(znVar, restrictionReason);
                     return;
                 }
-                ei.k3 k3Var = new ei.k3(chatActivityEnterView.getContext(), chatActivityEnterView.V3);
-                k3Var.f8440k0 = chatActivityEnterView.N2;
+                ei.k3 k3Var = new ei.k3(chatActivityEnterView.getContext(), chatActivityEnterView.W3);
+                k3Var.f8439k0 = chatActivityEnterView.O2;
                 k3Var.s(znVar, b10);
                 k3Var.show();
                 return;

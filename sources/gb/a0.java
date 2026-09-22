@@ -4,7 +4,7 @@ public final class a0 extends y {
     public final db.g f9535b;
     public final kb.a f9536c;
     public final db.v d;
-    public final a6.i e = new a6.i(this, 21);
+    public final a6.i e = new a6.i(this, 20);
     public final boolean f9537f;
     public volatile db.u f9538g;
 
@@ -53,7 +53,7 @@ public final class a0 extends y {
         } else if (this.f9537f && obj == null) {
             bVar.i();
         } else {
-            fb.d.l(oVar.serialize(obj, this.f9536c.f13578b, this.e), bVar);
+            fb.d.l(oVar.serialize(obj, this.f9536c.f13576b, this.e), bVar);
         }
     }
 }

@@ -20,7 +20,7 @@ import org.telegram.ui.ActionBar.j6;
 import w7.y5;
 public final class t extends FrameLayout {
     public final j5 f10410a;
-    public final vh.o f10411b;
+    public final vh.n f10411b;
     public final j5 f10412c;
     public final f6 d;
     public boolean e;
@@ -54,7 +54,7 @@ public final class t extends FrameLayout {
         j5 j5Var2 = new j5(context);
         this.f10412c = j5Var2;
         j5Var2.setTextSize(14);
-        int i12 = j6.f19496z6;
+        int i12 = j6.f19511z6;
         j5Var2.setTextColor(j6.w0(null, i12, false));
         if (LocaleController.isRTL) {
             i11 = 3;
@@ -63,17 +63,17 @@ public final class t extends FrameLayout {
         }
         j5Var2.setGravity(i11);
         addView(j5Var2, y5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
-        vh.o oVar = new vh.o(context);
-        this.f10411b = oVar;
-        oVar.setTextSize(1, 13.0f);
-        oVar.setMaxLines(1);
-        oVar.setEllipsize(TextUtils.TruncateAt.END);
-        oVar.setTextColor(j6.v0(i12, f6Var));
-        oVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        oVar.f44751f = false;
-        oVar.setUseAlphaForEmoji(false);
-        NotificationCenter.listenEmojiLoading(oVar);
-        addView(oVar, y5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
+        vh.n nVar = new vh.n(context);
+        this.f10411b = nVar;
+        nVar.setTextSize(1, 13.0f);
+        nVar.setMaxLines(1);
+        nVar.setEllipsize(TextUtils.TruncateAt.END);
+        nVar.setTextColor(j6.v0(i12, f6Var));
+        nVar.setGravity(LocaleController.isRTL ? 5 : 3);
+        nVar.f44772f = false;
+        nVar.setUseAlphaForEmoji(false);
+        NotificationCenter.listenEmojiLoading(nVar);
+        addView(nVar, y5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class t extends FrameLayout {
         if (this.e) {
             Paint T0 = j6.T0("paintDivider", this.d);
             if (T0 == null) {
-                T0 = j6.f19216k0;
+                T0 = j6.f19231k0;
             }
             Paint paint = T0;
             float f10 = 64.0f;

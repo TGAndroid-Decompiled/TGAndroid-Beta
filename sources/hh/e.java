@@ -18,7 +18,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.tj;
+import org.telegram.ui.uj;
 import w7.q;
 public final class e extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
     public static final RectF H = new RectF();
@@ -67,11 +67,11 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
         }
     }
 
-    public final void b(int i10, long j3, ViewGroup viewGroup, tj tjVar) {
+    public final void b(int i10, long j3, ViewGroup viewGroup, uj ujVar) {
         this.d = j3;
         this.e = i10;
         this.f10517f = viewGroup;
-        this.h = tjVar;
+        this.h = ujVar;
     }
 
     public final void c() {

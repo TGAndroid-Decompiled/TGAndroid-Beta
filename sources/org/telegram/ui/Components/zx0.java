@@ -1,55 +1,12 @@
 package org.telegram.ui.Components;
-
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class zx0 extends s4.x {
-    public int e;
-    public final gy0 f30954f;
-
-    public zx0(gy0 gy0Var) {
-        this.f30954f = gy0Var;
-        this.d = 15;
-        this.e = -1;
+public final class zx0 extends org.telegram.ui.tu0 {
+    @Override
+    public final boolean P() {
+        return true;
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        int i10 = c1Var.f42977f;
-        if (i10 != 3 && i10 == c1Var2.f42977f) {
-            gy0 gy0Var = this.f30954f;
-            if (gy0Var.S == null) {
-                return false;
-            }
-            int b10 = c1Var.b();
-            int b11 = c1Var2.b();
-            gy0Var.S.documents.add(b11, gy0Var.S.documents.remove(b10));
-            gy0Var.d.p(b10, b11);
-            this.e = b11;
-            return true;
-        }
+    public final boolean z() {
         return false;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        gy0 gy0Var = this.f30954f;
-        if (i10 == 0 && gy0Var.f24483f != null && this.e > 0) {
-            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
-            tL_stickers_changeStickerPosition.position = this.e;
-            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(gy0Var.f24483f, "").document;
-            this.e = -1;
-            gy0Var.f24483f = null;
-        } else if (i10 == 2) {
-            gy0Var.f24483f = ((org.telegram.ui.Cells.g8) c1Var.f42974a).getSticker();
-        }
-    }
-
-    @Override
-    public final void q(s4.c1 c1Var) {
-    }
-
-    @Override
-    public final void o(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2, int i10, int i11, int i12) {
     }
 }

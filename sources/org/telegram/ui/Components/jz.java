@@ -9,13 +9,13 @@ import android.widget.HorizontalScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public class jz extends s4.s0 {
-    public final int f25560a;
-    public boolean f25561b;
-    public final kz f25562c;
+    public final int f25515a;
+    public boolean f25516b;
+    public final kz f25517c;
 
     public jz(kz kzVar, int i10) {
-        this.f25562c = kzVar;
-        this.f25560a = i10;
+        this.f25517c = kzVar;
+        this.f25515a = i10;
     }
 
     @Override
@@ -24,19 +24,19 @@ public class jz extends s4.s0 {
         xy xyVar;
         float f7;
         int i11;
-        kz kzVar = this.f25562c;
+        kz kzVar = this.f25517c;
         ObjectAnimator[] objectAnimatorArr = kzVar.R0;
         s4.y0 y0Var = recyclerView.getLayoutManager().e;
         boolean z10 = true;
         if (y0Var != null && y0Var.e) {
-            this.f25561b = true;
+            this.f25516b = true;
             return;
         }
-        int i12 = this.f25560a;
+        int i12 = this.f25515a;
         if (i10 == 0) {
-            if (!this.f25561b) {
+            if (!this.f25516b) {
                 int[] iArr = kzVar.Q0;
-                ly lyVar = kzVar.f25951t1;
+                ly lyVar = kzVar.f25911t1;
                 if ((lyVar == null || !lyVar.z()) && i12 != 0) {
                     float f10 = 48.0f;
                     if (i12 == 1) {
@@ -71,16 +71,16 @@ public class jz extends s4.s0 {
                         }
                         objectAnimatorArr[i12].start();
                     } else {
-                        vl0 x10 = kzVar.x(i12);
+                        yl0 x10 = kzVar.x(i12);
                         if (i12 == 1) {
                             f10 = 38.0f;
                         }
                         int dp = AndroidUtilities.dp(f10);
                         s4.c1 L = x10.L(0);
                         if (L != null) {
-                            int bottom = L.f42974a.getBottom();
+                            int bottom = L.f42995a.getBottom();
                             int i14 = iArr[i12];
-                            float f12 = (bottom - (dp + i14)) / kzVar.f25894b1;
+                            float f12 = (bottom - (dp + i14)) / kzVar.f25854b1;
                             if (f12 > 0.0f || f12 < 1.0f) {
                                 if (f12 <= 0.5f) {
                                     z10 = false;
@@ -94,7 +94,7 @@ public class jz extends s4.s0 {
             if (kzVar.J0) {
                 kzVar.J0 = false;
             }
-            this.f25561b = false;
+            this.f25516b = false;
             return;
         }
         if (i10 == 1) {
@@ -104,7 +104,7 @@ public class jz extends s4.s0 {
             if (i12 != 0) {
                 if (i12 != 1) {
                     if (i12 == 2) {
-                        xyVar = kzVar.f25933o0;
+                        xyVar = kzVar.f25893o0;
                     } else {
                         throw new IllegalArgumentException(hg.k0.h(i12, "Unexpected argument: "));
                     }
@@ -117,14 +117,14 @@ public class jz extends s4.s0 {
             if (xyVar != null) {
                 xyVar.b();
             }
-            this.f25561b = false;
+            this.f25516b = false;
         }
-        if (!this.f25561b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
+        if (!this.f25516b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
             objectAnimatorArr[i12].cancel();
         }
         if (i12 == 0) {
             if (kzVar.T0 == null) {
-                gg.g1 g1Var = new gg.g1(kzVar, kzVar.f25898c1, kzVar.f25951t1.a(), kzVar.f25951t1.f(), 1);
+                gg.g1 g1Var = new gg.g1(kzVar, kzVar.f25858c1, kzVar.f25911t1.a(), kzVar.f25911t1.f(), 1);
                 kzVar.T0 = g1Var;
                 g1Var.a();
             }
@@ -135,8 +135,8 @@ public class jz extends s4.s0 {
     @Override
     public void b(RecyclerView recyclerView, int i10, int i11) {
         int dp;
-        kz kzVar = this.f25562c;
-        int i12 = this.f25560a;
+        kz kzVar = this.f25517c;
+        int i12 = this.f25515a;
         kzVar.p(i12);
         kz.e(kzVar, i12, i11);
         if (i12 != 0) {
@@ -150,9 +150,9 @@ public class jz extends s4.s0 {
         } else {
             kzVar.q(false);
         }
-        if (!this.f25561b) {
+        if (!this.f25516b) {
             float f7 = i11;
-            FrameLayout frameLayout = kzVar.f25929n;
+            FrameLayout frameLayout = kzVar.f25889n;
             if (SystemClock.elapsedRealtime() - kzVar.E2 >= ViewConfiguration.getTapTimeout()) {
                 kzVar.H += f7;
                 if (kzVar.h.getCurrentItem() == 0) {

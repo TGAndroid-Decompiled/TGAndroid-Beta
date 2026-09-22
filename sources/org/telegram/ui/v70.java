@@ -6,19 +6,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.FileLog;
 public final class v70 extends org.telegram.ui.ActionBar.j {
-    public final int f38424a;
-    public final Object f38425b;
+    public final int f38445a;
+    public final Object f38446b;
 
     public v70(Object obj, int i10) {
-        this.f38424a = i10;
-        this.f38425b = obj;
+        this.f38445a = i10;
+        this.f38446b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Bitmap bitmap;
-        int i11 = this.f38424a;
-        Object obj = this.f38425b;
+        int i11 = this.f38445a;
+        Object obj = this.f38446b;
         switch (i11) {
             case 0:
                 if (i10 == -1) {
@@ -88,7 +88,7 @@ public final class v70 extends org.telegram.ui.ActionBar.j {
                     return;
                 } else if (i10 == 1) {
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", mj0Var.f35749b);
+                    bundle.putLong("chat_id", mj0Var.f35769b);
                     mj0Var.presentFragment(new bb1(bundle));
                     return;
                 } else {
@@ -124,47 +124,47 @@ public final class v70 extends org.telegram.ui.ActionBar.j {
                     oq0Var.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    if (oq0Var.f36357c != null && !oq0Var.f36358f) {
+                    if (oq0Var.f36384c != null && !oq0Var.f36385f) {
                         mq0 mq0Var = oq0Var.d;
-                        float f7 = mq0Var.f35788f - mq0Var.f35793x;
+                        float f7 = mq0Var.f35809f - mq0Var.f35814x;
                         float f10 = mq0Var.v;
-                        float f11 = (mq0Var.h - mq0Var.f35794y) / mq0Var.f35792w;
+                        float f11 = (mq0Var.h - mq0Var.f35815y) / mq0Var.f35813w;
                         float f12 = mq0Var.d / f10;
                         float f13 = mq0Var.e / f10;
                         oq0 oq0Var2 = mq0Var.H;
-                        int width = (int) ((f7 / f10) * oq0Var2.f36355a.getWidth());
-                        int height = (int) (f11 * oq0Var2.f36355a.getHeight());
-                        int width2 = (int) (f12 * oq0Var2.f36355a.getWidth());
-                        int width3 = (int) (f13 * oq0Var2.f36355a.getWidth());
+                        int width = (int) ((f7 / f10) * oq0Var2.f36382a.getWidth());
+                        int height = (int) (f11 * oq0Var2.f36382a.getHeight());
+                        int width2 = (int) (f12 * oq0Var2.f36382a.getWidth());
+                        int width3 = (int) (f13 * oq0Var2.f36382a.getWidth());
                         if (width < 0) {
                             width = 0;
                         }
                         if (height < 0) {
                             height = 0;
                         }
-                        if (width + width2 > oq0Var2.f36355a.getWidth()) {
-                            width2 = oq0Var2.f36355a.getWidth() - width;
+                        if (width + width2 > oq0Var2.f36382a.getWidth()) {
+                            width2 = oq0Var2.f36382a.getWidth() - width;
                         }
-                        if (height + width3 > oq0Var2.f36355a.getHeight()) {
-                            width3 = oq0Var2.f36355a.getHeight() - height;
+                        if (height + width3 > oq0Var2.f36382a.getHeight()) {
+                            width3 = oq0Var2.f36382a.getHeight() - height;
                         }
                         try {
-                            bitmap = Bitmaps.createBitmap(oq0Var2.f36355a, width, height, width2, width3);
+                            bitmap = Bitmaps.createBitmap(oq0Var2.f36382a, width, height, width2, width3);
                         } catch (Throwable th2) {
                             FileLog.e(th2);
                             System.gc();
                             try {
-                                bitmap = Bitmaps.createBitmap(oq0Var2.f36355a, width, height, width2, width3);
+                                bitmap = Bitmaps.createBitmap(oq0Var2.f36382a, width, height, width2, width3);
                             } catch (Throwable th3) {
                                 FileLog.e(th3);
                                 bitmap = null;
                             }
                         }
-                        if (bitmap == oq0Var.f36355a) {
+                        if (bitmap == oq0Var.f36382a) {
                             oq0Var.e = true;
                         }
-                        ((org.telegram.ui.Components.u40) oq0Var.f36357c).s(false, bitmap, null);
-                        oq0Var.f36358f = true;
+                        ((org.telegram.ui.Components.u40) oq0Var.f36384c).s(false, bitmap, null);
+                        oq0Var.f36385f = true;
                     }
                     oq0Var.finishFragment();
                     return;
@@ -189,7 +189,7 @@ public final class v70 extends org.telegram.ui.ActionBar.j {
                     cr0Var.L.l();
                     return;
                 } else if (i10 == 2) {
-                    br0 br0Var = cr0Var.f32856s0;
+                    br0 br0Var = cr0Var.f32877s0;
                     if (br0Var != null) {
                         br0Var.g();
                     }
@@ -211,11 +211,11 @@ public final class v70 extends org.telegram.ui.ActionBar.j {
                     popupNotificationActivity.finish();
                     return;
                 } else if (i10 == 1) {
-                    int i12 = PopupNotificationActivity.f31427b0;
+                    int i12 = PopupNotificationActivity.f31448b0;
                     popupNotificationActivity.k();
                     return;
                 } else if (i10 == 2) {
-                    int i13 = PopupNotificationActivity.f31427b0;
+                    int i13 = PopupNotificationActivity.f31448b0;
                     popupNotificationActivity.p();
                     return;
                 } else {

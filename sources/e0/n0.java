@@ -12,16 +12,16 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 public final class n0 {
     public static String d;
-    public static m0 f7818g;
-    public final Context f7819a;
-    public final NotificationManager f7820b;
-    public static final Object f7816c = new Object();
+    public static m0 f7817g;
+    public final Context f7818a;
+    public final NotificationManager f7819b;
+    public static final Object f7815c = new Object();
     public static HashSet e = new HashSet();
-    public static final Object f7817f = new Object();
+    public static final Object f7816f = new Object();
 
     public n0(Context context) {
-        this.f7819a = context;
-        this.f7820b = (NotificationManager) context.getSystemService("notification");
+        this.f7818a = context;
+        this.f7819b = (NotificationManager) context.getSystemService("notification");
     }
 
     public static n0 c(Context context) {
@@ -32,9 +32,9 @@ public final class n0 {
         Method method;
         Integer num;
         if (Build.VERSION.SDK_INT >= 24) {
-            return androidx.emoji2.text.v.a(this.f7820b);
+            return androidx.emoji2.text.v.a(this.f7819b);
         }
-        Context context = this.f7819a;
+        Context context = this.f7818a;
         AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService("appops");
         ApplicationInfo applicationInfo = context.getApplicationInfo();
         String packageName = context.getApplicationContext().getPackageName();
@@ -54,20 +54,20 @@ public final class n0 {
     }
 
     public final void b(int i10) {
-        this.f7820b.cancel(null, i10);
+        this.f7819b.cancel(null, i10);
     }
 
     public final void d(int i10, Notification notification) {
-        NotificationManager notificationManager = this.f7820b;
+        NotificationManager notificationManager = this.f7819b;
         Bundle bundle = notification.extras;
         if (bundle != null && bundle.getBoolean("android.support.useSideChannel")) {
-            j0 j0Var = new j0(this.f7819a.getPackageName(), i10, notification);
-            synchronized (f7817f) {
+            j0 j0Var = new j0(this.f7818a.getPackageName(), i10, notification);
+            synchronized (f7816f) {
                 try {
-                    if (f7818g == null) {
-                        f7818g = new m0(this.f7819a.getApplicationContext());
+                    if (f7817g == null) {
+                        f7817g = new m0(this.f7818a.getApplicationContext());
                     }
-                    f7818g.f7812b.obtainMessage(0, j0Var).sendToTarget();
+                    f7817g.f7811b.obtainMessage(0, j0Var).sendToTarget();
                 } catch (Throwable th2) {
                     throw th2;
                 }

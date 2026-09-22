@@ -7,9 +7,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.KeyEvent;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.va0;
 import org.telegram.ui.Components.vi;
-public final class i extends va0 {
+import org.telegram.ui.Components.ya0;
+public final class i extends ya0 {
     public final int V;
     public final KeyEvent.Callback W;
 
@@ -25,10 +25,10 @@ public final class i extends va0 {
             case 0:
                 m mVar = (m) this.W;
                 Paint paint = mVar.e;
-                RectF rectF = mVar.f5022z0;
+                RectF rectF = mVar.f5020z0;
                 rectF.set(rect);
                 if (mVar.g()) {
-                    mVar.h(mVar.T, canvas, mVar.f5022z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
+                    mVar.h(mVar.T, canvas, mVar.f5020z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
                     return;
                 }
                 Paint c10 = mVar.T.c(1.0f);
@@ -61,7 +61,7 @@ public final class i extends va0 {
     public void i() {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f29110j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f29108j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;
@@ -76,7 +76,7 @@ public final class i extends va0 {
     public void n(boolean z10) {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f29110j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f29108j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;

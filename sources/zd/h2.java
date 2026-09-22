@@ -2,7 +2,7 @@ package zd;
 
 import v7.o8;
 public final class h2 implements id.f, id.g {
-    public static final h2 f49199a = new Object();
+    public static final h2 f49219a = new Object();
 
     @Override
     public final Object fold(Object obj, rd.p pVar) {

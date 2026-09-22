@@ -41,20 +41,20 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.k5;
 import org.telegram.ui.Cells.s8;
 import org.telegram.ui.Cells.x8;
-import org.telegram.ui.Components.v70;
-import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.y70;
 import org.telegram.ui.Components.zt;
 import org.telegram.ui.fg1;
 import org.telegram.ui.oy;
 import org.telegram.ui.uy;
-import w7.h6;
+import w7.g6;
 public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, org.telegram.ui.ActionBar.a2, e2.m, zt, ii.p0, oy, p5, f2.s {
-    public final int f8303a;
-    public final Object f8304b;
+    public final int f8302a;
+    public final Object f8303b;
 
     public d5(j2.a aVar, Object obj, int i10) {
-        this.f8303a = i10;
-        this.f8304b = obj;
+        this.f8302a = i10;
+        this.f8303b = obj;
     }
 
     @Override
@@ -68,27 +68,27 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
     }
 
     @Override
-    public v70 a(ii.i1 i1Var) {
-        return v70.H((ii.d2) ((a6.i) this.f8304b).f303b, i1Var);
+    public y70 a(ii.i1 i1Var) {
+        return y70.H((ii.d2) ((a6.i) this.f8303b).f302b, i1Var);
     }
 
     @Override
     public void b(long j3, e2.v vVar) {
-        switch (this.f8303a) {
+        switch (this.f8302a) {
             case 27:
-                c3.b.d(j3, vVar, ((j4.c0) this.f8304b).f12632c);
+                c3.b.d(j3, vVar, ((j4.c0) this.f8303b).f12632c);
                 return;
             default:
-                c3.b.e(j3, vVar, ((j4.c0) this.f8304b).f12632c);
+                c3.b.e(j3, vVar, ((j4.c0) this.f8303b).f12632c);
                 return;
         }
     }
 
     public ii.b0 c(aa.a aVar) {
         InputStream inputStream;
-        j5.b bVar = (j5.b) this.f8304b;
-        URL url = (URL) aVar.f360c;
-        String c10 = h6.c("CctTransportBackend");
+        j5.b bVar = (j5.b) this.f8303b;
+        URL url = (URL) aVar.f357c;
+        String c10 = g6.c("CctTransportBackend");
         if (Log.isLoggable(c10, 4)) {
             Log.i(c10, String.format("Making request to: %s", url));
         }
@@ -102,7 +102,7 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
         httpURLConnection.setRequestProperty("Content-Encoding", "gzip");
         httpURLConnection.setRequestProperty("Content-Type", "application/json");
         httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
-        String str = (String) aVar.f359b;
+        String str = (String) aVar.f356b;
         if (str != null) {
             httpURLConnection.setRequestProperty("X-Goog-Api-Key", str);
         }
@@ -110,25 +110,25 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
             OutputStream outputStream = httpURLConnection.getOutputStream();
             try {
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
-                ka.c cVar = bVar.f12882a;
+                k2.e eVar = bVar.f12882a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                ka.e eVar = (ka.e) cVar.f13566b;
-                ka.f fVar = new ka.f(bufferedWriter, eVar.f13570a, eVar.f13571b, eVar.f13572c, eVar.d);
-                fVar.h((k5.i) aVar.d);
-                fVar.j();
-                fVar.f13574b.flush();
+                ka.d dVar = (ka.d) eVar.f13244b;
+                ka.e eVar2 = new ka.e(bufferedWriter, dVar.f13568a, dVar.f13569b, dVar.f13570c, dVar.d);
+                eVar2.h((k5.i) aVar.d);
+                eVar2.j();
+                eVar2.f13572b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
                 }
                 int responseCode = httpURLConnection.getResponseCode();
                 Integer valueOf = Integer.valueOf(responseCode);
-                String c11 = h6.c("CctTransportBackend");
+                String c11 = g6.c("CctTransportBackend");
                 if (Log.isLoggable(c11, 4)) {
                     Log.i(c11, String.format("Status Code: %d", valueOf));
                 }
-                h6.a(httpURLConnection.getHeaderField("Content-Type"), "CctTransportBackend", "Content-Type: %s");
-                h6.a(httpURLConnection.getHeaderField("Content-Encoding"), "CctTransportBackend", "Content-Encoding: %s");
+                g6.a(httpURLConnection.getHeaderField("Content-Type"), "CctTransportBackend", "Content-Type: %s");
+                g6.a(httpURLConnection.getHeaderField("Content-Encoding"), "CctTransportBackend", "Content-Encoding: %s");
                 if (responseCode != 302 && responseCode != 301 && responseCode != 307) {
                     if (responseCode != 200) {
                         return new ii.b0(responseCode, null, 0L);
@@ -172,70 +172,34 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
             }
         } catch (ia.b e) {
             e = e;
-            h6.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
+            g6.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
             return new ii.b0(400, null, 0L);
         } catch (ConnectException e7) {
             e = e7;
-            h6.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
+            g6.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
             return new ii.b0(500, null, 0L);
         } catch (UnknownHostException e10) {
             e = e10;
-            h6.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
+            g6.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
             return new ii.b0(500, null, 0L);
         } catch (IOException e11) {
             e = e11;
-            h6.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
+            g6.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
             return new ii.b0(400, null, 0L);
         }
     }
 
     public void d(int i10) {
-        ii.a0 a0Var = (ii.a0) this.f8304b;
+        ii.a0 a0Var = (ii.a0) this.f8303b;
         a0Var.f11223c = i10;
         a0Var.f(i10);
     }
 
     @Override
-    public void invoke(Object obj) {
-        switch (this.f8303a) {
-            case 7:
-                ((b2.z0) obj).onMediaMetadataChanged((b2.n0) this.f8304b);
-                return;
-            case 8:
-                ((b2.z0) obj).onAudioAttributesChanged((b2.e) this.f8304b);
-                return;
-            case 9:
-                ((b2.z0) obj).onTrackSelectionParametersChanged((b2.q1) this.f8304b);
-                return;
-            case 10:
-                ((b2.z0) obj).onCues((d2.d) this.f8304b);
-                return;
-            case 11:
-                ((b2.z0) obj).onMediaMetadataChanged(((i2.b0) this.f8304b).f10625a.O);
-                return;
-            case 12:
-                ((b2.z0) obj).onMetadata((b2.p0) this.f8304b);
-                return;
-            case 23:
-                ((j2.b) obj).h((b2.u0) this.f8304b);
-                return;
-            case 24:
-                ((j2.b) obj).onSeekStarted((j2.a) this.f8304b);
-                return;
-            case 25:
-                ((j2.b) obj).a((i2.g) this.f8304b);
-                return;
-            default:
-                ((j2.b) obj).b((u2.b0) this.f8304b);
-                return;
-        }
-    }
-
-    @Override
-    public void j() {
-        switch (this.f8303a) {
+    public void i() {
+        switch (this.f8302a) {
             case 15:
-                ii.u0 u0Var = (ii.u0) this.f8304b;
+                ii.u0 u0Var = (ii.u0) this.f8303b;
                 ii.i1 i1Var = u0Var.d;
                 ii.a aVar = u0Var.f11653f;
                 if (aVar != null) {
@@ -255,10 +219,10 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 }
                 return;
             case 20:
-                ((g5) this.f8304b).h();
+                ((g5) this.f8303b).h();
                 return;
             default:
-                o5 o5Var = (o5) this.f8304b;
+                o5 o5Var = (o5) this.f8303b;
                 ii.a aVar2 = o5Var.f11221a;
                 if (aVar2 != null) {
                     aVar2.f11219s = true;
@@ -275,10 +239,46 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
     }
 
     @Override
+    public void invoke(Object obj) {
+        switch (this.f8302a) {
+            case 7:
+                ((b2.z0) obj).onMediaMetadataChanged((b2.n0) this.f8303b);
+                return;
+            case 8:
+                ((b2.z0) obj).onAudioAttributesChanged((b2.e) this.f8303b);
+                return;
+            case 9:
+                ((b2.z0) obj).onTrackSelectionParametersChanged((b2.q1) this.f8303b);
+                return;
+            case 10:
+                ((b2.z0) obj).onCues((d2.d) this.f8303b);
+                return;
+            case 11:
+                ((b2.z0) obj).onMediaMetadataChanged(((i2.b0) this.f8303b).f10625a.O);
+                return;
+            case 12:
+                ((b2.z0) obj).onMetadata((b2.p0) this.f8303b);
+                return;
+            case 23:
+                ((j2.b) obj).h((b2.u0) this.f8303b);
+                return;
+            case 24:
+                ((j2.b) obj).onSeekStarted((j2.a) this.f8303b);
+                return;
+            case 25:
+                ((j2.b) obj).a((i2.g) this.f8303b);
+                return;
+            default:
+                ((j2.b) obj).b((u2.b0) this.f8303b);
+                return;
+        }
+    }
+
+    @Override
     public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f8303a) {
+        switch (this.f8302a) {
             case 5:
-                hg.y1 y1Var = ((hg.p1) this.f8304b).f10390a;
+                hg.y1 y1Var = ((hg.p1) this.f8303b).f10390a;
                 hg.b2 f7 = hg.b2.f(hg.y1.b0(y1Var));
                 ArrayList arrayList = y1Var.f10490b;
                 int i11 = f7.f10235a;
@@ -324,20 +324,20 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 hg.y1.X(y1Var);
                 return;
             default:
-                ((ai.s4) this.f8304b).run();
+                ((ai.s4) this.f8303b).run();
                 return;
         }
     }
 
     @Override
     public long m(long j3) {
-        c3.u uVar = (c3.u) this.f8304b;
-        return e2.d0.i((j3 * uVar.e) / 1000000, 0L, uVar.f3808j - 1);
+        c3.u uVar = (c3.u) this.f8303b;
+        return e2.d0.i((j3 * uVar.e) / 1000000, 0L, uVar.f3807j - 1);
     }
 
     @Override
     public void onSuccess(Object obj) {
-        ((e1.b) this.f8304b).invoke(obj);
+        ((e1.b) this.f8303b).invoke(obj);
     }
 
     @Override
@@ -346,24 +346,24 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
         hg.f1 f1Var;
         hg.f1 f1Var2;
         int i11;
-        switch (this.f8303a) {
+        switch (this.f8302a) {
             case 0:
                 View view = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                ((e5) this.f8304b).V((w51) obj);
+                ((e5) this.f8303b).V((y51) obj);
                 return;
             case 1:
             case 2:
             case 5:
             default:
-                w51 w51Var = (w51) obj;
+                y51 y51Var = (y51) obj;
                 View view2 = (View) obj2;
                 Integer num = (Integer) obj3;
                 Float f7 = (Float) obj4;
                 Float f10 = (Float) obj5;
-                if (((ii.w3[]) this.f8304b)[0] != null) {
+                if (((ii.w3[]) this.f8303b)[0] != null) {
                     num.intValue();
                     f7.floatValue();
                     f10.floatValue();
@@ -375,13 +375,13 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 }
                 return;
             case 3:
-                hg.g1 g1Var = (hg.g1) this.f8304b;
-                w51 w51Var2 = (w51) obj;
+                hg.g1 g1Var = (hg.g1) this.f8303b;
+                y51 y51Var2 = (y51) obj;
                 View view3 = (View) obj2;
                 ((Integer) obj3).getClass();
                 float floatValue = ((Float) obj4).floatValue();
                 ((Float) obj5).getClass();
-                int i12 = w51Var2.d;
+                int i12 = y51Var2.d;
                 if (i12 == -1) {
                     boolean z10 = !g1Var.e;
                     g1Var.e = z10;
@@ -395,21 +395,21 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     n2Var.f10279c = new ci.m2(17, g1Var, view3);
                     g1Var.presentFragment((org.telegram.ui.ActionBar.n2) n2Var);
                     return;
-                } else if (w51Var2.f15704a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
+                } else if (y51Var2.f15719a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
                     if (!LocaleController.isRTL ? floatValue >= view3.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
-                        if (g1Var.h[w51Var2.d].isEmpty()) {
+                        if (g1Var.h[y51Var2.d].isEmpty()) {
                             ((k5) view3).setChecked(true);
-                            g1Var.h[w51Var2.d].add(new hg.f1(0, 1439));
-                            g1Var.X(w51Var2.d);
+                            g1Var.h[y51Var2.d].add(new hg.f1(0, 1439));
+                            g1Var.X(y51Var2.d);
                         } else {
-                            g1Var.h[w51Var2.d].clear();
+                            g1Var.h[y51Var2.d].clear();
                             ((k5) view3).setChecked(false);
                         }
-                        ((k5) view3).setValue(hg.g1.a0(g1Var.h[w51Var2.d]));
+                        ((k5) view3).setValue(hg.g1.a0(g1Var.h[y51Var2.d]));
                         g1Var.Y(true);
                         return;
                     }
-                    int i13 = (w51Var2.d + 6) % 7;
+                    int i13 = (y51Var2.d + 6) % 7;
                     int i14 = 0;
                     for (int i15 = 0; i15 < g1Var.h[i13].size(); i15++) {
                         if (((hg.f1) g1Var.h[i13].get(i15)).f10291b > i14) {
@@ -417,7 +417,7 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                         }
                     }
                     int max = Math.max(0, i14 - 1439);
-                    int i16 = (w51Var2.d + 1) % 7;
+                    int i16 = (y51Var2.d + 1) % 7;
                     int i17 = 1440;
                     for (int i18 = 0; i18 < g1Var.h[i16].size(); i18++) {
                         if (((hg.f1) g1Var.h[i16].get(i18)).f10290a < i17) {
@@ -425,8 +425,8 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = w51Var2.f29948l;
-                    ArrayList arrayList = g1Var.h[w51Var2.d];
+                    CharSequence charSequence = y51Var2.f30518l;
+                    ArrayList arrayList = g1Var.h[y51Var2.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
                         ArrayList arrayList2 = g1Var.h[i21];
@@ -436,15 +436,15 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     }
                     hg.i1 i1Var = new hg.i1(charSequence, arrayList, max, i19, 28 - i20);
                     i1Var.f10320f = new uc(g1Var, 23);
-                    i1Var.h = new gg.x1(5, g1Var, w51Var2);
+                    i1Var.h = new gg.x1(5, g1Var, y51Var2);
                     g1Var.presentFragment(i1Var);
                     return;
                 } else {
                     return;
                 }
             case 4:
-                final hg.i1 i1Var2 = (hg.i1) this.f8304b;
-                w51 w51Var3 = (w51) obj;
+                final hg.i1 i1Var2 = (hg.i1) this.f8303b;
+                y51 y51Var3 = (y51) obj;
                 final View view4 = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
@@ -452,7 +452,7 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 int i22 = i1Var2.f10319c;
                 int i23 = i1Var2.d;
                 ArrayList arrayList3 = i1Var2.f10318b;
-                int i24 = w51Var3.d;
+                int i24 = y51Var3.d;
                 if (i24 == -1) {
                     i1Var2.f10322r = !i1Var2.f10322r;
                     arrayList3.clear();
@@ -461,13 +461,13 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     }
                     x8 x8Var = (x8) view4;
                     boolean z11 = i1Var2.f10322r;
-                    w51Var3.e = z11;
+                    y51Var3.e = z11;
                     x8Var.setChecked(z11);
                     boolean z12 = i1Var2.f10322r;
                     if (z12) {
-                        i11 = j6.f19130f6;
+                        i11 = j6.f19145f6;
                     } else {
-                        i11 = j6.f19113e6;
+                        i11 = j6.f19128e6;
                     }
                     x8Var.b(j6.w0(null, i11, false), z12);
                     i1Var2.f10321n.Y2.N(true);
@@ -495,7 +495,7 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     }
                     i1Var2.f10321n.Y2.N(true);
                     return;
-                } else if (w51Var3.f15704a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (y51Var3.f15719a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i26 = i10 - 1;
                     if (i26 >= 0) {
                         f1Var = (hg.f1) arrayList3.get(i26);
@@ -509,7 +509,7 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     } else {
                         f1Var2 = null;
                     }
-                    int i28 = w51Var3.d % 3;
+                    int i28 = y51Var3.d % 3;
                     if (i28 == 0) {
                         Activity parentActivity = i1Var2.getParentActivity();
                         String string = LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker);
@@ -625,14 +625,14 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                hg.e2.U((hg.e2) this.f8304b, (w51) obj, (View) obj2);
+                hg.e2.U((hg.e2) this.f8303b, (y51) obj, (View) obj2);
                 return;
         }
     }
 
     @Override
     public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
-        ii.i4 i4Var = (ii.i4) this.f8304b;
+        ii.i4 i4Var = (ii.i4) this.f8303b;
         if (arrayList.isEmpty() || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId <= 0) {
             return false;
         }
@@ -642,12 +642,12 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
     }
 
     public d5(j2.a aVar, u2.t tVar, u2.b0 b0Var, IOException iOException, boolean z10) {
-        this.f8303a = 26;
-        this.f8304b = b0Var;
+        this.f8302a = 26;
+        this.f8303b = b0Var;
     }
 
     public d5(Object obj, int i10) {
-        this.f8303a = i10;
-        this.f8304b = obj;
+        this.f8302a = i10;
+        this.f8303b = obj;
     }
 }

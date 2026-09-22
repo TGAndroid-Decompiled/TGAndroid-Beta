@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.rl0;
-import org.telegram.ui.Components.vl0;
-public final class f0 extends rl0 {
+import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.yl0;
+public final class f0 extends ul0 {
     public final ArrayList f10287r;
     public final int f10288s;
     public final Context v;
@@ -30,7 +30,7 @@ public final class f0 extends rl0 {
     }
 
     @Override
-    public final void G(vl0 vl0Var, float f7, int[] iArr) {
+    public final void G(yl0 yl0Var, float f7, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -85,8 +85,8 @@ public final class f0 extends rl0 {
 
     @Override
     public final void W(int i10, int i11, s4.c1 c1Var) {
-        if (c1Var.f42977f == 0) {
-            x1 x1Var = (x1) c1Var.f42974a;
+        if (c1Var.f42998f == 0) {
+            x1 x1Var = (x1) c1Var.f42995a;
             Object O = O(i10, i11);
             boolean z10 = true;
             if (i10 == 1 && i11 == M(i10) - 1) {
@@ -123,7 +123,7 @@ public final class f0 extends rl0 {
                 x1Var.setTag(-33024);
             }
         } else {
-            x1Var = new x1(context, this.f10289w.f26654a, false);
+            x1Var = new x1(context, this.f10289w.f26785a, false);
         }
         return new s4.c1(x1Var);
     }

@@ -76,7 +76,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.z5, q9, m0
         this.E = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        l0 l0Var = new l0(context, f6Var, new a4.m(this, 21));
+        l0 l0Var = new l0(context, f6Var, new android.support.v4.media.c(this, 20));
         this.F = l0Var;
         addView(l0Var.f11487a, w7.y5.e(-2, -2, 51));
         e();
@@ -100,7 +100,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.z5, q9, m0
 
     @Override
     public final void e() {
-        this.f11227s.setColor(j6.v0(j6.f19416uf, this.f11226r));
+        this.f11227s.setColor(j6.v0(j6.f19431uf, this.f11226r));
         l0 l0Var = this.F;
         if (l0Var != null) {
             l0Var.a();
@@ -373,7 +373,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.z5, q9, m0
                 this.Q.draw(canvas);
                 canvas.restore();
             }
-            this.f11229x.setColor(j6.v0(j6.f19284nd, f6Var));
+            this.f11229x.setColor(j6.v0(j6.f19299nd, f6Var));
             StaticLayout staticLayout = this.Q;
             int i12 = 0;
             if (staticLayout == null) {
@@ -391,7 +391,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.z5, q9, m0
             if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f11604a.getTextSelectionHelper()) != null && textSelectionHelper.y()) {
                 ((RecyclerView) getParent()).getClass();
                 int S = RecyclerView.S(this);
-                if (S > textSelectionHelper.f20889u0 && S <= textSelectionHelper.f20892x0) {
+                if (S > textSelectionHelper.f20904u0 && S <= textSelectionHelper.f20907x0) {
                     if (this.M) {
                         i11 = 0;
                     } else {

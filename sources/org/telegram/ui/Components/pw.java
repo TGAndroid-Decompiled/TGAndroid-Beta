@@ -14,7 +14,7 @@ public final class pw extends jz {
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ah.i iVar;
         super.b(recyclerView, i10, i11);
-        if (Build.VERSION.SDK_INT >= 31 && (iVar = this.d.f25921j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (iVar = this.d.f25881j2) != null) {
             iVar.f(i10, i11);
         }
     }

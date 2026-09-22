@@ -3,20 +3,20 @@ package b4;
 import android.text.TextUtils;
 import v7.s6;
 public final class b {
-    public final int f3377a;
-    public final int f3378b;
-    public final int f3379c;
+    public final int f3376a;
+    public final int f3377b;
+    public final int f3378c;
     public final int d;
     public final int e;
-    public final int f3380f;
+    public final int f3379f;
 
     public b(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f3377a = i10;
-        this.f3378b = i11;
-        this.f3379c = i12;
+        this.f3376a = i10;
+        this.f3377b = i11;
+        this.f3378c = i12;
         this.d = i13;
         this.e = i14;
-        this.f3380f = i15;
+        this.f3379f = i15;
     }
 
     public static b a(String str) {

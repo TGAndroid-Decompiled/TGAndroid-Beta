@@ -4,9 +4,9 @@ import android.view.View;
 import android.view.Window;
 import java.lang.ref.WeakReference;
 public final class mb0 implements yf.k0 {
-    public final int f35641a = 0;
-    public boolean f35642b;
-    public boolean f35643c;
+    public final int f35664a = 0;
+    public boolean f35665b;
+    public boolean f35666c;
     public final Object d;
 
     public mb0(yf.l0 l0Var) {
@@ -17,10 +17,10 @@ public final class mb0 implements yf.k0 {
     public final void a(boolean z10) {
         int i10;
         int i11;
-        switch (this.f35641a) {
+        switch (this.f35664a) {
             case 0:
-                if (this.f35642b != z10 && !this.f35643c) {
-                    this.f35642b = z10;
+                if (this.f35665b != z10 && !this.f35666c) {
+                    this.f35665b = z10;
                     LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) this.d).get();
                     if (launchActivity != null) {
                         int i12 = launchActivity.A1;
@@ -31,7 +31,7 @@ public final class mb0 implements yf.k0 {
                         }
                         int i13 = i12 + i10;
                         launchActivity.A1 = i13;
-                        j0 j0Var = launchActivity.f31140w0;
+                        j0 j0Var = launchActivity.f31161w0;
                         if (j0Var != null) {
                             if (i13 > 0) {
                                 i11 = 8;
@@ -48,21 +48,21 @@ public final class mb0 implements yf.k0 {
                 return;
             default:
                 yf.l0 l0Var = (yf.l0) this.d;
-                if (this.f35642b != z10 && !this.f35643c) {
-                    this.f35642b = z10;
+                if (this.f35665b != z10 && !this.f35666c) {
+                    this.f35665b = z10;
                     boolean z11 = true;
                     if (z10) {
-                        l0Var.f47145a++;
+                        l0Var.f47166a++;
                     } else {
-                        l0Var.f47145a--;
+                        l0Var.f47166a--;
                     }
                     int i14 = 0;
-                    if (l0Var.f47145a <= 0) {
+                    if (l0Var.f47166a <= 0) {
                         z11 = false;
                     }
-                    if (l0Var.f47146b != z11) {
-                        l0Var.f47146b = z11;
-                        Window window = (Window) ((WeakReference) l0Var.f47147c.f42348b).get();
+                    if (l0Var.f47167b != z11) {
+                        l0Var.f47167b = z11;
+                        Window window = (Window) ((WeakReference) l0Var.f47168c.f42369b).get();
                         if (window != null) {
                             View decorView = window.getDecorView();
                             if (z11) {
@@ -81,14 +81,14 @@ public final class mb0 implements yf.k0 {
 
     @Override
     public final void destroy() {
-        switch (this.f35641a) {
+        switch (this.f35664a) {
             case 0:
                 a(false);
-                this.f35643c = true;
+                this.f35666c = true;
                 return;
             default:
                 a(false);
-                this.f35643c = true;
+                this.f35666c = true;
                 return;
         }
     }

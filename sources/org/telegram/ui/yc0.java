@@ -6,23 +6,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserObject;
 public final class yc0 extends gg.t0 {
     public boolean m0;
-    public final kd0 f39882n0;
+    public final kd0 f39902n0;
 
     public yc0(kd0 kd0Var, Context context, int i10, long j3, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, boolean z11) {
         super(context, i10, j3, false, f6Var, false, z10, z11);
-        this.f39882n0 = kd0Var;
+        this.f39902n0 = kd0Var;
         this.m0 = true;
     }
 
     @Override
     public final void K() {
-        this.f39882n0.r0(null);
+        this.f39902n0.r0(null);
     }
 
     @Override
     public final void N(ArrayList arrayList) {
         int i10;
-        kd0 kd0Var = this.f39882n0;
+        kd0 kd0Var = this.f39902n0;
         MessageObject messageObject = kd0Var.B0;
         if (messageObject != null && messageObject.isLiveLocation()) {
             int i11 = 0;
@@ -30,7 +30,7 @@ public final class yc0 extends gg.t0 {
                 i10 = 0;
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     ed0 ed0Var = (ed0) arrayList.get(i12);
-                    if (ed0Var != null && !UserObject.isUserSelf(ed0Var.f33313c)) {
+                    if (ed0Var != null && !UserObject.isUserSelf(ed0Var.f33333c)) {
                         i10++;
                     }
                 }
@@ -38,7 +38,7 @@ public final class yc0 extends gg.t0 {
                 i10 = 0;
             }
             if (this.m0 && i10 == 1) {
-                kd0Var.f35105i0 = ((ed0) arrayList.get(0)).f33311a;
+                kd0Var.f35127i0 = ((ed0) arrayList.get(0)).f33331a;
             }
             this.m0 = false;
             org.telegram.ui.ActionBar.v0 v0Var = kd0Var.Z;

@@ -3,15 +3,15 @@ package yf;
 import java.io.OutputStream;
 import java.util.Arrays;
 public final class z extends OutputStream {
-    public byte[] f47180a;
-    public int f47181b;
+    public byte[] f47201a;
+    public int f47202b;
 
     public z(int i10) {
-        this.f47180a = new byte[i10];
+        this.f47201a = new byte[i10];
     }
 
     public final void a(int i10) {
-        byte[] bArr = this.f47180a;
+        byte[] bArr = this.f47201a;
         if (i10 - bArr.length > 0) {
             int length = bArr.length << 1;
             if (length - i10 < 0) {
@@ -28,29 +28,29 @@ public final class z extends OutputStream {
                     throw new OutOfMemoryError();
                 }
             }
-            this.f47180a = Arrays.copyOf(bArr, length);
+            this.f47201a = Arrays.copyOf(bArr, length);
         }
     }
 
     public final synchronized void b() {
-        this.f47181b = 0;
+        this.f47202b = 0;
     }
 
     public final void c(int i10) {
-        a(this.f47181b + 4);
-        byte[] bArr = this.f47180a;
-        int i11 = this.f47181b;
+        a(this.f47202b + 4);
+        byte[] bArr = this.f47201a;
+        int i11 = this.f47202b;
         bArr[i11] = (byte) (i10 >>> 24);
         bArr[i11 + 1] = (byte) (i10 >>> 16);
         bArr[i11 + 2] = (byte) (i10 >>> 8);
         bArr[i11 + 3] = (byte) i10;
-        this.f47181b = i11 + 4;
+        this.f47202b = i11 + 4;
     }
 
     public final void d(long j3) {
-        a(this.f47181b + 8);
-        byte[] bArr = this.f47180a;
-        int i10 = this.f47181b;
+        a(this.f47202b + 8);
+        byte[] bArr = this.f47201a;
+        int i10 = this.f47202b;
         bArr[i10] = (byte) (j3 >>> 56);
         bArr[i10 + 1] = (byte) (j3 >>> 48);
         bArr[i10 + 2] = (byte) (j3 >>> 40);
@@ -59,25 +59,25 @@ public final class z extends OutputStream {
         bArr[i10 + 5] = (byte) (j3 >>> 16);
         bArr[i10 + 6] = (byte) (j3 >>> 8);
         bArr[i10 + 7] = (byte) j3;
-        this.f47181b = i10 + 8;
+        this.f47202b = i10 + 8;
     }
 
     @Override
     public final synchronized void write(int i10) {
-        a(this.f47181b + 1);
-        byte[] bArr = this.f47180a;
-        int i11 = this.f47181b;
+        a(this.f47202b + 1);
+        byte[] bArr = this.f47201a;
+        int i11 = this.f47202b;
         bArr[i11] = (byte) i10;
-        this.f47181b = i11 + 1;
+        this.f47202b = i11 + 1;
     }
 
     @Override
     public final synchronized void write(byte[] bArr, int i10, int i11) {
         if (i10 >= 0) {
             if (i10 <= bArr.length && i11 >= 0 && (i10 + i11) - bArr.length <= 0) {
-                a(this.f47181b + i11);
-                System.arraycopy(bArr, i10, this.f47180a, this.f47181b, i11);
-                this.f47181b += i11;
+                a(this.f47202b + i11);
+                System.arraycopy(bArr, i10, this.f47201a, this.f47202b, i11);
+                this.f47202b += i11;
             }
         }
         throw new IndexOutOfBoundsException();

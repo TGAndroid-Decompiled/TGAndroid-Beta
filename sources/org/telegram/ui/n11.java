@@ -11,21 +11,21 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class n11 {
-    public final int f35873a;
-    public boolean f35874b;
-    public p11 f35875c;
-    public final boolean[] f35877g;
-    public boolean f35878i;
+    public final int f35894a;
+    public boolean f35895b;
+    public p11 f35896c;
+    public final boolean[] f35898g;
+    public boolean f35899i;
     public final ArrayList d = new ArrayList();
     public final ArrayList e = new ArrayList();
-    public final ArrayList f35876f = new ArrayList();
+    public final ArrayList f35897f = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f35879j = new ArrayList();
+    public final ArrayList f35900j = new ArrayList();
 
     public n11(int i10, int i11) {
         boolean[] zArr = new boolean[2];
-        this.f35877g = zArr;
-        this.f35873a = i11;
+        this.f35898g = zArr;
+        this.f35894a = i11;
         if (i11 <= 0) {
             zArr[0] = true;
         } else {
@@ -40,11 +40,11 @@ public final class n11 {
                 }
             }
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            String[] strArr = q11.f36736s;
+            String[] strArr = q11.f36759s;
             tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
             MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName, 0, false, new y(this, hashSet, arrayList, 7));
         }
-        String str = q11.f36736s[Utilities.random.nextInt(3)];
+        String str = q11.f36759s[Utilities.random.nextInt(3)];
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
         MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName2, 0, false, new pj0(6, this, str));
@@ -60,7 +60,7 @@ public final class n11 {
                 i11 = 0;
             }
             if (n11Var != null) {
-                if (n11Var.f35873a == i11) {
+                if (n11Var.f35894a == i11) {
                     return n11Var;
                 }
                 n11Var.b(false);
@@ -75,11 +75,11 @@ public final class n11 {
     }
 
     public final void a() {
-        if (!this.f35874b && this.f35876f.size() >= this.e.size()) {
-            boolean[] zArr = this.f35877g;
+        if (!this.f35895b && this.f35897f.size() >= this.e.size()) {
+            boolean[] zArr = this.f35898g;
             int i10 = 0;
             if (zArr[0] && zArr[1]) {
-                this.f35874b = true;
+                this.f35895b = true;
                 ArrayList arrayList = this.h;
                 int size = arrayList.size();
                 while (i10 < size) {
@@ -93,8 +93,8 @@ public final class n11 {
     }
 
     public final void b(boolean z10) {
-        if (!z10 && !this.f35879j.isEmpty()) {
-            this.f35878i = true;
+        if (!z10 && !this.f35900j.isEmpty()) {
+            this.f35899i = true;
             return;
         }
         this.h.clear();

@@ -20,60 +20,60 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.c70;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.z60;
 import org.telegram.ui.c41;
 import org.telegram.ui.le;
 import org.telegram.ui.u31;
 import org.telegram.ui.zn;
 public final class e implements Runnable {
-    public final int f17860a = 0;
-    public final long f17861b;
-    public final Object f17862c;
+    public final int f17875a = 0;
+    public final long f17876b;
+    public final Object f17877c;
     public final Object d;
     public final Object e;
-    public final Object f17863f;
+    public final Object f17878f;
     public final Object h;
-    public final Object f17864n;
+    public final Object f17879n;
 
     public e(long j3, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger, ConferenceCall conferenceCall, TLObject tLObject, TLRPC.TL_error tL_error, TL_phone.getGroupCallChainBlocks getgroupcallchainblocks) {
-        this.f17862c = conferenceCall;
+        this.f17877c = conferenceCall;
         this.d = getgroupcallchainblocks;
-        this.f17861b = j3;
+        this.f17876b = j3;
         this.e = tLObject;
-        this.f17863f = tL_error;
+        this.f17878f = tL_error;
         this.h = atomicBoolean;
-        this.f17864n = atomicInteger;
+        this.f17879n = atomicInteger;
     }
 
     @Override
     public final void run() {
         TLRPC.VideoSize closestVideoSizeWithSize;
         boolean z10;
-        switch (this.f17860a) {
+        switch (this.f17875a) {
             case 0:
-                ((ConferenceCall) this.f17862c).lambda$poll$7((TL_phone.getGroupCallChainBlocks) this.d, this.f17861b, (TLObject) this.e, (TLRPC.TL_error) this.f17863f, (AtomicBoolean) this.h, (AtomicInteger) this.f17864n);
+                ((ConferenceCall) this.f17877c).lambda$poll$7((TL_phone.getGroupCallChainBlocks) this.d, this.f17876b, (TLObject) this.e, (TLRPC.TL_error) this.f17878f, (AtomicBoolean) this.h, (AtomicInteger) this.f17879n);
                 return;
             case 1:
-                z60.n((z60) this.f17862c, (b2) this.d, (Context) this.e, this.f17861b, (TLRPC.TL_chatInviteExported) this.f17863f, (TLRPC.TL_chatInviteImporter) this.h, (TLRPC.ChannelParticipant) this.f17864n);
+                c70.n((c70) this.f17877c, (b2) this.d, (Context) this.e, this.f17876b, (TLRPC.TL_chatInviteExported) this.f17878f, (TLRPC.TL_chatInviteImporter) this.h, (TLRPC.ChannelParticipant) this.f17879n);
                 return;
             case 2:
-                Activity activity = (Activity) this.f17862c;
+                Activity activity = (Activity) this.f17877c;
                 f6 f6Var = (f6) this.d;
-                byte[] bArr = (byte[]) this.f17863f;
-                MessageObject messageObject = (MessageObject) this.f17864n;
-                c41 c41Var = new c41(activity, f6Var, this.f17861b, bArr);
+                byte[] bArr = (byte[]) this.f17878f;
+                MessageObject messageObject = (MessageObject) this.f17879n;
+                c41 c41Var = new c41(activity, f6Var, this.f17876b, bArr);
                 c41Var.O((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.e));
-                c41Var.f32621s = new u31((zn) this.h, activity, f6Var, messageObject);
+                c41Var.f32641s = new u31((zn) this.h, activity, f6Var, messageObject);
                 c41Var.show();
                 return;
             default:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f17863f;
-                zn znVar = (zn) this.f17862c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f17878f;
+                zn znVar = (zn) this.f17877c;
                 TLObject tLObject = (TLObject) this.e;
                 TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
                 String str = (String) this.h;
-                TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f17864n;
+                TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f17879n;
                 if (tL_error == null) {
                     TLRPC.User user = znVar.getMessagesController().getUser(Long.valueOf(znVar.getUserConfig().getClientUserId()));
                     TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
@@ -87,7 +87,7 @@ public final class e implements Runnable {
                     }
                     TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                     user.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f18352id;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f18367id;
                     if (closestPhotoSizeWithSize != null) {
                         tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
                     }
@@ -113,12 +113,12 @@ public final class e implements Runnable {
                     } else if (closestPhotoSizeWithSize2 != null && fileLocationArr2[0] != null) {
                         FileLoader.getInstance(znVar.getCurrentAccount()).getPathToAttach(fileLocationArr2[0], true).renameTo(FileLoader.getInstance(znVar.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
                     }
-                    znVar.getMessagesController().getDialogPhotos(user.f18475id).addPhotoAtStart(tL_photos_photo.photo);
+                    znVar.getMessagesController().getDialogPhotos(user.f18490id).addPhotoAtStart(tL_photos_photo.photo);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(user);
                     znVar.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
                     MessagesController messagesController = znVar.getMessagesController();
-                    long j3 = this.f17861b;
+                    long j3 = this.f17876b;
                     TLRPC.UserFull userFull = messagesController.getUserFull(j3);
                     userFull.profile_photo = tL_photos_photo.photo;
                     znVar.getMessagesStorage().updateUserInfo(userFull, false);
@@ -131,31 +131,31 @@ public final class e implements Runnable {
 
     public e(TLObject tLObject, Activity activity, f6 f6Var, long j3, byte[] bArr, zn znVar, MessageObject messageObject) {
         this.e = tLObject;
-        this.f17862c = activity;
+        this.f17877c = activity;
         this.d = f6Var;
-        this.f17861b = j3;
-        this.f17863f = bArr;
+        this.f17876b = j3;
+        this.f17878f = bArr;
         this.h = znVar;
-        this.f17864n = messageObject;
+        this.f17879n = messageObject;
     }
 
     public e(TLRPC.TL_error tL_error, zn znVar, TLObject tLObject, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j3) {
-        this.f17863f = tL_error;
-        this.f17862c = znVar;
+        this.f17878f = tL_error;
+        this.f17877c = znVar;
         this.e = tLObject;
         this.d = fileLocationArr;
         this.h = str;
-        this.f17864n = fileLocationArr2;
-        this.f17861b = j3;
+        this.f17879n = fileLocationArr2;
+        this.f17876b = j3;
     }
 
-    public e(z60 z60Var, b2 b2Var, Context context, long j3, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
-        this.f17862c = z60Var;
+    public e(c70 c70Var, b2 b2Var, Context context, long j3, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
+        this.f17877c = c70Var;
         this.d = b2Var;
         this.e = context;
-        this.f17861b = j3;
-        this.f17863f = tL_chatInviteExported;
+        this.f17876b = j3;
+        this.f17878f = tL_chatInviteExported;
         this.h = tL_chatInviteImporter;
-        this.f17864n = channelParticipant;
+        this.f17879n = channelParticipant;
     }
 }

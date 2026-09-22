@@ -60,10 +60,10 @@ public abstract class cr {
         h.setGravity(17);
         linearLayout.addView(h, w7.y5.t(-1, -2, 55, 16, 0, 16, 22));
         org.telegram.ui.Cells.k3 k3Var = new org.telegram.ui.Cells.k3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, f6Var);
-        org.telegram.ui.Cells.i3 i3Var = k3Var.f20527b;
+        org.telegram.ui.Cells.i3 i3Var = k3Var.f20542b;
         i3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i12 = org.telegram.ui.ActionBar.j6.f19094d6;
+        int i12 = org.telegram.ui.ActionBar.j6.f19109d6;
         k3Var.setBackground(org.telegram.ui.ActionBar.j6.b0(dp, org.telegram.ui.ActionBar.j6.v0(i12, f6Var)));
         k3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
         linearLayout.addView(k3Var, w7.y5.t(-1, -2, 55, 12, 0, 12, 0));
@@ -73,7 +73,7 @@ public abstract class cr {
         org.telegram.ui.Cells.k3 k3Var2 = new org.telegram.ui.Cells.k3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 29, f6Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        org.telegram.ui.Cells.i3 i3Var2 = k3Var2.f20527b;
+        org.telegram.ui.Cells.i3 i3Var2 = k3Var2.f20542b;
         k3Var2.removeView(i3Var2);
         i3Var2.setHintColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.H6, f6Var));
         i3Var2.setRightText("bot");
@@ -117,7 +117,7 @@ public abstract class cr {
         linearLayout3.addView(g10, w7.y5.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
         j3.useBackgroundTopPadding = false;
         j3.smoothKeyboardAnimationEnabled = true;
-        j3.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19038a7, f6Var));
+        j3.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19053a7, f6Var));
         j3.fixNavigationBar();
         final boolean[] zArr = new boolean[1];
         String[] strArr = new String[1];

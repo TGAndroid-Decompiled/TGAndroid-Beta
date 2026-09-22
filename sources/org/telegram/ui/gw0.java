@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
-public final class gw0 implements org.telegram.ui.Components.ok0 {
-    public final zn f33998a;
-    public final MessageObject f33999b;
-    public final org.telegram.ui.Components.pk0 f34000c;
+public final class gw0 implements org.telegram.ui.Components.rk0 {
+    public final zn f34014a;
+    public final MessageObject f34015b;
+    public final org.telegram.ui.Components.sk0 f34016c;
     public final mw0 d;
 
-    public gw0(mw0 mw0Var, zn znVar, MessageObject messageObject, org.telegram.ui.Components.pk0 pk0Var) {
+    public gw0(mw0 mw0Var, zn znVar, MessageObject messageObject, org.telegram.ui.Components.sk0 sk0Var) {
         this.d = mw0Var;
-        this.f33998a = znVar;
-        this.f33999b = messageObject;
-        this.f34000c = pk0Var;
+        this.f34014a = znVar;
+        this.f34015b = messageObject;
+        this.f34016c = sk0Var;
     }
 
     @Override
-    public final void h(android.view.View r13, zg.o0 r14, boolean r15, boolean r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gw0.h(android.view.View, zg.o0, boolean, boolean):void");
+    public final void h(android.view.View r13, zg.p0 r14, boolean r15, boolean r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gw0.h(android.view.View, zg.p0, boolean, boolean):void");
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class gw0 implements org.telegram.ui.Components.ok0 {
     }
 
     @Override
-    public final boolean r() {
+    public final boolean q() {
         return false;
     }
 

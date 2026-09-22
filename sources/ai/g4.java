@@ -5,7 +5,7 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.vi;
-import org.telegram.ui.lk;
+import org.telegram.ui.mk;
 import org.telegram.ui.zn;
 public final class g4 extends vi {
     public final int P2;
@@ -56,9 +56,9 @@ public final class g4 extends vi {
                 if (g4Var != null) {
                     g4Var.setFocusable(false);
                 }
-                a4 a4Var = f6Var.f800b2;
+                a4 a4Var = f6Var.f797b2;
                 if (a4Var != null && a4Var.getEditField() != null) {
-                    f6Var.f800b2.getEditField().requestFocus();
+                    f6Var.f797b2.getEditField().requestFocus();
                     return;
                 }
                 return;
@@ -80,8 +80,8 @@ public final class g4 extends vi {
                 if (g4Var4 != null) {
                     g4Var4.setFocusable(false);
                 }
-                lk lkVar = znVar.Y;
-                if (lkVar != null && lkVar.getEditField() != null) {
+                mk mkVar = znVar.Y;
+                if (mkVar != null && mkVar.getEditField() != null) {
                     znVar.Y.getEditField().requestFocus();
                 }
                 g4 g4Var5 = znVar.J1;

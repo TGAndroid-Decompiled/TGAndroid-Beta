@@ -4,7 +4,7 @@ public interface f {
 
     void a();
 
-    void f(boolean z10);
+    void g(boolean z10);
 
     boolean h();
 

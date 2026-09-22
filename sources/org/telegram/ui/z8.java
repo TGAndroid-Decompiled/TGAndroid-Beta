@@ -33,8 +33,8 @@ public final class z8 extends FragmentContextView {
                 return;
             case 1:
                 org.telegram.ui.Components.gj gjVar = (org.telegram.ui.Components.gj) this.Q0;
-                org.telegram.ui.Components.ks ksVar2 = gjVar.f24377x;
-                FrameLayout frameLayout2 = gjVar.f24378y;
+                org.telegram.ui.Components.ks ksVar2 = gjVar.f24554x;
+                FrameLayout frameLayout2 = gjVar.f24555y;
                 if (i10 == 0) {
                     z11 = true;
                 } else {

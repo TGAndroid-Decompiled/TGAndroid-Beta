@@ -14,39 +14,39 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.am0;
+import org.telegram.ui.Components.dm0;
 public final class y6 extends FrameLayout {
-    public final LinearLayout f1753a;
-    public final Paint f1754b;
-    public final TextView f1755c;
+    public final LinearLayout f1750a;
+    public final Paint f1751b;
+    public final TextView f1752c;
     public final TextView d;
     public final RectF e;
-    public float f1756f;
+    public float f1753f;
     public float h;
-    public final RectF f1757n;
-    public float f1758r;
-    public int f1759s;
-    public final am0 v;
-    public ValueAnimator f1760w;
-    public final j7 f1761x;
+    public final RectF f1754n;
+    public float f1755r;
+    public int f1756s;
+    public final dm0 v;
+    public ValueAnimator f1757w;
+    public final j7 f1758x;
 
     public y6(j7 j7Var, Context context) {
         super(context);
-        this.f1761x = j7Var;
+        this.f1758x = j7Var;
         Paint paint = new Paint(1);
-        this.f1754b = paint;
+        this.f1751b = paint;
         this.e = new RectF();
-        this.f1757n = new RectF();
-        this.f1758r = 1.0f;
-        int i10 = org.telegram.ui.ActionBar.j6.f19184i6;
-        d dVar = j7Var.f1053s;
+        this.f1754n = new RectF();
+        this.f1755r = 1.0f;
+        int i10 = org.telegram.ui.ActionBar.j6.f19199i6;
+        d dVar = j7Var.f1050s;
         paint.setColor(org.telegram.ui.ActionBar.j6.v0(i10, dVar));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         TextView textView = new TextView(context);
-        this.f1755c = textView;
+        this.f1752c = textView;
         textView.setText(LocaleController.getString(R.string.AllViewers));
-        int i11 = org.telegram.ui.ActionBar.j6.f19201j5;
+        int i11 = org.telegram.ui.ActionBar.j6.f19216j5;
         textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, dVar));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -62,17 +62,17 @@ public final class y6 extends FrameLayout {
         linearLayout.addView(textView, w7.y5.t(-2, -2, 0, 13, 0, 0, 0));
         linearLayout.addView(textView2, w7.y5.t(-2, -2, 0, 0, 0, 0, 0));
         LinearLayout linearLayout2 = new LinearLayout(getContext());
-        this.f1753a = linearLayout2;
+        this.f1750a = linearLayout2;
         linearLayout2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
         linearLayout2.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.j6.v0(i10, dVar)));
         linearLayout2.setOrientation(0);
-        am0 am0Var = new am0(getContext());
-        this.v = am0Var;
-        am0Var.f22721r = true;
-        am0Var.a(R.drawable.menu_views_reactions3, false);
+        dm0 dm0Var = new dm0(getContext());
+        this.v = dm0Var;
+        dm0Var.f23722r = true;
+        dm0Var.a(R.drawable.menu_views_reactions3, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setImageDrawable(am0Var);
+        imageView.setImageDrawable(dm0Var);
         imageView.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
         linearLayout2.addView(imageView, w7.y5.n(26, 26));
         ImageView imageView2 = new ImageView(getContext());
@@ -81,127 +81,127 @@ public final class y6 extends FrameLayout {
         addView(linearLayout, w7.y5.c(-2.0f, -2));
         addView(linearLayout2, w7.y5.d(-2, -2.0f, 5, 13.0f, 6.0f, 13.0f, 6.0f));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final y6 f1612b;
+            public final y6 f1609b;
 
             {
-                this.f1612b = this;
+                this.f1609b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        j7 j7Var2 = this.f1612b.f1761x;
+                        j7 j7Var2 = this.f1609b.f1758x;
                         u6 u6Var = j7Var2.O;
-                        if (u6Var.f1579b) {
-                            u6Var.f1579b = false;
+                        if (u6Var.f1576b) {
+                            u6Var.f1576b = false;
                             j7Var2.h(true);
                             j7.b(j7Var2);
                             return;
                         }
                         return;
                     case 1:
-                        j7 j7Var3 = this.f1612b.f1761x;
+                        j7 j7Var3 = this.f1609b.f1758x;
                         u6 u6Var2 = j7Var3.O;
-                        if (!u6Var2.f1579b) {
-                            u6Var2.f1579b = true;
+                        if (!u6Var2.f1576b) {
+                            u6Var2.f1576b = true;
                             j7Var3.h(true);
                             j7.b(j7Var3);
                             return;
                         }
                         return;
                     default:
-                        y6 y6Var = this.f1612b;
-                        j7 j7Var4 = y6Var.f1761x;
-                        x6 x6Var = new x6(y6Var, y6Var.getContext(), j7Var4.f1053s);
-                        j7Var4.f1050f = x6Var;
-                        LinearLayout linearLayout3 = y6Var.f1753a;
-                        x6Var.f30354b = true;
-                        x6Var.f30353a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        y6 y6Var = this.f1609b;
+                        j7 j7Var4 = y6Var.f1758x;
+                        x6 x6Var = new x6(y6Var, y6Var.getContext(), j7Var4.f1050s);
+                        j7Var4.f1047f = x6Var;
+                        LinearLayout linearLayout3 = y6Var.f1750a;
+                        x6Var.f30401b = true;
+                        x6Var.f30400a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final y6 f1612b;
+            public final y6 f1609b;
 
             {
-                this.f1612b = this;
+                this.f1609b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        j7 j7Var2 = this.f1612b.f1761x;
+                        j7 j7Var2 = this.f1609b.f1758x;
                         u6 u6Var = j7Var2.O;
-                        if (u6Var.f1579b) {
-                            u6Var.f1579b = false;
+                        if (u6Var.f1576b) {
+                            u6Var.f1576b = false;
                             j7Var2.h(true);
                             j7.b(j7Var2);
                             return;
                         }
                         return;
                     case 1:
-                        j7 j7Var3 = this.f1612b.f1761x;
+                        j7 j7Var3 = this.f1609b.f1758x;
                         u6 u6Var2 = j7Var3.O;
-                        if (!u6Var2.f1579b) {
-                            u6Var2.f1579b = true;
+                        if (!u6Var2.f1576b) {
+                            u6Var2.f1576b = true;
                             j7Var3.h(true);
                             j7.b(j7Var3);
                             return;
                         }
                         return;
                     default:
-                        y6 y6Var = this.f1612b;
-                        j7 j7Var4 = y6Var.f1761x;
-                        x6 x6Var = new x6(y6Var, y6Var.getContext(), j7Var4.f1053s);
-                        j7Var4.f1050f = x6Var;
-                        LinearLayout linearLayout3 = y6Var.f1753a;
-                        x6Var.f30354b = true;
-                        x6Var.f30353a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        y6 y6Var = this.f1609b;
+                        j7 j7Var4 = y6Var.f1758x;
+                        x6 x6Var = new x6(y6Var, y6Var.getContext(), j7Var4.f1050s);
+                        j7Var4.f1047f = x6Var;
+                        LinearLayout linearLayout3 = y6Var.f1750a;
+                        x6Var.f30401b = true;
+                        x6Var.f30400a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
         });
         linearLayout2.setOnClickListener(new View.OnClickListener(this) {
-            public final y6 f1612b;
+            public final y6 f1609b;
 
             {
-                this.f1612b = this;
+                this.f1609b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        j7 j7Var2 = this.f1612b.f1761x;
+                        j7 j7Var2 = this.f1609b.f1758x;
                         u6 u6Var = j7Var2.O;
-                        if (u6Var.f1579b) {
-                            u6Var.f1579b = false;
+                        if (u6Var.f1576b) {
+                            u6Var.f1576b = false;
                             j7Var2.h(true);
                             j7.b(j7Var2);
                             return;
                         }
                         return;
                     case 1:
-                        j7 j7Var3 = this.f1612b.f1761x;
+                        j7 j7Var3 = this.f1609b.f1758x;
                         u6 u6Var2 = j7Var3.O;
-                        if (!u6Var2.f1579b) {
-                            u6Var2.f1579b = true;
+                        if (!u6Var2.f1576b) {
+                            u6Var2.f1576b = true;
                             j7Var3.h(true);
                             j7.b(j7Var3);
                             return;
                         }
                         return;
                     default:
-                        y6 y6Var = this.f1612b;
-                        j7 j7Var4 = y6Var.f1761x;
-                        x6 x6Var = new x6(y6Var, y6Var.getContext(), j7Var4.f1053s);
-                        j7Var4.f1050f = x6Var;
-                        LinearLayout linearLayout3 = y6Var.f1753a;
-                        x6Var.f30354b = true;
-                        x6Var.f30353a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        y6 y6Var = this.f1609b;
+                        j7 j7Var4 = y6Var.f1758x;
+                        x6 x6Var = new x6(y6Var, y6Var.getContext(), j7Var4.f1050s);
+                        j7Var4.f1047f = x6Var;
+                        LinearLayout linearLayout3 = y6Var.f1750a;
+                        x6Var.f30401b = true;
+                        x6Var.f30400a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -211,11 +211,11 @@ public final class y6 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        if (this.f1761x.T) {
-            int i10 = this.f1759s;
+        if (this.f1758x.T) {
+            int i10 = this.f1756s;
             TextView textView = this.d;
             float f10 = 0.5f;
-            TextView textView2 = this.f1755c;
+            TextView textView2 = this.f1752c;
             if (i10 == 0) {
                 textView2.getHitRect(AndroidUtilities.rectTmp2);
                 f7 = 0.5f;
@@ -225,18 +225,18 @@ public final class y6 extends FrameLayout {
                 f7 = 1.0f;
             }
             Rect rect = AndroidUtilities.rectTmp2;
-            RectF rectF = this.f1757n;
+            RectF rectF = this.f1754n;
             rectF.set(rect);
-            float f11 = this.f1758r;
+            float f11 = this.f1755r;
             if (f11 != 1.0f) {
-                f10 = AndroidUtilities.lerp(this.f1756f, f10, f11);
-                f7 = AndroidUtilities.lerp(this.h, f7, this.f1758r);
-                AndroidUtilities.lerp(this.e, rectF, this.f1758r, rectF);
+                f10 = AndroidUtilities.lerp(this.f1753f, f10, f11);
+                f7 = AndroidUtilities.lerp(this.h, f7, this.f1755r);
+                AndroidUtilities.lerp(this.e, rectF, this.f1755r, rectF);
             }
             textView2.setAlpha(f10);
             textView.setAlpha(f7);
             float height = rectF.height() / 2.0f;
-            canvas.drawRoundRect(rectF, height, height, this.f1754b);
+            canvas.drawRoundRect(rectF, height, height, this.f1751b);
         }
         super.dispatchDraw(canvas);
     }

@@ -18,7 +18,7 @@ public final class tw extends og.d {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.Z2.f25928m2.f14340g++;
+        this.Z2.f25888m2.f14355g++;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class tw extends og.d {
         int i12;
         ah.i iVar;
         kz kzVar = this.Z2;
-        fz fzVar = kzVar.f25971z0;
-        if (Build.VERSION.SDK_INT >= 31 && (iVar = kzVar.f25921j2) != null) {
+        fz fzVar = kzVar.f25931z0;
+        if (Build.VERSION.SDK_INT >= 31 && (iVar = kzVar.f25881j2) != null) {
             iVar.f(i10, i11);
         }
         if (kzVar.C0 != null) {
@@ -40,8 +40,8 @@ public final class tw extends og.d {
             xwVar.setUnderlineHeight(i12);
         }
         if (fzVar != null && getAdapter() == fzVar && fzVar.d == 0) {
-            fz fzVar2 = fzVar.O.f23673w;
-            if (!fzVar2.Q.G0.F && !fzVar2.f24207y) {
+            fz fzVar2 = fzVar.O.f23786w;
+            if (!fzVar2.Q.G0.F && !fzVar2.f24380y) {
                 if (kzVar.E0.N0() + 50 > fzVar.h()) {
                     dz dzVar = fzVar.O;
                     Objects.requireNonNull(dzVar);
@@ -54,11 +54,11 @@ public final class tw extends og.d {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         kz kzVar = this.Z2;
-        if (!kzVar.f25906f) {
+        if (!kzVar.f25866f) {
             org.telegram.ui.st q6 = org.telegram.ui.st.q();
             tw twVar = kzVar.D0;
             kzVar.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, twVar, kzVar.f25912g2, this.f29207p2);
+            boolean r10 = q6.r(motionEvent, twVar, kzVar.f25872g2, this.f30704p2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -70,7 +70,7 @@ public final class tw extends og.d {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         kz kzVar = this.Z2;
-        if (kzVar.I0 && kzVar.f25968y0.h() > 0) {
+        if (kzVar.I0 && kzVar.f25928y0.h() > 0) {
             this.Y2 = true;
             kzVar.E0.h1(0, 0);
             kzVar.I0 = false;

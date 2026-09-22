@@ -25,8 +25,8 @@ public final class d implements db.v {
         Type type = Object.class;
         switch (i10) {
             case 0:
-                Type type2 = aVar.f13578b;
-                Class cls = aVar.f13577a;
+                Type type2 = aVar.f13576b;
+                Class cls = aVar.f13575a;
                 if (!Collection.class.isAssignableFrom(cls)) {
                     return null;
                 }
@@ -40,8 +40,8 @@ public final class d implements db.v {
                 }
                 return new c(gVar, type, gVar.b(new kb.a(type)), bVar.Q(aVar));
             default:
-                Type type3 = aVar.f13578b;
-                Class cls2 = aVar.f13577a;
+                Type type3 = aVar.f13576b;
+                Class cls2 = aVar.f13575a;
                 if (!Map.class.isAssignableFrom(cls2)) {
                     return null;
                 }
@@ -62,7 +62,7 @@ public final class d implements db.v {
                     uVar = h1.f9554c;
                 }
                 db.u b10 = gVar.b(new kb.a(actualTypeArguments[1]));
-                fb.n Q = bVar.Q(aVar);
+                fb.o Q = bVar.Q(aVar);
                 Type[] typeArr = actualTypeArguments;
                 return new o(this, gVar, typeArr[0], uVar, typeArr[1], b10, Q);
         }

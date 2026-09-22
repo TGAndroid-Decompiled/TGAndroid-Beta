@@ -1,9 +1,9 @@
 package ai;
 public final class f implements Runnable {
-    public final int f783a;
+    public final int f780a;
 
     public f(int i10) {
-        this.f783a = i10;
+        this.f780a = i10;
     }
 
     @Override
@@ -12,7 +12,7 @@ public final class f implements Runnable {
     }
 
     public f(Object obj, int i10) {
-        this.f783a = i10;
+        this.f780a = i10;
     }
 
     private final void a() {

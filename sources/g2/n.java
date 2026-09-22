@@ -101,7 +101,7 @@ public final class n implements h {
         e2.d.g(z10);
         Uri uri = mVar.f9380a;
         String scheme = uri.getScheme();
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         String scheme2 = uri.getScheme();
         boolean isEmpty = TextUtils.isEmpty(scheme2);
         Context context = this.f9385a;

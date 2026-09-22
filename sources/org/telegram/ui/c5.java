@@ -23,42 +23,42 @@ import org.telegram.ui.Components.RadialProgress2;
 public abstract class c5 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final int F = 0;
     public boolean E;
-    public final OvershootInterpolator f32622a;
-    public final j0 f32623b;
-    public final u4 f32624c;
+    public final OvershootInterpolator f32642a;
+    public final j0 f32643b;
+    public final u4 f32644c;
     public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
     public final v4 e;
-    public final org.telegram.ui.ActionBar.f6 f32625f;
+    public final org.telegram.ui.ActionBar.f6 f32645f;
     public final fh.b h;
-    public AnimatorSet f32626n;
-    public boolean f32627r;
-    public d5[] f32628s;
+    public AnimatorSet f32646n;
+    public boolean f32647r;
+    public d5[] f32648s;
     public final View v;
-    public boolean f32629w;
-    public String f32630x;
-    public z4 f32631y;
+    public boolean f32649w;
+    public String f32650x;
+    public z4 f32651y;
 
     public c5(Context context, org.telegram.ui.ActionBar.f6 f6Var, v4 v4Var) {
         super(context);
-        this.f32622a = new OvershootInterpolator(1.02f);
+        this.f32642a = new OvershootInterpolator(1.02f);
         fh.b bVar = new fh.b();
         this.h = bVar;
         ah.c cVar = new ah.c(bVar);
         new Matrix();
         this.e = v4Var;
-        this.f32625f = f6Var;
-        cVar.f425f = new hh.k(this);
-        cVar.f426g = this;
+        this.f32645f = f6Var;
+        cVar.f422f = new hh.k(this);
+        cVar.f423g = this;
         View view = new View(context);
         this.v = view;
         view.setOnClickListener(new a(this, 4));
         addView(view, w7.y5.c(-1.0f, -1));
         j0 j0Var = new j0(this, context, 2);
-        this.f32623b = j0Var;
+        this.f32643b = j0Var;
         addView(j0Var, w7.y5.c(-1.0f, -1));
         u4 u4Var = new u4(context, f6Var);
-        this.f32624c = u4Var;
-        ai.k2 k2Var = yf.j0.f47140a;
+        this.f32644c = u4Var;
+        ai.k2 k2Var = yf.j0.f47161a;
         u4Var.setOutlineProvider(new yf.h0(0, AndroidUtilities.dp(12.0f)));
         u4Var.setElevation(AndroidUtilities.dp(4.0f));
         u4Var.setClipToOutline(true);
@@ -72,7 +72,7 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
         ch.d c10 = cVar.c(actionBarPopupWindow$ActionBarPopupWindowLayout, null, false);
         c10.o(eh.b.k(f6Var));
         c10.p(AndroidUtilities.dp(8.0f));
-        c10.f4289j.e = true;
+        c10.f4287j.e = true;
         c10.q(AndroidUtilities.dp(12.0f));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(c10);
         j0Var.addView(actionBarPopupWindow$ActionBarPopupWindowLayout, w7.y5.h(-2.0f, -2.0f, 8388611));
@@ -82,42 +82,42 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
         boolean z10;
         boolean z11;
         boolean z12;
-        this.f32628s = x4Var.f39344i;
-        if (x4Var.f39341c != null) {
+        this.f32648s = x4Var.f39368i;
+        if (x4Var.f39365c != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        u4 u4Var = this.f32624c;
-        u4Var.f37953c = z10;
+        u4 u4Var = this.f32644c;
+        u4Var.f37954c = z10;
         u4Var.invalidate();
-        this.f32630x = x4Var.f39342f;
-        z4 z4Var = this.f32631y;
+        this.f32650x = x4Var.f39366f;
+        z4 z4Var = this.f32651y;
         if (z4Var != null) {
-            if (z4Var.f40093g) {
-                z4Var.f40093g = false;
-                z4Var.f40090b.removeObserver(z4Var.f40089a, z4Var.e);
+            if (z4Var.f40115g) {
+                z4Var.f40115g = false;
+                z4Var.f40112b.removeObserver(z4Var.f40111a, z4Var.e);
             }
-            this.f32631y = null;
+            this.f32651y = null;
         }
-        z4 z4Var2 = x4Var.f39345j;
+        z4 z4Var2 = x4Var.f39369j;
         if (z4Var2 != null) {
-            this.f32631y = z4Var2;
+            this.f32651y = z4Var2;
             ci.l5 l5Var = new ci.l5(1, this, x4Var);
-            if (!z4Var2.f40093g) {
-                z4Var2.f40093g = true;
-                z4Var2.f40092f = l5Var;
-                z4Var2.f40090b.addObserver(z4Var2.f40089a, z4Var2.e);
+            if (!z4Var2.f40115g) {
+                z4Var2.f40115g = true;
+                z4Var2.f40114f = l5Var;
+                z4Var2.f40112b.addObserver(z4Var2.f40111a, z4Var2.e);
                 z4Var2.a();
             }
         }
         int i10 = UserConfig.selectedAccount;
-        ImageLocation imageLocation = x4Var.f39341c;
+        ImageLocation imageLocation = x4Var.f39365c;
         String str = x4Var.e;
-        ImageLocation imageLocation2 = x4Var.f39339a;
-        ImageLocation imageLocation3 = x4Var.f39340b;
+        ImageLocation imageLocation2 = x4Var.f39363a;
+        ImageLocation imageLocation3 = x4Var.f39364b;
         String str2 = x4Var.d;
-        BitmapDrawable bitmapDrawable = x4Var.f39343g;
+        BitmapDrawable bitmapDrawable = x4Var.f39367g;
         Object obj = x4Var.h;
         org.telegram.ui.Components.v9 v9Var = (org.telegram.ui.Components.v9) u4Var.d;
         v9Var.getImageReceiver().setCurrentAccount(i10);
@@ -127,22 +127,22 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
         actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         int i11 = 0;
         while (true) {
-            d5[] d5VarArr = this.f32628s;
+            d5[] d5VarArr = this.f32648s;
             if (i11 < d5VarArr.length) {
                 d5 d5Var = d5VarArr[i11];
-                String string = LocaleController.getString(d5Var.f32932a, d5Var.f32933b);
+                String string = LocaleController.getString(d5Var.f32953a, d5Var.f32954b);
                 if (i11 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (i11 == this.f32628s.length - 1) {
+                if (i11 == this.f32648s.length - 1) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = actionBarPopupWindow$ActionBarPopupWindowLayout;
-                org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(z11, z12, actionBarPopupWindow$ActionBarPopupWindowLayout2, d5Var.f32934c, string, false, this.f32625f);
+                org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(z11, z12, actionBarPopupWindow$ActionBarPopupWindowLayout2, d5Var.f32955c, string, false, this.f32645f);
                 c10.setTag(Integer.valueOf(i11));
                 c10.setOnClickListener(new ai.f2(24, this, d5Var));
                 i11++;
@@ -157,31 +157,31 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
     public final void b(final boolean z10) {
         TimeInterpolator timeInterpolator;
         long j3;
-        if (this.f32627r == z10) {
+        if (this.f32647r == z10) {
             return;
         }
-        this.f32627r = z10;
+        this.f32647r = z10;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         if (z10) {
-            timeInterpolator = this.f32622a;
+            timeInterpolator = this.f32642a;
         } else {
             timeInterpolator = org.telegram.ui.Components.qr.h;
         }
         ofFloat.setInterpolator(timeInterpolator);
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final c5 f31989b;
+            public final c5 f32010b;
 
             {
-                this.f31989b = this;
+                this.f32010b = this;
             }
 
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 switch (r3) {
                     case 0:
-                        c5 c5Var = this.f31989b;
+                        c5 c5Var = this.f32010b;
                         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = c5Var.d;
-                        j0 j0Var = c5Var.f32623b;
+                        j0 j0Var = c5Var.f32643b;
                         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         if (!z10) {
                             floatValue = 1.0f - floatValue;
@@ -192,7 +192,7 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
                         j0Var.setScaleY(f7);
                         j0Var.setAlpha(a2);
                         float f10 = 1.0f - floatValue;
-                        c5Var.f32624c.setTranslationY(AndroidUtilities.dp(40.0f) * f10);
+                        c5Var.f32644c.setTranslationY(AndroidUtilities.dp(40.0f) * f10);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((-AndroidUtilities.dp(70.0f)) * f10);
                         float f11 = (floatValue * 0.05f) + 0.95f;
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleX(f11);
@@ -203,7 +203,7 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
                         if (!z10) {
                             floatValue2 = 1.0f - floatValue2;
                         }
-                        c5 c5Var2 = this.f31989b;
+                        c5 c5Var2 = this.f32010b;
                         c5Var2.v.setAlpha(floatValue2);
                         c5Var2.invalidate();
                         return;
@@ -212,19 +212,19 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
         });
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final c5 f31989b;
+            public final c5 f32010b;
 
             {
-                this.f31989b = this;
+                this.f32010b = this;
             }
 
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 switch (r3) {
                     case 0:
-                        c5 c5Var = this.f31989b;
+                        c5 c5Var = this.f32010b;
                         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = c5Var.d;
-                        j0 j0Var = c5Var.f32623b;
+                        j0 j0Var = c5Var.f32643b;
                         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         if (!z10) {
                             floatValue = 1.0f - floatValue;
@@ -235,7 +235,7 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
                         j0Var.setScaleY(f7);
                         j0Var.setAlpha(a2);
                         float f10 = 1.0f - floatValue;
-                        c5Var.f32624c.setTranslationY(AndroidUtilities.dp(40.0f) * f10);
+                        c5Var.f32644c.setTranslationY(AndroidUtilities.dp(40.0f) * f10);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((-AndroidUtilities.dp(70.0f)) * f10);
                         float f11 = (floatValue * 0.05f) + 0.95f;
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setScaleX(f11);
@@ -246,41 +246,41 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
                         if (!z10) {
                             floatValue2 = 1.0f - floatValue2;
                         }
-                        c5 c5Var2 = this.f31989b;
+                        c5 c5Var2 = this.f32010b;
                         c5Var2.v.setAlpha(floatValue2);
                         c5Var2.invalidate();
                         return;
                 }
             }
         });
-        AnimatorSet animatorSet = this.f32626n;
+        AnimatorSet animatorSet = this.f32646n;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f32626n = animatorSet2;
+        this.f32646n = animatorSet2;
         if (z10) {
             j3 = 190;
         } else {
             j3 = 150;
         }
         animatorSet2.setDuration(j3);
-        this.f32626n.playTogether(ofFloat, ofFloat2);
-        this.f32626n.addListener(new ai.n(20, this, z10));
-        this.f32626n.start();
+        this.f32646n.playTogether(ofFloat, ofFloat2);
+        this.f32646n.addListener(new ai.n(20, this, z10));
+        this.f32646n.start();
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        u4 u4Var = this.f32624c;
-        boolean z10 = u4Var.f37953c;
+        u4 u4Var = this.f32644c;
+        boolean z10 = u4Var.f37954c;
         RadialProgress2 radialProgress2 = (RadialProgress2) u4Var.e;
-        if (z10 && !TextUtils.isEmpty(this.f32630x)) {
+        if (z10 && !TextUtils.isEmpty(this.f32650x)) {
             if (i10 == NotificationCenter.fileLoaded) {
-                if (TextUtils.equals((String) objArr[0], this.f32630x)) {
+                if (TextUtils.equals((String) objArr[0], this.f32650x)) {
                     radialProgress2.o(1.0f, true);
                 }
-            } else if (i10 == NotificationCenter.fileLoadProgressChanged && TextUtils.equals((String) objArr[0], this.f32630x)) {
+            } else if (i10 == NotificationCenter.fileLoadProgressChanged && TextUtils.equals((String) objArr[0], this.f32650x)) {
                 radialProgress2.o(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
             }
         }
@@ -325,7 +325,7 @@ public abstract class c5 extends FrameLayout implements NotificationCenter.Notif
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        if (i10 != 0 && i11 != 0 && this.f32627r) {
+        if (i10 != 0 && i11 != 0 && this.f32647r) {
             this.v.setBackground(null);
             AndroidUtilities.runOnUIThread(new mu0(this, 12));
         }

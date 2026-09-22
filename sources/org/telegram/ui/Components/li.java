@@ -16,18 +16,18 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class li extends aw0 {
+public final class li extends cw0 {
     public final ki A0;
     public final vi B0;
-    public int f26141w0;
-    public final RectF f26142x0;
-    public boolean f26143y0;
-    public float f26144z0;
+    public int f26118w0;
+    public final RectF f26119x0;
+    public boolean f26120y0;
+    public float f26121z0;
 
     public li(vi viVar, Context context) {
         super(context, null);
         this.B0 = viVar;
-        this.f26142x0 = new RectF();
+        this.f26119x0 = new RectF();
         this.A0 = new ki(this, this);
     }
 
@@ -78,26 +78,26 @@ public final class li extends aw0 {
                 viewGroup3 = ((org.telegram.ui.ActionBar.f3) viVar).containerView;
                 int measuredWidth = viewGroup3.getMeasuredWidth();
                 viewGroup4 = ((org.telegram.ui.ActionBar.f3) viVar).containerView;
-                dVar2.j(measuredWidth, viewGroup4.getMeasuredHeight());
-                dVar2.l();
+                dVar2.i(measuredWidth, viewGroup4.getMeasuredHeight());
+                dVar2.k();
             }
             if (dVar != null) {
                 viewGroup = ((org.telegram.ui.ActionBar.f3) viVar).containerView;
                 int measuredWidth2 = viewGroup.getMeasuredWidth();
                 viewGroup2 = ((org.telegram.ui.ActionBar.f3) viVar).containerView;
-                dVar.j(measuredWidth2, viewGroup2.getMeasuredHeight());
-                dVar.l();
+                dVar.i(measuredWidth2, viewGroup2.getMeasuredHeight());
+                dVar.k();
             }
         }
         canvas.save();
-        ni niVar2 = viVar.f29159y0;
-        qm qmVar = viVar.f29130q0;
-        if ((niVar2 == qmVar || (niVar = viVar.f29162z0) == qmVar || (niVar2 == viVar.f29110j0 && niVar == null)) && niVar2 != null) {
+        ni niVar2 = viVar.f29157y0;
+        qm qmVar = viVar.f29128q0;
+        if ((niVar2 == qmVar || (niVar = viVar.f29160z0) == qmVar || (niVar2 == viVar.f29108j0 && niVar == null)) && niVar2 != null) {
             canvas.save();
-            float f15 = viVar.f29117l2;
-            boolean z10 = viVar.f29101g0;
+            float f15 = viVar.f29115l2;
+            boolean z10 = viVar.f29099g0;
             ci.n6 n6Var = viVar.O0;
-            xh xhVar = viVar.f29108i1;
+            xh xhVar = viVar.f29106i1;
             canvas.translate(0.0f, f15);
             int alpha2 = (int) (niVar2.getAlpha() * 255.0f);
             int h = niVar2.h();
@@ -118,7 +118,7 @@ public final class li extends aw0 {
             i10 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
             int i28 = (p12 - i10) - i27;
             i11 = ((org.telegram.ui.ActionBar.f3) viVar).currentSheetAnimationType;
-            if (i11 == 1 || viVar.f29142t1 != null) {
+            if (i11 == 1 || viVar.f29140t1 != null) {
                 i28 = (int) (niVar2.getTranslationY() + i28);
             }
             int dp5 = AndroidUtilities.dp(20.0f) + i28;
@@ -142,12 +142,12 @@ public final class li extends aw0 {
             } else {
                 float f18 = i27;
                 f11 = 0.0f;
-                if (niVar2 == viVar.f29124o0) {
+                if (niVar2 == viVar.f29122o0) {
                     dp = AndroidUtilities.dp(11.0f);
                 } else {
                     if (niVar2 == viVar.m0) {
                         dp2 = AndroidUtilities.dp(3.0f);
-                    } else if (niVar2 == viVar.f29121n0) {
+                    } else if (niVar2 == viVar.f29119n0) {
                         dp2 = AndroidUtilities.dp(3.0f);
                     } else {
                         dp = AndroidUtilities.dp(4.0f);
@@ -171,8 +171,8 @@ public final class li extends aw0 {
                 i28 += i30;
                 dp5 += i30;
             }
-            if (viVar.f29159y0.f()) {
-                q12 = viVar.f29159y0.getCustomBackground();
+            if (viVar.f29157y0.f()) {
+                q12 = viVar.f29157y0.getCustomBackground();
             } else {
                 q12 = viVar.q1(true);
             }
@@ -185,10 +185,10 @@ public final class li extends aw0 {
             drawable2.setBounds(0, i28, measuredWidth3, i13 + dp6);
             drawable3 = ((org.telegram.ui.ActionBar.f3) viVar).shadowDrawable;
             drawable3.draw(canvas);
-            RectF rectF = this.f26142x0;
+            RectF rectF = this.f26119x0;
             if (h == 2) {
-                org.telegram.ui.ActionBar.j6.f19383t0.setColor(q12);
-                org.telegram.ui.ActionBar.j6.f19383t0.setAlpha(alpha2);
+                org.telegram.ui.ActionBar.j6.f19398t0.setColor(q12);
+                org.telegram.ui.ActionBar.j6.f19398t0.setAlpha(alpha2);
                 i22 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingLeft;
                 i23 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
                 f14 = 24.0f;
@@ -199,13 +199,13 @@ public final class li extends aw0 {
             } else {
                 f14 = 24.0f;
             }
-            if ((f13 != 1.0f && h != 2) || viVar.f29159y0.e()) {
-                Paint paint = org.telegram.ui.ActionBar.j6.f19383t0;
-                if (viVar.f29159y0.e()) {
-                    q12 = viVar.f29159y0.getCustomActionBarBackground();
+            if ((f13 != 1.0f && h != 2) || viVar.f29157y0.e()) {
+                Paint paint = org.telegram.ui.ActionBar.j6.f19398t0;
+                if (viVar.f29157y0.e()) {
+                    q12 = viVar.f29157y0.getCustomActionBarBackground();
                 }
                 paint.setColor(q12);
-                org.telegram.ui.ActionBar.j6.f19383t0.setAlpha(alpha2);
+                org.telegram.ui.ActionBar.j6.f19398t0.setAlpha(alpha2);
                 i18 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingLeft;
                 i19 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
                 int measuredWidth5 = getMeasuredWidth();
@@ -213,9 +213,9 @@ public final class li extends aw0 {
                 i21 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
                 rectF.set(i18, i19 + i28, measuredWidth5 - i20, AndroidUtilities.dp(f14) + i21 + i28);
             }
-            if (viVar.f29159y0.e()) {
-                org.telegram.ui.ActionBar.j6.f19383t0.setColor(viVar.f29159y0.getCustomActionBarBackground());
-                org.telegram.ui.ActionBar.j6.f19383t0.setAlpha(alpha2);
+            if (viVar.f29157y0.e()) {
+                org.telegram.ui.ActionBar.j6.f19398t0.setColor(viVar.f29157y0.getCustomActionBarBackground());
+                org.telegram.ui.ActionBar.j6.f19398t0.setAlpha(alpha2);
                 int p13 = viVar.p1(0);
                 if (!z10) {
                     p13 += AndroidUtilities.statusBarHeight;
@@ -227,7 +227,7 @@ public final class li extends aw0 {
                 i17 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingLeft;
                 rectF.set(i15, (dp7 + i16 + i28) * f13, measuredWidth6 - i17, AndroidUtilities.dp(12.0f) + p13);
                 canvas.save();
-                canvas.drawRect(rectF, org.telegram.ui.ActionBar.j6.f19383t0);
+                canvas.drawRect(rectF, org.telegram.ui.ActionBar.j6.f19398t0);
                 canvas.restore();
             }
             if ((xhVar == null || xhVar.getAlpha() != 1.0f) && f13 != f11) {
@@ -236,8 +236,8 @@ public final class li extends aw0 {
                 if (h == 2) {
                     themedColor = 536870912;
                     f16 = f13;
-                } else if (viVar.f29159y0.e()) {
-                    int customActionBarBackground = viVar.f29159y0.getCustomActionBarBackground();
+                } else if (viVar.f29157y0.e()) {
+                    int customActionBarBackground = viVar.f29157y0.getCustomActionBarBackground();
                     if (i0.a.f(customActionBarBackground) < 0.5d) {
                         i14 = -1;
                     } else {
@@ -256,9 +256,9 @@ public final class li extends aw0 {
                     }
                 }
                 int alpha4 = Color.alpha(themedColor);
-                org.telegram.ui.ActionBar.j6.f19383t0.setColor(themedColor);
-                org.telegram.ui.ActionBar.j6.f19383t0.setAlpha((int) (niVar2.getAlpha() * alpha4 * f16 * f13));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.j6.f19383t0);
+                org.telegram.ui.ActionBar.j6.f19398t0.setColor(themedColor);
+                org.telegram.ui.ActionBar.j6.f19398t0.setAlpha((int) (niVar2.getAlpha() * alpha4 * f16 * f13));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.j6.f19398t0);
             }
             canvas.restore();
         }
@@ -311,14 +311,14 @@ public final class li extends aw0 {
         ni niVar;
         int i30;
         vi viVar = this.B0;
-        boolean z11 = viVar.f29101g0;
+        boolean z11 = viVar.f29099g0;
         ci.n6 n6Var = viVar.O0;
         ch.d dVar = viVar.A0;
-        xh xhVar = viVar.f29108i1;
+        xh xhVar = viVar.f29106i1;
         x7 x7Var = viVar.X0;
         if ((view instanceof ni) && view.getAlpha() > 0.0f) {
             canvas.save();
-            canvas.translate(0.0f, viVar.f29117l2);
+            canvas.translate(0.0f, viVar.f29115l2);
             int alpha2 = (int) (view.getAlpha() * 255.0f);
             ni niVar2 = (ni) view;
             int h = niVar2.h();
@@ -335,7 +335,7 @@ public final class li extends aw0 {
                 f13 = 0.0f;
             }
             int i32 = i31 + ((int) f13);
-            if (niVar2 == viVar.f29159y0) {
+            if (niVar2 == viVar.f29157y0) {
                 i15 = 0;
             } else {
                 i15 = 1;
@@ -344,7 +344,7 @@ public final class li extends aw0 {
             i16 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
             int i33 = (p12 - i16) - i32;
             i17 = ((org.telegram.ui.ActionBar.f3) viVar).currentSheetAnimationType;
-            if (i17 == 1 || viVar.f29142t1 != null) {
+            if (i17 == 1 || viVar.f29140t1 != null) {
                 i33 = (int) (view.getTranslationY() + i33);
             }
             int dp6 = AndroidUtilities.dp(20.0f) + i33;
@@ -362,12 +362,12 @@ public final class li extends aw0 {
                 f14 = 0.0f;
                 if (i20 + i33 < i35) {
                     float f17 = i32;
-                    if (niVar2 == viVar.f29124o0) {
+                    if (niVar2 == viVar.f29122o0) {
                         dp3 = AndroidUtilities.dp(11.0f);
                     } else {
                         if (niVar2 == viVar.m0) {
                             dp4 = AndroidUtilities.dp(3.0f);
-                        } else if (niVar2 == viVar.f29121n0) {
+                        } else if (niVar2 == viVar.f29119n0) {
                             dp4 = AndroidUtilities.dp(3.0f);
                         } else {
                             dp3 = AndroidUtilities.dp(4.0f);
@@ -406,19 +406,19 @@ public final class li extends aw0 {
                 i34 -= i37;
             }
             int i38 = i34;
-            if (viVar.f29159y0.f()) {
-                q12 = viVar.f29159y0.getCustomBackground();
+            if (viVar.f29157y0.f()) {
+                q12 = viVar.f29157y0.getCustomBackground();
             } else {
                 q12 = viVar.q1(true);
             }
-            ni niVar3 = viVar.f29159y0;
-            qm qmVar = viVar.f29130q0;
-            if (niVar3 != qmVar && (niVar = viVar.f29162z0) != qmVar && (niVar3 != viVar.f29110j0 || niVar != null)) {
+            ni niVar3 = viVar.f29157y0;
+            qm qmVar = viVar.f29128q0;
+            if (niVar3 != qmVar && (niVar = viVar.f29160z0) != qmVar && (niVar3 != viVar.f29108j0 || niVar != null)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            RectF rectF = this.f26142x0;
+            RectF rectF = this.f26119x0;
             if (z10) {
                 drawable = ((org.telegram.ui.ActionBar.f3) viVar).shadowDrawable;
                 drawable.setAlpha(alpha2);
@@ -427,8 +427,8 @@ public final class li extends aw0 {
                 drawable3 = ((org.telegram.ui.ActionBar.f3) viVar).shadowDrawable;
                 drawable3.draw(canvas);
                 if (h == 2) {
-                    org.telegram.ui.ActionBar.j6.f19383t0.setColor(q12);
-                    org.telegram.ui.ActionBar.j6.f19383t0.setAlpha(alpha2);
+                    org.telegram.ui.ActionBar.j6.f19398t0.setColor(q12);
+                    org.telegram.ui.ActionBar.j6.f19398t0.setAlpha(alpha2);
                     i26 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingLeft;
                     i27 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
                     int measuredWidth = getMeasuredWidth();
@@ -437,7 +437,7 @@ public final class li extends aw0 {
                     rectF.set(i26, i27 + i33, measuredWidth - i28, AndroidUtilities.dp(24.0f) + i29 + i33);
                 }
             }
-            if (view != viVar.f29113k0 && view != viVar.f29138s0 && view != viVar.f29116l0) {
+            if (view != viVar.f29111k0 && view != viVar.f29136s0 && view != viVar.f29114l0) {
                 canvas.save();
                 drawChild = super.drawChild(canvas, view, j3);
                 canvas.restore();
@@ -446,8 +446,8 @@ public final class li extends aw0 {
             }
             if (z10) {
                 if (f16 != 1.0f && h != 2) {
-                    org.telegram.ui.ActionBar.j6.f19383t0.setColor(q12);
-                    org.telegram.ui.ActionBar.j6.f19383t0.setAlpha(alpha2);
+                    org.telegram.ui.ActionBar.j6.f19398t0.setColor(q12);
+                    org.telegram.ui.ActionBar.j6.f19398t0.setAlpha(alpha2);
                     i22 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingLeft;
                     i23 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
                     int measuredWidth2 = getMeasuredWidth();
@@ -470,9 +470,9 @@ public final class li extends aw0 {
                         }
                     }
                     int alpha3 = Color.alpha(themedColor);
-                    org.telegram.ui.ActionBar.j6.f19383t0.setColor(themedColor);
-                    org.telegram.ui.ActionBar.j6.f19383t0.setAlpha((int) (view.getAlpha() * alpha3 * alpha * f16));
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.j6.f19383t0);
+                    org.telegram.ui.ActionBar.j6.f19398t0.setColor(themedColor);
+                    org.telegram.ui.ActionBar.j6.f19398t0.setAlpha((int) (view.getAlpha() * alpha3 * alpha * f16));
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.j6.f19398t0);
                 }
             }
             canvas.restore();
@@ -487,7 +487,7 @@ public final class li extends aw0 {
             }
             canvas.save();
             float x10 = x7Var.getX();
-            ni niVar4 = viVar.f29159y0;
+            ni niVar4 = viVar.f29157y0;
             if (niVar4 != null) {
                 int h10 = niVar4.h();
                 int dp9 = AndroidUtilities.dp(13.0f);
@@ -507,7 +507,7 @@ public final class li extends aw0 {
                 i10 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
                 int i40 = (p13 - i10) - i39;
                 i11 = ((org.telegram.ui.ActionBar.f3) viVar).currentSheetAnimationType;
-                if (i11 == 1 || viVar.f29142t1 != null) {
+                if (i11 == 1 || viVar.f29140t1 != null) {
                     i40 = (int) (niVar4.getTranslationY() + i40);
                 }
                 int dp11 = AndroidUtilities.dp(20.0f) + i40;
@@ -520,12 +520,12 @@ public final class li extends aw0 {
                     i13 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
                     if (i13 + i40 < i12) {
                         float f18 = i39;
-                        if (niVar4 == viVar.f29124o0) {
+                        if (niVar4 == viVar.f29122o0) {
                             dp = AndroidUtilities.dp(11.0f);
                         } else {
                             if (niVar4 == viVar.m0) {
                                 dp2 = AndroidUtilities.dp(3.0f);
-                            } else if (niVar4 == viVar.f29121n0) {
+                            } else if (niVar4 == viVar.f29119n0) {
                                 dp2 = AndroidUtilities.dp(3.0f);
                             } else {
                                 dp = AndroidUtilities.dp(4.0f);
@@ -551,7 +551,7 @@ public final class li extends aw0 {
         } else if ((view instanceof kz) && dVar != null) {
             canvas.save();
             dVar.setBounds(0, view.getTop(), getMeasuredWidth(), getMeasuredHeight());
-            canvas.clipPath(dVar.f4289j.f4278k);
+            canvas.clipPath(dVar.f4287j.f4276k);
             dVar.draw(canvas);
             boolean drawChild3 = super.drawChild(canvas, view, j3);
             canvas.restore();
@@ -565,7 +565,7 @@ public final class li extends aw0 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         ki kiVar = this.A0;
-        kiVar.f19701b = this;
+        kiVar.f19716b = this;
         kiVar.c();
         vi viVar = this.B0;
         viVar.E0.setAdjustPanLayoutHelper(kiVar);
@@ -580,7 +580,7 @@ public final class li extends aw0 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        boolean z10 = this.B0.f29101g0;
+        boolean z10 = this.B0.f29099g0;
     }
 
     @Override
@@ -588,8 +588,8 @@ public final class li extends aw0 {
         int i10;
         float f7;
         vi viVar = this.B0;
-        int[] iArr = viVar.f29086b2;
-        if (viVar.f29159y0.l(motionEvent)) {
+        int[] iArr = viVar.f29084b2;
+        if (viVar.f29157y0.l(motionEvent)) {
             return true;
         }
         if (motionEvent.getAction() == 0) {
@@ -601,7 +601,7 @@ public final class li extends aw0 {
                 i10 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingTop;
                 int i13 = i12 - (i10 * 2);
                 int dp = AndroidUtilities.dp(13.0f);
-                xh xhVar = viVar.f29108i1;
+                xh xhVar = viVar.f29106i1;
                 if (xhVar != null) {
                     i11 = AndroidUtilities.dp(xhVar.getAlpha() * 26.0f);
                 }
@@ -612,7 +612,7 @@ public final class li extends aw0 {
                     f7 = 0.0f;
                 }
                 int dp2 = AndroidUtilities.dp(20.0f) + (i14 - ((int) f7));
-                if (!viVar.f29101g0) {
+                if (!viVar.f29099g0) {
                     dp2 += AndroidUtilities.statusBarHeight;
                 }
                 if (y3 < dp2 && viVar.X0.getAlpha() == 0.0f) {
@@ -647,19 +647,19 @@ public final class li extends aw0 {
         int i19;
         li liVar = this;
         vi viVar = liVar.B0;
-        boolean z11 = viVar.f29101g0;
-        org.telegram.ui.ActionBar.v0 v0Var = viVar.f29082a1;
+        boolean z11 = viVar.f29099g0;
+        org.telegram.ui.ActionBar.v0 v0Var = viVar.f29080a1;
         if (liVar.getLayoutParams().height > 0) {
             size = liVar.getLayoutParams().height;
         } else {
             size = View.MeasureSpec.getSize(i11);
         }
         if (!z11) {
-            liVar.f26143y0 = true;
+            liVar.f26120y0 = true;
             i18 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingLeft;
             i19 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingLeft;
             liVar.setPadding(i18, 0, i19, 0);
-            liVar.f26143y0 = false;
+            liVar.f26120y0 = false;
         }
         int size2 = View.MeasureSpec.getSize(i10);
         i12 = ((org.telegram.ui.ActionBar.f3) viVar).backgroundPaddingLeft;
@@ -674,14 +674,14 @@ public final class li extends aw0 {
                 v0Var.setAdditionalYOffset(-AndroidUtilities.dp(3.0f));
             }
         }
-        ((FrameLayout.LayoutParams) viVar.f29099f1.getLayoutParams()).height = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        liVar.f26143y0 = true;
+        ((FrameLayout.LayoutParams) viVar.f29097f1.getLayoutParams()).height = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+        liVar.f26120y0 = true;
         int min = (int) (i20 / Math.min(4.5f, viVar.A1.h()));
         if (viVar.Y1 != min) {
             viVar.Y1 = min;
             AndroidUtilities.runOnUIThread(new og(liVar, 21));
         }
-        liVar.f26143y0 = false;
+        liVar.f26120y0 = false;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
         int size3 = View.MeasureSpec.getSize(i10);
         int size4 = View.MeasureSpec.getSize(makeMeasureSpec);
@@ -691,41 +691,41 @@ public final class li extends aw0 {
         ai aiVar = viVar.E0;
         int i21 = size3 - (i13 * 2);
         if (!aiVar.N && AndroidUtilities.dp(20.0f) >= 0 && !aiVar.e && !aiVar.O) {
-            liVar.f26143y0 = true;
+            liVar.f26120y0 = true;
             aiVar.j();
-            liVar.f26143y0 = false;
+            liVar.f26120y0 = false;
         }
         if (!diVar.N && AndroidUtilities.dp(20.0f) >= 0 && !diVar.e && !diVar.O) {
-            liVar.f26143y0 = true;
+            liVar.f26120y0 = true;
             diVar.j();
-            liVar.f26143y0 = false;
+            liVar.f26120y0 = false;
         }
         if (viVar.m0 != null && AndroidUtilities.dp(20.0f) >= 0) {
             un unVar3 = viVar.m0;
-            if (!unVar3.G && !unVar3.f28735a1 && !unVar3.f28745f1 && !unVar3.f28749h1) {
-                liVar.f26143y0 = true;
+            if (!unVar3.G && !unVar3.f28806a1 && !unVar3.f28816f1 && !unVar3.f28820h1) {
+                liVar.f26120y0 = true;
                 unVar3.a0();
-                liVar.f26143y0 = false;
+                liVar.f26120y0 = false;
             }
         }
-        if (viVar.f29121n0 != null && AndroidUtilities.dp(20.0f) >= 0) {
-            un unVar4 = viVar.f29121n0;
-            if (!unVar4.G && !unVar4.f28735a1 && !unVar4.f28745f1 && !unVar4.f28749h1) {
-                liVar.f26143y0 = true;
+        if (viVar.f29119n0 != null && AndroidUtilities.dp(20.0f) >= 0) {
+            un unVar4 = viVar.f29119n0;
+            if (!unVar4.G && !unVar4.f28806a1 && !unVar4.f28816f1 && !unVar4.f28820h1) {
+                liVar.f26120y0 = true;
                 unVar4.a0();
-                liVar.f26143y0 = false;
+                liVar.f26120y0 = false;
             }
         }
         if (AndroidUtilities.dp(20.0f) >= 0) {
             z10 = ((org.telegram.ui.ActionBar.f3) viVar).keyboardVisible;
             if (z10) {
-                ni niVar = viVar.f29159y0;
+                ni niVar = viVar.f29157y0;
                 un unVar5 = viVar.m0;
-                if (niVar == unVar5 && unVar5.E != null && unVar5.f28749h1) {
+                if (niVar == unVar5 && unVar5.E != null && unVar5.f28820h1) {
                     o12 = AndroidUtilities.dp(120.0f);
                 } else {
-                    un unVar6 = viVar.f29121n0;
-                    if (niVar == unVar6 && unVar6.E != null && unVar6.f28749h1) {
+                    un unVar6 = viVar.f29119n0;
+                    if (niVar == unVar6 && unVar6.E != null && unVar6.f28820h1) {
                         o12 = AndroidUtilities.dp(120.0f);
                     } else {
                         o12 = 0;
@@ -736,13 +736,13 @@ public final class li extends aw0 {
             }
             r0.l1 f10 = r0.i0.f(liVar);
             if (f10 != null) {
-                i15 = f10.f42154a.f(8).d;
+                i15 = f10.f42175a.f(8).d;
             } else {
                 i15 = 0;
             }
             r0.l1 f11 = r0.i0.f(liVar);
             if (f11 != null) {
-                i16 = f11.f42154a.f(527).d;
+                i16 = f11.f42175a.f(527).d;
             } else {
                 i16 = 0;
             }
@@ -753,26 +753,26 @@ public final class li extends aw0 {
                 i17 = AndroidUtilities.navigationBarHeight;
             }
             int max = Math.max(i17, o12);
-            liVar.f26143y0 = true;
-            ni niVar2 = viVar.f29159y0;
-            if (niVar2.f26657f) {
+            liVar.f26120y0 = true;
+            ni niVar2 = viVar.f29157y0;
+            if (niVar2.f26788f) {
                 niVar2.e = AndroidUtilities.dp(62.0f) + max;
-                viVar.f29159y0.y(i21, size4);
+                viVar.f29157y0.y(i21, size4);
             } else {
                 niVar2.e = AndroidUtilities.navigationBarHeight;
                 niVar2.y(i21, size4 - o12);
             }
-            ni niVar3 = viVar.f29162z0;
+            ni niVar3 = viVar.f29160z0;
             if (niVar3 != null) {
-                if (niVar3.f26657f) {
+                if (niVar3.f26788f) {
                     niVar3.e = AndroidUtilities.dp(62.0f) + max;
-                    viVar.f29162z0.y(i21, size4);
+                    viVar.f29160z0.y(i21, size4);
                 } else {
                     niVar3.e = AndroidUtilities.navigationBarHeight;
                     niVar3.y(i21, size4 - o12);
                 }
             }
-            liVar.f26143y0 = false;
+            liVar.f26120y0 = false;
         }
         int childCount = liVar.getChildCount();
         int i22 = 0;
@@ -781,7 +781,7 @@ public final class li extends aw0 {
             View childAt = liVar.getChildAt(i23);
             if (childAt == null || childAt.getVisibility() == 8) {
                 i14 = i23;
-            } else if (childAt == viVar.f29148v1) {
+            } else if (childAt == viVar.f29146v1) {
                 i14 = i23;
                 liVar.measureChildWithMargins(childAt, i10, 0, makeMeasureSpec, 0);
             } else {
@@ -793,11 +793,11 @@ public final class li extends aw0 {
                     if (niVar4.h) {
                         i24 = 0;
                     }
-                    if (niVar4.f26657f) {
+                    if (niVar4.f26788f) {
                         i25 = 0;
                     }
                 }
-                if (!aiVar.l(childAt) && !diVar.l(childAt) && (((unVar = viVar.m0) == null || childAt != unVar.E) && ((unVar2 = viVar.f29121n0) == null || childAt != unVar2.E))) {
+                if (!aiVar.l(childAt) && !diVar.l(childAt) && (((unVar = viVar.m0) == null || childAt != unVar.E) && ((unVar2 = viVar.f29119n0) == null || childAt != unVar2.E))) {
                     measureChildWithMargins(childAt, i10, 0, makeMeasureSpec, i24 + i25);
                 } else if (z11) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(i21, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + size4, 1073741824));
@@ -849,7 +849,7 @@ public final class li extends aw0 {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         vi viVar = this.B0;
-        if (viVar.f29159y0.l(motionEvent)) {
+        if (viVar.f29157y0.l(motionEvent)) {
             return true;
         }
         if (!viVar.isDismissed() && super.onTouchEvent(motionEvent)) {
@@ -860,7 +860,7 @@ public final class li extends aw0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f26143y0) {
+        if (this.f26120y0) {
             return;
         }
         super.requestLayout();
@@ -873,32 +873,32 @@ public final class li extends aw0 {
         int i12;
         ViewGroup viewGroup;
         vi viVar = this.B0;
-        xh xhVar = viVar.f29156x1;
-        float f10 = f7 + viVar.f29117l2;
+        xh xhVar = viVar.f29154x1;
+        float f10 = f7 + viVar.f29115l2;
         i10 = ((org.telegram.ui.ActionBar.f3) viVar).currentSheetAnimationType;
         if (i10 == 0) {
-            this.f26144z0 = f10;
+            this.f26121z0 = f10;
         }
         i11 = ((org.telegram.ui.ActionBar.f3) viVar).currentSheetAnimationType;
         if (i11 == 1) {
             if (f10 < 0.0f) {
-                viVar.f29159y0.setTranslationY(f10);
+                viVar.f29157y0.setTranslationY(f10);
                 if (viVar.Q0 != 0 || viVar.T0) {
-                    viVar.f29108i1.setTranslationY((viVar.f29128p1 + f10) - viVar.f29117l2);
+                    viVar.f29106i1.setTranslationY((viVar.f29126p1 + f10) - viVar.f29115l2);
                 }
                 xhVar.setTranslationY(0.0f);
                 f10 = 0.0f;
             } else {
-                viVar.f29159y0.setTranslationY(0.0f);
-                xhVar.setTranslationY(((f10 / this.f26144z0) * xhVar.getMeasuredHeight()) + (-f10));
+                viVar.f29157y0.setTranslationY(0.0f);
+                xhVar.setTranslationY(((f10 / this.f26121z0) * xhVar.getMeasuredHeight()) + (-f10));
             }
             viewGroup = ((org.telegram.ui.ActionBar.f3) viVar).containerView;
             viewGroup.invalidate();
         }
-        super.setTranslationY(f10 - viVar.f29117l2);
+        super.setTranslationY(f10 - viVar.f29115l2);
         i12 = ((org.telegram.ui.ActionBar.f3) viVar).currentSheetAnimationType;
         if (i12 != 1) {
-            viVar.f29159y0.k(viVar.f29117l2);
+            viVar.f29157y0.k(viVar.f29115l2);
         }
     }
 

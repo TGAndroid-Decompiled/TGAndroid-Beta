@@ -1,23 +1,23 @@
 package za;
 public final class m {
-    public final String f49113a;
+    public final String f49133a;
 
     public m(String str) {
-        this.f49113a = str;
+        this.f49133a = str;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof m) && kotlin.jvm.internal.i.a(this.f49113a, ((m) obj).f49113a)) {
+        if ((obj instanceof m) && kotlin.jvm.internal.i.a(this.f49133a, ((m) obj).f49133a)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        String str = this.f49113a;
+        String str = this.f49133a;
         if (str == null) {
             return 0;
         }
@@ -25,6 +25,6 @@ public final class m {
     }
 
     public final String toString() {
-        return "FirebaseSessionsData(sessionId=" + this.f49113a + ')';
+        return "FirebaseSessionsData(sessionId=" + this.f49133a + ')';
     }
 }

@@ -8,8 +8,8 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class z00 extends FrameLayout {
-    public final o6 f30657a;
-    public final o6 f30658b;
+    public final o6 f30768a;
+    public final o6 f30769b;
 
     public z00(Context context) {
         super(context);
@@ -17,7 +17,7 @@ public final class z00 extends FrameLayout {
         int i11;
         int i12;
         o6 o6Var = new o6(context, true, true, false);
-        this.f30657a = o6Var;
+        this.f30768a = o6Var;
         o6Var.setTextSize(AndroidUtilities.dp(15.0f));
         o6Var.setTypeface(AndroidUtilities.bold());
         int i13 = org.telegram.ui.ActionBar.j6.L6;
@@ -35,7 +35,7 @@ public final class z00 extends FrameLayout {
         }
         addView(o6Var, w7.y5.d(-1, 20.0f, i11 | 80, 21.0f, 15.0f, 21.0f, 2.0f));
         o6 o6Var2 = new o6(context, true, true, true);
-        this.f30658b = o6Var2;
+        this.f30769b = o6Var2;
         o6Var2.b(0.45f, 250L, qr.h);
         o6Var2.setTextSize(AndroidUtilities.dp(15.0f));
         o6Var2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
@@ -46,19 +46,19 @@ public final class z00 extends FrameLayout {
         }
         o6Var2.setGravity(i12);
         addView(o6Var2, w7.y5.d(-2, 20.0f, (LocaleController.isRTL ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        WeakHashMap weakHashMap = r0.i0.f42142a;
+        WeakHashMap weakHashMap = r0.i0.f42163a;
         new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 
     public final void a(String str, Runnable runnable) {
-        o6 o6Var = this.f30658b;
+        o6 o6Var = this.f30769b;
         o6Var.c(str, !LocaleController.isRTL, true);
         o6Var.setOnClickListener(new t6(1, runnable));
     }
 
     public final void b(String str, boolean z10) {
         boolean z11;
-        o6 o6Var = this.f30657a;
+        o6 o6Var = this.f30768a;
         if (z10) {
             o6Var.a();
         }
@@ -74,7 +74,7 @@ public final class z00 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f30657a.getText());
+        accessibilityNodeInfo.setText(this.f30768a.getText());
     }
 
     @Override

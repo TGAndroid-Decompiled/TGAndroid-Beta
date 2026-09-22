@@ -2,19 +2,19 @@ package u2;
 public final class p1 {
     public static final p1 d = new p1(new b2.l1[0]);
     public static final String e;
-    public final int f43765a;
-    public final e9.a1 f43766b;
-    public int f43767c;
+    public final int f43786a;
+    public final e9.a1 f43787b;
+    public int f43788c;
 
     static {
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         e = Integer.toString(0, 36);
     }
 
     public p1(b2.l1... l1VarArr) {
         e9.a1 w10 = e9.i0.w(l1VarArr);
-        this.f43766b = w10;
-        this.f43765a = l1VarArr.length;
+        this.f43787b = w10;
+        this.f43786a = l1VarArr.length;
         int i10 = 0;
         while (i10 < w10.d) {
             int i11 = i10 + 1;
@@ -28,11 +28,11 @@ public final class p1 {
     }
 
     public final b2.l1 a(int i10) {
-        return (b2.l1) this.f43766b.get(i10);
+        return (b2.l1) this.f43787b.get(i10);
     }
 
     public final int b(b2.l1 l1Var) {
-        int indexOf = this.f43766b.indexOf(l1Var);
+        int indexOf = this.f43787b.indexOf(l1Var);
         if (indexOf >= 0) {
             return indexOf;
         }
@@ -43,7 +43,7 @@ public final class p1 {
         if (this != obj) {
             if (obj != null && p1.class == obj.getClass()) {
                 p1 p1Var = (p1) obj;
-                if (this.f43765a == p1Var.f43765a && this.f43766b.equals(p1Var.f43766b)) {
+                if (this.f43786a == p1Var.f43786a && this.f43787b.equals(p1Var.f43787b)) {
                     return true;
                 }
                 return false;
@@ -54,13 +54,13 @@ public final class p1 {
     }
 
     public final int hashCode() {
-        if (this.f43767c == 0) {
-            this.f43767c = this.f43766b.hashCode();
+        if (this.f43788c == 0) {
+            this.f43788c = this.f43787b.hashCode();
         }
-        return this.f43767c;
+        return this.f43788c;
     }
 
     public final String toString() {
-        return this.f43766b.toString();
+        return this.f43787b.toString();
     }
 }

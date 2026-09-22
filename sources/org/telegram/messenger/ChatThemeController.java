@@ -85,7 +85,7 @@ public class ChatThemeController extends BaseController {
             if (str != null) {
                 return TextUtils.equals(wallPaper2.uploadingImage, str);
             }
-            if (wallPaper.f18480id == wallPaper2.f18480id && TextUtils.equals(co.e(wallPaper.settings), co.e(wallPaper2.settings)) && TextUtils.equals(getWallpaperEmoticon(wallPaper), getWallpaperEmoticon(wallPaper2))) {
+            if (wallPaper.f18495id == wallPaper2.f18495id && TextUtils.equals(co.e(wallPaper.settings), co.e(wallPaper2.settings)) && TextUtils.equals(getWallpaperEmoticon(wallPaper), getWallpaperEmoticon(wallPaper2))) {
                 return true;
             }
         }
@@ -288,7 +288,7 @@ public class ChatThemeController extends BaseController {
             }
             org.telegram.ui.ActionBar.d4 d4Var = (org.telegram.ui.ActionBar.d4) it.next();
             Map<String, org.telegram.ui.ActionBar.d4> map = this.allChatGiftThemes;
-            fg.b bVar = d4Var.f18809c;
+            fg.b bVar = d4Var.f18824c;
             if (bVar != null && (str = bVar.f9067b) == null) {
                 str = bVar.f9066a;
             }
@@ -366,13 +366,13 @@ public class ChatThemeController extends BaseController {
                 Iterator it = list.iterator();
                 while (it.hasNext()) {
                     dg.c cVar = (dg.c) it.next();
-                    RectF rectF = cVar.f7730a;
+                    RectF rectF = cVar.f7729a;
                     serializedData.writeFloat(rectF.left);
                     serializedData.writeFloat(rectF.top);
                     serializedData.writeFloat(rectF.width());
                     serializedData.writeFloat(rectF.height());
                     float[] fArr = new float[9];
-                    cVar.f7731b.getValues(fArr);
+                    cVar.f7730b.getValues(fArr);
                     for (int i10 = 0; i10 < 9; i10++) {
                         serializedData.writeFloat(fArr[i10]);
                     }
@@ -562,7 +562,7 @@ public class ChatThemeController extends BaseController {
             return true;
         }
         if ((wallPaper instanceof TLRPC.TL_wallPaper) && (wallPaper2 instanceof TLRPC.TL_wallPaper)) {
-            if (wallPaper.f18480id == wallPaper2.f18480id) {
+            if (wallPaper.f18495id == wallPaper2.f18495id) {
                 return true;
             }
             return false;
@@ -571,7 +571,7 @@ public class ChatThemeController extends BaseController {
             if (wallPaper.settings != null && wallPaper2.settings != null) {
                 return TextUtils.equals(getWallpaperEmoticon(wallPaper), getWallpaperEmoticon(wallPaper2));
             }
-            if (wallPaper.f18480id == wallPaper2.f18480id) {
+            if (wallPaper.f18495id == wallPaper2.f18495id) {
                 return true;
             }
         }
@@ -652,18 +652,18 @@ public class ChatThemeController extends BaseController {
             arrayList.addAll(list);
         }
         int i11 = 0;
-        if (hasFlag && (arrayList.isEmpty() || !((org.telegram.ui.ActionBar.d4) arrayList.get(0)).f18807a)) {
+        if (hasFlag && (arrayList.isEmpty() || !((org.telegram.ui.ActionBar.d4) arrayList.get(0)).f18822a)) {
             org.telegram.ui.ActionBar.d4 d4Var = new org.telegram.ui.ActionBar.d4(this.currentAccount);
             d4Var.e = "❌";
-            d4Var.f18809c = fg.b.d("❌");
+            d4Var.f18824c = fg.b.d("❌");
             d4Var.d = TLRPC.ChatTheme.ofEmoticon("❌");
-            d4Var.f18807a = true;
+            d4Var.f18822a = true;
             org.telegram.ui.ActionBar.c4 c4Var = new org.telegram.ui.ActionBar.c4();
-            c4Var.f18765a = org.telegram.ui.ActionBar.d4.e(true);
-            d4Var.f18810f.add(c4Var);
+            c4Var.f18780a = org.telegram.ui.ActionBar.d4.e(true);
+            d4Var.f18825f.add(c4Var);
             org.telegram.ui.ActionBar.c4 c4Var2 = new org.telegram.ui.ActionBar.c4();
-            c4Var2.f18765a = org.telegram.ui.ActionBar.d4.e(false);
-            d4Var.f18810f.add(c4Var2);
+            c4Var2.f18780a = org.telegram.ui.ActionBar.d4.e(false);
+            d4Var.f18825f.add(c4Var2);
             arrayList.add(0, d4Var);
         }
         int size = arrayList.size();
@@ -690,7 +690,7 @@ public class ChatThemeController extends BaseController {
                 return this.allChatGiftThemes.get(str);
             }
             for (org.telegram.ui.ActionBar.d4 d4Var : this.allChatThemes) {
-                if (bVar.equals(d4Var.f18809c)) {
+                if (bVar.equals(d4Var.f18824c)) {
                     return d4Var;
                 }
             }
@@ -749,7 +749,7 @@ public class ChatThemeController extends BaseController {
         if (tL_updatePeerWallpaper.peer instanceof TLRPC.TL_peerUser) {
             TLRPC.UserFull userFull = getMessagesController().getUserFull(tL_updatePeerWallpaper.peer.user_id);
             if (userFull != null && !wallpaperEquals(userFull.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
-                long j3 = userFull.f18476id;
+                long j3 = userFull.f18491id;
                 if ((tL_updatePeerWallpaper.flags & 1) != 0) {
                     userFull.wallpaper_overridden = tL_updatePeerWallpaper.wallpaper_overridden;
                     userFull.wallpaper = tL_updatePeerWallpaper.wallpaper;
@@ -768,7 +768,7 @@ public class ChatThemeController extends BaseController {
         }
         TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-DialogObject.getPeerDialogId(tL_updatePeerWallpaper.peer));
         if (chatFull != null && !wallpaperEquals(chatFull.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
-            long j10 = -chatFull.f18329id;
+            long j10 = -chatFull.f18344id;
             if ((tL_updatePeerWallpaper.flags & 1) != 0) {
                 chatFull.wallpaper = tL_updatePeerWallpaper.wallpaper;
                 chatFull.flags2 |= 128;
@@ -851,7 +851,7 @@ public class ChatThemeController extends BaseController {
                     @Override
                     public void onComplete(List<org.telegram.ui.ActionBar.d4> list) {
                         for (org.telegram.ui.ActionBar.d4 d4Var2 : list) {
-                            if (bVar.equals(d4Var2.f18809c)) {
+                            if (bVar.equals(d4Var2.f18824c)) {
                                 d4Var2.l();
                                 resultCallback.onComplete(d4Var2);
                                 return;
@@ -904,10 +904,10 @@ public class ChatThemeController extends BaseController {
         } else {
             tL_messages_setChatWallPaper.peer = MessagesController.getInputPeer(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3)));
         }
-        tL_messages_setChatWallPaper.for_both = b6Var.f18736o;
+        tL_messages_setChatWallPaper.for_both = b6Var.f18751o;
         if (messageObject != null && (messageObject.messageOwner.action instanceof TLRPC.TL_messageActionSetChatWallPaper)) {
             tL_messages_setChatWallPaper.flags |= 2;
-            tL_messages_setChatWallPaper.f18445id = messageObject.getId();
+            tL_messages_setChatWallPaper.f18460id = messageObject.getId();
             if (i10 >= 0) {
                 userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j3);
                 chatFull = null;
@@ -918,17 +918,17 @@ public class ChatThemeController extends BaseController {
             TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) messageObject.messageOwner.action;
             TLRPC.TL_wallPaper tL_wallPaper = new TLRPC.TL_wallPaper();
             TLRPC.WallPaper wallPaper2 = tL_messageActionSetChatWallPaper.wallpaper;
-            tL_wallPaper.f18480id = wallPaper2.f18480id;
+            tL_wallPaper.f18495id = wallPaper2.f18495id;
             tL_wallPaper.document = wallPaper2.document;
             TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
             tL_wallPaper.settings = tL_wallPaperSettings;
-            tL_wallPaperSettings.intensity = (int) (b6Var.f18732k * 100.0f);
-            tL_wallPaperSettings.motion = b6Var.f18731j;
-            tL_wallPaperSettings.blur = b6Var.f18730i;
+            tL_wallPaperSettings.intensity = (int) (b6Var.f18747k * 100.0f);
+            tL_wallPaperSettings.motion = b6Var.f18746j;
+            tL_wallPaperSettings.blur = b6Var.f18745i;
             tL_wallPaperSettings.background_color = b6Var.d;
             tL_wallPaperSettings.second_background_color = b6Var.e;
-            tL_wallPaperSettings.third_background_color = b6Var.f18728f;
-            tL_wallPaperSettings.fourth_background_color = b6Var.f18729g;
+            tL_wallPaperSettings.third_background_color = b6Var.f18743f;
+            tL_wallPaperSettings.fourth_background_color = b6Var.f18744g;
             tL_wallPaperSettings.rotation = b6Var.h;
             tL_wallPaper.uploadingImage = str;
             if (userFull != null) {
@@ -946,7 +946,7 @@ public class ChatThemeController extends BaseController {
             TLRPC.WallPaper wallPaper3 = tL_messageActionSetChatWallPaper.wallpaper;
             tL_wallPaper2.pattern = wallPaper3.pattern;
             TLRPC.ChatFull chatFull2 = chatFull;
-            tL_wallPaper2.f18480id = wallPaper3.f18480id;
+            tL_wallPaper2.f18495id = wallPaper3.f18495id;
             tL_wallPaper2.document = wallPaper3.document;
             int i11 = wallPaper3.flags;
             tL_wallPaper2.creator = wallPaper3.creator;
@@ -1023,12 +1023,12 @@ public class ChatThemeController extends BaseController {
     }
 
     public void saveWallpaperBitmap(dg.a aVar, long j3) {
-        Bitmap bitmap = aVar.f7727b;
-        int i10 = aVar.f7726a;
+        Bitmap bitmap = aVar.f7726b;
+        int i10 = aVar.f7725a;
         if (i10 == 0) {
             saveWallpaperBitmap(bitmap, j3);
         } else if (i10 == 1) {
-            saveWallpaperPatternBitmap(bitmap, aVar.f7728c, j3);
+            saveWallpaperPatternBitmap(bitmap, aVar.f7727c, j3);
         }
     }
 

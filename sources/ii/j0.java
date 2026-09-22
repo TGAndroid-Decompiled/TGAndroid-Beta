@@ -42,8 +42,8 @@ public final class j0 implements ca {
         TL_iv.PageBlock pageBlock;
         TL_iv.PageCaption pageCaption;
         TL_iv.RichText richText;
-        a M = this.d.f11489c.M();
-        if (M != null && (pageBlock = M.f11205b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
+        a H = this.d.f11489c.H();
+        if (H != null && (pageBlock = H.f11205b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
             return f6.r(richText, null, true);
         }
         return "";

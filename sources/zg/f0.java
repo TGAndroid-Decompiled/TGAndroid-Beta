@@ -1,136 +1,70 @@
 package zg;
 
-import ai.l4;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
 import android.view.View;
-import j$.util.Objects;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.p5;
-public final class f0 {
-    public final ImageReceiver f49325a;
-    public p5 f49326b;
-    public o0 e;
-    public View f49328f;
-    public boolean f49329g;
-    public boolean f49330i;
-    public int f49331j;
-    public PorterDuffColorFilter f49332k;
-    public final Rect f49327c = new Rect();
-    public final int d = UserConfig.selectedAccount;
-    public float h = 1.0f;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.SharedConfig;
+public abstract class f0 {
+    public static Runnable f49344c;
+    public static Boolean h;
+    public static final HashSet f49342a = new HashSet();
+    public static volatile boolean f49343b = false;
+    public static boolean d = true;
+    public static boolean e = false;
+    public static boolean f49345f = false;
+    public static boolean f49346g = false;
 
-    public f0(View view) {
-        this.f49328f = view;
-        ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f49325a = imageReceiver;
-        imageReceiver.setAllowLoadingOnAttachedOnly(true);
-    }
-
-    public final void a(Canvas canvas) {
-        p5 p5Var = this.f49326b;
-        Rect rect = this.f49327c;
-        if (p5Var != null) {
-            l4 l4Var = p5Var.f27162k;
-            if (l4Var != null) {
-                l4Var.setRoundRadius((int) (rect.width() * 0.1f));
-            }
-            this.f49326b.setColorFilter(this.f49332k);
-            this.f49326b.setBounds(rect);
-            this.f49326b.setAlpha((int) (this.h * 255.0f));
-            this.f49326b.draw(canvas);
-            return;
+    public static void a() {
+        ff.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
+        CountDownLatch countDownLatch = cacheOutQueue.f9065b;
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+            cacheOutQueue.f9065b = null;
         }
-        ImageReceiver imageReceiver = this.f49325a;
-        imageReceiver.setImageCoords(rect.left, rect.top, rect.width(), rect.height());
-        imageReceiver.setAlpha(this.h);
-        imageReceiver.draw(canvas);
-    }
-
-    public final void b(boolean z10) {
-        this.f49329g = z10;
-        ImageReceiver imageReceiver = this.f49325a;
-        if (z10) {
-            imageReceiver.onAttachedToWindow();
-            p5 p5Var = this.f49326b;
-            if (p5Var != null) {
-                p5Var.a(this.f49328f);
-                return;
-            }
-            return;
+        f49343b = false;
+        e = false;
+        f49346g = false;
+        f49344c = null;
+        Iterator it = f49342a.iterator();
+        while (it.hasNext()) {
+            ((View) it.next()).invalidate();
         }
-        imageReceiver.onDetachedFromWindow();
-        p5 p5Var2 = this.f49326b;
-        if (p5Var2 != null) {
-            p5Var2.o(this.f49328f);
+        f49342a.clear();
+    }
+
+    public static boolean b(View view) {
+        if (f49343b) {
+            f49342a.add(view);
         }
+        return f49343b;
     }
 
-    public final void c(Rect rect) {
-        this.f49327c.set(rect);
-    }
-
-    public final void d(int i10) {
-        if (this.f49331j != i10) {
-            this.f49331j = i10;
-            this.f49332k = new PorterDuffColorFilter(this.f49331j, PorterDuff.Mode.SRC_ATOP);
-            View view = this.f49328f;
-            if (view != null) {
-                view.invalidate();
-            }
-        }
-    }
-
-    public final void e(o0 o0Var) {
-        String str;
-        int i10;
-        if (!Objects.equals(this.e, o0Var)) {
-            ImageReceiver imageReceiver = this.f49325a;
-            imageReceiver.clearImage();
-            p5 p5Var = this.f49326b;
-            if (p5Var != null) {
-                p5Var.o(this.f49328f);
-                this.f49326b = null;
-            }
-            this.e = o0Var;
-            boolean z10 = this.f49330i;
-            if (z10) {
-                str = "60_60_firstframe";
+    public static boolean c(View... viewArr) {
+        boolean z10;
+        if (h == null) {
+            if (SharedConfig.getDevicePerformanceClass() != 2) {
+                z10 = true;
             } else {
-                str = "60_60";
+                z10 = false;
             }
-            String str2 = str;
-            if (o0Var.f49423f != null) {
-                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(this.d).getReactionsMap().get(o0Var.f49423f);
-                if (tL_availableReaction != null) {
-                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), str2, null, null, DocumentObject.getSvgThumb(tL_availableReaction.select_animation, j6.f19259m6, 0.2f), 0L, "tgs", o0Var, 0);
-                    return;
-                }
-                return;
-            }
-            if (z10) {
-                i10 = 13;
-            } else {
-                i10 = 1;
-            }
-            p5 p5Var2 = new p5(i10, UserConfig.selectedAccount, o0Var.f49424g);
-            this.f49326b = p5Var2;
-            if (this.f49329g) {
-                p5Var2.a(this.f49328f);
-            }
-            p5 p5Var3 = this.f49326b;
-            this.f49331j = -16777216;
-            PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_ATOP);
-            this.f49332k = porterDuffColorFilter;
-            p5Var3.setColorFilter(porterDuffColorFilter);
+            h = Boolean.valueOf(z10);
         }
+        if (!h.booleanValue()) {
+            return false;
+        }
+        if (f49343b) {
+            f49342a.addAll(Arrays.asList(viewArr));
+        }
+        return f49343b;
+    }
+
+    public static boolean d() {
+        if (!f49343b && !e && !f49346g) {
+            return false;
+        }
+        return true;
     }
 }

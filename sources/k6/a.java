@@ -123,9 +123,9 @@ public final class a extends o6.a {
 
     public final String toString() {
         m5.e eVar = new m5.e(this);
-        eVar.g(d(this.f13501b), "statusCode");
-        eVar.g(this.f13502c, "resolution");
-        eVar.g(this.d, "message");
+        eVar.c(d(this.f13501b), "statusCode");
+        eVar.c(this.f13502c, "resolution");
+        eVar.c(this.d, "message");
         return eVar.toString();
     }
 

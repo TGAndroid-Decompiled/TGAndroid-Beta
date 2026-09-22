@@ -1,25 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class fz0 extends AnimatorListenerAdapter {
-    public final int f24208a;
-    public final Switch f24209b;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+public final class fz0 extends fd0 {
+    public final gz0 f24381w0;
 
-    public fz0(Switch r12, int i10) {
-        this.f24208a = i10;
-        this.f24209b = r12;
+    public fz0(gz0 gz0Var, Context context) {
+        super(context, 13, null);
+        this.f24381w0 = gz0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24208a) {
-            case 0:
-                this.f24209b.d = null;
-                return;
-            default:
-                this.f24209b.e = null;
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float dp = AndroidUtilities.dp(31.0f);
+        gz0 gz0Var = this.f24381w0;
+        gz0Var.d.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19182h7, false));
+        canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, gz0Var.d);
+        float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
+        canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, gz0Var.d);
     }
 }

@@ -400,7 +400,7 @@ public abstract class h {
                             if (!substring.trim().isEmpty()) {
                                 String trim = substring.trim();
                                 e2.d.b(!trim.isEmpty());
-                                String str4 = d0.f7888a;
+                                String str4 = d0.f7887a;
                                 String str5 = trim.split("[ \\.]", 2)[0];
                                 str5.getClass();
                                 switch (str5.hashCode()) {

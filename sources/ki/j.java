@@ -23,41 +23,41 @@ public final class j {
     public int L;
     public int M;
     public int N;
-    public final q f13734a;
-    public final long f13735b;
-    public final int f13736c;
+    public final q f13744a;
+    public final long f13745b;
+    public final int f13746c;
     public final int d;
     public final int e;
-    public final k f13737f;
-    public final a f13738g;
+    public final k f13747f;
+    public final a f13748g;
     public final AtomicBoolean h = new AtomicBoolean();
-    public final long[] f13739i = new long[256];
-    public final long[] f13740j = new long[256];
-    public MediaCodec f13741k;
-    public MediaCodec f13742l;
-    public AudioRecord f13743m;
-    public Surface f13744n;
-    public Thread f13745o;
-    public Thread f13746p;
-    public volatile boolean f13747q;
-    public volatile long f13748r;
-    public boolean f13749s;
-    public boolean f13750t;
-    public long f13751u;
+    public final long[] f13749i = new long[256];
+    public final long[] f13750j = new long[256];
+    public MediaCodec f13751k;
+    public MediaCodec f13752l;
+    public AudioRecord f13753m;
+    public Surface f13754n;
+    public Thread f13755o;
+    public Thread f13756p;
+    public volatile boolean f13757q;
+    public volatile long f13758r;
+    public boolean f13759s;
+    public boolean f13760t;
+    public long f13761u;
     public long v;
-    public long f13752w;
-    public int f13753x;
-    public int f13754y;
-    public int f13755z;
+    public long f13762w;
+    public int f13763x;
+    public int f13764y;
+    public int f13765z;
 
     public j(q qVar, long j3, int i10, int i11, int i12, k kVar, a aVar) {
-        this.f13734a = qVar;
-        this.f13735b = j3;
-        this.f13736c = i10;
+        this.f13744a = qVar;
+        this.f13745b = j3;
+        this.f13746c = i10;
         this.d = i11;
         this.e = i12;
-        this.f13737f = kVar;
-        this.f13738g = aVar;
+        this.f13747f = kVar;
+        this.f13748g = aVar;
     }
 
     public static String g(long j3, long j10) {
@@ -75,11 +75,11 @@ public final class j {
             createAudioFormat.setInteger("aac-profile", 2);
             createAudioFormat.setInteger("bitrate", 64000);
             createAudioFormat.setInteger("max-input-size", max);
-            this.f13742l = MediaCodec.createEncoderByType("audio/mp4a-latm");
-            this.f13737f.b("audio encoder configure: codec=" + this.f13742l.getName() + ", format=" + createAudioFormat + ", minBufferSize=" + minBufferSize + ", audioBufferSize=" + max);
-            this.f13742l.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
+            this.f13752l = MediaCodec.createEncoderByType("audio/mp4a-latm");
+            this.f13747f.b("audio encoder configure: codec=" + this.f13752l.getName() + ", format=" + createAudioFormat + ", minBufferSize=" + minBufferSize + ", audioBufferSize=" + max);
+            this.f13752l.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
             AudioRecord audioRecord = new AudioRecord(5, 48000, 16, 2, max);
-            this.f13743m = audioRecord;
+            this.f13753m = audioRecord;
             if (audioRecord.getState() == 1) {
                 return;
             }
@@ -89,39 +89,39 @@ public final class j {
     }
 
     public final void b() {
-        int i10 = this.f13736c;
+        int i10 = this.f13746c;
         MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", i10, i10);
         createVideoFormat.setInteger("color-format", 2130708361);
         createVideoFormat.setInteger("bitrate", this.d);
         createVideoFormat.setInteger("frame-rate", this.e);
         createVideoFormat.setInteger("i-frame-interval", 1);
-        this.f13741k = MediaCodec.createEncoderByType("video/avc");
-        this.f13737f.b("video encoder configure: codec=" + this.f13741k.getName() + ", format=" + createVideoFormat);
-        this.f13741k.configure(createVideoFormat, (Surface) null, (MediaCrypto) null, 1);
-        this.f13744n = this.f13741k.createInputSurface();
+        this.f13751k = MediaCodec.createEncoderByType("video/avc");
+        this.f13747f.b("video encoder configure: codec=" + this.f13751k.getName() + ", format=" + createVideoFormat);
+        this.f13751k.configure(createVideoFormat, (Surface) null, (MediaCrypto) null, 1);
+        this.f13754n = this.f13751k.createInputSurface();
     }
 
     public final boolean c(MediaCodec.BufferInfo bufferInfo, long j3) {
-        int dequeueOutputBuffer = this.f13742l.dequeueOutputBuffer(bufferInfo, j3);
+        int dequeueOutputBuffer = this.f13752l.dequeueOutputBuffer(bufferInfo, j3);
         boolean z10 = false;
         while (dequeueOutputBuffer >= 0) {
             int i10 = bufferInfo.size;
             boolean z11 = true;
             if (i10 > 0 && (bufferInfo.flags & 2) == 0) {
-                this.f13754y++;
-                this.f13752w += i10;
+                this.f13764y++;
+                this.f13762w += i10;
                 i(false, bufferInfo);
-                p(false, this.f13742l.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
+                p(false, this.f13752l.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
             }
             if ((bufferInfo.flags & 4) == 0) {
                 z11 = false;
             }
             z10 |= z11;
-            this.f13742l.releaseOutputBuffer(dequeueOutputBuffer, false);
-            dequeueOutputBuffer = this.f13742l.dequeueOutputBuffer(bufferInfo, 0L);
+            this.f13752l.releaseOutputBuffer(dequeueOutputBuffer, false);
+            dequeueOutputBuffer = this.f13752l.dequeueOutputBuffer(bufferInfo, 0L);
         }
         if (dequeueOutputBuffer == -2) {
-            m(this.f13742l.getOutputFormat(), false);
+            m(this.f13752l.getOutputFormat(), false);
         }
         return z10;
     }
@@ -138,7 +138,7 @@ public final class j {
             try {
                 thread.join(5000L);
                 if (thread.isAlive()) {
-                    k kVar = this.f13737f;
+                    k kVar = this.f13747f;
                     kVar.b("encoder thread did not stop: " + thread.getName());
                 }
             } catch (InterruptedException unused) {
@@ -148,19 +148,19 @@ public final class j {
     }
 
     public final synchronized Surface f() {
-        if (this.f13749s) {
-            return this.f13744n;
+        if (this.f13759s) {
+            return this.f13754n;
         }
         l();
         long nanoTime = System.nanoTime();
         try {
             b();
             a();
-            this.f13741k.start();
-            this.f13749s = true;
-            k kVar = this.f13737f;
-            kVar.b("codecs prepared: video=" + this.f13741k.getName() + ", audio=" + this.f13742l.getName() + ", elapsedMs=" + ((System.nanoTime() - nanoTime) / 1000000));
-            return this.f13744n;
+            this.f13751k.start();
+            this.f13759s = true;
+            k kVar = this.f13747f;
+            kVar.b("codecs prepared: video=" + this.f13751k.getName() + ", audio=" + this.f13752l.getName() + ", elapsedMs=" + ((System.nanoTime() - nanoTime) / 1000000));
+            return this.f13754n;
         } catch (IOException | RuntimeException e) {
             j();
             throw e;
@@ -169,7 +169,7 @@ public final class j {
 
     public final void h(long j3) {
         int i10;
-        long j10 = this.f13748r;
+        long j10 = this.f13758r;
         long max = Math.max(0L, j10 - 256);
         do {
             j10--;
@@ -178,13 +178,13 @@ public final class j {
             } else {
                 return;
             }
-        } while (this.f13739i[i10] != j3);
-        long nanoTime = System.nanoTime() - this.f13740j[i10];
-        this.f13755z++;
+        } while (this.f13749i[i10] != j3);
+        long nanoTime = System.nanoTime() - this.f13750j[i10];
+        this.f13765z++;
         this.A += nanoTime;
         this.B = Math.max(this.B, nanoTime);
-        if (this.f13755z % 30 == 0) {
-            this.f13737f.b("codec latency: average=" + ((((float) this.A) / this.f13755z) / 1000000.0f) + " ms, max=" + (((float) this.B) / 1000000.0f) + " ms");
+        if (this.f13765z % 30 == 0) {
+            this.f13747f.b("codec latency: average=" + ((((float) this.A) / this.f13765z) / 1000000.0f) + " ms, max=" + (((float) this.B) / 1000000.0f) + " ms");
         }
     }
 
@@ -221,19 +221,19 @@ public final class j {
     }
 
     public final void j() {
-        this.f13749s = false;
-        this.f13750t = false;
-        AudioRecord audioRecord = this.f13743m;
+        this.f13759s = false;
+        this.f13760t = false;
+        AudioRecord audioRecord = this.f13753m;
         if (audioRecord != null) {
             audioRecord.release();
-            this.f13743m = null;
+            this.f13753m = null;
         }
-        Surface surface = this.f13744n;
+        Surface surface = this.f13754n;
         if (surface != null) {
             surface.release();
-            this.f13744n = null;
+            this.f13754n = null;
         }
-        MediaCodec mediaCodec = this.f13741k;
+        MediaCodec mediaCodec = this.f13751k;
         if (mediaCodec != null) {
             try {
                 mediaCodec.stop();
@@ -241,7 +241,7 @@ public final class j {
             }
             mediaCodec.release();
         }
-        MediaCodec mediaCodec2 = this.f13742l;
+        MediaCodec mediaCodec2 = this.f13752l;
         if (mediaCodec2 != null) {
             try {
                 mediaCodec2.stop();
@@ -249,10 +249,10 @@ public final class j {
             }
             mediaCodec2.release();
         }
-        this.f13742l = null;
-        this.f13741k = null;
-        this.f13746p = null;
-        this.f13745o = null;
+        this.f13752l = null;
+        this.f13751k = null;
+        this.f13756p = null;
+        this.f13755o = null;
     }
 
     public final void k(RuntimeException runtimeException) {
@@ -265,22 +265,22 @@ public final class j {
             str = "";
         }
         sb2.append(str);
-        this.f13737f.a(sb2.toString(), runtimeException);
+        this.f13747f.a(sb2.toString(), runtimeException);
         if (this.h.compareAndSet(false, true)) {
-            k2.u uVar = this.f13738g.f13651a;
-            ((o0) uVar.f13384b).h.post(new l(2, uVar, runtimeException));
+            e0 e0Var = this.f13748g.f13649a;
+            ((q0) e0Var.f13672b).h.post(new l(2, e0Var, runtimeException));
         }
     }
 
     public final void l() {
-        this.f13747q = false;
-        this.f13751u = 0L;
-        this.f13752w = 0L;
+        this.f13757q = false;
+        this.f13761u = 0L;
+        this.f13762w = 0L;
         this.v = 0L;
-        this.f13754y = 0;
-        this.f13753x = 0;
-        this.f13748r = 0L;
-        this.f13755z = 0;
+        this.f13764y = 0;
+        this.f13763x = 0;
+        this.f13758r = 0L;
+        this.f13765z = 0;
         this.B = 0L;
         this.A = 0L;
         this.E = Long.MIN_VALUE;
@@ -319,8 +319,8 @@ public final class j {
                 throw new IllegalStateException(e);
             }
         }
-        this.f13734a.f(mediaFormat, z10);
-        k kVar = this.f13737f;
+        this.f13744a.f(mediaFormat, z10);
+        k kVar = this.f13747f;
         StringBuilder sb2 = new StringBuilder();
         if (z10) {
             str = "video";
@@ -334,23 +334,23 @@ public final class j {
     }
 
     public final synchronized void n() {
-        if (this.f13750t) {
+        if (this.f13760t) {
             return;
         }
-        if (this.f13749s) {
+        if (this.f13759s) {
             try {
-                this.f13751u = System.nanoTime();
-                this.f13742l.start();
-                this.f13743m.startRecording();
-                if (this.f13743m.getRecordingState() == 3) {
-                    this.f13750t = true;
-                    k kVar = this.f13737f;
-                    kVar.b("audio and video recording started: timeOriginNs=" + this.f13751u + ", timelineOffsetUs=" + this.f13735b + ", audioSessionId=" + this.f13743m.getAudioSessionId());
-                    this.f13745o = new Thread(new Runnable(this) {
-                        public final j f13730b;
+                this.f13761u = System.nanoTime();
+                this.f13752l.start();
+                this.f13753m.startRecording();
+                if (this.f13753m.getRecordingState() == 3) {
+                    this.f13760t = true;
+                    k kVar = this.f13747f;
+                    kVar.b("audio and video recording started: timeOriginNs=" + this.f13761u + ", timelineOffsetUs=" + this.f13745b + ", audioSessionId=" + this.f13753m.getAudioSessionId());
+                    this.f13755o = new Thread(new Runnable(this) {
+                        public final j f13740b;
 
                         {
-                            this.f13730b = this;
+                            this.f13740b = this;
                         }
 
                         @Override
@@ -359,7 +359,7 @@ public final class j {
                             long j3;
                             long j10;
                             int i10 = r2;
-                            j jVar = this.f13730b;
+                            j jVar = this.f13740b;
                             jVar.getClass();
                             switch (i10) {
                                 case 0:
@@ -367,9 +367,9 @@ public final class j {
                                     boolean z11 = false;
                                     while (!z11) {
                                         try {
-                                            int dequeueOutputBuffer = jVar.f13741k.dequeueOutputBuffer(bufferInfo, 10000L);
+                                            int dequeueOutputBuffer = jVar.f13751k.dequeueOutputBuffer(bufferInfo, 10000L);
                                             if (dequeueOutputBuffer == -2) {
-                                                jVar.m(jVar.f13741k.getOutputFormat(), true);
+                                                jVar.m(jVar.f13751k.getOutputFormat(), true);
                                             } else if (dequeueOutputBuffer >= 0) {
                                                 int i11 = bufferInfo.size;
                                                 if (i11 > 0 && (bufferInfo.flags & 2) == 0) {
@@ -378,25 +378,25 @@ public final class j {
                                                     z10 = false;
                                                 }
                                                 if (z10) {
-                                                    jVar.f13753x++;
+                                                    jVar.f13763x++;
                                                     jVar.v += i11;
                                                     jVar.i(true, bufferInfo);
                                                     jVar.h(bufferInfo.presentationTimeUs);
-                                                    jVar.p(true, jVar.f13741k.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
+                                                    jVar.p(true, jVar.f13751k.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
                                                 }
                                                 if ((bufferInfo.flags & 4) != 0) {
                                                     z11 = true;
                                                 } else {
                                                     z11 = false;
                                                 }
-                                                jVar.f13741k.releaseOutputBuffer(dequeueOutputBuffer, false);
+                                                jVar.f13751k.releaseOutputBuffer(dequeueOutputBuffer, false);
                                             }
                                         } catch (RuntimeException e) {
-                                            if (!jVar.f13747q) {
+                                            if (!jVar.f13757q) {
                                                 jVar.k(e);
                                                 return;
                                             } else {
-                                                jVar.f13737f.a("video drain failed while stopping", e);
+                                                jVar.f13747f.a("video drain failed while stopping", e);
                                                 return;
                                             }
                                         }
@@ -418,39 +418,39 @@ public final class j {
                                         try {
                                             z12 = jVar.c(bufferInfo2, j3);
                                             if (!z12) {
-                                                int dequeueInputBuffer = jVar.f13742l.dequeueInputBuffer(10000L);
+                                                int dequeueInputBuffer = jVar.f13752l.dequeueInputBuffer(10000L);
                                                 if (dequeueInputBuffer >= 0) {
-                                                    if (jVar.f13747q) {
+                                                    if (jVar.f13757q) {
                                                         if (j13 == Long.MIN_VALUE) {
                                                             j10 = j11;
                                                         } else {
                                                             j10 = j13 + ((1000000 * j12) / 48000);
                                                         }
-                                                        jVar.f13742l.queueInputBuffer(dequeueInputBuffer, 0, 0, j10, 4);
+                                                        jVar.f13752l.queueInputBuffer(dequeueInputBuffer, 0, 0, j10, 4);
                                                         z13 = true;
                                                     } else {
-                                                        ByteBuffer inputBuffer = jVar.f13742l.getInputBuffer(dequeueInputBuffer);
+                                                        ByteBuffer inputBuffer = jVar.f13752l.getInputBuffer(dequeueInputBuffer);
                                                         if (inputBuffer == null) {
-                                                            jVar.f13742l.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
+                                                            jVar.f13752l.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
                                                         } else {
                                                             inputBuffer.clear();
-                                                            int read = jVar.f13743m.read(inputBuffer, inputBuffer.remaining());
+                                                            int read = jVar.f13753m.read(inputBuffer, inputBuffer.remaining());
                                                             if (read <= 0) {
                                                                 if (read < 0) {
                                                                     jVar.M++;
                                                                 } else {
                                                                     jVar.N++;
                                                                 }
-                                                                jVar.f13742l.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
+                                                                jVar.f13752l.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
                                                             } else {
                                                                 int i12 = read / 2;
                                                                 if (j13 == Long.MIN_VALUE) {
-                                                                    long nanoTime = (System.nanoTime() - jVar.f13751u) / 1000;
+                                                                    long nanoTime = (System.nanoTime() - jVar.f13761u) / 1000;
                                                                     long max = Math.max(j11, nanoTime - ((i12 * 1000000) / 48000));
-                                                                    jVar.f13737f.b("first audio input: basePtsUs=" + max + ", frames=" + i12 + ", bufferEndUs=" + nanoTime);
+                                                                    jVar.f13747f.b("first audio input: basePtsUs=" + max + ", frames=" + i12 + ", bufferEndUs=" + nanoTime);
                                                                     j13 = max;
                                                                 }
-                                                                jVar.f13742l.queueInputBuffer(dequeueInputBuffer, 0, i12 * 2, j13 + ((1000000 * j12) / 48000), 0);
+                                                                jVar.f13752l.queueInputBuffer(dequeueInputBuffer, 0, i12 * 2, j13 + ((1000000 * j12) / 48000), 0);
                                                                 j12 += i12;
                                                                 j11 = 0;
                                                             }
@@ -461,11 +461,11 @@ public final class j {
                                                 return;
                                             }
                                         } catch (RuntimeException e7) {
-                                            if (!jVar.f13747q) {
+                                            if (!jVar.f13757q) {
                                                 jVar.k(e7);
                                                 return;
                                             } else {
-                                                jVar.f13737f.a("audio capture failed while stopping", e7);
+                                                jVar.f13747f.a("audio capture failed while stopping", e7);
                                                 return;
                                             }
                                         }
@@ -474,11 +474,11 @@ public final class j {
                             }
                         }
                     }, "RoundVideoVideoEncoder");
-                    this.f13746p = new Thread(new Runnable(this) {
-                        public final j f13730b;
+                    this.f13756p = new Thread(new Runnable(this) {
+                        public final j f13740b;
 
                         {
-                            this.f13730b = this;
+                            this.f13740b = this;
                         }
 
                         @Override
@@ -487,7 +487,7 @@ public final class j {
                             long j3;
                             long j10;
                             int i10 = r2;
-                            j jVar = this.f13730b;
+                            j jVar = this.f13740b;
                             jVar.getClass();
                             switch (i10) {
                                 case 0:
@@ -495,9 +495,9 @@ public final class j {
                                     boolean z11 = false;
                                     while (!z11) {
                                         try {
-                                            int dequeueOutputBuffer = jVar.f13741k.dequeueOutputBuffer(bufferInfo, 10000L);
+                                            int dequeueOutputBuffer = jVar.f13751k.dequeueOutputBuffer(bufferInfo, 10000L);
                                             if (dequeueOutputBuffer == -2) {
-                                                jVar.m(jVar.f13741k.getOutputFormat(), true);
+                                                jVar.m(jVar.f13751k.getOutputFormat(), true);
                                             } else if (dequeueOutputBuffer >= 0) {
                                                 int i11 = bufferInfo.size;
                                                 if (i11 > 0 && (bufferInfo.flags & 2) == 0) {
@@ -506,25 +506,25 @@ public final class j {
                                                     z10 = false;
                                                 }
                                                 if (z10) {
-                                                    jVar.f13753x++;
+                                                    jVar.f13763x++;
                                                     jVar.v += i11;
                                                     jVar.i(true, bufferInfo);
                                                     jVar.h(bufferInfo.presentationTimeUs);
-                                                    jVar.p(true, jVar.f13741k.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
+                                                    jVar.p(true, jVar.f13751k.getOutputBuffer(dequeueOutputBuffer), bufferInfo);
                                                 }
                                                 if ((bufferInfo.flags & 4) != 0) {
                                                     z11 = true;
                                                 } else {
                                                     z11 = false;
                                                 }
-                                                jVar.f13741k.releaseOutputBuffer(dequeueOutputBuffer, false);
+                                                jVar.f13751k.releaseOutputBuffer(dequeueOutputBuffer, false);
                                             }
                                         } catch (RuntimeException e) {
-                                            if (!jVar.f13747q) {
+                                            if (!jVar.f13757q) {
                                                 jVar.k(e);
                                                 return;
                                             } else {
-                                                jVar.f13737f.a("video drain failed while stopping", e);
+                                                jVar.f13747f.a("video drain failed while stopping", e);
                                                 return;
                                             }
                                         }
@@ -546,39 +546,39 @@ public final class j {
                                         try {
                                             z12 = jVar.c(bufferInfo2, j3);
                                             if (!z12) {
-                                                int dequeueInputBuffer = jVar.f13742l.dequeueInputBuffer(10000L);
+                                                int dequeueInputBuffer = jVar.f13752l.dequeueInputBuffer(10000L);
                                                 if (dequeueInputBuffer >= 0) {
-                                                    if (jVar.f13747q) {
+                                                    if (jVar.f13757q) {
                                                         if (j13 == Long.MIN_VALUE) {
                                                             j10 = j11;
                                                         } else {
                                                             j10 = j13 + ((1000000 * j12) / 48000);
                                                         }
-                                                        jVar.f13742l.queueInputBuffer(dequeueInputBuffer, 0, 0, j10, 4);
+                                                        jVar.f13752l.queueInputBuffer(dequeueInputBuffer, 0, 0, j10, 4);
                                                         z13 = true;
                                                     } else {
-                                                        ByteBuffer inputBuffer = jVar.f13742l.getInputBuffer(dequeueInputBuffer);
+                                                        ByteBuffer inputBuffer = jVar.f13752l.getInputBuffer(dequeueInputBuffer);
                                                         if (inputBuffer == null) {
-                                                            jVar.f13742l.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
+                                                            jVar.f13752l.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
                                                         } else {
                                                             inputBuffer.clear();
-                                                            int read = jVar.f13743m.read(inputBuffer, inputBuffer.remaining());
+                                                            int read = jVar.f13753m.read(inputBuffer, inputBuffer.remaining());
                                                             if (read <= 0) {
                                                                 if (read < 0) {
                                                                     jVar.M++;
                                                                 } else {
                                                                     jVar.N++;
                                                                 }
-                                                                jVar.f13742l.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
+                                                                jVar.f13752l.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 0);
                                                             } else {
                                                                 int i12 = read / 2;
                                                                 if (j13 == Long.MIN_VALUE) {
-                                                                    long nanoTime = (System.nanoTime() - jVar.f13751u) / 1000;
+                                                                    long nanoTime = (System.nanoTime() - jVar.f13761u) / 1000;
                                                                     long max = Math.max(j11, nanoTime - ((i12 * 1000000) / 48000));
-                                                                    jVar.f13737f.b("first audio input: basePtsUs=" + max + ", frames=" + i12 + ", bufferEndUs=" + nanoTime);
+                                                                    jVar.f13747f.b("first audio input: basePtsUs=" + max + ", frames=" + i12 + ", bufferEndUs=" + nanoTime);
                                                                     j13 = max;
                                                                 }
-                                                                jVar.f13742l.queueInputBuffer(dequeueInputBuffer, 0, i12 * 2, j13 + ((1000000 * j12) / 48000), 0);
+                                                                jVar.f13752l.queueInputBuffer(dequeueInputBuffer, 0, i12 * 2, j13 + ((1000000 * j12) / 48000), 0);
                                                                 j12 += i12;
                                                                 j11 = 0;
                                                             }
@@ -589,11 +589,11 @@ public final class j {
                                                 return;
                                             }
                                         } catch (RuntimeException e7) {
-                                            if (!jVar.f13747q) {
+                                            if (!jVar.f13757q) {
                                                 jVar.k(e7);
                                                 return;
                                             } else {
-                                                jVar.f13737f.a("audio capture failed while stopping", e7);
+                                                jVar.f13747f.a("audio capture failed while stopping", e7);
                                                 return;
                                             }
                                         }
@@ -602,8 +602,8 @@ public final class j {
                             }
                         }
                     }, "RoundVideoAudioEncoder");
-                    this.f13745o.start();
-                    this.f13746p.start();
+                    this.f13755o.start();
+                    this.f13756p.start();
                     return;
                 }
                 throw new IllegalStateException("Unable to start AudioRecord");
@@ -627,23 +627,23 @@ public final class j {
         Object valueOf5;
         synchronized (this) {
             try {
-                if (this.f13749s && !this.f13747q) {
-                    if (!this.f13750t) {
+                if (this.f13759s && !this.f13757q) {
+                    if (!this.f13760t) {
                         j();
                         return;
                     }
-                    this.f13747q = true;
+                    this.f13757q = true;
                     try {
-                        this.f13743m.stop();
+                        this.f13753m.stop();
                     } catch (IllegalStateException unused) {
                     }
                     try {
-                        this.f13741k.signalEndOfInputStream();
+                        this.f13751k.signalEndOfInputStream();
                     } catch (IllegalStateException e) {
-                        this.f13737f.a("video encoder EOS failed", e);
+                        this.f13747f.a("video encoder EOS failed", e);
                     }
-                    e(this.f13745o);
-                    e(this.f13746p);
+                    e(this.f13755o);
+                    e(this.f13756p);
                     if (d()) {
                         j3 = this.F - this.D;
                     } else {
@@ -668,9 +668,9 @@ public final class j {
                     } else {
                         j12 = 0;
                     }
-                    k kVar = this.f13737f;
+                    k kVar = this.f13747f;
                     StringBuilder sb2 = new StringBuilder("codec summary: videoBuffers=");
-                    sb2.append(this.f13753x);
+                    sb2.append(this.f13763x);
                     sb2.append(", videoBytes=");
                     sb2.append(this.v);
                     sb2.append(", videoPts=");
@@ -690,13 +690,13 @@ public final class j {
                     sb2.append(", nonMonotonicVideoPts=");
                     sb2.append(this.K);
                     sb2.append(", audioBuffers=");
-                    sb2.append(this.f13754y);
+                    sb2.append(this.f13764y);
                     sb2.append(", audioBytes=");
-                    sb2.append(this.f13752w);
+                    sb2.append(this.f13762w);
                     sb2.append(", audioPts=");
                     sb2.append(g(this.F, this.G));
                     sb2.append(", actualAudioBitrate=");
-                    long j18 = this.f13752w;
+                    long j18 = this.f13762w;
                     if (j12 <= 0) {
                         valueOf2 = "n/a";
                     } else {
@@ -724,7 +724,7 @@ public final class j {
                     sb2.append(", emptyAudioReads=");
                     sb2.append(this.N);
                     sb2.append(", codecLatencyAvgMs=");
-                    int i10 = this.f13755z;
+                    int i10 = this.f13765z;
                     if (i10 == 0) {
                         valueOf5 = "n/a";
                     } else {
@@ -757,6 +757,6 @@ public final class j {
                 throw new IllegalStateException(e);
             }
         }
-        this.f13734a.g(z10, byteBuffer, bufferInfo, this.f13735b);
+        this.f13744a.g(z10, byteBuffer, bufferInfo, this.f13745b);
     }
 }

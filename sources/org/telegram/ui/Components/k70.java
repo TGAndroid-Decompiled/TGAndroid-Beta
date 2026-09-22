@@ -1,33 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class k70 implements org.telegram.ui.ActionBar.l1 {
-    public final int f25685a;
-    public final v70 f25686b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class k70 extends AnimatorListenerAdapter {
+    public final int f25641a;
+    public final l70 f25642b;
 
-    public k70(v70 v70Var, int i10) {
-        this.f25685a = i10;
-        this.f25686b = v70Var;
+    public k70(l70 l70Var, int i10) {
+        this.f25641a = i10;
+        this.f25642b = l70Var;
     }
 
     @Override
-    public final void o(KeyEvent keyEvent) {
-        v70 v70Var;
-        q70 q70Var;
-        v70 v70Var2;
-        q70 q70Var2;
-        switch (this.f25685a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25641a) {
             case 0:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (q70Var = (v70Var = this.f25686b).f28984m) != null && q70Var.isShowing()) {
-                    v70Var.u();
-                    return;
-                }
+                l70 l70Var = this.f25642b;
+                l70Var.e.f26353d0 = null;
+                l70Var.requestLayout();
                 return;
             default:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (q70Var2 = (v70Var2 = this.f25686b).f28984m) != null && q70Var2.isShowing()) {
-                    v70Var2.u();
-                    return;
-                }
+                l70 l70Var2 = this.f25642b;
+                l70Var2.e.f26353d0 = null;
+                l70Var2.f26007a = false;
                 return;
         }
     }

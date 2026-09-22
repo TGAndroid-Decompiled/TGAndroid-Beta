@@ -27,16 +27,16 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.tp;
+import org.telegram.ui.Components.u61;
 import w7.y5;
 public final class e1 extends n2 implements NotificationCenter.NotificationCenterDelegate {
     public boolean E;
     public int F;
     public boolean G;
-    public s61 f10267a;
+    public u61 f10267a;
     public pr f10268b;
     public org.telegram.ui.ActionBar.v0 f10269c;
     public boolean d;
@@ -105,8 +105,8 @@ public final class e1 extends n2 implements NotificationCenter.NotificationCente
                 }
                 v0Var3.setScaleY(f13);
             }
-            s61 s61Var = this.f10267a;
-            if (s61Var != null && s61Var.Y2 != null) {
+            u61 u61Var = this.f10267a;
+            if (u61Var != null && u61Var.Y2 != null) {
                 boolean z12 = this.G;
                 if (this.f10274w != null && (this.f10275x != null || !TextUtils.isEmpty(this.f10276y))) {
                     z11 = true;
@@ -189,7 +189,7 @@ public final class e1 extends n2 implements NotificationCenter.NotificationCente
     public final void W() {
         boolean z10;
         String trim;
-        if (this.f10268b.f27431c > 0.0f) {
+        if (this.f10268b.f27411c > 0.0f) {
             return;
         }
         if (this.f10275x == null && TextUtils.isEmpty(this.f10276y)) {
@@ -254,7 +254,7 @@ public final class e1 extends n2 implements NotificationCenter.NotificationCente
     }
 
     public final void X() {
-        k61 k61Var;
+        m61 m61Var;
         if (this.v) {
             return;
         }
@@ -281,9 +281,9 @@ public final class e1 extends n2 implements NotificationCenter.NotificationCente
             this.d = false;
         }
         Y();
-        s61 s61Var = this.f10267a;
-        if (s61Var != null && (k61Var = s61Var.Y2) != null) {
-            k61Var.N(true);
+        u61 u61Var = this.f10267a;
+        if (u61Var != null && (m61Var = u61Var.Y2) != null) {
+            m61Var.N(true);
         }
         this.v = true;
     }
@@ -320,13 +320,13 @@ public final class e1 extends n2 implements NotificationCenter.NotificationCente
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessLocation));
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 13));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = j6.f19427v8;
+        int i10 = j6.f19442v8;
         mutate.setColorFilter(new PorterDuffColorFilter(j6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
         this.f10268b = new pr(mutate, new tp(j6.w0(null, i10, false)));
         this.f10269c = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f10268b);
         U(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f19038a7, false));
+        frameLayout.setBackgroundColor(j6.w0(null, j6.f19053a7, false));
         b1 b1Var = new b1(this, getParentActivity());
         this.f10270f = b1Var;
         b1Var.setTextSize(1, 17.0f);
@@ -355,7 +355,7 @@ public final class e1 extends n2 implements NotificationCenter.NotificationCente
         this.e = frameLayout2;
         frameLayout2.addView(this.f10270f, y5.d(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.e;
-        int i13 = j6.f19094d6;
+        int i13 = j6.f19109d6;
         frameLayout3.setBackgroundColor(getThemedColor(i13));
         b1 b1Var4 = this.f10270f;
         if (b1Var4 != null) {
@@ -380,12 +380,12 @@ public final class e1 extends n2 implements NotificationCenter.NotificationCente
         frameLayout4.addView(this.f10273s, y5.c(-1.0f, -1));
         this.h.addView(this.f10271n, y5.d(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
         Y();
-        s61 s61Var = new s61(this, new bi.v(this, 26), new z0(this, 0), null);
-        this.f10267a = s61Var;
-        s61Var.q1();
-        s61 s61Var2 = this.f10267a;
-        s61Var2.Y2.f25678r = false;
-        frameLayout.addView(s61Var2, y5.c(-1.0f, -1));
+        u61 u61Var = new u61(this, new bi.v(this, 26), new z0(this, 0), null);
+        this.f10267a = u61Var;
+        u61Var.q1();
+        u61 u61Var2 = this.f10267a;
+        u61Var2.Y2.f26342r = false;
+        frameLayout.addView(u61Var2, y5.c(-1.0f, -1));
         this.actionBar.z(this.f10267a, true);
         X();
         this.fragmentView = frameLayout;
@@ -420,11 +420,11 @@ public final class e1 extends n2 implements NotificationCenter.NotificationCente
         if (V() && !z11) {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f18654a.T = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
+                alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f18669a.T = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new z0(this, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new z0(this, 2));
-                showDialog(alertDialog$Builder.f18654a);
+                showDialog(alertDialog$Builder.f18669a);
             }
             return false;
         }

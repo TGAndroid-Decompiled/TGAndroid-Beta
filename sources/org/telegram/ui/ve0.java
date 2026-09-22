@@ -6,26 +6,26 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ve0 implements Runnable {
-    public final int f38531a = 0;
-    public final ze0 f38532b;
-    public final TLRPC.TL_error f38533c;
+    public final int f38552a = 0;
+    public final ze0 f38553b;
+    public final TLRPC.TL_error f38554c;
     public final Bundle d;
     public final TLObject e;
 
     public ve0(ze0 ze0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
-        this.f38532b = ze0Var;
+        this.f38553b = ze0Var;
         this.e = tLObject;
         this.d = bundle;
-        this.f38533c = tL_error;
+        this.f38554c = tL_error;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f38531a) {
+        switch (this.f38552a) {
             case 0:
-                ze0 ze0Var = this.f38532b;
-                yg0 yg0Var = ze0Var.f40193a0;
+                ze0 ze0Var = this.f38553b;
+                yg0 yg0Var = ze0Var.f40215a0;
                 ze0Var.M = false;
                 ze0Var.v.invalidate();
                 TLObject tLObject = this.e;
@@ -37,7 +37,7 @@ public final class ve0 implements Runnable {
                     yg0Var.g1(bundle, tL_auth_sentCode, true);
                     return;
                 }
-                TLRPC.TL_error tL_error = this.f38533c;
+                TLRPC.TL_error tL_error = this.f38554c;
                 if (tL_error != null && (str = tL_error.text) != null) {
                     if (str.contains("PHONE_NUMBER_INVALID")) {
                         yg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.InvalidPhoneNumber));
@@ -68,10 +68,10 @@ public final class ve0 implements Runnable {
                 }
                 return;
             default:
-                ze0 ze0Var2 = this.f38532b;
-                yg0 yg0Var2 = ze0Var2.f40193a0;
+                ze0 ze0Var2 = this.f38553b;
+                yg0 yg0Var2 = ze0Var2.f40215a0;
                 ze0Var2.R = false;
-                TLRPC.TL_error tL_error2 = this.f38533c;
+                TLRPC.TL_error tL_error2 = this.f38554c;
                 if (tL_error2 == null) {
                     yg0Var2.g1(this.d, (TLRPC.TL_auth_sentCode) this.e, true);
                 } else {
@@ -104,8 +104,8 @@ public final class ve0 implements Runnable {
     }
 
     public ve0(ze0 ze0Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
-        this.f38532b = ze0Var;
-        this.f38533c = tL_error;
+        this.f38553b = ze0Var;
+        this.f38554c = tL_error;
         this.d = bundle;
         this.e = tLObject;
     }

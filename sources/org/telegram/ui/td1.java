@@ -13,11 +13,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class td1 extends org.telegram.ui.Components.ul0 {
-    public final Context f37733c;
+public final class td1 extends org.telegram.ui.Components.xl0 {
+    public final Context f37757c;
     public final ArrayList d;
     public final boolean e;
-    public final xd1 f37734f;
+    public final xd1 f37758f;
 
     public td1(Context context, xd1 xd1Var) {
         boolean z10;
@@ -49,15 +49,15 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
         int i33;
         int i34;
         int i35;
-        this.f37734f = xd1Var;
-        int i36 = xd1Var.f39473b;
+        this.f37758f = xd1Var;
+        int i36 = xd1Var.f39497b;
         if (i36 == 0 && Utilities.random.nextInt(100) <= 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.e = z10;
-        this.f37733c = context;
+        this.f37757c = context;
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
@@ -73,7 +73,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
                 tL_message.date = currentTimeMillis - 3540;
                 tL_message.dialog_id = 1L;
                 tL_message.flags = 259;
-                tL_message.f18349id = 1;
+                tL_message.f18364id = 1;
                 tL_message.media = new TLRPC.TL_messageMediaEmpty();
                 tL_message.out = true;
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
@@ -104,10 +104,10 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
                 MessageObject messageObject3 = new MessageObject(i32, tL_message3, true, false);
                 TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
                 tL_message2.from_id = tL_peerChannel;
-                tL_peerChannel.channel_id = chat.f18328id;
+                tL_peerChannel.channel_id = chat.f18343id;
                 TLRPC.TL_peerChannel tL_peerChannel2 = new TLRPC.TL_peerChannel();
                 tL_message2.peer_id = tL_peerChannel2;
-                tL_peerChannel2.channel_id = chat.f18328id;
+                tL_peerChannel2.channel_id = chat.f18343id;
                 messageObject = messageObject3;
             } else {
                 if (xd1Var.J1 != 0) {
@@ -128,7 +128,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message2.date = i38;
             tL_message2.dialog_id = 1L;
             tL_message2.flags = 265;
-            tL_message2.f18349id = 1;
+            tL_message2.f18364id = 1;
             tL_message2.media = new TLRPC.TL_messageMediaEmpty();
             tL_message2.out = false;
             i28 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
@@ -139,7 +139,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             messageObject4.eventId = 1L;
             messageObject4.resetLayout();
             arrayList.add(messageObject4);
-            if (xd1Var.J1 != 0 && xd1Var.f39514q0 == null) {
+            if (xd1Var.J1 != 0 && xd1Var.f39538q0 == null) {
                 TLRPC.User user = xd1Var.getMessagesController().getUser(Long.valueOf(xd1Var.J1));
                 TLRPC.TL_message tL_message4 = new TLRPC.TL_message();
                 tL_message4.message = "";
@@ -158,7 +158,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
                 tL_message5.dialog_id = 1L;
                 tL_message5.flags = 265;
                 tL_message5.from_id = new TLRPC.TL_peerUser();
-                tL_message5.f18349id = 1;
+                tL_message5.f18364id = 1;
                 tL_message5.media = new TLRPC.TL_messageMediaEmpty();
                 tL_message5.out = false;
                 TLRPC.TL_peerUser tL_peerUser4 = new TLRPC.TL_peerUser();
@@ -180,7 +180,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             TLRPC.Document document = tL_message6.media.document;
             document.mime_type = "audio/mp3";
             document.file_reference = new byte[0];
-            document.f18334id = -2147483648L;
+            document.f18349id = -2147483648L;
             document.size = 2621440L;
             document.dc_id = Integer.MIN_VALUE;
             TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
@@ -193,7 +193,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             TLRPC.TL_peerUser tL_peerUser5 = new TLRPC.TL_peerUser();
             tL_message6.from_id = tL_peerUser5;
             tL_peerUser5.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-            tL_message6.f18349id = 1;
+            tL_message6.f18364id = 1;
             tL_message6.out = true;
             TLRPC.TL_peerUser tL_peerUser6 = new TLRPC.TL_peerUser();
             tL_message6.peer_id = tL_peerUser6;
@@ -208,7 +208,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
                 TLRPC.TL_peerUser tL_peerUser7 = new TLRPC.TL_peerUser();
                 tL_message7.from_id = tL_peerUser7;
                 tL_peerUser7.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-                tL_message7.f18349id = 1;
+                tL_message7.f18364id = 1;
                 tL_message7.media = new TLRPC.TL_messageMediaEmpty();
                 tL_message7.out = true;
                 TLRPC.TL_peerUser tL_peerUser8 = new TLRPC.TL_peerUser();
@@ -240,7 +240,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             TLRPC.TL_peerUser tL_peerUser9 = new TLRPC.TL_peerUser();
             tL_message8.from_id = tL_peerUser9;
             tL_peerUser9.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-            tL_message8.f18349id = 1;
+            tL_message8.f18364id = 1;
             tL_message8.media = new TLRPC.TL_messageMediaEmpty();
             tL_message8.out = true;
             TLRPC.TL_peerUser tL_peerUser10 = new TLRPC.TL_peerUser();
@@ -256,7 +256,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message9.dialog_id = 1L;
             tL_message9.flags = 265;
             tL_message9.from_id = new TLRPC.TL_peerUser();
-            tL_message9.f18349id = 1;
+            tL_message9.f18364id = 1;
             TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
             tL_message9.reply_to = tL_messageReplyHeader;
             tL_messageReplyHeader.flags |= 16;
@@ -281,7 +281,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message10.flags = 259;
             tL_message10.out = false;
             tL_message10.from_id = new TLRPC.TL_peerUser();
-            tL_message10.f18349id = 1;
+            tL_message10.f18364id = 1;
             TLRPC.TL_messageMediaDocument tL_messageMediaDocument2 = new TLRPC.TL_messageMediaDocument();
             tL_message10.media = tL_messageMediaDocument2;
             tL_messageMediaDocument2.flags |= 3;
@@ -307,10 +307,10 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             arrayList.add(messageObject11);
         } else if (z10) {
             TLRPC.TL_user tL_user = new TLRPC.TL_user();
-            tL_user.f18475id = 2147483647L;
+            tL_user.f18490id = 2147483647L;
             tL_user.first_name = "Me";
             TLRPC.TL_user tL_user2 = new TLRPC.TL_user();
-            tL_user2.f18475id = 2147483646L;
+            tL_user2.f18490id = 2147483646L;
             tL_user2.first_name = "Serj";
             ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
             arrayList2.add(tL_user);
@@ -323,7 +323,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message11.date = i40;
             tL_message11.dialog_id = -1L;
             tL_message11.flags = 259;
-            tL_message11.f18349id = 2147483646;
+            tL_message11.f18364id = 2147483646;
             tL_message11.media = new TLRPC.TL_messageMediaEmpty();
             tL_message11.out = false;
             TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
@@ -331,7 +331,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_peerChat.chat_id = 1L;
             TLRPC.TL_peerUser tL_peerUser13 = new TLRPC.TL_peerUser();
             tL_message11.from_id = tL_peerUser13;
-            tL_peerUser13.user_id = tL_user2.f18475id;
+            tL_peerUser13.user_id = tL_user2.f18490id;
             i23 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
             arrayList.add(new MessageObject(i23, tL_message11, true, false));
             TLRPC.TL_message tL_message12 = new TLRPC.TL_message();
@@ -339,7 +339,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message12.date = i40;
             tL_message12.dialog_id = -1L;
             tL_message12.flags = 259;
-            tL_message12.f18349id = 1;
+            tL_message12.f18364id = 1;
             tL_message12.media = new TLRPC.TL_messageMediaEmpty();
             tL_message12.out = false;
             TLRPC.TL_peerChat tL_peerChat2 = new TLRPC.TL_peerChat();
@@ -347,7 +347,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_peerChat2.chat_id = 1L;
             TLRPC.TL_peerUser tL_peerUser14 = new TLRPC.TL_peerUser();
             tL_message12.from_id = tL_peerUser14;
-            tL_peerUser14.user_id = tL_user2.f18475id;
+            tL_peerUser14.user_id = tL_user2.f18490id;
             i24 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
             arrayList.add(new MessageObject(i24, tL_message12, true, false));
             TLRPC.TL_message tL_message13 = new TLRPC.TL_message();
@@ -355,7 +355,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message13.date = currentTimeMillis - 3000;
             tL_message13.dialog_id = -1L;
             tL_message13.flags = 259;
-            tL_message13.f18349id = 1;
+            tL_message13.f18364id = 1;
             tL_message13.media = new TLRPC.TL_messageMediaEmpty();
             tL_message13.out = false;
             TLRPC.TL_peerChat tL_peerChat3 = new TLRPC.TL_peerChat();
@@ -363,7 +363,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_peerChat3.chat_id = 1L;
             TLRPC.TL_peerUser tL_peerUser15 = new TLRPC.TL_peerUser();
             tL_message13.from_id = tL_peerUser15;
-            tL_peerUser15.user_id = tL_user.f18475id;
+            tL_peerUser15.user_id = tL_user.f18490id;
             i25 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
             arrayList.add(new MessageObject(i25, tL_message13, true, false));
         } else {
@@ -377,7 +377,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message14.from_id = tL_peerUser16;
             i10 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
             tL_peerUser16.user_id = UserConfig.getInstance(i10).getClientUserId();
-            tL_message14.f18349id = 1;
+            tL_message14.f18364id = 1;
             tL_message14.media = new TLRPC.TL_messageMediaEmpty();
             tL_message14.out = true;
             TLRPC.TL_peerUser tL_peerUser17 = new TLRPC.TL_peerUser();
@@ -394,7 +394,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message15.from_id = tL_peerUser18;
             i12 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
             tL_peerUser18.user_id = UserConfig.getInstance(i12).getClientUserId();
-            tL_message15.f18349id = 1;
+            tL_message15.f18364id = 1;
             tL_message15.media = new TLRPC.TL_messageMediaEmpty();
             tL_message15.out = true;
             TLRPC.TL_peerUser tL_peerUser19 = new TLRPC.TL_peerUser();
@@ -407,7 +407,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message16.dialog_id = 1L;
             tL_message16.flags = 259;
             tL_message16.from_id = new TLRPC.TL_peerUser();
-            tL_message16.f18349id = 5;
+            tL_message16.f18364id = 5;
             TLRPC.TL_messageMediaDocument tL_messageMediaDocument3 = new TLRPC.TL_messageMediaDocument();
             tL_message16.media = tL_messageMediaDocument3;
             tL_messageMediaDocument3.flags |= 3;
@@ -433,7 +433,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message17.dialog_id = 1L;
             tL_message17.flags = 265;
             tL_message17.from_id = new TLRPC.TL_peerUser();
-            tL_message17.f18349id = 1;
+            tL_message17.f18364id = 1;
             TLRPC.TL_messageReplyHeader tL_messageReplyHeader2 = new TLRPC.TL_messageReplyHeader();
             tL_message17.reply_to = tL_messageReplyHeader2;
             tL_messageReplyHeader2.flags |= 16;
@@ -457,7 +457,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message18.from_id = tL_peerUser22;
             i18 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
             tL_peerUser22.user_id = UserConfig.getInstance(i18).getClientUserId();
-            tL_message18.f18349id = 1;
+            tL_message18.f18364id = 1;
             TLRPC.TL_messageMediaDocument tL_messageMediaDocument4 = new TLRPC.TL_messageMediaDocument();
             tL_message18.media = tL_messageMediaDocument4;
             tL_messageMediaDocument4.flags |= 3;
@@ -487,7 +487,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             tL_message19.dialog_id = 1L;
             tL_message19.flags = 257;
             tL_message19.from_id = new TLRPC.TL_peerUser();
-            tL_message19.f18349id = 1;
+            tL_message19.f18364id = 1;
             TLRPC.TL_messageMediaPhoto tL_messageMediaPhoto = new TLRPC.TL_messageMediaPhoto();
             tL_message19.media = tL_messageMediaPhoto;
             tL_messageMediaPhoto.flags |= 3;
@@ -495,12 +495,12 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
             TLRPC.Photo photo = tL_message19.media.photo;
             photo.file_reference = new byte[0];
             photo.has_stickers = false;
-            photo.f18352id = 1L;
+            photo.f18367id = 1L;
             photo.access_hash = 0L;
             photo.date = i37;
             TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
             tL_photoSize.size = 0;
-            tL_photoSize.f18353w = 500;
+            tL_photoSize.f18368w = 500;
             tL_photoSize.h = 302;
             tL_photoSize.type = "s";
             tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
@@ -524,11 +524,11 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
     }
 
     public final boolean F() {
-        xd1 xd1Var = this.f37734f;
-        int i10 = xd1Var.f39473b;
-        if (xd1Var.f39537z0 == null || i10 != 1 || xd1Var.f39507n != 3 || xd1Var.f39519s.f18931g == 0) {
-            if (xd1Var.f39535y0 != null) {
-                if (i10 != 2 && (i10 != 1 || xd1Var.f39507n != 2)) {
+        xd1 xd1Var = this.f37758f;
+        int i10 = xd1Var.f39497b;
+        if (xd1Var.f39561z0 == null || i10 != 1 || xd1Var.f39531n != 3 || xd1Var.f39543s.f18946g == 0) {
+            if (xd1Var.f39559y0 != null) {
+                if (i10 != 2 && (i10 != 1 || xd1Var.f39531n != 2)) {
                     return false;
                 }
             } else {
@@ -551,7 +551,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
     public final int j(int i10) {
         if (F()) {
             if (i10 == 0) {
-                if (this.f37734f.f39507n == 3) {
+                if (this.f37758f.f39531n == 3) {
                     return 3;
                 }
                 return 2;
@@ -573,16 +573,16 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
         boolean z10;
         boolean z11;
         boolean z12;
-        int i11 = c1Var.f42977f;
+        int i11 = c1Var.f42998f;
         if (i11 != 2 && i11 != 3) {
             if (F()) {
                 i10--;
             }
             ArrayList arrayList = this.d;
             MessageObject messageObject = (MessageObject) arrayList.get(i10);
-            View view = c1Var.f42974a;
+            View view = c1Var.f42995a;
             boolean z13 = view instanceof org.telegram.ui.Cells.u1;
-            xd1 xd1Var = this.f37734f;
+            xd1 xd1Var = this.f37758f;
             if (z13) {
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
                 boolean z14 = false;
@@ -591,11 +591,11 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
                 int j3 = j(i12);
                 int i13 = i10 + 1;
                 int j10 = j(i13);
-                if (!(messageObject.messageOwner.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && j3 == c1Var.f42977f) {
+                if (!(messageObject.messageOwner.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && j3 == c1Var.f42998f) {
                     MessageObject messageObject2 = (MessageObject) arrayList.get(i12);
                     if (messageObject2.isOutOwner() == messageObject.isOutOwner() && Math.abs(messageObject2.messageOwner.date - messageObject.messageOwner.date) <= 300) {
                         z10 = true;
-                        if (j10 != c1Var.f42977f && i13 < arrayList.size()) {
+                        if (j10 != c1Var.f42998f && i13 < arrayList.size()) {
                             MessageObject messageObject3 = (MessageObject) arrayList.get(i13);
                             if (!(messageObject3.messageOwner.reply_markup instanceof TLRPC.TL_replyInlineMarkup) && messageObject3.isOutOwner() == messageObject.isOutOwner() && Math.abs(messageObject3.messageOwner.date - messageObject.messageOwner.date) <= 300) {
                                 z12 = true;
@@ -612,7 +612,7 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
                     }
                 }
                 z10 = false;
-                if (j10 != c1Var.f42977f) {
+                if (j10 != c1Var.f42998f) {
                 }
                 z11 = false;
                 u1Var.N7 = (!this.e || xd1Var.J1 < 0) ? true : true;
@@ -631,33 +631,33 @@ public final class td1 extends org.telegram.ui.Components.ul0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.u1 u1Var;
         int i11;
-        xd1 xd1Var = this.f37734f;
+        xd1 xd1Var = this.f37758f;
         if (i10 == 0) {
             i11 = ((org.telegram.ui.ActionBar.n2) xd1Var).currentAccount;
-            org.telegram.ui.Cells.u1 u1Var2 = new org.telegram.ui.Cells.u1(this.f37733c, i11, false, null, new jw0(this, 5));
+            org.telegram.ui.Cells.u1 u1Var2 = new org.telegram.ui.Cells.u1(this.f37757c, i11, false, null, new jw0(this, 5));
             u1Var2.setDelegate(new na.d(18));
             u1Var = u1Var2;
         } else {
-            Context context = this.f37733c;
+            Context context = this.f37757c;
             if (i10 == 1) {
-                org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, xd1Var.f39470a, false);
+                org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, xd1Var.f39494a, false);
                 w0Var.setDelegate(new ob.a(18));
                 u1Var = w0Var;
             } else if (i10 == 2) {
-                if (xd1Var.f39535y0.getParent() != null) {
-                    ((ViewGroup) xd1Var.f39535y0.getParent()).removeView(xd1Var.f39535y0);
+                if (xd1Var.f39559y0.getParent() != null) {
+                    ((ViewGroup) xd1Var.f39559y0.getParent()).removeView(xd1Var.f39559y0);
                 }
                 u41 u41Var = new u41(context, 4);
-                u41Var.addView(xd1Var.f39535y0, w7.y5.e(-1, 76, 17));
+                u41Var.addView(xd1Var.f39559y0, w7.y5.e(-1, 76, 17));
                 u1Var = u41Var;
             } else if (i10 == 5) {
                 u1Var = new org.telegram.ui.Components.kn(xd1Var.getParentActivity(), 26);
             } else {
-                if (xd1Var.f39537z0.getParent() != null) {
-                    ((ViewGroup) xd1Var.f39537z0.getParent()).removeView(xd1Var.f39537z0);
+                if (xd1Var.f39561z0.getParent() != null) {
+                    ((ViewGroup) xd1Var.f39561z0.getParent()).removeView(xd1Var.f39561z0);
                 }
                 u41 u41Var2 = new u41(context, 5);
-                u41Var2.addView(xd1Var.f39537z0, w7.y5.e(-1, 76, 17));
+                u41Var2.addView(xd1Var.f39561z0, w7.y5.e(-1, 76, 17));
                 u1Var = u41Var2;
             }
         }

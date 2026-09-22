@@ -3,16 +3,16 @@ package k2;
 import android.os.Handler;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FourierTransform;
-import org.telegram.ui.Components.l71;
-import org.telegram.ui.Components.m71;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.t71;
-import org.telegram.ui.Components.wn0;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.o71;
+import org.telegram.ui.Components.u71;
+import org.telegram.ui.Components.v71;
+import org.telegram.ui.Components.yn0;
 public final class l0 extends c2.i {
-    public final s71 f13333i;
+    public final u71 f13334i;
 
-    public l0(s71 s71Var) {
-        this.f13333i = s71Var;
+    public l0(u71 u71Var) {
+        this.f13334i = u71Var;
     }
 
     @Override
@@ -21,34 +21,34 @@ public final class l0 extends c2.i {
         if (remaining == 0) {
             return;
         }
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
-        s71 s71Var = this.f13333i;
-        float[] fArr = s71Var.f28071b;
-        ByteBuffer byteBuffer2 = s71Var.f28072c;
-        FourierTransform.FFT fft = s71Var.f28070a;
-        t71 t71Var = s71Var.f28073f;
-        m71 m71Var = t71Var.K;
-        Handler handler = t71Var.f28319a0;
-        if (m71Var != null) {
-            if (order != c2.h.f3672a && t71Var.I) {
-                if (m71Var.needUpdate()) {
+        u71 u71Var = this.f13334i;
+        float[] fArr = u71Var.f28690b;
+        ByteBuffer byteBuffer2 = u71Var.f28691c;
+        FourierTransform.FFT fft = u71Var.f28689a;
+        v71 v71Var = u71Var.f28692f;
+        o71 o71Var = v71Var.K;
+        Handler handler = v71Var.f29002a0;
+        if (o71Var != null) {
+            if (order != c2.h.f3671a && v71Var.I) {
+                if (o71Var.needUpdate()) {
                     int limit = order.limit();
                     int i10 = 0;
                     if (limit > 8192) {
                         handler.removeCallbacksAndMessages(null);
-                        t71Var.K.onVisualizerUpdate(false, true, null);
+                        v71Var.K.onVisualizerUpdate(false, true, null);
                     } else {
                         byteBuffer2.put(order);
-                        int i11 = s71Var.d + limit;
-                        s71Var.d = i11;
+                        int i11 = u71Var.d + limit;
+                        u71Var.d = i11;
                         if (i11 >= 1024) {
                             byteBuffer2.position(0);
                             for (int i12 = 0; i12 < 1024; i12++) {
                                 fArr[i12] = byteBuffer2.getShort() / 32768.0f;
                             }
                             byteBuffer2.rewind();
-                            s71Var.d = 0;
+                            u71Var.d = 0;
                             fft.forward(fArr);
                             int i13 = 0;
                             float f7 = 0.0f;
@@ -93,15 +93,15 @@ public final class l0 extends c2.i {
                                     i10++;
                                 }
                             }
-                            if (System.currentTimeMillis() - s71Var.e >= 64) {
-                                s71Var.e = System.currentTimeMillis();
-                                handler.postDelayed(new wn0(23, s71Var, fArr2), 130L);
+                            if (System.currentTimeMillis() - u71Var.e >= 64) {
+                                u71Var.e = System.currentTimeMillis();
+                                handler.postDelayed(new yn0(23, u71Var, fArr2), 130L);
                             }
                         }
                     }
                 }
             } else {
-                handler.postDelayed(new l71(s71Var, 1), 80L);
+                handler.postDelayed(new j71(u71Var, 2), 80L);
             }
         }
         j(remaining).put(byteBuffer).flip();
@@ -124,8 +124,8 @@ public final class l0 extends c2.i {
 
     public final void k() {
         if (isActive()) {
-            int i10 = this.f3673b.f3669a;
-            this.f13333i.getClass();
+            int i10 = this.f3672b.f3668a;
+            this.f13334i.getClass();
         }
     }
 

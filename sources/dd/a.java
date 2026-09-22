@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Arrays;
 public final class a {
-    public final char[] f7644a;
-    public final StringReader f7645b;
-    public int f7646c;
+    public final char[] f7643a;
+    public final StringReader f7644b;
+    public int f7645c;
     public int d;
     public int e;
-    public int f7647f;
-    public int f7648g;
+    public int f7646f;
+    public int f7647g;
     public final String[] h;
 
     public a(String str) {
@@ -18,8 +18,8 @@ public final class a {
         str.getClass();
         this.h = new String[128];
         if (stringReader.markSupported()) {
-            this.f7645b = stringReader;
-            this.f7644a = new char[4096];
+            this.f7644b = stringReader;
+            this.f7643a = new char[4096];
             b();
             return;
         }
@@ -78,19 +78,19 @@ public final class a {
     }
 
     public final void b() {
-        StringReader stringReader = this.f7645b;
+        StringReader stringReader = this.f7644b;
         int i10 = this.e;
         if (i10 >= this.d) {
             try {
                 stringReader.skip(i10);
                 stringReader.mark(4096);
-                int read = stringReader.read(this.f7644a);
+                int read = stringReader.read(this.f7643a);
                 stringReader.reset();
                 if (read != -1) {
-                    this.f7646c = read;
-                    this.f7647f += this.e;
+                    this.f7645c = read;
+                    this.f7646f += this.e;
                     this.e = 0;
-                    this.f7648g = 0;
+                    this.f7647g = 0;
                     if (read > 3072) {
                         read = 3072;
                     }
@@ -106,10 +106,10 @@ public final class a {
         char c10;
         b();
         int i10 = this.e;
-        if (i10 >= this.f7646c) {
+        if (i10 >= this.f7645c) {
             c10 = 65535;
         } else {
-            c10 = this.f7644a[i10];
+            c10 = this.f7643a[i10];
         }
         this.e = i10 + 1;
         return c10;
@@ -122,8 +122,8 @@ public final class a {
         int i10 = this.e;
         while (true) {
             int i11 = this.e;
-            int i12 = this.f7646c;
-            cArr = this.f7644a;
+            int i12 = this.f7645c;
+            cArr = this.f7643a;
             if (i11 >= i12 || (((c10 = cArr[i11]) < 'A' || c10 > 'Z') && ((c10 < 'a' || c10 > 'z') && !Character.isLetter(c10)))) {
                 break;
             }
@@ -138,8 +138,8 @@ public final class a {
         b();
         int i11 = this.e;
         while (true) {
-            int i12 = this.f7646c;
-            cArr = this.f7644a;
+            int i12 = this.f7645c;
+            cArr = this.f7643a;
             if (i11 < i12) {
                 if (c10 == cArr[i11]) {
                     i10 = i11 - this.e;
@@ -159,8 +159,8 @@ public final class a {
         }
         b();
         int i13 = this.e;
-        String c12 = c(cArr, strArr, i13, this.f7646c - i13);
-        this.e = this.f7646c;
+        String c12 = c(cArr, strArr, i13, this.f7645c - i13);
+        this.e = this.f7645c;
         return c12;
     }
 
@@ -168,10 +168,10 @@ public final class a {
         char[] cArr2;
         b();
         int i10 = this.e;
-        int i11 = this.f7646c;
+        int i11 = this.f7645c;
         loop0: while (true) {
             int i12 = this.e;
-            cArr2 = this.f7644a;
+            cArr2 = this.f7643a;
             if (i12 >= i11) {
                 break;
             }
@@ -193,10 +193,10 @@ public final class a {
         char[] cArr2;
         b();
         int i10 = this.e;
-        int i11 = this.f7646c;
+        int i11 = this.f7645c;
         while (true) {
             int i12 = this.e;
-            cArr2 = this.f7644a;
+            cArr2 = this.f7643a;
             if (i12 >= i11 || Arrays.binarySearch(cArr, cArr2[i12]) >= 0) {
                 break;
             }
@@ -212,15 +212,15 @@ public final class a {
     public final char i() {
         b();
         int i10 = this.e;
-        if (i10 >= this.f7646c) {
+        if (i10 >= this.f7645c) {
             return (char) 65535;
         }
-        return this.f7644a[i10];
+        return this.f7643a[i10];
     }
 
     public final boolean j() {
         b();
-        if (this.e >= this.f7646c) {
+        if (this.e >= this.f7645c) {
             return true;
         }
         return false;
@@ -230,9 +230,9 @@ public final class a {
         b();
         b();
         int length = str.length();
-        if (length <= this.f7646c - this.e) {
+        if (length <= this.f7645c - this.e) {
             for (int i10 = 0; i10 < length; i10++) {
-                if (str.charAt(i10) == this.f7644a[this.e + i10]) {
+                if (str.charAt(i10) == this.f7643a[this.e + i10]) {
                 }
             }
             this.e = str.length() + this.e;
@@ -244,9 +244,9 @@ public final class a {
     public final boolean l(String str) {
         b();
         int length = str.length();
-        if (length <= this.f7646c - this.e) {
+        if (length <= this.f7645c - this.e) {
             for (int i10 = 0; i10 < length; i10++) {
-                if (Character.toUpperCase(str.charAt(i10)) == Character.toUpperCase(this.f7644a[this.e + i10])) {
+                if (Character.toUpperCase(str.charAt(i10)) == Character.toUpperCase(this.f7643a[this.e + i10])) {
                 }
             }
             this.e = str.length() + this.e;
@@ -256,7 +256,7 @@ public final class a {
     }
 
     public final boolean m(char c10) {
-        if (!j() && this.f7644a[this.e] == c10) {
+        if (!j() && this.f7643a[this.e] == c10) {
             return true;
         }
         return false;
@@ -265,7 +265,7 @@ public final class a {
     public final boolean n(char... cArr) {
         if (!j()) {
             b();
-            char c10 = this.f7644a[this.e];
+            char c10 = this.f7643a[this.e];
             for (char c11 : cArr) {
                 if (c11 == c10) {
                     return true;
@@ -279,7 +279,7 @@ public final class a {
         if (j()) {
             return false;
         }
-        char c10 = this.f7644a[this.e];
+        char c10 = this.f7643a[this.e];
         if (c10 < 'A' || c10 > 'Z') {
             if ((c10 < 'a' || c10 > 'z') && !Character.isLetter(c10)) {
                 return false;
@@ -293,19 +293,19 @@ public final class a {
         b();
         char charAt = str.charAt(0);
         int i10 = this.e;
-        while (i10 < this.f7646c) {
-            char[] cArr = this.f7644a;
+        while (i10 < this.f7645c) {
+            char[] cArr = this.f7643a;
             if (charAt != cArr[i10]) {
                 do {
                     i10++;
-                    if (i10 >= this.f7646c) {
+                    if (i10 >= this.f7645c) {
                         break;
                     }
                 } while (charAt != cArr[i10]);
             }
             int i11 = i10 + 1;
             int length = (str.length() + i11) - 1;
-            int i12 = this.f7646c;
+            int i12 = this.f7645c;
             if (i10 < i12 && length <= i12) {
                 int i13 = i11;
                 for (int i14 = 1; i13 < length && str.charAt(i14) == cArr[i13]; i14++) {
@@ -326,6 +326,6 @@ public final class a {
 
     public final String toString() {
         int i10 = this.e;
-        return new String(this.f7644a, i10, this.f7646c - i10);
+        return new String(this.f7643a, i10, this.f7645c - i10);
     }
 }

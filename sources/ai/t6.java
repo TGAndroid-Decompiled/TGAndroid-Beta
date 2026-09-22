@@ -3,14 +3,14 @@ package ai;
 import android.content.Context;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.jn0;
-public final class t6 extends jn0 {
+import org.telegram.ui.Components.ln0;
+public final class t6 extends ln0 {
     public a1.e h;
-    public final j7 f1555n;
+    public final j7 f1552n;
 
     public t6(j7 j7Var, Context context, d dVar) {
         super(context, 13.0f, dVar);
-        this.f1555n = j7Var;
+        this.f1552n = j7Var;
     }
 
     @Override
@@ -26,11 +26,11 @@ public final class t6 extends jn0 {
             this.h.run();
         }
         if (this.h != null) {
-            j7 j7Var = this.f1555n;
+            j7 j7Var = this.f1552n;
             if (!j7Var.Q) {
                 j7Var.Q = true;
-                j7Var.f1054w.E();
-                j7Var.f1055x.h1(0, -j7Var.f1052r.getPaddingTop());
+                j7Var.f1051w.E();
+                j7Var.f1052x.h1(0, -j7Var.f1049r.getPaddingTop());
             }
         }
     }

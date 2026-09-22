@@ -1,33 +1,76 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
-public final class q21 implements le.d, Utilities.Callback5, Utilities.Callback5Return {
-    public final l31 f27506a;
+public abstract class q21 extends View {
+    public final r21 f27486a;
+    public Utilities.Callback f27487b;
+    public final org.telegram.ui.ActionBar.f6 f27488c;
+    public int d;
 
-    @Override
-    public void D(int i10, float f7, float f10, le.e eVar) {
-        this.f27506a.g();
+    public q21(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f27488c = f6Var;
+        r21 r21Var = new r21(i10, this, f6Var, false);
+        this.f27486a = r21Var;
+        r21Var.f27787r = new yq0(this, 19);
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(l31.c(this.f27506a, (w51) obj, (View) obj2));
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        org.telegram.ui.ActionBar.f6 f6Var = this.f27488c;
+        if (f6Var != null) {
+            f6Var.m(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        } else {
+            org.telegram.ui.ActionBar.j6.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
+        }
+        this.f27486a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        l31.a(this.f27506a, (w51) obj);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f27486a.a();
     }
 
     @Override
-    public void C(float f7, int i10) {
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f27486a.b();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(33.0f), 1073741824));
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f27486a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void set(MessageObject messageObject) {
+        r21 r21Var = this.f27486a;
+        r21Var.f(messageObject);
+        if (isAttachedToWindow()) {
+            r21Var.a();
+        }
+    }
+
+    public void setBackgroundHeight(int i10) {
+        this.d = i10;
+    }
+
+    public void setOnTopicClickListener(Utilities.Callback<Long> callback) {
+        this.f27487b = callback;
     }
 }

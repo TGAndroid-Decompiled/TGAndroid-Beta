@@ -12,12 +12,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class xk0 extends org.telegram.ui.ActionBar.j {
-    public final Context f39610a;
-    public final bl0 f39611b;
+    public final Context f39632a;
+    public final bl0 f39633b;
 
     public xk0(bl0 bl0Var, Context context) {
-        this.f39611b = bl0Var;
-        this.f39610a = context;
+        this.f39633b = bl0Var;
+        this.f39632a = context;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class xk0 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.k kVar;
-        bl0 bl0Var = this.f39611b;
+        bl0 bl0Var = this.f39633b;
         org.telegram.ui.ActionBar.f6 f6Var = bl0Var.h;
         SparseArray sparseArray = bl0Var.J;
         if (i10 == -1) {
@@ -40,17 +40,17 @@ public final class xk0 extends org.telegram.ui.ActionBar.j {
         }
         if (i10 == 1) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bl0Var.getParentActivity(), 0, f6Var);
-            alertDialog$Builder.f18654a.R = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
-            alertDialog$Builder.f18654a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
+            alertDialog$Builder.f18669a.R = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
+            alertDialog$Builder.f18669a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new ja0(2));
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new fu(this, 29));
             TextView textView = (TextView) alertDialog$Builder.o().d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19333q7, f6Var));
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19348q7, f6Var));
             }
         } else if (i10 == 2) {
             int size = sparseArray.size();
-            Context context = this.f39610a;
+            Context context = this.f39632a;
             if (size == 1) {
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
@@ -78,7 +78,7 @@ public final class xk0 extends org.telegram.ui.ActionBar.j {
             }
             bl0.W(bl0Var);
             bl0Var.c0();
-            bl0Var.f32486f.l();
+            bl0Var.f32506f.l();
         }
     }
 }

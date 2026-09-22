@@ -14,14 +14,14 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class e2 extends WebViewClient {
-    public boolean f38894a = true;
-    public boolean f38895b;
-    public final InputStream f38896c;
+    public boolean f38915a = true;
+    public boolean f38916b;
+    public final InputStream f38917c;
     public final j2 d;
 
     public e2(j2 j2Var, InputStream inputStream) {
         this.d = j2Var;
-        this.f38896c = inputStream;
+        this.f38917c = inputStream;
     }
 
     @Override
@@ -31,17 +31,17 @@ public final class e2 extends WebViewClient {
         InputStream a2;
         String str3;
         m1 m1Var2;
-        if (this.f38894a) {
-            this.f38894a = false;
+        if (this.f38915a) {
+            this.f38915a = false;
             return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a4.a.p("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
         }
         j2 j2Var = this.d;
         if (str != null && str.endsWith("/index.html")) {
             str3 = "application/octet-stream";
-            if (this.f38895b) {
-                oi.f fVar = j2Var.f38954b;
+            if (this.f38916b) {
+                oi.f fVar = j2Var.f38975b;
                 if (fVar != null) {
-                    m1Var2 = (m1) ((ArrayList) fVar.f15749b).get(0);
+                    m1Var2 = (m1) ((ArrayList) fVar.f15764b).get(0);
                 } else {
                     m1Var2 = null;
                 }
@@ -55,24 +55,24 @@ public final class e2 extends WebViewClient {
                     return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
                 }
             } else {
-                this.f38895b = true;
-                a2 = this.f38896c;
+                this.f38916b = true;
+                a2 = this.f38917c;
             }
         } else {
-            oi.f fVar2 = j2Var.f38954b;
+            oi.f fVar2 = j2Var.f38975b;
             if (fVar2 != null) {
-                m1Var = (m1) ((HashMap) fVar2.f15750c).get(str);
+                m1Var = (m1) ((HashMap) fVar2.f15765c).get(str);
             } else {
                 m1Var = null;
             }
             if (m1Var == null) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
             }
-            n1 n1Var = (n1) m1Var.f38984a.get("content-type");
+            n1 n1Var = (n1) m1Var.f39005a.get("content-type");
             if (n1Var == null) {
                 str2 = null;
             } else {
-                str2 = n1Var.f38992a;
+                str2 = n1Var.f39013a;
             }
             if (!"text/html".equalsIgnoreCase(str2) && !"text/css".equalsIgnoreCase(str2)) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);

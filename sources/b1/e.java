@@ -6,16 +6,16 @@ import gd.i;
 import rd.p;
 import v7.f0;
 public final class e implements p {
-    public final int f2896a;
+    public final int f2895a;
 
     public e(int i10) {
-        this.f2896a = i10;
+        this.f2895a = i10;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
         id.b bVar;
-        int i10 = this.f2896a;
+        int i10 = this.f2895a;
         i iVar = i.f9621a;
         switch (i10) {
             case 0:

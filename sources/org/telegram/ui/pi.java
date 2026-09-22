@@ -1,47 +1,20 @@
 package org.telegram.ui;
-public final class pi extends org.telegram.ui.ActionBar.n1 {
-    public final org.telegram.ui.Components.pk0 f36574o;
-    public final zn f36575p;
 
-    public pi(zn znVar, eb ebVar, org.telegram.ui.Components.pk0 pk0Var) {
-        super(ebVar, -2, -2);
-        this.f36575p = znVar;
-        this.f36574o = pk0Var;
-    }
+import android.app.Activity;
+import java.util.ArrayList;
+public final class pi extends org.telegram.ui.Components.tv {
+    public final zn W;
 
-    @Override
-    public final void d(boolean z10) {
-        super.d(true);
-        org.telegram.ui.Components.pk0 pk0Var = this.f36574o;
-        if (pk0Var != null) {
-            pk0Var.d();
-        }
+    public pi(zn znVar, org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList) {
+        super(n2Var, activity, f6Var, arrayList);
+        this.W = znVar;
     }
 
     @Override
     public final void dismiss() {
-        d(true);
-        zn znVar = this.f36575p;
-        if (znVar.Q8 == this) {
-            org.telegram.ui.Components.pc pcVar = org.telegram.ui.Components.pc.f27245w;
-            org.telegram.ui.Components.pc pcVar2 = znVar.f40405n1;
-            if (pcVar == pcVar2 && pcVar2 != null) {
-                pcVar2.b();
-                znVar.f40405n1 = null;
-            }
-            znVar.Q8 = null;
-            znVar.T8 = null;
-            znVar.S8 = null;
-            znVar.f40555z0.R = true;
-            if (znVar.R8) {
-                znVar.g8(false, true, 0.0f);
-            } else {
-                znVar.R8 = true;
-            }
-            lk lkVar = znVar.Y;
-            if (lkVar != null && lkVar.getEditField() != null) {
-                znVar.Y.getEditField().setAllowDrawCursor(true);
-            }
-        }
+        super.dismiss();
+        zn znVar = this.W;
+        znVar.getClass();
+        znVar.g8(false, true, 0.0f);
     }
 }

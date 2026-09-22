@@ -28,7 +28,7 @@ public final class o extends db.u {
                     aVar.t();
                     return null;
                 }
-                Map map = (Map) ((fb.n) this.d).p2();
+                Map map = (Map) ((fb.o) this.d).p2();
                 if (x10 == 1) {
                     aVar.a();
                     while (aVar.k()) {
@@ -44,7 +44,7 @@ public final class o extends db.u {
                 } else {
                     aVar.b();
                     while (aVar.k()) {
-                        rb.a.f42488b.getClass();
+                        rb.a.f42509b.getClass();
                         if (aVar instanceof l) {
                             l lVar = (l) aVar;
                             lVar.F(5);
@@ -95,11 +95,11 @@ public final class o extends db.u {
         throw new UnsupportedOperationException("Method not decompiled: gb.o.write(lb.b, java.lang.Object):void");
     }
 
-    public o(d dVar, db.g gVar, Type type, db.u uVar, Type type2, db.u uVar2, fb.n nVar) {
+    public o(d dVar, db.g gVar, Type type, db.u uVar, Type type2, db.u uVar2, fb.o oVar) {
         this.f9577a = 0;
         this.f9578b = new o(gVar, uVar, type);
         this.f9579c = new o(gVar, uVar2, type2);
-        this.d = nVar;
+        this.d = oVar;
     }
 
     public o(Class cls) {

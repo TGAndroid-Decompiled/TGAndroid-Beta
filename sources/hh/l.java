@@ -6,7 +6,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.kc0;
+import org.telegram.ui.Components.nc0;
 import org.telegram.ui.co;
 public final class l {
     public static final Rect f10543f = new Rect();
@@ -21,7 +21,7 @@ public final class l {
             return ((fh.c) aVar).f9073a.getColor();
         }
         if (aVar instanceof fh.b) {
-            return ((Integer) this.d.n(((fh.b) aVar).d)).intValue();
+            return ((Integer) this.d.p(((fh.b) aVar).d)).intValue();
         } else if (aVar instanceof fh.e) {
             return a(((fh.e) aVar).f9081a);
         } else {
@@ -34,7 +34,7 @@ public final class l {
             return ((fh.c) aVar).f9073a.getColor();
         }
         if (aVar instanceof fh.b) {
-            return ((Integer) this.e.n(((fh.b) aVar).d)).intValue();
+            return ((Integer) this.e.p(((fh.b) aVar).d)).intValue();
         } else if (aVar instanceof fh.e) {
             return b(((fh.e) aVar).f9081a);
         } else {
@@ -49,21 +49,21 @@ public final class l {
             cVar.a(((ColorDrawable) drawable).getColor());
             return cVar;
         }
-        boolean z11 = drawable instanceof kc0;
+        boolean z11 = drawable instanceof nc0;
         fh.b bVar = this.f10545b;
         if (z11) {
-            kc0 kc0Var = (kc0) drawable;
-            if (kc0Var.f25751q < 0) {
+            nc0 nc0Var = (nc0) drawable;
+            if (nc0Var.f26742q < 0) {
                 cVar.a(-16777216);
                 return cVar;
             }
-            bVar.a(kc0Var.f25745k);
+            bVar.a(nc0Var.f26736k);
             return bVar;
         }
         boolean z12 = drawable instanceof BitmapDrawable;
         aa.a aVar = this.f10546c;
         if (z12) {
-            bVar.a((Bitmap) aVar.n(((BitmapDrawable) drawable).getBitmap()));
+            bVar.a((Bitmap) aVar.p(((BitmapDrawable) drawable).getBitmap()));
             return bVar;
         } else if (drawable instanceof co) {
             return c(((co) drawable).c(false));
@@ -90,7 +90,7 @@ public final class l {
                 drawable.setBounds(rect);
                 bVar.a(bVar.f9071f);
                 bVar.f9071f = null;
-                bVar.a((Bitmap) aVar.n(bVar.d));
+                bVar.a((Bitmap) aVar.p(bVar.d));
             }
             return bVar;
         }

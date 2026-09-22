@@ -2,7 +2,7 @@ package f5;
 
 import com.google.android.gms.internal.vision.e2;
 public abstract class c extends com.googlecode.mp4parser.c {
-    public static final ka.c e;
+    public static final o0.b e;
 
     static {
         re.a aVar = new re.a(c.class, "ChunkOffsetBox.java");
@@ -17,6 +17,6 @@ public abstract class c extends com.googlecode.mp4parser.c {
         sb2.append("[entryCount=");
         t tVar = (t) this;
         e2.q(re.a.b(t.h, tVar, tVar));
-        return a4.a.n(tVar.f8948f.length, "]", sb2);
+        return a4.a.n(tVar.f8947f.length, "]", sb2);
     }
 }

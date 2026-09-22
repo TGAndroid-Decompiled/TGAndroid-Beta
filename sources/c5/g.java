@@ -7,26 +7,26 @@ import hg.k0;
 import java.lang.reflect.GenericDeclaration;
 import java.util.HashMap;
 public final class g {
-    public boolean f3878a;
-    public Object f3879b;
-    public Object f3880c;
+    public boolean f3888a;
+    public Object f3889b;
+    public Object f3890c;
     public Object d;
-    public Object e = new h0(this, true);
-    public Object f3881f = new h0(this, false);
+    public Object e = new g0(this, true);
+    public Object f3891f = new g0(this, false);
 
-    public g(Context context, q qVar, of.b bVar) {
-        this.f3879b = context;
-        this.f3880c = qVar;
+    public g(Context context, p pVar, of.b bVar) {
+        this.f3889b = context;
+        this.f3890c = pVar;
         this.d = bVar;
     }
 
-    public d9.i a(int i10) {
-        d9.i iVar;
-        d9.i iVar2;
-        HashMap hashMap = (HashMap) this.f3880c;
-        d9.i iVar3 = (d9.i) hashMap.get(Integer.valueOf(i10));
-        if (iVar3 != null) {
-            return iVar3;
+    public d9.j a(int i10) {
+        d9.j jVar;
+        d9.j jVar2;
+        HashMap hashMap = (HashMap) this.f3890c;
+        d9.j jVar3 = (d9.j) hashMap.get(Integer.valueOf(i10));
+        if (jVar3 != null) {
+            return jVar3;
         }
         final of.b bVar = (of.b) this.e;
         bVar.getClass();
@@ -35,7 +35,7 @@ public final class g {
                 if (i10 != 2) {
                     if (i10 != 3) {
                         if (i10 == 4) {
-                            iVar = new d9.i() {
+                            jVar = new d9.j() {
                                 @Override
                                 public final Object get() {
                                     switch (r3) {
@@ -46,7 +46,7 @@ public final class g {
                                         case 2:
                                             return p.e((Class) this, bVar);
                                         default:
-                                            return new w0(bVar, (c3.m) ((c5.g) this).f3879b);
+                                            return new w0(bVar, (c3.m) ((c5.g) this).f3889b);
                                     }
                                 }
                             };
@@ -54,11 +54,11 @@ public final class g {
                             throw new IllegalArgumentException(k0.h(i10, "Unrecognized contentType: "));
                         }
                     } else {
-                        iVar = new i2.o(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(u2.e0.class), 3);
+                        jVar = new i2.o(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(u2.e0.class), 3);
                     }
                 } else {
                     final Class asSubclass = HlsMediaSource$Factory.class.asSubclass(u2.e0.class);
-                    iVar2 = new d9.i() {
+                    jVar2 = new d9.j() {
                         @Override
                         public final Object get() {
                             switch (r3) {
@@ -69,14 +69,14 @@ public final class g {
                                 case 2:
                                     return p.e((Class) asSubclass, bVar);
                                 default:
-                                    return new w0(bVar, (c3.m) ((c5.g) asSubclass).f3879b);
+                                    return new w0(bVar, (c3.m) ((c5.g) asSubclass).f3889b);
                             }
                         }
                     };
                 }
             } else {
                 final GenericDeclaration asSubclass2 = Class.forName("androidx.media3.exoplayer.smoothstreaming.SsMediaSource$Factory").asSubclass(u2.e0.class);
-                iVar2 = new d9.i() {
+                jVar2 = new d9.j() {
                     @Override
                     public final Object get() {
                         switch (r3) {
@@ -87,15 +87,15 @@ public final class g {
                             case 2:
                                 return p.e((Class) asSubclass2, bVar);
                             default:
-                                return new w0(bVar, (c3.m) ((c5.g) asSubclass2).f3879b);
+                                return new w0(bVar, (c3.m) ((c5.g) asSubclass2).f3889b);
                         }
                     }
                 };
             }
-            iVar = iVar2;
+            jVar = jVar2;
         } else {
             final Class asSubclass3 = DashMediaSource$Factory.class.asSubclass(u2.e0.class);
-            iVar = new d9.i() {
+            jVar = new d9.j() {
                 @Override
                 public final Object get() {
                     switch (r3) {
@@ -106,12 +106,12 @@ public final class g {
                         case 2:
                             return p.e((Class) asSubclass3, bVar);
                         default:
-                            return new w0(bVar, (c3.m) ((c5.g) asSubclass3).f3879b);
+                            return new w0(bVar, (c3.m) ((c5.g) asSubclass3).f3889b);
                     }
                 }
             };
         }
-        hashMap.put(Integer.valueOf(i10), iVar);
-        return iVar;
+        hashMap.put(Integer.valueOf(i10), jVar);
+        return jVar;
     }
 }

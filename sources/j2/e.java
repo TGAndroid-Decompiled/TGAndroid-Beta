@@ -18,7 +18,7 @@ public final class e implements m, d9.e, i5.g, z, e1 {
         this.f12575a = i10;
     }
 
-    public static AudioDeviceInfo d(Object obj) {
+    public static AudioDeviceInfo c(Object obj) {
         return (AudioDeviceInfo) obj;
     }
 
@@ -28,11 +28,11 @@ public final class e implements m, d9.e, i5.g, z, e1 {
 
     @Override
     public Object apply(Object obj) {
-        return i0.z(Integer.valueOf(((v2.h) obj).f44149a));
+        return i0.z(Integer.valueOf(((v2.h) obj).f44171a));
     }
 
     @Override
-    public void c(q qVar, int i10) {
+    public void d(q qVar, int i10) {
         switch (this.f12575a) {
             case 25:
                 qVar.getClass();

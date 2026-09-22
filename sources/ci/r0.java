@@ -7,44 +7,44 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.VideoEncodingService;
 import org.telegram.tgnet.TLRPC;
 public final class r0 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f5395a;
-    public final File f5396b;
-    public MessageObject f5397c;
+    public final int f5393a;
+    public final File f5394b;
+    public MessageObject f5395c;
     public final p0 d;
     public final q0 e;
-    public final o0 f5398f;
+    public final o0 f5396f;
 
     public r0(int i10, o8 o8Var, File file, p0 p0Var, q0 q0Var, o0 o0Var) {
-        this.f5395a = i10;
-        this.f5396b = file;
+        this.f5393a = i10;
+        this.f5394b = file;
         this.d = p0Var;
         this.e = q0Var;
-        this.f5398f = o0Var;
-        if (this.f5397c != null) {
+        this.f5396f = o0Var;
+        if (this.f5395c != null) {
             return;
         }
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.filePreparingStarted);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileNewChunkAvailable);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.filePreparingFailed);
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.f18349id = 1;
+        tL_message.f18364id = 1;
         tL_message.attachPath = file.getAbsolutePath();
-        this.f5397c = new MessageObject(i10, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
+        this.f5395c = new MessageObject(i10, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
         o8Var.s(new ai.y1(this, 7));
     }
 
     public final void a(boolean z10) {
-        if (this.f5397c == null) {
+        if (this.f5395c == null) {
             return;
         }
-        int i10 = this.f5395a;
+        int i10 = this.f5393a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.filePreparingStarted);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.filePreparingFailed);
         if (z10) {
-            MediaController.getInstance().cancelVideoConvert(this.f5397c);
+            MediaController.getInstance().cancelVideoConvert(this.f5395c);
         }
-        this.f5397c = null;
+        this.f5395c = null;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
         if (i10 == NotificationCenter.filePreparingStarted) {
             MessageObject messageObject = (MessageObject) objArr[0];
         } else if (i10 == NotificationCenter.fileNewChunkAvailable) {
-            if (((MessageObject) objArr[0]) == this.f5397c) {
+            if (((MessageObject) objArr[0]) == this.f5395c) {
                 String str = (String) objArr[1];
                 ((Long) objArr[2]).getClass();
                 long longValue = ((Long) objArr[3]).longValue();
@@ -65,16 +65,16 @@ public final class r0 implements NotificationCenter.NotificationCenterDelegate {
                     a(false);
                 }
             }
-        } else if (i10 == NotificationCenter.filePreparingFailed && ((MessageObject) objArr[0]) == this.f5397c) {
+        } else if (i10 == NotificationCenter.filePreparingFailed && ((MessageObject) objArr[0]) == this.f5395c) {
             a(false);
             try {
-                File file = this.f5396b;
+                File file = this.f5394b;
                 if (file != null) {
                     file.delete();
                 }
             } catch (Exception unused) {
             }
-            this.f5398f.run();
+            this.f5396f.run();
         }
     }
 }

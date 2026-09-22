@@ -39,11 +39,11 @@ public final class b extends f implements Handler.Callback {
         if (looper == null) {
             handler = null;
         } else {
-            String str = d0.f7888a;
+            String str = d0.f7887a;
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f42927a;
+        this.I = a.f42948a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -65,7 +65,7 @@ public final class b extends f implements Handler.Callback {
     public final void C(p0 p0Var, ArrayList arrayList) {
         int i10 = 0;
         while (true) {
-            o0[] o0VarArr = p0Var.f3178a;
+            o0[] o0VarArr = p0Var.f3177a;
             if (i10 < o0VarArr.length) {
                 s a2 = o0VarArr[i10].a();
                 if (a2 != null) {
@@ -76,9 +76,9 @@ public final class b extends f implements Handler.Callback {
                         c10.getClass();
                         l3.a aVar2 = this.L;
                         aVar2.clear();
-                        aVar2.b(c10.length);
+                        aVar2.c(c10.length);
                         aVar2.f10097c.put(c10);
-                        aVar2.c();
+                        aVar2.e();
                         p0 a11 = a10.a(aVar2);
                         if (a11 != null) {
                             C(a11, arrayList);
@@ -118,7 +118,7 @@ public final class b extends f implements Handler.Callback {
         m0 a2 = n0Var.a();
         int i10 = 0;
         while (true) {
-            o0[] o0VarArr = p0Var.f3178a;
+            o0[] o0VarArr = p0Var.f3177a;
             if (i10 >= o0VarArr.length) {
                 break;
             }
@@ -178,10 +178,10 @@ public final class b extends f implements Handler.Callback {
         this.M = this.I.a(sVarArr[0]);
         p0 p0Var = this.Q;
         if (p0Var != null) {
-            long j11 = p0Var.f3179b;
+            long j11 = p0Var.f3178b;
             long j12 = (this.R + j11) - j10;
             if (j11 != j12) {
-                p0Var = new p0(j12, p0Var.f3178a);
+                p0Var = new p0(j12, p0Var.f3177a);
             }
             this.Q = p0Var;
         }
@@ -196,19 +196,19 @@ public final class b extends f implements Handler.Callback {
                 l3.a aVar = this.L;
                 aVar.clear();
                 y yVar = this.f10687c;
-                yVar.e();
+                yVar.f();
                 int w10 = w(yVar, aVar, 0);
                 if (w10 == -4) {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
                     } else if (aVar.e >= this.f10692w) {
-                        aVar.f14070r = this.P;
-                        aVar.c();
+                        aVar.f14084r = this.P;
+                        aVar.e();
                         m mVar = this.M;
-                        String str = d0.f7888a;
+                        String str = d0.f7887a;
                         p0 a2 = mVar.a(aVar);
                         if (a2 != null) {
-                            ArrayList arrayList = new ArrayList(a2.f3178a.length);
+                            ArrayList arrayList = new ArrayList(a2.f3177a.length);
                             C(a2, arrayList);
                             if (!arrayList.isEmpty()) {
                                 this.Q = new p0(D(aVar.e), (o0[]) arrayList.toArray(new o0[0]));
@@ -216,13 +216,13 @@ public final class b extends f implements Handler.Callback {
                         }
                     }
                 } else if (w10 == -5) {
-                    s sVar = (s) yVar.f15218b;
+                    s sVar = (s) yVar.f15231b;
                     sVar.getClass();
-                    this.P = sVar.f3313w;
+                    this.P = sVar.f3312w;
                 }
             }
             p0 p0Var = this.Q;
-            if (p0Var != null && p0Var.f3179b <= D(j3)) {
+            if (p0Var != null && p0Var.f3178b <= D(j3)) {
                 p0 p0Var2 = this.Q;
                 Handler handler = this.K;
                 if (handler != null) {

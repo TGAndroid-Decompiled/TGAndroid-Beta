@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.content.Context;
 public final class yf0 extends ds {
     public final int h;
-    public final bg0 f39903n;
+    public final bg0 f39923n;
 
     public yf0(bg0 bg0Var, Context context, int i10) {
         super(context);
         this.h = i10;
-        this.f39903n = bg0Var;
+        this.f39923n = bg0Var;
     }
 
     @Override
     public final void a() {
         switch (this.h) {
             case 0:
-                this.f39903n.h(null);
+                this.f39923n.h(null);
                 return;
             default:
-                this.f39903n.h(null);
+                this.f39923n.h(null);
                 return;
         }
     }

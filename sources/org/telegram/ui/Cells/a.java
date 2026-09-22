@@ -5,25 +5,25 @@ import android.view.View;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.nj0;
 import org.telegram.ui.jq0;
 import org.telegram.ui.lq0;
 import org.telegram.ui.ol0;
 import org.telegram.ui.v10;
 import org.telegram.ui.x10;
 public final class a implements View.OnClickListener {
-    public final int f19995a;
-    public final Object f19996b;
+    public final int f20010a;
+    public final Object f20011b;
 
     public a(Object obj, int i10) {
-        this.f19995a = i10;
-        this.f19996b = obj;
+        this.f20010a = i10;
+        this.f20011b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f19995a;
-        Object obj = this.f19996b;
+        int i10 = this.f20010a;
+        Object obj = this.f20011b;
         switch (i10) {
             case 0:
                 ((j) obj).h();
@@ -41,10 +41,10 @@ public final class a implements View.OnClickListener {
                 ((w) obj).toggle();
                 return;
             case 3:
-                kj0 kj0Var = ((y2) obj).f21880f;
-                if (!kj0Var.b()) {
-                    kj0Var.setProgress(0.0f);
-                    kj0Var.d();
+                nj0 nj0Var = ((y2) obj).f21895f;
+                if (!nj0Var.b()) {
+                    nj0Var.setProgress(0.0f);
+                    nj0Var.d();
                     return;
                 }
                 return;
@@ -60,19 +60,19 @@ public final class a implements View.OnClickListener {
                 return;
             case 7:
                 c5 c5Var = (c5) obj;
-                c5Var.L.e(c5Var, true);
+                c5Var.L.c(c5Var, true);
                 return;
             case 8:
                 v5 v5Var = (v5) obj;
                 v5Var.d = v5Var.e[((Integer) ((RadioButton) view).getTag()).intValue()];
                 v5Var.b(true);
-                v5Var.f21681c.onClick(v5Var);
+                v5Var.f21696c.onClick(v5Var);
                 return;
             case 9:
                 z5 z5Var = (z5) obj;
                 y5 y5Var = z5Var.d;
                 if (y5Var != null) {
-                    lq0.U(((jq0) ((ol0) y5Var).f36334b).d, z5Var.f21916b[((Integer) view.getTag()).intValue()]);
+                    lq0.U(((jq0) ((ol0) y5Var).f36361b).d, z5Var.f21931b[((Integer) view.getTag()).intValue()]);
                     return;
                 }
                 return;
@@ -81,10 +81,10 @@ public final class a implements View.OnClickListener {
                 if (v7Var.d != null) {
                     int intValue = ((Integer) view.getTag()).intValue();
                     s7 s7Var = v7Var.d;
-                    int i11 = v7Var.f21694c[intValue];
-                    MessageObject messageObject = v7Var.f21693b[intValue];
-                    x10 x10Var = ((v10) ((org.telegram.ui.g) s7Var).f33771b).d;
-                    SpannableStringBuilder[] spannableStringBuilderArr = x10.f39291s0;
+                    int i11 = v7Var.f21709c[intValue];
+                    MessageObject messageObject = v7Var.f21708b[intValue];
+                    x10 x10Var = ((v10) ((org.telegram.ui.g) s7Var).f33799b).d;
+                    SpannableStringBuilder[] spannableStringBuilderArr = x10.f39315s0;
                     x10Var.f(i11, v7Var, messageObject, intValue);
                     return;
                 }

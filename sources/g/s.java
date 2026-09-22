@@ -97,7 +97,7 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
     public OnBackInvokedCallback f9309p0;
     public CharSequence f9310r;
     public j1 f9311s;
-    public a6.m v;
+    public pb.c v;
     public xa.c f9312w;
     public k.a f9313x;
     public ActionBarContextView f9314y;
@@ -268,14 +268,14 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                     if (!l7.h) {
                         try {
                             Field declaredField = Resources.class.getDeclaredField("mResourcesImpl");
-                            l7.f44341g = declaredField;
+                            l7.f44363g = declaredField;
                             declaredField.setAccessible(true);
                         } catch (NoSuchFieldException e) {
                             Log.e("ResourcesFlusher", "Could not retrieve Resources#mResourcesImpl field", e);
                         }
                         l7.h = true;
                     }
-                    Field field = l7.f44341g;
+                    Field field = l7.f44363g;
                     if (field != null) {
                         try {
                             obj = field.get(resources);
@@ -284,17 +284,17 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                             obj = null;
                         }
                         if (obj != null) {
-                            if (!l7.f44338b) {
+                            if (!l7.f44360b) {
                                 try {
                                     Field declaredField2 = obj.getClass().getDeclaredField("mDrawableCache");
-                                    l7.f44337a = declaredField2;
+                                    l7.f44359a = declaredField2;
                                     declaredField2.setAccessible(true);
                                 } catch (NoSuchFieldException e10) {
                                     Log.e("ResourcesFlusher", "Could not retrieve ResourcesImpl#mDrawableCache field", e10);
                                 }
-                                l7.f44338b = true;
+                                l7.f44360b = true;
                             }
-                            Field field2 = l7.f44337a;
+                            Field field2 = l7.f44359a;
                             if (field2 != null) {
                                 try {
                                     obj2 = field2.get(obj);
@@ -308,17 +308,17 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                         }
                     }
                 } else if (i17 >= 23) {
-                    if (!l7.f44338b) {
+                    if (!l7.f44360b) {
                         try {
                             Field declaredField3 = Resources.class.getDeclaredField("mDrawableCache");
-                            l7.f44337a = declaredField3;
+                            l7.f44359a = declaredField3;
                             declaredField3.setAccessible(true);
                         } catch (NoSuchFieldException e12) {
                             Log.e("ResourcesFlusher", "Could not retrieve Resources#mDrawableCache field", e12);
                         }
-                        l7.f44338b = true;
+                        l7.f44360b = true;
                     }
-                    Field field3 = l7.f44337a;
+                    Field field3 = l7.f44359a;
                     if (field3 != null) {
                         try {
                             obj3 = field3.get(resources);
@@ -330,17 +330,17 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                         l7.a(obj3);
                     }
                 } else {
-                    if (!l7.f44338b) {
+                    if (!l7.f44360b) {
                         try {
                             Field declaredField4 = Resources.class.getDeclaredField("mDrawableCache");
-                            l7.f44337a = declaredField4;
+                            l7.f44359a = declaredField4;
                             declaredField4.setAccessible(true);
                         } catch (NoSuchFieldException e14) {
                             Log.e("ResourcesFlusher", "Could not retrieve Resources#mDrawableCache field", e14);
                         }
-                        l7.f44338b = true;
+                        l7.f44360b = true;
                     }
-                    Field field4 = l7.f44337a;
+                    Field field4 = l7.f44359a;
                     if (field4 != null) {
                         try {
                             map = (Map) field4.get(resources);
@@ -400,7 +400,7 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                 if (obtainStyledAttributes.hasValue(0) && (resourceId = obtainStyledAttributes.getResourceId(0, 0)) != 0) {
                     m.q a2 = m.q.a();
                     synchronized (a2) {
-                        drawable = a2.f14509a.f(resourceId, context, true);
+                        drawable = a2.f14524a.f(resourceId, context, true);
                     }
                 } else {
                     drawable = null;
@@ -459,12 +459,12 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
         this.T = true;
         ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f9311s;
         actionBarOverlayLayout.f();
-        ActionMenuView actionMenuView = ((l3) actionBarOverlayLayout.e).f14444a.f2025a;
+        ActionMenuView actionMenuView = ((l3) actionBarOverlayLayout.e).f14459a.f2024a;
         if (actionMenuView != null && (hVar = actionMenuView.J) != null) {
             hVar.f();
             m.d dVar = hVar.J;
             if (dVar != null && dVar.b()) {
-                dVar.f13992i.dismiss();
+                dVar.f14006i.dismiss();
             }
         }
         Window.Callback callback = this.f9298f.getCallback();
@@ -481,7 +481,7 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
         if (z10 && rVar.f9277a == 0 && (j1Var = this.f9311s) != null) {
             ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) j1Var;
             actionBarOverlayLayout.f();
-            ActionMenuView actionMenuView = ((l3) actionBarOverlayLayout.e).f14444a.f2025a;
+            ActionMenuView actionMenuView = ((l3) actionBarOverlayLayout.e).f14459a.f2024a;
             if (actionMenuView != null && (hVar = actionMenuView.J) != null && hVar.h()) {
                 g(rVar.h);
                 return;
@@ -527,7 +527,7 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
         if ((i10 == 108 || i10 == 0) && this.f9311s != null) {
             r o10 = o(0);
             o10.f9284k = false;
-            w(o10, null);
+            v(o10, null);
         }
     }
 
@@ -536,7 +536,7 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
         Context context;
         if (!this.I) {
             Context context2 = this.e;
-            int[] iArr = f.a.f8772j;
+            int[] iArr = f.a.f8771j;
             TypedArray obtainStyledAttributes = context2.obtainStyledAttributes(iArr);
             if (obtainStyledAttributes.hasValue(117)) {
                 if (obtainStyledAttributes.getBoolean(126, false)) {
@@ -588,13 +588,13 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                     viewGroup = this.Q ? (ViewGroup) from.inflate(2131492886, (ViewGroup) null) : (ViewGroup) from.inflate(2131492885, (ViewGroup) null);
                 }
                 if (viewGroup != null) {
-                    a6.i iVar = new a6.i(this, 19);
-                    WeakHashMap weakHashMap = i0.f42142a;
+                    a6.i iVar = new a6.i(this, 18);
+                    WeakHashMap weakHashMap = i0.f42163a;
                     r0.a0.j(viewGroup, iVar);
                     if (this.f9311s == null) {
                         this.K = (TextView) viewGroup.findViewById(2131296712);
                     }
-                    Method method = s3.f14531a;
+                    Method method = s3.f14546a;
                     try {
                         Method method2 = viewGroup.getClass().getMethod("makeOptionalFitsSystemWindows", null);
                         if (!method2.isAccessible()) {
@@ -623,7 +623,7 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                         }
                     }
                     this.f9298f.setContentView(viewGroup);
-                    contentFrameLayout.setAttachListener(new a4.m(this, 15));
+                    contentFrameLayout.setAttachListener(new android.support.v4.media.c(this, 14));
                     this.J = viewGroup;
                     CharSequence charSequence = this.f9310r;
                     if (!TextUtils.isEmpty(charSequence)) {
@@ -634,12 +634,12 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                             b0 b0Var = this.f9306n;
                             if (b0Var != null) {
                                 l3 l3Var = (l3) b0Var.e;
-                                if (!l3Var.f14448g) {
-                                    Toolbar toolbar = l3Var.f14444a;
+                                if (!l3Var.f14463g) {
+                                    Toolbar toolbar = l3Var.f14459a;
                                     l3Var.h = charSequence;
-                                    if ((l3Var.f14445b & 8) != 0) {
+                                    if ((l3Var.f14460b & 8) != 0) {
                                         toolbar.setTitle(charSequence);
-                                        if (l3Var.f14448g) {
+                                        if (l3Var.f14463g) {
                                             i0.l(toolbar.getRootView(), charSequence);
                                         }
                                     }
@@ -655,7 +655,7 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                     ContentFrameLayout contentFrameLayout2 = (ContentFrameLayout) this.J.findViewById(16908290);
                     View decorView = this.f9298f.getDecorView();
                     contentFrameLayout2.h.set(decorView.getPaddingLeft(), decorView.getPaddingTop(), decorView.getPaddingRight(), decorView.getPaddingBottom());
-                    WeakHashMap weakHashMap2 = i0.f42142a;
+                    WeakHashMap weakHashMap2 = i0.f42163a;
                     if (contentFrameLayout2.isLaidOut()) {
                         contentFrameLayout2.requestLayout();
                     }
@@ -778,7 +778,7 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
         this.f9302i0 = (1 << i10) | this.f9302i0;
         if (!this.f9301h0) {
             View decorView = this.f9298f.getDecorView();
-            WeakHashMap weakHashMap = i0.f42142a;
+            WeakHashMap weakHashMap = i0.f42163a;
             decorView.postOnAnimation(this.f9303j0);
             this.f9301h0 = true;
         }
@@ -808,14 +808,14 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
                 return true;
             }
             b0 p5 = p();
-            if (p5 == null || (k1Var = p5.e) == null || (g3Var = ((l3) k1Var).f14444a.f2032e0) == null || g3Var.f14403b == null) {
+            if (p5 == null || (k1Var = p5.e) == null || (g3Var = ((l3) k1Var).f14459a.f2031e0) == null || g3Var.f14418b == null) {
                 return false;
             }
-            g3 g3Var2 = ((l3) k1Var).f14444a.f2032e0;
+            g3 g3Var2 = ((l3) k1Var).f14459a.f2031e0;
             if (g3Var2 == null) {
                 nVar = null;
             } else {
-                nVar = g3Var2.f14403b;
+                nVar = g3Var2.f14418b;
             }
             if (nVar != null) {
                 nVar.collapseActionView();
@@ -824,8 +824,27 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
         return true;
     }
 
+    public final void t(g.r r14, android.view.KeyEvent r15) {
+        throw new UnsupportedOperationException("Method not decompiled: g.s.t(g.r, android.view.KeyEvent):void");
+    }
+
+    public final boolean u(r rVar, int i10, KeyEvent keyEvent) {
+        l.l lVar;
+        if (keyEvent.isSystem()) {
+            return false;
+        }
+        if ((!rVar.f9284k && !v(rVar, keyEvent)) || (lVar = rVar.h) == null) {
+            return false;
+        }
+        return lVar.performShortcut(i10, keyEvent, 1);
+    }
+
+    public final boolean v(g.r r13, android.view.KeyEvent r14) {
+        throw new UnsupportedOperationException("Method not decompiled: g.s.v(g.r, android.view.KeyEvent):boolean");
+    }
+
     @Override
-    public final boolean t(l.l lVar, MenuItem menuItem) {
+    public final boolean w(l.l lVar, MenuItem menuItem) {
         int i10;
         r rVar;
         Window.Callback callback = this.f9298f.getCallback();
@@ -855,25 +874,6 @@ public final class s extends h implements l.j, LayoutInflater.Factory2 {
             }
         }
         return false;
-    }
-
-    public final void u(g.r r14, android.view.KeyEvent r15) {
-        throw new UnsupportedOperationException("Method not decompiled: g.s.u(g.r, android.view.KeyEvent):void");
-    }
-
-    public final boolean v(r rVar, int i10, KeyEvent keyEvent) {
-        l.l lVar;
-        if (keyEvent.isSystem()) {
-            return false;
-        }
-        if ((!rVar.f9284k && !w(rVar, keyEvent)) || (lVar = rVar.h) == null) {
-            return false;
-        }
-        return lVar.performShortcut(i10, keyEvent, 1);
-    }
-
-    public final boolean w(g.r r13, android.view.KeyEvent r14) {
-        throw new UnsupportedOperationException("Method not decompiled: g.s.w(g.r, android.view.KeyEvent):boolean");
     }
 
     public final void x() {

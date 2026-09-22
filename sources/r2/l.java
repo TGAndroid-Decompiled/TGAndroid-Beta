@@ -33,9 +33,9 @@ public interface l {
 
     void i(int i10);
 
-    void j(Surface surface);
+    boolean j(k2.e eVar);
 
-    boolean k(k2.u uVar);
+    void k(Surface surface);
 
     void release();
 

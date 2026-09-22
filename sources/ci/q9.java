@@ -5,22 +5,22 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class q9 implements Utilities.Callback {
-    public final int f5362a;
-    public final ba f5363b;
+    public final int f5360a;
+    public final ba f5361b;
 
     public q9(ba baVar, int i10) {
-        this.f5362a = i10;
-        this.f5363b = baVar;
+        this.f5360a = i10;
+        this.f5361b = baVar;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
-        switch (this.f5362a) {
+        switch (this.f5360a) {
             case 0:
-                ba baVar = this.f5363b;
+                ba baVar = this.f5361b;
                 ia iaVar = baVar.W;
-                iaVar.f4809c = (TLRPC.InputPeer) obj;
+                iaVar.f4807c = (TLRPC.InputPeer) obj;
                 HashSet hashSet = iaVar.v;
                 hashSet.clear();
                 if (iaVar.K && iaVar.G) {
@@ -28,7 +28,7 @@ public final class q9 implements Utilities.Callback {
                 }
                 Utilities.Callback callback = iaVar.W;
                 if (callback != null) {
-                    callback.run(iaVar.f4809c);
+                    callback.run(iaVar.f4807c);
                 }
                 la laVar = iaVar.X;
                 if (laVar != null) {
@@ -37,15 +37,15 @@ public final class q9 implements Utilities.Callback {
                 baVar.g(true);
                 return;
             case 1:
-                ia iaVar2 = this.f5363b.W;
+                ia iaVar2 = this.f5361b.W;
                 i10 = ((org.telegram.ui.ActionBar.f3) iaVar2).currentAccount;
                 iaVar2.g1(new ga(5, i10, (ArrayList) obj), new ai.s5(iaVar2, 1), false);
                 return;
             case 2:
-                ba baVar2 = this.f5363b;
+                ba baVar2 = this.f5361b;
                 ia iaVar3 = baVar2.W;
                 HashSet hashSet2 = iaVar3.v;
-                hashSet2.add(Integer.valueOf(((ai.e9) obj).f773a));
+                hashSet2.add(Integer.valueOf(((ai.e9) obj).f770a));
                 baVar2.g(true);
                 la laVar2 = iaVar3.X;
                 if (laVar2 != null) {
@@ -55,7 +55,7 @@ public final class q9 implements Utilities.Callback {
                 return;
             default:
                 String str = (String) obj;
-                ba baVar3 = this.f5363b;
+                ba baVar3 = this.f5361b;
                 if (str != null) {
                     baVar3.getClass();
                     if (str.isEmpty()) {

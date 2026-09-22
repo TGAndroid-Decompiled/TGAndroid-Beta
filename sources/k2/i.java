@@ -1,41 +1,32 @@
 package k2;
 public final class i implements Runnable {
-    public final int f13297a;
-    public final int f13298b;
-    public final long f13299c;
-    public final long d;
-    public final Object e;
+    public final int f13296a;
+    public final n4.y f13297b;
+    public final l f13298c;
 
-    public i(Object obj, int i10, long j3, long j10, int i11) {
-        this.f13297a = i11;
-        this.e = obj;
-        this.f13298b = i10;
-        this.f13299c = j3;
-        this.d = j10;
+    public i(n4.y yVar, l lVar, int i10) {
+        this.f13296a = i10;
+        this.f13297b = yVar;
+        this.f13298c = lVar;
     }
 
     @Override
     public final void run() {
-        u2.f0 f0Var;
-        int i10 = this.f13297a;
-        Object obj = this.e;
+        int i10 = this.f13296a;
+        l lVar = this.f13298c;
+        n4.y yVar = this.f13297b;
         switch (i10) {
             case 0:
-                String str = e2.d0.f7888a;
-                j2.f fVar = ((i2.b0) ((j) ((n4.y) obj).f15218b)).f10625a.f10675s;
+                String str = e2.d0.f7887a;
+                j2.f fVar = ((i2.b0) ((k) yVar.f15231b)).f10625a.f10675s;
                 j2.a p5 = fVar.p();
-                fVar.q(p5, 1011, new j2.c(p5, this.f13298b, this.f13299c, this.d));
+                fVar.q(p5, 1032, new j2.e(p5, lVar, 2));
                 return;
             default:
-                j2.f fVar2 = ((y2.b) obj).f46561b;
-                com.google.firebase.messaging.n nVar = fVar2.d;
-                if (((e9.i0) nVar.f7331b).isEmpty()) {
-                    f0Var = null;
-                } else {
-                    f0Var = (u2.f0) e9.q.l((e9.i0) nVar.f7331b);
-                }
-                j2.a n10 = fVar2.n(f0Var);
-                fVar2.q(n10, 1006, new j2.d(n10, this.f13298b, this.f13299c, this.d));
+                String str2 = e2.d0.f7887a;
+                j2.f fVar2 = ((i2.b0) ((k) yVar.f15231b)).f10625a.f10675s;
+                j2.a p10 = fVar2.p();
+                fVar2.q(p10, 1031, new j2.c(p10, lVar, 19));
                 return;
         }
     }

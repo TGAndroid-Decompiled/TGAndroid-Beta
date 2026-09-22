@@ -1,63 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class jr0 implements Runnable {
-    public final int f25433a = 0;
-    public final jv0 f25434b;
-    public final org.telegram.ui.ActionBar.f6 f25435c;
-    public final MessageObject d;
-    public final int e;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.BirthdayController;
+public final class jr0 implements View.OnClickListener {
+    public final int f25439a;
+    public final boolean f25440b;
+    public final int f25441c;
+    public final FrameLayout d;
 
-    public jr0(jv0 jv0Var, org.telegram.ui.ActionBar.f6 f6Var, int i10, MessageObject messageObject) {
-        this.f25434b = jv0Var;
-        this.f25435c = f6Var;
-        this.e = i10;
-        this.d = messageObject;
+    public jr0(FrameLayout frameLayout, boolean z10, int i10, int i11) {
+        this.f25439a = i11;
+        this.d = frameLayout;
+        this.f25440b = z10;
+        this.f25441c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25433a) {
+    public final void onClick(View view) {
+        switch (this.f25439a) {
             case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(this.f25434b.getContext(), 3, this.f25435c)};
-                int i10 = this.e;
-                int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new ls(b2VarArr, 1));
-                if (sendVote != 0) {
-                    AndroidUtilities.runOnUIThread(new nr0(b2VarArr, i10, sendVote, 0), 500L);
+                lv0 lv0Var = (lv0) this.d;
+                org.telegram.ui.ActionBar.n2 n2Var = lv0Var.f26234v1;
+                if (this.f25440b) {
+                    lv0Var.O0(n2Var, lv0Var.f26209j1, this.f25441c);
                     return;
                 }
+                n2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
+                ci.oc.E(n2Var.getParentActivity(), n2Var.getCurrentAccount()).R(null);
                 return;
             default:
-                jv0 jv0Var = this.f25434b;
-                Context context = jv0Var.getContext();
-                org.telegram.ui.ActionBar.f6 f6Var = this.f25435c;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
-                b2Var.P0 = false;
-                MessageObject messageObject = this.d;
-                if (messageObject.isQuiz()) {
-                    b2Var.R = LocaleController.getString(R.string.StopQuizAlertTitle);
-                    b2Var.T = LocaleController.getString(R.string.StopQuizAlertText);
-                } else {
-                    b2Var.R = LocaleController.getString(R.string.StopPollAlertTitle);
-                    b2Var.T = LocaleController.getString(R.string.StopPollAlertText);
+                bs0 bs0Var = (bs0) this.d;
+                if (bs0Var.e.h() && bs0Var.h.getCurrentPosition() != 0) {
+                    bs0Var.a();
+                    return;
                 }
-                alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new org.telegram.ui.ea(jv0Var, f6Var, messageObject, this.e, 4));
-                hg.k0.p(R.string.Cancel, alertDialog$Builder, null);
+                boolean z10 = this.f25440b;
+                int i10 = this.f25441c;
+                if (z10) {
+                    xh.r1 r1Var = new xh.r1(bs0Var.getContext(), i10, bs0Var.f46439c, null, null);
+                    r1Var.V(BirthdayController.getInstance(i10).isToday(bs0Var.f46439c));
+                    r1Var.show();
+                    return;
+                }
+                tg.m1.e0(2, BirthdayController.getInstance(i10).getState());
                 return;
         }
-    }
-
-    public jr0(jv0 jv0Var, org.telegram.ui.ActionBar.f6 f6Var, MessageObject messageObject, int i10) {
-        this.f25434b = jv0Var;
-        this.f25435c = f6Var;
-        this.d = messageObject;
-        this.e = i10;
     }
 }

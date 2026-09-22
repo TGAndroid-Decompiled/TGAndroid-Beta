@@ -4,18 +4,18 @@ import android.graphics.RectF;
 import android.view.View;
 import r0.i0;
 public final class h implements Runnable {
-    public final int f41364a;
-    public final i f41365b;
+    public final int f41386a;
+    public final i f41387b;
 
     public h(i iVar, int i10) {
-        this.f41364a = i10;
-        this.f41365b = iVar;
+        this.f41386a = i10;
+        this.f41387b = iVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f41364a;
-        i iVar = this.f41365b;
+        int i10 = this.f41386a;
+        i iVar = this.f41387b;
         switch (i10) {
             case 0:
                 if (iVar.v != 0) {

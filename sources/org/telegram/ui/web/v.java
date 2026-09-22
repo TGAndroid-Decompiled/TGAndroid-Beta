@@ -17,15 +17,15 @@ import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uj0;
 public final class v implements Utilities.Callback2 {
-    public final int f39057a;
-    public final d1 f39058b;
-    public final da f39059c;
+    public final int f39078a;
+    public final d1 f39079b;
+    public final da f39080c;
     public final String d;
 
     public v(d1 d1Var, da daVar, String str, int i10) {
-        this.f39057a = i10;
-        this.f39058b = d1Var;
-        this.f39059c = daVar;
+        this.f39078a = i10;
+        this.f39079b = d1Var;
+        this.f39080c = daVar;
         this.d = str;
     }
 
@@ -33,17 +33,17 @@ public final class v implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         int i10;
         uj0 uj0Var;
-        int i11 = this.f39057a;
+        int i11 = this.f39078a;
         String str = this.d;
-        da daVar = this.f39059c;
-        d1 d1Var = this.f39058b;
+        da daVar = this.f39080c;
+        d1 d1Var = this.f39079b;
         switch (i11) {
             case 0:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                d1 d1Var2 = this.f39058b;
+                d1 d1Var2 = this.f39079b;
                 f6 f6Var = d1Var2.e;
                 TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) zf.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
-                da daVar2 = this.f39059c;
+                da daVar2 = this.f39080c;
                 String str2 = this.d;
                 if (tL_buttonTypeRequestPeer != null) {
                     TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
@@ -61,16 +61,16 @@ public final class v implements Utilities.Callback2 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         c0 c0Var = new c0(d1Var2, zArr, str2, tL_buttonTypeRequestPeer, daVar2);
-                        uj0 uj0Var2 = uj0.f38113u0;
+                        uj0 uj0Var2 = uj0.f38131u0;
                         org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                         if (R == null) {
                             uj0Var = null;
                         } else {
-                            uj0Var = uj0.f38113u0;
+                            uj0Var = uj0.f38131u0;
                             if (uj0Var == null) {
                                 uj0 uj0Var3 = new uj0(R, i10, bool, bool2, c0Var);
                                 uj0Var3.show();
-                                uj0.f38113u0 = uj0Var3;
+                                uj0.f38131u0 = uj0Var3;
                                 uj0Var = uj0Var3;
                             }
                         }
@@ -81,7 +81,7 @@ public final class v implements Utilities.Callback2 {
                         return;
                     } else {
                         Bundle e = rk.e(15, "onlySelect", "dialogsType", true);
-                        e.putLong("requestPeerBotId", d1Var2.U.f18475id);
+                        e.putLong("requestPeerBotId", d1Var2.U.f18490id);
                         try {
                             SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
                             tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
@@ -96,7 +96,7 @@ public final class v implements Utilities.Callback2 {
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != 0) {
                             ?? obj3 = new Object();
-                            obj3.f19577a = true;
+                            obj3.f19592a = true;
                             U.showAsSheet(g0Var, obj3);
                             return;
                         }

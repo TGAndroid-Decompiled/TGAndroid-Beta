@@ -2,26 +2,26 @@ package org.telegram.ui.Cells;
 
 import org.telegram.messenger.Utilities;
 public final class p2 {
-    public long f20790a;
-    public long f20791b;
-    public boolean f20792c;
+    public long f20805a;
+    public long f20806b;
+    public boolean f20807c;
     public boolean d;
     public long e;
-    public int f20793f;
-    public Integer f20794g;
+    public int f20808f;
+    public Integer f20809g;
     public int h;
-    public int f20795i;
-    public boolean f20796j;
-    public boolean f20797k;
-    public float f20798l;
-    public boolean f20799m;
-    public int f20800n;
-    public boolean f20801o = false;
-    public long f20802p;
-    public final s2 f20803q;
+    public int f20810i;
+    public boolean f20811j;
+    public boolean f20812k;
+    public float f20813l;
+    public boolean f20814m;
+    public int f20815n;
+    public boolean f20816o = false;
+    public long f20817p;
+    public final s2 f20818q;
 
     public p2(s2 s2Var) {
-        this.f20803q = s2Var;
+        this.f20818q = s2Var;
     }
 
     public final boolean a() {
@@ -29,31 +29,31 @@ public final class p2 {
     }
 
     public final void b() {
-        boolean z10 = this.f20801o;
-        s2 s2Var = this.f20803q;
+        boolean z10 = this.f20816o;
+        s2 s2Var = this.f20818q;
         if (!z10) {
-            Integer num = this.f20794g;
-            if (num != null && s2Var.f20952f3 != null) {
-                float f7 = this.f20798l;
+            Integer num = this.f20809g;
+            if (num != null && s2Var.f20967f3 != null) {
+                float f7 = this.f20813l;
                 if (f7 != 1.0f) {
-                    this.f20798l = f7 + 0.08f;
+                    this.f20813l = f7 + 0.08f;
                     s2Var.invalidate();
-                    this.f20798l = Utilities.clamp(this.f20798l, 1.0f, 0.0f);
+                    this.f20813l = Utilities.clamp(this.f20813l, 1.0f, 0.0f);
                     return;
                 }
             }
             if (num == null) {
-                float f10 = this.f20798l;
+                float f10 = this.f20813l;
                 if (f10 != 0.0f) {
-                    this.f20798l = f10 - 0.08f;
+                    this.f20813l = f10 - 0.08f;
                     s2Var.invalidate();
                 }
             }
-            this.f20798l = Utilities.clamp(this.f20798l, 1.0f, 0.0f);
+            this.f20813l = Utilities.clamp(this.f20813l, 1.0f, 0.0f);
             return;
         }
-        if (System.currentTimeMillis() - this.f20802p > 100) {
-            this.f20801o = false;
+        if (System.currentTimeMillis() - this.f20817p > 100) {
+            this.f20816o = false;
         }
         s2Var.invalidate();
     }

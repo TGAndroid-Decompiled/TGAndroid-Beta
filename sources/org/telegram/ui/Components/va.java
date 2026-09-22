@@ -6,24 +6,24 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class va extends aw0 {
-    public final boolean f29042w0;
-    public final boolean f29043x0;
-    public final ab f29044y0;
+public final class va extends cw0 {
+    public final boolean f29046w0;
+    public final boolean f29047x0;
+    public final ab f29048y0;
 
     public va(ab abVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f29044y0 = abVar;
-        this.f29042w0 = z10;
-        this.f29043x0 = z11;
+        this.f29048y0 = abVar;
+        this.f29046w0 = z10;
+        this.f29047x0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ab abVar = this.f29044y0;
+        ab abVar = this.f29048y0;
         abVar.I(canvas, this);
         super.dispatchDraw(canvas);
-        abVar.H(canvas, this);
+        abVar.G(canvas, this);
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class va extends aw0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            ab abVar = this.f29044y0;
+            ab abVar = this.f29048y0;
             drawable = ((org.telegram.ui.ActionBar.f3) abVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 abVar.dismiss();
@@ -42,8 +42,8 @@ public final class va extends aw0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f29043x0) {
-            this.f29044y0.getClass();
+        if (!this.f29047x0) {
+            this.f29048y0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -61,10 +61,10 @@ public final class va extends aw0 {
         int i13;
         ju juVar;
         int size = View.MeasureSpec.getSize(i11);
-        ab abVar = this.f29044y0;
+        ab abVar = this.f29048y0;
         abVar.h = size;
-        abVar.E(i10, i11);
-        if (this.f29042w0) {
+        abVar.D(i10, i11);
+        if (this.f29046w0) {
             i11 = View.MeasureSpec.makeMeasureSpec(abVar.h, 1073741824);
         }
         if (abVar.Q != null) {

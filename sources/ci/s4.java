@@ -2,34 +2,34 @@ package ci;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.w51;
-public final class s4 extends v51 {
-    public static final int f5512a = 0;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.yl0;
+public final class s4 extends x51 {
+    public static final int f5510a = 0;
 
     static {
-        v51.setup(new v51());
+        x51.setup(new x51());
     }
 
     @Override
-    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
+    public final void bindView(View view, y51 y51Var, boolean z10, m61 m61Var, u61 u61Var) {
         t4 t4Var = (t4) view;
-        t4Var.a(w51Var.d, w51Var.f29961z, (o8) w51Var.G);
-        t4Var.b(w51Var.e, false);
-        boolean z11 = w51Var.f29943f;
-        if (t4Var.f5562f != z11) {
-            t4Var.f5562f = z11;
+        t4Var.a(y51Var.d, y51Var.f30531z, (o8) y51Var.G);
+        t4Var.b(y51Var.e, false);
+        boolean z11 = y51Var.f30513f;
+        if (t4Var.f5560f != z11) {
+            t4Var.f5560f = z11;
             t4Var.E.a(z11);
             t4Var.invalidate();
         }
-        t4Var.setOnCheckboxClick(w51Var.D);
+        t4Var.setOnCheckboxClick(y51Var.D);
     }
 
     @Override
-    public final View createView(Context context, vl0 vl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
         return new t4(context, f6Var);
     }
 }

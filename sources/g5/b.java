@@ -43,6 +43,6 @@ public final class b extends a {
 
     @Override
     public final String toString() {
-        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.f9421r + ", sampleSize=" + this.f9420n + ", channelCount=" + this.h + ", boxes=" + this.f7393b + '}';
+        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.f9421r + ", sampleSize=" + this.f9420n + ", channelCount=" + this.h + ", boxes=" + this.f7391b + '}';
     }
 }

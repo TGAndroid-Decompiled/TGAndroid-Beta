@@ -1,30 +1,81 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class dk implements Runnable {
-    public final zn f33094a;
+public final class dk extends org.telegram.ui.Cells.w0 {
+    public final zn f33114l2;
 
-    public dk(zn znVar) {
-        this.f33094a = znVar;
+    public dk(Context context, org.telegram.ui.ActionBar.f6 f6Var, zn znVar) {
+        super(context, f6Var, false);
+        this.f33114l2 = znVar;
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        zn znVar = this.f33094a;
-        MessageObject messageObject = znVar.f40286d5;
-        if (messageObject != null && znVar.T8 != null) {
-            int max = Math.max(0, messageObject.messageOwner.ttl_period - (znVar.getConnectionsManager().getCurrentTime() - znVar.f40286d5.messageOwner.date));
-            if (max < 86400) {
-                formatPluralString = AndroidUtilities.formatDuration(max, false, true);
-            } else {
-                formatPluralString = LocaleController.formatPluralString("Days", Math.round(max / 86400.0f), new Object[0]);
+    public final void onDraw(Canvas canvas) {
+        zn znVar = this.f33114l2;
+        if (znVar.B8 == null) {
+            float y3 = ((znVar.f40551x0.getY() + znVar.f40496s9) - getY()) - AndroidUtilities.dp(4.0f);
+            if (y3 > 0.0f) {
+                if (y3 < getMeasuredHeight()) {
+                    canvas.save();
+                    canvas.clipRect(0.0f, y3, getMeasuredWidth(), getMeasuredHeight());
+                    super.onDraw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
             }
-            znVar.T8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
-            AndroidUtilities.runOnUIThread(znVar.U8, 1000L);
+            super.onDraw(canvas);
         }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            zn znVar = this.f33114l2;
+            kVar = ((org.telegram.ui.ActionBar.n2) znVar).actionBar;
+            if (!kVar.s() && !znVar.A9()) {
+                return super.onInterceptTouchEvent(motionEvent);
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            zn znVar = this.f33114l2;
+            kVar = ((org.telegram.ui.ActionBar.n2) znVar).actionBar;
+            if (!kVar.s() && !znVar.A9()) {
+                return super.onTouchEvent(motionEvent);
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        int i10;
+        super.setAlpha(f7);
+        if (f7 > 0.0f) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        setVisibility(i10);
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            invalidate();
+        }
+        super.setTranslationY(f7);
     }
 }

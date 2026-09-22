@@ -11,7 +11,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.wq;
-import w7.b6;
+import w7.a6;
 import w7.y5;
 public final class h extends FrameLayout implements le.d {
     public static final int[] f13036s;
@@ -43,7 +43,7 @@ public final class h extends FrameLayout implements le.d {
     }
 
     @Override
-    public final void D(int i10, float f7, float f10, le.e eVar) {
+    public final void H(int i10, float f7, float f10, le.e eVar) {
         int i11 = i10 >> 16;
         int i12 = i10 & 65535;
         if (i11 >= 0) {
@@ -65,8 +65,8 @@ public final class h extends FrameLayout implements le.d {
             if (i11 < aVarArr.length) {
                 aa.a aVar = aVarArr[i11];
                 if (aVar != null) {
-                    ih.b bVar = (ih.b) aVar.f359b;
-                    float f10 = ((le.b) aVar.f360c).e;
+                    ih.b bVar = (ih.b) aVar.f356b;
+                    float f10 = ((le.b) aVar.f357c).e;
                     float f11 = ((le.b) aVar.d).e;
                     if (f10 > 0.0f) {
                         i10 = 0;
@@ -93,9 +93,9 @@ public final class h extends FrameLayout implements le.d {
         n1[] n1VarArr = this.f13040f;
         if (n1VarArr[i10] == 0) {
             ?? obj = new Object();
-            obj.f3164a = 0;
-            obj.f3165b = false;
-            obj.f3166c = true;
+            obj.f3163a = 0;
+            obj.f3164b = false;
+            obj.f3165c = true;
             n1VarArr[i10] = obj;
         }
         return n1VarArr[i10];
@@ -103,10 +103,10 @@ public final class h extends FrameLayout implements le.d {
 
     public final void c(int i10, int i11, boolean z10) {
         boolean z11;
-        b(i10).f3164a = i11;
+        b(i10).f3163a = i11;
         aa.a aVar = this.e[i10];
         if (aVar != null) {
-            ((ih.b) aVar.f359b).a(i11, z10);
+            ((ih.b) aVar.f356b).a(i11, z10);
             le.b bVar = (le.b) aVar.d;
             if (i11 > 0) {
                 z11 = true;
@@ -118,10 +118,10 @@ public final class h extends FrameLayout implements le.d {
     }
 
     public final void d(boolean z10) {
-        b(1).f3165b = z10;
+        b(1).f3164b = z10;
         aa.a aVar = this.e[1];
         if (aVar != null) {
-            ((ih.b) aVar.f359b).c(z10, true);
+            ((ih.b) aVar.f356b).c(z10, true);
         }
     }
 
@@ -143,7 +143,7 @@ public final class h extends FrameLayout implements le.d {
             if (i10 == 0) {
                 interpolator = qr.h;
             } else {
-                interpolator = ke.a.f13589a;
+                interpolator = ke.a.f13587a;
             }
             if (i10 == 0) {
                 j3 = 300;
@@ -155,7 +155,7 @@ public final class h extends FrameLayout implements le.d {
             if (i10 == 0) {
                 interpolator2 = qr.h;
             } else {
-                interpolator2 = ke.a.f13589a;
+                interpolator2 = ke.a.f13587a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i10 == 0) {
@@ -179,7 +179,7 @@ public final class h extends FrameLayout implements le.d {
             bVar3.f11201b = d;
             bVar3.addView(d, y5.e(i11, i11, 80));
             d.setIconPadding(AndroidUtilities.dp(2.0f));
-            b6.b(bVar3, 0.13f, 2.0f);
+            a6.b(bVar3, 0.13f, 2.0f);
             float f7 = i11 / 2.0f;
             bVar3.setPivotX(AndroidUtilities.dp(f7));
             bVar3.setPivotY(AndroidUtilities.dp(f7 + 8.0f));
@@ -204,18 +204,18 @@ public final class h extends FrameLayout implements le.d {
             aVarArr[i10] = new aa.a(bVar3, bVar, bVar2, false, 24);
             n1 n1Var = this.f13040f[i10];
             if (n1Var != null) {
-                bVar3.a(n1Var.f3164a, false);
+                bVar3.a(n1Var.f3163a, false);
                 bVar.a(false, false);
-                if (n1Var.f3164a <= 0) {
+                if (n1Var.f3163a <= 0) {
                     z12 = false;
                 }
                 bVar2.a(z12, false);
-                bVar3.c(n1Var.f3165b, false);
-                bVar3.b(n1Var.f3166c, false);
+                bVar3.c(n1Var.f3164b, false);
+                bVar3.b(n1Var.f3165c, false);
             }
             a();
         }
-        ((le.b) aVarArr[i10].f360c).a(z10, z11);
+        ((le.b) aVarArr[i10].f357c).a(z10, z11);
     }
 
     @Override

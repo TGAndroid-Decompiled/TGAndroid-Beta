@@ -29,11 +29,11 @@ import org.telegram.ui.Cells.s4;
 import org.telegram.ui.Cells.s8;
 import org.telegram.ui.Cells.w3;
 import org.telegram.ui.Components.kn;
-import org.telegram.ui.Components.rl0;
 import org.telegram.ui.Components.sq;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.yl0;
 import w7.y5;
-public abstract class e extends rl0 {
+public abstract class e extends ul0 {
     public final boolean E;
     public int F;
     public final boolean G;
@@ -94,7 +94,7 @@ public abstract class e extends rl0 {
     }
 
     @Override
-    public final void G(vl0 vl0Var, float f7, int[] iArr) {
+    public final void G(yl0 yl0Var, float f7, int[] iArr) {
         iArr[0] = (int) (h() * f7);
         iArr[1] = 0;
     }
@@ -197,7 +197,7 @@ public abstract class e extends rl0 {
             ?? frameLayout = new FrameLayout(this.f9718s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f21056a = textView;
+            frameLayout.f21071a = textView;
             com.google.android.gms.internal.vision.e2.l(22.0f, 1, textView);
             com.google.android.gms.internal.vision.e2.p(j6.B6, null, false, textView, 17);
             frameLayout.addView(textView, y5.d(-1, -1.0f, 119, 12.0f, 0.0f, 0.0f, 0.0f));
@@ -296,8 +296,8 @@ public abstract class e extends rl0 {
         int i12;
         ArrayList<TLRPC.TL_contact> arrayList2;
         float f7;
-        int i13 = c1Var.f42977f;
-        View view = c1Var.f42974a;
+        int i13 = c1Var.f42998f;
+        View view = c1Var.f42995a;
         int i14 = 7;
         boolean z10 = this.E;
         int i15 = this.f9717r;
@@ -311,7 +311,7 @@ public abstract class e extends rl0 {
                                 q4 q4Var = (q4) view;
                                 int i16 = i11 - 2;
                                 if (i16 >= 0 && i16 < ContactsController.getInstance(i15).phoneBookContacts.size()) {
-                                    q4Var.f20848f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
+                                    q4Var.f20863f = ContactsController.getInstance(i15).phoneBookContacts.get(i16);
                                     q4Var.h = null;
                                     q4Var.a();
                                     return;
@@ -404,7 +404,7 @@ public abstract class e extends rl0 {
             }
         }
         ab abVar = (ab) view;
-        abVar.T.f650a = false;
+        abVar.T.f647a = false;
         if (this.F != 2 && !this.H) {
             i14 = 58;
         }
@@ -433,7 +433,7 @@ public abstract class e extends rl0 {
         }
         TLRPC.User user = MessagesController.getInstance(i15).getUser(Long.valueOf(arrayList2.get(i11).user_id));
         abVar.d(user, null, null, false);
-        if (this.f9720x.h(user.f18475id) < 0) {
+        if (this.f9720x.h(user.f18490id) < 0) {
             z11 = false;
         }
         abVar.c(z11, false);

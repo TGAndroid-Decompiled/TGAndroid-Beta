@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class h2 {
-    public final a4.m f11408a;
+    public final android.support.v4.media.c f11408a;
     public boolean e;
     public boolean f11411f;
     public final ArrayDeque f11409b = new ArrayDeque();
@@ -20,8 +20,8 @@ public final class h2 {
     public final i2.g0 f11412g = new i2.g0(this, 6);
     public g2 d = b();
 
-    public h2(a4.m mVar) {
-        this.f11408a = mVar;
+    public h2(android.support.v4.media.c cVar) {
+        this.f11408a = cVar;
     }
 
     public static void e(TL_iv.PageBlock pageBlock) {
@@ -163,8 +163,8 @@ public final class h2 {
         int i10;
         ArrayList arrayList;
         f2[] f2VarArr;
-        a4.m mVar = this.f11408a;
-        ArrayList arrayList2 = ((w3) mVar.f275b).f11722l3;
+        android.support.v4.media.c cVar = this.f11408a;
+        ArrayList arrayList2 = ((w3) cVar.f1812b).f11722l3;
         HashMap hashMap = new HashMap();
         g2 g2Var = this.d;
         if (g2Var != null) {
@@ -213,7 +213,7 @@ public final class h2 {
             }
             f2VarArr2[i11] = new f2(j3, byteArray, i13, i14, z10, z11, z12, uVar, arrayList, new ArrayList(arrayList3));
         }
-        View findFocus = ((w3) mVar.f275b).findFocus();
+        View findFocus = ((w3) cVar.f1812b).findFocus();
         if (findFocus instanceof i1) {
             i1 i1Var = (i1) findFocus;
             int selectionStart = i1Var.getSelectionStart();
@@ -299,7 +299,7 @@ public final class h2 {
             }
             this.f11410c.clear();
             this.d = b10;
-            ((w3) this.f11408a.f275b).f11715h3.G();
+            ((w3) this.f11408a.f1812b).f11715h3.I();
         }
     }
 
@@ -325,7 +325,7 @@ public final class h2 {
         i2.g0 g0Var = this.f11412g;
         AndroidUtilities.cancelRunOnUIThread(g0Var);
         AndroidUtilities.runOnUIThread(g0Var, 800L);
-        ((w3) this.f11408a.f275b).f11715h3.G();
+        ((w3) this.f11408a.f1812b).f11715h3.I();
     }
 
     public final void h() {
@@ -355,7 +355,7 @@ public final class h2 {
         this.f11410c.clear();
         this.d = b();
         this.e = false;
-        ((w3) this.f11408a.f275b).f11715h3.G();
+        ((w3) this.f11408a.f1812b).f11715h3.I();
     }
 
     public final void k() {

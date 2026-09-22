@@ -8,7 +8,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.rk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.pc;
 import org.telegram.ui.Components.r00;
 import org.telegram.ui.Components.r50;
@@ -16,12 +16,12 @@ import org.telegram.ui.Components.v9;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
 public final class b1 implements Runnable {
-    public final int f47265a;
-    public final y3 f47266b;
+    public final int f47286a;
+    public final y3 f47287b;
 
     public b1(y3 y3Var, int i10) {
-        this.f47265a = i10;
-        this.f47266b = y3Var;
+        this.f47286a = i10;
+        this.f47287b = y3Var;
     }
 
     @Override
@@ -31,8 +31,8 @@ public final class b1 implements Runnable {
         TL_stars.StarGift starGift;
         TLRPC.Document document;
         f3 f3Var;
-        int i10 = this.f47265a;
-        y3 y3Var = this.f47266b;
+        int i10 = this.f47286a;
+        y3 y3Var = this.f47287b;
         switch (i10) {
             case 0:
                 y3.q0(y3Var);
@@ -50,7 +50,7 @@ public final class b1 implements Runnable {
                 y3.Y(y3Var);
                 return;
             case 5:
-                y3Var.f48317j0.setLoading(false);
+                y3Var.f48338j0.setLoading(false);
                 y3Var.q2(0, true, null);
                 return;
             case 6:
@@ -117,10 +117,10 @@ public final class b1 implements Runnable {
                     str = "";
                 }
                 pc M = y3Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
-                M.f27252j = 5000;
-                M.f27262t = true;
+                M.f27311j = 5000;
+                M.f27321t = true;
                 M.j();
-                r00 r00Var = y3Var.f48299a0;
+                r00 r00Var = y3Var.f48320a0;
                 if (r00Var != null) {
                     r00Var.c(true);
                     return;
@@ -133,18 +133,18 @@ public final class b1 implements Runnable {
                 y3Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
                 return;
             case 23:
-                v3 v3Var = y3Var.f48307e0;
-                ci.d dVar = y3Var.f48317j0;
+                v3 v3Var = y3Var.f48328e0;
+                ci.d dVar = y3Var.f48338j0;
                 g3 g3Var = y3Var.M0.h;
-                if (g3Var != null && (f3Var = g3Var.f47471c) != null) {
+                if (g3Var != null && (f3Var = g3Var.f47492c) != null) {
                     imageReceiver = ((i3) f3Var).d;
                 } else {
                     imageReceiver = null;
                 }
                 v9 v9Var = v3Var.d[0];
                 if (imageReceiver != null && v9Var != null && v9Var.getImageReceiver() != null) {
-                    hj0 lottieAnimation = imageReceiver.getLottieAnimation();
-                    hj0 lottieAnimation2 = v9Var.getImageReceiver().getLottieAnimation();
+                    kj0 lottieAnimation = imageReceiver.getLottieAnimation();
+                    kj0 lottieAnimation2 = v9Var.getImageReceiver().getLottieAnimation();
                     if (lottieAnimation2 != null && lottieAnimation != null) {
                         lottieAnimation2.T(lottieAnimation.t(), false);
                     } else if (lottieAnimation2 == null && lottieAnimation != null) {
@@ -152,9 +152,9 @@ public final class b1 implements Runnable {
                         v9Var.setImageDrawable(lottieAnimation);
                     }
                 }
-                v3Var.f48153b.setAlpha(1.0f);
-                v3Var.f48155c.setAlpha(0.0f);
-                if (y3Var.f48329q0 && y3Var.Z != null && y3Var.D0 != null && y3Var.G1() >= 0 && y3Var.D0.b(y3Var.G1()) >= 0) {
+                v3Var.f48174b.setAlpha(1.0f);
+                v3Var.f48176c.setAlpha(0.0f);
+                if (y3Var.f48350q0 && y3Var.Z != null && y3Var.D0 != null && y3Var.G1() >= 0 && y3Var.D0.b(y3Var.G1()) >= 0) {
                     dVar.setFilled(false);
                     int b10 = y3Var.D0.b(y3Var.G1());
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();

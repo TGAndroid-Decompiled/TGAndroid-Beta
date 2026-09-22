@@ -2,11 +2,11 @@ package gb;
 
 import java.lang.reflect.Field;
 public final class u extends t {
-    public final fb.n f9593b;
+    public final fb.o f9593b;
 
-    public u(fb.n nVar, v vVar) {
+    public u(fb.o oVar, v vVar) {
         super(vVar);
-        this.f9593b = nVar;
+        this.f9593b = oVar;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
+public interface lq0 {
+    void U();
 
-import org.telegram.tgnet.TLRPC;
-public final class lq0 extends TLRPC.Dialog {
+    void t0();
 }

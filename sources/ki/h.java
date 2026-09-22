@@ -20,109 +20,158 @@ import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
 import ci.g4;
-import com.google.android.gms.internal.vision.e2;
 import gg.x1;
 import j$.util.Objects;
 import java.util.Arrays;
 import java.util.List;
 public final class h {
     public q A;
-    public h0 B;
-    public h0 C;
-    public h0 D;
-    public i0 E;
-    public j0 F;
+    public long A0;
+    public i0 B;
+    public long B0;
+    public i0 C;
+    public double C0;
+    public i0 D;
+    public long D0;
+    public j0 E;
+    public long E0;
+    public k0 F;
+    public long F0;
     public Range G;
+    public long G0;
     public j6.l H;
+    public long H0;
     public long I;
+    public long I0;
     public float J;
+    public long J0;
+    public final g4 K0;
     public boolean L;
+    public final b L0;
     public boolean M;
-    public boolean N;
-    public boolean O;
-    public boolean P;
-    public volatile boolean Q;
+    public final c M0;
+    public int N;
+    public final d N0;
+    public int O;
+    public final e O0;
+    public int P;
+    public final f P0;
+    public int Q;
     public boolean R;
     public boolean S;
     public boolean T;
     public boolean U;
     public boolean V;
-    public boolean W;
-    public long X;
-    public long Y;
-    public long Z;
-    public final Context f13692a;
-    public long f13693a0;
-    public final CameraManager f13694b;
-    public long f13695b0;
-    public final TextureView f13696c;
-    public long f13697c0;
-    public final m0 d;
-    public long f13698d0;
+    public volatile boolean W;
+    public boolean X;
+    public boolean Y;
+    public boolean Z;
+    public final Context f13689a;
+    public boolean f13690a0;
+    public final CameraManager f13691b;
+    public boolean f13692b0;
+    public final TextureView f13693c;
+    public boolean f13694c0;
+    public final o0 d;
+    public long f13695d0;
     public final int e;
-    public long f13699e0;
-    public final int f13700f;
-    public long f13701f0;
-    public final i0 f13702g;
-    public final g4 f13703g0;
-    public final j0 h;
-    public final b f13704h0;
-    public final boolean f13705i;
-    public final c f13706i0;
-    public final k f13707j;
-    public final d f13708j0;
-    public final k2.u f13709k;
-    public final e f13710k0;
-    public final f f13712l0;
-    public HandlerThread f13713m;
-    public Handler f13714n;
-    public String f13715o;
-    public CameraCharacteristics f13716p;
+    public long f13696e0;
+    public final int f13697f;
+    public long f13698f0;
+    public final j0 f13699g;
+    public long f13700g0;
+    public final k0 h;
+    public long f13701h0;
+    public final boolean f13702i;
+    public long f13703i0;
+    public final k f13704j;
+    public long f13705j0;
+    public final e0 f13706k;
+    public long f13707k0;
+    public long f13709l0;
+    public HandlerThread f13710m;
+    public long m0;
+    public Handler f13711n;
+    public double f13712n0;
+    public String f13713o;
+    public long f13714o0;
+    public CameraCharacteristics f13715p;
+    public long f13716p0;
     public Size f13717q;
-    public Size f13718r;
-    public int f13719s;
-    public Surface f13720t;
-    public Surface f13721u;
+    public long f13718q0;
+    public Size f13719r;
+    public long f13720r0;
+    public int f13721s;
+    public long f13722s0;
+    public Surface f13723t;
+    public long f13724t0;
+    public Surface f13725u;
+    public long f13726u0;
     public o v;
-    public j f13722w;
-    public CameraDevice f13723x;
-    public CameraCaptureSession f13724y;
-    public CaptureRequest.Builder f13725z;
-    public final Rect f13711l = new Rect();
+    public long f13727v0;
+    public j f13728w;
+    public long f13729w0;
+    public CameraDevice f13730x;
+    public long f13731x0;
+    public CameraCaptureSession f13732y;
+    public long f13733y0;
+    public CaptureRequest.Builder f13734z;
+    public long f13735z0;
+    public final Rect f13708l = new Rect();
     public float K = 1.0f;
 
-    public h(Context context, TextureView textureView, m0 m0Var, int i10, i0 i0Var, j0 j0Var, boolean z10, k kVar, k2.u uVar) {
+    public h(Context context, TextureView textureView, o0 o0Var, int i10, j0 j0Var, k0 k0Var, boolean z10, k kVar, e0 e0Var) {
         g4 g4Var = new g4(this, 2);
-        this.f13703g0 = g4Var;
-        this.f13704h0 = new b(this, 3);
-        this.f13706i0 = new c(this, 0);
-        this.f13708j0 = new d(this);
-        this.f13710k0 = new e(this);
-        this.f13712l0 = new f(this);
-        this.f13692a = context.getApplicationContext();
-        this.f13694b = (CameraManager) context.getSystemService("camera");
-        this.f13696c = textureView;
-        this.d = m0Var;
-        this.e = m0Var.f13772a;
-        this.f13700f = i10;
-        this.f13702g = i0Var;
-        this.h = j0Var;
-        this.f13705i = z10;
-        this.f13707j = kVar;
-        this.f13709k = uVar;
+        this.K0 = g4Var;
+        this.L0 = new b(this, 3);
+        this.M0 = new c(this, 0);
+        this.N0 = new d(this);
+        this.O0 = new e(this);
+        this.P0 = new f(this);
+        this.f13689a = context.getApplicationContext();
+        this.f13691b = (CameraManager) context.getSystemService("camera");
+        this.f13693c = textureView;
+        this.d = o0Var;
+        this.e = o0Var.f13808a;
+        this.f13697f = i10;
+        this.f13699g = j0Var;
+        this.h = k0Var;
+        this.f13702i = z10;
+        this.f13704j = kVar;
+        this.f13706k = e0Var;
         textureView.addOnLayoutChangeListener(g4Var);
     }
 
-    public static long c(Size size) {
+    public static int B(Size size) {
+        return Math.min(size.getWidth(), size.getHeight());
+    }
+
+    public static float C(double d, long j3, long j10) {
+        if (j10 == 0) {
+            return 0.0f;
+        }
+        double d10 = j10;
+        double d11 = j3 / d10;
+        return (float) (Math.sqrt(Math.max(0.0d, (d / d10) - (d11 * d11))) / 1000000.0d);
+    }
+
+    public static long b(Size size) {
         return size.getWidth() * size.getHeight();
     }
 
-    public static n4.y d(StreamConfigurationMap streamConfigurationMap, Size[] sizeArr, int i10, i0 i0Var, int i11) {
+    public static float c(long j3, long j10) {
+        if (j10 == 0) {
+            return 0.0f;
+        }
+        return (((float) j3) / ((float) j10)) / 1000000.0f;
+    }
+
+    public static n4.y d(StreamConfigurationMap streamConfigurationMap, Size[] sizeArr, int i10, j0 j0Var, int i11) {
         Range<Integer> range;
         Size size = null;
         Range<Integer> range2 = null;
         for (Size size2 : sizeArr) {
-            if (p(size2, i10)) {
+            if (r(size2, i10)) {
                 try {
                     Range<Integer>[] highSpeedVideoFpsRangesFor = streamConfigurationMap.getHighSpeedVideoFpsRangesFor(size2);
                     if (highSpeedVideoFpsRangesFor == null) {
@@ -140,7 +189,7 @@ public final class h {
                             }
                         }
                     }
-                    if (range != null && (size == null || c(size2) < c(size))) {
+                    if (range != null && (size == null || b(size2) < b(size))) {
                         size = size2;
                         range2 = range;
                     }
@@ -151,53 +200,53 @@ public final class h {
         if (size == null || range2 == null) {
             return null;
         }
-        return new n4.y(new j6.l(size, size, i0Var, i10), range2);
+        return new n4.y(new j6.l(size, size, j0Var, i10), range2);
     }
 
-    public static j6.l e(Size[] sizeArr, m0 m0Var, i0 i0Var) {
+    public static j6.l e(Size[] sizeArr, o0 o0Var, j0 j0Var) {
         int i10;
         j6.l g10;
-        i0 i0Var2;
+        j0 j0Var2;
         j6.l g11;
-        i0 i0Var3 = i0.f13733c;
-        if (i0Var == i0Var3) {
-            i10 = m0Var.f13772a;
+        j0 j0Var3 = j0.f13768c;
+        if (j0Var == j0Var3) {
+            i10 = o0Var.f13808a;
         } else {
-            m0 m0Var2 = m0.P480;
-            i0 i0Var4 = i0.f13731a;
-            if (m0Var == m0Var2) {
-                if (i0Var == i0Var4) {
+            o0 o0Var2 = o0.P480;
+            j0 j0Var4 = j0.f13766a;
+            if (o0Var == o0Var2) {
+                if (j0Var == j0Var4) {
                     i10 = 960;
                 }
                 i10 = 720;
             } else {
-                if (i0Var != i0Var4) {
+                if (j0Var != j0Var4) {
                     i10 = 540;
                 }
                 i10 = 720;
             }
         }
-        j6.l g12 = g(sizeArr, i10, i0Var);
+        j6.l g12 = g(sizeArr, i10, j0Var);
         if (g12 != null) {
             return g12;
         }
-        if (m0Var == m0.P360 && i0Var == (i0Var2 = i0.f13732b) && (g11 = g(sizeArr, 480, i0Var2)) != null) {
+        if (o0Var == o0.P360 && j0Var == (j0Var2 = j0.f13767b) && (g11 = g(sizeArr, 480, j0Var2)) != null) {
             return g11;
         }
-        int i11 = m0Var.f13772a;
-        if (i0Var != i0Var3 && (g10 = g(sizeArr, i11, i0Var3)) != null) {
+        int i11 = o0Var.f13808a;
+        if (j0Var != j0Var3 && (g10 = g(sizeArr, i11, j0Var3)) != null) {
             return g10;
         }
-        int i12 = m0Var.f13772a;
+        int i12 = o0Var.f13808a;
         Size size = null;
         for (Size size2 : sizeArr) {
-            if (x(size2) <= 1088 && Math.max(size2.getWidth(), size2.getHeight()) <= 1920 && Math.min(size2.getWidth(), size2.getHeight()) >= i12 && (size == null || c(size2) < c(size))) {
+            if (B(size2) <= 1088 && Math.max(size2.getWidth(), size2.getHeight()) <= 1920 && Math.min(size2.getWidth(), size2.getHeight()) >= i12 && (size == null || b(size2) < b(size))) {
                 size = size2;
             }
         }
         if (size == null) {
             for (Size size3 : sizeArr) {
-                if (x(size3) <= 1088 && Math.max(size3.getWidth(), size3.getHeight()) <= 1920 && (size == null || Math.min(size3.getWidth(), size3.getHeight()) > Math.min(size.getWidth(), size.getHeight()) || (Math.min(size3.getWidth(), size3.getHeight()) == Math.min(size.getWidth(), size.getHeight()) && c(size3) < c(size)))) {
+                if (B(size3) <= 1088 && Math.max(size3.getWidth(), size3.getHeight()) <= 1920 && (size == null || Math.min(size3.getWidth(), size3.getHeight()) > Math.min(size.getWidth(), size.getHeight()) || (Math.min(size3.getWidth(), size3.getHeight()) == Math.min(size.getWidth(), size.getHeight()) && b(size3) < b(size)))) {
                     size = size3;
                 }
             }
@@ -205,7 +254,7 @@ public final class h {
                 throw new IllegalStateException("Camera has no output at or below the bandwidth cap");
             }
         }
-        return new j6.l(f(sizeArr, size), size, i0Var3, Math.min(Math.min(size.getWidth(), size.getHeight()), 1088));
+        return new j6.l(f(sizeArr, size), size, j0Var3, Math.min(Math.min(size.getWidth(), size.getHeight()), 1088));
     }
 
     public static Size f(Size[] sizeArr, Size size) {
@@ -214,11 +263,11 @@ public final class h {
         for (Size size3 : sizeArr) {
             if (size3.getWidth() * size.getHeight() == size3.getHeight() * size.getWidth()) {
                 int abs = Math.abs(Math.min(size3.getWidth(), size3.getHeight()) - 720);
-                int abs2 = Math.abs(x(size2) - 720);
+                int abs2 = Math.abs(B(size2) - 720);
                 if (abs != abs2) {
                     compare = Integer.compare(abs, abs2);
                 } else {
-                    compare = Long.compare(c(size3), c(size2));
+                    compare = Long.compare(b(size3), b(size2));
                 }
                 if (compare < 0) {
                     size2 = size3;
@@ -228,27 +277,27 @@ public final class h {
         return size2;
     }
 
-    public static j6.l g(Size[] sizeArr, int i10, i0 i0Var) {
+    public static j6.l g(Size[] sizeArr, int i10, j0 j0Var) {
         int compare;
         j6.l lVar = null;
         for (Size size : sizeArr) {
-            if (p(size, i10)) {
+            if (r(size, i10)) {
                 Size f7 = f(sizeArr, size);
-                j6.l lVar2 = new j6.l(f7, size, i0Var, i10);
+                j6.l lVar2 = new j6.l(f7, size, j0Var, i10);
                 if (lVar != null) {
                     Size size2 = (Size) lVar.f12912b;
                     int abs = Math.abs(Math.min(f7.getWidth(), f7.getHeight()) - 720);
                     Size size3 = (Size) lVar.f12913c;
-                    int abs2 = Math.abs(x(size2) - 720);
+                    int abs2 = Math.abs(B(size2) - 720);
                     if (abs != abs2) {
                         compare = Integer.compare(abs, abs2);
                     } else {
-                        long c10 = c(size) + c(f7);
-                        long c11 = c(size3) + c(size2);
-                        if (c10 != c11) {
-                            compare = Long.compare(c10, c11);
+                        long b10 = b(size) + b(f7);
+                        long b11 = b(size3) + b(size2);
+                        if (b10 != b11) {
+                            compare = Long.compare(b10, b11);
                         } else {
-                            compare = Long.compare(c(size), c(size3));
+                            compare = Long.compare(b(size), b(size3));
                         }
                     }
                     if (compare >= 0) {
@@ -260,7 +309,7 @@ public final class h {
         return lVar;
     }
 
-    public static boolean i(int[] iArr, int i10) {
+    public static boolean j(int[] iArr, int i10) {
         if (iArr != null) {
             for (int i11 : iArr) {
                 if (i11 == i10) {
@@ -271,12 +320,12 @@ public final class h {
         return false;
     }
 
-    public static String k(CameraCharacteristics cameraCharacteristics, StreamConfigurationMap streamConfigurationMap) {
+    public static String m(CameraCharacteristics cameraCharacteristics, StreamConfigurationMap streamConfigurationMap) {
         if (Build.VERSION.SDK_INT < 23) {
             return "unavailable before API 23";
         }
         int[] iArr = (int[]) cameraCharacteristics.get(CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES);
-        if (!i(iArr, 9)) {
+        if (!j(iArr, 9)) {
             return "unsupported, capabilities=" + Arrays.toString(iArr);
         }
         try {
@@ -298,14 +347,14 @@ public final class h {
         }
     }
 
-    public static long l(long j3) {
+    public static long n(long j3) {
         if (j3 == 0) {
             return -1L;
         }
         return (SystemClock.elapsedRealtimeNanos() - j3) / 1000000;
     }
 
-    public static Range n(Range[] rangeArr, int i10) {
+    public static Range p(Range[] rangeArr, int i10) {
         Range range = null;
         if (rangeArr == null) {
             return null;
@@ -318,84 +367,129 @@ public final class h {
         return range;
     }
 
-    public static boolean p(Size size, int i10) {
+    public static boolean r(Size size, int i10) {
         int i11 = ((i10 * 15) / 100) + i10;
         int min = Math.min(1920, i10 * 2);
-        int x10 = x(size);
+        int B = B(size);
         int max = Math.max(size.getWidth(), size.getHeight());
-        if (x10 >= i10 && x10 <= i11 && max <= min) {
+        if (B >= i10 && B <= i11 && max <= min) {
             return true;
         }
         return false;
     }
 
-    public static int x(Size size) {
-        return Math.min(size.getWidth(), size.getHeight());
+    public final boolean A(float f7) {
+        this.J = Math.max(0.0f, Math.min(1.0f, f7));
+        Handler handler = this.f13711n;
+        if (this.R && handler != null) {
+            b bVar = this.L0;
+            handler.removeCallbacks(bVar);
+            handler.post(bVar);
+            return true;
+        }
+        return false;
     }
 
-    public final void A() {
-        CameraCaptureSession cameraCaptureSession = this.f13724y;
-        CaptureRequest.Builder builder = this.f13725z;
-        if (cameraCaptureSession != null && builder != null) {
-            CaptureRequest build = builder.build();
-            boolean z10 = this.V;
-            f fVar = this.f13712l0;
-            if (z10 && Build.VERSION.SDK_INT >= 23) {
-                List<CaptureRequest> createHighSpeedRequestList = ((CameraConstrainedHighSpeedCaptureSession) cameraCaptureSession).createHighSpeedRequestList(build);
-                cameraCaptureSession.setRepeatingBurst(createHighSpeedRequestList, fVar, this.f13714n);
-                this.f13707j.b("high-speed repeating burst submitted: requests=" + createHighSpeedRequestList.size() + ", fpsRange=" + this.G);
-                return;
-            }
-            cameraCaptureSession.setRepeatingRequest(build, fVar, this.f13714n);
+    public final void D(q qVar, long j3, i0 i0Var) {
+        if (this.f13710m == null) {
+            HandlerThread handlerThread = new HandlerThread("RoundVideoCamera2");
+            this.f13710m = handlerThread;
+            handlerThread.start();
+            this.f13711n = new Handler(this.f13710m.getLooper());
+        }
+        this.A = qVar;
+        this.I = j3;
+        this.B = i0Var;
+        this.R = true;
+        this.X = false;
+        this.f13695d0 = SystemClock.elapsedRealtimeNanos();
+        w();
+        v();
+        StringBuilder sb2 = new StringBuilder("camera segment start: facing=");
+        sb2.append(i0Var);
+        sb2.append(", timelineOffsetUs=");
+        sb2.append(j3);
+        sb2.append(", textureAvailable=");
+        TextureView textureView = this.f13693c;
+        sb2.append(textureView.isAvailable());
+        this.f13704j.b(sb2.toString());
+        textureView.setSurfaceTextureListener(this.M0);
+        Handler handler = this.f13711n;
+        if (this.R && handler != null && textureView.isAvailable()) {
+            handler.post(new b(this, 4));
         }
     }
 
-    public final void B(h0 h0Var) {
-        if (this.M && !this.O && h0Var != this.C) {
-            this.O = true;
-            this.P = true;
+    public final boolean E() {
+        Handler handler = this.f13711n;
+        if (this.R && !this.X && handler != null) {
+            this.X = true;
+            this.f13704j.b("camera segment stop requested");
+            handler.post(new b(this, 5));
+            return true;
+        }
+        return false;
+    }
+
+    public final void F() {
+        CameraCaptureSession cameraCaptureSession = this.f13732y;
+        CaptureRequest.Builder builder = this.f13734z;
+        if (cameraCaptureSession != null && builder != null) {
+            CaptureRequest build = builder.build();
+            boolean z10 = this.f13692b0;
+            f fVar = this.P0;
+            if (z10 && Build.VERSION.SDK_INT >= 23) {
+                List<CaptureRequest> createHighSpeedRequestList = ((CameraConstrainedHighSpeedCaptureSession) cameraCaptureSession).createHighSpeedRequestList(build);
+                cameraCaptureSession.setRepeatingBurst(createHighSpeedRequestList, fVar, this.f13711n);
+                this.f13704j.b("high-speed repeating burst submitted: requests=" + createHighSpeedRequestList.size() + ", fpsRange=" + this.G);
+                return;
+            }
+            cameraCaptureSession.setRepeatingRequest(build, fVar, this.f13711n);
+        }
+    }
+
+    public final void G(i0 i0Var) {
+        if (this.R && !this.T && i0Var != this.C) {
+            this.T = true;
+            this.V = true;
             this.L = false;
+            this.M = false;
             this.J = 0.0f;
-            k2.u uVar = this.f13709k;
-            ((o0) uVar.f13384b).h.post(new l(1, uVar, h0Var));
-            this.f13693a0 = SystemClock.elapsedRealtimeNanos();
-            k kVar = this.f13707j;
-            kVar.b("camera device switch started: from=" + this.C + ", to=" + h0Var);
+            e0 e0Var = this.f13706k;
+            ((q0) e0Var.f13672b).h.post(new l(1, e0Var, i0Var));
+            this.f13700g0 = SystemClock.elapsedRealtimeNanos();
+            k kVar = this.f13704j;
+            kVar.b("camera device switch started: from=" + this.C + ", to=" + i0Var);
             o oVar = this.v;
             if (oVar != null) {
-                Handler handler = oVar.f13785k;
+                Handler handler = oVar.f13791k;
                 if (oVar.U && handler != null) {
                     handler.post(new l(0, oVar, handler));
                 }
             }
-            CameraCaptureSession cameraCaptureSession = this.f13724y;
-            if (cameraCaptureSession != null) {
-                cameraCaptureSession.close();
-                this.f13724y = null;
-            }
-            this.f13725z = null;
-            CameraDevice cameraDevice = this.f13723x;
+            i();
+            CameraDevice cameraDevice = this.f13730x;
             if (cameraDevice != null) {
-                this.f13723x = null;
+                this.f13730x = null;
                 cameraDevice.close();
-            } else if (!this.N) {
-                this.O = false;
-                q();
+            } else if (!this.S) {
+                this.T = false;
+                s();
             }
         }
     }
 
-    public final void C() {
+    public final void H() {
         int width;
         int height;
         Integer num;
-        Size size = this.f13718r;
+        Size size = this.f13719r;
         if (size != null) {
-            TextureView textureView = this.f13696c;
+            TextureView textureView = this.f13693c;
             if (textureView.getWidth() != 0 && textureView.getHeight() != 0) {
-                int min = Math.min(this.f13719s, Math.min(size.getWidth(), size.getHeight()));
+                int min = Math.min(this.f13721s, Math.min(size.getWidth(), size.getHeight()));
                 boolean z10 = false;
-                if (this.f13716p != null && textureView.getDisplay() != null && (num = (Integer) this.f13716p.get(CameraCharacteristics.SENSOR_ORIENTATION)) != null) {
+                if (this.f13715p != null && textureView.getDisplay() != null && (num = (Integer) this.f13715p.get(CameraCharacteristics.SENSOR_ORIENTATION)) != null) {
                     int intValue = ((num.intValue() - (textureView.getDisplay().getRotation() * 90)) + 360) % 360;
                     if (intValue == 90 || intValue == 270) {
                         z10 = true;
@@ -417,155 +511,105 @@ public final class h {
                 Matrix matrix = new Matrix();
                 matrix.setScale(f10, f11, textureView.getWidth() * 0.5f, textureView.getHeight() * 0.5f);
                 textureView.setTransform(matrix);
-                this.f13707j.b("preview transform: view=" + textureView.getWidth() + "x" + textureView.getHeight() + ", source=" + size + ", crop=" + min + ", axesSwapped=" + z10 + ", scale=" + f10 + "x" + f11);
+                this.f13704j.b("preview transform: view=" + textureView.getWidth() + "x" + textureView.getHeight() + ", source=" + size + ", crop=" + min + ", axesSwapped=" + z10 + ", scale=" + f10 + "x" + f11);
             }
         }
     }
 
-    public final void a(CaptureRequest.Builder builder) {
-        boolean z10;
-        int[] iArr;
-        int i10 = 0;
-        if (this.L && o()) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        CameraCharacteristics cameraCharacteristics = this.f13716p;
-        if (cameraCharacteristics == null) {
-            iArr = null;
-        } else {
-            iArr = (int[]) cameraCharacteristics.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_MODES);
-        }
-        if (i(iArr, 1)) {
-            builder.set(CaptureRequest.CONTROL_AE_MODE, 1);
-        }
-        CaptureRequest.Key key = CaptureRequest.FLASH_MODE;
-        if (z10) {
-            i10 = 2;
-        }
-        builder.set(key, Integer.valueOf(i10));
-    }
-
-    public final void b(CaptureRequest.Builder builder) {
-        CameraCharacteristics.Key key;
-        Range range;
-        float z10 = e2.z(this.K, 1.0f, this.J, 1.0f);
-        Rect rect = null;
-        if (Build.VERSION.SDK_INT >= 30) {
-            CameraCharacteristics cameraCharacteristics = this.f13716p;
-            if (cameraCharacteristics != null) {
-                key = CameraCharacteristics.CONTROL_ZOOM_RATIO_RANGE;
-                range = (Range) cameraCharacteristics.get(key);
-            } else {
-                range = null;
-            }
-            if (range != null) {
-                builder.set(CaptureRequest.CONTROL_ZOOM_RATIO, Float.valueOf(Math.max(((Float) range.getLower()).floatValue(), Math.min(((Float) range.getUpper()).floatValue(), z10))));
-                return;
-            }
-        }
-        CameraCharacteristics cameraCharacteristics2 = this.f13716p;
-        if (cameraCharacteristics2 != null) {
-            rect = (Rect) cameraCharacteristics2.get(CameraCharacteristics.SENSOR_INFO_ACTIVE_ARRAY_SIZE);
-        }
-        if (rect == null) {
-            return;
-        }
-        int max = Math.max(1, Math.round(rect.width() / z10));
-        int max2 = Math.max(1, Math.round(rect.height() / z10));
-        int centerX = rect.centerX() - (max / 2);
-        int centerY = rect.centerY() - (max2 / 2);
-        Rect rect2 = this.f13711l;
-        rect2.set(centerX, centerY, max + centerX, max2 + centerY);
-        builder.set(CaptureRequest.SCALER_CROP_REGION, rect2);
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: ki.h.a():void");
     }
 
     public final void h() {
-        this.N = false;
-        this.O = false;
-        this.P = false;
-        this.Q = false;
-        this.f13725z = null;
-        CameraCaptureSession cameraCaptureSession = this.f13724y;
-        if (cameraCaptureSession != null) {
-            cameraCaptureSession.close();
-            this.f13724y = null;
-        }
-        this.f13725z = null;
-        CameraDevice cameraDevice = this.f13723x;
+        this.S = false;
+        this.T = false;
+        this.U = false;
+        this.V = false;
+        this.W = false;
+        this.f13734z = null;
+        this.M = false;
+        i();
+        CameraDevice cameraDevice = this.f13730x;
         if (cameraDevice != null) {
             cameraDevice.close();
-            this.f13723x = null;
+            this.f13730x = null;
         }
-        Surface surface = this.f13720t;
+        Surface surface = this.f13723t;
         if (surface != null) {
             surface.release();
-            this.f13720t = null;
+            this.f13723t = null;
         }
         o oVar = this.v;
         if (oVar != null) {
             oVar.h();
             this.v = null;
         }
-        this.f13721u = null;
+        this.f13725u = null;
     }
 
-    public final void j() {
-        throw new UnsupportedOperationException("Method not decompiled: ki.h.j():void");
+    public final void i() {
+        CameraCaptureSession cameraCaptureSession = this.f13732y;
+        if (cameraCaptureSession != null) {
+            cameraCaptureSession.close();
+            this.f13732y = null;
+        }
+        this.f13734z = null;
     }
 
-    public final void m(String str, Exception exc) {
+    public final void k() {
+        throw new UnsupportedOperationException("Method not decompiled: ki.h.k():void");
+    }
+
+    public final android.hardware.camera2.CaptureRequest.Builder l(boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: ki.h.l(boolean):android.hardware.camera2.CaptureRequest$Builder");
+    }
+
+    public final void o(String str, Exception exc) {
+        Range[] rangeArr;
         String str2;
-        if (this.W) {
+        if (this.f13694c0) {
             if (exc == null) {
                 exc = new IllegalStateException("30 fps fallback session failed");
             }
-            s(exc);
+            u(exc);
             return;
         }
-        this.W = true;
-        this.U = false;
-        this.V = false;
-        CameraCaptureSession cameraCaptureSession = this.f13724y;
-        Range[] rangeArr = null;
-        if (cameraCaptureSession != null) {
-            cameraCaptureSession.close();
-            this.f13724y = null;
-        }
-        this.f13725z = null;
+        this.f13694c0 = true;
+        this.f13690a0 = false;
+        this.f13692b0 = false;
+        i();
         j6.l lVar = this.H;
         if (lVar == null) {
-            s(new IllegalStateException("Regular camera fallback is unavailable", exc));
+            u(new IllegalStateException("Regular camera fallback is unavailable", exc));
             return;
         }
-        this.F = j0.FPS_30;
-        CameraCharacteristics cameraCharacteristics = this.f13716p;
-        if (cameraCharacteristics != null) {
+        this.F = k0.FPS_30;
+        CameraCharacteristics cameraCharacteristics = this.f13715p;
+        if (cameraCharacteristics == null) {
+            rangeArr = null;
+        } else {
             rangeArr = (Range[]) cameraCharacteristics.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES);
         }
-        this.G = n(rangeArr, 30);
+        this.G = p(rangeArr, 30);
         this.f13717q = (Size) lVar.f12912b;
-        this.f13718r = (Size) lVar.f12913c;
-        this.f13719s = lVar.f12911a;
-        this.E = (i0) lVar.d;
-        SurfaceTexture surfaceTexture = this.f13696c.getSurfaceTexture();
+        this.f13719r = (Size) lVar.f12913c;
+        this.f13721s = lVar.f12911a;
+        this.E = (j0) lVar.d;
+        SurfaceTexture surfaceTexture = this.f13693c.getSurfaceTexture();
         if (surfaceTexture != null) {
             surfaceTexture.setDefaultBufferSize(this.f13717q.getWidth(), this.f13717q.getHeight());
         }
         o oVar = this.v;
         if (oVar != null) {
-            oVar.j(this.f13718r, this.f13719s);
-            Surface surface = this.v.f13787m;
+            oVar.j(this.f13719r, this.f13721s);
+            Surface surface = this.v.f13793m;
             if (surface != null) {
-                this.f13721u = surface;
+                this.f13725u = surface;
             } else {
                 throw new IllegalStateException("GL processor is not started");
             }
         }
-        this.f13698d0 = 0L;
-        this.f13699e0 = 0L;
-        this.f13701f0 = 0L;
+        v();
         StringBuilder sb2 = new StringBuilder("60 fps fallback: reason=");
         sb2.append(str);
         if (exc == null) {
@@ -577,185 +621,156 @@ public final class h {
         sb2.append(", preview=");
         sb2.append(this.f13717q);
         sb2.append(", recording=");
-        sb2.append(this.f13718r);
+        sb2.append(this.f13719r);
         sb2.append(", crop=");
-        sb2.append(this.f13719s);
+        sb2.append(this.f13721s);
         sb2.append(", fpsRange=");
         sb2.append(this.G);
-        this.f13707j.b(sb2.toString());
-        Handler handler = this.f13714n;
-        if (this.M && handler != null) {
+        this.f13704j.b(sb2.toString());
+        Handler handler = this.f13711n;
+        if (this.R && handler != null) {
             handler.post(new b(this, 1));
         }
     }
 
-    public final boolean o() {
-        Boolean bool;
-        CameraCharacteristics cameraCharacteristics = this.f13716p;
-        if (cameraCharacteristics == null) {
-            bool = null;
-        } else {
-            bool = (Boolean) cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
-        }
-        if (this.C == h0.f13727b && Boolean.TRUE.equals(bool)) {
+    public final boolean q() {
+        CameraCharacteristics cameraCharacteristics;
+        if (this.C == i0.f13742b && (cameraCharacteristics = this.f13715p) != null && Boolean.TRUE.equals(cameraCharacteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE))) {
             return true;
         }
         return false;
     }
 
-    public final void q() {
-        if (this.M && !this.N && this.f13723x == null) {
-            if (f0.e.b(this.f13692a, "android.permission.CAMERA") != 0) {
-                s(new SecurityException("Camera permission is not granted"));
+    public final void s() {
+        if (this.R && !this.S && this.f13730x == null) {
+            if (f0.e.b(this.f13689a, "android.permission.CAMERA") != 0) {
+                u(new SecurityException("Camera permission is not granted"));
                 return;
             }
             try {
-                u(this.B);
-                SurfaceTexture surfaceTexture = this.f13696c.getSurfaceTexture();
+                y(this.B);
+                SurfaceTexture surfaceTexture = this.f13693c.getSurfaceTexture();
                 if (surfaceTexture != null) {
                     surfaceTexture.setDefaultBufferSize(this.f13717q.getWidth(), this.f13717q.getHeight());
-                    if (this.f13720t == null) {
-                        this.f13720t = new Surface(surfaceTexture);
+                    if (this.f13723t == null) {
+                        this.f13723t = new Surface(surfaceTexture);
                     }
-                    if (this.f13722w == null) {
+                    if (this.f13728w == null) {
                         q qVar = this.A;
                         long j3 = this.I;
                         int i10 = this.e;
-                        int i11 = this.f13700f;
-                        int i12 = this.h.f13758a;
-                        k kVar = this.f13707j;
-                        k2.u uVar = this.f13709k;
-                        Objects.requireNonNull(uVar);
-                        j jVar = new j(qVar, j3, i10, i11, i12, kVar, new a(uVar));
-                        this.f13722w = jVar;
+                        int i11 = this.f13697f;
+                        int i12 = this.h.f13774a;
+                        k kVar = this.f13704j;
+                        e0 e0Var = this.f13706k;
+                        Objects.requireNonNull(e0Var);
+                        j jVar = new j(qVar, j3, i10, i11, i12, kVar, new a(e0Var));
+                        this.f13728w = jVar;
                         Surface f7 = jVar.f();
-                        Size size = this.f13718r;
+                        Size size = this.f13719r;
                         int i13 = this.e;
-                        int i14 = this.f13719s;
-                        boolean z10 = this.f13705i;
-                        k kVar2 = this.f13707j;
-                        j jVar2 = this.f13722w;
-                        k2.u uVar2 = this.f13709k;
-                        Objects.requireNonNull(uVar2);
-                        o oVar = new o(size, f7, i13, i14, z10, kVar2, jVar2, new a(uVar2));
+                        int i14 = this.f13721s;
+                        boolean z10 = this.f13702i;
+                        k kVar2 = this.f13704j;
+                        j jVar2 = this.f13728w;
+                        e0 e0Var2 = this.f13706k;
+                        Objects.requireNonNull(e0Var2);
+                        o oVar = new o(size, f7, i13, i14, z10, kVar2, jVar2, new a(e0Var2));
                         this.v = oVar;
                         oVar.W = new b(this, 0);
-                        this.f13721u = this.v.g();
+                        this.f13725u = this.v.g();
                     } else {
                         o oVar2 = this.v;
                         if (oVar2 != null) {
-                            oVar2.j(this.f13718r, this.f13719s);
-                            Surface surface = this.v.f13787m;
+                            oVar2.j(this.f13719r, this.f13721s);
+                            Surface surface = this.v.f13793m;
                             if (surface != null) {
-                                this.f13721u = surface;
+                                this.f13725u = surface;
                             } else {
                                 throw new IllegalStateException("GL processor is not started");
                             }
                         }
                     }
-                    this.N = true;
-                    this.Y = SystemClock.elapsedRealtimeNanos();
-                    k kVar3 = this.f13707j;
-                    kVar3.b("camera open requested: id=" + this.f13715o + ", preview=" + this.f13717q + ", recording=" + this.f13718r + ", crop=" + this.f13719s);
-                    this.f13694b.openCamera(this.f13715o, this.f13708j0, this.f13714n);
+                    this.S = true;
+                    this.f13696e0 = SystemClock.elapsedRealtimeNanos();
+                    k kVar3 = this.f13704j;
+                    kVar3.b("camera open requested: id=" + this.f13713o + ", preview=" + this.f13717q + ", recording=" + this.f13719r + ", crop=" + this.f13721s);
+                    this.f13691b.openCamera(this.f13713o, this.N0, this.f13711n);
                 }
             } catch (Exception e) {
-                this.N = false;
-                s(e);
+                this.S = false;
+                u(e);
             }
         }
     }
 
-    public final void r() {
-        this.M = false;
-        TextureView textureView = this.f13696c;
+    public final void t() {
+        this.R = false;
+        TextureView textureView = this.f13693c;
         textureView.setSurfaceTextureListener(null);
-        textureView.removeOnLayoutChangeListener(this.f13703g0);
-        Handler handler = this.f13714n;
-        HandlerThread handlerThread = this.f13713m;
-        this.f13714n = null;
-        this.f13713m = null;
+        textureView.removeOnLayoutChangeListener(this.K0);
+        Handler handler = this.f13711n;
+        HandlerThread handlerThread = this.f13710m;
+        this.f13711n = null;
+        this.f13710m = null;
         if (handler != null && handlerThread != null) {
             handler.post(new x1(28, this, handlerThread));
         }
     }
 
-    public final void s(Exception exc) {
-        this.f13707j.a("camera error", exc);
-        k2.u uVar = this.f13709k;
-        ((o0) uVar.f13384b).h.post(new l(2, uVar, exc));
+    public final void u(Exception exc) {
+        this.f13704j.a("camera error", exc);
+        e0 e0Var = this.f13706k;
+        ((q0) e0Var.f13672b).h.post(new l(2, e0Var, exc));
     }
 
-    public final com.google.firebase.messaging.m t(java.lang.String r24, android.hardware.camera2.CameraCharacteristics r25, android.hardware.camera2.params.StreamConfigurationMap r26, android.util.Size[] r27, j6.l r28) {
-        throw new UnsupportedOperationException("Method not decompiled: ki.h.t(java.lang.String, android.hardware.camera2.CameraCharacteristics, android.hardware.camera2.params.StreamConfigurationMap, android.util.Size[], j6.l):com.google.firebase.messaging.m");
+    public final void v() {
+        this.f13729w0 = 0L;
+        this.f13731x0 = 0L;
+        this.f13733y0 = 0L;
+        this.f13735z0 = 0L;
+        this.A0 = 0L;
+        this.B0 = 0L;
+        this.C0 = 0.0d;
+        this.D0 = 0L;
+        this.E0 = 0L;
+        this.F0 = 0L;
+        this.G0 = 0L;
+        this.H0 = 0L;
+        this.I0 = 0L;
+        this.J0 = 0L;
     }
 
-    public final void u(ki.h0 r26) {
-        throw new UnsupportedOperationException("Method not decompiled: ki.h.u(ki.h0):void");
+    public final void w() {
+        this.f13701h0 = 0L;
+        this.f13703i0 = 0L;
+        this.f13705j0 = 0L;
+        this.f13707k0 = 0L;
+        this.f13709l0 = 0L;
+        this.m0 = 0L;
+        this.f13712n0 = 0.0d;
+        this.f13714o0 = 0L;
+        this.f13716p0 = 0L;
+        this.f13718q0 = 0L;
+        this.f13720r0 = 0L;
+        this.f13722s0 = 0L;
+        this.f13724t0 = 0L;
+        this.f13726u0 = 0L;
+        this.f13727v0 = 0L;
     }
 
-    public final void v(boolean z10) {
-        this.L = z10;
-        this.f13707j.b("torch requested: enabled=" + z10 + ", available=" + o() + ", facing=" + this.C);
-        Handler handler = this.f13714n;
-        if (this.M && handler != null) {
-            handler.post(new b(this, 3));
+    public final com.google.firebase.messaging.m x(java.lang.String r24, android.hardware.camera2.CameraCharacteristics r25, android.hardware.camera2.params.StreamConfigurationMap r26, android.util.Size[] r27, j6.l r28) {
+        throw new UnsupportedOperationException("Method not decompiled: ki.h.x(java.lang.String, android.hardware.camera2.CameraCharacteristics, android.hardware.camera2.params.StreamConfigurationMap, android.util.Size[], j6.l):com.google.firebase.messaging.m");
+    }
+
+    public final void y(ki.i0 r31) {
+        throw new UnsupportedOperationException("Method not decompiled: ki.h.y(ki.i0):void");
+    }
+
+    public final void z(boolean z10) {
+        Handler handler = this.f13711n;
+        if (this.R && handler != null) {
+            handler.post(new bi.f(8, this, z10));
         }
-    }
-
-    public final boolean w(float f7) {
-        this.J = Math.max(0.0f, Math.min(1.0f, f7));
-        Handler handler = this.f13714n;
-        if (this.M && handler != null) {
-            b bVar = this.f13704h0;
-            handler.removeCallbacks(bVar);
-            handler.post(bVar);
-            return true;
-        }
-        return false;
-    }
-
-    public final void y(q qVar, long j3, h0 h0Var) {
-        if (this.f13713m == null) {
-            HandlerThread handlerThread = new HandlerThread("RoundVideoCamera2");
-            this.f13713m = handlerThread;
-            handlerThread.start();
-            this.f13714n = new Handler(this.f13713m.getLooper());
-        }
-        this.A = qVar;
-        this.I = j3;
-        this.B = h0Var;
-        this.M = true;
-        this.R = false;
-        this.X = SystemClock.elapsedRealtimeNanos();
-        this.f13695b0 = 0L;
-        this.f13697c0 = 0L;
-        this.f13698d0 = 0L;
-        this.f13699e0 = 0L;
-        this.f13701f0 = 0L;
-        StringBuilder sb2 = new StringBuilder("camera segment start: facing=");
-        sb2.append(h0Var);
-        sb2.append(", timelineOffsetUs=");
-        sb2.append(j3);
-        sb2.append(", textureAvailable=");
-        TextureView textureView = this.f13696c;
-        sb2.append(textureView.isAvailable());
-        this.f13707j.b(sb2.toString());
-        textureView.setSurfaceTextureListener(this.f13706i0);
-        Handler handler = this.f13714n;
-        if (this.M && handler != null && textureView.isAvailable()) {
-            handler.post(new b(this, 4));
-        }
-    }
-
-    public final boolean z() {
-        Handler handler = this.f13714n;
-        if (this.M && !this.R && handler != null) {
-            this.R = true;
-            this.f13707j.b("camera segment stop requested");
-            handler.post(new b(this, 5));
-            return true;
-        }
-        return false;
     }
 }

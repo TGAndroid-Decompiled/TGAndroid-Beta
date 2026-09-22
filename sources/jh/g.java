@@ -15,7 +15,7 @@ import org.telegram.ui.ActionBar.f1;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.n1;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.xm0;
+import org.telegram.ui.Components.zm0;
 import org.telegram.ui.az0;
 import org.telegram.ui.e0;
 import org.telegram.ui.qe;
@@ -38,12 +38,12 @@ public final class g implements View.OnLongClickListener {
         rf rfVar;
         char c10;
         String string;
-        xm0 xm0Var;
+        zm0 zm0Var;
         switch (this.f13033a) {
             case 0:
                 b bVar = ((h) this.f13035c).f13041n;
                 if (bVar != null) {
-                    zn znVar = ((qe) bVar).f36891b;
+                    zn znVar = ((qe) bVar).f36914b;
                     int i10 = this.f13034b;
                     if (i10 == 2) {
                         rfVar = new rf(znVar, 9);
@@ -75,7 +75,7 @@ public final class g implements View.OnLongClickListener {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(f1Var);
                     n1 n1Var = new n1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                     n1Var.e = true;
-                    n1Var.f19641c = 220;
+                    n1Var.f19656c = 220;
                     n1Var.setOutsideTouchable(true);
                     n1Var.setClippingEnabled(true);
                     n1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -95,7 +95,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     n1Var.showAtLocation(rmVar, 51, (int) width, (int) measuredHeight);
                     znVar.Q8 = n1Var;
-                    znVar.f8(znVar.f40356j1, false);
+                    znVar.f8(znVar.f40377j1, false);
                     znVar.Q8.setOnDismissListener(new e0(znVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
@@ -106,7 +106,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f13035c;
-                if (!scrollSlidingTextTabStrip.f22404n0 && (xm0Var = scrollSlidingTextTabStrip.f22389b) != null && xm0Var.m1(this.f13034b, view)) {
+                if (!scrollSlidingTextTabStrip.f22420n0 && (zm0Var = scrollSlidingTextTabStrip.f22405b) != null && zm0Var.m1(this.f13034b, view)) {
                     return true;
                 }
                 return false;

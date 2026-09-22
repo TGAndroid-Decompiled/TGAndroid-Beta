@@ -1,47 +1,72 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Rect;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class os0 extends s4.s0 {
-    public final fs0 f27036a;
-    public final gs0 f27037b;
-    public final jv0 f27038c;
+import org.telegram.messenger.AndroidUtilities;
+public final class os0 extends s4.n0 {
+    public final hs0 f27179a;
+    public final lv0 f27180b;
 
-    public os0(jv0 jv0Var, fs0 fs0Var, gs0 gs0Var) {
-        this.f27038c = jv0Var;
-        this.f27036a = fs0Var;
-        this.f27037b = gs0Var;
+    public os0(lv0 lv0Var, hs0 hs0Var) {
+        this.f27180b = lv0Var;
+        this.f27179a = hs0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
         boolean z10;
-        if (i10 != 0) {
-            z10 = true;
+        boolean z11;
+        hs0 hs0Var = this.f27179a;
+        int i10 = 0;
+        if (hs0Var.h.getAdapter() == this.f27180b.O) {
+            recyclerView.getClass();
+            int S = RecyclerView.S(view);
+            rect.left = 0;
+            rect.bottom = 0;
+            is0 is0Var = hs0Var.f24046x;
+            is0Var.B1();
+            if (S <= is0Var.U) {
+                rect.top = 0;
+            } else {
+                rect.top = AndroidUtilities.dp(2.0f);
+            }
+            if (!hs0Var.f24046x.E1(S)) {
+                i10 = AndroidUtilities.dp(2.0f);
+            }
+            rect.right = i10;
+        } else if (view instanceof org.telegram.ui.Cells.u7) {
+            org.telegram.ui.Cells.u7 u7Var = (org.telegram.ui.Cells.u7) view;
+            hs0Var.h.getClass();
+            int S2 = RecyclerView.S(u7Var);
+            int i11 = hs0Var.f24046x.J;
+            boolean z12 = true;
+            if (S2 < i11) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            u7Var.f21635a0 = z10;
+            int i12 = S2 % i11;
+            if (i12 == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            u7Var.V = z11;
+            if (i12 != i11 - 1) {
+                z12 = false;
+            }
+            u7Var.W = z12;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
         } else {
-            z10 = false;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
         }
-        this.f27038c.f25483b1 = z10;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        int i13;
-        jv0 jv0Var = this.f27038c;
-        yu0[] yu0VarArr = jv0Var.f25524t1;
-        gs0 gs0Var = this.f27037b;
-        fs0 fs0Var = this.f27036a;
-        jv0Var.G(fs0Var, (vl0) recyclerView, gs0Var);
-        if (i11 != 0 && ((i13 = jv0Var.f25504k0[0].F) == 0 || i13 == 5)) {
-            yu0VarArr[0].f30612a.isEmpty();
-        }
-        if (i11 != 0 && ((i12 = fs0Var.F) == 0 || jv0.p0(i12))) {
-            jv0.q(fs0Var, yu0VarArr, true);
-        }
-        fs0Var.h.M0(true);
-        if (fs0Var.G != null) {
-            fs0Var.invalidate();
-        }
-        jv0Var.o0();
     }
 }

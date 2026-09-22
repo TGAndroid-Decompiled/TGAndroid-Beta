@@ -9,7 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.y70;
 public final class r4 implements View.OnClickListener {
     public final int f11605a;
     public final u4 f11606b;
@@ -35,7 +35,7 @@ public final class r4 implements View.OnClickListener {
                     List m10 = u4Var.m();
                     if (indexOf >= 0 && indexOf < m10.size() && indexOf < arrayList.size()) {
                         final u uVar = (u) m10.get(indexOf);
-                        v70 F = u4Var.N.f11563a.f11715h3.F((View) arrayList.get(indexOf));
+                        y70 G = u4Var.N.f11563a.f11715h3.G((View) arrayList.get(indexOf));
                         boolean z10 = uVar.f11649n;
                         if (z10) {
                             i10 = R.drawable.msg_spoiler_off;
@@ -47,7 +47,7 @@ public final class r4 implements View.OnClickListener {
                         } else {
                             i11 = R.string.EnablePhotoSpoiler;
                         }
-                        F.c(i10, LocaleController.getString(i11), new Runnable() {
+                        G.c(i10, LocaleController.getString(i11), new Runnable() {
                             @Override
                             public final void run() {
                                 a aVar3;
@@ -94,7 +94,7 @@ public final class r4 implements View.OnClickListener {
                                 }
                             }
                         }, false);
-                        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable() {
+                        G.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable() {
                             @Override
                             public final void run() {
                                 a aVar3;
@@ -141,13 +141,13 @@ public final class r4 implements View.OnClickListener {
                                 }
                             }
                         }, true);
-                        F.a0(0.0f, -AndroidUtilities.dp(38.0f));
+                        G.a0(0.0f, -AndroidUtilities.dp(38.0f));
                         if (u4Var.H) {
-                            F.f28996u = false;
-                            F.v = true;
-                            F.f28994s = 0;
+                            G.f30570u = false;
+                            G.v = true;
+                            G.f30568s = 0;
                         }
-                        F.Z();
+                        G.Z();
                         return;
                     }
                     return;

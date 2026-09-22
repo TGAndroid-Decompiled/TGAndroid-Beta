@@ -11,41 +11,41 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.kd0;
 public final class a8 implements RequestDelegate {
-    public final int f525a;
-    public final long f526b;
-    public final Object f527c;
+    public final int f522a;
+    public final long f523b;
+    public final Object f524c;
 
     public a8(Object obj, long j3, int i10) {
-        this.f525a = i10;
-        this.f527c = obj;
-        this.f526b = j3;
+        this.f522a = i10;
+        this.f524c = obj;
+        this.f523b = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f525a) {
+        switch (this.f522a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new a3.h0((l9) this.f527c, this.f526b, tLObject, 2));
+                AndroidUtilities.runOnUIThread(new a3.h0((l9) this.f524c, this.f523b, tLObject, 2));
                 return;
             case 1:
-                ((ContactsController) this.f527c).lambda$loadContacts$28(this.f526b, tLObject, tL_error);
+                ((ContactsController) this.f524c).lambda$loadContacts$28(this.f523b, tLObject, tL_error);
                 return;
             case 2:
-                ((LocationController) this.f527c).lambda$loadLiveLocations$26(this.f526b, tLObject, tL_error);
+                ((LocationController) this.f524c).lambda$loadLiveLocations$26(this.f523b, tLObject, tL_error);
                 return;
             case 3:
-                ((SavedMessagesController) this.f527c).lambda$hasSavedMessages$15(this.f526b, tLObject, tL_error);
+                ((SavedMessagesController) this.f524c).lambda$hasSavedMessages$15(this.f523b, tLObject, tL_error);
                 return;
             case 4:
-                ((SecretChatHelper) this.f527c).lambda$declineSecretChat$20(this.f526b, tLObject, tL_error);
+                ((SecretChatHelper) this.f524c).lambda$declineSecretChat$20(this.f523b, tLObject, tL_error);
                 return;
             case 5:
-                ((SendMessagesHelper) this.f527c).lambda$sendGame$47(this.f526b, tLObject, tL_error);
+                ((SendMessagesHelper) this.f524c).lambda$sendGame$47(this.f523b, tLObject, tL_error);
                 return;
             default:
-                kd0 kd0Var = (kd0) this.f527c;
+                kd0 kd0Var = (kd0) this.f524c;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new a3.h0(kd0Var, tLObject, this.f526b, 28));
+                    AndroidUtilities.runOnUIThread(new a3.h0(kd0Var, tLObject, this.f523b, 28));
                     return;
                 }
                 return;

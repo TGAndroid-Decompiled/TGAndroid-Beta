@@ -11,7 +11,7 @@ public final class b extends j {
     public final String f11018k;
 
     public b(Context context, x5.i iVar) {
-        super(context, f11017l, iVar, com.google.android.gms.common.api.i.f6035c);
+        super(context, f11017l, iVar, com.google.android.gms.common.api.i.f6033c);
         this.f11018k = e.a();
     }
 
@@ -43,7 +43,7 @@ public final class b extends j {
                 }
                 throw new com.google.android.gms.common.api.f(status2);
             }
-            throw new com.google.android.gms.common.api.f(Status.f6022r);
+            throw new com.google.android.gms.common.api.f(Status.f6020r);
         }
         throw new com.google.android.gms.common.api.f(status);
     }

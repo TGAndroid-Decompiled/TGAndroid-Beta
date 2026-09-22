@@ -143,98 +143,98 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     public final org.telegram.ui.ActionBar.n2 Y1;
     public final Drawable[] Z0;
     public final org.telegram.ui.ActionBar.f6 Z1;
-    public final le.b f25889a;
-    public final yk0 f25890a0;
-    public final String[] f25891a1;
+    public final le.b f25849a;
+    public final bl0 f25850a0;
+    public final String[] f25851a1;
     public final org.telegram.ui.ActionBar.u5 a2;
-    public final le.b f25892b;
-    public final yk0 f25893b0;
-    public final int f25894b1;
-    public final org.telegram.ui.ActionBar.u5 f25895b2;
-    public int f25896c;
-    public boolean f25897c0;
-    public final int f25898c1;
-    public final boolean f25899c2;
+    public final le.b f25852b;
+    public final bl0 f25853b0;
+    public final int f25854b1;
+    public final org.telegram.ui.ActionBar.u5 f25855b2;
+    public int f25856c;
+    public boolean f25857c0;
+    public final int f25858c1;
+    public final boolean f25859c2;
     public final ArrayList d;
-    public final boolean f25900d0;
-    public final ArrayList f25901d1;
-    public LongSparseArray f25902d2;
+    public final boolean f25860d0;
+    public final ArrayList f25861d1;
+    public LongSparseArray f25862d2;
     public final ArrayList e;
-    public boolean f25903e0;
-    public int f25904e1;
-    public PorterDuffColorFilter f25905e2;
-    public boolean f25906f;
-    public boolean f25907f0;
-    public int f25908f1;
-    public final org.telegram.ui.Cells.u6 f25909f2;
-    public final mw f25910g0;
-    public boolean f25911g1;
-    public final ex f25912g2;
+    public boolean f25863e0;
+    public int f25864e1;
+    public PorterDuffColorFilter f25865e2;
+    public boolean f25866f;
+    public boolean f25867f0;
+    public int f25868f1;
+    public final org.telegram.ui.Cells.u6 f25869f2;
+    public final mw f25870g0;
+    public boolean f25871g1;
+    public final ex f25872g2;
     public final zw h;
-    public final nw f25913h0;
-    public TLRPC.TL_messages_stickerSet f25914h1;
-    public boolean f25915h2;
-    public final qy f25916i0;
-    public ArrayList f25917i1;
-    public final boolean f25918i2;
-    public final py f25919j0;
-    public ArrayList f25920j1;
-    public final ah.i f25921j2;
-    public final sy f25922k0;
-    public ArrayList f25923k1;
-    public final kh f25924k2;
-    public final HashMap f25925l0;
+    public final nw f25873h0;
+    public TLRPC.TL_messages_stickerSet f25874h1;
+    public boolean f25875h2;
+    public final qy f25876i0;
+    public ArrayList f25877i1;
+    public final boolean f25878i2;
+    public final py f25879j0;
+    public ArrayList f25880j1;
+    public final ah.i f25881j2;
+    public final sy f25882k0;
+    public ArrayList f25883k1;
+    public final kh f25884k2;
+    public final HashMap f25885l0;
     public ArrayList l1;
-    public final ah.c f25926l2;
+    public final ah.c f25886l2;
     public final iw m0;
-    public final ArrayList f25927m1;
-    public final li.i f25928m2;
-    public final FrameLayout f25929n;
-    public final py f25930n0;
-    public final ArrayList f25931n1;
-    public boolean f25932n2;
-    public final qw f25933o0;
-    public final ArrayList f25934o1;
-    public boolean f25935o2;
-    public final rx f25936p0;
-    public final ArrayList f25937p1;
-    public int f25938p2;
-    public boolean f25939q0;
-    public final ArrayList f25940q1;
-    public float f25941q2;
-    public final FrameLayout f25942r;
-    public int f25943r0;
-    public final HashMap f25944r1;
-    public View f25945r2;
-    public final FrameLayout f25946s;
-    public int f25947s0;
-    public final Paint f25948s1;
-    public int f25949s2;
-    public int f25950t0;
-    public ly f25951t1;
-    public int f25952t2;
-    public boolean f25953u0;
-    public long f25954u1;
-    public long f25955u2;
+    public final ArrayList f25887m1;
+    public final li.i f25888m2;
+    public final FrameLayout f25889n;
+    public final py f25890n0;
+    public final ArrayList f25891n1;
+    public boolean f25892n2;
+    public final qw f25893o0;
+    public final ArrayList f25894o1;
+    public boolean f25895o2;
+    public final rx f25896p0;
+    public final ArrayList f25897p1;
+    public int f25898p2;
+    public boolean f25899q0;
+    public final ArrayList f25900q1;
+    public float f25901q2;
+    public final FrameLayout f25902r;
+    public int f25903r0;
+    public final HashMap f25904r1;
+    public View f25905r2;
+    public final FrameLayout f25906s;
+    public int f25907s0;
+    public final Paint f25908s1;
+    public int f25909s2;
+    public int f25910t0;
+    public ly f25911t1;
+    public int f25912t2;
+    public boolean f25913u0;
+    public long f25914u1;
+    public long f25915u2;
     public final View v;
-    public boolean f25956v0;
-    public boolean f25957v1;
-    public boolean f25958v2;
-    public final md0 f25959w;
-    public boolean f25960w0;
-    public boolean f25961w1;
-    public boolean f25962w2;
-    public final ax f25963x;
-    public final rw f25964x0;
-    public final TLRPC.StickerSetCovered[] f25965x1;
-    public final Rect f25966x2;
-    public final ImageView f25967y;
-    public final bz f25968y0;
-    public final LongSparseArray f25969y1;
-    public final RectF f25970y2;
-    public final fz f25971z0;
-    public final LongSparseArray f25972z1;
-    public final ArrayList f25973z2;
+    public boolean f25916v0;
+    public boolean f25917v1;
+    public boolean f25918v2;
+    public final pd0 f25919w;
+    public boolean f25920w0;
+    public boolean f25921w1;
+    public boolean f25922w2;
+    public final ax f25923x;
+    public final rw f25924x0;
+    public final TLRPC.StickerSetCovered[] f25925x1;
+    public final Rect f25926x2;
+    public final ImageView f25927y;
+    public final bz f25928y0;
+    public final LongSparseArray f25929y1;
+    public final RectF f25930y2;
+    public final fz f25931z0;
+    public final LongSparseArray f25932z1;
+    public final ArrayList f25933z2;
 
     public kz(org.telegram.ui.ActionBar.n2 n2Var, boolean z10, boolean z11, boolean z12, Context context, boolean z13, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z14, final org.telegram.ui.ActionBar.f6 f6Var, boolean z15, boolean z16) {
         super(context);
@@ -247,82 +247,82 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         Field field;
         int i10;
         qr qrVar = qr.h;
-        this.f25889a = new le.b(0, this, qrVar, 320L, false);
-        this.f25892b = new le.b(1, this, qrVar, 320L, false);
-        this.f25896c = 2;
+        this.f25849a = new le.b(0, this, qrVar, 320L, false);
+        this.f25852b = new le.b(1, this, qrVar, 320L, false);
+        this.f25856c = 2;
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         this.e = new ArrayList();
-        this.f25897c0 = true;
-        this.f25922k0 = new sy(this);
-        this.f25925l0 = new HashMap();
-        this.f25939q0 = true;
-        this.f25943r0 = -2;
-        this.f25947s0 = -2;
-        this.f25950t0 = -2;
-        this.f25953u0 = true;
-        this.f25960w0 = true;
+        this.f25857c0 = true;
+        this.f25882k0 = new sy(this);
+        this.f25885l0 = new HashMap();
+        this.f25899q0 = true;
+        this.f25903r0 = -2;
+        this.f25907s0 = -2;
+        this.f25910t0 = -2;
+        this.f25913u0 = true;
+        this.f25920w0 = true;
         this.I0 = true;
         this.Q0 = new int[3];
         this.R0 = new ObjectAnimator[3];
         int i11 = UserConfig.selectedAccount;
-        this.f25898c1 = i11;
-        this.f25901d1 = new ArrayList();
-        this.f25917i1 = new ArrayList();
-        this.f25920j1 = new ArrayList();
-        this.f25923k1 = new ArrayList();
+        this.f25858c1 = i11;
+        this.f25861d1 = new ArrayList();
+        this.f25877i1 = new ArrayList();
+        this.f25880j1 = new ArrayList();
+        this.f25883k1 = new ArrayList();
         this.l1 = new ArrayList();
-        this.f25927m1 = new ArrayList();
-        this.f25931n1 = new ArrayList();
+        this.f25887m1 = new ArrayList();
+        this.f25891n1 = new ArrayList();
         new ArrayList();
-        this.f25934o1 = new ArrayList();
-        this.f25937p1 = new ArrayList();
-        this.f25940q1 = new ArrayList();
-        this.f25944r1 = new HashMap();
-        this.f25965x1 = new TLRPC.StickerSetCovered[10];
-        this.f25969y1 = new LongSparseArray();
-        this.f25972z1 = new LongSparseArray();
+        this.f25894o1 = new ArrayList();
+        this.f25897p1 = new ArrayList();
+        this.f25900q1 = new ArrayList();
+        this.f25904r1 = new HashMap();
+        this.f25925x1 = new TLRPC.StickerSetCovered[10];
+        this.f25929y1 = new LongSparseArray();
+        this.f25932z1 = new LongSparseArray();
         this.D1 = new int[2];
         this.F1 = -2;
         this.G1 = -2;
         this.H1 = -2;
         this.I1 = -2;
         this.L1 = -1;
-        this.f25909f2 = new org.telegram.ui.Cells.u6(this, 12);
-        this.f25912g2 = new ex(this);
-        this.f25915h2 = true;
+        this.f25869f2 = new org.telegram.ui.Cells.u6(this, 12);
+        this.f25872g2 = new ex(this);
+        this.f25875h2 = true;
         li.i iVar = new li.i();
-        this.f25928m2 = iVar;
-        this.f25941q2 = -1.0f;
-        this.f25949s2 = -1;
-        this.f25952t2 = -1;
-        this.f25955u2 = -1L;
-        this.f25958v2 = false;
-        this.f25962w2 = true;
-        this.f25966x2 = new Rect();
+        this.f25888m2 = iVar;
+        this.f25901q2 = -1.0f;
+        this.f25909s2 = -1;
+        this.f25912t2 = -1;
+        this.f25915u2 = -1L;
+        this.f25918v2 = false;
+        this.f25922w2 = true;
+        this.f25926x2 = new Rect();
         RectF rectF = new RectF();
-        this.f25970y2 = rectF;
+        this.f25930y2 = rectF;
         ArrayList arrayList2 = new ArrayList(1);
-        this.f25973z2 = arrayList2;
+        this.f25933z2 = arrayList2;
         arrayList2.add(rectF);
         this.A2 = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
         this.F2 = new le.b(0, new fw(this, 3), qrVar, 380L, true);
         this.L2 = new ew(this, 1);
         this.M2 = false;
-        this.f25953u0 = z14;
+        this.f25913u0 = z14;
         this.Y1 = n2Var;
-        this.f25899c2 = z10;
+        this.f25859c2 = z10;
         this.Z1 = f6Var;
-        this.f25918i2 = z16;
+        this.f25878i2 = z16;
         fh.c cVar = new fh.c();
-        cVar.a(z(org.telegram.ui.ActionBar.j6.f19094d6));
+        cVar.a(z(org.telegram.ui.ActionBar.j6.f19109d6));
         if (z15) {
             u(true);
         }
         i0.a.k(z(org.telegram.ui.ActionBar.j6.Wk), 30);
         int dp = AndroidUtilities.dp(50.0f);
-        this.f25894b1 = dp;
-        this.f25900d0 = z13;
+        this.f25854b1 = dp;
+        this.f25860d0 = z13;
         this.X0 = new Drawable[]{org.telegram.ui.ActionBar.j6.U(context, R.drawable.smiles_tab_smiles, z16 ? v(0.4f) : z(org.telegram.ui.ActionBar.j6.Re), z16 ? v(0.8f) : z(org.telegram.ui.ActionBar.j6.Oe)), org.telegram.ui.ActionBar.j6.U(context, R.drawable.smiles_tab_gif, z16 ? v(0.4f) : z(org.telegram.ui.ActionBar.j6.Re), z16 ? v(0.8f) : z(org.telegram.ui.ActionBar.j6.Oe)), org.telegram.ui.ActionBar.j6.U(context, R.drawable.smiles_tab_stickers, z16 ? v(0.4f) : z(org.telegram.ui.ActionBar.j6.Re), z16 ? v(0.8f) : z(org.telegram.ui.ActionBar.j6.Oe))};
         org.telegram.ui.ActionBar.u5 U = org.telegram.ui.ActionBar.j6.U(context, R.drawable.msg_emoji_recent, z16 ? v(0.4f) : z(org.telegram.ui.ActionBar.j6.Me), z16 ? v(0.8f) : z(org.telegram.ui.ActionBar.j6.Oe));
         org.telegram.ui.ActionBar.u5 U2 = org.telegram.ui.ActionBar.j6.U(context, R.drawable.emoji_tabs_faves, z16 ? v(0.4f) : z(org.telegram.ui.ActionBar.j6.Me), z16 ? v(0.8f) : z(org.telegram.ui.ActionBar.j6.Oe));
@@ -340,42 +340,42 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         int i13 = R.drawable.emoji_tabs_new2;
         int i14 = org.telegram.ui.ActionBar.j6.Qe;
         org.telegram.ui.ActionBar.u5 U5 = org.telegram.ui.ActionBar.j6.U(context, i13, z(i14), z(i14));
-        this.f25895b2 = U5;
+        this.f25855b2 = U5;
         this.Y0 = new Drawable[]{U, U2, u5Var, new LayerDrawable(new Drawable[]{U4, U5})};
         this.Z0 = new Drawable[]{org.telegram.ui.ActionBar.j6.U(context, R.drawable.msg_emoji_recent, z16 ? v(0.4f) : z(org.telegram.ui.ActionBar.j6.Me), z16 ? v(0.8f) : z(org.telegram.ui.ActionBar.j6.Oe)), org.telegram.ui.ActionBar.j6.U(context, R.drawable.stickers_gifs_trending, z16 ? v(0.4f) : z(org.telegram.ui.ActionBar.j6.Me), z16 ? v(0.8f) : z(org.telegram.ui.ActionBar.j6.Oe))};
-        this.f25891a1 = new String[]{LocaleController.getString(R.string.Emoji1), LocaleController.getString(R.string.Emoji2), LocaleController.getString(R.string.Emoji3), LocaleController.getString(R.string.Emoji4), LocaleController.getString(R.string.Emoji5), LocaleController.getString(R.string.Emoji6), LocaleController.getString(R.string.Emoji7), LocaleController.getString(R.string.Emoji8)};
+        this.f25851a1 = new String[]{LocaleController.getString(R.string.Emoji1), LocaleController.getString(R.string.Emoji2), LocaleController.getString(R.string.Emoji3), LocaleController.getString(R.string.Emoji4), LocaleController.getString(R.string.Emoji5), LocaleController.getString(R.string.Emoji6), LocaleController.getString(R.string.Emoji7), LocaleController.getString(R.string.Emoji8)};
         this.J1 = chatFull;
         Paint paint = new Paint(1);
-        this.f25948s1 = paint;
-        paint.setColor(z(org.telegram.ui.ActionBar.j6.f19046af));
-        ai.k2 k2Var = yf.j0.f47140a;
+        this.f25908s1 = paint;
+        paint.setColor(z(org.telegram.ui.ActionBar.j6.f19061af));
+        ai.k2 k2Var = yf.j0.f47161a;
         this.M1 = new ai.j6(AndroidUtilities.dp(6.0f));
         jx jxVar2 = new jx(this, context);
         this.J = jxVar2;
         ?? obj = new Object();
-        obj.f24504a = 0;
-        obj.f24505b = jxVar2;
+        obj.f24646a = 0;
+        obj.f24647b = jxVar2;
         arrayList.add(obj);
         if (z10) {
             MediaDataController.getInstance(i11).checkStickers(5);
             MediaDataController.getInstance(i11).checkFeaturedEmoji();
-            this.f25905e2 = new PorterDuffColorFilter(z(org.telegram.ui.ActionBar.j6.Oh), PorterDuff.Mode.SRC_IN);
+            this.f25865e2 = new PorterDuffColorFilter(z(org.telegram.ui.ActionBar.j6.Oh), PorterDuff.Mode.SRC_IN);
         }
         wx wxVar = new wx(this, context);
         this.P = wxVar;
         iVar.a(wxVar);
         s4.j jVar = new s4.j();
-        jVar.f43055c = 220L;
+        jVar.f43076c = 220L;
         jVar.e = 220L;
-        jVar.f43056f = 160L;
-        jVar.f43057g = 160L;
-        jVar.f43058i = qr.f27643g;
+        jVar.f43077f = 160L;
+        jVar.f43078g = 160L;
+        jVar.f43079i = qr.f27654g;
         wxVar.setItemAnimator(jVar);
         wxVar.setOnTouchListener(new View.OnTouchListener(this) {
-            public final kz f24465b;
+            public final kz f24626b;
 
             {
-                this.f24465b = this;
+                this.f24626b = this;
             }
 
             @Override
@@ -383,20 +383,20 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 switch (r3) {
                     case 0:
                         org.telegram.ui.st q6 = org.telegram.ui.st.q();
-                        kz kzVar = this.f24465b;
+                        kz kzVar = this.f24626b;
                         wx wxVar2 = kzVar.P;
                         kzVar.getMeasuredHeight();
-                        return q6.s(motionEvent, wxVar2, null, kzVar.f25912g2, f6Var);
+                        return q6.s(motionEvent, wxVar2, null, kzVar.f25872g2, f6Var);
                     case 1:
                         org.telegram.ui.st q10 = org.telegram.ui.st.q();
-                        kz kzVar2 = this.f24465b;
-                        return q10.s(motionEvent, kzVar2.f25913h0, kzVar2.m0, kzVar2.f25912g2, f6Var);
+                        kz kzVar2 = this.f24626b;
+                        return q10.s(motionEvent, kzVar2.f25873h0, kzVar2.m0, kzVar2.f25872g2, f6Var);
                     default:
                         org.telegram.ui.st q11 = org.telegram.ui.st.q();
-                        kz kzVar3 = this.f24465b;
+                        kz kzVar3 = this.f24626b;
                         tw twVar = kzVar3.D0;
                         kzVar3.getMeasuredHeight();
-                        return q11.s(motionEvent, twVar, kzVar3.A0, kzVar3.f25912g2, f6Var);
+                        return q11.s(motionEvent, twVar, kzVar3.A0, kzVar3.f25872g2, f6Var);
                 }
             }
         });
@@ -419,9 +419,9 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         wxVar.i(new ci.r1(this, 3));
         this.S = new ky(this, context);
         jxVar2.addView(wxVar, w7.y5.c(-1.0f, -1));
-        yk0 yk0Var = new yk0(wxVar, kxVar);
-        this.f25893b0 = yk0Var;
-        yk0Var.f30575i = new mx(this);
+        bl0 bl0Var = new bl0(wxVar, kxVar);
+        this.f25853b0 = bl0Var;
+        bl0Var.f23033i = new mx(this);
         wxVar.setOnScrollListener(new nx(this));
         if (n2Var != null) {
             jxVar = jxVar2;
@@ -443,10 +443,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             this.U = dVar;
             dVar.setVisibility(8);
             dVar.setOnBackClickListener(new View.OnClickListener(this) {
-                public final kz f24765b;
+                public final kz f24899b;
 
                 {
-                    this.f24765b = this;
+                    this.f24899b = this;
                 }
 
                 @Override
@@ -454,41 +454,41 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     xy xyVar;
                     switch (r2) {
                         case 0:
-                            ky kyVar = this.f24765b.S;
-                            fy fyVar = kyVar.f25881c;
+                            ky kyVar = this.f24899b.S;
+                            fy fyVar = kyVar.f25840c;
                             int childCount = fyVar.getChildCount();
                             for (int i16 = 0; i16 < childCount; i16++) {
                                 ((nh.c) fyVar.getChildAt(i16)).a(false, true);
                             }
                             kyVar.d = 0L;
-                            kyVar.F.f25892b.a(false, true);
+                            kyVar.F.f25852b.a(false, true);
                             kyVar.l();
                             return;
                         case 1:
-                            fz fzVar = this.f24765b.f25971z0;
-                            ez ezVar = fzVar.f24200c;
+                            fz fzVar = this.f24899b.f25931z0;
+                            ez ezVar = fzVar.f24373c;
                             int childCount2 = ezVar.getChildCount();
                             for (int i17 = 0; i17 < childCount2; i17++) {
                                 ((nh.c) ezVar.getChildAt(i17)).a(false, true);
                             }
                             fzVar.d = 0L;
-                            fzVar.Q.f25889a.a(false, true);
+                            fzVar.Q.f25849a.a(false, true);
                             fzVar.l();
                             return;
                         case 2:
-                            ly lyVar = this.f24765b.f25951t1;
+                            ly lyVar = this.f24899b.f25911t1;
                             if (lyVar != null) {
                                 lyVar.w();
                                 return;
                             }
                             return;
                         default:
-                            kz kzVar = this.f24765b;
+                            kz kzVar = this.f24899b;
                             int currentItem = kzVar.h.getCurrentItem();
                             if (currentItem == 0) {
                                 xyVar = kzVar.V;
                             } else if (currentItem == 1) {
-                                xyVar = kzVar.f25933o0;
+                                xyVar = kzVar.f25893o0;
                             } else {
                                 xyVar = kzVar.G0;
                             }
@@ -533,34 +533,34 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         n6Var.addView(bVar, w7.y5.d(-1, 48.0f, 80, 10.0f, 5.0f, 10.0f, 10.0f));
         jxVar.addView(n6Var, w7.y5.e(-1, -2, 80));
         if (z11) {
-            tm0 tm0Var = tm0.f28394b;
+            vm0 vm0Var = vm0.f29206b;
             if (z12) {
                 mw mwVar = new mw(this, context2);
-                this.f25910g0 = mwVar;
+                this.f25870g0 = mwVar;
                 ?? obj2 = new Object();
-                obj2.f24504a = 1;
-                obj2.f24505b = mwVar;
+                obj2.f24646a = 1;
+                obj2.f24647b = mwVar;
                 this.d.add(obj2);
                 nw nwVar = new nw(this, context2);
-                this.f25913h0 = nwVar;
+                this.f25873h0 = nwVar;
                 iVar.a(nwVar);
                 nwVar.setClipToPadding(false);
                 qy qyVar = new qy(this);
-                this.f25916i0 = qyVar;
+                this.f25876i0 = qyVar;
                 nwVar.setLayoutManager(qyVar);
                 nwVar.i(new ow(this));
-                nwVar.setPadding(0, dp, 0, AndroidUtilities.dp(44.0f) + this.f25938p2);
-                ((s4.f1) nwVar.getItemAnimator()).f43009m = false;
+                nwVar.setPadding(0, dp, 0, AndroidUtilities.dp(44.0f) + this.f25898p2);
+                ((s4.f1) nwVar.getItemAnimator()).f43030m = false;
                 py pyVar = new py(this, context2, true, Integer.MAX_VALUE);
-                this.f25930n0 = pyVar;
+                this.f25890n0 = pyVar;
                 nwVar.setAdapter(pyVar);
-                this.f25919j0 = new py(this, context2, false, 0);
+                this.f25879j0 = new py(this, context2, false, 0);
                 nwVar.setOnScrollListener(new pw(this));
                 nwVar.setOnTouchListener(new View.OnTouchListener(this) {
-                    public final kz f24465b;
+                    public final kz f24626b;
 
                     {
-                        this.f24465b = this;
+                        this.f24626b = this;
                     }
 
                     @Override
@@ -568,28 +568,28 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                         switch (r3) {
                             case 0:
                                 org.telegram.ui.st q6 = org.telegram.ui.st.q();
-                                kz kzVar = this.f24465b;
+                                kz kzVar = this.f24626b;
                                 wx wxVar2 = kzVar.P;
                                 kzVar.getMeasuredHeight();
-                                return q6.s(motionEvent, wxVar2, null, kzVar.f25912g2, f6Var);
+                                return q6.s(motionEvent, wxVar2, null, kzVar.f25872g2, f6Var);
                             case 1:
                                 org.telegram.ui.st q10 = org.telegram.ui.st.q();
-                                kz kzVar2 = this.f24465b;
-                                return q10.s(motionEvent, kzVar2.f25913h0, kzVar2.m0, kzVar2.f25912g2, f6Var);
+                                kz kzVar2 = this.f24626b;
+                                return q10.s(motionEvent, kzVar2.f25873h0, kzVar2.m0, kzVar2.f25872g2, f6Var);
                             default:
                                 org.telegram.ui.st q11 = org.telegram.ui.st.q();
-                                kz kzVar3 = this.f24465b;
+                                kz kzVar3 = this.f24626b;
                                 tw twVar = kzVar3.D0;
                                 kzVar3.getMeasuredHeight();
-                                return q11.s(motionEvent, twVar, kzVar3.A0, kzVar3.f25912g2, f6Var);
+                                return q11.s(motionEvent, twVar, kzVar3.A0, kzVar3.f25872g2, f6Var);
                         }
                     }
                 });
-                ?? r12 = new jl0(this) {
-                    public final kz f25140b;
+                ?? r12 = new ml0(this) {
+                    public final kz f25189b;
 
                     {
-                        this.f25140b = this;
+                        this.f25189b = this;
                     }
 
                     @Override
@@ -598,18 +598,18 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                         String str;
                         switch (r2) {
                             case 0:
-                                kz kzVar = this.f25140b;
-                                nw nwVar2 = kzVar.f25913h0;
-                                py pyVar2 = kzVar.f25919j0;
-                                py pyVar3 = kzVar.f25930n0;
-                                if (kzVar.f25951t1 != null) {
+                                kz kzVar = this.f25189b;
+                                nw nwVar2 = kzVar.f25873h0;
+                                py pyVar2 = kzVar.f25879j0;
+                                py pyVar3 = kzVar.f25890n0;
+                                if (kzVar.f25911t1 != null) {
                                     pyVar3.getClass();
-                                    ArrayList arrayList3 = pyVar3.f27465x;
+                                    ArrayList arrayList3 = pyVar3.f27446x;
                                     if (nwVar2.getAdapter() == pyVar3) {
                                         if (i17 >= 0) {
                                             int i19 = pyVar3.H;
                                             if (i17 < i19) {
-                                                kzVar.f25951t1.v(view2, kzVar.f25917i1.get(i17), null, "gif", true, 0, 0);
+                                                kzVar.f25911t1.v(view2, kzVar.f25877i1.get(i17), null, "gif", true, 0, 0);
                                                 return;
                                             }
                                             if (i19 > 0) {
@@ -618,14 +618,14 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                                                 i18 = i17;
                                             }
                                             if (i18 >= 0 && i18 < arrayList3.size()) {
-                                                kzVar.f25951t1.v(view2, arrayList3.get(i18), null, pyVar3.f27461n, true, 0, 0);
+                                                kzVar.f25911t1.v(view2, arrayList3.get(i18), null, pyVar3.f27442n, true, 0, 0);
                                                 return;
                                             }
                                             return;
                                         }
                                         return;
-                                    } else if (nwVar2.getAdapter() == pyVar2 && i17 >= 0 && i17 < pyVar2.f27465x.size()) {
-                                        kzVar.f25951t1.v(view2, pyVar2.f27465x.get(i17), pyVar2.f27464w, pyVar2.f27461n, true, 0, 0);
+                                    } else if (nwVar2.getAdapter() == pyVar2 && i17 >= 0 && i17 < pyVar2.f27446x.size()) {
+                                        kzVar.f25911t1.v(view2, pyVar2.f27446x.get(i17), pyVar2.f27445w, pyVar2.f27442n, true, 0, 0);
                                         kzVar.W();
                                         return;
                                     } else {
@@ -634,9 +634,9 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                                 }
                                 return;
                             default:
-                                kz kzVar2 = this.f25140b;
+                                kz kzVar2 = this.f25189b;
                                 s4.h0 adapter = kzVar2.D0.getAdapter();
-                                fz fzVar = kzVar2.f25971z0;
+                                fz fzVar = kzVar2.f25931z0;
                                 if (adapter == fzVar) {
                                     str = fzVar.N;
                                 } else {
@@ -645,21 +645,21 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                                 String str2 = str;
                                 if (view2 instanceof org.telegram.ui.Cells.g8) {
                                     org.telegram.ui.Cells.g8 g8Var = (org.telegram.ui.Cells.g8) view2;
-                                    if (g8Var.getSticker() != null && MessageObject.isPremiumSticker(g8Var.getSticker()) && !AccountInstance.getInstance(kzVar2.f25898c1).getUserConfig().isPremium()) {
+                                    if (g8Var.getSticker() != null && MessageObject.isPremiumSticker(g8Var.getSticker()) && !AccountInstance.getInstance(kzVar2.f25858c1).getUserConfig().isPremium()) {
                                         org.telegram.ui.st.q().y(g8Var);
                                         return;
                                     }
                                     org.telegram.ui.st.q().u();
-                                    if (!g8Var.f20345r) {
-                                        g8Var.f20345r = true;
-                                        g8Var.f20344n = 0.5f;
-                                        g8Var.f20348x = 0L;
-                                        org.telegram.ui.Cells.f8 f8Var = g8Var.f20340a;
+                                    if (!g8Var.f20360r) {
+                                        g8Var.f20360r = true;
+                                        g8Var.f20359n = 0.5f;
+                                        g8Var.f20363x = 0L;
+                                        org.telegram.ui.Cells.f8 f8Var = g8Var.f20355a;
                                         f8Var.setAlpha(0.5f * g8Var.H);
                                         f8Var.invalidate();
-                                        g8Var.f20346s = System.currentTimeMillis();
+                                        g8Var.f20361s = System.currentTimeMillis();
                                         g8Var.invalidate();
-                                        kzVar2.f25951t1.m(g8Var, g8Var.getSticker(), str2, g8Var.getParentObject(), g8Var.getSendAnimationData(), true, 0);
+                                        kzVar2.f25911t1.m(g8Var, g8Var.getSticker(), str2, g8Var.getParentObject(), g8Var.getSendAnimationData(), true, 0);
                                         return;
                                     }
                                     return;
@@ -669,14 +669,14 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     }
                 };
                 this.m0 = r12;
-                nwVar.setOnItemClickListener((jl0) r12);
+                nwVar.setOnItemClickListener((ml0) r12);
                 mwVar.addView(nwVar, w7.y5.c(-1.0f, -1));
                 qw qwVar = new qw(this, context2);
-                this.f25933o0 = qwVar;
+                this.f25893o0 = qwVar;
                 mwVar.addView(qwVar, new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight() + dp));
                 rx rxVar = new rx(this, context2, f6Var);
-                this.f25936p0 = rxVar;
-                rxVar.setType(tm0Var);
+                this.f25896p0 = rxVar;
+                rxVar.setType(vm0Var);
                 rxVar.setUnderlineHeight(AndroidUtilities.getShadowHeight());
                 i10 = i14;
                 rxVar.setIndicatorColor(z(i10));
@@ -689,12 +689,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 i10 = i14;
             }
             rw rwVar = new rw(this, context2, z14);
-            this.f25964x0 = rwVar;
-            MediaDataController.getInstance(this.f25898c1).checkStickers(0);
-            MediaDataController.getInstance(this.f25898c1).checkFeaturedStickers();
+            this.f25924x0 = rwVar;
+            MediaDataController.getInstance(this.f25858c1).checkStickers(0);
+            MediaDataController.getInstance(this.f25858c1).checkFeaturedStickers();
             tw twVar = new tw(this, context2);
             this.D0 = twVar;
-            this.f25928m2.a(twVar);
+            this.f25888m2.a(twVar);
             uw uwVar = new uw(this);
             this.E0 = uwVar;
             twVar.setLayoutManager(uwVar);
@@ -702,18 +702,18 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             twVar.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f));
             twVar.setClipToPadding(false);
             ?? obj3 = new Object();
-            obj3.f24504a = 2;
-            obj3.f24505b = rwVar;
+            obj3.f24646a = 2;
+            obj3.f24647b = rwVar;
             this.d.add(obj3);
-            this.f25971z0 = new fz(this, context2);
+            this.f25931z0 = new fz(this, context2);
             bz bzVar = new bz(this, context2);
-            this.f25968y0 = bzVar;
+            this.f25928y0 = bzVar;
             twVar.setAdapter(bzVar);
             twVar.setOnTouchListener(new View.OnTouchListener(this) {
-                public final kz f24465b;
+                public final kz f24626b;
 
                 {
-                    this.f24465b = this;
+                    this.f24626b = this;
                 }
 
                 @Override
@@ -721,28 +721,28 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     switch (r3) {
                         case 0:
                             org.telegram.ui.st q6 = org.telegram.ui.st.q();
-                            kz kzVar = this.f24465b;
+                            kz kzVar = this.f24626b;
                             wx wxVar2 = kzVar.P;
                             kzVar.getMeasuredHeight();
-                            return q6.s(motionEvent, wxVar2, null, kzVar.f25912g2, f6Var);
+                            return q6.s(motionEvent, wxVar2, null, kzVar.f25872g2, f6Var);
                         case 1:
                             org.telegram.ui.st q10 = org.telegram.ui.st.q();
-                            kz kzVar2 = this.f24465b;
-                            return q10.s(motionEvent, kzVar2.f25913h0, kzVar2.m0, kzVar2.f25912g2, f6Var);
+                            kz kzVar2 = this.f24626b;
+                            return q10.s(motionEvent, kzVar2.f25873h0, kzVar2.m0, kzVar2.f25872g2, f6Var);
                         default:
                             org.telegram.ui.st q11 = org.telegram.ui.st.q();
-                            kz kzVar3 = this.f24465b;
+                            kz kzVar3 = this.f24626b;
                             tw twVar2 = kzVar3.D0;
                             kzVar3.getMeasuredHeight();
-                            return q11.s(motionEvent, twVar2, kzVar3.A0, kzVar3.f25912g2, f6Var);
+                            return q11.s(motionEvent, twVar2, kzVar3.A0, kzVar3.f25872g2, f6Var);
                     }
                 }
             });
-            ?? r42 = new jl0(this) {
-                public final kz f25140b;
+            ?? r42 = new ml0(this) {
+                public final kz f25189b;
 
                 {
-                    this.f25140b = this;
+                    this.f25189b = this;
                 }
 
                 @Override
@@ -751,18 +751,18 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     String str;
                     switch (r2) {
                         case 0:
-                            kz kzVar = this.f25140b;
-                            nw nwVar2 = kzVar.f25913h0;
-                            py pyVar2 = kzVar.f25919j0;
-                            py pyVar3 = kzVar.f25930n0;
-                            if (kzVar.f25951t1 != null) {
+                            kz kzVar = this.f25189b;
+                            nw nwVar2 = kzVar.f25873h0;
+                            py pyVar2 = kzVar.f25879j0;
+                            py pyVar3 = kzVar.f25890n0;
+                            if (kzVar.f25911t1 != null) {
                                 pyVar3.getClass();
-                                ArrayList arrayList3 = pyVar3.f27465x;
+                                ArrayList arrayList3 = pyVar3.f27446x;
                                 if (nwVar2.getAdapter() == pyVar3) {
                                     if (i17 >= 0) {
                                         int i19 = pyVar3.H;
                                         if (i17 < i19) {
-                                            kzVar.f25951t1.v(view2, kzVar.f25917i1.get(i17), null, "gif", true, 0, 0);
+                                            kzVar.f25911t1.v(view2, kzVar.f25877i1.get(i17), null, "gif", true, 0, 0);
                                             return;
                                         }
                                         if (i19 > 0) {
@@ -771,14 +771,14 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                                             i18 = i17;
                                         }
                                         if (i18 >= 0 && i18 < arrayList3.size()) {
-                                            kzVar.f25951t1.v(view2, arrayList3.get(i18), null, pyVar3.f27461n, true, 0, 0);
+                                            kzVar.f25911t1.v(view2, arrayList3.get(i18), null, pyVar3.f27442n, true, 0, 0);
                                             return;
                                         }
                                         return;
                                     }
                                     return;
-                                } else if (nwVar2.getAdapter() == pyVar2 && i17 >= 0 && i17 < pyVar2.f27465x.size()) {
-                                    kzVar.f25951t1.v(view2, pyVar2.f27465x.get(i17), pyVar2.f27464w, pyVar2.f27461n, true, 0, 0);
+                                } else if (nwVar2.getAdapter() == pyVar2 && i17 >= 0 && i17 < pyVar2.f27446x.size()) {
+                                    kzVar.f25911t1.v(view2, pyVar2.f27446x.get(i17), pyVar2.f27445w, pyVar2.f27442n, true, 0, 0);
                                     kzVar.W();
                                     return;
                                 } else {
@@ -787,9 +787,9 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                             }
                             return;
                         default:
-                            kz kzVar2 = this.f25140b;
+                            kz kzVar2 = this.f25189b;
                             s4.h0 adapter = kzVar2.D0.getAdapter();
-                            fz fzVar = kzVar2.f25971z0;
+                            fz fzVar = kzVar2.f25931z0;
                             if (adapter == fzVar) {
                                 str = fzVar.N;
                             } else {
@@ -798,21 +798,21 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                             String str2 = str;
                             if (view2 instanceof org.telegram.ui.Cells.g8) {
                                 org.telegram.ui.Cells.g8 g8Var = (org.telegram.ui.Cells.g8) view2;
-                                if (g8Var.getSticker() != null && MessageObject.isPremiumSticker(g8Var.getSticker()) && !AccountInstance.getInstance(kzVar2.f25898c1).getUserConfig().isPremium()) {
+                                if (g8Var.getSticker() != null && MessageObject.isPremiumSticker(g8Var.getSticker()) && !AccountInstance.getInstance(kzVar2.f25858c1).getUserConfig().isPremium()) {
                                     org.telegram.ui.st.q().y(g8Var);
                                     return;
                                 }
                                 org.telegram.ui.st.q().u();
-                                if (!g8Var.f20345r) {
-                                    g8Var.f20345r = true;
-                                    g8Var.f20344n = 0.5f;
-                                    g8Var.f20348x = 0L;
-                                    org.telegram.ui.Cells.f8 f8Var = g8Var.f20340a;
+                                if (!g8Var.f20360r) {
+                                    g8Var.f20360r = true;
+                                    g8Var.f20359n = 0.5f;
+                                    g8Var.f20363x = 0L;
+                                    org.telegram.ui.Cells.f8 f8Var = g8Var.f20355a;
                                     f8Var.setAlpha(0.5f * g8Var.H);
                                     f8Var.invalidate();
-                                    g8Var.f20346s = System.currentTimeMillis();
+                                    g8Var.f20361s = System.currentTimeMillis();
                                     g8Var.invalidate();
-                                    kzVar2.f25951t1.m(g8Var, g8Var.getSticker(), str2, g8Var.getParentObject(), g8Var.getSendAnimationData(), true, 0);
+                                    kzVar2.f25911t1.m(g8Var, g8Var.getSticker(), str2, g8Var.getParentObject(), g8Var.getSendAnimationData(), true, 0);
                                     return;
                                 }
                                 return;
@@ -822,10 +822,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 }
             };
             this.A0 = r42;
-            twVar.setOnItemClickListener((jl0) r42);
+            twVar.setOnItemClickListener((ml0) r42);
             twVar.setGlowColor(z(i15));
             rwVar.addView(twVar);
-            this.f25890a0 = new yk0(twVar, uwVar);
+            this.f25850a0 = new bl0(twVar, uwVar);
             ww wwVar = new ww(this, context2);
             this.G0 = wwVar;
             rwVar.addView(wwVar, new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight() + dp));
@@ -833,10 +833,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             this.H0 = dVar2;
             dVar2.setVisibility(8);
             dVar2.setOnBackClickListener(new View.OnClickListener(this) {
-                public final kz f24765b;
+                public final kz f24899b;
 
                 {
-                    this.f24765b = this;
+                    this.f24899b = this;
                 }
 
                 @Override
@@ -844,41 +844,41 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     xy xyVar;
                     switch (r2) {
                         case 0:
-                            ky kyVar = this.f24765b.S;
-                            fy fyVar = kyVar.f25881c;
+                            ky kyVar = this.f24899b.S;
+                            fy fyVar = kyVar.f25840c;
                             int childCount = fyVar.getChildCount();
                             for (int i162 = 0; i162 < childCount; i162++) {
                                 ((nh.c) fyVar.getChildAt(i162)).a(false, true);
                             }
                             kyVar.d = 0L;
-                            kyVar.F.f25892b.a(false, true);
+                            kyVar.F.f25852b.a(false, true);
                             kyVar.l();
                             return;
                         case 1:
-                            fz fzVar = this.f24765b.f25971z0;
-                            ez ezVar = fzVar.f24200c;
+                            fz fzVar = this.f24899b.f25931z0;
+                            ez ezVar = fzVar.f24373c;
                             int childCount2 = ezVar.getChildCount();
                             for (int i17 = 0; i17 < childCount2; i17++) {
                                 ((nh.c) ezVar.getChildAt(i17)).a(false, true);
                             }
                             fzVar.d = 0L;
-                            fzVar.Q.f25889a.a(false, true);
+                            fzVar.Q.f25849a.a(false, true);
                             fzVar.l();
                             return;
                         case 2:
-                            ly lyVar = this.f24765b.f25951t1;
+                            ly lyVar = this.f24899b.f25911t1;
                             if (lyVar != null) {
                                 lyVar.w();
                                 return;
                             }
                             return;
                         default:
-                            kz kzVar = this.f24765b;
+                            kz kzVar = this.f24899b;
                             int currentItem = kzVar.h.getCurrentItem();
                             if (currentItem == 0) {
                                 xyVar = kzVar.V;
                             } else if (currentItem == 1) {
-                                xyVar = kzVar.f25933o0;
+                                xyVar = kzVar.f25893o0;
                             } else {
                                 xyVar = kzVar.G0;
                             }
@@ -903,7 +903,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             this.B0 = xwVar;
             xwVar.setDragEnabled(true);
             xwVar.setWillNotDraw(false);
-            xwVar.setType(tm0Var);
+            xwVar.setType(vm0Var);
             xwVar.setUnderlineHeight(twVar.canScrollVertically(-1) ? AndroidUtilities.getShadowHeight() : 0);
             xwVar.setIndicatorColor(z(i10));
             xwVar.setUnderlineColor(z(i16));
@@ -932,7 +932,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         this.e.addAll(this.d);
         zw zwVar = new zw(this, context2);
         this.h = zwVar;
-        li.i iVar2 = this.f25928m2;
+        li.i iVar2 = this.f25888m2;
         iVar2.getClass();
         zwVar.b(new ai.m7(iVar2, 1));
         zwVar.setOverScrollMode(2);
@@ -940,7 +940,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         this.L0 = eyVar;
         zwVar.setAdapter(eyVar);
         ax axVar = new ax(this, context2);
-        this.f25963x = axVar;
+        this.f25923x = axVar;
         axVar.setHapticFeedbackEnabled(true);
         axVar.setImageResource(R.drawable.smiles_tab_clear);
         int v = z16 ? v(0.6f) : z(org.telegram.ui.ActionBar.j6.Re);
@@ -951,19 +951,19 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         axVar.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
         axVar.setFocusable(true);
         axVar.setOnClickListener(new Object());
-        w7.b6.a(axVar);
+        w7.a6.a(axVar);
         FrameLayout frameLayout = new FrameLayout(context2);
-        this.f25942r = frameLayout;
+        this.f25902r = frameLayout;
         if (z13) {
             addView(frameLayout, w7.y5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, (AndroidUtilities.getShadowHeight() / AndroidUtilities.density) + 40.0f));
         } else {
             addView(frameLayout, w7.y5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         FrameLayout frameLayout2 = new FrameLayout(context2);
-        this.f25946s = frameLayout2;
+        this.f25906s = frameLayout2;
         addView(frameLayout2, w7.y5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
         FrameLayout frameLayout3 = new FrameLayout(context2);
-        this.f25929n = frameLayout3;
+        this.f25889n = frameLayout3;
         View view2 = new View(context2);
         this.v = view2;
         frameLayout3.addView(view2, new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(40.0f), 83));
@@ -972,19 +972,19 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             frameLayout3.addView(axVar, w7.y5.d(48, 48.0f, 85, 2.0f, 0.0f, 2.0f, 0.0f));
             if (z11) {
                 ImageView imageView = new ImageView(context2);
-                this.f25967y = imageView;
+                this.f25927y = imageView;
                 imageView.setImageResource(R.drawable.smiles_tab_settings);
                 imageView.setColorFilter(new PorterDuffColorFilter(z16 ? v(0.6f) : z(org.telegram.ui.ActionBar.j6.Re), mode));
                 imageView.setScaleType(scaleType);
                 imageView.setFocusable(true);
                 imageView.setContentDescription(LocaleController.getString(R.string.Settings));
-                w7.b6.a(imageView);
+                w7.a6.a(imageView);
                 frameLayout3.addView(imageView, w7.y5.d(48, 48.0f, 85, 2.0f, 0.0f, 2.0f, 0.0f));
                 imageView.setOnClickListener(new View.OnClickListener(this) {
-                    public final kz f24765b;
+                    public final kz f24899b;
 
                     {
-                        this.f24765b = this;
+                        this.f24899b = this;
                     }
 
                     @Override
@@ -992,41 +992,41 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                         xy xyVar;
                         switch (r2) {
                             case 0:
-                                ky kyVar = this.f24765b.S;
-                                fy fyVar = kyVar.f25881c;
+                                ky kyVar = this.f24899b.S;
+                                fy fyVar = kyVar.f25840c;
                                 int childCount = fyVar.getChildCount();
                                 for (int i162 = 0; i162 < childCount; i162++) {
                                     ((nh.c) fyVar.getChildAt(i162)).a(false, true);
                                 }
                                 kyVar.d = 0L;
-                                kyVar.F.f25892b.a(false, true);
+                                kyVar.F.f25852b.a(false, true);
                                 kyVar.l();
                                 return;
                             case 1:
-                                fz fzVar = this.f24765b.f25971z0;
-                                ez ezVar = fzVar.f24200c;
+                                fz fzVar = this.f24899b.f25931z0;
+                                ez ezVar = fzVar.f24373c;
                                 int childCount2 = ezVar.getChildCount();
                                 for (int i17 = 0; i17 < childCount2; i17++) {
                                     ((nh.c) ezVar.getChildAt(i17)).a(false, true);
                                 }
                                 fzVar.d = 0L;
-                                fzVar.Q.f25889a.a(false, true);
+                                fzVar.Q.f25849a.a(false, true);
                                 fzVar.l();
                                 return;
                             case 2:
-                                ly lyVar = this.f24765b.f25951t1;
+                                ly lyVar = this.f24899b.f25911t1;
                                 if (lyVar != null) {
                                     lyVar.w();
                                     return;
                                 }
                                 return;
                             default:
-                                kz kzVar = this.f24765b;
+                                kz kzVar = this.f24899b;
                                 int currentItem = kzVar.h.getCurrentItem();
                                 if (currentItem == 0) {
                                     xyVar = kzVar.V;
                                 } else if (currentItem == 1) {
-                                    xyVar = kzVar.f25933o0;
+                                    xyVar = kzVar.f25893o0;
                                 } else {
                                     xyVar = kzVar.G0;
                                 }
@@ -1046,17 +1046,17 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     }
                 });
             }
-            md0 md0Var = new md0(context2, f6Var);
-            this.f25959w = md0Var;
-            md0Var.setViewPager(zwVar);
-            md0Var.setShouldExpand(false);
-            md0Var.setIndicatorHeight(AndroidUtilities.dp(3.0f));
-            md0Var.setIndicatorColor(i0.a.k(z(org.telegram.ui.ActionBar.j6.Oe), 20));
-            md0Var.setUnderlineHeight(0);
-            md0Var.setTabPaddingLeftRight(AndroidUtilities.dp(11.0f));
-            md0Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(11.0f));
-            frameLayout3.addView(md0Var, w7.y5.e(-2, 48, 81));
-            md0Var.setOnPageChangeListener(new cx(this, z18));
+            pd0 pd0Var = new pd0(context2, f6Var);
+            this.f25919w = pd0Var;
+            pd0Var.setViewPager(zwVar);
+            pd0Var.setShouldExpand(false);
+            pd0Var.setIndicatorHeight(AndroidUtilities.dp(3.0f));
+            pd0Var.setIndicatorColor(i0.a.k(z(org.telegram.ui.ActionBar.j6.Oe), 20));
+            pd0Var.setUnderlineHeight(0);
+            pd0Var.setTabPaddingLeftRight(AndroidUtilities.dp(11.0f));
+            pd0Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(11.0f));
+            frameLayout3.addView(pd0Var, w7.y5.e(-2, 48, 81));
+            pd0Var.setOnPageChangeListener(new cx(this, z18));
             ImageView imageView2 = new ImageView(context2);
             this.E = imageView2;
             imageView2.setImageResource(R.drawable.smiles_tab_search);
@@ -1067,10 +1067,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             imageView2.setVisibility(8);
             frameLayout3.addView(imageView2, w7.y5.d(48, 48.0f, 83, 2.0f, 0.0f, 2.0f, 0.0f));
             imageView2.setOnClickListener(new View.OnClickListener(this) {
-                public final kz f24765b;
+                public final kz f24899b;
 
                 {
-                    this.f24765b = this;
+                    this.f24899b = this;
                 }
 
                 @Override
@@ -1078,41 +1078,41 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     xy xyVar;
                     switch (r2) {
                         case 0:
-                            ky kyVar = this.f24765b.S;
-                            fy fyVar = kyVar.f25881c;
+                            ky kyVar = this.f24899b.S;
+                            fy fyVar = kyVar.f25840c;
                             int childCount = fyVar.getChildCount();
                             for (int i162 = 0; i162 < childCount; i162++) {
                                 ((nh.c) fyVar.getChildAt(i162)).a(false, true);
                             }
                             kyVar.d = 0L;
-                            kyVar.F.f25892b.a(false, true);
+                            kyVar.F.f25852b.a(false, true);
                             kyVar.l();
                             return;
                         case 1:
-                            fz fzVar = this.f24765b.f25971z0;
-                            ez ezVar = fzVar.f24200c;
+                            fz fzVar = this.f24899b.f25931z0;
+                            ez ezVar = fzVar.f24373c;
                             int childCount2 = ezVar.getChildCount();
                             for (int i17 = 0; i17 < childCount2; i17++) {
                                 ((nh.c) ezVar.getChildAt(i17)).a(false, true);
                             }
                             fzVar.d = 0L;
-                            fzVar.Q.f25889a.a(false, true);
+                            fzVar.Q.f25849a.a(false, true);
                             fzVar.l();
                             return;
                         case 2:
-                            ly lyVar = this.f24765b.f25951t1;
+                            ly lyVar = this.f24899b.f25911t1;
                             if (lyVar != null) {
                                 lyVar.w();
                                 return;
                             }
                             return;
                         default:
-                            kz kzVar = this.f24765b;
+                            kz kzVar = this.f24899b;
                             int currentItem = kzVar.h.getCurrentItem();
                             if (currentItem == 0) {
                                 xyVar = kzVar.V;
                             } else if (currentItem == 1) {
-                                xyVar = kzVar.f25933o0;
+                                xyVar = kzVar.f25893o0;
                             } else {
                                 xyVar = kzVar.G0;
                             }
@@ -1134,7 +1134,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         } else {
             addView(frameLayout3, w7.y5.d(56, 48.0f, (LocaleController.isRTL ? 3 : 5) | 80, 0.0f, 0.0f, 2.0f, 0.0f));
             org.telegram.ui.Cells.z h02 = org.telegram.ui.ActionBar.j6.h0(AndroidUtilities.dp(56.0f), z(i15), z(i15));
-            w7.b6.a(axVar);
+            w7.a6.a(axVar);
             axVar.setPadding(0, 0, AndroidUtilities.dp(2.0f), 0);
             axVar.setBackground(h02);
             axVar.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
@@ -1145,17 +1145,17 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         addView(zwVar, 0, w7.y5.e(-1, -1, 51));
         ai.p4 p4Var = new ai.p4(context2, 22);
         this.N0 = p4Var;
-        p4Var.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(6.0f), z(org.telegram.ui.ActionBar.j6.f19341qf)));
-        p4Var.setTextColor(z(org.telegram.ui.ActionBar.j6.f19323pf));
+        p4Var.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(6.0f), z(org.telegram.ui.ActionBar.j6.f19356qf)));
+        p4Var.setTextColor(z(org.telegram.ui.ActionBar.j6.f19338pf));
         p4Var.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f));
         p4Var.setGravity(16);
         p4Var.setTextSize(1, 14.0f);
         p4Var.setVisibility(4);
         addView(p4Var, w7.y5.d(-2, -2.0f, 81, 5.0f, 0.0f, 5.0f, 53.0f));
         this.C1 = AndroidUtilities.dp(AndroidUtilities.isTablet() ? 40.0f : 32.0f);
-        Field field2 = xu.f30363f;
+        Field field2 = xu.f30408f;
         xu xuVar = new xu(new wu(context2, f6Var));
-        if (xu.f30363f == null) {
+        if (xu.f30408f == null) {
             try {
                 field = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
                 try {
@@ -1165,52 +1165,52 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             } catch (Exception unused2) {
                 field = null;
             }
-            xu.f30363f = field;
+            xu.f30408f = field;
         }
-        Field field3 = xu.f30363f;
+        Field field3 = xu.f30408f;
         if (field3 != null) {
             try {
-                xuVar.f30365a = (ViewTreeObserver.OnScrollChangedListener) field3.get(xuVar);
-                xu.f30363f.set(xuVar, xu.f30364g);
+                xuVar.f30410a = (ViewTreeObserver.OnScrollChangedListener) field3.get(xuVar);
+                xu.f30408f.set(xuVar, xu.f30409g);
             } catch (Exception unused3) {
-                xuVar.f30365a = null;
+                xuVar.f30410a = null;
             }
         }
         this.B1 = xuVar;
-        xuVar.f30367c.setOnSelectionUpdateListener(new d(this, 10));
+        xuVar.f30412c.setOnSelectionUpdateListener(new d(this, 10));
         this.A1 = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
         Emoji.loadRecentEmoji();
         txVar.F(false);
         I(true, z11, z12, false);
         if (Build.VERSION.SDK_INT >= 31) {
             ah.i iVar3 = new ah.i(false);
-            this.f25921j2 = iVar3;
-            this.f25928m2.f14341i.add(iVar3);
+            this.f25881j2 = iVar3;
+            this.f25888m2.f14356i.add(iVar3);
             fh.d dVar3 = new fh.d(null);
             dVar3.f9077f = cVar;
             dVar3.d = iVar3;
             dVar3.e = -2;
             ah.c cVar2 = new ah.c(dVar3);
-            this.f25926l2 = cVar2;
-            cVar2.f427i = LiteMode.isEnabled(262144);
+            this.f25886l2 = cVar2;
+            cVar2.f424i = LiteMode.isEnabled(262144);
             int dp2 = AndroidUtilities.dp(LiteMode.isEnabled(262144) ? 8.0f : 48.0f);
-            cVar2.f423b = dp2;
-            cVar2.f424c = dp2;
-            cVar2.h = this.f25928m2;
+            cVar2.f420b = dp2;
+            cVar2.f421c = dp2;
+            cVar2.h = this.f25888m2;
         } else {
             ah.c cVar3 = new ah.c(cVar);
-            this.f25926l2 = cVar3;
-            cVar3.h = this.f25928m2;
-            this.f25921j2 = null;
+            this.f25886l2 = cVar3;
+            cVar3.h = this.f25888m2;
+            this.f25881j2 = null;
         }
-        this.f25924k2 = new kh(this, 1);
-        setBlurredBackgroundDrawableFactory(this.f25926l2);
-        this.f25928m2.c(this);
-        this.f25928m2.f14336a = new fw(this, 0);
+        this.f25884k2 = new kh(this, 1);
+        setBlurredBackgroundDrawableFactory(this.f25886l2);
+        this.f25888m2.c(this);
+        this.f25888m2.f14351a = new fw(this, 0);
     }
 
     public static void a(kz kzVar, boolean z10) {
-        nw nwVar = kzVar.f25913h0;
+        nw nwVar = kzVar.f25873h0;
         if (nwVar != null) {
             int childCount = nwVar.getChildCount();
             for (int i10 = 0; i10 < childCount; i10++) {
@@ -1237,15 +1237,15 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         ly lyVar;
         xc xcVar;
         org.telegram.ui.ActionBar.n2 n2Var = kzVar.Y1;
-        int i10 = kzVar.f25898c1;
-        ArrayList arrayList = kzVar.f25940q1;
+        int i10 = kzVar.f25858c1;
+        ArrayList arrayList = kzVar.f25900q1;
         if (tyVar != null) {
             if (tyVar.getSpan() != null) {
-                if (kzVar.f25951t1 != null) {
+                if (kzVar.f25911t1 != null) {
                     long j3 = tyVar.getSpan().documentId;
                     TLRPC.Document document = tyVar.getSpan().document;
                     xx xxVar = tyVar.e;
-                    if (xxVar != null && xxVar.f30376i) {
+                    if (xxVar != null && xxVar.f30426i) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -1255,10 +1255,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                             xx xxVar2 = (xx) arrayList.get(i11);
                             int i12 = 0;
                             while (true) {
-                                ArrayList arrayList2 = xxVar2.f30373c;
+                                ArrayList arrayList2 = xxVar2.f30423c;
                                 if (arrayList2 != null && i12 < arrayList2.size()) {
-                                    if (((TLRPC.Document) xxVar2.f30373c.get(i12)).f18334id == j3) {
-                                        document = (TLRPC.Document) xxVar2.f30373c.get(i12);
+                                    if (((TLRPC.Document) xxVar2.f30423c.get(i12)).f18349id == j3) {
+                                        document = (TLRPC.Document) xxVar2.f30423c.get(i12);
                                         break;
                                     }
                                     i12++;
@@ -1275,25 +1275,25 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                         str4 = null;
                     }
                     String str5 = str4;
-                    if (!MessageObject.isFreeEmoji(document) && !UserConfig.getInstance(i10).isPremium() && (((lyVar = kzVar.f25951t1) == null || !lyVar.g()) && !kzVar.U0 && !z10)) {
+                    if (!MessageObject.isFreeEmoji(document) && !UserConfig.getInstance(i10).isPremium() && (((lyVar = kzVar.f25911t1) == null || !lyVar.g()) && !kzVar.U0 && !z10)) {
                         kzVar.M(false);
                         if (n2Var != null) {
                             xcVar = xc.a0(n2Var);
                         } else {
-                            xcVar = new xc(kzVar.f25942r, kzVar.Z1);
+                            xcVar = new xc(kzVar.f25902r, kzVar.Z1);
                         }
-                        if (!kzVar.f25915h2 && n2Var != null) {
+                        if (!kzVar.f25875h2 && n2Var != null) {
                             xcVar.J(R.raw.saved_messages, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiHint2)), LocaleController.getString(R.string.Open), new ew(kzVar, 4)).j();
                         } else {
                             xcVar.q(document, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiHint)), LocaleController.getString(R.string.PremiumMore), new ew(kzVar, 3)).j();
                         }
-                        kzVar.f25915h2 = !kzVar.f25915h2;
+                        kzVar.f25875h2 = !kzVar.f25875h2;
                         return;
                     }
                     kzVar.E2 = SystemClock.elapsedRealtime();
                     kzVar.M(true);
                     kzVar.h("animated_" + j3);
-                    kzVar.f25951t1.x(j3, document, str5, tyVar.f28477c);
+                    kzVar.f25911t1.x(j3, document, str5, tyVar.f28558c);
                     return;
                 }
                 return;
@@ -1307,18 +1307,18 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             }
             new SpannableStringBuilder().append((CharSequence) str2);
             if (str == null) {
-                if (!tyVar.f28477c && (str3 = Emoji.emojiColor.get(str2)) != null) {
+                if (!tyVar.f28558c && (str3 = Emoji.emojiColor.get(str2)) != null) {
                     str2 = g(str2, str3);
                 }
                 kzVar.h(str2);
-                ly lyVar2 = kzVar.f25951t1;
+                ly lyVar2 = kzVar.f25911t1;
                 if (lyVar2 != null) {
                     lyVar2.l(Emoji.fixEmoji(str2));
                     return;
                 }
                 return;
             }
-            ly lyVar3 = kzVar.f25951t1;
+            ly lyVar3 = kzVar.f25911t1;
             if (lyVar3 != null) {
                 lyVar3.l(Emoji.fixEmoji(str));
             }
@@ -1332,10 +1332,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             kzVar.n(i11, kzVar.P);
             return;
         }
-        ly lyVar = kzVar.f25951t1;
+        ly lyVar = kzVar.f25911t1;
         if ((lyVar == null || !lyVar.z()) && !kzVar.J0) {
-            vl0 x10 = kzVar.x(i10);
-            if (i11 > 0 && x10 != null && x10.getVisibility() == 0 && (L = x10.L(0)) != null && L.f42974a.getTop() + kzVar.f25894b1 >= x10.getPaddingTop()) {
+            yl0 x10 = kzVar.x(i10);
+            if (i11 > 0 && x10 != null && x10.getVisibility() == 0 && (L = x10.L(0)) != null && L.f42995a.getTop() + kzVar.f25854b1 >= x10.getPaddingTop()) {
                 return;
             }
             int i12 = iArr[i10] - i11;
@@ -1355,19 +1355,19 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
 
     public static void f(kz kzVar, boolean z10) {
         int N0;
-        qy qyVar = kzVar.f25916i0;
-        qw qwVar = kzVar.f25933o0;
-        nw nwVar = kzVar.f25913h0;
+        qy qyVar = kzVar.f25876i0;
+        qw qwVar = kzVar.f25893o0;
+        nw nwVar = kzVar.f25873h0;
         if (nwVar != null && (nwVar.getAdapter() instanceof py)) {
             py pyVar = (py) nwVar.getAdapter();
-            if (!pyVar.f27463s && pyVar.h == 0 && !pyVar.f27465x.isEmpty() && (N0 = qyVar.N0()) != -1 && N0 > qyVar.B() - 5) {
-                String str = pyVar.f27464w;
-                String str2 = pyVar.f27462r;
+            if (!pyVar.f27444s && pyVar.h == 0 && !pyVar.f27446x.isEmpty() && (N0 = qyVar.N0()) != -1 && N0 > qyVar.B() - 5) {
+                String str = pyVar.f27445w;
+                String str2 = pyVar.f27443r;
                 boolean z11 = pyVar.v;
                 pyVar.F(str, str2, true, z11, z11);
             }
         }
-        ly lyVar = kzVar.f25951t1;
+        ly lyVar = kzVar.f25911t1;
         if (lyVar != null && lyVar.z()) {
             boolean z12 = false;
             s4.c1 L = nwVar.L(0);
@@ -1375,12 +1375,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 xy.a(qwVar, true, !z10);
                 return;
             }
-            if (L.f42974a.getTop() < nwVar.getPaddingTop()) {
+            if (L.f42995a.getTop() < nwVar.getPaddingTop()) {
                 z12 = true;
             }
             xy.a(qwVar, z12, !z10);
         } else if (qwVar != null && nwVar != null) {
-            qwVar.f30378a.a(true, !z10);
+            qwVar.f30429a.a(true, !z10);
         }
     }
 
@@ -1428,7 +1428,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         if (wwVar != null) {
             wwVar.b();
         }
-        qw qwVar = this.f25933o0;
+        qw qwVar = this.f25893o0;
         if (qwVar != null) {
             qwVar.b();
         }
@@ -1441,10 +1441,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     public final void B(boolean z10, boolean z11) {
         wy wyVar;
         boolean z12;
-        if (this.A1 != 0 && this.f25961w1) {
+        if (this.A1 != 0 && this.f25921w1) {
             this.A1 = 0;
         }
-        if (this.A1 == 0 && this.f25957v1) {
+        if (this.A1 == 0 && this.f25917v1) {
             this.A1 = 1;
         }
         int i10 = this.A1;
@@ -1453,7 +1453,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             int i11 = this.A1;
             if (i11 == 1) {
                 L(false, false);
-                if (!this.f25953u0 && !this.f25956v0) {
+                if (!this.f25913u0 && !this.f25916v0) {
                     z12 = false;
                 } else {
                     z12 = true;
@@ -1485,12 +1485,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 if (zwVar.getCurrentItem() != 1) {
                     zwVar.x(1, false);
                 }
-                rx rxVar = this.f25936p0;
+                rx rxVar = this.f25896p0;
                 if (rxVar != null) {
                     rxVar.m(0);
                 }
-                qw qwVar = this.f25933o0;
-                if (qwVar != null && (wyVar = qwVar.f30383r) != null) {
+                qw qwVar = this.f25893o0;
+                if (qwVar != null && (wyVar = qwVar.f30434r) != null) {
                     wyVar.G1(null);
                 }
             }
@@ -1507,8 +1507,72 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         M(true);
     }
 
+    public final void D() {
+        bz bzVar = this.f25928y0;
+        if (bzVar != null) {
+            bzVar.l();
+        }
+        fz fzVar = this.f25931z0;
+        if (fzVar != null) {
+            fzVar.l();
+        }
+        if (org.telegram.ui.st.q().E) {
+            org.telegram.ui.st.q().n();
+        }
+        org.telegram.ui.st.q().u();
+    }
+
+    public final void E(int i10) {
+        ly lyVar = this.f25911t1;
+        if ((lyVar != null && lyVar.z()) || i10 == 0) {
+            return;
+        }
+        HorizontalScrollView y3 = y(i10);
+        this.Q0[i10] = 0;
+        y3.setTranslationY(0);
+    }
+
+    public final void F(int i10, int i11) {
+        kx kxVar = this.Q;
+        View m10 = kxVar.m(i10);
+        int L0 = kxVar.L0();
+        int i12 = 1;
+        if ((m10 == null && Math.abs(i10 - L0) > kxVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
+            if (kxVar.L0() < i10) {
+                i12 = 0;
+            }
+            bl0 bl0Var = this.f25853b0;
+            bl0Var.f23029b = i12;
+            bl0Var.d(i10, i11, false, false);
+            return;
+        }
+        this.J0 = true;
+        ci.m1 m1Var = new ci.m1(this, this.P.getContext(), 1);
+        m1Var.f43145a = i10;
+        m1Var.f13106p = i11;
+        kxVar.w0(m1Var);
+    }
+
+    public final void G(int i10, int i11) {
+        uw uwVar = this.E0;
+        View m10 = uwVar.m(i10);
+        int L0 = uwVar.L0();
+        int i12 = 1;
+        if (m10 == null && Math.abs(i10 - L0) > 40) {
+            if (uwVar.L0() < i10) {
+                i12 = 0;
+            }
+            bl0 bl0Var = this.f25850a0;
+            bl0Var.f23029b = i12;
+            bl0Var.d(i10, i11, false, false);
+            return;
+        }
+        this.J0 = true;
+        this.D0.y0(i10);
+    }
+
     @Override
-    public final void D(int i10, float f7, float f10, le.e eVar) {
+    public final void H(int i10, float f7, float f10, le.e eVar) {
         int i11;
         int i12;
         int i13;
@@ -1516,7 +1580,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         int i15 = 4;
         if (i10 == 0) {
             q(false);
-            float f11 = 1.0f - this.f25889a.e;
+            float f11 = 1.0f - this.f25849a.e;
             ww wwVar = this.G0;
             wwVar.setAlpha(f11);
             if (f11 > 0.0f) {
@@ -1544,10 +1608,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             }
             n6Var.setVisibility(i15);
             R();
-            this.f25964x0.invalidate();
+            this.f25924x0.invalidate();
         } else if (i10 == 1) {
             l(false);
-            float f13 = 1.0f - this.f25892b.e;
+            float f13 = 1.0f - this.f25852b.e;
             kw kwVar = this.V;
             kwVar.setAlpha(f13);
             if (f13 > 0.0f) {
@@ -1579,70 +1643,6 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         }
     }
 
-    public final void E() {
-        bz bzVar = this.f25968y0;
-        if (bzVar != null) {
-            bzVar.l();
-        }
-        fz fzVar = this.f25971z0;
-        if (fzVar != null) {
-            fzVar.l();
-        }
-        if (org.telegram.ui.st.q().E) {
-            org.telegram.ui.st.q().n();
-        }
-        org.telegram.ui.st.q().u();
-    }
-
-    public final void F(int i10) {
-        ly lyVar = this.f25951t1;
-        if ((lyVar != null && lyVar.z()) || i10 == 0) {
-            return;
-        }
-        HorizontalScrollView y3 = y(i10);
-        this.Q0[i10] = 0;
-        y3.setTranslationY(0);
-    }
-
-    public final void G(int i10, int i11) {
-        kx kxVar = this.Q;
-        View m10 = kxVar.m(i10);
-        int L0 = kxVar.L0();
-        int i12 = 1;
-        if ((m10 == null && Math.abs(i10 - L0) > kxVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
-            if (kxVar.L0() < i10) {
-                i12 = 0;
-            }
-            yk0 yk0Var = this.f25893b0;
-            yk0Var.f30571b = i12;
-            yk0Var.d(i10, i11, false, false);
-            return;
-        }
-        this.J0 = true;
-        ci.m1 m1Var = new ci.m1(this, this.P.getContext(), 1);
-        m1Var.f43124a = i10;
-        m1Var.f13106p = i11;
-        kxVar.w0(m1Var);
-    }
-
-    public final void H(int i10, int i11) {
-        uw uwVar = this.E0;
-        View m10 = uwVar.m(i10);
-        int L0 = uwVar.L0();
-        int i12 = 1;
-        if (m10 == null && Math.abs(i10 - L0) > 40) {
-            if (uwVar.L0() < i10) {
-                i12 = 0;
-            }
-            yk0 yk0Var = this.f25890a0;
-            yk0Var.f30571b = i12;
-            yk0Var.d(i10, i11, false, false);
-            return;
-        }
-        this.J0 = true;
-        this.D0.y0(i10);
-    }
-
     public final void I(boolean z10, boolean z11, boolean z12, boolean z13) {
         ArrayList arrayList = this.e;
         arrayList.clear();
@@ -1653,30 +1653,30 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             if (i10 >= arrayList2.size()) {
                 break;
             }
-            if (((gz) arrayList2.get(i10)).f24504a == 0 && z10) {
+            if (((gz) arrayList2.get(i10)).f24646a == 0 && z10) {
                 arrayList.add((gz) arrayList2.get(i10));
             }
-            if (((gz) arrayList2.get(i10)).f24504a == 1 && z12) {
+            if (((gz) arrayList2.get(i10)).f24646a == 1 && z12) {
                 arrayList.add((gz) arrayList2.get(i10));
             }
-            if (((gz) arrayList2.get(i10)).f24504a == 2 && z11) {
+            if (((gz) arrayList2.get(i10)).f24646a == 2 && z11) {
                 arrayList.add((gz) arrayList2.get(i10));
             }
             i10++;
         }
-        md0 md0Var = this.f25959w;
-        if (md0Var != null) {
+        pd0 pd0Var = this.f25919w;
+        if (pd0Var != null) {
             if (arrayList.size() > 1) {
                 z14 = true;
             }
-            AndroidUtilities.updateViewVisibilityAnimated(md0Var, z14, 1.0f, z13);
+            AndroidUtilities.updateViewVisibilityAnimated(pd0Var, z14, 1.0f, z13);
         }
         zw zwVar = this.h;
         if (zwVar != null) {
             zwVar.setAdapter(null);
             zwVar.setAdapter(this.L0);
-            if (md0Var != null) {
-                md0Var.setViewPager(zwVar);
+            if (pd0Var != null) {
+                pd0Var.setViewPager(zwVar);
             }
         }
     }
@@ -1686,11 +1686,11 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         fz fzVar;
         ky kyVar;
         if (stickerSet != null) {
-            if (!z10 || (kyVar = this.S) == null || kyVar.d == stickerSet.f18355id) {
-                if (!z10 && (fzVar = this.f25971z0) != null && fzVar.d != stickerSet.f18355id) {
+            if (!z10 || (kyVar = this.S) == null || kyVar.d == stickerSet.f18370id) {
+                if (!z10 && (fzVar = this.f25931z0) != null && fzVar.d != stickerSet.f18370id) {
                     return;
                 }
-                final boolean isStickerPackInstalled = MediaDataController.getInstance(this.f25898c1).isStickerPackInstalled(stickerSet.f18355id);
+                final boolean isStickerPackInstalled = MediaDataController.getInstance(this.f25858c1).isStickerPackInstalled(stickerSet.f18370id);
                 if (isStickerPackInstalled) {
                     if (stickerSet.masks) {
                         formatPluralString = LocaleController.formatPluralString("RemoveManyMasksCount", stickerSet.count, new Object[0]);
@@ -1707,13 +1707,13 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     formatPluralString = LocaleController.formatPluralString("AddManyStickersCount", stickerSet.count, new Object[0]);
                 }
                 bVar.g(formatPluralString, z11, true);
-                bVar.f15450h0.a(!isStickerPackInstalled, z11);
+                bVar.f15463h0.a(!isStickerPackInstalled, z11);
                 bVar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         int i10;
                         kz kzVar = kz.this;
-                        MediaDataController mediaDataController = MediaDataController.getInstance(kzVar.f25898c1);
+                        MediaDataController mediaDataController = MediaDataController.getInstance(kzVar.f25858c1);
                         Context context = kzVar.getContext();
                         if (isStickerPackInstalled) {
                             i10 = 0;
@@ -1721,7 +1721,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                             i10 = 2;
                         }
                         org.telegram.ui.ActionBar.n2 n2Var = kzVar.Y1;
-                        FrameLayout frameLayout = kzVar.f25946s;
+                        FrameLayout frameLayout = kzVar.f25906s;
                         nh.b bVar2 = bVar;
                         TLObject tLObject2 = tLObject;
                         TLRPC.StickerSet stickerSet2 = stickerSet;
@@ -1739,28 +1739,28 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         int i10;
         View childAt;
         float f7;
-        md0 md0Var = this.f25959w;
-        if (md0Var != null) {
-            this.f25957v1 = z10;
-            this.f25961w1 = z11;
+        pd0 pd0Var = this.f25919w;
+        if (pd0Var != null) {
+            this.f25917v1 = z10;
+            this.f25921w1 = z11;
             if (!z11 && !z10) {
-                this.f25954u1 = 0L;
+                this.f25914u1 = 0L;
             } else {
-                this.f25954u1 = j3;
+                this.f25914u1 = j3;
             }
             if (z11) {
                 i10 = 2;
             } else {
                 i10 = 0;
             }
-            LinearLayout linearLayout = md0Var.d;
+            LinearLayout linearLayout = pd0Var.d;
             if (i10 >= linearLayout.getChildCount()) {
                 childAt = null;
             } else {
                 childAt = linearLayout.getChildAt(i10);
             }
             if (childAt != null) {
-                if (this.f25954u1 != 0) {
+                if (this.f25914u1 != 0) {
                     f7 = 0.15f;
                 } else {
                     f7 = 1.0f;
@@ -1768,12 +1768,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 childAt.setAlpha(f7);
                 zw zwVar = this.h;
                 if (z11) {
-                    if (this.f25954u1 != 0 && zwVar.getCurrentItem() != 0) {
+                    if (this.f25914u1 != 0 && zwVar.getCurrentItem() != 0) {
                         L(true, true);
                         Q(false, true);
                         zwVar.x(0, false);
                     }
-                } else if (this.f25954u1 != 0 && zwVar.getCurrentItem() != 1) {
+                } else if (this.f25914u1 != 0 && zwVar.getCurrentItem() != 1) {
                     L(false, true);
                     Q(false, true);
                     zwVar.x(1, false);
@@ -1787,9 +1787,9 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         float f10;
         float f11;
         float f12;
-        ax axVar = this.f25963x;
+        ax axVar = this.f25923x;
         if (!z10 || axVar.getTag() != null) {
-            if ((!z10 && axVar.getTag() != null) || this.f25932n2) {
+            if ((!z10 && axVar.getTag() != null) || this.f25892n2) {
                 return;
             }
             AnimatorSet animatorSet = this.F;
@@ -1827,7 +1827,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 }
                 animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(axVar, View.SCALE_Y, f13));
                 this.F.setDuration(200L);
-                this.F.setInterpolator(qr.f27643g);
+                this.F.setInterpolator(qr.f27654g);
                 this.F.addListener(new gx(this, z10, 0));
                 this.F.start();
                 return;
@@ -1858,11 +1858,11 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     public final void M(boolean z10) {
         Integer num;
         this.H = 0.0f;
-        ly lyVar = this.f25951t1;
+        ly lyVar = this.f25911t1;
         if (lyVar != null && lyVar.z()) {
             z10 = false;
         }
-        FrameLayout frameLayout = this.f25929n;
+        FrameLayout frameLayout = this.f25889n;
         if (!z10 || frameLayout.getTag() != null) {
             if (!z10 && frameLayout.getTag() != null) {
                 return;
@@ -1902,7 +1902,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 }
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, f7));
                 this.W.setDuration(200L);
-                this.W.setInterpolator(qr.f27643g);
+                this.W.setInterpolator(qr.f27654g);
                 this.W.addListener(new q8(this, 19));
                 this.W.start();
                 return;
@@ -1921,7 +1921,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             if (z10) {
                 if (L0 == 1 || L0 == 2) {
                     w10.n0(0);
-                    F(i10);
+                    E(i10);
                 }
             } else if (L0 == 0) {
                 w10.h1(0, 0);
@@ -1933,7 +1933,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         float f7;
         float translationY;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
-        TLRPC.Chat chat = MessagesController.getInstance(this.f25898c1).getChat(Long.valueOf(this.f25954u1));
+        TLRPC.Chat chat = MessagesController.getInstance(this.f25858c1).getChat(Long.valueOf(this.f25914u1));
         if (chat != null) {
             ai.p4 p4Var = this.N0;
             if (z10) {
@@ -2023,8 +2023,8 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         float f10;
         float f11;
         float f12;
-        ImageView imageView = this.f25967y;
-        if (imageView != null && !this.f25935o2) {
+        ImageView imageView = this.f25927y;
+        if (imageView != null && !this.f25895o2) {
             if (!z10 || imageView.getTag() != null) {
                 if (z10 || imageView.getTag() == null) {
                     AnimatorSet animatorSet = this.G;
@@ -2062,7 +2062,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                         }
                         animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(imageView, View.SCALE_Y, f13));
                         this.G.setDuration(200L);
-                        this.G.setInterpolator(qr.f27643g);
+                        this.G.setInterpolator(qr.f27654g);
                         this.G.addListener(new gx(this, z10, 1));
                         this.G.start();
                         return;
@@ -2111,17 +2111,17 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 dp = AndroidUtilities.dp(1.0f);
             }
             float f10 = f7 - dp;
-            float f11 = this.f25941q2;
-            FrameLayout frameLayout = this.f25929n;
+            float f11 = this.f25901q2;
+            FrameLayout frameLayout = this.f25889n;
             if (f11 >= 0.0f) {
-                f10 += getMeasuredHeight() - this.f25941q2;
-            } else if (frameLayout.getTop() - f10 < 0.0f || !this.f25962w2) {
+                f10 += getMeasuredHeight() - this.f25901q2;
+            } else if (frameLayout.getTop() - f10 < 0.0f || !this.f25922w2) {
                 f10 = 0.0f;
             }
-            float lerp = (-f10) + AndroidUtilities.lerp(AndroidUtilities.dp(50.0f), -this.f25938p2, this.F2.e);
+            float lerp = (-f10) + AndroidUtilities.lerp(AndroidUtilities.dp(50.0f), -this.f25898p2, this.F2.e);
             frameLayout.setTranslationY(lerp);
-            if (this.f25900d0) {
-                this.f25942r.setTranslationY(lerp);
+            if (this.f25860d0) {
+                this.f25902r.setTranslationY(lerp);
             }
         }
     }
@@ -2147,7 +2147,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         int z25;
         int z26;
         int z27;
-        boolean z28 = this.f25953u0;
+        boolean z28 = this.f25913u0;
         View view = this.v;
         if (!z28) {
             setBackground(null);
@@ -2155,7 +2155,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         } else if (!AndroidUtilities.isInMultiwindow && !this.N1) {
             int i10 = org.telegram.ui.ActionBar.j6.He;
             setBackgroundColor(z(i10));
-            if (this.f25900d0) {
+            if (this.f25860d0) {
                 view.setBackgroundColor(z(i10));
             }
         } else {
@@ -2166,7 +2166,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         }
         ox oxVar = this.I;
         if (oxVar != null) {
-            if (this.f25953u0) {
+            if (this.f25913u0) {
                 oxVar.setBackgroundColor(z(org.telegram.ui.ActionBar.j6.He));
                 this.O.setBackgroundColor(z(org.telegram.ui.ActionBar.j6.Ke));
             } else {
@@ -2175,37 +2175,37 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         }
         xu xuVar = this.B1;
         if (xuVar != null) {
-            xuVar.f30367c.a();
+            xuVar.f30412c.a();
         }
         int i11 = 0;
         while (true) {
             xyVar = this.V;
-            z10 = this.f25918i2;
+            z10 = this.f25878i2;
             if (i11 >= 3) {
                 break;
             }
             if (i11 == 0) {
                 xyVar = this.G0;
             } else if (i11 != 1) {
-                xyVar = this.f25933o0;
+                xyVar = this.f25893o0;
             }
             if (xyVar != null) {
                 iq iqVar = xyVar.d;
-                FrameLayout frameLayout = xyVar.f30382n;
-                View view2 = xyVar.f30381f;
-                if (this.f25953u0) {
+                FrameLayout frameLayout = xyVar.f30433n;
+                View view2 = xyVar.f30432f;
+                if (this.f25913u0) {
                     view2.setBackgroundColor(z(org.telegram.ui.ActionBar.j6.He));
                 } else {
                     view2.setBackground(null);
                 }
                 xyVar.e.setBackgroundColor(z(org.telegram.ui.ActionBar.j6.Ke));
-                kn0 kn0Var = xyVar.f30380c;
+                mn0 mn0Var = xyVar.f30431c;
                 if (z10) {
                     z24 = v(0.4f);
                 } else {
                     z24 = z(org.telegram.ui.ActionBar.j6.Je);
                 }
-                kn0Var.a(z24);
+                mn0Var.a(z24);
                 Drawable background2 = frameLayout.getBackground();
                 if (z10) {
                     z25 = v(0.06f);
@@ -2229,9 +2229,9 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             }
             i11++;
         }
-        Paint paint = this.f25948s1;
+        Paint paint = this.f25908s1;
         if (paint != null) {
-            paint.setColor(z(org.telegram.ui.ActionBar.j6.f19046af));
+            paint.setColor(z(org.telegram.ui.ActionBar.j6.f19061af));
         }
         wx wxVar = this.P;
         if (wxVar != null) {
@@ -2245,23 +2245,23 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         if (xwVar != null) {
             xwVar.setIndicatorColor(z(org.telegram.ui.ActionBar.j6.Qe));
             xwVar.setUnderlineColor(z(org.telegram.ui.ActionBar.j6.Ke));
-            if (this.f25953u0) {
+            if (this.f25913u0) {
                 xwVar.setBackgroundColor(z(org.telegram.ui.ActionBar.j6.He));
             } else {
                 xwVar.setBackground(null);
             }
         }
-        rx rxVar = this.f25936p0;
+        rx rxVar = this.f25896p0;
         if (rxVar != null) {
             rxVar.setIndicatorColor(z(org.telegram.ui.ActionBar.j6.Qe));
             rxVar.setUnderlineColor(z(org.telegram.ui.ActionBar.j6.Ke));
-            if (this.f25953u0) {
+            if (this.f25913u0) {
                 rxVar.setBackgroundColor(z(org.telegram.ui.ActionBar.j6.He));
             } else {
                 rxVar.setBackground(null);
             }
         }
-        ax axVar = this.f25963x;
+        ax axVar = this.f25923x;
         if (axVar != null) {
             if (z10) {
                 z23 = v(0.6f);
@@ -2276,7 +2276,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 org.telegram.ui.ActionBar.j6.B1(axVar.getBackground(), z(i12), true);
             }
         }
-        ImageView imageView = this.f25967y;
+        ImageView imageView = this.f25927y;
         if (imageView != null) {
             if (z10) {
                 z22 = v(0.6f);
@@ -2296,19 +2296,19 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         }
         ai.p4 p4Var = this.N0;
         if (p4Var != null) {
-            ((ShapeDrawable) p4Var.getBackground()).getPaint().setColor(z(org.telegram.ui.ActionBar.j6.f19341qf));
-            p4Var.setTextColor(z(org.telegram.ui.ActionBar.j6.f19323pf));
+            ((ShapeDrawable) p4Var.getBackground()).getPaint().setColor(z(org.telegram.ui.ActionBar.j6.f19356qf));
+            p4Var.setTextColor(z(org.telegram.ui.ActionBar.j6.f19338pf));
         }
-        py pyVar = this.f25919j0;
+        py pyVar = this.f25879j0;
         if (pyVar != null) {
             ry ryVar = pyVar.e;
-            ImageView imageView3 = ryVar.f27972a;
+            ImageView imageView3 = ryVar.f28068a;
             int i13 = org.telegram.ui.ActionBar.j6.Le;
             imageView3.setColorFilter(new PorterDuffColorFilter(z(i13), PorterDuff.Mode.MULTIPLY));
-            ryVar.f27973b.setTextColor(z(i13));
-            ryVar.f27974c.setProgressColor(z(org.telegram.ui.ActionBar.j6.f19166h6));
+            ryVar.f28069b.setTextColor(z(i13));
+            ryVar.f28070c.setProgressColor(z(org.telegram.ui.ActionBar.j6.f19181h6));
         }
-        this.f25905e2 = new PorterDuffColorFilter(z(org.telegram.ui.ActionBar.j6.Oh), PorterDuff.Mode.SRC_IN);
+        this.f25865e2 = new PorterDuffColorFilter(z(org.telegram.ui.ActionBar.j6.Oh), PorterDuff.Mode.SRC_IN);
         int i14 = 0;
         while (true) {
             Drawable[] drawableArr = this.X0;
@@ -2331,7 +2331,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             org.telegram.ui.ActionBar.j6.y1(drawable2, z20, true);
             i14++;
         }
-        if (oxVar != null && (zvVar = oxVar.f23659y) != null) {
+        if (oxVar != null && (zvVar = oxVar.f23769y) != null) {
             zvVar.d();
         }
         int i15 = 0;
@@ -2393,7 +2393,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             }
             org.telegram.ui.ActionBar.j6.y1(u5Var, z14, true);
         }
-        org.telegram.ui.ActionBar.u5 u5Var2 = this.f25895b2;
+        org.telegram.ui.ActionBar.u5 u5Var2 = this.f25855b2;
         if (u5Var2 != null) {
             if (z10) {
                 z11 = v(0.4f);
@@ -2424,13 +2424,13 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
 
     public final void U(int i10) {
         int i11;
-        if (!this.f25907f0) {
+        if (!this.f25867f0) {
             int i12 = -1;
             if (i10 != -1) {
-                int size = getRecentEmoji().size() + (this.f25900d0 ? 1 : 0);
+                int size = getRecentEmoji().size() + (this.f25860d0 ? 1 : 0);
                 tx txVar = this.R;
-                int i13 = txVar.f28466c;
-                ArrayList arrayList = txVar.f28472x;
+                int i13 = txVar.f28546c;
+                ArrayList arrayList = txVar.f28552x;
                 int i14 = 0;
                 if (i13 >= 0) {
                     i11 = 3;
@@ -2459,11 +2459,11 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                             if (size2 < 0) {
                                 break;
                             } else if (((Integer) arrayList.get(size2)).intValue() <= i10) {
-                                xx xxVar = (xx) this.f25940q1.get(size2);
+                                xx xxVar = (xx) this.f25900q1.get(size2);
                                 while (i14 < emojipacks.size()) {
-                                    long j3 = emojipacks.get(i14).f30372b.f18355id;
-                                    long j10 = xxVar.f30372b.f18355id;
-                                    if (j3 == j10 && (!xxVar.f30375g || (!xxVar.f30374f && !this.f25937p1.contains(Long.valueOf(j10))))) {
+                                    long j3 = emojipacks.get(i14).f30422b.f18370id;
+                                    long j10 = xxVar.f30422b.f18370id;
+                                    if (j3 == j10 && (!xxVar.f30425g || (!xxVar.f30424f && !this.f25897p1.contains(Long.valueOf(j10))))) {
                                         i14 = EmojiData.dataColored.length + 1 + i14;
                                         break;
                                     }
@@ -2491,9 +2491,9 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         int i11;
         boolean z12;
         boolean z13;
-        rx rxVar = this.f25936p0;
+        rx rxVar = this.f25896p0;
         int currentPosition = rxVar.getCurrentPosition();
-        int i12 = this.f25943r0;
+        int i12 = this.f25903r0;
         if (currentPosition == i12) {
             z10 = true;
         } else {
@@ -2504,25 +2504,25 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         } else {
             z11 = false;
         }
-        boolean isEmpty = this.f25917i1.isEmpty();
+        boolean isEmpty = this.f25877i1.isEmpty();
         rxVar.d(false);
-        this.f25943r0 = -2;
-        this.f25947s0 = -2;
-        this.f25950t0 = -2;
+        this.f25903r0 = -2;
+        this.f25907s0 = -2;
+        this.f25910t0 = -2;
         Drawable[] drawableArr = this.Z0;
         if (!isEmpty) {
-            this.f25943r0 = 0;
+            this.f25903r0 = 0;
             rxVar.b(0, drawableArr[0]).setContentDescription(LocaleController.getString(R.string.RecentStickers));
             i10 = 1;
         } else {
             i10 = 0;
         }
-        this.f25947s0 = i10;
+        this.f25907s0 = i10;
         rxVar.b(1, drawableArr[1]).setContentDescription(LocaleController.getString(R.string.FeaturedGifs));
-        this.f25950t0 = i10 + 1;
+        this.f25910t0 = i10 + 1;
         AndroidUtilities.dp(13.0f);
         AndroidUtilities.dp(11.0f);
-        int i13 = this.f25898c1;
+        int i13 = this.f25858c1;
         ArrayList<String> arrayList = MessagesController.getInstance(i13).gifSearchEmojies;
         int size = arrayList.size();
         int i14 = 0;
@@ -2532,35 +2532,35 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             if (emojiDrawable != null) {
                 TLRPC.Document emojiAnimatedSticker = MediaDataController.getInstance(i13).getEmojiAnimatedSticker(str);
                 String h = hg.k0.h(i14 + 3, "tab");
-                int i15 = rxVar.f28731x;
-                rxVar.f28731x = i15 + 1;
-                ox0 ox0Var = (ox0) rxVar.f28721n.get(h);
-                if (ox0Var != null) {
-                    rxVar.g(h, ox0Var, i15);
+                int i15 = rxVar.f30070x;
+                rxVar.f30070x = i15 + 1;
+                qx0 qx0Var = (qx0) rxVar.f30060n.get(h);
+                if (qx0Var != null) {
+                    rxVar.g(h, qx0Var, i15);
                     i11 = currentPosition;
                     z12 = z11;
                 } else {
                     i11 = currentPosition;
                     z12 = z11;
-                    ox0Var = new ox0(rxVar.getContext(), 2);
-                    ox0Var.setFocusable(true);
-                    ox0Var.setOnClickListener(new nm0(rxVar, 2));
-                    ox0Var.setExpanded(rxVar.f28714f0);
-                    ox0Var.a(rxVar.f28717i0);
-                    rxVar.e.addView(ox0Var, i15);
+                    qx0Var = new qx0(rxVar.getContext(), 2);
+                    qx0Var.setFocusable(true);
+                    qx0Var.setOnClickListener(new pm0(rxVar, 2));
+                    qx0Var.setExpanded(rxVar.f30053f0);
+                    qx0Var.a(rxVar.f30056i0);
+                    rxVar.e.addView(qx0Var, i15);
                 }
-                ox0Var.d = false;
-                ox0Var.setTag(R.id.index_tag, Integer.valueOf(i15));
-                ox0Var.setTag(R.id.parent_tag, emojiDrawable);
-                ox0Var.setTag(R.id.object_tag, emojiAnimatedSticker);
-                if (i15 == rxVar.f28732y) {
+                qx0Var.d = false;
+                qx0Var.setTag(R.id.index_tag, Integer.valueOf(i15));
+                qx0Var.setTag(R.id.parent_tag, emojiDrawable);
+                qx0Var.setTag(R.id.object_tag, emojiAnimatedSticker);
+                if (i15 == rxVar.f30071y) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
-                ox0Var.setSelected(z13);
-                rxVar.h.put(h, ox0Var);
-                ox0Var.setContentDescription(str);
+                qx0Var.setSelected(z13);
+                rxVar.h.put(h, qx0Var);
+                qx0Var.setContentDescription(str);
             } else {
                 i11 = currentPosition;
                 z12 = z11;
@@ -2574,15 +2574,15 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         rxVar.h();
         rxVar.q();
         if (z10 && isEmpty) {
-            rxVar.m(this.f25947s0);
-            qw qwVar = this.f25933o0;
-            if (qwVar != null && (wyVar = qwVar.f30383r) != null) {
+            rxVar.m(this.f25907s0);
+            qw qwVar = this.f25893o0;
+            if (qwVar != null && (wyVar = qwVar.f30434r) != null) {
                 wyVar.G1(null);
                 return;
             }
             return;
         }
-        WeakHashMap weakHashMap = r0.i0.f42142a;
+        WeakHashMap weakHashMap = r0.i0.f42163a;
         if (rxVar.isLaidOut()) {
             if (!isEmpty && !z14) {
                 rxVar.k(i16 + 1, 0);
@@ -2594,15 +2594,15 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
 
     public final void W() {
         py pyVar;
-        int size = this.f25917i1.size();
-        long calcDocumentsHash = MediaDataController.calcDocumentsHash(this.f25917i1, Integer.MAX_VALUE);
-        ArrayList<TLRPC.Document> recentGifs = MediaDataController.getInstance(this.f25898c1).getRecentGifs();
-        this.f25917i1 = recentGifs;
+        int size = this.f25877i1.size();
+        long calcDocumentsHash = MediaDataController.calcDocumentsHash(this.f25877i1, Integer.MAX_VALUE);
+        ArrayList<TLRPC.Document> recentGifs = MediaDataController.getInstance(this.f25858c1).getRecentGifs();
+        this.f25877i1 = recentGifs;
         long calcDocumentsHash2 = MediaDataController.calcDocumentsHash(recentGifs, Integer.MAX_VALUE);
-        if ((this.f25936p0 != null && size == 0 && !this.f25917i1.isEmpty()) || (size != 0 && this.f25917i1.isEmpty())) {
+        if ((this.f25896p0 != null && size == 0 && !this.f25877i1.isEmpty()) || (size != 0 && this.f25877i1.isEmpty())) {
             V();
         }
-        if ((size != this.f25917i1.size() || calcDocumentsHash != calcDocumentsHash2) && (pyVar = this.f25930n0) != null) {
+        if ((size != this.f25877i1.size() || calcDocumentsHash != calcDocumentsHash2) && (pyVar = this.f25890n0) != null) {
             pyVar.l();
         }
     }
@@ -2621,33 +2621,33 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         xw xwVar = this.B0;
         if (xwVar != null) {
             dc1 dc1Var = xwVar.e;
-            if (xwVar.f28728s != null) {
+            if (xwVar.f30067s != null) {
                 return;
             }
             this.F1 = -2;
             this.G1 = -2;
             this.H1 = -2;
             this.I1 = -2;
-            this.f25903e0 = false;
+            this.f25863e0 = false;
             this.E1 = 0;
             int currentPosition = xwVar.getCurrentPosition();
             boolean z16 = true;
-            if (getParent() != null && getVisibility() == 0 && (this.f25969y1.size() != 0 || this.f25972z1.size() != 0)) {
+            if (getParent() != null && getVisibility() == 0 && (this.f25929y1.size() != 0 || this.f25932z1.size() != 0)) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             xwVar.d(z11);
-            int i11 = this.f25898c1;
+            int i11 = this.f25858c1;
             MediaDataController mediaDataController = MediaDataController.getInstance(i11);
             SharedPreferences emojiSettings = MessagesController.getEmojiSettings(i11);
-            ArrayList arrayList3 = this.f25927m1;
+            ArrayList arrayList3 = this.f25887m1;
             arrayList3.clear();
             ArrayList<TLRPC.StickerSetCovered> featuredStickerSets = mediaDataController.getFeaturedStickerSets();
             int size = featuredStickerSets.size();
             for (int i12 = 0; i12 < size; i12++) {
                 TLRPC.StickerSetCovered stickerSetCovered = featuredStickerSets.get(i12);
-                if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f18355id)) {
+                if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f18370id)) {
                     arrayList3.add(stickerSetCovered);
                 }
             }
@@ -2658,55 +2658,55 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             boolean isEmpty = featuredStickerSets.isEmpty();
             long j3 = 0;
             Drawable[] drawableArr = this.Y0;
-            if (!isEmpty && (arrayList3.isEmpty() || emojiSettings.getLong("featured_hidden", 0L) == featuredStickerSets.get(0).set.f18355id)) {
+            if (!isEmpty && (arrayList3.isEmpty() || emojiSettings.getLong("featured_hidden", 0L) == featuredStickerSets.get(0).set.f18370id)) {
                 if (mediaDataController.getUnreadStickerSets().isEmpty()) {
                     i10 = 2;
                 } else {
                     i10 = 3;
                 }
-                ox0 c10 = xwVar.c(i10, drawableArr[i10]);
+                qx0 c10 = xwVar.c(i10, drawableArr[i10]);
                 c10.h.setText(LocaleController.getString(R.string.FeaturedStickersShort));
                 c10.setContentDescription(LocaleController.getString(R.string.FeaturedStickers));
                 int i13 = this.E1;
                 this.H1 = i13;
                 this.E1 = i13 + 1;
             }
-            if (!this.f25923k1.isEmpty()) {
+            if (!this.f25883k1.isEmpty()) {
                 int i14 = this.E1;
                 this.G1 = i14;
                 this.E1 = i14 + 1;
-                ox0 c11 = xwVar.c(1, drawableArr[1]);
+                qx0 c11 = xwVar.c(1, drawableArr[1]);
                 c11.h.setText(LocaleController.getString(R.string.FavoriteStickersShort));
                 c11.setContentDescription(LocaleController.getString(R.string.FavoriteStickers));
             }
-            if (!this.f25920j1.isEmpty()) {
+            if (!this.f25880j1.isEmpty()) {
                 int i15 = this.E1;
                 this.F1 = i15;
                 this.E1 = i15 + 1;
-                ox0 c12 = xwVar.c(0, drawableArr[0]);
+                qx0 c12 = xwVar.c(0, drawableArr[0]);
                 c12.h.setText(LocaleController.getString(R.string.RecentStickersShort));
                 c12.setContentDescription(LocaleController.getString(R.string.RecentStickers));
             }
-            ArrayList arrayList4 = this.f25901d1;
+            ArrayList arrayList4 = this.f25861d1;
             arrayList4.clear();
             org.telegram.ui.ActionBar.f6 f6Var = null;
-            this.f25914h1 = null;
-            this.f25908f1 = -1;
-            this.f25904e1 = -10;
+            this.f25874h1 = null;
+            this.f25868f1 = -1;
+            this.f25864e1 = -10;
             if (this.G2 == null || z10) {
                 this.G2 = new ArrayList(mediaDataController.getStickerSets(0));
             }
             ArrayList<TLRPC.TL_messages_stickerSet> arrayList5 = this.G2;
             int i16 = 0;
             while (true) {
-                TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.f25965x1;
+                TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.f25925x1;
                 if (i16 >= stickerSetCoveredArr.length) {
                     break;
                 }
                 TLRPC.StickerSetCovered stickerSetCovered2 = stickerSetCoveredArr[i16];
                 long j10 = j3;
                 if (stickerSetCovered2 != null) {
-                    TLRPC.TL_messages_stickerSet stickerSetById = mediaDataController.getStickerSetById(stickerSetCovered2.set.f18355id);
+                    TLRPC.TL_messages_stickerSet stickerSetById = mediaDataController.getStickerSetById(stickerSetCovered2.set.f18370id);
                     if (stickerSetById != null && (stickerSet = stickerSetById.set) != null && !stickerSet.archived) {
                         stickerSetCoveredArr[i16] = null;
                     } else {
@@ -2736,17 +2736,17 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 }
             }
             if (this.J1 != null) {
-                long j12 = MessagesController.getEmojiSettings(i11).getLong("group_hide_stickers_" + this.J1.f18329id, -1L);
-                TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(this.J1.f18329id));
+                long j12 = MessagesController.getEmojiSettings(i11).getLong("group_hide_stickers_" + this.J1.f18344id, -1L);
+                TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(this.J1.f18344id));
                 if (chat != null && this.J1.stickerset != null && ChatObject.hasAdminRights(chat)) {
                     TLRPC.StickerSet stickerSet3 = this.J1.stickerset;
                     if (stickerSet3 != null) {
-                        if (j12 == stickerSet3.f18355id) {
+                        if (j12 == stickerSet3.f18370id) {
                             z15 = true;
                         } else {
                             z15 = false;
                         }
-                        this.f25911g1 = z15;
+                        this.f25871g1 = z15;
                     }
                 } else {
                     if (j12 != -1) {
@@ -2754,7 +2754,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     } else {
                         z14 = false;
                     }
-                    this.f25911g1 = z14;
+                    this.f25871g1 = z14;
                 }
                 TLRPC.ChatFull chatFull = this.J1;
                 TLRPC.StickerSet stickerSet4 = chatFull.stickerset;
@@ -2765,71 +2765,71 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                         tL_messages_stickerSet3.documents = groupStickerSetById.documents;
                         tL_messages_stickerSet3.packs = groupStickerSetById.packs;
                         tL_messages_stickerSet3.set = groupStickerSetById.set;
-                        if (this.f25911g1) {
-                            this.f25904e1 = arrayList4.size();
+                        if (this.f25871g1) {
+                            this.f25864e1 = arrayList4.size();
                             arrayList4.add(tL_messages_stickerSet3);
                         } else {
-                            this.f25904e1 = 0;
+                            this.f25864e1 = 0;
                             arrayList4.add(0, tL_messages_stickerSet3);
                         }
                         if (!this.J1.can_set_stickers) {
                             tL_messages_stickerSet3 = null;
                         }
-                        this.f25914h1 = tL_messages_stickerSet3;
+                        this.f25874h1 = tL_messages_stickerSet3;
                     }
                 } else if (chatFull.can_set_stickers) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = new TLRPC.TL_messages_stickerSet();
-                    if (this.f25911g1) {
-                        this.f25904e1 = arrayList4.size();
+                    if (this.f25871g1) {
+                        this.f25864e1 = arrayList4.size();
                         arrayList4.add(tL_messages_stickerSet4);
                     } else {
-                        this.f25904e1 = 0;
+                        this.f25864e1 = 0;
                         arrayList4.add(0, tL_messages_stickerSet4);
                     }
                 }
             }
             int i18 = 0;
             while (i18 < arrayList4.size()) {
-                if (i18 == this.f25904e1) {
-                    TLRPC.Chat chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(this.J1.f18329id));
+                if (i18 == this.f25864e1) {
+                    TLRPC.Chat chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(this.J1.f18344id));
                     if (chat2 == null) {
                         arrayList4.remove(0);
                         i18--;
                     } else {
-                        this.f25903e0 = z16;
-                        String str = "chat" + chat2.f18328id;
-                        int i19 = xwVar.f28731x;
-                        xwVar.f28731x = i19 + 1;
-                        ox0 ox0Var = (ox0) xwVar.f28721n.get(str);
-                        if (ox0Var != null) {
-                            xwVar.g(str, ox0Var, i19);
+                        this.f25863e0 = z16;
+                        String str = "chat" + chat2.f18343id;
+                        int i19 = xwVar.f30070x;
+                        xwVar.f30070x = i19 + 1;
+                        qx0 qx0Var = (qx0) xwVar.f30060n.get(str);
+                        if (qx0Var != null) {
+                            xwVar.g(str, qx0Var, i19);
                         } else {
-                            ox0Var = new ox0(xwVar.getContext(), 0);
-                            ox0Var.setFocusable(z16);
-                            ox0Var.setOnClickListener(new nm0(xwVar, 0));
-                            dc1Var.addView(ox0Var, i19);
-                            ox0Var.f27066w = z16;
+                            qx0Var = new qx0(xwVar.getContext(), 0);
+                            qx0Var.setFocusable(z16);
+                            qx0Var.setOnClickListener(new pm0(xwVar, 0));
+                            dc1Var.addView(qx0Var, i19);
+                            qx0Var.f27694w = z16;
                             g9 g9Var = new g9(f6Var);
                             g9Var.u(AndroidUtilities.dp(14.0f));
                             g9Var.k(UserConfig.selectedAccount, chat2);
-                            int i20 = xwVar.f28705a;
-                            v9 v9Var = ox0Var.e;
+                            int i20 = xwVar.f30044a;
+                            v9 v9Var = qx0Var.e;
                             v9Var.setLayerNum(i20);
                             v9Var.e(chat2, g9Var);
                             v9Var.setAspectFit(z16);
-                            ox0Var.setExpanded(xwVar.f28714f0);
-                            ox0Var.a(xwVar.f28717i0);
-                            ox0Var.h.setText(chat2.title);
+                            qx0Var.setExpanded(xwVar.f30053f0);
+                            qx0Var.a(xwVar.f30056i0);
+                            qx0Var.h.setText(chat2.title);
                         }
-                        ox0Var.d = z16;
-                        ox0Var.setTag(R.id.index_tag, Integer.valueOf(i19));
-                        if (i19 == xwVar.f28732y) {
+                        qx0Var.d = z16;
+                        qx0Var.setTag(R.id.index_tag, Integer.valueOf(i19));
+                        if (i19 == xwVar.f30071y) {
                             z13 = true;
                         } else {
                             z13 = false;
                         }
-                        ox0Var.setSelected(z13);
-                        xwVar.h.put(str, ox0Var);
+                        qx0Var.setSelected(z13);
+                        xwVar.h.put(str, qx0Var);
                     }
                 } else {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet5 = (TLRPC.TL_messages_stickerSet) arrayList4.get(i18);
@@ -2837,7 +2837,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     if (stickerSet5 != null && stickerSet5.thumb_document_id != j11) {
                         for (int i21 = 0; i21 < tL_messages_stickerSet5.documents.size(); i21++) {
                             document = tL_messages_stickerSet5.documents.get(i21);
-                            if (document != null && tL_messages_stickerSet5.set.thumb_document_id == document.f18334id) {
+                            if (document != null && tL_messages_stickerSet5.set.thumb_document_id == document.f18349id) {
                                 break;
                             }
                         }
@@ -2850,34 +2850,34 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     if (closestPhotoSizeWithSize == null || tL_messages_stickerSet5.set.gifs) {
                         closestPhotoSizeWithSize = document;
                     }
-                    String str2 = "set" + tL_messages_stickerSet5.set.f18355id;
-                    int i22 = xwVar.f28731x;
-                    xwVar.f28731x = i22 + 1;
-                    ox0 ox0Var2 = (ox0) xwVar.f28721n.get(str2);
-                    if (ox0Var2 != null) {
-                        xwVar.g(str2, ox0Var2, i22);
+                    String str2 = "set" + tL_messages_stickerSet5.set.f18370id;
+                    int i22 = xwVar.f30070x;
+                    xwVar.f30070x = i22 + 1;
+                    qx0 qx0Var2 = (qx0) xwVar.f30060n.get(str2);
+                    if (qx0Var2 != null) {
+                        xwVar.g(str2, qx0Var2, i22);
                     } else {
-                        ox0Var2 = new ox0(xwVar.getContext(), 0);
-                        ox0Var2.setFocusable(z16);
-                        ox0Var2.setOnClickListener(new nm0(xwVar, 1));
-                        ox0Var2.setExpanded(xwVar.f28714f0);
-                        ox0Var2.a(xwVar.f28717i0);
-                        dc1Var.addView(ox0Var2, i22);
+                        qx0Var2 = new qx0(xwVar.getContext(), 0);
+                        qx0Var2.setFocusable(z16);
+                        qx0Var2.setOnClickListener(new pm0(xwVar, 1));
+                        qx0Var2.setExpanded(xwVar.f30053f0);
+                        qx0Var2.a(xwVar.f30056i0);
+                        dc1Var.addView(qx0Var2, i22);
                     }
-                    ox0Var2.e.setLayerNum(xwVar.f28705a);
-                    ox0Var2.d = false;
-                    ox0Var2.setTag(closestPhotoSizeWithSize);
-                    ox0Var2.setTag(R.id.index_tag, Integer.valueOf(i22));
-                    ox0Var2.setTag(R.id.parent_tag, tL_messages_stickerSet5);
-                    ox0Var2.setTag(R.id.object_tag, document);
-                    if (i22 == xwVar.f28732y) {
+                    qx0Var2.e.setLayerNum(xwVar.f30044a);
+                    qx0Var2.d = false;
+                    qx0Var2.setTag(closestPhotoSizeWithSize);
+                    qx0Var2.setTag(R.id.index_tag, Integer.valueOf(i22));
+                    qx0Var2.setTag(R.id.parent_tag, tL_messages_stickerSet5);
+                    qx0Var2.setTag(R.id.object_tag, document);
+                    if (i22 == xwVar.f30071y) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    ox0Var2.setSelected(z12);
-                    xwVar.h.put(str2, ox0Var2);
-                    ox0Var2.setContentDescription(tL_messages_stickerSet5.set.title + ", " + LocaleController.getString(R.string.AccDescrStickerSet));
+                    qx0Var2.setSelected(z12);
+                    xwVar.h.put(str2, qx0Var2);
+                    qx0Var2.setContentDescription(tL_messages_stickerSet5.set.title + ", " + LocaleController.getString(R.string.AccDescrStickerSet));
                 }
                 i18++;
                 z16 = true;
@@ -2897,13 +2897,13 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         int i10;
         yw ywVar = this.C0;
         xw xwVar = this.B0;
-        if (xwVar != null && ywVar == null && this.f25951t1 != null) {
-            xwVar.setTranslationY(this.f25951t1.p() * (-AndroidUtilities.dp(50.0f)));
+        if (xwVar != null && ywVar == null && this.f25911t1 != null) {
+            xwVar.setTranslationY(this.f25911t1.p() * (-AndroidUtilities.dp(50.0f)));
         }
         if (ywVar == null) {
             return;
         }
-        if (getVisibility() == 0 && this.K0 && this.f25951t1.p() != 1.0f) {
+        if (getVisibility() == 0 && this.K0 && this.f25911t1.p() != 1.0f) {
             z10 = true;
         } else {
             z10 = false;
@@ -2915,10 +2915,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         }
         ywVar.setVisibility(i10);
         if (z10) {
-            Rect rect = this.f25966x2;
+            Rect rect = this.f25926x2;
             rect.setEmpty();
-            this.h.getChildVisibleRect(this.f25964x0, rect, null);
-            float p5 = this.f25951t1.p() * AndroidUtilities.dp(50.0f);
+            this.h.getChildVisibleRect(this.f25924x0, rect, null);
+            float p5 = this.f25911t1.p() * AndroidUtilities.dp(50.0f);
             int i11 = rect.left;
             if (i11 != 0 || p5 != 0.0f) {
                 this.X1 = false;
@@ -2945,32 +2945,32 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         boolean z13;
         boolean z14;
         org.telegram.ui.Cells.t3 t3Var;
-        LongSparseArray longSparseArray = this.f25972z1;
-        LongSparseArray longSparseArray2 = this.f25969y1;
-        int i10 = this.f25898c1;
+        LongSparseArray longSparseArray = this.f25932z1;
+        LongSparseArray longSparseArray2 = this.f25929y1;
+        int i10 = this.f25858c1;
         tw twVar = this.D0;
         if (twVar != null) {
             try {
                 int childCount = twVar.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
                     View childAt = twVar.getChildAt(i11);
-                    if ((childAt instanceof org.telegram.ui.Cells.t3) && ((fl0) twVar.U(childAt)) != null) {
+                    if ((childAt instanceof org.telegram.ui.Cells.t3) && ((il0) twVar.U(childAt)) != null) {
                         org.telegram.ui.Cells.t3 t3Var2 = (org.telegram.ui.Cells.t3) childAt;
                         ArrayList<Long> unreadStickerSets = MediaDataController.getInstance(i10).getUnreadStickerSets();
                         TLRPC.StickerSetCovered stickerSet = t3Var2.getStickerSet();
-                        if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSet.set.f18355id))) {
+                        if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSet.set.f18370id))) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         int i12 = 0;
                         while (true) {
-                            TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.f25965x1;
+                            TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.f25925x1;
                             if (i12 < stickerSetCoveredArr.length) {
                                 TLRPC.StickerSetCovered stickerSetCovered = stickerSetCoveredArr[i12];
                                 if (stickerSetCovered != null) {
                                     t3Var = t3Var2;
-                                    if (stickerSetCovered.set.f18355id == stickerSet.set.f18355id) {
+                                    if (stickerSetCovered.set.f18370id == stickerSet.set.f18370id) {
                                         t3Var2 = t3Var;
                                         z11 = true;
                                         break;
@@ -2987,24 +2987,24 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                         }
                         t3Var2.c(stickerSet, z10, true, 0, 0, z11);
                         if (z10) {
-                            MediaDataController.getInstance(i10).markFeaturedStickersByIdAsRead(false, stickerSet.set.f18355id);
+                            MediaDataController.getInstance(i10).markFeaturedStickersByIdAsRead(false, stickerSet.set.f18370id);
                         }
-                        if (longSparseArray2.indexOfKey(stickerSet.set.f18355id) >= 0) {
+                        if (longSparseArray2.indexOfKey(stickerSet.set.f18370id) >= 0) {
                             z12 = true;
                         } else {
                             z12 = false;
                         }
-                        if (longSparseArray.indexOfKey(stickerSet.set.f18355id) >= 0) {
+                        if (longSparseArray.indexOfKey(stickerSet.set.f18370id) >= 0) {
                             z13 = true;
                         } else {
                             z13 = false;
                         }
                         if (z12 || z13) {
-                            if (z12 && t3Var2.f21200r) {
-                                longSparseArray2.remove(stickerSet.set.f18355id);
+                            if (z12 && t3Var2.f21215r) {
+                                longSparseArray2.remove(stickerSet.set.f18370id);
                                 z12 = false;
-                            } else if (z13 && !t3Var2.f21200r) {
-                                longSparseArray.remove(stickerSet.set.f18355id);
+                            } else if (z13 && !t3Var2.f21215r) {
+                                longSparseArray.remove(stickerSet.set.f18370id);
                             }
                         }
                         if (!z11 && z12) {
@@ -3028,7 +3028,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
 
     @Override
     public final void d(float f7) {
-        this.f25941q2 = f7;
+        this.f25901q2 = f7;
         R();
     }
 
@@ -3042,10 +3042,10 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         ew ewVar = this.L2;
         if (i10 == i12) {
             if (((Integer) objArr[0]).intValue() == 0) {
-                if (this.f25968y0 != null) {
+                if (this.f25928y0 != null) {
                     X(((Boolean) objArr[1]).booleanValue());
                     Z();
-                    E();
+                    D();
                     o();
                 }
             } else if (((Integer) objArr[0]).intValue() == 5) {
@@ -3060,7 +3060,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             long longValue = ((Long) objArr[0]).longValue();
             boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
             TLRPC.ChatFull chatFull = this.J1;
-            if (chatFull != null && chatFull.f18329id == longValue && booleanValue) {
+            if (chatFull != null && chatFull.f18344id == longValue && booleanValue) {
                 txVar.F(true);
             }
         } else if (i10 == NotificationCenter.recentDocumentsDidLoad) {
@@ -3071,11 +3071,11 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             }
         } else if (i10 == NotificationCenter.featuredStickersDidLoad) {
             Z();
-            md0 md0Var = this.f25959w;
-            if (md0Var != null) {
-                int childCount = md0Var.getChildCount();
+            pd0 pd0Var = this.f25919w;
+            if (pd0Var != null) {
+                int childCount = pd0Var.getChildCount();
                 for (int i13 = 0; i13 < childCount; i13++) {
-                    md0Var.getChildAt(i13).invalidate();
+                    pd0Var.getChildAt(i13).invalidate();
                 }
             }
             X(false);
@@ -3095,21 +3095,21 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     tL_messages_stickerSet = null;
                 }
                 if (tL_messages_stickerSet != null) {
-                    fz fzVar = this.f25971z0;
-                    if (fzVar != null && fzVar.d == longValue2 && fzVar.f24201f.size() < tL_messages_stickerSet.documents.size()) {
-                        fzVar.f24201f = tL_messages_stickerSet.documents;
+                    fz fzVar = this.f25931z0;
+                    if (fzVar != null && fzVar.d == longValue2 && fzVar.f24374f.size() < tL_messages_stickerSet.documents.size()) {
+                        fzVar.f24374f = tL_messages_stickerSet.documents;
                         fzVar.l();
                     }
-                    if (kyVar != null && kyVar.d == longValue2 && kyVar.f25882f.size() < tL_messages_stickerSet.documents.size()) {
-                        kyVar.f25882f = tL_messages_stickerSet.documents;
+                    if (kyVar != null && kyVar.d == longValue2 && kyVar.f25841f.size() < tL_messages_stickerSet.documents.size()) {
+                        kyVar.f25841f = tL_messages_stickerSet.documents;
                         kyVar.l();
                     }
                 }
                 TLRPC.ChatFull chatFull2 = this.J1;
-                if (chatFull2 != null && (stickerSet = chatFull2.stickerset) != null && stickerSet.f18355id == longValue2) {
+                if (chatFull2 != null && (stickerSet = chatFull2.stickerset) != null && stickerSet.f18370id == longValue2) {
                     X(false);
                 }
-                HashMap hashMap = this.f25944r1;
+                HashMap hashMap = this.f25904r1;
                 if (hashMap.containsKey(l4) && objArr.length >= 2 && ((Utilities.Callback) hashMap.get(l4)) != null && tL_messages_stickerSet != null && (callback = (Utilities.Callback) hashMap.remove(l4)) != null) {
                     callback.run(tL_messages_stickerSet);
                 }
@@ -3142,9 +3142,9 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 }
                 xu xuVar = this.B1;
                 if (xuVar != null) {
-                    xuVar.f30367c.invalidate();
+                    xuVar.f30412c.invalidate();
                 }
-                rx rxVar = this.f25936p0;
+                rx rxVar = this.f25896p0;
                 if (rxVar != null) {
                     dc1 dc1Var = rxVar.e;
                     int childCount4 = dc1Var.getChildCount();
@@ -3153,8 +3153,8 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     }
                 }
             } else if (i10 == NotificationCenter.newEmojiSuggestionsAvailable) {
-                if (wxVar != null && this.f25900d0) {
-                    if ((this.V.f30380c.f25830k == 2 || wxVar.getAdapter() == kyVar) && !TextUtils.isEmpty(kyVar.v)) {
+                if (wxVar != null && this.f25860d0) {
+                    if ((this.V.f30431c.f26480k == 2 || wxVar.getAdapter() == kyVar) && !TextUtils.isEmpty(kyVar.v)) {
                         kyVar.F(kyVar.v, true);
                     }
                 }
@@ -3178,11 +3178,11 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view == this.h) {
             canvas.save();
-            if (this.f25929n.getVisibility() != 8 && !this.f25953u0 && this.f25960w0) {
+            if (this.f25889n.getVisibility() != 8 && !this.f25913u0 && this.f25920w0) {
                 canvas.drawColor(i0.a.k(-1, 25));
             }
             boolean drawChild = super.drawChild(canvas, view, j3);
-            float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(this.f25938p2);
+            float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(this.f25898p2);
             if (navigationBarThirdButtonsFactor > 0.0f) {
                 int l1 = org.telegram.ui.ActionBar.j6.l1(navigationBarThirdButtonsFactor, z(org.telegram.ui.ActionBar.j6.He));
                 int i10 = this.B2;
@@ -3191,7 +3191,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     gradientDrawable.setColors(new int[]{l1, org.telegram.ui.ActionBar.j6.l1(0.66f, l1), i0.a.k(l1, 0)});
                     this.B2 = l1;
                 }
-                gradientDrawable.setBounds(0, getMeasuredHeight() - this.f25938p2, getMeasuredWidth(), getMeasuredHeight());
+                gradientDrawable.setBounds(0, getMeasuredHeight() - this.f25898p2, getMeasuredWidth(), getMeasuredHeight());
                 gradientDrawable.draw(canvas);
             }
             canvas.restore();
@@ -3208,12 +3208,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         ArrayList<xx> arrayList = new ArrayList<>();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f25940q1;
+            ArrayList arrayList2 = this.f25900q1;
             if (i10 < arrayList2.size()) {
                 xx xxVar = (xx) arrayList2.get(i10);
-                boolean z10 = xxVar.f30375g;
-                ArrayList arrayList3 = this.f25937p1;
-                if ((!z10 && (xxVar.f30374f || arrayList3.contains(Long.valueOf(xxVar.f30372b.f18355id)))) || (xxVar.f30375g && !xxVar.f30374f && !arrayList3.contains(Long.valueOf(xxVar.f30372b.f18355id)))) {
+                boolean z10 = xxVar.f30425g;
+                ArrayList arrayList3 = this.f25897p1;
+                if ((!z10 && (xxVar.f30424f || arrayList3.contains(Long.valueOf(xxVar.f30422b.f18370id)))) || (xxVar.f30425g && !xxVar.f30424f && !arrayList3.contains(Long.valueOf(xxVar.f30422b.f18370id)))) {
                     arrayList.add(xxVar);
                 }
                 i10++;
@@ -3224,7 +3224,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     }
 
     public ArrayList<String> getRecentEmoji() {
-        if (this.f25899c2) {
+        if (this.f25859c2) {
             return Emoji.recentEmoji;
         }
         if (this.C2 == null) {
@@ -3266,7 +3266,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     this.R.F(false);
                 }
                 Emoji.saveRecentEmoji();
-                if (!this.f25899c2) {
+                if (!this.f25859c2) {
                     ArrayList arrayList = this.C2;
                     if (arrayList == null) {
                         this.C2 = new ArrayList();
@@ -3295,7 +3295,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             return;
         }
         hx hxVar = new hx(getContext(), i11);
-        hxVar.f43124a = !z10 ? 1 : 0;
+        hxVar.f43145a = !z10 ? 1 : 0;
         w(i10).w0(hxVar);
     }
 
@@ -3304,24 +3304,24 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             W();
             return;
         }
-        int size = this.f25920j1.size();
-        int size2 = this.f25923k1.size();
-        int i10 = this.f25898c1;
-        this.f25920j1 = MediaDataController.getInstance(i10).getRecentStickers(0, true);
-        this.f25923k1 = MediaDataController.getInstance(i10).getRecentStickers(2);
+        int size = this.f25880j1.size();
+        int size2 = this.f25883k1.size();
+        int i10 = this.f25858c1;
+        this.f25880j1 = MediaDataController.getInstance(i10).getRecentStickers(0, true);
+        this.f25883k1 = MediaDataController.getInstance(i10).getRecentStickers(2);
         if (UserConfig.getInstance(i10).isPremium()) {
             this.l1 = MediaDataController.getInstance(i10).getRecentStickers(7);
         } else {
             this.l1 = new ArrayList();
         }
-        for (int i11 = 0; i11 < this.f25923k1.size(); i11++) {
-            TLRPC.Document document = (TLRPC.Document) this.f25923k1.get(i11);
+        for (int i11 = 0; i11 < this.f25883k1.size(); i11++) {
+            TLRPC.Document document = (TLRPC.Document) this.f25883k1.get(i11);
             int i12 = 0;
             while (true) {
-                if (i12 < this.f25920j1.size()) {
-                    TLRPC.Document document2 = (TLRPC.Document) this.f25920j1.get(i12);
-                    if (document2.dc_id == document.dc_id && document2.f18334id == document.f18334id) {
-                        this.f25920j1.remove(i12);
+                if (i12 < this.f25880j1.size()) {
+                    TLRPC.Document document2 = (TLRPC.Document) this.f25880j1.get(i12);
+                    if (document2.dc_id == document.dc_id && document2.f18349id == document.f18349id) {
+                        this.f25880j1.remove(i12);
                         break;
                     }
                     i12++;
@@ -3330,26 +3330,26 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         }
         if (MessagesController.getInstance(i10).premiumFeaturesBlocked()) {
             int i13 = 0;
-            while (i13 < this.f25923k1.size()) {
-                if (MessageObject.isPremiumSticker((TLRPC.Document) this.f25923k1.get(i13))) {
-                    this.f25923k1.remove(i13);
+            while (i13 < this.f25883k1.size()) {
+                if (MessageObject.isPremiumSticker((TLRPC.Document) this.f25883k1.get(i13))) {
+                    this.f25883k1.remove(i13);
                     i13--;
                 }
                 i13++;
             }
             int i14 = 0;
-            while (i14 < this.f25920j1.size()) {
-                if (MessageObject.isPremiumSticker((TLRPC.Document) this.f25920j1.get(i14))) {
-                    this.f25920j1.remove(i14);
+            while (i14 < this.f25880j1.size()) {
+                if (MessageObject.isPremiumSticker((TLRPC.Document) this.f25880j1.get(i14))) {
+                    this.f25880j1.remove(i14);
                     i14--;
                 }
                 i14++;
             }
         }
-        if (size != this.f25920j1.size() || size2 != this.f25923k1.size()) {
+        if (size != this.f25880j1.size() || size2 != this.f25883k1.size()) {
             X(false);
         }
-        bz bzVar = this.f25968y0;
+        bz bzVar = this.f25928y0;
         if (bzVar != null) {
             bzVar.l();
         }
@@ -3359,8 +3359,8 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     public final void l(boolean z10) {
         int i10;
         boolean z11;
-        ly lyVar = this.f25951t1;
-        le.b bVar = this.f25892b;
+        ly lyVar = this.f25911t1;
+        le.b bVar = this.f25852b;
         wx wxVar = this.P;
         kw kwVar = this.V;
         if (lyVar != null && lyVar.z()) {
@@ -3368,7 +3368,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             if (L == null) {
                 xy.a(kwVar, true, !z10);
             } else {
-                if (L.f42974a.getTop() < wxVar.getPaddingTop()) {
+                if (L.f42995a.getTop() < wxVar.getPaddingTop()) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -3380,12 +3380,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         } else if (kwVar != null && wxVar != null) {
             s4.c1 L2 = wxVar.L(0);
             if (L2 != null) {
-                i10 = L2.f42974a.getTop();
+                i10 = L2.f42995a.getTop();
             } else {
-                i10 = -this.f25894b1;
+                i10 = -this.f25854b1;
             }
             kwVar.setTranslationY((bVar.e * AndroidUtilities.dp(15.0f)) + i10);
-            kwVar.f30378a.a(false, !z10);
+            kwVar.f30429a.a(false, !z10);
             m(Math.round(this.I.getTranslationY()));
         }
     }
@@ -3398,7 +3398,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         boolean z10 = false;
         s4.c1 L = this.P.L(0);
         int dp = AndroidUtilities.dp(38.0f) + i10;
-        if (dp > 0 && (L == null || L.f42974a.getBottom() < dp)) {
+        if (dp > 0 && (L == null || L.f42995a.getBottom() < dp)) {
             z10 = true;
         }
         N(z10, !this.K1);
@@ -3413,13 +3413,13 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         if (view == null) {
             iArr[1] = 0;
             oxVar.setTranslationY(0);
-        } else if (view.getVisibility() == 0 && !this.f25907f0) {
-            ly lyVar = this.f25951t1;
+        } else if (view.getVisibility() == 0 && !this.f25867f0) {
+            ly lyVar = this.f25911t1;
             if (lyVar == null || !lyVar.z()) {
                 if (i10 > 0 && (wxVar = this.P) != null && wxVar.getVisibility() == 0 && (L = wxVar.L(0)) != null) {
-                    int top = L.f42974a.getTop();
-                    if (this.f25900d0) {
-                        i11 = this.f25894b1;
+                    int top = L.f42995a.getTop();
+                    if (this.f25860d0) {
+                        i11 = this.f25854b1;
                     } else {
                         i11 = 0;
                     }
@@ -3447,7 +3447,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             if (i10 <= 0 && (i10 = this.F1) <= 0) {
                 i10 = this.E1;
             }
-            xwVar.k(this.f25968y0.F(L0), i10);
+            xwVar.k(this.f25928y0.F(L0), i10);
         }
     }
 
@@ -3459,9 +3459,9 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             observersGroup.removeAllObservers();
             this.I2 = null;
         }
-        NotificationCenter.ObserversGroup add = NotificationCenter.getInstance(this.f25898c1).createWeakObserversGroup(this).addGlobal(NotificationCenter.emojiLoaded).add(NotificationCenter.newEmojiSuggestionsAvailable).add(NotificationCenter.groupPackUpdated);
+        NotificationCenter.ObserversGroup add = NotificationCenter.getInstance(this.f25858c1).createWeakObserversGroup(this).addGlobal(NotificationCenter.emojiLoaded).add(NotificationCenter.newEmojiSuggestionsAvailable).add(NotificationCenter.groupPackUpdated);
         this.I2 = add;
-        if (this.f25968y0 != null) {
+        if (this.f25928y0 != null) {
             add.add(NotificationCenter.stickersDidLoad).add(NotificationCenter.recentDocumentsDidLoad).add(NotificationCenter.featuredStickersDidLoad).add(NotificationCenter.groupStickersDidLoad).add(NotificationCenter.currentUserPremiumStatusChanged);
             AndroidUtilities.runOnUIThread(new ew(this, 0));
         }
@@ -3475,12 +3475,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             xuVar.dismiss();
         }
         org.telegram.ui.st q6 = org.telegram.ui.st.q();
-        if (q6.f37537l == this.f25912g2) {
+        if (q6.f37561l == this.f25872g2) {
             q6.W = null;
-            q6.f37525a0 = null;
+            q6.f37549a0 = null;
             q6.Y = null;
-            q6.f37537l = null;
-            q6.f37529c0 = null;
+            q6.f37561l = null;
+            q6.f37553c0 = null;
             q6.u();
         }
     }
@@ -3490,7 +3490,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         int i14 = i12 - i10;
         if (this.O1 != i14) {
             this.O1 = i14;
-            E();
+            D();
         }
         super.onLayout(z10, i10, i11, i12, i13);
         R();
@@ -3502,7 +3502,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         this.K1 = true;
         boolean z10 = AndroidUtilities.isInMultiwindow;
         View view = this.v;
-        boolean z11 = this.f25900d0;
+        boolean z11 = this.f25860d0;
         if (!z10 && !this.N1) {
             if (this.L1 != 0) {
                 if (!this.H2) {
@@ -3510,7 +3510,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     setClipToOutline(false);
                     setElevation(0.0f);
                 }
-                if (this.f25953u0) {
+                if (this.f25913u0) {
                     int i12 = org.telegram.ui.ActionBar.j6.He;
                     setBackgroundColor(z(i12));
                     if (z11) {
@@ -3529,7 +3529,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             Drawable background = getBackground();
             int i13 = org.telegram.ui.ActionBar.j6.He;
             background.setColorFilter(new PorterDuffColorFilter(z(i13), PorterDuff.Mode.MULTIPLY));
-            if (z11 && this.f25953u0) {
+            if (z11 && this.f25913u0) {
                 view.setBackgroundColor(z(i13));
             }
             this.L1 = 1;
@@ -3549,26 +3549,26 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                 if (i12 <= 0 && (i12 = this.F1) <= 0) {
                     i12 = this.E1;
                 }
-                this.B0.k(this.f25968y0.F(L02), i12);
+                this.B0.k(this.f25928y0.F(L02), i12);
             }
         } else if (i10 == 2) {
-            s4.h0 adapter = this.f25913h0.getAdapter();
-            py pyVar = this.f25930n0;
-            if (adapter == pyVar && pyVar.I >= 0 && this.f25947s0 >= 0 && this.f25943r0 >= 0 && (L0 = this.f25916i0.L0()) != -1) {
+            s4.h0 adapter = this.f25873h0.getAdapter();
+            py pyVar = this.f25890n0;
+            if (adapter == pyVar && pyVar.I >= 0 && this.f25907s0 >= 0 && this.f25903r0 >= 0 && (L0 = this.f25876i0.L0()) != -1) {
                 if (L0 >= pyVar.I) {
-                    i11 = this.f25947s0;
+                    i11 = this.f25907s0;
                 } else {
-                    i11 = this.f25943r0;
+                    i11 = this.f25903r0;
                 }
-                this.f25936p0.k(i11, 0);
+                this.f25896p0.k(i11, 0);
             }
         }
     }
 
     public final void q(boolean z10) {
         int i10;
-        ly lyVar = this.f25951t1;
-        le.b bVar = this.f25889a;
+        ly lyVar = this.f25911t1;
+        le.b bVar = this.f25849a;
         tw twVar = this.D0;
         boolean z11 = false;
         ww wwVar = this.G0;
@@ -3577,7 +3577,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             if (L == null) {
                 xy.a(wwVar, true, !z10);
             } else {
-                if (L.f42974a.getTop() < twVar.getPaddingTop()) {
+                if (L.f42995a.getTop() < twVar.getPaddingTop()) {
                     z11 = true;
                 }
                 xy.a(wwVar, z11, !z10);
@@ -3586,12 +3586,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         } else if (wwVar != null && twVar != null) {
             s4.c1 L2 = twVar.L(0);
             if (L2 != null) {
-                i10 = L2.f42974a.getTop();
+                i10 = L2.f42995a.getTop();
             } else {
-                i10 = -this.f25894b1;
+                i10 = -this.f25854b1;
             }
             wwVar.setTranslationY((bVar.e * AndroidUtilities.dp(15.0f)) + i10);
-            wwVar.f30378a.a(false, !z10);
+            wwVar.f30429a.a(false, !z10);
         }
     }
 
@@ -3612,7 +3612,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         xy xyVar;
         s4.c0 c0Var;
         View view;
-        vl0 vl0Var;
+        View view2;
         int i10;
         TLRPC.TL_messages_stickerSet stickerSetById;
         bz bzVar;
@@ -3623,54 +3623,54 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             this.M0 = null;
         }
         int currentItem = this.h.getCurrentItem();
-        if (currentItem == 2 && j3 != -1 && (stickerSetById = MediaDataController.getInstance(this.f25898c1).getStickerSetById(j3)) != null && (E = (bzVar = this.f25968y0).E(stickerSetById)) >= 0 && E < bzVar.h()) {
-            H(E, AndroidUtilities.dp(48.0f));
+        if (currentItem == 2 && j3 != -1 && (stickerSetById = MediaDataController.getInstance(this.f25858c1).getStickerSetById(j3)) != null && (E = (bzVar = this.f25928y0).E(stickerSetById)) >= 0 && E < bzVar.h()) {
+            G(E, AndroidUtilities.dp(48.0f));
         }
-        py pyVar = this.f25919j0;
+        py pyVar = this.f25879j0;
         if (pyVar != null) {
             pyVar.K = false;
         }
         for (int i11 = 0; i11 < 3; i11++) {
-            vl0 vl0Var2 = this.D0;
-            vl0 vl0Var3 = this.f25913h0;
-            qw qwVar = this.f25933o0;
-            vl0 vl0Var4 = this.P;
+            View view3 = this.D0;
+            View view4 = this.f25873h0;
+            qw qwVar = this.f25893o0;
+            View view5 = this.P;
             if (i11 == 0) {
                 xyVar = this.V;
                 c0Var = this.Q;
                 view = this.I;
-                vl0Var = vl0Var4;
+                view2 = view5;
             } else if (i11 == 1) {
-                c0Var = this.f25916i0;
-                view = this.f25936p0;
-                vl0Var = vl0Var3;
+                c0Var = this.f25876i0;
+                view = this.f25896p0;
+                view2 = view4;
                 xyVar = qwVar;
             } else {
                 xyVar = this.G0;
                 c0Var = this.E0;
                 view = this.B0;
-                vl0Var = vl0Var2;
+                view2 = view3;
             }
             if (xyVar != null) {
-                wy wyVar = xyVar.f30383r;
+                wy wyVar = xyVar.f30434r;
                 xyVar.d.setText("");
                 if (wyVar != null) {
                     wyVar.G1(null);
                     wyVar.E1();
                 }
-                int i12 = this.f25894b1;
+                int i12 = this.f25854b1;
                 if (i11 == currentItem && z10) {
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     this.M0 = animatorSet2;
                     Property property = View.TRANSLATION_Y;
                     if (view != null && i11 != 1) {
-                        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, 0.0f), ObjectAnimator.ofFloat(vl0Var, property, AndroidUtilities.dp(36.0f)), ObjectAnimator.ofFloat(xyVar, property, AndroidUtilities.dp(36.0f)));
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, 0.0f), ObjectAnimator.ofFloat(view2, property, AndroidUtilities.dp(36.0f)), ObjectAnimator.ofFloat(xyVar, property, AndroidUtilities.dp(36.0f)));
                     } else {
-                        animatorSet2.playTogether(ObjectAnimator.ofFloat(vl0Var, property, AndroidUtilities.dp(36.0f) - i12));
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(view2, property, AndroidUtilities.dp(36.0f) - i12));
                     }
                     this.M0.setDuration(200L);
                     this.M0.setInterpolator(qr.h);
-                    this.M0.addListener(new ai.y4(this, c0Var, vl0Var, 5));
+                    this.M0.addListener(new ai.y4(this, c0Var, view2, 5));
                     this.M0.start();
                 } else {
                     if (xyVar != qwVar) {
@@ -3679,16 +3679,16 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     if (view != null && i11 != 2) {
                         view.setTranslationY(0.0f);
                     }
-                    if (vl0Var == vl0Var2) {
+                    if (view2 == view3) {
                         i10 = 0;
-                        vl0Var.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f) + this.f25938p2);
+                        view2.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f) + this.f25898p2);
                     } else {
                         i10 = 0;
-                        if (vl0Var == vl0Var3) {
-                            vl0Var.setPadding(0, AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(44.0f) + this.f25938p2);
+                        if (view2 == view4) {
+                            view2.setPadding(0, AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(44.0f) + this.f25898p2);
                         } else {
-                            if (vl0Var == vl0Var4) {
-                                vl0Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(44.0f) + this.f25938p2);
+                            if (view2 == view5) {
+                                view2.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(44.0f) + this.f25898p2);
                             }
                             i10 = 0;
                         }
@@ -3698,13 +3698,13 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             }
         }
         if (!z10) {
-            this.f25951t1.i(0);
+            this.f25911t1.i(0);
         }
     }
 
     public void setBlurredBackgroundDrawableFactory(ah.c cVar) {
         org.telegram.ui.ActionBar.f6 f6Var = this.Z1;
-        View view = this.f25963x;
+        View view = this.f25923x;
         if (view != null) {
             ch.d c10 = cVar.c(view, null, false);
             c10.o(eh.b.d(f6Var));
@@ -3720,7 +3720,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             c11.p(AndroidUtilities.dp(6.0f));
             view2.setBackground(c11);
         }
-        View view3 = this.f25959w;
+        View view3 = this.f25919w;
         if (view3 != null) {
             ch.d c12 = cVar.c(view3, null, false);
             c12.o(eh.b.d(f6Var));
@@ -3728,7 +3728,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             c12.p(AndroidUtilities.dp(6.0f));
             view3.setBackground(c12);
         }
-        View view4 = this.f25967y;
+        View view4 = this.f25927y;
         if (view4 != null) {
             ch.d c13 = cVar.c(view4, null, false);
             c13.o(eh.b.d(f6Var));
@@ -3739,14 +3739,14 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     }
 
     public void setBottomInset(int i10) {
-        if (this.f25938p2 != i10) {
-            this.f25938p2 = i10;
+        if (this.f25898p2 != i10) {
+            this.f25898p2 = i10;
             j(i10, this.K);
             j(i10, this.M);
             j(AndroidUtilities.dp(44.0f) + i10, this.P);
             j(AndroidUtilities.dp(44.0f) + i10, this.D0);
-            j(AndroidUtilities.dp(44.0f) + i10, this.f25913h0);
-            FrameLayout frameLayout = this.f25946s;
+            j(AndroidUtilities.dp(44.0f) + i10, this.f25873h0);
+            FrameLayout frameLayout = this.f25906s;
             if (frameLayout != null) {
                 frameLayout.setTranslationY(-i10);
             }
@@ -3761,7 +3761,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     }
 
     public void setDelegate(ly lyVar) {
-        this.f25951t1 = lyVar;
+        this.f25911t1 = lyVar;
     }
 
     public void setDragListener(qx qxVar) {
@@ -3775,7 +3775,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         if (wwVar != null) {
             wwVar.d.setEnabled(z10);
         }
-        qw qwVar = this.f25933o0;
+        qw qwVar = this.f25893o0;
         if (qwVar != null) {
             qwVar.d.setEnabled(z10);
         }
@@ -3790,8 +3790,8 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
     }
 
     public void setShouldDrawBackground(boolean z10) {
-        if (this.f25953u0 != z10) {
-            this.f25953u0 = z10;
+        if (this.f25913u0 != z10) {
+            this.f25913u0 = z10;
             S();
         }
     }
@@ -3821,12 +3821,12 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
             if (i10 != 8) {
                 Emoji.sortEmoji();
                 this.R.F(false);
-                int i11 = this.f25898c1;
+                int i11 = this.f25858c1;
                 NotificationCenter.getInstance(i11).addObserver(this, NotificationCenter.stickersDidLoad);
-                if (this.f25968y0 != null) {
+                if (this.f25928y0 != null) {
                     NotificationCenter.getInstance(i11).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
                     X(false);
-                    E();
+                    D();
                 }
                 k(true);
                 k(false);
@@ -3857,11 +3857,11 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
                     txVar.F(false);
                 }
             } else if (i10 == 1) {
-                py pyVar = this.f25930n0;
+                py pyVar = this.f25890n0;
                 if (pyVar != null) {
                     pyVar.l();
                 }
-            } else if (i10 == 2 && (bzVar = this.f25968y0) != null) {
+            } else if (i10 == 2 && (bzVar = this.f25928y0) != null) {
                 bzVar.l();
             }
         }
@@ -3875,7 +3875,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    return this.f25916i0;
+                    return this.f25876i0;
                 }
                 throw new IllegalArgumentException(hg.k0.h(i10, "Unexpected argument: "));
             }
@@ -3884,11 +3884,11 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         return this.E0;
     }
 
-    public final vl0 x(int i10) {
+    public final yl0 x(int i10) {
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    return this.f25913h0;
+                    return this.f25873h0;
                 }
                 throw new IllegalArgumentException(hg.k0.h(i10, "Unexpected argument: "));
             }
@@ -3901,7 +3901,7 @@ public class kz extends FrameLayout implements le.d, NotificationCenter.Notifica
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
-                    return this.f25936p0;
+                    return this.f25896p0;
                 }
                 throw new IllegalArgumentException(hg.k0.h(i10, "Unexpected argument: "));
             }

@@ -24,7 +24,7 @@ public final class b {
         aVar.u(6, 8);
         aVar.u(8, 8);
         aVar.u(14, 8);
-        e = aVar.e();
+        e = aVar.d();
     }
 
     public b(a1 a1Var) {
@@ -50,12 +50,12 @@ public final class b {
         return u10.i();
     }
 
-    public static k2.b b(android.content.Context r5, android.content.Intent r6, b2.e r7, a6.m r8) {
-        throw new UnsupportedOperationException("Method not decompiled: k2.b.b(android.content.Context, android.content.Intent, b2.e, a6.m):k2.b");
+    public static k2.b b(android.content.Context r5, android.content.Intent r6, b2.e r7, k2.e r8) {
+        throw new UnsupportedOperationException("Method not decompiled: k2.b.b(android.content.Context, android.content.Intent, b2.e, k2.e):k2.b");
     }
 
-    public static b c(Context context, b2.e eVar, a6.m mVar) {
-        return b(context, context.registerReceiver(null, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG")), eVar, mVar);
+    public static b c(Context context, b2.e eVar, e eVar2) {
+        return b(context, context.registerReceiver(null, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG")), eVar, eVar2);
     }
 
     public final android.util.Pair d(b2.e r14, b2.s r15) {

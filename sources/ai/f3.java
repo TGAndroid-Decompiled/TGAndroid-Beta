@@ -7,28 +7,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.y51;
 public final class f3 implements e2.h {
-    public final int f790a;
-    public final Object f791b;
+    public final int f787a;
+    public final Object f788b;
 
     public f3(Object obj, int i10) {
-        this.f790a = i10;
-        this.f791b = obj;
+        this.f787a = i10;
+        this.f788b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
         String str;
         boolean z10;
-        switch (this.f790a) {
+        switch (this.f787a) {
             case 0:
-                f6 f6Var = (f6) this.f791b;
+                f6 f6Var = (f6) this.f788b;
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus == null) {
                     jc jcVar = f6Var.J0;
                     if (jcVar != null) {
-                        jcVar.f1092k1 = false;
+                        jcVar.f1089k1 = false;
                         jcVar.P();
                         return;
                     }
@@ -39,7 +39,7 @@ public final class f3 implements e2.h {
                 return;
             case 1:
                 j7 j7Var = (j7) obj;
-                r7 r7Var = ((o7) this.f791b).e;
+                r7 r7Var = ((o7) this.f788b).e;
                 int i10 = 0;
                 while (true) {
                     ArrayList arrayList = r7Var.G;
@@ -53,18 +53,18 @@ public final class f3 implements e2.h {
                     }
                 }
             case 2:
-                sa saVar = (sa) this.f791b;
+                sa saVar = (sa) this.f788b;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
-                saVar.f1525p = true;
+                saVar.f1522p = true;
                 if (storyItem != null && (str = storyItem.caption) != null) {
-                    saVar.f1522m = true;
-                    saVar.f1521l = str;
-                    saVar.f1516f = TextUtils.isEmpty(str);
-                    View view = saVar.f1527r;
+                    saVar.f1519m = true;
+                    saVar.f1518l = str;
+                    saVar.f1513f = TextUtils.isEmpty(str);
+                    View view = saVar.f1524r;
                     if (view != null) {
                         view.invalidate();
                     }
-                    Runnable runnable = saVar.f1528s;
+                    Runnable runnable = saVar.f1525s;
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -73,25 +73,25 @@ public final class f3 implements e2.h {
                 }
                 return;
             case 3:
-                ci.u4 u4Var = (ci.u4) this.f791b;
+                ci.u4 u4Var = (ci.u4) this.f788b;
                 View view2 = (View) obj;
-                ci.p4 p4Var = u4Var.f5612b;
+                ci.p4 p4Var = u4Var.f5610b;
                 if (view2 instanceof ci.t4) {
                     p4Var.getClass();
                     int S = RecyclerView.S(view2);
-                    w51 G = p4Var.Y2.G(S);
+                    y51 G = p4Var.Y2.G(S);
                     if (G != null) {
                         ci.t4 t4Var = (ci.t4) view2;
                         t4Var.setPosition(u4Var.b(S));
-                        if (u4Var.f5614f == G.d) {
+                        if (u4Var.f5612f == G.d) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         t4Var.b(z10, true);
                         boolean contains = u4Var.e.contains(Integer.valueOf(G.d));
-                        if (t4Var.f5562f != contains) {
-                            t4Var.f5562f = contains;
+                        if (t4Var.f5560f != contains) {
+                            t4Var.f5560f = contains;
                             t4Var.invalidate();
                         }
                         view2.setPressed(false);
@@ -101,44 +101,44 @@ public final class f3 implements e2.h {
                 }
                 return;
             case 4:
-                ci.p4 p4Var2 = (ci.p4) this.f791b;
+                ci.p4 p4Var2 = (ci.p4) this.f788b;
                 View view3 = (View) obj;
                 if (view3 instanceof ci.t4) {
-                    ci.fb fbVar = p4Var2.f5306f3;
-                    fbVar.f5612b.getClass();
+                    ci.fb fbVar = p4Var2.f5304f3;
+                    fbVar.f5610b.getClass();
                     ((ci.t4) view3).setPosition(fbVar.b(RecyclerView.S(view3)));
                     view3.setPressed(false);
                     return;
                 }
                 return;
             case 5:
-                ci.g8.P((ci.g8) this.f791b, (Long) obj);
+                ci.g8.P((ci.g8) this.f788b, (Long) obj);
                 return;
             case 6:
-                ((m4.j1) obj).f((b2.v0) this.f791b);
+                ((m4.j1) obj).f((b2.v0) this.f788b);
                 return;
             case 7:
-                ((m4.j1) obj).n((Surface) this.f791b);
+                ((m4.j1) obj).n((Surface) this.f788b);
                 return;
             case 8:
-                ((m4.j1) obj).C((b2.n0) this.f791b);
+                ((m4.j1) obj).C((b2.n0) this.f788b);
                 return;
             case 9:
-                z3.h hVar = (z3.h) this.f791b;
+                z3.h hVar = (z3.h) this.f788b;
                 z3.a aVar = (z3.a) obj;
-                z3.g gVar = new z3.g(aVar.f48381b, ob.a.C2(aVar.f48380a, aVar.f48382c));
-                hVar.f48391c.add(gVar);
-                long j3 = hVar.f48395j;
+                z3.g gVar = new z3.g(aVar.f48401b, ob.a.C2(aVar.f48400a, aVar.f48402c));
+                hVar.f48411c.add(gVar);
+                long j3 = hVar.f48415j;
                 if (j3 == -9223372036854775807L || aVar.d >= j3) {
                     hVar.b(gVar);
                     return;
                 }
                 return;
             case 10:
-                ((e9.f0) this.f791b).b((z3.a) obj);
+                ((e9.f0) this.f788b).b((z3.a) obj);
                 return;
             default:
-                zg.q qVar = (zg.q) this.f791b;
+                zg.q qVar = (zg.q) this.f788b;
                 qVar.Q = (TL_stories.TL_premium_boostsStatus) obj;
                 if (!qVar.E.keySet().equals(qVar.G.keySet())) {
                     qVar.Y(false);

@@ -16,18 +16,18 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class d8 extends GestureDetector.SimpleOnGestureListener {
-    public final Context f32953a;
-    public final f8 f32954b;
+    public final Context f32974a;
+    public final f8 f32975b;
 
     public d8(f8 f8Var, Context context) {
-        this.f32954b = f8Var;
-        this.f32953a = context;
+        this.f32975b = f8Var;
+        this.f32974a = context;
     }
 
     public final g8 a(float f7, float f10) {
         g8 g8Var;
-        f8 f8Var = this.f32954b;
-        if (f8Var.f33535n == null) {
+        f8 f8Var = this.f32975b;
+        if (f8Var.f33560n == null) {
             return null;
         }
         int i10 = f8Var.e;
@@ -39,7 +39,7 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
             float f11 = (measuredWidth / 2.0f) + (i10 * measuredWidth);
             float dp3 = (dp / 2.0f) + (i11 * dp) + AndroidUtilities.dp(44.0f);
             float f12 = dp2;
-            if (f7 >= f11 - f12 && f7 <= f11 + f12 && f10 >= dp3 - f12 && f10 <= dp3 + f12 && (g8Var = (g8) f8Var.f33535n.get(i12, null)) != null) {
+            if (f7 >= f11 - f12 && f7 <= f11 + f12 && f10 >= dp3 - f12 && f10 <= dp3 + f12 && (g8Var = (g8) f8Var.f33560n.get(i12, null)) != null) {
                 return g8Var;
             }
             i10++;
@@ -60,15 +60,15 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
     public final void onLongPress(MotionEvent motionEvent) {
         final g8 a2;
         super.onLongPress(motionEvent);
-        f8 f8Var = this.f32954b;
-        i8 i8Var = f8Var.f33539x;
-        if (i8Var.f34478e0 == 0 && !AndroidUtilities.isTablet() && (a2 = a(motionEvent.getX(), motionEvent.getY())) != null) {
+        f8 f8Var = this.f32975b;
+        i8 i8Var = f8Var.f33564x;
+        if (i8Var.f34498e0 == 0 && !AndroidUtilities.isTablet() && (a2 = a(motionEvent.getX(), motionEvent.getY())) != null) {
             try {
                 f8Var.performHapticFeedback(0);
             } catch (Exception unused) {
             }
             Bundle bundle = new Bundle();
-            long j3 = i8Var.f34491x;
+            long j3 = i8Var.f34511x;
             if (j3 > 0) {
                 bundle.putLong("user_id", j3);
             } else {
@@ -83,10 +83,10 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
             f1Var.g(LocaleController.getString(R.string.JumpToDate), R.drawable.msg_message, null);
             f1Var.setMinimumWidth(160);
             f1Var.setOnClickListener(new View.OnClickListener(this) {
-                public final d8 f32004b;
+                public final d8 f32025b;
 
                 {
-                    this.f32004b = this;
+                    this.f32025b = this;
                 }
 
                 @Override
@@ -97,8 +97,8 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                     org.telegram.ui.ActionBar.d5 d5Var4;
                     switch (r3) {
                         case 0:
-                            d8 d8Var = this.f32004b;
-                            i8 i8Var2 = d8Var.f32954b.f33539x;
+                            d8 d8Var = this.f32025b;
+                            i8 i8Var2 = d8Var.f32975b.f33564x;
                             d5Var = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
                             if (d5Var != null) {
                                 d5Var2 = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
@@ -115,14 +115,14 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                             i8Var2.finishPreviewFragment();
                             return;
                         default:
-                            f8 f8Var2 = this.f32004b.f32954b;
-                            i8 i8Var3 = f8Var2.f33539x;
+                            f8 f8Var2 = this.f32025b.f32975b;
+                            i8 i8Var3 = f8Var2.f33564x;
                             int i10 = a2.h;
                             i8Var3.Q = i10;
                             i8Var3.P = i10;
                             i8Var3.G = true;
                             i8Var3.t0();
-                            i8 i8Var4 = f8Var2.f33539x;
+                            i8 i8Var4 = f8Var2.f33564x;
                             i8Var4.o0();
                             i8Var4.finishPreviewFragment();
                             return;
@@ -130,15 +130,15 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                 }
             });
             actionBarPopupWindow$ActionBarPopupWindowLayout.addView(f1Var);
-            if (i8Var.f34477d0) {
+            if (i8Var.f34497d0) {
                 org.telegram.ui.ActionBar.f1 f1Var2 = new org.telegram.ui.ActionBar.f1(i8Var.getParentActivity(), false, false);
                 f1Var2.g(LocaleController.getString(R.string.SelectThisDay), R.drawable.msg_select, null);
                 f1Var2.setMinimumWidth(160);
                 f1Var2.setOnClickListener(new View.OnClickListener(this) {
-                    public final d8 f32004b;
+                    public final d8 f32025b;
 
                     {
-                        this.f32004b = this;
+                        this.f32025b = this;
                     }
 
                     @Override
@@ -149,8 +149,8 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                         org.telegram.ui.ActionBar.d5 d5Var4;
                         switch (r3) {
                             case 0:
-                                d8 d8Var = this.f32004b;
-                                i8 i8Var2 = d8Var.f32954b.f33539x;
+                                d8 d8Var = this.f32025b;
+                                i8 i8Var2 = d8Var.f32975b.f33564x;
                                 d5Var = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
                                 if (d5Var != null) {
                                     d5Var2 = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
@@ -167,14 +167,14 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                                 i8Var2.finishPreviewFragment();
                                 return;
                             default:
-                                f8 f8Var2 = this.f32004b.f32954b;
-                                i8 i8Var3 = f8Var2.f33539x;
+                                f8 f8Var2 = this.f32025b.f32975b;
+                                i8 i8Var3 = f8Var2.f33564x;
                                 int i10 = a2.h;
                                 i8Var3.Q = i10;
                                 i8Var3.P = i10;
                                 i8Var3.G = true;
                                 i8Var3.t0();
-                                i8 i8Var4 = f8Var2.f33539x;
+                                i8 i8Var4 = f8Var2.f33564x;
                                 i8Var4.o0();
                                 i8Var4.finishPreviewFragment();
                                 return;
@@ -186,10 +186,10 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                 f1Var3.g(LocaleController.getString(R.string.ClearHistory), R.drawable.msg_delete, null);
                 f1Var3.setMinimumWidth(160);
                 f1Var3.setOnClickListener(new View.OnClickListener(this) {
-                    public final d8 f32277b;
+                    public final d8 f32295b;
 
                     {
-                        this.f32277b = this;
+                        this.f32295b = this;
                     }
 
                     @Override
@@ -199,8 +199,8 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                         org.telegram.ui.ActionBar.d5 d5Var3;
                         switch (r2) {
                             case 0:
-                                d8 d8Var = this.f32277b;
-                                i8 i8Var2 = d8Var.f32954b.f33539x;
+                                d8 d8Var = this.f32295b;
+                                i8 i8Var2 = d8Var.f32975b.f33564x;
                                 d5Var = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
                                 if (d5Var.getFragmentStack().size() >= 3) {
                                     d5Var2 = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
@@ -208,13 +208,13 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                                     d5Var3 = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
                                     org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) fragmentStack.get(d5Var3.getFragmentStack().size() - 3);
                                     if (n2Var instanceof zn) {
-                                        org.telegram.ui.Components.d5.r(i8Var2, 1, i8Var2.getMessagesController().getUser(Long.valueOf(i8Var2.f34491x)), null, false, new c8(d8Var, (zn) n2Var), null);
+                                        org.telegram.ui.Components.d5.r(i8Var2, 1, i8Var2.getMessagesController().getUser(Long.valueOf(i8Var2.f34511x)), null, false, new c8(d8Var, (zn) n2Var), null);
                                     }
                                 }
                                 i8Var2.finishPreviewFragment();
                                 return;
                             default:
-                                this.f32277b.f32954b.f33539x.finishPreviewFragment();
+                                this.f32295b.f32975b.f33564x.finishPreviewFragment();
                                 return;
                         }
                     }
@@ -222,12 +222,12 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                 actionBarPopupWindow$ActionBarPopupWindowLayout.addView(f1Var3);
             }
             actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
-            i8Var.v = new ci.eb(this, this.f32953a, 10);
+            i8Var.v = new ci.eb(this, this.f32974a, 10);
             i8Var.v.setOnClickListener(new View.OnClickListener(this) {
-                public final d8 f32277b;
+                public final d8 f32295b;
 
                 {
-                    this.f32277b = this;
+                    this.f32295b = this;
                 }
 
                 @Override
@@ -237,8 +237,8 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                     org.telegram.ui.ActionBar.d5 d5Var3;
                     switch (r2) {
                         case 0:
-                            d8 d8Var = this.f32277b;
-                            i8 i8Var2 = d8Var.f32954b.f33539x;
+                            d8 d8Var = this.f32295b;
+                            i8 i8Var2 = d8Var.f32975b.f33564x;
                             d5Var = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
                             if (d5Var.getFragmentStack().size() >= 3) {
                                 d5Var2 = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
@@ -246,13 +246,13 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                                 d5Var3 = ((org.telegram.ui.ActionBar.n2) i8Var2).parentLayout;
                                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) fragmentStack.get(d5Var3.getFragmentStack().size() - 3);
                                 if (n2Var instanceof zn) {
-                                    org.telegram.ui.Components.d5.r(i8Var2, 1, i8Var2.getMessagesController().getUser(Long.valueOf(i8Var2.f34491x)), null, false, new c8(d8Var, (zn) n2Var), null);
+                                    org.telegram.ui.Components.d5.r(i8Var2, 1, i8Var2.getMessagesController().getUser(Long.valueOf(i8Var2.f34511x)), null, false, new c8(d8Var, (zn) n2Var), null);
                                 }
                             }
                             i8Var2.finishPreviewFragment();
                             return;
                         default:
-                            this.f32277b.f32954b.f33539x.finishPreviewFragment();
+                            this.f32295b.f32975b.f33564x.finishPreviewFragment();
                             return;
                     }
                 }
@@ -269,19 +269,19 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
         g8 a2;
         MessageObject messageObject;
-        ka.c cVar;
-        f8 f8Var = this.f32954b;
-        i8 i8Var = f8Var.f33539x;
+        o0.b bVar;
+        f8 f8Var = this.f32975b;
+        i8 i8Var = f8Var.f33564x;
         if (i8.V(i8Var) != null) {
-            if (((i8Var.f34478e0 == 1 && f8Var.f33535n != null) || i8Var.f34480f0 != null) && (a2 = a(motionEvent.getX(), motionEvent.getY())) != null && (messageObject = a2.f33820a) != null && (cVar = i8Var.M) != null) {
-                if (i8Var.f34480f0 != null) {
+            if (((i8Var.f34498e0 == 1 && f8Var.f33560n != null) || i8Var.f34500f0 != null) && (a2 = a(motionEvent.getX(), motionEvent.getY())) != null && (messageObject = a2.f33848a) != null && (bVar = i8Var.M) != null) {
+                if (i8Var.f34500f0 != null) {
                     ai.jc orCreateStoryViewer = i8Var.getOrCreateStoryViewer();
                     Context context = f8Var.getContext();
-                    MessageObject messageObject2 = a2.f33820a;
+                    MessageObject messageObject2 = a2.f33848a;
                     TL_stories.StoryItem storyItem = messageObject2.storyItem;
                     int id2 = messageObject2.getId();
-                    ai.d9 d9Var = i8Var.f34480f0;
-                    g gVar = i8Var.f34481g0;
+                    ai.d9 d9Var = i8Var.f34500f0;
+                    g gVar = i8Var.f34501g0;
                     orCreateStoryViewer.h = UserConfig.selectedAccount;
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(Long.valueOf(d9Var.d));
@@ -289,19 +289,19 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                     orCreateStoryViewer.G(context, storyItem, arrayList, 0, d9Var, null, gVar, true);
                 } else {
                     int id3 = messageObject.getId();
-                    int i10 = a2.f33822c;
-                    org.telegram.ui.Components.jv0 jv0Var = (org.telegram.ui.Components.jv0) cVar.f13566b;
+                    int i10 = a2.f33850c;
+                    org.telegram.ui.Components.lv0 lv0Var = (org.telegram.ui.Components.lv0) bVar.f15487b;
                     int i11 = -1;
-                    for (int i12 = 0; i12 < jv0Var.f25524t1[0].f30612a.size(); i12++) {
-                        if (((MessageObject) jv0Var.f25524t1[0].f30612a.get(i12)).getId() == id3) {
+                    for (int i12 = 0; i12 < lv0Var.f26230t1[0].f22744a.size(); i12++) {
+                        if (((MessageObject) lv0Var.f26230t1[0].f22744a.get(i12)).getId() == id3) {
                             i11 = i12;
                         }
                     }
-                    org.telegram.ui.Components.cu0 W = jv0Var.W(0);
+                    org.telegram.ui.Components.eu0 W = lv0Var.W(0);
                     if (i11 >= 0 && W != null) {
-                        W.f23410x.h1(i11, 0);
+                        W.f24046x.h1(i11, 0);
                     } else {
-                        jv0Var.y0(0, id3, i10, true);
+                        lv0Var.y0(0, id3, i10, true);
                     }
                     if (W != null) {
                         W.J = id3;
@@ -310,7 +310,7 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                     i8Var.finishFragment();
                 }
             }
-            if (f8Var.f33535n != null) {
+            if (f8Var.f33560n != null) {
                 if (i8Var.G) {
                     g8 a10 = a(motionEvent.getX(), motionEvent.getY());
                     if (a10 != null) {

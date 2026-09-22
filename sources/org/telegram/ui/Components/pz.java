@@ -18,13 +18,13 @@ public class pz extends s4.c0 {
     public int S;
     public final boolean T;
 
-    public pz(vl0 vl0Var, int i10) {
+    public pz(yl0 yl0Var, int i10) {
         this.I = new SparseArray();
         this.J = -1;
         this.P = true;
         this.Q = true;
         this.T = true;
-        this.N = vl0Var;
+        this.N = yl0Var;
         this.M = i10;
     }
 
@@ -116,18 +116,18 @@ public class pz extends s4.c0 {
             s4.c1 c1Var = (s4.c1) sparseArray.get(j3, null);
             if (c1Var == null) {
                 c1Var = adapter.g(recyclerView, j3);
-                View view = c1Var.f42974a;
+                View view = c1Var.f42995a;
                 sparseArray.put(j3, c1Var);
                 if (view.getLayoutParams() == null) {
                     view.setLayoutParams(n());
                 }
             }
-            View view2 = c1Var.f42974a;
+            View view2 = c1Var.f42995a;
             if (this.P) {
                 adapter.v(c1Var, i12);
             }
             s4.p0 p0Var = (s4.p0) view2.getLayoutParams();
-            view2.measure(s4.o0.s(d(), this.L, this.f43073k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.Q, this.K, this.f43074l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
+            view2.measure(s4.o0.s(d(), this.L, this.f43094k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.Q, this.K, this.f43095l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
             i10 += view2.getMeasuredHeight();
             if (i12 == 0) {
                 i11 = view2.getMeasuredHeight();
@@ -147,14 +147,14 @@ public class pz extends s4.c0 {
         }
     }
 
-    public pz(int i10, int i11, vl0 vl0Var) {
+    public pz(int i10, int i11, yl0 yl0Var) {
         super(1, false);
         this.I = new SparseArray();
         this.J = -1;
         this.P = true;
         this.Q = true;
         this.T = true;
-        this.N = vl0Var;
+        this.N = yl0Var;
         this.M = i10;
     }
 }

@@ -33,7 +33,7 @@ public abstract class p {
             Log.e(bVar.f9430a, bVar.d("Attempt to generate requestId without a sink", new Object[0]));
             return 0L;
         }
-        return ((AtomicLong) aVar.f360c).getAndIncrement();
+        return ((AtomicLong) aVar.f357c).getAndIncrement();
     }
 
     public final void c(long j3, String str) {
@@ -43,7 +43,7 @@ public abstract class p {
             Log.e(bVar.f9430a, bVar.d("Attempt to send text message without a sink", new Object[0]));
             return;
         }
-        f0 f0Var = (f0) aVar.f359b;
+        f0 f0Var = (f0) aVar.f356b;
         if (f0Var != null) {
             e0 e0Var = (e0) f0Var;
             String str2 = this.f9461b;
@@ -51,8 +51,8 @@ public abstract class p {
             if (!TextUtils.isEmpty(str)) {
                 if (str.length() <= 524288) {
                     com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
-                    e.f6184c = new b0(e0Var, str2, str, 1);
-                    e.f6182a = 8405;
+                    e.f6182c = new b0(e0Var, str2, str, 1);
+                    e.f6180a = 8405;
                     e0Var.e(1, e.a()).addOnFailureListener(new e6.n(aVar, j3, 0));
                     return;
                 }

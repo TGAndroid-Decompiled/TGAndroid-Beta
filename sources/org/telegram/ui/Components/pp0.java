@@ -1,37 +1,101 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class pp0 implements Runnable {
-    public final int f27417a;
-    public final uq0 f27418b;
+import android.view.View;
+import android.widget.Toast;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.PhotoViewer;
+public final class pp0 implements View.OnClickListener {
+    public final int f27395a;
+    public final wq0 f27396b;
 
-    public pp0(uq0 uq0Var, int i10) {
-        this.f27417a = i10;
-        this.f27418b = uq0Var;
+    public pp0(wq0 wq0Var, int i10) {
+        this.f27395a = i10;
+        this.f27396b = wq0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27417a) {
+    public final void onClick(View view) {
+        switch (this.f27395a) {
             case 0:
-                uq0 uq0Var = this.f27418b;
-                uq0Var.A0 = true;
-                b20 b20Var = uq0Var.f28836y0;
-                b20Var.f22856r.setText("");
-                AndroidUtilities.showKeyboard(b20Var.f22856r);
+                wq0 wq0Var = this.f27396b;
+                np npVar = wq0Var.f30103e0;
+                npVar.a(!npVar.f26861a.f22209q, true);
+                wq0Var.Z0();
                 return;
-            default:
-                sh shVar = new sh(9);
-                uq0 uq0Var2 = this.f27418b;
-                if (uq0Var2.isKeyboardVisible()) {
-                    b20 b20Var2 = uq0Var2.f28836y0;
-                    if (b20Var2 != null) {
-                        AndroidUtilities.hideKeyboard(b20Var2.f22856r);
+            case 1:
+                wq0 wq0Var2 = this.f27396b;
+                org.telegram.ui.ActionBar.n1 n1Var = wq0Var2.J0;
+                if (n1Var != null && n1Var.isShowing()) {
+                    wq0Var2.J0.d(true);
+                }
+                wq0Var2.V0(false);
+                return;
+            case 2:
+                wq0 wq0Var3 = this.f27396b;
+                org.telegram.ui.ActionBar.n1 n1Var2 = wq0Var3.J0;
+                if (n1Var2 != null && n1Var2.isShowing()) {
+                    wq0Var3.J0.d(true);
+                }
+                wq0Var3.V0(true);
+                return;
+            case 3:
+                wq0 wq0Var4 = this.f27396b;
+                String[] strArr = wq0Var4.f30114o0;
+                if (wq0Var4.U.m() == 0) {
+                    if (wq0Var4.f30113n0 || strArr[0] != null) {
+                        wq0Var4.dismiss();
+                        PhotoViewer.t1().G0(true, false);
+                        if (strArr[0] == null && wq0Var4.f30111l0) {
+                            wq0Var4.m0 = true;
+                            Toast.makeText(wq0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        wq0Var4.getContext();
+                        wq0Var4.M0();
+                        return;
                     }
-                    AndroidUtilities.runOnUIThread(shVar, 300L);
                     return;
                 }
-                shVar.run();
+                return;
+            case 4:
+                wq0 wq0Var5 = this.f27396b;
+                String[] strArr2 = wq0Var5.f30114o0;
+                if (wq0Var5.U.m() == 0) {
+                    if (wq0Var5.f30113n0 || strArr2[0] != null) {
+                        wq0Var5.dismiss();
+                        if (strArr2[0] == null && wq0Var5.f30111l0) {
+                            wq0Var5.m0 = true;
+                            Toast.makeText(wq0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        wq0Var5.getContext();
+                        wq0Var5.M0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                wq0 wq0Var6 = this.f27396b;
+                String[] strArr3 = wq0Var6.f30114o0;
+                if (wq0Var6.U.m() == 0) {
+                    if (wq0Var6.f30113n0 || strArr3[0] != null) {
+                        wq0Var6.dismiss();
+                        if (strArr3[0] == null && wq0Var6.f30111l0) {
+                            wq0Var6.m0 = true;
+                            Toast.makeText(wq0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        wq0Var6.getContext();
+                        wq0Var6.M0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                this.f27396b.V0(true);
                 return;
         }
     }

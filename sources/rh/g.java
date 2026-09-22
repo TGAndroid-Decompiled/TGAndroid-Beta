@@ -10,13 +10,13 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.RadialProgress2;
 public final class g extends qh.e {
-    public final MessageObject f42898b;
-    public final RadialProgress2 f42899c;
+    public final MessageObject f42919b;
+    public final RadialProgress2 f42920c;
 
     public g(MessageObject messageObject) {
-        this.f42898b = messageObject;
+        this.f42919b = messageObject;
         RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
-        this.f42899c = radialProgress2;
+        this.f42920c = radialProgress2;
         TLRPC.Document document = messageObject.getDocument();
         if (MessageObject.isDocumentHasThumb(document)) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);
@@ -29,13 +29,13 @@ public final class g extends qh.e {
                 radialProgress2.i(null, null, null);
             }
         }
-        radialProgress2.g(j6.f19192ie, j6.f19210je, j6.f19413uc, j6.f19430vc);
+        radialProgress2.g(j6.f19207ie, j6.f19225je, j6.f19428uc, j6.f19445vc);
     }
 
     @Override
     public final void a(View view) {
         super.a(view);
-        RadialProgress2 radialProgress2 = this.f42899c;
+        RadialProgress2 radialProgress2 = this.f42920c;
         radialProgress2.m(view);
         radialProgress2.e();
         radialProgress2.setIcon(0, false, false);
@@ -44,12 +44,12 @@ public final class g extends qh.e {
     @Override
     public final void b() {
         super.b();
-        this.f42899c.f();
+        this.f42920c.f();
     }
 
     @Override
     public final void c(Canvas canvas, int i10, int i11) {
-        RadialProgress2 radialProgress2 = this.f42899c;
+        RadialProgress2 radialProgress2 = this.f42920c;
         radialProgress2.setCircleRadius(i10 / 2);
         radialProgress2.q(0, 0, i10, i11);
         radialProgress2.draw(canvas);

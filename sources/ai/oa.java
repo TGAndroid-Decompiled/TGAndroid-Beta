@@ -9,15 +9,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class oa extends View {
-    public Paint f1365a;
-    public boolean f1366b;
-    public q4 f1367c;
+    public Paint f1362a;
+    public boolean f1363b;
+    public q4 f1364c;
     public org.telegram.ui.Components.d6 d;
     public org.telegram.ui.Components.d6 e;
-    public float f1368f;
+    public float f1365f;
 
     public final void a(boolean z10) {
-        q4 q4Var = this.f1367c;
+        q4 q4Var = this.f1364c;
         AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamVolume = audioManager.getStreamVolume(3);
@@ -36,19 +36,19 @@ public final class oa extends View {
         }
         audioManager.setStreamVolume(3, streamMaxVolume, 0);
         float f10 = streamMaxVolume / f7;
-        this.f1368f = f10;
-        if (!this.f1366b) {
+        this.f1365f = f10;
+        if (!this.f1363b) {
             this.e.d(f10, true);
         }
         invalidate();
-        this.f1366b = true;
+        this.f1363b = true;
         AndroidUtilities.cancelRunOnUIThread(q4Var);
         AndroidUtilities.runOnUIThread(q4Var, 2000L);
     }
 
     public final void b() {
         int i10;
-        q4 q4Var = this.f1367c;
+        q4 q4Var = this.f1364c;
         AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         if (Build.VERSION.SDK_INT >= 28) {
@@ -59,11 +59,11 @@ public final class oa extends View {
         int streamVolume = audioManager.getStreamVolume(3);
         if (streamVolume <= i10) {
             a(true);
-        } else if (!this.f1366b) {
+        } else if (!this.f1363b) {
             float f7 = streamVolume / streamMaxVolume;
-            this.f1368f = f7;
+            this.f1365f = f7;
             this.e.d(f7, true);
-            this.f1366b = true;
+            this.f1363b = true;
             invalidate();
             AndroidUtilities.cancelRunOnUIThread(q4Var);
             AndroidUtilities.runOnUIThread(q4Var, 2000L);
@@ -73,22 +73,22 @@ public final class oa extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        Paint paint = this.f1365a;
+        Paint paint = this.f1362a;
         super.onDraw(canvas);
         org.telegram.ui.Components.d6 d6Var = this.e;
-        d6Var.d(this.f1368f, false);
+        d6Var.d(this.f1365f, false);
         org.telegram.ui.Components.d6 d6Var2 = this.d;
-        if (this.f1366b) {
+        if (this.f1363b) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         d6Var2.d(f7, false);
-        if (d6Var2.f23501c != 0.0f) {
+        if (d6Var2.f23570c != 0.0f) {
             float measuredHeight = getMeasuredHeight() / 2.0f;
-            paint.setAlpha((int) (d6Var2.f23501c * 255.0f));
+            paint.setAlpha((int) (d6Var2.f23570c * 255.0f));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * d6Var.f23501c, getMeasuredHeight());
+            rectF.set(0.0f, 0.0f, getMeasuredWidth() * d6Var.f23570c, getMeasuredHeight());
             canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
     }

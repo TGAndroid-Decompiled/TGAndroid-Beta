@@ -1,161 +1,159 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import j$.util.Objects;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public class mo0 extends ScrollView {
-    public final org.telegram.ui.ActionBar.f6 f26437a;
-    public final LinearLayout f26438b;
-    public final float f26439c;
-    public final float[] d;
-    public final float[] e;
-    public final ArrayList f26440f;
-    public final ArrayList h;
-    public final Path f26441n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mo0 extends q81 {
+    public final ArrayList f26492a = new ArrayList();
+    public final org.telegram.ui.ey f26493b;
 
-    public mo0(Context context, LinearLayout linearLayout, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        super(context);
-        float f7;
-        this.f26439c = AndroidUtilities.dp(16.0f);
-        this.f26440f = new ArrayList();
-        this.h = new ArrayList();
-        this.f26441n = new Path();
-        this.f26437a = f6Var;
-        this.f26438b = linearLayout;
-        setWillNotDraw(false);
-        int dp = AndroidUtilities.dp(12.0f);
-        if (z10) {
-            f7 = 12.0f;
+    public mo0(org.telegram.ui.ey eyVar) {
+        this.f26493b = eyVar;
+        i();
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
+        org.telegram.ui.ey eyVar = this.f26493b;
+        eyVar.P(view, i10, eyVar.L0, true);
+    }
+
+    @Override
+    public final View d(int i10) {
+        org.telegram.ui.ey eyVar = this.f26493b;
+        org.telegram.ui.uy uyVar = eyVar.K0;
+        if (i10 == 1) {
+            return eyVar.V;
+        }
+        if (i10 == 3) {
+            return eyVar.f26842g0;
+        }
+        if (i10 == 4) {
+            return eyVar.f26847l0;
+        }
+        if (i10 == 5) {
+            return eyVar.f26853s0;
+        }
+        if (i10 == 2) {
+            kn0 kn0Var = new kn0(eyVar.I0, uyVar);
+            eyVar.H0 = kn0Var;
+            kn0Var.b(eyVar.V0, eyVar.W0, false);
+            eyVar.H0.f25766b.setClipToPadding(false);
+            eyVar.H0.f25766b.j(new ko0(this, 0));
+            eyVar.H0.f25766b.D0(new jc0(eyVar, 24));
+            eyVar.H0.setUiCallback(eyVar);
+            return eyVar.H0;
+        } else if (i10 == 6) {
+            return eyVar.f26851q0;
         } else {
-            f7 = 4.0f;
-        }
-        linearLayout.setPadding(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        this.d = new float[]{AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), 0.0f, 0.0f, 0.0f, 0.0f};
-        this.e = new float[]{0.0f, 0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f)};
-    }
-
-    public static boolean e(View view) {
-        if (!Objects.equals(view.getTag(), -33024) && !(view instanceof org.telegram.ui.Cells.f9) && !(view instanceof org.telegram.ui.Cells.c7) && !(view instanceof org.telegram.ui.b20)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void a(Canvas canvas, View view, View view2) {
-        float f7;
-        if (view != null && view2 != null) {
-            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-            ViewGroup.LayoutParams layoutParams2 = view2.getLayoutParams();
-            ViewParent parent = view.getParent();
-            float f10 = 0.0f;
-            LinearLayout linearLayout = this.f26438b;
-            if (parent != linearLayout && (layoutParams instanceof ViewGroup.MarginLayoutParams)) {
-                f7 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
-            } else {
-                f7 = 0.0f;
+            org.telegram.ui.x10 x10Var = new org.telegram.ui.x10(uyVar);
+            x10Var.setChatPreviewDelegate(eyVar.Q0);
+            x10Var.setUiCallback(eyVar);
+            x10Var.j(eyVar.V0, eyVar.W0, false);
+            ah.c cVar = eyVar.Y0;
+            if (cVar != null) {
+                x10Var.setBlurredBackgroundDrawableFactory(cVar);
             }
-            if (view2.getParent() != linearLayout && (layoutParams2 instanceof ViewGroup.MarginLayoutParams)) {
-                f10 = ((ViewGroup.MarginLayoutParams) layoutParams2).topMargin;
-            }
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(c(view) + linearLayout.getX(), Math.max(getScrollY() - AndroidUtilities.dp(16.0f), (d(view) + linearLayout.getY()) - f7), c(view) + linearLayout.getX() + view.getWidth(), Math.min(getScrollY() + AndroidUtilities.dp(16.0f) + getHeight(), d(view2) + linearLayout.getY() + view2.getHeight() + f10));
-            if (rectF.bottom >= rectF.top) {
-                vl0.P0(canvas, rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), view.getAlpha(), this.f26437a);
-            }
+            ai.w0 w0Var = x10Var.f39318b;
+            w0Var.setClipToPadding(false);
+            w0Var.j(new ko0(this, 1));
+            w0Var.D0(new jc0(eyVar, 24));
+            return x10Var;
         }
-    }
-
-    public final void b(ViewGroup viewGroup, float f7, float f10) {
-        for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
-            View childAt = viewGroup.getChildAt(i10);
-            if (childAt.getVisibility() == 0) {
-                if (childAt instanceof LinearLayout) {
-                    LinearLayout linearLayout = (LinearLayout) childAt;
-                    if (linearLayout.getOrientation() == 1) {
-                        LinearLayout linearLayout2 = this.f26438b;
-                        if (childAt.getX() + f7 <= linearLayout2.getPaddingLeft() && childAt.getX() + f7 + childAt.getWidth() >= linearLayout2.getWidth() - linearLayout2.getPaddingRight()) {
-                            b(linearLayout, childAt.getX() + f7, childAt.getY() + f10);
-                        }
-                    }
-                }
-                this.h.add(childAt);
-            }
-        }
-    }
-
-    public final float c(View view) {
-        if (view != this.f26438b && (view.getParent() instanceof View)) {
-            return view.getX() + c((View) view.getParent());
-        }
-        return view.getX();
-    }
-
-    public final float d(View view) {
-        if (view != this.f26438b && (view.getParent() instanceof View)) {
-            return view.getY() + d((View) view.getParent());
-        }
-        return view.getY();
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.h;
+    public final int e() {
+        return this.f26492a.size();
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        ArrayList arrayList = this.f26492a;
+        if (((lo0) arrayList.get(i10)).f26153a == 0) {
+            return LocaleController.getString(R.string.SearchAllChatsShort);
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 1) {
+            return LocaleController.getString(R.string.ChannelsTab);
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 4) {
+            return LocaleController.getString(R.string.AppsTab);
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 6) {
+            return LocaleController.getString(R.string.SearchPosts);
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 2) {
+            return LocaleController.getString(R.string.DownloadsTabs);
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 5) {
+            return LocaleController.getString(R.string.PublicPostsTabs);
+        }
+        gg.q0 q0Var = gg.s0.f9915c3[((lo0) arrayList.get(i10)).f26154b];
+        String str = q0Var.f9899c;
+        if (str != null) {
+            return str;
+        }
+        return LocaleController.getString(q0Var.f9898b);
+    }
+
+    @Override
+    public final int h(int i10) {
+        ArrayList arrayList = this.f26492a;
+        if (((lo0) arrayList.get(i10)).f26153a == 0) {
+            return 1;
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 1) {
+            return 3;
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 4) {
+            return 4;
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 2) {
+            return 2;
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 5) {
+            return 5;
+        }
+        if (((lo0) arrayList.get(i10)).f26153a == 6) {
+            return 6;
+        }
+        return ((lo0) arrayList.get(i10)).f26153a + i10;
+    }
+
+    public final void i() {
+        ArrayList arrayList = this.f26492a;
         arrayList.clear();
-        b(this.f26438b, 0.0f, 0.0f);
-        int size = arrayList.size();
-        int i10 = 0;
-        while (true) {
-            View view = null;
-            View view2 = null;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                View view3 = (View) obj;
-                if (!e(view3)) {
-                    break;
-                }
-                if (view != null && Math.abs(view2.getAlpha() - view3.getAlpha()) > 0.1f) {
-                    a(canvas, view, view2);
-                    view = null;
-                }
-                if (view == null) {
-                    view = view3;
-                }
-                view2 = view3;
+        arrayList.add(new lo0(0));
+        org.telegram.ui.ey eyVar = this.f26493b;
+        if (eyVar.U0 == 0) {
+            if (eyVar.f26852r0) {
+                arrayList.add(new lo0(5));
             }
-            a(canvas, view, view2);
-            super.dispatchDraw(canvas);
-            return;
-            a(canvas, view, view2);
+            arrayList.add(new lo0(1));
+            arrayList.add(new lo0(4));
+            arrayList.add(new lo0(6));
+            if (!eyVar.P0) {
+                lo0 lo0Var = new lo0(3);
+                lo0Var.f26154b = 0;
+                arrayList.add(lo0Var);
+                org.telegram.ui.ox oxVar = eyVar.f33443c1.F3;
+                if (oxVar == null || !oxVar.c()) {
+                    arrayList.add(new lo0(2));
+                }
+                lo0 lo0Var2 = new lo0(3);
+                lo0Var2.f26154b = 1;
+                arrayList.add(lo0Var2);
+                lo0 lo0Var3 = new lo0(3);
+                lo0Var3.f26154b = 2;
+                arrayList.add(lo0Var3);
+                lo0 lo0Var4 = new lo0(3);
+                lo0Var4.f26154b = 3;
+                arrayList.add(lo0Var4);
+                lo0 lo0Var5 = new lo0(3);
+                lo0Var5.f26154b = 4;
+                arrayList.add(lo0Var5);
+            }
         }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        ArrayList arrayList = this.f26440f;
-        int size = arrayList.size();
-        int i14 = 0;
-        while (i14 < size) {
-            Object obj = arrayList.get(i14);
-            i14++;
-            ((Runnable) obj).run();
-        }
-        invalidate();
-        this.f26438b.invalidate();
     }
 }

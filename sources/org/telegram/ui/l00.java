@@ -7,14 +7,14 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.style.ImageSpan;
 public final class l00 extends ImageSpan {
-    public int f35273a;
+    public int f35291a;
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        if (paint.getColor() != this.f35273a && getDrawable() != null) {
+        if (paint.getColor() != this.f35291a && getDrawable() != null) {
             Drawable drawable = getDrawable();
             int color = paint.getColor();
-            this.f35273a = color;
+            this.f35291a = color;
             drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         }
         super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);

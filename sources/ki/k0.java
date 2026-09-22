@@ -1,14 +1,11 @@
 package ki;
+public enum k0 {
+    FPS_30(30),
+    FPS_60(60);
+    
+    public final int f13774a;
 
-import java.io.File;
-public final class k0 {
-    public final long f13762a;
-    public final File f13763b;
-    public volatile long f13764c;
-    public volatile boolean d;
-
-    public k0(long j3, File file) {
-        this.f13762a = j3;
-        this.f13763b = file;
+    k0(int i10) {
+        this.f13774a = i10;
     }
 }

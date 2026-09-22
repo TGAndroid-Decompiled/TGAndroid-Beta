@@ -2,12 +2,12 @@ package ai;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class q1 implements RequestDelegate {
-    public final int f1414a;
-    public final d2 f1415b;
+    public final int f1411a;
+    public final d2 f1412b;
 
     public q1(d2 d2Var, int i10) {
-        this.f1414a = i10;
-        this.f1415b = d2Var;
+        this.f1411a = i10;
+        this.f1412b = d2Var;
     }
 
     @Override

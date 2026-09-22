@@ -24,8 +24,8 @@ public abstract class e {
             i10++;
             w wVar = (w) obj;
             Bundle bundle = new Bundle();
-            bundle.putInt("event_type", wVar.f355a);
-            bundle.putLong("event_timestamp", wVar.f356b);
+            bundle.putInt("event_type", wVar.f352a);
+            bundle.putLong("event_timestamp", wVar.f353b);
             arrayList2.add(bundle);
         }
         return arrayList2;
@@ -45,11 +45,11 @@ public abstract class e {
                     try {
                         i8.a W0 = a2.W0();
                         l.h(W0);
-                        y7.f44486a = W0;
+                        y7.f44508a = W0;
                         s7.e Y0 = a2.Y0();
-                        if (d9.f44244b == null) {
+                        if (d9.f44266b == null) {
                             l.i(Y0, "delegate must not be null");
-                            d9.f44244b = Y0;
+                            d9.f44266b = Y0;
                         }
                         f10145a = true;
                         try {

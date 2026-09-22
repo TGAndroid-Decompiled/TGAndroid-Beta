@@ -21,7 +21,7 @@ public final class v5 implements View.OnFocusChangeListener {
                 d6.a((d6) this.f11699b, z10);
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f11699b).f41314c;
+                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f11699b).f41336c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;
@@ -45,15 +45,15 @@ public final class v5 implements View.OnFocusChangeListener {
                 return;
             case 4:
                 yh.a0 a0Var = (yh.a0) this.f11699b;
-                a0Var.f47201c0.c(z10, !TextUtils.isEmpty(a0Var.f47202d0.getText()));
+                a0Var.f47222c0.c(z10, !TextUtils.isEmpty(a0Var.f47223d0.getText()));
                 return;
             case 5:
                 yh.e0 e0Var = (yh.e0) this.f11699b;
-                e0Var.f47358f.c(z10, !TextUtils.isEmpty(e0Var.h.getText()));
+                e0Var.f47379f.c(z10, !TextUtils.isEmpty(e0Var.h.getText()));
                 return;
             case 6:
                 yh.i0 i0Var = (yh.i0) this.f11699b;
-                i0Var.f47540b.c(z10, !TextUtils.isEmpty(i0Var.f47541c.getText()));
+                i0Var.f47561b.c(z10, !TextUtils.isEmpty(i0Var.f47562c.getText()));
                 return;
             default:
                 zg.o oVar = (zg.o) this.f11699b;

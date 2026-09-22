@@ -5,20 +5,20 @@ import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ej1 extends View {
-    public int f33357a;
-    public final WallpapersListActivity f33358b;
+    public int f33382a;
+    public final WallpapersListActivity f33383b;
 
     public ej1(WallpapersListActivity wallpapersListActivity, Context context) {
         super(context);
-        this.f33358b = wallpapersListActivity;
+        this.f33383b = wallpapersListActivity;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        WallpapersListActivity wallpapersListActivity = this.f33358b;
-        wallpapersListActivity.f31920s.setColor(this.f33357a);
-        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f31920s);
-        if (this.f33357a == org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false)) {
+        WallpapersListActivity wallpapersListActivity = this.f33383b;
+        wallpapersListActivity.f31941s.setColor(this.f33382a);
+        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f31941s);
+        if (this.f33382a == org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19109d6, false)) {
             canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.v);
         }
     }

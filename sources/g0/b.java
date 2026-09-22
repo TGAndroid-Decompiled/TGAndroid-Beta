@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import e0.p0;
 import f0.h;
 import java.util.Arrays;
-import w7.p6;
+import w7.o6;
 public final class b {
     public final c f9329a;
 
@@ -51,12 +51,12 @@ public final class b {
                 boolean z10 = persistableBundle.getBoolean("isBot");
                 boolean z11 = persistableBundle.getBoolean("isImportant");
                 ?? obj2 = new Object();
-                obj2.f7824a = string2;
-                obj2.f7825b = null;
-                obj2.f7826c = string3;
+                obj2.f7823a = string2;
+                obj2.f7824b = null;
+                obj2.f7825c = string3;
                 obj2.d = string4;
                 obj2.e = z10;
-                obj2.f7827f = z11;
+                obj2.f7826f = z11;
                 p0VarArr[i11] = obj2;
                 i11 = i12;
             }
@@ -80,7 +80,7 @@ public final class b {
         if (i13 >= 29) {
             if (shortcutInfo.getLocusId() != null) {
                 LocusId locusId = shortcutInfo.getLocusId();
-                p6.a(locusId, "locusId cannot be null");
+                o6.a(locusId, "locusId cannot be null");
                 String id2 = locusId.getId();
                 if (!TextUtils.isEmpty(id2)) {
                     hVar = new h(id2);

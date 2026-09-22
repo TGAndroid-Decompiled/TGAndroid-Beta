@@ -34,14 +34,14 @@ public final class a extends DataSetObserver {
                 return;
             case 2:
                 c11 c11Var = (c11) this.f10080b;
-                ProfileActivity profileActivity = c11Var.f32592n;
-                int realCount = profileActivity.f31613n0.getRealCount();
+                ProfileActivity profileActivity = c11Var.f32612n;
+                int realCount = profileActivity.f31634n0.getRealCount();
                 if (profileActivity.A0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.E) {
                     profileActivity.A0 = 1;
                 }
                 c11Var.a(false);
                 c11Var.b(1.0f);
-                if (profileActivity.f31633q0 != null) {
+                if (profileActivity.f31654q0 != null) {
                     if (profileActivity.T0.t()) {
                         AndroidUtilities.runOnUIThread(new e01(c11Var, 2), 500L);
                         return;

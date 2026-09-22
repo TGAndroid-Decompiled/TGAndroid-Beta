@@ -9,12 +9,12 @@ import java.util.Arrays;
 import org.telegram.ui.Cells.f3;
 import u2.y0;
 public final class c extends i {
-    public u f45526n;
-    public y0 f45527o;
+    public u f45547n;
+    public y0 f45548o;
 
     @Override
     public final long b(v vVar) {
-        byte[] bArr = vVar.f7934a;
+        byte[] bArr = vVar.f7933a;
         if (bArr[0] == -1) {
             int i10 = (bArr[2] & 255) >> 4;
             if (i10 == 6 || i10 == 7) {
@@ -30,37 +30,37 @@ public final class c extends i {
 
     @Override
     public final boolean c(v vVar, long j3, f3 f3Var) {
-        byte[] bArr = vVar.f7934a;
-        u uVar = this.f45526n;
+        byte[] bArr = vVar.f7933a;
+        u uVar = this.f45547n;
         if (uVar == null) {
             u uVar2 = new u(bArr, 17);
-            this.f45526n = uVar2;
-            r a2 = uVar2.c(Arrays.copyOfRange(bArr, 9, vVar.f7936c), null).a();
-            a2.f3252p = r0.n("audio/ogg");
-            f3Var.f20269b = new s(a2);
+            this.f45547n = uVar2;
+            r a2 = uVar2.c(Arrays.copyOfRange(bArr, 9, vVar.f7935c), null).a();
+            a2.f3251p = r0.n("audio/ogg");
+            f3Var.f20284b = new s(a2);
             return true;
         }
         byte b10 = bArr[0];
         if ((b10 & Byte.MAX_VALUE) == 3) {
             of.b u10 = c3.b.u(vVar);
-            u uVar3 = new u(uVar.f3802a, uVar.f3803b, uVar.f3804c, uVar.d, uVar.e, uVar.f3806g, uVar.h, uVar.f3808j, u10, uVar.f3810l);
-            this.f45526n = uVar3;
+            u uVar3 = new u(uVar.f3801a, uVar.f3802b, uVar.f3803c, uVar.d, uVar.e, uVar.f3805g, uVar.h, uVar.f3807j, u10, uVar.f3809l);
+            this.f45547n = uVar3;
             ?? obj = new Object();
-            obj.f43837c = uVar3;
+            obj.f43858c = uVar3;
             obj.d = u10;
-            obj.f43835a = -1L;
-            obj.f43836b = -1L;
-            this.f45527o = obj;
+            obj.f43856a = -1L;
+            obj.f43857b = -1L;
+            this.f45548o = obj;
             return true;
         } else if (b10 != -1) {
             return true;
         } else {
-            y0 y0Var = this.f45527o;
+            y0 y0Var = this.f45548o;
             if (y0Var != null) {
-                y0Var.f43835a = j3;
-                f3Var.f20270c = y0Var;
+                y0Var.f43856a = j3;
+                f3Var.f20285c = y0Var;
             }
-            ((s) f3Var.f20269b).getClass();
+            ((s) f3Var.f20284b).getClass();
             return false;
         }
     }
@@ -69,8 +69,8 @@ public final class c extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f45526n = null;
-            this.f45527o = null;
+            this.f45547n = null;
+            this.f45548o = null;
         }
     }
 }

@@ -2,23 +2,23 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class kz extends org.telegram.ui.Components.v51 {
-    public static final int f35265a = 0;
+public final class kz extends org.telegram.ui.Components.x51 {
+    public static final int f35283a = 0;
 
     static {
-        org.telegram.ui.Components.v51.setup(new org.telegram.ui.Components.v51());
+        org.telegram.ui.Components.x51.setup(new org.telegram.ui.Components.x51());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.w51 w51Var, boolean z10, org.telegram.ui.Components.k61 k61Var, org.telegram.ui.Components.s61 s61Var) {
+    public final void bindView(View view, org.telegram.ui.Components.y51 y51Var, boolean z10, org.telegram.ui.Components.m61 m61Var, org.telegram.ui.Components.u61 u61Var) {
         lz lzVar = (lz) view;
-        lzVar.f35544b.setOnClickListener((View.OnClickListener) w51Var.G);
-        lzVar.e.setOnClickListener((View.OnClickListener) w51Var.H);
-        lzVar.a(w51Var.e, false);
+        lzVar.f35567b.setOnClickListener((View.OnClickListener) y51Var.G);
+        lzVar.e.setOnClickListener((View.OnClickListener) y51Var.H);
+        lzVar.a(y51Var.e, false);
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.vl0 vl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final View createView(Context context, org.telegram.ui.Components.yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
         return new lz(context, f6Var);
     }
 }

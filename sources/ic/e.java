@@ -42,8 +42,8 @@ public final class e {
     }
 
     public static double e(c cVar, c cVar2) {
-        double d = cVar.f4216a - cVar2.f4216a;
-        double d10 = cVar.f4217b - cVar2.f4217b;
+        double d = cVar.f4214a - cVar2.f4214a;
+        double d10 = cVar.f4215b - cVar2.f4215b;
         return (d10 * d10) + (d * d);
     }
 
@@ -62,8 +62,8 @@ public final class e {
         int a2 = (int) a(i11, iArr);
         int i16 = iArr[2];
         dc.b bVar = this.f11078a;
-        int i17 = bVar.f7619b;
-        int i18 = bVar.f7618a;
+        int i17 = bVar.f7618b;
+        int i18 = bVar.f7617a;
         int[] iArr2 = this.d;
         Arrays.fill(iArr2, 0);
         int i19 = i10;
@@ -212,7 +212,7 @@ public final class e {
                             i36++;
                         }
                         if (iArr2[0] != 0) {
-                            int i37 = bVar.f7619b;
+                            int i37 = bVar.f7618b;
                             int i38 = 1;
                             while (true) {
                                 int i39 = i26 + i38;
@@ -267,8 +267,8 @@ public final class e {
                                 if (i45 < arrayList.size()) {
                                     cVar = (c) arrayList.get(i45);
                                     float f16 = cVar.f11077c;
-                                    f10 = cVar.f4216a;
-                                    f11 = cVar.f4217b;
+                                    f10 = cVar.f4214a;
+                                    f11 = cVar.f4215b;
                                     if (Math.abs(f7 - f11) <= f15 && Math.abs(f12 - f10) <= f15) {
                                         float abs = Math.abs(f15 - f16);
                                         if (abs <= 1.0f || abs <= f16) {

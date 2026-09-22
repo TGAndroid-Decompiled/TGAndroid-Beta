@@ -1,39 +1,39 @@
 package ki;
 
-import org.telegram.ui.Components.p01;
+import org.telegram.ui.Components.r01;
 public final class c0 implements Runnable {
-    public final int f13663a = 0;
-    public final o0 f13664b;
-    public final k0 f13665c;
+    public final int f13661a = 0;
+    public final q0 f13662b;
+    public final m0 f13663c;
 
-    public c0(o0 o0Var, k0 k0Var, int i10) {
-        this.f13664b = o0Var;
-        this.f13665c = k0Var;
+    public c0(q0 q0Var, m0 m0Var, int i10) {
+        this.f13662b = q0Var;
+        this.f13663c = m0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f13663a) {
+        switch (this.f13661a) {
             case 0:
-                o0 o0Var = this.f13664b;
-                k0 k0Var = this.f13665c;
-                ((p01) o0Var.d).a(k0Var.f13762a);
+                q0 q0Var = this.f13662b;
+                m0 m0Var = this.f13663c;
+                ((r01) q0Var.d).a(m0Var.f13780a);
                 return;
             default:
-                o0 o0Var2 = this.f13664b;
-                k0 k0Var2 = this.f13665c;
-                l0 l0Var = o0Var2.d;
-                long j3 = k0Var2.f13762a;
-                p01 p01Var = (p01) l0Var;
-                synchronized (p01Var) {
-                    p01Var.a(j3);
+                q0 q0Var2 = this.f13662b;
+                m0 m0Var2 = this.f13663c;
+                n0 n0Var = q0Var2.d;
+                long j3 = m0Var2.f13780a;
+                r01 r01Var = (r01) n0Var;
+                synchronized (r01Var) {
+                    r01Var.a(j3);
                 }
                 return;
         }
     }
 
-    public c0(o0 o0Var, k0 k0Var, Exception exc) {
-        this.f13664b = o0Var;
-        this.f13665c = k0Var;
+    public c0(q0 q0Var, m0 m0Var, Exception exc) {
+        this.f13662b = q0Var;
+        this.f13663c = m0Var;
     }
 }

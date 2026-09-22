@@ -3,26 +3,26 @@ package ai;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.y70;
 public final class b3 implements View.OnLongClickListener {
-    public final int f576a;
-    public final f6 f577b;
+    public final int f573a;
+    public final f6 f574b;
 
     public b3(f6 f6Var, int i10) {
-        this.f576a = i10;
-        this.f577b = f6Var;
+        this.f573a = i10;
+        this.f574b = f6Var;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        switch (this.f576a) {
+        switch (this.f573a) {
             case 0:
-                f6 f6Var = this.f577b;
+                f6 f6Var = this.f574b;
                 boolean z10 = false;
                 if (f6Var.D0(true)) {
                     return false;
                 }
-                v70 F = v70.F(f6Var.J0.v, f6Var.B0, view);
+                y70 F = y70.F(f6Var.J0.v, f6Var.B0, view);
                 F.c(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new c3(f6Var, 6), false);
                 if (f6Var.L3 > 0) {
                     z10 = true;
@@ -33,7 +33,7 @@ public final class b3 implements View.OnLongClickListener {
                 F.Z();
                 return true;
             default:
-                f6 f6Var2 = this.f577b;
+                f6 f6Var2 = this.f574b;
                 f6Var2.L0.k(f6Var2.D0(false));
                 return true;
         }

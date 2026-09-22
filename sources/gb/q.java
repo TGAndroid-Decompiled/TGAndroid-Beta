@@ -1,6 +1,6 @@
 package gb;
 public final class q extends db.u {
-    public static final p f9582b = new p(new q(db.t.f7613b), 0);
+    public static final p f9582b = new p(new q(db.t.f7612b), 0);
     public final db.t f9583a;
 
     public q(db.t tVar) {

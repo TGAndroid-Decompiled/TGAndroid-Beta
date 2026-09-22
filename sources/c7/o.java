@@ -5,10 +5,10 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class o implements Parcelable {
     public static final Parcelable.Creator<o> CREATOR = new r0(19);
-    public final Enum f4126a;
+    public final Enum f4124a;
 
     public o(a aVar) {
-        this.f4126a = (Enum) aVar;
+        this.f4124a = (Enum) aVar;
     }
 
     public static o a(int i10) {
@@ -23,14 +23,14 @@ public final class o implements Parcelable {
             while (true) {
                 if (i11 < length) {
                     c0 c0Var2 = values2[i11];
-                    if (c0Var2.f4082a == i10) {
+                    if (c0Var2.f4080a == i10) {
                         c0Var = c0Var2;
                         break;
                     }
                     i11++;
                 } else {
                     for (p pVar : p.values()) {
-                        if (pVar.f4129a == i10) {
+                        if (pVar.f4127a == i10) {
                             c0Var = pVar;
                         }
                     }
@@ -47,22 +47,22 @@ public final class o implements Parcelable {
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof o) && this.f4126a.a() == ((o) obj).f4126a.a()) {
+        if ((obj instanceof o) && this.f4124a.a() == ((o) obj).f4124a.a()) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4126a});
+        return Arrays.hashCode(new Object[]{this.f4124a});
     }
 
     public final String toString() {
-        return a4.a.p("COSEAlgorithmIdentifier{algorithm=", String.valueOf(this.f4126a), "}");
+        return a4.a.p("COSEAlgorithmIdentifier{algorithm=", String.valueOf(this.f4124a), "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f4126a.a());
+        parcel.writeInt(this.f4124a.a());
     }
 }

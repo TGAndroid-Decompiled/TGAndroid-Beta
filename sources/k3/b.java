@@ -1,5 +1,6 @@
 package k3;
 
+import c3.l;
 import c3.o;
 import c3.p;
 import c3.q;
@@ -10,7 +11,7 @@ import e9.a1;
 import e9.g0;
 import e9.i0;
 import java.util.List;
-import w3.l;
+import w3.k;
 public final class b implements o {
     public q f13404b;
     public int f13405c;
@@ -19,27 +20,27 @@ public final class b implements o {
     public r3.a f13407g;
     public p h;
     public n f13408i;
-    public l f13409j;
+    public k f13409j;
     public final v f13403a = new v(2);
     public long f13406f = -1;
 
     @Override
     public final boolean a(p pVar) {
-        c3.l lVar = (c3.l) pVar;
+        l lVar = (l) pVar;
         v vVar = this.f13403a;
         vVar.G(2);
-        lVar.i(vVar.f7934a, 0, 2, false);
+        lVar.h(vVar.f7933a, 0, 2, false);
         if (vVar.D() == 65496) {
             vVar.G(2);
-            lVar.i(vVar.f7934a, 0, 2, false);
+            lVar.h(vVar.f7933a, 0, 2, false);
             int D = vVar.D();
             this.d = D;
             if (D == 65504) {
                 vVar.G(2);
-                lVar.i(vVar.f7934a, 0, 2, false);
-                lVar.t(vVar.D() - 2, false);
+                lVar.h(vVar.f7933a, 0, 2, false);
+                lVar.s(vVar.D() - 2, false);
                 vVar.G(2);
-                lVar.i(vVar.f7934a, 0, 2, false);
+                lVar.h(vVar.f7933a, 0, 2, false);
                 this.d = vVar.D();
             }
             if (this.d == 65505) {
@@ -68,15 +69,15 @@ public final class b implements o {
             this.f13405c = 0;
             this.f13409j = null;
         } else if (this.f13405c == 5) {
-            l lVar = this.f13409j;
-            lVar.getClass();
-            lVar.h(j3, j10);
+            k kVar = this.f13409j;
+            kVar.getClass();
+            kVar.h(j3, j10);
         }
     }
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8084b;
+        g0 g0Var = i0.f8083b;
         return a1.e;
     }
 
@@ -87,9 +88,9 @@ public final class b implements o {
 
     @Override
     public final void release() {
-        l lVar = this.f13409j;
-        if (lVar != null) {
-            lVar.getClass();
+        k kVar = this.f13409j;
+        if (kVar != null) {
+            kVar.getClass();
         }
     }
 

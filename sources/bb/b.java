@@ -6,36 +6,36 @@ import org.json.JSONObject;
 import rd.p;
 import zd.c0;
 public final class b extends kd.j implements p {
-    public final int f3458a = 1;
-    public int f3459b;
-    public Object f3460c;
+    public final int f3457a = 1;
+    public int f3458b;
+    public Object f3459c;
     public Object d;
     public Serializable e;
-    public final Object f3461f;
+    public final Object f3460f;
 
     public b(aa.a aVar, Map map, b bVar, c cVar, id.c cVar2) {
         super(2, cVar2);
         this.d = aVar;
-        this.f3460c = map;
+        this.f3459c = map;
         this.e = bVar;
-        this.f3461f = cVar;
+        this.f3460f = cVar;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f3458a) {
+        switch (this.f3457a) {
             case 0:
-                b bVar = new b((d) this.f3461f, cVar);
-                bVar.f3460c = obj;
+                b bVar = new b((d) this.f3460f, cVar);
+                bVar.f3459c = obj;
                 return bVar;
             default:
-                return new b((aa.a) this.d, this.f3460c, (b) this.e, (c) this.f3461f, cVar);
+                return new b((aa.a) this.d, this.f3459c, (b) this.e, (c) this.f3460f, cVar);
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f3458a) {
+        switch (this.f3457a) {
             case 0:
                 return ((b) create((JSONObject) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
             default:
@@ -50,6 +50,6 @@ public final class b extends kd.j implements p {
 
     public b(d dVar, id.c cVar) {
         super(2, cVar);
-        this.f3461f = dVar;
+        this.f3460f = dVar;
     }
 }

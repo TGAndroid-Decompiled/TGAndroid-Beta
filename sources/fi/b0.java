@@ -12,18 +12,18 @@ public final class b0 implements s0 {
     }
 
     @Override
-    public final void close() {
-        this.f9089b.d.E(0);
-    }
-
-    @Override
-    public final void e(long j3) {
+    public final void a(long j3) {
         this.f9088a.presentFragment(zn.R9(j3));
         this.f9089b.dismiss();
     }
 
     @Override
-    public final void f() {
+    public final void close() {
+        this.f9089b.d.E(0);
+    }
+
+    @Override
+    public final void l() {
         k0 k0Var = this.f9089b;
         k0Var.f9131w.d.Y2.N(true);
         k0Var.v.d.Y2.N(true);

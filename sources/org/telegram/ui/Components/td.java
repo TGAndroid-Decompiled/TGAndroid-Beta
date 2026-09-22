@@ -5,21 +5,21 @@ import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.StickersActivity;
 import org.telegram.ui.ThemeActivity;
 public final class td implements Runnable {
-    public final int f28359a;
-    public final org.telegram.ui.ActionBar.n2 f28360b;
+    public final int f28449a;
+    public final org.telegram.ui.ActionBar.n2 f28450b;
 
     public td(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f28359a = i10;
-        this.f28360b = n2Var;
+        this.f28449a = i10;
+        this.f28450b = n2Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f28359a;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28360b;
+        int i10 = this.f28449a;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f28450b;
         switch (i10) {
             case 0:
-                int i11 = ChatActivityEnterView.f21952m5;
+                int i11 = ChatActivityEnterView.f21967n5;
                 if (n2Var != null) {
                     new rg.x0(n2Var, 11, false).show();
                     return;

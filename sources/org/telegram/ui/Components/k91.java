@@ -1,25 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class k91 extends AnimatorListenerAdapter {
-    public final int f25722a;
-    public final l91 f25723b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import org.telegram.messenger.AndroidUtilities;
+public final class k91 extends WebView {
+    public final int f25653a = 0;
+    public final Object f25654b;
 
-    public k91(l91 l91Var, int i10) {
-        this.f25722a = i10;
-        this.f25723b = l91Var;
+    public k91(org.telegram.ui.xo0 xo0Var, Context context) {
+        super(context);
+        this.f25654b = xo0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25722a) {
+    public void onAttachedToWindow() {
+        switch (this.f25653a) {
             case 0:
-                this.f25723b.f26088y = null;
+                AndroidUtilities.checkAndroidTheme((Context) this.f25654b, true);
+                super.onAttachedToWindow();
                 return;
             default:
-                this.f25723b.f26088y = null;
+                super.onAttachedToWindow();
                 return;
         }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        switch (this.f25653a) {
+            case 0:
+                AndroidUtilities.checkAndroidTheme((Context) this.f25654b, false);
+                super.onDetachedFromWindow();
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f25653a) {
+            case 1:
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f25653a) {
+            case 1:
+                ((ViewGroup) ((org.telegram.ui.xo0) this.f25654b).fragmentView).requestDisallowInterceptTouchEvent(true);
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public k91(Context context, Context context2) {
+        super(context);
+        this.f25654b = context2;
     }
 }

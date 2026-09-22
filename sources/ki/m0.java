@@ -1,11 +1,14 @@
 package ki;
-public enum m0 {
-    P480(480),
-    P360(360);
-    
-    public final int f13772a;
 
-    m0(int i10) {
-        this.f13772a = i10;
+import java.io.File;
+public final class m0 {
+    public final long f13780a;
+    public final File f13781b;
+    public volatile long f13782c;
+    public volatile boolean d;
+
+    public m0(long j3, File file) {
+        this.f13780a = j3;
+        this.f13781b = file;
     }
 }

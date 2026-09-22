@@ -3,10 +3,10 @@ package pg;
 import java.util.Arrays;
 import java.util.List;
 public abstract class l extends m {
-    public static final List f41192b = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object());
+    public static final List f41211b = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object());
 
     public static l p(int i10) {
-        List list = f41192b;
+        List list = f41211b;
         if (i10 >= 0 && i10 <= list.size()) {
             return (l) list.get(i10);
         }

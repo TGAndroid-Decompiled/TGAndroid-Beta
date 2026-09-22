@@ -10,14 +10,14 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class f5 implements Runnable {
-    public final int f4659a;
-    public final r6 f4660b;
-    public final qg.j f4661c;
+    public final int f4657a;
+    public final r6 f4658b;
+    public final qg.j f4659c;
 
     public f5(r6 r6Var, qg.j jVar, int i10) {
-        this.f4659a = i10;
-        this.f4660b = r6Var;
-        this.f4661c = jVar;
+        this.f4657a = i10;
+        this.f4658b = r6Var;
+        this.f4659c = jVar;
     }
 
     @Override
@@ -25,18 +25,18 @@ public final class f5 implements Runnable {
         int i10;
         int i11;
         int i12;
-        switch (this.f4659a) {
+        switch (this.f4657a) {
             case 0:
-                this.f4660b.C0(this.f4661c);
+                this.f4658b.C0(this.f4659c);
                 return;
             default:
-                final r6 r6Var = this.f4660b;
+                final r6 r6Var = this.f4658b;
                 k6 k6Var = r6Var.R0;
                 t5 t5Var = r6Var.O1;
                 e6 e6Var = r6Var.G1;
                 LinearLayout linearLayout = new LinearLayout(r6Var.getContext());
                 linearLayout.setOrientation(0);
-                final qg.j jVar = this.f4661c;
+                final qg.j jVar = this.f4659c;
                 boolean z10 = jVar instanceof qg.f1;
                 if (!z10) {
                     TextView textView = new TextView(r6Var.getContext());
@@ -60,7 +60,7 @@ public final class f5 implements Runnable {
                                     boolean z11 = jVar2 instanceof qg.c2;
                                     r6 r6Var2 = r6Var;
                                     if (z11) {
-                                        ec ecVar = ((qb) r6Var2).A2.f5214c1;
+                                        ec ecVar = ((qb) r6Var2).A2.f5212c1;
                                         if (ecVar != null) {
                                             ecVar.B();
                                         }
@@ -127,7 +127,7 @@ public final class f5 implements Runnable {
                                         ((qg.b2) jVar5).r(true);
                                     } else if (jVar5 instanceof qg.c2) {
                                         qg.c2 c2Var = (qg.c2) jVar5;
-                                        c2Var.f41614r0 = !c2Var.f41614r0;
+                                        c2Var.f41635r0 = !c2Var.f41635r0;
                                         c2Var.invalidate();
                                     } else {
                                         ((qg.y1) jVar5).r(true);
@@ -194,7 +194,7 @@ public final class f5 implements Runnable {
                     textView2.setTypeface(AndroidUtilities.bold());
                     textView2.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
                     textView2.setTextSize(1, 14.0f);
-                    if ((t5Var.c() && !t5Var.d) || r6Var.f5447t2 > 0) {
+                    if ((t5Var.c() && !t5Var.d) || r6Var.f5445t2 > 0) {
                         textView2.setTag(3);
                         textView2.setText(LocaleController.getString(R.string.Paste));
                         textView2.setOnClickListener(new View.OnClickListener() {
@@ -207,7 +207,7 @@ public final class f5 implements Runnable {
                                         boolean z11 = jVar2 instanceof qg.c2;
                                         r6 r6Var2 = r6Var;
                                         if (z11) {
-                                            ec ecVar = ((qb) r6Var2).A2.f5214c1;
+                                            ec ecVar = ((qb) r6Var2).A2.f5212c1;
                                             if (ecVar != null) {
                                                 ecVar.B();
                                             }
@@ -274,7 +274,7 @@ public final class f5 implements Runnable {
                                             ((qg.b2) jVar5).r(true);
                                         } else if (jVar5 instanceof qg.c2) {
                                             qg.c2 c2Var = (qg.c2) jVar5;
-                                            c2Var.f41614r0 = !c2Var.f41614r0;
+                                            c2Var.f41635r0 = !c2Var.f41635r0;
                                             c2Var.invalidate();
                                         } else {
                                             ((qg.y1) jVar5).r(true);
@@ -342,7 +342,7 @@ public final class f5 implements Runnable {
                                         boolean z11 = jVar2 instanceof qg.c2;
                                         r6 r6Var2 = r6Var;
                                         if (z11) {
-                                            ec ecVar = ((qb) r6Var2).A2.f5214c1;
+                                            ec ecVar = ((qb) r6Var2).A2.f5212c1;
                                             if (ecVar != null) {
                                                 ecVar.B();
                                             }
@@ -409,7 +409,7 @@ public final class f5 implements Runnable {
                                             ((qg.b2) jVar5).r(true);
                                         } else if (jVar5 instanceof qg.c2) {
                                             qg.c2 c2Var = (qg.c2) jVar5;
-                                            c2Var.f41614r0 = !c2Var.f41614r0;
+                                            c2Var.f41635r0 = !c2Var.f41635r0;
                                             c2Var.invalidate();
                                         } else {
                                             ((qg.y1) jVar5).r(true);
@@ -478,7 +478,7 @@ public final class f5 implements Runnable {
                                     boolean z11 = jVar2 instanceof qg.c2;
                                     r6 r6Var2 = r6Var;
                                     if (z11) {
-                                        ec ecVar = ((qb) r6Var2).A2.f5214c1;
+                                        ec ecVar = ((qb) r6Var2).A2.f5212c1;
                                         if (ecVar != null) {
                                             ecVar.B();
                                         }
@@ -545,7 +545,7 @@ public final class f5 implements Runnable {
                                         ((qg.b2) jVar5).r(true);
                                     } else if (jVar5 instanceof qg.c2) {
                                         qg.c2 c2Var = (qg.c2) jVar5;
-                                        c2Var.f41614r0 = !c2Var.f41614r0;
+                                        c2Var.f41635r0 = !c2Var.f41635r0;
                                         c2Var.invalidate();
                                     } else {
                                         ((qg.y1) jVar5).r(true);
@@ -613,7 +613,7 @@ public final class f5 implements Runnable {
                                     boolean z11 = jVar2 instanceof qg.c2;
                                     r6 r6Var2 = r6Var;
                                     if (z11) {
-                                        ec ecVar = ((qb) r6Var2).A2.f5214c1;
+                                        ec ecVar = ((qb) r6Var2).A2.f5212c1;
                                         if (ecVar != null) {
                                             ecVar.B();
                                         }
@@ -680,7 +680,7 @@ public final class f5 implements Runnable {
                                         ((qg.b2) jVar5).r(true);
                                     } else if (jVar5 instanceof qg.c2) {
                                         qg.c2 c2Var = (qg.c2) jVar5;
-                                        c2Var.f41614r0 = !c2Var.f41614r0;
+                                        c2Var.f41635r0 = !c2Var.f41635r0;
                                         c2Var.invalidate();
                                     } else {
                                         ((qg.y1) jVar5).r(true);
@@ -749,7 +749,7 @@ public final class f5 implements Runnable {
                                     boolean z11 = jVar2 instanceof qg.c2;
                                     r6 r6Var2 = r6Var;
                                     if (z11) {
-                                        ec ecVar = ((qb) r6Var2).A2.f5214c1;
+                                        ec ecVar = ((qb) r6Var2).A2.f5212c1;
                                         if (ecVar != null) {
                                             ecVar.B();
                                         }
@@ -816,7 +816,7 @@ public final class f5 implements Runnable {
                                         ((qg.b2) jVar5).r(true);
                                     } else if (jVar5 instanceof qg.c2) {
                                         qg.c2 c2Var = (qg.c2) jVar5;
-                                        c2Var.f41614r0 = !c2Var.f41614r0;
+                                        c2Var.f41635r0 = !c2Var.f41635r0;
                                         c2Var.invalidate();
                                     } else {
                                         ((qg.y1) jVar5).r(true);
@@ -896,7 +896,7 @@ public final class f5 implements Runnable {
                                     boolean z112 = jVar2 instanceof qg.c2;
                                     r6 r6Var2 = r6Var;
                                     if (z112) {
-                                        ec ecVar = ((qb) r6Var2).A2.f5214c1;
+                                        ec ecVar = ((qb) r6Var2).A2.f5212c1;
                                         if (ecVar != null) {
                                             ecVar.B();
                                         }
@@ -963,7 +963,7 @@ public final class f5 implements Runnable {
                                         ((qg.b2) jVar5).r(true);
                                     } else if (jVar5 instanceof qg.c2) {
                                         qg.c2 c2Var = (qg.c2) jVar5;
-                                        c2Var.f41614r0 = !c2Var.f41614r0;
+                                        c2Var.f41635r0 = !c2Var.f41635r0;
                                         c2Var.invalidate();
                                     } else {
                                         ((qg.y1) jVar5).r(true);
@@ -1041,7 +1041,7 @@ public final class f5 implements Runnable {
                                     boolean z112 = jVar2 instanceof qg.c2;
                                     r6 r6Var2 = r6Var;
                                     if (z112) {
-                                        ec ecVar = ((qb) r6Var2).A2.f5214c1;
+                                        ec ecVar = ((qb) r6Var2).A2.f5212c1;
                                         if (ecVar != null) {
                                             ecVar.B();
                                         }
@@ -1108,7 +1108,7 @@ public final class f5 implements Runnable {
                                         ((qg.b2) jVar5).r(true);
                                     } else if (jVar5 instanceof qg.c2) {
                                         qg.c2 c2Var = (qg.c2) jVar5;
-                                        c2Var.f41614r0 = !c2Var.f41614r0;
+                                        c2Var.f41635r0 = !c2Var.f41635r0;
                                         c2Var.invalidate();
                                     } else {
                                         ((qg.y1) jVar5).r(true);
@@ -1167,7 +1167,7 @@ public final class f5 implements Runnable {
                 }
                 for (int i13 = 0; i13 < linearLayout.getChildCount(); i13++) {
                     View childAt = linearLayout.getChildAt(i13);
-                    int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19184i6, e6Var);
+                    int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19199i6, e6Var);
                     int i14 = 8;
                     if (i13 == 0) {
                         i10 = 8;

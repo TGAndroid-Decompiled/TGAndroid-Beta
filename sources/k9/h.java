@@ -45,13 +45,13 @@ public final class h {
         l.f(str);
         this.f13549b = str;
         this.f13550c = jVar;
-        a aVar = FirebaseInitProvider.f7370a;
+        a aVar = FirebaseInitProvider.f7368a;
         Trace.beginSection("Firebase");
         Trace.beginSection("ComponentDiscovery");
-        ArrayList q6 = new m5.e(16, context, new n2.e(ComponentDiscoveryService.class, 14)).q();
+        ArrayList q6 = new m5.e(16, context, new fb.e(ComponentDiscoveryService.class)).q();
         Trace.endSection();
         Trace.beginSection("Runtime");
-        r9.j jVar2 = r9.j.f42471a;
+        r9.j jVar2 = r9.j.f42492a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         arrayList.addAll(q6);
@@ -66,18 +66,18 @@ public final class h {
         } else {
             z10 = true;
         }
-        if (z10 && FirebaseInitProvider.f7371b.get()) {
+        if (z10 && FirebaseInitProvider.f7369b.get()) {
             arrayList2.add(q9.a.c(aVar, a.class, new Class[0]));
         }
         q9.g gVar = new q9.g(jVar2, arrayList, arrayList2, dVar);
         this.d = gVar;
         Trace.endSection();
         this.f13552g = new n(new d(0, this, context));
-        this.h = gVar.c(na.c.class);
+        this.h = gVar.e(na.c.class);
         e eVar = new e(this);
         a();
         if (atomicBoolean.get()) {
-            com.google.android.gms.common.api.internal.d.e.f6064a.get();
+            com.google.android.gms.common.api.internal.d.e.f6062a.get();
         }
         copyOnWriteArrayList.add(eVar);
         Trace.endSection();
@@ -157,7 +157,7 @@ public final class h {
 
     public final Object b(Class cls) {
         a();
-        return this.d.a(cls);
+        return this.d.b(cls);
     }
 
     public final String d() {
@@ -203,7 +203,7 @@ public final class h {
         sb3.append(str);
         Log.i("FirebaseApp", sb3.toString());
         a();
-        this.d.g("[DEFAULT]".equals(str));
+        this.d.d("[DEFAULT]".equals(str));
         ((na.c) this.h.get()).c();
     }
 
@@ -221,7 +221,7 @@ public final class h {
         a();
         ua.a aVar = (ua.a) this.f13552g.get();
         synchronized (aVar) {
-            z10 = aVar.f43950a;
+            z10 = aVar.f43971a;
         }
         return z10;
     }
@@ -232,8 +232,8 @@ public final class h {
 
     public final String toString() {
         m5.e eVar = new m5.e(this);
-        eVar.g(this.f13549b, "name");
-        eVar.g(this.f13550c, "options");
+        eVar.c(this.f13549b, "name");
+        eVar.c(this.f13550c, "options");
         return eVar.toString();
     }
 }

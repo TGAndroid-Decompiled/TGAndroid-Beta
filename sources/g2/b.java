@@ -104,7 +104,7 @@ public final class b extends c {
                 }
             }
             InputStream inputStream = this.f9349c;
-            String str = e2.d0.f7888a;
+            String str = e2.d0.f7887a;
             int read = inputStream.read(bArr, i10, i11);
             if (read != -1) {
                 long j10 = this.d;

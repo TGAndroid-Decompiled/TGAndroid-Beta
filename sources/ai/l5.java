@@ -2,16 +2,16 @@ package ai;
 
 import android.view.View;
 public final class l5 implements View.OnClickListener {
-    public final int f1181a;
-    public final w5 f1182b;
-    public final org.telegram.ui.ActionBar.f6 f1183c;
+    public final int f1178a;
+    public final w5 f1179b;
+    public final org.telegram.ui.ActionBar.f6 f1180c;
     public final jc d;
 
     public l5(w5 w5Var, jc jcVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f1181a = 0;
-        this.f1182b = w5Var;
+        this.f1178a = 0;
+        this.f1179b = w5Var;
         this.d = jcVar;
-        this.f1183c = f6Var;
+        this.f1180c = f6Var;
     }
 
     @Override
@@ -20,9 +20,9 @@ public final class l5 implements View.OnClickListener {
     }
 
     public l5(w5 w5Var, org.telegram.ui.ActionBar.f6 f6Var, jc jcVar, int i10) {
-        this.f1181a = i10;
-        this.f1182b = w5Var;
-        this.f1183c = f6Var;
+        this.f1178a = i10;
+        this.f1179b = w5Var;
+        this.f1180c = f6Var;
         this.d = jcVar;
     }
 }

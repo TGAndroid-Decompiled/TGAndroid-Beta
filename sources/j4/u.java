@@ -21,7 +21,7 @@ public final class u implements i {
     public u(String str, int i10, String str2) {
         e2.v vVar = new e2.v(4);
         this.f12821a = vVar;
-        vVar.f7934a[0] = -1;
+        vVar.f7933a[0] = -1;
         this.f12822b = new Object();
         this.f12831n = -9223372036854775807L;
         this.f12823c = str;
@@ -60,7 +60,7 @@ public final class u implements i {
                     }
                 } else {
                     int min2 = Math.min(vVar.a(), 4 - this.f12826i);
-                    vVar.h(this.f12826i, min2, vVar2.f7934a);
+                    vVar.h(this.f12826i, min2, vVar2.f7933a);
                     int i12 = this.f12826i + min2;
                     this.f12826i = i12;
                     if (i12 >= 4) {
@@ -71,18 +71,18 @@ public final class u implements i {
                             this.f12826i = 0;
                             this.h = 1;
                         } else {
-                            this.f12830m = zVar.f3831b;
+                            this.f12830m = zVar.f3830b;
                             if (!this.f12827j) {
-                                this.f12829l = (zVar.f3833f * 1000000) / zVar.f3832c;
+                                this.f12829l = (zVar.f3832f * 1000000) / zVar.f3831c;
                                 b2.r rVar = new b2.r();
-                                rVar.f3240a = this.f12825g;
-                                rVar.f3252p = r0.n(this.e);
-                                rVar.f3253q = r0.n((String) zVar.f3834g);
-                                rVar.f3254r = 4096;
+                                rVar.f3239a = this.f12825g;
+                                rVar.f3251p = r0.n(this.e);
+                                rVar.f3252q = r0.n((String) zVar.f3833g);
+                                rVar.f3253r = 4096;
                                 rVar.I = zVar.d;
-                                rVar.J = zVar.f3832c;
+                                rVar.J = zVar.f3831c;
                                 rVar.d = this.f12823c;
-                                rVar.f3243f = this.d;
+                                rVar.f3242f = this.d;
                                 this.f12824f.b(new b2.s(rVar));
                                 this.f12827j = true;
                             }
@@ -93,9 +93,9 @@ public final class u implements i {
                     }
                 }
             } else {
-                byte[] bArr = vVar.f7934a;
-                int i13 = vVar.f7935b;
-                int i14 = vVar.f7936c;
+                byte[] bArr = vVar.f7933a;
+                int i13 = vVar.f7934b;
+                int i14 = vVar.f7935c;
                 while (true) {
                     if (i13 < i14) {
                         byte b10 = bArr[i13];
@@ -113,7 +113,7 @@ public final class u implements i {
                         if (z11) {
                             vVar.J(i13 + 1);
                             this.f12828k = false;
-                            vVar2.f7934a[1] = bArr[i13];
+                            vVar2.f7933a[1] = bArr[i13];
                             this.f12826i = 2;
                             this.h = 1;
                             break;

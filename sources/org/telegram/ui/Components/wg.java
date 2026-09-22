@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.os.SystemClock;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
@@ -11,223 +12,255 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class wg extends View {
     public float E;
-    public final ChatActivityEnterView F;
-    public boolean f30039a;
-    public boolean f30040b;
-    public String f30041c;
+    public TextPaint F;
+    public final float G;
+    public float H;
+    public final ChatActivityEnterView I;
+    public boolean f30013a;
+    public boolean f30014b;
+    public String f30015c;
     public long d;
     public long e;
-    public long f30042f;
-    public final SpannableStringBuilder h;
-    public final SpannableStringBuilder f30043n;
-    public SpannableStringBuilder f30044r;
-    public StaticLayout f30045s;
-    public StaticLayout v;
-    public float f30046w;
-    public TextPaint f30047x;
-    public final float f30048y;
+    public long f30016f;
+    public long h;
+    public long f30017n;
+    public boolean f30018r;
+    public final SpannableStringBuilder f30019s;
+    public final SpannableStringBuilder v;
+    public SpannableStringBuilder f30020w;
+    public StaticLayout f30021x;
+    public StaticLayout f30022y;
 
     public wg(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
-        this.F = chatActivityEnterView;
-        this.h = new SpannableStringBuilder();
-        this.f30043n = new SpannableStringBuilder();
-        this.f30044r = new SpannableStringBuilder();
-        this.f30048y = AndroidUtilities.dp(15.0f);
+        this.I = chatActivityEnterView;
+        this.f30019s = new SpannableStringBuilder();
+        this.v = new SpannableStringBuilder();
+        this.f30020w = new SpannableStringBuilder();
+        this.G = AndroidUtilities.dp(15.0f);
     }
 
     public final void a(long j3) {
-        this.f30039a = true;
+        this.f30013a = true;
         long currentTimeMillis = System.currentTimeMillis() - j3;
         this.d = currentTimeMillis;
-        this.f30042f = currentTimeMillis;
+        this.h = j3;
+        this.f30016f = currentTimeMillis;
         invalidate();
     }
 
     public final void b() {
-        if (this.f30039a) {
-            this.f30039a = false;
+        if (this.f30013a) {
+            this.f30013a = false;
             if (this.d > 0) {
                 this.e = System.currentTimeMillis();
             }
             invalidate();
         }
-        this.f30042f = 0L;
+        this.f30016f = 0L;
     }
 
     public float getLeftProperty() {
-        return this.E;
+        return this.H;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         long j3;
+        long j10;
         SpannableStringBuilder spannableStringBuilder;
+        long min;
         String str;
         int threadMessageId;
         int i10;
         int i11;
-        TextPaint textPaint = this.f30047x;
-        ChatActivityEnterView chatActivityEnterView = this.F;
+        TextPaint textPaint = this.F;
+        ChatActivityEnterView chatActivityEnterView = this.I;
         if (textPaint == null) {
             TextPaint textPaint2 = new TextPaint(1);
-            this.f30047x = textPaint2;
+            this.F = textPaint2;
             textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
-            this.f30047x.setTypeface(AndroidUtilities.bold());
-            TextPaint textPaint3 = this.f30047x;
-            int i12 = org.telegram.ui.ActionBar.j6.f19285nf;
-            int i13 = ChatActivityEnterView.f21952m5;
+            this.F.setTypeface(AndroidUtilities.bold());
+            TextPaint textPaint3 = this.F;
+            int i12 = org.telegram.ui.ActionBar.j6.f19300nf;
+            int i13 = ChatActivityEnterView.f21967n5;
             textPaint3.setColor(chatActivityEnterView.i0(i12));
         }
         long currentTimeMillis = System.currentTimeMillis();
-        if (this.f30039a) {
-            j3 = currentTimeMillis - this.d;
+        if (this.f30013a) {
+            if (this.f30018r) {
+                j3 = this.h;
+            } else {
+                j3 = currentTimeMillis - this.d;
+            }
         } else {
             j3 = this.e - this.d;
         }
-        long j10 = j3 / 1000;
+        long j11 = j3 / 1000;
         int i14 = ((int) (j3 % 1000)) / 10;
-        if (chatActivityEnterView.f21968c1 && j3 >= 59500 && !this.f30040b) {
-            chatActivityEnterView.C2 = -1.0f;
-            ng ngVar = chatActivityEnterView.Y2;
+        long j12 = 0;
+        if (chatActivityEnterView.f21983c1 && j3 >= 59500 && !this.f30014b) {
+            chatActivityEnterView.D2 = -1.0f;
+            ng ngVar = chatActivityEnterView.Z2;
             if (chatActivityEnterView.O) {
                 i11 = Integer.MAX_VALUE;
             } else {
                 i11 = 0;
             }
-            ngVar.k2(3, 0, i11, chatActivityEnterView.R4, 0L, true);
+            ngVar.k2(3, 0, i11, chatActivityEnterView.S4, 0L, true);
             xe xeVar = chatActivityEnterView.J0;
-            chatActivityEnterView.R4 = 0L;
+            chatActivityEnterView.S4 = 0L;
             xeVar.setEffect(0L);
-            this.f30040b = true;
+            this.f30014b = true;
         }
-        if (this.f30039a && currentTimeMillis > this.f30042f + 5000) {
-            this.f30042f = currentTimeMillis;
+        if (this.f30013a && currentTimeMillis > this.f30016f + 5000) {
+            this.f30016f = currentTimeMillis;
             MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
-            long j11 = chatActivityEnterView.P2;
+            long j13 = chatActivityEnterView.Q2;
             threadMessageId = chatActivityEnterView.getThreadMessageId();
-            long j12 = threadMessageId;
-            if (chatActivityEnterView.f21968c1) {
+            long j14 = threadMessageId;
+            if (chatActivityEnterView.f21983c1) {
                 i10 = 7;
             } else {
                 i10 = 1;
             }
-            messagesController.sendTyping(j11, j12, i10, 0);
+            messagesController.sendTyping(j13, j14, i10, 0);
         }
-        String formatTimerDurationFast = AndroidUtilities.formatTimerDurationFast((int) j10, i14);
-        if (formatTimerDurationFast.length() >= 3 && (str = this.f30041c) != null && str.length() >= 3 && formatTimerDurationFast.length() == this.f30041c.length() && formatTimerDurationFast.charAt(formatTimerDurationFast.length() - 3) != this.f30041c.charAt(formatTimerDurationFast.length() - 3)) {
+        String formatTimerDurationFast = AndroidUtilities.formatTimerDurationFast((int) j11, i14);
+        if (formatTimerDurationFast.length() >= 3 && (str = this.f30015c) != null && str.length() >= 3 && formatTimerDurationFast.length() == this.f30015c.length() && formatTimerDurationFast.charAt(formatTimerDurationFast.length() - 3) != this.f30015c.charAt(formatTimerDurationFast.length() - 3)) {
             int length = formatTimerDurationFast.length();
-            SpannableStringBuilder spannableStringBuilder2 = this.h;
+            SpannableStringBuilder spannableStringBuilder2 = this.f30019s;
             spannableStringBuilder2.clear();
-            SpannableStringBuilder spannableStringBuilder3 = this.f30043n;
+            SpannableStringBuilder spannableStringBuilder3 = this.v;
             spannableStringBuilder3.clear();
-            this.f30044r.clear();
+            this.f30020w.clear();
             spannableStringBuilder2.append((CharSequence) formatTimerDurationFast);
-            spannableStringBuilder3.append((CharSequence) this.f30041c);
-            this.f30044r.append((CharSequence) formatTimerDurationFast);
+            spannableStringBuilder3.append((CharSequence) this.f30015c);
+            this.f30020w.append((CharSequence) formatTimerDurationFast);
             int i15 = -1;
             int i16 = -1;
             int i17 = 0;
             int i18 = 0;
-            for (int i19 = 0; i19 < length - 1; i19++) {
-                if (this.f30041c.charAt(i19) != formatTimerDurationFast.charAt(i19)) {
-                    if (i18 == 0) {
-                        i16 = i19;
+            int i19 = 0;
+            while (true) {
+                j10 = j12;
+                if (i17 >= length - 1) {
+                    break;
+                }
+                if (this.f30015c.charAt(i17) != formatTimerDurationFast.charAt(i17)) {
+                    if (i19 == 0) {
+                        i16 = i17;
                     }
-                    i18++;
-                    if (i17 != 0) {
+                    i19++;
+                    if (i18 != 0) {
                         lz lzVar = new lz(false);
-                        if (i19 == length - 2) {
-                            i17++;
+                        if (i17 == length - 2) {
+                            i18++;
                         }
-                        int i20 = i17 + i15;
+                        int i20 = i18 + i15;
                         spannableStringBuilder2.setSpan(lzVar, i15, i20, 33);
                         spannableStringBuilder3.setSpan(lzVar, i15, i20, 33);
-                        i17 = 0;
-                    }
-                } else {
-                    if (i17 == 0) {
-                        i15 = i19;
-                    }
-                    i17++;
-                    if (i18 != 0) {
-                        this.f30044r.setSpan(new lz(false), i16, i18 + i16, 33);
                         i18 = 0;
                     }
+                } else {
+                    if (i18 == 0) {
+                        i15 = i17;
+                    }
+                    i18++;
+                    if (i19 != 0) {
+                        this.f30020w.setSpan(new lz(false), i16, i19 + i16, 33);
+                        i19 = 0;
+                    }
                 }
+                i17++;
+                j12 = j10;
             }
-            if (i17 != 0) {
+            if (i18 != 0) {
                 lz lzVar2 = new lz(false);
-                int i21 = i17 + i15 + 1;
+                int i21 = i18 + i15 + 1;
                 spannableStringBuilder2.setSpan(lzVar2, i15, i21, 33);
                 spannableStringBuilder3.setSpan(lzVar2, i15, i21, 33);
             }
-            if (i18 != 0) {
-                this.f30044r.setSpan(new lz(false), i16, i18 + i16, 33);
+            if (i19 != 0) {
+                this.f30020w.setSpan(new lz(false), i16, i19 + i16, 33);
             }
-            TextPaint textPaint4 = this.f30047x;
+            TextPaint textPaint4 = this.F;
             int measuredWidth = getMeasuredWidth();
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            this.f30045s = new StaticLayout(spannableStringBuilder2, textPaint4, measuredWidth, alignment, 1.0f, 0.0f, false);
-            this.v = new StaticLayout(spannableStringBuilder3, this.f30047x, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
-            this.f30046w = 1.0f;
+            this.f30021x = new StaticLayout(spannableStringBuilder2, textPaint4, measuredWidth, alignment, 1.0f, 0.0f, false);
+            this.f30022y = new StaticLayout(spannableStringBuilder3, this.F, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            this.E = 1.0f;
         } else {
-            if (this.f30044r == null) {
-                this.f30044r = new SpannableStringBuilder(formatTimerDurationFast);
+            j10 = 0;
+            if (this.f30020w == null) {
+                this.f30020w = new SpannableStringBuilder(formatTimerDurationFast);
             }
-            if (this.f30044r.length() != 0 && this.f30044r.length() == formatTimerDurationFast.length()) {
-                this.f30044r.replace(spannableStringBuilder.length() - 1, this.f30044r.length(), (CharSequence) formatTimerDurationFast, (formatTimerDurationFast.length() - 1) - (formatTimerDurationFast.length() - this.f30044r.length()), formatTimerDurationFast.length());
+            if (this.f30020w.length() != 0 && this.f30020w.length() == formatTimerDurationFast.length()) {
+                this.f30020w.replace(spannableStringBuilder.length() - 1, this.f30020w.length(), (CharSequence) formatTimerDurationFast, (formatTimerDurationFast.length() - 1) - (formatTimerDurationFast.length() - this.f30020w.length()), formatTimerDurationFast.length());
             } else {
-                this.f30044r.clear();
-                this.f30044r.append((CharSequence) formatTimerDurationFast);
+                this.f30020w.clear();
+                this.f30020w.append((CharSequence) formatTimerDurationFast);
             }
         }
-        float f7 = this.f30046w;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j15 = this.f30017n;
+        if (j15 == j10) {
+            min = 16;
+        } else {
+            min = Math.min(50L, elapsedRealtime - j15);
+        }
+        this.f30017n = elapsedRealtime;
+        float f7 = this.E;
         if (f7 != 0.0f) {
-            float f10 = f7 - 0.15f;
-            this.f30046w = f10;
+            float f10 = f7 - (((float) min) / 116.0f);
+            this.E = f10;
             if (f10 < 0.0f) {
-                this.f30046w = 0.0f;
+                this.E = 0.0f;
             }
         }
         float measuredHeight = getMeasuredHeight() / 2;
-        if (this.f30046w == 0.0f) {
-            this.f30044r.clearSpans();
-            StaticLayout staticLayout = new StaticLayout(this.f30044r, this.f30047x, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        if (this.E == 0.0f) {
+            this.f30020w.clearSpans();
+            StaticLayout staticLayout = new StaticLayout(this.f30020w, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             canvas.save();
             canvas.translate(0.0f, measuredHeight - (staticLayout.getHeight() / 2.0f));
             staticLayout.draw(canvas);
             canvas.restore();
-            this.E = staticLayout.getLineWidth(0) + 0.0f;
+            this.H = staticLayout.getLineWidth(0) + 0.0f;
         } else {
-            StaticLayout staticLayout2 = this.f30045s;
-            float f11 = this.f30048y;
+            StaticLayout staticLayout2 = this.f30021x;
+            float f11 = this.G;
             if (staticLayout2 != null) {
                 canvas.save();
-                this.f30047x.setAlpha((int) ((1.0f - this.f30046w) * 255.0f));
-                canvas.translate(0.0f, (measuredHeight - (this.f30045s.getHeight() / 2.0f)) - (this.f30046w * f11));
-                this.f30045s.draw(canvas);
+                this.F.setAlpha((int) ((1.0f - this.E) * 255.0f));
+                canvas.translate(0.0f, (measuredHeight - (this.f30021x.getHeight() / 2.0f)) - (this.E * f11));
+                this.f30021x.draw(canvas);
                 canvas.restore();
             }
-            if (this.v != null) {
+            if (this.f30022y != null) {
                 canvas.save();
-                this.f30047x.setAlpha((int) (this.f30046w * 255.0f));
-                canvas.translate(0.0f, com.google.android.gms.internal.vision.e2.z(1.0f, this.f30046w, f11, measuredHeight - (this.v.getHeight() / 2.0f)));
-                this.v.draw(canvas);
+                this.F.setAlpha((int) (this.E * 255.0f));
+                canvas.translate(0.0f, com.google.android.gms.internal.vision.e2.z(1.0f, this.E, f11, measuredHeight - (this.f30022y.getHeight() / 2.0f)));
+                this.f30022y.draw(canvas);
                 canvas.restore();
             }
             canvas.save();
-            this.f30047x.setAlpha(255);
-            StaticLayout staticLayout3 = new StaticLayout(this.f30044r, this.f30047x, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.F.setAlpha(255);
+            StaticLayout staticLayout3 = new StaticLayout(this.f30020w, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             canvas.translate(0.0f, measuredHeight - (staticLayout3.getHeight() / 2.0f));
             staticLayout3.draw(canvas);
             canvas.restore();
-            this.E = staticLayout3.getLineWidth(0) + 0.0f;
+            this.H = staticLayout3.getLineWidth(0) + 0.0f;
         }
-        this.f30041c = formatTimerDurationFast;
-        if (!this.f30039a && this.f30046w == 0.0f) {
-            return;
+        this.f30015c = formatTimerDurationFast;
+        if ((this.f30013a || this.E != 0.0f) && !this.f30018r) {
+            invalidate();
         }
+    }
+
+    public void setExternalFrameClock(boolean z10) {
+        this.f30018r = z10;
+        this.f30017n = SystemClock.elapsedRealtime();
         invalidate();
     }
 }

@@ -1,7 +1,19 @@
 package fb;
-public final class r extends s {
+
+import java.lang.reflect.Method;
+public final class r extends t {
+    public final Method f9052b;
+
+    public r(Method method) {
+        this.f9052b = method;
+    }
+
     @Override
     public final Object a(Class cls) {
-        throw new UnsupportedOperationException("Cannot allocate " + cls + ". Usage of JDK sun.misc.Unsafe is enabled, but it could not be used. Make sure your runtime is configured correctly.");
+        String J = of.b.J(cls);
+        if (J == null) {
+            return this.f9052b.invoke(null, cls, Object.class);
+        }
+        throw new AssertionError("UnsafeAllocator is used for non-instantiable type: ".concat(J));
     }
 }

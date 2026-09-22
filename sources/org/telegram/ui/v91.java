@@ -3,34 +3,34 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class v91 implements Runnable {
-    public final int f38461a;
-    public final bb1 f38462b;
-    public final ArrayList f38463c;
+    public final int f38482a;
+    public final bb1 f38483b;
+    public final ArrayList f38484c;
 
     public v91(bb1 bb1Var, ArrayList arrayList, int i10) {
-        this.f38461a = i10;
-        this.f38462b = bb1Var;
-        this.f38463c = arrayList;
+        this.f38482a = i10;
+        this.f38483b = bb1Var;
+        this.f38484c = arrayList;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f38461a) {
+        switch (this.f38482a) {
             case 0:
-                bb1 bb1Var = this.f38462b;
-                ArrayList arrayList = bb1Var.f32337s0;
-                ArrayList arrayList2 = bb1Var.f32335r0;
+                bb1 bb1Var = this.f38483b;
+                ArrayList arrayList = bb1Var.f32355s0;
+                ArrayList arrayList2 = bb1Var.f32353r0;
                 int i10 = 0;
-                bb1Var.f32342w0 = false;
-                ArrayList arrayList3 = this.f38463c;
+                bb1Var.f32360w0 = false;
+                ArrayList arrayList3 = this.f38484c;
                 if (!arrayList3.isEmpty()) {
                     int size = arrayList3.size();
                     for (int i11 = 0; i11 < size; i11++) {
                         MessageObject messageObject = (MessageObject) arrayList3.get(i11);
-                        int i12 = bb1Var.f32332p0.get(messageObject.getId(), -1);
+                        int i12 = bb1Var.f32350p0.get(messageObject.getId(), -1);
                         if (i12 >= 0 && ((ya1) arrayList2.get(i12)).b() == messageObject.getId()) {
-                            ((ya1) arrayList2.get(i12)).f39876b = messageObject;
+                            ((ya1) arrayList2.get(i12)).f39896b = messageObject;
                         }
                     }
                     arrayList.clear();
@@ -38,8 +38,8 @@ public final class v91 implements Runnable {
                     while (true) {
                         if (i10 < size2) {
                             ya1 ya1Var = (ya1) arrayList2.get(i10);
-                            if (ya1Var.f39876b == null) {
-                                bb1Var.f32331o0 = ya1Var.b();
+                            if (ya1Var.f39896b == null) {
+                                bb1Var.f32349o0 = ya1Var.b();
                             } else {
                                 arrayList.add(ya1Var);
                                 i10++;
@@ -48,22 +48,22 @@ public final class v91 implements Runnable {
                     }
                     bb1Var.o0();
                     bb1Var.S.setItemAnimator(null);
-                    bb1Var.f32346y0.f();
+                    bb1Var.f32364y0.f();
                     return;
                 }
                 return;
             default:
-                bb1 bb1Var2 = this.f38462b;
-                ai.d9 d9Var = bb1Var2.f32347z0;
+                bb1 bb1Var2 = this.f38483b;
+                ai.d9 d9Var = bb1Var2.f32365z0;
                 d9Var.getClass();
-                ArrayList arrayList4 = this.f38463c;
+                ArrayList arrayList4 = this.f38484c;
                 int size3 = arrayList4.size();
                 int i13 = 0;
                 while (true) {
                     if (i13 < size3) {
                         Object obj = arrayList4.get(i13);
                         i13++;
-                        if (!d9Var.f722j.containsKey((Integer) obj)) {
+                        if (!d9Var.f719j.containsKey((Integer) obj)) {
                             z10 = true;
                         }
                     } else {

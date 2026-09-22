@@ -1,10 +1,14 @@
 package k2;
 public final class m extends Exception {
-    public final int f13334a;
-    public final boolean f13335b;
-    public final b2.s f13336c;
+    public final b2.s f13335a;
 
-    public m(int r4, int r5, int r6, int r7, int r8, b2.s r9, boolean r10, java.lang.RuntimeException r11) {
-        throw new UnsupportedOperationException("Method not decompiled: k2.m.<init>(int, int, int, int, int, b2.s, boolean, java.lang.RuntimeException):void");
+    public m(c2.g gVar, b2.s sVar) {
+        super(gVar);
+        this.f13335a = sVar;
+    }
+
+    public m(String str, b2.s sVar) {
+        super(str);
+        this.f13335a = sVar;
     }
 }

@@ -52,7 +52,7 @@ public final class d0 implements c3.o {
         this.h = sparseArray;
         this.e = new SparseIntArray();
         this.f12649k = new x(1);
-        this.f12651m = c3.q.f3797m;
+        this.f12651m = c3.q.f3796m;
         this.f12658t = -1;
         sparseBooleanArray.clear();
         sparseArray.clear();
@@ -130,7 +130,7 @@ public final class d0 implements c3.o {
 
     @Override
     public final List i() {
-        e9.g0 g0Var = i0.f8084b;
+        e9.g0 g0Var = i0.f8083b;
         return a1.e;
     }
 
@@ -170,20 +170,20 @@ public final class d0 implements c3.o {
                     int min = (int) Math.min(112800, length2);
                     long j10 = length2 - min;
                     if (pVar.getPosition() != j10) {
-                        sVar.f3798a = j10;
+                        sVar.f3797a = j10;
                         return 1;
                     }
                     vVar.G(min);
                     pVar.p();
-                    pVar.a(0, min, vVar.f7934a);
-                    int i18 = vVar.f7935b;
-                    int i19 = vVar.f7936c;
+                    pVar.a(0, min, vVar.f7933a);
+                    int i18 = vVar.f7934b;
+                    int i19 = vVar.f7935c;
                     int i20 = i19 - 188;
                     while (true) {
                         if (i20 < i18) {
                             break;
                         }
-                        byte[] bArr = vVar.f7934a;
+                        byte[] bArr = vVar.f7933a;
                         int i21 = -4;
                         int i22 = 0;
                         while (true) {
@@ -217,19 +217,19 @@ public final class d0 implements c3.o {
                     int min2 = (int) Math.min(112800, pVar.getLength());
                     long j11 = 0;
                     if (pVar.getPosition() != j11) {
-                        sVar.f3798a = j11;
+                        sVar.f3797a = j11;
                         return 1;
                     }
                     vVar.G(min2);
                     pVar.p();
-                    pVar.a(0, min2, vVar.f7934a);
-                    int i24 = vVar.f7935b;
-                    int i25 = vVar.f7936c;
+                    pVar.a(0, min2, vVar.f7933a);
+                    int i24 = vVar.f7934b;
+                    int i25 = vVar.f7935c;
                     while (true) {
                         if (i24 >= i25) {
                             break;
                         }
-                        if (vVar.f7934a[i24] == 71) {
+                        if (vVar.f7933a[i24] == 71) {
                             long a10 = u8.a(vVar, i24, i17);
                             if (a10 != -9223372036854775807L) {
                                 j3 = a10;
@@ -277,7 +277,7 @@ public final class d0 implements c3.o {
                 this.f12655q = z13;
                 h(0L, 0L);
                 if (pVar.getPosition() != 0) {
-                    sVar.f3798a = 0L;
+                    sVar.f3797a = 0L;
                     return i15;
                 }
             }
@@ -293,11 +293,11 @@ public final class d0 implements c3.o {
             r12 = 0;
         }
         e2.v vVar2 = this.d;
-        byte[] bArr2 = vVar2.f7934a;
-        if (9400 - vVar2.f7935b < 188) {
+        byte[] bArr2 = vVar2.f7933a;
+        if (9400 - vVar2.f7934b < 188) {
             int a11 = vVar2.a();
             if (a11 > 0) {
-                System.arraycopy(bArr2, vVar2.f7935b, bArr2, r12, a11);
+                System.arraycopy(bArr2, vVar2.f7934b, bArr2, r12, a11);
             }
             vVar2.H(a11, bArr2);
         }
@@ -305,7 +305,7 @@ public final class d0 implements c3.o {
             int a12 = vVar2.a();
             SparseArray sparseArray = this.h;
             if (a12 < 188) {
-                int i26 = vVar2.f7936c;
+                int i26 = vVar2.f7935c;
                 int read = pVar2.read(bArr2, i26, 9400 - i26);
                 if (read == -1) {
                     for (int i27 = 0; i27 < sparseArray.size(); i27++) {
@@ -326,9 +326,9 @@ public final class d0 implements c3.o {
                 }
                 vVar2.I(i26 + read);
             } else {
-                int i28 = vVar2.f7935b;
-                int i29 = vVar2.f7936c;
-                byte[] bArr3 = vVar2.f7934a;
+                int i28 = vVar2.f7934b;
+                int i29 = vVar2.f7935c;
+                byte[] bArr3 = vVar2.f7933a;
                 int i30 = i28;
                 while (i30 < i29 && bArr3[i30] != 71) {
                     i30++;
@@ -349,7 +349,7 @@ public final class d0 implements c3.o {
                     i12 = 2;
                     this.f12657s = r12;
                 }
-                int i33 = vVar2.f7936c;
+                int i33 = vVar2.f7935c;
                 if (i31 > i33) {
                     return r12;
                 }

@@ -1,33 +1,30 @@
 package w7;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.nb0;
+import android.os.Build;
+import android.util.Log;
 public abstract class g6 {
-    public static boolean a(nb0 nb0Var) {
-        Context context = ApplicationLoader.applicationContext;
-        int componentEnabledSetting = context.getPackageManager().getComponentEnabledSetting(nb0Var.a(context));
-        if (componentEnabledSetting == 1 || (componentEnabledSetting == 0 && nb0Var == nb0.h)) {
-            return true;
+    public static void a(Object obj, String str, String str2) {
+        String c10 = c(str);
+        if (Log.isLoggable(c10, 3)) {
+            Log.d(c10, String.format(str2, obj));
         }
-        return false;
     }
 
-    public static void b(nb0 nb0Var) {
-        nb0[] values;
-        int i10;
-        Context context = ApplicationLoader.applicationContext;
-        PackageManager packageManager = context.getPackageManager();
-        for (nb0 nb0Var2 : nb0.values()) {
-            ComponentName a2 = nb0Var2.a(context);
-            if (nb0Var2 == nb0Var) {
-                i10 = 1;
-            } else {
-                i10 = 2;
-            }
-            packageManager.setComponentEnabledSetting(a2, i10, 1);
+    public static void b(String str, String str2, Exception exc) {
+        String c10 = c(str);
+        if (Log.isLoggable(c10, 6)) {
+            Log.e(c10, str2, exc);
         }
+    }
+
+    public static String c(String str) {
+        if (Build.VERSION.SDK_INT < 26) {
+            String concat = "TRuntime.".concat(str);
+            if (concat.length() > 23) {
+                return concat.substring(0, 23);
+            }
+            return concat;
+        }
+        return "TRuntime.".concat(str);
     }
 }

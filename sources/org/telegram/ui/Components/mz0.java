@@ -1,36 +1,25 @@
 package org.telegram.ui.Components;
-public class mz0 {
-    public int f26512a;
-    public int f26513b;
-    public int f26514c;
 
-    public mz0() {
-        c();
+import android.util.Pair;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+public final class mz0 extends ArrayList {
+    public final Class f26567a;
+    public final Class f26568b;
+
+    public mz0(Class cls, Class cls2) {
+        this.f26567a = cls;
+        this.f26568b = cls2;
     }
 
-    public int a(vz0 vz0Var, oz0 oz0Var, hz0 hz0Var, int i10, boolean z10) {
-        return this.f26512a - hz0Var.a(oz0Var, i10);
-    }
-
-    public void b(int i10, int i11) {
-        this.f26512a = Math.max(this.f26512a, i10);
-        this.f26513b = Math.max(this.f26513b, i11);
-    }
-
-    public void c() {
-        this.f26512a = Integer.MIN_VALUE;
-        this.f26513b = Integer.MIN_VALUE;
-        this.f26514c = 2;
-    }
-
-    public int d(boolean z10) {
-        if (!z10) {
-            int i10 = this.f26514c;
-            hz0 hz0Var = vz0.R;
-            if ((i10 & 2) != 0) {
-                return 100000;
-            }
+    public final lf.h i() {
+        int size = size();
+        Object[] objArr = (Object[]) Array.newInstance(this.f26567a, size);
+        Object[] objArr2 = (Object[]) Array.newInstance(this.f26568b, size);
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = ((Pair) get(i10)).first;
+            objArr2[i10] = ((Pair) get(i10)).second;
         }
-        return this.f26512a + this.f26513b;
+        return new lf.h(objArr, objArr2);
     }
 }

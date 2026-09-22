@@ -9,9 +9,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class nc extends lb {
-    public Runnable f26616a;
-    public Runnable f26617b;
-    public pc f26618c;
+    public Runnable f26720a;
+    public Runnable f26721b;
+    public pc f26722c;
     public final TextView d;
     public boolean e;
 
@@ -34,7 +34,7 @@ public final class nc extends lb {
             org.telegram.messenger.rk.l(R.string.UndoNoCaps, textView, 16);
             float f7 = z11 ? 34.0f : 12.0f;
             boolean z12 = LocaleController.isRTL;
-            w7.f6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
+            w7.e6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
             addView(textView, w7.y5.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }
         if (z11) {
@@ -44,7 +44,7 @@ public final class nc extends lb {
             if (!z10) {
                 imageView.setBackground(org.telegram.ui.ActionBar.j6.f0((w02 & 16777215) | 419430400, 1, -1));
             }
-            w7.f6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
+            w7.e6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
             addView(imageView, w7.y5.h(56.0f, 48.0f, 16));
         }
         setOnClickListener(new f0(this, 6));
@@ -52,13 +52,13 @@ public final class nc extends lb {
 
     @Override
     public final void a(pc pcVar) {
-        this.f26618c = pcVar;
+        this.f26722c = pcVar;
     }
 
     @Override
     public final void b() {
-        this.f26618c = null;
-        Runnable runnable = this.f26617b;
+        this.f26722c = null;
+        Runnable runnable = this.f26721b;
         if (runnable != null && !this.e) {
             runnable.run();
         }
@@ -72,13 +72,13 @@ public final class nc extends lb {
     }
 
     public final void f() {
-        if (this.f26618c != null) {
+        if (this.f26722c != null) {
             this.e = true;
-            Runnable runnable = this.f26616a;
+            Runnable runnable = this.f26720a;
             if (runnable != null) {
                 runnable.run();
             }
-            pc pcVar = this.f26618c;
+            pc pcVar = this.f26722c;
             if (pcVar != null) {
                 pcVar.b();
             }

@@ -14,14 +14,13 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.yc0;
+import org.telegram.ui.Components.bd0;
 import u2.d0;
-import w3.p;
-public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuation {
-    public final int f42916a;
+public final class b implements s5.f, pa.a, q9.d, a2, bd0, d9.e, q3.g, Continuation {
+    public final int f42937a;
 
     public b(int i10) {
-        this.f42916a = i10;
+        this.f42937a = i10;
     }
 
     @Override
@@ -32,14 +31,14 @@ public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuat
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f42916a) {
+        switch (this.f42937a) {
             case 5:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
                     ArrayList arrayList = new ArrayList();
                     while (rawQuery.moveToNext()) {
                         aa.a a2 = l5.i.a();
-                        a2.u(rawQuery.getString(1));
+                        a2.v(rawQuery.getString(1));
                         a2.d = v5.a.b(rawQuery.getInt(2));
                         String string = rawQuery.getString(3);
                         if (string == null) {
@@ -47,8 +46,8 @@ public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuat
                         } else {
                             decode = Base64.decode(string, 0);
                         }
-                        a2.f360c = decode;
-                        arrayList.add(a2.e());
+                        a2.f357c = decode;
+                        arrayList.add(a2.h());
                     }
                     return arrayList;
                 } finally {
@@ -57,15 +56,15 @@ public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuat
             case 16:
                 return ((o) obj).c().getClass().getSimpleName();
             case 17:
-                return i0.v(q.w(((d0) obj).r().f43766b, new b(18)));
+                return i0.v(q.w(((d0) obj).s().f43787b, new b(18)));
             case 18:
-                return Integer.valueOf(((l1) obj).f3093c);
+                return Integer.valueOf(((l1) obj).f3092c);
             case 25:
-                return Long.valueOf(((z3.a) obj).f48381b);
+                return Long.valueOf(((z3.a) obj).f48401b);
             case 26:
-                return Long.valueOf(((z3.a) obj).f48382c);
+                return Long.valueOf(((z3.a) obj).f48402c);
             default:
-                return (p) obj;
+                return (w3.o) obj;
         }
     }
 
@@ -85,7 +84,7 @@ public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuat
 
     @Override
     public String e(int i10) {
-        switch (this.f42916a) {
+        switch (this.f42937a) {
             case 12:
                 return String.valueOf(i10);
             default:
@@ -94,8 +93,8 @@ public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuat
     }
 
     @Override
-    public void f(pa.b bVar) {
-        switch (this.f42916a) {
+    public void h(pa.b bVar) {
+        switch (this.f42937a) {
             case 6:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
@@ -110,7 +109,7 @@ public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuat
 
     @Override
     public void k(b2 b2Var, int i10) {
-        switch (this.f42916a) {
+        switch (this.f42937a) {
             case 11:
                 return;
             case 14:
@@ -128,10 +127,10 @@ public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuat
         File file;
         if (task.isSuccessful()) {
             w9.b bVar = (w9.b) task.getResult();
-            t9.b bVar2 = t9.b.f43352a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f45210b);
+            t9.b bVar2 = t9.b.f43373a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f45230b);
             z10 = true;
-            if (bVar.f45211c.delete()) {
+            if (bVar.f45231c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -144,7 +143,7 @@ public final class b implements s5.f, pa.a, q9.d, a2, yc0, d9.e, q3.g, Continuat
     }
 
     public b(Object obj, int i10) {
-        this.f42916a = i10;
+        this.f42937a = i10;
     }
 
     private final void a(b2 b2Var, int i10) {

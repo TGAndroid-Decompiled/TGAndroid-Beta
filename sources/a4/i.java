@@ -21,7 +21,7 @@ public final class i extends l {
     public i(int i10, List list) {
         this.f260k = i10 == -1 ? 1 : i10;
         if (list != null) {
-            byte[] bArr = e2.e.f7897a;
+            byte[] bArr = e2.e.f7896a;
             if (list.size() == 1 && ((byte[]) list.get(0)).length == 1) {
                 byte b10 = ((byte[]) list.get(0))[0];
             }
@@ -38,7 +38,7 @@ public final class i extends l {
         List list = this.f263n;
         this.f264o = list;
         list.getClass();
-        return new m(list, 0);
+        return new m(list);
     }
 
     @Override

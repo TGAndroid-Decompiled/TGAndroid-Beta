@@ -3,31 +3,31 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class vl extends AnimatorListenerAdapter {
-    public final int f29176a;
-    public final ChatAttachAlertPhotoLayout f29177b;
+    public final int f29197a;
+    public final ChatAttachAlertPhotoLayout f29198b;
 
     public vl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f29176a = i10;
-        this.f29177b = chatAttachAlertPhotoLayout;
+        this.f29197a = i10;
+        this.f29198b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f29176a) {
+        switch (this.f29197a) {
             case 0:
-                this.f29177b.m0 = null;
+                this.f29198b.m0 = null;
                 return;
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f29177b;
-                chatAttachAlertPhotoLayout.f22135f1.unlock();
-                chatAttachAlertPhotoLayout.f22130d0 = false;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f29198b;
+                chatAttachAlertPhotoLayout.f22151f1.unlock();
+                chatAttachAlertPhotoLayout.f22146d0 = false;
                 dm dmVar = chatAttachAlertPhotoLayout.P;
                 if (dmVar != null) {
                     dmVar.invalidateOutline();
                     chatAttachAlertPhotoLayout.P.invalidate();
                 }
-                if (chatAttachAlertPhotoLayout.f22126b0) {
-                    chatAttachAlertPhotoLayout.f26655b.Z1.L0();
+                if (chatAttachAlertPhotoLayout.f22142b0) {
+                    chatAttachAlertPhotoLayout.f26786b.Z1.L0();
                 }
                 dm dmVar2 = chatAttachAlertPhotoLayout.P;
                 if (dmVar2 != null) {
@@ -40,13 +40,13 @@ public final class vl extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f29177b;
-                r91 r91Var = chatAttachAlertPhotoLayout2.f22146l0;
-                chatAttachAlertPhotoLayout2.f22135f1.unlock();
-                chatAttachAlertPhotoLayout2.f22141i1 = false;
-                chatAttachAlertPhotoLayout2.f26655b.getWindow().clearFlags(128);
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f29198b;
+                t91 t91Var = chatAttachAlertPhotoLayout2.f22162l0;
+                chatAttachAlertPhotoLayout2.f22151f1.unlock();
+                chatAttachAlertPhotoLayout2.f22157i1 = false;
+                chatAttachAlertPhotoLayout2.f26786b.getWindow().clearFlags(128);
                 chatAttachAlertPhotoLayout2.setCameraOpenProgress(0.0f);
-                chatAttachAlertPhotoLayout2.f22130d0 = false;
+                chatAttachAlertPhotoLayout2.f22146d0 = false;
                 tl tlVar2 = chatAttachAlertPhotoLayout2.E;
                 if (tlVar2 != null) {
                     tlVar2.invalidate();
@@ -56,16 +56,16 @@ public final class vl extends AnimatorListenerAdapter {
                     dmVar3.invalidateOutline();
                     chatAttachAlertPhotoLayout2.P.invalidate();
                 }
-                chatAttachAlertPhotoLayout2.f22126b0 = false;
-                ai.f0 f0Var = chatAttachAlertPhotoLayout2.f22142j0;
+                chatAttachAlertPhotoLayout2.f22142b0 = false;
+                ai.f0 f0Var = chatAttachAlertPhotoLayout2.f22158j0;
                 if (f0Var != null) {
                     f0Var.setVisibility(8);
                 }
-                if (r91Var != null) {
-                    r91Var.setVisibility(8);
-                    r91Var.setTag(null);
+                if (t91Var != null) {
+                    t91Var.setVisibility(8);
+                    t91Var.setTag(null);
                 }
-                tl tlVar3 = chatAttachAlertPhotoLayout2.f22156r;
+                tl tlVar3 = chatAttachAlertPhotoLayout2.f22172r;
                 if (tlVar3 != null) {
                     tlVar3.setVisibility(8);
                 }

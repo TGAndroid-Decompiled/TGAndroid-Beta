@@ -7,32 +7,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.f6;
 public final class q3 implements Utilities.Callback {
-    public final int f8566a;
-    public final Object f8567b;
-    public final Context f8568c;
+    public final int f8565a;
+    public final Object f8566b;
+    public final Context f8567c;
     public final int d;
     public final long e;
-    public final f6 f8569f;
+    public final f6 f8568f;
 
     public q3(Object obj, Context context, int i10, long j3, f6 f6Var, int i11) {
-        this.f8566a = i11;
-        this.f8567b = obj;
-        this.f8568c = context;
+        this.f8565a = i11;
+        this.f8566b = obj;
+        this.f8567c = context;
         this.d = i10;
         this.e = j3;
-        this.f8569f = f6Var;
+        this.f8568f = f6Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f8566a) {
+        switch (this.f8565a) {
             case 0:
-                final org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f8567b;
+                final org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f8566b;
                 final TLRPC.UserFull userFull = (TLRPC.UserFull) obj;
-                final Context context = this.f8568c;
+                final Context context = this.f8567c;
                 final int i10 = this.d;
                 final long j3 = this.e;
-                final f6 f6Var = this.f8569f;
+                final f6 f6Var = this.f8568f;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -58,12 +58,12 @@ public final class q3 implements Utilities.Callback {
                 });
                 return;
             case 1:
-                final org.telegram.ui.ActionBar.f3 f3Var2 = (org.telegram.ui.ActionBar.f3) this.f8567b;
+                final org.telegram.ui.ActionBar.f3 f3Var2 = (org.telegram.ui.ActionBar.f3) this.f8566b;
                 final TLRPC.UserFull userFull2 = (TLRPC.UserFull) obj;
-                final Context context2 = this.f8568c;
+                final Context context2 = this.f8567c;
                 final int i11 = this.d;
                 final long j10 = this.e;
-                final f6 f6Var2 = this.f8569f;
+                final f6 f6Var2 = this.f8568f;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -89,8 +89,8 @@ public final class q3 implements Utilities.Callback {
                 });
                 return;
             default:
-                ((org.telegram.ui.ActionBar.f3[]) this.f8567b)[0].dismiss();
-                e4.H0(this.f8568c, this.d, (TL_payments.connectedBotStarRef) obj, this.e, this.f8569f);
+                ((org.telegram.ui.ActionBar.f3[]) this.f8566b)[0].dismiss();
+                e4.H0(this.f8567c, this.d, (TL_payments.connectedBotStarRef) obj, this.e, this.f8568f);
                 return;
         }
     }

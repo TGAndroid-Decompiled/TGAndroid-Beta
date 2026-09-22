@@ -1,66 +1,21 @@
 package org.telegram.ui.Components;
+public final class vv0 extends o1.i {
+    public final tv0 f29819a;
+    public final uv0 f29820b;
+    public float f29821c = 1.0f;
 
-import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import org.telegram.messenger.AndroidUtilities;
-public final class vv0 implements Runnable {
-    public final int f29848a;
-    public final androidx.activity.g f29849b;
-
-    public vv0(androidx.activity.g gVar, int i10) {
-        this.f29848a = i10;
-        this.f29849b = gVar;
+    public vv0(tv0 tv0Var, uv0 uv0Var) {
+        this.f29819a = tv0Var;
+        this.f29820b = uv0Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f29848a;
-        androidx.activity.g gVar = this.f29849b;
-        switch (i10) {
-            case 0:
-                aw0 aw0Var = (aw0) gVar.f1890c;
-                boolean z10 = aw0Var.O;
-                Paint paint = aw0Var.f22784b0;
-                Paint paint2 = aw0Var.W;
-                if (!z10) {
-                    wv0 wv0Var = (wv0) gVar.d;
-                    if (wv0Var != null) {
-                        wv0Var.f30105c.recycle();
-                    }
-                    aw0Var.P = false;
-                    return;
-                }
-                wv0 wv0Var2 = aw0Var.Q;
-                aw0Var.R = wv0Var2;
-                aw0Var.f22782a0.setShader(paint2.getShader());
-                aw0Var.f22786c0.setShader(paint.getShader());
-                Bitmap bitmap = ((wv0) gVar.d).f30105c;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                paint2.setShader(new BitmapShader(bitmap, tileMode, tileMode));
-                ((wv0) gVar.d).getClass();
-                ValueAnimator valueAnimator = aw0Var.f22791g0;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                }
-                aw0Var.f22790f0 = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                aw0Var.f22791g0 = ofFloat;
-                ofFloat.addUpdateListener(new p70(gVar, 22));
-                aw0Var.f22791g0.addListener(new zk0(2, gVar, wv0Var2));
-                aw0Var.f22791g0.setDuration(50L);
-                aw0Var.f22791g0.start();
-                aw0Var.N();
-                aw0Var.Q = (wv0) gVar.d;
-                AndroidUtilities.runOnUIThread(new vv0(gVar, 1), 16L);
-                return;
-            default:
-                aw0 aw0Var2 = (aw0) gVar.f1890c;
-                aw0Var2.P = false;
-                aw0Var2.W();
-                return;
-        }
+    public final float a(Object obj) {
+        return this.f29819a.get(obj) * this.f29821c;
+    }
+
+    @Override
+    public final void b(Object obj, float f7) {
+        this.f29820b.b(obj, f7 / this.f29821c);
     }
 }

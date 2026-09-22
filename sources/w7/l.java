@@ -6,12 +6,12 @@ import java.util.Map;
 public abstract class l {
     public static g2.m a(m2.m mVar, String str, m2.j jVar, int i10) {
         Map map = Collections.EMPTY_MAP;
-        Uri m10 = e2.a.m(str, jVar.f14647c);
-        long j3 = jVar.f14645a;
-        long j10 = jVar.f14646b;
+        Uri m10 = e2.a.m(str, jVar.f14662c);
+        long j3 = jVar.f14660a;
+        long j10 = jVar.f14661b;
         String a2 = mVar.a();
         if (a2 == null) {
-            a2 = e2.a.m(((m2.b) mVar.f14652b.get(0)).f14611a, jVar.f14647c).toString();
+            a2 = e2.a.m(((m2.b) mVar.f14667b.get(0)).f14626a, jVar.f14662c).toString();
         }
         String str2 = a2;
         e2.d.i(m10, "The uri must be set.");

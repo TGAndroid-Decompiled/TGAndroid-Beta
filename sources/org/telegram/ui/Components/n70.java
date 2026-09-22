@@ -1,78 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-public final class n70 implements View.OnClickListener {
-    public final int f26602a;
-    public final v70 f26603b;
-    public final Runnable f26604c;
+import android.view.KeyEvent;
+public final class n70 implements org.telegram.ui.ActionBar.l1 {
+    public final int f26671a;
+    public final y70 f26672b;
 
-    public n70(v70 v70Var, Runnable runnable, int i10) {
-        this.f26602a = i10;
-        this.f26603b = v70Var;
-        this.f26604c = runnable;
+    public n70(y70 y70Var, int i10) {
+        this.f26671a = i10;
+        this.f26672b = y70Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f26602a) {
+    public final void o(KeyEvent keyEvent) {
+        y70 y70Var;
+        t70 t70Var;
+        y70 y70Var2;
+        t70 t70Var2;
+        switch (this.f26671a) {
             case 0:
-                this.f26603b.u();
-                Runnable runnable = this.f26604c;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                this.f26604c.run();
-                v70 v70Var = this.f26603b;
-                if (v70Var.J) {
-                    v70Var.u();
-                    return;
-                }
-                return;
-            case 2:
-                v70 v70Var2 = this.f26603b;
-                Runnable runnable2 = this.f26604c;
-                if (runnable2 != null) {
-                    int i10 = -v70Var2.K;
-                    v70Var2.K = i10;
-                    AndroidUtilities.shakeViewSpring(view, i10);
-                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                    runnable2.run();
-                    return;
-                }
-                v70Var2.getClass();
-                return;
-            case 3:
-                Runnable runnable3 = this.f26604c;
-                if (runnable3 != null) {
-                    runnable3.run();
-                }
-                v70 v70Var3 = this.f26603b;
-                if (v70Var3.J) {
-                    v70Var3.u();
-                    return;
-                }
-                return;
-            case 4:
-                this.f26604c.run();
-                v70 v70Var4 = this.f26603b;
-                if (v70Var4.J) {
-                    v70Var4.u();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (t70Var = (y70Var = this.f26672b).f30558m) != null && t70Var.isShowing()) {
+                    y70Var.u();
                     return;
                 }
                 return;
             default:
-                Runnable runnable4 = this.f26604c;
-                if (runnable4 != null) {
-                    runnable4.run();
-                }
-                v70 v70Var5 = this.f26603b;
-                if (v70Var5.J) {
-                    v70Var5.u();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (t70Var2 = (y70Var2 = this.f26672b).f30558m) != null && t70Var2.isShowing()) {
+                    y70Var2.u();
                     return;
                 }
                 return;

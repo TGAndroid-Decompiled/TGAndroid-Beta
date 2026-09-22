@@ -11,17 +11,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final void D(i1 i1Var, int i10, int i11) {
-        a6 a6Var;
-        r9 textSelectionHelper;
-        d6 d6Var = this.f11785a;
-        if (!d6Var.f11342n && i10 != i11 && (a6Var = d6Var.f11347y) != null && (textSelectionHelper = ((e3) a6Var).f11358a.getTextSelectionHelper()) != null) {
-            i1Var.post(new ei.x4(this, i1Var, i11, textSelectionHelper, i10, 6));
-        }
-    }
-
-    @Override
-    public final void K(CharSequence charSequence) {
+    public final void I(CharSequence charSequence) {
         a6 a6Var = this.f11785a.f11347y;
         if (a6Var != null) {
             e3 e3Var = (e3) a6Var;
@@ -32,7 +22,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final void U(Editable editable) {
+    public final void R(Editable editable) {
         d6 d6Var = this.f11785a;
         if (d6Var.f11346x != null) {
             d6Var.w();
@@ -62,7 +52,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final boolean Y(boolean z10) {
+    public final boolean V(boolean z10) {
         return false;
     }
 
@@ -77,7 +67,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final boolean f() {
+    public final boolean d() {
         d6 d6Var = this.f11785a;
         a6 a6Var = d6Var.f11347y;
         if (a6Var != null && d6Var.f11346x != null) {
@@ -87,7 +77,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final void j(int i10, int i11) {
+    public final void i(int i10, int i11) {
         h2 h2Var;
         d6 d6Var = this.f11785a;
         a6 a6Var = d6Var.f11347y;
@@ -97,7 +87,7 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final void n(i1 i1Var) {
+    public final void l(i1 i1Var) {
         a aVar;
         d6 d6Var = this.f11785a;
         a6 a6Var = d6Var.f11347y;
@@ -107,12 +97,12 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final boolean p(i1 i1Var) {
+    public final boolean o(i1 i1Var) {
         return false;
     }
 
     @Override
-    public final boolean t(i1 i1Var) {
+    public final boolean s(i1 i1Var) {
         d6 d6Var = this.f11785a;
         d6Var.f11341f.r();
         i1 i1Var2 = d6Var.f11341f;
@@ -121,6 +111,16 @@ public final class y5 implements h1 {
     }
 
     @Override
-    public final void y() {
+    public final void z(i1 i1Var, int i10, int i11) {
+        a6 a6Var;
+        r9 textSelectionHelper;
+        d6 d6Var = this.f11785a;
+        if (!d6Var.f11342n && i10 != i11 && (a6Var = d6Var.f11347y) != null && (textSelectionHelper = ((e3) a6Var).f11358a.getTextSelectionHelper()) != null) {
+            i1Var.post(new ei.x4(this, i1Var, i11, textSelectionHelper, i10, 6));
+        }
+    }
+
+    @Override
+    public final void v() {
     }
 }

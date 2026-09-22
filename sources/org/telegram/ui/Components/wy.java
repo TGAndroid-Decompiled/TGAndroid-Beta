@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.messenger.LiteMode;
-public final class wy extends hx0 {
+public final class wy extends jx0 {
     public final xy A3;
-    public final int f30112z3;
+    public final int f30174z3;
 
     public wy(xy xyVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
         super(context, i10, f6Var);
         this.A3 = xyVar;
-        this.f30112z3 = i11;
+        this.f30174z3 = i11;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class wy extends hx0 {
         super.F1(i10);
         xy xyVar = this.A3;
         kz kzVar = xyVar.G;
-        wy wyVar = xyVar.f30383r;
+        wy wyVar = xyVar.f30434r;
         boolean z11 = true;
         if (wyVar.getSelectedCategory() == null) {
             z10 = true;
@@ -34,7 +34,7 @@ public final class wy extends hx0 {
         }
         int i11 = kz.O2;
         kzVar.M(z10);
-        int i12 = this.f30112z3;
+        int i12 = this.f30174z3;
         if (i12 == 1 && (oxVar = kzVar.I) != null) {
             if (wyVar.getSelectedCategory() != null) {
                 z11 = false;
@@ -44,7 +44,7 @@ public final class wy extends hx0 {
             if (wyVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            xwVar.f28723o0 = z11;
+            xwVar.f30062o0 = z11;
             xwVar.invalidate();
         }
         xyVar.g(false);

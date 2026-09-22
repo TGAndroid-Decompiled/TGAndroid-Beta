@@ -99,7 +99,7 @@ public final class a implements m {
     }
 
     @Override
-    public final int I() {
+    public final int K() {
         return 2;
     }
 
@@ -126,16 +126,16 @@ public final class a implements m {
         if (D == 0) {
             v = "";
         } else {
-            int i15 = vVar.f7935b;
+            int i15 = vVar.f7934b;
             Charset F = vVar.F();
-            int i16 = D - (vVar.f7935b - i15);
+            int i16 = D - (vVar.f7934b - i15);
             if (F == null) {
                 F = StandardCharsets.UTF_8;
             }
             v = vVar.v(i16, F);
         }
         if (v.isEmpty()) {
-            g0 g0Var = i0.f8084b;
+            g0 g0Var = i0.f8083b;
             hVar.accept(new z3.a(-9223372036854775807L, -9223372036854775807L, a1.e));
             return;
         }
@@ -149,7 +149,7 @@ public final class a implements m {
         }
         float f7 = this.f9418f;
         while (vVar.a() >= 8) {
-            int i17 = vVar.f7935b;
+            int i17 = vVar.f7934b;
             int j3 = vVar.j();
             int j10 = vVar.j();
             if (j10 == 1937013100) {
@@ -215,7 +215,7 @@ public final class a implements m {
     }
 
     @Override
-    public final z3.d s(int i10, int i11, byte[] bArr) {
+    public final z3.d u(int i10, int i11, byte[] bArr) {
         return j0.a(this, bArr, i11);
     }
 

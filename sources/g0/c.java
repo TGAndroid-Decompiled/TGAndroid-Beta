@@ -91,7 +91,7 @@ public final class c {
             }
             h hVar = this.f9337k;
             if (hVar != null) {
-                intents.setLocusId(hVar.f8793b);
+                intents.setLocusId(hVar.f8792b);
             }
             intents.setLongLived(this.f9338l);
         } else {
@@ -110,24 +110,24 @@ public final class c {
                     p0 p0Var2 = this.f9335i[i10];
                     p0Var2.getClass();
                     PersistableBundle persistableBundle3 = new PersistableBundle();
-                    CharSequence charSequence = p0Var2.f7824a;
+                    CharSequence charSequence = p0Var2.f7823a;
                     if (charSequence != null) {
                         str = charSequence.toString();
                     } else {
                         str = null;
                     }
                     persistableBundle3.putString("name", str);
-                    persistableBundle3.putString("uri", p0Var2.f7826c);
+                    persistableBundle3.putString("uri", p0Var2.f7825c);
                     persistableBundle3.putString("key", p0Var2.d);
                     persistableBundle3.putBoolean("isBot", p0Var2.e);
-                    persistableBundle3.putBoolean("isImportant", p0Var2.f7827f);
+                    persistableBundle3.putBoolean("isImportant", p0Var2.f7826f);
                     persistableBundle2.putPersistableBundle(sb3, persistableBundle3);
                     i10 = i11;
                 }
             }
             h hVar2 = this.f9337k;
             if (hVar2 != null) {
-                this.f9340n.putString("extraLocusId", hVar2.f8792a);
+                this.f9340n.putString("extraLocusId", hVar2.f8791a);
             }
             this.f9340n.putBoolean("extraLongLived", this.f9338l);
             intents.setExtras(this.f9340n);

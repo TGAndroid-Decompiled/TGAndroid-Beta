@@ -15,22 +15,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class l9 extends Drawable {
-    public final ViewGroup f26057a;
-    public final int f26058b;
+    public final ViewGroup f26033a;
+    public final int f26034b;
     public boolean d;
     public final int e;
-    public final int f26060f;
-    public final float f26061g;
-    public final le.j f26059c = new le.j(new l.d(this), qr.h, 380);
+    public final int f26036f;
+    public final float f26037g;
+    public final le.j f26035c = new le.j(new l.d(this, 9), qr.h, 380);
     public final ArrayList h = new ArrayList();
-    public int f26062i = 255;
+    public int f26038i = 255;
 
     public l9(int i10, ViewGroup viewGroup, int i11, int i12, float f7) {
-        this.f26058b = i10;
-        this.f26057a = viewGroup;
+        this.f26034b = i10;
+        this.f26033a = viewGroup;
         this.e = i11;
-        this.f26060f = i12;
-        this.f26061g = f7;
+        this.f26036f = i12;
+        this.f26037g = f7;
     }
 
     public final void a() {
@@ -43,9 +43,9 @@ public final class l9 extends Drawable {
                 Object obj = arrayList.get(i10);
                 i10++;
                 k9 k9Var = (k9) obj;
-                if (k9Var.f25711c != 0 && !k9Var.d) {
+                if (k9Var.f25648c != 0 && !k9Var.d) {
                     k9Var.d = true;
-                    k9Var.f25709a.onAttachedToWindow();
+                    k9Var.f25646a.onAttachedToWindow();
                 }
             }
         }
@@ -63,7 +63,7 @@ public final class l9 extends Drawable {
                 k9 k9Var = (k9) obj;
                 if (k9Var.d) {
                     k9Var.d = false;
-                    k9Var.f25709a.onDetachedFromWindow();
+                    k9Var.f25646a.onDetachedFromWindow();
                 }
             }
         }
@@ -71,16 +71,16 @@ public final class l9 extends Drawable {
 
     public final void c(Canvas canvas) {
         Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.f26062i != 0) {
+        if (!bounds.isEmpty() && this.f26038i != 0) {
             float f7 = bounds.left;
             float f10 = bounds.top;
-            le.j jVar = this.f26059c;
-            canvas.saveLayer(f7, f10, f7 + jVar.d.f14186f.f14193a, f10 + this.e, null);
-            for (int size = jVar.f14189b.size() - 1; size >= 0; size--) {
+            le.j jVar = this.f26035c;
+            canvas.saveLayer(f7, f10, f7 + jVar.d.f14201f.f14208a, f10 + this.e, null);
+            for (int size = jVar.f14204b.size() - 1; size >= 0; size--) {
                 le.g n10 = jVar.n(size);
                 RectF b10 = n10.b();
-                Object obj = n10.f14179a;
-                float f11 = n10.f14182f.f14193a;
+                Object obj = n10.f14194a;
+                float f11 = n10.f14197f.f14208a;
                 float c10 = n10.c();
                 float width = b10.width() - f11;
                 float f12 = f7 + b10.left + f11;
@@ -89,11 +89,11 @@ public final class l9 extends Drawable {
                 float f15 = f10 + f13;
                 canvas.save();
                 canvas.scale(c10, c10, f14, f15);
-                canvas.drawCircle(f14, f15, f13 + this.f26061g, org.telegram.ui.ActionBar.j6.Il);
+                canvas.drawCircle(f14, f15, f13 + this.f26037g, org.telegram.ui.ActionBar.j6.Il);
                 k9 k9Var = (k9) obj;
-                k9Var.f25709a.setImageCoords(f12, f10, width, width);
-                k9Var.f25709a.setAlpha((this.f26062i / 255.0f) * n10.c());
-                k9Var.f25709a.draw(canvas);
+                k9Var.f25646a.setImageCoords(f12, f10, width, width);
+                k9Var.f25646a.setAlpha((this.f26038i / 255.0f) * n10.c());
+                k9Var.f25646a.draw(canvas);
                 canvas.restore();
             }
             canvas.restore();
@@ -102,7 +102,7 @@ public final class l9 extends Drawable {
 
     public final void d(List list, boolean z10) {
         k9 k9Var;
-        le.j jVar = this.f26059c;
+        le.j jVar = this.f26035c;
         if (list != null && !list.isEmpty()) {
             if (!z10) {
                 jVar.r(null, false);
@@ -119,7 +119,7 @@ public final class l9 extends Drawable {
                         Object obj = arrayList2.get(i10);
                         i10++;
                         k9Var = (k9) obj;
-                        if (k9Var.f25711c == peerDialogId) {
+                        if (k9Var.f25648c == peerDialogId) {
                             break;
                         }
                     } else {
@@ -135,7 +135,7 @@ public final class l9 extends Drawable {
                             Object obj2 = arrayList2.get(i11);
                             i11++;
                             k9Var = (k9) obj2;
-                            if (k9Var.f25711c == 0) {
+                            if (k9Var.f25648c == 0) {
                                 break;
                             }
                         } else {
@@ -145,14 +145,14 @@ public final class l9 extends Drawable {
                     }
                 }
                 if (k9Var == null) {
-                    k9Var = new k9(this, this.f26057a);
+                    k9Var = new k9(this, this.f26033a);
                     arrayList2.add(k9Var);
                 }
-                ImageReceiver imageReceiver = k9Var.f25709a;
-                g9 g9Var = k9Var.f25710b;
-                if (k9Var.f25711c != peerDialogId) {
-                    k9Var.f25711c = peerDialogId;
-                    int i12 = this.f26058b;
+                ImageReceiver imageReceiver = k9Var.f25646a;
+                g9 g9Var = k9Var.f25647b;
+                if (k9Var.f25648c != peerDialogId) {
+                    k9Var.f25648c = peerDialogId;
+                    int i12 = this.f26034b;
                     TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(peerDialogId);
                     if (userOrChat != null) {
                         g9Var.j(i12, userOrChat);
@@ -181,7 +181,7 @@ public final class l9 extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f26062i;
+        return this.f26038i;
     }
 
     @Override
@@ -191,7 +191,7 @@ public final class l9 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f26062i = i10;
+        this.f26038i = i10;
     }
 
     @Override

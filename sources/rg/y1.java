@@ -3,16 +3,16 @@ package rg;
 import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.pq;
 public final class y1 extends pq {
-    public final z1 f42850y;
+    public final z1 f42871y;
 
     public y1(z1 z1Var, j0.a aVar, Drawable drawable) {
         super(aVar, drawable);
-        this.f42850y = z1Var;
+        this.f42871y = z1Var;
     }
 
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
-        z1 z1Var = this.f42850y;
+        z1 z1Var = this.f42871y;
         if (z1Var.d) {
             super.setBounds(i10, (int) (i11 - z1Var.M), i12, i13);
         } else {

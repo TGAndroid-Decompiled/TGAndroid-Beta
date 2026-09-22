@@ -4,8 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.Cells.g8;
-import org.telegram.ui.Components.vl0;
-public abstract class d extends vl0 {
+import org.telegram.ui.Components.yl0;
+public abstract class d extends yl0 {
     public boolean X2;
 
     @Override

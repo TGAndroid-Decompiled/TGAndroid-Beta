@@ -10,17 +10,17 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.k90;
 import org.telegram.ui.Components.mq;
+import org.telegram.ui.Components.n90;
 public final class d1 extends LinearLayout {
-    public final int f685a;
-    public Object f686b;
-    public Object f687c;
+    public final int f682a;
+    public Object f683b;
+    public Object f684c;
     public View d;
 
     public d1(Context context, int i10) {
         super(context);
-        this.f685a = i10;
+        this.f682a = i10;
         switch (i10) {
             case 4:
                 super(context);
@@ -28,11 +28,11 @@ public final class d1 extends LinearLayout {
             default:
                 setOrientation(1);
                 org.telegram.ui.Components.v9 v9Var = new org.telegram.ui.Components.v9(context);
-                this.f686b = v9Var;
+                this.f683b = v9Var;
                 v9Var.setRoundRadius(AndroidUtilities.dp(35.0f));
                 addView(v9Var, w7.y5.q(70, 70, 1));
                 TextView textView = new TextView(context);
-                this.f687c = textView;
+                this.f684c = textView;
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextSize(1, 20.0f);
                 textView.setGravity(17);
@@ -49,24 +49,24 @@ public final class d1 extends LinearLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f685a) {
+        switch (this.f682a) {
             case 0:
-                Path path = (Path) this.f687c;
-                if (((h1) this.d).f929a) {
+                Path path = (Path) this.f684c;
+                if (((h1) this.d).f926a) {
                     path.rewind();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                     path.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CW);
                     canvas.save();
                     canvas.clipPath(path);
-                    if (((yh.i8) this.f686b) == null) {
-                        this.f686b = new yh.i8(1, 250);
+                    if (((yh.i8) this.f683b) == null) {
+                        this.f683b = new yh.i8(1, 250);
                     }
-                    ((yh.i8) this.f686b).f(0, 0, getWidth(), getHeight());
-                    yh.i8 i8Var = (yh.i8) this.f686b;
+                    ((yh.i8) this.f683b).f(0, 0, getWidth(), getHeight());
+                    yh.i8 i8Var = (yh.i8) this.f683b;
                     i8Var.h = 30.0f;
                     i8Var.d();
-                    ((yh.i8) this.f686b).b(canvas, -1, 0.85f);
+                    ((yh.i8) this.f683b).b(canvas, -1, 0.85f);
                     invalidate();
                     canvas.restore();
                 }
@@ -81,12 +81,12 @@ public final class d1 extends LinearLayout {
     @Override
     public void onDraw(Canvas canvas) {
         float f7;
-        switch (this.f685a) {
+        switch (this.f682a) {
             case 3:
-                RectF rectF = (RectF) this.f686b;
-                Paint paint = (Paint) this.f687c;
+                RectF rectF = (RectF) this.f683b;
+                Paint paint = (Paint) this.f684c;
                 mq mqVar = (mq) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19183i5, mqVar.f26470d0));
+                paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19198i5, mqVar.f26522d0));
                 int left = mqVar.E[0].getLeft() - AndroidUtilities.dp(13.0f);
                 float dp = AndroidUtilities.dp(91.0f);
                 org.telegram.ui.ActionBar.k0 k0Var = mqVar.F;
@@ -106,15 +106,15 @@ public final class d1 extends LinearLayout {
 
     public d1(mq mqVar, Context context) {
         super(context);
-        this.f685a = 3;
+        this.f682a = 3;
         this.d = mqVar;
-        this.f686b = new RectF();
-        this.f687c = new Paint(1);
+        this.f683b = new RectF();
+        this.f684c = new Paint(1);
     }
 
     public d1(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f685a = i10;
+        this.f682a = i10;
         switch (i10) {
             case 5:
                 super(context);
@@ -124,24 +124,24 @@ public final class d1 extends LinearLayout {
                 frameLayout.setClipToPadding(false);
                 frameLayout.addView(new yh.y6(context, 70, 0), w7.y5.c(-1.0f, -1));
                 org.telegram.ui.Components.v9 v9Var = new org.telegram.ui.Components.v9(context);
-                this.f686b = v9Var;
+                this.f683b = v9Var;
                 v9Var.setRoundRadius(AndroidUtilities.dp(50.0f));
                 frameLayout.addView(v9Var, w7.y5.d(100, 100.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
                 addView(frameLayout, w7.y5.c(150.0f, -1));
                 TextView textView = new TextView(context);
-                this.f687c = textView;
+                this.f684c = textView;
                 com.google.android.gms.internal.vision.e2.l(20.0f, 1, textView);
-                int i11 = org.telegram.ui.ActionBar.j6.f19201j5;
+                int i11 = org.telegram.ui.ActionBar.j6.f19216j5;
                 textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
                 textView.setGravity(17);
                 addView(textView, w7.y5.t(-2, -2, 1, 0, 2, 0, 0));
-                k90 k90Var = new k90(context, f6Var);
-                this.d = k90Var;
-                k90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.gc, f6Var));
-                k90Var.setTextSize(1, 14.0f);
-                k90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-                k90Var.setGravity(17);
-                addView(k90Var, w7.y5.t(-2, -2, 1, 0, 9, 0, 18));
+                n90 n90Var = new n90(context, f6Var);
+                this.d = n90Var;
+                n90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.gc, f6Var));
+                n90Var.setTextSize(1, 14.0f);
+                n90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+                n90Var.setGravity(17);
+                addView(n90Var, w7.y5.t(-2, -2, 1, 0, 9, 0, 18));
                 return;
             default:
                 setOrientation(1);
@@ -151,19 +151,19 @@ public final class d1 extends LinearLayout {
                 di.d dVar = new di.d(context, 70, 0);
                 frameLayout2.addView(dVar, w7.y5.c(-1.0f, -1));
                 sg.e eVar = new sg.e(context, 1, 4);
-                this.f686b = eVar;
-                sg.a aVar = eVar.f43239b;
-                aVar.f43227w = org.telegram.ui.ActionBar.j6.fk;
-                aVar.f43228x = org.telegram.ui.ActionBar.j6.gk;
+                this.f683b = eVar;
+                sg.a aVar = eVar.f43260b;
+                aVar.f43248w = org.telegram.ui.ActionBar.j6.fk;
+                aVar.f43249x = org.telegram.ui.ActionBar.j6.gk;
                 aVar.b();
                 eVar.setStarParticlesView(dVar);
                 frameLayout2.addView(eVar, w7.y5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
                 eVar.setPaused(false);
                 addView(frameLayout2, w7.y5.c(180.0f, -1));
                 TextView textView2 = new TextView(context);
-                this.f687c = textView2;
+                this.f684c = textView2;
                 com.google.android.gms.internal.vision.e2.l(20.0f, 1, textView2);
-                int i12 = org.telegram.ui.ActionBar.j6.f19201j5;
+                int i12 = org.telegram.ui.ActionBar.j6.f19216j5;
                 textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
                 textView2.setGravity(17);
                 addView(textView2, w7.y5.t(-2, -2, 1, 0, 2, 0, 0));
@@ -179,8 +179,8 @@ public final class d1 extends LinearLayout {
 
     public d1(h1 h1Var, Context context) {
         super(context);
-        this.f685a = 0;
+        this.f682a = 0;
         this.d = h1Var;
-        this.f687c = new Path();
+        this.f684c = new Path();
     }
 }

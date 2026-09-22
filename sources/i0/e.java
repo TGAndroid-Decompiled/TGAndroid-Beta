@@ -7,13 +7,13 @@ import android.os.Trace;
 import android.util.Log;
 import java.lang.reflect.Method;
 import v7.i8;
-import w7.b8;
+import w7.a8;
 public abstract class e {
     public static final i8 f10598a;
     public static final k f10599b;
 
     static {
-        b8.a("TypefaceCompat static init");
+        a8.a("TypefaceCompat static init");
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 29) {
             f10598a = new i8();

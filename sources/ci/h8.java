@@ -15,18 +15,18 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.qr;
 public final class h8 extends FrameLayout {
-    public final int f4755a;
-    public final org.telegram.ui.Components.g9 f4756b;
-    public final org.telegram.ui.Components.v9 f4757c;
+    public final int f4753a;
+    public final org.telegram.ui.Components.g9 f4754b;
+    public final org.telegram.ui.Components.v9 f4755c;
     public final TextView d;
     public ViewPropertyAnimator e;
 
     public h8(Activity activity, int i10) {
         super(activity);
-        this.f4755a = i10;
-        this.f4756b = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
+        this.f4753a = i10;
+        this.f4754b = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
         org.telegram.ui.Components.v9 v9Var = new org.telegram.ui.Components.v9(activity);
-        this.f4757c = v9Var;
+        this.f4755c = v9Var;
         v9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
         addView(v9Var, w7.y5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(activity);
@@ -78,15 +78,15 @@ public final class h8 extends FrameLayout {
     public void set(TLRPC.InputPeer inputPeer) {
         long peerDialogId;
         String str;
-        int i10 = this.f4755a;
+        int i10 = this.f4753a;
         if (inputPeer == null) {
             peerDialogId = UserConfig.getInstance(i10).getClientUserId();
         } else {
             peerDialogId = DialogObject.getPeerDialogId(inputPeer);
         }
         TextView textView = this.d;
-        org.telegram.ui.Components.v9 v9Var = this.f4757c;
-        org.telegram.ui.Components.g9 g9Var = this.f4756b;
+        org.telegram.ui.Components.v9 v9Var = this.f4755c;
+        org.telegram.ui.Components.g9 g9Var = this.f4754b;
         if (peerDialogId >= 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
             g9Var.r(user);

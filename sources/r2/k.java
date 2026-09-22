@@ -1,4 +1,4 @@
 package r2;
 public interface k {
-    l v(com.google.firebase.messaging.n nVar);
+    l a(com.google.firebase.messaging.n nVar);
 }

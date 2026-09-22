@@ -11,7 +11,7 @@ public final class wv extends v9 {
 
     @Override
     public final void invalidate() {
-        if (zg.e0.b(this)) {
+        if (zg.f0.b(this)) {
             return;
         }
         super.invalidate();
@@ -20,7 +20,7 @@ public final class wv extends v9 {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (zg.e0.b(this)) {
+        if (zg.f0.b(this)) {
             return;
         }
         super.invalidate(i10, i11, i12, i13);

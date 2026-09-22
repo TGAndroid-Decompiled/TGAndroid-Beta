@@ -23,10 +23,10 @@ public final class q1 implements s0 {
             ((e2.x) this.d).getClass();
             long elapsedRealtime = SystemClock.elapsedRealtime() - this.f10868b;
             b2.v0 v0Var = (b2.v0) this.e;
-            if (v0Var.f3336a == 1.0f) {
+            if (v0Var.f3335a == 1.0f) {
                 j3 = e2.d0.Q(elapsedRealtime);
             } else {
-                j3 = elapsedRealtime * v0Var.f3338c;
+                j3 = elapsedRealtime * v0Var.f3337c;
             }
             return j3 + j10;
         }

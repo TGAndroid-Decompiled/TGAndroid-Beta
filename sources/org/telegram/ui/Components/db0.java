@@ -1,63 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-public final class db0 extends x81 {
-    public final dc0 U;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.tgnet.TLRPC;
+public final class db0 extends y5 {
+    public final eb0 f23645a;
 
-    public db0(dc0 dc0Var, Context context, zb0 zb0Var) {
-        super(context, zb0Var);
-        this.U = dc0Var;
+    public db0(eb0 eb0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        super(document, fontMetricsInt);
+        this.f23645a = eb0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        int i10 = 0;
-        while (true) {
-            View[] viewArr = this.U.f23553f.e;
-            if (i10 < viewArr.length) {
-                View view = viewArr[i10];
-                if (view != null) {
-                    xb0 xb0Var = (xb0) view;
-                    if (xb0Var.f30224a == 0) {
-                        z10 = xb0Var.e.f20216i;
-                        break;
-                    }
-                }
-                i10++;
-            } else {
-                z10 = false;
-                break;
-            }
-        }
-        if (z10) {
-            return false;
-        }
-        return B(motionEvent);
-    }
-
-    @Override
-    public final void u() {
-        View view = this.e[0];
-        if (view instanceof xb0) {
-            ((xb0) view).e.W();
-        }
-    }
-
-    @Override
-    public final void w(boolean z10) {
-        dc0 dc0Var = this.U;
-        dc0Var.e.setSelectedTab(dc0Var.f23553f.getPositionAnimated());
-        View[] viewArr = this.e;
-        View view = viewArr[0];
-        if (view instanceof xb0) {
-            ((xb0) view).e.H();
-        }
-        View view2 = viewArr[1];
-        if (view2 instanceof xb0) {
-            ((xb0) view2).e.H();
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        eb0 eb0Var = this.f23645a;
+        int i15 = eb0Var.f23925y;
+        int i16 = i14 + i12;
+        int i17 = this.measuredSize;
+        eb0Var.f23918c.set((int) f7, hg.k0.z(i16, i17, 2, i15), (int) (f7 + i17), ((i16 + i17) / 2) + i15);
     }
 }

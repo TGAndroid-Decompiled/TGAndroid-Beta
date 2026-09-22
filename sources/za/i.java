@@ -1,5 +1,5 @@
 package za;
-public enum i implements ka.g {
+public enum i implements ka.f {
     COLLECTION_UNKNOWN(0),
     COLLECTION_SDK_NOT_INSTALLED(1),
     COLLECTION_ENABLED(2),
@@ -7,14 +7,14 @@ public enum i implements ka.g {
     COLLECTION_DISABLED_REMOTE(4),
     COLLECTION_SAMPLED(5);
     
-    public final int f49094a;
+    public final int f49114a;
 
     i(int i10) {
-        this.f49094a = i10;
+        this.f49114a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f49094a;
+        return this.f49114a;
     }
 }

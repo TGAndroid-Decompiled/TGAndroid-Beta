@@ -13,8 +13,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ij;
-import w7.b6;
+import org.telegram.ui.jj;
+import w7.a6;
 import w7.y5;
 public final class c extends LinearLayout {
     public static final int e = 0;
@@ -23,27 +23,27 @@ public final class c extends LinearLayout {
     public final cf.c f13018c;
     public float d;
 
-    public c(Context context, f6 f6Var, ij ijVar, ah.c cVar) {
+    public c(Context context, f6 f6Var, jj jjVar, ah.c cVar) {
         super(context);
         cf.c cVar2 = new cf.c(this);
         this.f13017b = cVar2;
         cf.c cVar3 = new cf.c(this);
         this.f13018c = cVar3;
         this.f13016a = f6Var;
-        ih.a c10 = ih.a.c(cVar, context, ijVar, f6Var);
-        cVar2.f4261a = c10;
+        ih.a c10 = ih.a.c(cVar, context, jjVar, f6Var);
+        cVar2.f4259a = c10;
         c10.setOnClickListener(new e2(5));
-        b6.b((ih.a) cVar2.f4261a, 0.065f, 2.0f);
-        ih.a c11 = ih.a.c(cVar, context, ijVar, f6Var);
-        cVar3.f4261a = c11;
+        a6.b((ih.a) cVar2.f4259a, 0.065f, 2.0f);
+        ih.a c11 = ih.a.c(cVar, context, jjVar, f6Var);
+        cVar3.f4259a = c11;
         c11.setOnClickListener(new e2(5));
-        b6.b((ih.a) cVar3.f4261a, 0.065f, 2.0f);
+        a6.b((ih.a) cVar3.f4259a, 0.065f, 2.0f);
         a(cVar2, LocaleController.getString(R.string.Reply), R.drawable.input_reply, false);
         a(cVar3, LocaleController.getString(R.string.Forward), R.drawable.input_forward, true);
         setOrientation(0);
         setClipChildren(false);
-        addView((ih.a) cVar2.f4261a, y5.m(1.0f, 0, 56, 1, -1, 0));
-        addView((ih.a) cVar3.f4261a, y5.m(1.0f, 0, 56, -1, 1, 0));
+        addView((ih.a) cVar2.f4259a, y5.m(1.0f, 0, 56, 1, -1, 0));
+        addView((ih.a) cVar3.f4259a, y5.m(1.0f, 0, 56, -1, 1, 0));
     }
 
     public final void a(cf.c cVar, String str, int i10, boolean z10) {
@@ -69,22 +69,22 @@ public final class c extends LinearLayout {
             mutate = null;
         }
         textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
-        cVar.f4262b = textView;
-        ((ih.a) cVar.f4261a).addView(textView, y5.e(-2, -2, 17));
+        cVar.f4260b = textView;
+        ((ih.a) cVar.f4259a).addView(textView, y5.e(-2, -2, 17));
     }
 
     public final void b(cf.c cVar) {
         int i10;
-        float f7 = this.d * ((le.b) cVar.f4263c).e;
+        float f7 = this.d * ((le.b) cVar.f4261c).e;
         float f10 = (1.0f - f7) * (-AndroidUtilities.dp(54.0f));
-        float interpolation = (1.0f - ke.a.f13589a.getInterpolation(f7)) * (getMeasuredWidth() / 2.0f);
+        float interpolation = (1.0f - ke.a.f13587a.getInterpolation(f7)) * (getMeasuredWidth() / 2.0f);
         if (cVar == this.f13017b) {
             interpolation *= -1.0f;
         }
-        ((ih.a) cVar.f4261a).setTranslationX(interpolation);
-        ((ih.a) cVar.f4261a).setTranslationY(f10);
-        ((ih.a) cVar.f4261a).setAlpha(f7);
-        ih.a aVar = (ih.a) cVar.f4261a;
+        ((ih.a) cVar.f4259a).setTranslationX(interpolation);
+        ((ih.a) cVar.f4259a).setTranslationY(f10);
+        ((ih.a) cVar.f4259a).setAlpha(f7);
+        ih.a aVar = (ih.a) cVar.f4259a;
         if (f7 > 0.0f) {
             i10 = 0;
         } else {
@@ -94,7 +94,7 @@ public final class c extends LinearLayout {
     }
 
     public View getForwardButton() {
-        return (ih.a) this.f13018c.f4261a;
+        return (ih.a) this.f13018c.f4259a;
     }
 
     @Override
@@ -105,11 +105,11 @@ public final class c extends LinearLayout {
     }
 
     public void setForwardButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((ih.a) this.f13018c.f4261a).setOnClickListener(onClickListener);
+        ((ih.a) this.f13018c.f4259a).setOnClickListener(onClickListener);
     }
 
     public void setReplyButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((ih.a) this.f13017b.f4261a).setOnClickListener(onClickListener);
+        ((ih.a) this.f13017b.f4259a).setOnClickListener(onClickListener);
     }
 
     public void setTotalVisibilityFactor(float f7) {

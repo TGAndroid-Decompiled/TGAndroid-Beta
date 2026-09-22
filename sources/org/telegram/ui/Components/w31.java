@@ -1,36 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class w31 extends vl0 {
-    public final j41 X2;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.Utilities;
+public final class w31 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final String f29908a;
+    public final String f29909b;
+    public final Utilities.Callback2 f29910c;
 
-    public w31(j41 j41Var, Context context) {
-        super(context, null);
-        this.X2 = j41Var;
+    public w31(String str, String str2, Utilities.Callback2 callback2) {
+        this.f29908a = str;
+        this.f29909b = str2;
+        this.f29910c = callback2;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            float y3 = motionEvent.getY();
-            j41 j41Var = this.X2;
-            if (y3 < j41Var.z(true) - getTop()) {
-                j41Var.dismiss();
-                return true;
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public void run(String str) {
+        l41.x(this.f29908a, str, this.f29909b, this.f29910c);
     }
 
     @Override
-    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
-        return true;
-    }
-
-    @Override
-    public final void requestChildFocus(View view, View view2) {
+    public void run(Exception exc) {
+        l41.x(this.f29908a, "en", this.f29909b, this.f29910c);
     }
 }

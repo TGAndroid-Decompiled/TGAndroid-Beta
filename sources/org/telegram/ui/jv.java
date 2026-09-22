@@ -10,23 +10,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-public final class jv extends org.telegram.ui.Components.oy0 {
+public final class jv extends org.telegram.ui.Components.qy0 {
     public final m5.e I;
 
     public jv(Context context, long j3, m5.e eVar) {
         super(context);
         this.I = eVar;
-        this.f27074a = new RectF();
-        this.f27077f = 0.0f;
+        this.f27697a = new RectF();
+        this.f27700f = 0.0f;
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true, false);
-        this.f27079r = n6Var;
+        this.f27702r = n6Var;
         org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(false, true, false, false);
-        this.f27080s = n6Var2;
+        this.f27703s = n6Var2;
         n6Var.setCallback(this);
         n6Var2.setCallback(this);
-        this.f27078n = Long.valueOf(j3);
+        this.f27701n = Long.valueOf(j3);
         org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
-        g9Var.f24302p = 1.5f;
+        g9Var.f24459p = 1.5f;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.h = imageReceiver;
         imageReceiver.setParentView(this);
@@ -44,10 +44,10 @@ public final class jv extends org.telegram.ui.Components.oy0 {
     @Override
     public final void b() {
         m5.e eVar = this.I;
-        z6 z6Var = (z6) eVar.f14954c;
+        z6 z6Var = (z6) eVar.f14969c;
         z6Var.X.dismiss();
         Bundle bundle = new Bundle();
-        long j3 = ((s6) eVar.f14953b).f37302a;
+        long j3 = ((s6) eVar.f14968b).f37324a;
         if (j3 > 0) {
             bundle.putLong("user_id", j3);
         } else {

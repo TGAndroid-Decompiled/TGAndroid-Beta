@@ -13,20 +13,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.a60;
+import org.telegram.ui.Components.c60;
 import org.telegram.ui.Components.i40;
 import org.telegram.ui.Components.ng;
 import org.telegram.ui.pn;
 public final class b4 implements ng {
-    public final f6 f578a;
+    public final f6 f575a;
 
     public b4(f6 f6Var) {
-        this.f578a = f6Var;
+        this.f575a = f6Var;
     }
 
     @Override
     public final void A2() {
-        this.f578a.P0();
+        this.f575a.P0();
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class b4 implements ng {
     @Override
     public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
         boolean z11;
-        f6 f6Var = this.f578a;
+        f6 f6Var = this.f575a;
         if (f6Var.G2) {
             AndroidUtilities.runOnUIThread(new j(this, j3, 1), 200L);
             return;
@@ -54,8 +54,8 @@ public final class b4 implements ng {
     public final TLRPC.TL_channels_sendAsPeers J() {
         d2 d2Var;
         boolean z10;
-        f6 f6Var = this.f578a;
-        if (f6Var.O1.f709f) {
+        f6 f6Var = this.f575a;
+        if (f6Var.O1.f706f) {
             jc jcVar = f6Var.J0;
             if (jcVar != null && (d2Var = jcVar.A0) != null) {
                 TLRPC.GroupCall groupCall = d2Var.v;
@@ -75,31 +75,31 @@ public final class b4 implements ng {
 
     @Override
     public final void K(float f7, int i10) {
-        a60 a60Var = this.f578a.J2;
-        if (a60Var != null) {
-            a60Var.b(f7, i10);
+        c60 c60Var = this.f575a.J2;
+        if (c60Var != null) {
+            c60Var.b(f7, i10);
         }
     }
 
     @Override
     public final int c1() {
-        return this.f578a.getHeight();
+        return this.f575a.getHeight();
     }
 
     @Override
     public final TL_stories.StoryItem e1() {
-        return this.f578a.O1.f706a;
+        return this.f575a.O1.f703a;
     }
 
     @Override
     public final boolean g1(long j3) {
         boolean z10;
-        f6 f6Var = this.f578a;
+        f6 f6Var = this.f575a;
         d6 d6Var = f6Var.O1;
-        TL_stories.StoryItem storyItem = d6Var.f706a;
+        TL_stories.StoryItem storyItem = d6Var.f703a;
         if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
             TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
-            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) d6Var.f706a.media).call;
+            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) d6Var.f703a.media).call;
             savedefaultsendas.send_as = MessagesController.getInstance(f6Var.C2).getInputPeer(j3);
             ConnectionsManager.getInstance(f6Var.C2).sendRequest(savedefaultsendas, null);
             d2 d2Var = f6Var.J0.A0;
@@ -118,8 +118,8 @@ public final class b4 implements ng {
                 }
             }
             f6Var.r0(true);
-            f6Var.f800b2.P1(true);
-            f6Var.f800b2.K(true);
+            f6Var.f797b2.P1(true);
+            f6Var.f797b2.K(true);
             f6Var.f1(false);
         }
         return true;
@@ -129,7 +129,7 @@ public final class b4 implements ng {
     public final void i2() {
         String str;
         int i10;
-        f6 f6Var = this.f578a;
+        f6 f6Var = this.f575a;
         if (f6Var.E1) {
             f6.h0(f6Var);
             return;
@@ -151,19 +151,19 @@ public final class b4 implements ng {
             }
         }
         i40 i40Var2 = f6Var.W2;
-        if (f6Var.f800b2.f21968c1) {
+        if (f6Var.f797b2.f21983c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
         }
         i40Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
-        f6Var.W2.f(f6Var.f800b2.getAudioVideoButtonContainer(), true);
+        f6Var.W2.f(f6Var.f797b2.getAudioVideoButtonContainer(), true);
     }
 
     @Override
     public final boolean j1() {
-        a60 a60Var = this.f578a.J2;
-        if (a60Var != null && !a60Var.f22546h0) {
+        c60 c60Var = this.f575a.J2;
+        if (c60Var != null && !c60Var.f23239j0) {
             return true;
         }
         return false;
@@ -171,25 +171,25 @@ public final class b4 implements ng {
 
     @Override
     public final void k2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
-        f6 f6Var = this.f578a;
+        f6 f6Var = this.f575a;
         boolean z11 = false;
         if (f6Var.J2 == null && CameraView.isCameraAllowed()) {
-            f6Var.J2 = new a60(f6Var.getContext(), new r4(f6Var), f6Var.B0, false);
-            f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f800b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f800b2.N1)), w7.y5.e(-1, -1, 51));
+            f6Var.J2 = new c60(f6Var.getContext(), new r4(f6Var), f6Var.B0, false);
+            f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f797b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f797b2.O1)), w7.y5.e(-1, -1, 51));
         }
-        a60 a60Var = f6Var.J2;
-        if (a60Var != null) {
+        c60 c60Var = f6Var.J2;
+        if (c60Var != null) {
             if (i10 == 0) {
-                a60Var.h(false);
+                c60Var.h(false);
             } else if (i10 != 1 && i10 != 3 && i10 != 4) {
                 if (i10 == 2 || i10 == 5) {
                     if (i10 == 2) {
                         z11 = true;
                     }
-                    a60Var.a(z11);
+                    c60Var.a(z11);
                 }
             } else {
-                a60Var.f(i10, i11, i12, j3, j10, z10);
+                c60Var.f(i10, i11, i12, j3, j10, z10);
             }
         }
     }
@@ -201,17 +201,17 @@ public final class b4 implements ng {
 
     @Override
     public final void m1(CharSequence charSequence, boolean z10, boolean z11) {
-        f6 f6Var = this.f578a;
-        if (f6Var.f809d3 == null) {
-            c4 c4Var = new c4(f6Var, f6Var.getContext(), f6Var.B1, f6Var.J0.f1080f, f6Var.B0);
-            f6Var.f809d3 = c4Var;
+        f6 f6Var = this.f575a;
+        if (f6Var.f806d3 == null) {
+            c4 c4Var = new c4(f6Var, f6Var.getContext(), f6Var.B1, f6Var.J0.f1077f, f6Var.B0);
+            f6Var.f806d3 = c4Var;
             c4Var.p(new f4(f6Var));
-            f6Var.addView(f6Var.f809d3, w7.y5.e(-1, -1, 83));
+            f6Var.addView(f6Var.f806d3, w7.y5.e(-1, -1, 83));
         }
-        if (f6Var.f809d3.getAdapter() != null) {
-            f6Var.f809d3.setDialogId(f6Var.B1);
-            if (f6Var.O1.f709f) {
-                gg.k1 adapter = f6Var.f809d3.getAdapter();
+        if (f6Var.f806d3.getAdapter() != null) {
+            f6Var.f806d3.setDialogId(f6Var.B1);
+            if (f6Var.O1.f706f) {
+                gg.k1 adapter = f6Var.f806d3.getAdapter();
                 if (adapter.f9826j0 == 0 && adapter.f9839u0 == 0 && adapter.f9838t0 == 0 && adapter.E0 == 0) {
                     adapter.f9842w0 = null;
                     adapter.F = null;
@@ -248,12 +248,12 @@ public final class b4 implements ng {
                     adapter.l();
                 }
             } else {
-                gg.k1 adapter2 = f6Var.f809d3.getAdapter();
+                gg.k1 adapter2 = f6Var.f806d3.getAdapter();
                 MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1));
                 TLRPC.Chat chat = MessagesController.getInstance(f6Var.C2).getChat(Long.valueOf(-f6Var.B1));
                 adapter2.getClass();
                 adapter2.f9828l0 = chat;
-                f6Var.f809d3.getAdapter().U(charSequence, f6Var.f800b2.getCursorPosition(), null, false, false);
+                f6Var.f806d3.getAdapter().U(charSequence, f6Var.f797b2.getCursorPosition(), null, false, false);
             }
         }
         f6Var.invalidate();
@@ -261,16 +261,16 @@ public final class b4 implements ng {
 
     @Override
     public final void o1() {
-        a60 a60Var = this.f578a.J2;
-        if (a60Var != null) {
-            a60Var.i();
+        c60 c60Var = this.f575a.J2;
+        if (c60Var != null) {
+            c60Var.i();
         }
     }
 
     @Override
     public final boolean p1() {
         TLRPC.User user;
-        f6 f6Var = this.f578a;
+        f6 f6Var = this.f575a;
         if (f6Var.B1 < 0 || (user = MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1))) == null || UserObject.isUserSelf(user) || user.bot) {
             return false;
         }
@@ -289,19 +289,19 @@ public final class b4 implements ng {
 
     @Override
     public final void r1() {
-        this.f578a.O0();
+        this.f575a.O0();
     }
 
     @Override
     public final void t1() {
-        this.f578a.requestLayout();
+        this.f575a.requestLayout();
     }
 
     @Override
     public final TLRPC.Peer v() {
         d2 d2Var;
         boolean z10;
-        jc jcVar = this.f578a.J0;
+        jc jcVar = this.f575a.J0;
         if (jcVar != null && (d2Var = jcVar.A0) != null) {
             TLRPC.GroupCall groupCall = d2Var.v;
             if (groupCall == null) {

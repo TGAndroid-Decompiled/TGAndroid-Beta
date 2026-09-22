@@ -1,18 +1,12 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-public final class i01 extends org.telegram.ui.Cells.u1 {
+public final class i01 extends ViewOutlineProvider {
     @Override
-    public final int getParentWidth() {
-        return org.telegram.messenger.rk.z(128.0f, AndroidUtilities.displaySize.x, 2);
-    }
-
-    @Override
-    public final boolean isPressed() {
-        return false;
-    }
-
-    @Override
-    public final void y4() {
+    public final void getOutline(View view, Outline outline) {
+        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(16.0f));
     }
 }

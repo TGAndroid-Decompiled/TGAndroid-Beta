@@ -10,7 +10,7 @@ public final class o extends pq {
     public final Drawable E;
     public final Drawable F;
     public final lx G;
-    public int f1323y;
+    public int f1320y;
 
     public o(lx lxVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super(drawable, drawable2);
@@ -24,15 +24,15 @@ public final class o extends pq {
         int i10;
         int i11;
         lx lxVar = this.G;
-        int i12 = lxVar.f542b;
+        int i12 = lxVar.f539b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.j6.f19372s8;
+            i10 = org.telegram.ui.ActionBar.j6.f19387s8;
         } else {
             i10 = org.telegram.ui.ActionBar.j6.M8;
         }
         int f7 = lxVar.f(i10);
-        if (this.f1323y != f7) {
-            this.f1323y = f7;
+        if (this.f1320y != f7) {
+            this.f1320y = f7;
             if (i12 == 0) {
                 i11 = org.telegram.ui.ActionBar.j6.A8;
             } else {

@@ -20,10 +20,10 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.ac0;
 import org.telegram.ui.Components.ko;
 import org.telegram.ui.Components.oo;
-import org.telegram.ui.Components.pb0;
-import org.telegram.ui.Components.xb0;
+import org.telegram.ui.Components.sb0;
 import org.telegram.ui.zn;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.SurfaceViewRenderer;
@@ -98,7 +98,7 @@ public final class n implements Runnable {
                         ArrayList<TLRPC.EncryptedChat> arrayList6 = new ArrayList<>();
                         MessagesStorage.getInstance(i10).getEncryptedChatsInternal(TextUtils.join(",", arrayList3), arrayList6, arrayList);
                         for (int i12 = 0; i12 < arrayList6.size(); i12++) {
-                            h0 h0Var = (h0) iVar.f(DialogObject.makeEncryptedDialogId(arrayList6.get(i12).f18336id));
+                            h0 h0Var = (h0) iVar.f(DialogObject.makeEncryptedDialogId(arrayList6.get(i12).f18351id));
                             if (h0Var != null) {
                                 h0Var.f9754a = arrayList6.get(i12);
                             }
@@ -109,7 +109,7 @@ public final class n implements Runnable {
                         MessagesStorage.getInstance(i10).getChatsInternal(TextUtils.join(",", arrayList2), arrayList7);
                         for (int i13 = 0; i13 < arrayList7.size(); i13++) {
                             TLRPC.Chat chat = arrayList7.get(i13);
-                            long j10 = -chat.f18328id;
+                            long j10 = -chat.f18343id;
                             if (chat.migrated_to != null) {
                                 h0 h0Var2 = (h0) iVar.f(j10);
                                 iVar.l(j10);
@@ -128,7 +128,7 @@ public final class n implements Runnable {
                         MessagesStorage.getInstance(i10).getUsersInternal(arrayList, arrayList5);
                         for (int i14 = 0; i14 < arrayList5.size(); i14++) {
                             TLRPC.User user = arrayList5.get(i14);
-                            h0 h0Var4 = (h0) iVar.f(user.f18475id);
+                            h0 h0Var4 = (h0) iVar.f(user.f18490id);
                             if (h0Var4 != null) {
                                 h0Var4.f9754a = user;
                             }
@@ -192,29 +192,29 @@ public final class n implements Runnable {
                 koVar.run(Integer.valueOf(i19));
                 return;
             case 10:
-                xb0 xb0Var = ((pb0) this.d).X2;
-                View d = xb0Var.d();
-                pb0 pb0Var = xb0Var.f30230f;
+                ac0 ac0Var = ((sb0) this.d).X2;
+                View d = ac0Var.d();
+                sb0 sb0Var = ac0Var.f22626f;
                 if (d != null) {
                     int top = d.getTop() + this.f9865b;
                     int top2 = d.getTop() + this.f9866c;
                     int i20 = top2 - top;
-                    int paddingTop = pb0Var.getPaddingTop();
-                    int height = pb0Var.getHeight() - pb0Var.getPaddingBottom();
+                    int paddingTop = sb0Var.getPaddingTop();
+                    int height = sb0Var.getHeight() - sb0Var.getPaddingBottom();
                     if (i20 <= height - paddingTop) {
                         top = (top + top2) / 2;
                         paddingTop = (paddingTop + height) / 2;
                     }
                     int i21 = top - paddingTop;
                     if (i21 < 0) {
-                        pb0Var.scrollBy(0, i21);
+                        sb0Var.scrollBy(0, i21);
                         return;
                     }
                     return;
                 }
                 return;
             case 11:
-                org.telegram.ui.Components.voip.j1 j1Var = ((org.telegram.ui.Components.voip.i1) this.d).f29394a;
+                org.telegram.ui.Components.voip.j1 j1Var = ((org.telegram.ui.Components.voip.i1) this.d).f29356a;
                 pf.e eVar = j1Var.O;
                 if (eVar != null) {
                     eVar.d(this.f9865b, this.f9866c);

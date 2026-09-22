@@ -1,52 +1,16 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.TextPaint;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class ol extends org.telegram.ui.Components.b11 {
-    public final zn K;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class ol extends tu0 {
+    public final zn f36359a;
 
-    public ol(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, zn znVar) {
-        super(activity);
-        this.K = znVar;
-        TextPaint textPaint = new TextPaint(1);
-        this.f22840b = textPaint;
-        Paint paint = new Paint(1);
-        this.f22841c = paint;
-        this.d = AndroidUtilities.dp(24.0f);
-        this.e = new OvershootInterpolator();
-        this.H = new org.telegram.ui.Components.wq0(this, 14);
-        this.J = new Path();
-        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Hi, f6Var);
-        int alpha = Color.alpha(v02);
-        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        textPaint.setColor(v02);
-        paint.setColor(v02);
-        paint.setAlpha((int) (alpha * 0.14d));
-        setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Fi, f6Var)));
-    }
-
-    public final void d() {
-        int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
-        zn znVar = this.K;
-        int top = znVar.Y.getTop() - znVar.X0.getMeasuredHeight();
-        setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
+    public ol(zn znVar) {
+        this.f36359a = znVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        d();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        d();
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return zn.A1(this.f36359a, messageObject, fileLocation, i10, z10, false);
     }
 }

@@ -10,23 +10,23 @@ import org.telegram.ui.Components.pc;
 import org.telegram.ui.Components.tb;
 import org.telegram.ui.Components.xb;
 public final class b implements Runnable {
-    public final int f47260a;
-    public final g f47261b;
+    public final int f47281a;
+    public final g f47282b;
 
     public b(g gVar, int i10) {
-        this.f47260a = i10;
-        this.f47261b = gVar;
+        this.f47281a = i10;
+        this.f47282b = gVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String formatPluralStringSpaced;
-        int i10 = this.f47260a;
-        g gVar = this.f47261b;
+        int i10 = this.f47281a;
+        g gVar = this.f47282b;
         switch (i10) {
             case 0:
-                b bVar = gVar.f47445n0;
+                b bVar = gVar.f47466n0;
                 int currentTime = gVar.getConnectionsManager().getCurrentTime();
                 bi.q qVar = gVar.R;
                 if (gVar.P <= 0 && gVar.G <= currentTime) {
@@ -46,11 +46,11 @@ public final class b implements Runnable {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) gVar.m0).append((CharSequence) g.j0(gVar.G - currentTime));
                     gVar.R.f(spannableStringBuilder, true);
-                    pc pcVar = gVar.f47429a0;
+                    pc pcVar = gVar.f47450a0;
                     if (pcVar != null) {
                         tb tbVar = pcVar.e;
                         if ((tbVar instanceof xb) && tbVar.isAttachedToWindow()) {
-                            rk.q(R.string.BotStarsWithdrawalToast, new Object[]{g.j0(gVar.G - currentTime)}, ((xb) gVar.f47429a0.e).f30222b);
+                            rk.q(R.string.BotStarsWithdrawalToast, new Object[]{g.j0(gVar.G - currentTime)}, ((xb) gVar.f47450a0.e).f30299b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(bVar);

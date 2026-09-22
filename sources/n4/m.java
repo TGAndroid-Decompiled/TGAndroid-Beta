@@ -6,14 +6,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class m implements Parcelable {
     public static final Parcelable.Creator<m> CREATOR;
-    public static final a0.f f15190c;
+    public static final a0.f f15203c;
     public static final String[] d;
-    public final Bundle f15191a;
-    public MediaMetadata f15192b;
+    public final Bundle f15204a;
+    public MediaMetadata f15205b;
 
     static {
         ?? mVar = new a0.m(0);
-        f15190c = mVar;
+        f15203c = mVar;
         mVar.put("android.media.metadata.TITLE", 1);
         mVar.put("android.media.metadata.ARTIST", 1);
         mVar.put("android.media.metadata.DURATION", 0);
@@ -51,8 +51,8 @@ public final class m implements Parcelable {
 
     public m(Bundle bundle) {
         Bundle bundle2 = new Bundle(bundle);
-        this.f15191a = bundle2;
-        y.J(bundle2);
+        this.f15204a = bundle2;
+        y.K(bundle2);
     }
 
     @Override
@@ -62,12 +62,12 @@ public final class m implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeBundle(this.f15191a);
+        parcel.writeBundle(this.f15204a);
     }
 
     public m(Parcel parcel) {
         Bundle readBundle = parcel.readBundle(y.class.getClassLoader());
         readBundle.getClass();
-        this.f15191a = readBundle;
+        this.f15204a = readBundle;
     }
 }

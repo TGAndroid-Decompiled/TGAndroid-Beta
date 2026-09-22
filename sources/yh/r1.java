@@ -6,27 +6,27 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.zc;
 public final class r1 implements Runnable {
-    public final int f47984a;
-    public final org.telegram.tgnet.e f47985b;
-    public final zc[] f47986c;
+    public final int f48005a;
+    public final org.telegram.tgnet.e f48006b;
+    public final zc[] f48007c;
     public final TL_stars.UniqueStarGiftValueInfo d;
     public final String e;
 
     public r1(org.telegram.tgnet.e eVar, zc[] zcVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
-        this.f47984a = i10;
-        this.f47985b = eVar;
-        this.f47986c = zcVarArr;
+        this.f48005a = i10;
+        this.f48006b = eVar;
+        this.f48007c = zcVarArr;
         this.d = uniqueStarGiftValueInfo;
         this.e = str;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f47984a;
+        int i10 = this.f48005a;
         String str = this.e;
         TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
-        zc[] zcVarArr = this.f47986c;
-        org.telegram.tgnet.e eVar = this.f47985b;
+        zc[] zcVarArr = this.f48007c;
+        org.telegram.tgnet.e eVar = this.f48006b;
         switch (i10) {
             case 0:
                 eVar.run(zcVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));

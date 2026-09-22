@@ -18,24 +18,24 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.IMapsProvider;
 import org.telegram.tgnet.TLRPC;
 public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.ActionBar.a2, IMapsProvider.OnCameraMoveStartedListener, gg.b, IMapsProvider.ITouchInterceptor {
-    public final int f37371a;
-    public final kd0 f37372b;
+    public final int f37393a;
+    public final kd0 f37394b;
 
     public sc0(kd0 kd0Var, int i10) {
-        this.f37371a = i10;
-        this.f37372b = kd0Var;
+        this.f37393a = i10;
+        this.f37394b = kd0Var;
     }
 
     @Override
     public void a(ArrayList arrayList) {
-        switch (this.f37371a) {
+        switch (this.f37393a) {
             case 5:
-                kd0 kd0Var = this.f37372b;
-                ArrayList arrayList2 = kd0Var.f35107k0;
+                kd0 kd0Var = this.f37394b;
+                ArrayList arrayList2 = kd0Var.f35129k0;
                 if (arrayList != null) {
                     int size = arrayList2.size();
                     for (int i10 = 0; i10 < size; i10++) {
-                        ((jd0) arrayList2.get(i10)).f34896b.remove();
+                        ((jd0) arrayList2.get(i10)).f34921b.remove();
                     }
                     arrayList2.clear();
                     int size2 = arrayList.size();
@@ -50,10 +50,10 @@ public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
                             position.title(tL_messageMediaVenue.title);
                             position.snippet(tL_messageMediaVenue.address);
                             ?? obj = new Object();
-                            obj.f34895a = i11;
+                            obj.f34920a = i11;
                             IMapsProvider.IMarker addMarker = kd0Var.I.addMarker(position);
-                            obj.f34896b = addMarker;
-                            obj.f34897c = tL_messageMediaVenue;
+                            obj.f34921b = addMarker;
+                            obj.f34922c = tL_messageMediaVenue;
                             addMarker.setTag(obj);
                             arrayList2.add(obj);
                         } catch (Exception e) {
@@ -64,8 +64,8 @@ public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
                 }
                 return;
             default:
-                kd0 kd0Var2 = this.f37372b;
-                kd0Var2.f35118t0 = false;
+                kd0 kd0Var2 = this.f37394b;
+                kd0Var2.f35140t0 = false;
                 kd0Var2.B0();
                 return;
         }
@@ -73,9 +73,9 @@ public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
 
     @Override
     public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37371a) {
+        switch (this.f37393a) {
             case 1:
-                kd0 kd0Var = this.f37372b;
+                kd0 kd0Var = this.f37394b;
                 if (kd0Var.getParentActivity() != null) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -89,7 +89,7 @@ public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
                 }
                 return;
             default:
-                kd0 kd0Var2 = this.f37372b;
+                kd0 kd0Var2 = this.f37394b;
                 if (kd0Var2.getParentActivity() != null) {
                     try {
                         kd0Var2.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
@@ -103,7 +103,7 @@ public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
 
     @Override
     public void m(int i10) {
-        IMapsProvider.IMap iMap = this.f37372b.I;
+        IMapsProvider.IMap iMap = this.f37394b.I;
         if (iMap != null) {
             if (i10 == 2) {
                 iMap.setMapType(0);
@@ -120,37 +120,37 @@ public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
         View childAt;
         s4.c1 U;
         int dp;
-        kd0 kd0Var = this.f37372b;
+        kd0 kd0Var = this.f37394b;
         int i11 = kd0Var.G0;
         if (i10 == 1) {
             kd0Var.y0(true);
             if (kd0Var.m0 != null) {
                 kd0Var.X.setVisibility(0);
-                hd0 hd0Var = kd0Var.f35123x;
+                hd0 hd0Var = kd0Var.f35145x;
                 IMapsProvider.IMarker iMarker = kd0Var.m0;
-                HashMap hashMap = hd0Var.f34171a;
+                HashMap hashMap = hd0Var.f34187a;
                 View view = (View) hashMap.get(iMarker);
                 if (view != null) {
                     hd0Var.removeView(view);
                     hashMap.remove(iMarker);
                 }
                 kd0Var.m0 = null;
-                kd0Var.f35110n0 = null;
-                kd0Var.f35111o0 = null;
+                kd0Var.f35132n0 = null;
+                kd0Var.f35133o0 = null;
             }
-            kd0Var.f35105i0 = -1L;
-            if (kd0Var.f35106j0) {
-                kd0Var.f35106j0 = false;
+            kd0Var.f35127i0 = -1L;
+            if (kd0Var.f35128j0) {
+                kd0Var.f35128j0 = false;
                 kd0Var.C0();
             }
             if (!kd0Var.Q) {
                 if ((i11 == 0 || i11 == 1) && kd0Var.U.getChildCount() > 0 && (childAt = kd0Var.U.getChildAt(0)) != null) {
-                    org.telegram.ui.Components.vl0 vl0Var = kd0Var.U;
-                    View G = vl0Var.G(childAt);
+                    org.telegram.ui.Components.yl0 yl0Var = kd0Var.U;
+                    View G = yl0Var.G(childAt);
                     if (G == null) {
                         U = null;
                     } else {
-                        U = vl0Var.U(G);
+                        U = yl0Var.U(G);
                     }
                     if (U != null && U.b() == 0) {
                         if (i11 == 0) {
@@ -174,8 +174,8 @@ public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
     public boolean onInterceptTouchEvent(MotionEvent motionEvent, IMapsProvider.ICallableMethod iCallableMethod) {
         MotionEvent motionEvent2;
         Location location;
-        int i10 = this.f37371a;
-        kd0 kd0Var = this.f37372b;
+        int i10 = this.f37393a;
+        kd0 kd0Var = this.f37394b;
         switch (i10) {
             case 6:
                 if (kd0Var.N != 0.0f) {
@@ -191,44 +191,44 @@ public final class sc0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
                 }
                 return booleanValue;
             default:
-                if (kd0Var.B0 == null && kd0Var.f35127z0 == null) {
+                if (kd0Var.B0 == null && kd0Var.f35149z0 == null) {
                     if (motionEvent.getAction() == 0) {
-                        AnimatorSet animatorSet = kd0Var.f35108l0;
+                        AnimatorSet animatorSet = kd0Var.f35130l0;
                         if (animatorSet != null) {
                             animatorSet.cancel();
                         }
                         AnimatorSet animatorSet2 = new AnimatorSet();
-                        kd0Var.f35108l0 = animatorSet2;
+                        kd0Var.f35130l0 = animatorSet2;
                         animatorSet2.setDuration(200L);
-                        kd0Var.f35108l0.playTogether(ObjectAnimator.ofFloat(kd0Var.X, View.TRANSLATION_Y, kd0Var.f35126y0 - AndroidUtilities.dp(10.0f)));
-                        kd0Var.f35108l0.start();
+                        kd0Var.f35130l0.playTogether(ObjectAnimator.ofFloat(kd0Var.X, View.TRANSLATION_Y, kd0Var.f35148y0 - AndroidUtilities.dp(10.0f)));
+                        kd0Var.f35130l0.start();
                     } else if (motionEvent.getAction() == 1) {
-                        AnimatorSet animatorSet3 = kd0Var.f35108l0;
+                        AnimatorSet animatorSet3 = kd0Var.f35130l0;
                         if (animatorSet3 != null) {
                             animatorSet3.cancel();
                         }
                         kd0Var.N = 0.0f;
                         AnimatorSet animatorSet4 = new AnimatorSet();
-                        kd0Var.f35108l0 = animatorSet4;
+                        kd0Var.f35130l0 = animatorSet4;
                         animatorSet4.setDuration(200L);
-                        kd0Var.f35108l0.playTogether(ObjectAnimator.ofFloat(kd0Var.X, View.TRANSLATION_Y, kd0Var.f35126y0));
-                        kd0Var.f35108l0.start();
+                        kd0Var.f35130l0.playTogether(ObjectAnimator.ofFloat(kd0Var.X, View.TRANSLATION_Y, kd0Var.f35148y0));
+                        kd0Var.f35130l0.start();
                         kd0Var.T.I();
                     }
                     if (motionEvent.getAction() == 2) {
                         if (!kd0Var.C0) {
-                            ImageView imageView = kd0Var.f35093a;
+                            ImageView imageView = kd0Var.f35115a;
                             int i11 = org.telegram.ui.ActionBar.j6.ui;
                             imageView.setColorFilter(new PorterDuffColorFilter(kd0Var.getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
-                            kd0Var.f35093a.setTag(Integer.valueOf(i11));
+                            kd0Var.f35115a.setTag(Integer.valueOf(i11));
                             kd0Var.C0 = true;
                         }
                         IMapsProvider.IMap iMap = kd0Var.I;
-                        if (iMap != null && (location = kd0Var.f35124x0) != null) {
+                        if (iMap != null && (location = kd0Var.f35146x0) != null) {
                             location.setLatitude(iMap.getCameraPosition().target.latitude);
-                            kd0Var.f35124x0.setLongitude(kd0Var.I.getCameraPosition().target.longitude);
+                            kd0Var.f35146x0.setLongitude(kd0Var.I.getCameraPosition().target.longitude);
                         }
-                        kd0Var.T.L(kd0Var.f35124x0);
+                        kd0Var.T.L(kd0Var.f35146x0);
                     }
                 }
                 return ((Boolean) iCallableMethod.call(motionEvent)).booleanValue();

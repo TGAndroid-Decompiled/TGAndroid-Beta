@@ -3,11 +3,11 @@ package zd;
 import java.util.concurrent.CancellationException;
 import v7.s7;
 public abstract class l0 extends ge.i {
-    public int f49204c;
+    public int f49224c;
 
     public l0(int i10) {
         super(0L, ge.k.f9649g);
-        this.f49204c = i10;
+        this.f49224c = i10;
     }
 
     public abstract void c(Object obj, CancellationException cancellationException);
@@ -24,7 +24,7 @@ public abstract class l0 extends ge.i {
         if (vVar == null) {
             return null;
         }
-        return vVar.f49238a;
+        return vVar.f49258a;
     }
 
     public final void i(Throwable th2, Throwable th3) {

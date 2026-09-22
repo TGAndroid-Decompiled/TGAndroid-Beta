@@ -99,13 +99,13 @@ public class f extends i8 {
     }
 
     @Override
-    public Typeface b(Context context, o0.h[] hVarArr, int i10) {
+    public Typeface b(Context context, o0.i[] iVarArr, int i10) {
         File file;
         FileInputStream fileInputStream;
         String readlink;
-        if (hVarArr.length >= 1) {
+        if (iVarArr.length >= 1) {
             try {
-                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(hVarArr, i10).f15489a, "r", null);
+                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(iVarArr, i10).f15504a, "r", null);
                 if (openFileDescriptor == null) {
                     if (openFileDescriptor != null) {
                         openFileDescriptor.close();

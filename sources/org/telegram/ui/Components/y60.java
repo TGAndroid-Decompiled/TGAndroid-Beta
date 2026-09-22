@@ -1,31 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class y60 extends org.telegram.ui.Cells.f9 {
-    public final org.telegram.ui.Cells.u6 v;
-    public boolean f30463w;
-    public final z60 f30464x;
-
-    public y60(z60 z60Var, Context context) {
-        super(context);
-        this.f30464x = z60Var;
-        this.v = new org.telegram.ui.Cells.u6(this, 17);
-    }
+public final class y60 extends FrameLayout {
+    public TextView f30534a;
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        org.telegram.ui.Cells.u6 u6Var = this.v;
-        AndroidUtilities.cancelRunOnUIThread(u6Var);
-        if (this.f30463w) {
-            AndroidUtilities.runOnUIThread(u6Var, 500L);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.v);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(84.0f), 1073741824));
     }
 }

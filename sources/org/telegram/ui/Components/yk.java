@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class yk extends s4.d0 {
-    public final hg.e0 f30569r;
+    public final hg.e0 f30669r;
 
     public yk(hg.e0 e0Var, Context context) {
         super(context);
-        this.f30569r = e0Var;
+        this.f30669r = e0Var;
     }
 
     @Override
     public final int k(int i10, View view) {
         int k10 = super.k(i10, view);
-        gl glVar = (gl) this.f30569r.V;
-        return k10 - (glVar.P.getPaddingTop() - (glVar.A0 - glVar.f24414z0));
+        gl glVar = (gl) this.f30669r.V;
+        return k10 - (glVar.P.getPaddingTop() - (glVar.A0 - glVar.f24593z0));
     }
 
     @Override

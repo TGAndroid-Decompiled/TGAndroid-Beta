@@ -3,24 +3,24 @@ package pg;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.o81;
-public final class q extends o81 {
-    public final ai.d1 f41231a;
+import org.telegram.ui.Components.q81;
+public final class q extends q81 {
+    public final ai.d1 f41250a;
 
     public q(ai.d1 d1Var) {
-        this.f41231a = d1Var;
+        this.f41250a = d1Var;
     }
 
     @Override
     public final View d(int i10) {
-        ai.d1 d1Var = this.f41231a;
+        ai.d1 d1Var = this.f41250a;
         if (i10 != 1) {
             if (i10 != 2) {
-                return (t) d1Var.f686b;
+                return (t) d1Var.f683b;
             }
             return (w) d1Var.d;
         }
-        return (s) d1Var.f687c;
+        return (s) d1Var.f684c;
     }
 
     @Override

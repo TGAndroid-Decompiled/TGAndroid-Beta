@@ -8,19 +8,19 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
 public final class gg implements Runnable {
-    public final int f16462a;
-    public final long f16463b;
-    public final boolean f16464c;
+    public final int f16477a;
+    public final long f16478b;
+    public final boolean f16479c;
     public final int d;
     public final Object e;
-    public final Object f16465f;
+    public final Object f16480f;
 
     public gg(BaseController baseController, long j3, List list, boolean z10, int i10, int i11) {
-        this.f16462a = i11;
+        this.f16477a = i11;
         this.e = baseController;
-        this.f16463b = j3;
-        this.f16465f = list;
-        this.f16464c = z10;
+        this.f16478b = j3;
+        this.f16480f = list;
+        this.f16479c = z10;
         this.d = i10;
     }
 
@@ -28,15 +28,15 @@ public final class gg implements Runnable {
     public final void run() {
         ai.u9 u9Var;
         TL_stories.StoryItem storyItem;
-        int i10 = this.f16462a;
-        Object obj = this.f16465f;
+        int i10 = this.f16477a;
+        Object obj = this.f16480f;
         Object obj2 = this.e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj2).lambda$saveTopics$47(this.f16463b, (List) obj, this.f16464c, this.d);
+                ((MessagesStorage) obj2).lambda$saveTopics$47(this.f16478b, (List) obj, this.f16479c, this.d);
                 return;
             case 1:
-                ((TopicsController) obj2).lambda$loadTopics$0(this.f16463b, (ArrayList) obj, this.f16464c, this.d);
+                ((TopicsController) obj2).lambda$loadTopics$0(this.f16478b, (ArrayList) obj, this.f16479c, this.d);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj2;
@@ -48,7 +48,7 @@ public final class gg implements Runnable {
                     while (true) {
                         u9Var = null;
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f18563id == this.d) {
+                            if (tL_stories_stories.stories.get(i11).f18578id == this.d) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -58,7 +58,7 @@ public final class gg implements Runnable {
                         }
                     }
                     if (storyItem != null) {
-                        long j3 = this.f16463b;
+                        long j3 = this.f16478b;
                         storyItem.dialogId = j3;
                         org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                         if (R != null) {
@@ -72,8 +72,8 @@ public final class gg implements Runnable {
                             R.getOrCreateStoryViewer().v();
                             ArrayList arrayList = new ArrayList();
                             arrayList.add(Long.valueOf(j3));
-                            if (this.f16464c) {
-                                R.getOrCreateStoryViewer().f1118w1 = true;
+                            if (this.f16479c) {
+                                R.getOrCreateStoryViewer().f1115w1 = true;
                             }
                             R.getOrCreateStoryViewer().G(launchActivity, storyItem, arrayList, 0, null, null, u9Var2, false);
                             return;
@@ -87,11 +87,11 @@ public final class gg implements Runnable {
     }
 
     public gg(LaunchActivity launchActivity, TLObject tLObject, int i10, long j3, boolean z10) {
-        this.f16462a = 2;
+        this.f16477a = 2;
         this.e = launchActivity;
-        this.f16465f = tLObject;
+        this.f16480f = tLObject;
         this.d = i10;
-        this.f16463b = j3;
-        this.f16464c = z10;
+        this.f16478b = j3;
+        this.f16479c = z10;
     }
 }

@@ -32,7 +32,7 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.kn;
 import org.telegram.ui.mb1;
-import w7.b6;
+import w7.a6;
 import w7.y5;
 public final class k extends FrameLayout {
     public int E;
@@ -46,35 +46,35 @@ public final class k extends FrameLayout {
     public org.telegram.ui.r M;
     public org.telegram.ui.r N;
     public AsyncTask O;
-    public final m5.e f38956a;
-    public boolean f38957b;
-    public final org.telegram.ui.Cells.z f38958c;
+    public final m5.e f38977a;
+    public boolean f38978b;
+    public final org.telegram.ui.Cells.z f38979c;
     public final FrameLayout d;
     public final FrameLayout e;
-    public final ImageView f38959f;
+    public final ImageView f38980f;
     public final org.telegram.ui.Cells.z h;
-    public final ImageView f38960n;
-    public final TextView f38961r;
-    public final TextView f38962s;
+    public final ImageView f38981n;
+    public final TextView f38982r;
+    public final TextView f38983s;
     public final kn v;
-    public final c f38963w;
-    public final ArrayList f38964x;
-    public final i f38965y;
+    public final c f38984w;
+    public final ArrayList f38985x;
+    public final i f38986y;
 
     public k(Activity activity) {
         super(activity);
         int i10 = UserConfig.selectedAccount;
-        this.f38964x = new ArrayList();
+        this.f38985x = new ArrayList();
         this.J = 0.0f;
         setWillNotDraw(false);
         int i11 = UserConfig.selectedAccount;
         hi.a aVar = new hi.a(this, 6);
         a aVar2 = new a(this);
         m5.e eVar = new m5.e((f6) null);
-        this.f38956a = eVar;
+        this.f38977a = eVar;
         c cVar = new c(this, activity, i11, aVar, aVar2, eVar);
-        this.f38963w = cVar;
-        cVar.Y2.f25678r = false;
+        this.f38984w = cVar;
+        cVar.Y2.f26342r = false;
         cVar.setOverScrollMode(2);
         cVar.setPadding(0, 0, 0, 0);
         addView(cVar, y5.e(-1, -1, 119));
@@ -83,16 +83,16 @@ public final class k extends FrameLayout {
         FrameLayout frameLayout2 = new FrameLayout(activity);
         this.e = frameLayout2;
         org.telegram.ui.Cells.z Z = j6.Z(this.G, this.I, 15, 15);
-        this.f38958c = Z;
+        this.f38979c = Z;
         frameLayout2.setBackground(Z);
-        b6.b(frameLayout2, 0.04f, 1.25f);
+        a6.b(frameLayout2, 0.04f, 1.25f);
         frameLayout.addView(frameLayout2, y5.d(-1, -2.0f, 7, 12.0f, 0.0f, 12.0f, 15.0f));
         ImageView imageView = new ImageView(activity);
-        this.f38959f = imageView;
+        this.f38980f = imageView;
         frameLayout2.addView(imageView, y5.d(24, 24.0f, 19, 16.0f, 16.0f, 16.0f, 16.0f));
         ImageView imageView2 = new ImageView(activity);
-        this.f38960n = imageView2;
-        b6.a(imageView2);
+        this.f38981n = imageView2;
+        a6.a(imageView2);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(R.drawable.msg_copy);
         org.telegram.ui.Cells.z Z2 = j6.Z(0, 0, 6, 6);
@@ -103,19 +103,19 @@ public final class k extends FrameLayout {
         linearLayout.setOrientation(1);
         frameLayout2.addView(linearLayout, y5.d(-1, -2.0f, 16, 54.0f, 9.0f, 54.0f, 9.0f));
         TextView textView = new TextView(activity);
-        this.f38961r = textView;
+        this.f38982r = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setMaxLines(4);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         linearLayout.addView(textView, y5.t(-1, -2, 55, 0, 0, 0, 2));
         TextView textView2 = new TextView(activity);
-        this.f38962s = textView2;
+        this.f38983s = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setMaxLines(3);
         textView2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         linearLayout.addView(textView2, y5.t(-1, -2, 55, 0, 0, 0, 0));
-        this.f38965y = new i(null, i10, new i2.g0(this, 28));
+        this.f38986y = new i(null, i10, new i2.g0(this, 28));
         this.v = new kn(activity, 28);
         int i12 = j6.Pk;
         c(j6.w0(null, i12, false), AndroidUtilities.computePerceivedBrightness(j6.w0(null, i12, false)) >= 0.721f ? -16777216 : -1);
@@ -156,7 +156,7 @@ public final class k extends FrameLayout {
                 for (int i10 = 0; i10 < jSONArray.length(); i10++) {
                     JSONObject jSONObject = jSONArray.getJSONObject(i10);
                     j jVar2 = new j(jSONObject.optString("name"), jSONObject.optLong("usage", System.currentTimeMillis()));
-                    jVar2.f38945c = jSONObject.optDouble("rank", 0.0d);
+                    jVar2.f38966c = jSONObject.optDouble("rank", 0.0d);
                     arrayList.add(jVar2);
                 }
                 Collections.sort(arrayList, new mb1(4));
@@ -171,7 +171,7 @@ public final class k extends FrameLayout {
                     break;
                 }
                 j jVar3 = (j) arrayList.get(i11);
-                if (TextUtils.equals(jVar3.f38943a, str)) {
+                if (TextUtils.equals(jVar3.f38964a, str)) {
                     jVar = jVar3;
                     break;
                 }
@@ -183,19 +183,19 @@ public final class k extends FrameLayout {
         }
         long currentTimeMillis = System.currentTimeMillis();
         if (jVar != null) {
-            jVar.f38945c += Math.exp((currentTimeMillis - jVar.f38944b) / 2419200.0d);
+            jVar.f38966c += Math.exp((currentTimeMillis - jVar.f38965b) / 2419200.0d);
         } else {
             jVar = new j(str, currentTimeMillis);
             arrayList.add(jVar);
         }
-        jVar.f38944b = currentTimeMillis;
+        jVar.f38965b = currentTimeMillis;
         JSONArray jSONArray2 = new JSONArray();
         for (int i12 = 0; i12 < Math.min(arrayList.size(), 20); i12++) {
             j jVar4 = (j) arrayList.get(i12);
             JSONObject jSONObject2 = new JSONObject();
-            jSONObject2.put("name", jVar4.f38943a);
-            jSONObject2.put("rank", jVar4.f38945c);
-            jSONObject2.put("usage", jVar4.f38944b);
+            jSONObject2.put("name", jVar4.f38964a);
+            jSONObject2.put("rank", jVar4.f38966c);
+            jSONObject2.put("usage", jVar4.f38965b);
             jSONArray2.put(jSONObject2);
         }
         sharedPreferences.edit().putString("queries_json", jSONArray2.toString()).apply();
@@ -217,29 +217,29 @@ public final class k extends FrameLayout {
         this.F = i10;
         this.I = i0.a.d(AndroidUtilities.lerp(0.12f, 0.22f, f7), i10, i11);
         int i12 = this.G;
-        org.telegram.ui.Cells.z zVar = this.f38958c;
+        org.telegram.ui.Cells.z zVar = this.f38979c;
         j6.B1(zVar, i12, false);
         j6.B1(zVar, this.I, true);
         this.e.invalidate();
-        this.f38961r.setTextColor(i11);
-        this.f38962s.setTextColor(j6.l1(0.6f, i11));
-        ImageView imageView = this.f38959f;
+        this.f38982r.setTextColor(i11);
+        this.f38983s.setTextColor(j6.l1(0.6f, i11));
+        ImageView imageView = this.f38980f;
         if (imageView.getColorFilter() != null) {
             imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
         }
-        this.f38960n.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
+        this.f38981n.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
         j6.B1(this.h, j6.l1(1.5f, this.I), true);
         int v = j6.v(i10, j6.l1(0.05f, i11));
         int v9 = j6.v(i10, j6.l1(0.55f, i11));
-        m5.e eVar = this.f38956a;
-        SparseIntArray sparseIntArray = (SparseIntArray) eVar.f14953b;
-        ((SparseIntArray) eVar.f14953b).put(j6.f19094d6, this.F);
+        m5.e eVar = this.f38977a;
+        SparseIntArray sparseIntArray = (SparseIntArray) eVar.f14968b;
+        ((SparseIntArray) eVar.f14968b).put(j6.f19109d6, this.F);
         sparseIntArray.put(j6.G6, i11);
         sparseIntArray.put(j6.e7, v);
         sparseIntArray.put(j6.f7, v9);
         sparseIntArray.put(j6.G8, j6.l1(0.2f, i11));
-        sparseIntArray.put(j6.f19184i6, j6.l1(AndroidUtilities.lerp(0.05f, 0.12f, f7), i11));
-        this.f38963w.g1();
+        sparseIntArray.put(j6.f19199i6, j6.l1(AndroidUtilities.lerp(0.05f, 0.12f, f7), i11));
+        this.f38984w.g1();
     }
 
     @Override
@@ -262,7 +262,7 @@ public final class k extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        i iVar = this.f38965y;
+        i iVar = this.f38986y;
         if (iVar != null && this.K) {
             iVar.a();
         }
@@ -271,7 +271,7 @@ public final class k extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        i iVar = this.f38965y;
+        i iVar = this.f38986y;
         if (iVar != null) {
             iVar.c();
         }
@@ -284,11 +284,11 @@ public final class k extends FrameLayout {
             asyncTask.cancel(true);
             this.O = null;
         }
-        ArrayList arrayList = this.f38964x;
+        ArrayList arrayList = this.f38985x;
         boolean z10 = !arrayList.isEmpty();
         if (TextUtils.isEmpty(str)) {
             arrayList.clear();
-            c cVar = this.f38963w;
+            c cVar = this.f38984w;
             cVar.Y2.N(true);
             if (z10 != (!arrayList.isEmpty())) {
                 cVar.X2.h1(0, 0);
@@ -297,7 +297,7 @@ public final class k extends FrameLayout {
             return;
         }
         k1 k1Var = new k1(new i3(4, this, z10));
-        String str3 = p1.a().f39019c;
+        String str3 = p1.a().f39040c;
         if (str3 != null) {
             StringBuilder u10 = a4.a.u(str3);
             u10.append(URLEncoder.encode(str));
@@ -324,7 +324,7 @@ public final class k extends FrameLayout {
 
     public void setOpened(boolean z10) {
         boolean z11;
-        i iVar = this.f38965y;
+        i iVar = this.f38986y;
         if (z10 && iVar != null) {
             z11 = true;
         } else {

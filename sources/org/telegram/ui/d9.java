@@ -7,12 +7,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class d9 extends org.telegram.ui.Components.uq0 {
-    public final org.telegram.ui.ActionBar.f3 f32968b1;
+public final class d9 extends org.telegram.ui.Components.wq0 {
+    public final org.telegram.ui.ActionBar.f3 f32989b1;
 
     public d9(Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.f3 f3Var) {
         super(context, null, str, false, str2, false, f6Var);
-        this.f32968b1 = f3Var;
+        this.f32989b1 = f3Var;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class d9 extends org.telegram.ui.Components.uq0 {
             return;
         }
         if (iVar != null && iVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) iVar.n(0)).f18332id;
+            long j3 = ((TLRPC.Dialog) iVar.n(0)).f18347id;
             if (j3 != 0 && j3 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j3, true));
             } else {
@@ -38,8 +38,8 @@ public final class d9 extends org.telegram.ui.Components.uq0 {
             }
             formatString = LocaleController.formatString(i11, LocaleController.formatPluralString("Chats", m10, new Object[0]));
         }
-        org.telegram.ui.Components.pc Q = new org.telegram.ui.Components.xc(this.f32968b1.topBulletinContainer, this.resourcesProvider).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f27260r = false;
+        org.telegram.ui.Components.pc Q = new org.telegram.ui.Components.xc(this.f32989b1.topBulletinContainer, this.resourcesProvider).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
+        Q.f27319r = false;
         Q.j();
     }
 }

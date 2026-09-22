@@ -62,11 +62,11 @@ public final class d extends e {
                 alertDialog.setOnDismissListener(null);
                 iVar.A0 = alertDialog;
                 iVar.B0 = onCancelListener;
-                iVar.f2476x0 = false;
-                iVar.f2477y0 = true;
+                iVar.f2475x0 = false;
+                iVar.f2476y0 = true;
                 s10.getClass();
                 androidx.fragment.app.a aVar = new androidx.fragment.app.a(s10);
-                aVar.f2380o = true;
+                aVar.f2379o = true;
                 aVar.f(0, iVar, str);
                 aVar.e(false, true);
                 return;
@@ -126,29 +126,29 @@ public final class d extends e {
             n6.l.h(systemService);
             NotificationManager notificationManager = (NotificationManager) systemService;
             t tVar = new t(context, null);
-            tVar.f7851t = true;
+            tVar.f7850t = true;
             tVar.h(16, true);
             tVar.e = t.d(d10);
             e0.o oVar = new e0.o(false);
-            oVar.f7821f = t.d(e);
+            oVar.f7820f = t.d(e);
             tVar.n(oVar);
             PackageManager packageManager = context.getPackageManager();
-            if (u6.b.f43928b == null) {
-                u6.b.f43928b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+            if (u6.b.f43949b == null) {
+                u6.b.f43949b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
             }
-            if (u6.b.f43928b.booleanValue()) {
+            if (u6.b.f43949b.booleanValue()) {
                 tVar.E.icon = context.getApplicationInfo().icon;
-                tVar.f7841j = 2;
+                tVar.f7840j = 2;
                 if (u6.b.f(context)) {
                     tVar.a(2131230970, resources.getString(2131689573), pendingIntent);
                 } else {
-                    tVar.f7839g = pendingIntent;
+                    tVar.f7838g = pendingIntent;
                 }
             } else {
                 tVar.E.icon = 17301642;
                 tVar.p(resources.getString(2131689565));
                 tVar.E.when = System.currentTimeMillis();
-                tVar.f7839g = pendingIntent;
+                tVar.f7838g = pendingIntent;
                 tVar.f(e);
             }
             if (u6.b.d()) {
@@ -163,7 +163,7 @@ public final class d extends e {
                     notificationChannel.setName(string);
                     notificationManager.createNotificationChannel(notificationChannel);
                 }
-                tVar.f7855y = "com.google.android.gms.availability";
+                tVar.f7854y = "com.google.android.gms.availability";
             }
             Notification b10 = tVar.b();
             if (i10 != 1 && i10 != 2 && i10 != 3) {

@@ -5,51 +5,51 @@ import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 public final class k implements w {
-    public final WeakReference f3643a;
-    public final j f3644b = new j(this);
+    public final WeakReference f3642a;
+    public final j f3643b = new j(this);
 
     public k(i iVar) {
-        this.f3643a = new WeakReference(iVar);
+        this.f3642a = new WeakReference(iVar);
     }
 
     @Override
     public final void a(Runnable runnable, Executor executor) {
-        this.f3644b.a(runnable, executor);
+        this.f3643b.a(runnable, executor);
     }
 
     @Override
     public final boolean cancel(boolean z10) {
-        i iVar = (i) this.f3643a.get();
-        boolean cancel = this.f3644b.cancel(z10);
+        i iVar = (i) this.f3642a.get();
+        boolean cancel = this.f3643b.cancel(z10);
         if (cancel && iVar != null) {
-            iVar.f3639a = null;
-            iVar.f3640b = null;
-            iVar.f3641c.k(null);
+            iVar.f3638a = null;
+            iVar.f3639b = null;
+            iVar.f3640c.k(null);
         }
         return cancel;
     }
 
     @Override
     public final Object get() {
-        return this.f3644b.get();
+        return this.f3643b.get();
     }
 
     @Override
     public final boolean isCancelled() {
-        return this.f3644b.f3636a instanceof a;
+        return this.f3643b.f3635a instanceof a;
     }
 
     @Override
     public final boolean isDone() {
-        return this.f3644b.isDone();
+        return this.f3643b.isDone();
     }
 
     public final String toString() {
-        return this.f3644b.toString();
+        return this.f3643b.toString();
     }
 
     @Override
     public final Object get(long j3, TimeUnit timeUnit) {
-        return this.f3644b.get(j3, timeUnit);
+        return this.f3643b.get(j3, timeUnit);
     }
 }

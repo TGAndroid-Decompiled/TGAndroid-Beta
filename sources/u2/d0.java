@@ -8,11 +8,11 @@ public interface d0 extends e1 {
 
     void k(c0 c0Var, long j3);
 
-    long l();
+    long m();
 
-    long q(x2.s[] sVarArr, boolean[] zArr, c1[] c1VarArr, boolean[] zArr2, long j3);
+    long r(x2.s[] sVarArr, boolean[] zArr, c1[] c1VarArr, boolean[] zArr2, long j3);
 
-    p1 r();
+    p1 s();
 
-    long t(long j3, i2.p1 p1Var);
+    long u(long j3, i2.p1 p1Var);
 }

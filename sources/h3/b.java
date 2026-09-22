@@ -43,7 +43,7 @@ public final class b implements o {
     public final boolean a(p pVar) {
         c3.b.s(pVar, false);
         v vVar = new v(4);
-        ((l) pVar).i(vVar.f7934a, 0, 4, false);
+        ((l) pVar).h(vVar.f7933a, 0, 4, false);
         if (vVar.z() != 1716281667) {
             return false;
         }
@@ -78,7 +78,7 @@ public final class b implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8084b;
+        g0 g0Var = i0.f8083b;
         return a1.e;
     }
 
@@ -115,7 +115,7 @@ public final class b implements o {
                                 if (this.f10126n == -1) {
                                     u uVar2 = this.f10121i;
                                     pVar.p();
-                                    pVar.l(1);
+                                    pVar.j(1);
                                     byte[] bArr2 = new byte[1];
                                     pVar.a(0, 1, bArr2);
                                     if ((bArr2[0] & 1) == 1) {
@@ -123,12 +123,12 @@ public final class b implements o {
                                     } else {
                                         z11 = false;
                                     }
-                                    pVar.l(2);
+                                    pVar.j(2);
                                     if (!z11) {
                                         i14 = 6;
                                     }
                                     v vVar = new v(i14);
-                                    byte[] bArr3 = vVar.f7934a;
+                                    byte[] bArr3 = vVar.f7933a;
                                     int i16 = 0;
                                     while (i16 < i14) {
                                         int f7 = pVar.f(i16, i14 - i16, bArr3);
@@ -142,7 +142,7 @@ public final class b implements o {
                                     try {
                                         long E = vVar.E();
                                         if (!z11) {
-                                            E *= uVar2.f3803b;
+                                            E *= uVar2.f3802b;
                                         }
                                         j12 = E;
                                     } catch (NumberFormatException unused) {
@@ -155,9 +155,9 @@ public final class b implements o {
                                     }
                                 } else {
                                     v vVar2 = this.f10117b;
-                                    int i17 = vVar2.f7936c;
+                                    int i17 = vVar2.f7935c;
                                     if (i17 < 32768) {
-                                        int read = pVar.read(vVar2.f7934a, i17, 32768 - i17);
+                                        int read = pVar.read(vVar2.f7933a, i17, 32768 - i17);
                                         if (read != -1) {
                                             z12 = false;
                                         }
@@ -165,36 +165,36 @@ public final class b implements o {
                                             vVar2.I(i17 + read);
                                         } else if (vVar2.a() == 0) {
                                             u uVar3 = this.f10121i;
-                                            String str = d0.f7888a;
+                                            String str = d0.f7887a;
                                             this.f10119f.c((this.f10126n * 1000000) / uVar3.e, 1, this.f10125m, 0, null);
                                             return -1;
                                         }
                                     } else {
                                         z12 = false;
                                     }
-                                    int i18 = vVar2.f7935b;
+                                    int i18 = vVar2.f7934b;
                                     int i19 = this.f10125m;
                                     int i20 = this.f10122j;
                                     if (i19 < i20) {
                                         vVar2.K(Math.min(i20 - i19, vVar2.a()));
                                     }
                                     this.f10121i.getClass();
-                                    int i21 = vVar2.f7935b;
+                                    int i21 = vVar2.f7934b;
                                     while (true) {
-                                        int i22 = vVar2.f7936c - 16;
+                                        int i22 = vVar2.f7935c - 16;
                                         s sVar2 = this.d;
                                         if (i21 <= i22) {
                                             vVar2.J(i21);
                                             if (c3.b.b(vVar2, this.f10121i, this.f10123k, sVar2)) {
                                                 vVar2.J(i21);
-                                                j11 = sVar2.f3798a;
+                                                j11 = sVar2.f3797a;
                                                 break;
                                             }
                                             i21++;
                                         } else {
                                             if (z12) {
                                                 while (true) {
-                                                    int i23 = vVar2.f7936c;
+                                                    int i23 = vVar2.f7935c;
                                                     if (i21 <= i23 - this.f10122j) {
                                                         vVar2.J(i21);
                                                         try {
@@ -202,12 +202,12 @@ public final class b implements o {
                                                         } catch (IndexOutOfBoundsException unused2) {
                                                             z10 = false;
                                                         }
-                                                        if (vVar2.f7935b > vVar2.f7936c) {
+                                                        if (vVar2.f7934b > vVar2.f7935c) {
                                                             z10 = false;
                                                         }
                                                         if (z10) {
                                                             vVar2.J(i21);
-                                                            j11 = sVar2.f3798a;
+                                                            j11 = sVar2.f3797a;
                                                             break;
                                                         }
                                                         i21++;
@@ -222,23 +222,23 @@ public final class b implements o {
                                             j11 = -1;
                                         }
                                     }
-                                    int i24 = vVar2.f7935b - i18;
+                                    int i24 = vVar2.f7934b - i18;
                                     vVar2.J(i18);
                                     this.f10119f.d(i24, vVar2);
                                     int i25 = this.f10125m + i24;
                                     this.f10125m = i25;
                                     if (j11 != -1) {
                                         u uVar4 = this.f10121i;
-                                        String str2 = d0.f7888a;
+                                        String str2 = d0.f7887a;
                                         this.f10119f.c((this.f10126n * 1000000) / uVar4.e, 1, i25, 0, null);
                                         this.f10125m = 0;
                                         this.f10126n = j11;
                                     }
-                                    int length = vVar2.f7934a.length - vVar2.f7936c;
+                                    int length = vVar2.f7933a.length - vVar2.f7935c;
                                     if (vVar2.a() < 16 && length < 16) {
                                         int a2 = vVar2.a();
-                                        byte[] bArr4 = vVar2.f7934a;
-                                        System.arraycopy(bArr4, vVar2.f7935b, bArr4, 0, a2);
+                                        byte[] bArr4 = vVar2.f7933a;
+                                        System.arraycopy(bArr4, vVar2.f7934b, bArr4, 0, a2);
                                         vVar2.J(0);
                                         vVar2.I(a2);
                                     }
@@ -249,41 +249,41 @@ public final class b implements o {
                         }
                         pVar.p();
                         v vVar3 = new v(2);
-                        pVar.a(0, 2, vVar3.f7934a);
+                        pVar.a(0, 2, vVar3.f7933a);
                         int D = vVar3.D();
                         if ((D >> 2) == 16382) {
                             pVar.p();
                             this.f10123k = D;
                             q qVar = this.e;
-                            String str3 = d0.f7888a;
+                            String str3 = d0.f7887a;
                             long position = pVar.getPosition();
                             long length2 = pVar.getLength();
                             this.f10121i.getClass();
                             u uVar5 = this.f10121i;
-                            of.b bVar = uVar5.f3809k;
-                            if (bVar != null && ((long[]) bVar.f15682b).length > 0) {
+                            of.b bVar = uVar5.f3808k;
+                            if (bVar != null && ((long[]) bVar.f15697b).length > 0) {
                                 tVar = new t(uVar5, position, 0);
                                 i10 = 0;
-                            } else if (length2 != -1 && uVar5.f3808j > 0) {
+                            } else if (length2 != -1 && uVar5.f3807j > 0) {
                                 int i26 = this.f10123k;
-                                int i27 = uVar5.f3804c;
+                                int i27 = uVar5.f3803c;
                                 d5 d5Var = new d5(uVar5, 2);
                                 a5.a aVar2 = new a5.a(uVar5, i26);
                                 long b10 = uVar5.b();
-                                long j13 = uVar5.f3808j;
+                                long j13 = uVar5.f3807j;
                                 int i28 = uVar5.d;
                                 if (i28 > 0) {
                                     i10 = 0;
                                     j10 = ((i28 + i27) / 2) + 1;
                                 } else {
                                     i10 = 0;
-                                    int i29 = uVar5.f3802a;
-                                    if (i29 == uVar5.f3803b && i29 > 0) {
+                                    int i29 = uVar5.f3801a;
+                                    if (i29 == uVar5.f3802b && i29 > 0) {
                                         j3 = i29;
                                     } else {
                                         j3 = 4096;
                                     }
-                                    j10 = 64 + (((j3 * uVar5.f3806g) * uVar5.h) / 8);
+                                    j10 = 64 + (((j3 * uVar5.f3805g) * uVar5.h) / 8);
                                 }
                                 a aVar3 = new a(d5Var, aVar2, b10, j13, position, length2, j10, Math.max(6, i27));
                                 this.f10124l = aVar3;
@@ -314,30 +314,30 @@ public final class b implements o {
                             pVar.readFully(bArr6, 0, 38);
                             uVar6 = new u(bArr6, i12);
                         } else if (uVar6 != null) {
-                            p0 p0Var = uVar6.f3810l;
+                            p0 p0Var = uVar6.f3809l;
                             if (i30 == i13) {
                                 v vVar4 = new v(i31);
-                                pVar.readFully(vVar4.f7934a, 0, i31);
-                                uVar6 = new u(uVar6.f3802a, uVar6.f3803b, uVar6.f3804c, uVar6.d, uVar6.e, uVar6.f3806g, uVar6.h, uVar6.f3808j, c3.b.u(vVar4), uVar6.f3810l);
+                                pVar.readFully(vVar4.f7933a, 0, i31);
+                                uVar6 = new u(uVar6.f3801a, uVar6.f3802b, uVar6.f3803c, uVar6.d, uVar6.e, uVar6.f3805g, uVar6.h, uVar6.f3807j, c3.b.u(vVar4), uVar6.f3809l);
                             } else {
                                 if (i30 == i12) {
                                     v vVar5 = new v(i31);
-                                    pVar.readFully(vVar5.f7934a, 0, i31);
+                                    pVar.readFully(vVar5.f7933a, 0, i31);
                                     vVar5.K(i12);
-                                    p0 r10 = c3.b.r(Arrays.asList(c3.b.v(vVar5, false, false).f3780a));
+                                    p0 r10 = c3.b.r(Arrays.asList(c3.b.v(vVar5, false, false).f3779a));
                                     if (p0Var != null) {
                                         r10 = p0Var.b(r10);
                                     }
-                                    uVar = new u(uVar6.f3802a, uVar6.f3803b, uVar6.f3804c, uVar6.d, uVar6.e, uVar6.f3806g, uVar6.h, uVar6.f3808j, uVar6.f3809k, r10);
+                                    uVar = new u(uVar6.f3801a, uVar6.f3802b, uVar6.f3803c, uVar6.d, uVar6.e, uVar6.f3805g, uVar6.h, uVar6.f3807j, uVar6.f3808k, r10);
                                 } else if (i30 == i15) {
                                     v vVar6 = new v(i31);
-                                    pVar.readFully(vVar6.f7934a, 0, i31);
+                                    pVar.readFully(vVar6.f7933a, 0, i31);
                                     vVar6.K(4);
                                     p0 p0Var2 = new p0(i0.z(o3.a.d(vVar6)));
                                     if (p0Var != null) {
                                         p0Var2 = p0Var.b(p0Var2);
                                     }
-                                    uVar = new u(uVar6.f3802a, uVar6.f3803b, uVar6.f3804c, uVar6.d, uVar6.e, uVar6.f3806g, uVar6.h, uVar6.f3808j, uVar6.f3809k, p0Var2);
+                                    uVar = new u(uVar6.f3801a, uVar6.f3802b, uVar6.f3803c, uVar6.d, uVar6.e, uVar6.f3805g, uVar6.h, uVar6.f3807j, uVar6.f3808k, p0Var2);
                                 } else {
                                     pVar.q(i31);
                                 }
@@ -346,7 +346,7 @@ public final class b implements o {
                         } else {
                             throw new IllegalArgumentException();
                         }
-                        String str4 = d0.f7888a;
+                        String str4 = d0.f7887a;
                         this.f10121i = uVar6;
                         z13 = h;
                         i12 = 4;
@@ -355,11 +355,11 @@ public final class b implements o {
                         i15 = 6;
                     }
                     this.f10121i.getClass();
-                    this.f10122j = Math.max(this.f10121i.f3804c, 6);
+                    this.f10122j = Math.max(this.f10121i.f3803c, 6);
                     b2.s c10 = this.f10121i.c(bArr, this.h);
                     h0 h0Var = this.f10119f;
                     r a10 = c10.a();
-                    a10.f3252p = r0.n("audio/flac");
+                    a10.f3251p = r0.n("audio/flac");
                     k0.s(a10, h0Var);
                     h0 h0Var2 = this.f10119f;
                     this.f10121i.b();
@@ -368,7 +368,7 @@ public final class b implements o {
                     return 0;
                 }
                 v vVar7 = new v(4);
-                pVar.readFully(vVar7.f7934a, 0, 4);
+                pVar.readFully(vVar7.f7933a, 0, 4);
                 if (vVar7.z() == 1716281667) {
                     this.f10120g = 3;
                     return 0;
@@ -381,9 +381,9 @@ public final class b implements o {
             return 0;
         }
         pVar.p();
-        long j14 = pVar.j();
+        long i32 = pVar.i();
         p0 s10 = c3.b.s(pVar, !this.f10118c);
-        pVar.q((int) (pVar.j() - j14));
+        pVar.q((int) (pVar.i() - i32));
         this.h = s10;
         this.f10120g = 1;
         return 0;

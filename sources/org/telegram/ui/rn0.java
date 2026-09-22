@@ -14,19 +14,19 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class rn0 implements View.OnClickListener {
-    public final int f37199a;
-    public final xo0 f37200b;
+    public final int f37221a;
+    public final xo0 f37222b;
 
     public rn0(xo0 xo0Var, int i10) {
-        this.f37199a = i10;
-        this.f37200b = xo0Var;
+        this.f37221a = i10;
+        this.f37222b = xo0Var;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
-        int i10 = this.f37199a;
-        xo0 xo0Var = this.f37200b;
+        int i10 = this.f37221a;
+        xo0 xo0Var = this.f37222b;
         switch (i10) {
             case 0:
                 if (xo0Var.getParentActivity() != null) {
@@ -35,30 +35,30 @@ public final class rn0 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                xo0 xo0Var2 = new xo0(xo0Var.f39648b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f39680x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f39671r0, xo0Var.W0);
-                xo0Var2.f39651c1 = xo0Var.f39651c1;
-                xo0Var2.f39653d1 = xo0Var.f39653d1;
+                xo0 xo0Var2 = new xo0(xo0Var.f39668b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f39700x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f39691r0, xo0Var.W0);
+                xo0Var2.f39671c1 = xo0Var.f39671c1;
+                xo0Var2.f39673d1 = xo0Var.f39673d1;
                 xo0Var2.T = new co0(xo0Var);
                 xo0Var.presentFragment(xo0Var2);
                 return;
             case 2:
-                xo0 xo0Var3 = new xo0(xo0Var.f39648b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f39680x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f39671r0, xo0Var.W0);
-                xo0Var3.f39651c1 = xo0Var.f39651c1;
-                xo0Var3.f39653d1 = xo0Var.f39653d1;
+                xo0 xo0Var3 = new xo0(xo0Var.f39668b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f39700x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f39691r0, xo0Var.W0);
+                xo0Var3.f39671c1 = xo0Var.f39671c1;
+                xo0Var3.f39673d1 = xo0Var.f39673d1;
                 xo0Var3.T = new do0(xo0Var);
                 xo0Var.presentFragment(xo0Var3);
                 return;
             case 3:
-                xo0 xo0Var4 = new xo0(xo0Var.f39648b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f39680x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f39671r0, xo0Var.W0);
-                xo0Var4.f39651c1 = xo0Var.f39651c1;
-                xo0Var4.f39653d1 = xo0Var.f39653d1;
+                xo0 xo0Var4 = new xo0(xo0Var.f39668b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f39700x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f39691r0, xo0Var.W0);
+                xo0Var4.f39671c1 = xo0Var.f39671c1;
+                xo0Var4.f39673d1 = xo0Var.f39673d1;
                 xo0Var4.T = new eo0(xo0Var);
                 xo0Var.presentFragment(xo0Var4);
                 return;
             case 4:
-                xo0 xo0Var5 = new xo0(xo0Var.f39648b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f39680x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f39671r0, xo0Var.W0);
-                xo0Var5.f39651c1 = xo0Var.f39651c1;
-                xo0Var5.f39653d1 = xo0Var.f39653d1;
+                xo0 xo0Var5 = new xo0(xo0Var.f39668b1, xo0Var.C0, xo0Var.N0, xo0Var.O0, 0, xo0Var.E0, xo0Var.G0, xo0Var.H0, null, xo0Var.f39700x0, xo0Var.I0, xo0Var.U0, null, xo0Var.f39691r0, xo0Var.W0);
+                xo0Var5.f39671c1 = xo0Var.f39671c1;
+                xo0Var5.f39673d1 = xo0Var.f39673d1;
                 xo0Var5.T = new fo0(xo0Var);
                 xo0Var.presentFragment(xo0Var5);
                 return;
@@ -77,10 +77,10 @@ public final class rn0 implements View.OnClickListener {
             case 7:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xo0Var.getParentActivity());
                 String string = LocaleController.getString(R.string.TurnPasswordOffQuestion);
-                if (xo0Var.f39644a0.has_secure_values) {
+                if (xo0Var.f39664a0.has_secure_values) {
                     string = org.telegram.messenger.l0.g(R.string.TurnPasswordOffPassport, v7.j0.h(string, "\n\n"));
                 }
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18669a;
                 b2Var.T = string;
                 b2Var.R = LocaleController.getString(R.string.TurnPasswordOffQuestionTitle);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Disable), new vn0(xo0Var, 3));
@@ -88,7 +88,7 @@ public final class rn0 implements View.OnClickListener {
                 xo0Var.showDialog(b2Var);
                 TextView textView = (TextView) b2Var.d(-1);
                 if (textView != null) {
-                    textView.setTextColor(xo0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19333q7));
+                    textView.setTextColor(xo0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19348q7));
                     return;
                 }
                 return;
@@ -155,19 +155,19 @@ public final class rn0 implements View.OnClickListener {
                     jSONObject.put("currencyCode", xo0Var.C0.invoice.currency);
                     jSONObject.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
                     put.put("transactionInfo", jSONObject);
-                    put.put("merchantInfo", new JSONObject().put("merchantName", xo0Var.f39668p0));
+                    put.put("merchantInfo", new JSONObject().put("merchantName", xo0Var.f39688p0));
                     String jSONObject2 = put.toString();
                     ?? obj = new Object();
-                    obj.f44541r = true;
+                    obj.f44563r = true;
                     n6.l.i(jSONObject2, "paymentDataRequestJson cannot be null!");
-                    obj.f44542s = jSONObject2;
+                    obj.f44564s = jSONObject2;
                     com.google.android.gms.internal.clearcut.v0 v0Var = xo0Var.e;
                     v0Var.getClass();
                     com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
-                    e.f6184c = new k2.u((Object) obj, 29);
-                    e.d = new k6.c[]{v8.p.f44553b};
-                    e.f6183b = true;
-                    e.f6182a = 23707;
+                    e.f6182c = new k2.e((Object) obj, 28);
+                    e.d = new k6.c[]{v8.p.f44575b};
+                    e.f6181b = true;
+                    e.f6180a = 23707;
                     v8.a.a(v0Var.e(1, e.a()), xo0Var.getParentActivity());
                     return;
                 } catch (JSONException e7) {
@@ -175,12 +175,12 @@ public final class rn0 implements View.OnClickListener {
                     return;
                 }
             case 13:
-                xo0Var.f39676v0 = false;
+                xo0Var.f39696v0 = false;
                 xo0Var.t0();
                 return;
             default:
-                xo0Var.f39656f[0].requestFocus();
-                AndroidUtilities.showKeyboard(xo0Var.f39656f[0]);
+                xo0Var.f39676f[0].requestFocus();
+                AndroidUtilities.showKeyboard(xo0Var.f39676f[0]);
                 return;
         }
     }

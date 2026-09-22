@@ -1,21 +1,21 @@
 package ci;
 public final class n implements Runnable {
-    public final int f5061a;
-    public final ec f5062b;
+    public final int f5059a;
+    public final ec f5060b;
 
     public n(ec ecVar, int i10) {
-        this.f5061a = i10;
-        this.f5062b = ecVar;
+        this.f5059a = i10;
+        this.f5060b = ecVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f5061a) {
+        switch (this.f5059a) {
             case 0:
-                this.f5062b.n();
+                this.f5060b.n();
                 return;
             case 1:
-                ec ecVar = this.f5062b;
+                ec ecVar = this.f5060b;
                 ecVar.K0 = false;
                 ecVar.L0 = Integer.MIN_VALUE;
                 ecVar.invalidate();
@@ -23,7 +23,7 @@ public final class n implements Runnable {
                 ecVar.T0.setVisibility(0);
                 return;
             default:
-                oc ocVar = this.f5062b.S1;
+                oc ocVar = this.f5060b.S1;
                 cc ccVar = ocVar.X0;
                 if (ccVar != null) {
                     ccVar.O = false;

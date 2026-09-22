@@ -1,15 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-public interface sa0 {
-    void A(TLRPC.TL_document tL_document, String str, Object obj);
+public final class sa0 extends g.p {
+    public final ya0 f28150c;
 
-    void O(int i10, int i11, CharSequence charSequence, boolean z10);
+    public sa0(ya0 ya0Var) {
+        this.f28150c = ya0Var;
+    }
 
-    void P(String str);
-
-    void f(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10);
-
-    Paint.FontMetricsInt s();
+    @Override
+    public final int i(int i10) {
+        ya0 ya0Var = this.f28150c;
+        gg.k1 k1Var = ya0Var.f30618f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = k1Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
+            }
+            if (J instanceof TLRPC.Document) {
+                return 20;
+            }
+            if (k1Var.I() != null || k1Var.U != null) {
+                i10 = i11;
+            }
+            ra0 ra0Var = ya0Var.d;
+            ra0Var.B1();
+            return ra0Var.R.get(i10);
+        }
+        return 100;
+    }
 }

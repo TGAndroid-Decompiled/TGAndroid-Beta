@@ -2,7 +2,7 @@ package f5;
 
 import com.google.android.gms.internal.vision.e2;
 public final class g extends com.googlecode.mp4parser.c {
-    public static final ka.c e;
+    public static final o0.b e;
 
     static {
         re.a aVar = new re.a(g.class, "DataEntryUrlBox.java");

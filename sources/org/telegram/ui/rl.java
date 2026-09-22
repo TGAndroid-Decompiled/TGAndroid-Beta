@@ -3,15 +3,15 @@ package org.telegram.ui;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class rl extends tu0 {
-    public final zn f37178a;
+    public final zn f37200a;
 
     public rl(zn znVar) {
-        this.f37178a = znVar;
+        this.f37200a = znVar;
     }
 
     @Override
     public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return zn.A1(this.f37178a, messageObject, fileLocation, i10, z10, false);
+        return zn.A1(this.f37200a, messageObject, fileLocation, i10, z10, false);
     }
 
     @Override

@@ -1,9 +1,8 @@
 package org.telegram.ui.Components;
-public final class jo0 {
-    public final int f25416a;
-    public int f25417b;
+public interface jo0 {
+    void e(float f7);
 
-    public jo0(int i10) {
-        this.f25416a = i10;
-    }
+    void f(org.telegram.ui.Cells.s2 s2Var);
+
+    void finish();
 }

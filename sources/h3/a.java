@@ -26,7 +26,7 @@ public final class a {
         if (j3 == pVar.getPosition()) {
             return 0;
         }
-        sVar.f3798a = j3;
+        sVar.f3797a = j3;
         return 1;
     }
 
@@ -36,10 +36,10 @@ public final class a {
 
     public final void d(long j3) {
         f fVar = this.f10115c;
-        if (fVar != null && fVar.f3760a == j3) {
+        if (fVar != null && fVar.f3759a == j3) {
             return;
         }
         e eVar = this.f10113a;
-        this.f10115c = new f(j3, eVar.f3756a.m(j3), eVar.f3758c, eVar.d, eVar.e, eVar.f3759f);
+        this.f10115c = new f(j3, eVar.f3755a.m(j3), eVar.f3757c, eVar.d, eVar.e, eVar.f3758f);
     }
 }

@@ -1,26 +1,30 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
+import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
-public final class m51 implements dy0 {
-    public final s51 f26336a;
+public final class m51 extends g.p {
+    public final u51 f26333c;
 
-    public m51(s51 s51Var) {
-        this.f26336a = s51Var;
+    public m51(u51 u51Var) {
+        this.f26333c = u51Var;
     }
 
     @Override
-    public final boolean b() {
-        return this.f26336a.f28053b.a();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f26336a.f28053b.c();
-    }
-
-    @Override
-    public final void d(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11) {
-        this.f26336a.f28053b.f(document, obj, z11, i10);
+    public final int i(int i10) {
+        u51 u51Var = this.f26333c;
+        s4.h0 adapter = u51Var.f28671n.getAdapter();
+        t51 t51Var = u51Var.f28673s;
+        if (adapter == t51Var) {
+            if ((t51Var.d.get(i10) instanceof Integer) || i10 >= t51Var.f28403w) {
+                return t51Var.v;
+            }
+            return 1;
+        }
+        gg.g2 g2Var = u51Var.v;
+        SparseArray sparseArray = g2Var.f9749s;
+        if (i10 != g2Var.f9752y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return g2Var.e.a();
     }
 }

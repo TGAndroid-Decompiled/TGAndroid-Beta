@@ -3,11 +3,11 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.StatsController;
-public final class su implements org.telegram.ui.Components.gl0, org.telegram.ui.ActionBar.a2 {
-    public final wu f37551a;
+public final class su implements org.telegram.ui.Components.jl0, org.telegram.ui.ActionBar.a2 {
+    public final wu f37575a;
 
     public su(wu wuVar) {
-        this.f37551a = wuVar;
+        this.f37575a = wuVar;
     }
 
     @Override
@@ -15,13 +15,13 @@ public final class su implements org.telegram.ui.Components.gl0, org.telegram.ui
         int i11;
         int i12;
         int i13;
-        wu wuVar = this.f37551a;
-        av avVar = wuVar.f39246o3;
-        ArrayList arrayList = wuVar.f39238f3;
+        wu wuVar = this.f37575a;
+        av avVar = wuVar.f39270o3;
+        ArrayList arrayList = wuVar.f39262f3;
         arrayList.clear();
         int i14 = 0;
         while (true) {
-            vu[] vuVarArr = wuVar.f39239g3;
+            vu[] vuVarArr = wuVar.f39263g3;
             if (i14 >= vuVarArr.length) {
                 i11 = ((org.telegram.ui.ActionBar.n2) avVar).currentAccount;
                 StatsController.getInstance(i11).resetStats(0);
@@ -35,7 +35,7 @@ public final class su implements org.telegram.ui.Components.gl0, org.telegram.ui
                 return;
             }
             vu vuVar = vuVarArr[i14];
-            if (vuVar.f23238c > 0) {
+            if (vuVar.f23346c > 0) {
                 arrayList.add(Integer.valueOf(vuVar.d));
             }
             i14++;
@@ -44,12 +44,12 @@ public final class su implements org.telegram.ui.Components.gl0, org.telegram.ui
 
     @Override
     public int run() {
-        wu wuVar = this.f37551a;
-        ArrayList arrayList = wuVar.f39235c3;
+        wu wuVar = this.f37575a;
+        ArrayList arrayList = wuVar.f39259c3;
         int i10 = 0;
         while (true) {
             if (i10 < arrayList.size()) {
-                if (((ru) arrayList.get(i10)).f15704a == 5) {
+                if (((ru) arrayList.get(i10)).f15719a == 5) {
                     break;
                 }
                 i10++;

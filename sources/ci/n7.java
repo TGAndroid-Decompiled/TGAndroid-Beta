@@ -4,34 +4,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 public final class n7 implements CameraView.CameraViewDelegate, CameraController.VideoTakeCallback {
-    public final q7 f5077a;
+    public final q7 f5075a;
 
     public n7(q7 q7Var) {
-        this.f5077a = q7Var;
+        this.f5075a = q7Var;
     }
 
     @Override
     public void onCameraInit() {
-        q7 q7Var = this.f5077a;
-        p7 p7Var = q7Var.f5350a;
-        if (q7Var.f5352c > 0) {
+        q7 q7Var = this.f5075a;
+        p7 p7Var = q7Var.f5348a;
+        if (q7Var.f5350c > 0) {
             return;
         }
-        CameraController.getInstance().recordVideo(p7Var.getCameraSessionObject(), q7Var.f5351b, false, new n7(q7Var), new m7(q7Var, 1), p7Var, true);
+        CameraController.getInstance().recordVideo(p7Var.getCameraSessionObject(), q7Var.f5349b, false, new n7(q7Var), new m7(q7Var, 1), p7Var, true);
     }
 
     @Override
     public void onFinishVideoRecording(String str, long j3) {
         long currentTimeMillis = System.currentTimeMillis();
-        q7 q7Var = this.f5077a;
+        q7 q7Var = this.f5075a;
         q7Var.d = currentTimeMillis;
         AndroidUtilities.cancelRunOnUIThread(q7Var.h);
-        if (!q7Var.f5358x) {
+        if (!q7Var.f5356x) {
             if (j3 > 1000) {
-                q7Var.f5350a.destroy(true, null);
-                ai.q0 q0Var = q7Var.f5354n;
+                q7Var.f5348a.destroy(true, null);
+                ai.q0 q0Var = q7Var.f5352n;
                 if (q0Var != null) {
-                    q0Var.run(q7Var.f5351b, str, Long.valueOf(j3));
+                    q0Var.run(q7Var.f5349b, str, Long.valueOf(j3));
                     return;
                 }
                 return;

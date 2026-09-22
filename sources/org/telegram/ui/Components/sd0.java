@@ -1,28 +1,37 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.FileLog;
-public final class sd0 extends v7.n {
-    public final ae0 f28097a;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class sd0 implements Runnable {
+    public final int f28165a;
+    public final de0 f28166b;
 
-    public sd0(ae0 ae0Var) {
-        this.f28097a = ae0Var;
+    public sd0(de0 de0Var, int i10) {
+        this.f28165a = i10;
+        this.f28166b = de0Var;
     }
 
     @Override
-    public final void a(int i10, CharSequence charSequence) {
-        FileLog.d("PasscodeView onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
-        this.f28097a.m(true);
-    }
-
-    @Override
-    public final void b() {
-        FileLog.d("PasscodeView onAuthenticationFailed");
-        this.f28097a.m(true);
-    }
-
-    @Override
-    public final void c(androidx.biometric.s sVar) {
-        FileLog.d("PasscodeView onAuthenticationSucceeded");
-        this.f28097a.k(true);
+    public final void run() {
+        int i10 = this.f28165a;
+        de0 de0Var = this.f28166b;
+        switch (i10) {
+            case 0:
+                EditTextBoldCursor editTextBoldCursor = de0Var.f23672r;
+                if (de0Var.f23675x.getVisibility() != 0 && editTextBoldCursor != null) {
+                    editTextBoldCursor.requestFocus();
+                    AndroidUtilities.showKeyboard(editTextBoldCursor);
+                    return;
+                }
+                return;
+            default:
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(de0Var.P, 0.0f);
+                ofFloat.addUpdateListener(new td0(de0Var, 0));
+                ofFloat.addListener(new gd0(de0Var, 1));
+                ofFloat.setDuration(420L);
+                ofFloat.setInterpolator(qr.h);
+                ofFloat.start();
+                return;
+        }
     }
 }

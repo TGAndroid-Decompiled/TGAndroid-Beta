@@ -5,25 +5,25 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class rh implements e2.h {
-    public final int f37156a;
-    public final Object f37157b;
-    public final Object f37158c;
+    public final int f37179a;
+    public final Object f37180b;
+    public final Object f37181c;
     public final Object d;
 
     public rh(Object obj, Object obj2, Object obj3, int i10) {
-        this.f37156a = i10;
-        this.f37158c = obj;
+        this.f37179a = i10;
+        this.f37181c = obj;
         this.d = obj2;
-        this.f37157b = obj3;
+        this.f37180b = obj3;
     }
 
     @Override
     public final void accept(Object obj) {
         TLRPC.User user;
-        int i10 = this.f37156a;
-        Object obj2 = this.f37157b;
+        int i10 = this.f37179a;
+        Object obj2 = this.f37180b;
         Object obj3 = this.d;
-        Object obj4 = this.f37158c;
+        Object obj4 = this.f37181c;
         switch (i10) {
             case 0:
                 Boolean bool = (Boolean) obj;
@@ -56,12 +56,12 @@ public final class rh implements e2.h {
             default:
                 hc0 hc0Var = (hc0) obj4;
                 TLRPC.User[] userArr = (TLRPC.User[]) obj3;
-                org.telegram.ui.Components.vn0 vn0Var = (org.telegram.ui.Components.vn0) obj2;
+                org.telegram.ui.Components.xn0 xn0Var = (org.telegram.ui.Components.xn0) obj2;
                 Long l10 = (Long) obj;
                 if (l10 == null) {
                     user = null;
                 } else {
-                    user = MessagesController.getInstance(hc0Var.f34165b).getUser(l10);
+                    user = MessagesController.getInstance(hc0Var.f34181b).getUser(l10);
                 }
                 userArr[0] = user;
                 if (user == null) {
@@ -69,15 +69,15 @@ public final class rh implements e2.h {
                     org.telegram.messenger.rk.p(R.string.NoUsernameFound, hc0.b(), null);
                     return;
                 }
-                vn0Var.run();
+                xn0Var.run();
                 return;
         }
     }
 
     public rh(uy uyVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity) {
-        this.f37156a = 1;
-        this.f37158c = uyVar;
-        this.f37157b = tL_attachMenuBot;
+        this.f37179a = 1;
+        this.f37181c = uyVar;
+        this.f37180b = tL_attachMenuBot;
         this.d = launchActivity;
     }
 }

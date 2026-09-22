@@ -9,13 +9,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.ProxyRotationController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-public final class e21 extends org.telegram.ui.Components.ul0 {
-    public final Context f33203c;
+public final class e21 extends org.telegram.ui.Components.xl0 {
+    public final Context f33223c;
     public final ProxyListActivity d;
 
     public e21(ProxyListActivity proxyListActivity, Context context) {
         this.d = proxyListActivity;
-        this.f33203c = context;
+        this.f33223c = context;
         C(true);
     }
 
@@ -28,8 +28,8 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
         i10 = proxyListActivity.useProxyRow;
         if (b10 != i10 && b10 != proxyListActivity.v) {
             i11 = proxyListActivity.proxyAddRow;
-            if (b10 != i11 && b10 != proxyListActivity.f31711y) {
-                if (b10 < proxyListActivity.f31706n || b10 >= proxyListActivity.f31707r) {
+            if (b10 != i11 && b10 != proxyListActivity.f31732y) {
+                if (b10 < proxyListActivity.f31727n || b10 >= proxyListActivity.f31728r) {
                     return false;
                 }
                 return true;
@@ -52,30 +52,30 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
             if (!s10) {
                 kVar3 = ((org.telegram.ui.ActionBar.n2) proxyListActivity).actionBar;
                 kVar3.O(null, null);
-                int i10 = proxyListActivity.f31706n;
-                r(i10, proxyListActivity.f31707r - i10, 2);
+                int i10 = proxyListActivity.f31727n;
+                r(i10, proxyListActivity.f31728r - i10, 2);
             }
         } else if (s10) {
             kVar2 = ((org.telegram.ui.ActionBar.n2) proxyListActivity).actionBar;
             kVar2.r();
-            int i11 = proxyListActivity.f31706n;
-            r(i11, proxyListActivity.f31707r - i11, 2);
+            int i11 = proxyListActivity.f31727n;
+            r(i11, proxyListActivity.f31728r - i11, 2);
         }
     }
 
     public final void F() {
         ProxyListActivity proxyListActivity = this.d;
         proxyListActivity.F.clear();
-        int i10 = proxyListActivity.f31706n;
-        r(i10, proxyListActivity.f31707r - i10, 1);
+        int i10 = proxyListActivity.f31727n;
+        r(i10, proxyListActivity.f31728r - i10, 1);
         E();
     }
 
     public final void G(int i10) {
         ProxyListActivity proxyListActivity = this.d;
         ArrayList arrayList = proxyListActivity.F;
-        int i11 = proxyListActivity.f31706n;
-        if (i10 >= i11 && i10 < proxyListActivity.f31707r) {
+        int i11 = proxyListActivity.f31727n;
+        if (i10 >= i11 && i10 < proxyListActivity.f31728r) {
             SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) proxyListActivity.G.get(i10 - i11);
             if (arrayList.contains(proxyInfo)) {
                 arrayList.remove(proxyInfo);
@@ -97,10 +97,10 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
         int i11;
         int i12;
         ProxyListActivity proxyListActivity = this.d;
-        if (i10 == proxyListActivity.f31705f) {
+        if (i10 == proxyListActivity.f31726f) {
             return -1L;
         }
-        if (i10 != proxyListActivity.f31708s) {
+        if (i10 != proxyListActivity.f31729s) {
             i11 = proxyListActivity.proxyAddRow;
             if (i10 != i11) {
                 i12 = proxyListActivity.useProxyRow;
@@ -110,20 +110,20 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
                 if (i10 == proxyListActivity.h) {
                     return -6L;
                 }
-                if (i10 == proxyListActivity.f31711y) {
+                if (i10 == proxyListActivity.f31732y) {
                     return -8L;
                 }
                 if (i10 == proxyListActivity.v) {
                     return -9L;
                 }
-                if (i10 == proxyListActivity.f31709w) {
+                if (i10 == proxyListActivity.f31730w) {
                     return -10L;
                 }
-                if (i10 == proxyListActivity.f31710x) {
+                if (i10 == proxyListActivity.f31731x) {
                     return -11L;
                 }
-                int i13 = proxyListActivity.f31706n;
-                if (i10 >= i13 && i10 < proxyListActivity.f31707r) {
+                int i13 = proxyListActivity.f31727n;
+                if (i10 >= i13 && i10 < proxyListActivity.f31728r) {
                     return ((SharedConfig.ProxyInfo) proxyListActivity.G.get(i10 - i13)).hashCode();
                 }
                 return -7L;
@@ -138,18 +138,18 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
         int i11;
         int i12;
         ProxyListActivity proxyListActivity = this.d;
-        if (i10 != proxyListActivity.f31705f && i10 != proxyListActivity.f31708s) {
+        if (i10 != proxyListActivity.f31726f && i10 != proxyListActivity.f31729s) {
             i11 = proxyListActivity.proxyAddRow;
-            if (i10 != i11 && i10 != proxyListActivity.f31711y) {
+            if (i10 != i11 && i10 != proxyListActivity.f31732y) {
                 i12 = proxyListActivity.useProxyRow;
                 if (i10 != i12 && i10 != proxyListActivity.v) {
                     if (i10 == proxyListActivity.h) {
                         return 2;
                     }
-                    if (i10 == proxyListActivity.f31709w) {
+                    if (i10 == proxyListActivity.f31730w) {
                         return 6;
                     }
-                    if (i10 >= proxyListActivity.f31706n && i10 < proxyListActivity.f31707r) {
+                    if (i10 >= proxyListActivity.f31727n && i10 < proxyListActivity.f31728r) {
                         return 5;
                     }
                     return 4;
@@ -169,8 +169,8 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
         ProxyListActivity proxyListActivity = this.d;
         ArrayList arrayList = proxyListActivity.F;
         ArrayList arrayList2 = proxyListActivity.G;
-        int i13 = c1Var.f42977f;
-        View view = c1Var.f42974a;
+        int i13 = c1Var.f42998f;
+        View view = c1Var.f42995a;
         boolean z11 = true;
         switch (i13) {
             case 1:
@@ -179,13 +179,13 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
                 i11 = proxyListActivity.proxyAddRow;
                 if (i10 == i11) {
                     String string = LocaleController.getString(R.string.AddProxy);
-                    if (proxyListActivity.f31711y == -1) {
+                    if (proxyListActivity.f31732y == -1) {
                         z11 = false;
                     }
                     faVar.b(string, z11);
                     return;
-                } else if (i10 == proxyListActivity.f31711y) {
-                    faVar.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19315p7, false));
+                } else if (i10 == proxyListActivity.f31732y) {
+                    faVar.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19330p7, false));
                     faVar.b(LocaleController.getString(R.string.DeleteAllProxies), false);
                     return;
                 } else {
@@ -217,14 +217,14 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
                 }
             case 4:
                 org.telegram.ui.Cells.f9 f9Var = (org.telegram.ui.Cells.f9) view;
-                if (i10 == proxyListActivity.f31710x) {
+                if (i10 == proxyListActivity.f31731x) {
                     f9Var.setText(LocaleController.getString(R.string.ProxyRotationTimeoutInfo));
                     return;
                 }
                 return;
             case 5:
                 f21 f21Var = (f21) view;
-                SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) arrayList2.get(i10 - proxyListActivity.f31706n);
+                SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) arrayList2.get(i10 - proxyListActivity.f31727n);
                 f21Var.setProxy(proxyInfo);
                 if (SharedConfig.currentProxy == proxyInfo) {
                     z10 = true;
@@ -232,21 +232,21 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
                     z10 = false;
                 }
                 f21Var.setChecked(z10);
-                boolean contains = arrayList.contains(arrayList2.get(i10 - proxyListActivity.f31706n));
+                boolean contains = arrayList.contains(arrayList2.get(i10 - proxyListActivity.f31727n));
                 f21Var.h = contains;
-                f21Var.f33457f.a(contains, false);
+                f21Var.f33482f.a(contains, false);
                 f21Var.a(!arrayList.isEmpty(), false);
                 return;
             case 6:
-                if (i10 == proxyListActivity.f31709w) {
-                    org.telegram.ui.Components.ew0 ew0Var = (org.telegram.ui.Components.ew0) view;
+                if (i10 == proxyListActivity.f31730w) {
+                    org.telegram.ui.Components.gw0 gw0Var = (org.telegram.ui.Components.gw0) view;
                     ArrayList arrayList3 = new ArrayList(ProxyRotationController.ROTATION_TIMEOUTS);
                     String[] strArr = new String[arrayList3.size()];
                     for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                         strArr[i14] = LocaleController.formatString(R.string.ProxyRotationTimeoutSeconds, arrayList3.get(i14));
                     }
-                    ew0Var.setCallback(new ja0(10));
-                    ew0Var.b(SharedConfig.proxyRotationTimeout, null, strArr);
+                    gw0Var.setCallback(new ja0(10));
+                    gw0Var.b(SharedConfig.proxyRotationTimeout, null, strArr);
                     return;
                 }
                 return;
@@ -261,18 +261,18 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
         boolean contains;
         ProxyListActivity proxyListActivity = this.d;
         ArrayList arrayList = proxyListActivity.F;
-        int i12 = c1Var.f42977f;
-        View view = c1Var.f42974a;
+        int i12 = c1Var.f42998f;
+        View view = c1Var.f42995a;
         if (i12 == 5 && !list.isEmpty()) {
             f21 f21Var = (f21) view;
-            if (list.contains(1) && (contains = arrayList.contains(proxyListActivity.G.get(i10 - proxyListActivity.f31706n))) != f21Var.h) {
+            if (list.contains(1) && (contains = arrayList.contains(proxyListActivity.G.get(i10 - proxyListActivity.f31727n))) != f21Var.h) {
                 f21Var.h = contains;
-                f21Var.f33457f.a(contains, true);
+                f21Var.f33482f.a(contains, true);
             }
             if (list.contains(2)) {
                 f21Var.a(!arrayList.isEmpty(), true);
             }
-        } else if (c1Var.f42977f == 3 && list.contains(0)) {
+        } else if (c1Var.f42998f == 3 && list.contains(0)) {
             org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) view;
             i11 = proxyListActivity.useProxyRow;
             if (i10 == i11) {
@@ -288,7 +288,7 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View c7Var;
-        Context context = this.f33203c;
+        Context context = this.f33223c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -296,25 +296,25 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
                         if (i10 != 4) {
                             if (i10 != 6) {
                                 c7Var = new f21(this.d, context);
-                                c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
+                                c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19109d6, false));
                             } else {
-                                c7Var = new org.telegram.ui.Components.ew0(context, null);
-                                c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
+                                c7Var = new org.telegram.ui.Components.gw0(context, null);
+                                c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19109d6, false));
                             }
                         } else {
                             c7Var = new org.telegram.ui.Cells.f9(context);
                         }
                     } else {
                         c7Var = new org.telegram.ui.Cells.x8(context);
-                        c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
+                        c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19109d6, false));
                     }
                 } else {
                     c7Var = new org.telegram.ui.Cells.n4(context);
-                    c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
+                    c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19109d6, false));
                 }
             } else {
                 c7Var = new org.telegram.ui.Cells.fa(context);
-                c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
+                c7Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19109d6, false));
             }
         } else {
             c7Var = new org.telegram.ui.Cells.c7(context, (org.telegram.ui.Cells.c1) null);
@@ -325,8 +325,8 @@ public final class e21 extends org.telegram.ui.Components.ul0 {
     @Override
     public final void y(s4.c1 c1Var) {
         int i10;
-        if (c1Var.f42977f == 3) {
-            org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) c1Var.f42974a;
+        if (c1Var.f42998f == 3) {
+            org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) c1Var.f42995a;
             int b10 = c1Var.b();
             ProxyListActivity proxyListActivity = this.d;
             i10 = proxyListActivity.useProxyRow;

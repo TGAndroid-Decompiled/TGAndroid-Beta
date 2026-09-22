@@ -5,27 +5,27 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ax extends ImageView {
-    public final kz f22810a;
+    public final kz f22764a;
 
     public ax(kz kzVar, Context context) {
         super(context);
-        this.f22810a = kzVar;
+        this.f22764a = kzVar;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         ly lyVar;
         int action = motionEvent.getAction();
-        kz kzVar = this.f22810a;
+        kz kzVar = this.f22764a;
         if (action == 0) {
             kzVar.P1 = true;
             kzVar.Q1 = false;
             AndroidUtilities.runOnUIThread(new kd(kzVar, 350, 3), 350);
         } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
             kzVar.P1 = false;
-            if (!kzVar.Q1 && (lyVar = kzVar.f25951t1) != null && lyVar.k()) {
+            if (!kzVar.Q1 && (lyVar = kzVar.f25911t1) != null && lyVar.k()) {
                 try {
-                    kzVar.f25963x.performHapticFeedback(3);
+                    kzVar.f25923x.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
             }

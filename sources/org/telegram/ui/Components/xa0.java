@@ -1,64 +1,145 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class xa0 extends Drawable {
-    public Paint f30211a;
-    public Paint f30212b;
-    public long f30213c;
-    public float d;
-    public boolean e;
-    public boolean f30214f;
-    public float f30215g;
-    public float h;
-    public float f30216i;
-    public float f30217j;
-    public float f30218k;
-    public long f30219l;
-    public org.telegram.ui.Cells.u1 f30220m;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class xa0 extends yl0 {
+    public boolean X2;
+    public boolean Y2;
+    public int Z2;
+    public int f30296a3;
+    public final ya0 f30297b3;
 
-    public final void a() {
-        int i10;
-        int i11;
-        Rect bounds = getBounds();
-        float centerX = bounds.centerX();
-        float centerY = bounds.centerY();
-        float f7 = bounds.left - centerX;
-        float f10 = bounds.top - centerY;
-        this.f30215g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.vision.e2.z(i11, centerY, f10, f7 * (i10 - centerX))));
+    public xa0(ya0 ya0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.f30297b3 = ya0Var;
+        setOnScrollListener(new ai.r(this, 29));
+        i(new wa0(this));
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xa0.draw(android.graphics.Canvas):void");
+    public final void l0(int i10, int i11) {
+        ya0 ya0Var = this.f30297b3;
+        ya0Var.invalidate();
+        ya0Var.b();
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        ya0 ya0Var = this.f30297b3;
+        gg.k1 k1Var = ya0Var.f30618f;
+        gg.q1 q1Var = ya0Var.e;
+        if (!ya0Var.f30617c.f42988t ? this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9903f || motionEvent.getY() >= q1Var.e.getBottom() : this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9903f || motionEvent.getY() <= q1Var.e.getTop()) {
+            if (!this.X2 && org.telegram.ui.st.q().r(motionEvent, ya0Var.f30616b, null, this.f30704p2)) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (((k1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && k1Var.N()) {
+                if (k1Var.f9830n0 == null) {
+                    gg.g1 g1Var = new gg.g1(k1Var, k1Var.f9821f, k1Var.f9829n, k1Var.f9834r, 0);
+                    k1Var.f9830n0 = g1Var;
+                    g1Var.a();
+                }
+                k1Var.f9830n0.b();
+            }
+            if (super.onInterceptTouchEvent(motionEvent) || z10) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f30211a.setAlpha(i10);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int N0;
+        int i14;
+        int i15;
+        int i16 = i12 - i10;
+        int i17 = i13 - i11;
+        ya0 ya0Var = this.f30297b3;
+        boolean g10 = ya0Var.g();
+        s4.c0 currentLayoutManager = ya0Var.getCurrentLayoutManager();
+        if (g10) {
+            N0 = currentLayoutManager.L0();
+        } else {
+            N0 = currentLayoutManager.N0();
+        }
+        View m10 = currentLayoutManager.m(N0);
+        if (m10 != null) {
+            int top = m10.getTop();
+            if (g10) {
+                i15 = 0;
+            } else {
+                i15 = this.f30296a3 - i17;
+            }
+            i14 = top - i15;
+        } else {
+            i14 = 0;
+        }
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (ya0Var.H) {
+            ya0Var.G = true;
+            currentLayoutManager.h1(0, 100000);
+            super.onLayout(false, i10, i11, i12, i13);
+            ya0Var.G = false;
+            ya0Var.H = false;
+        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f30296a3 != 0) {
+            ya0Var.G = true;
+            currentLayoutManager.i1(N0, i14, false);
+            super.onLayout(false, i10, i11, i12, i13);
+            ya0Var.G = false;
+        }
+        this.f30296a3 = i17;
+        this.Z2 = i16;
     }
 
     @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        a();
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i11);
+        ya0 ya0Var = this.f30297b3;
+        gg.q1 q1Var = ya0Var.e;
+        if (q1Var != null) {
+            q1Var.d = Integer.valueOf(size);
+            ci.eb ebVar = q1Var.e;
+            if (ebVar != null) {
+                ebVar.requestLayout();
+            }
+        }
+        float min = (int) Math.min(AndroidUtilities.dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
+        ya0Var.v = min;
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size + ((int) min), 1073741824));
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f30211a.setColorFilter(colorFilter);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ya0 ya0Var = this.f30297b3;
+        gg.q1 q1Var = ya0Var.e;
+        if (ya0Var.f30617c.f42988t) {
+            if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9903f && motionEvent.getY() > q1Var.e.getTop()) {
+                return false;
+            }
+        } else if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9903f && motionEvent.getY() < q1Var.e.getBottom()) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
     }
 
     @Override
-    public final void setBounds(Rect rect) {
-        super.setBounds(rect);
-        a();
+    public final void requestLayout() {
+        if (this.f30297b3.G) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        ya0 ya0Var = this.f30297b3;
+        ya0Var.invalidate();
+        ya0Var.b();
     }
 }

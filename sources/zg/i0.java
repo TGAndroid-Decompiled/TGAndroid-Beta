@@ -1,79 +1,75 @@
 package zg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.v9;
-public final class i0 extends v9 {
-    public boolean G;
-    public p5 H;
-    public d I;
-    public boolean J;
-    public final k0 K;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.MessageObject;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.zn;
+public final class i0 extends FrameLayout {
+    public final n2 f49363a;
+    public final View f49364b;
+    public final boolean f49365c;
+    public final MessageObject d;
+    public final zn e;
+    public final int f49366f;
+    public final int h;
+    public final boolean f49367n;
+    public final float f49368r;
+    public final float f49369s;
+    public final float v;
+    public final p0 f49370w;
+    public final l0 f49371x;
 
-    public i0(k0 k0Var, Context context) {
+    public i0(l0 l0Var, Context context, n2 n2Var, View view, boolean z10, MessageObject messageObject, zn znVar, int i10, int i11, boolean z11, float f7, float f10, float f11, p0 p0Var) {
         super(context);
-        this.K = k0Var;
-        getImageReceiver().setFileLoadingPriority(3);
+        this.f49371x = l0Var;
+        this.f49363a = n2Var;
+        this.f49364b = view;
+        this.f49365c = z10;
+        this.d = messageObject;
+        this.e = znVar;
+        this.f49366f = i10;
+        this.h = i11;
+        this.f49367n = z11;
+        this.f49368r = f7;
+        this.f49369s = f10;
+        this.v = f11;
+        this.f49370w = p0Var;
+    }
+
+    @Override
+    public final void dispatchDraw(android.graphics.Canvas r24) {
+        throw new UnsupportedOperationException("Method not decompiled: zg.i0.dispatchDraw(android.graphics.Canvas):void");
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.J = true;
-        p5 p5Var = this.H;
-        if (p5Var != null) {
-            p5Var.a(this);
-        }
-        d dVar = this.I;
-        if (dVar != null) {
-            dVar.f(this);
+        int i10 = 0;
+        while (true) {
+            l0 l0Var = this.f49371x;
+            if (i10 < l0Var.f49406x.size()) {
+                ((k0) l0Var.f49406x.get(i10)).f49376a.onAttachedToWindow();
+                i10++;
+            } else {
+                return;
+            }
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.J = false;
-        p5 p5Var = this.H;
-        if (p5Var != null) {
-            p5Var.o(this);
-        }
-        d dVar = this.I;
-        if (dVar != null) {
-            dVar.d(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        p5 p5Var = this.H;
-        if (p5Var != null) {
-            p5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            this.H.setAlpha(255);
-            this.H.draw(canvas);
-            this.G = true;
-            return;
-        }
-        d dVar = this.I;
-        if (dVar != null) {
-            dVar.e(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            this.I.b(canvas);
-            this.G = true;
-            return;
-        }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f24691k0) {
-            this.G = true;
-        }
-        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f24691k0) {
-            k0 k0Var = this.K;
-            if (k0Var.f49363a == 2 && !k0Var.f49384z) {
-                getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().e[0] - 1, false, false);
+        int i10 = 0;
+        while (true) {
+            l0 l0Var = this.f49371x;
+            if (i10 < l0Var.f49406x.size()) {
+                ((k0) l0Var.f49406x.get(i10)).f49376a.onDetachedFromWindow();
+                i10++;
             } else {
-                getImageReceiver().getLottieAnimation().N(0, false, false);
-                getImageReceiver().getLottieAnimation().start();
+                return;
             }
         }
-        super.onDraw(canvas);
     }
 }

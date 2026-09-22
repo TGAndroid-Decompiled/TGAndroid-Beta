@@ -16,11 +16,11 @@ public final class dd0 extends gg.u0 {
     @Override
     public final void l() {
         kd0 kd0Var = this.N;
-        org.telegram.ui.ActionBar.v0 v0Var = kd0Var.f35121w;
+        org.telegram.ui.ActionBar.v0 v0Var = kd0Var.f35143w;
         if (v0Var != null) {
             v0Var.setShowSearchProgress(kd0Var.W.J);
         }
-        TextView textView = kd0Var.f35114r;
+        TextView textView = kd0Var.f35136r;
         if (textView != null) {
             textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, kd0Var.W.f9684x)));
         }

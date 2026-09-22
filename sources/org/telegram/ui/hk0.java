@@ -11,40 +11,40 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public final class hk0 extends View {
-    public final Paint f34228a;
-    public final Paint f34229b;
-    public final org.telegram.ui.Components.d6 f34230c;
+    public final Paint f34250a;
+    public final Paint f34251b;
+    public final org.telegram.ui.Components.d6 f34252c;
     public final org.telegram.ui.Components.n6 d;
     public int e;
-    public float f34231f;
+    public float f34253f;
     public ValueAnimator h;
 
     public hk0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f34228a = paint;
+        this.f34250a = paint;
         Paint paint2 = new Paint(1);
-        this.f34229b = paint2;
+        this.f34251b = paint2;
         org.telegram.ui.Components.qr qrVar = org.telegram.ui.Components.qr.h;
-        this.f34230c = new org.telegram.ui.Components.d6(this, 0L, 320L, qrVar);
+        this.f34252c = new org.telegram.ui.Components.d6(this, 0L, 320L, qrVar);
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true, false);
         this.d = n6Var;
-        this.f34231f = 1.0f;
+        this.f34253f = 1.0f;
         paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false));
-        paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19165h5, false));
+        paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19180h5, false));
         paint2.setStyle(Paint.Style.STROKE);
         paint2.setStrokeWidth(AndroidUtilities.dp(4.0f));
         n6Var.setCallback(this);
         n6Var.k(0.35f, 200L, qrVar);
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = n6Var.f26574a;
+        TextPaint textPaint = n6Var.f26642a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dp(0.24f));
         textPaint.setStrokeJoin(Paint.Join.ROUND);
         n6Var.t(AndroidUtilities.dp(13.3f));
         n6Var.r(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
         n6Var.G = AndroidUtilities.dp(64.0f);
-        n6Var.f26575b = 1;
+        n6Var.f26643b = 1;
     }
 
     public final boolean a(int i10) {
@@ -69,7 +69,7 @@ public final class hk0 extends View {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 this.h = ofFloat;
                 ofFloat.addUpdateListener(new b3(this, 17));
-                this.h.addListener(new org.telegram.ui.Components.r81(this, 28));
+                this.h.addListener(new org.telegram.ui.Components.t81(this, 28));
                 this.h.setInterpolator(new OvershootInterpolator(2.0f));
                 this.h.setDuration(200L);
                 this.h.start();
@@ -86,9 +86,9 @@ public final class hk0 extends View {
         } else {
             f7 = 0.0f;
         }
-        float d = this.f34230c.d(f7, false);
+        float d = this.f34252c.d(f7, false);
         canvas.save();
-        float f10 = this.f34231f;
+        float f10 = this.f34253f;
         canvas.scale(f10 * d, f10 * d, getWidth() / 2.0f, getHeight() / 2.0f);
         org.telegram.ui.Components.n6 n6Var = this.d;
         float dpf2 = AndroidUtilities.dpf2(12.66f) + n6Var.d();
@@ -96,10 +96,10 @@ public final class hk0 extends View {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getWidth() - dpf2) / 2.0f, (getHeight() - dpf22) / 2.0f, (getWidth() + dpf2) / 2.0f, (getHeight() + dpf22) / 2.0f);
         int i10 = (int) (d * 255.0f);
-        Paint paint = this.f34229b;
+        Paint paint = this.f34251b;
         paint.setAlpha(i10);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint);
-        Paint paint2 = this.f34228a;
+        Paint paint2 = this.f34250a;
         paint2.setAlpha(i10);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint2);
         canvas.save();

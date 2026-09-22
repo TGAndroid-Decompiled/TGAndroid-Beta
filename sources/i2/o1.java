@@ -6,13 +6,13 @@ public final class o1 {
     public final e9.m0 f10837a;
 
     static {
-        a4.m mVar = new a4.m(19);
-        mVar.f275b = e9.m0.u(2, 1, 5);
-        f10836b = new o1(mVar);
+        android.support.v4.media.c cVar = new android.support.v4.media.c(18);
+        cVar.f1812b = e9.m0.u(2, 1, 5);
+        f10836b = new o1(cVar);
     }
 
-    public o1(a4.m mVar) {
-        this.f10837a = (e9.m0) mVar.f275b;
+    public o1(android.support.v4.media.c cVar) {
+        this.f10837a = (e9.m0) cVar.f1812b;
     }
 
     public final boolean equals(Object obj) {

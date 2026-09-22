@@ -57,7 +57,7 @@ public final class h implements i {
                             return;
                         }
                     }
-                    int i10 = vVar.f7935b;
+                    int i10 = vVar.f7934b;
                     int a2 = vVar.a();
                     for (h0 h0Var : (h0[]) this.f12704g) {
                         vVar.J(i10);
@@ -75,7 +75,7 @@ public final class h implements i {
                     int i11 = this.e;
                     if (i11 < 10) {
                         int min = Math.min(a10, 10 - i11);
-                        System.arraycopy(vVar.f7934a, vVar.f7935b, vVar2.f7934a, this.e, min);
+                        System.arraycopy(vVar.f7933a, vVar.f7934b, vVar2.f7933a, this.e, min);
                         if (this.e + min == 10) {
                             vVar2.J(0);
                             if (73 == vVar2.x() && 68 == vVar2.x() && 51 == vVar2.x()) {
@@ -123,10 +123,10 @@ public final class h implements i {
                     h0 Z1 = qVar.Z1(f0Var.d, 3);
                     b2.r rVar = new b2.r();
                     f0Var.b();
-                    rVar.f3240a = f0Var.e;
-                    rVar.f3252p = r0.n("video/mp2t");
-                    rVar.f3253q = r0.n("application/dvbsubs");
-                    rVar.f3256t = Collections.singletonList(e0Var.f12680b);
+                    rVar.f3239a = f0Var.e;
+                    rVar.f3251p = r0.n("video/mp2t");
+                    rVar.f3252q = r0.n("application/dvbsubs");
+                    rVar.f3255t = Collections.singletonList(e0Var.f12680b);
                     rVar.d = e0Var.f12679a;
                     k0.s(rVar, Z1);
                     h0VarArr[i10] = Z1;
@@ -139,9 +139,9 @@ public final class h implements i {
                 this.f12704g = Z12;
                 b2.r rVar2 = new b2.r();
                 f0Var.b();
-                rVar2.f3240a = f0Var.e;
-                rVar2.f3252p = r0.n("video/mp2t");
-                rVar2.f3253q = r0.n("application/id3");
+                rVar2.f3239a = f0Var.e;
+                rVar2.f3251p = r0.n("video/mp2t");
+                rVar2.f3252q = r0.n("application/id3");
                 k0.s(rVar2, Z12);
                 return;
         }

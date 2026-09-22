@@ -8,7 +8,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.u61;
 import w7.y5;
 public final class e0 extends h0 {
     public final k0 h;
@@ -26,12 +26,12 @@ public final class e0 extends h0 {
         t tVar = new t(k0Var, 3);
         u uVar = new u(k0Var, 2);
         f6Var = ((f3) k0Var).resourcesProvider;
-        s61 s61Var = new s61(context, i10, 0, false, tVar, uVar, null, f6Var);
-        this.d = s61Var;
-        s61Var.q1();
-        s61 s61Var2 = this.d;
-        s61Var2.Y2.f25678r = false;
-        s61Var2.setClipToPadding(false);
+        u61 u61Var = new u61(context, i10, 0, false, tVar, uVar, null, f6Var);
+        this.d = u61Var;
+        u61Var.q1();
+        u61 u61Var2 = this.d;
+        u61Var2.Y2.f26342r = false;
+        u61Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.f9112c.addView(k0Var.G, y5.g());
         this.f9112c.addView(this.d, 0, y5.c(-1.0f, -1));
@@ -41,7 +41,7 @@ public final class e0 extends h0 {
         this.f9110a = kVar;
         kVar.setOccupyStatusBar(false);
         this.f9110a.setTitleColor(k0Var.getThemedColor(j6.G6));
-        this.f9110a.A(k0Var.getThemedColor(j6.f19498z8), false);
+        this.f9110a.A(k0Var.getThemedColor(j6.f19513z8), false);
         org.telegram.ui.ActionBar.k kVar2 = this.f9110a;
         boolean z10 = k0Var.N;
         if (z10) {
@@ -50,7 +50,7 @@ public final class e0 extends h0 {
             i11 = R.drawable.ic_ab_back;
         }
         kVar2.setBackButtonImage(i11);
-        this.f9110a.B(k0Var.getThemedColor(j6.f19479y8), false);
+        this.f9110a.B(k0Var.getThemedColor(j6.f19494y8), false);
         this.f9110a.setTitle(LocaleController.getString(R.string.CommunityAddAChatToCommunity));
         this.f9110a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f9110a.setActionBarMenuOnItemClick(new ei.t(this, 6));

@@ -2,7 +2,7 @@ package gg;
 
 import java.util.ArrayList;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.ui.Components.qa0;
+import org.telegram.ui.Components.ta0;
 public final class w0 implements MediaDataController.KeywordResultCallback, org.telegram.ui.Cells.e2 {
     public final k1 f9969a;
 
@@ -25,13 +25,13 @@ public final class w0 implements MediaDataController.KeywordResultCallback, org.
         k1Var.K = null;
         k1Var.P = null;
         k1Var.l();
-        qa0 qa0Var = k1Var.V;
+        ta0 ta0Var = k1Var.V;
         ArrayList arrayList2 = k1Var.N;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        qa0Var.a(z10);
+        ta0Var.a(z10);
     }
 }

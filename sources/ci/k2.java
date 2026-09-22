@@ -2,16 +2,16 @@ package ci;
 
 import android.content.Context;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.Components.dx0;
-import org.telegram.ui.Components.hx0;
-public final class k2 extends hx0 {
+import org.telegram.ui.Components.fx0;
+import org.telegram.ui.Components.jx0;
+public final class k2 extends jx0 {
     public final l2 A3;
-    public final boolean f4879z3;
+    public final boolean f4877z3;
 
     public k2(l2 l2Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         super(context, i10, f6Var);
         this.A3 = l2Var;
-        this.f4879z3 = z10;
+        this.f4877z3 = z10;
     }
 
     @Override
@@ -20,13 +20,13 @@ public final class k2 extends hx0 {
     }
 
     @Override
-    public final dx0[] C1(dx0[] dx0VarArr) {
-        if (dx0VarArr != null && this.f4879z3) {
+    public final fx0[] C1(fx0[] fx0VarArr) {
+        if (fx0VarArr != null && this.f4877z3) {
             int i10 = 0;
             while (true) {
-                if (i10 < dx0VarArr.length) {
-                    dx0 dx0Var = dx0VarArr[i10];
-                    if (dx0Var != null && dx0Var.f23661b) {
+                if (i10 < fx0VarArr.length) {
+                    fx0 fx0Var = fx0VarArr[i10];
+                    if (fx0Var != null && fx0Var.f24371b) {
                         break;
                     }
                     i10++;
@@ -36,16 +36,16 @@ public final class k2 extends hx0 {
                 }
             }
             if (i10 >= 0) {
-                int length = dx0VarArr.length;
-                dx0[] dx0VarArr2 = new dx0[length];
-                dx0VarArr2[0] = dx0VarArr[i10];
+                int length = fx0VarArr.length;
+                fx0[] fx0VarArr2 = new fx0[length];
+                fx0VarArr2[0] = fx0VarArr[i10];
                 for (int i11 = 1; i11 < length; i11++) {
-                    dx0VarArr2[i11] = dx0VarArr[i11 <= i10 ? i11 - 1 : i11];
+                    fx0VarArr2[i11] = fx0VarArr[i11 <= i10 ? i11 - 1 : i11];
                 }
-                return dx0VarArr2;
+                return fx0VarArr2;
             }
         }
-        return dx0VarArr;
+        return fx0VarArr;
     }
 
     @Override

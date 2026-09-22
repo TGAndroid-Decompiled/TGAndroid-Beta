@@ -11,26 +11,26 @@ public final class d0 extends AudioTrack.StreamEventCallback {
     @Override
     public final void onDataRequest(AudioTrack audioTrack, int i10) {
         f0 f0Var;
-        n nVar;
-        if (audioTrack.equals(this.f13242a.f13248c.f13287x) && (nVar = (f0Var = this.f13242a.f13248c).f13284t) != null && f0Var.X) {
-            nVar.e0();
+        o oVar;
+        if (audioTrack.equals(this.f13242a.f13247c.f13286x) && (oVar = (f0Var = this.f13242a.f13247c).f13283t) != null && f0Var.X) {
+            oVar.a0();
         }
     }
 
     @Override
     public final void onPresentationEnded(AudioTrack audioTrack) {
-        if (!audioTrack.equals(this.f13242a.f13248c.f13287x)) {
+        if (!audioTrack.equals(this.f13242a.f13247c.f13286x)) {
             return;
         }
-        this.f13242a.f13248c.W = true;
+        this.f13242a.f13247c.W = true;
     }
 
     @Override
     public final void onTearDown(AudioTrack audioTrack) {
         f0 f0Var;
-        n nVar;
-        if (audioTrack.equals(this.f13242a.f13248c.f13287x) && (nVar = (f0Var = this.f13242a.f13248c).f13284t) != null && f0Var.X) {
-            nVar.e0();
+        o oVar;
+        if (audioTrack.equals(this.f13242a.f13247c.f13286x) && (oVar = (f0Var = this.f13242a.f13247c).f13283t) != null && f0Var.X) {
+            oVar.a0();
         }
     }
 }

@@ -8,17 +8,17 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bd;
 public final class i implements e2.h {
-    public final int f966a;
+    public final int f963a;
 
     public i(int i10) {
-        this.f966a = i10;
+        this.f963a = i10;
     }
 
     @Override
     public final void accept(Object obj) {
         MessageObject messageObject;
         MessageObject messageObject2;
-        switch (this.f966a) {
+        switch (this.f963a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -88,7 +88,7 @@ public final class i implements e2.h {
                 ((View) obj).invalidate();
                 return;
             case 19:
-                ((n2.k) obj).a();
+                ((n2.j) obj).a();
                 return;
             case 20:
                 bd.Y0((View) obj);
@@ -121,8 +121,8 @@ public final class i implements e2.h {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.i5) {
                     org.telegram.ui.Cells.i5 i5Var = (org.telegram.ui.Cells.i5) view7;
-                    i5Var.f20428b.invalidate();
-                    i5Var.f20429c.invalidate();
+                    i5Var.f20443b.invalidate();
+                    i5Var.f20444c.invalidate();
                     return;
                 } else if (view7 instanceof hg.x1) {
                     ((hg.x1) view7).f10478c.invalidate();
@@ -169,6 +169,6 @@ public final class i implements e2.h {
     }
 
     public i(bd bdVar) {
-        this.f966a = 20;
+        this.f963a = 20;
     }
 }

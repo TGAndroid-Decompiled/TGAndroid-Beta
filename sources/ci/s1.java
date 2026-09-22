@@ -4,7 +4,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.y70;
 import org.telegram.ui.of;
 import org.telegram.ui.qt;
 public final class s1 implements qt {
@@ -99,7 +99,7 @@ public final class s1 implements qt {
     }
 
     @Override
-    public final v70 i(n6 n6Var) {
+    public final y70 i(n6 n6Var) {
         return null;
     }
 

@@ -1,40 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-public final class ps0 implements ml0 {
-    public final fs0 f27440a;
-    public final jv0 f27441b;
+import android.os.Bundle;
+public final class ps0 extends org.telegram.ui.zn {
+    public boolean Pc;
+    public final int Qc;
+    public final lv0 Rc;
 
-    public ps0(jv0 jv0Var, fs0 fs0Var) {
-        this.f27441b = jv0Var;
-        this.f27440a = fs0Var;
+    public ps0(lv0 lv0Var, Bundle bundle, int i10) {
+        super(bundle);
+        this.Rc = lv0Var;
+        this.Qc = i10;
+        this.Pc = true;
     }
 
     @Override
-    public final boolean mo18c(float r18, float r19, int r20, android.view.View r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ps0.mo18c(float, float, int, android.view.View):boolean");
-    }
-
-    @Override
-    public final void g() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f27441b.f25528v1;
-        if (n2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                n2Var.finishPreviewFragment();
+    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
+        lv0 lv0Var = this.Rc;
+        wu0 wu0Var = lv0Var.S;
+        if (this.Pc) {
+            if (this.f40376j0 != null) {
+                la("");
+                this.f40376j0.H(wu0Var.f30158w, false);
             }
-        }
-    }
-
-    @Override
-    public final void q(float f7) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f27441b.f25528v1;
-        if (n2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                n2Var.movePreviewFragment(f7);
+            org.telegram.ui.yk ykVar = this.f40437o1;
+            if (ykVar != null) {
+                ykVar.e(wu0Var.f30159x, false);
             }
+            lv0Var.f26234v1.getMediaDataController().portSavedSearchResults(getClassGuid(), wu0Var.f30159x, wu0Var.f30158w, wu0Var.f30155n, wu0Var.h, this.Qc, wu0Var.v, wu0Var.f30157s);
+            this.Pc = false;
         }
+        super.onTransitionAnimationStart(z10, z11);
     }
 }

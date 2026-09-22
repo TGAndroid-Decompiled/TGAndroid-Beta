@@ -1,24 +1,13 @@
 package org.telegram.ui.Components;
+public final class do0 extends s4.j {
+    public final org.telegram.ui.ey F;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class do0 extends s4.s0 {
-    public final int f23621a;
-    public final org.telegram.ui.ey f23622b;
-
-    public do0(org.telegram.ui.ey eyVar, int i10) {
-        this.f23621a = i10;
-        this.f23622b = eyVar;
+    public do0(org.telegram.ui.ey eyVar) {
+        this.F = eyVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f23621a) {
-            case 0:
-                this.f23622b.T(i10, i11);
-                return;
-            default:
-                this.f23622b.T(i10, i11);
-                return;
-        }
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
     }
 }

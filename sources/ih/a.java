@@ -64,7 +64,7 @@ public final class a extends FrameLayout implements d {
     }
 
     @Override
-    public final void D(int i10, float f7, float f10, e eVar) {
+    public final void H(int i10, float f7, float f10, e eVar) {
         if (i10 == 0) {
             a();
             b();
@@ -110,7 +110,7 @@ public final class a extends FrameLayout implements d {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.e.f28413c = -1L;
+                this.e.f28509c = -1L;
             }
         }
     }

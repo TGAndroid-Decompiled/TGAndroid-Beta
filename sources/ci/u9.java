@@ -16,7 +16,7 @@ public final class u9 extends fa {
         int paddingTop;
         super.setContainerHeight(f7);
         ba baVar = this.L;
-        org.telegram.ui.Cells.w3 w3Var = baVar.f4411y;
+        org.telegram.ui.Cells.w3 w3Var = baVar.f4409y;
         float y3 = getY();
         FrameLayout frameLayout = baVar.e;
         if (frameLayout == null) {
@@ -36,7 +36,7 @@ public final class u9 extends fa {
         int paddingTop;
         super.setTranslationY(f7);
         ba baVar = this.L;
-        org.telegram.ui.Cells.w3 w3Var = baVar.f4411y;
+        org.telegram.ui.Cells.w3 w3Var = baVar.f4409y;
         float y3 = getY();
         FrameLayout frameLayout = baVar.e;
         if (frameLayout == null) {

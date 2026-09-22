@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import yh.w7;
 public final class h1 extends FrameLayout {
-    public final int f46182a;
-    public final Object f46183b;
+    public final int f46203a;
+    public final Object f46204b;
 
     public h1(Object obj, Context context, int i10) {
         super(context);
-        this.f46182a = i10;
-        this.f46183b = obj;
+        this.f46203a = i10;
+        this.f46204b = obj;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f46182a) {
+        switch (this.f46203a) {
             case 2:
-                if (((w7) this.f46183b).f48232f0) {
+                if (((w7) this.f46204b).f48253f0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -31,16 +31,16 @@ public final class h1 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f46182a) {
+        switch (this.f46203a) {
             case 3:
                 super.onLayout(z10, i10, i11, i12, i13);
-                zg.q qVar = (zg.q) this.f46183b;
+                zg.q qVar = (zg.q) this.f46204b;
                 if (qVar.K && z10) {
-                    qVar.f49459w.setTranslationY(-qVar.f49454c.getMeasuredHeight());
-                    int measuredHeight = qVar.f49454c.getMeasuredHeight();
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f49461y.getLayoutParams();
+                    qVar.f49456w.setTranslationY(-qVar.f49451c.getMeasuredHeight());
+                    int measuredHeight = qVar.f49451c.getMeasuredHeight();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f49458y.getLayoutParams();
                     marginLayoutParams.bottomMargin = measuredHeight;
-                    qVar.f49461y.setLayoutParams(marginLayoutParams);
+                    qVar.f49458y.setLayoutParams(marginLayoutParams);
                     return;
                 }
                 return;
@@ -52,10 +52,10 @@ public final class h1 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f46182a) {
+        switch (this.f46203a) {
             case 0:
                 super.onMeasure(i10, i11);
-                ((j1) this.f46183b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+                ((j1) this.f46204b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -65,13 +65,13 @@ public final class h1 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f46182a) {
+        switch (this.f46203a) {
             case 1:
                 super.setTranslationY(f7);
-                yh.y3 y3Var = (yh.y3) this.f46183b;
-                yh.j2 j2Var = y3Var.f48305d0;
+                yh.y3 y3Var = (yh.y3) this.f46204b;
+                yh.j2 j2Var = y3Var.f48326d0;
                 if (j2Var != null && j2Var.getVisibility() == 0) {
-                    y3Var.f48305d0.invalidate();
+                    y3Var.f48326d0.invalidate();
                     return;
                 }
                 return;

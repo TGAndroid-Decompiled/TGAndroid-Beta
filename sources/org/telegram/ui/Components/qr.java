@@ -4,16 +4,16 @@ import android.graphics.PointF;
 import android.view.animation.Interpolator;
 import android.view.animation.PathInterpolator;
 public final class qr implements Interpolator {
-    public static final qr f27642f = new qr(0.25d, 0.1d, 0.25d, 1.0d);
-    public static final qr f27643g = new qr(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final qr f27653f = new qr(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final qr f27654g = new qr(0.0d, 0.0d, 0.58d, 1.0d);
     public static final qr h = new qr(0.23d, 1.0d, 0.32d, 1.0d);
-    public static final qr f27644i = new qr(0.42d, 0.0d, 1.0d, 1.0d);
-    public static final qr f27645j = new qr(0.42d, 0.0d, 0.58d, 1.0d);
-    public static final qr f27646k = new qr(0.34d, 1.56d, 0.64d, 1.0d);
-    public static final PathInterpolator f27647l;
-    public final PointF f27648a;
-    public final PointF f27649b;
-    public final PointF f27650c;
+    public static final qr f27655i = new qr(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final qr f27656j = new qr(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final qr f27657k = new qr(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f27658l;
+    public final PointF f27659a;
+    public final PointF f27660b;
+    public final PointF f27661c;
     public final PointF d;
     public final PointF e;
 
@@ -21,21 +21,21 @@ public final class qr implements Interpolator {
         new PathInterpolator(v7.h8.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
         new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
         new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-        f27647l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+        f27658l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
     public qr(float f7, float f10, float f11, float f12) {
         PointF pointF = new PointF(f7, f10);
         PointF pointF2 = new PointF(f11, f12);
-        this.f27650c = new PointF();
+        this.f27661c = new PointF();
         this.d = new PointF();
         this.e = new PointF();
         float f13 = pointF.x;
         if (f13 >= 0.0f && f13 <= 1.0f) {
             float f14 = pointF2.x;
             if (f14 >= 0.0f && f14 <= 1.0f) {
-                this.f27648a = pointF;
-                this.f27649b = pointF2;
+                this.f27659a = pointF;
+                this.f27660b = pointF2;
                 return;
             }
             throw new IllegalArgumentException("endX value must be in the range [0, 1]");
@@ -53,9 +53,9 @@ public final class qr implements Interpolator {
         int i10 = 1;
         float f10 = f7;
         while (true) {
-            pointF = this.f27649b;
-            pointF2 = this.f27648a;
-            pointF3 = this.f27650c;
+            pointF = this.f27660b;
+            pointF2 = this.f27659a;
+            pointF3 = this.f27661c;
             pointF4 = this.d;
             pointF5 = this.e;
             if (i10 >= 14) {

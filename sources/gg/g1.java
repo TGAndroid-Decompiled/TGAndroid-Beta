@@ -29,7 +29,7 @@ public final class g1 {
                 break;
             default:
                 kz kzVar = (kz) this.h;
-                if (kzVar.f25951t1 != null && kzVar.getVisibility() == 0 && kzVar.K0) {
+                if (kzVar.f25911t1 != null && kzVar.getVisibility() == 0 && kzVar.K0) {
                     N = true;
                     break;
                 } else {

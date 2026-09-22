@@ -14,19 +14,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.h90;
 import org.telegram.ui.Components.k90;
+import org.telegram.ui.Components.n90;
 public class f9 extends FrameLayout {
-    public final y1 f20294a;
-    public final h90 f20295b;
-    public int f20296c;
+    public final y1 f20309a;
+    public final k90 f20310b;
+    public int f20311c;
     public Integer d;
     public int e;
-    public int f20297f;
+    public int f20312f;
     public int h;
-    public boolean f20298n;
-    public CharSequence f20299r;
-    public final org.telegram.ui.ActionBar.f6 f20300s;
+    public boolean f20313n;
+    public CharSequence f20314r;
+    public final org.telegram.ui.ActionBar.f6 f20315s;
 
     public f9(Context context) {
         this(context, 24, null);
@@ -34,7 +34,7 @@ public class f9 extends FrameLayout {
 
     public final void c(ArrayList arrayList, boolean z10) {
         float f7 = 0.5f;
-        y1 y1Var = this.f20294a;
+        y1 y1Var = this.f20309a;
         if (arrayList != null) {
             if (z10) {
                 f7 = 1.0f;
@@ -53,21 +53,21 @@ public class f9 extends FrameLayout {
     }
 
     public CharSequence getText() {
-        return this.f20294a.getText();
+        return this.f20309a.getText();
     }
 
-    public k90 getTextView() {
-        return this.f20294a;
+    public n90 getTextView() {
+        return this.f20309a;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        h90 h90Var = this.f20295b;
-        if (h90Var != null) {
+        k90 k90Var = this.f20310b;
+        if (k90Var != null) {
             canvas.save();
-            y1 y1Var = this.f20294a;
+            y1 y1Var = this.f20309a;
             canvas.translate(y1Var.getLeft(), y1Var.getTop());
-            if (h90Var.f(canvas)) {
+            if (k90Var.f(canvas)) {
                 invalidate();
             }
             canvas.restore();
@@ -79,7 +79,7 @@ public class f9 extends FrameLayout {
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName(TextView.class.getName());
-        accessibilityNodeInfo.setText(this.f20299r);
+        accessibilityNodeInfo.setText(this.f20314r);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class f9 extends FrameLayout {
     }
 
     public void setBottomPadding(int i10) {
-        this.f20297f = i10;
+        this.f20312f = i10;
     }
 
     public void setFixedSize(int i10) {
@@ -103,7 +103,7 @@ public class f9 extends FrameLayout {
     }
 
     public void setLinkTextColorKey(int i10) {
-        this.f20296c = i10;
+        this.f20311c = i10;
     }
 
     public void setLinkTextRippleColor(Integer num) {
@@ -111,13 +111,13 @@ public class f9 extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        if (!TextUtils.equals(charSequence, this.f20299r)) {
-            this.f20299r = charSequence;
-            y1 y1Var = this.f20294a;
+        if (!TextUtils.equals(charSequence, this.f20314r)) {
+            this.f20314r = charSequence;
+            y1 y1Var = this.f20309a;
             if (charSequence == null) {
                 y1Var.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
             } else {
-                y1Var.setPadding(0, AndroidUtilities.dp(this.e), 0, AndroidUtilities.dp(this.f20297f));
+                y1Var.setPadding(0, AndroidUtilities.dp(this.e), 0, AndroidUtilities.dp(this.f20312f));
             }
             SpannableString spannableString = null;
             if (charSequence != null) {
@@ -142,18 +142,18 @@ public class f9 extends FrameLayout {
     }
 
     public void setTextColor(int i10) {
-        this.f20294a.setTextColor(i10);
+        this.f20309a.setTextColor(i10);
     }
 
     public void setTextColorByKey(int i10) {
-        int v02 = org.telegram.ui.ActionBar.j6.v0(i10, this.f20300s);
-        y1 y1Var = this.f20294a;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(i10, this.f20315s);
+        y1 y1Var = this.f20309a;
         y1Var.setTextColor(v02);
         y1Var.setTag(Integer.valueOf(i10));
     }
 
     public void setTextGravity(int i10) {
-        this.f20294a.setGravity(i10);
+        this.f20309a.setGravity(i10);
     }
 
     public void setTopPadding(int i10) {
@@ -166,14 +166,14 @@ public class f9 extends FrameLayout {
 
     public f9(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f20296c = org.telegram.ui.ActionBar.j6.J6;
+        this.f20311c = org.telegram.ui.ActionBar.j6.J6;
         this.e = 10;
-        this.f20297f = 17;
-        this.f20300s = f6Var;
-        h90 h90Var = new h90(this);
-        this.f20295b = h90Var;
-        y1 y1Var = new y1(this, context, h90Var, f6Var);
-        this.f20294a = y1Var;
+        this.f20312f = 17;
+        this.f20315s = f6Var;
+        k90 k90Var = new k90(this);
+        this.f20310b = k90Var;
+        y1 y1Var = new y1(this, context, k90Var, f6Var);
+        this.f20309a = y1Var;
         y1Var.setTextSize(1, 14.0f);
         y1Var.setGravity(LocaleController.isRTL ? 5 : 3);
         y1Var.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
@@ -181,11 +181,11 @@ public class f9 extends FrameLayout {
         int i11 = org.telegram.ui.ActionBar.j6.B6;
         y1Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
         y1Var.setEmojiColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        y1Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(this.f20296c, f6Var));
+        y1Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(this.f20311c, f6Var));
         y1Var.setImportantForAccessibility(2);
         float f7 = i10;
         addView(y1Var, w7.y5.d(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, f7, 0.0f, f7, 0.0f));
-        this.f20298n = LocaleController.isRTL;
+        this.f20313n = LocaleController.isRTL;
         setWillNotDraw(false);
     }
 

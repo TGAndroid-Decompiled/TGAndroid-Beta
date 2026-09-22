@@ -1,37 +1,57 @@
 package d7;
 
-import android.os.Bundle;
 import hg.k0;
+import java.io.File;
 import java.util.ArrayList;
-import p4.r;
+import java.util.logging.Level;
+import yc.i;
 public final class c {
-    public ArrayList f7559a;
+    public final ArrayList f7557a;
 
     public c(int i10) {
         switch (i10) {
             case 1:
-                this.f7559a = new ArrayList();
+                this.f7557a = new ArrayList();
+                return;
+            case 2:
+                File file = new File(System.getProperty("java.io.tmpdir"));
+                if (!file.exists()) {
+                    file.mkdirs();
+                }
+                this.f7557a = new ArrayList();
                 return;
             default:
-                this.f7559a = new ArrayList();
+                this.f7557a = new ArrayList();
                 new ArrayList();
                 new ArrayList();
                 return;
         }
     }
 
-    public r a() {
-        if (this.f7559a == null) {
-            return r.f40936c;
+    public void a() {
+        ArrayList arrayList = this.f7557a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            if (obj == null) {
+                try {
+                    throw null;
+                    break;
+                } catch (Exception e) {
+                    i.d.log(Level.WARNING, "could not delete file ", (Throwable) e);
+                }
+            } else {
+                throw new ClassCastException();
+            }
         }
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", this.f7559a);
-        return new r(bundle, this.f7559a);
+        arrayList.clear();
     }
 
     public void b(StringBuilder sb2) {
         String str;
-        if (((Boolean) k0.x(1, this.f7559a)).booleanValue()) {
+        if (((Boolean) k0.x(1, this.f7557a)).booleanValue()) {
             str = "</ol>";
         } else {
             str = "</ul>";
@@ -40,7 +60,7 @@ public final class c {
     }
 
     public void c(StringBuilder sb2) {
-        while (!this.f7559a.isEmpty()) {
+        while (!this.f7557a.isEmpty()) {
             b(sb2);
         }
     }

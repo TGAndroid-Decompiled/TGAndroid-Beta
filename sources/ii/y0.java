@@ -33,7 +33,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         int i10 = j6.vk;
         org.telegram.ui.ActionBar.f6 f6Var = this.f11773n;
         this.f11774r.setColor(j6.v0(i10, f6Var));
-        this.f11775s.setColor(j6.v0(j6.f19416uf, f6Var));
+        this.f11775s.setColor(j6.v0(j6.f19431uf, f6Var));
     }
 
     @Override
@@ -89,7 +89,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         if (s2Var != null && (textSelectionHelper = s2Var.f11617a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int S = RecyclerView.S(this);
-            if (S >= 0 && S >= textSelectionHelper.f20889u0 && S <= textSelectionHelper.f20892x0) {
+            if (S >= 0 && S >= textSelectionHelper.f20904u0 && S <= textSelectionHelper.f20907x0) {
                 canvas2 = canvas;
                 canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + h10, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f11775s);
                 float dp = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;

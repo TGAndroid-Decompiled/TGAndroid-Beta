@@ -1,21 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class u11 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f28513a;
+public final class u11 extends s4.s0 {
+    public final ThemeEditorView.EditorAlert f28582a;
 
     public u11(ThemeEditorView.EditorAlert editorAlert) {
-        this.f28513a = editorAlert;
+        this.f28582a = editorAlert;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f28513a;
-        editorAlert.f22441c.setVisibility(4);
-        editorAlert.f22442f.setVisibility(4);
-        editorAlert.f22445s.setVisibility(4);
-        editorAlert.H = false;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ThemeEditorView.EditorAlert.s(this.f28582a);
     }
 }

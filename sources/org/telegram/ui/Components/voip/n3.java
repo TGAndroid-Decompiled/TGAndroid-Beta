@@ -6,20 +6,20 @@ import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class n3 extends AnimatorListenerAdapter {
-    public final o3 f29517a;
+    public final o3 f29479a;
 
     public n3(o3 o3Var) {
-        this.f29517a = o3Var;
+        this.f29479a = o3Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator, boolean z10) {
-        o3 o3Var = this.f29517a;
-        o3Var.e = o3Var.f29527c;
-        o3Var.f29528f = o3Var.d;
-        o3Var.f29527c = AndroidUtilities.dp(12.0f) + Utilities.random.nextInt(AndroidUtilities.dp(16.0f));
+        o3 o3Var = this.f29479a;
+        o3Var.e = o3Var.f29489c;
+        o3Var.f29490f = o3Var.d;
+        o3Var.f29489c = AndroidUtilities.dp(12.0f) + Utilities.random.nextInt(AndroidUtilities.dp(16.0f));
         o3Var.d = AndroidUtilities.dp(12.0f) + Utilities.random.nextInt(AndroidUtilities.dp(16.0f));
-        ValueAnimator valueAnimator = o3Var.f29526b;
+        ValueAnimator valueAnimator = o3Var.f29488b;
         if (valueAnimator != null) {
             valueAnimator.start();
         }

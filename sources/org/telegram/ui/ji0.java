@@ -6,38 +6,38 @@ import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class ji0 implements Runnable {
-    public final int f34935a;
-    public final dj0 f34936b;
-    public final EditText f34937c;
+    public final int f34956a;
+    public final dj0 f34957b;
+    public final EditText f34958c;
 
     public ji0(dj0 dj0Var, EditText editText, int i10) {
-        this.f34935a = i10;
-        this.f34936b = dj0Var;
-        this.f34937c = editText;
+        this.f34956a = i10;
+        this.f34957b = dj0Var;
+        this.f34958c = editText;
     }
 
     @Override
     public final void run() {
-        switch (this.f34935a) {
+        switch (this.f34956a) {
             case 0:
-                dj0 dj0Var = this.f34936b;
-                if (!dj0Var.f33077p0) {
+                dj0 dj0Var = this.f34957b;
+                if (!dj0Var.f33097p0) {
                     try {
                         Window window = dj0Var.getWindow();
                         WindowManager.LayoutParams attributes = window.getAttributes();
                         attributes.flags &= -131073;
                         window.setAttributes(attributes);
-                        dj0Var.f33077p0 = true;
+                        dj0Var.f33097p0 = true;
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
                 }
-                AndroidUtilities.runOnUIThread(new ji0(dj0Var, this.f34937c, 1), 100L);
+                AndroidUtilities.runOnUIThread(new ji0(dj0Var, this.f34958c, 1), 100L);
                 return;
             default:
-                dj0 dj0Var2 = this.f34936b;
-                int[] iArr = dj0Var2.f33076o0;
-                AndroidUtilities.showKeyboard(this.f34937c);
+                dj0 dj0Var2 = this.f34957b;
+                int[] iArr = dj0Var2.f33096o0;
+                AndroidUtilities.showKeyboard(this.f34958c);
                 org.telegram.ui.Components.ug ugVar = dj0Var2.W;
                 if (ugVar != null) {
                     ugVar.getLocationOnScreen(iArr);

@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.lx;
-public final class q extends vl0 {
+public final class q extends yl0 {
     public final int X2;
     public final lx Y2;
 
@@ -33,22 +33,22 @@ public final class q extends vl0 {
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     a0 a0Var = (a0) getChildAt(i11);
                     int S = RecyclerView.S(a0Var);
-                    a0Var.f497b = S;
+                    a0Var.f494b = S;
                     boolean z11 = true;
-                    a0Var.f495a = true;
+                    a0Var.f492a = true;
                     if (S == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (S != lxVar.f572y.size() - 1) {
+                    if (S != lxVar.f569y.size() - 1) {
                         z11 = false;
                     }
-                    a0Var.f499c = z11;
+                    a0Var.f496c = z11;
                     arrayList.add(a0Var);
                 }
-                Collections.sort(arrayList, lxVar.f569w0);
+                Collections.sort(arrayList, lxVar.f566w0);
                 while (i10 < arrayList.size()) {
                     a0 a0Var2 = (a0) arrayList.get(i10);
                     int save = canvas.save();
@@ -78,7 +78,7 @@ public final class q extends vl0 {
             case 0:
                 if (motionEvent.getAction() == 0) {
                     lx lxVar = this.Y2;
-                    if (lxVar.f545c0 > 0.2f || lxVar.getAlpha() == 0.0f) {
+                    if (lxVar.f542c0 > 0.2f || lxVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }
@@ -130,7 +130,7 @@ public final class q extends vl0 {
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         switch (this.X2) {
             case 0:
-                ArrayList arrayList = this.Y2.f543b0;
+                ArrayList arrayList = this.Y2.f540b0;
                 super.onLayout(z10, i10, i11, i12, i13);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((Runnable) arrayList.get(i14)).run();

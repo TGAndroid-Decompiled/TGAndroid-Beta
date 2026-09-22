@@ -1,111 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import org.json.JSONArray;
-import org.json.JSONTokener;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class z31 extends Thread {
-    public final String f30702a;
-    public final String f30703b;
-    public final String f30704c;
-    public final Utilities.Callback2 d;
+public final class z31 extends s4.s0 {
+    public final l41 f30814a;
 
-    public z31(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        this.f30702a = str;
-        this.f30703b = str2;
-        this.f30704c = str3;
-        this.d = callback2;
+    public z31(l41 l41Var) {
+        this.f30814a = l41Var;
     }
 
     @Override
-    public final void run() {
-        HttpURLConnection httpURLConnection;
-        Integer num;
-        String str;
-        Utilities.Callback2 callback2 = this.d;
-        String str2 = this.f30704c;
-        boolean z10 = false;
-        String str3 = null;
-        try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f30702a) + "&tl=" + Uri.encode(this.f30703b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
-        } catch (Exception e) {
-            e = e;
-            httpURLConnection = null;
+    public final void a(RecyclerView recyclerView, int i10) {
+        l41 l41Var = this.f30814a;
+        y31 y31Var = l41Var.H;
+        if (i10 == 0) {
+            l41Var.G = false;
         }
-        try {
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setRequestProperty("User-Agent", j41.R[(int) Math.round(Math.random() * 5)]);
-            httpURLConnection.setRequestProperty("Content-Type", "application/json");
-            StringBuilder sb2 = new StringBuilder();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.d.f7565a));
-            while (true) {
-                int read = bufferedReader.read();
-                if (read == -1) {
-                    break;
-                }
-                sb2.append((char) read);
-            }
-            bufferedReader.close();
-            JSONArray jSONArray = new JSONArray(new JSONTokener(sb2.toString()));
-            JSONArray jSONArray2 = jSONArray.getJSONArray(0);
-            try {
-                str = jSONArray.getString(2);
-            } catch (Exception unused) {
-                str = null;
-            }
-            if (str != null && str.contains("-")) {
-                str.substring(0, str.indexOf("-"));
-            }
-            String str4 = "";
-            for (int i10 = 0; i10 < jSONArray2.length(); i10++) {
-                String string = jSONArray2.getJSONArray(i10).getString(0);
-                if (string != null && !string.equals("null")) {
-                    str4 = str4 + string;
-                }
-            }
-            if (str2.length() > 0 && str2.charAt(0) == '\n') {
-                str4 = "\n" + str4;
-            }
-            AndroidUtilities.runOnUIThread(new wn0(17, callback2, str4));
-        } catch (Exception e7) {
-            e = e7;
-            try {
-                StringBuilder sb3 = new StringBuilder();
-                sb3.append("failed to translate a text ");
-                if (httpURLConnection != null) {
-                    num = Integer.valueOf(httpURLConnection.getResponseCode());
-                } else {
-                    num = null;
-                }
-                sb3.append(num);
-                sb3.append(" ");
-                if (httpURLConnection != null) {
-                    str3 = httpURLConnection.getResponseMessage();
-                }
-                sb3.append(str3);
-                Log.e("translate", sb3.toString());
-            } catch (IOException e10) {
-                e10.printStackTrace();
-            }
-            e.printStackTrace();
-            if (httpURLConnection != null) {
-                try {
-                    if (httpURLConnection.getResponseCode() == 429) {
-                        z10 = true;
-                    }
-                } catch (Exception unused2) {
-                    AndroidUtilities.runOnUIThread(new wq0(callback2, 21));
-                    return;
-                }
-            }
-            AndroidUtilities.runOnUIThread(new ds0(3, callback2, z10));
+        if ((i10 == 0 || i10 == 2) && l41Var.z(false) > 0.0f && l41Var.z(false) < AndroidUtilities.dp(96.0f) && y31Var.canScrollVertically(1) && l41.u(l41Var)) {
+            l41Var.G = true;
+            y31Var.w0(0, (int) l41Var.z(false), null);
         }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ViewGroup viewGroup;
+        float f7;
+        l41 l41Var = this.f30814a;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) l41Var).containerView;
+        viewGroup.invalidate();
+        boolean canScrollVertically = l41Var.H.canScrollVertically(1);
+        View view = l41Var.L;
+        Boolean bool = l41Var.Q;
+        if (bool != null && bool.booleanValue() == canScrollVertically) {
+            return;
+        }
+        l41Var.Q = Boolean.valueOf(canScrollVertically);
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (canScrollVertically) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        org.telegram.messenger.rk.s(animate.alpha(f7), qr.h, 320L);
     }
 }

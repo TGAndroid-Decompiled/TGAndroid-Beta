@@ -4,28 +4,28 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.RelativeLayout;
 public final class n4 extends Animation {
-    public final int f19668a;
-    public final int f19669b;
-    public final int f19670c;
+    public final int f19683a;
+    public final int f19684b;
+    public final int f19685c;
     public final float d;
     public final v4 e;
 
     public n4(v4 v4Var, int i10, int i11, float f7, float f10, int i12) {
-        this.f19668a = i12;
+        this.f19683a = i12;
         this.e = v4Var;
-        this.f19669b = i10;
-        this.f19670c = i11;
+        this.f19684b = i10;
+        this.f19685c = i11;
         this.d = f10;
     }
 
     @Override
     public final void applyTransformation(float f7, Transformation transformation) {
-        switch (this.f19668a) {
+        switch (this.f19683a) {
             case 0:
-                int i10 = this.f19669b;
-                int i11 = this.f19670c;
+                int i10 = this.f19684b;
+                int i11 = this.f19685c;
                 v4 v4Var = this.e;
-                RelativeLayout relativeLayout = v4Var.f19832f;
+                RelativeLayout relativeLayout = v4Var.f19847f;
                 v4.l(relativeLayout, relativeLayout.getLayoutParams().width, i11 + ((int) (f7 * (i10 - i11))));
                 if (v4Var.M) {
                     relativeLayout.setY(this.d - relativeLayout.getHeight());
@@ -34,20 +34,20 @@ public final class n4 extends Animation {
                 }
                 return;
             case 1:
-                int i12 = this.f19669b;
-                int i13 = this.f19670c;
+                int i12 = this.f19684b;
+                int i13 = this.f19685c;
                 v4 v4Var2 = this.e;
-                RelativeLayout relativeLayout2 = v4Var2.f19832f;
+                RelativeLayout relativeLayout2 = v4Var2.f19847f;
                 v4.l(relativeLayout2, ((int) (f7 * (i12 - i13))) + i13, relativeLayout2.getLayoutParams().height);
                 relativeLayout2.setX(this.d - relativeLayout2.getWidth());
-                v4Var2.f19833g.setX(relativeLayout2.getWidth() - i13);
+                v4Var2.f19848g.setX(relativeLayout2.getWidth() - i13);
                 v4Var2.h.setX(relativeLayout2.getWidth() - i12);
                 return;
             case 2:
-                int i14 = this.f19669b;
-                int i15 = this.f19670c;
+                int i14 = this.f19684b;
+                int i15 = this.f19685c;
                 v4 v4Var3 = this.e;
-                RelativeLayout relativeLayout3 = v4Var3.f19832f;
+                RelativeLayout relativeLayout3 = v4Var3.f19847f;
                 v4.l(relativeLayout3, relativeLayout3.getLayoutParams().width, ((int) (f7 * (i14 - i15))) + i15);
                 if (v4Var3.M) {
                     relativeLayout3.setY(this.d - (relativeLayout3.getHeight() - i15));
@@ -56,23 +56,23 @@ public final class n4 extends Animation {
                 }
                 return;
             default:
-                int i16 = this.f19669b;
-                int i17 = this.f19670c;
+                int i16 = this.f19684b;
+                int i17 = this.f19685c;
                 v4 v4Var4 = this.e;
-                RelativeLayout relativeLayout4 = v4Var4.f19832f;
+                RelativeLayout relativeLayout4 = v4Var4.f19847f;
                 v4.l(relativeLayout4, ((int) (f7 * (i16 - i17))) + i17, relativeLayout4.getLayoutParams().height);
                 relativeLayout4.setX(this.d - relativeLayout4.getWidth());
-                v4Var4.f19833g.setX(relativeLayout4.getWidth() - i16);
+                v4Var4.f19848g.setX(relativeLayout4.getWidth() - i16);
                 v4Var4.h.setX(relativeLayout4.getWidth() - i17);
                 return;
         }
     }
 
     public n4(v4 v4Var, int i10, int i11, float f7, int i12) {
-        this.f19668a = i12;
+        this.f19683a = i12;
         this.e = v4Var;
-        this.f19669b = i10;
-        this.f19670c = i11;
+        this.f19684b = i10;
+        this.f19685c = i11;
         this.d = f7;
     }
 }

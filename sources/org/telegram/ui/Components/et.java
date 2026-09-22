@@ -23,31 +23,31 @@ public final class et extends org.telegram.ui.ActionBar.f3 {
             final ?? f3Var = new org.telegram.ui.ActionBar.f3(activity, false);
             f3Var.setApplyBottomPadding(false);
             f3Var.setApplyTopPadding(false);
-            int i10 = org.telegram.ui.ActionBar.j6.f19094d6;
+            int i10 = org.telegram.ui.ActionBar.j6.f19109d6;
             f3Var.fixNavigationBar(f3Var.getThemedColor(i10));
             LinearLayout linearLayout = new LinearLayout(activity);
             linearLayout.setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(activity);
             frameLayout.addView(linearLayout);
             ImageView imageView = new ImageView(activity);
-            imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(f3Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19184i6), 1, -1));
+            imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(f3Var.getThemedColor(org.telegram.ui.ActionBar.j6.f19199i6), 1, -1));
             imageView.setColorFilter(f3Var.getThemedColor(org.telegram.ui.ActionBar.j6.Ji));
             imageView.setImageResource(R.drawable.ic_layer_close);
             imageView.setOnClickListener(new View.OnClickListener(f3Var) {
-                public final et f23397b;
+                public final et f23440b;
 
                 {
-                    this.f23397b = f3Var;
+                    this.f23440b = f3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f23397b.dismiss();
+                            this.f23440b.dismiss();
                             return;
                         default:
-                            et.m(this.f23397b);
+                            et.m(this.f23440b);
                             return;
                     }
                 }
@@ -55,13 +55,13 @@ public final class et extends org.telegram.ui.ActionBar.f3 {
             int dp = AndroidUtilities.dp(8.0f);
             imageView.setPadding(dp, dp, dp, dp);
             frameLayout.addView(imageView, w7.y5.d(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
-            kx0 kx0Var = new kx0(activity, f3Var.currentAccount);
-            kx0Var.setStickerNum(9);
-            kx0Var.getImageReceiver().setAutoRepeat(1);
-            linearLayout.addView(kx0Var, w7.y5.t(110, 110, 1, 0, 26, 0, 0));
+            mx0 mx0Var = new mx0(activity, f3Var.currentAccount);
+            mx0Var.setStickerNum(9);
+            mx0Var.getImageReceiver().setAutoRepeat(1);
+            linearLayout.addView(mx0Var, w7.y5.t(110, 110, 1, 0, 26, 0, 0));
             TextView textView = new TextView(activity);
             textView.setGravity(1);
-            int i11 = org.telegram.ui.ActionBar.j6.f19201j5;
+            int i11 = org.telegram.ui.ActionBar.j6.f19216j5;
             textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
             textView.setTextSize(1, 20.0f);
             textView.setText(LocaleController.getString(R.string.DownloadedFiles));
@@ -106,20 +106,20 @@ public final class et extends org.telegram.ui.ActionBar.f3 {
             f3Var.setCustomView(nestedScrollView);
             textView3.setOnClickListener(new dt(0, f3Var, n2Var));
             textView4.setOnClickListener(new View.OnClickListener(f3Var) {
-                public final et f23397b;
+                public final et f23440b;
 
                 {
-                    this.f23397b = f3Var;
+                    this.f23440b = f3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f23397b.dismiss();
+                            this.f23440b.dismiss();
                             return;
                         default:
-                            et.m(this.f23397b);
+                            et.m(this.f23440b);
                             return;
                     }
                 }

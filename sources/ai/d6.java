@@ -16,60 +16,60 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.j41;
+import org.telegram.ui.Components.l41;
 public final class d6 {
-    public TL_stories.StoryItem f706a = null;
-    public k9 f707b = null;
-    public TL_stories.StoryItem f708c;
+    public TL_stories.StoryItem f703a = null;
+    public k9 f704b = null;
+    public TL_stories.StoryItem f705c;
     public boolean d;
     public boolean e;
-    public boolean f709f;
-    public boolean f710g;
+    public boolean f706f;
+    public boolean f707g;
     public CharSequence h;
-    public sa f711i;
-    public sa f712j;
-    public final f6 f713k;
+    public sa f708i;
+    public sa f709j;
+    public final f6 f710k;
 
     public d6(f6 f6Var) {
-        this.f713k = f6Var;
+        this.f710k = f6Var;
     }
 
     public static String c(d6 d6Var) {
         TLRPC.MessageMedia messageMedia;
-        TL_stories.StoryItem storyItem = d6Var.f706a;
+        TL_stories.StoryItem storyItem = d6Var.f703a;
         if (storyItem != null && (messageMedia = storyItem.media) != null) {
             if (messageMedia.photo != null) {
                 StringBuilder sb2 = new StringBuilder("photo#");
-                sb2.append(d6Var.f706a.media.photo.f18352id);
+                sb2.append(d6Var.f703a.media.photo.f18367id);
                 sb2.append("at");
-                return a4.a.n(d6Var.f706a.media.photo.dc_id, "dc", sb2);
+                return a4.a.n(d6Var.f703a.media.photo.dc_id, "dc", sb2);
             } else if (messageMedia.document != null) {
                 StringBuilder sb3 = new StringBuilder("doc#");
-                sb3.append(d6Var.f706a.media.document.f18334id);
+                sb3.append(d6Var.f703a.media.document.f18349id);
                 sb3.append("at");
-                return a4.a.n(d6Var.f706a.media.document.dc_id, "dc", sb3);
+                return a4.a.n(d6Var.f703a.media.document.dc_id, "dc", sb3);
             } else {
                 return "unknown";
             }
-        } else if (d6Var.f707b != null) {
-            return "uploading from " + d6Var.f707b.e;
+        } else if (d6Var.f704b != null) {
+            return "uploading from " + d6Var.f704b.e;
         } else {
             return "unknown";
         }
     }
 
     public final boolean d() {
-        k9 k9Var = this.f707b;
+        k9 k9Var = this.f704b;
         if (k9Var != null) {
-            return k9Var.f1143c.H0;
+            return k9Var.f1140c.H0;
         }
-        TL_stories.StoryItem storyItem = this.f706a;
+        TL_stories.StoryItem storyItem = this.f703a;
         if (storyItem != null) {
             if (storyItem.noforwards) {
                 return false;
             }
             if (storyItem.pinned) {
-                TLRPC.Chat chat = MessagesController.getInstance(this.f713k.C2).getChat(Long.valueOf(-storyItem.dialogId));
+                TLRPC.Chat chat = MessagesController.getInstance(this.f710k.C2).getChat(Long.valueOf(-storyItem.dialogId));
                 if (chat != null && chat.noforwards) {
                     return false;
                 }
@@ -81,8 +81,8 @@ public final class d6 {
     }
 
     public final String e() {
-        f6 f6Var = this.f713k;
-        if (f6Var.O1.f706a == null) {
+        f6 f6Var = this.f710k;
+        if (f6Var.O1.f703a == null) {
             return null;
         }
         if (f6Var.B1 > 0) {
@@ -90,23 +90,23 @@ public final class d6 {
             if (UserObject.getPublicUsername(user) == null) {
                 return null;
             }
-            if (f6Var.O1.f709f) {
+            if (f6Var.O1.f706f) {
                 return String.format(Locale.US, "https://t.me/%1$s/s/live", UserObject.getPublicUsername(user));
             }
-            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(f6Var.O1.f706a.f18563id));
+            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(f6Var.O1.f703a.f18578id));
         }
         TLRPC.Chat chat = MessagesController.getInstance(f6Var.C2).getChat(Long.valueOf(-f6Var.B1));
         if (ChatObject.getPublicUsername(chat) == null) {
             return null;
         }
-        if (f6Var.O1.f709f) {
+        if (f6Var.O1.f706f) {
             return String.format(Locale.US, "https://t.me/%1$s/s/live", ChatObject.getPublicUsername(chat));
         }
-        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(f6Var.O1.f706a.f18563id));
+        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(f6Var.O1.f703a.f18578id));
     }
 
     public final String f() {
-        TL_stories.StoryItem storyItem = this.f706a;
+        TL_stories.StoryItem storyItem = this.f703a;
         if (storyItem != null) {
             return storyItem.attachPath;
         }
@@ -116,7 +116,7 @@ public final class d6 {
     public final sa g() {
         TL_stories.StoryItem storyItem;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
-        if (this.f711i == null && (storyItem = this.f706a) != null) {
+        if (this.f708i == null && (storyItem = this.f703a) != null) {
             TLRPC.Document document = storyItem.music;
             sa saVar = null;
             if (document != null && (tL_documentAttributeAudio = (TLRPC.TL_documentAttributeAudio) AndroidUtilities.find(document.attributes, TLRPC.TL_documentAttributeAudio.class)) != null) {
@@ -124,25 +124,25 @@ public final class d6 {
                 String str2 = tL_documentAttributeAudio.performer;
                 if (!TextUtils.isEmpty(str) || !TextUtils.isEmpty(str2)) {
                     saVar = new sa();
-                    saVar.f1516f = true;
-                    saVar.f1517g = document;
+                    saVar.f1513f = true;
+                    saVar.f1514g = document;
                     if (TextUtils.isEmpty(str)) {
-                        saVar.f1520k = new SpannableStringBuilder(sa.d()).append((CharSequence) " ").append((CharSequence) str2);
+                        saVar.f1517k = new SpannableStringBuilder(sa.d()).append((CharSequence) " ").append((CharSequence) str2);
                     } else if (TextUtils.isEmpty(str2)) {
-                        saVar.f1520k = new SpannableStringBuilder(sa.d()).append((CharSequence) " ").append((CharSequence) str);
+                        saVar.f1517k = new SpannableStringBuilder(sa.d()).append((CharSequence) " ").append((CharSequence) str);
                     } else {
                         SpannableStringBuilder append = new SpannableStringBuilder(sa.d()).append((CharSequence) " ").append((CharSequence) str2);
-                        saVar.f1520k = append;
+                        saVar.f1517k = append;
                         int length = append.length();
-                        saVar.f1520k.append((CharSequence) " ・ ");
-                        saVar.f1520k.setSpan(new CharacterStyle(), length, saVar.f1520k.length(), 33);
-                        saVar.f1520k.append((CharSequence) str);
+                        saVar.f1517k.append((CharSequence) " ・ ");
+                        saVar.f1517k.setSpan(new CharacterStyle(), length, saVar.f1517k.length(), 33);
+                        saVar.f1517k.append((CharSequence) str);
                     }
                 }
             }
-            this.f711i = saVar;
+            this.f708i = saVar;
         }
-        return this.f711i;
+        return this.f708i;
     }
 
     public final File h() {
@@ -150,14 +150,14 @@ public final class d6 {
         if (f() != null) {
             return new File(f());
         }
-        TL_stories.StoryItem storyItem = this.f706a;
+        TL_stories.StoryItem storyItem = this.f703a;
         if (storyItem != null) {
             TLRPC.MessageMedia messageMedia = storyItem.media;
-            f6 f6Var = this.f713k;
+            f6 f6Var = this.f710k;
             if (messageMedia != null && messageMedia.getDocument() != null) {
-                return FileLoader.getInstance(f6Var.C2).getPathToAttach(this.f706a.media.getDocument());
+                return FileLoader.getInstance(f6Var.C2).getPathToAttach(this.f703a.media.getDocument());
             }
-            TLRPC.MessageMedia messageMedia2 = this.f706a.media;
+            TLRPC.MessageMedia messageMedia2 = this.f703a.media;
             if (messageMedia2 != null && (photo = messageMedia2.photo) != null) {
                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, Integer.MAX_VALUE);
                 File pathToAttach = FileLoader.getInstance(f6Var.C2).getPathToAttach(closestPhotoSizeWithSize, true);
@@ -179,22 +179,22 @@ public final class d6 {
         CharSequence groupSpan2;
         CharSequence groupSpan3;
         String str;
-        if (this.f712j == null) {
-            TL_stories.StoryItem storyItem = this.f706a;
+        if (this.f709j == null) {
+            TL_stories.StoryItem storyItem = this.f703a;
             int i10 = 0;
             sa saVar = null;
             if (storyItem != null) {
-                int i11 = this.f713k.C2;
+                int i11 = this.f710k.C2;
                 if (storyItem.fwd_from != null) {
                     saVar = new sa();
-                    saVar.f1513a = i11;
+                    saVar.f1510a = i11;
                     TL_stories.StoryFwdHeader storyFwdHeader = storyItem.fwd_from;
                     TLRPC.Peer peer = storyFwdHeader.from;
                     if (peer != null) {
                         long peerDialogId = DialogObject.getPeerDialogId(peer);
-                        saVar.f1514b = Long.valueOf(peerDialogId);
+                        saVar.f1511b = Long.valueOf(peerDialogId);
                         if (peerDialogId >= 0) {
-                            saVar.f1520k = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) UserObject.getUserName(MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId))));
+                            saVar.f1517k = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) UserObject.getUserName(MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId))));
                         } else {
                             TLRPC.Chat chat3 = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerDialogId));
                             if (ChatObject.isChannelAndNotMegaGroup(chat3)) {
@@ -208,15 +208,15 @@ public final class d6 {
                             } else {
                                 str = "";
                             }
-                            saVar.f1520k = append.append((CharSequence) str);
+                            saVar.f1517k = append.append((CharSequence) str);
                         }
                     } else if (storyFwdHeader.from_name != null) {
-                        saVar.f1520k = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) storyItem.fwd_from.from_name);
+                        saVar.f1517k = new SpannableStringBuilder(MessageObject.userSpan()).append((CharSequence) " ").append((CharSequence) storyItem.fwd_from.from_name);
                     }
-                    saVar.f1516f = true;
+                    saVar.f1513f = true;
                     TL_stories.StoryFwdHeader storyFwdHeader2 = storyItem.fwd_from;
                     if ((storyFwdHeader2.flags & 4) != 0) {
-                        saVar.f1515c = Integer.valueOf(storyFwdHeader2.story_id);
+                        saVar.f1512c = Integer.valueOf(storyFwdHeader2.story_id);
                     }
                     saVar.c();
                 } else if (storyItem.media_areas != null) {
@@ -229,40 +229,40 @@ public final class d6 {
                     }
                     if (tL_mediaAreaChannelPost != null && (chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(tL_mediaAreaChannelPost.channel_id))) != null) {
                         saVar = new sa();
-                        saVar.f1514b = Long.valueOf(-chat2.f18328id);
+                        saVar.f1511b = Long.valueOf(-chat2.f18343id);
                         saVar.e = true;
-                        saVar.f1513a = i11;
-                        saVar.f1516f = true;
+                        saVar.f1510a = i11;
+                        saVar.f1513f = true;
                         saVar.d = Integer.valueOf(tL_mediaAreaChannelPost.msg_id);
                         if (ChatObject.isChannelAndNotMegaGroup(chat2)) {
                             groupSpan2 = MessageObject.channelSpan();
                         } else {
                             groupSpan2 = MessageObject.groupSpan();
                         }
-                        saVar.f1520k = new SpannableStringBuilder(groupSpan2).append((CharSequence) " ").append((CharSequence) chat2.title);
+                        saVar.f1517k = new SpannableStringBuilder(groupSpan2).append((CharSequence) " ").append((CharSequence) chat2.title);
                     }
                 }
-                this.f712j = saVar;
+                this.f709j = saVar;
             } else {
-                k9 k9Var = this.f707b;
+                k9 k9Var = this.f704b;
                 if (k9Var != null) {
-                    ci.o8 o8Var = k9Var.f1143c;
+                    ci.o8 o8Var = k9Var.f1140c;
                     if (o8Var != null) {
-                        if (o8Var.f5170n) {
+                        if (o8Var.f5168n) {
                             saVar = new sa();
-                            saVar.f1520k = o8Var.f5174p;
-                            String str2 = o8Var.f5180s;
-                            saVar.f1521l = str2;
-                            saVar.f1516f = TextUtils.isEmpty(str2);
-                        } else if (o8Var.f5184u && (arrayList = o8Var.v) != null && arrayList.size() > 0) {
+                            saVar.f1517k = o8Var.f5172p;
+                            String str2 = o8Var.f5178s;
+                            saVar.f1518l = str2;
+                            saVar.f1513f = TextUtils.isEmpty(str2);
+                        } else if (o8Var.f5182u && (arrayList = o8Var.v) != null && arrayList.size() > 0) {
                             MessageObject messageObject = (MessageObject) o8Var.v.get(0);
                             long p5 = ci.o8.p(messageObject);
                             if (p5 < 0 && (chat = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-p5))) != null) {
                                 saVar = new sa();
-                                saVar.f1514b = Long.valueOf(p5);
+                                saVar.f1511b = Long.valueOf(p5);
                                 saVar.e = true;
-                                saVar.f1513a = messageObject.currentAccount;
-                                saVar.f1516f = true;
+                                saVar.f1510a = messageObject.currentAccount;
+                                saVar.f1513f = true;
                                 Boolean D = ci.o8.D(messageObject);
                                 if (D != null) {
                                     if (D.booleanValue()) {
@@ -277,15 +277,15 @@ public final class d6 {
                                 } else {
                                     groupSpan = MessageObject.groupSpan();
                                 }
-                                saVar.f1520k = new SpannableStringBuilder(groupSpan).append((CharSequence) " ").append((CharSequence) chat.title);
+                                saVar.f1517k = new SpannableStringBuilder(groupSpan).append((CharSequence) " ").append((CharSequence) chat.title);
                             }
                         }
                     }
-                    this.f712j = saVar;
+                    this.f709j = saVar;
                 }
             }
         }
-        return this.f712j;
+        return this.f709j;
     }
 
     public final boolean j() {
@@ -294,7 +294,7 @@ public final class d6 {
         if (!this.e) {
             return false;
         }
-        TL_stories.StoryItem storyItem = this.f706a;
+        TL_stories.StoryItem storyItem = this.f703a;
         if (storyItem != null && (messageMedia = storyItem.media) != null && (document = messageMedia.getDocument()) != null) {
             for (int i10 = 0; i10 < document.attributes.size(); i10++) {
                 TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i10);
@@ -304,18 +304,18 @@ public final class d6 {
             }
             return true;
         }
-        k9 k9Var = this.f707b;
+        k9 k9Var = this.f704b;
         if (k9Var == null) {
             return true;
         }
-        return !k9Var.f1143c.Y;
+        return !k9Var.f1140c.Y;
     }
 
     public final boolean k(long j3) {
-        TL_stories.StoryItem storyItem = this.f706a;
+        TL_stories.StoryItem storyItem = this.f703a;
         if (storyItem != null) {
             TLRPC.MessageMedia messageMedia = storyItem.media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f18345id) {
+            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f18360id) {
                 return true;
             }
             return false;
@@ -330,19 +330,19 @@ public final class d6 {
     public final boolean m() {
         String str;
         TLRPC.MessageMedia messageMedia;
-        k9 k9Var = this.f707b;
+        k9 k9Var = this.f704b;
         if (k9Var != null) {
-            return k9Var.f1147s;
+            return k9Var.f1144s;
         }
-        TL_stories.StoryItem storyItem = this.f706a;
+        TL_stories.StoryItem storyItem = this.f703a;
         if (storyItem != null && (messageMedia = storyItem.media) != null && messageMedia.getDocument() != null) {
-            TLRPC.Document document = this.f706a.media.getDocument();
+            TLRPC.Document document = this.f703a.media.getDocument();
             if (!MessageObject.isVideoDocument(document) && !"video/mp4".equals(document.mime_type)) {
                 return false;
             }
             return true;
         }
-        TL_stories.StoryItem storyItem2 = this.f706a;
+        TL_stories.StoryItem storyItem2 = this.f703a;
         if (storyItem2 == null || storyItem2.media != null || (str = storyItem2.attachPath) == null) {
             return false;
         }
@@ -352,33 +352,33 @@ public final class d6 {
     public final void n(TL_stories.StoryItem storyItem) {
         boolean z10;
         TLRPC.MessageMedia messageMedia;
-        this.f706a = storyItem;
-        this.f712j = null;
-        this.f711i = null;
-        this.f707b = null;
+        this.f703a = storyItem;
+        this.f709j = null;
+        this.f708i = null;
+        this.f704b = null;
         this.d = storyItem instanceof TL_stories.TL_storyItemSkipped;
         this.e = m();
-        TL_stories.StoryItem storyItem2 = this.f706a;
+        TL_stories.StoryItem storyItem2 = this.f703a;
         if (storyItem2 != null && (messageMedia = storyItem2.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaVideoStream)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f709f = z10;
+        this.f706f = z10;
     }
 
     public final void o() {
         SpannableStringBuilder valueOf;
         int i10 = 0;
-        this.f710g = false;
-        f6 f6Var = this.f713k;
+        this.f707g = false;
+        f6 f6Var = this.f710k;
         h5 h5Var = f6Var.K0;
         d6 d6Var = f6Var.O1;
-        k9 k9Var = d6Var.f707b;
+        k9 k9Var = d6Var.f704b;
         if (k9Var != null) {
-            CharSequence charSequence = k9Var.f1143c.C0;
+            CharSequence charSequence = k9Var.f1140c.C0;
             this.h = charSequence;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, h5Var.f1717b0.getPaint().getFontMetricsInt(), false);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, h5Var.f1714b0.getPaint().getFontMetricsInt(), false);
             this.h = replaceEmoji;
             if (replaceEmoji == null) {
                 valueOf = new SpannableStringBuilder();
@@ -392,18 +392,18 @@ public final class d6 {
             }
             return;
         }
-        TL_stories.StoryItem storyItem = d6Var.f706a;
+        TL_stories.StoryItem storyItem = d6Var.f703a;
         if (storyItem != null) {
-            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, j41.A())) {
-                this.f710g = true;
-                TLRPC.TL_textWithEntities tL_textWithEntities = d6Var.f706a.translatedText;
+            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, l41.A())) {
+                this.f707g = true;
+                TLRPC.TL_textWithEntities tL_textWithEntities = d6Var.f703a.translatedText;
                 String str = tL_textWithEntities.text;
                 this.h = str;
-                CharSequence replaceEmoji2 = Emoji.replaceEmoji(str, h5Var.f1717b0.getPaint().getFontMetricsInt(), false);
+                CharSequence replaceEmoji2 = Emoji.replaceEmoji(str, h5Var.f1714b0.getPaint().getFontMetricsInt(), false);
                 this.h = replaceEmoji2;
                 if (replaceEmoji2 != null && tL_textWithEntities.entities != null) {
-                    SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(tL_textWithEntities.text), tL_textWithEntities.entities, h5Var.f1717b0.getPaint().getFontMetricsInt(), false));
-                    SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf2, h5Var.f1717b0.getPaint().getFontMetricsInt(), false));
+                    SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(tL_textWithEntities.text), tL_textWithEntities.entities, h5Var.f1714b0.getPaint().getFontMetricsInt(), false));
+                    SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf2, h5Var.f1714b0.getPaint().getFontMetricsInt(), false));
                     i10 = (f6Var.B1 < 0 || MessagesController.getInstance(f6Var.C2).storyEntitiesAllowed(MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1)))) ? 1 : 1;
                     if (i10 != 0) {
                         MessageObject.addLinks(true, valueOf2);
@@ -414,18 +414,18 @@ public final class d6 {
                 }
                 return;
             }
-            String str2 = d6Var.f706a.caption;
+            String str2 = d6Var.f703a.caption;
             this.h = str2;
-            CharSequence replaceEmoji3 = Emoji.replaceEmoji(str2, h5Var.f1717b0.getPaint().getFontMetricsInt(), false);
+            CharSequence replaceEmoji3 = Emoji.replaceEmoji(str2, h5Var.f1714b0.getPaint().getFontMetricsInt(), false);
             this.h = replaceEmoji3;
-            if (replaceEmoji3 != null && d6Var.f706a.entities != null) {
-                SpannableStringBuilder valueOf3 = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(d6Var.f706a.caption), d6Var.f706a.entities, h5Var.f1717b0.getPaint().getFontMetricsInt(), false));
-                SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf3, h5Var.f1717b0.getPaint().getFontMetricsInt(), false));
+            if (replaceEmoji3 != null && d6Var.f703a.entities != null) {
+                SpannableStringBuilder valueOf3 = SpannableStringBuilder.valueOf(MessageObject.replaceAnimatedEmoji(new SpannableStringBuilder(d6Var.f703a.caption), d6Var.f703a.entities, h5Var.f1714b0.getPaint().getFontMetricsInt(), false));
+                SpannableStringBuilder.valueOf(Emoji.replaceEmoji(valueOf3, h5Var.f1714b0.getPaint().getFontMetricsInt(), false));
                 i10 = (f6Var.B1 < 0 || MessagesController.getInstance(f6Var.C2).storyEntitiesAllowed(MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1)))) ? 1 : 1;
                 if (i10 != 0) {
                     MessageObject.addLinks(true, valueOf3);
                 }
-                MessageObject.addEntitiesToText(valueOf3, d6Var.f706a.entities, false, true, true, false, i10 ^ 1);
+                MessageObject.addEntitiesToText(valueOf3, d6Var.f703a.entities, false, true, true, false, i10 ^ 1);
                 this.h = valueOf3;
             }
         }

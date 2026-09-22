@@ -6,19 +6,19 @@ public final class e implements a {
     public a f9081a;
 
     @Override
-    public final ch.d d() {
+    public final ch.d l() {
         return new f(this);
     }
 
     @Override
-    public final void y(Canvas canvas, float f7, float f10, float f11, float f12) {
+    public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
         a aVar = this.f9081a;
         if (aVar != null) {
-            aVar.y(canvas, f7, f10, f11, f12);
+            aVar.v(canvas, f7, f10, f11, f12);
         }
     }
 
     @Override
-    public final void b() {
+    public final void d() {
     }
 }

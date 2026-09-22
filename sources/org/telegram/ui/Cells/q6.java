@@ -7,12 +7,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.CheckBoxSquare;
-import org.telegram.ui.Components.h90;
 import org.telegram.ui.Components.k90;
+import org.telegram.ui.Components.n90;
 public final class q6 extends FrameLayout {
-    public final h90 f20849a;
-    public final k90 f20850b;
-    public final CheckBoxSquare f20851c;
+    public final k90 f20864a;
+    public final n90 f20865b;
+    public final CheckBoxSquare f20866c;
 
     public q6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -21,7 +21,7 @@ public final class q6 extends FrameLayout {
         float f7;
         float f10;
         CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
-        this.f20851c = checkBoxSquare;
+        this.f20866c = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
         checkBoxSquare.setFocusable(false);
         checkBoxSquare.setFocusableInTouchMode(false);
@@ -32,21 +32,21 @@ public final class q6 extends FrameLayout {
             i10 = 3;
         }
         addView(checkBoxSquare, w7.y5.d(18, 18.0f, i10 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
-        h90 h90Var = new h90(this);
-        this.f20849a = h90Var;
-        k90 k90Var = new k90(context, h90Var, f6Var);
-        this.f20850b = k90Var;
-        k90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
-        k90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.J6, f6Var));
-        k90Var.setTextSize(1, 15.0f);
-        k90Var.setMaxLines(2);
+        k90 k90Var = new k90(this);
+        this.f20864a = k90Var;
+        n90 n90Var = new n90(context, k90Var, f6Var);
+        this.f20865b = n90Var;
+        n90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.J6, f6Var));
+        n90Var.setTextSize(1, 15.0f);
+        n90Var.setMaxLines(2);
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
             i11 = 3;
         }
-        k90Var.setGravity(i11 | 16);
-        k90Var.setEllipsize(TextUtils.TruncateAt.END);
+        n90Var.setGravity(i11 | 16);
+        n90Var.setEllipsize(TextUtils.TruncateAt.END);
         boolean z10 = LocaleController.isRTL;
         int i12 = (z10 ? 5 : 3) | 48;
         if (z10) {
@@ -59,27 +59,27 @@ public final class q6 extends FrameLayout {
         } else {
             f10 = 16.0f;
         }
-        addView(k90Var, w7.y5.d(-1, -1.0f, i12, f7, 21.0f, f10, 21.0f));
+        addView(n90Var, w7.y5.d(-1, -1.0f, i12, f7, 21.0f, f10, 21.0f));
         setWillNotDraw(false);
     }
 
     public CheckBoxSquare getCheckBox() {
-        return this.f20851c;
+        return this.f20866c;
     }
 
     public TextView getTextView() {
-        return this.f20850b;
+        return this.f20865b;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        h90 h90Var = this.f20849a;
-        if (h90Var != null) {
+        k90 k90Var = this.f20864a;
+        if (k90Var != null) {
             canvas.save();
-            k90 k90Var = this.f20850b;
-            canvas.translate(k90Var.getLeft(), k90Var.getTop());
-            if (h90Var.f(canvas)) {
+            n90 n90Var = this.f20865b;
+            canvas.translate(n90Var.getLeft(), n90Var.getTop());
+            if (k90Var.f(canvas)) {
                 invalidate();
             }
             canvas.restore();
@@ -87,10 +87,10 @@ public final class q6 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        this.f20851c.a(z10, true);
+        this.f20866c.a(z10, true);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f20850b.setText(charSequence);
+        this.f20865b.setText(charSequence);
     }
 }

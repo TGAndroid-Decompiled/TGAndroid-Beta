@@ -15,35 +15,35 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 public final class e {
-    public static final HashMap f322o = new HashMap();
-    public final Context f323a;
-    public final j0 f324b;
-    public final String f325c;
-    public boolean f327g;
+    public static final HashMap f319o = new HashMap();
+    public final Context f320a;
+    public final j0 f321b;
+    public final String f322c;
+    public boolean f324g;
     public final Intent h;
-    public final n0 f328i;
-    public d f332m;
-    public IInterface f333n;
+    public final n0 f325i;
+    public d f329m;
+    public IInterface f330n;
     public final ArrayList d = new ArrayList();
     public final HashSet e = new HashSet();
-    public final Object f326f = new Object();
-    public final l0 f330k = new IBinder.DeathRecipient() {
+    public final Object f323f = new Object();
+    public final l0 f327k = new IBinder.DeathRecipient() {
         @Override
         public final void binderDied() {
             e eVar = e.this;
             int i10 = 0;
-            eVar.f324b.b("reportBinderDeath", new Object[0]);
-            if (eVar.f329j.get() == null) {
-                eVar.f324b.b("%s : Binder has died.", eVar.f325c);
+            eVar.f321b.b("reportBinderDeath", new Object[0]);
+            if (eVar.f326j.get() == null) {
+                eVar.f321b.b("%s : Binder has died.", eVar.f322c);
                 ArrayList arrayList = eVar.d;
                 int size = arrayList.size();
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    ((k0) obj).a(new RemoteException(String.valueOf(eVar.f325c).concat(" : Binder has died.")));
+                    ((k0) obj).a(new RemoteException(String.valueOf(eVar.f322c).concat(" : Binder has died.")));
                 }
                 eVar.d.clear();
-                synchronized (eVar.f326f) {
+                synchronized (eVar.f323f) {
                     eVar.e();
                 }
                 return;
@@ -51,31 +51,31 @@ public final class e {
             throw new ClassCastException();
         }
     };
-    public final AtomicInteger f331l = new AtomicInteger(0);
-    public final WeakReference f329j = new WeakReference(null);
+    public final AtomicInteger f328l = new AtomicInteger(0);
+    public final WeakReference f326j = new WeakReference(null);
 
     public e(Context context, j0 j0Var, String str, Intent intent, n0 n0Var) {
-        this.f323a = context;
-        this.f324b = j0Var;
-        this.f325c = str;
+        this.f320a = context;
+        this.f321b = j0Var;
+        this.f322c = str;
         this.h = intent;
-        this.f328i = n0Var;
+        this.f325i = n0Var;
     }
 
     public static void b(e eVar, k0 k0Var) {
-        IInterface iInterface = eVar.f333n;
-        j0 j0Var = eVar.f324b;
+        IInterface iInterface = eVar.f330n;
+        j0 j0Var = eVar.f321b;
         ArrayList arrayList = eVar.d;
         int i10 = 0;
-        if (iInterface == null && !eVar.f327g) {
+        if (iInterface == null && !eVar.f324g) {
             j0Var.b("Initiate binding to the service.", new Object[0]);
             arrayList.add(k0Var);
             d dVar = new d(eVar, 0);
-            eVar.f332m = dVar;
-            eVar.f327g = true;
-            if (!eVar.f323a.bindService(eVar.h, dVar, 1)) {
+            eVar.f329m = dVar;
+            eVar.f324g = true;
+            if (!eVar.f320a.bindService(eVar.h, dVar, 1)) {
                 j0Var.b("Failed to bind to the service.", new Object[0]);
-                eVar.f327g = false;
+                eVar.f324g = false;
                 int size = arrayList.size();
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
@@ -84,7 +84,7 @@ public final class e {
                 }
                 arrayList.clear();
             }
-        } else if (eVar.f327g) {
+        } else if (eVar.f324g) {
             j0Var.b("Waiting to bind to the service.", new Object[0]);
             arrayList.add(k0Var);
         } else {
@@ -94,15 +94,15 @@ public final class e {
 
     public final Handler a() {
         Handler handler;
-        HashMap hashMap = f322o;
+        HashMap hashMap = f319o;
         synchronized (hashMap) {
             try {
-                if (!hashMap.containsKey(this.f325c)) {
-                    HandlerThread handlerThread = new HandlerThread(this.f325c, 10);
+                if (!hashMap.containsKey(this.f322c)) {
+                    HandlerThread handlerThread = new HandlerThread(this.f322c, 10);
                     handlerThread.start();
-                    hashMap.put(this.f325c, new Handler(handlerThread.getLooper()));
+                    hashMap.put(this.f322c, new Handler(handlerThread.getLooper()));
                 }
-                handler = (Handler) hashMap.get(this.f325c);
+                handler = (Handler) hashMap.get(this.f322c);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -115,7 +115,7 @@ public final class e {
     }
 
     public final void d(TaskCompletionSource taskCompletionSource) {
-        synchronized (this.f326f) {
+        synchronized (this.f323f) {
             this.e.remove(taskCompletionSource);
         }
         a().post(new c(this, 1));
@@ -125,7 +125,7 @@ public final class e {
         HashSet hashSet = this.e;
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
-            ((TaskCompletionSource) it.next()).trySetException(new RemoteException(String.valueOf(this.f325c).concat(" : Binder has died.")));
+            ((TaskCompletionSource) it.next()).trySetException(new RemoteException(String.valueOf(this.f322c).concat(" : Binder has died.")));
         }
         hashSet.clear();
     }

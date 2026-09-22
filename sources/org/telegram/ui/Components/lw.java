@@ -4,19 +4,19 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 public final class lw implements View.OnFocusChangeListener {
-    public final kz f26241a;
+    public final kz f26246a;
 
     public lw(kz kzVar) {
-        this.f26241a = kzVar;
+        this.f26246a = kzVar;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
         if (z10) {
             String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
-            kz kzVar = this.f26241a;
+            kz kzVar = this.f26246a;
             kzVar.W0 = currentKeyboardLanguage;
-            MediaDataController.getInstance(kzVar.f25898c1).fetchNewEmojiKeywords(kzVar.W0);
+            MediaDataController.getInstance(kzVar.f25858c1).fetchNewEmojiKeywords(kzVar.W0);
         }
     }
 }

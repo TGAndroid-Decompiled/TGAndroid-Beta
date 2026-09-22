@@ -6,12 +6,12 @@ import org.telegram.ui.mb1;
 public final class i {
     public static final ba.a d = new ba.a(2);
     public static final mb1 e = new mb1(8);
-    public final ba.c f45223a;
-    public String f45224b = null;
-    public String f45225c = null;
+    public final ba.c f45243a;
+    public String f45244b = null;
+    public String f45245c = null;
 
     public i(ba.c cVar) {
-        this.f45223a = cVar;
+        this.f45243a = cVar;
     }
 
     public static void a(ba.c cVar, String str, String str2) {

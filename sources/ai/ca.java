@@ -12,8 +12,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.LaunchActivity;
 public class ca {
     public int A;
@@ -30,32 +30,32 @@ public class ca {
     public float P;
     public ba Q;
     public View R;
-    public int f652c;
+    public int f649c;
     public TL_stories.StoryItem d;
-    public boolean f658l;
-    public boolean f659m;
-    public int f660n;
-    public boolean f661o;
-    public boolean f662p;
-    public int f663q;
-    public boolean f664r;
-    public long f665s;
-    public float f666t;
+    public boolean f655l;
+    public boolean f656m;
+    public int f657n;
+    public boolean f658o;
+    public boolean f659p;
+    public int f660q;
+    public boolean f661r;
+    public long f662s;
+    public float f663t;
     public boolean v;
-    public boolean f668w;
-    public long f669x;
-    public int f670y;
-    public int f671z;
-    public boolean f650a = true;
-    public boolean f651b = true;
+    public boolean f665w;
+    public long f666x;
+    public int f667y;
+    public int f668z;
+    public boolean f647a = true;
+    public boolean f648b = true;
     public float e = 1.0f;
-    public float f653f = 0.0f;
-    public float f654g = 0.0f;
+    public float f650f = 0.0f;
+    public float f651g = 0.0f;
     public float h = 0.0f;
-    public float f655i = 0.0f;
-    public float f656j = 0.0f;
-    public boolean f657k = true;
-    public float f667u = 1.0f;
+    public float f652i = 0.0f;
+    public float f653j = 0.0f;
+    public boolean f654k = true;
+    public float f664u = 1.0f;
     public float B = 1.0f;
     public boolean C = false;
     public final RectF F = new RectF();
@@ -79,28 +79,28 @@ public class ca {
         if (motionEvent.getAction() == 0) {
             if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
                 TLRPC.Chat chat = null;
-                if (this.f669x > 0) {
-                    user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(this.f669x));
+                if (this.f666x > 0) {
+                    user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(this.f666x));
                 } else {
                     user = null;
-                    chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-this.f669x));
+                    chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-this.f666x));
                 }
                 if (c(chat, user)) {
                     z10 = true;
-                } else if (this.f664r) {
+                } else if (this.f661r) {
                     z10 = !storiesController.h.isEmpty();
                 } else {
-                    if (this.f669x <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().I(this.f669x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().I(this.f669x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
+                    if (this.f666x <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().I(this.f666x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().I(this.f666x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
                         z11 = true;
                     }
                     z10 = z11;
                 }
-                if (this.f669x != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z10) {
+                if (this.f666x != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z10) {
                     yc ycVar = this.H;
                     if (ycVar == null) {
                         this.H = new yc(view, 1.5f, 5.0f);
                     } else {
-                        ycVar.f30496a = view;
+                        ycVar.f30627a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -124,7 +124,7 @@ public class ca {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
                 yc ycVar2 = this.H;
                 if (ycVar2 != null) {
-                    ycVar2.f30496a = view;
+                    ycVar2.f30627a = view;
                     ycVar2.c(false);
                 }
                 ba baVar3 = this.Q;
@@ -137,28 +137,28 @@ public class ca {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             yc ycVar3 = this.H;
             if (ycVar3 != null) {
-                ycVar3.f30496a = view;
+                ycVar3.f30627a = view;
                 ycVar3.c(false);
             }
-            if (this.N && motionEvent.getAction() == 1 && !d(this.f669x)) {
+            if (this.N && motionEvent.getAction() == 1 && !d(this.f666x)) {
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                 l9 storiesController2 = messagesController.getStoriesController();
-                if (this.f664r) {
+                if (this.f661r) {
                     f(0L);
-                } else if (this.f669x != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
-                    if (storiesController2.I(this.f669x)) {
-                        f(this.f669x);
+                } else if (this.f666x != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+                    if (storiesController2.I(this.f666x)) {
+                        f(this.f666x);
                     } else {
-                        long j3 = this.f669x;
+                        long j3 = this.f666x;
                         if (j3 > 0) {
                             TLRPC.User user2 = messagesController.getUser(Long.valueOf(j3));
                             if (user2 != null && !user2.stories_unavailable && (tL_recentStory2 = user2.stories_max_id) != null && tL_recentStory2.max_id > 0) {
-                                new ha().a(this.f669x, view, this);
+                                new ha().a(this.f666x, view, this);
                             }
                         } else {
                             TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(-j3));
                             if (chat2 != null && !chat2.stories_unavailable && (tL_recentStory = chat2.stories_max_id) != null && tL_recentStory.max_id > 0) {
-                                new ha().a(this.f669x, view, this);
+                                new ha().a(this.f666x, view, this);
                             }
                         }
                     }
@@ -200,7 +200,7 @@ public class ca {
             R.getOrCreateStoryViewer().getClass();
             ViewParent parent = this.R.getParent();
             if (parent instanceof RecyclerView) {
-                u9Var = u9.a((vl0) parent);
+                u9Var = u9.a((yl0) parent);
             } else {
                 u9Var = null;
             }

@@ -2,93 +2,68 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.View;
+import java.util.ArrayList;
 public final class yl extends AnimatorListenerAdapter {
-    public final yn f39954a;
-    public final boolean f39955b;
-    public final org.telegram.ui.ActionBar.j5 f39956c;
-    public final boolean d;
-    public final ai.p4 e;
-    public final boolean f39957f;
-    public final zn h;
+    public final boolean f39975a;
+    public final boolean f39976b;
+    public final org.telegram.ui.Components.v9 f39977c;
+    public final yn d;
+    public final org.telegram.ui.ActionBar.j5 e;
+    public final boolean f39978f;
+    public final ai.p4 h;
+    public final zn f39979n;
 
-    public yl(zn znVar, yn ynVar, boolean z10, org.telegram.ui.ActionBar.j5 j5Var, boolean z11, ai.p4 p4Var, boolean z12) {
-        this.h = znVar;
-        this.f39954a = ynVar;
-        this.f39955b = z10;
-        this.f39956c = j5Var;
-        this.d = z11;
-        this.e = p4Var;
-        this.f39957f = z12;
+    public yl(zn znVar, boolean z10, boolean z11, org.telegram.ui.Components.v9 v9Var, yn ynVar, org.telegram.ui.ActionBar.j5 j5Var, boolean z12, ai.p4 p4Var) {
+        this.f39979n = znVar;
+        this.f39975a = z10;
+        this.f39976b = z11;
+        this.f39977c = v9Var;
+        this.d = ynVar;
+        this.e = j5Var;
+        this.f39978f = z12;
+        this.h = p4Var;
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        zn znVar = this.f39979n;
+        znVar.H2[1] = null;
+        znVar.B2[1].setTranslationY(0.0f);
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        zn znVar = this.h;
-        if (znVar.F2.getTag() != null) {
-            znVar.F2.setVisibility(4);
-            int G8 = znVar.G8();
-            znVar.F2.a(Math.min(G8 - 1, Math.max(1, G8 - znVar.M4[0])), false);
-        } else {
-            znVar.F2.setAlpha(1.0f);
+        Object[] objArr = this.f39979n.H2;
+        if (animator.equals(objArr[1])) {
+            org.telegram.ui.Components.v9 v9Var = this.f39977c;
+            boolean z10 = this.f39976b;
+            boolean z11 = this.f39975a;
+            if (!z11 && !z10 && v9Var == null) {
+                objArr[1] = null;
+                return;
+            }
+            objArr[1] = new AnimatorSet();
+            objArr[1].setInterpolator(org.telegram.ui.Components.qr.h);
+            objArr[1].setDuration(360L);
+            ArrayList arrayList = new ArrayList();
+            if (z11) {
+                arrayList.add(ObjectAnimator.ofFloat(this.d, View.TRANSLATION_Y, 0.0f));
+            }
+            if (z10) {
+                arrayList.add(ObjectAnimator.ofFloat(this.e, View.TRANSLATION_Y, 0.0f));
+            }
+            if (this.f39978f) {
+                arrayList.add(ObjectAnimator.ofFloat(this.h, View.TRANSLATION_Y, 0.0f));
+            }
+            if (v9Var != null) {
+                arrayList.add(ObjectAnimator.ofFloat(v9Var, View.TRANSLATION_Y, 0.0f));
+            }
+            objArr[1].addListener(new t4(this, 20));
+            objArr[1].playTogether(arrayList);
+            objArr[1].start();
         }
-        znVar.F2.setTranslationY(0.0f);
-        znVar.D2[0].setTranslationX(0.0f);
-        znVar.D2[1].setTranslationX(0.0f);
-        znVar.F2.setTranslationX(znVar.G2 + 0.0f);
-        yn ynVar = this.f39954a;
-        ynVar.setTranslationY(0.0f);
-        boolean z10 = this.f39955b;
-        if (!z10) {
-            ynVar.setTranslationY(0.0f);
-        }
-        org.telegram.ui.ActionBar.j5 j5Var = this.f39956c;
-        if (!z10) {
-            j5Var.setTranslationY(0.0f);
-        }
-        boolean z11 = this.d;
-        ai.p4 p4Var = this.e;
-        if (!z11) {
-            p4Var.setTranslationY(0.0f);
-        }
-        znVar.C2[0].setTranslationX(0.0f);
-        znVar.C2[1].setTranslationX(0.0f);
-        znVar.B2[1].setAlpha(1.0f);
-        znVar.B2[1].setScaleX(1.0f);
-        znVar.B2[1].setScaleY(1.0f);
-        znVar.B2[0].setAlpha(1.0f);
-        znVar.B2[0].setScaleX(1.0f);
-        znVar.B2[0].setScaleY(1.0f);
-        org.telegram.ui.ActionBar.j5[] j5VarArr = znVar.D2;
-        org.telegram.ui.ActionBar.j5 j5Var2 = j5VarArr[0];
-        j5VarArr[1] = j5Var2;
-        j5VarArr[0] = j5Var;
-        j5Var2.setVisibility(4);
-        ai.p4[] p4VarArr = znVar.E2;
-        ai.p4 p4Var2 = p4VarArr[0];
-        p4VarArr[1] = p4Var2;
-        p4VarArr[0] = p4Var;
-        p4Var2.setVisibility(4);
-        yn[] ynVarArr = znVar.C2;
-        yn ynVar2 = ynVarArr[0];
-        if (ynVar != ynVar2) {
-            ynVarArr[1] = ynVar2;
-            ynVarArr[0] = ynVar;
-            ynVar2.setVisibility(4);
-        }
-        if (this.f39957f) {
-            znVar.B2[1].setImageBitmap(null);
-            znVar.B2[1].setVisibility(4);
-        }
-        org.telegram.ui.Components.v9[] v9VarArr = znVar.B2;
-        org.telegram.ui.Components.v9 v9Var = v9VarArr[1];
-        org.telegram.ui.Components.v9 v9Var2 = v9VarArr[0];
-        v9VarArr[1] = v9Var2;
-        v9VarArr[0] = v9Var;
-        v9Var2.setAlpha(1.0f);
-        znVar.B2[1].setScaleX(1.0f);
-        znVar.B2[1].setScaleY(1.0f);
-        znVar.B2[1].setVisibility(4);
-        znVar.H2[0] = null;
-        znVar.A2 = false;
     }
 }

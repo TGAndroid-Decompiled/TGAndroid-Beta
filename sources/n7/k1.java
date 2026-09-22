@@ -1,11 +1,11 @@
 package n7;
 public final class k1 implements j1 {
-    public static final ka.c f15362a;
+    public static final k2.e f15375a;
 
     static {
-        int i10 = o.f15373c;
-        Object[] objArr = y.f15396r;
+        int i10 = o.f15386c;
+        Object[] objArr = y.f15409r;
         new b0("FIDO");
-        f15362a = new ka.c(Boolean.FALSE, 5);
+        f15375a = new k2.e(Boolean.FALSE, 6);
     }
 }

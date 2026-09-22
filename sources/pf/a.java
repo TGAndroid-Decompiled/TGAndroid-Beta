@@ -6,14 +6,14 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.LaunchActivity;
 public final class a extends FrameLayout {
-    public final Activity f41062a;
-    public int f41063b;
-    public int f41064c;
+    public final Activity f41082a;
+    public int f41083b;
+    public int f41084c;
     public boolean d;
 
     public a(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f41062a = launchActivity;
+        this.f41082a = launchActivity;
     }
 
     @Override
@@ -21,12 +21,12 @@ public final class a extends FrameLayout {
         boolean z10;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        boolean isInPictureInPictureMode = AndroidUtilities.isInPictureInPictureMode(this.f41062a);
+        boolean isInPictureInPictureMode = AndroidUtilities.isInPictureInPictureMode(this.f41082a);
         if (!isInPictureInPictureMode) {
-            this.f41063b = size;
-            this.f41064c = size2;
+            this.f41083b = size;
+            this.f41084c = size2;
         }
-        if (isInPictureInPictureMode && size < this.f41063b && size2 < this.f41064c) {
+        if (isInPictureInPictureMode && size < this.f41083b && size2 < this.f41084c) {
             z10 = true;
         } else {
             z10 = false;

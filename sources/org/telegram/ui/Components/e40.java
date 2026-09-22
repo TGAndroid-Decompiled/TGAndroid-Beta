@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
-public abstract class e40 extends k61 {
+public abstract class e40 extends m61 {
     public final int N;
     public final ArrayList O;
     public boolean P;
@@ -19,16 +19,16 @@ public abstract class e40 extends k61 {
     public String X;
     public String Y;
     public int Z;
-    public wm f23734a0;
-    public final boolean[] f23735b0;
+    public wm f23858a0;
+    public final boolean[] f23859b0;
 
-    public e40(vl0 vl0Var, Context context, int i10) {
-        super(vl0Var, context, i10, 0, false, null, null);
+    public e40(yl0 yl0Var, Context context, int i10) {
+        super(yl0Var, context, i10, 0, false, null, null);
         this.O = new ArrayList();
         this.T = 0;
         this.U = -1;
-        this.f23735b0 = new boolean[1];
-        this.f25679s = new d(this, 16);
+        this.f23859b0 = new boolean[1];
+        this.f26343s = new d(this, 16);
         this.N = i10;
     }
 
@@ -61,7 +61,7 @@ public abstract class e40 extends k61 {
     public final void V() {
         ai.v8 v8Var = this.Q;
         if (v8Var != null && v8Var.I != 0) {
-            ConnectionsManager.getInstance(v8Var.f718c).cancelRequest(v8Var.I, true);
+            ConnectionsManager.getInstance(v8Var.f715c).cancelRequest(v8Var.I, true);
             v8Var.I = 0;
         }
         this.P = false;
@@ -69,16 +69,16 @@ public abstract class e40 extends k61 {
             ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
             this.U = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f23734a0);
+        AndroidUtilities.cancelRunOnUIThread(this.f23858a0);
         this.T++;
         this.S = false;
     }
 
     public final void W() {
-        vl0 vl0Var;
-        if (!TextUtils.isEmpty(this.X) && !this.V && !this.S && (vl0Var = this.d) != null) {
-            for (int i10 = 0; i10 < vl0Var.getChildCount(); i10++) {
-                if (vl0Var.getChildAt(i10) instanceof t00) {
+        yl0 yl0Var;
+        if (!TextUtils.isEmpty(this.X) && !this.V && !this.S && (yl0Var = this.d) != null) {
+            for (int i10 = 0; i10 < yl0Var.getChildCount(); i10++) {
+                if (yl0Var.getChildAt(i10) instanceof t00) {
                     Y(this.X);
                     return;
                 }
@@ -88,7 +88,7 @@ public abstract class e40 extends k61 {
 
     public final void Y(String str) {
         this.X = str;
-        String X = X(str, this.f23735b0);
+        String X = X(str, this.f23859b0);
         if (!TextUtils.equals(this.Y, X)) {
             this.O.clear();
             this.V = false;
@@ -105,7 +105,7 @@ public abstract class e40 extends k61 {
         this.S = true;
         N(true);
         wm wmVar = new wm(this, i10, X, 5);
-        this.f23734a0 = wmVar;
+        this.f23858a0 = wmVar;
         AndroidUtilities.runOnUIThread(wmVar, 300L);
     }
 }

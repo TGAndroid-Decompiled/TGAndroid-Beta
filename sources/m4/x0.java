@@ -2,25 +2,25 @@ package m4;
 
 import ci.m4;
 public final class x0 implements e1 {
-    public final int f14937a;
-    public final e1 f14938b;
+    public final int f14952a;
+    public final e1 f14953b;
 
     public x0(e1 e1Var, int i10) {
-        this.f14937a = i10;
-        this.f14938b = e1Var;
+        this.f14952a = i10;
+        this.f14953b = e1Var;
     }
 
     @Override
     public final Object h(final a0 a0Var, final r rVar, final int i10) {
-        switch (this.f14937a) {
+        switch (this.f14952a) {
             case 0:
                 if (a0Var == null) {
-                    f1.I0(null, rVar, i10, this.f14938b, new m4(rVar, i10, 1));
+                    f1.I0(null, rVar, i10, this.f14953b, new m4(rVar, i10, 1));
                     throw null;
                 }
                 throw new ClassCastException();
             default:
-                return f1.I0(a0Var, rVar, i10, this.f14938b, new e2.h() {
+                return f1.I0(a0Var, rVar, i10, this.f14953b, new e2.h() {
                     @Override
                     public final void accept(java.lang.Object r4) {
                         throw new UnsupportedOperationException("Method not decompiled: m4.a1.accept(java.lang.Object):void");

@@ -14,29 +14,29 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ky extends ul0 {
+public final class ky extends xl0 {
     public boolean E;
     public final kz F;
-    public final fy f25881c;
+    public final fy f25840c;
     public long d;
     public TLRPC.StickerSet e;
-    public ArrayList f25882f;
+    public ArrayList f25841f;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f25883n = new ArrayList();
-    public final ArrayList f25884r = new ArrayList();
-    public final ArrayList f25885s = new ArrayList();
+    public final ArrayList f25842n = new ArrayList();
+    public final ArrayList f25843r = new ArrayList();
+    public final ArrayList f25844s = new ArrayList();
     public String v;
-    public String f25886w;
-    public jy f25887x;
-    public boolean f25888y;
+    public String f25845w;
+    public jy f25846x;
+    public boolean f25847y;
 
     public ky(kz kzVar, Context context) {
         this.F = kzVar;
-        ?? aVar = new nh.a(context, kzVar.f25898c1, new d(this, 11), new mv(this, 1), kzVar.Z1);
-        this.f25881c = aVar;
+        ?? aVar = new nh.a(context, kzVar.f25858c1, new d(this, 11), new mv(this, 1), kzVar.Z1);
+        this.f25840c = aVar;
         aVar.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
         aVar.setClipToPadding(false);
-        aVar.Y2.f25678r = false;
+        aVar.Y2.f26342r = false;
         aVar.setNestedScrollingEnabled(false);
         aVar.setDrawSelection(false);
         aVar.setOnTouchListener(new m.c2(this, 1));
@@ -56,12 +56,12 @@ public final class ky extends ul0 {
         if (str3 == null) {
             return;
         }
-        MediaDataController.getInstance(kzVar.f25898c1).searchStickers(true, str2, str3, new ai.e4((Object) kyVar, str3, arrayList, (Object) runnable, 8), z10);
+        MediaDataController.getInstance(kzVar.f25858c1).searchStickers(true, str2, str3, new ai.e4((Object) kyVar, str3, arrayList, (Object) runnable, 8), z10);
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42977f;
+        int i10 = c1Var.f42998f;
         if (i10 != 0 && i10 != 4) {
             return false;
         }
@@ -78,24 +78,24 @@ public final class ky extends ul0 {
             tx txVar = kzVar.R;
             if (adapter != txVar) {
                 wxVar.setAdapter(txVar);
-                this.f25888y = false;
+                this.f25847y = false;
             }
             this.d = 0L;
-            kzVar.f25892b.a(false, true);
+            kzVar.f25852b.a(false, true);
             l();
         } else {
             this.v = str.toLowerCase();
         }
-        jy jyVar = this.f25887x;
+        jy jyVar = this.f25846x;
         if (jyVar != null) {
             AndroidUtilities.cancelRunOnUIThread(jyVar);
         }
         if (!TextUtils.isEmpty(this.v)) {
-            this.f25883n.clear();
+            this.f25842n.clear();
             this.E = false;
             kzVar.V.e(true);
             jy jyVar2 = new jy(this);
-            this.f25887x = jyVar2;
+            this.f25846x = jyVar2;
             if (z10) {
                 j3 = 300;
             }
@@ -106,13 +106,13 @@ public final class ky extends ul0 {
     @Override
     public final int h() {
         if (this.d != 0) {
-            return this.f25882f.size() + 4;
+            return this.f25841f.size() + 4;
         }
         ArrayList arrayList = this.h;
         boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f25885s;
-        ArrayList arrayList3 = this.f25884r;
-        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f25888y) {
+        ArrayList arrayList2 = this.f25844s;
+        ArrayList arrayList3 = this.f25843r;
+        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f25847y) {
             return this.F.getRecentEmoji().size() + 1;
         }
         int i10 = 2;
@@ -138,7 +138,7 @@ public final class ky extends ul0 {
 
     @Override
     public final void l() {
-        this.f25881c.Y2.N(false);
+        this.f25840c.Y2.N(false);
         super.l();
     }
 
@@ -178,16 +178,16 @@ public final class ky extends ul0 {
                         }
                     } else {
                         ViewGroup.LayoutParams p0Var = new s4.p0(-1, AndroidUtilities.dp(79.0f));
-                        View view2 = this.f25881c;
+                        View view2 = this.f25840c;
                         view2.setLayoutParams(p0Var);
                         f0Var = view2;
                     }
                 } else {
-                    f0Var = new org.telegram.ui.Cells.p8(kzVar.getContext(), true, false, kzVar.Z1, kzVar.f25918i2);
+                    f0Var = new org.telegram.ui.Cells.p8(kzVar.getContext(), true, false, kzVar.Z1, kzVar.f25878i2);
                 }
             } else {
                 View view3 = new View(kzVar.getContext());
-                view3.setLayoutParams(new s4.p0(-1, kzVar.f25894b1));
+                view3.setLayoutParams(new s4.p0(-1, kzVar.f25854b1));
                 f0Var = view3;
             }
         } else {

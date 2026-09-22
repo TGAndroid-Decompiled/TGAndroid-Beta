@@ -13,13 +13,13 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.Components.xc;
 public abstract class k0 {
-    public static void A(n2.h hVar, n2.h hVar2) {
-        if (hVar != hVar2) {
-            if (hVar2 != null) {
-                hVar2.b(null);
+    public static void A(n2.g gVar, n2.g gVar2) {
+        if (gVar != gVar2) {
+            if (gVar2 != null) {
+                gVar2.b(null);
             }
-            if (hVar != null) {
-                hVar.a(null);
+            if (gVar != null) {
+                gVar.a(null);
             }
         }
     }

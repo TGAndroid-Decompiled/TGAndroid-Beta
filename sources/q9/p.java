@@ -8,26 +8,26 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import qg.n2;
 public final class p implements pa.a, d, OnFailureListener, androidx.car.app.utils.b, a2 {
-    public final int f41505a;
+    public final int f41526a;
 
     public p(int i10) {
-        this.f41505a = i10;
+        this.f41526a = i10;
     }
 
     @Override
     public Object G(cf.c cVar) {
-        switch (this.f41505a) {
+        switch (this.f41526a) {
             case 1:
                 return FirebaseInstallationsRegistrar.a(cVar);
             case 8:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7261a.get();
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7259a.get();
             case 9:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7263c.get();
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7261c.get();
             case 10:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7262b.get();
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7260b.get();
             default:
-                n nVar = ExecutorsRegistrar.f7261a;
-                return r9.j.f42471a;
+                n nVar = ExecutorsRegistrar.f7259a;
+                return r9.j.f42492a;
         }
     }
 
@@ -38,7 +38,7 @@ public final class p implements pa.a, d, OnFailureListener, androidx.car.app.uti
 
     @Override
     public void k(b2 b2Var, int i10) {
-        switch (this.f41505a) {
+        switch (this.f41526a) {
             case 12:
                 b2Var.dismiss();
                 return;
@@ -50,10 +50,10 @@ public final class p implements pa.a, d, OnFailureListener, androidx.car.app.uti
 
     @Override
     public void onFailure(Exception exc) {
-        int i10 = n2.f41822r0;
+        int i10 = n2.f41843r0;
     }
 
     @Override
-    public void f(pa.b bVar) {
+    public void h(pa.b bVar) {
     }
 }

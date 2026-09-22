@@ -1,21 +1,21 @@
 package fb;
 
 import java.lang.reflect.Method;
-public final class p extends s {
-    public final Method f9050b;
-    public final int f9051c;
+public final class p extends t {
+    public final Method f9048b;
+    public final Object f9049c;
 
-    public p(int i10, Method method) {
-        this.f9050b = method;
-        this.f9051c = i10;
+    public p(Method method, Object obj) {
+        this.f9048b = method;
+        this.f9049c = obj;
     }
 
     @Override
     public final Object a(Class cls) {
-        String L = of.b.L(cls);
-        if (L == null) {
-            return this.f9050b.invoke(null, cls, Integer.valueOf(this.f9051c));
+        String J = of.b.J(cls);
+        if (J == null) {
+            return this.f9048b.invoke(this.f9049c, cls);
         }
-        throw new AssertionError("UnsafeAllocator is used for non-instantiable type: ".concat(L));
+        throw new AssertionError("UnsafeAllocator is used for non-instantiable type: ".concat(J));
     }
 }

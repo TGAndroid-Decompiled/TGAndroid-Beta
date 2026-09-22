@@ -23,90 +23,90 @@ public final class o00 extends y00 {
 
     @Override
     public final void c() {
-        org.telegram.ui.Components.v70 F = org.telegram.ui.Components.v70.F(this.E.d.container, null, this);
+        org.telegram.ui.Components.y70 F = org.telegram.ui.Components.y70.F(this.E.d.container, null, this);
         F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
-            public final o00 f35864b;
+            public final o00 f35885b;
 
             {
-                this.f35864b = this;
+                this.f35885b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        o00 o00Var = this.f35864b;
-                        String str = o00Var.f39767x;
+                        o00 o00Var = this.f35885b;
+                        String str = o00Var.f39787x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(o00Var.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f35864b.d();
+                        this.f35885b.d();
                         return;
                     default:
-                        this.f35864b.a();
+                        this.f35885b.a();
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
-            public final o00 f35864b;
+            public final o00 f35885b;
 
             {
-                this.f35864b = this;
+                this.f35885b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        o00 o00Var = this.f35864b;
-                        String str = o00Var.f39767x;
+                        o00 o00Var = this.f35885b;
+                        String str = o00Var.f39787x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(o00Var.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f35864b.d();
+                        this.f35885b.d();
                         return;
                     default:
-                        this.f35864b.a();
+                        this.f35885b.a();
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
-            public final o00 f35864b;
+            public final o00 f35885b;
 
             {
-                this.f35864b = this;
+                this.f35885b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        o00 o00Var = this.f35864b;
-                        String str = o00Var.f39767x;
+                        o00 o00Var = this.f35885b;
+                        String str = o00Var.f39787x;
                         if (str != null && AndroidUtilities.addToClipboard(str)) {
                             new org.telegram.ui.Components.xc(o00Var.E.d.Z, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f35864b.d();
+                        this.f35885b.d();
                         return;
                     default:
-                        this.f35864b.a();
+                        this.f35885b.a();
                         return;
                 }
             }
         }, true);
         if (LocaleController.isRTL) {
-            F.f28976i = 3;
+            F.f30550i = 3;
         }
         F.Z();
     }

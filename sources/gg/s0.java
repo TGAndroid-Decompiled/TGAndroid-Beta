@@ -21,8 +21,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.l6;
-import org.telegram.ui.Components.vl0;
-public final class s0 extends vl0 {
+import org.telegram.ui.Components.yl0;
+public final class s0 extends yl0 {
     public static final q0[] f9915c3 = {new q0(R.drawable.search_media_filled, R.string.SharedMediaTab2, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new q0(R.drawable.search_links_filled, R.string.SharedLinksTab2, new TLRPC.TL_inputMessagesFilterUrl(), 2), new q0(R.drawable.search_files_filled, R.string.SharedFilesTab2, new TLRPC.TL_inputMessagesFilterDocument(), 1), new q0(R.drawable.search_music_filled, R.string.SharedMusicTab2, new TLRPC.TL_inputMessagesFilterMusic(), 3), new q0(R.drawable.search_voice_filled, R.string.SharedVoiceTab2, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
     public static final Pattern f9916d3 = Pattern.compile("20[0-9]{1,2}");
     public static final Pattern f9917e3 = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
@@ -52,7 +52,7 @@ public final class s0 extends vl0 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(AndroidUtilities.dp(28.0f));
-        setSelectorDrawableColor(j6.v0(j6.f19184i6, this.f29207p2));
+        setSelectorDrawableColor(j6.v0(j6.f19199i6, this.f30704p2));
     }
 
     public static int A1(String str) {
@@ -305,7 +305,7 @@ public final class s0 extends vl0 {
                 Object obj = arrayList.get(i10);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f18475id == user.f18475id) {
+                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f18490id == user.f18490id) {
                         formatName = LocaleController.getString(R.string.SavedMessages);
                     } else {
                         formatName = ContactsController.formatName(user.first_name, user.last_name, 10);
@@ -339,7 +339,7 @@ public final class s0 extends vl0 {
         if (getAdapter() != null) {
             b2.p pVar = new b2.p(getAdapter(), 2);
             s4.o.c(this.f9923b3, true).a(pVar);
-            if (!arrayList4.isEmpty() && pVar.f3176b) {
+            if (!arrayList4.isEmpty() && pVar.f3175b) {
                 this.Z2.h1(0, 0);
             }
         }
@@ -368,7 +368,7 @@ public final class s0 extends vl0 {
                 ((p0) P).a();
             }
         }
-        setSelectorDrawableColor(j6.v0(j6.f19184i6, this.f29207p2));
+        setSelectorDrawableColor(j6.v0(j6.f19199i6, this.f30704p2));
     }
 
     public ArrayList<l6> getThemeDescriptions() {
@@ -382,7 +382,7 @@ public final class s0 extends vl0 {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f9922a3) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), j6.f19216k0);
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), j6.f19231k0);
         }
     }
 

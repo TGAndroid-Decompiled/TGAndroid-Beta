@@ -30,15 +30,15 @@ public final class fu extends kz {
         ju juVar = this.S2;
         if (juVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && juVar.f25461x) {
+            if (!this.Q2 && juVar.f25466x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.rk.s(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f19699w, 250L);
+                org.telegram.messenger.rk.s(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f19714w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = juVar.f25461x;
+            this.Q2 = juVar.f25466x;
             this.P2 = i15;
         }
     }

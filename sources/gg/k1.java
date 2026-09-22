@@ -48,12 +48,12 @@ import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.kn;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.qa0;
-import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.ta0;
 import org.telegram.ui.Components.v9;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.zn;
 import w7.y5;
-public final class k1 extends ul0 implements NotificationCenter.NotificationCenterDelegate {
+public final class k1 extends xl0 implements NotificationCenter.NotificationCenterDelegate {
     public ArrayList A0;
     public HashMap B0;
     public String D0;
@@ -80,7 +80,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
     public long S;
     public TLRPC.TL_inlineBotSwitchPM T;
     public TLRPC.TL_inlineBotWebView U;
-    public final qa0 V;
+    public final ta0 V;
     public a0.i W;
     public int X;
     public int Y;
@@ -128,10 +128,10 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
     public boolean L0 = false;
     public int M0 = -1;
 
-    public k1(Context context, long j3, long j10, qa0 qa0Var, f6 f6Var, boolean z10) {
+    public k1(Context context, long j3, long j10, ta0 ta0Var, f6 f6Var, boolean z10) {
         this.H0 = f6Var;
         this.h = context;
-        this.V = qa0Var;
+        this.V = ta0Var;
         this.f9829n = j3;
         this.f9836s = z10;
         this.f9834r = j10;
@@ -172,7 +172,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
     }
 
     public final void E(TLRPC.Document document, String str) {
-        String str2 = document.dc_id + "_" + document.f18334id;
+        String str2 = document.dc_id + "_" + document.f18349id;
         HashMap hashMap = this.B0;
         if (hashMap == null || !hashMap.containsKey(str2)) {
             if (UserConfig.getInstance(this.f9821f).isPremium() || !MessageObject.isPremiumSticker(document)) {
@@ -197,7 +197,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
             Object obj = str;
             while (i10 < size) {
                 TLRPC.Document document = (TLRPC.Document) arrayList.get(i10);
-                String str2 = document.dc_id + "_" + document.f18334id;
+                String str2 = document.dc_id + "_" + document.f18349id;
                 HashMap hashMap = this.B0;
                 if ((hashMap == null || !hashMap.containsKey(str2)) && (UserConfig.getInstance(this.f9821f).isPremium() || !MessageObject.isPremiumSticker(document))) {
                     int size2 = document.attributes.size();
@@ -260,7 +260,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
 
     public final TLRPC.TL_inlineBotSwitchPM I() {
         TLRPC.User user = this.f9842w0;
-        if (user != null && user.f18475id != this.S) {
+        if (user != null && user.f18490id != this.S) {
             return null;
         }
         return this.T;
@@ -357,7 +357,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                                     ArrayList arrayList10 = this.Q;
                                     if (arrayList10 != null && ((Boolean) arrayList10.get(i10)).booleanValue()) {
                                         if (user != null) {
-                                            j3 = user.f18475id;
+                                            j3 = user.f18490id;
                                         } else {
                                             j3 = 0;
                                         }
@@ -512,10 +512,10 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
         TLRPC.Chat chat;
         this.f9838t0 = 0;
         this.I0.stop();
-        qa0 qa0Var = this.V;
+        ta0 ta0Var = this.V;
         if (user != null && user.bot && user.bot_inline_placeholder != null) {
             this.f9842w0 = user;
-            long j3 = user.f18475id;
+            long j3 = user.f18490id;
             if (j3 != this.S) {
                 this.T = null;
                 this.S = j3;
@@ -526,21 +526,21 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                 this.f9824h0 = canSendStickers;
                 if (!canSendStickers) {
                     l();
-                    qa0Var.a(true);
+                    ta0Var.a(true);
                     return;
                 }
             }
             if (this.f9842w0.bot_inline_geo) {
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.f9821f);
-                if (!notificationsSettings.getBoolean("inlinegeo_" + this.f9842w0.f18475id, false) && (znVar = this.G0) != null && znVar.getParentActivity() != null) {
+                if (!notificationsSettings.getBoolean("inlinegeo_" + this.f9842w0.f18490id, false) && (znVar = this.G0) != null && znVar.getParentActivity() != null) {
                     TLRPC.User user2 = this.f9842w0;
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.G0.getParentActivity());
-                    alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.ShareYouLocationTitle);
-                    alertDialog$Builder.f18654a.T = LocaleController.getString(R.string.ShareYouLocationInline);
+                    alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.ShareYouLocationTitle);
+                    alertDialog$Builder.f18669a.T = LocaleController.getString(R.string.ShareYouLocationInline);
                     boolean[] zArr = new boolean[1];
                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), new r5(this, zArr, user2, 9));
                     alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new ah.b(12, this, zArr));
-                    this.G0.showDialog(alertDialog$Builder.f18654a, new ei.e0(this, zArr, 2));
+                    this.G0.showDialog(alertDialog$Builder.f18669a, new ei.e0(this, zArr, 2));
                 } else {
                     G();
                 }
@@ -555,8 +555,8 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
             this.T = null;
             return;
         }
-        if (qa0Var != null) {
-            qa0Var.b(true);
+        if (ta0Var != null) {
+            ta0Var.b(true);
         }
         T(true, this.f9842w0, this.f9835r0, "");
     }
@@ -584,7 +584,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                     sb2.append("_");
                     sb2.append(this.f9829n);
                     sb2.append("_");
-                    sb2.append(user.f18475id);
+                    sb2.append(user.f18490id);
                     sb2.append("_");
                     if (user.bot_inline_geo && this.f9847z0.getLatitude() != -1000.0d) {
                         obj = Double.valueOf(this.f9847z0.getLongitude() + this.f9847z0.getLatitude());
@@ -595,7 +595,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                     String sb3 = sb2.toString();
                     MessagesStorage messagesStorage = MessagesStorage.getInstance(this.f9821f);
                     x0 x0Var = new x0(this, str, z10, user, str2, messagesStorage, sb3);
-                    long j3 = user.f18475id;
+                    long j3 = user.f18490id;
                     if (j3 != this.S) {
                         this.T = null;
                         this.S = j3;
@@ -628,9 +628,9 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
             this.f9835r0 = null;
             return;
         }
-        qa0 qa0Var = this.V;
-        if (qa0Var != null) {
-            qa0Var.b(false);
+        ta0 ta0Var = this.V;
+        if (ta0Var != null) {
+            ta0Var.b(false);
         }
     }
 
@@ -677,7 +677,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                     it.remove();
                 } else if (tLObject instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject;
-                    if (user.bot || UserObject.isService(user.f18475id)) {
+                    if (user.bot || UserObject.isService(user.f18490id)) {
                         it.remove();
                     }
                 }
@@ -777,7 +777,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
         String str;
         String str2;
         int i10 = this.M0;
-        qa0 qa0Var = this.V;
+        ta0 ta0Var = this.V;
         int i11 = 0;
         if (i10 != -1 && this.K0 != null) {
             int K = K();
@@ -799,7 +799,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                         Object obj = objArr2[i11];
                         Object obj2 = objArr[i11];
                         if (!(obj instanceof hg.a2)) {
-                            if (obj != obj2 && ((!(obj instanceof j1) || !(obj2 instanceof j1) || ((j1) obj).f9801a != ((j1) obj2).f9801a) && ((!(obj instanceof TLRPC.User) || !(obj2 instanceof TLRPC.User) || ((TLRPC.User) obj).f18475id != ((TLRPC.User) obj2).f18475id) && ((!(obj instanceof TLRPC.Chat) || !(obj2 instanceof TLRPC.Chat) || ((TLRPC.Chat) obj).f18328id != ((TLRPC.Chat) obj2).f18328id) && (!(obj instanceof String) || !(obj2 instanceof String) || !obj.equals(obj2)))))) {
+                            if (obj != obj2 && ((!(obj instanceof j1) || !(obj2 instanceof j1) || ((j1) obj).f9801a != ((j1) obj2).f9801a) && ((!(obj instanceof TLRPC.User) || !(obj2 instanceof TLRPC.User) || ((TLRPC.User) obj).f18490id != ((TLRPC.User) obj2).f18490id) && ((!(obj instanceof TLRPC.Chat) || !(obj2 instanceof TLRPC.Chat) || ((TLRPC.Chat) obj).f18343id != ((TLRPC.Chat) obj2).f18343id) && (!(obj instanceof String) || !(obj2 instanceof String) || !obj.equals(obj2)))))) {
                                 if ((obj instanceof MediaDataController.KeywordResult) && (obj2 instanceof MediaDataController.KeywordResult) && (str = (keywordResult = (MediaDataController.KeywordResult) obj).keyword) != null) {
                                     MediaDataController.KeywordResult keywordResult2 = (MediaDataController.KeywordResult) obj2;
                                     if (str.equals(keywordResult2.keyword) && (str2 = keywordResult.emoji) != null && str2.equals(keywordResult2.emoji)) {
@@ -816,15 +816,15 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
             }
             t(min, i10 - min);
             s(min, K - min);
-            if (z10 && qa0Var != null) {
-                qa0Var.c();
+            if (z10 && ta0Var != null) {
+                ta0Var.c();
             }
             this.K0 = objArr;
             return;
         }
-        if (qa0Var != null) {
+        if (ta0Var != null) {
             this.M0 = K();
-            qa0Var.c();
+            ta0Var.c();
         }
         super.l();
         int K2 = K();
@@ -859,8 +859,8 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
         } else {
             i11 = i10;
         }
-        int i12 = c1Var.f42977f;
-        View view = c1Var.f42974a;
+        int i12 = c1Var.f42998f;
+        View view = c1Var.f42995a;
         Boolean bool = null;
         if (i12 == 4) {
             e8 e8Var = (e8) view;
@@ -868,52 +868,52 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                 j1 j1Var = (j1) this.A0.get(i11);
                 TLRPC.Document document = j1Var.f9801a;
                 Object obj = j1Var.f9802b;
-                rg.b1 b1Var = e8Var.f20197n;
-                v9 v9Var = e8Var.f20193a;
-                e8Var.f20195c = obj;
+                rg.b1 b1Var = e8Var.f20212n;
+                v9 v9Var = e8Var.f20208a;
+                e8Var.f20210c = obj;
                 boolean isPremiumSticker = MessageObject.isPremiumSticker(document);
-                e8Var.f20199s = isPremiumSticker;
+                e8Var.f20214s = isPremiumSticker;
                 if (isPremiumSticker) {
-                    b1Var.setColor(j6.w0(null, j6.f19094d6, false));
+                    b1Var.setColor(j6.w0(null, j6.f19109d6, false));
                     b1Var.H = true;
                     b1Var.I = false;
                     b1Var.invalidate();
                 }
                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, j6.f19038a7, 1.0f, 1.0f, e8Var.v);
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, j6.f19053a7, 1.0f, 1.0f, e8Var.v);
                 if (MessageObject.canAutoplayAnimatedSticker(document)) {
                     if (svgThumb != null) {
-                        v9Var.i(ImageLocation.getForDocument(document), "80_80", null, svgThumb, e8Var.f20195c);
+                        v9Var.i(ImageLocation.getForDocument(document), "80_80", null, svgThumb, e8Var.f20210c);
                         f7 = 1.0f;
                     } else if (closestPhotoSizeWithSize != null) {
                         f7 = 1.0f;
-                        v9Var.j(ImageLocation.getForDocument(document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, 0, e8Var.f20195c);
+                        v9Var.j(ImageLocation.getForDocument(document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, 0, e8Var.f20210c);
                     } else {
                         f7 = 1.0f;
-                        v9Var.i(ImageLocation.getForDocument(document), "80_80", null, null, e8Var.f20195c);
+                        v9Var.i(ImageLocation.getForDocument(document), "80_80", null, null, e8Var.f20210c);
                     }
                 } else {
                     f7 = 1.0f;
                     if (svgThumb != null) {
                         if (closestPhotoSizeWithSize != null) {
-                            v9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, "webp", svgThumb, e8Var.f20195c);
+                            v9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, "webp", svgThumb, e8Var.f20210c);
                         } else {
-                            v9Var.i(ImageLocation.getForDocument(document), null, "webp", svgThumb, e8Var.f20195c);
+                            v9Var.i(ImageLocation.getForDocument(document), null, "webp", svgThumb, e8Var.f20210c);
                         }
                     } else {
-                        v9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, "webp", null, e8Var.f20195c);
+                        v9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, "webp", null, e8Var.f20210c);
                     }
                 }
-                e8Var.f20194b = document;
+                e8Var.f20209b = document;
                 Drawable background = e8Var.getBackground();
                 if (background != null) {
                     background.setAlpha(230);
                     background.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.Be, false), PorterDuff.Mode.MULTIPLY));
                 }
-                if (e8Var.f20199s) {
-                    e8Var.f20198r = true;
+                if (e8Var.f20214s) {
+                    e8Var.f20213r = true;
                 } else {
-                    e8Var.f20198r = false;
+                    e8Var.f20213r = false;
                 }
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) b1Var.getLayoutParams();
                 if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
@@ -934,7 +934,7 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                     b1Var.setPadding(AndroidUtilities.dp(f7), AndroidUtilities.dp(f7), AndroidUtilities.dp(f7), AndroidUtilities.dp(f7));
                 }
                 b1Var.setLocked(!UserConfig.getInstance(UserConfig.selectedAccount).isPremium());
-                AndroidUtilities.updateViewVisibilityAnimated(b1Var, e8Var.f20198r, 0.9f, false);
+                AndroidUtilities.updateViewVisibilityAnimated(b1Var, e8Var.f20213r, 0.9f, false);
                 e8Var.invalidate();
                 e8Var.setClearsInputField(true);
             }
@@ -1051,10 +1051,10 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                                 }
                                 boolean booleanValue = bool.booleanValue();
                                 String str4 = (String) this.J.get(i11);
-                                p4 p4Var = i5Var.f20428b;
-                                TextView textView2 = i5Var.f20429c;
+                                p4 p4Var = i5Var.f20443b;
+                                TextView textView2 = i5Var.f20444c;
                                 g9 g9Var = i5Var.d;
-                                v9 v9Var2 = i5Var.f20427a;
+                                v9 v9Var2 = i5Var.f20442a;
                                 i5Var.a();
                                 if (user != null) {
                                     v9Var2.setVisibility(0);
@@ -1110,13 +1110,13 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                                     ?? frameLayout = new FrameLayout(context);
                                     frameLayout.v = f6Var;
                                     v9 v9Var = new v9(context);
-                                    frameLayout.f20193a = v9Var;
+                                    frameLayout.f20208a = v9Var;
                                     v9Var.setAspectFit(true);
                                     v9Var.setLayerNum(1);
                                     frameLayout.addView(v9Var, y5.d(66, 66.0f, 1, 0.0f, 5.0f, 0.0f, 0.0f));
                                     frameLayout.setFocusable(true);
                                     rg.b1 b1Var = new rg.b1(context, 1, null);
-                                    frameLayout.f20197n = b1Var;
+                                    frameLayout.f20212n = b1Var;
                                     b1Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
                                     b1Var.setImageReceiver(v9Var.getImageReceiver());
                                     frameLayout.addView(b1Var, y5.d(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -1126,10 +1126,10 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                                     if (z10) {
                                         v02 = j6.l1(0.15f, -1);
                                     } else {
-                                        v02 = j6.v0(j6.f19038a7, f6Var);
+                                        v02 = j6.v0(j6.f19053a7, f6Var);
                                     }
-                                    pq pqVar = new pq(new ColorDrawable(v02), j6.U0(context, R.drawable.greydivider, j6.v0(j6.f19058b7, f6Var)), 0, 0);
-                                    pqVar.f27426w = true;
+                                    pq pqVar = new pq(new ColorDrawable(v02), j6.U0(context, R.drawable.greydivider, j6.v0(j6.f19073b7, f6Var)), 0, 0);
+                                    pqVar.f27404w = true;
                                     knVar.setBackground(pqVar);
                                     view = knVar;
                                 }
@@ -1143,13 +1143,13 @@ public final class k1 extends ul0 implements NotificationCenter.NotificationCent
                         TextView textView2 = new TextView(context);
                         textView2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
                         textView2.setTextSize(1, 14.0f);
-                        textView2.setTextColor(j6.v0(j6.f19496z6, f6Var));
+                        textView2.setTextColor(j6.v0(j6.f19511z6, f6Var));
                         textView = textView2;
                     }
                 } else {
                     ?? frameLayout2 = new FrameLayout(context);
                     TextView textView3 = new TextView(context);
-                    frameLayout2.f20419a = textView3;
+                    frameLayout2.f20434a = textView3;
                     textView3.setTextSize(1, 15.0f);
                     textView3.setTextColor(j6.w0(null, j6.Ce, false));
                     textView3.setTypeface(AndroidUtilities.bold());

@@ -24,12 +24,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.eo0;
-import org.telegram.ui.Components.l31;
+import org.telegram.ui.Components.go0;
 import org.telegram.ui.Components.mf;
+import org.telegram.ui.Components.n31;
 import org.telegram.ui.Components.ni;
-import org.telegram.ui.Components.o71;
-import org.telegram.ui.Components.t71;
+import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.v71;
 import org.telegram.ui.Components.vi;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.fd0;
@@ -39,24 +39,24 @@ import org.telegram.ui.uy;
 import org.telegram.ui.z60;
 import org.telegram.ui.zn;
 public final class z1 implements RequestDelegateTimestamp, MessagesStorage.StringCallback, m4.e1, ImageReceiver.ImageReceiverDelegate, org.telegram.ui.Components.c5, fd0, MessagesStorage.BooleanCallback, g2.g, org.telegram.ui.ActionBar.a2, z60, s5.f {
-    public final int f1776a;
-    public final long f1777b;
-    public final Object f1778c;
+    public final int f1773a;
+    public final long f1774b;
+    public final Object f1775c;
 
     public z1(long j3, l5.i iVar) {
-        this.f1776a = 12;
-        this.f1777b = j3;
-        this.f1778c = iVar;
+        this.f1773a = 12;
+        this.f1774b = j3;
+        this.f1775c = iVar;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
         boolean G1;
-        vi viVar = (vi) this.f1778c;
-        ni niVar = viVar.f29159y0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f29110j0;
-        long j3 = this.f1777b;
-        if (niVar != chatAttachAlertPhotoLayout && niVar != viVar.f29130q0) {
+        vi viVar = (vi) this.f1775c;
+        ni niVar = viVar.f29157y0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f29108j0;
+        long j3 = this.f1774b;
+        if (niVar != chatAttachAlertPhotoLayout && niVar != viVar.f29128q0) {
             if (!niVar.I(i10, z10, i11, viVar.s1(), j3)) {
                 viVar.A2 = true;
                 viVar.dismiss();
@@ -65,23 +65,23 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         } else {
             G1 = viVar.G1(i10, z10, i11, viVar.s1(), j3);
         }
-        mf mfVar = viVar.f29104h0;
+        mf mfVar = viVar.f29102h0;
         if (mfVar != null) {
             mfVar.h(!G1);
-            viVar.f29104h0 = null;
+            viVar.f29102h0 = null;
         }
     }
 
     @Override
     public Object apply(Object obj) {
-        l5.i iVar = (l5.i) this.f1778c;
+        l5.i iVar = (l5.i) this.f1775c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
         ContentValues contentValues = new ContentValues();
-        contentValues.put("next_request_ms", Long.valueOf(this.f1777b));
-        String str = iVar.f14093a;
-        i5.d dVar = iVar.f14095c;
+        contentValues.put("next_request_ms", Long.valueOf(this.f1774b));
+        String str = iVar.f14107a;
+        i5.d dVar = iVar.f14109c;
         if (sQLiteDatabase.update("transport_contexts", contentValues, "backend_name = ? and priority = ?", new String[]{str, String.valueOf(v5.a.a(dVar))}) < 1) {
-            contentValues.put("backend_name", iVar.f14093a);
+            contentValues.put("backend_name", iVar.f14107a);
             contentValues.put("priority", Integer.valueOf(v5.a.a(dVar)));
             sQLiteDatabase.insert("transport_contexts", null, contentValues);
         }
@@ -90,28 +90,28 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
 
     @Override
     public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        int i12 = this.f1776a;
-        Object obj = this.f1778c;
+        int i12 = this.f1773a;
+        Object obj = this.f1775c;
         switch (i12) {
             case 5:
                 float[] fArr = FragmentContextView.O0;
-                SendMessagesHelper.getInstance(((LocationController.SharingLocationInfo) obj).messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f1777b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
+                SendMessagesHelper.getInstance(((LocationController.SharingLocationInfo) obj).messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f1774b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
                 return;
             default:
                 Pattern pattern = LaunchActivity.B1;
-                SendMessagesHelper.getInstance(((int[]) obj)[0]).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f1777b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
+                SendMessagesHelper.getInstance(((int[]) obj)[0]).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f1774b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
                 return;
         }
     }
 
     @Override
     public g2.h createDataSource() {
-        return new o71(((t71) this.f1778c).h.createDataSource(), this.f1777b);
+        return new q71(((v71) this.f1775c).h.createDataSource(), this.f1774b);
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.f1778c;
+        org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.f1775c;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z10 && bitmapSafe != null) {
             Bitmap bitmap = bitmapSafe.bitmap;
@@ -121,7 +121,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
                     bitmap = ((BitmapDrawable) drawable).getBitmap();
                 }
             }
-            l4Var.onComplete(new Pair(Long.valueOf(this.f1777b), bitmap));
+            l4Var.onComplete(new Pair(Long.valueOf(this.f1774b), bitmap));
         }
     }
 
@@ -132,13 +132,13 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
 
     @Override
     public Object h(m4.a0 a0Var, m4.r rVar, int i10) {
-        return a0Var.q(rVar, e9.i0.z((b2.k0) this.f1778c), 0, this.f1777b);
+        return a0Var.q(rVar, e9.i0.z((b2.k0) this.f1775c), 0, this.f1774b);
     }
 
     @Override
     public void i(int i10, ArrayList arrayList) {
-        pf1 pf1Var = (pf1) this.f1778c;
-        org.telegram.ui.ActionBar.n2 n2Var = pf1Var.f36558b;
+        pf1 pf1Var = (pf1) this.f1775c;
+        org.telegram.ui.ActionBar.n2 n2Var = pf1Var.f36585b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();
@@ -147,7 +147,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         while (i11 < size) {
             MessagesController messagesController = n2Var.getMessagesController();
             f fVar = new f(18);
-            long j3 = this.f1777b;
+            long j3 = this.f1774b;
             messagesController.addUserToChat(j3, (TLRPC.User) arrayList.get(i11), i10, null, n2Var, false, fVar, null, new ei.s3(pf1Var, tL_messages_invitedUsers, iArr, size, arrayList, j3));
             i11++;
             size = size;
@@ -158,24 +158,24 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
 
     @Override
     public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f1776a) {
+        switch (this.f1773a) {
             case 8:
-                eo0 eo0Var = ((uy) this.f1778c).C0.f26196c0;
-                a0.i iVar = eo0Var.f9791x0;
-                long j3 = this.f1777b;
+                go0 go0Var = ((uy) this.f1775c).C0.f26838c0;
+                a0.i iVar = go0Var.f9791x0;
+                long j3 = this.f1774b;
                 gg.h0 h0Var = (gg.h0) iVar.f(j3);
                 if (h0Var != null) {
-                    eo0Var.f9791x0.l(j3);
-                    eo0Var.f9785t0.remove(h0Var);
-                    eo0Var.f9787v0.remove(h0Var);
-                    eo0Var.f9786u0.remove(h0Var);
-                    eo0Var.l();
-                    MessagesStorage.getInstance(eo0Var.f9784s0).getStorageQueue().postRunnable(new gg.q(eo0Var, j3, 0));
+                    go0Var.f9791x0.l(j3);
+                    go0Var.f9785t0.remove(h0Var);
+                    go0Var.f9787v0.remove(h0Var);
+                    go0Var.f9786u0.remove(h0Var);
+                    go0Var.l();
+                    MessagesStorage.getInstance(go0Var.f9784s0).getStorageQueue().postRunnable(new gg.q(go0Var, j3, 0));
                     return;
                 }
                 return;
             default:
-                ((gy) this.f1778c).f34003a.getMediaDataController().removePeer(this.f1777b);
+                ((gy) this.f1775c).f34019a.getMediaDataController().removePeer(this.f1774b);
                 return;
         }
     }
@@ -187,9 +187,9 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
 
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
-        d2 d2Var = (d2) this.f1778c;
+        d2 d2Var = (d2) this.f1775c;
         if (tL_error == null) {
-            if (d2Var.E == null || d2Var.f695w) {
+            if (d2Var.E == null || d2Var.f692w) {
                 return;
             }
             TL_phone.groupCallStreamChannels groupcallstreamchannels = (TL_phone.groupCallStreamChannels) tLObject;
@@ -201,7 +201,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
             if (d2Var.G == null && !groupcallstreamchannels.channels.isEmpty()) {
                 TLRPC.TL_groupCallParticipant tL_groupCallParticipant = new TLRPC.TL_groupCallParticipant();
                 d2Var.G = tL_groupCallParticipant;
-                tL_groupCallParticipant.peer = MessagesController.getInstance(d2Var.e).getPeer(d2Var.f689b);
+                tL_groupCallParticipant.peer = MessagesController.getInstance(d2Var.e).getPeer(d2Var.f686b);
                 d2Var.G.video = new TLRPC.TL_groupCallParticipantVideo();
                 TLRPC.TL_groupCallParticipantVideoSourceGroup tL_groupCallParticipantVideoSourceGroup = new TLRPC.TL_groupCallParticipantVideoSourceGroup();
                 tL_groupCallParticipantVideoSourceGroup.semantics = "SIM";
@@ -225,27 +225,27 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         }
         NativeInstance nativeInstance2 = d2Var.E;
         if (nativeInstance2 != null) {
-            nativeInstance2.onRequestTimeComplete(this.f1777b, r0);
+            nativeInstance2.onRequestTimeComplete(this.f1774b, r0);
         }
     }
 
     public z1(Object obj, long j3, int i10) {
-        this.f1776a = i10;
-        this.f1778c = obj;
-        this.f1777b = j3;
+        this.f1773a = i10;
+        this.f1775c = obj;
+        this.f1774b = j3;
     }
 
     @Override
     public void run(String str) {
-        ci.ba baVar = (ci.ba) this.f1778c;
-        baVar.W.i1().r(this.f1777b, str, new ci.q9(baVar, 2));
+        ci.ba baVar = (ci.ba) this.f1775c;
+        baVar.W.i1().r(this.f1774b, str, new ci.q9(baVar, 2));
     }
 
     @Override
     public void run(boolean z10) {
-        zn znVar = ((l31) this.f1778c).h;
+        zn znVar = ((n31) this.f1775c).h;
         if (com.google.android.gms.internal.vision.e2.u(znVar)) {
-            znVar.qa(this.f1777b, false);
+            znVar.qa(this.f1774b, false);
         }
     }
 

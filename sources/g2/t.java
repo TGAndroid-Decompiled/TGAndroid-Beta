@@ -95,7 +95,7 @@ public final class t extends c {
         }
         try {
             RandomAccessFile randomAccessFile = this.f9407a;
-            String str = e2.d0.f7888a;
+            String str = e2.d0.f7887a;
             int read = randomAccessFile.read(bArr, i10, (int) Math.min(j3, i11));
             if (read > 0) {
                 this.f9409c -= read;

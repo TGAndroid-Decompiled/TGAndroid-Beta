@@ -6,11 +6,11 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.s61;
-public abstract class a extends s61 {
+import org.telegram.ui.Components.u61;
+public abstract class a extends u61 {
     public a(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, f6 f6Var) {
         super(context, i10, -1, false, callback2, callback5, null, f6Var, -1, 0);
-        this.f29227z2 = true;
+        this.f30724z2 = true;
         setOverScrollMode(2);
     }
 

@@ -9,18 +9,18 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class d60 extends Drawable {
-    public final Paint f32938a;
-    public final Paint f32939b;
-    public long f32940c;
+    public final Paint f32959a;
+    public final Paint f32960b;
+    public long f32961c;
     public float d;
     public int e;
-    public boolean f32941f;
-    public View f32942g;
+    public boolean f32962f;
+    public View f32963g;
 
     public d60() {
         Paint paint = new Paint(1);
-        this.f32938a = paint;
-        this.f32939b = new Paint(1);
+        this.f32959a = paint;
+        this.f32960b = new Paint(1);
         this.d = 1.0f;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -28,7 +28,7 @@ public final class d60 extends Drawable {
     }
 
     public final void a(ImageView imageView) {
-        this.f32942g = imageView;
+        this.f32963g = imageView;
     }
 
     @Override
@@ -36,23 +36,23 @@ public final class d60 extends Drawable {
         int i10;
         float centerX = getBounds().centerX();
         float centerY = getBounds().centerY();
-        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(10.0f), this.f32938a);
-        if (this.f32941f) {
+        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(10.0f), this.f32959a);
+        if (this.f32962f) {
             i10 = -1147527;
         } else {
             i10 = -1;
         }
-        Paint paint = this.f32939b;
+        Paint paint = this.f32960b;
         paint.setColor(i10);
         paint.setAlpha((int) (this.d * 255.0f));
         canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(5.0f), paint);
-        if (this.f32941f) {
+        if (this.f32962f) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j3 = elapsedRealtime - this.f32940c;
+            long j3 = elapsedRealtime - this.f32961c;
             if (j3 > 17) {
                 j3 = 17;
             }
-            this.f32940c = elapsedRealtime;
+            this.f32961c = elapsedRealtime;
             int i11 = this.e;
             if (i11 == 0) {
                 float f7 = (((float) j3) / 2000.0f) + this.d;
@@ -69,7 +69,7 @@ public final class d60 extends Drawable {
                     this.e = 0;
                 }
             }
-            this.f32942g.invalidate();
+            this.f32963g.invalidate();
         }
     }
 

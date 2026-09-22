@@ -6,28 +6,28 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class o31 implements Runnable {
-    public final int f36185a;
-    public final zn f36186b;
-    public final Activity f36187c;
+    public final int f36203a;
+    public final zn f36204b;
+    public final Activity f36205c;
     public final org.telegram.ui.ActionBar.f6 d;
     public final MessageObject e;
 
     public o31(zn znVar, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, MessageObject messageObject, int i10) {
-        this.f36185a = i10;
-        this.f36186b = znVar;
-        this.f36187c = activity;
+        this.f36203a = i10;
+        this.f36204b = znVar;
+        this.f36205c = activity;
         this.d = f6Var;
         this.e = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f36185a) {
+        switch (this.f36203a) {
             case 0:
-                zn znVar = this.f36186b;
+                zn znVar = this.f36204b;
                 org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(znVar);
                 String string = LocaleController.getString(R.string.AdReported);
-                final Activity activity = this.f36187c;
+                final Activity activity = this.f36205c;
                 a02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
                     @Override
                     public final void run() {
@@ -49,10 +49,10 @@ public final class o31 implements Runnable {
                 znVar.Ha(messageObject);
                 return;
             case 1:
-                zn znVar2 = this.f36186b;
+                zn znVar2 = this.f36204b;
                 org.telegram.ui.Components.xc a03 = org.telegram.ui.Components.xc.a0(znVar2);
                 String string2 = LocaleController.getString(R.string.AdReported);
-                final Activity activity2 = this.f36187c;
+                final Activity activity2 = this.f36205c;
                 a03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
                     @Override
                     public final void run() {
@@ -74,10 +74,10 @@ public final class o31 implements Runnable {
                 znVar2.Ha(messageObject2);
                 return;
             default:
-                zn znVar3 = this.f36186b;
+                zn znVar3 = this.f36204b;
                 org.telegram.ui.Components.xc a04 = org.telegram.ui.Components.xc.a0(znVar3);
                 String string3 = LocaleController.getString(R.string.AdReported);
-                final Activity activity3 = this.f36187c;
+                final Activity activity3 = this.f36205c;
                 a04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
                     @Override
                     public final void run() {

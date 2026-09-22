@@ -60,7 +60,7 @@ public abstract class mb extends tb {
     public void setTimer() {
         ic icVar = new ic(getContext(), this.resourcesProvider);
         this.timerView = icVar;
-        icVar.f24988b = 5000L;
+        icVar.f25078b = 5000L;
         addView(icVar, w7.y5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

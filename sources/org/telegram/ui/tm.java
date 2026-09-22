@@ -11,24 +11,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class tm implements xu0 {
-    public final TL_iv.RichMessage f37847a;
-    public final ArrayList f37848b;
-    public final MessageObject f37849c;
+    public final TL_iv.RichMessage f37848a;
+    public final ArrayList f37849b;
+    public final MessageObject f37850c;
 
     public tm(TL_iv.RichMessage richMessage, ArrayList arrayList, MessageObject messageObject) {
-        this.f37847a = richMessage;
-        this.f37848b = arrayList;
-        this.f37849c = messageObject;
+        this.f37848a = richMessage;
+        this.f37849b = arrayList;
+        this.f37850c = messageObject;
     }
 
     @Override
     public final boolean a(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f37848b;
+            ArrayList arrayList = this.f37849b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    TLRPC.Document b10 = e4.b(this.f37847a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    TLRPC.Document b10 = e4.b(this.f37848a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                     if (b10 != null) {
                         return MessageObject.isVideoDocument(b10);
                     }
@@ -46,11 +46,11 @@ public final class tm implements xu0 {
         TLRPC.Document b10;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         if (i10 >= 0) {
-            ArrayList arrayList = this.f37848b;
+            ArrayList arrayList = this.f37849b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f37847a;
+                TL_iv.RichMessage richMessage = this.f37848a;
                 if (z10) {
                     TLRPC.Photo f7 = e4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                     if (f7 != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(f7.sizes, AndroidUtilities.getPhotoSize())) != null) {
@@ -80,11 +80,11 @@ public final class tm implements xu0 {
     @Override
     public final TLObject d(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f37848b;
+            ArrayList arrayList = this.f37849b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f37847a;
+                TL_iv.RichMessage richMessage = this.f37848a;
                 if (z10) {
                     return e4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 }
@@ -138,27 +138,27 @@ public final class tm implements xu0 {
 
     @Override
     public final Object g() {
-        MessageObject messageObject = this.f37849c;
+        MessageObject messageObject = this.f37850c;
         if (messageObject != null) {
             return messageObject;
         }
-        return this.f37847a;
+        return this.f37848a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i10) {
-        return (TL_iv.PageBlock) this.f37848b.get(i10);
+        return (TL_iv.PageBlock) this.f37849b.get(i10);
     }
 
     @Override
     public final List getAll() {
-        return this.f37848b;
+        return this.f37849b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
         RichMessageLayout richMessageLayout;
-        MessageObject messageObject = this.f37849c;
+        MessageObject messageObject = this.f37850c;
         if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null) {
             richMessageLayout.setSlideshowPage(pageBlock);
         }
@@ -171,6 +171,6 @@ public final class tm implements xu0 {
 
     @Override
     public final int j() {
-        return this.f37848b.size();
+        return this.f37849b.size();
     }
 }

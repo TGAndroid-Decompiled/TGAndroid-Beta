@@ -7,7 +7,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.ie0;
+import org.telegram.ui.Components.le0;
 import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.bn0;
 import org.telegram.ui.cr0;
@@ -20,21 +20,21 @@ import org.telegram.ui.n70;
 import org.telegram.ui.uo;
 import org.telegram.ui.xo0;
 public final class u3 implements RequestDelegate {
-    public final int f5608a;
-    public final boolean f5609b;
-    public final Object f5610c;
+    public final int f5606a;
+    public final boolean f5607b;
+    public final Object f5608c;
 
     public u3(int i10, Object obj, boolean z10) {
-        this.f5608a = i10;
-        this.f5610c = obj;
-        this.f5609b = z10;
+        this.f5606a = i10;
+        this.f5608c = obj;
+        this.f5607b = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f5608a;
-        boolean z10 = this.f5609b;
-        Object obj = this.f5610c;
+        int i10 = this.f5606a;
+        boolean z10 = this.f5607b;
+        Object obj = this.f5608c;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new y0((w3) obj, tLObject, z10, 1));
@@ -72,25 +72,25 @@ public final class u3 implements RequestDelegate {
                 uo uoVar = (uo) obj;
                 if (tLObject instanceof TLRPC.Updates) {
                     uoVar.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
-                    AndroidUtilities.runOnUIThread(new bi.f(20, uoVar, z10));
+                    AndroidUtilities.runOnUIThread(new bi.f(21, uoVar, z10));
                     return;
                 }
                 AndroidUtilities.runOnUIThread(new mo(uoVar, 3));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new ai.s4((ip) obj, tL_error, tLObject, this.f5609b, 14));
+                AndroidUtilities.runOnUIThread(new ai.s4((ip) obj, tL_error, tLObject, this.f5607b, 14));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o((ie0) obj, tL_error, tLObject, z10));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o((le0) obj, tL_error, tLObject, z10));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new ai.s4((n70) obj, tL_error, tLObject, this.f5609b, 23));
+                AndroidUtilities.runOnUIThread(new ai.s4((n70) obj, tL_error, tLObject, this.f5607b, 23));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new ai.s4((bn0) obj, tL_error, tLObject, this.f5609b, 24));
+                AndroidUtilities.runOnUIThread(new ai.s4((bn0) obj, tL_error, tLObject, this.f5607b, 24));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new ai.s4((xo0) obj, tL_error, tLObject, this.f5609b, 27));
+                AndroidUtilities.runOnUIThread(new ai.s4((xo0) obj, tL_error, tLObject, this.f5607b, 27));
                 return;
             case 11:
                 cr0 cr0Var = (cr0) obj;
@@ -100,10 +100,10 @@ public final class u3 implements RequestDelegate {
                 }
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new ai.s4((ih1) obj, tL_error, tLObject, this.f5609b, 29));
+                AndroidUtilities.runOnUIThread(new ai.s4((ih1) obj, tL_error, tLObject, this.f5607b, 29));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f31902i0;
+                int[][] iArr = WallpapersListActivity.f31923i0;
                 AndroidUtilities.runOnUIThread(new ka0((WallpapersListActivity) obj, tLObject, z10, 10));
                 return;
         }

@@ -3,13 +3,14 @@ package a6;
 import android.os.Parcel;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.m;
 import com.google.android.gms.common.api.q;
 public final class g extends com.google.android.gms.common.api.internal.e {
-    public final int f299q;
+    public final int f298q;
 
-    public g(com.google.android.gms.common.api.m mVar, int i10) {
-        super(w5.a.f44889a, mVar);
-        this.f299q = i10;
+    public g(m mVar, int i10) {
+        super(w5.a.f44909a, mVar);
+        this.f298q = i10;
     }
 
     @Override
@@ -19,13 +20,13 @@ public final class g extends com.google.android.gms.common.api.internal.e {
 
     @Override
     public final q d(Status status) {
-        int i10 = this.f299q;
+        int i10 = this.f298q;
         return status;
     }
 
     @Override
     public final void n(com.google.android.gms.common.api.c cVar) {
-        switch (this.f299q) {
+        switch (this.f298q) {
             case 0:
                 e eVar = (e) cVar;
                 k kVar = (k) eVar.u();

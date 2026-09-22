@@ -1,33 +1,35 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class hb0 implements Runnable {
-    public final int f24601a;
-    public final xb0 f24602b;
-    public final Context f24603c;
+import android.view.View;
+public final class hb0 extends q81 {
+    public final Context f24775a;
+    public final gc0 f24776b;
 
-    public hb0(xb0 xb0Var, Context context, int i10) {
-        this.f24601a = i10;
-        this.f24602b = xb0Var;
-        this.f24603c = context;
+    public hb0(gc0 gc0Var, Context context) {
+        this.f24776b = gc0Var;
+        this.f24775a = context;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24601a) {
-            case 0:
-                xb0 xb0Var = this.f24602b;
-                xb0Var.f30229c0.a(false);
-                AndroidUtilities.runOnUIThread(new hb0(xb0Var, this.f24603c, 1));
-                return;
-            default:
-                Context context = this.f24603c;
-                if (AndroidUtilities.isContextSafe(context)) {
-                    new rg.x0(context, 43, this.f24602b.f30229c0.F).show();
-                    return;
-                }
-                return;
-        }
+    public final void b(View view, int i10, int i11) {
+        ac0 ac0Var = (ac0) view;
+        ac0Var.h();
+        ac0Var.k(false);
+    }
+
+    @Override
+    public final View d(int i10) {
+        return new ac0(this.f24776b, this.f24775a, i10);
+    }
+
+    @Override
+    public final int e() {
+        return this.f24776b.e.f23928a.size();
+    }
+
+    @Override
+    public final int h(int i10) {
+        return ((dc0) this.f24776b.e.f23928a.get(i10)).f23646a;
     }
 }

@@ -1,31 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-public final class e61 implements View.OnClickListener {
-    public final int f23750a;
-    public final UndoView f23751b;
+import org.telegram.ui.LaunchActivity;
+public final class e61 extends URLSpan {
+    public final e11 f23869a;
+    public boolean f23870b;
 
-    public e61(UndoView undoView, int i10) {
-        this.f23750a = i10;
-        this.f23751b = undoView;
+    public e61(String str, e11 e11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f23869a = e11Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f23750a;
-        UndoView undoView = this.f23751b;
-        switch (i10) {
-            case 0:
-                int i11 = UndoView.f22449e0;
-                if (undoView.a()) {
-                    undoView.e(1, false);
-                    return;
-                }
-                return;
-            default:
-                int i12 = UndoView.f22449e0;
-                undoView.e(1, false);
-                return;
+        if (this.f23870b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
+        }
+        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        e11 e11Var = this.f23869a;
+        if (e11Var != null) {
+            e11Var.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            textPaint.setUnderlineText(z10);
         }
     }
 }

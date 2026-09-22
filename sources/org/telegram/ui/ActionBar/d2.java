@@ -2,40 +2,40 @@ package org.telegram.ui.ActionBar;
 
 import android.view.animation.Animation;
 public final class d2 implements Animation.AnimationListener {
-    public final int f18795a;
-    public final Object f18796b;
+    public final int f18810a;
+    public final Object f18811b;
 
     public d2(Object obj, int i10) {
-        this.f18795a = i10;
-        this.f18796b = obj;
+        this.f18810a = i10;
+        this.f18811b = obj;
     }
 
     @Override
     public final void onAnimationEnd(Animation animation) {
-        switch (this.f18795a) {
+        switch (this.f18810a) {
             case 0:
-                ((f2) this.f18796b).f18857g1.setAlpha(0.0f);
+                ((f2) this.f18811b).f18872g1.setAlpha(0.0f);
                 return;
             default:
-                ((v4) this.f18796b).f19832f.post(new q(this, 12));
+                ((v4) this.f18811b).f19847f.post(new q(this, 12));
                 return;
         }
     }
 
     @Override
     public final void onAnimationRepeat(Animation animation) {
-        int i10 = this.f18795a;
+        int i10 = this.f18810a;
     }
 
     @Override
     public final void onAnimationStart(Animation animation) {
-        switch (this.f18795a) {
+        switch (this.f18810a) {
             case 0:
                 return;
             default:
-                v4 v4Var = (v4) this.f18796b;
-                v4Var.f19834i.setEnabled(false);
-                v4Var.f19833g.setVisibility(0);
+                v4 v4Var = (v4) this.f18811b;
+                v4Var.f19849i.setEnabled(false);
+                v4Var.f19848g.setVisibility(0);
                 v4Var.h.setVisibility(0);
                 return;
         }

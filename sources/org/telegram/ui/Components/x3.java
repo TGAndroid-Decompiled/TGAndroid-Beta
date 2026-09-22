@@ -4,30 +4,30 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 public final class x3 implements TextWatcher {
-    public boolean f30155a;
-    public final int f30156b;
-    public final EditTextBoldCursor f30157c;
+    public boolean f30209a;
+    public final int f30210b;
+    public final EditTextBoldCursor f30211c;
 
     public x3(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f30156b = i10;
-        this.f30157c = editTextBoldCursor;
+        this.f30210b = i10;
+        this.f30211c = editTextBoldCursor;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        if (!this.f30155a) {
+        if (!this.f30209a) {
             int length = editable.length();
-            int i10 = this.f30156b;
+            int i10 = this.f30210b;
             if (length > i10) {
-                this.f30155a = true;
+                this.f30209a = true;
                 editable.delete(i10, editable.length());
-                EditTextBoldCursor editTextBoldCursor = this.f30157c;
+                EditTextBoldCursor editTextBoldCursor = this.f30211c;
                 AndroidUtilities.shakeView(editTextBoldCursor);
                 try {
                     editTextBoldCursor.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                this.f30155a = false;
+                this.f30209a = false;
             }
         }
     }

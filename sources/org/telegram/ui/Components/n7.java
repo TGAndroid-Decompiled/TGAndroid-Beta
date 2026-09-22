@@ -4,11 +4,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-public final class n7 implements ro0 {
-    public final i8 f26601a;
+public final class n7 implements to0 {
+    public final i8 f26670a;
 
     public n7(i8 i8Var) {
-        this.f26601a = i8Var;
+        this.f26670a = i8Var;
     }
 
     @Override
@@ -18,14 +18,14 @@ public final class n7 implements ro0 {
         }
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isMusic()) {
-            this.f26601a.G0(playingMessageObject, false);
+            this.f26670a.G0(playingMessageObject, false);
         }
     }
 
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        i8 i8Var = this.f26601a;
+        i8 i8Var = this.f26670a;
         sb2.append(LocaleController.formatPluralString("Minutes", i8Var.D0 / 60, new Object[0]));
         sb2.append(' ');
         sb2.append(LocaleController.formatPluralString("Seconds", i8Var.D0 % 60, new Object[0]));

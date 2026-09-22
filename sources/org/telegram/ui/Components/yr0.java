@@ -1,41 +1,32 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-public final class yr0 extends xh.s2 {
-    public final jv0 U;
+public final class yr0 extends iv0 {
+    public final lv0 G;
 
-    public yr0(int i10, long j3, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f6 f6Var, jv0 jv0Var) {
-        super(i10, j3, context, n2Var, f6Var);
-        this.U = jv0Var;
+    public yr0(lv0 lv0Var, Context context) {
+        super(lv0Var, context, 0, true);
+        this.G = lv0Var;
     }
 
     @Override
-    public final void p(boolean z10) {
-        float f7;
-        float f10;
-        jv0 jv0Var = this.U;
-        TextView textView = jv0Var.f25515q0;
-        textView.setVisibility(0);
-        ViewPropertyAnimator animate = textView.animate();
-        float f11 = 1.0f;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+    public final void l() {
+        boolean z10;
+        super.l();
+        lv0 lv0Var = this.G;
+        eu0 W = lv0Var.W(9);
+        if (W != null && W.f24043r.getVisibility() == 0) {
+            lv0Var.f26200f0.l();
         }
-        ViewPropertyAnimator alpha = animate.alpha(f7);
-        if (z10) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.4f;
+        if (W != null) {
+            vs0 vs0Var = W.f24045w;
+            ai.d9 d9Var = this.f25184s;
+            if (d9Var != null && (d9Var.k() || (lv0Var.i0() && this.f25184s.g() > 0))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            vs0Var.e(z10, true);
         }
-        ViewPropertyAnimator scaleX = alpha.scaleX(f10);
-        if (!z10) {
-            f11 = 0.4f;
-        }
-        scaleX.scaleY(f11).withEndAction(new bi.f(29, this, z10)).start();
-        jv0Var.q1(true);
     }
 }

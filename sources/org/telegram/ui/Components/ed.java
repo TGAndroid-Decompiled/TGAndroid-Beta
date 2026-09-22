@@ -12,16 +12,16 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class ed extends Drawable {
-    public final int f23827a;
-    public final Object f23828b;
-    public final Object f23829c;
+    public final int f23935a;
+    public final Object f23936b;
+    public final Object f23937c;
 
     public ed(boolean z10) {
-        this.f23827a = 2;
+        this.f23935a = 2;
         Paint paint = new Paint();
-        this.f23828b = paint;
+        this.f23936b = paint;
         Paint paint2 = new Paint();
-        this.f23829c = paint2;
+        this.f23937c = paint2;
         paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
         if (z10) {
             paint.setColor(-14865331);
@@ -45,23 +45,23 @@ public final class ed extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         float offsetY;
-        switch (this.f23827a) {
+        switch (this.f23935a) {
             case 0:
-                fd fdVar = (fd) this.f23829c;
-                if (fdVar.f24078c > 1) {
-                    fdVar.c(canvas, fdVar.f24087o);
+                fd fdVar = (fd) this.f23937c;
+                if (fdVar.f24164c > 1) {
+                    fdVar.c(canvas, fdVar.f24173o);
                     return;
                 } else {
-                    fdVar.c(canvas, (Paint) this.f23828b);
+                    fdVar.c(canvas, (Paint) this.f23936b);
                     return;
                 }
             case 1:
-                Paint paint = (Paint) this.f23828b;
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f23829c;
+                Paint paint = (Paint) this.f23936b;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f23937c;
                 if (chatActivityEnterView.U0 != null) {
-                    paint.setAlpha(Math.round(chatActivityEnterView.B3 * 102.0f));
+                    paint.setAlpha(Math.round(chatActivityEnterView.C3 * 102.0f));
                     float width = chatActivityEnterView.getWidth();
-                    float y3 = (chatActivityEnterView.U0.getY() - chatActivityEnterView.getHeight()) + org.telegram.ui.ActionBar.j6.f19181i3.getIntrinsicHeight();
+                    float y3 = (chatActivityEnterView.U0.getY() - chatActivityEnterView.getHeight()) + org.telegram.ui.ActionBar.j6.f19196i3.getIntrinsicHeight();
                     pf pfVar = chatActivityEnterView.E0;
                     if (pfVar == null) {
                         offsetY = 0.0f;
@@ -73,8 +73,8 @@ public final class ed extends Drawable {
                 }
                 return;
             case 2:
-                Paint paint2 = (Paint) this.f23829c;
-                canvas.drawRect(getBounds(), (Paint) this.f23828b);
+                Paint paint2 = (Paint) this.f23937c;
+                canvas.drawRect(getBounds(), (Paint) this.f23936b);
                 int dp = AndroidUtilities.dp(9.0f);
                 int width2 = getBounds().width() / dp;
                 int height = getBounds().height() / dp;
@@ -95,33 +95,33 @@ public final class ed extends Drawable {
                 }
                 return;
             case 3:
-                n6 n6Var = (n6) this.f23829c;
-                Paint paint3 = (Paint) this.f23828b;
+                n6 n6Var = (n6) this.f23937c;
+                Paint paint3 = (Paint) this.f23936b;
                 if (paint3 != null) {
                     paint3.setStrokeWidth(AndroidUtilities.dpf2(1.6f));
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(((AndroidUtilities.dp(24.0f) - n6Var.d()) / 2.0f) - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(0.2f) + ((AndroidUtilities.dp(24.0f) - n6Var.e) / 2.0f), AndroidUtilities.dpf2(3.0f) + ((n6Var.d() + AndroidUtilities.dp(24.0f)) / 2.0f), (AndroidUtilities.dp(24.0f) + n6Var.e) / 2.0f);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(3.0f), paint3);
                 }
-                n6Var.f26574a.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
+                n6Var.f26642a.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
                 n6Var.setBounds(0, (int) ((AndroidUtilities.dp(24.0f) - n6Var.e) / 2.0f), AndroidUtilities.dp(24.0f), (int) ((AndroidUtilities.dp(24.0f) + n6Var.e) / 2.0f));
                 n6Var.draw(canvas);
                 return;
             case 4:
-                Bitmap bitmap = (Bitmap) this.f23828b;
+                Bitmap bitmap = (Bitmap) this.f23936b;
                 if (!bitmap.isRecycled()) {
-                    canvas.drawBitmap(bitmap, (Rect) null, (Rect) this.f23829c, (Paint) null);
+                    canvas.drawBitmap(bitmap, (Rect) null, (Rect) this.f23937c, (Paint) null);
                     return;
                 }
                 return;
             default:
-                ImageReceiver imageReceiver = (ImageReceiver) this.f23828b;
+                ImageReceiver imageReceiver = (ImageReceiver) this.f23936b;
                 imageReceiver.draw(canvas);
-                Drawable drawable = (Drawable) this.f23829c;
+                Drawable drawable = (Drawable) this.f23937c;
                 int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
                 int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
                 int A = (int) com.google.android.gms.internal.vision.e2.A(imageReceiver.getImageWidth(), intrinsicWidth, 2.0f, imageReceiver.getImageX());
-                int imageHeight = (int) ((((imageReceiver.getImageHeight() / 2.0f) - intrinsicHeight) + imageReceiver.getImageY()) - ((1.0f - qr.f27646k.getInterpolation(imageReceiver.getCurrentAlpha())) * AndroidUtilities.dp(16.0f)));
+                int imageHeight = (int) ((((imageReceiver.getImageHeight() / 2.0f) - intrinsicHeight) + imageReceiver.getImageY()) - ((1.0f - qr.f27657k.getInterpolation(imageReceiver.getCurrentAlpha())) * AndroidUtilities.dp(16.0f)));
                 drawable.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.getCurrentAlpha() * 5.0f) * 255.0f));
                 drawable.setBounds(A, imageHeight, intrinsicWidth + A, intrinsicHeight + imageHeight);
                 drawable.draw(canvas);
@@ -131,9 +131,9 @@ public final class ed extends Drawable {
 
     @Override
     public int getAlpha() {
-        switch (this.f23827a) {
+        switch (this.f23935a) {
             case 5:
-                return (int) (((ImageReceiver) this.f23828b).getAlpha() * 255.0f);
+                return (int) (((ImageReceiver) this.f23936b).getAlpha() * 255.0f);
             default:
                 return super.getAlpha();
         }
@@ -141,7 +141,7 @@ public final class ed extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f23827a) {
+        switch (this.f23935a) {
             case 2:
                 return 0;
             case 3:
@@ -153,7 +153,7 @@ public final class ed extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f23827a) {
+        switch (this.f23935a) {
             case 2:
                 return 0;
             case 3:
@@ -165,7 +165,7 @@ public final class ed extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f23827a) {
+        switch (this.f23935a) {
             case 0:
                 return -2;
             case 1:
@@ -182,9 +182,9 @@ public final class ed extends Drawable {
     }
 
     public void l(float f7, boolean z10) {
-        n6 n6Var = (n6) this.f23829c;
+        n6 n6Var = (n6) this.f23937c;
         String str = a(f7) + "X";
-        if (z10 && TextUtils.equals(n6Var.f26578g, str)) {
+        if (z10 && TextUtils.equals(n6Var.f26646g, str)) {
             return;
         }
         n6Var.b();
@@ -194,9 +194,9 @@ public final class ed extends Drawable {
 
     @Override
     public void onBoundsChange(Rect rect) {
-        switch (this.f23827a) {
+        switch (this.f23935a) {
             case 5:
-                ((ImageReceiver) this.f23828b).setImageCoords(AndroidUtilities.dp(2.0f) + rect.left, AndroidUtilities.dp(2.0f) + rect.top, org.telegram.messenger.rk.x(2.0f, rect.left, rect.right - AndroidUtilities.dp(2.0f)), org.telegram.messenger.rk.x(2.0f, rect.top, rect.bottom - AndroidUtilities.dp(2.0f)));
+                ((ImageReceiver) this.f23936b).setImageCoords(AndroidUtilities.dp(2.0f) + rect.left, AndroidUtilities.dp(2.0f) + rect.top, org.telegram.messenger.rk.x(2.0f, rect.left, rect.right - AndroidUtilities.dp(2.0f)), org.telegram.messenger.rk.x(2.0f, rect.top, rect.bottom - AndroidUtilities.dp(2.0f)));
                 return;
             default:
                 super.onBoundsChange(rect);
@@ -206,14 +206,14 @@ public final class ed extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f23827a) {
+        switch (this.f23935a) {
             case 0:
             case 1:
             case 2:
                 return;
             case 3:
-                ((n6) this.f23829c).f26592w = i10;
-                Paint paint = (Paint) this.f23828b;
+                ((n6) this.f23937c).f26660w = i10;
+                Paint paint = (Paint) this.f23936b;
                 if (paint != null) {
                     paint.setAlpha(i10);
                     return;
@@ -222,17 +222,17 @@ public final class ed extends Drawable {
             case 4:
                 return;
             default:
-                ((ImageReceiver) this.f23828b).setAlpha(i10 / 255.0f);
+                ((ImageReceiver) this.f23936b).setAlpha(i10 / 255.0f);
                 return;
         }
     }
 
     @Override
     public void setBounds(int i10, int i11, int i12, int i13) {
-        switch (this.f23827a) {
+        switch (this.f23935a) {
             case 4:
                 super.setBounds(i10, i11, i12, i13);
-                Bitmap bitmap = (Bitmap) this.f23828b;
+                Bitmap bitmap = (Bitmap) this.f23936b;
                 if (bitmap != null && !bitmap.isRecycled()) {
                     int i14 = i12 - i10;
                     int i15 = i13 - i11;
@@ -243,7 +243,7 @@ public final class ed extends Drawable {
                     int round2 = Math.round(height * min);
                     int i16 = i10 + ((i14 - round) / 2);
                     int i17 = i11 + ((i15 - round2) / 2);
-                    ((Rect) this.f23829c).set(i16, i17, round + i16, round2 + i17);
+                    ((Rect) this.f23937c).set(i16, i17, round + i16, round2 + i17);
                     return;
                 }
                 return;
@@ -255,38 +255,38 @@ public final class ed extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f23827a;
+        int i10 = this.f23935a;
     }
 
     public ed() {
-        this.f23827a = 3;
+        this.f23935a = 3;
         ah.d dVar = new ah.d(this, 5);
         n6 n6Var = new n6(false, true, true, false);
-        this.f23829c = n6Var;
+        this.f23937c = n6Var;
         n6Var.setCallback(dVar);
         n6Var.k(0.3f, 165L, qr.h);
-        n6Var.f26575b = 1;
+        n6Var.f26643b = 1;
         n6Var.u(AndroidUtilities.bold());
         n6Var.t(AndroidUtilities.dp(10.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = n6Var.f26574a;
+        TextPaint textPaint = n6Var.f26642a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dpf2(0.6f));
         Paint paint = new Paint(1);
-        this.f23828b = paint;
+        this.f23936b = paint;
         paint.setStyle(Paint.Style.STROKE);
     }
 
     public ed(fd fdVar, Paint paint) {
-        this.f23827a = 0;
-        this.f23829c = fdVar;
-        this.f23828b = paint;
+        this.f23935a = 0;
+        this.f23937c = fdVar;
+        this.f23936b = paint;
     }
 
     public ed(Bitmap bitmap) {
-        this.f23827a = 4;
-        this.f23829c = new Rect();
-        this.f23828b = bitmap;
+        this.f23935a = 4;
+        this.f23937c = new Rect();
+        this.f23936b = bitmap;
     }
 
     private final void b(int i10) {
@@ -320,16 +320,16 @@ public final class ed extends Drawable {
     }
 
     public ed(ImageReceiver imageReceiver, Drawable drawable) {
-        this.f23827a = 5;
-        this.f23828b = imageReceiver;
-        this.f23829c = drawable;
+        this.f23935a = 5;
+        this.f23936b = imageReceiver;
+        this.f23937c = drawable;
     }
 
     public ed(ChatActivityEnterView chatActivityEnterView) {
-        this.f23827a = 1;
-        this.f23829c = chatActivityEnterView;
+        this.f23935a = 1;
+        this.f23937c = chatActivityEnterView;
         Paint paint = new Paint();
-        this.f23828b = paint;
+        this.f23936b = paint;
         paint.setColor(0);
     }
 }

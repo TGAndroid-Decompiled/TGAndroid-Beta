@@ -1,70 +1,145 @@
 package zg;
 
-import android.view.View;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.SharedConfig;
-public abstract class e0 {
-    public static Runnable f49319c;
-    public static Boolean h;
-    public static final HashSet f49317a = new HashSet();
-    public static volatile boolean f49318b = false;
-    public static boolean d = true;
-    public static boolean e = false;
-    public static boolean f49320f = false;
-    public static boolean f49321g = false;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Paint;
+import android.os.Build;
+import android.text.InputFilter;
+import android.text.SpannableStringBuilder;
+import android.view.ActionMode;
+import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MotionEvent;
+import ii.v5;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.bu;
+import yh.s5;
+public abstract class e0 extends bu {
+    public final f6 f49337c;
+    public final l.d d;
+    public Runnable e;
+    public int f49338f;
 
-    public static void a() {
-        ff.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-        CountDownLatch countDownLatch = cacheOutQueue.f9065b;
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-            cacheOutQueue.f9065b = null;
+    public e0(Context context, int i10, f6 f6Var) {
+        super(context, f6Var);
+        this.f49337c = f6Var;
+        this.d = new l.d(getContext(), new GestureDetector.SimpleOnGestureListener());
+        setBackground(null);
+        setIncludeFontPadding(true);
+        int i11 = Build.VERSION.SDK_INT;
+        setShowSoftInputOnFocus(false);
+        setSingleLine(false);
+        setMaxLines(50);
+        this.f49338f = i10;
+        setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
+        setTextSize(1, 22.0f);
+        setGravity(80);
+        setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
+        setTextColor(j6.v0(j6.Ud, f6Var));
+        setLinkTextColor(j6.v0(j6.f19186hc, f6Var));
+        setHighlightColor(j6.v0(j6.f19431uf, f6Var));
+        int i12 = j6.Vd;
+        setHintColor(j6.v0(i12, f6Var));
+        setHintTextColor(j6.v0(i12, f6Var));
+        setCursorColor(j6.v0(j6.Wd, f6Var));
+        setHandlesColor(j6.v0(j6.f19448vf, f6Var));
+        if (i11 >= 28) {
+            setFallbackLineSpacing(false);
         }
-        f49318b = false;
-        e = false;
-        f49321g = false;
-        f49319c = null;
-        Iterator it = f49317a.iterator();
-        while (it.hasNext()) {
-            ((View) it.next()).invalidate();
-        }
-        f49317a.clear();
+        setOnFocusChangeListener(new v5((o) this, 7));
+        setTextIsSelectable(true);
+        setLongClickable(false);
+        setFocusableInTouchMode(false);
     }
 
-    public static boolean b(View view) {
-        if (f49318b) {
-            f49317a.add(view);
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (((GestureDetector) this.d.f13912b).onTouchEvent(motionEvent) && !isLongClickable()) {
+            return false;
         }
-        return f49318b;
+        return super.dispatchTouchEvent(motionEvent);
     }
 
-    public static boolean c(View... viewArr) {
-        boolean z10;
-        if (h == null) {
-            if (SharedConfig.getDevicePerformanceClass() != 2) {
-                z10 = true;
+    @Override
+    public final void extendActionMode(ActionMode actionMode, Menu menu) {
+        menu.clear();
+        int i10 = R.id.menu_delete;
+        menu.add(i10, i10, 0, LocaleController.getString(R.string.Delete));
+    }
+
+    public int getEditTextSelectionEnd() {
+        int selectionEnd = getSelectionEnd();
+        if (selectionEnd < 0) {
+            return 0;
+        }
+        return selectionEnd;
+    }
+
+    public int getEditTextSelectionStart() {
+        int selectionStart = getSelectionStart();
+        if (selectionStart < 0) {
+            return 0;
+        }
+        return selectionStart;
+    }
+
+    public Paint.FontMetricsInt getFontMetricsInt() {
+        return getPaint().getFontMetricsInt();
+    }
+
+    public final void m() {
+        setLongClickable(false);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
+        if (((b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)).length == 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
+            b bVar = new b(this.f49337c);
+            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f49285f, 255);
+            ofInt.addUpdateListener(new a(bVar, this, 0));
+            ofInt.setDuration(200L);
+            ofInt.start();
+            spannableStringBuilder2.setSpan(bVar, 0, spannableStringBuilder2.length(), 33);
+            setText(getText().append((CharSequence) spannableStringBuilder2));
+        }
+    }
+
+    public final void n(boolean z10) {
+        b[] bVarArr;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
+        for (b bVar : (b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)) {
+            s5 s5Var = new s5(7, this, bVar);
+            if (z10) {
+                setCursorVisible(false);
+                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f49285f, 0);
+                ofInt.addUpdateListener(new a(bVar, this, 1));
+                ofInt.addListener(new pg.d0(s5Var, 12));
+                ofInt.setDuration(200L);
+                ofInt.start();
             } else {
-                z10 = false;
+                s5Var.run();
             }
-            h = Boolean.valueOf(z10);
         }
-        if (!h.booleanValue()) {
-            return false;
-        }
-        if (f49318b) {
-            f49317a.addAll(Arrays.asList(viewArr));
-        }
-        return f49318b;
     }
 
-    public static boolean d() {
-        if (!f49318b && !e && !f49321g) {
-            return false;
+    @Override
+    public final void onSelectionChanged(int i10, int i11) {
+        super.onSelectionChanged(i10, i11);
+        if (hasSelection() && ((b[]) getText().getSpans(i10, i11, b.class)).length != 0) {
+            setSelection(i10, i11 - 1);
         }
-        return true;
+    }
+
+    public void setMaxLength(int i10) {
+        if (this.f49338f != i10) {
+            this.f49338f = i10;
+            setFilters(new InputFilter[]{new InputFilter.LengthFilter(i10)});
+        }
+    }
+
+    public void setOnFocused(Runnable runnable) {
+        this.e = runnable;
     }
 }

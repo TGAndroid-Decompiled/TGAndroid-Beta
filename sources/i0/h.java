@@ -103,8 +103,8 @@ public class h extends f {
     }
 
     @Override
-    public final android.graphics.Typeface b(android.content.Context r18, o0.h[] r19, int r20) {
-        throw new UnsupportedOperationException("Method not decompiled: i0.h.b(android.content.Context, o0.h[], int):android.graphics.Typeface");
+    public final android.graphics.Typeface b(android.content.Context r18, o0.i[] r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: i0.h.b(android.content.Context, o0.i[], int):android.graphics.Typeface");
     }
 
     @Override

@@ -25,7 +25,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PhotoViewer;
 public abstract class mg extends bu {
-    public fd f26399c;
+    public fd f26445c;
     public final ChatActivityEnterView d;
 
     public mg(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -41,7 +41,7 @@ public abstract class mg extends bu {
     @Override
     public final void extendActionMode(ActionMode actionMode, Menu menu) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        org.telegram.ui.zn znVar = chatActivityEnterView.O2;
+        org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         if (znVar != null) {
             znVar.extendActionMode(menu);
         } else {
@@ -51,12 +51,12 @@ public abstract class mg extends bu {
 
     @Override
     public final org.telegram.ui.ActionBar.f6 getResourcesProvider() {
-        return this.d.V3;
+        return this.d.W3;
     }
 
     public final void m(Uri uri, String str) {
         boolean z10;
-        org.telegram.ui.zn znVar = this.d.O2;
+        org.telegram.ui.zn znVar = this.d.P2;
         if (znVar != null && znVar.v()) {
             z10 = true;
         } else {
@@ -67,16 +67,16 @@ public abstract class mg extends bu {
 
     public final void n(File file, ArrayList arrayList) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        org.telegram.ui.zn znVar = chatActivityEnterView.O2;
+        org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         if (znVar != null && znVar.getParentActivity() != null) {
             MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList.get(0);
-            if (chatActivityEnterView.f22092y2) {
+            if (chatActivityEnterView.f22112z2) {
                 AndroidUtilities.hideKeyboard(this);
-                AndroidUtilities.runOnUIThread(new c5.v(this, arrayList, file, false, 9), 100L);
+                AndroidUtilities.runOnUIThread(new c5.u(this, arrayList, file, false, 9), 100L);
                 return;
             }
-            PhotoViewer.t1().J2(null, znVar, chatActivityEnterView.V3);
-            PhotoViewer.t1().f2(arrayList, 0, 2, false, new lg(this, photoEntry, file), chatActivityEnterView.O2);
+            PhotoViewer.t1().J2(null, znVar, chatActivityEnterView.W3);
+            PhotoViewer.t1().f2(arrayList, 0, 2, false, new lg(this, photoEntry, file), chatActivityEnterView.P2);
         }
     }
 
@@ -85,26 +85,26 @@ public abstract class mg extends bu {
         int i12;
         MessageObject threadMessage2;
         ChatActivityEnterView chatActivityEnterView = this.d;
-        org.telegram.ui.zn znVar = chatActivityEnterView.O2;
+        org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         mf mfVar = chatActivityEnterView.L0;
         SendMessageChatArguments sendMessageChatArguments = null;
         if (mfVar != null) {
             mfVar.h(true);
             chatActivityEnterView.L0 = null;
         }
-        org.telegram.ui.pn pnVar = chatActivityEnterView.U2;
-        if (pnVar != null && znVar != null && pnVar.f36595f) {
+        org.telegram.ui.pn pnVar = chatActivityEnterView.V2;
+        if (pnVar != null && znVar != null && pnVar.f36618f) {
             znVar.Rb();
             return;
         }
-        t0.h hVar = iVar.f43302a;
+        t0.h hVar = iVar.f43323a;
         if (hVar.getDescription().hasMimeType("image/gif")) {
             AccountInstance accountInstance = chatActivityEnterView.R;
             Uri c10 = hVar.c();
-            long j3 = chatActivityEnterView.P2;
-            MessageObject messageObject = chatActivityEnterView.S2;
+            long j3 = chatActivityEnterView.Q2;
+            MessageObject messageObject = chatActivityEnterView.T2;
             threadMessage2 = chatActivityEnterView.getThreadMessage();
-            org.telegram.ui.pn pnVar2 = chatActivityEnterView.U2;
+            org.telegram.ui.pn pnVar2 = chatActivityEnterView.V2;
             if (znVar != null) {
                 sendMessageChatArguments = znVar.C8();
             }
@@ -112,10 +112,10 @@ public abstract class mg extends bu {
         } else {
             AccountInstance accountInstance2 = chatActivityEnterView.R;
             Uri c11 = hVar.c();
-            long j10 = chatActivityEnterView.P2;
-            MessageObject messageObject2 = chatActivityEnterView.S2;
+            long j10 = chatActivityEnterView.Q2;
+            MessageObject messageObject2 = chatActivityEnterView.T2;
             threadMessage = chatActivityEnterView.getThreadMessage();
-            org.telegram.ui.pn pnVar3 = chatActivityEnterView.U2;
+            org.telegram.ui.pn pnVar3 = chatActivityEnterView.V2;
             if (znVar == null) {
                 i12 = 0;
             } else {
@@ -126,7 +126,7 @@ public abstract class mg extends bu {
             }
             SendMessagesHelper.prepareSendingPhoto(accountInstance2, null, c11, j10, messageObject2, threadMessage, pnVar3, null, null, null, iVar, 0, null, z10, 0, i12, sendMessageChatArguments);
         }
-        ng ngVar = chatActivityEnterView.Y2;
+        ng ngVar = chatActivityEnterView.Z2;
         if (ngVar != null) {
             ngVar.H(null, true, i10, i11, 0L);
         }
@@ -134,7 +134,7 @@ public abstract class mg extends bu {
 
     @Override
     public final void onContextMenuClose() {
-        ng ngVar = this.d.Y2;
+        ng ngVar = this.d.Z2;
         if (ngVar != null) {
             ngVar.d2();
         }
@@ -142,7 +142,7 @@ public abstract class mg extends bu {
 
     @Override
     public final void onContextMenuOpen() {
-        ng ngVar = this.d.Y2;
+        ng ngVar = this.d.Z2;
         if (ngVar != null) {
             ngVar.l();
         }
@@ -157,13 +157,13 @@ public abstract class mg extends bu {
             return null;
         }
         try {
-            int i10 = ChatActivityEnterView.f21952m5;
-            if (chatActivityEnterView.a2 != null) {
+            int i10 = ChatActivityEnterView.f21967n5;
+            if (chatActivityEnterView.f21977b2 != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (!z10 && !chatActivityEnterView.f22020k5) {
+            if (!z10 && !chatActivityEnterView.f22039l5) {
                 t0.b.b(editorInfo, new String[]{"image/gif", "image/*", "image/jpg", "image/png", "image/webp"});
                 return t0.f.a(onCreateInputConnection, editorInfo, new s(this, 18));
             }
@@ -204,7 +204,7 @@ public abstract class mg extends bu {
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        ng ngVar = this.d.Y2;
+        ng ngVar = this.d.Z2;
         if (ngVar != null) {
             ngVar.n0();
         }
@@ -213,7 +213,7 @@ public abstract class mg extends bu {
     @Override
     public final void onSelectionChanged(int i10, int i11) {
         super.onSelectionChanged(i10, i11);
-        ng ngVar = this.d.Y2;
+        ng ngVar = this.d.Z2;
         if (ngVar != null) {
             ngVar.F0(i10, i11);
         }
@@ -223,9 +223,9 @@ public abstract class mg extends bu {
     public boolean onTextContextMenuItem(int i10) {
         if (i10 == 16908322) {
             ChatActivityEnterView chatActivityEnterView = this.d;
-            chatActivityEnterView.W1 = true;
+            chatActivityEnterView.X1 = true;
             ClipData primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip();
-            if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.a2 == null) {
+            if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.f21977b2 == null) {
                 m(primaryClip.getItemAt(0).getUri(), primaryClip.getDescription().getMimeType(0));
             }
         }
@@ -236,50 +236,50 @@ public abstract class mg extends bu {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         int i10;
         ChatActivityEnterView chatActivityEnterView = this.d;
-        if (!chatActivityEnterView.D3 && chatActivityEnterView.A3 == null) {
-            if (!chatActivityEnterView.f22094z0 && !chatActivityEnterView.r0()) {
-                if (this.f26399c == null) {
+        if (!chatActivityEnterView.E3 && chatActivityEnterView.B3 == null) {
+            if (!chatActivityEnterView.f22110z0 && !chatActivityEnterView.r0()) {
+                if (this.f26445c == null) {
                     fd fdVar = new fd(this);
-                    this.f26399c = fdVar;
+                    this.f26445c = fdVar;
                     fdVar.h = new Runnable(this) {
-                        public final mg f25774b;
+                        public final mg f25693b;
 
                         {
-                            this.f25774b = this;
+                            this.f25693b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i11 = r2;
-                            mg mgVar = this.f25774b;
+                            mg mgVar = this.f25693b;
                             switch (i11) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = mgVar.d;
-                                    int i12 = ChatActivityEnterView.f21952m5;
+                                    int i12 = ChatActivityEnterView.f21967n5;
                                     chatActivityEnterView2.t1();
                                     return;
                                 default:
                                     ChatActivityEnterView chatActivityEnterView3 = mgVar.d;
-                                    chatActivityEnterView3.f22018k3 = false;
+                                    chatActivityEnterView3.f22038l3 = false;
                                     chatActivityEnterView3.I0();
                                     return;
                             }
                         }
                     };
                 }
-                fd fdVar2 = this.f26399c;
+                fd fdVar2 = this.f26445c;
                 int measuredWidth = getMeasuredWidth();
                 int measuredHeight = getMeasuredHeight();
                 fdVar2.getClass();
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f7 = 0;
                 rectF.set(f7, f7, measuredWidth, measuredHeight);
-                fdVar2.f24081i = false;
-                fdVar2.f24078c = 0;
+                fdVar2.f24167i = false;
+                fdVar2.f24164c = 0;
                 fdVar2.a(rectF);
-                return this.f26399c.b(motionEvent);
+                return this.f26445c.b(motionEvent);
             } else if (chatActivityEnterView.t0() && motionEvent.getAction() == 0) {
-                if (chatActivityEnterView.Q1 != 0) {
+                if (chatActivityEnterView.R1 != 0) {
                     chatActivityEnterView.l1(0, false);
                     chatActivityEnterView.U0.t(false);
                     requestFocus();
@@ -290,29 +290,29 @@ public abstract class mg extends bu {
                     i10 = 2;
                 }
                 chatActivityEnterView.s1(i10, 0, true, true);
-                if (chatActivityEnterView.y3) {
+                if (chatActivityEnterView.f22113z3) {
                     chatActivityEnterView.m1(false, true, false, true);
-                    chatActivityEnterView.f22018k3 = true;
+                    chatActivityEnterView.f22038l3 = true;
                     AndroidUtilities.runOnUIThread(new Runnable(this) {
-                        public final mg f25774b;
+                        public final mg f25693b;
 
                         {
-                            this.f25774b = this;
+                            this.f25693b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i11 = r2;
-                            mg mgVar = this.f25774b;
+                            mg mgVar = this.f25693b;
                             switch (i11) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = mgVar.d;
-                                    int i12 = ChatActivityEnterView.f21952m5;
+                                    int i12 = ChatActivityEnterView.f21967n5;
                                     chatActivityEnterView2.t1();
                                     return;
                                 default:
                                     ChatActivityEnterView chatActivityEnterView3 = mgVar.d;
-                                    chatActivityEnterView3.f22018k3 = false;
+                                    chatActivityEnterView3.f22038l3 = false;
                                     chatActivityEnterView3.I0();
                                     return;
                             }
@@ -336,7 +336,7 @@ public abstract class mg extends bu {
     @Override
     public final boolean requestFocus(int i10, Rect rect) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        if (!chatActivityEnterView.f22094z0 && !chatActivityEnterView.r0()) {
+        if (!chatActivityEnterView.f22110z0 && !chatActivityEnterView.r0()) {
             return false;
         }
         chatActivityEnterView.getClass();
@@ -353,9 +353,9 @@ public abstract class mg extends bu {
     public void setOffsetY(float f7) {
         super.setOffsetY(f7);
         ChatActivityEnterView chatActivityEnterView = this.d;
-        if (chatActivityEnterView.l1.getForeground() != null) {
-            aw0 aw0Var = chatActivityEnterView.l1;
-            aw0Var.invalidateDrawable(aw0Var.getForeground());
+        if (chatActivityEnterView.f22040m1.getForeground() != null) {
+            cw0 cw0Var = chatActivityEnterView.f22040m1;
+            cw0Var.invalidateDrawable(cw0Var.getForeground());
         }
     }
 }

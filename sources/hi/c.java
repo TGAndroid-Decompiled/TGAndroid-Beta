@@ -17,24 +17,24 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.ab;
 import org.telegram.ui.Components.g9;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.ul0;
 import org.telegram.ui.Components.v9;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.yl0;
 import w7.y5;
 public final class c extends ab {
     public final d1 X;
-    public k61 Y;
+    public m61 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, (f6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        vl0 vl0Var = this.d;
+        yl0 yl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        vl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        yl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -53,10 +53,10 @@ public final class c extends ab {
         dVar2.setOnClickListener(new f2(12, this, runnable));
         d1 d1Var = new d1(context, 2);
         TextView textView = (TextView) d1Var.d;
-        TextView textView2 = (TextView) d1Var.f687c;
+        TextView textView2 = (TextView) d1Var.f684c;
         this.X = d1Var;
         d1Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((v9) d1Var.f686b).e(chat, new g9(chat));
+        ((v9) d1Var.f683b).e(chat, new g9(chat));
         textView2.setText(DialogObject.getName(chat));
         int i13 = j6.G6;
         textView2.setTextColor(getThemedColor(i13));
@@ -77,11 +77,11 @@ public final class c extends ab {
     }
 
     @Override
-    public final ul0 v(vl0 vl0Var) {
-        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = k61Var;
-        k61Var.f25678r = false;
-        return k61Var;
+    public final xl0 v(yl0 yl0Var) {
+        m61 m61Var = new m61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = m61Var;
+        m61Var.f26342r = false;
+        return m61Var;
     }
 
     @Override

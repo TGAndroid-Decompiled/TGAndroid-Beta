@@ -4,9 +4,9 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g5;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.o61;
 public final class o extends g5 {
-    public final i2.g0 f39000f = new i2.g0(this, 29);
+    public final i2.g0 f39021f = new i2.g0(this, 29);
     public final p h;
 
     public o(p pVar) {
@@ -17,16 +17,16 @@ public final class o extends g5 {
     public final void m() {
         p pVar = this.h;
         pVar.v = null;
-        AndroidUtilities.cancelRunOnUIThread(this.f39000f);
-        i iVar = pVar.f39007f;
+        AndroidUtilities.cancelRunOnUIThread(this.f39021f);
+        i iVar = pVar.f39028f;
         if (iVar != null) {
             iVar.c();
-            pVar.f39007f = null;
+            pVar.f39028f = null;
         }
-        m61 m61Var = pVar.f26598a;
-        if (m61Var != null) {
-            m61Var.Y2.N(true);
-            pVar.f26598a.X2.h1(0, 0);
+        o61 o61Var = pVar.f27268a;
+        if (o61Var != null) {
+            o61Var.Y2.N(true);
+            pVar.f27268a.X2.h1(0, 0);
         }
     }
 
@@ -38,23 +38,23 @@ public final class o extends g5 {
         String obj = editText.getText().toString();
         if (!TextUtils.equals(pVar.v, obj)) {
             pVar.v = obj;
-            i iVar = pVar.f39007f;
+            i iVar = pVar.f39028f;
             if (iVar != null) {
                 iVar.c();
             }
             i10 = ((org.telegram.ui.ActionBar.n2) pVar).currentAccount;
             i iVar2 = new i(obj, i10, new l(pVar, 1));
-            pVar.f39007f = iVar2;
+            pVar.f39028f = iVar2;
             iVar2.a();
-            i2.g0 g0Var = this.f39000f;
+            i2.g0 g0Var = this.f39021f;
             AndroidUtilities.cancelRunOnUIThread(g0Var);
             AndroidUtilities.runOnUIThread(g0Var, 500L);
         }
-        m61 m61Var = pVar.f26598a;
-        if (m61Var != null) {
-            m61Var.Y2.N(true);
+        o61 o61Var = pVar.f27268a;
+        if (o61Var != null) {
+            o61Var.Y2.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                pVar.f26598a.X2.h1(0, 0);
+                pVar.f27268a.X2.h1(0, 0);
             }
         }
     }

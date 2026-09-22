@@ -7,19 +7,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.rk;
 public final class z5 extends FrameLayout {
-    public x5[] f21915a;
-    public MediaController.AlbumEntry[] f21916b;
-    public int f21917c;
+    public x5[] f21930a;
+    public MediaController.AlbumEntry[] f21931b;
+    public int f21932c;
     public y5 d;
     public Paint e;
 
     public final void a(int i10, MediaController.AlbumEntry albumEntry) {
-        x5[] x5VarArr = this.f21915a;
-        this.f21916b[i10] = albumEntry;
+        x5[] x5VarArr = this.f21930a;
+        this.f21931b[i10] = albumEntry;
         if (albumEntry != null) {
             x5 x5Var = x5VarArr[i10];
-            org.telegram.ui.Components.v9 v9Var = x5Var.f21840a;
-            org.telegram.ui.Components.v9 v9Var2 = x5Var.f21840a;
+            org.telegram.ui.Components.v9 v9Var = x5Var.f21855a;
+            org.telegram.ui.Components.v9 v9Var2 = x5Var.f21855a;
             v9Var.q(0, true);
             MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
             if (photoEntry != null && photoEntry.path != null) {
@@ -32,8 +32,8 @@ public final class z5 extends FrameLayout {
             } else {
                 v9Var2.setImageDrawable(org.telegram.ui.ActionBar.j6.R4);
             }
-            x5Var.f21841b.setText(albumEntry.bucketName);
-            x5Var.f21842c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
+            x5Var.f21856b.setText(albumEntry.bucketName);
+            x5Var.f21857c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
             return;
         }
         x5VarArr[i10].setVisibility(4);
@@ -42,13 +42,13 @@ public final class z5 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int B;
-        View[] viewArr = this.f21915a;
+        View[] viewArr = this.f21930a;
         if (AndroidUtilities.isTablet()) {
-            B = rk.B(4.0f, this.f21917c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f21917c;
+            B = rk.B(4.0f, this.f21932c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f21932c;
         } else {
-            B = rk.B(4.0f, this.f21917c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f21917c;
+            B = rk.B(4.0f, this.f21932c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f21932c;
         }
-        for (int i12 = 0; i12 < this.f21917c; i12++) {
+        for (int i12 = 0; i12 < this.f21932c; i12++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
             layoutParams.topMargin = AndroidUtilities.dp(4.0f);
             layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + B) * i12;
@@ -64,7 +64,7 @@ public final class z5 extends FrameLayout {
         int i11;
         int i12 = 0;
         while (true) {
-            x5[] x5VarArr = this.f21915a;
+            x5[] x5VarArr = this.f21930a;
             if (i12 < x5VarArr.length) {
                 x5 x5Var = x5VarArr[i12];
                 if (i12 < i10) {
@@ -75,7 +75,7 @@ public final class z5 extends FrameLayout {
                 x5Var.setVisibility(i11);
                 i12++;
             } else {
-                this.f21917c = i10;
+                this.f21932c = i10;
                 return;
             }
         }

@@ -1,44 +1,44 @@
 package org.telegram.messenger;
 public final class m0 implements Runnable {
-    public final int f16938a;
-    public final long f16939b;
-    public final long f16940c;
+    public final int f16953a;
+    public final long f16954b;
+    public final long f16955c;
     public final long d;
     public final Object e;
 
     public m0(long j3, long j10, long j11, org.telegram.ui.b5 b5Var) {
-        this.f16938a = 2;
-        this.f16939b = j3;
-        this.f16940c = j10;
+        this.f16953a = 2;
+        this.f16954b = j3;
+        this.f16955c = j10;
         this.d = j11;
         this.e = b5Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f16938a) {
+        switch (this.f16953a) {
             case 0:
-                ((BotGuardHelper) this.e).lambda$openGuardBotWebApp$0(this.f16939b, this.f16940c, this.d);
+                ((BotGuardHelper) this.e).lambda$openGuardBotWebApp$0(this.f16954b, this.f16955c, this.d);
                 return;
             case 1:
-                ((MediaDataController) this.e).lambda$loadMusic$142(this.f16939b, this.f16940c, this.d);
+                ((MediaDataController) this.e).lambda$loadMusic$142(this.f16954b, this.f16955c, this.d);
                 return;
             default:
-                long j3 = this.f16939b;
-                long j10 = this.f16940c;
-                org.telegram.ui.z6.f40105o0 = Long.valueOf(j3 * j10);
+                long j3 = this.f16954b;
+                long j10 = this.f16955c;
+                org.telegram.ui.z6.f40127o0 = Long.valueOf(j3 * j10);
                 Long valueOf = Long.valueOf(this.d * j10);
-                org.telegram.ui.z6.f40106p0 = valueOf;
-                ((org.telegram.ui.b5) this.e).run(org.telegram.ui.z6.f40105o0, valueOf);
+                org.telegram.ui.z6.f40128p0 = valueOf;
+                ((org.telegram.ui.b5) this.e).run(org.telegram.ui.z6.f40127o0, valueOf);
                 return;
         }
     }
 
     public m0(BaseController baseController, long j3, long j10, long j11, int i10) {
-        this.f16938a = i10;
+        this.f16953a = i10;
         this.e = baseController;
-        this.f16939b = j3;
-        this.f16940c = j10;
+        this.f16954b = j3;
+        this.f16955c = j10;
         this.d = j11;
     }
 }

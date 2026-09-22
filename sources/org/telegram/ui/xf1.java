@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class xf1 {
-    public final int f39556a;
-    public int f39557b;
+    public final int f39580a;
+    public int f39581b;
 
     public xf1(int i10) {
-        this.f39556a = i10;
+        this.f39580a = i10;
     }
 }

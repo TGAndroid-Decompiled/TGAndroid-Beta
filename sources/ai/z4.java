@@ -3,19 +3,19 @@ package ai;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.ok0;
-public final class z4 implements ok0 {
-    public final f6 f1784a;
+import org.telegram.ui.Components.rk0;
+public final class z4 implements rk0 {
+    public final f6 f1781a;
 
     public z4(f6 f6Var) {
-        this.f1784a = f6Var;
+        this.f1781a = f6Var;
     }
 
     @Override
-    public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
-        a3.k0 k0Var = new a3.k0(this, o0Var, view, 1);
+    public final void h(View view, zg.p0 p0Var, boolean z10, boolean z11) {
+        a3.k0 k0Var = new a3.k0(this, p0Var, view, 1);
         if (!z10) {
-            this.f1784a.n0(k0Var);
+            this.f1781a.n0(k0Var);
         } else {
             k0Var.run();
         }
@@ -28,12 +28,12 @@ public final class z4 implements ok0 {
 
     @Override
     public final boolean k() {
-        ((ac) this.f1784a.Q1).b(false);
+        ((ac) this.f1781a.Q1).b(false);
         return false;
     }
 
     @Override
-    public final boolean r() {
+    public final boolean q() {
         return false;
     }
 

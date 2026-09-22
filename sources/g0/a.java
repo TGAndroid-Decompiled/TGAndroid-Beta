@@ -1,6 +1,5 @@
 package g0;
 
-import a6.m;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.graphics.Bitmap;
@@ -37,11 +36,11 @@ public abstract class a {
     }
 
     public static void b(Canvas canvas, i0 i0Var, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f7790b, 0, (float[]) i0Var.f7791c, 0, (int[]) i0Var.e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f7789b, 0, (float[]) i0Var.f7790c, 0, (int[]) i0Var.e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
     }
 
     public static k2.b c(AudioManager audioManager, b2.e eVar) {
-        List directProfilesForAttributes = audioManager.getDirectProfilesForAttributes((AudioAttributes) eVar.b().f3344a);
+        List directProfilesForAttributes = audioManager.getDirectProfilesForAttributes((AudioAttributes) eVar.b().f3343a);
         HashMap hashMap = new HashMap();
         hashMap.put(2, new HashSet(z7.a(12)));
         for (int i10 = 0; i10 < directProfilesForAttributes.size(); i10++) {
@@ -66,13 +65,13 @@ public abstract class a {
         return new k2.b(u10.i());
     }
 
-    public static m d(AudioManager audioManager, b2.e eVar) {
+    public static k2.e d(AudioManager audioManager, b2.e eVar) {
         audioManager.getClass();
-        List audioDevicesForAttributes = audioManager.getAudioDevicesForAttributes((AudioAttributes) eVar.b().f3344a);
+        List audioDevicesForAttributes = audioManager.getAudioDevicesForAttributes((AudioAttributes) eVar.b().f3343a);
         if (audioDevicesForAttributes.isEmpty()) {
             return null;
         }
-        return new m(j2.e.d(audioDevicesForAttributes.get(0)), 29);
+        return new k2.e(j2.e.c(audioDevicesForAttributes.get(0)), 0);
     }
 
     public static Object e(Bundle bundle) {

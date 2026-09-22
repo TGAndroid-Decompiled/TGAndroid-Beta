@@ -7,25 +7,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class k extends p {
-    public final int f8024r;
-    public final h f8025s;
-    public final Object f8026t;
+    public final int f8023r;
+    public final h f8024s;
+    public final Object f8025t;
 
     public k(h hVar, Object obj, int i10) {
         super(hVar, false);
-        this.f8024r = i10;
-        this.f8025s = hVar;
-        this.f8026t = obj;
+        this.f8023r = i10;
+        this.f8024s = hVar;
+        this.f8025t = obj;
     }
 
     @Override
     public final void n() {
-        int i10 = this.f8024r;
-        Object obj = this.f8026t;
-        h hVar = this.f8025s;
+        int i10 = this.f8023r;
+        Object obj = this.f8025t;
+        h hVar = this.f8024s;
         switch (i10) {
             case 0:
-                g6.m mVar = hVar.f8016c;
+                g6.m mVar = hVar.f8015c;
                 g6.n o9 = o();
                 int[] iArr = (int[]) obj;
                 mVar.getClass();
@@ -46,36 +46,36 @@ public final class k extends p {
                 mVar.f9451s.a(b10, o9);
                 return;
             case 1:
-                g6.m mVar2 = hVar.f8016c;
+                g6.m mVar2 = hVar.f8015c;
                 g6.n o10 = o();
                 c6.k kVar = (c6.k) obj;
                 mVar2.getClass();
-                MediaInfo mediaInfo = kVar.f4006a;
-                c6.n nVar = kVar.f4007b;
+                MediaInfo mediaInfo = kVar.f4004a;
+                c6.n nVar = kVar.f4005b;
                 if (mediaInfo == null && nVar == null) {
                     throw new IllegalArgumentException("MediaInfo and MediaQueueData should not be both null");
                 }
-                long[] jArr = kVar.f4009f;
+                long[] jArr = kVar.f4007f;
                 JSONObject jSONObject2 = new JSONObject();
                 try {
-                    MediaInfo mediaInfo2 = kVar.f4006a;
+                    MediaInfo mediaInfo2 = kVar.f4004a;
                     if (mediaInfo2 != null) {
                         jSONObject2.put("media", mediaInfo2.b());
                     }
                     if (nVar != null) {
                         jSONObject2.put("queueData", nVar.b());
                     }
-                    jSONObject2.putOpt("autoplay", kVar.f4008c);
+                    jSONObject2.putOpt("autoplay", kVar.f4006c);
                     long j3 = kVar.d;
                     if (j3 != -1) {
                         Pattern pattern = g6.a.f9428a;
                         jSONObject2.put("currentTime", j3 / 1000.0d);
                     }
                     jSONObject2.put("playbackRate", kVar.e);
-                    jSONObject2.putOpt("credentials", kVar.f4011r);
-                    jSONObject2.putOpt("credentialsType", kVar.f4012s);
+                    jSONObject2.putOpt("credentials", kVar.f4009r);
+                    jSONObject2.putOpt("credentialsType", kVar.f4010s);
                     jSONObject2.putOpt("atvCredentials", kVar.v);
-                    jSONObject2.putOpt("atvCredentialsType", kVar.f4013w);
+                    jSONObject2.putOpt("atvCredentialsType", kVar.f4011w);
                     if (jArr != null) {
                         JSONArray jSONArray2 = new JSONArray();
                         for (int i12 = 0; i12 < jArr.length; i12++) {
@@ -83,10 +83,10 @@ public final class k extends p {
                         }
                         jSONObject2.put("activeTrackIds", jSONArray2);
                     }
-                    jSONObject2.putOpt("customData", kVar.f4010n);
-                    jSONObject2.put("requestId", kVar.f4014x);
+                    jSONObject2.putOpt("customData", kVar.f4008n);
+                    jSONObject2.put("requestId", kVar.f4012x);
                 } catch (JSONException e) {
-                    g6.b bVar = c6.k.f4005y;
+                    g6.b bVar = c6.k.f4003y;
                     Log.e(bVar.f9430a, bVar.d("Error transforming MediaLoadRequestData into JSONObject", e));
                     jSONObject2 = new JSONObject();
                 }
@@ -100,12 +100,12 @@ public final class k extends p {
                 mVar2.f9442j.a(b11, o10);
                 return;
             default:
-                g6.m mVar3 = hVar.f8016c;
+                g6.m mVar3 = hVar.f8015c;
                 g6.n o11 = o();
                 mVar3.getClass();
                 JSONObject jSONObject3 = new JSONObject();
                 long b12 = mVar3.b();
-                long j10 = ((c6.p) obj).f4034a;
+                long j10 = ((c6.p) obj).f4032a;
                 try {
                     jSONObject3.put("requestId", b12);
                     jSONObject3.put("type", "SEEK");
@@ -123,8 +123,8 @@ public final class k extends p {
 
     public k(h hVar, int[] iArr) {
         super(hVar, true);
-        this.f8024r = 0;
-        this.f8025s = hVar;
-        this.f8026t = iArr;
+        this.f8023r = 0;
+        this.f8024s = hVar;
+        this.f8025t = iArr;
     }
 }

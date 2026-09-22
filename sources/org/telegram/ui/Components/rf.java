@@ -5,15 +5,15 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class rf implements TextWatcher {
-    public boolean f27852a;
-    public boolean f27853b;
-    public String f27854c;
+    public boolean f27940a;
+    public boolean f27941b;
+    public String f27942c;
     public boolean d;
     public boolean e;
-    public final ChatActivityEnterView f27855f;
+    public final ChatActivityEnterView f27943f;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f27855f = chatActivityEnterView;
+        this.f27943f = chatActivityEnterView;
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class rf implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (!this.d && this.f27855f.E2) {
-            this.f27854c = charSequence.toString();
+        if (!this.d && this.f27943f.F2) {
+            this.f27942c = charSequence.toString();
         }
     }
 
@@ -39,14 +39,14 @@ public final class rf implements TextWatcher {
         boolean z15;
         boolean z16;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f27855f;
+            ChatActivityEnterView chatActivityEnterView = this.f27943f;
             dg dgVar = chatActivityEnterView.U0;
             if (dgVar == null) {
                 currentPage = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
             } else {
                 currentPage = dgVar.getCurrentPage();
             }
-            if (currentPage != 0 && (chatActivityEnterView.I2 || chatActivityEnterView.J2)) {
+            if (currentPage != 0 && (chatActivityEnterView.J2 || chatActivityEnterView.K2)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -91,21 +91,21 @@ public final class rf implements TextWatcher {
             } else {
                 this.e = false;
             }
-            if (chatActivityEnterView.R2 == 1) {
+            if (chatActivityEnterView.S2 == 1) {
                 return;
             }
-            if (chatActivityEnterView.A2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.Q2 && !chatActivityEnterView.W1 && chatActivityEnterView.Y1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f27853b = true;
+            if (chatActivityEnterView.B2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.R2 && !chatActivityEnterView.X1 && chatActivityEnterView.Z1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
+                this.f27941b = true;
             }
-            chatActivityEnterView.W1 = false;
+            chatActivityEnterView.X1 = false;
             chatActivityEnterView.K(true);
             CharSequence trimmedString = AndroidUtilities.getTrimmedString(charSequence.toString());
-            if (chatActivityEnterView.Y2 != null && !chatActivityEnterView.Q2) {
+            if (chatActivityEnterView.Z2 != null && !chatActivityEnterView.R2) {
                 int i13 = i12 + 1;
                 if (i11 > i13 || i12 - i11 > 2 || TextUtils.isEmpty(charSequence)) {
-                    chatActivityEnterView.X2 = true;
+                    chatActivityEnterView.Y2 = true;
                 }
-                ng ngVar = chatActivityEnterView.Y2;
+                ng ngVar = chatActivityEnterView.Z2;
                 if (i11 <= i13 && i12 - i11 <= 2) {
                     z11 = false;
                 } else {
@@ -113,12 +113,12 @@ public final class rf implements TextWatcher {
                 }
                 ngVar.m1(charSequence, z11, false);
             }
-            if (chatActivityEnterView.R2 != 2 && i12 - i11 > 1) {
-                this.f27852a = true;
+            if (chatActivityEnterView.S2 != 2 && i12 - i11 > 1) {
+                this.f27940a = true;
             }
-            if (chatActivityEnterView.Y1 == null && !chatActivityEnterView.f21994g2 && trimmedString.length() != 0 && chatActivityEnterView.B2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.Q2) {
-                chatActivityEnterView.B2 = System.currentTimeMillis();
-                ng ngVar2 = chatActivityEnterView.Y2;
+            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f22015h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
+                chatActivityEnterView.C2 = System.currentTimeMillis();
+                ng ngVar2 = chatActivityEnterView.Z2;
                 if (ngVar2 != null) {
                     ngVar2.F1();
                 }

@@ -6,16 +6,16 @@ import android.view.View;
 import android.view.animation.PathInterpolator;
 import java.util.Collections;
 public final class o0 implements ValueAnimator.AnimatorUpdateListener {
-    public final v0 f42155a;
-    public final l1 f42156b;
-    public final l1 f42157c;
+    public final v0 f42176a;
+    public final l1 f42177b;
+    public final l1 f42178c;
     public final int d;
     public final View e;
 
     public o0(v0 v0Var, l1 l1Var, l1 l1Var2, int i10, View view) {
-        this.f42155a = v0Var;
-        this.f42156b = l1Var;
-        this.f42157c = l1Var2;
+        this.f42176a = v0Var;
+        this.f42177b = l1Var;
+        this.f42178c = l1Var2;
         this.d = i10;
         this.e = view;
     }
@@ -24,11 +24,11 @@ public final class o0 implements ValueAnimator.AnimatorUpdateListener {
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         b1 x0Var;
         float animatedFraction = valueAnimator.getAnimatedFraction();
-        v0 v0Var = this.f42155a;
-        u0 u0Var = v0Var.f42177a;
+        v0 v0Var = this.f42176a;
+        u0 u0Var = v0Var.f42198a;
         u0Var.d(animatedFraction);
-        l1 l1Var = this.f42156b;
-        i1 i1Var = l1Var.f42154a;
+        l1 l1Var = this.f42177b;
+        i1 i1Var = l1Var.f42175a;
         float b10 = u0Var.b();
         PathInterpolator pathInterpolator = q0.e;
         int i10 = Build.VERSION.SDK_INT;
@@ -46,7 +46,7 @@ public final class o0 implements ValueAnimator.AnimatorUpdateListener {
                 x0Var.c(i11, i1Var.f(i11));
             } else {
                 i0.b f7 = i1Var.f(i11);
-                i0.b f10 = this.f42157c.f42154a.f(i11);
+                i0.b f10 = this.f42178c.f42175a.f(i11);
                 float f11 = 1.0f - b10;
                 x0Var.c(i11, l1.e(f7, (int) (((f7.f10592a - f10.f10592a) * f11) + 0.5d), (int) (((f7.f10593b - f10.f10593b) * f11) + 0.5d), (int) (((f7.f10594c - f10.f10594c) * f11) + 0.5d), (int) (((f7.d - f10.d) * f11) + 0.5d)));
             }

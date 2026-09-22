@@ -9,26 +9,26 @@ import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.vi;
 public final class z implements ti {
-    public final vi f42029a;
-    public final n0 f42030b;
+    public final vi f42050a;
+    public final n0 f42051b;
 
     public z(n0 n0Var, vi viVar) {
-        this.f42030b = n0Var;
-        this.f42029a = viVar;
+        this.f42051b = n0Var;
+        this.f42050a = viVar;
     }
 
     @Override
     public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        vi viVar = this.f42029a;
+        vi viVar = this.f42050a;
         try {
-            HashMap<Object, Object> selectedPhotos = viVar.f29110j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = viVar.f29108j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
                 if (str == null) {
                     str = photoEntry.path;
                 }
-                n0 n0Var = this.f42030b;
+                n0 n0Var = this.f42051b;
                 n0Var.f0(n0Var.h0(str, true));
                 viVar.dismiss();
             }

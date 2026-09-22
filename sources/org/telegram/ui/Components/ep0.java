@@ -1,38 +1,26 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ep0 extends s4.s0 {
-    public final ef f23916a;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ep0 extends LinearLayout {
+    public final int f24012a;
+    public final int f24013b;
 
-    public ep0(ef efVar) {
-        this.f23916a = efVar;
+    public ep0(Context context, int i10, int i11) {
+        super(context);
+        this.f24012a = i10;
+        this.f24013b = i11;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        float f7;
-        ef efVar = this.f23916a;
-        View view = efVar.f25106u;
-        if (efVar.f25107w.I0() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Boolean bool = efVar.f25108x;
-        if (bool != null && z10 == bool.booleanValue()) {
-            return;
-        }
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        animate.alpha(f7).setDuration(150L).start();
-        efVar.f25108x = Boolean.valueOf(z10);
+    public final int getSuggestedMinimumWidth() {
+        return AndroidUtilities.dp(260.0f);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f24012a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), this.f24013b), View.MeasureSpec.getMode(i11)));
     }
 }

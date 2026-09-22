@@ -78,7 +78,7 @@ public final class r extends c {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    String str = e2.d0.f7888a;
+                    String str = e2.d0.f7887a;
                     throw new v(e, 2000, 3);
                 }
             }
@@ -96,7 +96,7 @@ public final class r extends c {
 
     public final HttpURLConnection e(m mVar) {
         boolean z10;
-        HttpURLConnection g10;
+        HttpURLConnection k10;
         URL url = new URL(mVar.f9380a.toString());
         int i10 = mVar.f9381b;
         byte[] bArr = mVar.f9382c;
@@ -110,24 +110,24 @@ public final class r extends c {
             z10 = false;
         }
         if (!this.f9398a) {
-            return g(url, i10, bArr, j3, j10, z10, true, mVar.d);
+            return k(url, i10, bArr, j3, j10, z10, true, mVar.d);
         }
         while (true) {
             int i13 = i12 + 1;
             if (i12 <= 20) {
-                g10 = g(url, i10, bArr, j3, j10, z10, false, mVar.d);
-                int responseCode = g10.getResponseCode();
-                String headerField = g10.getHeaderField("Location");
+                k10 = k(url, i10, bArr, j3, j10, z10, false, mVar.d);
+                int responseCode = k10.getResponseCode();
+                String headerField = k10.getHeaderField("Location");
                 if ((i10 != i11 && i10 != 3) || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303 && responseCode != 307 && responseCode != 308)) {
                     if (i10 != 2 || (responseCode != 300 && responseCode != 301 && responseCode != 302 && responseCode != 303)) {
                         break;
                     }
-                    g10.disconnect();
+                    k10.disconnect();
                     url = c(url, headerField);
                     bArr = null;
                     i10 = 1;
                 } else {
-                    g10.disconnect();
+                    k10.disconnect();
                     url = c(url, headerField);
                 }
                 i12 = i13;
@@ -136,10 +136,32 @@ public final class r extends c {
                 throw new v(new NoRouteToHostException(k0.h(i13, "Too many redirects: ")), 2001, 1);
             }
         }
-        return g10;
+        return k10;
     }
 
-    public final HttpURLConnection g(URL url, int i10, byte[] bArr, long j3, long j10, boolean z10, boolean z11, Map map) {
+    @Override
+    public final Map getResponseHeaders() {
+        HttpURLConnection httpURLConnection = this.f9402n;
+        if (httpURLConnection == null) {
+            return f1.h;
+        }
+        return new q(httpURLConnection.getHeaderFields());
+    }
+
+    @Override
+    public final Uri getUri() {
+        HttpURLConnection httpURLConnection = this.f9402n;
+        if (httpURLConnection != null) {
+            return Uri.parse(httpURLConnection.getURL().toString());
+        }
+        m mVar = this.h;
+        if (mVar != null) {
+            return mVar.f9380a;
+        }
+        return null;
+    }
+
+    public final HttpURLConnection k(URL url, int i10, byte[] bArr, long j3, long j10, boolean z10, boolean z11, Map map) {
         String sb2;
         String str;
         boolean z12;
@@ -214,35 +236,13 @@ public final class r extends c {
         return httpURLConnection;
     }
 
-    @Override
-    public final Map getResponseHeaders() {
-        HttpURLConnection httpURLConnection = this.f9402n;
-        if (httpURLConnection == null) {
-            return f1.h;
-        }
-        return new q(httpURLConnection.getHeaderFields());
-    }
-
-    @Override
-    public final Uri getUri() {
-        HttpURLConnection httpURLConnection = this.f9402n;
-        if (httpURLConnection != null) {
-            return Uri.parse(httpURLConnection.getURL().toString());
-        }
-        m mVar = this.h;
-        if (mVar != null) {
-            return mVar.f9380a;
-        }
-        return null;
-    }
-
-    public final void k(long j3) {
+    public final void l(long j3) {
         if (j3 != 0) {
             byte[] bArr = new byte[4096];
             while (j3 > 0) {
                 int min = (int) Math.min(j3, 4096);
                 InputStream inputStream = this.f9403r;
-                String str = e2.d0.f7888a;
+                String str = e2.d0.f7887a;
                 int read = inputStream.read(bArr, 0, min);
                 if (!Thread.currentThread().isInterrupted()) {
                     if (read != -1) {
@@ -278,7 +278,7 @@ public final class r extends c {
                 i11 = (int) Math.min(i11, j10);
             }
             InputStream inputStream = this.f9403r;
-            String str = e2.d0.f7888a;
+            String str = e2.d0.f7887a;
             int read = inputStream.read(bArr, i10, i11);
             if (read != -1) {
                 this.f9406x += read;
@@ -287,7 +287,7 @@ public final class r extends c {
             }
             return -1;
         } catch (IOException e) {
-            String str2 = e2.d0.f7888a;
+            String str2 = e2.d0.f7887a;
             throw v.a(e, 2);
         }
     }

@@ -27,7 +27,7 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.g10;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.y70;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.nb0;
 public class ApplicationLoader extends Application {
@@ -556,12 +556,12 @@ public class ApplicationLoader extends Application {
             int length = values.length;
             while (true) {
                 if (i10 < length) {
-                    if (w7.g6.a(values[i10])) {
+                    if (w7.f6.a(values[i10])) {
                         break;
                     }
                     i10++;
                 } else {
-                    w7.g6.b(nb0.h);
+                    w7.f6.b(nb0.h);
                     break;
                 }
             }
@@ -673,7 +673,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(v70 v70Var) {
+    public void addItemOptions(y70 y70Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {

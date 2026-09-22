@@ -5,26 +5,26 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import org.telegram.messenger.FileLog;
 public final class vn0 implements OnCompleteListener, org.telegram.ui.ActionBar.a2, au {
-    public final int f38578a;
-    public final xo0 f38579b;
+    public final int f38599a;
+    public final xo0 f38600b;
 
     public vn0(xo0 xo0Var, int i10) {
-        this.f38578a = i10;
-        this.f38579b = xo0Var;
+        this.f38599a = i10;
+        this.f38600b = xo0Var;
     }
 
     @Override
     public void Z0(vt vtVar) {
-        switch (this.f38578a) {
+        switch (this.f38599a) {
             case 2:
-                xo0 xo0Var = this.f38579b;
+                xo0 xo0Var = this.f38600b;
                 xo0Var.A0 = vtVar;
-                xo0Var.f39656f[4].setText(vtVar.f38597a);
+                xo0Var.f39676f[4].setText(vtVar.f38618a);
                 return;
             default:
-                xo0 xo0Var2 = this.f38579b;
+                xo0 xo0Var2 = this.f38600b;
                 xo0Var2.A0 = vtVar;
-                xo0Var2.f39656f[4].setText(vtVar.f38597a);
+                xo0Var2.f39676f[4].setText(vtVar.f38618a);
                 xo0Var2.B0 = vtVar.d;
                 return;
         }
@@ -32,26 +32,26 @@ public final class vn0 implements OnCompleteListener, org.telegram.ui.ActionBar.
 
     @Override
     public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f38578a) {
+        switch (this.f38599a) {
             case 1:
-                xo0 xo0Var = this.f38579b;
+                xo0 xo0Var = this.f38600b;
                 xo0Var.I0(xo0Var.R0[0]);
                 return;
             case 2:
             default:
-                xo0 xo0Var2 = this.f38579b;
+                xo0 xo0Var2 = this.f38600b;
                 xo0Var2.D0(true);
                 xo0Var2.z0();
                 return;
             case 3:
-                this.f38579b.A0(true);
+                this.f38600b.A0(true);
                 return;
         }
     }
 
     @Override
     public void onComplete(Task task) {
-        xo0 xo0Var = this.f38579b;
+        xo0 xo0Var = this.f38600b;
         xo0Var.getClass();
         if (task.isSuccessful()) {
             FrameLayout frameLayout = xo0Var.O;

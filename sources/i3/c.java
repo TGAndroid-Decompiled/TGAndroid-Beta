@@ -79,8 +79,8 @@ public final class c extends g {
 
     public static String b1(v vVar) {
         int D = vVar.D();
-        int i10 = vVar.f7935b;
+        int i10 = vVar.f7934b;
         vVar.K(D);
-        return new String(vVar.f7934a, i10, D);
+        return new String(vVar.f7933a, i10, D);
     }
 }

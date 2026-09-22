@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ul0;
-public final class h9 extends ul0 {
-    public final i9 f4758c;
+import org.telegram.ui.Components.xl0;
+public final class h9 extends xl0 {
+    public final i9 f4756c;
 
     public h9(i9 i9Var) {
-        this.f4758c = i9Var;
+        this.f4756c = i9Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42977f == 2) {
+        if (c1Var.f42998f == 2) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class h9 extends ul0 {
 
     @Override
     public final int h() {
-        return this.f4758c.f4802c.size() + 2;
+        return this.f4756c.f4800c.size() + 2;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class h9 extends ul0 {
         int dp;
         View view;
         org.telegram.ui.ActionBar.f6 f6Var;
-        i9 i9Var = this.f4758c;
+        i9 i9Var = this.f4756c;
         if (i10 != 0 && i10 != 1) {
             Context context = i9Var.getContext();
             f6Var = ((org.telegram.ui.ActionBar.f3) i9Var).resourcesProvider;

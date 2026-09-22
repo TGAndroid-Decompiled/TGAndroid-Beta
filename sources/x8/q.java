@@ -2,24 +2,24 @@ package x8;
 
 import y8.l0;
 public final class q implements Runnable {
-    public final int f45997a;
-    public final l0 f45998b;
-    public final m f45999c;
+    public final int f46018a;
+    public final l0 f46019b;
+    public final m f46020c;
 
     public q(m mVar, l0 l0Var, int i10) {
-        this.f45997a = i10;
-        this.f45999c = mVar;
-        this.f45998b = l0Var;
+        this.f46018a = i10;
+        this.f46020c = mVar;
+        this.f46019b = l0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f45997a) {
+        switch (this.f46018a) {
             case 0:
-                this.f45999c.f45993c.onPeerConnected(this.f45998b);
+                this.f46020c.f46014c.onPeerConnected(this.f46019b);
                 return;
             default:
-                this.f45999c.f45993c.onPeerDisconnected(this.f45998b);
+                this.f46020c.f46014c.onPeerDisconnected(this.f46019b);
                 return;
         }
     }

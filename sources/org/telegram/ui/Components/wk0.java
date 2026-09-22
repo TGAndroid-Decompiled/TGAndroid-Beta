@@ -1,84 +1,14 @@
 package org.telegram.ui.Components;
+public final class wk0 {
+    public final bl0 f30035a;
+    public final int f30036b;
+    public final int f30037c;
+    public final boolean d;
 
-import java.util.ArrayList;
-public abstract class wk0 extends ul0 {
-    public boolean f30063c;
-    public boolean d;
-    public ArrayList e;
-    public ArrayList f30064f;
-
-    public final void E() {
-        this.f30063c = false;
-        if (!this.d && this.e.isEmpty() && this.f30064f.isEmpty()) {
-            return;
-        }
-        ((org.telegram.ui.lm) this).O(false);
-    }
-
-    @Override
-    public void l() {
-        if (!this.f30063c) {
-            super.l();
-        } else {
-            this.d = true;
-        }
-    }
-
-    @Override
-    public void m(int i10) {
-        if (!this.f30063c) {
-            super.m(i10);
-        }
-    }
-
-    @Override
-    public void o(int i10) {
-        ArrayList arrayList = this.e;
-        if (!this.f30063c) {
-            super.o(i10);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i10));
-        arrayList.add(1);
-    }
-
-    @Override
-    public void q(int i10, int i11) {
-        if (!this.f30063c) {
-            super.q(i10, i11);
-        }
-    }
-
-    @Override
-    public void s(int i10, int i11) {
-        ArrayList arrayList = this.e;
-        if (!this.f30063c) {
-            super.s(i10, i11);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i10));
-        arrayList.add(Integer.valueOf(i11));
-    }
-
-    @Override
-    public void t(int i10, int i11) {
-        ArrayList arrayList = this.f30064f;
-        if (!this.f30063c) {
-            super.t(i10, i11);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i10));
-        arrayList.add(Integer.valueOf(i11));
-    }
-
-    @Override
-    public void u(int i10) {
-        ArrayList arrayList = this.f30064f;
-        if (!this.f30063c) {
-            super.u(i10);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i10));
-        arrayList.add(1);
+    public wk0(bl0 bl0Var, int i10, int i11, boolean z10) {
+        this.f30035a = bl0Var;
+        this.f30036b = i10;
+        this.f30037c = i11;
+        this.d = z10;
     }
 }

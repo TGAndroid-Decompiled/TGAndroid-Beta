@@ -1,72 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class fr0 implements View.OnClickListener {
-    public final int f24156a;
-    public final jv0 f24157b;
+import org.telegram.messenger.AndroidUtilities;
+public final class fr0 implements Runnable {
+    public final int f24327a;
+    public final lv0 f24328b;
 
-    public fr0(jv0 jv0Var, int i10) {
-        this.f24156a = i10;
-        this.f24157b = jv0Var;
+    public fr0(lv0 lv0Var, int i10) {
+        this.f24327a = i10;
+        this.f24328b = lv0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f24156a) {
+    public final void run() {
+        switch (this.f24327a) {
             case 0:
-                this.f24157b.L(true);
-                return;
-            case 1:
-                this.f24157b.C0(102, view);
-                return;
-            case 2:
-                this.f24157b.C0(100, view);
-                return;
-            case 3:
-                this.f24157b.C0(103, view);
-                return;
-            case 4:
-                this.f24157b.C0(104, view);
-                return;
-            case 5:
-                this.f24157b.C0(101, view);
-                return;
-            case 6:
-                jv0 jv0Var = this.f24157b;
-                es0 es0Var = jv0Var.W;
-                yr0 yr0Var = jv0Var.V;
-                if (jv0Var.f25515q0.getAlpha() >= 0.1f) {
-                    if (yr0Var != null && yr0Var.g()) {
-                        yr0Var.i();
-                    }
-                    if (es0Var != null && es0Var.f31966w) {
-                        iv0 i12 = jv0Var.i1(jv0Var.h1(jv0Var.getClosestTab()));
-                        cu0 W = jv0Var.W(i12.f25136a);
-                        if (W != null) {
-                            es0Var.setReorderingAlbums(false);
-                            is0 is0Var = W.h;
-                            for (int i10 = 0; i10 < is0Var.getChildCount(); i10++) {
-                                View childAt = is0Var.getChildAt(i10);
-                                if (childAt instanceof org.telegram.ui.Cells.u7) {
-                                    ((org.telegram.ui.Cells.u7) childAt).l(false, true);
-                                }
-                            }
-                            hv0 hv0Var = i12.f25138c;
-                            if (hv0Var != null && hv0Var.f24462x) {
-                                hv0Var.f24462x = false;
-                                return;
-                            }
-                            return;
+                lv0 lv0Var = this.f24328b;
+                ks ksVar = lv0Var.P0;
+                lv0Var.f26190b2 = (int) ksVar.c(AndroidUtilities.dp(14.0f));
+                bs0 bs0Var = lv0Var.V;
+                if (bs0Var != null) {
+                    bs0Var.setPaddingTop(AndroidUtilities.dp(48.0f) + ((int) ksVar.c(AndroidUtilities.dp(7.0f))));
+                }
+                eu0[] eu0VarArr = lv0Var.f26210k0;
+                if (eu0VarArr != null) {
+                    for (eu0 eu0Var : eu0VarArr) {
+                        if (eu0Var != null) {
+                            int paddingTop = eu0Var.h.getPaddingTop();
+                            ks0 ks0Var = eu0Var.h;
+                            int paddingLeft = ks0Var.getPaddingLeft();
+                            int Z = lv0Var.Z(eu0Var.F);
+                            int paddingRight = eu0Var.h.getPaddingRight();
+                            ks0 ks0Var2 = eu0Var.h;
+                            int Y = lv0Var.Y(lv0Var.v0());
+                            ks0Var2.f23747e3 = Y;
+                            ks0Var.setPadding(paddingLeft, Z, paddingRight, Y);
+                            AndroidUtilities.doOnLayout(eu0Var.h, new kd(eu0Var, paddingTop - eu0Var.h.getPaddingTop(), 8));
                         }
-                        return;
                     }
                     return;
                 }
                 return;
+            case 1:
+                lv0 lv0Var2 = this.f24328b;
+                lv0Var2.b1(false);
+                lv0Var2.G.h(true);
+                lv0Var2.f26186a1 = 0;
+                return;
             default:
-                org.telegram.ui.ActionBar.n2 n2Var = this.f24157b.f25528v1;
-                n2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
-                ci.oc.E(n2Var.getParentActivity(), n2Var.getCurrentAccount()).R(null);
+                this.f24328b.k0();
                 return;
         }
     }

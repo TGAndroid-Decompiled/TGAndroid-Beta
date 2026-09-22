@@ -36,7 +36,7 @@ public final class g5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         i1Var.setTextColorKey(j6.Oh);
         i1Var.setAccentHint(true);
         i1Var.setHint(LocaleController.getString(R.string.ArticleHintAuthor));
-        i1Var.setListener(new a4.m(this, 23));
+        i1Var.setListener(new android.support.v4.media.c(this, 22));
         i1Var.setDelegate(new ei.d5(this, 20));
         addView(i1Var, w7.y5.e(-1, -2, 51));
         e();

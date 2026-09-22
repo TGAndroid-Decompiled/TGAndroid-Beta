@@ -15,17 +15,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.gj1;
 public final class dp implements ti {
-    public final mp f23623a;
+    public final mp f23728a;
 
     public dp(mp mpVar) {
-        this.f23623a = mpVar;
+        this.f23728a = mpVar;
     }
 
     @Override
     public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        mp mpVar = this.f23623a;
+        mp mpVar = this.f23728a;
         try {
-            HashMap<Object, Object> selectedPhotos = mpVar.Y.f29110j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = mpVar.Y.f29108j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -39,10 +39,10 @@ public final class dp implements ti {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     ap apVar = new ap(new gj1(file, file, ""), loadBitmap, false, 2);
-                    apVar.V1 = mpVar.f26451f0;
+                    apVar.V1 = mpVar.f26503f0;
                     apVar.F1 = false;
                     apVar.E1 = false;
-                    apVar.f39509n1 = 0.2f;
+                    apVar.f39533n1 = 0.2f;
                     apVar.c1(mpVar.v.a());
                     apVar.I1 = new cp(this, 0);
                     mp.q(mpVar, apVar);
@@ -62,8 +62,8 @@ public final class dp implements ti {
     @Override
     public final void V0(Object obj) {
         ap apVar = new ap(obj, null, true, 3);
-        mp mpVar = this.f23623a;
-        apVar.V1 = mpVar.f26451f0;
+        mp mpVar = this.f23728a;
+        apVar.V1 = mpVar.f26503f0;
         apVar.c1(mpVar.v.a());
         apVar.I1 = new cp(this, 1);
         mp.q(mpVar, apVar);

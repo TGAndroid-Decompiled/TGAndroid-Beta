@@ -6,11 +6,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
 public final class w extends GestureDetector.SimpleOnGestureListener {
-    public boolean f43106a = true;
-    public final y f43107b;
+    public boolean f43127a = true;
+    public final y f43128b;
 
     public w(y yVar) {
-        this.f43107b = yVar;
+        this.f43128b = yVar;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class w extends GestureDetector.SimpleOnGestureListener {
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
         c1 U;
-        if (this.f43106a) {
-            y yVar = this.f43107b;
+        if (this.f43127a) {
+            y yVar = this.f43128b;
             View k10 = yVar.k(motionEvent);
-            v vVar = yVar.f43122x;
+            v vVar = yVar.f43143x;
             if (k10 != null && (U = yVar.H.U(k10)) != null) {
                 RecyclerView recyclerView = yVar.H;
                 int e = vVar.e(recyclerView, U);
-                WeakHashMap weakHashMap = r0.i0.f42142a;
+                WeakHashMap weakHashMap = r0.i0.f42163a;
                 if ((vVar.b(e, recyclerView.getLayoutDirection()) & 16711680) != 0) {
                     int pointerId = motionEvent.getPointerId(0);
-                    int i10 = yVar.f43121w;
+                    int i10 = yVar.f43142w;
                     if (pointerId == i10) {
                         int findPointerIndex = motionEvent.findPointerIndex(i10);
                         float x10 = motionEvent.getX(findPointerIndex);
                         float y3 = motionEvent.getY(findPointerIndex);
                         yVar.d = x10;
                         yVar.e = y3;
-                        yVar.f43119r = 0.0f;
-                        yVar.f43118n = 0.0f;
+                        yVar.f43140r = 0.0f;
+                        yVar.f43139n = 0.0f;
                         if (vVar.k()) {
                             yVar.p(U, 2);
                         }

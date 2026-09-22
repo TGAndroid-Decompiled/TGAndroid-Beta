@@ -37,7 +37,7 @@ public final class g2 extends ee.s {
         id.h context = cVar.getContext();
         g2 g2Var = null;
         Object k10 = ee.a.k(context, null);
-        if (k10 != ee.a.f8174f) {
+        if (k10 != ee.a.f8173f) {
             g2Var = e0.v(cVar, context, k10);
         }
         try {

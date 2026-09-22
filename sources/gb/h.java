@@ -24,7 +24,7 @@ public final class h extends db.u {
         if (!Locale.getDefault().equals(locale)) {
             arrayList.add(DateFormat.getDateTimeInstance(2, 2));
         }
-        if (fb.g.f9028a >= 9) {
+        if (fb.h.f9028a >= 9) {
             arrayList.add(new SimpleDateFormat(a4.a.C("MMM d, yyyy", " ", "h:mm:ss a"), locale));
         }
     }

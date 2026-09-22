@@ -1,56 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class rs0 extends t00 {
-    public final fs0 U;
-    public final jv0 V;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+public final class rs0 implements pl0 {
+    public final hs0 f28048a;
+    public final lv0 f28049b;
 
-    public rs0(jv0 jv0Var, Context context, fs0 fs0Var) {
-        super(context, null);
-        this.V = jv0Var;
-        this.U = fs0Var;
+    public rs0(lv0 lv0Var, hs0 hs0Var) {
+        this.f28049b = lv0Var;
+        this.f28048a = hs0Var;
     }
 
     @Override
-    public final int getColumnsCount() {
-        return this.V.f25507m1[jv0.p0(this.U.F) ? 1 : 0];
+    public final boolean mo18c(float r18, float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.rs0.mo18c(float, float, int, android.view.View):boolean");
     }
 
     @Override
-    public final int getViewType() {
-        setIsSingleCell(false);
-        int i10 = this.U.F;
-        if (i10 == 0 || i10 == 5) {
-            return 2;
-        }
-        if (i10 == 1) {
-            return 3;
-        }
-        if (i10 != 2 && i10 != 4) {
-            if (i10 == 3) {
-                return 5;
-            }
-            if (i10 != 7) {
-                if (i10 == 6) {
-                    if (this.V.I0.getTabsCount() == 1) {
-                        setIsSingleCell(true);
-                        return 1;
-                    }
-                } else if (jv0.p0(i10)) {
-                    return 27;
-                }
-                return 1;
+    public final void g() {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f28049b.f26234v1;
+        if (n2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                n2Var.finishPreviewFragment();
             }
         }
-        return 6;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        jv0 jv0Var = this.V;
-        jv0Var.T0.setColor(jv0Var.h0(org.telegram.ui.ActionBar.j6.f19094d6));
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), jv0Var.T0);
-        super.onDraw(canvas);
+    public final void q(float f7) {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f28049b.f26234v1;
+        if (n2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                n2Var.movePreviewFragment(f7);
+            }
+        }
     }
 }

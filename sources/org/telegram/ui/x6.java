@@ -32,7 +32,7 @@ public final class x6 extends og.b {
     public final boolean D(s4.c1 c1Var) {
         z6 z6Var = this.e;
         if (c1Var.b() != z6Var.J) {
-            int i10 = c1Var.f42977f;
+            int i10 = c1Var.f42998f;
             if ((i10 != 2 || z6Var.G <= 0 || z6Var.K) && i10 != 5 && i10 != 7 && i10 != 11) {
                 return false;
             }
@@ -43,12 +43,12 @@ public final class x6 extends og.b {
 
     @Override
     public final int h() {
-        return this.e.f40114e0.size();
+        return this.e.f40136e0.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((u6) this.e.f40114e0.get(i10)).f15704a;
+        return ((u6) this.e.f40136e0.get(i10)).f15719a;
     }
 
     @Override
@@ -61,10 +61,10 @@ public final class x6 extends og.b {
         boolean z11;
         Boolean bool;
         z6 z6Var = this.e;
-        ArrayList arrayList = z6Var.f40114e0;
+        ArrayList arrayList = z6Var.f40136e0;
         u6 u6Var = (u6) arrayList.get(i10);
-        int i12 = c1Var.f42977f;
-        View view = c1Var.f42974a;
+        int i12 = c1Var.f42998f;
+        View view = c1Var.f42995a;
         String str = null;
         boolean z12 = false;
         if (i12 != 0) {
@@ -102,7 +102,7 @@ public final class x6 extends og.b {
                                     return;
                                 case 11:
                                     org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) view;
-                                    int i14 = u6Var.f37969f;
+                                    int i14 = u6Var.f37970f;
                                     if (i14 < 0) {
                                         z10 = z6Var.r0();
                                     } else {
@@ -111,7 +111,7 @@ public final class x6 extends og.b {
                                     boolean z13 = z10;
                                     CharSequence charSequence = u6Var.d;
                                     int[] iArr = z6Var.S;
-                                    int i15 = u6Var.f37969f;
+                                    int i15 = u6Var.f37970f;
                                     if (i15 < 0) {
                                         i15 = 9;
                                     }
@@ -123,35 +123,35 @@ public final class x6 extends og.b {
                                     }
                                     SpannableString spannableString = new SpannableString(format);
                                     spannableString.setSpan(new RelativeSizeSpan(0.834f), 0, spannableString.length(), 33);
-                                    spannableString.setSpan(new org.telegram.ui.Components.t51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                                    spannableString.setSpan(new org.telegram.ui.Components.v51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
                                     spannableStringBuilder.append((CharSequence) "  ");
                                     spannableStringBuilder.append((CharSequence) spannableString);
-                                    String formatFileSize = AndroidUtilities.formatFileSize(u6Var.f37970g);
-                                    if (u6Var.f37969f >= 0 ? !u6Var.f37972j : !z6Var.L) {
+                                    String formatFileSize = AndroidUtilities.formatFileSize(u6Var.f37971g);
+                                    if (u6Var.f37970f >= 0 ? !u6Var.f37973j : !z6Var.L) {
                                         z11 = true;
                                     } else {
                                         z11 = false;
                                     }
                                     a2Var.e(spannableStringBuilder, formatFileSize, z13, z11, false);
                                     int i17 = u6Var.h;
-                                    int i18 = org.telegram.ui.ActionBar.j6.f19223k7;
-                                    org.telegram.ui.Components.np npVar = a2Var.f20006r;
+                                    int i18 = org.telegram.ui.ActionBar.j6.f19238k7;
+                                    org.telegram.ui.Components.np npVar = a2Var.f20021r;
                                     if (npVar != null) {
                                         npVar.b(i17, i17, i18);
                                     }
-                                    if (u6Var.f37969f < 0) {
+                                    if (u6Var.f37970f < 0) {
                                         bool = Boolean.valueOf(z6Var.L);
                                     } else {
                                         bool = null;
                                     }
                                     a2Var.setCollapsed(bool);
-                                    if (u6Var.f37969f == -1) {
+                                    if (u6Var.f37970f == -1) {
                                         a2Var.d(new a(this, 7), new ai.f2(25, this, a2Var));
                                     } else {
                                         a2Var.d(null, null);
                                     }
-                                    a2Var.setPad(u6Var.f37971i ? 1 : 0);
+                                    a2Var.setPad(u6Var.f37972i ? 1 : 0);
                                     return;
                                 default:
                                     return;
@@ -159,19 +159,19 @@ public final class x6 extends og.b {
                         }
                         org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view;
                         CacheByChatsController cacheByChatsController = z6Var.getMessagesController().getCacheByChatsController();
-                        int i19 = u6Var.f37968c;
-                        int size = cacheByChatsController.getKeepMediaExceptions(((u6) arrayList.get(i10)).f37968c).size();
+                        int i19 = u6Var.f37969c;
+                        int size = cacheByChatsController.getKeepMediaExceptions(((u6) arrayList.get(i10)).f37969c).size();
                         if (size > 0) {
                             str = LocaleController.formatPluralString("ExceptionShort", size, Integer.valueOf(size));
                         }
                         String keepMediaString = CacheByChatsController.getKeepMediaString(cacheByChatsController.getKeepMedia(i19));
-                        if (((u6) arrayList.get(i10)).f37968c == 0) {
+                        if (((u6) arrayList.get(i10)).f37969c == 0) {
                             s8Var.p(LocaleController.getString(R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, -11565578, -13276952, true);
-                        } else if (((u6) arrayList.get(i10)).f37968c == 1) {
+                        } else if (((u6) arrayList.get(i10)).f37969c == 1) {
                             s8Var.p(LocaleController.getString(R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, -11154873, -14175180, true);
-                        } else if (((u6) arrayList.get(i10)).f37968c == 2) {
+                        } else if (((u6) arrayList.get(i10)).f37969c == 2) {
                             s8Var.p(LocaleController.getString(R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, -1007845, -1996271, true);
-                        } else if (((u6) arrayList.get(i10)).f37968c == 3) {
+                        } else if (((u6) arrayList.get(i10)).f37969c == 3) {
                             s8Var.p(LocaleController.getString(R.string.CacheStories), keepMediaString, false, R.drawable.msg_filled_stories, -765355, -2148011, false);
                         }
                         s8Var.setSubtitle(str);
@@ -185,22 +185,22 @@ public final class x6 extends og.b {
                     n4Var.setBottomMargin(0);
                     return;
                 }
-                final org.telegram.ui.Components.qy0 qy0Var = (org.telegram.ui.Components.qy0) view;
+                final org.telegram.ui.Components.sy0 sy0Var = (org.telegram.ui.Components.sy0) view;
                 boolean z14 = z6Var.K;
                 long j12 = z6Var.e;
                 long j13 = z6Var.G;
                 long j14 = z6Var.I;
                 long j15 = z6Var.H;
-                com.google.firebase.messaging.m mVar = qy0Var.I;
-                View view2 = qy0Var.f27687w;
-                TextView textView = qy0Var.f27684n;
-                TextView textView2 = qy0Var.h;
-                TextView textView3 = qy0Var.v;
-                org.telegram.ui.Cells.fa faVar = qy0Var.f27689y;
-                qy0Var.e = z14;
-                TextView textView4 = qy0Var.f27685r;
+                com.google.firebase.messaging.m mVar = sy0Var.I;
+                View view2 = sy0Var.f28343w;
+                TextView textView = sy0Var.f28340n;
+                TextView textView2 = sy0Var.h;
+                TextView textView3 = sy0Var.v;
+                org.telegram.ui.Cells.fa faVar = sy0Var.f28345y;
+                sy0Var.e = z14;
+                TextView textView4 = sy0Var.f28341r;
                 textView4.setText(LocaleController.formatString("TotalDeviceFreeSize", R.string.TotalDeviceFreeSize, AndroidUtilities.formatFileSize(j14)));
-                TextView textView5 = qy0Var.f27686s;
+                TextView textView5 = sy0Var.f28342s;
                 long j16 = j15 - j14;
                 textView5.setText(LocaleController.formatString("TotalDeviceSize", R.string.TotalDeviceSize, AndroidUtilities.formatFileSize(j16)));
                 if (z14) {
@@ -211,8 +211,8 @@ public final class x6 extends og.b {
                     textView.setVisibility(8);
                     view2.setVisibility(8);
                     faVar.setVisibility(8);
-                    qy0Var.E = 0.0f;
-                    qy0Var.F = 0.0f;
+                    sy0Var.E = 0.0f;
+                    sy0Var.F = 0.0f;
                     if (mVar != null) {
                         mVar.c(textView3);
                     }
@@ -242,65 +242,65 @@ public final class x6 extends og.b {
                     float f11 = (float) j15;
                     float f12 = ((float) (j13 + j12)) / f11;
                     float f13 = ((float) j16) / f11;
-                    if (qy0Var.E != f12) {
-                        ValueAnimator valueAnimator = qy0Var.G;
+                    if (sy0Var.E != f12) {
+                        ValueAnimator valueAnimator = sy0Var.G;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
                         }
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(qy0Var.E, f12);
-                        qy0Var.G = ofFloat;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(sy0Var.E, f12);
+                        sy0Var.G = ofFloat;
                         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                                 switch (r2) {
                                     case 0:
-                                        qy0 qy0Var2 = qy0Var;
-                                        qy0Var2.getClass();
-                                        qy0Var2.E = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                        qy0Var2.invalidate();
+                                        sy0 sy0Var2 = sy0Var;
+                                        sy0Var2.getClass();
+                                        sy0Var2.E = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                                        sy0Var2.invalidate();
                                         return;
                                     default:
-                                        qy0 qy0Var3 = qy0Var;
-                                        qy0Var3.getClass();
-                                        qy0Var3.F = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                        qy0Var3.invalidate();
+                                        sy0 sy0Var3 = sy0Var;
+                                        sy0Var3.getClass();
+                                        sy0Var3.F = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                                        sy0Var3.invalidate();
                                         return;
                                 }
                             }
                         });
-                        qy0Var.G.start();
+                        sy0Var.G.start();
                     }
-                    if (qy0Var.F != f13) {
-                        ValueAnimator valueAnimator2 = qy0Var.H;
+                    if (sy0Var.F != f13) {
+                        ValueAnimator valueAnimator2 = sy0Var.H;
                         if (valueAnimator2 != null) {
                             valueAnimator2.cancel();
                         }
-                        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(qy0Var.F, f13);
-                        qy0Var.H = ofFloat2;
+                        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(sy0Var.F, f13);
+                        sy0Var.H = ofFloat2;
                         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator22) {
                                 switch (r2) {
                                     case 0:
-                                        qy0 qy0Var2 = qy0Var;
-                                        qy0Var2.getClass();
-                                        qy0Var2.E = ((Float) valueAnimator22.getAnimatedValue()).floatValue();
-                                        qy0Var2.invalidate();
+                                        sy0 sy0Var2 = sy0Var;
+                                        sy0Var2.getClass();
+                                        sy0Var2.E = ((Float) valueAnimator22.getAnimatedValue()).floatValue();
+                                        sy0Var2.invalidate();
                                         return;
                                     default:
-                                        qy0 qy0Var3 = qy0Var;
-                                        qy0Var3.getClass();
-                                        qy0Var3.F = ((Float) valueAnimator22.getAnimatedValue()).floatValue();
-                                        qy0Var3.invalidate();
+                                        sy0 sy0Var3 = sy0Var;
+                                        sy0Var3.getClass();
+                                        sy0Var3.F = ((Float) valueAnimator22.getAnimatedValue()).floatValue();
+                                        sy0Var3.invalidate();
                                         return;
                                 }
                             }
                         });
-                        qy0Var.H.start();
+                        sy0Var.H.start();
                     }
                 }
                 faVar.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-                qy0Var.requestLayout();
+                sy0Var.requestLayout();
                 return;
             }
             ((org.telegram.ui.Cells.f9) view).setText(AndroidUtilities.replaceTags(u6Var.e));
@@ -327,17 +327,17 @@ public final class x6 extends og.b {
                 case 2:
                     ?? frameLayout = new FrameLayout(context);
                     Paint paint = new Paint(1);
-                    frameLayout.f27680a = paint;
+                    frameLayout.f28336a = paint;
                     Paint paint2 = new Paint(1);
                     Paint paint3 = new Paint(1);
-                    frameLayout.f27681b = paint3;
+                    frameLayout.f28337b = paint3;
                     Paint paint4 = new Paint(1);
-                    frameLayout.f27682c = paint4;
+                    frameLayout.f28338c = paint4;
                     frameLayout.d = new Paint();
                     org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h(220, 255);
                     frameLayout.L = hVar;
                     frameLayout.setWillNotDraw(false);
-                    hVar.f29372k = false;
+                    hVar.f29334k = false;
                     paint.setStrokeWidth(AndroidUtilities.dp(6.0f));
                     paint2.setStrokeWidth(AndroidUtilities.dp(6.0f));
                     paint3.setStrokeWidth(AndroidUtilities.dp(6.0f));
@@ -348,7 +348,7 @@ public final class x6 extends og.b {
                     paint3.setStrokeCap(cap);
                     paint4.setStrokeCap(cap);
                     ci.eb ebVar = new ci.eb(frameLayout, context, 26);
-                    frameLayout.f27683f = ebVar;
+                    frameLayout.f28339f = ebVar;
                     frameLayout.addView(ebVar, w7.y5.c(-2.0f, -1));
                     LinearLayout linearLayout = new LinearLayout(context);
                     linearLayout.setOrientation(1);
@@ -357,7 +357,7 @@ public final class x6 extends og.b {
                     linearLayout.addView(x5Var, w7.y5.k(21.0f, 40.0f, 21.0f, 16.0f, -1, -2));
                     TextView textView = new TextView(context);
                     frameLayout.v = textView;
-                    int i12 = org.telegram.ui.ActionBar.j6.f19477y6;
+                    int i12 = org.telegram.ui.ActionBar.j6.f19492y6;
                     textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
                     String string = LocaleController.getString("CalculatingSize", R.string.CalculatingSize);
                     int indexOf = string.indexOf("...");
@@ -375,25 +375,25 @@ public final class x6 extends og.b {
                     textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
                     textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
                     TextView textView3 = new TextView(context);
-                    frameLayout.f27684n = textView3;
+                    frameLayout.f28340n = textView3;
                     textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
                     textView3.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
                     TextView textView4 = new TextView(context);
-                    frameLayout.f27685r = textView4;
+                    frameLayout.f28341r = textView4;
                     textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
                     textView4.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
                     TextView textView5 = new TextView(context);
-                    frameLayout.f27686s = textView5;
+                    frameLayout.f28342s = textView5;
                     textView5.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
                     textView5.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i12, false));
-                    frameLayout.f27688x = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Vi, false);
-                    textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), frameLayout.f27688x), (Drawable) null, (Drawable) null, (Drawable) null);
+                    frameLayout.f28344x = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Vi, false);
+                    textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), frameLayout.f28344x), (Drawable) null, (Drawable) null, (Drawable) null);
                     textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-                    textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), i0.a.k(frameLayout.f27688x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+                    textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), i0.a.k(frameLayout.f28344x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
                     textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-                    textView5.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), i0.a.k(frameLayout.f27688x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+                    textView5.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), i0.a.k(frameLayout.f28344x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
                     textView5.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-                    textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), frameLayout.f27688x), (Drawable) null, (Drawable) null, (Drawable) null);
+                    textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), frameLayout.f28344x), (Drawable) null, (Drawable) null, (Drawable) null);
                     textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
                     x5Var.addView(textView, w7.y5.c(-2.0f, -2));
                     x5Var.addView(textView3, w7.y5.c(-2.0f, -2));
@@ -401,12 +401,12 @@ public final class x6 extends og.b {
                     x5Var.addView(textView5, w7.y5.c(-2.0f, -2));
                     x5Var.addView(textView4, w7.y5.c(-2.0f, -2));
                     View view = new View(frameLayout.getContext());
-                    frameLayout.f27687w = view;
+                    frameLayout.f28343w = view;
                     linearLayout.addView(view, w7.y5.t(-1, -2, 0, 21, 0, 0, 0));
                     view.getLayoutParams().height = 1;
-                    view.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19095d7, false));
+                    view.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19110d7, false));
                     org.telegram.ui.Cells.fa faVar = new org.telegram.ui.Cells.fa(frameLayout.getContext());
-                    frameLayout.f27689y = faVar;
+                    frameLayout.f28345y = faVar;
                     linearLayout.addView(faVar, w7.y5.n(-1, -2));
                     p6Var = frameLayout;
                     break;
@@ -414,16 +414,16 @@ public final class x6 extends og.b {
                     p6Var = new org.telegram.ui.Cells.n4(context);
                     break;
                 case 4:
-                    org.telegram.ui.Components.ew0 ew0Var = new org.telegram.ui.Components.ew0(context, null);
-                    ew0Var.setCallback(new m4.q0(19));
+                    org.telegram.ui.Components.gw0 gw0Var = new org.telegram.ui.Components.gw0(context, null);
+                    gw0Var.setCallback(new m4.q0(19));
                     int i13 = SharedConfig.keepMedia;
                     if (i13 == 3) {
                         i11 = 0;
                     } else {
                         i11 = i13 + 1;
                     }
-                    ew0Var.b(i11, null, LocaleController.formatPluralString("Days", 3, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.getString(R.string.KeepMediaForever));
-                    p6Var = ew0Var;
+                    gw0Var.b(i11, null, LocaleController.formatPluralString("Days", 3, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.getString(R.string.KeepMediaForever));
+                    p6Var = gw0Var;
                     break;
                 case 5:
                     p6Var = new y6(z6Var.getParentActivity(), z6Var.getResourceProvider());
@@ -448,12 +448,12 @@ public final class x6 extends og.b {
                         ((ViewGroup) z6Var.N.getParent()).removeView(z6Var.N);
                     }
                     w6 w6Var2 = z6Var.M;
-                    w6Var2.f37653x = true;
-                    FrameLayout frameLayout3 = w6Var2.f37646b;
+                    w6Var2.f37677x = true;
+                    FrameLayout frameLayout3 = w6Var2.f37670b;
                     AndroidUtilities.removeFromParent(frameLayout3);
                     frameLayout3.setTranslationY(0.0f);
                     z6Var.N = frameLayout3;
-                    ch.d c10 = z6Var.getBaseSimpleGlass().f14322b.c(z6Var.N, null, false);
+                    ch.d c10 = z6Var.getBaseSimpleGlass().f14337b.c(z6Var.N, null, false);
                     f6Var = ((org.telegram.ui.ActionBar.n2) z6Var).resourceProvider;
                     c10.o(eh.b.m(f6Var));
                     c10.p(AndroidUtilities.dp(9.66f));
@@ -463,20 +463,20 @@ public final class x6 extends og.b {
                     kVar = ((org.telegram.ui.ActionBar.n2) z6Var).actionBar;
                     kVar.bringToFront();
                     z6Var.N.bringToFront();
-                    z6Var.M.c(AndroidUtilities.dp(56.0f), z6Var.f40109b.getPaddingBottom());
-                    ai.w0 w0Var = z6Var.f40109b;
+                    z6Var.M.c(AndroidUtilities.dp(56.0f), z6Var.f40131b.getPaddingBottom());
+                    ai.w0 w0Var = z6Var.f40131b;
                     if (w0Var != null) {
                         z6Var.P = ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2) + w0Var.getPaddingTop()) - AndroidUtilities.dp(9.0f);
                     }
                     z6Var.z0();
                     z6Var.M.setDelegate(new g(this, 7));
-                    z6Var.M.setCacheModel(z6Var.f40112c0);
+                    z6Var.M.setCacheModel(z6Var.f40134c0);
                     z6Var.M.setTag(-33024);
                     h6 h6Var = z6Var.Z;
                     w6 w6Var3 = z6Var.M;
                     Objects.requireNonNull(w6Var3);
                     y0 y0Var = new y0(w6Var3, 9);
-                    h6Var.f23847z0 = w6Var3;
+                    h6Var.f24824z0 = w6Var3;
                     h6Var.A0 = y0Var;
                     h6Var.b0();
                     w6Var.setLayoutParams(new s4.p0(-1, -1));
@@ -513,7 +513,7 @@ public final class x6 extends og.b {
                     p6Var = p6Var2;
                     break;
                 case 14:
-                    org.telegram.ui.Components.ew0 ew0Var2 = new org.telegram.ui.Components.ew0(context, null);
+                    org.telegram.ui.Components.gw0 gw0Var2 = new org.telegram.ui.Components.gw0(context, null);
                     float f7 = ((int) ((z6Var.H / 1024) / 1024)) / 1000.0f;
                     ArrayList arrayList = new ArrayList();
                     if (f7 <= 17.0f) {
@@ -539,13 +539,13 @@ public final class x6 extends og.b {
                             strArr[i14] = String.format("%d GB", arrayList.get(i14));
                         }
                     }
-                    ew0Var2.setCallback(new y0(arrayList, 10));
+                    gw0Var2.setCallback(new y0(arrayList, 10));
                     int indexOf2 = arrayList.indexOf(Integer.valueOf(SharedConfig.getPreferences().getInt("cache_limit", Integer.MAX_VALUE)));
                     if (indexOf2 < 0) {
                         indexOf2 = arrayList.size() - 1;
                     }
-                    ew0Var2.b(indexOf2, null, strArr);
-                    p6Var = ew0Var2;
+                    gw0Var2.b(indexOf2, null, strArr);
+                    p6Var = gw0Var2;
                     break;
                 default:
                     p6Var = new org.telegram.ui.Cells.f9(context);

@@ -14,52 +14,52 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 public class o6 extends View {
-    public boolean f26816a;
-    public Drawable f26817b;
-    public final n6 f26818c;
+    public boolean f26993a;
+    public Drawable f26994b;
+    public final n6 f26995c;
     public int d;
     public int e;
-    public CharSequence f26819f;
+    public CharSequence f26996f;
     public boolean h;
-    public boolean f26820n;
-    public boolean f26821r;
+    public boolean f26997n;
+    public boolean f26998r;
 
     public o6(Context context, boolean z10, boolean z11, boolean z12) {
         super(context);
-        this.f26820n = true;
-        this.f26821r = true;
+        this.f26997n = true;
+        this.f26998r = true;
         n6 n6Var = new n6(z10, z11, z12, false);
-        this.f26818c = n6Var;
+        this.f26995c = n6Var;
         n6Var.setCallback(this);
         n6Var.C = new og(this, 8);
     }
 
     public final void a() {
-        this.f26818c.b();
+        this.f26995c.b();
     }
 
     public final void b(float f7, long j3, TimeInterpolator timeInterpolator) {
-        this.f26818c.k(f7, j3, timeInterpolator);
+        this.f26995c.k(f7, j3, timeInterpolator);
     }
 
     public final void c(CharSequence charSequence, boolean z10, boolean z11) {
         boolean z12;
-        if (!this.f26821r && z10) {
+        if (!this.f26998r && z10) {
             z12 = true;
         } else {
             z12 = false;
         }
-        this.f26821r = false;
-        n6 n6Var = this.f26818c;
-        if (z12 && !TextUtils.equals(charSequence, n6Var.f26578g)) {
+        this.f26998r = false;
+        n6 n6Var = this.f26995c;
+        if (z12 && !TextUtils.equals(charSequence, n6Var.f26646g)) {
             if (n6Var.D) {
-                ValueAnimator valueAnimator = n6Var.f26585o;
+                ValueAnimator valueAnimator = n6Var.f26653o;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    n6Var.f26585o = null;
+                    n6Var.f26653o = null;
                 }
             } else if (n6Var.f()) {
-                this.f26819f = charSequence;
+                this.f26996f = charSequence;
                 this.h = z11;
                 return;
             }
@@ -74,31 +74,31 @@ public class o6 extends View {
     }
 
     public final int d() {
-        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f26818c.d()));
+        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f26995c.d()));
     }
 
     public n6 getDrawable() {
-        return this.f26818c;
+        return this.f26995c;
     }
 
     public TextPaint getPaint() {
-        return this.f26818c.f26574a;
+        return this.f26995c.f26642a;
     }
 
     public float getRightPadding() {
-        return this.f26818c.H;
+        return this.f26995c.H;
     }
 
     public Drawable getSizeableBackground() {
-        return this.f26817b;
+        return this.f26994b;
     }
 
     public CharSequence getText() {
-        return this.f26818c.f26578g;
+        return this.f26995c.f26646g;
     }
 
     public int getTextColor() {
-        return this.f26818c.f26574a.getColor();
+        return this.f26995c.f26642a.getColor();
     }
 
     public int getTextHeight() {
@@ -113,16 +113,16 @@ public class o6 extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        Drawable drawable = this.f26817b;
-        n6 n6Var = this.f26818c;
-        if (drawable != null && (!this.f26816a || n6Var.g() > 0.0f)) {
+        Drawable drawable = this.f26994b;
+        n6 n6Var = this.f26995c;
+        if (drawable != null && (!this.f26993a || n6Var.g() > 0.0f)) {
             int d = (int) (n6Var.d() + getPaddingLeft() + getPaddingRight());
-            if ((n6Var.f26575b & 7) == 5) {
-                this.f26817b.setBounds(getWidth() - d, 0, getWidth(), getHeight());
+            if ((n6Var.f26643b & 7) == 5) {
+                this.f26994b.setBounds(getWidth() - d, 0, getWidth(), getHeight());
             } else {
-                this.f26817b.setBounds(0, 0, d, getHeight());
+                this.f26994b.setBounds(0, 0, d, getHeight());
             }
-            this.f26817b.draw(canvas);
+            this.f26994b.draw(canvas);
         }
         n6Var.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         n6Var.draw(canvas);
@@ -144,32 +144,32 @@ public class o6 extends View {
             size = Math.min(size, i12);
         }
         int i13 = this.d;
-        n6 n6Var = this.f26818c;
+        n6 n6Var = this.f26995c;
         if (i13 != size && getLayoutParams().width != 0) {
             n6Var.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
-            n6Var.q(n6Var.f26578g, false, true);
+            n6Var.q(n6Var.f26646g, false, true);
         }
         this.d = size;
-        if (this.f26820n && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+        if (this.f26997n && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
             size = getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(n6Var.e()));
         }
         setMeasuredDimension(size, size2);
     }
 
     public void setAllowCancel(boolean z10) {
-        this.f26818c.D = z10;
+        this.f26995c.D = z10;
     }
 
     public void setEllipsizeByGradient(boolean z10) {
-        this.f26818c.n(z10);
+        this.f26995c.n(z10);
     }
 
     public void setEmojiCacheType(int i10) {
-        this.f26818c.f26582l = i10;
+        this.f26995c.f26650l = i10;
     }
 
     public void setEmojiColor(int i10) {
-        n6 n6Var = this.f26818c;
+        n6 n6Var = this.f26995c;
         if (n6Var.T != i10) {
             n6Var.T = i10;
             n6Var.U = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
@@ -178,24 +178,24 @@ public class o6 extends View {
     }
 
     public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f26818c.U = colorFilter;
+        this.f26995c.U = colorFilter;
         invalidate();
     }
 
     public void setGravity(int i10) {
-        this.f26818c.f26575b = i10;
+        this.f26995c.f26643b = i10;
     }
 
     public void setHideBackgroundIfEmpty(boolean z10) {
-        this.f26816a = z10;
+        this.f26993a = z10;
     }
 
     public void setIgnoreRTL(boolean z10) {
-        this.f26818c.E = z10;
+        this.f26995c.E = z10;
     }
 
     public void setIncludeFontPadding(boolean z10) {
-        this.f26818c.M = z10;
+        this.f26995c.M = z10;
     }
 
     public void setMaxWidth(int i10) {
@@ -203,21 +203,21 @@ public class o6 extends View {
     }
 
     public void setOnWidthUpdatedListener(Runnable runnable) {
-        this.f26818c.V = runnable;
+        this.f26995c.V = runnable;
     }
 
     public void setRightPadding(float f7) {
-        n6 n6Var = this.f26818c;
+        n6 n6Var = this.f26995c;
         n6Var.H = f7;
         n6Var.invalidateSelf();
     }
 
     public void setScaleProperty(float f7) {
-        this.f26818c.v = f7;
+        this.f26995c.v = f7;
     }
 
     public void setSizeableBackground(Drawable drawable) {
-        this.f26817b = drawable;
+        this.f26994b = drawable;
         invalidate();
     }
 
@@ -226,15 +226,15 @@ public class o6 extends View {
     }
 
     public void setTextColor(int i10) {
-        this.f26818c.r(i10);
+        this.f26995c.r(i10);
         invalidate();
     }
 
     public void setTextSize(float f7) {
-        this.f26818c.t(f7);
+        this.f26995c.t(f7);
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f26818c.u(typeface);
+        this.f26995c.u(typeface);
     }
 }

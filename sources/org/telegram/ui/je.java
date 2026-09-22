@@ -13,29 +13,29 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class je extends FrameLayout {
-    public final org.telegram.ui.ActionBar.f6 f34899a;
-    public final org.telegram.ui.Components.x5 f34900b;
-    public final TextView f34901c;
+    public final org.telegram.ui.ActionBar.f6 f34924a;
+    public final org.telegram.ui.Components.x5 f34925b;
+    public final TextView f34926c;
     public final TextView d;
     public final DecimalFormat e;
-    public boolean f34902f;
+    public boolean f34927f;
 
     public je(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f34899a = f6Var;
+        this.f34924a = f6Var;
         LinearLayout f7 = org.telegram.messenger.rk.f(context, 1);
         addView(f7, w7.y5.d(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
         TextView textView = new TextView(context);
-        this.f34901c = textView;
+        this.f34926c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
         TextView h = com.google.android.gms.internal.vision.e2.h(f7, textView, w7.y5.n(-1, -2), context);
         this.d = h;
         h.setTextSize(1, 13.0f);
-        h.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19477y6, f6Var));
+        h.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19492y6, f6Var));
         f7.addView(h, w7.y5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
         org.telegram.ui.Components.x5 x5Var = new org.telegram.ui.Components.x5(context);
-        this.f34900b = x5Var;
+        this.f34925b = x5Var;
         x5Var.setTypeface(AndroidUtilities.bold());
         x5Var.setTextSize(1, 13.0f);
         addView(x5Var, w7.y5.d(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
@@ -54,12 +54,12 @@ public final class je extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f34902f) {
-            org.telegram.ui.ActionBar.f6 f6Var = this.f34899a;
+        if (this.f34927f) {
+            org.telegram.ui.ActionBar.f6 f6Var = this.f34924a;
             if (f6Var != null) {
                 paint = f6Var.G("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.j6.f19216k0;
+                paint = org.telegram.ui.ActionBar.j6.f19231k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {

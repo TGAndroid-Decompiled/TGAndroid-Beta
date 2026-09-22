@@ -8,35 +8,35 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.jl0;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.y70;
 import org.telegram.ui.nb0;
-public final class u0 implements jl0 {
-    public final int f1562a;
-    public final Object f1563b;
-    public final Object f1564c;
+public final class u0 implements ml0 {
+    public final int f1559a;
+    public final Object f1560b;
+    public final Object f1561c;
     public final Object d;
 
     public u0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f1562a = i10;
-        this.f1563b = obj;
-        this.f1564c = obj2;
+        this.f1559a = i10;
+        this.f1560b = obj;
+        this.f1561c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void d(int i10, View view) {
-        int i11 = this.f1562a;
+        int i11 = this.f1559a;
         boolean z10 = true;
         Object obj = this.d;
-        Object obj2 = this.f1564c;
-        Object obj3 = this.f1563b;
+        Object obj2 = this.f1561c;
+        Object obj3 = this.f1560b;
         switch (i11) {
             case 0:
                 r3 r3Var = (r3) obj3;
                 h1 h1Var = (h1) view;
                 m1 m1Var = h1Var.K;
-                v70 F = v70.F((ViewGroup) obj2, new d(), view);
+                y70 F = y70.F((ViewGroup) obj2, new d(), view);
                 F.p(15, -1, LocaleController.formatString(R.string.LiveStoryMessageSent, LocaleController.formatDateTime(m1Var.d, true)));
                 F.k();
                 F.c(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new a1.e(5, (jc) obj, m1Var), false);
@@ -62,12 +62,12 @@ public final class u0 implements jl0 {
                 if (nb0Var.e && !UserConfig.hasPremiumOnAccounts()) {
                     n2Var.showDialog(new rg.x0(n2Var, 10, true));
                     return;
-                } else if (!w7.g6.a(nb0Var)) {
+                } else if (!w7.f6.a(nb0Var)) {
                     s4.d0 d0Var = new s4.d0(context);
-                    d0Var.f43124a = i10;
+                    d0Var.f43145a = i10;
                     tVar.Y2.w0(d0Var);
-                    w7.g6.b(nb0Var);
-                    int i12 = org.telegram.ui.Cells.s.f20896f;
+                    w7.f6.b(nb0Var);
+                    int i12 = org.telegram.ui.Cells.s.f20911f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);

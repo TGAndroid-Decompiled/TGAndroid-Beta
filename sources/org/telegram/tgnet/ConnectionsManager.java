@@ -71,7 +71,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.l0;
 import org.telegram.messenger.lh;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.t71;
+import org.telegram.ui.Components.v71;
 import org.telegram.ui.yg0;
 import v7.j0;
 public class ConnectionsManager extends BaseController {
@@ -676,7 +676,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void checkWebProxyInternal(oi.b bVar, int i10, RequestTimeDelegate requestTimeDelegate) {
-        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f15739f, requestTimeDelegate);
+        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f15754f, requestTimeDelegate);
     }
 
     public static int generateClassGuid() {
@@ -974,7 +974,7 @@ public class ConnectionsManager extends BaseController {
                 }
                 i17 = 0;
             }
-            if ((i10 & 2) != 0 && t71.f28316k0.isEmpty()) {
+            if ((i10 & 2) != 0 && v71.f28999k0.isEmpty()) {
                 y2.f.b(ApplicationLoader.applicationContext).d(i17, Math.max(0L, (System.currentTimeMillis() - j3) - native_getCurrentPingTime(this.currentAccount)));
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -1342,12 +1342,12 @@ public class ConnectionsManager extends BaseController {
         int i11;
         String str5 = "";
         if (z10 && bVar != null && bVar.f()) {
-            String str6 = bVar.f15737b;
-            int i12 = bVar.f15738c;
+            String str6 = bVar.f15752b;
+            int i12 = bVar.f15753c;
             String str7 = bVar.d;
             String str8 = bVar.e;
-            String str9 = bVar.f15739f;
-            if (bVar.f15736a == 3) {
+            String str9 = bVar.f15754f;
+            if (bVar.f15751a == 3) {
                 i10 = oi.k.l(str6, str9);
                 if (i10 == 0) {
                     i10 = 9;
@@ -1359,10 +1359,10 @@ public class ConnectionsManager extends BaseController {
             } else {
                 synchronized (oi.k.v) {
                     try {
-                        oi.k kVar = oi.k.f15758w;
+                        oi.k kVar = oi.k.f15773w;
                         if (kVar != null) {
                             kVar.n();
-                            oi.k.f15758w = null;
+                            oi.k.f15773w = null;
                         }
                     } finally {
                     }
@@ -1466,7 +1466,7 @@ public class ConnectionsManager extends BaseController {
 
     public long checkProxy(oi.b bVar, RequestTimeDelegate requestTimeDelegate) {
         if (bVar != null && bVar.f()) {
-            if (bVar.f15736a == 3) {
+            if (bVar.f15751a == 3) {
                 oi.f fVar = oi.f.e;
                 if (fVar == null) {
                     synchronized (oi.f.class) {
@@ -1482,7 +1482,7 @@ public class ConnectionsManager extends BaseController {
                 }
                 oi.f fVar2 = fVar;
                 k2.v vVar = new k2.v(this, 9);
-                if (bVar.f15736a == 3 && bVar.f() && requestTimeDelegate != null) {
+                if (bVar.f15751a == 3 && bVar.f() && requestTimeDelegate != null) {
                     AndroidUtilities.runOnUIThread(new i5(fVar2, vVar, bVar, requestTimeDelegate, 25));
                     return 0L;
                 } else if (requestTimeDelegate != null) {
@@ -1490,7 +1490,7 @@ public class ConnectionsManager extends BaseController {
                     return 0L;
                 }
             } else {
-                return native_checkProxy(this.currentAccount, bVar.f15737b, bVar.f15738c, bVar.d, bVar.e, bVar.f15739f, requestTimeDelegate);
+                return native_checkProxy(this.currentAccount, bVar.f15752b, bVar.f15753c, bVar.d, bVar.e, bVar.f15754f, requestTimeDelegate);
             }
         }
         return 0L;
@@ -1615,11 +1615,11 @@ public class ConnectionsManager extends BaseController {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
         oi.b c10 = oi.b.c(sharedPreferences);
         if (sharedPreferences.getBoolean("proxy_enabled", false) && c10.f()) {
-            if (c10.f15736a == 3) {
-                int l4 = oi.k.l(c10.f15737b, c10.f15739f);
-                native_setProxySettings(this.currentAccount, "127.0.0.1", l4 != 0 ? l4 : 9, "", "", c10.f15739f);
+            if (c10.f15751a == 3) {
+                int l4 = oi.k.l(c10.f15752b, c10.f15754f);
+                native_setProxySettings(this.currentAccount, "127.0.0.1", l4 != 0 ? l4 : 9, "", "", c10.f15754f);
             } else {
-                native_setProxySettings(this.currentAccount, c10.f15737b, c10.f15738c, c10.d, c10.e, c10.f15739f);
+                native_setProxySettings(this.currentAccount, c10.f15752b, c10.f15753c, c10.d, c10.e, c10.f15754f);
             }
         }
         try {
@@ -1736,7 +1736,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void setIsUpdating(boolean z10) {
-        AndroidUtilities.runOnUIThread(new bi.f(17, this, z10));
+        AndroidUtilities.runOnUIThread(new bi.f(18, this, z10));
     }
 
     public void setPushConnectionEnabled(boolean z10) {

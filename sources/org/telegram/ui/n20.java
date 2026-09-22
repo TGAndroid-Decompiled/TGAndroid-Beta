@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class n20 extends rg.z0 {
-    public final int f35881r;
+    public final int f35902r;
 
     public n20(int i10, int i11, int i12, int i13, org.telegram.ui.ActionBar.f6 f6Var, int i14) {
         super(i10, i11, i12, i13, f6Var);
-        this.f35881r = i14;
+        this.f35902r = i14;
     }
 
     @Override
     public final int c(int i10) {
-        switch (this.f35881r) {
+        switch (this.f35902r) {
             case 0:
                 return org.telegram.ui.ActionBar.j6.C0(i10);
             default:

@@ -2,7 +2,7 @@ package bf;
 
 import v7.i0;
 public final class j extends a {
-    public String f3545g;
+    public String f3544g;
 
     @Override
     public final void a(i0 i0Var) {

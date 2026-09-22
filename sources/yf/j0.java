@@ -11,9 +11,9 @@ import android.view.ViewOutlineProvider;
 import org.telegram.ui.rp0;
 import org.telegram.ui.s3;
 public abstract class j0 {
-    public static final k2 f47140a = new k2(23);
-    public static final k2 f47141b = new k2(24);
-    public static Path f47142c;
+    public static final k2 f47161a = new k2(23);
+    public static final k2 f47162b = new k2(24);
+    public static Path f47163c;
     public static Outline d;
     public static Rect e;
 
@@ -24,12 +24,12 @@ public abstract class j0 {
         ViewOutlineProvider outlineProvider = rp0Var.getOutlineProvider();
         if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && rp0Var.getClipToOutline() && outlineProvider != null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
-                if (f47142c == null) {
-                    f47142c = new Path();
+                if (f47163c == null) {
+                    f47163c = new Path();
                     d = new Outline();
                     e = new Rect();
                 }
-                path = f47142c;
+                path = f47163c;
                 outline = d;
                 rect = e;
                 outline.setEmpty();

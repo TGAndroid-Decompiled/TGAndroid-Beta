@@ -5,21 +5,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class p50 implements org.telegram.ui.Components.t40 {
-    public float f36469a;
-    public TLRPC.FileLocation f36470b;
-    public TLRPC.FileLocation f36471c;
+    public float f36496a;
+    public TLRPC.FileLocation f36497b;
+    public TLRPC.FileLocation f36498c;
     public ImageLocation d;
     public final long e;
-    public final i60 f36472f;
+    public final i60 f36499f;
 
     public p50(i60 i60Var, long j3) {
-        this.f36472f = i60Var;
+        this.f36499f = i60Var;
         this.e = j3;
     }
 
     @Override
     public final void B(float f7) {
-        this.f36472f.f34362b.O(this.d, f7);
+        this.f36499f.f34382b.O(this.d, f7);
         a(f7);
     }
 
@@ -29,15 +29,15 @@ public final class p50 implements org.telegram.ui.Components.t40 {
     }
 
     public final void a(float f7) {
-        this.f36469a = f7;
-        o50 o50Var = this.f36472f.Q;
+        this.f36496a = f7;
+        o50 o50Var = this.f36499f.Q;
         if (o50Var != null) {
             for (int i10 = 0; i10 < o50Var.getChildCount(); i10++) {
                 View childAt = o50Var.getChildAt(i10);
                 if (childAt instanceof org.telegram.ui.Cells.f4) {
                     org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) childAt;
                     if (f4Var.c()) {
-                        org.telegram.ui.Cells.a4 a4Var = f4Var.f20284x;
+                        org.telegram.ui.Cells.a4 a4Var = f4Var.f20299x;
                         a4Var.setProgress(f7);
                         if (f7 < 1.0f) {
                             AndroidUtilities.updateViewVisibilityAnimated(a4Var, true, 1.0f, true);

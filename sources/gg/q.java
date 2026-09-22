@@ -4,15 +4,15 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.ui.Components.eo0;
+import org.telegram.ui.Components.go0;
 public final class q implements Runnable {
     public final int f9894a;
     public final i0 f9895b;
     public final long f9896c;
 
-    public q(eo0 eo0Var, long j3, int i10) {
+    public q(go0 go0Var, long j3, int i10) {
         this.f9894a = i10;
-        this.f9895b = eo0Var;
+        this.f9895b = go0Var;
         this.f9896c = j3;
     }
 

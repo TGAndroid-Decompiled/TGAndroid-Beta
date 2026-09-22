@@ -1,13 +1,13 @@
 package gg;
 
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.eo0;
+import org.telegram.ui.Components.go0;
 public final class z extends c2 {
-    public final eo0 f10000t;
+    public final go0 f10000t;
 
-    public z(eo0 eo0Var) {
+    public z(go0 go0Var) {
         super(false);
-        this.f10000t = eo0Var;
+        this.f10000t = go0Var;
     }
 
     @Override

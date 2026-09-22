@@ -13,26 +13,26 @@ import org.telegram.ui.ja0;
 import org.telegram.ui.u21;
 public final class k0 {
     public static final k0 e;
-    public static final List f41183f;
-    public static final List f41184g;
+    public static final List f41203f;
+    public static final List f41204g;
     public static ArrayList h;
-    public static boolean f41185i;
-    public final String f41186a;
-    public final String f41187b;
-    public final String f41188c;
+    public static boolean f41205i;
+    public final String f41206a;
+    public final String f41207b;
+    public final String f41208c;
     public final m5.e d;
 
     static {
         k0 k0Var = new k0("roboto", "PhotoEditorTypefaceRoboto", new m5.e((i0) new ja0(22)));
         e = k0Var;
-        f41183f = Arrays.asList(k0Var, new k0("italic", "PhotoEditorTypefaceItalic", new m5.e((i0) new ja0(23))), new k0("serif", "PhotoEditorTypefaceSerif", new m5.e((i0) new ja0(24))), new k0("condensed", "PhotoEditorTypefaceCondensed", new m5.e((i0) new ja0(25))), new k0("mono", "PhotoEditorTypefaceMono", new m5.e((i0) new ja0(26))), new k0("mw_bold", "PhotoEditorTypefaceMerriweather", new m5.e((i0) new ja0(27))));
-        f41184g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
+        f41203f = Arrays.asList(k0Var, new k0("italic", "PhotoEditorTypefaceItalic", new m5.e((i0) new ja0(23))), new k0("serif", "PhotoEditorTypefaceSerif", new m5.e((i0) new ja0(24))), new k0("condensed", "PhotoEditorTypefaceCondensed", new m5.e((i0) new ja0(25))), new k0("mono", "PhotoEditorTypefaceMono", new m5.e((i0) new ja0(26))), new k0("mw_bold", "PhotoEditorTypefaceMerriweather", new m5.e((i0) new ja0(27))));
+        f41204g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
     public k0(String str, String str2, m5.e eVar) {
-        this.f41186a = str;
-        this.f41187b = str2;
-        this.f41188c = null;
+        this.f41206a = str;
+        this.f41207b = str2;
+        this.f41208c = null;
         this.d = eVar;
     }
 
@@ -47,11 +47,11 @@ public final class k0 {
     public static List c() {
         ArrayList arrayList = h;
         if (arrayList == null) {
-            if (arrayList == null && !f41185i) {
-                f41185i = true;
+            if (arrayList == null && !f41205i) {
+                f41205i = true;
                 Utilities.themeQueue.postRunnable(new u21(10));
             }
-            return f41183f;
+            return f41203f;
         }
         return arrayList;
     }
@@ -62,9 +62,9 @@ public final class k0 {
             return null;
         }
         randomAccessFile.seek(i10 + j0Var.d);
-        byte[] bArr = new byte[j0Var.f41180c];
+        byte[] bArr = new byte[j0Var.f41200c];
         randomAccessFile.read(bArr);
-        if (j0Var.f41178a == 1) {
+        if (j0Var.f41198a == 1) {
             charset = StandardCharsets.UTF_16BE;
         } else {
             charset = StandardCharsets.UTF_8;
@@ -74,16 +74,16 @@ public final class k0 {
 
     public final Typeface d() {
         m5.e eVar = this.d;
-        if (((Typeface) eVar.f14954c) == null) {
-            eVar.f14954c = ((i0) eVar.f14953b).a();
+        if (((Typeface) eVar.f14969c) == null) {
+            eVar.f14969c = ((i0) eVar.f14968b).a();
         }
-        return (Typeface) eVar.f14954c;
+        return (Typeface) eVar.f14969c;
     }
 
     public k0(Font font, String str) {
-        this.f41186a = str;
-        this.f41188c = str;
-        this.f41187b = null;
+        this.f41206a = str;
+        this.f41208c = str;
+        this.f41207b = null;
         this.d = new m5.e((i0) new k2.v(font, 17));
     }
 }

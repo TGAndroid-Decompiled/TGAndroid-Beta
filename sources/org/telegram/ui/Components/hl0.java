@@ -1,78 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class hl0 extends s4.n0 implements bh.a {
-    public final Utilities.CallbackReturn f24718a;
-    public final vl0 f24719b;
-    public final int f24720c;
-    public final boolean d;
-
-    public hl0(vl0 vl0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
-        this.f24719b = vl0Var;
-        this.f24718a = callbackReturn;
-        this.f24720c = i10;
-        this.d = z10;
-    }
+import android.view.ViewConfiguration;
+import android.view.ViewParent;
+public final class hl0 implements View.OnTouchListener {
+    public float f24848a;
+    public float f24849b;
+    public boolean f24850c;
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
-        int b10;
-        boolean z10;
-        int dp;
-        if (((Boolean) this.f24718a.run(view)).booleanValue()) {
-            int i10 = this.f24720c;
-            rect.right = i10;
-            rect.left = i10;
-            s4.c1 U = recyclerView.U(view);
-            s4.h0 adapter = recyclerView.getAdapter();
-            if (U != null && adapter != null && (b10 = U.b()) != -1) {
-                boolean z11 = false;
-                if (b10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (b10 == adapter.h() - 1) {
-                    z11 = true;
-                }
-                if (z10) {
-                    if (this.d) {
-                        dp = i10;
-                    } else {
-                        dp = AndroidUtilities.dp(4.0f);
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        ViewParent parent = view.getParent();
+        if (parent != null) {
+            if (motionEvent.getAction() == 0) {
+                this.f24848a = motionEvent.getX();
+                this.f24849b = motionEvent.getY();
+                this.f24850c = true;
+                parent.requestDisallowInterceptTouchEvent(true);
+            }
+            if (motionEvent.getAction() == 2) {
+                float x10 = this.f24848a - motionEvent.getX();
+                float y3 = this.f24849b - motionEvent.getY();
+                float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+                if (this.f24850c) {
+                    if (Math.sqrt((y3 * y3) + (x10 * x10)) > scaledTouchSlop) {
+                        this.f24850c = false;
+                        parent.requestDisallowInterceptTouchEvent(false);
+                        return false;
                     }
-                    rect.top = dp;
                 }
-                if (z11) {
-                    rect.bottom = i10;
-                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                this.f24850c = false;
+                parent.requestDisallowInterceptTouchEvent(false);
+                return false;
             }
         }
-    }
-
-    @Override
-    public final void b(ah.a aVar, RectF rectF) {
-        aVar.f417a = true;
-    }
-
-    @Override
-    public final void c(Canvas canvas, RecyclerView recyclerView) {
-        if (recyclerView instanceof vl0) {
-            ((vl0) recyclerView).R0(canvas);
-        }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        canvas.save();
-        canvas.clipRect(rectF);
-        this.f24719b.R0(canvas);
-        canvas.restore();
+        return false;
     }
 }

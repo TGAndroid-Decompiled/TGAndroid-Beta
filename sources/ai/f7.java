@@ -6,15 +6,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class f7 implements ToIntFunction {
-    public final int f878a;
+    public final int f875a;
 
     public f7(int i10) {
-        this.f878a = i10;
+        this.f875a = i10;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f878a) {
+        switch (this.f875a) {
             case 0:
                 return -((TL_stories.StoryView) obj).date;
             case 1:
@@ -28,16 +28,16 @@ public final class f7 implements ToIntFunction {
             case 5:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 6:
-                return ((TLRPC.Message) obj).f18349id;
+                return ((TLRPC.Message) obj).f18364id;
             case 7:
-                return ((TLRPC.Message) obj).f18349id;
+                return ((TLRPC.Message) obj).f18364id;
             case 8:
                 return ((org.telegram.ui.Components.e6) obj).d;
             case 9:
                 return ((org.telegram.ui.Components.e6) obj).e;
             case 10:
                 ad.c cVar = (ad.c) obj;
-                return cVar.d - cVar.f390b;
+                return cVar.d - cVar.f387b;
             case 11:
                 TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
                 int i10 = messagePeerReaction.date;
@@ -53,7 +53,7 @@ public final class f7 implements ToIntFunction {
                 }
                 return Integer.MIN_VALUE;
             case 13:
-                return ((yf.d) obj).f47091a;
+                return ((yf.d) obj).f47112a;
             case 14:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 15:

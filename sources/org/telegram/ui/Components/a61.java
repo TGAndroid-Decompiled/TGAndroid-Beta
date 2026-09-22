@@ -4,53 +4,26 @@ import android.net.Uri;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class a61 extends URLSpan {
-    public final boolean f22570a;
-    public final c11 f22571b;
-    public TLObject f22572c;
-    public String d;
+public final class a61 extends URLSpan {
+    public final e11 f22550a;
 
-    public a61(String str) {
-        this(str, (c11) null);
-    }
-
-    @Override
-    public void onClick(View view) {
-        String url = getURL();
-        if (url.startsWith("@")) {
-            nf.f.p(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
-            return;
-        }
-        nf.f.s(view.getContext(), url);
-    }
-
-    @Override
-    public void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i10 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        c11 c11Var = this.f22571b;
-        if (c11Var != null) {
-            c11Var.a(textPaint);
-        }
-        if (i10 == color && !this.f22570a) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        textPaint.setUnderlineText(z10);
-    }
-
-    public a61(String str, int i10) {
-        this(str, (c11) null);
-        this.f22570a = true;
-    }
-
-    public a61(String str, c11 c11Var) {
+    public a61(String str, e11 e11Var) {
         super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f22570a = false;
-        this.f22571b = c11Var;
+        this.f22550a = e11Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        e11 e11Var = this.f22550a;
+        if (e11Var != null) {
+            e11Var.a(textPaint);
+        }
+        textPaint.setUnderlineText(true);
     }
 }

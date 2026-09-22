@@ -8,23 +8,23 @@ import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 public final class s00 extends org.telegram.ui.Components.o6 {
-    public final int f37260s = 0;
+    public final int f37282s = 0;
     public final Object v;
-    public final ViewGroup f37261w;
+    public final ViewGroup f37283w;
 
     public s00(yh.k7 k7Var, Context context, Drawable drawable) {
         super(context, false, false, false);
-        this.f37261w = k7Var;
+        this.f37283w = k7Var;
         this.v = drawable;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        switch (this.f37260s) {
+        switch (this.f37282s) {
             case 0:
-                t00 t00Var = (t00) this.f37261w;
-                int a2 = t00Var.f37581w.a(t00Var.v, false);
+                t00 t00Var = (t00) this.f37283w;
+                int a2 = t00Var.f37605w.a(t00Var.v, false);
                 setTextColor(a2);
                 Paint paint = (Paint) this.v;
                 if (org.telegram.ui.ActionBar.j6.I.q()) {
@@ -40,7 +40,7 @@ public final class s00 extends org.telegram.ui.Components.o6 {
                 return;
             default:
                 Drawable drawable = (Drawable) this.v;
-                if (!((yh.k7) this.f37261w).d) {
+                if (!((yh.k7) this.f37283w).d) {
                     int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().d()) - AndroidUtilities.dp(20.0f));
                     drawable.setBounds(measuredWidth, org.telegram.messenger.rk.z(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
                     drawable.draw(canvas);
@@ -52,7 +52,7 @@ public final class s00 extends org.telegram.ui.Components.o6 {
 
     public s00(t00 t00Var, Context context) {
         super(context, false, true, true);
-        this.f37261w = t00Var;
+        this.f37283w = t00Var;
         this.v = new Paint(1);
     }
 }

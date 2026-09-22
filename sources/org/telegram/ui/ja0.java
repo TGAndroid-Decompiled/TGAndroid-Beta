@@ -13,11 +13,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-public final class ja0 implements GenericProvider, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.yc0, Utilities.Callback2Return, org.telegram.ui.Components.dw0, pg.i0, q3.g, q9.e {
-    public final int f34882a;
+public final class ja0 implements GenericProvider, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.bd0, Utilities.Callback2Return, org.telegram.ui.Components.fw0, pg.i0, q3.g, q9.e {
+    public final int f34907a;
 
     public ja0(int i10) {
-        this.f34882a = i10;
+        this.f34907a = i10;
     }
 
     public static AudioRecordingConfiguration d(Object obj) {
@@ -30,7 +30,7 @@ public final class ja0 implements GenericProvider, org.telegram.ui.ActionBar.a2,
 
     @Override
     public Typeface a() {
-        switch (this.f34882a) {
+        switch (this.f34907a) {
             case 22:
                 return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 23:
@@ -84,7 +84,7 @@ public final class ja0 implements GenericProvider, org.telegram.ui.ActionBar.a2,
 
     @Override
     public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f34882a) {
+        switch (this.f34907a) {
             case 2:
                 b2Var.dismiss();
                 return;
@@ -142,6 +142,6 @@ public final class ja0 implements GenericProvider, org.telegram.ui.ActionBar.a2,
     }
 
     @Override
-    public void n() {
+    public void l() {
     }
 }

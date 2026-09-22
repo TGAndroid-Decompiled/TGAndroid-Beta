@@ -4,75 +4,75 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.zn;
 public final class w5 implements Runnable {
-    public final int f48219a;
-    public final org.telegram.ui.ActionBar.f3[] f48220b;
-    public final long f48221c;
+    public final int f48240a;
+    public final org.telegram.ui.ActionBar.f3[] f48241b;
+    public final long f48242c;
 
     public w5(org.telegram.ui.ActionBar.f3[] f3VarArr, long j3, int i10) {
-        this.f48219a = i10;
-        this.f48220b = f3VarArr;
-        this.f48221c = j3;
+        this.f48240a = i10;
+        this.f48241b = f3VarArr;
+        this.f48242c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f48219a) {
+        switch (this.f48240a) {
             case 0:
-                this.f48220b[0].dismiss();
+                this.f48241b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    U.presentFragment(ProfileActivity.m4(this.f48221c));
+                    U.presentFragment(ProfileActivity.m4(this.f48242c));
                     return;
                 }
                 return;
             case 1:
-                this.f48220b[0].dismiss();
+                this.f48241b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    U2.presentFragment(zn.R9(this.f48221c));
+                    U2.presentFragment(zn.R9(this.f48242c));
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.ActionBar.f3 f3Var = this.f48220b[0];
+                org.telegram.ui.ActionBar.f3 f3Var = this.f48241b[0];
                 if (f3Var != null) {
                     f3Var.dismiss();
                 }
                 org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
                 if (U3 != null) {
-                    U3.presentFragment(zn.R9(this.f48221c));
+                    U3.presentFragment(zn.R9(this.f48242c));
                     return;
                 }
                 return;
             case 3:
-                this.f48220b[0].dismiss();
+                this.f48241b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U4 = LaunchActivity.U();
                 if (U4 != null) {
-                    U4.presentFragment(zn.R9(this.f48221c));
+                    U4.presentFragment(zn.R9(this.f48242c));
                     return;
                 }
                 return;
             case 4:
-                this.f48220b[0].dismiss();
+                this.f48241b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U5 = LaunchActivity.U();
                 if (U5 != null) {
-                    U5.presentFragment(new ei.l(this.f48221c));
+                    U5.presentFragment(new ei.l(this.f48242c));
                     return;
                 }
                 return;
             case 5:
-                this.f48220b[0].dismiss();
+                this.f48241b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U6 = LaunchActivity.U();
                 if (U6 != null) {
-                    U6.presentFragment(ProfileActivity.m4(this.f48221c));
+                    U6.presentFragment(ProfileActivity.m4(this.f48242c));
                     return;
                 }
                 return;
             default:
-                this.f48220b[0].dismiss();
+                this.f48241b[0].dismiss();
                 org.telegram.ui.ActionBar.n2 U7 = LaunchActivity.U();
                 if (U7 != null) {
-                    U7.presentFragment(ProfileActivity.m4(this.f48221c));
+                    U7.presentFragment(ProfileActivity.m4(this.f48242c));
                     return;
                 }
                 return;

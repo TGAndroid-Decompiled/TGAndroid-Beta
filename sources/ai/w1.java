@@ -19,13 +19,13 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.rv0;
-import org.telegram.ui.Components.sv0;
-public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
-    public final int f1640a;
+import org.telegram.ui.Components.tv0;
+import org.telegram.ui.Components.uv0;
+public final class w1 implements NativeInstance.AudioLevelsCallback, tv0, uv0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
+    public final int f1637a;
 
     public w1(int i10) {
-        this.f1640a = i10;
+        this.f1637a = i10;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
     }
 
     public Constructor a() {
-        switch (this.f1640a) {
+        switch (this.f1637a) {
             case 18:
                 if (!Boolean.TRUE.equals(Class.forName("androidx.media3.decoder.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
                     return null;
@@ -52,75 +52,75 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
         e9.a1 i10;
         e9.a1 j3;
         int i11 = 0;
-        switch (this.f1640a) {
+        switch (this.f1637a) {
             case 10:
                 b2.w wVar = (b2.w) obj;
-                return wVar.f3341a + ": " + wVar.f3342b;
+                return wVar.f3340a + ": " + wVar.f3341b;
             case 11:
                 b2.e1 e1Var = (b2.e1) obj;
                 e1Var.getClass();
                 Bundle bundle = new Bundle();
-                int i12 = e1Var.f2982a;
+                int i12 = e1Var.f2981a;
                 if (i12 != 0) {
                     bundle.putInt(b2.e1.d, i12);
                 }
-                int i13 = e1Var.f2983b;
+                int i13 = e1Var.f2982b;
                 if (i13 != 0) {
                     bundle.putInt(b2.e1.e, i13);
                 }
-                int i14 = e1Var.f2984c;
+                int i14 = e1Var.f2983c;
                 if (i14 != 0) {
-                    bundle.putInt(b2.e1.f2981f, i14);
+                    bundle.putInt(b2.e1.f2980f, i14);
                 }
                 return bundle;
             case 12:
                 b2.j0 j0Var = (b2.j0) obj;
                 j0Var.getClass();
                 Bundle bundle2 = new Bundle();
-                bundle2.putParcelable(b2.j0.h, j0Var.f3044a);
-                String str = j0Var.f3045b;
+                bundle2.putParcelable(b2.j0.h, j0Var.f3043a);
+                String str = j0Var.f3044b;
                 if (str != null) {
-                    bundle2.putString(b2.j0.f3038i, str);
+                    bundle2.putString(b2.j0.f3037i, str);
                 }
-                String str2 = j0Var.f3046c;
+                String str2 = j0Var.f3045c;
                 if (str2 != null) {
-                    bundle2.putString(b2.j0.f3039j, str2);
+                    bundle2.putString(b2.j0.f3038j, str2);
                 }
                 int i15 = j0Var.d;
                 if (i15 != 0) {
-                    bundle2.putInt(b2.j0.f3040k, i15);
+                    bundle2.putInt(b2.j0.f3039k, i15);
                 }
                 int i16 = j0Var.e;
                 if (i16 != 0) {
-                    bundle2.putInt(b2.j0.f3041l, i16);
+                    bundle2.putInt(b2.j0.f3040l, i16);
                 }
-                String str3 = j0Var.f3047f;
+                String str3 = j0Var.f3046f;
                 if (str3 != null) {
-                    bundle2.putString(b2.j0.f3042m, str3);
+                    bundle2.putString(b2.j0.f3041m, str3);
                 }
-                String str4 = j0Var.f3048g;
+                String str4 = j0Var.f3047g;
                 if (str4 != null) {
-                    bundle2.putString(b2.j0.f3043n, str4);
+                    bundle2.putString(b2.j0.f3042n, str4);
                 }
                 return bundle2;
             case 13:
                 Bundle bundle3 = (Bundle) obj;
                 Uri uri = (Uri) bundle3.getParcelable(b2.j0.h);
                 uri.getClass();
-                String string = bundle3.getString(b2.j0.f3038i);
-                String string2 = bundle3.getString(b2.j0.f3039j);
-                int i17 = bundle3.getInt(b2.j0.f3040k, 0);
-                int i18 = bundle3.getInt(b2.j0.f3041l, 0);
-                String string3 = bundle3.getString(b2.j0.f3042m);
-                String string4 = bundle3.getString(b2.j0.f3043n);
+                String string = bundle3.getString(b2.j0.f3037i);
+                String string2 = bundle3.getString(b2.j0.f3038j);
+                int i17 = bundle3.getInt(b2.j0.f3039k, 0);
+                int i18 = bundle3.getInt(b2.j0.f3040l, 0);
+                String string3 = bundle3.getString(b2.j0.f3041m);
+                String string4 = bundle3.getString(b2.j0.f3042n);
                 ?? obj2 = new Object();
-                obj2.f3022c = uri;
+                obj2.f3021c = uri;
                 obj2.d = b2.r0.n(string);
                 obj2.e = string2;
-                obj2.f3020a = i17;
-                obj2.f3021b = i18;
-                obj2.f3023f = string3;
-                obj2.f3024g = string4;
+                obj2.f3019a = i17;
+                obj2.f3020b = i18;
+                obj2.f3022f = string3;
+                obj2.f3023g = string4;
                 return new b2.j0(obj2);
             case 14:
                 Bundle bundle4 = (Bundle) obj;
@@ -128,21 +128,21 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
                 b2.r rVar = new b2.r();
                 if (bundle4 != null) {
                     ClassLoader classLoader = e2.d.class.getClassLoader();
-                    String str5 = e2.d0.f7888a;
+                    String str5 = e2.d0.f7887a;
                     bundle4.setClassLoader(classLoader);
                 }
                 String string5 = bundle4.getString(b2.s.V);
-                String str6 = sVar.f3295a;
+                String str6 = sVar.f3294a;
                 if (string5 == null) {
                     string5 = str6;
                 }
-                rVar.f3240a = string5;
+                rVar.f3239a = string5;
                 String string6 = bundle4.getString(b2.s.W);
-                String str7 = sVar.f3296b;
+                String str7 = sVar.f3295b;
                 if (string6 == null) {
                     string6 = str7;
                 }
-                rVar.f3241b = string6;
+                rVar.f3240b = string6;
                 ArrayList parcelableArrayList = bundle4.getParcelableArrayList(b2.s.A0);
                 if (parcelableArrayList == null) {
                     i10 = e9.a1.e;
@@ -151,14 +151,14 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
                     for (int i19 = 0; i19 < parcelableArrayList.size(); i19++) {
                         Bundle bundle5 = (Bundle) parcelableArrayList.get(i19);
                         bundle5.getClass();
-                        String string7 = bundle5.getString(b2.w.f3340c);
+                        String string7 = bundle5.getString(b2.w.f3339c);
                         String string8 = bundle5.getString(b2.w.d);
                         string8.getClass();
                         u10.b(new b2.w(string7, string8));
                     }
                     i10 = u10.i();
                 }
-                rVar.f3242c = e9.i0.v(i10);
+                rVar.f3241c = e9.i0.v(i10);
                 String string9 = bundle4.getString(b2.s.X);
                 String str8 = sVar.d;
                 if (string9 == null) {
@@ -166,59 +166,59 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
                 }
                 rVar.d = string9;
                 rVar.e = bundle4.getInt(b2.s.Y, sVar.e);
-                rVar.f3243f = bundle4.getInt(b2.s.Z, sVar.f3298f);
-                rVar.f3244g = bundle4.getInt(b2.s.B0, sVar.f3299g);
-                rVar.h = bundle4.getInt(b2.s.f3270a0, sVar.h);
-                rVar.f3245i = bundle4.getInt(b2.s.f3271b0, sVar.f3300i);
-                String string10 = bundle4.getString(b2.s.f3272c0);
-                String str9 = sVar.f3302k;
+                rVar.f3242f = bundle4.getInt(b2.s.Z, sVar.f3297f);
+                rVar.f3243g = bundle4.getInt(b2.s.B0, sVar.f3298g);
+                rVar.h = bundle4.getInt(b2.s.f3269a0, sVar.h);
+                rVar.f3244i = bundle4.getInt(b2.s.f3270b0, sVar.f3299i);
+                String string10 = bundle4.getString(b2.s.f3271c0);
+                String str9 = sVar.f3301k;
                 if (string10 == null) {
                     string10 = str9;
                 }
-                rVar.f3246j = string10;
-                String string11 = bundle4.getString(b2.s.f3273d0);
-                String str10 = sVar.f3308q;
+                rVar.f3245j = string10;
+                String string11 = bundle4.getString(b2.s.f3272d0);
+                String str10 = sVar.f3307q;
                 if (string11 == null) {
                     string11 = str10;
                 }
-                rVar.f3252p = b2.r0.n(string11);
-                String string12 = bundle4.getString(b2.s.f3274e0);
-                String str11 = sVar.f3309r;
+                rVar.f3251p = b2.r0.n(string11);
+                String string12 = bundle4.getString(b2.s.f3273e0);
+                String str11 = sVar.f3308r;
                 if (string12 == null) {
                     string12 = str11;
                 }
-                rVar.f3253q = b2.r0.n(string12);
-                rVar.f3254r = bundle4.getInt(b2.s.f3275f0, sVar.f3310s);
+                rVar.f3252q = b2.r0.n(string12);
+                rVar.f3253r = bundle4.getInt(b2.s.f3274f0, sVar.f3309s);
                 ArrayList arrayList = new ArrayList();
                 while (true) {
-                    byte[] byteArray = bundle4.getByteArray(b2.s.f3276g0 + "_" + Integer.toString(i11, 36));
+                    byte[] byteArray = bundle4.getByteArray(b2.s.f3275g0 + "_" + Integer.toString(i11, 36));
                     if (byteArray == null) {
-                        rVar.f3256t = arrayList;
-                        rVar.f3257u = (b2.o) bundle4.getParcelable(b2.s.f3277h0);
-                        rVar.v = bundle4.getLong(b2.s.f3278i0, sVar.f3313w);
-                        rVar.f3259x = bundle4.getInt(b2.s.f3279j0, sVar.f3315y);
-                        rVar.f3260y = bundle4.getInt(b2.s.f3280k0, sVar.f3316z);
-                        rVar.f3261z = bundle4.getInt(b2.s.D0, sVar.A);
+                        rVar.f3255t = arrayList;
+                        rVar.f3256u = (b2.o) bundle4.getParcelable(b2.s.f3276h0);
+                        rVar.v = bundle4.getLong(b2.s.f3277i0, sVar.f3312w);
+                        rVar.f3258x = bundle4.getInt(b2.s.f3278j0, sVar.f3314y);
+                        rVar.f3259y = bundle4.getInt(b2.s.f3279k0, sVar.f3315z);
+                        rVar.f3260z = bundle4.getInt(b2.s.D0, sVar.A);
                         rVar.A = bundle4.getInt(b2.s.E0, sVar.B);
-                        rVar.B = bundle4.getFloat(b2.s.f3281l0, sVar.C);
+                        rVar.B = bundle4.getFloat(b2.s.f3280l0, sVar.C);
                         rVar.C = bundle4.getInt(b2.s.m0, sVar.D);
-                        rVar.D = bundle4.getFloat(b2.s.f3282n0, sVar.E);
-                        rVar.E = bundle4.getByteArray(b2.s.f3283o0);
-                        rVar.F = bundle4.getInt(b2.s.f3284p0, sVar.G);
+                        rVar.D = bundle4.getFloat(b2.s.f3281n0, sVar.E);
+                        rVar.E = bundle4.getByteArray(b2.s.f3282o0);
+                        rVar.F = bundle4.getInt(b2.s.f3283p0, sVar.G);
                         rVar.H = bundle4.getInt(b2.s.C0, sVar.I);
-                        Bundle bundle6 = bundle4.getBundle(b2.s.f3285q0);
+                        Bundle bundle6 = bundle4.getBundle(b2.s.f3284q0);
                         if (bundle6 != null) {
-                            rVar.G = new b2.j(bundle6.getInt(b2.j.f3027i, -1), bundle6.getInt(b2.j.f3028j, -1), bundle6.getInt(b2.j.f3029k, -1), bundle6.getByteArray(b2.j.f3030l), bundle6.getInt(b2.j.f3031m, -1), bundle6.getInt(b2.j.f3032n, -1));
+                            rVar.G = new b2.j(bundle6.getInt(b2.j.f3026i, -1), bundle6.getInt(b2.j.f3027j, -1), bundle6.getInt(b2.j.f3028k, -1), bundle6.getByteArray(b2.j.f3029l), bundle6.getInt(b2.j.f3030m, -1), bundle6.getInt(b2.j.f3031n, -1));
                         }
-                        rVar.I = bundle4.getInt(b2.s.f3286r0, sVar.J);
-                        rVar.J = bundle4.getInt(b2.s.f3287s0, sVar.K);
-                        rVar.K = bundle4.getInt(b2.s.f3288t0, sVar.L);
-                        rVar.L = bundle4.getInt(b2.s.f3289u0, sVar.M);
-                        rVar.M = bundle4.getInt(b2.s.f3290v0, sVar.N);
-                        rVar.N = bundle4.getInt(b2.s.f3291w0, sVar.O);
-                        rVar.P = bundle4.getInt(b2.s.f3293y0, sVar.Q);
-                        rVar.Q = bundle4.getInt(b2.s.f3294z0, sVar.R);
-                        rVar.R = bundle4.getInt(b2.s.f3292x0, sVar.S);
+                        rVar.I = bundle4.getInt(b2.s.f3285r0, sVar.J);
+                        rVar.J = bundle4.getInt(b2.s.f3286s0, sVar.K);
+                        rVar.K = bundle4.getInt(b2.s.f3287t0, sVar.L);
+                        rVar.L = bundle4.getInt(b2.s.f3288u0, sVar.M);
+                        rVar.M = bundle4.getInt(b2.s.f3289v0, sVar.N);
+                        rVar.N = bundle4.getInt(b2.s.f3290w0, sVar.O);
+                        rVar.P = bundle4.getInt(b2.s.f3292y0, sVar.Q);
+                        rVar.Q = bundle4.getInt(b2.s.f3293z0, sVar.R);
+                        rVar.R = bundle4.getInt(b2.s.f3291x0, sVar.S);
                         return new b2.s(rVar);
                     }
                     arrayList.add(byteArray);
@@ -226,16 +226,16 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
                 }
             case 15:
                 Bundle bundle7 = (Bundle) obj;
-                Bundle bundle8 = bundle7.getBundle(b2.m1.f3117c);
+                Bundle bundle8 = bundle7.getBundle(b2.m1.f3116c);
                 bundle8.getClass();
-                ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(b2.l1.f3089f);
+                ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(b2.l1.f3088f);
                 if (parcelableArrayList2 == null) {
-                    e9.g0 g0Var = e9.i0.f8084b;
+                    e9.g0 g0Var = e9.i0.f8083b;
                     j3 = e9.a1.e;
                 } else {
                     j3 = e2.d.j(new w1(14), parcelableArrayList2);
                 }
-                b2.l1 l1Var = new b2.l1(bundle8.getString(b2.l1.f3090g, ""), (b2.s[]) j3.toArray(new b2.s[0]));
+                b2.l1 l1Var = new b2.l1(bundle8.getString(b2.l1.f3089g, ""), (b2.s[]) j3.toArray(new b2.s[0]));
                 int[] intArray = bundle7.getIntArray(b2.m1.d);
                 intArray.getClass();
                 return new b2.m1(l1Var, v7.z7.a(intArray));
@@ -243,10 +243,10 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
                 b2.r1 r1Var = (b2.r1) obj;
                 r1Var.getClass();
                 Bundle bundle9 = new Bundle();
-                bundle9.putBundle(b2.r1.f3264f, r1Var.f3268b.c());
-                bundle9.putIntArray(b2.r1.f3265g, r1Var.d);
+                bundle9.putBundle(b2.r1.f3263f, r1Var.f3267b.c());
+                bundle9.putIntArray(b2.r1.f3264g, r1Var.d);
                 bundle9.putBooleanArray(b2.r1.h, r1Var.e);
-                bundle9.putBoolean(b2.r1.f3266i, r1Var.f3269c);
+                bundle9.putBoolean(b2.r1.f3265i, r1Var.f3268c);
                 return bundle9;
             case 17:
             case 18:
@@ -254,35 +254,35 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
             default:
                 wa.e eVar = (wa.e) obj;
                 eVar.getClass();
-                aa.a aVar = com.google.firebase.messaging.r.f7341a;
+                aa.a aVar = com.google.firebase.messaging.r.f7339a;
                 aVar.getClass();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
-                    aVar.j(eVar, byteArrayOutputStream);
+                    aVar.l(eVar, byteArrayOutputStream);
                 } catch (IOException unused) {
                 }
                 return byteArrayOutputStream.toByteArray();
             case 20:
-                ca.a.f4183b.getClass();
-                return z9.a.f49039a.U((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
+                ca.a.f4181b.getClass();
+                return z9.a.f49059a.v((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
     @Override
     public void b(Object obj, float f7) {
         m2 m2Var = (m2) obj;
-        switch (this.f1640a) {
+        switch (this.f1637a) {
             case 2:
-                WindowManager.LayoutParams layoutParams = m2Var.f1234c;
+                WindowManager.LayoutParams layoutParams = m2Var.f1231c;
                 m2Var.N = f7;
                 layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(m2Var.f1233b, m2Var.d, layoutParams);
+                AndroidUtilities.updateViewLayout(m2Var.f1230b, m2Var.d, layoutParams);
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = m2Var.f1234c;
+                WindowManager.LayoutParams layoutParams2 = m2Var.f1231c;
                 m2Var.O = f7;
                 layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(m2Var.f1233b, m2Var.d, layoutParams2);
+                AndroidUtilities.updateViewLayout(m2Var.f1230b, m2Var.d, layoutParams2);
                 return;
         }
     }
@@ -290,7 +290,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
     @Override
     public float get(Object obj) {
         m2 m2Var = (m2) obj;
-        switch (this.f1640a) {
+        switch (this.f1637a) {
             case 1:
                 return m2Var.N;
             default:
@@ -300,7 +300,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
 
     @Override
     public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f1640a) {
+        switch (this.f1637a) {
             case 5:
                 b2Var.dismiss();
                 return;
@@ -313,7 +313,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = ci.x3.f5733j0;
+        MediaController.AlbumEntry albumEntry = ci.x3.f5731j0;
         return 0;
     }
 
@@ -324,7 +324,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, o
     @Override
     public Object then(Task task) {
         int i10;
-        switch (this.f1640a) {
+        switch (this.f1637a) {
             case 25:
                 i10 = 403;
                 break;

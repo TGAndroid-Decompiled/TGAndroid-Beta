@@ -4,9 +4,9 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.mlkit.vision.common.internal.MobileVisionBase;
 public final class a implements OnFailureListener, q9.d {
-    public static final a f45303a = new Object();
-    public static final a f45304b = new Object();
-    public static final a f45305c = new Object();
+    public static final a f45324a = new Object();
+    public static final a f45325b = new Object();
+    public static final a f45326c = new Object();
 
     @Override
     public Object G(cf.c cVar) {
@@ -16,8 +16,8 @@ public final class a implements OnFailureListener, q9.d {
     @Override
     public void onFailure(Exception exc) {
         c5.a aVar = MobileVisionBase.e;
-        if (Log.isLoggable(aVar.f3842b, 6)) {
-            String str = aVar.f3843c;
+        if (Log.isLoggable(aVar.f3841b, 6)) {
+            String str = aVar.f3842c;
             String str2 = "Error preloading model resource";
             if (str != null) {
                 str2 = str.concat("Error preloading model resource");

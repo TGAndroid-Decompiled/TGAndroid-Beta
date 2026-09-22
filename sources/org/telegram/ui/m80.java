@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import android.os.Bundle;
 public final class m80 extends a6 {
-    public final uy f35627f;
+    public final uy f35650f;
 
     public m80(Bundle bundle, uy uyVar) {
         super(bundle);
-        this.f35627f = uyVar;
+        this.f35650f = uyVar;
     }
 
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         super.onTransitionAnimationEnd(z10, z11);
         if (z10 && !z11) {
-            this.f35627f.removeSelfFromStack();
+            this.f35650f.removeSelfFromStack();
         }
     }
 }

@@ -18,42 +18,42 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.e6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.m01;
+import org.telegram.ui.Components.o01;
 import org.telegram.ui.LaunchActivity;
 public final class v3 implements View.OnClickListener {
-    public final int f8680a = 1;
-    public final ci.d f8681b;
-    public final long f8682c;
+    public final int f8679a = 1;
+    public final ci.d f8680b;
+    public final long f8681c;
     public final TLRPC.User d;
     public final int e;
-    public final org.telegram.ui.ActionBar.f3 f8683f;
+    public final org.telegram.ui.ActionBar.f3 f8682f;
     public final boolean h;
-    public final f6 f8684n;
-    public final Object f8685r;
-    public final Object f8686s;
+    public final f6 f8683n;
+    public final Object f8684r;
+    public final Object f8685s;
     public final Object v;
 
-    public v3(ci.d dVar, m01 m01Var, MessagesController messagesController, long j3, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.f3 f3Var, boolean z10, f6 f6Var) {
-        this.f8681b = dVar;
-        this.f8685r = m01Var;
-        this.f8686s = messagesController;
-        this.f8682c = j3;
+    public v3(ci.d dVar, o01 o01Var, MessagesController messagesController, long j3, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.f3 f3Var, boolean z10, f6 f6Var) {
+        this.f8680b = dVar;
+        this.f8684r = o01Var;
+        this.f8685s = messagesController;
+        this.f8681c = j3;
         this.d = user;
         this.v = strArr;
         this.e = i10;
-        this.f8683f = f3Var;
+        this.f8682f = f3Var;
         this.h = z10;
-        this.f8684n = f6Var;
+        this.f8683n = f6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f8680a) {
+        switch (this.f8679a) {
             case 0:
-                long[] jArr = (long[]) this.f8685r;
-                final TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) this.f8686s;
+                long[] jArr = (long[]) this.f8684r;
+                final TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) this.f8685s;
                 final Context context = (Context) this.v;
-                final ci.d dVar = this.f8681b;
+                final ci.d dVar = this.f8680b;
                 if (!dVar.N) {
                     dVar.setLoading(true);
                     final long j3 = jArr[0];
@@ -62,10 +62,10 @@ public final class v3 implements View.OnClickListener {
                     connectstarrefbot.bot = MessagesController.getInstance(i10).getInputUser(starrefprogram.bot_id);
                     connectstarrefbot.peer = MessagesController.getInstance(i10).getInputPeer(j3);
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
-                    final org.telegram.ui.ActionBar.f3 f3Var = this.f8683f;
-                    final long j10 = this.f8682c;
+                    final org.telegram.ui.ActionBar.f3 f3Var = this.f8682f;
+                    final long j10 = this.f8681c;
                     final boolean z10 = this.h;
-                    final f6 f6Var = this.f8684n;
+                    final f6 f6Var = this.f8683n;
                     final TLRPC.User user = this.d;
                     connectionsManager.sendRequest(connectstarrefbot, new RequestDelegate() {
                         @Override
@@ -77,27 +77,27 @@ public final class v3 implements View.OnClickListener {
                 }
                 return;
             default:
-                m01 m01Var = (m01) this.f8685r;
-                e6 e6Var = m01Var.h;
-                final MessagesController messagesController = (MessagesController) this.f8686s;
+                o01 o01Var = (o01) this.f8684r;
+                e6 e6Var = o01Var.h;
+                final MessagesController messagesController = (MessagesController) this.f8685s;
                 String[] strArr = (String[]) this.v;
-                final ci.d dVar2 = this.f8681b;
+                final ci.d dVar2 = this.f8680b;
                 if (!dVar2.N) {
                     EditTextBoldCursor textView = e6Var.getTextView();
                     if (textView.getText().toString().trim().length() <= 16) {
                         dVar2.setLoading(true);
                         AndroidUtilities.hideKeyboard(e6Var);
                         final TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank = new TLRPC.TL_messages_editChatParticipantRank();
-                        final long j11 = this.f8682c;
+                        final long j11 = this.f8681c;
                         tL_messages_editChatParticipantRank.peer = messagesController.getInputPeer(j11);
                         final TLRPC.User user2 = this.d;
                         tL_messages_editChatParticipantRank.participant = MessagesController.getInputPeer(user2);
                         tL_messages_editChatParticipantRank.rank = strArr[0];
                         ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(this.e);
                         ?? obj = new Object();
-                        final org.telegram.ui.ActionBar.f3 f3Var2 = this.f8683f;
+                        final org.telegram.ui.ActionBar.f3 f3Var2 = this.f8682f;
                         final boolean z11 = this.h;
-                        final f6 f6Var2 = this.f8684n;
+                        final f6 f6Var2 = this.f8683n;
                         connectionsManager2.sendRequestTyped(tL_messages_editChatParticipantRank, obj, new Utilities.Callback2() {
                             @Override
                             public final void run(Object obj2, Object obj3) {
@@ -106,7 +106,7 @@ public final class v3 implements View.OnClickListener {
                                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                                 org.telegram.ui.ActionBar.f3 f3Var3 = f3Var2;
                                 if (updates != null) {
-                                    long j12 = user2.f18475id;
+                                    long j12 = user2.f18490id;
                                     TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
                                     String str = tL_messages_editChatParticipantRank2.rank;
                                     MessagesController messagesController2 = MessagesController.this;
@@ -138,8 +138,8 @@ public final class v3 implements View.OnClickListener {
                         });
                         return;
                     }
-                    float f7 = -m01Var.f26291y;
-                    m01Var.f26291y = f7;
+                    float f7 = -o01Var.f26950y;
+                    o01Var.f26950y = f7;
                     AndroidUtilities.shakeViewSpring(textView, f7);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;
@@ -149,15 +149,15 @@ public final class v3 implements View.OnClickListener {
     }
 
     public v3(ci.d dVar, long[] jArr, int i10, TL_payments.starRefProgram starrefprogram, org.telegram.ui.ActionBar.f3 f3Var, long j3, boolean z10, Context context, f6 f6Var, TLRPC.User user) {
-        this.f8681b = dVar;
-        this.f8685r = jArr;
+        this.f8680b = dVar;
+        this.f8684r = jArr;
         this.e = i10;
-        this.f8686s = starrefprogram;
-        this.f8683f = f3Var;
-        this.f8682c = j3;
+        this.f8685s = starrefprogram;
+        this.f8682f = f3Var;
+        this.f8681c = j3;
         this.h = z10;
         this.v = context;
-        this.f8684n = f6Var;
+        this.f8683n = f6Var;
         this.d = user;
     }
 }

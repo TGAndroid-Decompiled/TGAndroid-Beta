@@ -11,22 +11,22 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 public final class ob extends Drawable {
-    public int f1369a;
-    public final View f1370b;
-    public final Paint f1371c;
+    public int f1366a;
+    public final View f1367b;
+    public final Paint f1368c;
     public final Paint d;
-    public final org.telegram.ui.Components.d6 f1373g;
+    public final org.telegram.ui.Components.d6 f1370g;
     public boolean h;
-    public Paint f1374i;
+    public Paint f1371i;
     public int e = 255;
-    public final float[] f1372f = new float[15];
-    public final Path f1375j = new Path();
+    public final float[] f1369f = new float[15];
+    public final Path f1372j = new Path();
 
     public ob(View view) {
-        this.f1370b = view;
-        this.f1373g = new org.telegram.ui.Components.d6(view, 350L, qr.h);
+        this.f1367b = view;
+        this.f1370g = new org.telegram.ui.Components.d6(view, 350L, qr.h);
         Paint paint = new Paint(1);
-        this.f1371c = paint;
+        this.f1368c = paint;
         paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);
         Paint paint2 = new Paint(1);
         this.d = paint2;
@@ -34,10 +34,10 @@ public final class ob extends Drawable {
     }
 
     public final void a() {
-        int i10 = this.f1369a + 1;
-        this.f1369a = i10;
+        int i10 = this.f1366a + 1;
+        this.f1366a = i10;
         if (i10 >= 2) {
-            this.f1369a = 0;
+            this.f1366a = 0;
         }
     }
 
@@ -50,14 +50,14 @@ public final class ob extends Drawable {
             } else {
                 f7 = 0.0f;
             }
-            this.f1373g.d(f7, true);
+            this.f1370g.d(f7, true);
             return;
         }
-        this.f1370b.invalidate();
+        this.f1367b.invalidate();
     }
 
     public final void c(float f7) {
-        this.f1371c.setShadowLayer(AndroidUtilities.dp(2.0f) / f7, 0.0f, AndroidUtilities.dpf2(0.7f) / f7, i0.a.k(-16777216, 45));
+        this.f1368c.setShadowLayer(AndroidUtilities.dp(2.0f) / f7, 0.0f, AndroidUtilities.dpf2(0.7f) / f7, i0.a.k(-16777216, 45));
     }
 
     @Override
@@ -65,7 +65,7 @@ public final class ob extends Drawable {
         float f7;
         Paint paint;
         int i10;
-        float[] fArr = this.f1372f;
+        float[] fArr = this.f1369f;
         int i11 = 0;
         fArr[0] = getBounds().centerX();
         int i12 = 1;
@@ -91,33 +91,33 @@ public final class ob extends Drawable {
         } else {
             f7 = 0.0f;
         }
-        float d = this.f1373g.d(f7, false);
-        int i16 = this.f1369a;
+        float d = this.f1370g.d(f7, false);
+        int i16 = this.f1366a;
         Paint paint2 = this.d;
         if (i16 == 0) {
             paint2.setColor(-1);
         } else if (i16 == 1) {
-            if (this.f1374i == null) {
+            if (this.f1371i == null) {
                 Paint paint3 = new Paint(1);
-                this.f1374i = paint3;
+                this.f1371i = paint3;
                 paint3.setColor(-16777216);
-                this.f1374i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                this.f1374i.setStrokeWidth(AndroidUtilities.dp(3.0f));
+                this.f1371i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                this.f1371i.setStrokeWidth(AndroidUtilities.dp(3.0f));
             }
             paint2.setColor(i0.a.k(-16777216, 127));
         }
-        if (this.e == 255 && this.f1369a != 1) {
+        if (this.e == 255 && this.f1366a != 1) {
             canvas.save();
         } else {
             canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.e, 31);
         }
-        Path path = this.f1375j;
+        Path path = this.f1372j;
         path.rewind();
         int i17 = 0;
         while (i17 < i13) {
-            if (this.f1369a != i12 || i17 != 0) {
+            if (this.f1366a != i12 || i17 != 0) {
                 if (i17 == 0) {
-                    paint = this.f1371c;
+                    paint = this.f1368c;
                 } else {
                     paint = paint2;
                 }

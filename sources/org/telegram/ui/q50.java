@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class q50 implements Runnable {
-    public final int f36773a;
-    public final r50 f36774b;
+    public final int f36796a;
+    public final r50 f36797b;
 
     public q50(r50 r50Var, int i10) {
-        this.f36773a = i10;
-        this.f36774b = r50Var;
+        this.f36796a = i10;
+        this.f36797b = r50Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f36773a) {
+        switch (this.f36796a) {
             case 0:
-                r50 r50Var = this.f36774b;
-                s50 s50Var = r50Var.f37047b;
+                r50 r50Var = this.f36797b;
+                s50 s50Var = r50Var.f37070b;
                 if (s50Var != null) {
                     s50Var.setVisibility(0);
                 }
                 AndroidUtilities.runOnUIThread(new q50(r50Var, 2), 16L);
                 return;
             case 1:
-                s50 s50Var2 = this.f36774b.f37047b;
+                s50 s50Var2 = this.f36797b.f37070b;
                 if (s50Var2 != null) {
                     s50Var2.setVisibility(4);
                     return;

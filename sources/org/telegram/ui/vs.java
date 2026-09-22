@@ -4,38 +4,38 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class vs implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.xk0, org.telegram.ui.Components.ll0, r0.n {
-    public final ContactsActivity f38595a;
+public final class vs implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.al0, org.telegram.ui.Components.ol0, r0.n {
+    public final ContactsActivity f38616a;
 
     public vs(ContactsActivity contactsActivity) {
-        this.f38595a = contactsActivity;
+        this.f38616a = contactsActivity;
     }
 
     @Override
     public r0.l1 P0(View view, r0.l1 l1Var) {
         int i10 = AndroidUtilities.getDefaultWindowInsets(l1Var, false).d;
-        ContactsActivity contactsActivity = this.f38595a;
-        contactsActivity.f31038q0 = i10;
+        ContactsActivity contactsActivity = this.f38616a;
+        contactsActivity.f31059q0 = i10;
         contactsActivity.j0();
         contactsActivity.i0();
         contactsActivity.h0();
-        return r0.l1.f42153b;
+        return r0.l1.f42174b;
     }
 
     @Override
     public void a() {
-        this.f38595a.g0();
+        this.f38616a.g0();
     }
 
     @Override
     public boolean d(int i10, View view) {
-        ContactsActivity contactsActivity = this.f38595a;
-        s4.h0 adapter = contactsActivity.f31026f.getAdapter();
+        ContactsActivity contactsActivity = this.f38616a;
+        s4.h0 adapter = contactsActivity.f31047f.getAdapter();
         at atVar = contactsActivity.d;
         if (adapter == atVar) {
             int S = atVar.S(i10);
             int Q = contactsActivity.d.Q(i10);
-            org.telegram.ui.Components.pc pcVar = org.telegram.ui.Components.pc.f27245w;
+            org.telegram.ui.Components.pc pcVar = org.telegram.ui.Components.pc.f27304w;
             if (pcVar != null) {
                 pcVar.b();
             }
@@ -60,9 +60,9 @@ public final class vs implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        ContactsActivity contactsActivity = this.f38595a;
+        ContactsActivity contactsActivity = this.f38616a;
         contactsActivity.getClass();
-        a0.i iVar = contactsActivity.f31024d0;
+        a0.i iVar = contactsActivity.f31045d0;
         ArrayList arrayList = new ArrayList(iVar.m());
         for (int i11 = 0; i11 < iVar.m(); i11++) {
             arrayList.add((TLRPC.User) iVar.f(iVar.j(i11)));

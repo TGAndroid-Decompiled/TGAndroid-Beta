@@ -20,26 +20,26 @@ import org.telegram.ui.Components.xc;
 import org.telegram.ui.uy;
 import org.telegram.ui.zn;
 public final class ua implements View.OnClickListener {
-    public final int f21658a = 0;
-    public final boolean f21659b;
-    public final int f21660c;
+    public final int f21673a = 0;
+    public final boolean f21674b;
+    public final int f21675c;
     public final org.telegram.ui.ActionBar.n2 d;
     public final Serializable e;
 
     public ua(zn znVar, TLRPC.User user, String str, boolean z10, int i10) {
         this.d = znVar;
         this.e = str;
-        this.f21659b = z10;
-        this.f21660c = i10;
+        this.f21674b = z10;
+        this.f21675c = i10;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
         int i11;
-        int i12 = this.f21658a;
-        int i13 = this.f21660c;
-        boolean z10 = this.f21659b;
+        int i12 = this.f21673a;
+        int i13 = this.f21675c;
+        boolean z10 = this.f21674b;
         Serializable serializable = this.e;
         org.telegram.ui.ActionBar.n2 n2Var = this.d;
         switch (i12) {
@@ -70,7 +70,7 @@ public final class ua implements View.OnClickListener {
             default:
                 zn znVar = (zn) n2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.d5.f23492a;
+                Pattern pattern = org.telegram.ui.Components.d5.f23562a;
                 if (znVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) znVar.getParentActivity(), (org.telegram.ui.ActionBar.f6) null, false);
                     f3Var.fixNavigationBar();
@@ -111,8 +111,8 @@ public final class ua implements View.OnClickListener {
 
     public ua(uy uyVar, boolean z10, int i10, ArrayList arrayList) {
         this.d = uyVar;
-        this.f21659b = z10;
-        this.f21660c = i10;
+        this.f21674b = z10;
+        this.f21675c = i10;
         this.e = arrayList;
     }
 }

@@ -1,10 +1,10 @@
 package org.telegram.ui.Components;
-public final class to0 {
-    public float f28406a;
-    public float f28407b;
-    public float f28408c;
-    public float d;
-    public float e;
-    public float f28409f;
-    public float f28410g;
+public interface to0 {
+    void B();
+
+    void X(float f7, boolean z10);
+
+    CharSequence getContentDescription();
+
+    int l0();
 }

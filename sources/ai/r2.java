@@ -11,30 +11,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.qr;
 public final class r2 extends FrameLayout {
-    public final FrameLayout f1455a;
-    public final View f1456b;
-    public final ImageView f1457c;
+    public final FrameLayout f1452a;
+    public final View f1453b;
+    public final ImageView f1454c;
     public final q2 d;
     public boolean e;
-    public ValueAnimator f1458f;
+    public ValueAnimator f1455f;
     public boolean h;
-    public float f1459n;
-    public ValueAnimator f1460r;
+    public float f1456n;
+    public ValueAnimator f1457r;
 
     public r2(Context context, dh.b bVar) {
         super(context);
-        w7.b6.a(this);
+        w7.a6.a(this);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f1455a = frameLayout;
+        this.f1452a = frameLayout;
         ah.m mVar = new ah.m();
         mVar.a(bVar);
-        mVar.f485g.setColor(-14670806);
+        mVar.f482g.setColor(-14670806);
         mVar.invalidateSelf();
-        mVar.f484f = AndroidUtilities.dp(1.0f);
+        mVar.f481f = AndroidUtilities.dp(1.0f);
         frameLayout.setBackground(mVar);
         addView(frameLayout, w7.y5.e(40, 40, 17));
         View view = new View(context);
-        this.f1456b = view;
+        this.f1453b = view;
         view.setBackground(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(40.0f), -13522392));
         frameLayout.addView(view, w7.y5.e(38, 38, 17));
         view.setAlpha(0.0f);
@@ -44,7 +44,7 @@ public final class r2 extends FrameLayout {
         this.d = q2Var;
         addView(q2Var, w7.y5.e(42, 42, 17));
         ImageView imageView = new ImageView(context);
-        this.f1457c = imageView;
+        this.f1454c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setScaleX(0.75f);
         imageView.setScaleY(0.75f);
@@ -59,10 +59,10 @@ public final class r2 extends FrameLayout {
             return;
         }
         this.e = z10;
-        ValueAnimator valueAnimator = this.f1458f;
+        ValueAnimator valueAnimator = this.f1455f;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f1458f = null;
+            this.f1455f = null;
         }
         boolean z12 = true;
         float f7 = 1.0f;
@@ -85,11 +85,11 @@ public final class r2 extends FrameLayout {
                 f7 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f7);
-            this.f1458f = ofFloat;
+            this.f1455f = ofFloat;
             ofFloat.addUpdateListener(new p2(this, 0));
-            this.f1458f.setDuration(320L);
-            this.f1458f.setInterpolator(qr.h);
-            this.f1458f.start();
+            this.f1455f.setDuration(320L);
+            this.f1455f.setInterpolator(qr.h);
+            this.f1455f.start();
         }
         if (!this.h && z10) {
             z12 = false;
@@ -102,7 +102,7 @@ public final class r2 extends FrameLayout {
         boolean z12;
         int i11;
         this.h = z10;
-        ImageView imageView = this.f1457c;
+        ImageView imageView = this.f1454c;
         if (!z11) {
             if (z10) {
                 i11 = R.drawable.msg_voice_muted;
@@ -127,34 +127,34 @@ public final class r2 extends FrameLayout {
     }
 
     public final void c(boolean z10, boolean z11) {
-        ValueAnimator valueAnimator = this.f1460r;
+        ValueAnimator valueAnimator = this.f1457r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f1460r = null;
+            this.f1457r = null;
         }
         float f7 = 0.0f;
         if (!z11) {
             if (z10) {
                 f7 = 1.0f;
             }
-            this.f1459n = f7;
-            View view = this.f1456b;
+            this.f1456n = f7;
+            View view = this.f1453b;
             view.setAlpha(1.0f - f7);
-            view.setScaleX(1.0f - this.f1459n);
-            view.setScaleY(1.0f - this.f1459n);
-            this.f1457c.setColorFilter(new PorterDuffColorFilter(i0.a.d(this.f1459n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-            this.f1455a.invalidate();
+            view.setScaleX(1.0f - this.f1456n);
+            view.setScaleY(1.0f - this.f1456n);
+            this.f1454c.setColorFilter(new PorterDuffColorFilter(i0.a.d(this.f1456n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+            this.f1452a.invalidate();
             return;
         }
-        float f10 = this.f1459n;
+        float f10 = this.f1456n;
         if (z10) {
             f7 = 1.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f1460r = ofFloat;
+        this.f1457r = ofFloat;
         ofFloat.addUpdateListener(new p2(this, 1));
-        this.f1460r.setInterpolator(qr.h);
-        this.f1460r.setDuration(420L);
-        this.f1460r.start();
+        this.f1457r.setInterpolator(qr.h);
+        this.f1457r.setDuration(420L);
+        this.f1457r.start();
     }
 }

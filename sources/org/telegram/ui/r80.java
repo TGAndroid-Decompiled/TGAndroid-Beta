@@ -27,14 +27,14 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class r80 implements Runnable {
-    public final int f37063a;
-    public final Object f37064b;
-    public final Object f37065c;
+    public final int f37086a;
+    public final Object f37087b;
+    public final Object f37088c;
 
     public r80(int i10, Object obj, Object obj2) {
-        this.f37063a = i10;
-        this.f37064b = obj;
-        this.f37065c = obj2;
+        this.f37086a = i10;
+        this.f37087b = obj;
+        this.f37088c = obj2;
     }
 
     @Override
@@ -42,15 +42,15 @@ public final class r80 implements Runnable {
         byte[] bArr;
         int i10;
         int i11;
-        switch (this.f37063a) {
+        switch (this.f37086a) {
             case 0:
-                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f37064b;
-                languageSelectActivity.e = (ArrayList) this.f37065c;
-                languageSelectActivity.f31094c.l();
+                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f37087b;
+                languageSelectActivity.e = (ArrayList) this.f37088c;
+                languageSelectActivity.f31115c.l();
                 return;
             case 1:
-                LanguageSelectActivity languageSelectActivity2 = (LanguageSelectActivity) this.f37064b;
-                String str = (String) this.f37065c;
+                LanguageSelectActivity languageSelectActivity2 = (LanguageSelectActivity) this.f37087b;
+                String str = (String) this.f37088c;
                 if (str.trim().toLowerCase().length() == 0) {
                     AndroidUtilities.runOnUIThread(new r80(0, languageSelectActivity2, new ArrayList()));
                     return;
@@ -64,9 +64,9 @@ public final class r80 implements Runnable {
                         arrayList.add(localeInfo);
                     }
                 }
-                int size2 = languageSelectActivity2.f31095f.size();
+                int size2 = languageSelectActivity2.f31116f.size();
                 for (int i13 = 0; i13 < size2; i13++) {
-                    LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) languageSelectActivity2.f31095f.get(i13);
+                    LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) languageSelectActivity2.f31116f.get(i13);
                     if (localeInfo2.name.toLowerCase().startsWith(str) || localeInfo2.nameEnglish.toLowerCase().startsWith(str)) {
                         arrayList.add(localeInfo2);
                     }
@@ -74,8 +74,8 @@ public final class r80 implements Runnable {
                 AndroidUtilities.runOnUIThread(new r80(0, languageSelectActivity2, arrayList));
                 return;
             case 2:
-                LaunchActivity launchActivity = (LaunchActivity) this.f37064b;
-                TLObject tLObject = (TLObject) this.f37065c;
+                LaunchActivity launchActivity = (LaunchActivity) this.f37087b;
+                TLObject tLObject = (TLObject) this.f37088c;
                 Pattern pattern = LaunchActivity.B1;
                 if (tLObject instanceof TL_account.resolvedBusinessChatLinks) {
                     TL_account.resolvedBusinessChatLinks resolvedbusinesschatlinks = (TL_account.resolvedBusinessChatLinks) tLObject;
@@ -90,15 +90,15 @@ public final class r80 implements Runnable {
                         bundle.putLong("chat_id", peer.channel_id);
                     }
                     zn znVar = new zn(bundle);
-                    znVar.f40352ia = resolvedbusinesschatlinks;
+                    znVar.f40373ia = resolvedbusinesschatlinks;
                     launchActivity.q0(znVar, false, true);
                     return;
                 }
                 launchActivity.B0(org.telegram.ui.Components.d5.N(launchActivity, LocaleController.getString(R.string.BusinessLink), LocaleController.getString(R.string.BusinessLinkInvalid)));
                 return;
             case 3:
-                LaunchActivity launchActivity2 = (LaunchActivity) this.f37064b;
-                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f37065c;
+                LaunchActivity launchActivity2 = (LaunchActivity) this.f37087b;
+                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f37088c;
                 Pattern pattern2 = LaunchActivity.B1;
                 MessagesController.getInstance(launchActivity2.O).putUsers(tL_chatInviteJoinResultWebView.users, false);
                 BotGuardHelper botGuardHelper = BotGuardHelper.getInstance(launchActivity2.O);
@@ -110,33 +110,33 @@ public final class r80 implements Runnable {
                 String string = LocaleController.getString(R.string.AuthAnotherClient);
                 StringBuilder sb2 = new StringBuilder();
                 org.telegram.ui.Cells.c1.o(R.string.ErrorOccurred, "\n", sb2);
-                sb2.append(((TLRPC.TL_error) this.f37065c).text);
-                org.telegram.ui.Components.d5.u0((h) this.f37064b, string, sb2.toString(), null);
+                sb2.append(((TLRPC.TL_error) this.f37088c).text);
+                org.telegram.ui.Components.d5.u0((h) this.f37087b, string, sb2.toString(), null);
                 return;
             case 5:
-                LaunchActivity launchActivity3 = (LaunchActivity) this.f37064b;
-                String str2 = (String) this.f37065c;
-                if (!launchActivity3.f31128q0.getFragmentStack().isEmpty()) {
-                    launchActivity3.f31128q0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str2).getQueryParameter("ref")));
+                LaunchActivity launchActivity3 = (LaunchActivity) this.f37087b;
+                String str2 = (String) this.f37088c;
+                if (!launchActivity3.f31149q0.getFragmentStack().isEmpty()) {
+                    launchActivity3.f31149q0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str2).getQueryParameter("ref")));
                     return;
                 }
                 return;
             case 6:
                 Pattern pattern4 = LaunchActivity.B1;
-                ((LaunchActivity) this.f37064b).j0((TL_account.Password) this.f37065c);
+                ((LaunchActivity) this.f37087b).j0((TL_account.Password) this.f37088c);
                 return;
             case 7:
-                LaunchActivity launchActivity4 = (LaunchActivity) this.f37064b;
-                Runnable runnable = (Runnable) this.f37065c;
-                launchActivity4.f31128q0.getView().setVisibility(4);
+                LaunchActivity launchActivity4 = (LaunchActivity) this.f37087b;
+                Runnable runnable = (Runnable) this.f37088c;
+                launchActivity4.f31149q0.getView().setVisibility(4);
                 if (AndroidUtilities.isTablet()) {
-                    ActionBarLayout actionBarLayout = launchActivity4.f31130r0;
-                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity4.f31130r0.getView().getVisibility() == 0) {
-                        launchActivity4.f31130r0.getView().setVisibility(4);
+                    ActionBarLayout actionBarLayout = launchActivity4.f31151r0;
+                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity4.f31151r0.getView().getVisibility() == 0) {
+                        launchActivity4.f31151r0.getView().setVisibility(4);
                     }
-                    ActionBarLayout actionBarLayout2 = launchActivity4.f31132s0;
+                    ActionBarLayout actionBarLayout2 = launchActivity4.f31153s0;
                     if (actionBarLayout2 != null && actionBarLayout2.getView() != null) {
-                        launchActivity4.f31132s0.getView().setVisibility(4);
+                        launchActivity4.f31153s0.getView().setVisibility(4);
                     }
                 }
                 if (runnable != null) {
@@ -145,19 +145,19 @@ public final class r80 implements Runnable {
                 }
                 return;
             case 8:
-                org.telegram.ui.Components.pc pcVar = (org.telegram.ui.Components.pc) this.f37065c;
-                if (!((LaunchActivity) this.f37064b).Q && LaunchActivity.E1) {
+                org.telegram.ui.Components.pc pcVar = (org.telegram.ui.Components.pc) this.f37088c;
+                if (!((LaunchActivity) this.f37087b).Q && LaunchActivity.E1) {
                     pcVar.j();
                     return;
                 }
                 return;
             case 9:
                 Pattern pattern5 = LaunchActivity.B1;
-                ((LaunchActivity) this.f37064b).p0((xd1) this.f37065c);
+                ((LaunchActivity) this.f37087b).p0((xd1) this.f37088c);
                 return;
             case 10:
-                LaunchActivity launchActivity5 = (LaunchActivity) this.f37064b;
-                nf.e eVar = (nf.e) this.f37065c;
+                LaunchActivity launchActivity5 = (LaunchActivity) this.f37087b;
+                nf.e eVar = (nf.e) this.f37088c;
                 launchActivity5.P0 = null;
                 launchActivity5.Q0 = null;
                 launchActivity5.R0 = null;
@@ -170,8 +170,8 @@ public final class r80 implements Runnable {
                 }
                 return;
             case 11:
-                nf.e eVar2 = (nf.e) this.f37064b;
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f37065c;
+                nf.e eVar2 = (nf.e) this.f37087b;
+                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f37088c;
                 Pattern pattern6 = LaunchActivity.B1;
                 if (eVar2 != null) {
                     eVar2.b();
@@ -182,20 +182,20 @@ public final class r80 implements Runnable {
                 }
                 return;
             case 12:
-                hc0 hc0Var = (hc0) this.f37064b;
-                TLObject tLObject2 = (TLObject) this.f37065c;
+                hc0 hc0Var = (hc0) this.f37087b;
+                TLObject tLObject2 = (TLObject) this.f37088c;
                 hc0Var.a();
                 if (tLObject2 != null) {
-                    hc0Var.f34164a.j0((TL_account.Password) tLObject2);
+                    hc0Var.f34180a.j0((TL_account.Password) tLObject2);
                     return;
                 }
                 return;
             case 13:
-                ((FiltersSetupActivity) this.f37065c).X(((hc0) this.f37064b).f34164a.O());
+                ((FiltersSetupActivity) this.f37088c).X(((hc0) this.f37087b).f34180a.O());
                 return;
             case 14:
-                kd0 kd0Var = (kd0) this.f37064b;
-                GLSurfaceView gLSurfaceView = (GLSurfaceView) this.f37065c;
+                kd0 kd0Var = (kd0) this.f37087b;
+                GLSurfaceView gLSurfaceView = (GLSurfaceView) this.f37088c;
                 if (gLSurfaceView.getWidth() != 0 && gLSurfaceView.getHeight() != 0) {
                     ByteBuffer allocateDirect = ByteBuffer.allocateDirect(gLSurfaceView.getHeight() * gLSurfaceView.getWidth() * 4);
                     GLES20.glReadPixels(0, 0, gLSurfaceView.getWidth(), gLSurfaceView.getHeight(), 6408, 5121, allocateDirect);
@@ -210,20 +210,20 @@ public final class r80 implements Runnable {
                 }
                 return;
             case 15:
-                kd0 kd0Var2 = (kd0) this.f37064b;
-                kd0Var2.f35097c.setImageResource(R.drawable.msg_location_alert2);
-                kd0Var2.e0(((LocationController.SharingLocationInfo) this.f37065c).proximityMeters);
+                kd0 kd0Var2 = (kd0) this.f37087b;
+                kd0Var2.f35119c.setImageResource(R.drawable.msg_location_alert2);
+                kd0Var2.e0(((LocationController.SharingLocationInfo) this.f37088c).proximityMeters);
                 kd0Var2.G = false;
                 return;
             case 16:
-                ((EditText) this.f37064b).removeTextChangedListener((org.telegram.ui.Components.qn) this.f37065c);
+                ((EditText) this.f37087b).removeTextChangedListener((org.telegram.ui.Components.qn) this.f37088c);
                 return;
             case 17:
-                Runnable runnable2 = (Runnable) this.f37065c;
-                fe0 fe0Var = ((ie0) this.f37064b).f34539a;
+                Runnable runnable2 = (Runnable) this.f37088c;
+                fe0 fe0Var = ((ie0) this.f37087b).f34559a;
                 int i14 = 0;
                 while (true) {
-                    gs[] gsVarArr = fe0Var.f33125f;
+                    gs[] gsVarArr = fe0Var.f33145f;
                     if (i14 < gsVarArr.length) {
                         gsVarArr[i14].l(0.0f);
                         i14++;
@@ -234,16 +234,16 @@ public final class r80 implements Runnable {
                     }
                 }
             case 18:
-                re0 re0Var = (re0) this.f37064b;
-                yg0 yg0Var = re0Var.f37135y;
+                re0 re0Var = (re0) this.f37087b;
+                yg0 yg0Var = re0Var.f37158y;
                 yg0Var.k1(false, false);
-                AndroidUtilities.hideKeyboard(re0Var.f37126a);
-                yg0Var.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37065c), false);
+                AndroidUtilities.hideKeyboard(re0Var.f37149a);
+                yg0Var.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37088c), false);
                 return;
             case 19:
-                re0 re0Var2 = (re0) this.f37064b;
-                String str3 = (String) this.f37065c;
-                TLRPC.PasswordKdfAlgo passwordKdfAlgo = re0Var2.f37130n.current_algo;
+                re0 re0Var2 = (re0) this.f37087b;
+                String str3 = (String) this.f37088c;
+                TLRPC.PasswordKdfAlgo passwordKdfAlgo = re0Var2.f37153n.current_algo;
                 boolean z10 = passwordKdfAlgo instanceof TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow;
                 if (z10) {
                     bArr = SRPHelper.getX(AndroidUtilities.getStringBytes(str3), (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
@@ -252,7 +252,7 @@ public final class r80 implements Runnable {
                 }
                 pe0 pe0Var = new pe0(re0Var2, 2);
                 if (z10) {
-                    TL_account.Password password = re0Var2.f37130n;
+                    TL_account.Password password = re0Var2.f37153n;
                     TLRPC.TL_inputCheckPasswordSRP startCheck = SRPHelper.startCheck(bArr, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
                     if (startCheck == null) {
                         TLRPC.TL_error tL_error = new TLRPC.TL_error();
@@ -262,16 +262,16 @@ public final class r80 implements Runnable {
                     }
                     TLRPC.TL_auth_checkPassword tL_auth_checkPassword = new TLRPC.TL_auth_checkPassword();
                     tL_auth_checkPassword.password = startCheck;
-                    i10 = ((org.telegram.ui.ActionBar.n2) re0Var2.f37135y).currentAccount;
+                    i10 = ((org.telegram.ui.ActionBar.n2) re0Var2.f37158y).currentAccount;
                     ConnectionsManager.getInstance(i10).sendRequest(tL_auth_checkPassword, pe0Var, 10);
                     return;
                 }
                 return;
             case 20:
-                jf0 jf0Var = (jf0) this.f37064b;
+                jf0 jf0Var = (jf0) this.f37087b;
                 jf0Var.O.k1(false, false);
                 AndroidUtilities.hideKeyboard(jf0Var.O.fragmentView.findFocus());
-                jf0Var.O.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37065c), true);
+                jf0Var.O.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37088c), true);
                 TLRPC.FileLocation fileLocation = jf0Var.N;
                 if (fileLocation != null) {
                     Utilities.cacheClearQueue.postRunnable(new r80(21, jf0Var, fileLocation));
@@ -279,19 +279,19 @@ public final class r80 implements Runnable {
                 }
                 return;
             case 21:
-                i11 = ((org.telegram.ui.ActionBar.n2) ((jf0) this.f37064b).O).currentAccount;
-                MessagesController.getInstance(i11).uploadAndApplyUserAvatar((TLRPC.FileLocation) this.f37065c);
+                i11 = ((org.telegram.ui.ActionBar.n2) ((jf0) this.f37087b).O).currentAccount;
+                MessagesController.getInstance(i11).uploadAndApplyUserAvatar((TLRPC.FileLocation) this.f37088c);
                 return;
             case 22:
-                kf0 kf0Var = (kf0) this.f37064b;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f37065c;
+                kf0 kf0Var = (kf0) this.f37087b;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f37088c;
                 yg0 yg0Var2 = kf0Var.E;
                 yg0Var2.k1(false, true);
                 if (tL_error2 == null) {
-                    if (kf0Var.f35168r != null && kf0Var.f35169s != null && kf0Var.v != null) {
+                    if (kf0Var.f35190r != null && kf0Var.f35191s != null && kf0Var.v != null) {
                         Bundle bundle2 = new Bundle();
-                        bundle2.putString("phoneFormated", kf0Var.f35168r);
-                        bundle2.putString("phoneHash", kf0Var.f35169s);
+                        bundle2.putString("phoneFormated", kf0Var.f35190r);
+                        bundle2.putString("phoneHash", kf0Var.f35191s);
                         bundle2.putString("code", kf0Var.v);
                         yg0Var2.u1(5, true, bundle2, false);
                         return;
@@ -306,28 +306,28 @@ public final class r80 implements Runnable {
                     return;
                 }
             case 23:
-                bg0 bg0Var = (bg0) this.f37064b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Activity) this.f37065c);
-                alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.CancelLinkSuccessTitle);
-                alertDialog$Builder.f18654a.T = LocaleController.formatString("CancelLinkSuccess", R.string.CancelLinkSuccess, org.telegram.messenger.rk.h(new StringBuilder("+"), bg0Var.f32414b, gf.b.c()));
+                bg0 bg0Var = (bg0) this.f37087b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Activity) this.f37088c);
+                alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.CancelLinkSuccessTitle);
+                alertDialog$Builder.f18669a.T = LocaleController.formatString("CancelLinkSuccess", R.string.CancelLinkSuccess, org.telegram.messenger.rk.h(new StringBuilder("+"), bg0Var.f32432b, gf.b.c()));
                 alertDialog$Builder.k(LocaleController.getString(R.string.Close), null);
-                alertDialog$Builder.f18654a.setOnDismissListener(new xf0(bg0Var, 0));
+                alertDialog$Builder.f18669a.setOnDismissListener(new xf0(bg0Var, 0));
                 alertDialog$Builder.o();
                 return;
             case 24:
-                bg0 bg0Var2 = (bg0) this.f37064b;
+                bg0 bg0Var2 = (bg0) this.f37087b;
                 bg0Var2.getClass();
-                bg0Var2.f32419e0 = ((TLRPC.TL_error) this.f37065c).text;
+                bg0Var2.f32437e0 = ((TLRPC.TL_error) this.f37088c).text;
                 return;
             case 25:
-                ((bg0) this.f37064b).f32436s0.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37065c), false);
+                ((bg0) this.f37087b).f32454s0.o1((TLRPC.TL_auth_authorization) ((TLObject) this.f37088c), false);
                 return;
             case 26:
-                Runnable runnable3 = (Runnable) this.f37065c;
-                ds dsVar = ((bg0) this.f37064b).f32420f;
+                Runnable runnable3 = (Runnable) this.f37088c;
+                ds dsVar = ((bg0) this.f37087b).f32438f;
                 int i15 = 0;
                 while (true) {
-                    gs[] gsVarArr2 = dsVar.f33125f;
+                    gs[] gsVarArr2 = dsVar.f33145f;
                     if (i15 < gsVarArr2.length) {
                         gsVarArr2[i15].l(0.0f);
                         i15++;
@@ -338,27 +338,27 @@ public final class r80 implements Runnable {
                     }
                 }
             case 27:
-                ((s3) this.f37064b).run((String) this.f37065c);
+                ((s3) this.f37087b).run((String) this.f37088c);
                 return;
             case 28:
-                ai0 ai0Var = (ai0) this.f37064b;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f37065c;
-                ai0Var.f32076c0 = false;
+                ai0 ai0Var = (ai0) this.f37087b;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f37088c;
+                ai0Var.f32097c0 = false;
                 if (tL_error3 == null) {
                     rh0 f02 = ai0Var.f0();
-                    ai0Var.f32084j0.clear();
+                    ai0Var.f32105j0.clear();
                     ai0Var.h0(f02);
                     return;
                 }
                 return;
             default:
-                ai0 ai0Var2 = ((qh0) this.f37064b).f36917a;
+                ai0 ai0Var2 = ((qh0) this.f37087b).f36940a;
                 rh0 f03 = ai0Var2.f0();
-                ai0Var2.f32083i0.add(0, (TLRPC.TL_chatInviteExported) ((TLObject) this.f37065c));
+                ai0Var2.f32104i0.add(0, (TLRPC.TL_chatInviteExported) ((TLObject) this.f37088c));
                 TLRPC.ChatFull chatFull = ai0Var2.d;
                 if (chatFull != null) {
                     chatFull.invitesCount++;
-                    ai0Var2.getMessagesStorage().saveChatLinksCount(ai0Var2.f32087n, ai0Var2.d.invitesCount);
+                    ai0Var2.getMessagesStorage().saveChatLinksCount(ai0Var2.f32108n, ai0Var2.d.invitesCount);
                 }
                 ai0Var2.h0(f03);
                 return;

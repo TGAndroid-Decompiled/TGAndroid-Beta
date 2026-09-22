@@ -1,33 +1,52 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-public final class pl implements kq0 {
-    public final zn f36583a;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.TextPaint;
+import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+public final class pl extends org.telegram.ui.Components.d11 {
+    public final zn K;
 
-    public pl(zn znVar) {
-        this.f36583a = znVar;
+    public pl(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, zn znVar) {
+        super(activity);
+        this.K = znVar;
+        TextPaint textPaint = new TextPaint(1);
+        this.f23526b = textPaint;
+        Paint paint = new Paint(1);
+        this.f23527c = paint;
+        this.d = AndroidUtilities.dp(24.0f);
+        this.e = new OvershootInterpolator();
+        this.H = new org.telegram.ui.Components.yq0(this, 15);
+        this.J = new Path();
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Hi, f6Var);
+        int alpha = Color.alpha(v02);
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setColor(v02);
+        paint.setColor(v02);
+        paint.setAlpha((int) (alpha * 0.14d));
+        setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Fi, f6Var)));
+    }
+
+    public final void d() {
+        int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
+        zn znVar = this.K;
+        int top = znVar.Y.getTop() - znVar.X0.getMeasuredHeight();
+        setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
     }
 
     @Override
-    public final void b() {
-        try {
-            Intent intent = new Intent();
-            intent.setType("video/*");
-            intent.setAction("android.intent.action.GET_CONTENT");
-            intent.putExtra("android.intent.extra.sizeLimit", 2097152000L);
-            Intent intent2 = new Intent("android.intent.action.PICK");
-            intent2.setType("image/*");
-            Intent createChooser = Intent.createChooser(intent2, null);
-            createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
-            this.f36583a.startActivityForResult(createChooser, 1);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        d();
     }
 
     @Override
-    public final void a(ArrayList arrayList) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        d();
     }
 }

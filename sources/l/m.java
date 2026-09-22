@@ -5,31 +5,31 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 public final class m implements DialogInterface.OnKeyListener, DialogInterface.OnClickListener, DialogInterface.OnDismissListener, x {
-    public e0 f13952a;
-    public g.g f13953b;
-    public h f13954c;
+    public e0 f13966a;
+    public g.g f13967b;
+    public h f13968c;
 
     @Override
     public final void g(l lVar, boolean z10) {
         g.g gVar;
-        if ((z10 || lVar == this.f13952a) && (gVar = this.f13953b) != null) {
+        if ((z10 || lVar == this.f13966a) && (gVar = this.f13967b) != null) {
             gVar.dismiss();
         }
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i10) {
-        e0 e0Var = this.f13952a;
-        h hVar = this.f13954c;
-        if (hVar.f13926f == null) {
-            hVar.f13926f = new g(hVar);
+        e0 e0Var = this.f13966a;
+        h hVar = this.f13968c;
+        if (hVar.f13940f == null) {
+            hVar.f13940f = new g(hVar);
         }
-        e0Var.q(hVar.f13926f.getItem(i10), null, 0);
+        e0Var.q(hVar.f13940f.getItem(i10), null, 0);
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        this.f13954c.g(this.f13952a, true);
+        this.f13968c.g(this.f13966a, true);
     }
 
     @Override
@@ -39,15 +39,15 @@ public final class m implements DialogInterface.OnKeyListener, DialogInterface.O
         KeyEvent.DispatcherState keyDispatcherState;
         View decorView2;
         KeyEvent.DispatcherState keyDispatcherState2;
-        e0 e0Var = this.f13952a;
+        e0 e0Var = this.f13966a;
         if (i10 == 82 || i10 == 4) {
             if (keyEvent.getAction() == 0 && keyEvent.getRepeatCount() == 0) {
-                Window window2 = this.f13953b.getWindow();
+                Window window2 = this.f13967b.getWindow();
                 if (window2 != null && (decorView2 = window2.getDecorView()) != null && (keyDispatcherState2 = decorView2.getKeyDispatcherState()) != null) {
                     keyDispatcherState2.startTracking(keyEvent, this);
                     return true;
                 }
-            } else if (keyEvent.getAction() == 1 && !keyEvent.isCanceled() && (window = this.f13953b.getWindow()) != null && (decorView = window.getDecorView()) != null && (keyDispatcherState = decorView.getKeyDispatcherState()) != null && keyDispatcherState.isTracking(keyEvent)) {
+            } else if (keyEvent.getAction() == 1 && !keyEvent.isCanceled() && (window = this.f13967b.getWindow()) != null && (decorView = window.getDecorView()) != null && (keyDispatcherState = decorView.getKeyDispatcherState()) != null && keyDispatcherState.isTracking(keyEvent)) {
                 e0Var.c(true);
                 dialogInterface.dismiss();
                 return true;
@@ -57,7 +57,7 @@ public final class m implements DialogInterface.OnKeyListener, DialogInterface.O
     }
 
     @Override
-    public final boolean v(l lVar) {
+    public final boolean q(l lVar) {
         return false;
     }
 }

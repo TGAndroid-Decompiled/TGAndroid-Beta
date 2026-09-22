@@ -18,8 +18,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
-    public static final int f31790b = 0;
-    public org.telegram.ui.Components.uq0 f31791a;
+    public static final int f31811b = 0;
+    public org.telegram.ui.Components.wq0 f31812a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -55,11 +55,11 @@ public class ShareActivity extends Activity {
                 MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, TLdeserialize, false, true);
                 messageObject.messageOwner.with_my_score = true;
                 try {
-                    org.telegram.ui.Components.uq0 N0 = org.telegram.ui.Components.uq0.N0(this, messageObject, null, false, string2);
-                    this.f31791a = N0;
+                    org.telegram.ui.Components.wq0 N0 = org.telegram.ui.Components.wq0.N0(this, messageObject, null, false, string2);
+                    this.f31812a = N0;
                     N0.setCanceledOnTouchOutside(true);
-                    this.f31791a.setOnDismissListener(new r5(this, 16));
-                    this.f31791a.show();
+                    this.f31812a.setOnDismissListener(new r5(this, 16));
+                    this.f31812a.show();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -77,10 +77,10 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.uq0 uq0Var = this.f31791a;
-            if (uq0Var != null && uq0Var.isShowing()) {
-                this.f31791a.dismiss();
-                this.f31791a = null;
+            org.telegram.ui.Components.wq0 wq0Var = this.f31812a;
+            if (wq0Var != null && wq0Var.isShowing()) {
+                this.f31812a.dismiss();
+                this.f31812a = null;
             }
         } catch (Exception e) {
             FileLog.e(e);

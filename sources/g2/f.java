@@ -41,7 +41,7 @@ public final class f extends c {
         boolean equals = "data".equals(scheme);
         e2.d.a("Unsupported scheme: " + scheme, equals);
         String schemeSpecificPart = normalizeScheme.getSchemeSpecificPart();
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         String[] split = schemeSpecificPart.split(",", -1);
         if (split.length == 2) {
             String str2 = split[1];
@@ -88,7 +88,7 @@ public final class f extends c {
         }
         int min = Math.min(i11, i12);
         byte[] bArr2 = this.f9364b;
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         System.arraycopy(bArr2, this.f9365c, bArr, i10, min);
         this.f9365c += min;
         this.d -= min;

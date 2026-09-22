@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.widget.TextView;
 import org.telegram.messenger.Emoji;
-public final class r4 extends k90 {
+public final class r4 extends n90 {
     @Override
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);

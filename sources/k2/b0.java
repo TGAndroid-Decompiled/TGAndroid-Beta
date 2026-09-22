@@ -13,8 +13,8 @@ public final class b0 {
             this.f13233a = exc;
         }
         if (this.f13234b == -9223372036854775807L) {
-            synchronized (f0.f13252o0) {
-                if (f0.f13254q0 > 0) {
+            synchronized (f0.f13251o0) {
+                if (f0.f13253q0 > 0) {
                     z10 = true;
                 } else {
                     z10 = false;

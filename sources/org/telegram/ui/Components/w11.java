@@ -1,25 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.text.TextWatcher;
-public final class w11 implements TextWatcher {
-    public final int f29918a;
-    public final x11 f29919b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class w11 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f29900a;
 
-    public w11(x11 x11Var, int i10) {
-        this.f29919b = x11Var;
-        this.f29918a = i10;
+    public w11(ThemeEditorView.EditorAlert editorAlert) {
+        this.f29900a = editorAlert;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w11.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f29900a;
+        editorAlert.f22457c.setVisibility(4);
+        editorAlert.f22458f.setVisibility(4);
+        editorAlert.f22461s.setVisibility(4);
+        editorAlert.H = false;
     }
 }

@@ -14,8 +14,9 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
-import c5.g0;
-import c5.w;
+import c5.c0;
+import c5.f0;
+import c5.v;
 import com.google.android.gms.internal.play_billing.u;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -57,7 +58,7 @@ public final class l implements OnSuccessListener, le.k {
         synchronized (l.class) {
             try {
                 if (e == null) {
-                    ScheduledExecutorService unconfigurableScheduledExecutorService = Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new w("MessengerIpcClient")));
+                    ScheduledExecutorService unconfigurableScheduledExecutorService = Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1, new v("MessengerIpcClient")));
                     ?? obj = new Object();
                     obj.d = new j(obj);
                     obj.f12911a = 1;
@@ -91,21 +92,21 @@ public final class l implements OnSuccessListener, le.k {
                     this.d = new Object();
                 }
                 c3 c3Var = (c3) this.d;
-                c3Var.f14369c = null;
-                c3Var.f14368b = false;
+                c3Var.f14384c = null;
+                c3Var.f14383b = false;
                 c3Var.d = null;
-                c3Var.f14367a = false;
+                c3Var.f14382a = false;
                 ColorStateList imageTintList = imageView.getImageTintList();
                 if (imageTintList != null) {
-                    c3Var.f14368b = true;
-                    c3Var.f14369c = imageTintList;
+                    c3Var.f14383b = true;
+                    c3Var.f14384c = imageTintList;
                 }
                 PorterDuff.Mode imageTintMode = imageView.getImageTintMode();
                 if (imageTintMode != null) {
-                    c3Var.f14367a = true;
+                    c3Var.f14382a = true;
                     c3Var.d = imageTintMode;
                 }
-                if (c3Var.f14368b || c3Var.f14367a) {
+                if (c3Var.f14383b || c3Var.f14382a) {
                     q.d(drawable, c3Var, imageView.getDrawableState());
                     return;
                 }
@@ -189,10 +190,10 @@ public final class l implements OnSuccessListener, le.k {
         int resourceId;
         ImageView imageView = (ImageView) this.f12912b;
         Context context = imageView.getContext();
-        int[] iArr = f.a.f8769f;
+        int[] iArr = f.a.f8768f;
         lf.h Q = lf.h.Q(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) Q.f14216c;
-        i0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) Q.f14216c, i10);
+        TypedArray typedArray = (TypedArray) Q.f14231c;
+        i0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) Q.f14231c, i10);
         try {
             Drawable drawable3 = imageView.getDrawable();
             if (drawable3 == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable3 = w7.b(imageView.getContext(), resourceId)) != null) {
@@ -262,7 +263,7 @@ public final class l implements OnSuccessListener, le.k {
         Iterator it = ((le.l) this.d).iterator();
         while (it.hasNext()) {
             le.g gVar = (le.g) it.next();
-            fArr[((Integer) gVar.f14179a).intValue()] = gVar.c();
+            fArr[((Integer) gVar.f14194a).intValue()] = gVar.c();
         }
         ((ug) this.f12913c).run();
     }
@@ -302,12 +303,12 @@ public final class l implements OnSuccessListener, le.k {
     }
 
     public void k(Throwable th2) {
-        c5.d0 d0Var = (c5.d0) this.d;
+        c0 c0Var = (c0) this.d;
         if (th2 instanceof TimeoutException) {
-            d0Var.F(102, 28, g0.f3894p);
+            c0Var.F(102, 28, f0.f3887p);
             u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", th2);
         } else {
-            d0Var.F(95, 28, g0.f3894p);
+            c0Var.F(95, 28, f0.f3887p);
             u.i("BillingClientTesting", "An error occurred while retrieving billing override.", th2);
         }
         ((Runnable) this.f12913c).run();

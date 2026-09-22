@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class z1 extends a2 implements NotificationCenter.NotificationCenterDelegate {
-    public final ai.w0 f5857b;
-    public final w1 f5858c;
+    public final ai.w0 f5855b;
+    public final w1 f5856c;
     public final l2 d;
     public final y1 e;
-    public final s1 f5859f;
+    public final s1 f5857f;
     public final ArrayList h;
-    public final ArrayList f5860n;
-    public final t2 f5861r;
+    public final ArrayList f5858n;
+    public final t2 f5859r;
 
     public z1(t2 t2Var, Context context) {
         super(context);
         org.telegram.ui.ActionBar.f6 f6Var;
-        this.f5861r = t2Var;
-        this.f5859f = new Object();
+        this.f5859r = t2Var;
+        this.f5857f = new Object();
         this.h = new ArrayList();
-        this.f5860n = new ArrayList();
+        this.f5858n = new ArrayList();
         ai.w0 w0Var = new ai.w0(this, context, 1);
-        this.f5857b = w0Var;
+        this.f5855b = w0Var;
         w1 w1Var = new w1(this);
-        this.f5858c = w1Var;
+        this.f5856c = w1Var;
         w0Var.setAdapter(w1Var);
         y1 y1Var = new y1(this);
         this.e = y1Var;
@@ -49,9 +49,9 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
 
     @Override
     public final void a(int i10) {
-        w1 w1Var = this.f5858c;
+        w1 w1Var = this.f5856c;
         w1.E(w1Var, false);
-        if (this.f5860n.isEmpty() && TextUtils.isEmpty(this.f5861r.f5548b)) {
+        if (this.f5858n.isEmpty() && TextUtils.isEmpty(this.f5859r.f5546b)) {
             w1Var.G();
         }
         w1Var.H(null);
@@ -61,7 +61,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final float b() {
         int i10 = 0;
         while (true) {
-            ai.w0 w0Var = this.f5857b;
+            ai.w0 w0Var = this.f5855b;
             if (i10 < w0Var.getChildCount()) {
                 View childAt = w0Var.getChildAt(i10);
                 Object tag = childAt.getTag();
@@ -83,7 +83,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.recentDocumentsDidLoad) {
-            w1.E(this.f5858c, true);
+            w1.E(this.f5856c, true);
         }
     }
 
@@ -91,7 +91,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final void onAttachedToWindow() {
         int i10;
         super.onAttachedToWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f5861r).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.f3) this.f5859r).currentAccount;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
     }
 
@@ -99,7 +99,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final void onDetachedFromWindow() {
         int i10;
         super.onDetachedFromWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f5861r).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.f3) this.f5859r).currentAccount;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
     }
 
@@ -107,7 +107,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final void onMeasure(int i10, int i11) {
         int i12;
         int i13;
-        t2 t2Var = this.f5861r;
+        t2 t2Var = this.f5859r;
         i12 = ((org.telegram.ui.ActionBar.f3) t2Var).backgroundPaddingLeft;
         i13 = ((org.telegram.ui.ActionBar.f3) t2Var).backgroundPaddingLeft;
         setPadding(i12, 0, i13, AndroidUtilities.navigationBarHeight);

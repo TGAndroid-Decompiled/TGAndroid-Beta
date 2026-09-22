@@ -1,6 +1,6 @@
 package a1;
 
-import a4.k;
+import a4.l;
 import ai.d2;
 import ai.dc;
 import ai.g0;
@@ -72,18 +72,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.xk0;
-import org.telegram.ui.Components.xr0;
-import pg.u1;
+import org.telegram.ui.Components.al0;
+import org.telegram.ui.Components.nl0;
+import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.zr0;
+import pg.v1;
 import r0.l1;
 import r0.n;
 import s4.m0;
-import vh.h;
-import vh.l;
-public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Return, kl0, a2, t9, dc, l, n, xk0, Utilities.Callback5, u1, CameraController.VideoTakeCallback, Continuation, OnCompleteListener {
+import vh.k;
+public final class c implements OnSuccessListener, i, ol0, Utilities.Callback2Return, nl0, a2, t9, dc, k, n, al0, Utilities.Callback5, v1, CameraController.VideoTakeCallback, Continuation, OnCompleteListener {
     public final int f36a;
     public final Object f37b;
 
@@ -99,19 +98,19 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
         int i10 = 0;
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) jcVar.v.getLayoutParams();
-        if (!jcVar.f1073c) {
+        if (!jcVar.f1070c) {
             i10 = l1Var.d();
         }
         marginLayoutParams.topMargin = i10;
-        if (jcVar.f1073c) {
-            a2 = l1Var.f42154a.f(2).d;
+        if (jcVar.f1070c) {
+            a2 = l1Var.f42175a.f(2).d;
         } else {
             a2 = l1Var.a();
         }
         marginLayoutParams.bottomMargin = a2;
         marginLayoutParams.leftMargin = defaultWindowInsets.f10592a;
         marginLayoutParams.rightMargin = defaultWindowInsets.f10594c;
-        xb xbVar = jcVar.f1107s;
+        xb xbVar = jcVar.f1104s;
         if (xbVar != null) {
             xbVar.requestLayout();
         }
@@ -119,7 +118,7 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
         if (ybVar != null) {
             ybVar.requestLayout();
         }
-        return l1.f42153b;
+        return l1.f42174b;
     }
 
     @Override
@@ -143,9 +142,9 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
         int i12;
         int i13;
         r3 r3Var = (r3) this.f37b;
-        w0 w0Var = r3Var.f1330c;
-        ArrayList arrayList = r3Var.f1338r;
-        n1 n1Var = ((ai.l1) view).f1174f;
+        w0 w0Var = r3Var.f1327c;
+        ArrayList arrayList = r3Var.f1335r;
+        n1 n1Var = ((ai.l1) view).f1171f;
         int i14 = r3Var.N;
         int currentTime = ConnectionsManager.getInstance(i14).getCurrentTime();
         HashSet hashSet = new HashSet();
@@ -153,13 +152,13 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
         int i16 = 0;
         while (true) {
             j3 = 0;
-            if (i16 >= n1Var.f1282f.size()) {
+            if (i16 >= n1Var.f1279f.size()) {
                 break;
             }
-            m1 m1Var = (m1) n1Var.f1282f.get(i16);
-            long j11 = m1Var.f1231g;
+            m1 m1Var = (m1) n1Var.f1279f.get(i16);
+            long j11 = m1Var.f1228g;
             if (j11 > 0 && currentTime - m1Var.d <= g0.b(i14, (int) j11, 0)) {
-                hashSet.add(Integer.valueOf(m1Var.f1227a));
+                hashSet.add(Integer.valueOf(m1Var.f1224a));
             }
             i16++;
         }
@@ -171,13 +170,13 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
         int i18 = 0;
         while (i17 < arrayList.size()) {
             m1 m1Var2 = (m1) arrayList.get(i17);
-            if (!m1Var2.f1228b && m1Var2.e && m1Var2.f1231g < j3) {
+            if (!m1Var2.f1225b && m1Var2.e && m1Var2.f1228g < j3) {
                 j10 = j3;
             } else {
-                if (hashSet.contains(Integer.valueOf(m1Var2.f1227a))) {
+                if (hashSet.contains(Integer.valueOf(m1Var2.f1224a))) {
                     j10 = j3;
-                    if (r3Var.f1340w != n1Var.f1280b || (i13 = r3Var.f1341x) == 0 || m1Var2.f1227a < i13) {
-                        i11 = m1Var2.f1227a;
+                    if (r3Var.f1337w != n1Var.f1277b || (i13 = r3Var.f1338x) == 0 || m1Var2.f1224a < i13) {
+                        i11 = m1Var2.f1224a;
                         break;
                     }
                 } else {
@@ -195,9 +194,9 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
             while (true) {
                 if (i15 < arrayList.size()) {
                     m1 m1Var3 = (m1) arrayList.get(i15);
-                    if (m1Var3.f1228b || !m1Var3.e || m1Var3.f1231g >= j10) {
-                        if (hashSet.contains(Integer.valueOf(m1Var3.f1227a))) {
-                            i12 = m1Var3.f1227a;
+                    if (m1Var3.f1225b || !m1Var3.e || m1Var3.f1228g >= j10) {
+                        if (hashSet.contains(Integer.valueOf(m1Var3.f1224a))) {
+                            i12 = m1Var3.f1224a;
                             i18 = i19;
                             break;
                         }
@@ -216,9 +215,9 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
         if (i12 < 0) {
             return;
         }
-        r3Var.f1340w = n1Var.f1280b;
-        r3Var.f1341x = i12;
-        r3Var.f1342y = true;
+        r3Var.f1337w = n1Var.f1277b;
+        r3Var.f1338x = i12;
+        r3Var.f1339y = true;
         m0 itemAnimator = w0Var.getItemAnimator();
         w0Var.setItemAnimator(null);
         r3Var.d.i1(i18, w0Var.getHeight() / 2, true);
@@ -240,9 +239,9 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
     public void e() {
         float f7;
         qb qbVar = (qb) this.f37b;
-        TextView textView = qbVar.f5436o1;
+        TextView textView = qbVar.f5434o1;
         boolean a2 = qbVar.D0.a();
-        ImageView imageView = qbVar.f5434n1;
+        ImageView imageView = qbVar.f5432n1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f10 = 0.6f;
@@ -276,9 +275,9 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
 
     @Override
     public void g(j jVar) {
-        k kVar = (k) jVar;
+        a4.k kVar = (a4.k) jVar;
         kVar.clear();
-        ((a4.l) this.f37b).f270b.add(kVar);
+        ((l) this.f37b).f270b.add(kVar);
     }
 
     @Override
@@ -293,37 +292,37 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
                 if (ccVar != null) {
                     ccVar.s(null, null, true);
                 }
-                qb qbVar = ocVar.f5273v1;
+                qb qbVar = ocVar.f5271v1;
                 if (qbVar != null) {
                     qbVar.q0();
                 }
-                ec ecVar = ocVar.f5214c1;
+                ec ecVar = ocVar.f5212c1;
                 if (ecVar != null) {
                     ecVar.setHasRoundVideo(false);
                 }
                 o8 o8Var = ocVar.K1;
                 if (o8Var != null) {
-                    File file = o8Var.f5173o0;
+                    File file = o8Var.f5171o0;
                     if (file != null) {
                         try {
                             file.delete();
                         } catch (Exception unused) {
                         }
-                        ocVar.K1.f5173o0 = null;
+                        ocVar.K1.f5171o0 = null;
                     }
-                    if (ocVar.K1.f5175p0 != null) {
+                    if (ocVar.K1.f5173p0 != null) {
                         try {
-                            new File(ocVar.K1.f5175p0).delete();
+                            new File(ocVar.K1.f5173p0).delete();
                         } catch (Exception unused2) {
                         }
-                        ocVar.K1.f5175p0 = null;
+                        ocVar.K1.f5173p0 = null;
                         return;
                     }
                     return;
                 }
                 return;
             case 19:
-                ((f6) this.f37b).f4662a.f5439p2.r();
+                ((f6) this.f37b).f4660a.f5437p2.r();
                 return;
             case 28:
                 ((ei.e) this.f37b).run();
@@ -341,19 +340,19 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
     }
 
     @Override
-    public void l(h hVar, float f7, float f10) {
+    public void l(vh.g gVar, float f7, float f10) {
         va vaVar = (va) this.f37b;
         wa waVar = vaVar.v;
-        if (!waVar.f1676x) {
-            hVar.f44714q = new ua(vaVar, 2);
+        if (!waVar.f1673x) {
+            gVar.f44735q = new ua(vaVar, 2);
             float sqrt = (float) Math.sqrt(Math.pow(waVar.getHeight(), 2.0d) + Math.pow(waVar.getWidth(), 2.0d));
-            ArrayList arrayList = vaVar.f1624i;
+            ArrayList arrayList = vaVar.f1621i;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ((h) obj).j(f7, f10, sqrt, false);
+                ((vh.g) obj).j(f7, f10, sqrt, false);
             }
         }
     }
@@ -365,7 +364,7 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
                 c0.b((Intent) this.f37b);
                 return;
             case 24:
-                ((e0) this.f37b).f7309b.trySetResult(null);
+                ((e0) this.f37b).f7307b.trySetResult(null);
                 return;
             default:
                 ((ScheduledFuture) this.f37b).cancel(false);
@@ -376,14 +375,14 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
     @Override
     public void onFinishVideoRecording(String str, long j3) {
         jb jbVar = (jb) this.f37b;
-        oc ocVar = jbVar.f4860a;
+        oc ocVar = jbVar.f4858a;
         l7 l7Var = ocVar.O0;
-        int i10 = ocVar.f5212c;
+        int i10 = ocVar.f5210c;
         if (l7Var != null) {
             l7Var.g(true);
         }
         if (ocVar.q0()) {
-            ocVar.f5262s.d();
+            ocVar.f5260s.d();
         }
         if (ocVar.G1 != null && ocVar.B0 != null) {
             ocVar.Q1 = false;
@@ -419,8 +418,8 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
             }
             ocVar.i0(false, true);
             o8 o9 = o8.o(ocVar.G1, str, j3);
-            o9.J0 = ocVar.f5272v0;
-            o9.K0 = ocVar.f5276w0;
+            o9.J0 = ocVar.f5270v0;
+            o9.K0 = ocVar.f5274w0;
             o9.B();
             ocVar.h(false, true);
             ocVar.d0(false);
@@ -441,8 +440,8 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
                     int videoHeight = ocVar.B0.getVideoHeight();
                     if (videoWidth > 0 && videoHeight > 0) {
                         o8 o8Var = ocVar.K1;
-                        o8Var.f5166k0 = videoWidth;
-                        o8Var.f5168l0 = videoHeight;
+                        o8Var.f5164k0 = videoWidth;
+                        o8Var.f5166l0 = videoHeight;
                         o8Var.A();
                     }
                 }
@@ -456,8 +455,8 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
             int videoHeight2 = ocVar.B0.getVideoHeight();
             if (videoWidth2 > 0 && videoHeight2 > 0) {
                 o8 o8Var2 = ocVar.K1;
-                o8Var2.f5166k0 = videoWidth2;
-                o8Var2.f5168l0 = videoHeight2;
+                o8Var2.f5164k0 = videoWidth2;
+                o8Var2.f5166l0 = videoHeight2;
                 o8Var2.A();
             }
             ocVar.L(new hb(jbVar, 3), 0L);
@@ -478,7 +477,7 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
                 z zVar = (z) obj;
                 if (((FirebaseMessaging) this.f37b).e.n() && zVar.h.a() != null) {
                     synchronized (zVar) {
-                        z10 = zVar.f7369g;
+                        z10 = zVar.f7367g;
                     }
                     if (!z10) {
                         zVar.h(0L);
@@ -499,22 +498,22 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         fb fbVar = (fb) this.f37b;
-        w51 w51Var = (w51) obj;
+        y51 y51Var = (y51) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        int i10 = w51Var.d;
-        o8 o8Var = (o8) w51Var.G;
+        int i10 = y51Var.d;
+        o8 o8Var = (o8) y51Var.G;
         fbVar.c(false, true);
         oc ocVar = fbVar.O;
         if (o8Var == ocVar.K1 || ocVar.X1) {
             return;
         }
-        ocVar.f5217d1.setSelected(i10);
+        ocVar.f5215d1.setSelected(i10);
         ocVar.X1 = true;
         n8 n8Var = new n8(ocVar, i10, 6);
-        qb qbVar = ocVar.f5273v1;
+        qb qbVar = ocVar.f5271v1;
         o8 o8Var2 = ocVar.K1;
         if (qbVar != null && o8Var2 != null) {
             if (!qbVar.u0()) {
@@ -524,7 +523,7 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
             o8Var2.f();
             boolean u02 = qbVar.u0();
             boolean z10 = qbVar.O0.getPainting().E;
-            Utilities.searchQueue.postRunnable(new na(ocVar, qbVar, o8Var2.f5162i0, o8Var2.f5164j0, o8Var2, z10, u02, n8Var, 0));
+            Utilities.searchQueue.postRunnable(new na(ocVar, qbVar, o8Var2.f5160i0, o8Var2.f5162j0, o8Var2, z10, u02, n8Var, 0));
             return;
         }
         n8Var.run();
@@ -563,10 +562,10 @@ public final class c implements OnSuccessListener, i, ll0, Utilities.Callback2Re
                 Long l4 = (Long) obj;
                 return o1.a((o1) this.f37b, (Long) obj2);
             default:
-                xr0 xr0Var = (xr0) this.f37b;
+                zr0 zr0Var = (zr0) this.f37b;
                 Integer num = (Integer) obj2;
                 if (((Integer) obj).intValue() == -1) {
-                    new y(xr0Var.f3607a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(xr0Var, 4)).show();
+                    new y(zr0Var.f3606a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(zr0Var, 4)).show();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;

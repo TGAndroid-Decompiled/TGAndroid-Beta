@@ -1,6 +1,6 @@
 package w7;
 public final class p1 implements ia.d {
-    public static final p1 f45096a = new Object();
+    public static final p1 f45118a = new Object();
 
     static {
         v7.j0.q(v7.j0.j(d.class, new a(1)));

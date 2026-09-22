@@ -21,7 +21,7 @@ public final class s1 implements ti {
     @Override
     public final void C1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         vi viVar = this.f11615a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f29110j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f29108j0;
         d2 d2Var = this.f11616b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();

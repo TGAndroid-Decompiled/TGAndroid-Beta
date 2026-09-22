@@ -8,38 +8,38 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class fj1 {
-    public String f33661a;
-    public final int f33662b;
-    public final int f33663c;
+    public String f33688a;
+    public final int f33689b;
+    public final int f33690c;
     public final int d;
     public final int e;
-    public int f33664f;
-    public TLRPC.TL_wallPaper f33665g;
+    public int f33691f;
+    public TLRPC.TL_wallPaper f33692g;
     public float h;
-    public final File f33666i;
-    public final boolean f33667j;
-    public final boolean f33668k;
-    public TLRPC.WallPaper f33669l;
-    public Bitmap f33670m;
+    public final File f33693i;
+    public final boolean f33694j;
+    public final boolean f33695k;
+    public TLRPC.WallPaper f33696l;
+    public Bitmap f33697m;
 
     public fj1(int i10, int i11, String str, int i12) {
-        this.f33661a = str;
-        this.f33662b = i10 | (-16777216);
+        this.f33688a = str;
+        this.f33689b = i10 | (-16777216);
         int i13 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f33663c = i13;
-        this.f33664f = i13 == 0 ? 0 : i12;
+        this.f33690c = i13;
+        this.f33691f = i13 == 0 ? 0 : i12;
         this.h = 1.0f;
     }
 
     public final String a() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(String.valueOf(this.f33662b));
-        sb2.append(this.f33663c);
+        sb2.append(String.valueOf(this.f33689b));
+        sb2.append(this.f33690c);
         sb2.append(this.d);
         sb2.append(this.e);
-        sb2.append(this.f33664f);
+        sb2.append(this.f33691f);
         sb2.append(this.h);
-        String str = this.f33661a;
+        String str = this.f33688a;
         if (str == null) {
             str = "";
         }
@@ -51,13 +51,13 @@ public final class fj1 {
         String str;
         String str2;
         String str3 = null;
-        int i10 = this.f33663c;
+        int i10 = this.f33690c;
         if (i10 != 0) {
             str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (i10 >> 8)) & 255), Byte.valueOf((byte) (i10 & 255))).toLowerCase();
         } else {
             str = null;
         }
-        int i11 = this.f33662b;
+        int i11 = this.f33689b;
         String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (i11 >> 8)) & 255), Byte.valueOf((byte) (i11 & 255))).toLowerCase();
         int i12 = this.d;
         if (i12 != 0) {
@@ -83,19 +83,19 @@ public final class fj1 {
             }
         } else if (str != null) {
             String C = a4.a.C(lowerCase, "-", str);
-            if (this.f33665g != null) {
+            if (this.f33692g != null) {
                 StringBuilder h = v7.j0.h(C, "&rotation=");
-                h.append(AndroidUtilities.getWallpaperRotation(this.f33664f, true));
+                h.append(AndroidUtilities.getWallpaperRotation(this.f33691f, true));
                 lowerCase = h.toString();
             } else {
                 StringBuilder h10 = v7.j0.h(C, "?rotation=");
-                h10.append(AndroidUtilities.getWallpaperRotation(this.f33664f, true));
+                h10.append(AndroidUtilities.getWallpaperRotation(this.f33691f, true));
                 lowerCase = h10.toString();
             }
         }
-        if (this.f33665g != null) {
-            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f33665g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
-            if (this.f33667j) {
+        if (this.f33692g != null) {
+            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f33692g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
+            if (this.f33694j) {
                 return v7.j0.s(str4, "&mode=motion");
             }
             return str4;
@@ -104,25 +104,25 @@ public final class fj1 {
     }
 
     public fj1(String str, int i10, int i11, int i12, int i13) {
-        this.f33661a = str;
-        this.f33662b = i10 | (-16777216);
-        this.f33663c = i11 == 0 ? 0 : i11 | (-16777216);
+        this.f33688a = str;
+        this.f33689b = i10 | (-16777216);
+        this.f33690c = i11 == 0 ? 0 : i11 | (-16777216);
         this.d = i12 == 0 ? 0 : i12 | (-16777216);
         this.e = i13 != 0 ? i13 | (-16777216) : 0;
         this.h = 1.0f;
-        this.f33668k = true;
+        this.f33695k = true;
     }
 
     public fj1(String str, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, File file) {
-        this.f33661a = str;
-        this.f33662b = i10 | (-16777216);
+        this.f33688a = str;
+        this.f33689b = i10 | (-16777216);
         int i15 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f33663c = i15;
+        this.f33690c = i15;
         this.d = i12 == 0 ? 0 : i12 | (-16777216);
         this.e = i13 != 0 ? i13 | (-16777216) : 0;
-        this.f33664f = i15 == 0 ? 45 : i14;
+        this.f33691f = i15 == 0 ? 45 : i14;
         this.h = f7;
-        this.f33666i = file;
-        this.f33667j = z10;
+        this.f33693i = file;
+        this.f33694j = z10;
     }
 }

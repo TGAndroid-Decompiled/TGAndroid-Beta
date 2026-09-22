@@ -8,70 +8,70 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class oa implements RequestDelegate {
-    public final int f17149a;
-    public final boolean f17150b;
-    public final long f17151c;
+    public final int f17164a;
+    public final boolean f17165b;
+    public final long f17166c;
     public final BaseController d;
     public final Object e;
-    public final Object f17152f;
+    public final Object f17167f;
 
     public oa(BaseController baseController, Object obj, boolean z10, long j3, Object obj2, int i10) {
-        this.f17149a = i10;
+        this.f17164a = i10;
         this.d = baseController;
         this.e = obj;
-        this.f17150b = z10;
-        this.f17151c = j3;
-        this.f17152f = obj2;
+        this.f17165b = z10;
+        this.f17166c = j3;
+        this.f17167f = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17149a) {
+        switch (this.f17164a) {
             case 0:
-                boolean z10 = this.f17150b;
-                ((MessagesController) this.d).lambda$getSendAsPeers$443((a0.i) this.e, this.f17151c, (MessagesController.SendAsPeersInfo) this.f17152f, z10, tLObject, tL_error);
+                boolean z10 = this.f17165b;
+                ((MessagesController) this.d).lambda$getSendAsPeers$443((a0.i) this.e, this.f17166c, (MessagesController.SendAsPeersInfo) this.f17167f, z10, tLObject, tL_error);
                 return;
             case 1:
-                long j3 = this.f17151c;
-                ((TranslateController) this.d).lambda$pushToTranslate$23((TranslateController.PendingTranslation) this.e, this.f17150b, j3, (Set) this.f17152f, tLObject, tL_error);
+                long j3 = this.f17166c;
+                ((TranslateController) this.d).lambda$pushToTranslate$23((TranslateController.PendingTranslation) this.e, this.f17165b, j3, (Set) this.f17167f, tLObject, tL_error);
                 return;
             case 2:
-                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$17(this.f17151c, this.f17150b, (String) this.e, (Runnable) this.f17152f, tLObject, tL_error);
+                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$17(this.f17166c, this.f17165b, (String) this.e, (Runnable) this.f17167f, tLObject, tL_error);
                 return;
             case 3:
-                long j10 = this.f17151c;
-                ((MemberRequestsController) this.d).lambda$getImporters$1((TLRPC.TL_chatInviteImporter) this.e, this.f17150b, j10, (RequestDelegate) this.f17152f, tLObject, tL_error);
+                long j10 = this.f17166c;
+                ((MemberRequestsController) this.d).lambda$getImporters$1((TLRPC.TL_chatInviteImporter) this.e, this.f17165b, j10, (RequestDelegate) this.f17167f, tLObject, tL_error);
                 return;
             default:
-                ((TopicsController) this.d).lambda$reloadTopics$16(this.f17150b, this.f17151c, (HashSet) this.e, (Runnable) this.f17152f, tLObject, tL_error);
+                ((TopicsController) this.d).lambda$reloadTopics$16(this.f17165b, this.f17166c, (HashSet) this.e, (Runnable) this.f17167f, tLObject, tL_error);
                 return;
         }
     }
 
     public oa(ChatThemeController chatThemeController, long j3, boolean z10, String str, Runnable runnable) {
-        this.f17149a = 2;
+        this.f17164a = 2;
         this.d = chatThemeController;
-        this.f17151c = j3;
-        this.f17150b = z10;
+        this.f17166c = j3;
+        this.f17165b = z10;
         this.e = str;
-        this.f17152f = runnable;
+        this.f17167f = runnable;
     }
 
     public oa(MessagesController messagesController, a0.i iVar, long j3, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
-        this.f17149a = 0;
+        this.f17164a = 0;
         this.d = messagesController;
         this.e = iVar;
-        this.f17151c = j3;
-        this.f17152f = sendAsPeersInfo;
-        this.f17150b = z10;
+        this.f17166c = j3;
+        this.f17167f = sendAsPeersInfo;
+        this.f17165b = z10;
     }
 
     public oa(TopicsController topicsController, boolean z10, long j3, HashSet hashSet, Runnable runnable) {
-        this.f17149a = 4;
+        this.f17164a = 4;
         this.d = topicsController;
-        this.f17150b = z10;
-        this.f17151c = j3;
+        this.f17165b = z10;
+        this.f17166c = j3;
         this.e = hashSet;
-        this.f17152f = runnable;
+        this.f17167f = runnable;
     }
 }

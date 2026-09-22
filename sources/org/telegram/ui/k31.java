@@ -10,6 +10,6 @@ public final class k31 extends a71 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f35592n = null;
+        this.e.f35615n = null;
     }
 }

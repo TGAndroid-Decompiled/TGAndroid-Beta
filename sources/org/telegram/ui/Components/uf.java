@@ -4,39 +4,39 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.SharedConfig;
 public final class uf extends AnimatorListenerAdapter {
-    public final boolean f28653a;
-    public final ChatActivityEnterView f28654b;
+    public final boolean f28721a;
+    public final ChatActivityEnterView f28722b;
 
     public uf(ChatActivityEnterView chatActivityEnterView, boolean z10) {
-        this.f28654b = chatActivityEnterView;
-        this.f28653a = z10;
+        this.f28722b = chatActivityEnterView;
+        this.f28721a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f28654b;
-        if (animator.equals(chatActivityEnterView.f22059s2)) {
-            chatActivityEnterView.f22059s2 = null;
+        ChatActivityEnterView chatActivityEnterView = this.f28722b;
+        if (animator.equals(chatActivityEnterView.f22080t2)) {
+            chatActivityEnterView.f22080t2 = null;
         }
         chatActivityEnterView.x0();
-        chatActivityEnterView.f22011j1.setAlpha(1.0f);
-        chatActivityEnterView.f22011j1.setTranslationX(0.0f);
-        rg rgVar = chatActivityEnterView.N1;
+        chatActivityEnterView.f22031k1.setAlpha(1.0f);
+        chatActivityEnterView.f22031k1.setTranslationX(0.0f);
+        rg rgVar = chatActivityEnterView.O1;
         if (rgVar != null && SharedConfig.lockRecordAudioVideoHint < 3) {
             ChatActivityEnterView chatActivityEnterView2 = rgVar.V;
-            chatActivityEnterView2.f21977d4 = true;
-            chatActivityEnterView2.f21983e4 = System.currentTimeMillis();
+            chatActivityEnterView2.f21998e4 = true;
+            chatActivityEnterView2.f22005f4 = System.currentTimeMillis();
         }
         pf pfVar = chatActivityEnterView.E0;
         if (pfVar != null) {
             pfVar.setAlpha(0.0f);
         }
-        if (this.f28653a) {
-            qk0 qk0Var = chatActivityEnterView.f21999h1;
-            if (qk0Var != null) {
-                qk0Var.setVisibility(8);
+        if (this.f28721a) {
+            tk0 tk0Var = chatActivityEnterView.f22014h1;
+            if (tk0Var != null) {
+                tk0Var.setVisibility(8);
             }
-            ke keVar = chatActivityEnterView.f21980e1;
+            ke keVar = chatActivityEnterView.f21995e1;
             if (keVar != null) {
                 keVar.setVisibility(8);
             }

@@ -10,6 +10,6 @@ public final class tp0 extends a71 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f39210o0 = null;
+        this.e.f39234o0 = null;
     }
 }

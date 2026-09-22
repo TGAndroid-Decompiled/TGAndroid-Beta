@@ -13,106 +13,106 @@ import org.telegram.messenger.TelegramMediaSession;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class e1 implements Runnable {
-    public final int f16228a;
-    public final Object f16229b;
+    public final int f16243a;
+    public final Object f16244b;
 
     public e1(Object obj, int i10) {
-        this.f16228a = i10;
-        this.f16229b = obj;
+        this.f16243a = i10;
+        this.f16244b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f16228a) {
+        switch (this.f16243a) {
             case 0:
-                CompoundEmoji.DrawableInfo.a((CompoundEmoji.DrawableInfo) this.f16229b);
+                CompoundEmoji.DrawableInfo.a((CompoundEmoji.DrawableInfo) this.f16244b);
                 return;
             case 1:
-                ((FeedRemoteViewsFactory) this.f16229b).lambda$onDataSetChanged$0();
+                ((FeedRemoteViewsFactory) this.f16244b).lambda$onDataSetChanged$0();
                 return;
             case 2:
-                ((FilesMigrationService.AnonymousClass1) this.f16229b).lambda$run$0();
+                ((FilesMigrationService.AnonymousClass1) this.f16244b).lambda$run$0();
                 return;
             case 3:
-                ((ImageLoader.AnonymousClass6) this.f16229b).lambda$onReceive$0();
+                ((ImageLoader.AnonymousClass6) this.f16244b).lambda$onReceive$0();
                 return;
             case 4:
-                ((LocaleController.TimeZoneChangedReceiver) this.f16229b).lambda$onReceive$0();
+                ((LocaleController.TimeZoneChangedReceiver) this.f16244b).lambda$onReceive$0();
                 return;
             case 5:
-                ((MediaController.AnonymousClass7) this.f16229b).lambda$onSurfaceDestroyed$0();
+                ((MediaController.AnonymousClass7) this.f16244b).lambda$onSurfaceDestroyed$0();
                 return;
             case 6:
-                ((MediaController.AnonymousClass9) this.f16229b).lambda$onSurfaceDestroyed$0();
+                ((MediaController.AnonymousClass9) this.f16244b).lambda$onSurfaceDestroyed$0();
                 return;
             case 7:
-                ((MediaController.GalleryObserverInternal) this.f16229b).lambda$scheduleReloadRunnable$0();
+                ((MediaController.GalleryObserverInternal) this.f16244b).lambda$scheduleReloadRunnable$0();
                 return;
             case 8:
-                ((MediaController.MusicListenReporter) this.f16229b).report();
+                ((MediaController.MusicListenReporter) this.f16244b).report();
                 return;
             case 9:
-                MediaController.VideoConvertRunnable.lambda$runConversion$0((MediaController.VideoConvertMessage) this.f16229b);
+                MediaController.VideoConvertRunnable.lambda$runConversion$0((MediaController.VideoConvertMessage) this.f16244b);
                 return;
             case 10:
-                ((TelegramMediaSession.SessionCallback) this.f16229b).lambda$notifyPlayStateForNotificationRefresh$0();
+                ((TelegramMediaSession.SessionCallback) this.f16244b).lambda$notifyPlayStateForNotificationRefresh$0();
                 return;
             case 11:
-                ANRDetector.a((ANRDetector) this.f16229b);
+                ANRDetector.a((ANRDetector) this.f16244b);
                 return;
             case 12:
-                AndroidUtilities.lambda$notifyDataSetChanged$26((RecyclerView) this.f16229b);
+                AndroidUtilities.lambda$notifyDataSetChanged$26((RecyclerView) this.f16244b);
                 return;
             case 13:
-                BotFullscreenButtons.a((BotFullscreenButtons) this.f16229b);
+                BotFullscreenButtons.a((BotFullscreenButtons) this.f16244b);
                 return;
             case 14:
-                ((BotFullscreenButtons.OptionsIcon) this.f16229b).invalidateSelf();
+                ((BotFullscreenButtons.OptionsIcon) this.f16244b).invalidateSelf();
                 return;
             case 15:
-                CodeHighlighting.a((CodeHighlighting.LockedSpannableString) this.f16229b);
+                CodeHighlighting.a((CodeHighlighting.LockedSpannableString) this.f16244b);
                 return;
             case 16:
-                CompoundEmoji.CompoundEmojiDrawable.a((CompoundEmoji.CompoundEmojiDrawable) this.f16229b);
+                CompoundEmoji.CompoundEmojiDrawable.a((CompoundEmoji.CompoundEmojiDrawable) this.f16244b);
                 return;
             case 17:
-                ContactsLoadingObserver.b((ContactsLoadingObserver) this.f16229b);
+                ContactsLoadingObserver.b((ContactsLoadingObserver) this.f16244b);
                 return;
             case 18:
-                ((DispatchQueueMainThreadSync) this.f16229b).lambda$recycle$0();
+                ((DispatchQueueMainThreadSync) this.f16244b).lambda$recycle$0();
                 return;
             case 19:
-                ((FactCheckController) this.f16229b).loadMissing();
+                ((FactCheckController) this.f16244b).loadMissing();
                 return;
             case 20:
-                FileLoaderPriorityQueue.a((FileLoaderPriorityQueue) this.f16229b);
+                FileLoaderPriorityQueue.a((FileLoaderPriorityQueue) this.f16244b);
                 return;
             case 21:
-                ((FilePathDatabase) this.f16229b).lambda$clear$3();
+                ((FilePathDatabase) this.f16244b).lambda$clear$3();
                 return;
             case 22:
-                FileRefController.lambda$onRequestComplete$46((TLRPC.TL_theme) this.f16229b);
+                FileRefController.lambda$onRequestComplete$46((TLRPC.TL_theme) this.f16244b);
                 return;
             case 23:
-                ((ImageReceiver) this.f16229b).invalidate();
+                ((ImageReceiver) this.f16244b).invalidate();
                 return;
             case 24:
-                MediaController.lambda$saveFile$46((org.telegram.ui.ActionBar.b2) this.f16229b);
+                MediaController.lambda$saveFile$46((org.telegram.ui.ActionBar.b2) this.f16244b);
                 return;
             case 25:
-                ((org.telegram.ui.Components.nc) this.f16229b).f();
+                ((org.telegram.ui.Components.nc) this.f16244b).f();
                 return;
             case 26:
-                MediaDataController.lambda$addRecentGif$27((TLRPC.Document) this.f16229b);
+                MediaDataController.lambda$addRecentGif$27((TLRPC.Document) this.f16244b);
                 return;
             case 27:
-                MessagesController.lambda$convertToGigaGroup$268((MessagesStorage.BooleanCallback) this.f16229b);
+                MessagesController.lambda$convertToGigaGroup$268((MessagesStorage.BooleanCallback) this.f16244b);
                 return;
             case 28:
-                MessagesController.lambda$performLogout$321((TLObject) this.f16229b);
+                MessagesController.lambda$performLogout$321((TLObject) this.f16244b);
                 return;
             default:
-                MessagesController.lambda$setContentSettings$503((TLRPC.TL_error) this.f16229b);
+                MessagesController.lambda$setContentSettings$503((TLRPC.TL_error) this.f16244b);
                 return;
         }
     }

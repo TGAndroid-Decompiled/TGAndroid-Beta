@@ -34,17 +34,17 @@ import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.d5;
 import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.t40;
 import org.telegram.ui.Components.u40;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.v9;
-import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.y70;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.dv0;
 import org.telegram.ui.sr;
 import org.telegram.ui.zn;
-import w7.b6;
+import w7.a6;
 import w7.y5;
 public final class p extends n2 implements t40, NotificationCenter.NotificationCenterDelegate, le.d {
     public u40 E;
@@ -57,7 +57,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
     public final le.b f9152a;
     public long f9153b;
     public v7 f9154c;
-    public s61 d;
+    public u61 d;
     public String e;
     public boolean f9155f;
     public boolean h;
@@ -76,17 +76,17 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         this.K = new m(this);
     }
 
-    public static boolean U(p pVar, w51 w51Var, View view) {
+    public static boolean U(p pVar, y51 y51Var, View view) {
         long j3;
         boolean canRemoveBotFromCommunity;
         boolean z10;
         boolean z11;
         boolean z12;
         int i10;
-        Object obj = w51Var.G;
+        Object obj = y51Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            j3 = -chat.f18328id;
+            j3 = -chat.f18343id;
             boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
             canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, pVar.H);
             z11 = isChannelAndNotMegaGroup;
@@ -94,7 +94,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                j3 = user.f18475id;
+                j3 = user.f18490id;
                 boolean isBot = UserObject.isBot(user);
                 canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, pVar.H);
                 z10 = isBot;
@@ -111,7 +111,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
             z12 = true;
         }
         if (z13 || z12) {
-            v70 F = v70.F(pVar.f9154c, null, view);
+            y70 F = y70.F(pVar.f9154c, null, view);
             int i11 = R.drawable.msg_viewintopic;
             if (z10) {
                 i10 = R.string.CommunityMenuViewBot;
@@ -129,10 +129,10 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         return false;
     }
 
-    public static void V(p pVar, w51 w51Var) {
+    public static void V(p pVar, y51 y51Var) {
         TLRPC.Chat chat;
         TLRPC.ChatPhoto chatPhoto;
-        int i10 = w51Var.d;
+        int i10 = y51Var.d;
         if (i10 == 140) {
             if (!pVar.E.h() && (chatPhoto = (chat = pVar.getMessagesController().getChat(Long.valueOf(pVar.f9153b))).photo) != null && chatPhoto.photo_big != null) {
                 ImageLocation imageLocation = null;
@@ -188,11 +188,11 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         } else if (i10 == 146) {
             u0.e(pVar.J, pVar, pVar.currentAccount, pVar.H);
         } else {
-            Object obj = w51Var.G;
+            Object obj = y51Var.G;
             if (obj instanceof TLRPC.Chat) {
-                pVar.presentFragment(zn.R9(-((TLRPC.Chat) obj).f18328id));
+                pVar.presentFragment(zn.R9(-((TLRPC.Chat) obj).f18343id));
             } else if (obj instanceof TLRPC.User) {
-                pVar.presentFragment(zn.R9(((TLRPC.User) obj).f18475id));
+                pVar.presentFragment(zn.R9(((TLRPC.User) obj).f18490id));
             }
         }
     }
@@ -214,7 +214,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
     }
 
     @Override
-    public final void D(int i10, float f7, float f10, le.e eVar) {
+    public final void H(int i10, float f7, float f10, le.e eVar) {
         int i11;
         this.G.setAlpha(f7);
         this.G.setScaleX(AndroidUtilities.lerp(0.75f, 1.0f, f7));
@@ -244,7 +244,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
 
     public final void Y() {
         boolean z10;
-        if (this.f9155f == this.h && TextUtils.equals(((o) this.f9156n.f785b).getText().toString(), this.e)) {
+        if (this.f9155f == this.h && TextUtils.equals(((o) this.f9156n.f782b).getText().toString(), this.e)) {
             z10 = false;
         } else {
             z10 = true;
@@ -318,12 +318,12 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 4));
         fh.c cVar = new fh.c();
-        cVar.a(getThemedColor(j6.f19094d6));
+        cVar.a(getThemedColor(j6.f19109d6));
         this.actionBar.M(new ah.c(cVar), eh.b.p(this.resourceProvider), false);
         this.actionBar.Q0 = true;
         v7 v7Var = new v7(this, context);
         this.f9154c = v7Var;
-        v7Var.setBackgroundColor(j6.w0(null, j6.f19038a7, false));
+        v7Var.setBackgroundColor(j6.w0(null, j6.f19053a7, false));
         this.f9161y = new g9(this.H);
         n nVar = new n(context);
         this.f9157r = nVar;
@@ -334,7 +334,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         f6 f6Var = this.resourceProvider;
         ai.f0 f0Var = new ai.f0(context, 4);
         o oVar = new o(context, 0);
-        f0Var.f785b = oVar;
+        f0Var.f782b = oVar;
         oVar.setTextColor(j6.v0(j6.G6, f6Var));
         oVar.setLinkTextColor(j6.v0(j6.gc, f6Var));
         oVar.setHintTextColor(j6.v0(j6.H6, f6Var));
@@ -353,8 +353,8 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         f0Var.addView(oVar, y5.d(-1, -2.0f, i10 | 16, 13.0f, 0.0f, 13.0f, 0.0f));
         this.f9156n = f0Var;
         oVar.setText(name);
-        ((o) this.f9156n.f785b).setSelection(name.length());
-        ((o) this.f9156n.f785b).addTextChangedListener(new i2(this, 1));
+        ((o) this.f9156n.f782b).setSelection(name.length());
+        ((o) this.f9156n.f782b).addTextChangedListener(new i2(this, 1));
         bi.o oVar2 = new bi.o(this, context);
         this.G = oVar2;
         oVar2.setTextColor(getThemedColor(j6.Sh));
@@ -365,7 +365,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         this.G.setVisibility(8);
         this.G.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         this.G.setOnClickListener(new v0(this, 17));
-        b6.a(this.G);
+        a6.a(this.G);
         this.actionBar.addView(this.G, y5.d(-2, 56.0f, 85, 0.0f, 0.0f, 12.0f, 0.0f));
         s6 s6Var = new s6(this, context);
         this.f9158s = s6Var;
@@ -377,18 +377,18 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         this.f9160x.setNoProgress(false);
         this.f9157r.addView(this.f9160x, y5.d(64, 64.0f, 81, 0.0f, 0.0f, 0.0f, 32.0f));
         a0(false, false);
-        s61 s61Var = new s61(this, new i(this, 1), new j(this), new j(this));
-        this.d = s61Var;
-        s61Var.setClipToPadding(false);
-        s61 s61Var2 = this.d;
-        s61Var2.Y2.f25678r = false;
-        s61Var2.q1();
+        u61 u61Var = new u61(this, new i(this, 1), new j(this), new j(this));
+        this.d = u61Var;
+        u61Var.setClipToPadding(false);
+        u61 u61Var2 = this.d;
+        u61Var2.Y2.f26342r = false;
+        u61Var2.q1();
         this.actionBar.setBackground(null);
         this.f9154c.addView(this.d, y5.c(-1.0f, -1));
         this.f9154c.addView(this.actionBar, y5.e(-1, -2, 48));
         v7 v7Var2 = this.f9154c;
         j jVar = new j(this);
-        WeakHashMap weakHashMap = r0.i0.f42142a;
+        WeakHashMap weakHashMap = r0.i0.f42163a;
         r0.a0.j(v7Var2, jVar);
         v7 v7Var3 = this.f9154c;
         this.fragmentView = v7Var3;
@@ -399,7 +399,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            if (chatFull.f18329id == this.f9153b) {
+            if (chatFull.f18344id == this.f9153b) {
                 this.I = chatFull;
                 this.d.Y2.N(true);
             }
@@ -416,7 +416,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.E.f28533c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.E.f28621c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -439,7 +439,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
 
     @Override
     public final String getInitialSearchString() {
-        return ((o) this.f9156n.f785b).getText().toString();
+        return ((o) this.f9156n.f782b).getText().toString();
     }
 
     @Override
@@ -469,8 +469,8 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
         this.I = getMessagesController().getChatFull(this.f9153b);
         u40 u40Var = new u40(3, true, true);
         this.E = u40Var;
-        u40Var.f28531a = this;
-        u40Var.f28532b = this;
+        u40Var.f28619a = this;
+        u40Var.f28620b = this;
         getNotificationCenter().addObserver(this, NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }
@@ -506,7 +506,7 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
     public final void restoreSelfArgs(Bundle bundle) {
         u40 u40Var = this.E;
         if (u40Var != null) {
-            u40Var.f28534f = bundle.getString("path");
+            u40Var.f28622f = bundle.getString("path");
         }
     }
 
@@ -514,12 +514,12 @@ public final class p extends n2 implements t40, NotificationCenter.NotificationC
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         u40 u40Var = this.E;
-        if (u40Var != null && (str = u40Var.f28534f) != null) {
+        if (u40Var != null && (str = u40Var.f28622f) != null) {
             bundle.putString("path", str);
         }
         ai.f0 f0Var = this.f9156n;
         if (f0Var != null) {
-            String obj = ((o) f0Var.f785b).getText().toString();
+            String obj = ((o) f0Var.f782b).getText().toString();
             if (!obj.isEmpty()) {
                 bundle.putString("nameTextView", obj);
             }

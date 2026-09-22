@@ -1,3 +1,4 @@
 package q2;
-public final class d extends h2.f {
+public final class d {
+    public static final d f41424a = new Object();
 }

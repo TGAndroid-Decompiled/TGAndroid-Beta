@@ -115,7 +115,7 @@ public abstract class b {
         boolean z10;
         int i11;
         int i12;
-        o0.d dVar;
+        o0.e eVar;
         do {
             next = xmlResourceParser.next();
             if (next == 2) {
@@ -125,7 +125,7 @@ public abstract class b {
         if (next == 2) {
             xmlResourceParser.require(2, null, "font-family");
             if (xmlResourceParser.getName().equals("font-family")) {
-                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7397b);
+                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7395b);
                 String string = obtainAttributes.getString(0);
                 String string2 = obtainAttributes.getString(5);
                 String string3 = obtainAttributes.getString(6);
@@ -141,17 +141,17 @@ public abstract class b {
                     }
                     List h = h(resources, resourceId);
                     if (string4 != null) {
-                        dVar = new o0.d(string, string2, string4, h);
+                        eVar = new o0.e(string, string2, string4, h);
                     } else {
-                        dVar = null;
+                        eVar = null;
                     }
-                    return new g(new o0.d(string, string2, string3, h), dVar, integer, integer2, string5);
+                    return new g(new o0.e(string, string2, string3, h), eVar, integer, integer2, string5);
                 }
                 ArrayList arrayList = new ArrayList();
                 while (xmlResourceParser.next() != 3) {
                     if (xmlResourceParser.getEventType() == 2) {
                         if (xmlResourceParser.getName().equals("font")) {
-                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7398c);
+                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f7396c);
                             int i13 = 8;
                             if (!obtainAttributes2.hasValue(8)) {
                                 i13 = 1;

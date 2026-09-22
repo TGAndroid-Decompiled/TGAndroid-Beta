@@ -50,7 +50,7 @@ public abstract class tb extends FrameLayout {
         b();
         setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         setWillNotDraw(false);
-        w7.b6.b(this, 0.02f, 1.5f);
+        w7.a6.b(this, 0.02f, 1.5f);
     }
 
     public static boolean a() {
@@ -105,7 +105,7 @@ public abstract class tb extends FrameLayout {
         this.inOutOffset = f7;
         updatePosition();
         pc pcVar = this.bulletin;
-        if (pcVar != null && pcVar.f27253k) {
+        if (pcVar != null && pcVar.f27312k) {
             invalidate();
         }
     }
@@ -141,15 +141,15 @@ public abstract class tb extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         pc pcVar = this.bulletin;
-        if (pcVar != null && pcVar.f27253k) {
+        if (pcVar != null && pcVar.f27312k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new uh.b(new s(this, 16));
             }
             uh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f44047c == null) {
+            if (bVar.f44068c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, AndroidUtilities.dp(10.0f));
             }
-            this.blurVisibilityDrawable.f44050i = w7.q.b((int) org.telegram.messenger.rk.w(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f44071i = w7.q.b((int) org.telegram.messenger.rk.w(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -166,9 +166,9 @@ public abstract class tb extends FrameLayout {
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (nbVar = this.delegate) != null) {
-                float h = nbVar.h(this.bulletin.f27246a) - getY();
+                float h = nbVar.h(this.bulletin.f27305a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f27246a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f27305a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -243,14 +243,14 @@ public abstract class tb extends FrameLayout {
         nb nbVar;
         pc pcVar;
         o1.k kVar;
-        if (this.bulletin != null && (((nbVar = this.delegate) == null || nbVar.e()) && (kVar = (pcVar = this.bulletin).d) != null && kVar.f15515f)) {
-            f7 = pcVar.f27257o;
+        if (this.bulletin != null && (((nbVar = this.delegate) == null || nbVar.e()) && (kVar = (pcVar = this.bulletin).d) != null && kVar.f15530f)) {
+            f7 = pcVar.f27316o;
         } else {
             nb nbVar2 = this.delegate;
             if (nbVar2 != null) {
                 pc pcVar2 = this.bulletin;
                 if (pcVar2 != null) {
-                    i10 = pcVar2.f27246a;
+                    i10 = pcVar2.f27305a;
                 } else {
                     i10 = 0;
                 }
@@ -280,7 +280,7 @@ public abstract class tb extends FrameLayout {
         if (nbVar != null) {
             pc pcVar = this.bulletin;
             if (pcVar != null) {
-                i10 = pcVar.f27246a;
+                i10 = pcVar.f27305a;
             } else {
                 i10 = 0;
             }
@@ -325,9 +325,9 @@ public abstract class tb extends FrameLayout {
             this.callbacks.get(i10).b();
         }
         uh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f44047c) != null) {
+        if (bVar != null && (bitmap = bVar.f44068c) != null) {
             bitmap.recycle();
-            bVar.f44047c = null;
+            bVar.f44068c = null;
         }
     }
 
@@ -407,7 +407,7 @@ public abstract class tb extends FrameLayout {
             if (this.top) {
                 pc pcVar = this.bulletin;
                 if (pcVar != null) {
-                    i11 = pcVar.f27246a;
+                    i11 = pcVar.f27305a;
                 } else {
                     i11 = 0;
                 }

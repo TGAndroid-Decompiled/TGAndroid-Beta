@@ -60,7 +60,7 @@ public class VideoCapturerDevice {
     public VideoCapturerDevice(boolean z10) {
         Logging.enableLogToDebugOutput(Logging.Severity.LS_VERBOSE);
         Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
-        AndroidUtilities.runOnUIThread(new bi.f(14, this, z10));
+        AndroidUtilities.runOnUIThread(new bi.f(15, this, z10));
     }
 
     public static void checkScreenCapturerSize() {

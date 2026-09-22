@@ -8,6 +8,6 @@ public final class s extends u {
 
     public s() {
         super(AndroidUtilities.readRes(R.raw.round_blur_vert), x.A);
-        this.e = GLES20.glGetUniformLocation(this.f13837a, "texOffset");
+        this.e = GLES20.glGetUniformLocation(this.f13850a, "texOffset");
     }
 }

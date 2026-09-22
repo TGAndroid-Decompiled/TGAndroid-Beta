@@ -1,17 +1,20 @@
 package org.telegram.ui;
 
+import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
 public final class zi extends nf.e {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.u1 f40221f;
-    public final zn f40222g;
+    public final org.telegram.ui.Cells.u1 f40243f;
+    public final zn f40244g;
+    public final Object h;
 
-    public zi(zn znVar, int i10, org.telegram.ui.Cells.u1 u1Var, int i11) {
+    public zi(zn znVar, int i10, Object obj, org.telegram.ui.Cells.u1 u1Var, int i11) {
         this.d = i11;
-        this.f40222g = znVar;
+        this.f40244g = znVar;
         this.e = i10;
-        this.f40221f = u1Var;
+        this.h = obj;
+        this.f40243f = u1Var;
     }
 
     @Override
@@ -19,19 +22,13 @@ public final class zi extends nf.e {
         switch (this.d) {
             case 0:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 21), 240L);
-                    return;
-                }
-                return;
-            case 1:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 23), 240L);
+                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 20), 240L);
                     return;
                 }
                 return;
             default:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 24), 240L);
+                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 22), 240L);
                     return;
                 }
                 return;
@@ -43,25 +40,19 @@ public final class zi extends nf.e {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                zn znVar = this.f40222g;
-                znVar.f40514vb = i10;
-                znVar.f40528wb = 6;
-                this.f40221f.invalidate();
-                return;
-            case 1:
-                int i11 = this.e;
-                zn znVar2 = this.f40222g;
-                znVar2.f40514vb = i11;
-                znVar2.f40528wb = 5;
-                znVar2.f40553yb = null;
-                this.f40221f.invalidate();
+                zn znVar = this.f40244g;
+                znVar.f40535vb = i10;
+                znVar.f40549wb = 1;
+                znVar.f40562xb = (CharacterStyle) this.h;
+                this.f40243f.invalidate();
                 return;
             default:
-                int i12 = this.e;
-                zn znVar3 = this.f40222g;
-                znVar3.f40514vb = i12;
-                znVar3.f40528wb = 7;
-                this.f40221f.invalidate();
+                int i11 = this.e;
+                zn znVar2 = this.f40244g;
+                znVar2.f40535vb = i11;
+                znVar2.f40549wb = 3;
+                znVar2.f40574yb = (String) this.h;
+                this.f40243f.invalidate();
                 return;
         }
     }

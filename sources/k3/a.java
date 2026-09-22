@@ -54,8 +54,8 @@ public final class a implements o {
                 qVar.f1();
                 s sVar = (s) this.f13402b;
                 r a2 = sVar.a();
-                a2.f3253q = r0.n("text/x-unknown");
-                a2.f3246j = sVar.f3309r;
+                a2.f3252q = r0.n("text/x-unknown");
+                a2.f3245j = sVar.f3308r;
                 k0.s(a2, Z1);
                 return;
         }
@@ -77,7 +77,7 @@ public final class a implements o {
         switch (this.f13401a) {
             case 0:
             default:
-                g0 g0Var = i0.f8084b;
+                g0 g0Var = i0.f8083b;
                 return a1.e;
         }
     }

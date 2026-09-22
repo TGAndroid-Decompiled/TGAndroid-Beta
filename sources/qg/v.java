@@ -9,33 +9,33 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.d5;
-import org.telegram.ui.Components.k90;
+import org.telegram.ui.Components.n90;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.au0;
 import yh.u5;
 public final class v implements Runnable {
-    public final int f41971a;
-    public final int f41972b;
-    public final Object f41973c;
+    public final int f41992a;
+    public final int f41993b;
+    public final Object f41994c;
 
     public v(int i10, d5 d5Var) {
-        this.f41971a = 3;
-        this.f41972b = i10;
-        this.f41973c = d5Var;
+        this.f41992a = 3;
+        this.f41993b = i10;
+        this.f41994c = d5Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f41971a;
+        int i10 = this.f41992a;
         boolean z10 = false;
-        int i11 = this.f41972b;
-        Object obj = this.f41973c;
+        int i11 = this.f41993b;
+        Object obj = this.f41994c;
         switch (i10) {
             case 0:
                 au0 au0Var = (au0) obj;
-                pg.s1 s1Var = au0Var.K1;
-                au0Var.s0(s1Var, null);
-                pg.u0.e(i11).j(s1Var.f41285c);
+                pg.t1 t1Var = au0Var.K1;
+                au0Var.s0(t1Var, null);
+                pg.u0.e(i11).j(t1Var.f41316c);
                 return;
             case 1:
                 n2 n2Var = (n2) obj;
@@ -44,10 +44,10 @@ public final class v implements Runnable {
                 n2Var.h();
                 return;
             case 2:
-                k90 k90Var = ((tg.r0) obj).e;
+                n90 n90Var = ((tg.r0) obj).e;
                 try {
-                    if (k90Var.getLayout().getLineForOffset(i11) == 0) {
-                        k90Var.getEditableText().insert(i11, "\n");
+                    if (n90Var.getLayout().getLineForOffset(i11) == 0) {
+                        n90Var.getEditableText().insert(i11, "\n");
                         return;
                     }
                     return;
@@ -64,11 +64,11 @@ public final class v implements Runnable {
                 nf.f.s(((yh.g) obj).getParentActivity(), LocaleController.getString(i11));
                 return;
             case 5:
-                ConnectionsManager.getInstance(((u5) obj).f48111a).cancelRequest(i11, true);
+                ConnectionsManager.getInstance(((u5) obj).f48132a).cancelRequest(i11, true);
                 return;
             default:
                 zg.f fVar = (zg.f) obj;
-                if (fVar.f49323b) {
+                if (fVar.f49340b) {
                     Utilities.Callback callback = fVar.d;
                     if (callback != null) {
                         if (i11 < 300) {
@@ -76,11 +76,11 @@ public final class v implements Runnable {
                         }
                         callback.run(Boolean.valueOf(z10));
                         try {
-                            fVar.f49322a.performHapticFeedback(3);
+                            fVar.f49339a.performHapticFeedback(3);
                         } catch (Exception unused) {
                         }
                     }
-                    fVar.f49324c = true;
+                    fVar.f49341c = true;
                     int max = Math.max(50, i11 - 100);
                     AndroidUtilities.runOnUIThread(new v(fVar, max, 6), max);
                     return;
@@ -90,8 +90,8 @@ public final class v implements Runnable {
     }
 
     public v(Object obj, int i10, int i11) {
-        this.f41971a = i11;
-        this.f41973c = obj;
-        this.f41972b = i10;
+        this.f41992a = i11;
+        this.f41994c = obj;
+        this.f41993b = i10;
     }
 }

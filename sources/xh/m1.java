@@ -13,28 +13,28 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.rq;
-import org.telegram.ui.Components.u01;
+import org.telegram.ui.Components.w01;
 import yh.i8;
 public final class m1 extends rq {
-    public u01 f46308b;
-    public final Path f46309c;
+    public w01 f46329b;
+    public final Path f46330c;
     public final Paint d;
     public final float e;
-    public i8 f46310f;
-    public boolean f46311g;
+    public i8 f46331f;
+    public boolean f46332g;
     public int h;
 
     public m1(View view) {
         super(view);
         Path path = new Path();
-        this.f46309c = path;
+        this.f46330c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = -1;
         this.e = 1.0f;
         c(path, 1.0f, false);
-        this.f27939a.setColor(-698031);
-        this.f27939a.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
+        this.f28030a.setColor(-698031);
+        this.f28030a.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
         paint.setColor(0);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -77,12 +77,12 @@ public final class m1 extends rq {
         float f10;
         float f11;
         float f12;
-        Paint paint = this.f27939a;
+        Paint paint = this.f28030a;
         if (stargiftattributebackdrop == null) {
             paint.setShader(null);
             return;
         }
-        if (this.f46311g) {
+        if (this.f46332g) {
             z12 = !z10;
         } else {
             z12 = z10;
@@ -144,29 +144,29 @@ public final class m1 extends rq {
         canvas.translate(getBounds().right - AndroidUtilities.dp(48.0f), getBounds().top);
         Paint paint = this.d;
         int alpha = paint.getAlpha();
-        Path path = this.f46309c;
+        Path path = this.f46330c;
         if (alpha > 0) {
             paint.setStrokeWidth(AndroidUtilities.dp(1.33f) * 2);
             canvas.drawPath(path, paint);
         }
-        canvas.drawPath(path, this.f27939a);
-        if (this.f46310f != null) {
+        canvas.drawPath(path, this.f28030a);
+        if (this.f46331f != null) {
             canvas.clipPath(path);
-            this.f46310f.f(0, 0, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f));
-            this.f46310f.d();
-            this.f46310f.a(canvas, -1);
+            this.f46331f.f(0, 0, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f));
+            this.f46331f.d();
+            this.f46331f.a(canvas, -1);
             invalidateSelf();
         }
-        if (this.f46308b != null) {
+        if (this.f46329b != null) {
             canvas.save();
-            if (this.f46311g) {
+            if (this.f46332g) {
                 f7 = -45.0f;
             } else {
                 f7 = 45.0f;
             }
             float width = getBounds().width() / 2.0f;
             float f14 = -7.0f;
-            if (this.f46311g) {
+            if (this.f46332g) {
                 f10 = -7.0f;
             } else {
                 f10 = 6.0f;
@@ -174,39 +174,39 @@ public final class m1 extends rq {
             float dp = width + AndroidUtilities.dp(f10);
             float height = getBounds().height() / 2.0f;
             float f15 = 5.0f;
-            if (this.f46311g) {
+            if (this.f46332g) {
                 f11 = 5.0f;
             } else {
                 f11 = 6.0f;
             }
             canvas.rotate(f7, dp, height - AndroidUtilities.dp(f11));
-            float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / this.f46308b.f28493c);
+            float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / this.f46329b.f29862c);
             float width2 = getBounds().width() / 2.0f;
-            if (this.f46311g) {
+            if (this.f46332g) {
                 f12 = -7.0f;
             } else {
                 f12 = 6.0f;
             }
             float dp2 = width2 + AndroidUtilities.dp(f12);
             float height2 = getBounds().height() / 2.0f;
-            if (this.f46311g) {
+            if (this.f46332g) {
                 f13 = 5.0f;
             } else {
                 f13 = 6.0f;
             }
             canvas.scale(min, min, dp2, height2 - AndroidUtilities.dp(f13));
-            u01 u01Var = this.f46308b;
+            w01 w01Var = this.f46329b;
             float width3 = getBounds().width() / 2.0f;
-            if (!this.f46311g) {
+            if (!this.f46332g) {
                 f14 = 6.0f;
             }
-            float dp3 = (width3 + AndroidUtilities.dp(f14)) - (this.f46308b.l() / 2.0f);
+            float dp3 = (width3 + AndroidUtilities.dp(f14)) - (this.f46329b.l() / 2.0f);
             float height3 = getBounds().height() / 2.0f;
-            if (this.f46311g) {
+            if (this.f46332g) {
                 f15 = 4.0f;
             }
             canvas2 = canvas;
-            u01Var.c(dp3, height3 - AndroidUtilities.dp(f15), 1.0f, this.h, canvas2);
+            w01Var.c(dp3, height3 - AndroidUtilities.dp(f15), 1.0f, this.h, canvas2);
             canvas2.restore();
         } else {
             canvas2 = canvas;
@@ -222,6 +222,6 @@ public final class m1 extends rq {
         } else {
             typeface = null;
         }
-        this.f46308b = new u01(charSequence, f7, typeface);
+        this.f46329b = new w01(charSequence, f7, typeface);
     }
 }

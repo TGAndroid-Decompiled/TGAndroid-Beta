@@ -12,7 +12,7 @@ public final class z extends p0 {
 
     @Override
     public final void invalidate() {
-        if (this.P.f42613f0) {
+        if (this.P.f42634f0) {
             return;
         }
         super.invalidate();

@@ -28,13 +28,13 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.t51;
-import org.telegram.ui.Components.u01;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.w01;
 import w7.y5;
 public final class x1 extends FrameLayout {
     public final g9 f10476a;
     public final ImageReceiver f10477b;
-    public final vh.o f10478c;
+    public final vh.n f10478c;
     public final np d;
     public final ImageView e;
     public final f6 f10479f;
@@ -58,12 +58,12 @@ public final class x1 extends FrameLayout {
         } else {
             i10 = 16;
         }
-        vh.o oVar = new vh.o(context);
-        this.f10478c = oVar;
-        oVar.setLines(2);
-        oVar.setEllipsize(TextUtils.TruncateAt.END);
-        oVar.setTextColor(j6.v0(j6.f19496z6, f6Var));
-        oVar.setTextSize(1, 14.0f);
+        vh.n nVar = new vh.n(context);
+        this.f10478c = nVar;
+        nVar.setLines(2);
+        nVar.setEllipsize(TextUtils.TruncateAt.END);
+        nVar.setTextColor(j6.v0(j6.f19511z6, f6Var));
+        nVar.setTextSize(1, 14.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             f7 = i10;
@@ -75,7 +75,7 @@ public final class x1 extends FrameLayout {
         } else {
             f10 = i10;
         }
-        addView(oVar, y5.d(-1, -2.0f, 7, f7, 7.0f, f10, 0.0f));
+        addView(nVar, y5.d(-1, -2.0f, 7, f7, 7.0f, f10, 0.0f));
         if (z10) {
             ImageView imageView = new ImageView(context);
             this.e = imageView;
@@ -94,7 +94,7 @@ public final class x1 extends FrameLayout {
         }
         np npVar = new np(getContext(), 21, f6Var);
         this.d = npVar;
-        npVar.b(-1, j6.f19094d6, j6.f19223k7);
+        npVar.b(-1, j6.f19109d6, j6.f19238k7);
         npVar.setDrawUnchecked(false);
         npVar.setDrawBackgroundAsArc(3);
         addView(npVar, y5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -122,12 +122,12 @@ public final class x1 extends FrameLayout {
             str3 = "/".concat(str3);
         }
         spannableStringBuilder.append((CharSequence) "/").append((CharSequence) a2Var.f10224b);
-        spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new v51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         int i10 = j6.G6;
         f6 f6Var = this.f10479f;
         spannableStringBuilder.setSpan(new ForegroundColorSpan(j6.v0(i10, f6Var)), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(j6.v0(j6.f19296o6, f6Var));
+            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(j6.v0(j6.f19311o6, f6Var));
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -136,17 +136,17 @@ public final class x1 extends FrameLayout {
             spannableStringBuilder.setSpan(foregroundColorSpan, 0, Math.min(length, spannableStringBuilder.length()), 33);
         }
         MessageObject messageObject = a2Var.e;
-        vh.o oVar = this.f10478c;
+        vh.n nVar = this.f10478c;
         if (messageObject != null) {
             spannableStringBuilder.append((CharSequence) " ");
             CharSequence charSequence = a2Var.e.caption;
             if (TextUtils.isEmpty(charSequence)) {
                 charSequence = a2Var.e.messageText;
             }
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(charSequence), oVar.getPaint().getFontMetricsInt(), false);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(charSequence), nVar.getPaint().getFontMetricsInt(), false);
             TLRPC.Message message = a2Var.e.messageOwner;
             if (message != null) {
-                MessageObject.replaceAnimatedEmoji(replaceEmoji, message.entities, oVar.getPaint().getFontMetricsInt());
+                MessageObject.replaceAnimatedEmoji(replaceEmoji, message.entities, nVar.getPaint().getFontMetricsInt());
             }
             spannableStringBuilder.append(replaceEmoji);
         }
@@ -156,16 +156,16 @@ public final class x1 extends FrameLayout {
             int i11 = w1.d;
             SpannableString spannableString = new SpannableString("+");
             w1 w1Var = new w1(a2Var.a() - 1);
-            this.f10480n[0] = (int) (((u01) w1Var.f10470c).f28493c + AndroidUtilities.dp(10.0f));
+            this.f10480n[0] = (int) (((w01) w1Var.f10470c).f29862c + AndroidUtilities.dp(10.0f));
             spannableString.setSpan(w1Var, 0, spannableString.length(), 33);
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, oVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, nVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
                 spannableStringBuilder2.append((CharSequence) "  ");
             }
             spannableStringBuilder2.append((CharSequence) spannableString);
             spannableStringBuilder = spannableStringBuilder2;
         }
-        oVar.setText(spannableStringBuilder);
+        nVar.setText(spannableStringBuilder);
         int i12 = UserConfig.selectedAccount;
         TLRPC.MessageMedia media = MessageObject.getMedia(a2Var.e);
         long j10 = 0;
@@ -234,7 +234,7 @@ public final class x1 extends FrameLayout {
         if (this.f10481r) {
             Paint T0 = j6.T0("paintDivider", this.f10479f);
             if (T0 == null) {
-                T0 = j6.f19216k0;
+                T0 = j6.f19231k0;
             }
             Paint paint = T0;
             float f11 = 64.0f;

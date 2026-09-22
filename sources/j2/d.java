@@ -24,7 +24,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.jv0;
+import org.telegram.ui.Components.lv0;
 public final class d implements m, c1, e1, RequestDelegateTimestamp, a2, MessagesStorage.StringCallback {
     public final int f12572a;
     public final int f12573b;
@@ -39,7 +39,7 @@ public final class d implements m, c1, e1, RequestDelegateTimestamp, a2, Message
     }
 
     @Override
-    public void d(j1 j1Var, r rVar) {
+    public void f(j1 j1Var, r rVar) {
         j1Var.s(((f1) this.d).K0(rVar, j1Var, this.f12573b), this.f12574c);
     }
 
@@ -50,12 +50,12 @@ public final class d implements m, c1, e1, RequestDelegateTimestamp, a2, Message
         List list = (List) this.d;
         int i12 = this.f12573b;
         if (i12 == -1) {
-            i11 = a0Var.f14687t.l0();
+            i11 = a0Var.f14702t.l0();
         } else {
             i11 = i12;
         }
         if (i12 == -1) {
-            j3 = a0Var.f14687t.J0();
+            j3 = a0Var.f14702t.J0();
         } else {
             j3 = this.f12574c;
         }
@@ -151,7 +151,7 @@ public final class d implements m, c1, e1, RequestDelegateTimestamp, a2, Message
 
     @Override
     public void run(String str) {
-        jv0.i((jv0) this.d, this.f12574c, this.f12573b, str);
+        lv0.i((lv0) this.d, this.f12574c, this.f12573b, str);
     }
 
     public d(a aVar, int i10, long j3, long j10) {
@@ -173,9 +173,9 @@ public final class d implements m, c1, e1, RequestDelegateTimestamp, a2, Message
         this.f12574c = j3;
     }
 
-    public d(jv0 jv0Var, long j3, int i10) {
+    public d(lv0 lv0Var, long j3, int i10) {
         this.f12572a = 6;
-        this.d = jv0Var;
+        this.d = lv0Var;
         this.f12574c = j3;
         this.f12573b = i10;
     }

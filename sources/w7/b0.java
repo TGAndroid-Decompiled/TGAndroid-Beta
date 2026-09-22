@@ -23,7 +23,7 @@ public abstract class b0 {
                 g2.k kVar = new g2.k(b0Var, mVar2);
                 try {
                     byte[] b10 = f9.b.b(kVar);
-                    String str2 = e2.d0.f7888a;
+                    String str2 = e2.d0.f7887a;
                     try {
                         kVar.close();
                     } catch (IOException unused) {
@@ -40,7 +40,7 @@ public abstract class b0 {
                         g2.l a2 = mVar2.a();
                         a2.e = Uri.parse(str3);
                         mVar2 = a2.d();
-                        String str4 = e2.d0.f7888a;
+                        String str4 = e2.d0.f7887a;
                         try {
                             kVar.close();
                         } catch (IOException unused2) {
@@ -50,7 +50,7 @@ public abstract class b0 {
                     }
                 }
             } catch (Exception e7) {
-                throw new n2.w(mVar, b0Var.f9352c, b0Var.f9350a.getResponseHeaders(), b0Var.f9351b, e7);
+                throw new n2.v(mVar, b0Var.f9352c, b0Var.f9350a.getResponseHeaders(), b0Var.f9351b, e7);
             }
         }
     }

@@ -1,22 +1,13 @@
 package org.telegram.ui.Components;
 
-import java.util.regex.Pattern;
-public final class w90 extends ed.h {
-    public static final Pattern e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+import java.util.ArrayList;
+public final class w90 {
+    public final ad.a f29986a;
+    public final int f29987b;
+    public final ArrayList f29988c = new ArrayList();
 
-    @Override
-    public final bf.p b() {
-        String a2 = a(e);
-        if (a2 == null) {
-            return null;
-        }
-        ?? pVar = new bf.p();
-        pVar.f49164g = com.google.android.gms.internal.vision.e2.i(1, 1, a2);
-        return pVar;
-    }
-
-    @Override
-    public final char d() {
-        return '$';
+    public w90(ad.a aVar, int i10) {
+        this.f29986a = aVar;
+        this.f29987b = i10;
     }
 }

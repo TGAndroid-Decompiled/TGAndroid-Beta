@@ -11,38 +11,38 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
 public final class ya implements Runnable {
-    public final int f5842a = 0;
-    public final long f5843b;
-    public final boolean f5844c;
+    public final int f5840a = 0;
+    public final long f5841b;
+    public final boolean f5842c;
     public final boolean d;
     public final NotificationCenter.NotificationCenterDelegate e;
-    public final TLObject f5845f;
+    public final TLObject f5843f;
     public final TLObject h;
 
     public ya(oc ocVar, boolean z10, TL_stories.StoryItem storyItem, long j3, TLRPC.InputGroupCall inputGroupCall, boolean z11) {
         this.e = ocVar;
-        this.f5844c = z10;
-        this.f5845f = storyItem;
-        this.f5843b = j3;
+        this.f5842c = z10;
+        this.f5843f = storyItem;
+        this.f5841b = j3;
         this.h = inputGroupCall;
         this.d = z11;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f5842a;
+        int i10 = this.f5840a;
         TLObject tLObject = this.h;
-        TLObject tLObject2 = this.f5845f;
+        TLObject tLObject2 = this.f5843f;
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.e;
         switch (i10) {
             case 0:
                 oc ocVar = (oc) notificationCenterDelegate;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
                 TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
-                boolean z10 = this.f5844c;
-                long j3 = this.f5843b;
+                boolean z10 = this.f5842c;
+                long j3 = this.f5841b;
                 if (!z10) {
-                    ai.d2.W = new ai.d2(ocVar.f5208b, ocVar.f5212c, storyItem, j3, storyItem.f18563id, z10, inputGroupCall, true, this.d);
+                    ai.d2.W = new ai.d2(ocVar.f5206b, ocVar.f5210c, storyItem, j3, storyItem.f18578id, z10, inputGroupCall, true, this.d);
                 }
                 jc jcVar = ocVar.F;
                 if (jcVar != null) {
@@ -58,15 +58,15 @@ public final class ya implements Runnable {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 storyItem.dialogId = j3;
                 storyItem.justUploaded = true;
-                U.getOrCreateStoryViewer().F(ocVar.f5208b, storyItem, null);
-                NotificationCenter.getInstance(ocVar.f5212c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f18345id));
+                U.getOrCreateStoryViewer().F(ocVar.f5206b, storyItem, null);
+                NotificationCenter.getInstance(ocVar.f5210c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f18360id));
                 return;
             default:
                 uy uyVar = (uy) notificationCenterDelegate;
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
                 TLRPC.User user = (TLRPC.User) tLObject;
-                long j10 = this.f5843b;
-                boolean z11 = this.f5844c;
+                long j10 = this.f5841b;
+                boolean z11 = this.f5842c;
                 if (chat != null) {
                     uyVar.getClass();
                     if (ChatObject.isNotInChat(chat)) {
@@ -77,7 +77,7 @@ public final class ya implements Runnable {
                 } else {
                     uyVar.getMessagesController().deleteDialog(j10, 0, z11);
                     if (user != null && user.bot && this.d) {
-                        uyVar.getMessagesController().blockPeer(user.f18475id);
+                        uyVar.getMessagesController().blockPeer(user.f18490id);
                     }
                 }
                 uyVar.getMessagesController().checkIfFolderEmpty(uyVar.V2);
@@ -87,9 +87,9 @@ public final class ya implements Runnable {
 
     public ya(uy uyVar, TLRPC.Chat chat, long j3, boolean z10, TLRPC.User user, boolean z11) {
         this.e = uyVar;
-        this.f5845f = chat;
-        this.f5843b = j3;
-        this.f5844c = z10;
+        this.f5843f = chat;
+        this.f5841b = j3;
+        this.f5842c = z10;
         this.h = user;
         this.d = z11;
     }

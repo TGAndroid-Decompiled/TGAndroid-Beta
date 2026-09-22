@@ -50,7 +50,7 @@ public final class a extends Thread {
                     loop1: while (true) {
                         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = m.f9651b;
                         i iVar2 = (i) atomicReferenceFieldUpdater.get(mVar);
-                        if (iVar2 != null && iVar2.f9643b.f6246a == 1) {
+                        if (iVar2 != null && iVar2.f9643b.f6244a == 1) {
                             while (!atomicReferenceFieldUpdater.compareAndSet(mVar, iVar2, null)) {
                                 if (atomicReferenceFieldUpdater.get(mVar) != iVar2) {
                                     break;
@@ -247,7 +247,7 @@ public final class a extends Thread {
                 }
                 p pVar = this.f9624b;
                 if (iVar != null) {
-                    pVar.f13881a = iVar;
+                    pVar.f13894a = iVar;
                     iVar2 = iVar3;
                     j11 = -1;
                     j10 = -1;
@@ -260,7 +260,7 @@ public final class a extends Thread {
                             break;
                         }
                         j10 = -1;
-                        if (iVar4.f9643b.f6246a == 1) {
+                        if (iVar4.f9643b.f6244a == 1) {
                             i11 = 1;
                         } else {
                             i11 = 2;
@@ -280,7 +280,7 @@ public final class a extends Thread {
                         do {
                             iVar2 = null;
                             if (atomicReferenceFieldUpdater.compareAndSet(mVar2, iVar4, null)) {
-                                pVar.f13881a = iVar4;
+                                pVar.f13894a = iVar4;
                                 j11 = -1;
                                 break;
                             }
@@ -292,8 +292,8 @@ public final class a extends Thread {
                     iVar2 = iVar3;
                 }
                 if (j11 == j10) {
-                    i iVar5 = (i) pVar.f13881a;
-                    pVar.f13881a = iVar2;
+                    i iVar5 = (i) pVar.f13894a;
+                    pVar.f13894a = iVar2;
                     return iVar5;
                 } else if (j11 > j3) {
                     j12 = Math.min(j12, j11);

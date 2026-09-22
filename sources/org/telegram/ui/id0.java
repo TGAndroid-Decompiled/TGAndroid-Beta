@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
-    public final b2.q0 f34532w0;
-    public boolean f34533x0;
-    public final kd0 f34534y0;
+public final class id0 extends org.telegram.ui.Components.cw0 implements r0.m {
+    public final b2.q0 f34552w0;
+    public boolean f34553x0;
+    public final kd0 f34554y0;
 
     public id0(kd0 kd0Var, Context context) {
         super(context, null);
-        this.f34534y0 = kd0Var;
-        this.f34533x0 = true;
-        this.f34532w0 = new Object();
+        this.f34554y0 = kd0Var;
+        this.f34553x0 = true;
+        this.f34552w0 = new Object();
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
         ad0 ad0Var;
         org.telegram.ui.ActionBar.k kVar;
         int i13;
-        org.telegram.ui.Components.vl0 currentListView;
+        org.telegram.ui.Components.yl0 currentListView;
         int max;
-        kd0 kd0Var = this.f34534y0;
+        kd0 kd0Var = this.f34554y0;
         if (viewGroup == kd0Var.U && (ad0Var = kd0Var.K0) != null && ad0Var.isAttachedToWindow()) {
             kVar = ((org.telegram.ui.ActionBar.n2) kd0Var).actionBar;
-            boolean z10 = kVar.f19537n0;
+            boolean z10 = kVar.f19552n0;
             int top = kd0Var.K0.getTop();
             boolean z11 = false;
             if (i11 < 0) {
@@ -40,7 +40,7 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
                     if (L0 != -1) {
                         s4.c1 L = currentListView.L(L0);
                         if (L != null) {
-                            i14 = L.f42974a.getTop();
+                            i14 = L.f42995a.getTop();
                         }
                         int paddingTop = currentListView.getPaddingTop();
                         if (i14 != paddingTop || L0 != 0) {
@@ -63,7 +63,7 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
                     }
                 }
             } else if (z10) {
-                org.telegram.ui.Components.vl0 currentListView2 = kd0Var.K0.getCurrentListView();
+                org.telegram.ui.Components.yl0 currentListView2 = kd0Var.K0.getCurrentListView();
                 iArr[1] = i11;
                 if (top > 0) {
                     iArr[1] = 0;
@@ -77,7 +77,7 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
 
     @Override
     public final void L(Canvas canvas, ArrayList arrayList) {
-        kd0 kd0Var = this.f34534y0;
+        kd0 kd0Var = this.f34554y0;
         if (kd0Var.K0 != null) {
             canvas.save();
             canvas.translate(0.0f, kd0Var.U.getY());
@@ -93,7 +93,7 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
         org.telegram.ui.ActionBar.d5 d5Var2;
         org.telegram.ui.ActionBar.k kVar2;
         boolean drawChild = super.drawChild(canvas, view, j3);
-        kd0 kd0Var = this.f34534y0;
+        kd0 kd0Var = this.f34554y0;
         kVar = ((org.telegram.ui.ActionBar.n2) kd0Var).actionBar;
         if (view == kVar) {
             d5Var = ((org.telegram.ui.ActionBar.n2) kd0Var).parentLayout;
@@ -109,10 +109,10 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
     @Override
     public final void j(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         ad0 ad0Var;
-        kd0 kd0Var = this.f34534y0;
+        kd0 kd0Var = this.f34554y0;
         try {
             if (viewGroup == kd0Var.U && (ad0Var = kd0Var.K0) != null && ad0Var.isAttachedToWindow()) {
-                org.telegram.ui.Components.vl0 currentListView = kd0Var.K0.getCurrentListView();
+                org.telegram.ui.Components.yl0 currentListView = kd0Var.K0.getCurrentListView();
                 int top = kd0Var.K0.getTop();
                 if (currentListView != null && top == 0) {
                     iArr[1] = i13;
@@ -127,16 +127,16 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
 
     @Override
     public final void o(int i10, View view) {
-        this.f34532w0.f3203a = 0;
+        this.f34552w0.f3202a = 0;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        kd0 kd0Var = this.f34534y0;
+        kd0 kd0Var = this.f34554y0;
         if (z10) {
-            kd0Var.k0(this.f34533x0);
-            this.f34533x0 = false;
+            kd0Var.k0(this.f34553x0);
+            this.f34553x0 = false;
             return;
         }
         kd0Var.A0(true);
@@ -144,7 +144,7 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
 
     @Override
     public final boolean p(View view, View view2, int i10, int i11) {
-        if (this.f34534y0.K0 != null && i10 == 2) {
+        if (this.f34554y0.K0 != null && i10 == 2) {
             return true;
         }
         return false;
@@ -152,7 +152,7 @@ public final class id0 extends org.telegram.ui.Components.aw0 implements r0.m {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f34532w0.f3203a = i10;
+        this.f34552w0.f3202a = i10;
     }
 
     @Override

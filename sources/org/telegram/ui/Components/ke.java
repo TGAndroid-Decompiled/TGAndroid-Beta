@@ -8,28 +8,28 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotForumHelper;
 public final class ke extends FrameLayout {
-    public final int f25763a;
-    public final ChatActivityEnterView f25764b;
+    public final int f25682a;
+    public final ChatActivityEnterView f25683b;
 
     public ke(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
         super(context);
-        this.f25763a = i10;
-        this.f25764b = chatActivityEnterView;
+        this.f25682a = i10;
+        this.f25683b = chatActivityEnterView;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f25763a) {
+        switch (this.f25682a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f25764b;
-                ei.f4 f4Var = chatActivityEnterView.f22015k0;
+                ChatActivityEnterView chatActivityEnterView = this.f25683b;
+                ei.f4 f4Var = chatActivityEnterView.f22030k0;
                 if (f4Var != null && f4Var.getVisibility() == 0) {
-                    return chatActivityEnterView.f22015k0.dispatchTouchEvent(motionEvent);
+                    return chatActivityEnterView.f22030k0.dispatchTouchEvent(motionEvent);
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f25764b;
-                if (chatActivityEnterView2.J && chatActivityEnterView2.S4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
+                ChatActivityEnterView chatActivityEnterView2 = this.f25683b;
+                if (chatActivityEnterView2.J && chatActivityEnterView2.T4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
                     return super.dispatchTouchEvent(motionEvent);
                 }
                 return false;
@@ -40,10 +40,10 @@ public final class ke extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f25763a) {
+        switch (this.f25682a) {
             case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f25764b;
-                if (view == chatActivityEnterView.J0 && chatActivityEnterView.f21998h0) {
+                ChatActivityEnterView chatActivityEnterView = this.f25683b;
+                if (view == chatActivityEnterView.J0 && chatActivityEnterView.f22013h0) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -54,7 +54,7 @@ public final class ke extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f25763a) {
+        switch (this.f25682a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
                 setPivotX(i10 - AndroidUtilities.dp(22.0f));
@@ -68,10 +68,10 @@ public final class ke extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f25763a) {
+        switch (this.f25682a) {
             case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f25764b;
-                if (chatActivityEnterView.J && chatActivityEnterView.S4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
+                ChatActivityEnterView chatActivityEnterView = this.f25683b;
+                if (chatActivityEnterView.J && chatActivityEnterView.T4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
                     return super.onTouchEvent(motionEvent);
                 }
                 return false;
@@ -82,10 +82,10 @@ public final class ke extends FrameLayout {
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f25763a) {
+        switch (this.f25682a) {
             case 2:
                 super.setVisibility(i10);
-                this.f25764b.P1(true);
+                this.f25683b.P1(true);
                 return;
             default:
                 super.setVisibility(i10);

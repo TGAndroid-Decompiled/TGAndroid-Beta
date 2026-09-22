@@ -1,52 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-public final class c91 implements org.telegram.ui.kq0 {
-    public final e91 f23215a;
+import org.telegram.ui.mc1;
+public final class c91 implements SensorEventListener {
+    public final float[] f23317a = new float[3];
+    public final float[] f23318b = new float[3];
+    public int f23319c;
+    public final WindowManager d;
+    public final SensorManager e;
+    public final Sensor f23320f;
+    public boolean h;
+    public b91 f23321n;
 
-    public c91(e91 e91Var) {
-        this.f23215a = e91Var;
+    public c91(Context context) {
+        this.d = (WindowManager) context.getSystemService("window");
+        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
+        this.e = sensorManager;
+        this.f23320f = sensorManager.getDefaultSensor(1);
     }
 
-    @Override
-    public final void a(ArrayList arrayList) {
-        e91 e91Var = this.f23215a;
-        try {
-            if (!arrayList.isEmpty()) {
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
-                if (sendingMediaInfo.path != null) {
-                    File directory = FileLoader.getDirectory(4);
-                    e91Var.e = new File(directory, Utilities.random.nextInt() + ".jpg");
-                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
-                    Bitmap loadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(e91Var.e));
-                    e91Var.d.b(e91Var.e, loadBitmap, true);
+    public static float a(int i10, int i11) {
+        float f7 = i10;
+        float dp = AndroidUtilities.dp(16.0f) * 2;
+        float f10 = (f7 + dp) / f7;
+        float f11 = i11;
+        return Math.max(f10, (dp + f11) / f11);
+    }
+
+    public final void b(mc1 mc1Var) {
+        this.f23321n = mc1Var;
+    }
+
+    public final void c(boolean z10) {
+        if (this.h != z10) {
+            this.h = z10;
+            Sensor sensor = this.f23320f;
+            if (sensor != null) {
+                SensorManager sensorManager = this.e;
+                if (z10) {
+                    sensorManager.registerListener(this, sensor, 1);
+                } else {
+                    sensorManager.unregisterListener(this);
                 }
             }
-        } catch (Throwable th2) {
-            FileLog.e(th2);
         }
     }
 
     @Override
-    public final void b() {
-        try {
-            Intent intent = new Intent("android.intent.action.PICK");
-            intent.setType("image/*");
-            this.f23215a.f23794b.startActivityForResult(intent, 11);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public final void onSensorChanged(android.hardware.SensorEvent r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c91.onSensorChanged(android.hardware.SensorEvent):void");
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

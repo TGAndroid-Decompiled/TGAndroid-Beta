@@ -1,11 +1,25 @@
 package ki;
-public enum j0 {
-    FPS_30(30),
-    FPS_60(60);
-    
-    public final int f13758a;
+public final class j0 {
+    public static final j0 f13766a;
+    public static final j0 f13767b;
+    public static final j0 f13768c;
+    public static final j0[] d;
 
-    j0(int i10) {
-        this.f13758a = i10;
+    static {
+        ?? r02 = new Enum("HIGH", 0);
+        f13766a = r02;
+        ?? r12 = new Enum("MEDIUM", 1);
+        f13767b = r12;
+        ?? r32 = new Enum("LOW", 2);
+        f13768c = r32;
+        d = new j0[]{r02, r12, r32};
+    }
+
+    public static j0 valueOf(String str) {
+        return (j0) Enum.valueOf(j0.class, str);
+    }
+
+    public static j0[] values() {
+        return (j0[]) d.clone();
     }
 }

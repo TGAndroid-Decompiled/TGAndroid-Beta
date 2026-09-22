@@ -2,57 +2,75 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class vj0 extends LinearLayout {
-    public boolean f29169a;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class vj0 extends s4.h0 {
+    public final int f29192c;
+    public final Context d;
+    public final org.telegram.ui.ActionBar.f6 e;
+    public final boolean f29193f;
+    public final ck0 h;
 
-    public vj0(Context context) {
-        super(context);
+    public vj0(ck0 ck0Var, int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+        this.h = ck0Var;
+        this.f29192c = i10;
+        this.d = context;
+        this.e = f6Var;
+        this.f29193f = z10;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        rj0 rj0Var = null;
-        if (!this.f29169a) {
-            i12 = 0;
-            for (int i13 = 0; i13 < getChildCount(); i13++) {
-                if (getChildAt(i13) instanceof zj0) {
-                    rj0Var = ((zj0) getChildAt(i13)).e;
-                    if (rj0Var.getAdapter().h() == rj0Var.getChildCount()) {
-                        int childCount = rj0Var.getChildCount();
-                        for (int i14 = 0; i14 < childCount; i14++) {
-                            rj0Var.getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), 0), i11);
-                            if (rj0Var.getChildAt(i14).getMeasuredWidth() > i12) {
-                                i12 = rj0Var.getChildAt(i14).getMeasuredWidth();
-                            }
-                        }
-                        i12 += AndroidUtilities.dp(16.0f);
-                    }
-                }
-            }
+    public final int h() {
+        int i10;
+        ck0 ck0Var = this.h;
+        int size = ck0Var.f23390n.size();
+        if (!ck0Var.H.isEmpty() && !MessagesController.getInstance(this.f29192c).premiumFeaturesBlocked()) {
+            i10 = 1;
         } else {
-            i12 = 0;
+            i10 = 0;
         }
-        int size = View.MeasureSpec.getSize(i10);
-        if (size < AndroidUtilities.dp(240.0f)) {
-            size = AndroidUtilities.dp(240.0f);
+        return size + i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 < this.h.f23390n.size()) {
+            return 0;
         }
-        if (size > AndroidUtilities.dp(280.0f)) {
-            size = AndroidUtilities.dp(280.0f);
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        if (c1Var.f42998f == 0) {
+            ((org.telegram.ui.Cells.p6) c1Var.f42995a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f23390n.get(i10));
         }
-        if (size < 0) {
-            size = 0;
-        }
-        if (i12 == 0 || i12 >= size) {
-            i12 = size;
-        }
-        if (rj0Var != null) {
-            for (int i15 = 0; i15 < rj0Var.getChildCount(); i15++) {
-                rj0Var.getChildAt(i15).measure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout p6Var;
+        if (i10 != 0) {
+            ck0 ck0Var = this.h;
+            eb0 eb0Var = ck0Var.J;
+            if (eb0Var != null) {
+                if (eb0Var.getParent() != null) {
+                    ((ViewGroup) ck0Var.J.getParent()).removeView(ck0Var.J);
+                }
+            } else {
+                ck0Var.i();
             }
+            Context context = this.d;
+            p6Var = new FrameLayout(context);
+            View view = new View(context);
+            view.setBackgroundColor(org.telegram.ui.ActionBar.j6.l1(0.06f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E8, this.e)));
+            p6Var.addView(view, w7.y5.c(8.0f, -1));
+            p6Var.addView(ck0Var.J, w7.y5.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
+        } else {
+            p6Var = new org.telegram.ui.Cells.p6(0, this.f29192c, this.d, this.e, true, this.f29193f);
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(i12, 1073741824), i11);
+        return new s4.c1(p6Var);
     }
 }

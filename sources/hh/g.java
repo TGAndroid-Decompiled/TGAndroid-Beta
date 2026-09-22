@@ -87,9 +87,9 @@ public final class g extends FrameLayout {
 
     public final void c() {
         int i10;
-        l1 l1Var = ((ph.i) this.f10525a).f41371r;
+        l1 l1Var = ((ph.i) this.f10525a).f41393r;
         if (l1Var != null) {
-            i10 = l1Var.f42154a.f(2).d;
+            i10 = l1Var.f42175a.f(2).d;
         } else {
             i10 = 0;
         }
@@ -115,7 +115,7 @@ public final class g extends FrameLayout {
         this.v = ((ph.i) this.f10525a).b();
         int i12 = 0;
         boolean z11 = true;
-        if (((ph.i) this.f10525a).f41372s != 1) {
+        if (((ph.i) this.f10525a).f41394s != 1) {
             z10 = true;
         } else {
             z10 = false;
@@ -136,7 +136,7 @@ public final class g extends FrameLayout {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) f0Var.getLayoutParams();
         int i13 = layoutParams.height;
-        int i14 = ((ph.i) this.f10525a).f41373w;
+        int i14 = ((ph.i) this.f10525a).f41395w;
         if (i13 != i14) {
             layoutParams.height = i14;
             requestLayout();
@@ -193,7 +193,7 @@ public final class g extends FrameLayout {
         }
         if (z10) {
             canvas.save();
-            canvas.clipPath(this.h.f4289j.f4278k);
+            canvas.clipPath(this.h.f4287j.f4276k);
         }
         boolean drawChild = super.drawChild(canvas, view, j3);
         if (z10) {
@@ -257,7 +257,7 @@ public final class g extends FrameLayout {
             int x10 = (int) motionEvent.getX();
             int y3 = (int) motionEvent.getY();
             ch.d dVar2 = this.f10528f;
-            if ((dVar2 != null && dVar2.f4291l == 255 && dVar2.getBounds().contains(x10, y3)) || ((dVar = this.h) != null && dVar.getBounds().contains(x10, y3))) {
+            if ((dVar2 != null && dVar2.f4289l == 255 && dVar2.getBounds().contains(x10, y3)) || ((dVar = this.h) != null && dVar.getBounds().contains(x10, y3))) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -307,11 +307,11 @@ public final class g extends FrameLayout {
 
     public void setUnderKeyboardBackgroundDrawable(ch.d dVar) {
         this.h = dVar;
-        dVar.f4292m = true;
+        dVar.f4290m = true;
         dVar.r(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), 0.0f, 0.0f);
         this.h.u(AndroidUtilities.dp(32.0f));
         ch.d dVar2 = this.h;
-        dVar2.f4289j.f4275g = 0.4f;
+        dVar2.f4287j.f4273g = 0.4f;
         dVar2.k();
     }
 

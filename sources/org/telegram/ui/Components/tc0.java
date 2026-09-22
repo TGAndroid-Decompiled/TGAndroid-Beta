@@ -1,12 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public interface tc0 {
-    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+import android.graphics.drawable.Drawable;
+public final class tc0 extends Drawable.ConstantState {
+    @Override
+    public final int getChangingConfigurations() {
+        return 0;
+    }
 
-    int getMeasuredHeight();
-
-    int getTop();
-
-    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+    @Override
+    public final Drawable newDrawable() {
+        return new uc0();
+    }
 }

@@ -17,18 +17,18 @@ import s4.o0;
 import s4.t0;
 import s4.u0;
 public final class e {
-    public int f15694a;
-    public int f15695b;
-    public final Serializable f15696c;
+    public int f15709a;
+    public int f15710b;
+    public final Serializable f15711c;
     public Serializable d;
     public Serializable e;
-    public Object f15697f;
-    public Object f15698g;
+    public Object f15712f;
+    public Object f15713g;
     public Object h;
 
     public e(Uri uri, String str, String str2) {
-        this.f15696c = str;
-        this.f15698g = uri;
+        this.f15711c = str;
+        this.f15713g = uri;
         this.d = str2;
     }
 
@@ -36,24 +36,24 @@ public final class e {
         RecyclerView.n(c1Var);
         if (c1Var.e(16384)) {
             c1Var.p(0, 16384);
-            i0.k(c1Var.f42974a, null);
+            i0.k(c1Var.f42995a, null);
         }
         if (z10) {
             RecyclerView recyclerView = (RecyclerView) this.h;
-            h0 h0Var = recyclerView.f2866w;
+            h0 h0Var = recyclerView.f2865w;
             if (h0Var != null) {
                 h0Var.A(c1Var);
             }
-            if (recyclerView.f2863t0 != null) {
-                recyclerView.f2846f.E(c1Var);
+            if (recyclerView.f2862t0 != null) {
+                recyclerView.f2845f.E(c1Var);
             }
         }
-        c1Var.f42990t = null;
+        c1Var.f43011t = null;
         u0 c10 = c();
         c10.getClass();
-        int i10 = c1Var.f42977f;
-        ArrayList arrayList = c10.b(i10).f43088a;
-        if (((t0) c10.f43101a.get(i10)).f43089b <= arrayList.size()) {
+        int i10 = c1Var.f42998f;
+        ArrayList arrayList = c10.b(i10).f43109a;
+        if (((t0) c10.f43122a.get(i10)).f43110b <= arrayList.size()) {
             return;
         }
         c1Var.o();
@@ -62,37 +62,37 @@ public final class e {
 
     public int b(int i10) {
         RecyclerView recyclerView = (RecyclerView) this.h;
-        if (i10 >= 0 && i10 < recyclerView.f2863t0.b()) {
-            if (!recyclerView.f2863t0.f43136g) {
+        if (i10 >= 0 && i10 < recyclerView.f2862t0.b()) {
+            if (!recyclerView.f2862t0.f43157g) {
                 return i10;
             }
             return recyclerView.d.g(i10, 0);
         }
         StringBuilder k10 = k0.k(i10, "invalid position ", ". State item count is ");
-        k10.append(recyclerView.f2863t0.b());
+        k10.append(recyclerView.f2862t0.b());
         k10.append(recyclerView.D());
         throw new IndexOutOfBoundsException(k10.toString());
     }
 
     public u0 c() {
-        if (((u0) this.f15698g) == null) {
-            this.f15698g = new u0();
+        if (((u0) this.f15713g) == null) {
+            this.f15713g = new u0();
         }
-        return (u0) this.f15698g;
+        return (u0) this.f15713g;
     }
 
     public void d(h0 h0Var, h0 h0Var2) {
-        ((ArrayList) this.f15696c).clear();
+        ((ArrayList) this.f15711c).clear();
         e();
         u0 c10 = c();
         if (h0Var != null) {
-            c10.f43102b--;
+            c10.f43123b--;
         }
-        if (c10.f43102b == 0) {
+        if (c10.f43123b == 0) {
             c10.a();
         }
         if (h0Var2 != null) {
-            c10.f43102b++;
+            c10.f43123b++;
         } else {
             c10.getClass();
         }
@@ -105,7 +105,7 @@ public final class e {
         }
         arrayList.clear();
         if (RecyclerView.S0) {
-            h hVar = ((RecyclerView) this.h).f2862s0;
+            h hVar = ((RecyclerView) this.h).f2861s0;
             int[] iArr = (int[]) hVar.f16c;
             if (iArr != null) {
                 Arrays.fill(iArr, -1);
@@ -127,13 +127,13 @@ public final class e {
             recyclerView.removeDetachedView(view, false);
         }
         if (V.k()) {
-            V.f42986p.k(V);
+            V.f43007p.k(V);
         } else if (V.s()) {
-            V.f42982l &= -33;
+            V.f43003l &= -33;
         }
         h(V);
-        if (recyclerView.f2843c0 != null && !V.i()) {
-            recyclerView.f2843c0.f(V);
+        if (recyclerView.f2842c0 != null && !V.i()) {
+            recyclerView.f2842c0.f(V);
         }
     }
 
@@ -145,19 +145,19 @@ public final class e {
         m0 m0Var;
         RecyclerView recyclerView = (RecyclerView) this.h;
         c1 V = RecyclerView.V(view);
-        if (!V.e(12) && V.m() && (m0Var = recyclerView.f2843c0) != null && !m0Var.c(V, V.d())) {
+        if (!V.e(12) && V.m() && (m0Var = recyclerView.f2842c0) != null && !m0Var.c(V, V.d())) {
             if (((ArrayList) this.d) == null) {
                 this.d = new ArrayList();
             }
-            V.f42986p = this;
-            V.f42987q = true;
+            V.f43007p = this;
+            V.f43008q = true;
             ((ArrayList) this.d).add(V);
-        } else if (V.h() && !V.j() && !recyclerView.f2866w.f43024b) {
+        } else if (V.h() && !V.j() && !recyclerView.f2865w.f43045b) {
             throw new IllegalArgumentException("Called scrap view with an invalid view. Invalid views cannot be reused from scrap, they should rebound from recycler pool." + recyclerView.D());
         } else {
-            V.f42986p = this;
-            V.f42987q = false;
-            ((ArrayList) this.f15696c).add(V);
+            V.f43007p = this;
+            V.f43008q = false;
+            ((ArrayList) this.f15711c).add(V);
         }
     }
 
@@ -166,27 +166,27 @@ public final class e {
     }
 
     public void k(c1 c1Var) {
-        if (c1Var.f42987q) {
+        if (c1Var.f43008q) {
             ((ArrayList) this.d).remove(c1Var);
         } else {
-            ((ArrayList) this.f15696c).remove(c1Var);
+            ((ArrayList) this.f15711c).remove(c1Var);
         }
-        c1Var.f42986p = null;
-        c1Var.f42987q = false;
-        c1Var.f42982l &= -33;
+        c1Var.f43007p = null;
+        c1Var.f43008q = false;
+        c1Var.f43003l &= -33;
     }
 
     public void l() {
         int i10;
         ArrayList arrayList = (ArrayList) this.e;
-        o0 o0Var = ((RecyclerView) this.h).f2868x;
+        o0 o0Var = ((RecyclerView) this.h).f2867x;
         if (o0Var != null) {
-            i10 = o0Var.f43071i;
+            i10 = o0Var.f43092i;
         } else {
             i10 = 0;
         }
-        this.f15695b = this.f15694a + i10;
-        for (int size = arrayList.size() - 1; size >= 0 && arrayList.size() > this.f15695b; size--) {
+        this.f15710b = this.f15709a + i10;
+        for (int size = arrayList.size() - 1; size >= 0 && arrayList.size() > this.f15710b; size--) {
             f(size);
         }
     }
@@ -194,11 +194,11 @@ public final class e {
     public e(RecyclerView recyclerView) {
         this.h = recyclerView;
         ArrayList arrayList = new ArrayList();
-        this.f15696c = arrayList;
+        this.f15711c = arrayList;
         this.d = null;
         this.e = new ArrayList();
-        this.f15697f = DesugarCollections.unmodifiableList(arrayList);
-        this.f15694a = 2;
-        this.f15695b = 2;
+        this.f15712f = DesugarCollections.unmodifiableList(arrayList);
+        this.f15709a = 2;
+        this.f15710b = 2;
     }
 }

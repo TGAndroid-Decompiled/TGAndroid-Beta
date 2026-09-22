@@ -13,16 +13,16 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class oc extends org.telegram.ui.Components.ul0 {
-    public final bd f36264c;
+public final class oc extends org.telegram.ui.Components.xl0 {
+    public final bd f36282c;
 
     public oc(bd bdVar) {
-        this.f36264c = bdVar;
+        this.f36282c = bdVar;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42977f;
+        int i10 = c1Var.f42998f;
         if (i10 != 5 && i10 != 6) {
             return false;
         }
@@ -31,12 +31,12 @@ public final class oc extends org.telegram.ui.Components.ul0 {
 
     @Override
     public final int h() {
-        return this.f36264c.R;
+        return this.f36282c.R;
     }
 
     @Override
     public final int j(int i10) {
-        bd bdVar = this.f36264c;
+        bd bdVar = this.f36282c;
         if (i10 == bdVar.S) {
             return 0;
         }
@@ -49,11 +49,11 @@ public final class oc extends org.telegram.ui.Components.ul0 {
         if (i10 == bdVar.T) {
             return 3;
         }
-        if (i10 == bdVar.f32357b0) {
+        if (i10 == bdVar.f32375b0) {
             return 4;
         }
-        if (i10 != bdVar.U && i10 != bdVar.f32359c0 && i10 != bdVar.f32363f0 && i10 != bdVar.f32365h0 && i10 != bdVar.f32367j0) {
-            if (i10 != bdVar.X && i10 != bdVar.f32361e0) {
+        if (i10 != bdVar.U && i10 != bdVar.f32377c0 && i10 != bdVar.f32381f0 && i10 != bdVar.f32383h0 && i10 != bdVar.f32385j0) {
+            if (i10 != bdVar.X && i10 != bdVar.f32379e0) {
                 return 7;
             }
             return 5;
@@ -71,10 +71,10 @@ public final class oc extends org.telegram.ui.Components.ul0 {
         int i14;
         boolean z10;
         int i15;
-        bd bdVar = this.f36264c;
-        long j3 = bdVar.f32354a;
-        int i16 = c1Var.f42977f;
-        View view = c1Var.f42974a;
+        bd bdVar = this.f36282c;
+        long j3 = bdVar.f32372a;
+        int i16 = c1Var.f42998f;
+        View view = c1Var.f42995a;
         if (i16 != 1) {
             if (i16 != 3) {
                 if (i16 != 4) {
@@ -83,7 +83,7 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                             if (i16 == 7) {
                                 org.telegram.ui.Cells.f9 f9Var = (org.telegram.ui.Cells.f9) view;
                                 f9Var.setFixedSize(0);
-                                if (i10 == bdVar.f32355a0) {
+                                if (i10 == bdVar.f32373a0) {
                                     f9Var.setFixedSize(12);
                                     f9Var.setText("");
                                     return;
@@ -93,16 +93,16 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                                 } else if (i10 == bdVar.Y) {
                                     f9Var.setText(LocaleController.getString(bdVar.N0()));
                                     return;
-                                } else if (i10 == bdVar.f32360d0) {
+                                } else if (i10 == bdVar.f32378d0) {
                                     f9Var.setText(LocaleController.getString(bdVar.K0()));
                                     return;
-                                } else if (i10 == bdVar.f32364g0) {
+                                } else if (i10 == bdVar.f32382g0) {
                                     f9Var.setText(LocaleController.getString(bdVar.E0()));
                                     return;
-                                } else if (i10 == bdVar.f32366i0) {
+                                } else if (i10 == bdVar.f32384i0) {
                                     f9Var.setText(LocaleController.getString(bdVar.A0()));
                                     return;
-                                } else if (i10 == bdVar.f32368k0) {
+                                } else if (i10 == bdVar.f32386k0) {
                                     f9Var.setText(LocaleController.getString(bdVar.L0()));
                                     return;
                                 } else if (i10 == 0) {
@@ -117,53 +117,53 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                         }
                         pc pcVar = (pc) view;
                         pcVar.e = false;
-                        org.telegram.ui.ActionBar.j5 j5Var = pcVar.f36527a;
+                        org.telegram.ui.ActionBar.j5 j5Var = pcVar.f36554a;
                         pcVar.setWillNotDraw(true);
                         if (i10 == bdVar.U) {
                             i15 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
-                            pcVar.a(i15, bdVar.f32362f, true);
+                            pcVar.a(i15, bdVar.f32380f, true);
                             j5Var.l(LocaleController.getString(R.string.ChannelReplyLogo), false);
-                            if (bdVar.f32356b < bdVar.getMessagesController().channelBgIconLevelMin) {
+                            if (bdVar.f32374b < bdVar.getMessagesController().channelBgIconLevelMin) {
                                 pcVar.e(bdVar.getMessagesController().channelBgIconLevelMin);
                             } else {
                                 pcVar.e(0);
                             }
-                            pcVar.c(bdVar.f32370n, false, false);
+                            pcVar.c(bdVar.f32388n, false, false);
                             return;
-                        } else if (i10 == bdVar.f32359c0) {
+                        } else if (i10 == bdVar.f32377c0) {
                             i14 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
-                            pcVar.a(i14, bdVar.f32377s, false);
+                            pcVar.a(i14, bdVar.f32395s, false);
                             j5Var.l(LocaleController.getString(R.string.ChannelProfileLogo), false);
-                            if (bdVar.f32361e0 >= 0) {
+                            if (bdVar.f32379e0 >= 0) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             pcVar.e = z10;
                             pcVar.setWillNotDraw(!z10);
-                            if (bdVar.f32356b < bdVar.J0()) {
+                            if (bdVar.f32374b < bdVar.J0()) {
                                 pcVar.e(bdVar.J0());
                             } else {
                                 pcVar.e(0);
                             }
-                            pcVar.c(bdVar.f32382w, false, false);
+                            pcVar.c(bdVar.f32400w, false, false);
                             return;
-                        } else if (i10 == bdVar.f32363f0) {
+                        } else if (i10 == bdVar.f32381f0) {
                             i13 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
-                            pcVar.a(i13, bdVar.f32377s, false);
+                            pcVar.a(i13, bdVar.f32395s, false);
                             j5Var.l(LocaleController.getString(bdVar.G0()), false);
-                            if (bdVar.f32356b < bdVar.F0()) {
+                            if (bdVar.f32374b < bdVar.F0()) {
                                 pcVar.e(bdVar.F0());
                             } else {
                                 pcVar.e(0);
                             }
-                            pcVar.c(DialogObject.getEmojiStatusDocumentId(bdVar.f32386y), DialogObject.isEmojiStatusCollectible(bdVar.f32386y), false);
+                            pcVar.c(DialogObject.getEmojiStatusDocumentId(bdVar.f32404y), DialogObject.isEmojiStatusCollectible(bdVar.f32404y), false);
                             return;
-                        } else if (i10 == bdVar.f32365h0) {
+                        } else if (i10 == bdVar.f32383h0) {
                             i12 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
-                            pcVar.a(i12, bdVar.f32377s, false);
+                            pcVar.a(i12, bdVar.f32395s, false);
                             j5Var.l(LocaleController.getString(bdVar.B0()), false);
-                            if (bdVar.f32356b < bdVar.H0()) {
+                            if (bdVar.f32374b < bdVar.H0()) {
                                 pcVar.e(bdVar.H0());
                             } else {
                                 pcVar.e(0);
@@ -176,7 +176,7 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                                 pcVar.c(0L, false, false);
                                 return;
                             }
-                        } else if (i10 == bdVar.f32367j0) {
+                        } else if (i10 == bdVar.f32385j0) {
                             j5Var.l(LocaleController.getString(bdVar.M0()), false);
                             pcVar.e(0);
                             TLRPC.ChatFull chatFull2 = bdVar.getMessagesController().getChatFull(-j3);
@@ -192,12 +192,12 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                         }
                     }
                     org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view;
-                    if (i10 == bdVar.f32361e0) {
+                    if (i10 == bdVar.f32379e0) {
                         s8Var.i(LocaleController.getString(R.string.ChannelProfileColorReset), false);
                         return;
                     }
                     s8Var.i(LocaleController.getString(bdVar.P0()), false);
-                    if (bdVar.f32356b < bdVar.z0()) {
+                    if (bdVar.f32374b < bdVar.z0()) {
                         s8Var.h(bdVar.z0());
                         return;
                     } else {
@@ -205,22 +205,22 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                         return;
                     }
                 }
-                ((zp0) view).a(bdVar.f32377s, false);
+                ((zp0) view).a(bdVar.f32395s, false);
                 return;
             }
-            ((sc) view).a(bdVar.f32362f, false);
+            ((sc) view).a(bdVar.f32380f, false);
             return;
         }
         uc ucVar = (uc) view;
-        ip0 ip0Var = ucVar.f38052a;
-        tc tcVar = ucVar.f38053b;
+        ip0 ip0Var = ucVar.f38053a;
+        tc tcVar = ucVar.f38054b;
         i11 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
-        ip0Var.b(i11, bdVar.f32377s, false);
-        tcVar.b(bdVar.f32377s, false);
-        tcVar.d(bdVar.f32382w, false, false);
+        ip0Var.b(i11, bdVar.f32395s, false);
+        tcVar.b(bdVar.f32395s, false);
+        tcVar.d(bdVar.f32400w, false, false);
         tcVar.setForum(bdVar.R0());
-        tcVar.e(DialogObject.getEmojiStatusDocumentId(bdVar.f32386y), false, false);
-        tcVar.a(bdVar.f32362f);
+        tcVar.e(DialogObject.getEmojiStatusDocumentId(bdVar.f32404y), false, false);
+        tcVar.a(bdVar.f32380f);
     }
 
     @Override
@@ -239,17 +239,17 @@ public final class oc extends org.telegram.ui.Components.ul0 {
         org.telegram.ui.ActionBar.d5 d5Var;
         org.telegram.ui.ActionBar.f6 f6Var8;
         int i14;
-        bd bdVar = this.f36264c;
+        bd bdVar = this.f36282c;
         if (i10 == 0) {
             Activity parentActivity = bdVar.getParentActivity();
             d5Var = ((org.telegram.ui.ActionBar.n2) bdVar).parentLayout;
             int I0 = bdVar.I0();
-            long j3 = bdVar.f32354a;
+            long j3 = bdVar.f32372a;
             f6Var8 = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
             org.telegram.ui.Cells.ja jaVar = new org.telegram.ui.Cells.ja(parentActivity, d5Var, I0, j3, f6Var8);
-            jaVar.f20515x = true;
+            jaVar.f20530x = true;
             jaVar.setImportantForAccessibility(4);
-            jaVar.f20512r = bdVar;
+            jaVar.f20527r = bdVar;
             Drawable drawable = bdVar.H;
             i14 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
             Drawable f7 = ci.d7.f(drawable, i14, bdVar.F, bdVar.J);
@@ -269,10 +269,10 @@ public final class oc extends org.telegram.ui.Components.ul0 {
             zcVar2.a(wallpaperEmoticon, false);
             zcVar2.setGalleryWallpaper(bdVar.G);
             zcVar2.setOnEmoticonSelected(new Utilities.Callback(this) {
-                public final oc f35969b;
+                public final oc f35990b;
 
                 {
-                    this.f35969b = this;
+                    this.f35990b = this;
                 }
 
                 @Override
@@ -280,7 +280,7 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                     switch (r2) {
                         case 0:
                             String str = (String) obj;
-                            bd bdVar2 = this.f35969b.f36264c;
+                            bd bdVar2 = this.f35990b.f36282c;
                             if (str == null) {
                                 bdVar2.F = bdVar2.G;
                             } else if (str.equals("❌")) {
@@ -288,7 +288,7 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                             } else {
                                 TLRPC.TL_wallPaperNoFile tL_wallPaperNoFile = new TLRPC.TL_wallPaperNoFile();
                                 bdVar2.F = tL_wallPaperNoFile;
-                                tL_wallPaperNoFile.f18480id = 0L;
+                                tL_wallPaperNoFile.f18495id = 0L;
                                 tL_wallPaperNoFile.flags |= 4;
                                 tL_wallPaperNoFile.settings = new TLRPC.TL_wallPaperSettings();
                                 bdVar2.F.settings.emoticon = str;
@@ -297,10 +297,10 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                             bdVar2.a1(true);
                             return;
                         default:
-                            bd bdVar3 = this.f35969b.f36264c;
-                            bdVar3.f32377s = ((Integer) obj).intValue();
-                            if (bdVar3.f32386y instanceof TLRPC.TL_emojiStatusCollectible) {
-                                bdVar3.f32386y = null;
+                            bd bdVar3 = this.f35990b.f36282c;
+                            bdVar3.f32395s = ((Integer) obj).intValue();
+                            if (bdVar3.f32404y instanceof TLRPC.TL_emojiStatusCollectible) {
+                                bdVar3.f32404y = null;
                             }
                             bdVar3.X0(true);
                             bdVar3.b1();
@@ -319,18 +319,18 @@ public final class oc extends org.telegram.ui.Components.ul0 {
             frameLayout.e = false;
             frameLayout.d = f6Var6;
             org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(parentActivity3);
-            frameLayout.f36527a = j5Var;
+            frameLayout.f36554a = j5Var;
             j5Var.setTextSize(16);
             j5Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var6));
             frameLayout.addView(j5Var, w7.y5.d(-1, -2.0f, 23, 23.0f, 0.0f, 48.0f, 0.0f));
-            frameLayout.f36529c = new org.telegram.ui.Components.n5(AndroidUtilities.dp(24.0f), 13, frameLayout, false);
+            frameLayout.f36556c = new org.telegram.ui.Components.n5(AndroidUtilities.dp(24.0f), 13, frameLayout, false);
             zcVar = frameLayout;
         } else if (i10 == 3) {
             Activity parentActivity4 = bdVar.getParentActivity();
             i12 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
             f6Var5 = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
             sc scVar = new sc(i12, parentActivity4, f6Var5);
-            scVar.f37369b.setOnItemClickListener(new ai.o6(5, this, scVar));
+            scVar.f37391b.setOnItemClickListener(new ai.o6(5, this, scVar));
             zcVar = scVar;
         } else if (i10 == 4) {
             Activity parentActivity5 = bdVar.getParentActivity();
@@ -339,10 +339,10 @@ public final class oc extends org.telegram.ui.Components.ul0 {
             zp0 zp0Var = new zp0(0, i11, parentActivity5, f6Var4);
             zp0Var.setDivider(false);
             zp0Var.setOnColorClick(new Utilities.Callback(this) {
-                public final oc f35969b;
+                public final oc f35990b;
 
                 {
-                    this.f35969b = this;
+                    this.f35990b = this;
                 }
 
                 @Override
@@ -350,7 +350,7 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                     switch (r2) {
                         case 0:
                             String str = (String) obj;
-                            bd bdVar2 = this.f35969b.f36264c;
+                            bd bdVar2 = this.f35990b.f36282c;
                             if (str == null) {
                                 bdVar2.F = bdVar2.G;
                             } else if (str.equals("❌")) {
@@ -358,7 +358,7 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                             } else {
                                 TLRPC.TL_wallPaperNoFile tL_wallPaperNoFile = new TLRPC.TL_wallPaperNoFile();
                                 bdVar2.F = tL_wallPaperNoFile;
-                                tL_wallPaperNoFile.f18480id = 0L;
+                                tL_wallPaperNoFile.f18495id = 0L;
                                 tL_wallPaperNoFile.flags |= 4;
                                 tL_wallPaperNoFile.settings = new TLRPC.TL_wallPaperSettings();
                                 bdVar2.F.settings.emoticon = str;
@@ -367,10 +367,10 @@ public final class oc extends org.telegram.ui.Components.ul0 {
                             bdVar2.a1(true);
                             return;
                         default:
-                            bd bdVar3 = this.f35969b.f36264c;
-                            bdVar3.f32377s = ((Integer) obj).intValue();
-                            if (bdVar3.f32386y instanceof TLRPC.TL_emojiStatusCollectible) {
-                                bdVar3.f32386y = null;
+                            bd bdVar3 = this.f35990b.f36282c;
+                            bdVar3.f32395s = ((Integer) obj).intValue();
+                            if (bdVar3.f32404y instanceof TLRPC.TL_emojiStatusCollectible) {
+                                bdVar3.f32404y = null;
                             }
                             bdVar3.X0(true);
                             bdVar3.b1();
@@ -410,22 +410,22 @@ public final class oc extends org.telegram.ui.Components.ul0 {
 
     @Override
     public final void y(s4.c1 c1Var) {
-        View view = c1Var.f42974a;
+        View view = c1Var.f42995a;
         boolean z10 = view instanceof uc;
-        bd bdVar = this.f36264c;
+        bd bdVar = this.f36282c;
         if (z10) {
-            tc tcVar = ((uc) view).f38053b;
-            TLRPC.EmojiStatus emojiStatus = bdVar.f32386y;
+            tc tcVar = ((uc) view).f38054b;
+            TLRPC.EmojiStatus emojiStatus = bdVar.f32404y;
             if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
                 tcVar.c(MessagesController.PeerColor.fromCollectible(emojiStatus), false);
-                tcVar.d(((TLRPC.TL_emojiStatusCollectible) bdVar.f32386y).pattern_document_id, true, false);
+                tcVar.d(((TLRPC.TL_emojiStatusCollectible) bdVar.f32404y).pattern_document_id, true, false);
             } else {
-                tcVar.b(bdVar.f32377s, false);
-                tcVar.d(bdVar.f32382w, false, false);
+                tcVar.b(bdVar.f32395s, false);
+                tcVar.d(bdVar.f32400w, false, false);
             }
-            tcVar.e(DialogObject.getEmojiStatusDocumentId(bdVar.f32386y), DialogObject.isEmojiStatusCollectible(bdVar.f32386y), false);
+            tcVar.e(DialogObject.getEmojiStatusDocumentId(bdVar.f32404y), DialogObject.isEmojiStatusCollectible(bdVar.f32404y), false);
             tcVar.setForum(bdVar.R0());
-            tcVar.a(bdVar.f32362f);
+            tcVar.a(bdVar.f32380f);
         } else if (view instanceof org.telegram.ui.Cells.ja) {
             ((org.telegram.ui.Cells.ja) view).setOverrideBackground(bdVar.H);
         } else {

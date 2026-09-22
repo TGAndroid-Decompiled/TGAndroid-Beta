@@ -7,9 +7,9 @@ public final class c extends db.u {
     public final Object f9543b;
     public final Object f9544c;
 
-    public c(db.g gVar, Type type, db.u uVar, fb.n nVar) {
+    public c(db.g gVar, Type type, db.u uVar, fb.o oVar) {
         this.f9543b = new o(gVar, uVar, type);
-        this.f9544c = nVar;
+        this.f9544c = oVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class c extends db.u {
                     aVar.t();
                     return null;
                 }
-                Collection collection = (Collection) ((fb.n) this.f9544c).p2();
+                Collection collection = (Collection) ((fb.o) this.f9544c).p2();
                 aVar.a();
                 while (aVar.k()) {
                     collection.add(((db.u) ((o) this.f9543b).f9579c).read(aVar));

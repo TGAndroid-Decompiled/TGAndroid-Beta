@@ -3,18 +3,18 @@ package ai;
 import android.window.OnBackInvokedCallback;
 import org.telegram.ui.LaunchActivity;
 public final class rb implements OnBackInvokedCallback {
-    public final int f1484a;
-    public final Object f1485b;
+    public final int f1481a;
+    public final Object f1482b;
 
     public rb(Object obj, int i10) {
-        this.f1484a = i10;
-        this.f1485b = obj;
+        this.f1481a = i10;
+        this.f1482b = obj;
     }
 
     public final void onBackInvoked() {
-        switch (this.f1484a) {
+        switch (this.f1481a) {
             case 0:
-                jc jcVar = (jc) this.f1485b;
+                jc jcVar = (jc) this.f1482b;
                 jcVar.getClass();
                 LaunchActivity launchActivity = LaunchActivity.G1;
                 if (launchActivity != null) {
@@ -25,18 +25,18 @@ public final class rb implements OnBackInvokedCallback {
                     return;
                 }
             case 1:
-                rd.a onBackInvoked = (rd.a) this.f1485b;
+                rd.a onBackInvoked = (rd.a) this.f1482b;
                 kotlin.jvm.internal.i.e(onBackInvoked, "$onBackInvoked");
                 onBackInvoked.invoke();
                 return;
             case 2:
-                ((ci.oc) this.f1485b).M();
+                ((ci.oc) this.f1482b).M();
                 return;
             case 3:
-                ((g.s) this.f1485b).s();
+                ((g.s) this.f1482b).s();
                 return;
             default:
-                ((Runnable) this.f1485b).run();
+                ((Runnable) this.f1482b).run();
                 return;
         }
     }

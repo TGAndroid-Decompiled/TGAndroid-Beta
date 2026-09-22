@@ -30,13 +30,13 @@ public final class z extends n0 {
                 b0Var.f9224s = null;
                 n4.y yVar = b0Var.f9216k;
                 if (yVar != null) {
-                    yVar.R(b0Var.f9215j);
+                    yVar.S(b0Var.f9215j);
                     b0Var.f9215j = null;
                     b0Var.f9216k = null;
                 }
                 ActionBarOverlayLayout actionBarOverlayLayout = b0Var.f9211c;
                 if (actionBarOverlayLayout != null) {
-                    WeakHashMap weakHashMap = i0.f42142a;
+                    WeakHashMap weakHashMap = i0.f42163a;
                     r0.y.c(actionBarOverlayLayout);
                     return;
                 }

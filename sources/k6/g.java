@@ -18,16 +18,16 @@ public abstract class g {
         try {
             if (!f13515c) {
                 try {
-                    PackageInfo e7 = w6.b.a(context).e(64, "com.google.android.gms");
+                    PackageInfo b10 = w6.b.a(context).b(64, "com.google.android.gms");
                     h.d(context);
-                    if (e7 != null && !h.h(e7, false) && h.h(e7, true)) {
+                    if (b10 != null && !h.f(b10, false) && h.f(b10, true)) {
                         f13514b = true;
                     } else {
                         f13514b = false;
                     }
                     f13515c = true;
-                } catch (PackageManager.NameNotFoundException e10) {
-                    Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e10);
+                } catch (PackageManager.NameNotFoundException e7) {
+                    Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e7);
                     f13515c = true;
                 }
             }

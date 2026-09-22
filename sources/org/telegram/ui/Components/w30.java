@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class w30 extends ab {
     public final LinearLayout X;
-    public k61 Y;
+    public m61 Y;
 
     public w30(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.dq dqVar) {
         super(activity, null, false, false, 1, f6Var);
@@ -29,7 +29,7 @@ public final class w30 extends ab {
         org.telegram.ui.m01 P2 = P(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19496z6, f6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19511z6, f6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -68,9 +68,9 @@ public final class w30 extends ab {
         dVar2.g(LocaleController.formatString(R.string.GuardBotReplaceKeepCurrent, shortName), false, true);
         dVar2.setOnClickListener(new f0(this, 24));
         linearLayout.addView(dVar2, w7.y5.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        vl0 vl0Var = this.d;
+        yl0 yl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        vl0Var.setPadding(i11, 0, i11, 0);
+        yl0Var.setPadding(i11, 0, i11, 0);
         this.Y.N(false);
     }
 
@@ -85,11 +85,11 @@ public final class w30 extends ab {
     }
 
     @Override
-    public final ul0 v(vl0 vl0Var) {
-        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
-        this.Y = k61Var;
-        k61Var.f25678r = false;
-        return k61Var;
+    public final xl0 v(yl0 yl0Var) {
+        m61 m61Var = new m61(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
+        this.Y = m61Var;
+        m61Var.f26342r = false;
+        return m61Var;
     }
 
     @Override

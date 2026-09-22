@@ -1,15 +1,15 @@
 package ii;
 
 import android.view.View;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.y70;
 public interface u3 {
-    void C();
+    void D();
 
-    v70 F(View view);
+    y70 G(View view);
 
-    void G();
+    void I();
 
-    void J(t3 t3Var, View view);
+    void L(t3 t3Var, View view);
 
     void d(v3 v3Var, View view);
 
@@ -25,7 +25,7 @@ public interface u3 {
 
     void p();
 
-    void t(a aVar);
+    void q(a aVar);
 
     void w();
 

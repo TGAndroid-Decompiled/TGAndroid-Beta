@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
-public final class ua extends uc0 {
+public final class ua extends xc0 {
     public final boolean C0;
     public final boolean D0;
     public final ab E0;
@@ -22,7 +22,7 @@ public final class ua extends uc0 {
         ab abVar = this.E0;
         abVar.I(canvas, this);
         super.dispatchDraw(canvas);
-        abVar.H(canvas, this);
+        abVar.G(canvas, this);
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class ua extends uc0 {
         int size = View.MeasureSpec.getSize(i11);
         ab abVar = this.E0;
         abVar.h = size;
-        abVar.E(i10, i11);
+        abVar.D(i10, i11);
         if (this.C0) {
             i11 = View.MeasureSpec.makeMeasureSpec(abVar.h, 1073741824);
         }

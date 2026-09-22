@@ -7,10 +7,10 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.t31;
 public final class y6 extends ImageSpan {
-    public static r31 f21890b;
-    public final int f21891a = 1;
+    public static t31 f21905b;
+    public final int f21906a = 1;
 
     public y6(Drawable drawable) {
         super(drawable);
@@ -18,7 +18,7 @@ public final class y6 extends ImageSpan {
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        switch (this.f21891a) {
+        switch (this.f21906a) {
             case 0:
                 Drawable drawable = getDrawable();
                 canvas.save();
@@ -39,7 +39,7 @@ public final class y6 extends ImageSpan {
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f21891a) {
+        switch (this.f21906a) {
             case 0:
                 Rect bounds = getDrawable().getBounds();
                 if (fontMetricsInt != null) {
@@ -63,7 +63,7 @@ public final class y6 extends ImageSpan {
 
     @Override
     public void updateDrawState(TextPaint textPaint) {
-        switch (this.f21891a) {
+        switch (this.f21906a) {
             case 1:
                 float textSize = textPaint.getTextSize() * 0.89f;
                 int i10 = (int) (0.02f * textSize);

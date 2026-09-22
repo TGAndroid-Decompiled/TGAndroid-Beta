@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class ot implements Runnable {
-    public final st f36366a;
+    public final st f36393a;
 
     public ot(st stVar) {
-        this.f36366a = stVar;
+        this.f36393a = stVar;
     }
 
     @Override

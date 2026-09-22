@@ -16,9 +16,9 @@ import org.telegram.ui.ActionBar.j6;
 import w7.y5;
 public final class f extends FrameLayout {
     public static final int e = 0;
-    public final e f49322a;
-    public boolean f49323b;
-    public boolean f49324c;
+    public final e f49339a;
+    public boolean f49340b;
+    public boolean f49341c;
     public Utilities.Callback d;
 
     public f(Activity activity, f6 f6Var) {
@@ -26,7 +26,7 @@ public final class f extends FrameLayout {
         int w02;
         int w03;
         e eVar = new e(this, activity);
-        this.f49322a = eVar;
+        this.f49339a = eVar;
         eVar.setHapticFeedbackEnabled(true);
         eVar.setImageResource(R.drawable.smiles_tab_clear);
         int i10 = j6.Re;
@@ -41,9 +41,9 @@ public final class f extends FrameLayout {
         eVar.setFocusable(true);
         eVar.setOnClickListener(new e2(28));
         addView(eVar, y5.e(36, 36, 17));
-        int w04 = j6.w0(null, j6.f19184i6, false);
+        int w04 = j6.w0(null, j6.f19199i6, false);
         int dp = AndroidUtilities.dp(36.0f);
-        int i11 = j6.f19094d6;
+        int i11 = j6.f19109d6;
         if (f6Var != null) {
             w03 = f6Var.F0(i11);
         } else {

@@ -2,26 +2,26 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class ml0 implements Runnable {
-    public final int f35767a;
-    public final PasscodeActivity f35768b;
+    public final int f35788a;
+    public final PasscodeActivity f35789b;
 
     public ml0(PasscodeActivity passcodeActivity, int i10) {
-        this.f35767a = i10;
-        this.f35768b = passcodeActivity;
+        this.f35788a = i10;
+        this.f35789b = passcodeActivity;
     }
 
     @Override
     public final void run() {
         long j3;
-        switch (this.f35767a) {
+        switch (this.f35788a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f35768b;
-                passcodeActivity.f31172n.postDelayed(passcodeActivity.O, 3000L);
+                PasscodeActivity passcodeActivity = this.f35789b;
+                passcodeActivity.f31193n.postDelayed(passcodeActivity.O, 3000L);
                 passcodeActivity.N = true;
                 return;
             case 1:
                 PasscodeActivity passcodeActivity2 = new PasscodeActivity(0);
-                PasscodeActivity passcodeActivity3 = this.f35768b;
+                PasscodeActivity passcodeActivity3 = this.f35789b;
                 passcodeActivity3.presentFragment(passcodeActivity2, true);
                 cc0 cc0Var = passcodeActivity3.Q;
                 if (cc0Var != null) {
@@ -31,7 +31,7 @@ public final class ml0 implements Runnable {
                 }
                 return;
             case 2:
-                PasscodeActivity passcodeActivity4 = this.f35768b;
+                PasscodeActivity passcodeActivity4 = this.f35789b;
                 ml0 ml0Var = new ml0(passcodeActivity4, 3);
                 if (passcodeActivity4.e0()) {
                     j3 = 150;
@@ -41,22 +41,22 @@ public final class ml0 implements Runnable {
                 AndroidUtilities.runOnUIThread(ml0Var, j3);
                 return;
             case 3:
-                PasscodeActivity passcodeActivity5 = this.f35768b;
+                PasscodeActivity passcodeActivity5 = this.f35789b;
                 if (passcodeActivity5.e0()) {
-                    for (gs gsVar : passcodeActivity5.f31172n.f33125f) {
+                    for (gs gsVar : passcodeActivity5.f31193n.f33145f) {
                         gsVar.i(0.0f);
                     }
                     return;
                 }
-                passcodeActivity5.f31171f.a(0.0f);
+                passcodeActivity5.f31192f.a(0.0f);
                 return;
             case 4:
-                PasscodeActivity passcodeActivity6 = this.f35768b;
+                PasscodeActivity passcodeActivity6 = this.f35789b;
                 passcodeActivity6.N = false;
-                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity6.f31173r, false);
+                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity6.f31194r, false);
                 return;
             default:
-                this.f35768b.k0();
+                this.f35789b.k0();
                 return;
         }
     }

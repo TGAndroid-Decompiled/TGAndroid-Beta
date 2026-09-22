@@ -1,11 +1,11 @@
 package ki;
 public final class m implements Runnable {
-    public final int f13768a;
-    public final o f13769b;
+    public final int f13778a;
+    public final o f13779b;
 
     public m(o oVar, int i10) {
-        this.f13768a = i10;
-        this.f13769b = oVar;
+        this.f13778a = i10;
+        this.f13779b = oVar;
     }
 
     @Override

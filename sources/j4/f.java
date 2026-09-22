@@ -32,7 +32,7 @@ public final class f {
         e2.v vVar = new e2.v((byte[]) lVar.d);
         while (vVar.a() > 0) {
             int x10 = vVar.x();
-            int x11 = vVar.f7935b + vVar.x();
+            int x11 = vVar.f7934b + vVar.x();
             if (x10 == 134) {
                 ArrayList arrayList = new ArrayList();
                 int x12 = vVar.x() & 31;
@@ -59,16 +59,16 @@ public final class f {
                         } else {
                             z11 = false;
                         }
-                        byte[] bArr = e2.e.f7897a;
+                        byte[] bArr = e2.e.f7896a;
                         list = Collections.singletonList(z11 ? new byte[]{1} : new byte[]{0});
                     } else {
                         list = null;
                     }
                     b2.r rVar = new b2.r();
-                    rVar.f3253q = r0.n(str);
+                    rVar.f3252q = r0.n(str);
                     rVar.d = v;
                     rVar.N = i10;
-                    rVar.f3256t = list;
+                    rVar.f3255t = list;
                     arrayList.add(new b2.s(rVar));
                 }
                 list2 = arrayList;

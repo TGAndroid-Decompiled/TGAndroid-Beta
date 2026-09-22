@@ -21,6 +21,14 @@ public final class j2 extends d2 implements e2 {
     }
 
     @Override
+    public final void E(l.l lVar, l.n nVar) {
+        l.d dVar = this.S;
+        if (dVar != null) {
+            dVar.E(lVar, nVar);
+        }
+    }
+
+    @Override
     public final r1 o(Context context, boolean z10) {
         i2 i2Var = new i2(context, z10);
         i2Var.setHoverListener(this);
@@ -28,18 +36,10 @@ public final class j2 extends d2 implements e2 {
     }
 
     @Override
-    public final void p(l.l lVar, MenuItem menuItem) {
+    public final void q(l.l lVar, MenuItem menuItem) {
         l.d dVar = this.S;
         if (dVar != null) {
-            dVar.p(lVar, menuItem);
-        }
-    }
-
-    @Override
-    public final void u(l.l lVar, l.n nVar) {
-        l.d dVar = this.S;
-        if (dVar != null) {
-            dVar.u(lVar, nVar);
+            dVar.q(lVar, menuItem);
         }
     }
 }

@@ -1,87 +1,65 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.View;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ui0 {
-    public final d6 f28687a;
-    public final n6 f28688b;
-    public final int f28689c;
-    public boolean d;
-    public final zi0 e;
-    public final yc f28690f;
-    public final Paint f28691g = new Paint(1);
-    public boolean h;
+public final class ui0 extends Drawable {
+    public Path f28787a;
+    public Paint f28788b;
+    public float f28789c;
 
-    public ui0(View view) {
-        this.f28687a = new d6(view, 350L, qr.h);
-        this.e = new zi0(view);
-        this.f28690f = new yc(view);
-        n6 n6Var = new n6(false, false, false, false);
-        this.f28688b = n6Var;
-        n6Var.t(AndroidUtilities.dp(11.0f));
-        n6Var.o(true, true, false);
-        n6Var.setCallback(view);
-        n6Var.G = (int) (AndroidUtilities.displaySize.x * 0.3f);
-        this.d = false;
-        n6Var.q(LocaleController.getString(R.string.QuoteCollapse), false, true);
-        String string = LocaleController.getString(R.string.QuoteExpand);
-        TextPaint textPaint = n6Var.f26574a;
-        this.f28689c = (int) Math.ceil(Math.max(textPaint.measureText(string), textPaint.measureText(LocaleController.getString(R.string.QuoteCollapse))));
+    public final void a() {
+        int dp = AndroidUtilities.dp(18.0f);
+        Path path = this.f28787a;
+        path.reset();
+        float f7 = dp >> 1;
+        path.moveTo(f7, AndroidUtilities.dpf2(4.98f));
+        path.lineTo(AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+        path.lineTo(dp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+        path.lineTo(f7, AndroidUtilities.dpf2(4.98f));
+        Paint paint = this.f28788b;
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        this.f28789c = AndroidUtilities.density;
     }
 
-    public final void a(Canvas canvas, RectF rectF, float f7, float f10, int i10, boolean z10, boolean z11) {
-        int i11;
-        boolean z12 = this.d;
-        n6 n6Var = this.f28688b;
-        if (z10 != z12) {
-            this.d = z10;
-            if (z10) {
-                i11 = R.string.QuoteExpand;
-            } else {
-                i11 = R.string.QuoteCollapse;
-            }
-            n6Var.q(LocaleController.getString(i11), true, true);
+    @Override
+    public final void draw(Canvas canvas) {
+        Paint paint = this.f28788b;
+        if (this.f28789c != AndroidUtilities.density) {
+            a();
         }
-        float d = n6Var.d();
-        float dp = AndroidUtilities.dp(17.66f);
-        rectF.set(f7 - ((int) (d + AndroidUtilities.dp(23.66f))), f10 - dp, f7, f10);
-        float a2 = this.f28690f.a(0.02f) * this.f28687a.e(z11);
-        if (a2 > 0.0f) {
-            int k10 = i0.a.k(i10, 30);
-            Paint paint = this.f28691g;
-            paint.setColor(k10);
-            canvas.save();
-            canvas.scale(a2, a2, f7, f10);
-            float f11 = dp / 2.0f;
-            canvas.drawRoundRect(rectF, f11, f11, paint);
-            n6Var.setBounds((int) (rectF.left + AndroidUtilities.dp(6.0f)), (int) rectF.top, (int) (rectF.right - AndroidUtilities.dp(17.66f)), (int) rectF.bottom);
-            n6Var.r(i10);
-            n6Var.draw(canvas);
-            float dp2 = AndroidUtilities.dp(14.0f);
-            float f12 = dp2 / 2.0f;
-            zi0 zi0Var = this.e;
-            zi0Var.setBounds((int) ((rectF.right - AndroidUtilities.dp(3.33f)) - dp2), (int) ((rectF.centerY() - f12) + AndroidUtilities.dp(0.33f)), (int) (rectF.right - AndroidUtilities.dp(3.33f)), (int) (rectF.centerY() + f12 + AndroidUtilities.dp(0.33f)));
-            Paint paint2 = zi0Var.f30835b;
-            paint2.setColor(i10);
-            paint2.setAlpha(zi0Var.d);
-            boolean z13 = !z10;
-            if (zi0Var.e != z13) {
-                zi0Var.e = z13;
-                zi0Var.f30834a.invalidate();
-            }
-            zi0Var.draw(canvas);
-            canvas.restore();
-        }
+        canvas.save();
+        canvas.translate(getBounds().left, getBounds().top);
+        canvas.drawPath(this.f28787a, paint);
+        canvas.drawRect(AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(8.0f), AndroidUtilities.dp(18.0f) - AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(11.1f), paint);
+        canvas.restore();
     }
 
-    public final void b(boolean z10) {
-        this.h = z10;
-        this.f28690f.c(z10);
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -35,34 +35,34 @@ public final class q5 extends org.telegram.ui.Components.v9 {
         float floatValue;
         org.telegram.ui.Components.p5 p5Var = this.e;
         if (p5Var != null) {
-            imageReceiver = p5Var.f27162k;
+            imageReceiver = p5Var.f27256k;
         } else {
-            imageReceiver = this.f29029a;
+            imageReceiver = this.f29034a;
         }
         if (imageReceiver != null) {
-            if (this.f29031c != -1 && this.d != -1) {
+            if (this.f29036c != -1 && this.d != -1) {
                 int height = getHeight();
                 int i10 = this.d;
-                imageReceiver.setImageCoords((getWidth() - this.f29031c) / 2, (height - i10) / 2, this.f29031c, i10);
+                imageReceiver.setImageCoords((getWidth() - this.f29036c) / 2, (height - i10) / 2, this.f29036c, i10);
                 int height2 = getHeight();
                 int i11 = this.d;
-                this.f29030b.setImageCoords((getWidth() - this.f29031c) / 2, (height2 - i11) / 2, this.f29031c, i11);
+                this.f29035b.setImageCoords((getWidth() - this.f29036c) / 2, (height2 - i11) / 2, this.f29036c, i11);
             } else {
                 imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-                this.f29030b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
+                this.f29035b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
             }
             imageReceiver.draw(canvas);
             u5 u5Var = this.K;
             if (u5Var.N) {
-                Rect rect = u5.f21606a0;
+                Rect rect = u5.f21621a0;
                 MediaController.PhotoEntry photoEntry2 = u5Var.G;
                 if (photoEntry2 == null || !photoEntry2.isAttachSpoilerRevealed) {
-                    this.f29030b.draw(canvas);
+                    this.f29035b.draw(canvas);
                     if (u5Var.M == null) {
                         if (u5Var.L == null) {
-                            vh.h hVar = new vh.h();
-                            u5Var.L = hVar;
-                            hVar.h(i0.a.k(-1, (int) (Color.alpha(-1) * 0.325f)));
+                            vh.g gVar = new vh.g();
+                            u5Var.L = gVar;
+                            gVar.h(i0.a.k(-1, (int) (Color.alpha(-1) * 0.325f)));
                         }
                         u5Var.L.setBounds(0, 0, getWidth(), getHeight());
                         u5Var.L.draw(canvas);
@@ -74,7 +74,7 @@ public final class q5 extends org.telegram.ui.Components.v9 {
             int i12 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
             if (i12 != 0 && u5Var.R != null) {
                 Paint paint = this.G;
-                paint.setAlpha((int) (qr.f27642f.getInterpolation(1.0f - f7) * 255.0f));
+                paint.setAlpha((int) (qr.f27653f.getInterpolation(1.0f - f7) * 255.0f));
                 canvas.drawBitmap(u5Var.R, 0.0f, 0.0f, paint);
                 long min = Math.min(16L, System.currentTimeMillis() - this.H);
                 Float f10 = u5Var.S;
@@ -87,7 +87,7 @@ public final class q5 extends org.telegram.ui.Components.v9 {
                 this.H = System.currentTimeMillis();
                 invalidate();
                 if (u5Var.M != null) {
-                    u5Var.f21608b.invalidate();
+                    u5Var.f21623b.invalidate();
                 }
             } else if (i12 == 0 && (bitmap = u5Var.R) != null) {
                 bitmap.recycle();
@@ -95,9 +95,9 @@ public final class q5 extends org.telegram.ui.Components.v9 {
                 u5Var.S = null;
                 invalidate();
             }
-            if (u5Var.f21613s) {
+            if (u5Var.f21628s) {
                 s5 s5Var = u5Var.U;
-                if ((s5Var == null || !((hm) ((org.telegram.ui.Components.s) s5Var).f27987b).f24725s) && (photoEntry = u5Var.G) != null && photoEntry.isLivePhoto()) {
+                if ((s5Var == null || !((hm) ((org.telegram.ui.Components.s) s5Var).f28079b).f24855s) && (photoEntry = u5Var.G) != null && photoEntry.isLivePhoto()) {
                     if (u5Var.G.isUnalivePhoto()) {
                         if (this.J == null) {
                             this.J = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();

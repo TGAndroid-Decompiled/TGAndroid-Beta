@@ -1,107 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class qi0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27584a;
-    public final si0 f27585b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class qi0 extends AnimatorListenerAdapter {
+    public final int f27578a;
+    public final ri0 f27579b;
 
-    public qi0(si0 si0Var, int i10) {
-        this.f27584a = i10;
-        this.f27585b = si0Var;
+    public qi0(ri0 ri0Var, int i10) {
+        this.f27578a = i10;
+        this.f27579b = ri0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27584a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                si0 si0Var = this.f27585b;
-                si0Var.v = floatValue;
-                org.telegram.ui.Cells.s2 s2Var = si0Var.H;
-                if (s2Var != null) {
-                    s2Var.invalidate();
-                }
-                vl0 vl0Var = si0Var.I;
-                if (vl0Var != null) {
-                    vl0Var.invalidate();
-                    return;
-                }
-                return;
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f27578a) {
             case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                si0 si0Var2 = this.f27585b;
-                si0Var2.f28145w = floatValue2;
-                org.telegram.ui.Cells.s2 s2Var2 = si0Var2.H;
-                if (s2Var2 != null) {
-                    s2Var2.invalidate();
-                }
-                vl0 vl0Var2 = si0Var2.I;
-                if (vl0Var2 != null) {
-                    vl0Var2.invalidate();
+                ri0 ri0Var = this.f27579b;
+                AnimatorSet animatorSet = ri0Var.f27994s;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    ri0Var.f27994s = null;
+                    ri0Var.getClass();
                     return;
                 }
                 return;
             case 2:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                si0 si0Var3 = this.f27585b;
-                si0Var3.f28139p = floatValue3;
-                org.telegram.ui.Cells.s2 s2Var3 = si0Var3.H;
-                if (s2Var3 != null) {
-                    s2Var3.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                si0 si0Var4 = this.f27585b;
-                si0Var4.f28138o = floatValue4;
-                org.telegram.ui.Cells.s2 s2Var4 = si0Var4.H;
-                if (s2Var4 != null) {
-                    s2Var4.invalidate();
-                    return;
-                }
-                return;
-            case 4:
-                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                si0 si0Var5 = this.f27585b;
-                si0Var5.f28146x = floatValue5;
-                org.telegram.ui.Cells.s2 s2Var5 = si0Var5.H;
-                if (s2Var5 != null) {
-                    s2Var5.invalidate();
-                    return;
-                }
-                return;
-            case 5:
-                si0 si0Var6 = this.f27585b;
-                si0Var6.getClass();
-                si0Var6.e(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                org.telegram.ui.Cells.s2 s2Var6 = si0Var6.H;
-                if (s2Var6 != null) {
-                    s2Var6.invalidate();
-                    return;
-                }
-                return;
-            case 6:
-                si0 si0Var7 = this.f27585b;
-                si0Var7.getClass();
-                si0Var7.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                si0Var7.F = true;
-                org.telegram.ui.Cells.s2 s2Var7 = si0Var7.H;
-                if (s2Var7 != null) {
-                    s2Var7.invalidate();
+                ri0 ri0Var2 = this.f27579b;
+                AnimatorSet animatorSet2 = ri0Var2.f27994s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    ri0Var2.f27994s = null;
+                    ri0Var2.getClass();
                     return;
                 }
                 return;
             default:
-                si0 si0Var8 = this.f27585b;
-                si0Var8.getClass();
-                si0Var8.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                si0Var8.F = false;
-                org.telegram.ui.Cells.s2 s2Var8 = si0Var8.H;
-                if (s2Var8 != null) {
-                    s2Var8.invalidate();
-                    return;
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int i10 = this.f27578a;
+        ri0 ri0Var = this.f27579b;
+        switch (i10) {
+            case 0:
+                AnimatorSet animatorSet = ri0Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    ri0Var.h = null;
                 }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            case 1:
+                AnimatorSet animatorSet2 = ri0Var.f27994s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    ri0Var.f27994s = null;
+                    if (ri0Var.f27995w) {
+                        ri0Var.setLayerType(0, null);
+                    }
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            default:
+                AnimatorSet animatorSet3 = ri0Var.f27994s;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    ri0Var.f27994s = null;
+                    AndroidUtilities.runOnUIThread(new jc0(this, 15));
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;
         }
     }

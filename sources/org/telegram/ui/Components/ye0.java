@@ -1,37 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class ye0 extends Path {
-    public int f30510a;
-    public int f30511b;
-    public int f30512c;
+import org.telegram.messenger.LocaleController;
+public final class ye0 extends FrameLayout {
+    public TextView f30642a;
+    public TextView f30643b;
+    public ImageView f30644c;
+    public Switch d;
+    public boolean e;
 
-    public final void a(int i10, int i11, int i12) {
-        if (this.f30510a == i10 && this.f30511b == i11 && this.f30512c == i12) {
-            return;
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        Switch r02 = this.d;
+        if (r02 != null) {
+            r02.invalidate();
         }
-        rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f7 = i10 - i12;
-        float f10 = i11 + i12;
-        rectF.set(f7, i11 - i12, i10 + i12, f10);
-        arcTo(rectF, -180.0f, 270.0f, false);
-        float f11 = i12 / 81.0f;
-        float f12 = i10;
-        float f13 = f10 - (3.0f * f11);
-        cubicTo(f12 - (13.0f * f11), f10, f12 - (25.0f * f11), f13, f12 - (36.0f * f11), f10 - (8.42f * f11));
-        float f14 = f10 - f11;
-        cubicTo(f12 - (52.0f * f11), f14, f12 - (56.5f * f11), f14, f12 - (78.02f * f11), f14);
-        cubicTo(f12 - (80.0f * f11), f14, f12 - (81.0f * f11), f13, f12 - (79.52f * f11), f10 - (4.5f * f11));
-        float f15 = f12 - (63.73f * f11);
-        cubicTo(f12 - (78.0f * f11), f10 - (6.0f * f11), f15, f10 - (15.0f * f11), f15, f10 - (31.0f * f11));
-        float f16 = i11;
-        cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f7, (f11 * 18.87f) + f16, f7, f16);
-        close();
-        this.f30510a = i10;
-        this.f30511b = i11;
-        this.f30512c = i12;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.e) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(70.0f);
+            }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(70.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f19231k0);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        int dp = AndroidUtilities.dp(13.0f) + this.f30642a.getMeasuredHeight();
+        TextView textView = this.f30643b;
+        textView.layout(textView.getLeft(), dp, textView.getRight(), textView.getMeasuredHeight() + dp);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        TextView textView = this.f30642a;
+        measureChildWithMargins(textView, i10, 0, i11, 0);
+        TextView textView2 = this.f30643b;
+        measureChildWithMargins(textView2, i10, 0, i11, 0);
+        measureChildWithMargins(this.f30644c, i10, 0, i11, 0);
+        Switch r72 = this.d;
+        if (r72 != null) {
+            measureChildWithMargins(r72, i10, 0, i11, 0);
+        }
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.l0.y(20.0f, textView2.getMeasuredHeight() + textView.getMeasuredHeight(), AndroidUtilities.dp(64.0f)) + (this.e ? 1 : 0));
+    }
+
+    public void setChecked(boolean z10) {
+        Switch r02 = this.d;
+        if (r02 != null) {
+            r02.c(z10, true);
+        }
     }
 }

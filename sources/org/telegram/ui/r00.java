@@ -17,26 +17,26 @@ public final class r00 extends org.telegram.ui.Components.ab {
     public final MessagesController.DialogFilter X;
     public final ArrayList Y;
     public final FrameLayout Z;
-    public p00 f37008a0;
-    public final TextView f37009b0;
-    public final ArrayList f37010c0;
-    public final ArrayList f37011d0;
+    public p00 f37031a0;
+    public final TextView f37032b0;
+    public final ArrayList f37033c0;
+    public final ArrayList f37034d0;
 
     public r00(org.telegram.ui.ActionBar.n2 n2Var, MessagesController.DialogFilter dialogFilter, ArrayList arrayList) {
         super(n2Var, false);
         ArrayList arrayList2 = new ArrayList();
         this.Y = arrayList2;
-        this.f37010c0 = new ArrayList();
-        this.f37011d0 = new ArrayList();
+        this.f37033c0 = new ArrayList();
+        this.f37034d0 = new ArrayList();
         this.X = dialogFilter;
         if (arrayList != null) {
             arrayList2.addAll(arrayList);
         }
         U(false);
         this.e.setTitle(R(null));
-        fixNavigationBar(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19165h5, false));
+        fixNavigationBar(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19180h5, false));
         TextView textView = new TextView(getContext());
-        this.f37009b0 = textView;
+        this.f37032b0 = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
         textView.setTypeface(AndroidUtilities.bold());
@@ -61,21 +61,21 @@ public final class r00 extends org.telegram.ui.Components.ab {
         TL_chatlists.TL_chatlists_getExportedInvites tL_chatlists_getExportedInvites = new TL_chatlists.TL_chatlists_getExportedInvites();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_getExportedInvites.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = dialogFilter.f15822id;
+        tL_inputChatlistDialogFilter.filter_id = dialogFilter.f15837id;
         n2Var.getConnectionsManager().sendRequest(tL_chatlists_getExportedInvites, new org.telegram.messenger.ja(n2Var, dialogFilter, g10Var, currentTimeMillis, 5));
     }
 
     @Override
-    public final void G(org.telegram.ui.Components.aw0 aw0Var) {
-        org.telegram.ui.Components.vl0 vl0Var = this.d;
-        vl0Var.setOverScrollMode(2);
-        vl0Var.setOnItemClickListener(new i(this, 10));
+    public final void F(org.telegram.ui.Components.cw0 cw0Var) {
+        org.telegram.ui.Components.yl0 yl0Var = this.d;
+        yl0Var.setOverScrollMode(2);
+        yl0Var.setOnItemClickListener(new i(this, 10));
         s4.j jVar = new s4.j();
-        jVar.f43009m = false;
+        jVar.f43030m = false;
         jVar.C = false;
         jVar.o(org.telegram.ui.Components.qr.h);
         jVar.n(350L);
-        vl0Var.setItemAnimator(jVar);
+        yl0Var.setItemAnimator(jVar);
     }
 
     public final void Q() {
@@ -86,7 +86,7 @@ public final class r00 extends org.telegram.ui.Components.ab {
         while (true) {
             dialogFilter = this.X;
             int size = dialogFilter.alwaysShow.size();
-            n2Var = this.f22638n;
+            n2Var = this.f22602n;
             if (i10 >= size) {
                 break;
             }
@@ -104,21 +104,21 @@ public final class r00 extends org.telegram.ui.Components.ab {
         TL_chatlists.TL_chatlists_exportChatlistInvite tL_chatlists_exportChatlistInvite = new TL_chatlists.TL_chatlists_exportChatlistInvite();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_exportChatlistInvite.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = dialogFilter.f15822id;
+        tL_inputChatlistDialogFilter.filter_id = dialogFilter.f15837id;
         tL_chatlists_exportChatlistInvite.peers = arrayList;
         tL_chatlists_exportChatlistInvite.title = "";
         n2Var.getConnectionsManager().sendRequest(tL_chatlists_exportChatlistInvite, new m(this, 7));
     }
 
-    public final CharSequence R(vh.o oVar) {
+    public final CharSequence R(vh.n nVar) {
         Object obj;
         Paint.FontMetricsInt fontMetricsInt;
         MessagesController.DialogFilter dialogFilter = this.X;
         if (dialogFilter != null) {
-            if (oVar == null) {
+            if (nVar == null) {
                 fontMetricsInt = null;
             } else {
-                fontMetricsInt = oVar.getPaint().getFontMetricsInt();
+                fontMetricsInt = nVar.getPaint().getFontMetricsInt();
             }
             obj = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(new SpannableStringBuilder(dialogFilter.name), fontMetricsInt, false), dialogFilter.entities, fontMetricsInt);
         } else {
@@ -136,7 +136,7 @@ public final class r00 extends org.telegram.ui.Components.ab {
         } else {
             i10 = 8;
         }
-        this.f37009b0.setVisibility(i10);
+        this.f37032b0.setVisibility(i10);
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(6.0f);
         if (arrayList.isEmpty()) {
@@ -148,9 +148,9 @@ public final class r00 extends org.telegram.ui.Components.ab {
     }
 
     public final void U(boolean z10) {
-        ArrayList arrayList = this.f37010c0;
+        ArrayList arrayList = this.f37033c0;
         arrayList.clear();
-        ArrayList arrayList2 = this.f37011d0;
+        ArrayList arrayList2 = this.f37034d0;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         ?? aVar = new og.a(0, false);
@@ -162,11 +162,11 @@ public final class r00 extends org.telegram.ui.Components.ab {
             arrayList2.add(new og.a(8, false));
             for (int i10 = 0; i10 < arrayList3.size(); i10++) {
                 ?? aVar2 = new og.a(7, false);
-                aVar2.f38637m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i10);
+                aVar2.f38658m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i10);
                 arrayList2.add(aVar2);
             }
         }
-        p00 p00Var = this.f37008a0;
+        p00 p00Var = this.f37031a0;
         if (p00Var != null) {
             if (z10) {
                 p00Var.E(arrayList, arrayList2);
@@ -177,9 +177,9 @@ public final class r00 extends org.telegram.ui.Components.ab {
     }
 
     @Override
-    public final org.telegram.ui.Components.ul0 v(org.telegram.ui.Components.vl0 vl0Var) {
+    public final org.telegram.ui.Components.xl0 v(org.telegram.ui.Components.yl0 yl0Var) {
         p00 p00Var = new p00(this);
-        this.f37008a0 = p00Var;
+        this.f37031a0 = p00Var;
         return p00Var;
     }
 

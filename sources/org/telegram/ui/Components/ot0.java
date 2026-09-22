@@ -1,21 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class ot0 extends dv0 {
-    public final jv0 h;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class ot0 extends wq0 {
+    public final org.telegram.ui.ActionBar.n2 f27183b1;
 
-    public ot0(jv0 jv0Var, Context context) {
-        super(jv0Var, context);
-        this.h = jv0Var;
+    public ot0(Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(context, null, str, false, str2, false, f6Var);
+        this.f27183b1 = n2Var;
     }
 
     @Override
-    public final void l() {
-        super.l();
-        jv0 jv0Var = this.h;
-        cu0 W = jv0Var.W(0);
-        if (W != null && W.f23407r.getVisibility() == 0) {
-            jv0Var.I.l();
-        }
+    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        AndroidUtilities.runOnUIThread(new wm(this.f27183b1, iVar, i10, 14), 100L);
     }
 }

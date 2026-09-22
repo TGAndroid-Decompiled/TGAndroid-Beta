@@ -4,22 +4,22 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-public final class bw implements org.telegram.ui.Components.jl0 {
-    public final int f32548a;
-    public final uy f32549b;
+public final class bw implements org.telegram.ui.Components.ml0 {
+    public final int f32568a;
+    public final uy f32569b;
 
     public bw(uy uyVar, int i10) {
-        this.f32548a = i10;
-        this.f32549b = uyVar;
+        this.f32568a = i10;
+        this.f32569b = uyVar;
     }
 
     @Override
     public final void d(int i10, View view) {
         gg.q0 q0Var;
-        switch (this.f32548a) {
+        switch (this.f32568a) {
             case 0:
-                uy uyVar = this.f32549b;
-                Object obj = uyVar.C0.f26215w0.G(i10).G;
+                uy uyVar = this.f32569b;
+                Object obj = uyVar.C0.f26857w0.G(i10).G;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
                     Bundle bundle = new Bundle();
@@ -38,15 +38,15 @@ public final class bw implements org.telegram.ui.Components.jl0 {
                     Bundle g10 = org.telegram.ui.Cells.c1.g(3, "type");
                     g10.putString("hashtag", v8Var.C);
                     g10.putInt("storiesCount", v8Var.J);
-                    uyVar.presentFragment(new org.telegram.ui.Components.ja0(g10, null));
+                    uyVar.presentFragment(new org.telegram.ui.Components.ma0(g10, null));
                     return;
                 } else {
                     return;
                 }
             default:
-                uy uyVar2 = this.f32549b;
-                uyVar2.f38240b0.J0(true);
-                ArrayList arrayList = uyVar2.f38240b0.X2;
+                uy uyVar2 = this.f32569b;
+                uyVar2.f38261b0.J0(true);
+                ArrayList arrayList = uyVar2.f38261b0.X2;
                 if (arrayList.isEmpty()) {
                     q0Var = gg.s0.f9915c3[i10];
                 } else {

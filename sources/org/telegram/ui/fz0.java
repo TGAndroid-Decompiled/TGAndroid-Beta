@@ -5,7 +5,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class fz0 extends org.telegram.ui.Components.vl0 implements ai.s9 {
+public final class fz0 extends org.telegram.ui.Components.yl0 implements ai.s9 {
     public final ProfileActivity X2;
     public VelocityTracker Y2;
     public final ProfileActivity Z2;
@@ -59,14 +59,14 @@ public final class fz0 extends org.telegram.ui.Components.vl0 implements ai.s9 {
             }
             if (profileActivity.O.C()) {
                 l01 l01Var3 = profileActivity.O;
-                if (l01Var3.C1 && (l01Var3.getClosestTab() == 8 || org.telegram.ui.Components.jv0.w0(profileActivity.O.getClosestTab()))) {
+                if (l01Var3.C1 && (l01Var3.getClosestTab() == 8 || org.telegram.ui.Components.lv0.w0(profileActivity.O.getClosestTab()))) {
                     return false;
                 }
             }
-            org.telegram.ui.Components.yr0 yr0Var = profileActivity.O.V;
-            if (yr0Var == null || !yr0Var.g()) {
-                org.telegram.ui.Components.es0 es0Var = profileActivity.O.W;
-                if (es0Var != null && es0Var.f31966w) {
+            org.telegram.ui.Components.bs0 bs0Var = profileActivity.O.V;
+            if (bs0Var == null || !bs0Var.g()) {
+                org.telegram.ui.Components.gs0 gs0Var = profileActivity.O.W;
+                if (gs0Var != null && gs0Var.f31987w) {
                     return false;
                 }
             } else {
@@ -107,13 +107,13 @@ public final class fz0 extends org.telegram.ui.Components.vl0 implements ai.s9 {
             if (velocityTracker3 != null) {
                 velocityTracker3.addMovement(motionEvent);
                 this.Y2.computeCurrentVelocity(1000);
-                profileActivity.f31583i2 = this.Y2.getYVelocity(motionEvent.getPointerId(motionEvent.getActionIndex()));
+                profileActivity.f31604i2 = this.Y2.getYVelocity(motionEvent.getPointerId(motionEvent.getActionIndex()));
             }
         } else if ((action == 1 || action == 3) && (velocityTracker = this.Y2) != null) {
             if (action == 1) {
                 velocityTracker.addMovement(motionEvent);
                 this.Y2.computeCurrentVelocity(1000);
-                profileActivity.f31583i2 = this.Y2.getYVelocity(motionEvent.getPointerId(motionEvent.getActionIndex()));
+                profileActivity.f31604i2 = this.Y2.getYVelocity(motionEvent.getPointerId(motionEvent.getActionIndex()));
             }
             this.Y2.recycle();
             this.Y2 = null;
@@ -128,10 +128,10 @@ public final class fz0 extends org.telegram.ui.Components.vl0 implements ai.s9 {
                 i11 = 0;
             }
             int i12 = currentActionBarHeight + i11;
-            if (profileActivity.f31615n2 && !profileActivity.I0) {
+            if (profileActivity.f31636n2 && !profileActivity.I0) {
                 O3 = profileActivity.T3();
             } else {
-                i12 = profileActivity.f31522a.getMeasuredWidth();
+                i12 = profileActivity.f31543a.getMeasuredWidth();
                 O3 = profileActivity.O3();
             }
             if (profileActivity.Q1 >= (O3 + i12) - 1.0f) {
@@ -139,13 +139,13 @@ public final class fz0 extends org.telegram.ui.Components.vl0 implements ai.s9 {
                 onTouchEvent = false;
             }
         }
-        if ((action == 1 || action == 3) && (m10 = profileActivity.f31537c.m(0)) != null) {
+        if ((action == 1 || action == 3) && (m10 = profileActivity.f31558c.m(0)) != null) {
             if (profileActivity.O1) {
                 profileActivity.O1 = false;
-                profileActivity.f31522a.N0 = true;
+                profileActivity.f31543a.N0 = true;
             }
-            if (profileActivity.f31622o2) {
-                if (profileActivity.f31629p2) {
+            if (profileActivity.f31643o2) {
+                if (profileActivity.f31650p2) {
                     int currentActionBarHeight2 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
                     kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
                     if (kVar.getOccupyStatusBar()) {
@@ -153,10 +153,10 @@ public final class fz0 extends org.telegram.ui.Components.vl0 implements ai.s9 {
                     } else {
                         i10 = 0;
                     }
-                    profileActivity.f31522a.w0(0, ((m10.getTop() - profileActivity.f31522a.getMeasuredWidth()) - profileActivity.O3()) + currentActionBarHeight2 + i10, org.telegram.ui.Components.qr.h);
+                    profileActivity.f31543a.w0(0, ((m10.getTop() - profileActivity.f31543a.getMeasuredWidth()) - profileActivity.O3()) + currentActionBarHeight2 + i10, org.telegram.ui.Components.qr.h);
                     return onTouchEvent;
                 }
-                profileActivity.f31522a.w0(0, m10.getTop() - profileActivity.T3(), org.telegram.ui.Components.qr.h);
+                profileActivity.f31543a.w0(0, m10.getTop() - profileActivity.T3(), org.telegram.ui.Components.qr.h);
                 return onTouchEvent;
             }
             if (profileActivity.O3() <= 0) {
@@ -164,27 +164,27 @@ public final class fz0 extends org.telegram.ui.Components.vl0 implements ai.s9 {
             }
             if (z10) {
                 float f7 = profileActivity.Q1;
-                if (f7 > 0.0f && ((f7 < profileActivity.T3() * 0.6f || profileActivity.f31583i2 < -1000.0f) && profileActivity.Q1 > profileActivity.O3() * 0.6f)) {
-                    profileActivity.f31522a.w0(0, (int) (profileActivity.Q1 - profileActivity.O3()), org.telegram.ui.Components.qr.h);
+                if (f7 > 0.0f && ((f7 < profileActivity.T3() * 0.6f || profileActivity.f31604i2 < -1000.0f) && profileActivity.Q1 > profileActivity.O3() * 0.6f)) {
+                    profileActivity.f31543a.w0(0, (int) (profileActivity.Q1 - profileActivity.O3()), org.telegram.ui.Components.qr.h);
                     return onTouchEvent;
                 }
             }
             if (z10) {
                 float f10 = profileActivity.Q1;
                 if (f10 > 0.0f && f10 < profileActivity.O3() * 0.6f) {
-                    profileActivity.f31522a.w0(0, (int) (profileActivity.O3() - profileActivity.Q1), org.telegram.ui.Components.qr.h);
+                    profileActivity.f31543a.w0(0, (int) (profileActivity.O3() - profileActivity.Q1), org.telegram.ui.Components.qr.h);
                     return onTouchEvent;
                 }
             }
             if (!z10) {
                 float f11 = profileActivity.Q1;
-                if (f11 > 0.0f && profileActivity.f31583i2 < -1000.0f) {
-                    profileActivity.f31522a.w0(0, (int) f11, org.telegram.ui.Components.qr.h);
+                if (f11 > 0.0f && profileActivity.f31604i2 < -1000.0f) {
+                    profileActivity.f31543a.w0(0, (int) f11, org.telegram.ui.Components.qr.h);
                     return onTouchEvent;
                 }
             }
             if (profileActivity.Q1 > 0.0f) {
-                profileActivity.f31522a.w0(0, m10.getTop() - profileActivity.T3(), org.telegram.ui.Components.qr.h);
+                profileActivity.f31543a.w0(0, m10.getTop() - profileActivity.T3(), org.telegram.ui.Components.qr.h);
             }
         }
         return onTouchEvent;

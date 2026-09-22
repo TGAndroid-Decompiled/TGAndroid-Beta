@@ -1,9 +1,9 @@
 package ee;
 public final class g extends RuntimeException {
-    public final transient id.h f8181a;
+    public final transient id.h f8180a;
 
     public g(id.h hVar) {
-        this.f8181a = hVar;
+        this.f8180a = hVar;
     }
 
     @Override
@@ -14,6 +14,6 @@ public final class g extends RuntimeException {
 
     @Override
     public final String getLocalizedMessage() {
-        return this.f8181a.toString();
+        return this.f8180a.toString();
     }
 }

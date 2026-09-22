@@ -25,19 +25,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.ul0;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.yl0;
 import w7.y5;
 public final class p1 extends ab {
     public final int X;
     public final String Y;
-    public k61 Z;
-    public final m1 f8536a0;
-    public boolean f8537b0;
-    public boolean f8538c0;
-    public final org.telegram.tgnet.e f8539d0;
+    public m61 Z;
+    public final m1 f8535a0;
+    public boolean f8536b0;
+    public boolean f8537c0;
+    public final org.telegram.tgnet.e f8538d0;
 
     public p1(Context context, int i10, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, f6 f6Var, org.telegram.ui.web.t tVar, org.telegram.tgnet.e eVar) {
         super(context, null, false, false, f6Var);
@@ -50,11 +50,11 @@ public final class p1 extends ab {
         TLRPC.TL_photo tL_photo;
         int lastIndexOf;
         TLRPC.TL_photo tL_photo2;
-        this.f8537b0 = false;
-        this.f8538c0 = false;
+        this.f8536b0 = false;
+        this.f8537c0 = false;
         this.X = i10;
         this.Y = UserObject.getUserName(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
-        this.f8539d0 = eVar;
+        this.f8538d0 = eVar;
         K();
         this.I = AndroidUtilities.dp(4.0f);
         this.J = AndroidUtilities.dp(-10.0f);
@@ -129,7 +129,7 @@ public final class p1 extends ab {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f18334id = 0L;
+                    tL_document2.f18349id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -192,7 +192,7 @@ public final class p1 extends ab {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeImageSize.f18335w = inlineResultWidthAndHeight[0];
+                            tL_documentAttributeImageSize.f18350w = inlineResultWidthAndHeight[0];
                             tL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -250,7 +250,7 @@ public final class p1 extends ab {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeVideo.f18335w = inlineResultWidthAndHeight2[0];
+                            tL_documentAttributeVideo.f18350w = inlineResultWidthAndHeight2[0];
                             tL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
                             tL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -290,7 +290,7 @@ public final class p1 extends ab {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize.f18353w = inlineResultWidthAndHeight3[0];
+                        tL_photoSize.f18368w = inlineResultWidthAndHeight3[0];
                         tL_photoSize.h = inlineResultWidthAndHeight3[1];
                         tL_photoSize.size = 0;
                         tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
@@ -313,7 +313,7 @@ public final class p1 extends ab {
                         tL_photo2.file_reference = new byte[0];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize2.f18353w = inlineResultWidthAndHeight4[0];
+                        tL_photoSize2.f18368w = inlineResultWidthAndHeight4[0];
                         tL_photoSize2.h = inlineResultWidthAndHeight4[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -342,10 +342,10 @@ public final class p1 extends ab {
         LinearLayout f7 = rk.f(context, r11);
         f7.addView(w0Var, y5.n(-1, -2));
         f7.addView(u1Var, y5.n(-1, -2));
-        ?? aw0Var = new aw0(context, null);
-        this.f8536a0 = aw0Var;
-        aw0Var.V(d7.e(null, i11, j3, j6.I.q()));
-        aw0Var.addView(f7, y5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
+        ?? cw0Var = new cw0(context, null);
+        this.f8535a0 = cw0Var;
+        cw0Var.V(d7.e(null, i11, j3, j6.I.q()));
+        cw0Var.addView(f7, y5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
         ci.d g10 = rk.g(24, context, f6Var, r11);
         g10.g(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
@@ -354,11 +354,11 @@ public final class p1 extends ab {
         ViewGroup viewGroup = this.containerView;
         int i13 = this.backgroundPaddingLeft;
         viewGroup.addView(frameLayout, y5.f(-2.0f, 87, i13, 0, i13, 0));
-        vl0 vl0Var = this.d;
+        yl0 yl0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
-        vl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
+        yl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
         this.d.q1();
-        int i15 = j6.f19038a7;
+        int i15 = j6.f19053a7;
         setBackgroundColor(getThemedColor(i15));
         fixNavigationBar(getThemedColor(i15));
         this.Z.N(false);
@@ -373,16 +373,16 @@ public final class p1 extends ab {
         b2Var.q(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j3);
-        tL_messages_getPreparedInlineMessage.f18426id = str;
+        tL_messages_getPreparedInlineMessage.f18441id = str;
         ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new b1(i10, b2Var, context, j3, f6Var, tVar, eVar));
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        if (!this.f8537b0 && !this.f8538c0) {
-            this.f8538c0 = true;
-            org.telegram.tgnet.e eVar = this.f8539d0;
+        if (!this.f8536b0 && !this.f8537c0) {
+            this.f8537c0 = true;
+            org.telegram.tgnet.e eVar = this.f8538d0;
             if (eVar != null) {
                 eVar.run("USER_DECLINED", null);
             }
@@ -393,20 +393,20 @@ public final class p1 extends ab {
     public final void onCreate(Bundle bundle) {
         int h;
         super.onCreate(bundle);
-        vl0 vl0Var = this.d;
-        if (vl0Var.getAdapter() == null) {
+        yl0 yl0Var = this.d;
+        if (yl0Var.getAdapter() == null) {
             h = 0;
         } else {
-            h = vl0Var.getAdapter().h();
+            h = yl0Var.getAdapter().h();
         }
-        vl0Var.v0(Math.max(h - 1, 0));
+        yl0Var.v0(Math.max(h - 1, 0));
     }
 
     @Override
-    public final ul0 v(vl0 vl0Var) {
-        k61 k61Var = new k61(vl0Var, getContext(), this.X, 0, true, new bi.v(this, 15), this.resourcesProvider);
-        this.Z = k61Var;
-        return k61Var;
+    public final xl0 v(yl0 yl0Var) {
+        m61 m61Var = new m61(yl0Var, getContext(), this.X, 0, true, new bi.v(this, 15), this.resourcesProvider);
+        this.Z = m61Var;
+        return m61Var;
     }
 
     @Override

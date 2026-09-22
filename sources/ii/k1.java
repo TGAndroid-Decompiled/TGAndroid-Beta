@@ -10,7 +10,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.kz;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.y70;
 import org.telegram.ui.Components.yg;
 import org.telegram.ui.dj0;
 public final class k1 implements View.OnClickListener {
@@ -77,7 +77,7 @@ public final class k1 implements View.OnClickListener {
                     d2Var2.A0 = kzVar;
                     kzVar.setVisibility(8);
                     kz kzVar2 = d2Var2.A0;
-                    kzVar2.f25962w2 = false;
+                    kzVar2.f25922w2 = false;
                     kzVar2.setDelegate(new u1(d2Var2));
                     int indexOfChild = d2Var2.O.indexOfChild(d2Var2.f11300a0);
                     if (indexOfChild < 0) {
@@ -108,12 +108,12 @@ public final class k1 implements View.OnClickListener {
                 return;
             case 6:
                 final d2 d2Var3 = this.f11470b;
-                v70 v70Var = d2Var3.f11330x0;
-                if (v70Var != null) {
-                    v70Var.u();
+                y70 y70Var = d2Var3.f11330x0;
+                if (y70Var != null) {
+                    y70Var.u();
                     d2Var3.f11330x0 = null;
                 }
-                final v70 H = v70.H(d2Var3, view);
+                final y70 H = y70.H(d2Var3, view);
                 H.Q = true;
                 a R2 = d2Var3.P.R2();
                 if (R2 != null && R2.b()) {
@@ -195,10 +195,10 @@ public final class k1 implements View.OnClickListener {
                 return;
             case 7:
                 d2 d2Var4 = this.f11470b;
-                v70 v70Var2 = d2Var4.f11330x0;
+                y70 y70Var2 = d2Var4.f11330x0;
                 TL_iv.pageTableCell pagetablecell = null;
-                if (v70Var2 != null) {
-                    v70Var2.u();
+                if (y70Var2 != null) {
+                    y70Var2.u();
                     d2Var4.f11330x0 = null;
                 }
                 w3 w3Var2 = d2Var4.P;
@@ -226,10 +226,10 @@ public final class k1 implements View.OnClickListener {
                 }
             case 8:
                 d2 d2Var5 = this.f11470b;
-                v70 v70Var3 = d2Var5.f11330x0;
+                y70 y70Var3 = d2Var5.f11330x0;
                 TL_iv.pageBlockMath pageblockmath = null;
-                if (v70Var3 != null) {
-                    v70Var3.u();
+                if (y70Var3 != null) {
+                    y70Var3.u();
                     d2Var5.f11330x0 = null;
                 }
                 a R22 = d2Var5.P.R2();

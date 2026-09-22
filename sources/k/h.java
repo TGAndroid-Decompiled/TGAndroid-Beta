@@ -100,7 +100,7 @@ public final class h extends MenuInflater {
                         } else if (name2.equals("item")) {
                             if (!gVar.h) {
                                 o oVar = gVar.f13141z;
-                                if (oVar != null && oVar.f13977a.hasSubMenu()) {
+                                if (oVar != null && oVar.f13991a.hasSubMenu()) {
                                     gVar.h = true;
                                     gVar.b(menu2.addSubMenu(gVar.f13121b, gVar.f13125i, gVar.f13126j, gVar.f13127k).getItem());
                                 } else {
@@ -124,7 +124,7 @@ public final class h extends MenuInflater {
                         boolean equals = name3.equals("group");
                         Context context = this.f13145c;
                         if (equals) {
-                            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f8778p);
+                            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f8777p);
                             gVar.f13121b = obtainStyledAttributes.getResourceId(1, 0);
                             gVar.f13122c = obtainStyledAttributes.getInt(3, 0);
                             gVar.d = obtainStyledAttributes.getInt(4, 0);
@@ -134,7 +134,7 @@ public final class h extends MenuInflater {
                             obtainStyledAttributes.recycle();
                         } else {
                             if (name3.equals("item")) {
-                                TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f8779q);
+                                TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f8778q);
                                 gVar.f13125i = obtainStyledAttributes2.getResourceId(2, 0);
                                 gVar.f13126j = (obtainStyledAttributes2.getInt(5, gVar.f13122c) & (-65536)) | (obtainStyledAttributes2.getInt(6, gVar.d) & 65535);
                                 gVar.f13127k = obtainStyledAttributes2.getText(7);

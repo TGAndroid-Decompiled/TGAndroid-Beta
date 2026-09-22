@@ -11,12 +11,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.TranslateController;
 public final class ug implements Runnable {
-    public final int f38084a;
-    public final zn f38085b;
+    public final int f38085a;
+    public final zn f38086b;
 
     public ug(zn znVar, int i10) {
-        this.f38084a = i10;
-        this.f38085b = znVar;
+        this.f38085a = i10;
+        this.f38086b = znVar;
     }
 
     @Override
@@ -25,50 +25,50 @@ public final class ug implements Runnable {
         boolean z10;
         boolean z11;
         ci.f4 f4Var;
-        int i10 = this.f38084a;
+        int i10 = this.f38085a;
         boolean z12 = true;
-        zn znVar = this.f38085b;
+        zn znVar = this.f38086b;
         switch (i10) {
             case 0:
                 if (znVar.getParentActivity() != null && znVar.fragmentView != null && znVar.Y != null && znVar.Ea == null && znVar.getMessagesController().getSendPaidMessagesStars(znVar.a()) <= 0 && (sendButton = znVar.Y.getSendButton()) != null && znVar.Y.getEditField() != null && znVar.Y.getEditField().getText().length() != 0) {
                     SharedConfig.increaseScheduledHintShowed();
-                    if (znVar.f40344i2 == null) {
-                        org.telegram.ui.Components.i40 i40Var = new org.telegram.ui.Components.i40(4, znVar.getParentActivity(), znVar.f40303ea, false);
-                        znVar.f40344i2 = i40Var;
+                    if (znVar.f40365i2 == null) {
+                        org.telegram.ui.Components.i40 i40Var = new org.telegram.ui.Components.i40(4, znVar.getParentActivity(), znVar.f40324ea, false);
+                        znVar.f40365i2 = i40Var;
                         i40Var.a();
-                        znVar.f40344i2.setAlpha(0.0f);
-                        znVar.f40344i2.setVisibility(4);
-                        znVar.f40344i2.setText(LocaleController.getString(R.string.ScheduledHint));
-                        znVar.X0.addView(znVar.f40344i2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+                        znVar.f40365i2.setAlpha(0.0f);
+                        znVar.f40365i2.setVisibility(4);
+                        znVar.f40365i2.setText(LocaleController.getString(R.string.ScheduledHint));
+                        znVar.X0.addView(znVar.f40365i2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
                     }
-                    znVar.f40344i2.f(sendButton, true);
-                    znVar.f40357j2 = true;
+                    znVar.f40365i2.f(sendButton, true);
+                    znVar.f40378j2 = true;
                     return;
                 }
                 return;
             case 1:
-                lk lkVar = znVar.Y;
-                if (lkVar != null && znVar.Bc != null) {
-                    if (lkVar.t0()) {
+                mk mkVar = znVar.Y;
+                if (mkVar != null && znVar.Bc != null) {
+                    if (mkVar.t0()) {
                         znVar.Y.m0(false);
-                        AndroidUtilities.showKeyboard(znVar.Bc.f42051a);
-                        znVar.Bc.f42052b.f42048a.a(false, true);
+                        AndroidUtilities.showKeyboard(znVar.Bc.f42072a);
+                        znVar.Bc.f42073b.f42069a.a(false, true);
                         return;
                     }
                     znVar.Y.U0(false, false, false);
                     znVar.Y.r1();
-                    znVar.Bc.f42052b.f42048a.a(true, true);
+                    znVar.Bc.f42073b.f42069a.a(true, true);
                     return;
                 }
                 return;
             case 2:
-                ArrayList arrayList = znVar.f40497u6;
+                ArrayList arrayList = znVar.f40518u6;
                 znVar.Gb = System.currentTimeMillis();
-                if (znVar.f40530x0 != null && znVar.A0 != null) {
+                if (znVar.f40551x0 != null && znVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < znVar.f40530x0.getChildCount(); i13++) {
-                        View childAt = znVar.f40530x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < znVar.f40551x0.getChildCount(); i13++) {
+                        View childAt = znVar.f40551x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.u1) {
                             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                             if (u1Var.getCurrentMessagesGroup() != null) {
@@ -88,7 +88,7 @@ public final class ug implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) znVar.f40536x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) znVar.f40557x6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -156,20 +156,20 @@ public final class ug implements Runnable {
                 znVar.g8(false, true, 0.0f);
                 return;
             case 13:
-                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(znVar.getParentActivity(), 3, znVar.f40303ea);
-                znVar.f40425ob = b2Var;
+                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(znVar.getParentActivity(), 3, znVar.f40324ea);
+                znVar.f40446ob = b2Var;
                 b2Var.setOnShowListener(new pf(znVar, 1));
-                znVar.f40425ob.setOnCancelListener(znVar.f40400ma);
-                znVar.f40425ob.q(500L);
+                znVar.f40446ob.setOnCancelListener(znVar.f40421ma);
+                znVar.f40446ob.q(500L);
                 return;
             case 14:
                 znVar.N6();
                 return;
             case 15:
-                znVar.f40241a = (znVar.f40241a + 1) % 3;
+                znVar.f40262a = (znVar.f40262a + 1) % 3;
                 return;
             case 16:
-                znVar.f40254b = !znVar.f40254b;
+                znVar.f40275b = !znVar.f40275b;
                 return;
             case 17:
                 znVar.A7(true);
@@ -189,9 +189,9 @@ public final class ug implements Runnable {
                 znVar.t7();
                 return;
             case 20:
-                znVar.f40341hc = 0;
-                znVar.f40354ic = false;
-                znVar.f40530x0.g1();
+                znVar.f40362hc = 0;
+                znVar.f40375ic = false;
+                znVar.f40551x0.g1();
                 return;
             case 21:
                 znVar.q9(5);
@@ -200,8 +200,8 @@ public final class ug implements Runnable {
                 znVar.yc(0, (znVar.P5 == 0 || SystemClock.elapsedRealtime() < znVar.P5 + 150) ? false : false);
                 return;
             case 23:
-                pk pkVar = znVar.R2;
-                if ((pkVar == null || pkVar.getVisibility() != 0) && (f4Var = znVar.f40518w1) != null) {
+                qk qkVar = znVar.R2;
+                if ((qkVar == null || qkVar.getVisibility() != 0) && (f4Var = znVar.f40539w1) != null) {
                     f4Var.u();
                     return;
                 }
@@ -218,10 +218,10 @@ public final class ug implements Runnable {
             case 27:
                 FrameLayout.LayoutParams e = w7.y5.e(-1, -2, 87);
                 e.bottomMargin = znVar.Y.getMeasuredHeight();
-                znVar.X0.addView(znVar.f40544y1, e);
-                znVar.f40544y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                znVar.f40544y1.m(0.0f, znVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                znVar.f40544y1.u();
+                znVar.X0.addView(znVar.f40565y1, e);
+                znVar.f40565y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                znVar.f40565y1.m(0.0f, znVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                znVar.f40565y1.u();
                 return;
             case 28:
                 int i17 = zn.Gc;

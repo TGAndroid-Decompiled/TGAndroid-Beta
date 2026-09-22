@@ -1,11 +1,11 @@
 package x2;
-public final class d implements d9.f {
-    public final q f45454a;
-    public final j f45455b;
+public final class d implements d9.g {
+    public final q f45475a;
+    public final j f45476b;
 
     public d(q qVar, j jVar) {
-        this.f45454a = qVar;
-        this.f45455b = jVar;
+        this.f45475a = qVar;
+        this.f45476b = jVar;
     }
 
     @Override

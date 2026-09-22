@@ -7,9 +7,9 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.gl0;
-import org.telegram.ui.Components.yc0;
-public final class v implements e2.m, d9.e, gl0, yc0, a2 {
+import org.telegram.ui.Components.bd0;
+import org.telegram.ui.Components.jl0;
+public final class v implements e2.m, d9.e, jl0, bd0, a2 {
     public final int f10899a;
     public final int f10900b;
 

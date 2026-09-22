@@ -10,18 +10,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public class l6 extends FrameLayout {
-    public final j0 f35322a;
-    public final org.telegram.ui.Components.n6 f35323b;
-    public final org.telegram.ui.Components.n6 f35324c;
+    public final j0 f35340a;
+    public final org.telegram.ui.Components.n6 f35341b;
+    public final org.telegram.ui.Components.n6 f35342c;
 
     public l6(Context context) {
         super(context);
         j0 j0Var = new j0(this, context, 3);
-        this.f35322a = j0Var;
+        this.f35340a = j0Var;
         int i10 = org.telegram.ui.ActionBar.j6.Oh;
         j0Var.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{24.0f}, i10));
         j0Var.setImportantForAccessibility(1);
-        w7.b6.b(j0Var, 0.02f, 1.2f);
+        w7.a6.b(j0Var, 0.02f, 1.2f);
         if (LocaleController.isRTL) {
             TextView textView = new TextView(context);
             textView.setText(LocaleController.getString(R.string.ClearCache));
@@ -32,25 +32,25 @@ public class l6 extends FrameLayout {
             j0Var.addView(textView, w7.y5.e(-2, -1, 17));
         }
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(true, true, true, false);
-        this.f35323b = n6Var;
+        this.f35341b = n6Var;
         org.telegram.ui.Components.qr qrVar = org.telegram.ui.Components.qr.h;
         n6Var.k(0.25f, 300L, qrVar);
         n6Var.setCallback(j0Var);
         n6Var.t(AndroidUtilities.dp(14.0f));
         n6Var.q(LocaleController.getString(R.string.ClearCache), true, true);
-        n6Var.f26575b = 5;
+        n6Var.f26643b = 5;
         n6Var.u(AndroidUtilities.bold());
         int i11 = org.telegram.ui.ActionBar.j6.Sh;
         n6Var.r(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
         org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(true, true, true, false);
-        this.f35324c = n6Var2;
+        this.f35342c = n6Var2;
         n6Var2.k(0.25f, 300L, qrVar);
         n6Var2.setCallback(j0Var);
         n6Var2.t(AndroidUtilities.dp(14.0f));
         n6Var2.u(AndroidUtilities.bold());
         n6Var2.r(org.telegram.ui.ActionBar.j6.v(org.telegram.ui.ActionBar.j6.w0(null, i10, false), org.telegram.ui.ActionBar.j6.l1(0.7f, org.telegram.ui.ActionBar.j6.w0(null, i11, false))));
         n6Var2.q("", true, true);
-        j0Var.setContentDescription(TextUtils.concat(n6Var.f26578g, "\t", n6Var2.f26578g));
+        j0Var.setContentDescription(TextUtils.concat(n6Var.f26646g, "\t", n6Var2.f26646g));
         addView(j0Var, w7.y5.d(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
     }
 
@@ -63,7 +63,7 @@ public class l6 extends FrameLayout {
         } else {
             string = LocaleController.getString(R.string.ClearSelectedCache);
         }
-        org.telegram.ui.Components.n6 n6Var = this.f35323b;
+        org.telegram.ui.Components.n6 n6Var = this.f35341b;
         n6Var.q(string, true, true);
         int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i10 <= 0) {
@@ -71,7 +71,7 @@ public class l6 extends FrameLayout {
         } else {
             formatFileSize = AndroidUtilities.formatFileSize(j3);
         }
-        org.telegram.ui.Components.n6 n6Var2 = this.f35324c;
+        org.telegram.ui.Components.n6 n6Var2 = this.f35342c;
         n6Var2.q(formatFileSize, true, true);
         if (i10 <= 0) {
             z11 = true;
@@ -79,9 +79,9 @@ public class l6 extends FrameLayout {
             z11 = false;
         }
         setDisabled(z11);
-        j0 j0Var = this.f35322a;
+        j0 j0Var = this.f35340a;
         j0Var.invalidate();
-        j0Var.setContentDescription(TextUtils.concat(n6Var.f26578g, "\t", n6Var2.f26578g));
+        j0Var.setContentDescription(TextUtils.concat(n6Var.f26646g, "\t", n6Var2.f26646g));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class l6 extends FrameLayout {
 
     public void setDisabled(boolean z10) {
         float f7;
-        j0 j0Var = this.f35322a;
+        j0 j0Var = this.f35340a;
         j0Var.animate().cancel();
         ViewPropertyAnimator animate = j0Var.animate();
         if (z10) {

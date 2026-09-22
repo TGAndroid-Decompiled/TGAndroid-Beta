@@ -237,13 +237,13 @@ public class g extends u implements DialogInterface {
                 if (i10 != 0) {
                     i11 = alertController$RecycleListView.getPaddingTop();
                 } else {
-                    i11 = alertController$RecycleListView.f1947a;
+                    i11 = alertController$RecycleListView.f1946a;
                 }
                 int paddingRight = alertController$RecycleListView.getPaddingRight();
                 if (z13) {
                     i12 = alertController$RecycleListView.getPaddingBottom();
                 } else {
-                    i12 = alertController$RecycleListView.f1948b;
+                    i12 = alertController$RecycleListView.f1947b;
                 }
                 alertController$RecycleListView.setPadding(paddingLeft, i11, paddingRight, i12);
             }
@@ -262,7 +262,7 @@ public class g extends u implements DialogInterface {
                 View findViewById11 = window.findViewById(2131296629);
                 int i15 = Build.VERSION.SDK_INT;
                 if (i15 >= 23) {
-                    WeakHashMap weakHashMap = i0.f42142a;
+                    WeakHashMap weakHashMap = i0.f42163a;
                     if (i15 >= 23) {
                         r0.b0.b(view4, i14, 3);
                     }
@@ -287,7 +287,7 @@ public class g extends u implements DialogInterface {
                         AlertController$RecycleListView alertController$RecycleListView2 = fVar.e;
                         if (alertController$RecycleListView2 != null) {
                             alertController$RecycleListView2.setOnScrollListener(new a(findViewById10, view));
-                            fVar.e.post(new c5.v(fVar, findViewById10, view, false, 6));
+                            fVar.e.post(new c5.u(fVar, findViewById10, view, false, 6));
                         } else {
                             View view5 = findViewById10;
                             if (view5 != null) {

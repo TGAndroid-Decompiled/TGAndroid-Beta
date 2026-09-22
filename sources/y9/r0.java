@@ -2,14 +2,14 @@ package y9;
 
 import java.util.List;
 public final class r0 extends r1 {
-    public final String f46917a;
-    public final int f46918b;
-    public final List f46919c;
+    public final String f46938a;
+    public final int f46939b;
+    public final List f46940c;
 
     public r0(String str, int i10, List list) {
-        this.f46917a = str;
-        this.f46918b = i10;
-        this.f46919c = list;
+        this.f46938a = str;
+        this.f46939b = i10;
+        this.f46940c = list;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class r0 extends r1 {
         }
         if (obj instanceof r1) {
             r0 r0Var = (r0) ((r1) obj);
-            if (this.f46917a.equals(r0Var.f46917a) && this.f46918b == r0Var.f46918b && this.f46919c.equals(r0Var.f46919c)) {
+            if (this.f46938a.equals(r0Var.f46938a) && this.f46939b == r0Var.f46939b && this.f46940c.equals(r0Var.f46940c)) {
                 return true;
             }
         }
@@ -26,10 +26,10 @@ public final class r0 extends r1 {
     }
 
     public final int hashCode() {
-        return ((((this.f46917a.hashCode() ^ 1000003) * 1000003) ^ this.f46918b) * 1000003) ^ this.f46919c.hashCode();
+        return ((((this.f46938a.hashCode() ^ 1000003) * 1000003) ^ this.f46939b) * 1000003) ^ this.f46940c.hashCode();
     }
 
     public final String toString() {
-        return "Thread{name=" + this.f46917a + ", importance=" + this.f46918b + ", frames=" + this.f46919c + "}";
+        return "Thread{name=" + this.f46938a + ", importance=" + this.f46939b + ", frames=" + this.f46940c + "}";
     }
 }

@@ -3,9 +3,9 @@ package u2;
 import android.net.Uri;
 import java.util.Map;
 public final class s implements g2.h {
-    public final g2.h f43772a;
-    public final int f43773b;
-    public final s0 f43774c;
+    public final g2.h f43793a;
+    public final int f43794b;
+    public final s0 f43795c;
     public final byte[] d;
     public int e;
 
@@ -17,9 +17,9 @@ public final class s implements g2.h {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f43772a = hVar;
-        this.f43773b = i10;
-        this.f43774c = s0Var;
+        this.f43793a = hVar;
+        this.f43794b = i10;
+        this.f43795c = s0Var;
         this.d = new byte[1];
         this.e = i10;
     }
@@ -27,7 +27,7 @@ public final class s implements g2.h {
     @Override
     public final void addTransferListener(g2.c0 c0Var) {
         c0Var.getClass();
-        this.f43772a.addTransferListener(c0Var);
+        this.f43793a.addTransferListener(c0Var);
     }
 
     @Override
@@ -37,12 +37,12 @@ public final class s implements g2.h {
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f43772a.getResponseHeaders();
+        return this.f43793a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f43772a.getUri();
+        return this.f43793a.getUri();
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class s implements g2.h {
     public final int read(byte[] bArr, int i10, int i11) {
         long max;
         int i12 = this.e;
-        g2.h hVar = this.f43772a;
+        g2.h hVar = this.f43793a;
         if (i12 == 0) {
             byte[] bArr2 = this.d;
             int i13 = 0;
@@ -75,11 +75,11 @@ public final class s implements g2.h {
                     }
                     if (i14 > 0) {
                         e2.v vVar = new e2.v(bArr3, i14);
-                        s0 s0Var = this.f43774c;
-                        if (!s0Var.f43782w) {
-                            max = s0Var.f43780r;
+                        s0 s0Var = this.f43795c;
+                        if (!s0Var.f43803w) {
+                            max = s0Var.f43801r;
                         } else {
-                            max = Math.max(s0Var.f43783x.j(true), s0Var.f43780r);
+                            max = Math.max(s0Var.f43804x.j(true), s0Var.f43801r);
                         }
                         long j3 = max;
                         int a2 = vVar.a();
@@ -87,10 +87,10 @@ public final class s implements g2.h {
                         h0Var.getClass();
                         h0Var.d(a2, vVar);
                         h0Var.c(j3, 1, a2, 0, null);
-                        s0Var.f43782w = true;
+                        s0Var.f43803w = true;
                     }
                 }
-                this.e = this.f43773b;
+                this.e = this.f43794b;
             }
             return -1;
         }

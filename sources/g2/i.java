@@ -4,7 +4,7 @@ import android.content.Context;
 import org.telegram.ui.LaunchActivity;
 import v7.w6;
 public final class i {
-    public static final d9.i d = w6.a(new a3.s(2));
+    public static final d9.j d = w6.a(new a3.s(2));
     public final i9.x f9366a;
     public final of.b f9367b;
     public final int f9368c;

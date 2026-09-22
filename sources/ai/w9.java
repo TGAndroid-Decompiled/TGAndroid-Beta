@@ -4,25 +4,25 @@ import java.util.Locale;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.messenger.MessagesStorage;
 public final class w9 implements Runnable {
-    public final int f1665a;
-    public final y9 f1666b;
-    public final long f1667c;
+    public final int f1662a;
+    public final y9 f1663b;
+    public final long f1664c;
     public final int d;
 
     public w9(y9 y9Var, long j3, int i10, int i11) {
-        this.f1665a = i11;
-        this.f1666b = y9Var;
-        this.f1667c = j3;
+        this.f1662a = i11;
+        this.f1663b = y9Var;
+        this.f1664c = j3;
         this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f1665a) {
+        switch (this.f1662a) {
             case 0:
-                long j3 = this.f1667c;
+                long j3 = this.f1664c;
                 int i10 = this.d;
-                MessagesStorage messagesStorage = this.f1666b.f1768b;
+                MessagesStorage messagesStorage = this.f1663b.f1765b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 try {
                     Locale locale = Locale.US;
@@ -33,9 +33,9 @@ public final class w9 implements Runnable {
                     return;
                 }
             default:
-                long j10 = this.f1667c;
+                long j10 = this.f1664c;
                 int i11 = this.d;
-                MessagesStorage messagesStorage2 = this.f1666b.f1768b;
+                MessagesStorage messagesStorage2 = this.f1663b.f1765b;
                 SQLiteDatabase database2 = messagesStorage2.getDatabase();
                 try {
                     Locale locale2 = Locale.US;

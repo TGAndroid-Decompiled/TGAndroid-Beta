@@ -8,26 +8,26 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.w51;
-public final class z0 extends v51 {
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.yl0;
+public final class z0 extends x51 {
     public static final int f11792a = 0;
 
     static {
-        v51.setup(new v51());
+        x51.setup(new x51());
     }
 
     @Override
-    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
+    public final void bindView(View view, y51 y51Var, boolean z10, m61 m61Var, u61 u61Var) {
         MessageObject messageObject;
         u uVar;
         a1 a1Var = (a1) view;
-        a aVar = (a) w51Var.G;
+        a aVar = (a) y51Var.G;
         a1Var.f11221a = aVar;
-        a1Var.S = (r3) w51Var.H;
+        a1Var.S = (r3) y51Var.H;
         a1Var.M = LocaleController.isRTL;
         a1Var.c(aVar);
         a1Var.F.b();
@@ -39,7 +39,7 @@ public final class z0 extends v51 {
             } else {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f18349id = -Long.valueOf(i10.f18334id).hashCode();
+                tL_message.f18364id = -Long.valueOf(i10.f18349id).hashCode();
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
@@ -73,9 +73,9 @@ public final class z0 extends v51 {
     }
 
     @Override
-    public final View createView(Context context, vl0 vl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
         a1 a1Var = new a1(context, i10, f6Var);
-        a1Var.setBackground(new a2(j6.v0(j6.f19094d6, f6Var)));
+        a1Var.setBackground(new a2(j6.v0(j6.f19109d6, f6Var)));
         return a1Var;
     }
 

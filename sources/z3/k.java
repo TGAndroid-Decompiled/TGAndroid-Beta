@@ -8,5 +8,5 @@ public interface k {
 
     boolean W(s sVar);
 
-    m x(s sVar);
+    m v(s sVar);
 }

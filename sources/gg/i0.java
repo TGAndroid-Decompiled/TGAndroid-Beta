@@ -28,18 +28,18 @@ import org.telegram.ui.Cells.j6;
 import org.telegram.ui.Cells.s8;
 import org.telegram.ui.Cells.ta;
 import org.telegram.ui.Cells.w3;
-import org.telegram.ui.Components.eo0;
-import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.go0;
+import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.ul0;
 import org.telegram.ui.Components.v9;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.fc1;
 import org.telegram.ui.gy;
 import org.telegram.ui.o10;
 import org.telegram.ui.uy;
 import w7.y5;
-public abstract class i0 extends ul0 {
+public abstract class i0 extends xl0 {
     public o10 A0;
     public int B0;
     public int C0;
@@ -123,10 +123,10 @@ public abstract class i0 extends ul0 {
         this.H0 = true;
         this.f9772i0 = jVar;
         this.f9782r0 = uyVar;
-        eo0 eo0Var = (eo0) this;
-        z zVar = new z(eo0Var);
+        go0 go0Var = (go0) this;
+        z zVar = new z(go0Var);
         this.f9773j0 = zVar;
-        zVar.f9690a = new a6.m(eo0Var, 22);
+        zVar.f9690a = new pb.c(go0Var, 23);
         zVar.f9702p = z10;
         this.e = context;
         this.V = i10;
@@ -153,7 +153,7 @@ public abstract class i0 extends ul0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42977f;
+        int i10 = c1Var.f42998f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -199,7 +199,7 @@ public abstract class i0 extends ul0 {
         }
         G(str);
         l();
-        MessagesStorage.getInstance(this.f9784s0).getStorageQueue().postRunnable(new b9(28, (eo0) this, sb2));
+        MessagesStorage.getInstance(this.f9784s0).getStorageQueue().postRunnable(new b9(28, (go0) this, sb2));
     }
 
     public final boolean F(Object obj) {
@@ -212,20 +212,20 @@ public abstract class i0 extends ul0 {
             if (((TLRPC.User) obj).bot) {
                 return uyVar.A2;
             }
-            return uyVar.f38362z2;
+            return uyVar.f38383z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return uyVar.f38359y2;
+                return uyVar.f38380y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (uyVar.f38343v2 || uyVar.f38349w2) {
+                if (uyVar.f38364v2 || uyVar.f38370w2) {
                     return true;
                 }
                 return false;
-            } else if (uyVar.f38343v2 || uyVar.f38354x2) {
+            } else if (uyVar.f38364v2 || uyVar.f38375x2) {
                 return true;
             } else {
                 return false;
@@ -331,12 +331,12 @@ public abstract class i0 extends ul0 {
                 boolean z10 = tLObject instanceof TLRPC.User;
                 int i14 = this.f9784s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f18475id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f18490id));
                     if (user != null) {
                         return user;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f18328id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f18343id))) != null) {
                     return chat;
                 } else {
                     return tLObject;
@@ -492,7 +492,7 @@ public abstract class i0 extends ul0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f9784s0).hints.isEmpty()) {
-            if (this.f9771h0 != 14 || this.f9782r0.f38362z2) {
+            if (this.f9771h0 != 14 || this.f9782r0.f38383z2) {
                 return true;
             }
             return false;
@@ -631,7 +631,7 @@ public abstract class i0 extends ul0 {
         }
         G(str);
         l();
-        MessagesStorage.getInstance(this.f9784s0).getStorageQueue().postRunnable(new q((eo0) this, j3, 1));
+        MessagesStorage.getInstance(this.f9784s0).getStorageQueue().postRunnable(new q((go0) this, j3, 1));
     }
 
     public final boolean S() {
@@ -687,7 +687,7 @@ public abstract class i0 extends ul0 {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f18437q = str;
+                    tL_messages_search.f18452q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -752,7 +752,7 @@ public abstract class i0 extends ul0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f18439q = str;
+                    tL_messages_searchGlobal.f18454q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -919,7 +919,7 @@ public abstract class i0 extends ul0 {
                 if (i11 != 3) {
                     z11 = false;
                 }
-                j6Var.f20484l0 = z11;
+                j6Var.f20499l0 = z11;
                 fc1Var = j6Var;
                 textView = fc1Var;
                 break;
@@ -949,7 +949,7 @@ public abstract class i0 extends ul0 {
                 break;
             case 6:
                 fc1 fc1Var2 = new fc1(context, 2, null);
-                fc1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19184i6, false));
+                fc1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19199i6, false));
                 fc1Var2.setTag(9);
                 fc1Var2.setItemAnimator(null);
                 fc1Var2.setLayoutAnimation(null);
@@ -980,7 +980,7 @@ public abstract class i0 extends ul0 {
                 ?? linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
                 v9 v9Var = new v9(context);
-                v9Var.setImageDrawable(new hj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+                v9Var.setImageDrawable(new kj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
                 linearLayout.addView(v9Var, y5.t(120, 120, 1, 0, 27, 0, 0));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 17.0f);

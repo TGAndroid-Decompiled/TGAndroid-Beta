@@ -10,7 +10,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class eu extends bu {
-    public Drawable f23934c;
+    public Drawable f24037c;
     public final int d;
     public final ju e;
 
@@ -18,7 +18,7 @@ public final class eu extends bu {
         super(context, f6Var);
         this.e = juVar;
         this.d = i10;
-        this.f23934c = null;
+        this.f24037c = null;
     }
 
     @Override
@@ -61,8 +61,8 @@ public final class eu extends bu {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         ju juVar = this.e;
-        am0 am0Var = juVar.f25455c;
-        if (am0Var != null) {
+        dm0 dm0Var = juVar.f25460c;
+        if (dm0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
                 z10 = true;
@@ -73,15 +73,15 @@ public final class eu extends bu {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (juVar.f25457n != z11) {
-                juVar.f25457n = z11;
+            if (juVar.f25462n != z11) {
+                juVar.f25462n = z11;
                 if (z11) {
-                    this.f23934c = am0Var.d;
-                    am0Var.a(R.drawable.msg_edit, true);
+                    this.f24037c = dm0Var.d;
+                    dm0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                am0Var.b(this.f23934c, true);
-                this.f23934c = null;
+                dm0Var.b(this.f24037c, true);
+                this.f24037c = null;
             }
         }
     }
@@ -93,9 +93,9 @@ public final class eu extends bu {
         ju juVar = this.e;
         if (juVar.e && motionEvent.getAction() == 0) {
             juVar.u();
-            if (juVar.f25461x && (fuVar = juVar.d) != null) {
+            if (juVar.f25466x && (fuVar = juVar.d) != null) {
                 fuVar.t(false);
-                juVar.f25461x = false;
+                juVar.f25466x = false;
                 juVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {

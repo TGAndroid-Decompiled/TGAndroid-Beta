@@ -67,7 +67,7 @@ public final class z implements Runnable {
                 cm cmVar = (cm) this.d;
                 cmVar.getClass();
                 MessageObject messageObject = ((org.telegram.ui.Cells.w0) this.e).getMessageObject();
-                lm lmVar = cmVar.f32788a;
+                lm lmVar = cmVar.f32809a;
                 zn znVar = lmVar.Q;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == lmVar.Q.L6) {
@@ -79,7 +79,7 @@ public final class z implements Runnable {
                 return;
             case 4:
                 u1 u1Var = (u1) this.e;
-                zn znVar2 = ((ln) this.d).f35482a;
+                zn znVar2 = ((ln) this.d).f35505a;
                 if (znVar2.A1 != null) {
                     int[] iArr = new int[2];
                     u1Var.getLocationInWindow(iArr);
@@ -93,27 +93,27 @@ public final class z implements Runnable {
             default:
                 final sy syVar = (sy) this.d;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.e;
-                ty tyVar = syVar.f37569g;
+                ty tyVar = syVar.f37593g;
                 uy uyVar = syVar.h;
                 ArrayList arrayList = uyVar.R1;
                 if (arrayList != null) {
                     arrayList.remove(dialog);
                     int i14 = dialog.pinnedNum;
                     uyVar.W0 = null;
-                    tyVar.f37904a.invalidate();
-                    int N0 = tyVar.f37906c.N0();
+                    tyVar.f37905a.invalidate();
+                    int N0 = tyVar.f37907c.N0();
                     if (N0 == this.f10926b - 1) {
-                        tyVar.f37906c.m(N0).requestLayout();
+                        tyVar.f37907c.m(N0).requestLayout();
                     }
                     boolean z10 = false;
-                    if (uyVar.getMessagesController().isPromoDialog(dialog.f18332id, false)) {
+                    if (uyVar.getMessagesController().isPromoDialog(dialog.f18347id, false)) {
                         uyVar.getMessagesController().hidePromoDialog();
-                        tyVar.f37912x.D();
+                        tyVar.f37913x.D();
                         tyVar.q(true);
                         return;
                     }
                     MessagesController messagesController = uyVar.getMessagesController();
-                    long j3 = dialog.f18332id;
+                    long j3 = dialog.f18347id;
                     if (uyVar.V2 == 0) {
                         i11 = 1;
                     } else {
@@ -122,7 +122,7 @@ public final class z implements Runnable {
                     int addDialogToFolder = messagesController.addDialogToFolder(j3, i11, -1, 0L);
                     int i15 = this.f10927c;
                     if (addDialogToFolder != 2 || i15 != 0) {
-                        tyVar.f37912x.D();
+                        tyVar.f37913x.D();
                         tyVar.q(true);
                     }
                     if (uyVar.V2 == 0) {
@@ -130,16 +130,16 @@ public final class z implements Runnable {
                             if (SharedConfig.archiveHidden) {
                                 SharedConfig.toggleArchiveHidden();
                             }
-                            tyVar.f37912x.D();
+                            tyVar.f37913x.D();
                             if (i15 == 0) {
                                 uyVar.A4(true, true);
                                 tyVar.q(true);
                                 uyVar.o3();
                             } else {
                                 tyVar.q(true);
-                                if (!SharedConfig.archiveHidden && tyVar.f37906c.L0() == 0) {
-                                    uyVar.f38258e2 = true;
-                                    qy qyVar = tyVar.f37904a;
+                                if (!SharedConfig.archiveHidden && tyVar.f37907c.L0() == 0) {
+                                    uyVar.f38279e2 = true;
+                                    qy qyVar = tyVar.f37905a;
                                     if (SharedConfig.useThreeLinesLayout) {
                                         f7 = 76.0f;
                                     } else {
@@ -149,7 +149,7 @@ public final class z implements Runnable {
                                 }
                             }
                             i13 = ((n2) uyVar).currentAccount;
-                            uyVar.R1.add(0, (TLRPC.Dialog) uyVar.R3(i13, tyVar.f37910s, uyVar.V2, false).get(0));
+                            uyVar.R1.add(0, (TLRPC.Dialog) uyVar.R3(i13, tyVar.f37911s, uyVar.V2, false).get(0));
                             tyVar.q(true);
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -165,16 +165,16 @@ public final class z implements Runnable {
                                 }
                             }, 300L);
                         } else if (addDialogToFolder == 1) {
-                            s4.c1 L = tyVar.f37904a.L(0);
+                            s4.c1 L = tyVar.f37905a.L(0);
                             if (L != null) {
-                                View view = L.f42974a;
+                                View view = L.f42995a;
                                 if (view instanceof s2) {
                                     s2 s2Var = (s2) view;
-                                    if (s2Var.a2.f24300n == 2) {
-                                        s2Var.f20930b2 = true;
-                                        s2Var.f20935c2 = 0.0f;
-                                        j6.f19402u1.T(0.0f, true);
-                                        j6.f19402u1.start();
+                                    if (s2Var.a2.f24457n == 2) {
+                                        s2Var.f20945b2 = true;
+                                        s2Var.f20950c2 = 0.0f;
+                                        j6.f19417u1.T(0.0f, true);
+                                        j6.f19417u1.start();
                                         s2Var.invalidate();
                                     }
                                 }
@@ -200,7 +200,7 @@ public final class z implements Runnable {
                         }
                         UndoView Y3 = uyVar.Y3();
                         if (Y3 != null) {
-                            long j10 = dialog.f18332id;
+                            long j10 = dialog.f18347id;
                             if (z10) {
                                 i12 = 2;
                             } else {
@@ -210,8 +210,8 @@ public final class z implements Runnable {
                         }
                     }
                     if (uyVar.V2 != 0 && uyVar.R1.isEmpty()) {
-                        tyVar.f37904a.setEmptyView(null);
-                        tyVar.f37911w.setVisibility(4);
+                        tyVar.f37905a.setEmptyView(null);
+                        tyVar.f37912w.setVisibility(4);
                         return;
                     }
                     return;

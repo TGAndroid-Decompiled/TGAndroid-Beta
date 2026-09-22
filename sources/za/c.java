@@ -2,23 +2,23 @@ package za;
 
 import android.os.Build;
 public final class c implements ia.d {
-    public static final c f49049a = new Object();
-    public static final ia.c f49050b = ia.c.c("packageName");
-    public static final ia.c f49051c = ia.c.c("versionName");
+    public static final c f49069a = new Object();
+    public static final ia.c f49070b = ia.c.c("packageName");
+    public static final ia.c f49071c = ia.c.c("versionName");
     public static final ia.c d = ia.c.c("appBuildVersion");
     public static final ia.c e = ia.c.c("deviceManufacturer");
-    public static final ia.c f49052f = ia.c.c("currentProcessDetails");
-    public static final ia.c f49053g = ia.c.c("appProcessDetails");
+    public static final ia.c f49072f = ia.c.c("currentProcessDetails");
+    public static final ia.c f49073g = ia.c.c("appProcessDetails");
 
     @Override
     public final void a(Object obj, Object obj2) {
         a aVar = (a) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f49050b, aVar.f49040a);
-        eVar.a(f49051c, aVar.f49041b);
-        eVar.a(d, aVar.f49042c);
+        eVar.a(f49070b, aVar.f49060a);
+        eVar.a(f49071c, aVar.f49061b);
+        eVar.a(d, aVar.f49062c);
         eVar.a(e, Build.MANUFACTURER);
-        eVar.a(f49052f, aVar.d);
-        eVar.a(f49053g, aVar.e);
+        eVar.a(f49072f, aVar.d);
+        eVar.a(f49073g, aVar.e);
     }
 }

@@ -10,9 +10,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.rk;
 import org.telegram.ui.Components.RadioButton;
 public final class u2 extends FrameLayout {
-    public int f21598a;
-    public TextView f21599b;
-    public TextView f21600c;
+    public int f21613a;
+    public TextView f21614b;
+    public TextView f21615c;
     public RadioButton d;
     public boolean e;
 
@@ -22,8 +22,8 @@ public final class u2 extends FrameLayout {
         float f11;
         float f12;
         RadioButton radioButton = this.d;
-        TextView textView = this.f21600c;
-        TextView textView2 = this.f21599b;
+        TextView textView = this.f21615c;
+        TextView textView2 = this.f21614b;
         setEnabled(z10);
         float f13 = 0.5f;
         if (z11) {
@@ -75,8 +75,8 @@ public final class u2 extends FrameLayout {
         int i11;
         float f11;
         float f12;
-        TextView textView = this.f21599b;
-        TextView textView2 = this.f21600c;
+        TextView textView = this.f21614b;
+        TextView textView2 = this.f21615c;
         int i12 = 3;
         if (textView2.getVisibility() == 0) {
             boolean z10 = LocaleController.isRTL;
@@ -149,7 +149,7 @@ public final class u2 extends FrameLayout {
             if (!LocaleController.isRTL) {
                 f10 = 0.0f;
             }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.j6.f19216k0);
+            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.j6.f19231k0);
         }
     }
 
@@ -158,7 +158,7 @@ public final class u2 extends FrameLayout {
         int i12;
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.e ? 1 : 0));
         int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-        TextView textView = this.f21600c;
+        TextView textView = this.f21615c;
         if (textView.getVisibility() == 0) {
             i12 = 12;
         } else {
@@ -170,10 +170,10 @@ public final class u2 extends FrameLayout {
             textView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
             dp = rk.x(12.0f, textView.getMeasuredWidth(), dp);
         }
-        this.f21599b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f21614b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f21599b.setTextColor(i10);
+        this.f21614b.setTextColor(i10);
     }
 }

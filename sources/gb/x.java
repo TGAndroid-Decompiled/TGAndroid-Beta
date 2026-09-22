@@ -7,13 +7,13 @@ import java.util.List;
 import v7.n8;
 public final class x implements db.v {
     public final of.b f9599a;
-    public final fb.f f9600b;
+    public final fb.g f9600b;
     public final j f9601c;
     public final ArrayList d;
 
-    public x(of.b bVar, fb.f fVar, j jVar, ArrayList arrayList) {
+    public x(of.b bVar, fb.g gVar, j jVar, ArrayList arrayList) {
         this.f9599a = bVar;
-        this.f9600b = fVar;
+        this.f9600b = gVar;
         this.f9601c = jVar;
         this.d = arrayList;
     }
@@ -29,16 +29,16 @@ public final class x implements db.v {
     public final boolean c(Field field, boolean z10) {
         List<db.a> list;
         boolean z11;
-        fb.f fVar = this.f9600b;
-        fVar.getClass();
-        if ((136 & field.getModifiers()) != 0 || field.isSynthetic() || fVar.b(field.getType(), z10)) {
+        fb.g gVar = this.f9600b;
+        gVar.getClass();
+        if ((136 & field.getModifiers()) != 0 || field.isSynthetic() || gVar.b(field.getType(), z10)) {
             z11 = true;
             break;
         }
         if (z10) {
-            list = fVar.f9026a;
+            list = gVar.f9026a;
         } else {
-            list = fVar.f9027b;
+            list = gVar.f9027b;
         }
         if (!list.isEmpty()) {
             db.b bVar = new db.b(field);
@@ -55,7 +55,7 @@ public final class x implements db.v {
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
-        Class cls = aVar.f13577a;
+        Class cls = aVar.f13575a;
         if (!Object.class.isAssignableFrom(cls)) {
             return null;
         }

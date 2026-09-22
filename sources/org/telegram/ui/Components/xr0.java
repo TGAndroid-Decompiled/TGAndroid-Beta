@@ -1,195 +1,165 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.util.SparseArray;
-import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class xr0 extends bi.z {
-    public final jv0 G;
+import org.telegram.messenger.Utilities;
+public final class xr0 extends s4.v {
+    public du0 d;
+    public final lv0 e;
 
-    public xr0(jv0 jv0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, long j3) {
-        super(context, n2Var, j3);
-        this.G = jv0Var;
+    public xr0(lv0 lv0Var) {
+        this.e = lv0Var;
     }
 
     @Override
-    public final boolean c(MessageObject messageObject) {
-        char c10;
-        jv0 jv0Var = this.G;
-        SparseArray[] sparseArrayArr = jv0Var.Z0;
-        if (messageObject.getDialogId() == jv0Var.f25503j1) {
-            c10 = 0;
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        c1Var.f42995a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        iv0 iv0Var;
+        s4.h0 adapter = recyclerView.getAdapter();
+        ks0 ks0Var = null;
+        if (adapter instanceof iv0) {
+            iv0Var = (iv0) adapter;
         } else {
-            c10 = 1;
+            iv0Var = null;
         }
-        if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
+        if (k() && iv0Var != null && iv0Var.M(c1Var.b())) {
+            eu0 eu0Var = this.e.f26210k0[0];
+            if (eu0Var != null) {
+                ks0Var = eu0Var.h;
+            }
+            this.d = ks0Var;
+            if (ks0Var != null) {
+                ks0Var.setItemAnimator(eu0Var.d);
+            }
+            return s4.v.l(15, 0);
+        }
+        return s4.v.l(0, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        lv0 lv0Var = this.e;
+        if (!lv0Var.C1) {
+            gs0 gs0Var = lv0Var.W;
+            if (gs0Var == null || !gs0Var.f31987w) {
+                return false;
+            }
             return true;
         }
-        return false;
+        return true;
     }
 
     @Override
-    public final boolean e(MessageObject messageObject) {
-        char c10;
-        int i10;
-        int i11;
-        jv0 jv0Var = this.G;
-        ArrayList arrayList = jv0Var.N0;
-        NumberTextView numberTextView = jv0Var.A0;
-        SparseArray[] sparseArrayArr = jv0Var.Z0;
-        if (messageObject != null) {
-            if (messageObject.getDialogId() == jv0Var.f25503j1) {
-                c10 = 0;
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        iv0 iv0Var;
+        ai.d9 d9Var;
+        ArrayList arrayList;
+        s4.h0 adapter = recyclerView.getAdapter();
+        if (adapter instanceof iv0) {
+            iv0Var = (iv0) adapter;
+        } else {
+            iv0Var = null;
+        }
+        if (iv0Var == null || !iv0Var.M(c1Var.b()) || !iv0Var.M(c1Var2.b())) {
+            return false;
+        }
+        int b10 = c1Var.b();
+        int b11 = c1Var2.b();
+        ArrayList arrayList2 = iv0Var.f25187y;
+        if (!iv0Var.h && (d9Var = iv0Var.f25184s) != null && b10 >= 0 && b10 < d9Var.f718i.size() && b11 >= 0 && b11 < iv0Var.f25184s.f718i.size()) {
+            if (!(iv0Var.f25184s instanceof ai.t8) && iv0Var.f25182n <= 0) {
+                arrayList = new ArrayList(iv0Var.f25184s.f717g);
             } else {
-                c10 = 1;
+                arrayList = new ArrayList();
+                for (int i10 = 0; i10 < iv0Var.f25184s.f718i.size(); i10++) {
+                    arrayList.add(Integer.valueOf(((MessageObject) iv0Var.f25184s.f718i.get(i10)).getId()));
+                }
             }
-            if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) < 0) {
-                if (sparseArrayArr[1].size() + sparseArrayArr[0].size() < 100) {
-                    sparseArrayArr[c10].put(messageObject.getId(), messageObject);
-                    if (!messageObject.canDeleteMessage(false, null)) {
-                        jv0Var.f25480a1++;
-                    }
-                    if (!jv0Var.C1) {
-                        AndroidUtilities.hideKeyboard(jv0Var.f25528v1.getParentActivity().getCurrentFocus());
-                        org.telegram.ui.ActionBar.v0 v0Var = jv0Var.f25506l0;
-                        int i12 = 8;
-                        if (jv0Var.f25480a1 == 0) {
-                            i10 = 0;
-                        } else {
-                            i10 = 8;
+            if (!iv0Var.E) {
+                arrayList2.clear();
+                arrayList2.addAll(arrayList);
+                iv0Var.E = true;
+            }
+            MessageObject messageObject = (MessageObject) iv0Var.f25184s.f718i.get(b10);
+            MessageObject messageObject2 = (MessageObject) iv0Var.f25184s.f718i.get(b11);
+            arrayList.remove(Integer.valueOf(messageObject.getId()));
+            arrayList.add(Utilities.clamp(b11, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
+            iv0Var.f25184s.C(arrayList, false);
+            iv0Var.p(b10, b11);
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        ai.d9 d9Var;
+        ArrayList arrayList;
+        boolean z10;
+        du0 du0Var = this.d;
+        if (du0Var != null && c1Var != null) {
+            du0Var.e1(false);
+        }
+        if (i10 == 0) {
+            du0 du0Var2 = this.d;
+            if (du0Var2 != null && (du0Var2.getAdapter() instanceof iv0)) {
+                iv0 iv0Var = (iv0) this.d.getAdapter();
+                ArrayList arrayList2 = iv0Var.f25187y;
+                if (!iv0Var.h && (d9Var = iv0Var.f25184s) != null && iv0Var.E) {
+                    if (!(d9Var instanceof ai.t8) && iv0Var.f25182n <= 0) {
+                        arrayList = d9Var.f717g;
+                    } else {
+                        arrayList = new ArrayList();
+                        for (int i11 = 0; i11 < iv0Var.f25184s.f718i.size(); i11++) {
+                            arrayList.add(Integer.valueOf(((MessageObject) iv0Var.f25184s.f718i.get(i11)).getId()));
                         }
-                        v0Var.setVisibility(i10);
-                        org.telegram.ui.ActionBar.v0 v0Var2 = jv0Var.f25525u0;
-                        if (v0Var2 != null) {
-                            if (jv0Var.getClosestTab() != 8 && jv0Var.getClosestTab() != 13) {
-                                i11 = 0;
+                    }
+                    if (arrayList2.size() != arrayList.size()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (!z10) {
+                        int i12 = 0;
+                        while (true) {
+                            if (i12 >= arrayList2.size()) {
+                                break;
+                            } else if (arrayList2.get(i12) != arrayList.get(i12)) {
+                                z10 = true;
+                                break;
                             } else {
-                                i11 = 8;
+                                i12++;
                             }
-                            v0Var2.setVisibility(i11);
                         }
-                        org.telegram.ui.ActionBar.v0 v0Var3 = jv0Var.f25527v0;
-                        if (v0Var3 != null) {
-                            v0Var3.setVisibility(8);
-                        }
-                        org.telegram.ui.ActionBar.v0 v0Var4 = jv0Var.f25530w0;
-                        if (v0Var4 != null) {
-                            v0Var4.setVisibility(8);
-                        }
-                        org.telegram.ui.ActionBar.v0 v0Var5 = jv0Var.f25523t0;
-                        if (v0Var5 != null) {
-                            if (jv0Var.getClosestTab() != 8 && jv0Var.getClosestTab() != 13) {
-                                i12 = 0;
-                            }
-                            v0Var5.setVisibility(i12);
-                        }
-                        numberTextView.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), false);
-                        AnimatorSet animatorSet = new AnimatorSet();
-                        ArrayList arrayList2 = new ArrayList();
-                        for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                            View view = (View) arrayList.get(i13);
-                            AndroidUtilities.clearDrawableAnimation(view);
-                            arrayList2.add(ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.1f, 1.0f));
-                        }
-                        animatorSet.playTogether(arrayList2);
-                        animatorSet.setDuration(250L);
-                        animatorSet.start();
-                        jv0Var.f25483b1 = false;
-                        jv0Var.b1(true);
-                    } else {
-                        numberTextView.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
                     }
-                    j();
-                    return true;
+                    if (z10) {
+                        iv0Var.f25184s.C(arrayList, true);
+                    }
+                    iv0Var.E = false;
                 }
             }
+            du0 du0Var3 = this.d;
+            if (du0Var3 != null) {
+                du0Var3.setItemAnimator(null);
+                return;
+            }
+            return;
         }
-        return false;
+        du0 du0Var4 = this.d;
+        if (du0Var4 != null) {
+            du0Var4.J0(false);
+        }
+        if (c1Var != null) {
+            c1Var.f42995a.setPressed(true);
+        }
     }
 
     @Override
-    public final boolean g(MessageObject messageObject) {
-        char c10;
-        int i10;
-        int i11;
-        jv0 jv0Var = this.G;
-        ArrayList arrayList = jv0Var.N0;
-        SparseArray[] sparseArrayArr = jv0Var.Z0;
-        if (messageObject != null) {
-            if (messageObject.getDialogId() == jv0Var.f25503j1) {
-                c10 = 0;
-            } else {
-                c10 = 1;
-            }
-            if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
-                sparseArrayArr[c10].remove(messageObject.getId());
-                if (!messageObject.canDeleteMessage(false, null)) {
-                    jv0Var.f25480a1--;
-                }
-                if (sparseArrayArr[0].size() == 0 && sparseArrayArr[1].size() == 0) {
-                    AndroidUtilities.hideKeyboard(jv0Var.f25528v1.getParentActivity().getCurrentFocus());
-                    sparseArrayArr[0].clear();
-                    sparseArrayArr[1].clear();
-                    org.telegram.ui.ActionBar.v0 v0Var = jv0Var.f25506l0;
-                    int i12 = 8;
-                    if (jv0Var.f25480a1 == 0) {
-                        i10 = 0;
-                    } else {
-                        i10 = 8;
-                    }
-                    v0Var.setVisibility(i10);
-                    org.telegram.ui.ActionBar.v0 v0Var2 = jv0Var.f25525u0;
-                    if (v0Var2 != null) {
-                        if (jv0Var.getClosestTab() != 8 && jv0Var.getClosestTab() != 13) {
-                            i11 = 0;
-                        } else {
-                            i11 = 8;
-                        }
-                        v0Var2.setVisibility(i11);
-                    }
-                    org.telegram.ui.ActionBar.v0 v0Var3 = jv0Var.f25527v0;
-                    if (v0Var3 != null) {
-                        v0Var3.setVisibility(8);
-                    }
-                    org.telegram.ui.ActionBar.v0 v0Var4 = jv0Var.f25530w0;
-                    if (v0Var4 != null) {
-                        v0Var4.setVisibility(8);
-                    }
-                    org.telegram.ui.ActionBar.v0 v0Var5 = jv0Var.f25523t0;
-                    if (v0Var5 != null) {
-                        if (jv0Var.getClosestTab() != 8 && jv0Var.getClosestTab() != 13) {
-                            i12 = 0;
-                        }
-                        v0Var5.setVisibility(i12);
-                    }
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                        View view = (View) arrayList.get(i13);
-                        AndroidUtilities.clearDrawableAnimation(view);
-                        arrayList2.add(ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f, 0.1f));
-                    }
-                    animatorSet.playTogether(arrayList2);
-                    animatorSet.setDuration(250L);
-                    animatorSet.start();
-                    jv0Var.f25483b1 = false;
-                    AndroidUtilities.runOnUIThread(new wq0(this, 1), 20L);
-                } else {
-                    jv0Var.A0.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
-                }
-                j();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final int getStartedTrackingX() {
-        return this.G.f25539z1;
+    public final void q(s4.c1 c1Var) {
     }
 }

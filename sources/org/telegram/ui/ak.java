@@ -1,277 +1,56 @@
 package org.telegram.ui;
+public final class ak implements Runnable {
+    public final int f32132a;
+    public final zn f32133b;
 
-import android.os.Build;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
-public final class ak extends s4.s0 {
-    public boolean f32111b;
-    public final zn d;
-    public float f32110a = 0.0f;
-    public final int f32112c = AndroidUtilities.dp(100.0f);
-
-    public ak(zn znVar) {
-        this.d = znVar;
+    public ak(zn znVar, int i10) {
+        this.f32132a = i10;
+        this.f32133b = znVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        zn znVar = this.d;
-        if (i10 == 0) {
-            org.telegram.ui.Cells.u1 u1Var = znVar.f40429p2;
-            if (u1Var != null) {
-                znVar.f40406n2.e(u1Var, -1, znVar.f40441q2, znVar.f40454r2, true);
-                znVar.f40429p2 = null;
-            }
-            znVar.j3 = false;
-            znVar.f40370k3 = false;
-            znVar.f40382l3 = false;
-            znVar.f40393m3 = false;
-            znVar.f9(true);
-            znVar.g9(true);
-            if (SharedConfig.getDevicePerformanceClass() == 0) {
+    public final void run() {
+        int i10 = this.f32132a;
+        zn znVar = this.f32133b;
+        switch (i10) {
+            case 0:
+                zn.i2(znVar);
+                return;
+            case 1:
+                zn.i2(znVar);
+                return;
+            case 2:
                 int i11 = zn.Gc;
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-            }
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startSpoilers, new Object[0]);
-            znVar.f40530x0.setOverScrollMode(0);
-            znVar.f40278c9.W();
-            znVar.Wc(false);
-            znVar.q9(1);
-            znVar.f40476sa = false;
-            return;
-        }
-        ci.f4 f4Var = znVar.f40544y1;
-        if (f4Var != null && f4Var.V) {
-            f4Var.e(true);
-        }
-        org.telegram.ui.Components.o6 o6Var = znVar.W2;
-        if (o6Var != null && o6Var.getVisibility() == 0 && znVar.x9()) {
-            AndroidUtilities.hideKeyboard(znVar.getParentActivity().getCurrentFocus());
-        }
-        if (i10 == 2) {
-            znVar.D4 = true;
-            znVar.f40382l3 = true;
-        } else if (i10 == 1) {
-            znVar.f40429p2 = null;
-            znVar.D4 = true;
-            znVar.j3 = true;
-            znVar.f40370k3 = true;
-            znVar.f40393m3 = true;
-            znVar.f40382l3 = true;
-        }
-        if (SharedConfig.getDevicePerformanceClass() == 0) {
-            int i12 = zn.Gc;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopSpoilers, new Object[0]);
-        zg.t tVar = znVar.Y9;
-        if (tVar != null && tVar.d()) {
-            znVar.Y9.setHiddenByScroll(true);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        boolean z11;
-        ah.i iVar;
-        boolean z12;
-        boolean z13;
-        zn znVar = this.d;
-        zn znVar2 = znVar.f40291da;
-        if (znVar2 == null) {
-            znVar2 = znVar;
-        }
-        znVar.f40530x0.invalidate();
-        boolean z14 = true;
-        if (i11 < 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f32111b = z10;
-        int L0 = znVar.f40555z0.L0();
-        aa.a aVar = null;
-        if (((i11 != 0 && znVar.f40476sa && recyclerView.getScrollState() == 2) || recyclerView.getScrollState() == 1) && znVar.N4 != 0) {
-            if (this.f32111b && !znVar.O4) {
-                if (!znVar.f40530x0.X1 && L0 != -1) {
-                    int N0 = znVar.f40555z0.N0();
-                    MessageObject messageObject = null;
-                    while (true) {
-                        if (N0 >= L0) {
-                            View m10 = znVar.f40555z0.m(N0);
-                            if (m10 instanceof org.telegram.ui.Cells.u1) {
-                                messageObject = ((org.telegram.ui.Cells.u1) m10).getMessageObject();
-                            } else if (m10 instanceof org.telegram.ui.Cells.w0) {
-                                messageObject = ((org.telegram.ui.Cells.w0) m10).getMessageObject();
-                            }
-                            if (messageObject != null && znVar.N4 == messageObject.getId()) {
-                                z13 = true;
-                                break;
-                            }
-                            N0--;
-                        } else {
-                            z13 = false;
-                            break;
-                        }
-                    }
-                    if (!z13 && messageObject != null && messageObject.getId() < znVar.N4) {
-                        znVar.N4 = 0;
-                    }
-                }
-            } else {
-                znVar.N4 = 0;
-            }
-        }
-        if (recyclerView.getScrollState() == 1) {
-            znVar.O4 = false;
-            if (!znVar.D4 && i11 != 0) {
-                znVar.D4 = true;
-            }
-        }
-        if (i11 != 0) {
-            znVar.q9(1);
-            znVar.X0.getClass();
-            znVar.h9(true);
-        }
-        if (i11 != 0 && znVar.j3 && !znVar.f40309f3) {
-            if (znVar.L7 != Integer.MAX_VALUE) {
-                znVar.Ia();
-                znVar.Wc(false);
-            }
-            znVar.Fb(true);
-        }
-        if (znVar.t9() && i11 != 0 && znVar.f40370k3 && !znVar.f40309f3) {
-            if (znVar.L7 != Integer.MAX_VALUE) {
-                znVar.Ia();
-                znVar.Wc(false);
-            }
-            znVar.Gb(true);
-        }
-        znVar.a7(true);
-        if (L0 != -1) {
-            znVar.A0.h();
-            if (L0 == 0 && znVar.E6[0]) {
-                if (i11 >= 0) {
-                    znVar.f40327g9 = false;
-                    znVar.vc();
-                }
-            } else {
-                aa.a[] aVarArr = znVar.f40356j1.e;
-                if (1 < aVarArr.length) {
-                    aVar = aVarArr[1];
-                }
-                if (aVar != null && ((le.b) aVar.f360c).f14170f) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                int i12 = this.f32112c;
-                if (i11 > 0) {
-                    if (!z12) {
-                        float f7 = this.f32110a + i11;
-                        this.f32110a = f7;
-                        if (f7 > i12) {
-                            this.f32110a = 0.0f;
-                            znVar.f40327g9 = true;
-                            znVar.vc();
-                            znVar.f40368k1 = true;
-                        }
-                    }
-                } else if (znVar.f40368k1 && z12) {
-                    float f10 = this.f32110a + i11;
-                    this.f32110a = f10;
-                    if (f10 < (-i12)) {
-                        znVar.f40327g9 = false;
-                        znVar.vc();
-                        this.f32110a = 0.0f;
-                    }
-                }
-            }
-        }
-        znVar.r9();
-        znVar.f40278c9.H();
-        ArrayList arrayList = znVar.f40540xa.F;
-        for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            if (!((fz) arrayList.get(i13)).f33756c) {
-                ((fz) arrayList.get(i13)).f33755b -= i11;
-            }
-        }
-        zg.k0 k0Var = zg.k0.B;
-        if (k0Var != null) {
-            k0Var.f49377r -= i11;
-            if (i11 != 0) {
-                k0Var.f49380u = true;
-            }
-        }
-        if (Build.VERSION.SDK_INT >= 31 && (iVar = znVar2.F) != null) {
-            iVar.f(i10, i11);
-        }
-        znVar.i7(false);
-        ci.f4 f4Var = znVar.f40531x1;
-        if (f4Var != null) {
-            if (f4Var.V) {
-                f4Var.e(true);
-            } else if (!znVar.Ub) {
-                znVar.Tb = System.currentTimeMillis();
-                AndroidUtilities.cancelRunOnUIThread(new ug(znVar, 28));
-                AndroidUtilities.runOnUIThread(new ug(znVar, 29), 2000L);
-            }
-        }
-        vl vlVar = znVar.B1;
-        if (vlVar != null && vlVar.V) {
-            vlVar.e(true);
-        }
-        ci.f4 f4Var2 = znVar.f40556z1;
-        if (f4Var2 != null && f4Var2.V) {
-            f4Var2.e(true);
-        } else {
-            AndroidUtilities.cancelRunOnUIThread(new zj(znVar, 0));
-            AndroidUtilities.runOnUIThread(new zj(znVar, 1), 2000L);
-        }
-        ci.f4 f4Var3 = znVar.A1;
-        if (f4Var3 != null) {
-            f4Var3.e(true);
-        }
-        lk lkVar = znVar.Y;
-        if (lkVar != null) {
-            lkVar.l0();
-        }
-        yh.c4 c4Var = znVar.f40438pc;
-        if (c4Var != null) {
-            c4Var.invalidate();
-        }
-        hh.a aVar2 = znVar.Pb;
-        if (aVar2 != null && aVar2.f10499b > 0) {
-            int childCount = aVar2.f10498a.getChildCount();
-            int i14 = 0;
-            while (true) {
-                if (i14 < childCount) {
-                    View childAt = aVar2.f10498a.getChildAt(i14);
-                    if (childAt instanceof org.telegram.ui.Cells.u1) {
-                        z11 = aVar2.a(((org.telegram.ui.Cells.u1) childAt).getMessageObject());
-                    } else if (childAt instanceof org.telegram.ui.Cells.w0) {
-                        z11 = aVar2.a(((org.telegram.ui.Cells.w0) childAt).getMessageObject());
-                    } else {
-                        z11 = false;
-                    }
-                    if (z11) {
-                        break;
-                    }
-                    i14++;
-                } else {
-                    z14 = false;
-                    break;
-                }
-            }
-            if (!z14) {
-                aVar2.c(0, 0L);
-            }
+                znVar.Ma();
+                return;
+            case 3:
+                int i12 = zn.Gc;
+                znVar.Ma();
+                return;
+            case 4:
+                int i13 = zn.Gc;
+                znVar.Ma();
+                return;
+            case 5:
+                int i14 = zn.Gc;
+                znVar.Ma();
+                return;
+            case 6:
+                int i15 = zn.Gc;
+                znVar.Ma();
+                return;
+            case 7:
+                int i16 = zn.Gc;
+                znVar.Ma();
+                return;
+            case 8:
+                int i17 = zn.Gc;
+                znVar.Ma();
+                return;
+            default:
+                int i18 = zn.Gc;
+                znVar.Ma();
+                return;
         }
     }
 }

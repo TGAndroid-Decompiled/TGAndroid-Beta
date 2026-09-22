@@ -4,24 +4,24 @@ import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class qb implements ValueAnimator.AnimatorUpdateListener {
-    public final int f1444a;
-    public final jc f1445b;
+    public final int f1441a;
+    public final jc f1442b;
 
     public qb(jc jcVar, int i10) {
-        this.f1444a = i10;
-        this.f1445b = jcVar;
+        this.f1441a = i10;
+        this.f1442b = jcVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         f6 currentPeerView;
-        switch (this.f1444a) {
+        switch (this.f1441a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jc jcVar = this.f1445b;
+                jc jcVar = this.f1442b;
                 jcVar.U = floatValue;
                 jcVar.o();
-                xb xbVar = jcVar.f1107s;
+                xb xbVar = jcVar.f1104s;
                 if (xbVar != null) {
                     xbVar.invalidate();
                 }
@@ -33,10 +33,10 @@ public final class qb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jc jcVar2 = this.f1445b;
+                jc jcVar2 = this.f1442b;
                 jcVar2.U = floatValue2;
                 yb ybVar = jcVar2.v;
-                if (ybVar != null && floatValue2 > 0.6f && i0.f968c && ybVar.f969a) {
+                if (ybVar != null && floatValue2 > 0.6f && i0.f965c && ybVar.f966a) {
                     ybVar.a(false);
                 }
                 d2 d2Var2 = jcVar2.A0;
@@ -44,7 +44,7 @@ public final class qb implements ValueAnimator.AnimatorUpdateListener {
                     d2Var2.v((1.0f - jcVar2.V) * jcVar2.U);
                 }
                 jcVar2.o();
-                xb xbVar2 = jcVar2.f1107s;
+                xb xbVar2 = jcVar2.f1104s;
                 if (xbVar2 != null) {
                     xbVar2.invalidate();
                     return;
@@ -52,10 +52,10 @@ public final class qb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jc jcVar3 = this.f1445b;
+                jc jcVar3 = this.f1442b;
                 jcVar3.Z = floatValue3;
-                jcVar3.f1076d0 = Utilities.clamp(jcVar3.Z / AndroidUtilities.dp(200.0f), 1.0f, 0.0f);
-                zb zbVar = jcVar3.f1096n0;
+                jcVar3.f1073d0 = Utilities.clamp(jcVar3.Z / AndroidUtilities.dp(200.0f), 1.0f, 0.0f);
+                zb zbVar = jcVar3.f1093n0;
                 if (zbVar == null) {
                     currentPeerView = null;
                 } else {
@@ -68,8 +68,8 @@ public final class qb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jc jcVar4 = this.f1445b;
-                jcVar4.f1078e0 = floatValue4;
+                jc jcVar4 = this.f1442b;
+                jcVar4.f1075e0 = floatValue4;
                 jcVar4.v.invalidate();
                 return;
         }

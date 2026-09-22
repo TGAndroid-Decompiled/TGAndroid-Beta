@@ -73,8 +73,8 @@ public final class f extends View implements z5 {
 
     public void setFadeTopAlpha(int i10) {
         ah.e eVar = this.f13029a;
-        if (eVar.f443q != i10) {
-            eVar.f443q = i10;
+        if (eVar.f440q != i10) {
+            eVar.f440q = i10;
             invalidate();
         }
     }
@@ -96,8 +96,8 @@ public final class f extends View implements z5 {
     }
 
     public void setIgnoreFastWay(boolean z10) {
-        this.f13029a.f442p = z10;
-        this.f13030b.f442p = z10;
+        this.f13029a.f439p = z10;
+        this.f13030b.f439p = z10;
     }
 
     public void setup(ah.c cVar) {

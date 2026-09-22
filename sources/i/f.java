@@ -70,7 +70,7 @@ public abstract class f extends Drawable implements Drawable.Callback {
             this.f10590w = new ah.d();
         }
         ah.d dVar = this.f10590w;
-        dVar.f429b = drawable.getCallback();
+        dVar.f426b = drawable.getCallback();
         drawable.setCallback(dVar);
         try {
             if (this.f10583a.f10574y <= 0 && this.f10586f) {
@@ -102,12 +102,12 @@ public abstract class f extends Drawable implements Drawable.Callback {
                 drawable.setHotspotBounds(rect.left, rect.top, rect.right, rect.bottom);
             }
             ah.d dVar2 = this.f10590w;
-            dVar2.f429b = null;
-            drawable.setCallback((Drawable.Callback) dVar2.f429b);
+            dVar2.f426b = null;
+            drawable.setCallback((Drawable.Callback) dVar2.f426b);
         } catch (Throwable th2) {
             ah.d dVar3 = this.f10590w;
-            dVar3.f429b = null;
-            drawable.setCallback((Drawable.Callback) dVar3.f429b);
+            dVar3.f426b = null;
+            drawable.setCallback((Drawable.Callback) dVar3.f426b);
             throw th2;
         }
     }

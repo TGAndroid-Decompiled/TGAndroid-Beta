@@ -10,24 +10,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ac implements RequestDelegate {
-    public final int f32029a;
-    public final dc f32030b;
-    public final CountDownLatch f32031c;
+    public final int f32050a;
+    public final dc f32051b;
+    public final CountDownLatch f32052c;
     public final Runnable d;
 
     public ac(dc dcVar, CountDownLatch countDownLatch, Runnable runnable, int i10) {
-        this.f32029a = i10;
-        this.f32030b = dcVar;
-        this.f32031c = countDownLatch;
+        this.f32050a = i10;
+        this.f32051b = dcVar;
+        this.f32052c = countDownLatch;
         this.d = runnable;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f32029a) {
+        switch (this.f32050a) {
             case 0:
-                final dc dcVar = this.f32030b;
-                final CountDownLatch countDownLatch = this.f32031c;
+                final dc dcVar = this.f32051b;
+                final CountDownLatch countDownLatch = this.f32052c;
                 final Runnable runnable = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -45,7 +45,7 @@ public final class ac implements RequestDelegate {
                                     dcVar2.N = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z10 = false;
-                                    MessagesController.getInstance(dcVar2.f33000b).putUsers(tL_premium_boostsList.users, false);
+                                    MessagesController.getInstance(dcVar2.f33021b).putUsers(tL_premium_boostsList.users, false);
                                     dcVar2.K = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
@@ -62,11 +62,11 @@ public final class ac implements RequestDelegate {
                                             }
                                             i10 += i12;
                                         } else {
-                                            dcVar2.f33005s = Math.max(0, tL_premium_boostsList.count - i10);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && dcVar2.f33005s > 0) {
+                                            dcVar2.f33026s = Math.max(0, tL_premium_boostsList.count - i10);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && dcVar2.f33026s > 0) {
                                                 z10 = true;
                                             }
-                                            dcVar2.f33004r = z10;
+                                            dcVar2.f33025r = z10;
                                             dcVar2.P = tL_premium_boostsList.count;
                                             Runnable runnable2 = runnable;
                                             if (runnable2 != null) {
@@ -82,7 +82,7 @@ public final class ac implements RequestDelegate {
                                 break;
                             default:
                                 dc dcVar3 = dcVar;
-                                ArrayList arrayList2 = dcVar3.f33003n;
+                                ArrayList arrayList2 = dcVar3.f33024n;
                                 CountDownLatch countDownLatch3 = countDownLatch;
                                 if (countDownLatch3 != null) {
                                     countDownLatch3.countDown();
@@ -92,7 +92,7 @@ public final class ac implements RequestDelegate {
                                     dcVar3.M = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z11 = false;
-                                    MessagesController.getInstance(dcVar3.f33000b).putUsers(tL_premium_boostsList2.users, false);
+                                    MessagesController.getInstance(dcVar3.f33021b).putUsers(tL_premium_boostsList2.users, false);
                                     dcVar3.L = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
@@ -109,8 +109,8 @@ public final class ac implements RequestDelegate {
                                             }
                                             i14 += i16;
                                         } else {
-                                            dcVar3.f33006w = Math.max(0, tL_premium_boostsList2.count - i14);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && dcVar3.f33006w > 0) {
+                                            dcVar3.f33027w = Math.max(0, tL_premium_boostsList2.count - i14);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && dcVar3.f33027w > 0) {
                                                 z11 = true;
                                             }
                                             dcVar3.v = z11;
@@ -132,8 +132,8 @@ public final class ac implements RequestDelegate {
                 });
                 return;
             default:
-                final dc dcVar2 = this.f32030b;
-                final CountDownLatch countDownLatch2 = this.f32031c;
+                final dc dcVar2 = this.f32051b;
+                final CountDownLatch countDownLatch2 = this.f32052c;
                 final Runnable runnable2 = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -151,7 +151,7 @@ public final class ac implements RequestDelegate {
                                     dcVar22.N = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z10 = false;
-                                    MessagesController.getInstance(dcVar22.f33000b).putUsers(tL_premium_boostsList.users, false);
+                                    MessagesController.getInstance(dcVar22.f33021b).putUsers(tL_premium_boostsList.users, false);
                                     dcVar22.K = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
@@ -168,11 +168,11 @@ public final class ac implements RequestDelegate {
                                             }
                                             i10 += i12;
                                         } else {
-                                            dcVar22.f33005s = Math.max(0, tL_premium_boostsList.count - i10);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && dcVar22.f33005s > 0) {
+                                            dcVar22.f33026s = Math.max(0, tL_premium_boostsList.count - i10);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && dcVar22.f33026s > 0) {
                                                 z10 = true;
                                             }
-                                            dcVar22.f33004r = z10;
+                                            dcVar22.f33025r = z10;
                                             dcVar22.P = tL_premium_boostsList.count;
                                             Runnable runnable22 = runnable2;
                                             if (runnable22 != null) {
@@ -188,7 +188,7 @@ public final class ac implements RequestDelegate {
                                 break;
                             default:
                                 dc dcVar3 = dcVar2;
-                                ArrayList arrayList2 = dcVar3.f33003n;
+                                ArrayList arrayList2 = dcVar3.f33024n;
                                 CountDownLatch countDownLatch3 = countDownLatch2;
                                 if (countDownLatch3 != null) {
                                     countDownLatch3.countDown();
@@ -198,7 +198,7 @@ public final class ac implements RequestDelegate {
                                     dcVar3.M = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z11 = false;
-                                    MessagesController.getInstance(dcVar3.f33000b).putUsers(tL_premium_boostsList2.users, false);
+                                    MessagesController.getInstance(dcVar3.f33021b).putUsers(tL_premium_boostsList2.users, false);
                                     dcVar3.L = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
@@ -215,8 +215,8 @@ public final class ac implements RequestDelegate {
                                             }
                                             i14 += i16;
                                         } else {
-                                            dcVar3.f33006w = Math.max(0, tL_premium_boostsList2.count - i14);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && dcVar3.f33006w > 0) {
+                                            dcVar3.f33027w = Math.max(0, tL_premium_boostsList2.count - i14);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && dcVar3.f33027w > 0) {
                                                 z11 = true;
                                             }
                                             dcVar3.v = z11;

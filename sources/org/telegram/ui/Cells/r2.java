@@ -17,16 +17,16 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class r2 {
-    public final s2 f20870a;
-    public int f20871b;
-    public int f20872c;
+    public final s2 f20885a;
+    public int f20886b;
+    public int f20887c;
     public boolean d;
     public boolean e;
-    public HashMap f20873f;
-    public CharSequence f20874g;
+    public HashMap f20888f;
+    public CharSequence f20889g;
 
     public r2(s2 s2Var) {
-        this.f20870a = s2Var;
+        this.f20885a = s2Var;
     }
 
     public static void a(r2 r2Var, int i10, MessageObject messageObject, TLRPC.Chat chat) {
@@ -42,15 +42,15 @@ public final class r2 {
         } else {
             i11 = 0;
         }
-        if (r2Var.f20871b != i11 || r2Var.e) {
-            r2Var.f20873f = null;
-            r2Var.f20872c = 0;
+        if (r2Var.f20886b != i11 || r2Var.e) {
+            r2Var.f20888f = null;
+            r2Var.f20887c = 0;
             r2Var.d = false;
             r2Var.e = false;
-            r2Var.f20871b = i11;
+            r2Var.f20886b = i11;
             TextPaint textPaint = org.telegram.ui.ActionBar.j6.F0[0];
             if (chat != null) {
-                ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(i10).getTopicsController().getTopics(chat.f18328id);
+                ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(i10).getTopicsController().getTopics(chat.f18343id);
                 boolean z12 = true;
                 if (topics != null && !topics.isEmpty()) {
                     ArrayList arrayList = new ArrayList(topics);
@@ -58,7 +58,7 @@ public final class r2 {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     if (messageObject != null && !ChatObject.isMonoForum(chat)) {
                         j3 = MessageObject.getTopicId(i10, messageObject.messageOwner, true);
-                        TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(i10).getTopicsController().findTopic(chat.f18328id, j3);
+                        TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(i10).getTopicsController().findTopic(chat.f18343id, j3);
                         if (findTopic != null) {
                             CharSequence j10 = ng.d.j(findTopic, textPaint, null);
                             spannableStringBuilder.append(j10);
@@ -67,7 +67,7 @@ public final class r2 {
                             } else {
                                 i13 = 0;
                             }
-                            r2Var.f20872c = j10.length();
+                            r2Var.f20887c = j10.length();
                             if (messageObject.isOutOwner()) {
                                 r2Var.d = false;
                             } else {
@@ -95,16 +95,16 @@ public final class r2 {
                         i13 = 0;
                     }
                     if (ChatObject.isMonoForum(chat)) {
-                        r2Var.f20873f = new HashMap();
+                        r2Var.f20888f = new HashMap();
                         for (int i14 = 0; i14 < Math.min(4, arrayList.size()); i14++) {
                             if (spannableStringBuilder.length() != 0) {
                                 spannableStringBuilder.append((CharSequence) "  ");
                             }
                             long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.TL_forumTopic) arrayList.get(i14)).from_id);
-                            org.telegram.ui.g5 g5Var = new org.telegram.ui.g5(i10, r2Var.f20870a);
+                            org.telegram.ui.g5 g5Var = new org.telegram.ui.g5(i10, r2Var.f20885a);
                             g5Var.h = false;
                             g5Var.c(peerDialogId);
-                            r2Var.f20873f.put(Long.valueOf(peerDialogId), g5Var);
+                            r2Var.f20888f.put(Long.valueOf(peerDialogId), g5Var);
                             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(DialogObject.getName(peerDialogId));
                             valueOf.insert(0, (CharSequence) "  ");
                             valueOf.setSpan(g5Var, 0, 1, 33);
@@ -113,7 +113,7 @@ public final class r2 {
                     } else {
                         int i15 = 0;
                         for (int i16 = 4; i15 < Math.min(i16, arrayList.size()); i16 = 4) {
-                            if (((TLRPC.TL_forumTopic) arrayList.get(i15)).f18380id != j3) {
+                            if (((TLRPC.TL_forumTopic) arrayList.get(i15)).f18395id != j3) {
                                 if (spannableStringBuilder.length() != 0) {
                                     if (z12 && z10) {
                                         spannableStringBuilder.append((CharSequence) " ");
@@ -131,15 +131,15 @@ public final class r2 {
                         Typeface bold = AndroidUtilities.bold();
                         int i17 = org.telegram.ui.ActionBar.j6.X8;
                         ?? metricAffectingSpan = new MetricAffectingSpan();
-                        metricAffectingSpan.f28298a = bold;
-                        metricAffectingSpan.f28300c = i17;
-                        metricAffectingSpan.f28299b = org.telegram.ui.ActionBar.j6.w0(null, i17, false);
+                        metricAffectingSpan.f28987a = bold;
+                        metricAffectingSpan.f28989c = i17;
+                        metricAffectingSpan.f28988b = org.telegram.ui.ActionBar.j6.w0(null, i17, false);
                         spannableStringBuilder.setSpan(metricAffectingSpan, 0, Math.min(spannableStringBuilder.length(), i13 + 2), 0);
                     }
-                    r2Var.f20874g = spannableStringBuilder;
-                } else if (!MessagesController.getInstance(i10).getTopicsController().endIsReached(chat.f18328id)) {
-                    MessagesController.getInstance(i10).getTopicsController().preloadTopics(chat.f18328id);
-                    r2Var.f20874g = LocaleController.getString(R.string.Loading);
+                    r2Var.f20889g = spannableStringBuilder;
+                } else if (!MessagesController.getInstance(i10).getTopicsController().endIsReached(chat.f18343id)) {
+                    MessagesController.getInstance(i10).getTopicsController().preloadTopics(chat.f18343id);
+                    r2Var.f20889g = LocaleController.getString(R.string.Loading);
                     r2Var.e = true;
                 } else {
                     if (ChatObject.isMonoForum(chat)) {
@@ -147,7 +147,7 @@ public final class r2 {
                     } else {
                         i12 = R.string.NoTopicsCreated;
                     }
-                    r2Var.f20874g = LocaleController.getString(i12);
+                    r2Var.f20889g = LocaleController.getString(i12);
                 }
             }
         }

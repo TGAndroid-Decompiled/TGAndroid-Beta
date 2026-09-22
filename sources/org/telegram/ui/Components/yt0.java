@@ -1,79 +1,53 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class yt0 implements gg.b2, org.telegram.ui.Cells.b5 {
-    public final au0 f30608a;
+import android.content.Context;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+public final class yt0 extends LinearLayout {
+    public final TextView f30749a;
+    public final ImageView f30750b;
+    public boolean f30751c;
 
-    public yt0(au0 au0Var) {
-        this.f30608a = au0Var;
+    public yt0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        TextView textView = new TextView(context);
+        this.f30749a = textView;
+        ImageView imageView = new ImageView(context);
+        this.f30750b = imageView;
+        setOrientation(1);
+        setGravity(17);
+        addView(imageView, w7.y5.n(-2, -2));
+        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19511z6, f6Var));
+        textView.setGravity(17);
+        textView.setTextSize(1, 17.0f);
+        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        addView(textView, w7.y5.t(-2, -2, 17, 0, 24, 0, 0));
     }
 
     @Override
-    public boolean F(int i10) {
-        return true;
-    }
-
-    @Override
-    public void a(int i10) {
-        au0 au0Var = this.f30608a;
-        au0Var.l();
-        if (i10 == 1) {
-            int i11 = au0Var.f22770r - 1;
-            au0Var.f22770r = i11;
-            if (i11 == 0) {
-                int i12 = 0;
-                while (true) {
-                    jv0 jv0Var = au0Var.f22771s;
-                    cu0[] cu0VarArr = jv0Var.f25504k0;
-                    if (i12 < cu0VarArr.length) {
-                        cu0 cu0Var = cu0VarArr[i12];
-                        if (cu0Var.F == 7) {
-                            if (au0Var.h == 0) {
-                                cu0Var.f23409w.e(false, true);
-                            } else {
-                                jv0Var.z(cu0Var.h, 0, null);
-                            }
-                        }
-                        i12++;
-                    } else {
-                        return;
-                    }
-                }
-            }
+    public final void onMeasure(int i10, int i11) {
+        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+        this.f30751c = true;
+        if (AndroidUtilities.isTablet()) {
+            this.f30749a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        } else if (rotation != 3 && rotation != 1) {
+            this.f30749a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        } else {
+            this.f30749a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
         }
+        this.f30751c = false;
+        super.onMeasure(i10, i11);
     }
 
     @Override
-    public boolean e(org.telegram.ui.Cells.c5 c5Var, boolean z10) {
-        int intValue = ((Integer) c5Var.getTag()).intValue();
-        au0 au0Var = this.f30608a;
-        TLObject E = au0Var.E(intValue);
-        if (E instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
-            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
-            tL_chatChannelParticipant.channelParticipant = channelParticipant;
-            tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
-            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
-            tL_chatChannelParticipant.date = channelParticipant.date;
-            return au0Var.f22771s.D1.h(tL_chatChannelParticipant, true, !z10, c5Var);
+    public final void requestLayout() {
+        if (this.f30751c) {
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public a0.i l() {
-        return null;
-    }
-
-    @Override
-    public a0.i w() {
-        return null;
-    }
-
-    @Override
-    public void G(ArrayList arrayList) {
+        super.requestLayout();
     }
 }

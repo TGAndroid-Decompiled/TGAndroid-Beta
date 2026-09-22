@@ -2,15 +2,15 @@ package d2;
 
 import e2.d0;
 public final class i {
-    public static final String f7465b;
-    public final String f7466a;
+    public static final String f7463b;
+    public final String f7464a;
 
     static {
-        String str = d0.f7888a;
-        f7465b = Integer.toString(0, 36);
+        String str = d0.f7887a;
+        f7463b = Integer.toString(0, 36);
     }
 
     public i(String str) {
-        this.f7466a = str;
+        this.f7464a = str;
     }
 }

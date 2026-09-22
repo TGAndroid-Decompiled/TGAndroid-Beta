@@ -8,22 +8,22 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class i0 extends Drawable {
-    public final Drawable f24800a;
-    public final Drawable f24801b;
-    public final d6 f24802c = new d6(new h0(this, 0), 1200, qr.h, 0);
+    public final Drawable f24910a;
+    public final Drawable f24911b;
+    public final d6 f24912c = new d6(new h0(this, 0), 1200, qr.h, 0);
 
     public i0(Context context) {
-        this.f24800a = context.getResources().getDrawable(R.drawable.input_ai).mutate();
-        this.f24801b = context.getResources().getDrawable(R.drawable.input_ai_star).mutate();
+        this.f24910a = context.getResources().getDrawable(R.drawable.input_ai).mutate();
+        this.f24911b = context.getResources().getDrawable(R.drawable.input_ai_star).mutate();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        Drawable drawable = this.f24800a;
+        Drawable drawable = this.f24910a;
         drawable.setBounds(bounds);
         drawable.draw(canvas);
-        float d = this.f24802c.d(1.0f, false);
+        float d = this.f24912c.d(1.0f, false);
         float width = (bounds.width() * 0.352f) + bounds.left;
         float height = (bounds.height() * 0.248f) + bounds.top;
         float width2 = bounds.width() * 0.105f * ((float) (1.0d - Math.sin(AndroidUtilities.cascade(d, 0.0f, 2.0f, 1.5f) * 3.141592653589793d)));
@@ -31,7 +31,7 @@ public final class i0 extends Drawable {
         float height2 = (bounds.height() * 0.43f) + bounds.top;
         float width4 = bounds.width() * 0.09f * ((float) (1.0d - Math.sin(AndroidUtilities.cascade(d, 1.0f, 2.0f, 1.5f) * 3.141592653589793d)));
         int i10 = (int) (height + width2);
-        Drawable drawable2 = this.f24801b;
+        Drawable drawable2 = this.f24911b;
         drawable2.setBounds((int) (width - width2), (int) (height - width2), (int) (width + width2), i10);
         drawable2.draw(canvas);
         drawable2.setBounds((int) (width3 - width4), (int) (height2 - width4), (int) (width3 + width4), (int) (height2 + width4));
@@ -40,12 +40,12 @@ public final class i0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f24800a.getIntrinsicHeight();
+        return this.f24910a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f24800a.getIntrinsicWidth();
+        return this.f24910a.getIntrinsicWidth();
     }
 
     @Override
@@ -55,13 +55,13 @@ public final class i0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f24800a.setAlpha(i10);
-        this.f24801b.setAlpha(i10);
+        this.f24910a.setAlpha(i10);
+        this.f24911b.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f24800a.setColorFilter(colorFilter);
-        this.f24801b.setColorFilter(colorFilter);
+        this.f24910a.setColorFilter(colorFilter);
+        this.f24911b.setColorFilter(colorFilter);
     }
 }

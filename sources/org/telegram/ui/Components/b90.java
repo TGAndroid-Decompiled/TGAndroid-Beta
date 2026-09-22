@@ -1,25 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class b90 extends j9 {
-    public final ai.v7 e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class b90 extends wq0 {
+    public final g90 f22929b1;
 
-    public b90(ai.v7 v7Var, Context context) {
-        super(context, false);
-        this.e = v7Var;
+    public b90(g90 g90Var, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null, str, false, str2, false, f6Var);
+        this.f22929b1 = g90Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int f7;
-        int min = Math.min(3, ((d90) this.e.d).f23539w);
-        if (min == 0) {
-            f7 = 0;
-        } else {
-            f7 = hg.k0.f(min, 1, 20, 32);
+    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        String formatString;
+        if (!z10) {
+            return;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824), i11);
+        if (iVar != null && iVar.m() == 1) {
+            long j3 = ((TLRPC.Dialog) iVar.n(0)).f18347id;
+            if (j3 != 0 && j3 != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j3, true));
+            } else {
+                formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
+            }
+        } else {
+            formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
+        }
+        this.f22929b1.e(R.raw.forward, AndroidUtilities.replaceTags(formatString));
     }
 }

@@ -10,7 +10,7 @@ import org.telegram.messenger.rk;
 import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.u61;
 import w7.y5;
 public final class j0 extends h0 {
     public final k0 h;
@@ -27,12 +27,12 @@ public final class j0 extends h0 {
         t tVar = new t(k0Var, 5);
         u uVar = new u(k0Var, 5);
         f6Var = ((f3) k0Var).resourcesProvider;
-        s61 s61Var = new s61(context, i10, 0, false, tVar, uVar, null, f6Var);
-        this.d = s61Var;
-        s61Var.q1();
-        s61 s61Var2 = this.d;
-        s61Var2.Y2.f25678r = false;
-        s61Var2.setClipToPadding(false);
+        u61 u61Var = new u61(context, i10, 0, false, tVar, uVar, null, f6Var);
+        this.d = u61Var;
+        u61Var.q1();
+        u61 u61Var2 = this.d;
+        u61Var2.Y2.f26342r = false;
+        u61Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.d.j(new ai.r(this, 8));
         this.f9112c.addView(this.d, 0, y5.c(-1.0f, -1));
@@ -43,9 +43,9 @@ public final class j0 extends h0 {
         org.telegram.ui.ActionBar.k kVar2 = this.f9110a;
         int i11 = j6.G6;
         kVar2.setTitleColor(k0Var.getThemedColor(i11));
-        this.f9110a.A(k0Var.getThemedColor(j6.f19498z8), false);
+        this.f9110a.A(k0Var.getThemedColor(j6.f19513z8), false);
         this.f9110a.setBackButtonImage(R.drawable.ic_ab_back);
-        this.f9110a.B(k0Var.getThemedColor(j6.f19479y8), false);
+        this.f9110a.B(k0Var.getThemedColor(j6.f19494y8), false);
         this.f9110a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
         this.f9110a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f9110a.setActionBarMenuOnItemClick(new ei.t(this, 8));
@@ -55,7 +55,7 @@ public final class j0 extends h0 {
         f6Var3 = ((f3) k0Var).resourcesProvider;
         ci.d dVar = new ci.d(context, f6Var3, true);
         dVar.d();
-        dVar.setColor(i0.a.d(0.125f, k0Var.getThemedColor(j6.f19094d6), k0Var.getThemedColor(i11)));
+        dVar.setColor(i0.a.d(0.125f, k0Var.getThemedColor(j6.f19109d6), k0Var.getThemedColor(i11)));
         dVar.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         dVar.e();
         dVar.setOnClickListener(new View.OnClickListener(this) {

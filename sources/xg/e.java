@@ -10,8 +10,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.v70;
-import org.telegram.ui.Components.yr0;
+import org.telegram.ui.Components.bs0;
+import org.telegram.ui.Components.y70;
 import xh.g2;
 import xh.m;
 import xh.o2;
@@ -22,24 +22,24 @@ import yh.g5;
 import yh.m7;
 import yh.x4;
 public final class e implements View.OnClickListener {
-    public final int f46060a;
-    public final Object f46061b;
-    public final Object f46062c;
+    public final int f46081a;
+    public final Object f46082b;
+    public final Object f46083c;
     public final Object d;
 
     public e(Object obj, Object obj2, Object obj3, int i10) {
-        this.f46060a = i10;
-        this.f46061b = obj;
-        this.f46062c = obj2;
+        this.f46081a = i10;
+        this.f46082b = obj;
+        this.f46083c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f46060a;
+        int i10 = this.f46081a;
         Object obj = this.d;
-        Object obj2 = this.f46062c;
-        Object obj3 = this.f46061b;
+        Object obj2 = this.f46083c;
+        Object obj3 = this.f46082b;
         switch (i10) {
             case 0:
                 ((i) obj3).a(view, (HashSet) obj2, (Runnable) obj);
@@ -59,16 +59,16 @@ public final class e implements View.OnClickListener {
                 return;
             case 5:
                 o2 o2Var = (o2) obj3;
-                ((v70) obj2).u();
-                yr0 yr0Var = o2Var.f46347a;
+                ((y70) obj2).u();
+                bs0 bs0Var = o2Var.f46368a;
                 g2 g2Var = new g2(o2Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = s2.T;
-                yr0Var.h(null, g2Var);
+                bs0Var.h(null, g2Var);
                 return;
             case 6:
                 Context context = (Context) obj2;
                 f6 f6Var = (f6) obj;
-                if (((a0) obj3).m0.f49252a == zf.b.f49254a) {
+                if (((a0) obj3).m0.f49272a == zf.b.f49274a) {
                     new m7(context, f6Var).show();
                     return;
                 }

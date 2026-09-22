@@ -18,46 +18,46 @@ import org.telegram.ui.pn0;
 import org.telegram.ui.r80;
 import org.telegram.ui.yg0;
 public final class jb implements Runnable {
-    public final int f16706a;
-    public final int f16707b;
-    public final Object f16708c;
+    public final int f16721a;
+    public final int f16722b;
+    public final Object f16723c;
     public final Object d;
     public final Object e;
-    public final Object f16709f;
+    public final Object f16724f;
     public final Object h;
-    public final Object f16710n;
-    public final Object f16711r;
-    public final Object f16712s;
+    public final Object f16725n;
+    public final Object f16726r;
+    public final Object f16727s;
 
     public jb(MessagesController messagesController, TLRPC.messages_Dialogs messages_dialogs, ArrayList arrayList, TLRPC.messages_Dialogs messages_dialogs2, int i10, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, Runnable runnable) {
-        this.f16706a = 0;
-        this.f16708c = messagesController;
+        this.f16721a = 0;
+        this.f16723c = messagesController;
         this.d = messages_dialogs;
-        this.f16709f = arrayList;
+        this.f16724f = arrayList;
         this.e = messages_dialogs2;
-        this.f16707b = i10;
+        this.f16722b = i10;
         this.h = arrayList2;
-        this.f16710n = arrayList3;
-        this.f16711r = arrayList4;
-        this.f16712s = runnable;
+        this.f16725n = arrayList3;
+        this.f16726r = arrayList4;
+        this.f16727s = runnable;
     }
 
     @Override
     public final void run() {
         String formatPluralStringComma;
-        int i10 = this.f16706a;
-        int i11 = this.f16707b;
-        Object obj = this.f16712s;
-        Object obj2 = this.f16711r;
-        Object obj3 = this.f16710n;
+        int i10 = this.f16721a;
+        int i11 = this.f16722b;
+        Object obj = this.f16727s;
+        Object obj2 = this.f16726r;
+        Object obj3 = this.f16725n;
         Object obj4 = this.h;
-        Object obj5 = this.f16709f;
+        Object obj5 = this.f16724f;
         Object obj6 = this.e;
         Object obj7 = this.d;
-        Object obj8 = this.f16708c;
+        Object obj8 = this.f16723c;
         switch (i10) {
             case 0:
-                ((MessagesController) obj8).lambda$processLoadedDialogFilters$23((TLRPC.messages_Dialogs) obj7, (ArrayList) obj5, (TLRPC.messages_Dialogs) obj6, this.f16707b, (ArrayList) obj4, (ArrayList) obj3, (ArrayList) obj2, (Runnable) obj);
+                ((MessagesController) obj8).lambda$processLoadedDialogFilters$23((TLRPC.messages_Dialogs) obj7, (ArrayList) obj5, (TLRPC.messages_Dialogs) obj6, this.f16722b, (ArrayList) obj4, (ArrayList) obj3, (ArrayList) obj2, (Runnable) obj);
                 return;
             case 1:
                 int[] iArr = (int[]) obj7;
@@ -78,7 +78,7 @@ public final class jb implements Runnable {
                     dVar.setLoading(false);
                     dVar.setEnabled(false);
                     f9Var.setText(LocaleController.getString(R.string.UsernameInvalidShort));
-                    f9Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19333q7, f6Var));
+                    f9Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19348q7, f6Var));
                     int i12 = -iArr2[0];
                     iArr2[0] = i12;
                     AndroidUtilities.shakeViewSpring(f9Var, i12);
@@ -93,7 +93,7 @@ public final class jb implements Runnable {
                     dVar.setLoading(false);
                     dVar.setEnabled(false);
                     f9Var.setText(LocaleController.getString(R.string.UsernameInvalidLong));
-                    f9Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19333q7, f6Var));
+                    f9Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19348q7, f6Var));
                     int i13 = -iArr2[0];
                     iArr2[0] = i13;
                     AndroidUtilities.shakeViewSpring(f9Var, i13);
@@ -122,13 +122,13 @@ public final class jb implements Runnable {
                                 strArr3[0] = str2;
                                 dVar2.setEnabled(true);
                                 f9Var2.setText(LocaleController.formatString(R.string.UsernameAvailable, v7.j0.g("@", str2)));
-                                f9Var2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19443w6, f6Var2));
+                                f9Var2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19458w6, f6Var2));
                                 return;
                             }
                             strArr3[0] = null;
                             dVar2.setEnabled(false);
                             f9Var2.setText(LocaleController.getString(R.string.UsernameInUse));
-                            f9Var2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19333q7, f6Var2));
+                            f9Var2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19348q7, f6Var2));
                             int[] iArr3 = iArr2;
                             int i14 = -iArr3[0];
                             iArr3[0] = i14;
@@ -174,7 +174,7 @@ public final class jb implements Runnable {
                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
                     if (!tL_messages_chats.chats.isEmpty()) {
                         MessagesController.getInstance(launchActivity2.O).putChats(tL_messages_chats.chats, false);
-                        iArr3[0] = launchActivity2.v0(this.f16707b, r80Var2, num, num2, l4, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
+                        iArr3[0] = launchActivity2.v0(this.f16722b, r80Var2, num, num2, l4, num3, null, tL_messages_chats.chats.get(0), null, null, 0, -1);
                         return;
                     }
                 }
@@ -190,15 +190,15 @@ public final class jb implements Runnable {
                 TLObject tLObject3 = (TLObject) obj7;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj6;
                 c5.k kVar = (c5.k) obj5;
-                c5.o oVar = (c5.o) obj4;
+                c5.n nVar = (c5.n) obj4;
                 TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj3;
                 String str5 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
                 yg0 yg0Var = hg0Var.v;
-                ci.d dVar2 = hg0Var.f34196b;
+                ci.d dVar2 = hg0Var.f34212b;
                 FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    dVar2.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, kVar.f3905a), false, true);
+                    dVar2.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, kVar.f3902a), false, true);
                     if (i11 == 7) {
                         formatPluralStringComma = LocaleController.getString(R.string.SMSFeePurchaseText);
                     } else {
@@ -206,7 +206,7 @@ public final class jb implements Runnable {
                     }
                     dVar2.f(formatPluralStringComma, false);
                     dVar2.setLoading(false);
-                    dVar2.setOnClickListener(new ai.s0(hg0Var, oVar, tL_inputStorePaymentAuthCode, str5, tL_payments_canPurchaseStore, 14));
+                    dVar2.setOnClickListener(new ai.s0(hg0Var, nVar, tL_inputStorePaymentAuthCode, str5, tL_payments_canPurchaseStore, 14));
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
                     hg0Var.e = "RESPONSE_FALSE";
@@ -222,60 +222,60 @@ public final class jb implements Runnable {
             default:
                 yh.u5 u5Var = (yh.u5) obj8;
                 ((boolean[]) obj7)[0] = true;
-                u5Var.a0((MessageObject) obj6, (TLRPC.InputInvoice) obj5, (TLRPC.TL_payments_paymentFormStars) obj4, new yh.b5(u5Var, (boolean[]) obj3, this.f16707b, (Utilities.Callback) obj2, (Utilities.Callback) obj));
+                u5Var.a0((MessageObject) obj6, (TLRPC.InputInvoice) obj5, (TLRPC.TL_payments_paymentFormStars) obj4, new yh.b5(u5Var, (boolean[]) obj3, this.f16722b, (Utilities.Callback) obj2, (Utilities.Callback) obj));
                 return;
         }
     }
 
     public jb(org.telegram.ui.Cells.k3 k3Var, int[] iArr, int i10, String[] strArr, String[] strArr2, ci.d dVar, org.telegram.ui.Cells.f9 f9Var, org.telegram.ui.ActionBar.f6 f6Var, int[] iArr2) {
-        this.f16706a = 1;
-        this.f16708c = k3Var;
+        this.f16721a = 1;
+        this.f16723c = k3Var;
         this.d = iArr;
-        this.f16707b = i10;
+        this.f16722b = i10;
         this.e = strArr;
-        this.f16709f = strArr2;
+        this.f16724f = strArr2;
         this.h = dVar;
-        this.f16710n = f9Var;
-        this.f16711r = f6Var;
-        this.f16712s = iArr2;
+        this.f16725n = f9Var;
+        this.f16726r = f6Var;
+        this.f16727s = iArr2;
     }
 
     public jb(LaunchActivity launchActivity, Object obj, Object obj2, int i10, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i11) {
-        this.f16706a = i11;
-        this.f16708c = launchActivity;
+        this.f16721a = i11;
+        this.f16723c = launchActivity;
         this.d = obj;
         this.e = obj2;
-        this.f16707b = i10;
-        this.f16709f = obj3;
+        this.f16722b = i10;
+        this.f16724f = obj3;
         this.h = obj4;
-        this.f16710n = obj5;
-        this.f16711r = obj6;
-        this.f16712s = obj7;
+        this.f16725n = obj5;
+        this.f16726r = obj6;
+        this.f16727s = obj7;
     }
 
-    public jb(hg0 hg0Var, TLObject tLObject, TLRPC.TL_error tL_error, c5.k kVar, int i10, c5.o oVar, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, String str, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
-        this.f16706a = 4;
-        this.f16708c = hg0Var;
+    public jb(hg0 hg0Var, TLObject tLObject, TLRPC.TL_error tL_error, c5.k kVar, int i10, c5.n nVar, TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, String str, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+        this.f16721a = 4;
+        this.f16723c = hg0Var;
         this.d = tLObject;
         this.e = tL_error;
-        this.f16709f = kVar;
-        this.f16707b = i10;
-        this.h = oVar;
-        this.f16710n = tL_inputStorePaymentAuthCode;
-        this.f16711r = str;
-        this.f16712s = tL_payments_canPurchaseStore;
+        this.f16724f = kVar;
+        this.f16722b = i10;
+        this.h = nVar;
+        this.f16725n = tL_inputStorePaymentAuthCode;
+        this.f16726r = str;
+        this.f16727s = tL_payments_canPurchaseStore;
     }
 
     public jb(yh.u5 u5Var, boolean[] zArr, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, boolean[] zArr2, int i10, Utilities.Callback callback, Utilities.Callback callback2) {
-        this.f16706a = 5;
-        this.f16708c = u5Var;
+        this.f16721a = 5;
+        this.f16723c = u5Var;
         this.d = zArr;
         this.e = messageObject;
-        this.f16709f = inputInvoice;
+        this.f16724f = inputInvoice;
         this.h = tL_payments_paymentFormStars;
-        this.f16710n = zArr2;
-        this.f16707b = i10;
-        this.f16711r = callback;
-        this.f16712s = callback2;
+        this.f16725n = zArr2;
+        this.f16722b = i10;
+        this.f16726r = callback;
+        this.f16727s = callback2;
     }
 }

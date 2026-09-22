@@ -12,31 +12,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.qr;
 public final class w2 extends View {
-    public final int f1641a;
-    public final RectF f1642b;
-    public final org.telegram.ui.Components.n6 f1643c;
+    public final int f1638a;
+    public final RectF f1639b;
+    public final org.telegram.ui.Components.n6 f1640c;
     public final s2 d;
     public final ArrayList e;
-    public final int[] f1644f;
+    public final int[] f1641f;
     public final ArrayList h;
-    public float f1645n;
-    public ValueAnimator f1646r;
-    public boolean f1647s;
+    public float f1642n;
+    public ValueAnimator f1643r;
+    public boolean f1644s;
 
     public w2(Context context, int i10) {
         super(context);
-        this.f1642b = new RectF();
-        qr qrVar = qr.f27642f;
+        this.f1639b = new RectF();
+        qr qrVar = qr.f27653f;
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, false, false, false);
-        this.f1643c = n6Var;
+        this.f1640c = n6Var;
         this.e = new ArrayList();
-        this.f1644f = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
+        this.f1641f = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
         this.h = new ArrayList();
-        this.f1647s = true;
-        this.f1641a = i10;
+        this.f1644s = true;
+        this.f1638a = i10;
         n6Var.setCallback(this);
         n6Var.o(false, true, false);
         n6Var.t(AndroidUtilities.dp(40.0f));
@@ -44,35 +44,35 @@ public final class w2 extends View {
         n6Var.p(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         n6Var.G = AndroidUtilities.displaySize.x;
         n6Var.r(-1);
-        n6Var.f26575b = 17;
+        n6Var.f26643b = 17;
         this.d = new s2(this, 0);
     }
 
     public final void a(float f7, s2 s2Var) {
-        ValueAnimator valueAnimator = this.f1646r;
+        ValueAnimator valueAnimator = this.f1643r;
         if (valueAnimator != null) {
-            this.f1646r = null;
+            this.f1643r = null;
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f1645n, f7);
-        this.f1646r = ofFloat;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f1642n, f7);
+        this.f1643r = ofFloat;
         ofFloat.addUpdateListener(new a(this, 7));
-        this.f1646r.addListener(new t2(this, f7, s2Var, 0));
-        this.f1646r.setInterpolator(qr.h);
-        this.f1646r.setDuration(320L);
-        this.f1646r.start();
+        this.f1643r.addListener(new t2(this, f7, s2Var, 0));
+        this.f1643r.setInterpolator(qr.h);
+        this.f1643r.setDuration(320L);
+        this.f1643r.start();
     }
 
     public final void b() {
-        this.f1647s = true;
+        this.f1644s = true;
         AndroidUtilities.cancelRunOnUIThread(this.d);
-        this.f1643c.q("", true, true);
+        this.f1640c.q("", true, true);
         invalidate();
         a(0.0f, new s2(this, 1));
     }
 
     public final void c(x2 x2Var) {
-        this.f1642b.set(x2Var.getX() - getX(), x2Var.getY() - getY(), (x2Var.getX() - getX()) + x2Var.getWidth(), (x2Var.getY() - getY()) + x2Var.getHeight());
+        this.f1639b.set(x2Var.getX() - getX(), x2Var.getY() - getY(), (x2Var.getX() - getX()) + x2Var.getWidth(), (x2Var.getY() - getY()) + x2Var.getHeight());
     }
 
     @Override
@@ -82,26 +82,26 @@ public final class w2 extends View {
         w2 w2Var = this;
         Canvas canvas2 = canvas;
         float f7 = 1.0f;
-        float lerp = AndroidUtilities.lerp(1.0f, 1.8f, w2Var.f1645n);
+        float lerp = AndroidUtilities.lerp(1.0f, 1.8f, w2Var.f1642n);
         int dp = (int) (AndroidUtilities.dp(90.0f) * lerp);
         boolean z10 = false;
         int i11 = 0;
         while (true) {
             ArrayList arrayList = w2Var.e;
             int size = arrayList.size();
-            rectF = w2Var.f1642b;
+            rectF = w2Var.f1639b;
             if (i11 >= size) {
                 break;
             }
-            hj0 hj0Var = (hj0) arrayList.get(i11);
-            if (hj0Var.f24678a0 >= hj0Var.e[0]) {
+            kj0 kj0Var = (kj0) arrayList.get(i11);
+            if (kj0Var.f25711a0 >= kj0Var.e[0]) {
                 arrayList.remove(i11);
                 i11--;
             } else {
                 float f10 = dp / 2.0f;
-                hj0Var.setBounds((int) (((AndroidUtilities.dp(15.0f) * lerp) + rectF.left) - f10), (int) (rectF.centerY() - f10), (int) org.telegram.ui.Cells.c1.b(AndroidUtilities.dp(15.0f), lerp, rectF.left, f10), (int) (rectF.centerY() + f10));
-                hj0Var.setAlpha((int) (w2Var.f1645n * 255.0f));
-                hj0Var.draw(canvas2);
+                kj0Var.setBounds((int) (((AndroidUtilities.dp(15.0f) * lerp) + rectF.left) - f10), (int) (rectF.centerY() - f10), (int) org.telegram.ui.Cells.c1.b(AndroidUtilities.dp(15.0f), lerp, rectF.left, f10), (int) (rectF.centerY() + f10));
+                kj0Var.setAlpha((int) (w2Var.f1642n * 255.0f));
+                kj0Var.draw(canvas2);
             }
             i11++;
         }
@@ -112,20 +112,20 @@ public final class w2 extends View {
             ArrayList arrayList2 = w2Var.h;
             if (i12 < arrayList2.size()) {
                 v2 v2Var = (v2) arrayList2.get(i12);
-                float f11 = v2Var.f1604c;
-                float f12 = v2Var.f1603b;
-                ImageReceiver imageReceiver = v2Var.f1605f;
-                float d = v2Var.f1607i.d(f7, z10);
-                float e = v2Var.f1608j.e(v2Var.h);
-                float dp2 = AndroidUtilities.dp(23.0f) + v2Var.f1606g.f28493c;
+                float f11 = v2Var.f1601c;
+                float f12 = v2Var.f1600b;
+                ImageReceiver imageReceiver = v2Var.f1602f;
+                float d = v2Var.f1604i.d(f7, z10);
+                float e = v2Var.f1605j.e(v2Var.h);
+                float dp2 = AndroidUtilities.dp(23.0f) + v2Var.f1603g.f29862c;
                 float dp3 = AndroidUtilities.dp(18.0f);
                 float lerp2 = AndroidUtilities.lerp(0.0f, AndroidUtilities.lerp(f7, 0.0f, e), Utilities.clamp01(Math.min(AndroidUtilities.ilerp(d, f7, 0.85f), AndroidUtilities.ilerp(d, 0.0f, 0.12f))));
                 Paint paint = v2Var.e;
                 int i13 = (int) (lerp2 * 255.0f);
                 paint.setAlpha(i13);
-                hj0 hj0Var2 = v2Var.d;
-                if (hj0Var2 != null) {
-                    hj0Var2.setAlpha(i13);
+                kj0 kj0Var2 = v2Var.d;
+                if (kj0Var2 != null) {
+                    kj0Var2.setAlpha(i13);
                 }
                 imageReceiver.setAlpha(lerp2);
                 canvas2.save();
@@ -146,10 +146,10 @@ public final class w2 extends View {
                 canvas2.drawRoundRect(0.0f, 0.0f, dp2, dp3, f15, f15, paint);
                 imageReceiver.draw(canvas2);
                 Canvas canvas3 = canvas2;
-                v2Var.f1606g.c(AndroidUtilities.dp(18.0f), f15, lerp2, -1, canvas3);
+                v2Var.f1603g.c(AndroidUtilities.dp(18.0f), f15, lerp2, -1, canvas3);
                 canvas2 = canvas3;
                 canvas2.restore();
-                if (hj0Var2 != null) {
+                if (kj0Var2 != null) {
                     canvas2.save();
                     canvas2.translate(AndroidUtilities.dp(4.0f) * f13, 0.0f);
                     canvas2.rotate(f14);
@@ -158,14 +158,14 @@ public final class w2 extends View {
                     int dp4 = AndroidUtilities.dp(90.0f);
                     int i15 = (-dp4) / 2;
                     int i16 = dp4 / 2;
-                    hj0Var2.setBounds(i15, AndroidUtilities.dp(8.0f) + i15, i16, AndroidUtilities.dp(8.0f) + i16);
-                    hj0Var2.draw(canvas2);
+                    kj0Var2.setBounds(i15, AndroidUtilities.dp(8.0f) + i15, i16, AndroidUtilities.dp(8.0f) + i16);
+                    kj0Var2.draw(canvas2);
                     canvas2.restore();
                 }
                 if (d < 1.0f && e < 1.0f) {
                     i10 = i14;
                 } else {
-                    ((v2) arrayList2.get(i14)).f1605f.onDetachedFromWindow();
+                    ((v2) arrayList2.get(i14)).f1602f.onDetachedFromWindow();
                     arrayList2.remove(i14);
                     i10 = i14 - 1;
                 }
@@ -182,7 +182,7 @@ public final class w2 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f1643c && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f1640c && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -1,92 +1,201 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.graphics.Point;
+import android.util.Property;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.animation.DecelerateInterpolator;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class yd0 extends FrameLayout {
-    public final ImageView f30505a;
-    public final TextView f30506b;
-    public final TextView f30507c;
+import org.telegram.messenger.SharedConfig;
+public final class yd0 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final int f30637a;
+    public final int f30638b;
+    public final Runnable f30639c;
+    public final de0 d;
 
-    public yd0(Context context) {
-        super(context);
-        ImageView imageView = new ImageView(context);
-        this.f30505a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.fingerprint);
-        addView(imageView, w7.y5.e(-1, -1, 119));
-        TextView textView = new TextView(context);
-        this.f30506b = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 26.0f);
-        textView.setGravity(17);
-        addView(textView, w7.y5.d(-1, -2.0f, 17, 0.0f, -5.33f, 0.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f30507c = textView2;
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setTextSize(1, 10.0f);
-        textView2.setTextColor(Integer.MAX_VALUE);
-        textView2.setGravity(17);
-        addView(textView2, w7.y5.d(-1, -2.0f, 17, 0.0f, 14.0f, 0.0f, 0.0f));
+    public yd0(de0 de0Var, int i10, int i11, Runnable runnable) {
+        this.d = de0Var;
+        this.f30637a = i10;
+        this.f30638b = i11;
+        this.f30639c = runnable;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    public void setImage(int i10) {
-        ImageView imageView = this.f30505a;
-        imageView.setVisibility(0);
-        this.f30506b.setVisibility(8);
-        this.f30507c.setVisibility(8);
-        imageView.setImageResource(i10);
-    }
-
-    public void setNum(int i10) {
-        this.f30505a.setVisibility(8);
-        TextView textView = this.f30506b;
-        textView.setVisibility(0);
-        TextView textView2 = this.f30507c;
-        textView2.setVisibility(0);
-        String str = "";
-        textView.setText("" + i10);
-        if (i10 != 0) {
-            switch (i10) {
-                case 2:
-                    str = "ABC";
-                    break;
-                case 3:
-                    str = "DEF";
-                    break;
-                case 4:
-                    str = "GHI";
-                    break;
-                case 5:
-                    str = "JKL";
-                    break;
-                case 6:
-                    str = "MNO";
-                    break;
-                case 7:
-                    str = "PQRS";
-                    break;
-                case 8:
-                    str = "TUV";
-                    break;
-                case 9:
-                    str = "WXYZ";
-                    break;
+    public final void onGlobalLayout() {
+        int i10;
+        float f7;
+        int dp;
+        float f10;
+        int[] iArr;
+        ai.x5 x5Var;
+        int i11;
+        int i12;
+        AnimatorSet animatorSet;
+        float f11;
+        float f12;
+        long j3;
+        de0 de0Var = this.d;
+        int[] iArr2 = de0Var.W;
+        de0Var.setAlpha(1.0f);
+        de0Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        nj0 nj0Var = de0Var.I;
+        nj0Var.getAnimatedDrawable().N(0, false, false);
+        nj0Var.getAnimatedDrawable().P(37);
+        nj0Var.d();
+        de0Var.m(true);
+        AndroidUtilities.runOnUIThread(new jc0(this, 5), 350L);
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        ArrayList arrayList = new ArrayList();
+        Point point = AndroidUtilities.displaySize;
+        int i13 = point.x;
+        int i14 = point.y + AndroidUtilities.statusBarHeight;
+        int i15 = this.f30637a;
+        int i16 = i13 - i15;
+        int i17 = i16 * i16;
+        int i18 = this.f30638b;
+        int i19 = i14 - i18;
+        int i20 = i19 * i19;
+        double sqrt = Math.sqrt(i20 + i17);
+        double sqrt2 = Math.sqrt(i20 + i10);
+        int i21 = i18 * i18;
+        int i22 = i21 + (i15 * i15);
+        char c10 = 1;
+        final double max = Math.max(Math.max(Math.max(sqrt, sqrt2), Math.sqrt(i22)), Math.sqrt(i21 + i17));
+        ArrayList arrayList2 = de0Var.O;
+        arrayList2.clear();
+        ai.x5 x5Var2 = de0Var.e;
+        int childCount = x5Var2.getChildCount();
+        int i23 = 0;
+        while (i23 < childCount) {
+            View childAt = x5Var2.getChildAt(i23);
+            childAt.setScaleX(0.7f);
+            childAt.setScaleY(0.7f);
+            childAt.setAlpha(0.0f);
+            ?? obj = new Object();
+            childAt.getLocationInWindow(iArr2);
+            int measuredWidth = i15 - ((childAt.getMeasuredWidth() / 2) + iArr2[0]);
+            int measuredHeight = i18 - ((childAt.getMeasuredHeight() / 2) + iArr2[c10]);
+            int i24 = (measuredHeight * measuredHeight) + (measuredWidth * measuredWidth);
+            int i25 = i18;
+            obj.f22641b = ((float) Math.sqrt(i24)) - AndroidUtilities.dp(40.0f);
+            if (i23 != -1) {
+                animatorSet = new AnimatorSet();
+                iArr = iArr2;
+                x5Var = x5Var2;
+                animatorSet.playTogether(ObjectAnimator.ofFloat(childAt, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(childAt, View.SCALE_Y, 1.0f));
+                i11 = childCount;
+                i12 = i13;
+                animatorSet.setDuration(140L);
+                animatorSet.setInterpolator(new DecelerateInterpolator());
+            } else {
+                iArr = iArr2;
+                x5Var = x5Var2;
+                i11 = childCount;
+                i12 = i13;
+                animatorSet = null;
             }
-        } else {
-            str = "+";
+            AnimatorSet animatorSet3 = new AnimatorSet();
+            obj.f22640a = animatorSet3;
+            Property property = View.SCALE_X;
+            float f13 = 0.9f;
+            if (i23 == -1) {
+                f11 = 0.9f;
+            } else {
+                f11 = 0.6f;
+            }
+            float f14 = 1.04f;
+            if (i23 == -1) {
+                f12 = 1.0f;
+            } else {
+                f12 = 1.04f;
+            }
+            int i26 = i12;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, property, f11, f12);
+            Property property2 = View.SCALE_Y;
+            if (i23 != -1) {
+                f13 = 0.6f;
+            }
+            if (i23 == -1) {
+                f14 = 1.0f;
+            }
+            animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(childAt, property2, f13, f14), ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f));
+            obj.f22640a.addListener(new gd0(animatorSet, 2));
+            AnimatorSet animatorSet4 = obj.f22640a;
+            if (i23 == -1) {
+                j3 = 232;
+            } else {
+                j3 = 200;
+            }
+            animatorSet4.setDuration(j3);
+            obj.f22640a.setInterpolator(new DecelerateInterpolator());
+            arrayList2.add(obj);
+            i23++;
+            childCount = i11;
+            i18 = i25;
+            iArr2 = iArr;
+            x5Var2 = x5Var;
+            i13 = i26;
+            c10 = 1;
         }
-        textView2.setText(str);
+        int i27 = i13;
+        int i28 = i18;
+        arrayList.add(ObjectAnimator.ofFloat(de0Var.v, View.ALPHA, 0.0f, 1.0f));
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+        arrayList.add(ofFloat2);
+        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                de0 de0Var2 = yd0.this.d;
+                double animatedFraction = max * valueAnimator.getAnimatedFraction();
+                int i29 = 0;
+                while (true) {
+                    ArrayList arrayList3 = de0Var2.O;
+                    if (i29 < arrayList3.size()) {
+                        ae0 ae0Var = (ae0) arrayList3.get(i29);
+                        if (ae0Var.f22641b <= animatedFraction) {
+                            ae0Var.f22640a.start();
+                            arrayList3.remove(i29);
+                            i29--;
+                        }
+                        i29++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        });
+        qr qrVar = qr.h;
+        animatorSet2.setInterpolator(qrVar);
+        animatorSet2.setDuration(500L);
+        ValueAnimator ofFloat3 = ValueAnimator.ofFloat(de0Var.P, 1.0f);
+        ofFloat3.addUpdateListener(new s70(this, 2));
+        ofFloat3.addListener(new xd0(this, 0));
+        ofFloat3.setDuration(420L);
+        ofFloat3.setInterpolator(qrVar);
+        arrayList.add(ofFloat3);
+        animatorSet2.playTogether(arrayList);
+        animatorSet2.addListener(new xd0(this, 1));
+        animatorSet2.start();
+        AnimatorSet animatorSet5 = new AnimatorSet();
+        animatorSet5.setDuration(332L);
+        if (!AndroidUtilities.isTablet() && de0Var.getContext().getResources().getConfiguration().orientation == 2) {
+            if (SharedConfig.passcodeType == 0) {
+                f10 = i27 / 2.0f;
+            } else {
+                f10 = i27;
+            }
+            f7 = f10 / 2.0f;
+            dp = AndroidUtilities.dp(30.0f);
+        } else {
+            f7 = i27 / 2.0f;
+            dp = AndroidUtilities.dp(29.0f);
+        }
+        animatorSet5.playTogether(ObjectAnimator.ofFloat(nj0Var, View.TRANSLATION_X, i15 - AndroidUtilities.dp(29.0f), f7 - dp), ObjectAnimator.ofFloat(nj0Var, View.TRANSLATION_Y, i28 - AndroidUtilities.dp(29.0f), de0Var.H), ObjectAnimator.ofFloat(nj0Var, View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(nj0Var, View.SCALE_Y, 0.5f, 1.0f));
+        animatorSet5.setInterpolator(qr.f27654g);
+        animatorSet5.start();
     }
 }

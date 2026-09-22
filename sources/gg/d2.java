@@ -27,9 +27,9 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.cd0;
-import org.telegram.ui.Components.on0;
+import org.telegram.ui.Components.fd0;
 import org.telegram.ui.Components.pc;
+import org.telegram.ui.Components.qn0;
 import org.telegram.ui.Components.tb;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
@@ -61,14 +61,14 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
         int i10;
         m4.k0 k0Var = (m4.k0) this.f9716c;
         n4.l lVar = (n4.l) this.d;
-        if (TextUtils.isEmpty(lVar.f15184a)) {
+        if (TextUtils.isEmpty(lVar.f15197a)) {
             e2.a.n("MediaSessionLegacyStub", "onAddQueueItem(): Media ID shouldn't be empty");
             return;
         }
-        int i11 = m4.k.f14803a;
-        String str = lVar.f15184a;
+        int i11 = m4.k.f14818a;
+        String str = lVar.f15197a;
         b2.y yVar = new b2.y();
-        e9.g0 g0Var = e9.i0.f8084b;
+        e9.g0 g0Var = e9.i0.f8083b;
         e9.a1 a1Var = e9.a1.e;
         List list = Collections.EMPTY_LIST;
         b2.d0 d0Var = new b2.d0();
@@ -78,15 +78,15 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
         }
         String str2 = str;
         aa.a aVar = new aa.a(4);
-        aVar.f360c = lVar.f15188n;
+        aVar.f357c = lVar.f15201n;
         b2.g0 g0Var3 = new b2.g0(aVar);
-        CharSequence charSequence = lVar.f15185b;
+        CharSequence charSequence = lVar.f15198b;
         b2.m0 m0Var = new b2.m0();
-        m0Var.f3098f = lVar.f15186c;
-        m0Var.f3099g = lVar.d;
-        m0Var.f3104m = lVar.f15187f;
+        m0Var.f3097f = lVar.f15199c;
+        m0Var.f3098g = lVar.d;
+        m0Var.f3103m = lVar.f15200f;
         Bundle bundle = null;
-        m0Var.f3100i = m4.k.c(null);
+        m0Var.f3099i = m4.k.c(null);
         Bitmap bitmap = lVar.e;
         if (bitmap != null) {
             try {
@@ -103,8 +103,8 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             } else {
                 bArr2 = (byte[]) bArr.clone();
             }
-            m0Var.f3102k = bArr2;
-            m0Var.f3103l = 3;
+            m0Var.f3101k = bArr2;
+            m0Var.f3102l = 3;
         }
         Bundle bundle2 = lVar.h;
         if (bundle2 != null) {
@@ -126,14 +126,14 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
                 } else if (j3 == 6) {
                     i10 = 6;
                 }
-                m0Var.f3107p = Integer.valueOf(i10);
+                m0Var.f3106p = Integer.valueOf(i10);
                 bundle.remove("android.media.extra.BT_FOLDER_TYPE");
             }
             i10 = 0;
-            m0Var.f3107p = Integer.valueOf(i10);
+            m0Var.f3106p = Integer.valueOf(i10);
             bundle.remove("android.media.extra.BT_FOLDER_TYPE");
         }
-        m0Var.f3108q = Boolean.FALSE;
+        m0Var.f3107q = Boolean.FALSE;
         if (bundle != null && bundle.containsKey("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT")) {
             m0Var.G = Integer.valueOf((int) bundle.getLong("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT"));
             bundle.remove("androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
@@ -144,22 +144,22 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             m0Var.I = e9.i0.v(e9.i0.v(stringArrayList));
         }
         if (bundle != null && bundle.containsKey("androidx.media3.mediadescriptioncompat.title")) {
-            m0Var.f3095a = bundle.getCharSequence("androidx.media3.mediadescriptioncompat.title");
+            m0Var.f3094a = bundle.getCharSequence("androidx.media3.mediadescriptioncompat.title");
             m0Var.e = charSequence;
             bundle.remove("androidx.media3.mediadescriptioncompat.title");
         } else {
-            m0Var.f3095a = charSequence;
+            m0Var.f3094a = charSequence;
         }
         if (bundle != null && !bundle.isEmpty()) {
             m0Var.H = bundle;
         }
-        m0Var.f3109r = Boolean.TRUE;
-        i9.w l4 = k0Var.f14806g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var), g0Var3)));
+        m0Var.f3108r = Boolean.TRUE;
+        i9.w l4 = k0Var.f14821g.l(rVar, e9.i0.z(new b2.k0(str2, new b2.z(yVar), null, new b2.e0(d0Var), new b2.n0(m0Var), g0Var3)));
         l4.a(new i9.s(0, l4, new a5.a(k0Var, rVar, this.f9715b)), i9.q.f11053a);
     }
 
     @Override
-    public Object i() {
+    public Object g() {
         ((lf.h) ((da.b) this.f9716c).d).V((l5.i) this.d, this.f9715b + 1, false);
         return null;
     }
@@ -206,8 +206,8 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             case 5:
                 zn znVar = (zn) this.f9716c;
                 boolean[] zArr = (boolean[]) this.d;
-                znVar.getMessagesController().pinMessage(znVar.e, znVar.f40305f, this.f9715b, false, !zArr[1], zArr[0]);
-                pc B = xc.B(znVar, true, null, null, znVar.f40303ea);
+                znVar.getMessagesController().pinMessage(znVar.e, znVar.f40326f, this.f9715b, false, !zArr[1], zArr[0]);
+                pc B = xc.B(znVar, true, null, null, znVar.f40324ea);
                 B.j();
                 tb tbVar = B.e;
                 tbVar.postDelayed(new nh(0, tbVar), 550L);
@@ -227,25 +227,25 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
                 AndroidUtilities.shakeView(editTextBoldCursor);
                 return;
             case 8:
-                on0 on0Var = (on0) this.f9716c;
+                qn0 qn0Var = (qn0) this.f9716c;
                 TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
-                String obj2 = on0Var.getText().toString();
+                String obj2 = qn0Var.getText().toString();
                 if (obj2.length() > 12) {
-                    AndroidUtilities.shakeView(on0Var);
+                    AndroidUtilities.shakeView(qn0Var);
                     return;
                 }
-                MessagesController.getInstance(this.f9715b).renameSavedReactionTag(zg.o0.d(reaction), obj2);
+                MessagesController.getInstance(this.f9715b).renameSavedReactionTag(zg.p0.d(reaction), obj2);
                 b2Var.dismiss();
                 return;
             case 10:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                l50 l50Var = ((h50) this.f9716c).f34123n;
-                ChatObject.Call call = l50Var.f35306b.f34360a1;
+                l50 l50Var = ((h50) this.f9716c).f34139n;
+                ChatObject.Call call = l50Var.f35324b.f34380a1;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f9715b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView k12 = l50Var.f35306b.k1();
+                UndoView k12 = l50Var.f35324b.k1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -260,7 +260,7 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             case 11:
                 LaunchActivity launchActivity = (LaunchActivity) this.f9716c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f31104d0;
+                ArrayList arrayList = launchActivity.f31125d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((n2) hg.k0.g(1, arrayList))) {
                     kd0 kd0Var = new kd0(0);
                     kd0Var.F0 = new i2.s(hashMap, this.f9715b, 11);
@@ -272,7 +272,7 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
                 ((kd0) this.f9716c).w0(900, (TLRPC.User) this.d, this.f9715b);
                 return;
             case 13:
-                PasscodeActivity.U((PasscodeActivity) this.f9716c, (cd0) this.d, this.f9715b);
+                PasscodeActivity.U((PasscodeActivity) this.f9716c, (fd0) this.d, this.f9715b);
                 return;
             case 15:
                 SessionsActivity.X((SessionsActivity) this.f9716c, this.f9715b, (boolean[]) this.d);

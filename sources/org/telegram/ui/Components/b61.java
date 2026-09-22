@@ -1,16 +1,54 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Typeface;
 import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
-public final class b61 extends a61 {
-    public b61(String str) {
-        super(str != null ? str.replace((char) 8238, ' ') : str, (c11) null);
+import org.telegram.messenger.SharedConfig;
+public final class b61 extends MetricAffectingSpan {
+    public final CharSequence f22902a;
+    public final int f22903b;
+    public final int f22904c;
+    public final byte d;
+    public final e11 e;
+
+    public b61(CharSequence charSequence, int i10, int i11, byte b10, e11 e11Var) {
+        this.f22902a = charSequence;
+        this.f22903b = i10;
+        this.f22904c = i11;
+        this.d = b10;
+        this.e = e11Var;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
+        byte b10 = this.d;
+        if (b10 == 2) {
+            textPaint.setColor(-1);
+        } else if (b10 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19150fc, false));
+        } else {
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.ec, false));
+        }
+        e11 e11Var = this.e;
+        if (e11Var != null) {
+            e11Var.a(textPaint);
+            return;
+        }
+        textPaint.setTypeface(Typeface.MONOSPACE);
         textPaint.setUnderlineText(false);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        e11 e11Var = this.e;
+        if (e11Var != null) {
+            e11Var.a(textPaint);
+        } else {
+            textPaint.setTypeface(Typeface.MONOSPACE);
+        }
     }
 }

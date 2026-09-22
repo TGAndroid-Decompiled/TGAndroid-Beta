@@ -5,15 +5,15 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import org.telegram.messenger.NotificationCenter;
 public final class l2 extends AnimatorListenerAdapter {
-    public final int f1175a;
+    public final int f1172a;
 
     @Override
     public void onAnimationEnd(Animator animator, boolean z10) {
         View view;
-        switch (this.f1175a) {
+        switch (this.f1172a) {
             case 0:
                 pf.e eVar = m2.Z.L;
-                if (eVar == null || (view = eVar.f41095j) == null) {
+                if (eVar == null || (view = eVar.f41115j) == null) {
                     return;
                 }
                 eVar.e(view);
@@ -26,7 +26,7 @@ public final class l2 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationEnd(Animator animator) {
-        switch (this.f1175a) {
+        switch (this.f1172a) {
             case 1:
                 return;
             case 2:

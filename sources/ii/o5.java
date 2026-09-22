@@ -56,7 +56,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.z5, q9 {
         i1Var.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), 0);
         i1Var.setHint(LocaleController.getString(R.string.ArticleTableTitleHint));
         i1Var.setCenterEmptyHint(true);
-        i1Var.setListener(new a6.m(this, 28));
+        i1Var.setListener(new pb.c(this, 29));
         i1Var.setDelegate(new ei.d5(this, 21));
         addView(i1Var);
         a4 a4Var = new a4(this, context, 1);

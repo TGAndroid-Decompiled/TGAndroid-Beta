@@ -1,51 +1,20 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class sx0 implements Runnable {
-    public final int f28220a;
-    public final TLObject f28221b;
-    public final Utilities.Callback f28222c;
+import org.telegram.messenger.MessagesStorage;
+public final class sx0 implements org.telegram.ui.ActionBar.r0, MessagesStorage.StringCallback {
+    public final iy0 f28333a;
 
-    public sx0(TLObject tLObject, Utilities.Callback callback, int i10) {
-        this.f28220a = i10;
-        this.f28221b = tLObject;
-        this.f28222c = callback;
+    public sx0(iy0 iy0Var) {
+        this.f28333a = iy0Var;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f28220a) {
-            case 0:
-                TLObject tLObject = this.f28221b;
-                if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
-                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
-                    MediaDataController.getInstance(UserConfig.selectedAccount).putStickerSet(tL_messages_stickerSet);
-                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f18355id)) {
-                        MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tL_messages_stickerSet, 2, null, false, false);
-                    }
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                this.f28222c.run(Boolean.valueOf(z10));
-                return;
-            default:
-                TLObject tLObject2 = this.f28221b;
-                boolean z11 = tLObject2 instanceof TL_account.paidMessagesRevenue;
-                Utilities.Callback callback = this.f28222c;
-                if (z11) {
-                    callback.run(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject2).stars_amount));
-                    return;
-                } else {
-                    callback.run(0L);
-                    return;
-                }
-        }
+    public void m(int i10) {
+        iy0.B(this.f28333a, i10);
+    }
+
+    @Override
+    public void run(String str) {
+        new w40(r1.getContext(), r1.f25213o0, null, this.f28333a.resourcesProvider).show();
     }
 }

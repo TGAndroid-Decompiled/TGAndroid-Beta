@@ -13,13 +13,13 @@ import org.telegram.messenger.BillingController;
 import org.telegram.ui.ke;
 import yh.w7;
 public final class d {
-    public final long[] f13605a;
-    public final CharSequence[] f13606b;
-    public final CharSequence[] f13607c;
+    public final long[] f13603a;
+    public final CharSequence[] f13604b;
+    public final CharSequence[] f13605c;
     public final StaticLayout[] d;
     public final StaticLayout[] e;
-    public int f13608f;
-    public int f13609g;
+    public int f13606f;
+    public int f13607g;
     public DecimalFormat h;
 
     public d(long r25, long r27, boolean r29, float r30, int r31, android.text.TextPaint r32, android.text.TextPaint r33) {
@@ -39,9 +39,9 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i11];
         if (staticLayout == null) {
             if (i10 == 0) {
-                charSequenceArr = this.f13606b;
+                charSequenceArr = this.f13604b;
             } else {
-                charSequenceArr = this.f13607c;
+                charSequenceArr = this.f13605c;
             }
             CharSequence charSequence = charSequenceArr[i11];
             if (i10 == 0) {

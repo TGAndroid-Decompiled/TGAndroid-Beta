@@ -23,12 +23,12 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.d5;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.k90;
+import org.telegram.ui.Components.n90;
 import org.telegram.ui.Components.nc;
 import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.y51;
 public final class t0 implements gi.e {
     public final Context f9179a;
     public final f6 f9180b;
@@ -76,8 +76,8 @@ public final class t0 implements gi.e {
         }
     }
 
-    public final void b(s61 s61Var) {
-        if (!this.f9188m && !this.f9189n && s61Var.X2.N0() + 10 > s61Var.Y2.f25681x.size()) {
+    public final void b(u61 u61Var) {
+        if (!this.f9188m && !this.f9189n && u61Var.X2.N0() + 10 > u61Var.Y2.f26345x.size()) {
             d();
         }
     }
@@ -102,16 +102,16 @@ public final class t0 implements gi.e {
                             z10 = false;
                         }
                         int i11 = gi.g.f10030a;
-                        w51 J = w51.J(gi.g.class);
+                        y51 J = y51.J(gi.g.class);
                         J.G = new gi.f(peerDialogId, user, z11);
                         J.H = this;
-                        J.f29946j = !z10;
+                        J.f30516j = !z10;
                         arrayList.add(J);
                     }
                 }
             }
             if (!this.f9189n) {
-                arrayList.add(w51.n(29));
+                arrayList.add(y51.n(29));
             }
         }
     }
@@ -158,7 +158,7 @@ public final class t0 implements gi.e {
                 b2 P = d5.P(this.f9179a, this.f9180b, string, replaceTags, LocaleController.getString(i11), new bi.f(6, this, z10));
                 P.show();
                 if (!z10 && (textView = (TextView) P.d(-1)) != null) {
-                    textView.setTextColor(j6.w0(null, j6.f19333q7, false));
+                    textView.setTextColor(j6.w0(null, j6.f19348q7, false));
                     return;
                 }
                 return;
@@ -184,7 +184,7 @@ public final class t0 implements gi.e {
         a();
         s0 s0Var = this.h;
         if (s0Var != null) {
-            s0Var.f();
+            s0Var.l();
         }
         if (z10) {
             i10 = R.string.CommunityRequestApprovedToast;
@@ -202,7 +202,7 @@ public final class t0 implements gi.e {
         f6 f6Var = this.f9180b;
         oc ocVar = new oc(context, f6Var, false);
         TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(j3);
-        j9 j9Var = ocVar.f26885a;
+        j9 j9Var = ocVar.f27051a;
         if (userOrChat != null) {
             j9Var.setCount(1);
             j9Var.b(0, userOrChat, UserConfig.selectedAccount);
@@ -214,17 +214,17 @@ public final class t0 implements gi.e {
         j9Var.setScaleX(1.333f);
         j9Var.setScaleY(1.333f);
         j9Var.a(false);
-        k90 k90Var = ocVar.f26886b;
-        k90Var.setSingleLine(false);
-        k90Var.setMaxLines(2);
-        k90Var.setTextSize(1, 14.0f);
-        k90Var.setText(replaceTags);
-        if (k90Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+        n90 n90Var = ocVar.f27052b;
+        n90Var.setSingleLine(false);
+        n90Var.setMaxLines(2);
+        n90Var.setTextSize(1, 14.0f);
+        n90Var.setText(replaceTags);
+        if (n90Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             int dp = AndroidUtilities.dp(74 - ((3 - i11) * 12));
             if (LocaleController.isRTL) {
-                ((ViewGroup.MarginLayoutParams) k90Var.getLayoutParams()).rightMargin = dp;
+                ((ViewGroup.MarginLayoutParams) n90Var.getLayoutParams()).rightMargin = dp;
             } else {
-                ((ViewGroup.MarginLayoutParams) k90Var.getLayoutParams()).leftMargin = dp;
+                ((ViewGroup.MarginLayoutParams) n90Var.getLayoutParams()).leftMargin = dp;
             }
         }
         if (LocaleController.isRTL) {
@@ -232,8 +232,8 @@ public final class t0 implements gi.e {
         }
         nc ncVar = new nc(context, f6Var, true, true);
         ncVar.e(LocaleController.getString(R.string.UndoNoCaps));
-        ncVar.f26616a = new ai.j(this, j3, 9);
-        ncVar.f26617b = this.f9184i;
+        ncVar.f26720a = new ai.j(this, j3, 9);
+        ncVar.f26721b = this.f9184i;
         ocVar.setButton(ncVar);
         this.f9181c.b(ocVar, 5000).j();
     }

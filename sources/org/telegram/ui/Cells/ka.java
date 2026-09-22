@@ -8,28 +8,28 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class ka extends FrameLayout {
-    public TextView f20580a;
-    public ImageView f20581b;
-    public boolean f20582c;
+    public TextView f20595a;
+    public ImageView f20596b;
+    public boolean f20597c;
 
     public final void a(String str, boolean z10, boolean z11) {
         int i10;
-        this.f20580a.setText(str);
-        ImageView imageView = this.f20581b;
+        this.f20595a.setText(str);
+        ImageView imageView = this.f20596b;
         if (z10) {
             i10 = 0;
         } else {
             i10 = 4;
         }
         imageView.setVisibility(i10);
-        this.f20582c = z11;
+        this.f20597c = z11;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float dp;
         int i10;
-        if (this.f20582c) {
+        if (this.f20597c) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -42,18 +42,18 @@ public final class ka extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f19216k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f19231k0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f20582c ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f20597c ? 1 : 0), 1073741824));
     }
 
     public void setTypeChecked(boolean z10) {
         int i10;
-        ImageView imageView = this.f20581b;
+        ImageView imageView = this.f20596b;
         if (z10) {
             i10 = 0;
         } else {

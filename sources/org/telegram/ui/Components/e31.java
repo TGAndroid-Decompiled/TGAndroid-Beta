@@ -1,30 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class e31 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f23732a;
-    public final g31 f23733b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class e31 extends AnimatorListenerAdapter {
+    public final boolean f23856a;
+    public final n31 f23857b;
 
-    public e31(g31 g31Var, int i10) {
-        this.f23732a = i10;
-        this.f23733b = g31Var;
+    public e31(n31 n31Var, boolean z10) {
+        this.f23857b = n31Var;
+        this.f23856a = z10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f23732a) {
-            case 0:
-                ai.n4 n4Var = this.f23733b.f24243f;
-                n4Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                n4Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                n4Var.invalidate();
-                return;
-            default:
-                g31 g31Var = this.f23733b;
-                g31Var.getClass();
-                g31Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g31Var.h();
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        int i10;
+        n31 n31Var = this.f23857b;
+        long j3 = n31Var.f26612c;
+        if (n31Var.U == animator) {
+            boolean z10 = this.f23856a;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            n31Var.R = f7;
+            n31Var.n();
+            n31Var.S = false;
+            ImageView imageView = n31Var.E;
+            if (n31Var.P) {
+                i10 = R.drawable.menu_sidebar_top;
+            } else {
+                i10 = R.drawable.menu_sidebar_bottom;
+            }
+            imageView.setImageResource(i10);
+            n31Var.U = null;
+            MessagesController.getInstance(n31Var.f26610b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), n31Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), n31Var.P).apply();
+            Boolean bool = n31Var.T;
+            if (bool != null && z10 != bool.booleanValue()) {
+                boolean booleanValue = n31Var.T.booleanValue();
+                n31Var.T = null;
+                n31Var.d(booleanValue);
+            }
+            AndroidUtilities.runOnUIThread(new yq0(this, 20));
         }
     }
 }

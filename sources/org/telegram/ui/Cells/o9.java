@@ -12,14 +12,14 @@ import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.j41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.f41;
 public final class o9 implements ActionMode.Callback {
-    public String f20780a = null;
-    public final ea f20781b;
+    public String f20795a = null;
+    public final ea f20796b;
 
     public o9(ea eaVar) {
-        this.f20781b = eaVar;
+        this.f20796b = eaVar;
     }
 
     public final void a(Menu menu) {
@@ -29,7 +29,7 @@ public final class o9 implements ActionMode.Callback {
         if (findItem == null) {
             return;
         }
-        if (this.f20781b.f20223l0 != null && ((this.f20780a != null && !f41.Y().contains(this.f20780a)) || !LanguageDetector.hasSupport())) {
+        if (this.f20796b.f20238l0 != null && ((this.f20795a != null && !f41.Y().contains(this.f20795a)) || !LanguageDetector.hasSupport())) {
             z10 = true;
         } else {
             z10 = false;
@@ -41,8 +41,8 @@ public final class o9 implements ActionMode.Callback {
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
         MessageObject messageObject;
         CharSequence t10;
-        ea eaVar = this.f20781b;
-        g gVar = eaVar.f20234r0;
+        ea eaVar = this.f20796b;
+        g gVar = eaVar.f20249r0;
         if (eaVar.y()) {
             int itemId = menuItem.getItemId();
             if (itemId == 16908321) {
@@ -50,7 +50,7 @@ public final class o9 implements ActionMode.Callback {
                 return true;
             } else if (itemId == 16908319) {
                 if (!eaVar.K() && (t10 = eaVar.t(eaVar.W, false)) != null) {
-                    eaVar.f20239u = 0;
+                    eaVar.f20254u = 0;
                     eaVar.v = t10.length();
                     eaVar.v();
                     eaVar.x();
@@ -59,14 +59,14 @@ public final class o9 implements ActionMode.Callback {
                     return true;
                 }
             } else if (itemId == 3) {
-                if (eaVar.f20223l0 != null) {
+                if (eaVar.f20238l0 != null) {
                     String language = LocaleController.getInstance().getCurrentLocale().getLanguage();
-                    org.telegram.ui.t tVar = eaVar.f20223l0;
+                    org.telegram.ui.t tVar = eaVar.f20238l0;
                     CharSequence s10 = eaVar.s();
-                    String str = this.f20780a;
+                    String str = this.f20795a;
                     g gVar2 = new g(this, 8);
-                    org.telegram.ui.h4 h4Var = tVar.f37575a;
-                    j41.K(h4Var.L, h4Var.M, str, language, s10, null, gVar2);
+                    org.telegram.ui.h4 h4Var = tVar.f37599a;
+                    l41.K(h4Var.L, h4Var.M, str, language, s10, null, gVar2);
                 }
                 eaVar.v();
                 return true;
@@ -79,7 +79,7 @@ public final class o9 implements ActionMode.Callback {
                         messageObject = null;
                     }
                     if (messageObject != null && eaVar.s() != null) {
-                        eaVar.J(eaVar.f20239u, eaVar.v, messageObject);
+                        eaVar.J(eaVar.f20254u, eaVar.v, messageObject);
                         eaVar.f(true);
                     }
                 }
@@ -115,7 +115,7 @@ public final class o9 implements ActionMode.Callback {
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
         if (Build.VERSION.SDK_INT < 23) {
-            this.f20781b.f(false);
+            this.f20796b.f(false);
         }
     }
 
@@ -127,23 +127,23 @@ public final class o9 implements ActionMode.Callback {
         z9 z9Var;
         MenuItem findItem = menu.findItem(R.id.menu_quote);
         if (findItem != null) {
-            findItem.setVisible(this.f20781b.e());
+            findItem.setVisible(this.f20796b.e());
         }
         MenuItem findItem2 = menu.findItem(16908321);
         if (findItem2 != null) {
-            findItem2.setVisible(this.f20781b.b());
+            findItem2.setVisible(this.f20796b.b());
         }
         MenuItem findItem3 = menu.findItem(16908319);
         boolean z10 = false;
-        if (findItem3 != null && (z9Var = (eaVar = this.f20781b).W) != null) {
+        if (findItem3 != null && (z9Var = (eaVar = this.f20796b).W) != null) {
             CharSequence t10 = eaVar.t(z9Var, false);
-            if (!this.f20781b.b()) {
+            if (!this.f20796b.b()) {
                 findItem3.setVisible(false);
-            } else if (this.f20781b.k()) {
+            } else if (this.f20796b.k()) {
                 findItem3.setVisible(true);
             } else {
-                ea eaVar2 = this.f20781b;
-                if (!eaVar2.Z && (eaVar2.f20239u > 0 || eaVar2.v < t10.length() - 1)) {
+                ea eaVar2 = this.f20796b;
+                if (!eaVar2.Z && (eaVar2.f20254u > 0 || eaVar2.v < t10.length() - 1)) {
                     findItem3.setVisible(true);
                 } else {
                     findItem3.setVisible(false);
@@ -152,11 +152,11 @@ public final class o9 implements ActionMode.Callback {
         }
         MenuItem findItem4 = menu.findItem(16908320);
         if (findItem4 != null) {
-            findItem4.setVisible(this.f20781b instanceof ii.j3);
+            findItem4.setVisible(this.f20796b instanceof ii.j3);
         }
         MenuItem findItem5 = menu.findItem(16908322);
         if (findItem5 != null) {
-            ea eaVar3 = this.f20781b;
+            ea eaVar3 = this.f20796b;
             if (eaVar3 instanceof ii.j3) {
                 try {
                     da daVar = eaVar3.C;
@@ -175,10 +175,10 @@ public final class o9 implements ActionMode.Callback {
             }
             findItem5.setVisible(z10);
         }
-        if (this.f20781b.f20223l0 != null && LanguageDetector.hasSupport() && this.f20781b.s() != null) {
-            LanguageDetector.detectLanguage(this.f20781b.s().toString(), new n9(this, menu), new n9(this, menu));
+        if (this.f20796b.f20238l0 != null && LanguageDetector.hasSupport() && this.f20796b.s() != null) {
+            LanguageDetector.detectLanguage(this.f20796b.s().toString(), new n9(this, menu), new n9(this, menu));
         } else {
-            this.f20780a = null;
+            this.f20795a = null;
             a(menu);
         }
         return true;

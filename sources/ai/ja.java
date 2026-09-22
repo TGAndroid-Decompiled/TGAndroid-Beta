@@ -3,16 +3,16 @@ package ai;
 import android.content.Context;
 import android.view.View;
 public final class ja extends f6 {
-    public final ka f1062e4;
+    public final ka f1059e4;
 
     public ja(ka kaVar, Context context, jc jcVar, c6 c6Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, jcVar, c6Var, f6Var);
-        this.f1062e4 = kaVar;
+        this.f1059e4 = kaVar;
     }
 
     @Override
     public final boolean K0() {
-        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.f1062e4.f1153g.getCurrentItem()) {
+        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.f1059e4.f1150g.getCurrentItem()) {
             return true;
         }
         return false;
@@ -20,8 +20,8 @@ public final class ja extends f6 {
 
     @Override
     public final void invalidate() {
-        if (i0.f968c) {
-            i0.f967b.add(this);
+        if (i0.f965c) {
+            i0.f964b.add(this);
         } else {
             super.invalidate();
         }
@@ -29,8 +29,8 @@ public final class ja extends f6 {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (i0.f968c) {
-            i0.f967b.add(this);
+        if (i0.f965c) {
+            i0.f964b.add(this);
         } else {
             super.invalidate(i10, i11, i12, i13);
         }

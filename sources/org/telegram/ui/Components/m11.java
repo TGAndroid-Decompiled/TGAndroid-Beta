@@ -1,27 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class m11 extends FrameLayout {
-    public static final int e = 0;
-    public float f26296a;
-    public float f26297b;
-    public boolean f26298c;
-    public final ThemeEditorView d;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.view.View;
+import java.util.ArrayList;
+public final class m11 {
+    public final View f26278a;
+    public final ArrayList f26279b;
+    public final Runnable f26280c;
+    public Runnable d;
+    public final Bitmap e;
+    public final Matrix f26281f;
+    public float f26282g;
 
-    public m11(ThemeEditorView themeEditorView, Activity activity) {
-        super(activity);
-        this.d = themeEditorView;
+    public m11(View view, Runnable runnable) {
+        this.f26282g = 1.0f;
+        this.f26278a = view;
+        this.f26279b = null;
+        this.f26280c = null;
+        this.d = runnable;
+        this.e = null;
+        this.f26281f = null;
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
+    public m11(ArrayList arrayList, gg.t tVar) {
+        this.f26282g = 1.0f;
+        this.f26278a = null;
+        this.f26279b = arrayList;
+        this.f26280c = null;
+        this.d = tVar;
+        this.e = null;
+        this.f26281f = null;
     }
 
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m11.onTouchEvent(android.view.MotionEvent):boolean");
+    public m11(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.f26282g = 1.0f;
+        this.f26278a = null;
+        this.f26279b = null;
+        this.f26280c = runnable;
+        this.d = runnable2;
+        this.f26281f = matrix;
+        this.e = bitmap;
     }
 }

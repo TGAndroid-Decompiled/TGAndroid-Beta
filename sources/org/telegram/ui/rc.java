@@ -9,44 +9,44 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class rc extends View {
-    public final Paint f37107a;
-    public final Paint f37108b;
-    public final Paint f37109c;
+    public final Paint f37130a;
+    public final Paint f37131b;
+    public final Paint f37132c;
     public final Paint d;
     public final Path e;
-    public final Path f37110f;
+    public final Path f37133f;
     public boolean h;
-    public boolean f37111n;
-    public final org.telegram.ui.Components.yc f37112r;
-    public boolean f37113s;
+    public boolean f37134n;
+    public final org.telegram.ui.Components.yc f37135r;
+    public boolean f37136s;
     public final org.telegram.ui.Components.d6 v;
-    public final sc f37114w;
+    public final sc f37137w;
 
     public rc(sc scVar, Context context) {
         super(context);
-        this.f37114w = scVar;
+        this.f37137w = scVar;
         Paint paint = new Paint(1);
-        this.f37107a = paint;
-        this.f37108b = new Paint(1);
-        this.f37109c = new Paint(1);
+        this.f37130a = paint;
+        this.f37131b = new Paint(1);
+        this.f37132c = new Paint(1);
         this.d = new Paint(1);
         this.e = new Path();
-        this.f37110f = new Path();
-        this.f37112r = new org.telegram.ui.Components.yc(this);
+        this.f37133f = new Path();
+        this.f37135r = new org.telegram.ui.Components.yc(this);
         this.v = new org.telegram.ui.Components.d6(this, 0L, 320L, org.telegram.ui.Components.qr.h);
         paint.setStyle(Paint.Style.STROKE);
     }
 
     public final void a(MessagesController.PeerColor peerColor) {
         boolean q6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f37114w.f37368a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f37137w.f37390a;
         if (f6Var != null) {
             q6 = f6Var.a();
         } else {
             q6 = org.telegram.ui.ActionBar.j6.I.q();
         }
-        Paint paint = this.f37109c;
-        Paint paint2 = this.f37108b;
+        Paint paint = this.f37132c;
+        Paint paint2 = this.f37131b;
         if (q6 && peerColor.hasColor2() && !peerColor.hasColor3()) {
             paint2.setColor(peerColor.getColor(1, f6Var));
             paint.setColor(peerColor.getColor(0, f6Var));
@@ -56,22 +56,22 @@ public final class rc extends View {
         }
         this.d.setColor(peerColor.getColor(2, f6Var));
         this.h = peerColor.hasColor2();
-        this.f37111n = peerColor.hasColor3();
+        this.f37134n = peerColor.hasColor3();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        float a2 = this.f37112r.a(0.05f);
+        float a2 = this.f37135r.a(0.05f);
         canvas.scale(a2, a2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
         canvas.save();
         canvas.clipPath(this.e);
-        canvas.drawPaint(this.f37108b);
+        canvas.drawPaint(this.f37131b);
         if (this.h) {
-            canvas.drawPath(this.f37110f, this.f37109c);
+            canvas.drawPath(this.f37133f, this.f37132c);
         }
         canvas.restore();
-        if (this.f37111n) {
+        if (this.f37134n) {
             canvas.save();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((getMeasuredWidth() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() - AndroidUtilities.dp(12.4f)) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredWidth()) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredHeight()) / 2.0f);
@@ -79,10 +79,10 @@ public final class rc extends View {
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.d);
             canvas.restore();
         }
-        float e = this.v.e(this.f37113s);
+        float e = this.v.e(this.f37136s);
         if (e > 0.0f) {
             float dpf2 = AndroidUtilities.dpf2(2.0f);
-            Paint paint = this.f37107a;
+            Paint paint = this.f37130a;
             paint.setStrokeWidth(dpf2);
             canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.lerp((paint.getStrokeWidth() * 0.5f) + AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f) - (paint.getStrokeWidth() * 2.0f), e), paint);
         }
@@ -95,7 +95,7 @@ public final class rc extends View {
         Path path = this.e;
         path.rewind();
         path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(20.0f), Path.Direction.CW);
-        Path path2 = this.f37110f;
+        Path path2 = this.f37133f;
         path2.rewind();
         path2.moveTo(getMeasuredWidth(), 0.0f);
         path2.lineTo(getMeasuredWidth(), getMeasuredHeight());
@@ -105,12 +105,12 @@ public final class rc extends View {
 
     @Override
     public final void setBackgroundColor(int i10) {
-        this.f37107a.setColor(i10);
+        this.f37130a.setColor(i10);
     }
 
     @Override
     public final void setPressed(boolean z10) {
         super.setPressed(z10);
-        this.f37112r.c(z10);
+        this.f37135r.c(z10);
     }
 }

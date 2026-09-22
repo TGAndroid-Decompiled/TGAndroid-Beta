@@ -20,7 +20,7 @@ public class TL_iv {
         public boolean part;
         public boolean rtl;
         public String url;
-        public boolean f18545v2;
+        public boolean f18560v2;
         public int views;
         public boolean web;
         public ArrayList<PageBlock> blocks = new ArrayList<>();
@@ -467,7 +467,7 @@ public class TL_iv {
             this.flags = readInt32;
             this.part = TLObject.hasFlag(readInt32, 1);
             this.rtl = TLObject.hasFlag(this.flags, 2);
-            this.f18545v2 = TLObject.hasFlag(this.flags, 4);
+            this.f18560v2 = TLObject.hasFlag(this.flags, 4);
             this.url = inputSerializedData.readString(z10);
             this.blocks = Vector.deserialize(inputSerializedData, new c(22), z10);
             this.photos = Vector.deserialize(inputSerializedData, new t(3), z10);
@@ -484,7 +484,7 @@ public class TL_iv {
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 2, this.rtl);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 4, this.f18545v2);
+            int flag3 = TLObject.setFlag(flag2, 4, this.f18560v2);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
             outputSerializedData.writeString(this.url);
@@ -842,7 +842,7 @@ public class TL_iv {
             this.flags = readInt32;
             this.part = TLObject.hasFlag(readInt32, 1);
             this.rtl = TLObject.hasFlag(this.flags, 2);
-            this.f18545v2 = TLObject.hasFlag(this.flags, 4);
+            this.f18560v2 = TLObject.hasFlag(this.flags, 4);
             this.blocks = Vector.deserialize(inputSerializedData, new c(22), z10);
             this.photos = Vector.deserialize(inputSerializedData, new t(3), z10);
             this.documents = Vector.deserialize(inputSerializedData, new q(5), z10);
@@ -855,7 +855,7 @@ public class TL_iv {
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 2, this.rtl);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 4, this.f18545v2);
+            int flag3 = TLObject.setFlag(flag2, 4, this.f18560v2);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
             Vector.serialize(outputSerializedData, this.blocks);
@@ -866,14 +866,14 @@ public class TL_iv {
 
     public static class getRichMessage extends TLMethod<TLRPC.messages_Messages> {
         public static final int constructor = 1343580623;
-        public int f18546id;
+        public int f18561id;
         public TLRPC.InputPeer peer;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1343580623);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f18546id);
+            outputSerializedData.writeInt32(this.f18561id);
         }
 
         @Override
@@ -886,14 +886,14 @@ public class TL_iv {
         public static final int constructor = 1464557951;
         public TLRPC.InputGeoPoint geo;
         public int h;
-        public int f18547w;
+        public int f18562w;
         public int zoom;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.geo = TLRPC.InputGeoPoint.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.zoom = inputSerializedData.readInt32(z10);
-            this.f18547w = inputSerializedData.readInt32(z10);
+            this.f18562w = inputSerializedData.readInt32(z10);
             this.h = inputSerializedData.readInt32(z10);
             this.caption = PageCaption.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
@@ -903,7 +903,7 @@ public class TL_iv {
             outputSerializedData.writeInt32(1464557951);
             this.geo.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.zoom);
-            outputSerializedData.writeInt32(this.f18547w);
+            outputSerializedData.writeInt32(this.f18562w);
             outputSerializedData.writeInt32(this.h);
             this.caption.serializeToStream(outputSerializedData);
         }
@@ -1229,7 +1229,7 @@ public class TL_iv {
         public String html;
         public long poster_photo_id;
         public String url;
-        public int f18548w;
+        public int f18563w;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
@@ -1247,7 +1247,7 @@ public class TL_iv {
                 this.poster_photo_id = inputSerializedData.readInt64(z10);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
-                this.f18548w = inputSerializedData.readInt32(z10);
+                this.f18563w = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
                 this.h = inputSerializedData.readInt32(z10);
@@ -1273,7 +1273,7 @@ public class TL_iv {
                 outputSerializedData.writeInt64(this.poster_photo_id);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
-                outputSerializedData.writeInt32(this.f18548w);
+                outputSerializedData.writeInt32(this.f18563w);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.h);
@@ -1360,7 +1360,7 @@ public class TL_iv {
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.html = inputSerializedData.readString(z10);
             }
-            this.f18548w = inputSerializedData.readInt32(z10);
+            this.f18563w = inputSerializedData.readInt32(z10);
             this.h = inputSerializedData.readInt32(z10);
             PageCaption pageCaption = new PageCaption();
             this.caption = pageCaption;
@@ -1382,7 +1382,7 @@ public class TL_iv {
             if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.html);
             }
-            outputSerializedData.writeInt32(this.f18548w);
+            outputSerializedData.writeInt32(this.f18563w);
             outputSerializedData.writeInt32(this.h);
             this.caption.text.serializeToStream(outputSerializedData);
         }
@@ -1406,7 +1406,7 @@ public class TL_iv {
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.poster_photo_id = inputSerializedData.readInt64(z10);
             }
-            this.f18548w = inputSerializedData.readInt32(z10);
+            this.f18563w = inputSerializedData.readInt32(z10);
             this.h = inputSerializedData.readInt32(z10);
             PageCaption pageCaption = new PageCaption();
             this.caption = pageCaption;
@@ -1431,7 +1431,7 @@ public class TL_iv {
             if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.poster_photo_id);
             }
-            outputSerializedData.writeInt32(this.f18548w);
+            outputSerializedData.writeInt32(this.f18563w);
             outputSerializedData.writeInt32(this.h);
             this.caption.text.serializeToStream(outputSerializedData);
         }
@@ -1631,14 +1631,14 @@ public class TL_iv {
         public static final int constructor = -1538310410;
         public TLRPC.GeoPoint geo;
         public int h;
-        public int f18549w;
+        public int f18564w;
         public int zoom;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.geo = TLRPC.GeoPoint.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.zoom = inputSerializedData.readInt32(z10);
-            this.f18549w = inputSerializedData.readInt32(z10);
+            this.f18564w = inputSerializedData.readInt32(z10);
             this.h = inputSerializedData.readInt32(z10);
             this.caption = PageCaption.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
@@ -1648,7 +1648,7 @@ public class TL_iv {
             outputSerializedData.writeInt32(-1538310410);
             this.geo.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.zoom);
-            outputSerializedData.writeInt32(this.f18549w);
+            outputSerializedData.writeInt32(this.f18564w);
             outputSerializedData.writeInt32(this.h);
             this.caption.serializeToStream(outputSerializedData);
         }
@@ -2563,12 +2563,12 @@ public class TL_iv {
         public long document_id;
         public int h;
         public long photo_id;
-        public int f18550w;
+        public int f18565w;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.document_id = inputSerializedData.readInt64(z10);
-            this.f18550w = inputSerializedData.readInt32(z10);
+            this.f18565w = inputSerializedData.readInt32(z10);
             this.h = inputSerializedData.readInt32(z10);
         }
 
@@ -2576,7 +2576,7 @@ public class TL_iv {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(136105807);
             outputSerializedData.writeInt64(this.document_id);
-            outputSerializedData.writeInt32(this.f18550w);
+            outputSerializedData.writeInt32(this.f18565w);
             outputSerializedData.writeInt32(this.h);
         }
     }
@@ -2618,7 +2618,7 @@ public class TL_iv {
         public int h;
         public String source;
         public boolean tried;
-        public int f18551w;
+        public int f18566w;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {

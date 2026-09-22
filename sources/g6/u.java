@@ -9,7 +9,7 @@ public final class u extends g {
 
     public u(v vVar) {
         this.f9469b = new AtomicReference(vVar);
-        this.f9470c = new c0(vVar.f15258r, 0);
+        this.f9470c = new c0(vVar.f15271r, 0);
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class u extends g {
             return;
         }
         v.f9471n0.b("Receive (type=text, ns=%s) %s", str, str2);
-        this.f9470c.post(new c5.v(vVar, str, str2, 7));
+        this.f9470c.post(new c5.u(vVar, str, str2, 7));
     }
 
     @Override
@@ -89,7 +89,7 @@ public final class u extends g {
             return;
         }
         vVar.U = dVar;
-        vVar.f9483j0 = dVar.f3971a;
+        vVar.f9483j0 = dVar.f3969a;
         vVar.f9484k0 = str2;
         vVar.f9475b0 = str;
         synchronized (v.f9472o0) {

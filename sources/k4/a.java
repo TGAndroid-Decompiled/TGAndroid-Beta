@@ -29,15 +29,15 @@ public final class a implements b {
         this.f13420a = qVar;
         this.f13421b = h0Var;
         this.f13422c = qVar2;
-        int i10 = qVar2.f7923b;
+        int i10 = qVar2.f7922b;
         int max = Math.max(1, i10 / 10);
         this.f13424g = max;
         v vVar = new v((byte[]) qVar2.e);
         vVar.q();
         int q6 = vVar.q();
         this.d = q6;
-        int i11 = qVar2.f7922a;
-        int i12 = qVar2.f7924c;
+        int i11 = qVar2.f7921a;
+        int i12 = qVar2.f7923c;
         int i13 = (((i12 - (i11 * 4)) * 8) / (qVar2.d * i11)) + 1;
         if (q6 == i13) {
             int f7 = d0.f(max, q6);
@@ -45,10 +45,10 @@ public final class a implements b {
             this.f13423f = new v(q6 * 2 * i11 * f7);
             int i14 = ((i12 * i10) * 8) / q6;
             r rVar = new r();
-            rVar.f3253q = r0.n("audio/raw");
+            rVar.f3252q = r0.n("audio/raw");
             rVar.h = i14;
-            rVar.f3245i = i14;
-            rVar.f3254r = max * 2 * i11;
+            rVar.f3244i = i14;
+            rVar.f3253r = max * 2 * i11;
             rVar.I = i11;
             rVar.J = i10;
             rVar.K = 2;
@@ -81,10 +81,10 @@ public final class a implements b {
         long j3 = this.f13426j;
         long j10 = this.f13428l;
         e2.q qVar = this.f13422c;
-        long j11 = qVar.f7923b;
-        String str = d0.f7888a;
+        long j11 = qVar.f7922b;
+        String str = d0.f7887a;
         long Y = j3 + d0.Y(j10, 1000000L, j11, RoundingMode.DOWN);
-        int i11 = i10 * 2 * qVar.f7922a;
+        int i11 = i10 * 2 * qVar.f7921a;
         this.f13421b.c(Y, 1, i11, this.f13427k - i11, null);
         this.f13428l += i10;
         this.f13427k -= i11;

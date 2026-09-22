@@ -12,19 +12,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class kg implements Utilities.Callback2 {
-    public final int f35174a = 0;
-    public final zn f35175b;
-    public final org.telegram.ui.Cells.u1 f35176c;
+    public final int f35196a = 1;
+    public final zn f35197b;
+    public final org.telegram.ui.Cells.u1 f35198c;
     public final nf.e d;
     public final Serializable e;
-    public final Object f35177f;
+    public final Object f35199f;
 
-    public kg(zn znVar, yi yiVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
-        this.f35175b = znVar;
-        this.d = yiVar;
-        this.f35176c = u1Var;
+    public kg(zn znVar, zi ziVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
+        this.f35197b = znVar;
+        this.d = ziVar;
+        this.f35198c = u1Var;
         this.e = str;
-        this.f35177f = characterStyle;
+        this.f35199f = characterStyle;
     }
 
     @Override
@@ -40,32 +40,32 @@ public final class kg implements Utilities.Callback2 {
         TL_iv.RichMessage richMessage;
         TLRPC.Message message;
         org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f35174a) {
+        switch (this.f35196a) {
             case 0:
                 String str = (String) this.e;
-                CharacterStyle characterStyle = (CharacterStyle) this.f35177f;
+                CharacterStyle characterStyle = (CharacterStyle) this.f35199f;
                 TLObject tLObject = (TLObject) obj;
                 Boolean bool2 = (Boolean) obj2;
                 this.d.b();
                 if (tLObject instanceof TLRPC.User) {
-                    j3 = ((TLRPC.User) tLObject).f18475id;
+                    j3 = ((TLRPC.User) tLObject).f18490id;
                     z10 = false;
                     z11 = true;
                 } else if (tLObject instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                     z10 = ChatObject.isChannelAndNotMegaGroup(chat);
-                    j3 = -chat.f18328id;
+                    j3 = -chat.f18343id;
                     z11 = false;
                 } else {
                     z10 = false;
                     z11 = false;
                     j3 = 0;
                 }
-                zn znVar = this.f35175b;
-                org.telegram.ui.Cells.u1 u1Var2 = this.f35176c;
-                org.telegram.ui.Components.v70 I = org.telegram.ui.Components.v70.I(znVar, u1Var2);
-                org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(znVar.getParentActivity(), znVar.f40303ea);
-                I.f28989p = new re(mm0Var, 0);
+                zn znVar = this.f35197b;
+                org.telegram.ui.Cells.u1 u1Var2 = this.f35198c;
+                org.telegram.ui.Components.y70 I = org.telegram.ui.Components.y70.I(znVar, u1Var2);
+                org.telegram.ui.Components.om0 om0Var = new org.telegram.ui.Components.om0(znVar.getParentActivity(), znVar.f40324ea);
+                I.f30563p = new re(om0Var, 0);
                 int i13 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 if (i13 != 0) {
                     if (z10) {
@@ -86,7 +86,7 @@ public final class kg implements Utilities.Callback2 {
                     z12 = false;
                 }
                 boolean z13 = z10;
-                I.c(R.drawable.msg_copy, LocaleController.getString(R.string.ProfileCopyUsername), new ye(znVar, mm0Var, str, 2), z12);
+                I.c(R.drawable.msg_copy, LocaleController.getString(R.string.ProfileCopyUsername), new ye(znVar, om0Var, str, 2), z12);
                 if (bool.booleanValue()) {
                     I.c(R.drawable.outline_gram_24, LocaleController.getString(R.string.BuyUsernameOnFragment), new te(znVar, str, 11), z12);
                 }
@@ -103,20 +103,20 @@ public final class kg implements Utilities.Callback2 {
                 } else {
                     I.p(13, AndroidUtilities.dp(200.0f), LocaleController.getString(R.string.NoUsernameFound2));
                 }
-                mm0Var.e(I);
-                mm0Var.f(u1Var2, characterStyle, null, false);
-                znVar.showDialog(mm0Var);
+                om0Var.e(I);
+                om0Var.f(u1Var2, characterStyle, null, false);
+                znVar.showDialog(om0Var);
                 return;
             default:
-                zi ziVar = (zi) this.d;
+                aj ajVar = (aj) this.d;
                 int[] iArr = (int[]) this.e;
-                MessageObject messageObject = (MessageObject) this.f35177f;
+                MessageObject messageObject = (MessageObject) this.f35199f;
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                zn znVar2 = this.f35175b;
-                if (znVar2.f40566zb == ziVar) {
+                zn znVar2 = this.f35197b;
+                if (znVar2.f40587zb == ajVar) {
                     iArr[0] = 0;
-                    ziVar.c(false);
+                    ajVar.c(false);
                     if (messages_messages != null) {
                         znVar2.getMessagesController().putUsers(messages_messages.users, false);
                         znVar2.getMessagesController().putChats(messages_messages.chats, false);
@@ -134,8 +134,8 @@ public final class kg implements Utilities.Callback2 {
                         if (richMessage != null && (message = messageObject.messageOwner) != null) {
                             message.rich_message = richMessage;
                             messageObject.richLayout = null;
-                            ln lnVar = znVar2.f40426oc;
-                            if (lnVar != null && (u1Var = this.f35176c) != null) {
+                            ln lnVar = znVar2.f40447oc;
+                            if (lnVar != null && (u1Var = this.f35198c) != null) {
                                 lnVar.l(u1Var, true, false, true);
                                 return;
                             }
@@ -149,11 +149,11 @@ public final class kg implements Utilities.Callback2 {
         }
     }
 
-    public kg(zn znVar, zi ziVar, int[] iArr, org.telegram.ui.Cells.u1 u1Var, MessageObject messageObject) {
-        this.f35175b = znVar;
-        this.d = ziVar;
+    public kg(zn znVar, aj ajVar, int[] iArr, org.telegram.ui.Cells.u1 u1Var, MessageObject messageObject) {
+        this.f35197b = znVar;
+        this.d = ajVar;
         this.e = iArr;
-        this.f35176c = u1Var;
-        this.f35177f = messageObject;
+        this.f35198c = u1Var;
+        this.f35199f = messageObject;
     }
 }

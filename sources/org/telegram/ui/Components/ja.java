@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 public final class ja {
-    public int f25308a;
-    public int f25309b;
-    public int f25310c;
+    public int f25333a;
+    public int f25334b;
+    public int f25335c;
     public int d;
     public int e;
-    public int f25311f;
-    public int f25312g;
+    public int f25336f;
+    public int f25337g;
     public int h;
-    public int f25313i;
-    public int f25314j;
-    public int f25315k;
-    public int f25316l;
-    public int f25317m;
+    public int f25338i;
+    public int f25339j;
+    public int f25340k;
+    public int f25341l;
+    public int f25342m;
 }

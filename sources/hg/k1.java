@@ -16,11 +16,11 @@ import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.o90;
+import org.telegram.ui.Components.r90;
 import w7.y5;
 public final class k1 extends LinearLayout {
     public final f6 f10340a;
-    public final o90 f10341b;
+    public final r90 f10341b;
     public final ImageReceiver f10342c;
     public final TextView d;
     public boolean e;
@@ -36,13 +36,13 @@ public final class k1 extends LinearLayout {
         this.f10342c = imageReceiver;
         this.f10340a = f6Var;
         setOrientation(1);
-        o90 o90Var = new o90();
-        this.f10341b = o90Var;
+        r90 r90Var = new r90();
+        this.f10341b = r90Var;
         int i15 = j6.G6;
         int v02 = j6.v0(i15, f6Var);
-        o90Var.f(j6.l1(0.05f, v02), j6.l1(0.15f, v02), j6.l1(0.1f, v02), j6.l1(0.3f, v02));
-        o90Var.j(4.0f);
-        o90Var.f26860w.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        r90Var.f(j6.l1(0.05f, v02), j6.l1(0.15f, v02), j6.l1(0.1f, v02), j6.l1(0.3f, v02));
+        r90Var.j(4.0f);
+        r90Var.f27872w.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -68,7 +68,7 @@ public final class k1 extends LinearLayout {
         addView(textView, y5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(j6.v0(j6.f19496z6, f6Var));
+        textView2.setTextColor(j6.v0(j6.f19511z6, f6Var));
         textView2.setText(LocaleController.getString(R.string.BusinessProfileLocation));
         textView2.setTextSize(1, 13.0f);
         boolean z11 = LocaleController.isRTL;
@@ -117,7 +117,7 @@ public final class k1 extends LinearLayout {
         if (this.e) {
             Paint T0 = j6.T0("paintDivider", this.f10340a);
             if (T0 == null) {
-                T0 = j6.f19216k0;
+                T0 = j6.f19231k0;
             }
             Paint paint = T0;
             float f11 = 21.33f;

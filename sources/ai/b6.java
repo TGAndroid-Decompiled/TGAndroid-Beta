@@ -14,31 +14,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.qr;
 public final class b6 extends FrameLayout {
-    public final z5 f582a;
-    public final a6 f583b;
-    public final TextView[] f584c;
-    public lj0 d;
+    public final z5 f579a;
+    public final a6 f580b;
+    public final TextView[] f581c;
+    public oj0 d;
     public final d6 e;
-    public Paint f585f;
+    public Paint f582f;
     public float h;
-    public boolean f586n;
-    public boolean f587r;
-    public ValueAnimator f588s;
+    public boolean f583n;
+    public boolean f584r;
+    public ValueAnimator f585s;
 
     public b6(Context context, d6 d6Var) {
         super(context);
-        this.f584c = new TextView[2];
+        this.f581c = new TextView[2];
         this.e = d6Var;
         z5 z5Var = new z5(this, context, 0);
-        this.f582a = z5Var;
+        this.f579a = z5Var;
         z5Var.setRoundRadius(AndroidUtilities.dp(16.0f));
         addView(z5Var, w7.y5.d(32, 32.0f, 0, 12.0f, 2.0f, 0.0f, 0.0f));
         setClipChildren(false);
         a6 a6Var = new a6(context, 0);
-        this.f583b = a6Var;
+        this.f580b = a6Var;
         a6Var.setTextSize(14);
         a6Var.setTypeface(AndroidUtilities.bold());
         a6Var.setMaxLines(1);
@@ -47,16 +47,16 @@ public final class b6 extends FrameLayout {
         NotificationCenter.listenEmojiLoading(a6Var);
         addView(a6Var, w7.y5.d(-2, -2.0f, 0, 54.0f, 0.0f, 86.0f, 0.0f));
         for (int i10 = 0; i10 < 2; i10++) {
-            this.f584c[i10] = new TextView(context);
-            this.f584c[i10].setTextSize(1, 12.0f);
-            this.f584c[i10].setMaxLines(1);
-            this.f584c[i10].setSingleLine(true);
-            this.f584c[i10].setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            this.f584c[i10].setTextColor(-1);
-            this.f584c[i10].setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(1.0f));
-            addView(this.f584c[i10], w7.y5.d(-2, -2.0f, 0, 51.0f, 18.0f, 83.0f, 0.0f));
+            this.f581c[i10] = new TextView(context);
+            this.f581c[i10].setTextSize(1, 12.0f);
+            this.f581c[i10].setMaxLines(1);
+            this.f581c[i10].setSingleLine(true);
+            this.f581c[i10].setEllipsize(TextUtils.TruncateAt.MIDDLE);
+            this.f581c[i10].setTextColor(-1);
+            this.f581c[i10].setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(1.0f));
+            addView(this.f581c[i10], w7.y5.d(-2, -2.0f, 0, 51.0f, 18.0f, 83.0f, 0.0f));
         }
-        this.f583b.setTextColor(-1);
+        this.f580b.setTextColor(-1);
     }
 
     public final void b(float f7, Canvas canvas, RectF rectF, boolean z10) {
@@ -66,82 +66,82 @@ public final class b6 extends FrameLayout {
         float clamp;
         k9 k9Var;
         d6 d6Var = this.e;
-        if ((d6Var != null && d6Var.f707b != null) || this.h != 0.0f) {
-            if (d6Var != null && (k9Var = d6Var.f707b) != null && !k9Var.I) {
+        if ((d6Var != null && d6Var.f704b != null) || this.h != 0.0f) {
+            if (d6Var != null && (k9Var = d6Var.f704b) != null && !k9Var.I) {
                 this.h = 1.0f;
                 f10 = k9Var.h;
-                if (!this.f586n) {
-                    this.f586n = true;
+                if (!this.f583n) {
+                    this.f583n = true;
                 }
                 z11 = false;
             } else {
-                if (this.f586n) {
-                    this.f586n = false;
-                    if (this.d.f26154f < 0.2f) {
+                if (this.f583n) {
+                    this.f583n = false;
+                    if (this.d.f27090f < 0.2f) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    this.f587r = z12;
+                    this.f584r = z12;
                 }
-                if (!this.f587r) {
+                if (!this.f584r) {
                     this.h = Utilities.clamp(this.h - ((1000.0f / AndroidUtilities.screenRefreshRate) / 300.0f), 1.0f, 0.0f);
                 }
                 f10 = 1.0f;
                 z11 = true;
             }
-            lj0 lj0Var = this.d;
-            z5 z5Var = this.f582a;
-            if (lj0Var == null) {
-                lj0 lj0Var2 = new lj0(z5Var);
-                this.d = lj0Var2;
-                lj0Var2.d(null, true, false);
+            oj0 oj0Var = this.d;
+            z5 z5Var = this.f579a;
+            if (oj0Var == null) {
+                oj0 oj0Var2 = new oj0(z5Var);
+                this.d = oj0Var2;
+                oj0Var2.d(null, true, false);
             }
-            this.d.f26164q = 0;
+            this.d.f27100q = 0;
             ImageReceiver imageReceiver = z5Var.getImageReceiver();
             float b10 = com.google.android.gms.internal.vision.e2.b(1.0f, this.h, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
             this.d.f((int) (rectF.left - b10), (int) (rectF.top - b10), (int) (rectF.right + b10), (int) (rectF.bottom + b10));
-            lj0 lj0Var3 = this.d;
+            oj0 oj0Var3 = this.d;
             if (z11) {
                 clamp = 1.0f;
             } else {
                 clamp = Utilities.clamp(f10, 1.0f, 0.0f);
             }
-            lj0Var3.e(clamp, true);
-            if (this.f587r && z11 && this.d.f26154f >= 0.9f) {
+            oj0Var3.e(clamp, true);
+            if (this.f584r && z11 && this.d.f27090f >= 0.9f) {
                 this.h = Utilities.clamp(this.h - ((1000.0f / AndroidUtilities.screenRefreshRate) / 300.0f), 1.0f, 0.0f);
             }
             if (z10) {
                 if (f7 != 1.0f) {
                     Paint t10 = ia.t(imageReceiver, false);
                     t10.setAlpha((int) (this.h * 255.0f));
-                    lj0 lj0Var4 = this.d;
-                    lj0Var4.f26167t = t10;
-                    lj0Var4.a(canvas);
+                    oj0 oj0Var4 = this.d;
+                    oj0Var4.f27103t = t10;
+                    oj0Var4.a(canvas);
                 }
-                if (this.f585f == null) {
+                if (this.f582f == null) {
                     Paint paint = new Paint(1);
-                    this.f585f = paint;
+                    this.f582f = paint;
                     paint.setColor(-1);
-                    this.f585f.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                    this.f585f.setStyle(Paint.Style.STROKE);
-                    this.f585f.setStrokeCap(Paint.Cap.ROUND);
+                    this.f582f.setStrokeWidth(AndroidUtilities.dp(2.0f));
+                    this.f582f.setStyle(Paint.Style.STROKE);
+                    this.f582f.setStrokeCap(Paint.Cap.ROUND);
                 }
-                this.f585f.setAlpha((int) (255.0f * f7 * this.h));
-                lj0 lj0Var5 = this.d;
-                lj0Var5.f26167t = this.f585f;
-                lj0Var5.a(canvas);
+                this.f582f.setAlpha((int) (255.0f * f7 * this.h));
+                oj0 oj0Var5 = this.d;
+                oj0Var5.f27103t = this.f582f;
+                oj0Var5.a(canvas);
             }
         }
     }
 
     public final void c(CharSequence charSequence, boolean z10) {
-        ValueAnimator valueAnimator = this.f588s;
+        ValueAnimator valueAnimator = this.f585s;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f588s = null;
+            this.f585s = null;
         }
-        TextView[] textViewArr = this.f584c;
+        TextView[] textViewArr = this.f581c;
         if (z10) {
             textViewArr[1].setOnClickListener(null);
             textViewArr[1].setText(textViewArr[0].getText());
@@ -153,12 +153,12 @@ public final class b6 extends FrameLayout {
             textViewArr[0].setAlpha(0.0f);
             textViewArr[0].setTranslationY(-AndroidUtilities.dp(4.0f));
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f588s = ofFloat;
+            this.f585s = ofFloat;
             ofFloat.addUpdateListener(new a(this, 8));
-            this.f588s.addListener(new b(this, 5));
-            this.f588s.setInterpolator(qr.h);
-            this.f588s.setDuration(340L);
-            this.f588s.start();
+            this.f585s.addListener(new b(this, 5));
+            this.f585s.setInterpolator(qr.h);
+            this.f585s.setDuration(340L);
+            this.f585s.start();
             return;
         }
         textViewArr[0].setVisibility(0);
@@ -179,7 +179,7 @@ public final class b6 extends FrameLayout {
     public void setOnSubtitleClick(View.OnClickListener onClickListener) {
         boolean z10;
         org.telegram.ui.Cells.z f02;
-        TextView[] textViewArr = this.f584c;
+        TextView[] textViewArr = this.f581c;
         textViewArr[0].setOnClickListener(onClickListener);
         TextView textView = textViewArr[0];
         if (onClickListener != null) {

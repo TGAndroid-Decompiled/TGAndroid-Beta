@@ -46,25 +46,25 @@ public final class g implements i {
 
     public final void c(c3.a aVar) {
         b2.r a2;
-        int i10 = aVar.f3709b;
-        String str = aVar.f3708a;
-        int i11 = aVar.f3710c;
+        int i10 = aVar.f3708b;
+        String str = aVar.f3707a;
+        int i11 = aVar.f3709c;
         if (i10 != -2147483647 && i11 != -1) {
             b2.s sVar = this.f12694l;
-            if (sVar == null || i11 != sVar.J || i10 != sVar.K || !str.equals(sVar.f3309r)) {
+            if (sVar == null || i11 != sVar.J || i10 != sVar.K || !str.equals(sVar.f3308r)) {
                 b2.s sVar2 = this.f12694l;
                 if (sVar2 == null) {
                     a2 = new b2.r();
                 } else {
                     a2 = sVar2.a();
                 }
-                a2.f3240a = this.f12689f;
-                a2.f3252p = r0.n(this.e);
-                a2.f3253q = r0.n(str);
+                a2.f3239a = this.f12689f;
+                a2.f3251p = r0.n(this.e);
+                a2.f3252q = r0.n(str);
                 a2.I = i11;
                 a2.J = i10;
                 a2.d = this.f12688c;
-                a2.f3243f = this.d;
+                a2.f3242f = this.d;
                 b2.s sVar3 = new b2.s(a2);
                 this.f12694l = sVar3;
                 this.f12690g.b(sVar3);

@@ -1,5 +1,5 @@
 package i2;
-public final class o implements d9.i {
+public final class o implements d9.j {
     public final int f10804a;
     public final Object f10805b;
 

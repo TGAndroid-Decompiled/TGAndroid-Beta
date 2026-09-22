@@ -3,17 +3,17 @@ package x7;
 import android.graphics.Rect;
 import android.view.View;
 public final class d7 implements r0.n, ce.b {
-    public Object f45681a;
-    public Object f45682b;
+    public Object f45702a;
+    public Object f45703b;
 
     @Override
     public r0.l1 P0(View view, r0.l1 l1Var) {
-        z4.g gVar = (z4.g) this.f45682b;
+        z4.g gVar = (z4.g) this.f45703b;
         r0.l1 h = r0.i0.h(view, l1Var);
-        if (h.f42154a.n()) {
+        if (h.f42175a.n()) {
             return h;
         }
-        Rect rect = (Rect) this.f45681a;
+        Rect rect = (Rect) this.f45702a;
         rect.left = h.b();
         rect.top = h.d();
         rect.right = h.c();
@@ -30,10 +30,10 @@ public final class d7 implements r0.n, ce.b {
     }
 
     @Override
-    public Object s(ce.c cVar, kd.c cVar2) {
-        Object s10 = ((n4.y) this.f45681a).s(new k1.p(cVar, (za.y) this.f45682b), cVar2);
-        if (s10 == jd.a.f12971a) {
-            return s10;
+    public Object u(ce.c cVar, kd.c cVar2) {
+        Object u10 = ((n4.y) this.f45702a).u(new k1.p(cVar, (za.y) this.f45703b), cVar2);
+        if (u10 == jd.a.f12971a) {
+            return u10;
         }
         return gd.i.f9621a;
     }

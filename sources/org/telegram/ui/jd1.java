@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.tgnet.TLRPC;
-public final class jd1 extends org.telegram.ui.Components.uq0 {
-    public final ld1 f34898b1;
+public final class jd1 extends org.telegram.ui.Components.wq0 {
+    public final ld1 f34923b1;
 
     public jd1(ld1 ld1Var, Activity activity, String str, String str2) {
         super(activity, null, str, false, str2, false, null);
-        this.f34898b1 = ld1Var;
+        this.f34923b1 = ld1Var;
     }
 
     @Override
@@ -16,11 +16,11 @@ public final class jd1 extends org.telegram.ui.Components.uq0 {
             return;
         }
         int m10 = iVar.m();
-        ld1 ld1Var = this.f34898b1;
+        ld1 ld1Var = this.f34923b1;
         if (m10 == 1) {
-            ld1Var.f35424a.f39505l0.m(((TLRPC.Dialog) iVar.n(0)).f18332id, Integer.valueOf(i10), 61);
+            ld1Var.f35442a.f39529l0.m(((TLRPC.Dialog) iVar.n(0)).f18347id, Integer.valueOf(i10), 61);
         } else {
-            ld1Var.f35424a.f39505l0.k(0L, 61, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+            ld1Var.f35442a.f39529l0.k(0L, 61, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
         }
     }
 }

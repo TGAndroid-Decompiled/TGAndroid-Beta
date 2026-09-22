@@ -10,12 +10,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.pj0;
 public final class l2 implements View.OnClickListener {
-    public final int f47675a;
-    public final y2 f47676b;
+    public final int f47696a;
+    public final y2 f47697b;
 
     public l2(y2 y2Var, int i10) {
-        this.f47675a = i10;
-        this.f47676b = y2Var;
+        this.f47696a = i10;
+        this.f47697b = y2Var;
     }
 
     @Override
@@ -24,19 +24,19 @@ public final class l2 implements View.OnClickListener {
         TL_stars.StarGift starGift2;
         TL_stars.StarGift starGift3;
         w2 w2Var;
-        int i10 = this.f47675a;
+        int i10 = this.f47696a;
         boolean z10 = true;
-        y2 y2Var = this.f47676b;
+        y2 y2Var = this.f47697b;
         switch (i10) {
             case 0:
                 if (y2Var.P.getAlpha() >= 1.0f) {
-                    y2Var.f48286g0.run();
+                    y2Var.f48307g0.run();
                     return;
                 }
                 return;
             case 1:
                 if (y2Var.P.getAlpha() >= 1.0f) {
-                    y2Var.f48286g0.run();
+                    y2Var.f48307g0.run();
                     return;
                 }
                 return;
@@ -49,12 +49,12 @@ public final class l2 implements View.OnClickListener {
                 y2Var.b((m2) view);
                 return;
             case 4:
-                y2 y2Var2 = this.f47676b;
+                y2 y2Var2 = this.f47697b;
                 LinearLayout linearLayout = y2Var2.G;
-                w2[] w2VarArr = y2Var2.f48292n;
-                if (y2Var2.getAlpha() >= 1.0f && !y2Var2.f48287h0) {
-                    if (y2Var2.f48289j0) {
-                        y2Var2.a(y2Var2.W, y2Var2.f48277a0, y2Var2.f48279b0, y2Var2.f48281c0);
+                w2[] w2VarArr = y2Var2.f48313n;
+                if (y2Var2.getAlpha() >= 1.0f && !y2Var2.f48308h0) {
+                    if (y2Var2.f48310j0) {
+                        y2Var2.a(y2Var2.W, y2Var2.f48298a0, y2Var2.f48300b0, y2Var2.f48302c0);
                         return;
                     }
                     ArrayList arrayList = new ArrayList();
@@ -74,10 +74,10 @@ public final class l2 implements View.OnClickListener {
                             }
                         }
                     }
-                    if (!arrayList.isEmpty() && y2Var2.f48283e0 != null) {
+                    if (!arrayList.isEmpty() && y2Var2.f48304e0 != null) {
                         TextView textView = y2Var2.K;
-                        y2Var2.f48287h0 = true;
-                        y2Var2.f48289j0 = false;
+                        y2Var2.f48308h0 = true;
+                        y2Var2.f48310j0 = false;
                         ci.f4 f4Var = y2Var2.T;
                         if (f4Var != null) {
                             f4Var.e(true);
@@ -140,7 +140,7 @@ public final class l2 implements View.OnClickListener {
                                 arrayList2.add(starGift7);
                             }
                         }
-                        y2Var2.f48283e0.run(arrayList2, new ai.m0(23, y2Var2, arrayList2), new rg.q1(y2Var2, 27));
+                        y2Var2.f48304e0.run(arrayList2, new ai.m0(23, y2Var2, arrayList2), new rg.q1(y2Var2, 27));
                         return;
                     }
                     AndroidUtilities.shakeViewSpring(linearLayout);
@@ -153,14 +153,14 @@ public final class l2 implements View.OnClickListener {
                 if (starGift8 == null) {
                     starGift8 = null;
                 }
-                if (starGift8 != null && !w2Var7.f48213n) {
+                if (starGift8 != null && !w2Var7.f48234n) {
                     w2Var7.a(null, true);
                     y2Var.d(true);
                     return;
                 }
                 int i13 = 0;
                 while (true) {
-                    w2[] w2VarArr2 = y2Var.f48292n;
+                    w2[] w2VarArr2 = y2Var.f48313n;
                     if (i13 < w2VarArr2.length && (w2Var = w2VarArr2[i13]) != view) {
                         if (w2Var != null) {
                             TL_stars.StarGift starGift9 = w2Var.h;
@@ -174,7 +174,7 @@ public final class l2 implements View.OnClickListener {
                         i13++;
                     }
                 }
-                y2Var.f48285f0.run(new pj0(19, y2Var, w2Var7), Boolean.valueOf(z10));
+                y2Var.f48306f0.run(new pj0(19, y2Var, w2Var7), Boolean.valueOf(z10));
                 return;
         }
     }

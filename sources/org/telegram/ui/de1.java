@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class de1 implements Runnable {
-    public final int f33024a;
-    public final me1 f33025b;
+    public final int f33045a;
+    public final me1 f33046b;
 
     public de1(me1 me1Var, int i10) {
-        this.f33024a = i10;
-        this.f33025b = me1Var;
+        this.f33045a = i10;
+        this.f33046b = me1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f33024a) {
+        switch (this.f33045a) {
             case 0:
-                this.f33025b.c(false);
+                this.f33046b.c(false);
                 return;
             case 1:
                 super/*android.app.Dialog*/.dismiss();
                 return;
             default:
-                this.f33025b.c(false);
+                this.f33046b.c(false);
                 return;
         }
     }

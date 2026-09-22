@@ -4,17 +4,17 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class xz0 implements kq {
-    public final int f39751a;
-    public final TLRPC.ChatParticipant f39752b;
-    public final boolean f39753c;
+    public final int f39771a;
+    public final TLRPC.ChatParticipant f39772b;
+    public final boolean f39773c;
     public final boolean[] d;
     public final ProfileActivity e;
 
     public xz0(ProfileActivity profileActivity, int i10, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
         this.e = profileActivity;
-        this.f39751a = i10;
-        this.f39752b = chatParticipant;
-        this.f39753c = z10;
+        this.f39771a = i10;
+        this.f39772b = chatParticipant;
+        this.f39773c = z10;
         this.d = zArr;
     }
 
@@ -23,7 +23,7 @@ public final class xz0 implements kq {
         int i10;
         ProfileActivity profileActivity = this.e;
         UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f31561f1;
+        long j3 = -profileActivity.f31582f1;
         if (profileActivity.E2.megagroup) {
             i10 = 10;
         } else {
@@ -38,9 +38,9 @@ public final class xz0 implements kq {
         boolean z10;
         TLRPC.ChatParticipant tL_chatParticipant;
         int i11 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.f39752b;
+        TLRPC.ChatParticipant chatParticipant = this.f39772b;
         ProfileActivity profileActivity = this.e;
-        int i12 = this.f39751a;
+        int i12 = this.f39771a;
         if (i12 == 0) {
             if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
                 TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
@@ -68,20 +68,20 @@ public final class xz0 implements kq {
                 tL_chatParticipant.user_id = chatParticipant.user_id;
                 tL_chatParticipant.date = chatParticipant.date;
                 tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                int indexOf = profileActivity.f31664u2.participants.participants.indexOf(chatParticipant);
+                int indexOf = profileActivity.f31685u2.participants.participants.indexOf(chatParticipant);
                 if (indexOf >= 0) {
-                    profileActivity.f31664u2.participants.participants.set(indexOf, tL_chatParticipant);
+                    profileActivity.f31685u2.participants.participants.set(indexOf, tL_chatParticipant);
                 }
             }
-            if (i10 == 1 && !this.f39753c) {
+            if (i10 == 1 && !this.f39773c) {
                 this.d[0] = true;
             }
-        } else if (i12 == 1 && i10 == 0 && profileActivity.E2.megagroup && (chatFull = profileActivity.f31664u2) != null && chatFull.participants != null) {
+        } else if (i12 == 1 && i10 == 0 && profileActivity.E2.megagroup && (chatFull = profileActivity.f31685u2) != null && chatFull.participants != null) {
             int i13 = 0;
             while (true) {
-                if (i13 < profileActivity.f31664u2.participants.participants.size()) {
-                    if (MessageObject.getPeerId(((TLRPC.TL_chatChannelParticipant) profileActivity.f31664u2.participants.participants.get(i13)).channelParticipant.peer) == chatParticipant.user_id) {
-                        TLRPC.ChatFull chatFull2 = profileActivity.f31664u2;
+                if (i13 < profileActivity.f31685u2.participants.participants.size()) {
+                    if (MessageObject.getPeerId(((TLRPC.TL_chatChannelParticipant) profileActivity.f31685u2.participants.participants.get(i13)).channelParticipant.peer) == chatParticipant.user_id) {
+                        TLRPC.ChatFull chatFull2 = profileActivity.f31685u2;
                         chatFull2.participants_count--;
                         chatFull2.participants.participants.remove(i13);
                         z10 = true;
@@ -93,13 +93,13 @@ public final class xz0 implements kq {
                     break;
                 }
             }
-            TLRPC.ChatFull chatFull3 = profileActivity.f31664u2;
+            TLRPC.ChatFull chatFull3 = profileActivity.f31685u2;
             if (chatFull3 != null && chatFull3.participants != null) {
                 while (true) {
-                    if (i11 >= profileActivity.f31664u2.participants.participants.size()) {
+                    if (i11 >= profileActivity.f31685u2.participants.participants.size()) {
                         break;
-                    } else if (profileActivity.f31664u2.participants.participants.get(i11).user_id == chatParticipant.user_id) {
-                        profileActivity.f31664u2.participants.participants.remove(i11);
+                    } else if (profileActivity.f31685u2.participants.participants.get(i11).user_id == chatParticipant.user_id) {
+                        profileActivity.f31685u2.participants.participants.remove(i11);
                         z10 = true;
                         break;
                     } else {

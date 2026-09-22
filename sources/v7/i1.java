@@ -1,6 +1,6 @@
 package v7;
 public final class i1 implements ia.d {
-    public static final i1 f44296a = new Object();
+    public static final i1 f44318a = new Object();
 
     static {
         j0.q(org.telegram.ui.Cells.c1.l(h.class, new e(1)));

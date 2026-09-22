@@ -4,10 +4,10 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class l1 extends s4.n0 {
-    public final m1 f43447a;
+    public final m1 f43468a;
 
     public l1(m1 m1Var) {
-        this.f43447a = m1Var;
+        this.f43468a = m1Var;
     }
 
     @Override
@@ -15,9 +15,9 @@ public final class l1 extends s4.n0 {
         super.a(rect, view, recyclerView, z0Var);
         recyclerView.getClass();
         int S = RecyclerView.S(view);
-        m1 m1Var = this.f43447a;
-        if (S == m1Var.f43457g0.size()) {
-            rect.bottom = m1Var.f43466q0;
+        m1 m1Var = this.f43468a;
+        if (S == m1Var.f43478g0.size()) {
+            rect.bottom = m1Var.f43487q0;
         }
     }
 }

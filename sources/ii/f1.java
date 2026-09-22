@@ -31,14 +31,14 @@ public final class f1 implements TextWatcher {
                 }
                 i1Var.h = false;
                 if (z10) {
-                    i1Var.f11434c.n(i1Var);
+                    i1Var.f11434c.l(i1Var);
                     return;
                 } else {
-                    i1Var.f11434c.U(editable2);
+                    i1Var.f11434c.R(editable2);
                     return;
                 }
             }
-            i1Var.f11434c.U(editable2);
+            i1Var.f11434c.R(editable2);
         }
     }
 
@@ -47,7 +47,7 @@ public final class f1 implements TextWatcher {
         h1 h1Var;
         i1 i1Var = this.f11368a;
         if (!i1Var.h && (h1Var = i1Var.f11434c) != null) {
-            h1Var.j(i11, i12);
+            h1Var.i(i11, i12);
         }
     }
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 public abstract class d {
-    public static final Type[] f9020a = new Type[0];
+    public static final Type[] f9019a = new Type[0];
 
     public static Type a(Type type) {
         if (type instanceof Class) {

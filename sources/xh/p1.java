@@ -9,38 +9,38 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.dc1;
-import w7.b6;
+import w7.a6;
 import w7.y5;
-public final class p1 extends v51 {
-    public static final int f46366a = 0;
+public final class p1 extends x51 {
+    public static final int f46387a = 0;
 
     static {
-        v51.setup(new v51());
+        x51.setup(new x51());
     }
 
     @Override
-    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
+    public final void bindView(View view, y51 y51Var, boolean z10, m61 m61Var, u61 u61Var) {
         boolean z11;
         q1 q1Var = (q1) view;
-        int i10 = w51Var.d;
-        ArrayList arrayList = (ArrayList) w51Var.G;
-        int i11 = w51Var.f29961z;
-        Utilities.Callback callback = (Utilities.Callback) w51Var.H;
-        dc1 dc1Var = q1Var.f46375a;
+        int i10 = y51Var.d;
+        ArrayList arrayList = (ArrayList) y51Var.G;
+        int i11 = y51Var.f30531z;
+        Utilities.Callback callback = (Utilities.Callback) y51Var.H;
+        dc1 dc1Var = q1Var.f46396a;
         ArrayList arrayList2 = q1Var.d;
-        if (q1Var.f46380r == i10) {
+        if (q1Var.f46401r == i10) {
             z11 = true;
         } else {
             z11 = false;
         }
-        q1Var.f46380r = i10;
+        q1Var.f46401r = i10;
         if (arrayList2.size() != arrayList.size()) {
             int i12 = 0;
             int i13 = 0;
@@ -62,25 +62,25 @@ public final class p1 extends v51 {
                 i12++;
             }
             while (i13 < arrayList.size()) {
-                k90 k90Var = new k90(q1Var.getContext(), null);
-                k90Var.setGravity(17);
-                k90Var.setText((CharSequence) arrayList.get(i13));
-                k90Var.setTypeface(AndroidUtilities.bold());
-                k90Var.setTextColor(j6.v(j6.w0(null, j6.f19057b6, false), j6.w0(null, j6.f19076c6, false)));
-                k90Var.setTextSize(1, 14.0f);
-                k90Var.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                k90Var.setEllipsize(TextUtils.TruncateAt.END);
-                k90Var.setSingleLine();
-                k90Var.setMaxLines(1);
-                b6.b(k90Var, 0.075f, 1.4f);
-                dc1Var.addView(k90Var, y5.n(-2, 26));
-                arrayList2.add(k90Var);
+                n90 n90Var = new n90(q1Var.getContext(), null);
+                n90Var.setGravity(17);
+                n90Var.setText((CharSequence) arrayList.get(i13));
+                n90Var.setTypeface(AndroidUtilities.bold());
+                n90Var.setTextColor(j6.v(j6.w0(null, j6.f19072b6, false), j6.w0(null, j6.f19091c6, false)));
+                n90Var.setTextSize(1, 14.0f);
+                n90Var.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+                n90Var.setEllipsize(TextUtils.TruncateAt.END);
+                n90Var.setSingleLine();
+                n90Var.setMaxLines(1);
+                a6.b(n90Var, 0.075f, 1.4f);
+                dc1Var.addView(n90Var, y5.n(-2, 26));
+                arrayList2.add(n90Var);
                 i13++;
             }
         }
-        q1Var.f46376b = i11;
+        q1Var.f46397b = i11;
         if (!z11) {
-            q1Var.f46377c.d(i11, true);
+            q1Var.f46398c.d(i11, true);
         }
         dc1Var.invalidate();
         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
@@ -89,23 +89,23 @@ public final class p1 extends v51 {
     }
 
     @Override
-    public final boolean contentsEquals(w51 w51Var, w51 w51Var2) {
-        if (w51Var.f29961z == w51Var2.f29961z && w51Var.H == w51Var2.H && equals(w51Var, w51Var2)) {
+    public final boolean contentsEquals(y51 y51Var, y51 y51Var2) {
+        if (y51Var.f30531z == y51Var2.f30531z && y51Var.H == y51Var2.H && equals(y51Var, y51Var2)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, vl0 vl0Var, int i10, int i11, f6 f6Var) {
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, f6 f6Var) {
         return new q1(context);
     }
 
     @Override
-    public final boolean equals(w51 w51Var, w51 w51Var2) {
-        if (w51Var.d == w51Var2.d) {
-            ArrayList arrayList = (ArrayList) w51Var.G;
-            ArrayList arrayList2 = (ArrayList) w51Var2.G;
+    public final boolean equals(y51 y51Var, y51 y51Var2) {
+        if (y51Var.d == y51Var2.d) {
+            ArrayList arrayList = (ArrayList) y51Var.G;
+            ArrayList arrayList2 = (ArrayList) y51Var2.G;
             if (arrayList != arrayList2) {
                 if (arrayList != null || arrayList2 != null) {
                     if (arrayList != null && arrayList2 != null && arrayList.size() == arrayList2.size()) {

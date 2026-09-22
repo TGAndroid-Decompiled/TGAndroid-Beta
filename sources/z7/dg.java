@@ -6,8 +6,8 @@ public final class dg extends a9.a {
     public final ig W0(x6.b bVar, ag agVar) {
         ig createFromParcel;
         Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.f316c);
-        int i10 = t.f48911a;
+        obtain.writeInterfaceToken(this.f313c);
+        int i10 = t.f48931a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         agVar.writeToParcel(obtain, 0);

@@ -12,11 +12,11 @@ import android.media.metrics.LogSessionId;
 import android.media.session.MediaSession;
 import android.os.Build;
 public abstract class h0 {
-    public static k2.e a(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
+    public static k2.f a(AudioFormat audioFormat, AudioAttributes audioAttributes, boolean z10) {
         boolean z11;
         int playbackOffloadSupport = AudioManager.getPlaybackOffloadSupport(audioFormat, audioAttributes);
         if (playbackOffloadSupport == 0) {
-            return k2.e.d;
+            return k2.f.d;
         }
         ?? obj = new Object();
         if (Build.VERSION.SDK_INT > 32 && playbackOffloadSupport == 2) {
@@ -24,9 +24,9 @@ public abstract class h0 {
         } else {
             z11 = false;
         }
-        obj.f382a = true;
-        obj.f383b = z11;
-        obj.f384c = z10;
+        obj.f379a = true;
+        obj.f380b = z11;
+        obj.f381c = z10;
         return obj.a();
     }
 
@@ -63,13 +63,13 @@ public abstract class h0 {
         LogSessionId a2 = kVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!a2.equals(logSessionId)) {
-            ((MediaFormat) nVar.f7331b).setString("log-session-id", a2.getStringId());
+            ((MediaFormat) nVar.f7329b).setString("log-session-id", a2.getStringId());
         }
     }
 
     public static void g(n4.y yVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((n4.r) yVar.f15217a).f15199a;
+            MediaSession mediaSession = ((n4.r) yVar.f15230a).f15212a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e) {

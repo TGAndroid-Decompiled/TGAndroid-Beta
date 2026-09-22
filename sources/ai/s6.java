@@ -11,17 +11,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.bb0;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.eb0;
+import org.telegram.ui.Components.ol0;
 import org.telegram.ui.Components.xc;
-public final class s6 implements ll0 {
-    public final jc f1506a;
-    public final j7 f1507b;
+import org.telegram.ui.Components.y70;
+public final class s6 implements ol0 {
+    public final jc f1503a;
+    public final j7 f1504b;
 
     public s6(j7 j7Var, jc jcVar) {
-        this.f1507b = j7Var;
-        this.f1506a = jcVar;
+        this.f1504b = j7Var;
+        this.f1503a = jcVar;
     }
 
     @Override
@@ -39,19 +39,19 @@ public final class s6 implements ll0 {
         boolean z16;
         boolean z17;
         TLRPC.InputStickerSet c10;
-        j7 j7Var = this.f1507b;
-        d dVar = j7Var.f1053s;
+        j7 j7Var = this.f1504b;
+        d dVar = j7Var.f1050s;
         int i11 = j7Var.v;
         if (view instanceof org.telegram.ui.Cells.p6) {
             final org.telegram.ui.Cells.p6 p6Var = (org.telegram.ui.Cells.p6) view;
-            jc jcVar = this.f1506a;
-            if (jcVar.v != null && (storyView = ((z6) j7Var.f1054w.f769c.get(i10)).f1786b) != null && (user = (messagesController = MessagesController.getInstance(i11)).getUser(Long.valueOf(storyView.user_id))) != null) {
-                if (messagesController.blockePeers.indexOfKey(user.f18475id) >= 0) {
+            jc jcVar = this.f1503a;
+            if (jcVar.v != null && (storyView = ((z6) j7Var.f1051w.f766c.get(i10)).f1783b) != null && (user = (messagesController = MessagesController.getInstance(i11)).getUser(Long.valueOf(storyView.user_id))) != null) {
+                if (messagesController.blockePeers.indexOfKey(user.f18490id) >= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (!user.contact && ContactsController.getInstance(i11).contactsDict.get(Long.valueOf(user.f18475id)) == null) {
+                if (!user.contact && ContactsController.getInstance(i11).contactsDict.get(Long.valueOf(user.f18490id)) == null) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -75,11 +75,11 @@ public final class s6 implements ll0 {
                 if (isUserSelf) {
                     return false;
                 }
-                v70 F = v70.F(jcVar.v, dVar, view);
-                F.f28976i = 3;
-                F.f28978j = true;
-                F.W(new ColorDrawable(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19165h5, dVar)));
-                F.f28994s = 133;
+                y70 F = y70.F(jcVar.v, dVar, view);
+                F.f30550i = 3;
+                F.f30552j = true;
+                F.W(new ColorDrawable(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19180h5, dVar)));
+                F.f30568s = 133;
                 if (d && !L && !z10 && !isUserSelf) {
                     z12 = true;
                 } else {
@@ -88,10 +88,10 @@ public final class s6 implements ll0 {
                 boolean z18 = z10;
                 final String str2 = str;
                 F.l(R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str), new Runnable(this) {
-                    public final s6 f1427b;
+                    public final s6 f1424b;
 
                     {
-                        this.f1427b = this;
+                        this.f1424b = this;
                     }
 
                     @Override
@@ -103,21 +103,21 @@ public final class s6 implements ll0 {
                         String str3 = str2;
                         TLRPC.User user2 = user;
                         MessagesController messagesController2 = messagesController;
-                        s6 s6Var = this.f1427b;
+                        s6 s6Var = this.f1424b;
                         switch (i12) {
                             case 0:
-                                messagesController2.getStoriesController().j0(user2.f18475id, true, true);
-                                j7 j7Var2 = s6Var.f1507b;
-                                hg.k0.q(R.string.StoryHidFromToast, new Object[]{str3}, new xc(j7Var2, j7Var2.f1053s), R.raw.ic_ban, 36);
+                                messagesController2.getStoriesController().j0(user2.f18490id, true, true);
+                                j7 j7Var2 = s6Var.f1504b;
+                                hg.k0.q(R.string.StoryHidFromToast, new Object[]{str3}, new xc(j7Var2, j7Var2.f1050s), R.raw.ic_ban, 36);
                                 if (j7Var2.d(storyView2)) {
                                     f7 = 1.0f;
                                 }
                                 p6Var2.a(f7, true);
                                 return;
                             default:
-                                messagesController2.getStoriesController().j0(user2.f18475id, false, true);
-                                j7 j7Var3 = s6Var.f1507b;
-                                hg.k0.q(R.string.StoryShownBackToToast, new Object[]{str3}, new xc(j7Var3, j7Var3.f1053s), R.raw.contact_check, 36);
+                                messagesController2.getStoriesController().j0(user2.f18490id, false, true);
+                                j7 j7Var3 = s6Var.f1504b;
+                                hg.k0.q(R.string.StoryShownBackToToast, new Object[]{str3}, new xc(j7Var3, j7Var3.f1050s), R.raw.contact_check, 36);
                                 if (j7Var3.d(storyView2)) {
                                     f7 = 1.0f;
                                 }
@@ -134,10 +134,10 @@ public final class s6 implements ll0 {
                     z13 = false;
                 }
                 F.l(R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str2), new Runnable(this) {
-                    public final s6 f1427b;
+                    public final s6 f1424b;
 
                     {
-                        this.f1427b = this;
+                        this.f1424b = this;
                     }
 
                     @Override
@@ -149,21 +149,21 @@ public final class s6 implements ll0 {
                         String str3 = str2;
                         TLRPC.User user2 = user;
                         MessagesController messagesController2 = messagesController;
-                        s6 s6Var = this.f1427b;
+                        s6 s6Var = this.f1424b;
                         switch (i12) {
                             case 0:
-                                messagesController2.getStoriesController().j0(user2.f18475id, true, true);
-                                j7 j7Var2 = s6Var.f1507b;
-                                hg.k0.q(R.string.StoryHidFromToast, new Object[]{str3}, new xc(j7Var2, j7Var2.f1053s), R.raw.ic_ban, 36);
+                                messagesController2.getStoriesController().j0(user2.f18490id, true, true);
+                                j7 j7Var2 = s6Var.f1504b;
+                                hg.k0.q(R.string.StoryHidFromToast, new Object[]{str3}, new xc(j7Var2, j7Var2.f1050s), R.raw.ic_ban, 36);
                                 if (j7Var2.d(storyView2)) {
                                     f7 = 1.0f;
                                 }
                                 p6Var2.a(f7, true);
                                 return;
                             default:
-                                messagesController2.getStoriesController().j0(user2.f18475id, false, true);
-                                j7 j7Var3 = s6Var.f1507b;
-                                hg.k0.q(R.string.StoryShownBackToToast, new Object[]{str3}, new xc(j7Var3, j7Var3.f1053s), R.raw.contact_check, 36);
+                                messagesController2.getStoriesController().j0(user2.f18490id, false, true);
+                                j7 j7Var3 = s6Var.f1504b;
+                                hg.k0.q(R.string.StoryShownBackToToast, new Object[]{str3}, new xc(j7Var3, j7Var3.f1050s), R.raw.contact_check, 36);
                                 if (j7Var3.d(storyView2)) {
                                     f7 = 1.0f;
                                 }
@@ -180,10 +180,10 @@ public final class s6 implements ll0 {
                     z14 = false;
                 }
                 F.m(z14, R.drawable.msg_user_remove, LocaleController.getString(R.string.BlockUser), true, new Runnable(this) {
-                    public final s6 f1468b;
+                    public final s6 f1465b;
 
                     {
-                        this.f1468b = this;
+                        this.f1465b = this;
                     }
 
                     @Override
@@ -192,9 +192,9 @@ public final class s6 implements ll0 {
                         float f10;
                         switch (r6) {
                             case 0:
-                                messagesController.blockPeer(user.f18475id);
-                                j7 j7Var2 = this.f1468b.f1507b;
-                                new xc(j7Var2, j7Var2.f1053s).e(true).j();
+                                messagesController.blockPeer(user.f18490id);
+                                j7 j7Var2 = this.f1465b.f1504b;
+                                new xc(j7Var2, j7Var2.f1050s).e(true).j();
                                 if (j7Var2.d(storyView)) {
                                     f7 = 1.0f;
                                 } else {
@@ -206,10 +206,10 @@ public final class s6 implements ll0 {
                                 MessagesController messagesController2 = messagesController;
                                 l9 storiesController = messagesController2.getStoriesController();
                                 TLRPC.User user2 = user;
-                                storiesController.j0(user2.f18475id, false, true);
-                                messagesController2.unblockPeer(user2.f18475id);
-                                j7 j7Var3 = this.f1468b.f1507b;
-                                new xc(j7Var3, j7Var3.f1053s).e(false).j();
+                                storiesController.j0(user2.f18490id, false, true);
+                                messagesController2.unblockPeer(user2.f18490id);
+                                j7 j7Var3 = this.f1465b.f1504b;
+                                new xc(j7Var3, j7Var3.f1050s).e(false).j();
                                 if (j7Var3.d(storyView)) {
                                     f10 = 1.0f;
                                 } else {
@@ -226,10 +226,10 @@ public final class s6 implements ll0 {
                     z15 = false;
                 }
                 F.l(R.drawable.msg_block, LocaleController.getString(R.string.Unblock), new Runnable(this) {
-                    public final s6 f1468b;
+                    public final s6 f1465b;
 
                     {
-                        this.f1468b = this;
+                        this.f1465b = this;
                     }
 
                     @Override
@@ -238,9 +238,9 @@ public final class s6 implements ll0 {
                         float f10;
                         switch (r6) {
                             case 0:
-                                messagesController.blockPeer(user.f18475id);
-                                j7 j7Var2 = this.f1468b.f1507b;
-                                new xc(j7Var2, j7Var2.f1053s).e(true).j();
+                                messagesController.blockPeer(user.f18490id);
+                                j7 j7Var2 = this.f1465b.f1504b;
+                                new xc(j7Var2, j7Var2.f1050s).e(true).j();
                                 if (j7Var2.d(storyView)) {
                                     f7 = 1.0f;
                                 } else {
@@ -252,10 +252,10 @@ public final class s6 implements ll0 {
                                 MessagesController messagesController2 = messagesController;
                                 l9 storiesController = messagesController2.getStoriesController();
                                 TLRPC.User user2 = user;
-                                storiesController.j0(user2.f18475id, false, true);
-                                messagesController2.unblockPeer(user2.f18475id);
-                                j7 j7Var3 = this.f1468b.f1507b;
-                                new xc(j7Var3, j7Var3.f1053s).e(false).j();
+                                storiesController.j0(user2.f18490id, false, true);
+                                messagesController2.unblockPeer(user2.f18490id);
+                                j7 j7Var3 = this.f1465b.f1504b;
+                                new xc(j7Var3, j7Var3.f1050s).e(false).j();
                                 if (j7Var3.d(storyView)) {
                                     f10 = 1.0f;
                                 } else {
@@ -277,9 +277,9 @@ public final class s6 implements ll0 {
                     F.k();
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(c10);
-                    bb0 bb0Var = new bb0(j7Var.v, j7Var.getContext(), dVar, arrayList, 3);
-                    bb0Var.setOnClickListener(new d0(this, arrayList, F, 3));
-                    F.q(bb0Var);
+                    eb0 eb0Var = new eb0(j7Var.v, j7Var.getContext(), dVar, arrayList, 3);
+                    eb0Var.setOnClickListener(new d0(this, arrayList, F, 3));
+                    F.q(eb0Var);
                     z17 = true;
                 } else {
                     z17 = false;

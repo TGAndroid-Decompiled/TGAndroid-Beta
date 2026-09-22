@@ -37,7 +37,7 @@ public final class f {
             this.f11112b = new Canvas(this.f11111a);
             RectF rectF = this.f11113c;
             rectF.set(0.0f, 0.0f, i11, i10);
-            this.f11112b.drawColor(j6.v0(j6.f19094d6, this.e));
+            this.f11112b.drawColor(j6.v0(j6.f19109d6, this.e));
             this.f11112b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.d);
         }
         return this.f11111a;

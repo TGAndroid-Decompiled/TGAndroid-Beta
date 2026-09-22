@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
+import w7.b7;
 import w7.c7;
-import w7.f7;
 public abstract class t extends q implements List, RandomAccess {
-    public static final r f42391b = new r(u.e, 0);
+    public static final r f42412b = new r(u.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -37,7 +37,7 @@ public abstract class t extends q implements List, RandomAccess {
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i10 = 0; i10 < size; i10++) {
-                            if (c7.a(get(i10), list.get(i10))) {
+                            if (b7.a(get(i10), list.get(i10))) {
                             }
                         }
                         return true;
@@ -47,7 +47,7 @@ public abstract class t extends q implements List, RandomAccess {
                     while (true) {
                         if (listIterator.hasNext()) {
                             if (it.hasNext()) {
-                                if (!c7.a(listIterator.next(), it.next())) {
+                                if (!b7.a(listIterator.next(), it.next())) {
                                     break;
                                 }
                             } else {
@@ -122,7 +122,7 @@ public abstract class t extends q implements List, RandomAccess {
 
     @Override
     public t subList(int i10, int i11) {
-        f7.b(i10, i11, size());
+        c7.b(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
@@ -143,11 +143,11 @@ public abstract class t extends q implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f42391b;
+                return f42412b;
             }
             return new r(this, i10);
         }
-        throw new IndexOutOfBoundsException(f7.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(c7.c(i10, size, "index"));
     }
 
     @Override

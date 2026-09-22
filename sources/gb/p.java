@@ -15,17 +15,17 @@ public final class p implements db.v {
     public final db.u create(db.g gVar, kb.a aVar) {
         switch (this.f9580a) {
             case 0:
-                if (aVar.f13577a == Number.class) {
+                if (aVar.f13575a == Number.class) {
                     return (q) this.f9581b;
                 }
                 return null;
             case 1:
-                if (aVar.f13577a == Object.class) {
+                if (aVar.f13575a == Object.class) {
                     return new r(gVar, (db.t) this.f9581b);
                 }
                 return null;
             default:
-                Class cls = aVar.f13577a;
+                Class cls = aVar.f13575a;
                 if (cls != Calendar.class && cls != GregorianCalendar.class) {
                     return null;
                 }

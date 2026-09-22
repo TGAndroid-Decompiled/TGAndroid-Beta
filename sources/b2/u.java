@@ -5,38 +5,38 @@ import j$.util.Objects;
 public final class u extends c1 {
     public static final String d;
     public static final String e;
-    public final boolean f3327b;
-    public final boolean f3328c;
+    public final boolean f3326b;
+    public final boolean f3327c;
 
     static {
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f7887a;
         d = Integer.toString(1, 36);
         e = Integer.toString(2, 36);
     }
 
     public u() {
-        this.f3327b = false;
-        this.f3328c = false;
+        this.f3326b = false;
+        this.f3327c = false;
     }
 
     @Override
     public final boolean b() {
-        return this.f3327b;
+        return this.f3326b;
     }
 
     @Override
     public final Bundle c() {
         Bundle bundle = new Bundle();
-        bundle.putInt(c1.f2956a, 0);
-        bundle.putBoolean(d, this.f3327b);
-        bundle.putBoolean(e, this.f3328c);
+        bundle.putInt(c1.f2955a, 0);
+        bundle.putBoolean(d, this.f3326b);
+        bundle.putBoolean(e, this.f3327c);
         return bundle;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof u) {
             u uVar = (u) obj;
-            if (this.f3328c == uVar.f3328c && this.f3327b == uVar.f3327b) {
+            if (this.f3327c == uVar.f3327c && this.f3326b == uVar.f3326b) {
                 return true;
             }
             return false;
@@ -45,11 +45,11 @@ public final class u extends c1 {
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f3327b), Boolean.valueOf(this.f3328c));
+        return Objects.hash(Boolean.valueOf(this.f3326b), Boolean.valueOf(this.f3327c));
     }
 
     public u(boolean z10) {
-        this.f3327b = true;
-        this.f3328c = z10;
+        this.f3326b = true;
+        this.f3327c = z10;
     }
 }

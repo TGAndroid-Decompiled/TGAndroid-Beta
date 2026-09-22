@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hu implements ly {
-    public final ju f24759a;
+    public final ju f24891a;
 
     public hu(ju juVar) {
-        this.f24759a = juVar;
+        this.f24891a = juVar;
     }
 
     @Override
@@ -51,18 +51,18 @@ public final class hu implements ly {
     @Override
     public final void i(int i10) {
         boolean z10;
-        ju juVar = this.f24759a;
+        ju juVar = this.f24891a;
         if (juVar.b()) {
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            juVar.f25461x = z10;
+            juVar.f25466x = z10;
             juVar.y();
-            aw0 aw0Var = juVar.f25456f;
-            if (aw0Var != null) {
-                aw0Var.S();
+            cw0 cw0Var = juVar.f25461f;
+            if (cw0Var != null) {
+                cw0Var.S();
             }
         }
     }
@@ -74,7 +74,7 @@ public final class hu implements ly {
 
     @Override
     public final boolean k() {
-        eu euVar = this.f24759a.f25453a;
+        eu euVar = this.f24891a.f25458a;
         if (euVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class hu implements ly {
 
     @Override
     public final void l(String str) {
-        eu euVar = this.f24759a.f25453a;
+        eu euVar = this.f24891a.f25458a;
         int selectionEnd = euVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class hu implements ly {
 
     @Override
     public final void n() {
-        ju juVar = this.f24759a;
+        ju juVar = this.f24891a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(juVar.getContext(), 0, juVar.M);
-        alertDialog$Builder.f18654a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18654a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f18669a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18669a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 29));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         org.telegram.ui.ActionBar.n2 n2Var = juVar.h;
         if (n2Var != null) {
-            n2Var.showDialog(alertDialog$Builder.f18654a);
+            n2Var.showDialog(alertDialog$Builder.f18669a);
         } else {
             alertDialog$Builder.o();
         }
@@ -122,7 +122,7 @@ public final class hu implements ly {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f24759a.h;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f24891a.h;
         if (n2Var == null) {
             new rg.x0((org.telegram.ui.ActionBar.n2) new ai.y3(this, 4), 11, false).show();
         } else {
@@ -133,8 +133,8 @@ public final class hu implements ly {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         y5 y5Var;
-        ju juVar = this.f24759a;
-        eu euVar = juVar.f25453a;
+        ju juVar = this.f24891a;
+        eu euVar = juVar.f25458a;
         int selectionEnd = euVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -146,7 +146,7 @@ public final class hu implements ly {
             } else {
                 y5Var = new y5(j3, euVar.getPaint().getFontMetricsInt());
             }
-            y5Var.cacheType = juVar.d.f25896c;
+            y5Var.cacheType = juVar.d.f25856c;
             spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
             euVar.setText(euVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -160,7 +160,7 @@ public final class hu implements ly {
 
     @Override
     public final boolean z() {
-        return this.f24759a.f25461x;
+        return this.f24891a.f25466x;
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class hu implements ly {
     }
 
     @Override
-    public final void o(s51 s51Var) {
+    public final void o(u51 u51Var) {
     }
 
     @Override

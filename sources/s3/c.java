@@ -11,9 +11,9 @@ import java.util.Collections;
 import java.util.List;
 import w7.m;
 public final class c extends m {
-    public final v f42931a = new v();
-    public final h f42932b = new h();
-    public b0 f42933c;
+    public final v f42952a = new v();
+    public final h f42953b = new h();
+    public b0 f42954c;
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
@@ -28,17 +28,17 @@ public final class c extends m {
         boolean z16;
         long j10;
         long j11;
-        b0 b0Var = this.f42933c;
-        if (b0Var == null || aVar.f14070r != b0Var.e()) {
+        b0 b0Var = this.f42954c;
+        if (b0Var == null || aVar.f14084r != b0Var.e()) {
             b0 b0Var2 = new b0(aVar.e);
-            this.f42933c = b0Var2;
-            b0Var2.a(aVar.e - aVar.f14070r);
+            this.f42954c = b0Var2;
+            b0Var2.a(aVar.e - aVar.f14084r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        v vVar = this.f42931a;
+        v vVar = this.f42952a;
         vVar.H(limit, array);
-        h hVar = this.f42932b;
+        h hVar = this.f42953b;
         hVar.o(limit, array);
         hVar.t(39);
         long i10 = (hVar.i(1) << 32) | hVar.i(32);
@@ -53,12 +53,12 @@ public final class c extends m {
                         if (i12 != 6) {
                             obj = null;
                         } else {
-                            b0 b0Var3 = this.f42933c;
+                            b0 b0Var3 = this.f42954c;
                             long d = a.d(i10, vVar);
                             obj = new a(d, b0Var3.b(d), 1);
                         }
                     } else {
-                        b0 b0Var4 = this.f42933c;
+                        b0 b0Var4 = this.f42954c;
                         vVar.z();
                         if ((vVar.x() & 128) != 0) {
                             z13 = true;
@@ -160,7 +160,7 @@ public final class c extends m {
                             vVar.x();
                             vVar.x();
                         }
-                        arrayList2.add(new ka.c(arrayList3));
+                        arrayList2.add(new a4.m(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }

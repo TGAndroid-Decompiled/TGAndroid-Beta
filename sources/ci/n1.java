@@ -39,7 +39,7 @@ public final class n1 extends ht {
         if (this.O == null) {
             return;
         }
-        s4.m0 m0Var = this.R.f2843c0;
+        s4.m0 m0Var = this.R.f2842c0;
         boolean z11 = true;
         if ((m0Var == null || !m0Var.k()) && this.O.size() > 4 && this.Q) {
             z10 = false;
@@ -71,11 +71,11 @@ public final class n1 extends ht {
             if (i10 < arrayList.size()) {
                 o1 o1Var = (o1) arrayList.get(i10);
                 o1Var.getClass();
-                org.telegram.ui.Components.p5 p5Var = o1Var.f5112c;
+                org.telegram.ui.Components.p5 p5Var = o1Var.f5110c;
                 if (p5Var != null) {
-                    p5Var.setColorFilter(this.R.f5302h3);
+                    p5Var.setColorFilter(this.R.f5300h3);
                 }
-                o1Var.f5114n.draw(canvas, o1Var.h[this.K]);
+                o1Var.f5112n.draw(canvas, o1Var.h[this.K]);
                 i10++;
             } else {
                 return;
@@ -96,7 +96,7 @@ public final class n1 extends ht {
                 float alpha = o1Var.getAlpha() * f7;
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(o1Var.getPaddingLeft() + ((int) o1Var.getX()), o1Var.getPaddingTop(), (o1Var.getWidth() + ((int) o1Var.getX())) - o1Var.getPaddingRight(), o1Var.getHeight() - o1Var.getPaddingBottom());
-                org.telegram.ui.Components.p5 p5Var2 = o1Var.f5112c;
+                org.telegram.ui.Components.p5 p5Var2 = o1Var.f5110c;
                 if (p5Var2 != null) {
                     p5Var2.setBounds(rect);
                 }
@@ -104,8 +104,8 @@ public final class n1 extends ht {
                 if (imageReceiver != null) {
                     imageReceiver.setImageCoords(rect);
                 }
-                PorterDuffColorFilter porterDuffColorFilter = this.R.f5302h3;
-                if (porterDuffColorFilter != null && (p5Var = o1Var.f5112c) != null) {
+                PorterDuffColorFilter porterDuffColorFilter = this.R.f5300h3;
+                if (porterDuffColorFilter != null && (p5Var = o1Var.f5110c) != null) {
                     p5Var.setColorFilter(porterDuffColorFilter);
                 }
                 if (scale != 1.0f) {

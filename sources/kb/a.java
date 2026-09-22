@@ -8,9 +8,9 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 public class a<T> {
-    public final Class f13577a;
-    public final Type f13578b;
-    public final int f13579c;
+    public final Class f13575a;
+    public final Type f13576b;
+    public final int f13577c;
 
     public a() {
         Type genericSuperclass = getClass().getGenericSuperclass();
@@ -21,9 +21,9 @@ public class a<T> {
                 if (!Objects.equals(System.getProperty("gson.allowCapturingTypeVariables"), "true")) {
                     a(a2);
                 }
-                this.f13578b = a2;
-                this.f13577a = d.h(a2);
-                this.f13579c = a2.hashCode();
+                this.f13576b = a2;
+                this.f13575a = d.h(a2);
+                this.f13577c = a2.hashCode();
                 return;
             }
         } else if (genericSuperclass == a.class) {
@@ -76,7 +76,7 @@ public class a<T> {
 
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
-            if (d.e(this.f13578b, ((a) obj).f13578b)) {
+            if (d.e(this.f13576b, ((a) obj).f13576b)) {
                 return true;
             }
             return false;
@@ -85,18 +85,18 @@ public class a<T> {
     }
 
     public final int hashCode() {
-        return this.f13579c;
+        return this.f13577c;
     }
 
     public final String toString() {
-        return d.k(this.f13578b);
+        return d.k(this.f13576b);
     }
 
     public a(Type type) {
         Objects.requireNonNull(type);
         Type a2 = d.a(type);
-        this.f13578b = a2;
-        this.f13577a = d.h(a2);
-        this.f13579c = a2.hashCode();
+        this.f13576b = a2;
+        this.f13575a = d.h(a2);
+        this.f13577c = a2.hashCode();
     }
 }

@@ -15,12 +15,12 @@ import yh.k7;
 import yh.l8;
 import yh.y3;
 public final class r0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29587a;
-    public final Object f29588b;
+    public final int f29549a;
+    public final Object f29550b;
 
     public r0(a6.i iVar, View view) {
-        this.f29587a = 14;
-        this.f29588b = iVar;
+        this.f29549a = 14;
+        this.f29550b = iVar;
     }
 
     @Override
@@ -28,19 +28,19 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
         float f7;
         yh.p2 p2Var;
         boolean z10;
-        int i10 = this.f29587a;
-        Object obj = this.f29588b;
+        int i10 = this.f29549a;
+        Object obj = this.f29550b;
         switch (i10) {
             case 0:
                 s0 s0Var = (s0) obj;
                 s0Var.getClass();
-                s0Var.f29600i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s0Var.f29562i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 1:
                 mi1 mi1Var = (mi1) obj;
                 mi1Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int dp = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
-                b1 b1Var = mi1Var.f29310c;
+                b1 b1Var = mi1Var.f29272c;
                 b1Var.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp * mi1Var.E));
                 b1Var.requestLayout();
                 return;
@@ -58,12 +58,12 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
             case 4:
                 m2 m2Var = (m2) obj;
                 m2Var.getClass();
-                m2Var.f29500s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m2Var.f29495b.invalidate();
+                m2Var.f29462s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m2Var.f29457b.invalidate();
                 return;
             case 5:
                 l4 l4Var = (l4) obj;
-                ((z5) l4Var.f1180b).f29029a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((z5) l4Var.f1177b).f29034a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 l4Var.invalidate();
                 return;
             case 6:
@@ -76,31 +76,31 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
             case 7:
                 org.telegram.ui.k0 k0Var = (org.telegram.ui.k0) obj;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k0Var.f39075a0 = floatValue2;
+                k0Var.f39096a0 = floatValue2;
                 k0Var.j(floatValue2);
-                k0Var.f39077b0.setAlpha(k0Var.f39075a0);
-                k0Var.R.setTranslationX(AndroidUtilities.dp(56.0f) * k0Var.f39075a0);
-                k0Var.O.setTranslationX(AndroidUtilities.dp(112.0f) * k0Var.f39075a0);
+                k0Var.f39098b0.setAlpha(k0Var.f39096a0);
+                k0Var.R.setTranslationX(AndroidUtilities.dp(56.0f) * k0Var.f39096a0);
+                k0Var.O.setTranslationX(AndroidUtilities.dp(112.0f) * k0Var.f39096a0);
                 k0Var.invalidate();
                 return;
             case 8:
-                ((zt0) ((qg.x0) obj)).K.f31221e0.invalidate();
+                ((zt0) ((qg.x0) obj)).K.f31242e0.invalidate();
                 return;
             case 9:
                 qg.s1 s1Var = (qg.s1) obj;
                 s1Var.getClass();
-                s1Var.f41936n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s1Var.f41957n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 s1Var.invalidate();
                 return;
             case 10:
                 qg.z1 z1Var = (qg.z1) obj;
                 z1Var.getClass();
-                z1Var.f42042x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z1Var.f42063x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 z1Var.invalidate();
                 return;
             case 11:
                 pg.n nVar = (pg.n) obj;
-                nVar.f42042x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                nVar.f42063x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 nVar.invalidate();
                 return;
             case 12:
@@ -111,19 +111,19 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
             case 13:
                 qg.t2 t2Var = (qg.t2) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t2Var.f41961y = floatValue3;
-                yd ydVar = t2Var.f41954c;
+                t2Var.f41982y = floatValue3;
+                yd ydVar = t2Var.f41975c;
                 ydVar.setAlpha(floatValue3);
-                ydVar.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, t2Var.f41961y));
-                ydVar.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, t2Var.f41961y));
-                t2Var.f41953b.invalidate();
+                ydVar.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, t2Var.f41982y));
+                ydVar.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, t2Var.f41982y));
+                t2Var.f41974b.invalidate();
                 return;
             case 14:
-                ((View) ((g.b0) ((a6.i) obj).f303b).d.getParent()).invalidate();
+                ((View) ((g.b0) ((a6.i) obj).f302b).d.getParent()).invalidate();
                 return;
             case 15:
                 LimitPreviewView limitPreviewView = (LimitPreviewView) obj;
-                int i11 = LimitPreviewView.f22321l0;
+                int i11 = LimitPreviewView.f22337l0;
                 limitPreviewView.getClass();
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (floatValue4 < 0.5f) {
@@ -131,7 +131,7 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
                 } else {
                     f7 = (1.0f - ((floatValue4 - 0.5f) / 0.5f)) * (-7.0f);
                 }
-                limitPreviewView.f22325b0 = f7;
+                limitPreviewView.f22341b0 = f7;
                 return;
             case 16:
                 rg.p0 p0Var = (rg.p0) obj;
@@ -144,12 +144,12 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 17:
-                ((rg.w1) obj).f42829a.f42811o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((rg.w1) obj).f42850a.f42832o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 18:
                 tg.b bVar = (tg.b) obj;
                 bVar.getClass();
-                bVar.f43392b = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                bVar.f43413b = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 bVar.invalidate();
                 return;
             case 19:
@@ -159,7 +159,7 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 20:
                 y3 y3Var = (y3) obj;
-                y3Var.Y0.f8877c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y3Var.Y0.f8876c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 y3Var.T1();
                 return;
             case 21:
@@ -170,8 +170,8 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
                 q2Var.getClass();
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 q2Var.E = floatValue5;
-                if (floatValue5 >= 0.8f && (p2Var = q2Var.H) != null && (z10 = p2Var.f47889l) && z10) {
-                    p2Var.f47889l = false;
+                if (floatValue5 >= 0.8f && (p2Var = q2Var.H) != null && (z10 = p2Var.f47910l) && z10) {
+                    p2Var.f47910l = false;
                     p2Var.b();
                 }
                 q2Var.invalidate();
@@ -185,24 +185,24 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
             case 24:
                 c4 c4Var = (c4) obj;
                 c4Var.getClass();
-                c4Var.f47304y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c4Var.f47325y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c4Var.invalidate();
                 return;
             case 25:
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s00 s00Var = ((k7) obj).f47659c;
+                s00 s00Var = ((k7) obj).f47680c;
                 s00Var.setScaleX(floatValue6);
                 s00Var.setScaleY(floatValue6);
                 return;
             case 26:
                 l8 l8Var = (l8) obj;
                 l8Var.getClass();
-                l8Var.f47710c0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l8Var.f47731c0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 l8Var.invalidate();
                 return;
             default:
                 float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                zg.s sVar = ((zg.t) obj).f49467b;
+                zg.s sVar = ((zg.u) obj).f49490b;
                 if (sVar != null) {
                     sVar.setAlpha(floatValue7);
                     return;
@@ -212,7 +212,7 @@ public final class r0 implements ValueAnimator.AnimatorUpdateListener {
     }
 
     public r0(Object obj, int i10) {
-        this.f29587a = i10;
-        this.f29588b = obj;
+        this.f29549a = i10;
+        this.f29550b = obj;
     }
 }

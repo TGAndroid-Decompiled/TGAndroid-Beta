@@ -1,55 +1,68 @@
 package fb;
 
-import java.util.AbstractSet;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-public final class k extends AbstractSet {
-    public final int f9034a;
-    public final m f9035b;
+import java.util.NoSuchElementException;
+public final class k implements Iterator {
+    public m f9031a;
+    public m f9032b = null;
+    public int f9033c;
+    public final n d;
+    public final int e;
 
-    public k(m mVar, int i10) {
-        this.f9034a = i10;
-        this.f9035b = mVar;
+    public k(n nVar, int i10) {
+        this.e = i10;
+        this.d = nVar;
+        this.f9031a = nVar.f9046f.d;
+        this.f9033c = nVar.e;
+    }
+
+    public final Object a() {
+        return b();
+    }
+
+    public final m b() {
+        m mVar = this.f9031a;
+        n nVar = this.d;
+        if (mVar != nVar.f9046f) {
+            if (nVar.e == this.f9033c) {
+                this.f9031a = mVar.d;
+                this.f9032b = mVar;
+                return mVar;
+            }
+            throw new ConcurrentModificationException();
+        }
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final void clear() {
-        switch (this.f9034a) {
-            case 0:
-                this.f9035b.clear();
-                return;
+    public final boolean hasNext() {
+        if (this.f9031a != this.d.f9046f) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Object next() {
+        switch (this.e) {
+            case 1:
+                return b().f9039f;
             default:
-                this.f9035b.clear();
-                return;
+                return a();
         }
     }
 
     @Override
-    public final boolean contains(java.lang.Object r5) {
-        throw new UnsupportedOperationException("Method not decompiled: fb.k.contains(java.lang.Object):boolean");
-    }
-
-    @Override
-    public final Iterator iterator() {
-        switch (this.f9034a) {
-            case 0:
-                return new j(this.f9035b, 0);
-            default:
-                return new j(this.f9035b, 1);
+    public final void remove() {
+        m mVar = this.f9032b;
+        if (mVar != null) {
+            n nVar = this.d;
+            nVar.c(mVar, true);
+            this.f9032b = null;
+            this.f9033c = nVar.e;
+            return;
         }
-    }
-
-    @Override
-    public final boolean remove(java.lang.Object r6) {
-        throw new UnsupportedOperationException("Method not decompiled: fb.k.remove(java.lang.Object):boolean");
-    }
-
-    @Override
-    public final int size() {
-        switch (this.f9034a) {
-            case 0:
-                return this.f9035b.d;
-            default:
-                return this.f9035b.d;
-        }
+        throw new IllegalStateException();
     }
 }

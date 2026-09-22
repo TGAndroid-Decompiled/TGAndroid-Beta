@@ -4,16 +4,16 @@ import android.text.TextWatcher;
 import java.util.regex.Pattern;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class lm0 implements TextWatcher {
-    public final int f35479a;
-    public final Object f35480b;
-    public String f35481c;
+    public final int f35502a;
+    public final Object f35503b;
+    public String f35504c;
     public final Object d;
 
     public lm0(pn0 pn0Var, EditTextBoldCursor editTextBoldCursor, String str, int i10) {
-        this.f35479a = i10;
+        this.f35502a = i10;
         this.d = pn0Var;
-        this.f35480b = editTextBoldCursor;
-        this.f35481c = str;
+        this.f35503b = editTextBoldCursor;
+        this.f35504c = str;
     }
 
     @Override
@@ -23,25 +23,25 @@ public final class lm0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f35479a) {
+        switch (this.f35502a) {
             case 0:
             case 1:
                 return;
             default:
-                this.f35481c = charSequence.toString();
+                this.f35504c = charSequence.toString();
                 return;
         }
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f35479a;
+        int i13 = this.f35502a;
     }
 
     public lm0(pg.w wVar) {
-        this.f35479a = 2;
+        this.f35502a = 2;
         this.d = wVar;
-        this.f35480b = Pattern.compile("^[0-9a-fA-F]*$");
+        this.f35503b = Pattern.compile("^[0-9a-fA-F]*$");
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

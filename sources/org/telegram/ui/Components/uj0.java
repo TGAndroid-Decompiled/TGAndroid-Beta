@@ -1,22 +1,23 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class uj0 extends t00 {
-    public final zj0 U;
+import android.view.View;
+public final class uj0 extends yl0 {
+    public final ck0 X2;
 
-    public uj0(zj0 zj0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public uj0(ck0 ck0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, f6Var);
-        this.U = zj0Var;
+        this.X2 = ck0Var;
     }
 
     @Override
-    public final int getAdditionalHeight() {
-        bb0 bb0Var;
-        zj0 zj0Var = this.U;
-        if (!zj0Var.H.isEmpty() && (bb0Var = zj0Var.J) != null) {
-            return AndroidUtilities.dp(8.0f) + bb0Var.getMeasuredHeight();
+    public final void onMeasure(int i10, int i11) {
+        ck0 ck0Var = this.X2;
+        eb0 eb0Var = ck0Var.J;
+        if (eb0Var != null) {
+            eb0Var.measure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 0));
         }
-        return 0;
+        super.onMeasure(i10, i11);
+        ck0Var.j();
     }
 }

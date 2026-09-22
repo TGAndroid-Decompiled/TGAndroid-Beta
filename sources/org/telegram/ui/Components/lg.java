@@ -10,22 +10,22 @@ import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.VideoEditedInfo;
 public final class lg extends org.telegram.ui.tu0 {
-    public boolean f26124a;
-    public final MediaController.PhotoEntry f26125b;
-    public final File f26126c;
+    public boolean f26102a;
+    public final MediaController.PhotoEntry f26103b;
+    public final File f26104c;
     public final mg d;
 
     public lg(mg mgVar, MediaController.PhotoEntry photoEntry, File file) {
         this.d = mgVar;
-        this.f26125b = photoEntry;
-        this.f26126c = file;
+        this.f26103b = photoEntry;
+        this.f26104c = file;
     }
 
     @Override
     public final void G() {
-        if (!this.f26124a) {
+        if (!this.f26102a) {
             try {
-                this.f26126c.delete();
+                this.f26104c.delete();
             } catch (Throwable unused) {
             }
         }
@@ -45,14 +45,14 @@ public final class lg extends org.telegram.ui.tu0 {
         String str2;
         org.telegram.ui.zn znVar;
         ChatActivityEnterView chatActivityEnterView = this.d.d;
-        org.telegram.ui.pn pnVar = chatActivityEnterView.U2;
-        if (pnVar != null && (znVar = chatActivityEnterView.O2) != null && pnVar.f36595f) {
+        org.telegram.ui.pn pnVar = chatActivityEnterView.V2;
+        if (pnVar != null && (znVar = chatActivityEnterView.P2) != null && pnVar.f36618f) {
             znVar.Rb();
             return;
         }
         ArrayList arrayList = new ArrayList();
         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-        MediaController.PhotoEntry photoEntry = this.f26125b;
+        MediaController.PhotoEntry photoEntry = this.f26103b;
         if (!photoEntry.isVideo && (str2 = photoEntry.imagePath) != null) {
             sendingMediaInfo.path = str2;
         } else {
@@ -81,16 +81,16 @@ public final class lg extends org.telegram.ui.tu0 {
         sendingMediaInfo.canDeleteAfter = true;
         arrayList.add(sendingMediaInfo);
         photoEntry.reset();
-        this.f26124a = true;
+        this.f26102a = true;
         boolean checkUpdateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(sendingMediaInfo.caption);
         AccountInstance accountInstance = chatActivityEnterView.R;
         MessageSuggestionParams messageSuggestionParams = null;
-        long j3 = chatActivityEnterView.P2;
-        MessageObject messageObject = chatActivityEnterView.S2;
+        long j3 = chatActivityEnterView.Q2;
+        MessageObject messageObject = chatActivityEnterView.T2;
         threadMessage = chatActivityEnterView.getThreadMessage();
-        org.telegram.ui.pn pnVar2 = chatActivityEnterView.U2;
-        MessageObject messageObject2 = chatActivityEnterView.Y1;
-        org.telegram.ui.zn znVar2 = chatActivityEnterView.O2;
+        org.telegram.ui.pn pnVar2 = chatActivityEnterView.V2;
+        MessageObject messageObject2 = chatActivityEnterView.Z1;
+        org.telegram.ui.zn znVar2 = chatActivityEnterView.P2;
         if (znVar2 == null) {
             i13 = 0;
         } else {
@@ -102,12 +102,12 @@ public final class lg extends org.telegram.ui.tu0 {
             sendMessageChatArguments = null;
         }
         long sendMonoForumPeerId = chatActivityEnterView.getSendMonoForumPeerId();
-        org.telegram.ui.zn znVar3 = chatActivityEnterView.O2;
+        org.telegram.ui.zn znVar3 = chatActivityEnterView.P2;
         if (znVar3 != null) {
-            messageSuggestionParams = znVar3.f40323g5;
+            messageSuggestionParams = znVar3.f40344g5;
         }
         SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j3, messageObject, threadMessage, null, pnVar2, false, false, messageObject2, z10, i11, i12, i13, checkUpdateStickersOrder, null, sendMessageChatArguments, 0L, false, 0L, sendMonoForumPeerId, messageSuggestionParams);
-        ng ngVar = chatActivityEnterView.Y2;
+        ng ngVar = chatActivityEnterView.Z2;
         if (ngVar != null) {
             ngVar.H(null, true, i11, i12, 0L);
         }

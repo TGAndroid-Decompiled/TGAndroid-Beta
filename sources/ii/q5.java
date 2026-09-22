@@ -111,7 +111,7 @@ public final class q5 extends ViewGroup {
                 Object obj = arrayList.get(i12);
                 i12++;
                 TL_iv.pageTableCell pagetablecell3 = (TL_iv.pageTableCell) obj;
-                if (((LinkedHashSet) ((ei.d5) this.h).f8304b).contains(pagetablecell3)) {
+                if (((LinkedHashSet) ((ei.d5) this.h).f8303b).contains(pagetablecell3)) {
                     int b10 = this.f11581a.b(pagetablecell3);
                     int a2 = this.f11581a.a(pagetablecell3);
                     if (b10 < i10 || (b10 == i10 && a2 < i11)) {
@@ -126,14 +126,14 @@ public final class q5 extends ViewGroup {
     }
 
     public final void b() {
-        int i10 = j6.f19343qh;
+        int i10 = j6.f19358qh;
         org.telegram.ui.ActionBar.f6 f6Var = this.f11582b;
         this.f11585n.setColor(j6.v0(i10, f6Var));
         int v02 = j6.v0(j6.M6, f6Var);
         int red = Color.red(v02);
         int green = Color.green(v02);
         int blue = Color.blue(v02);
-        this.f11586r.setColor(j6.v0(j6.f19325ph, f6Var));
+        this.f11586r.setColor(j6.v0(j6.f19340ph, f6Var));
         this.f11587s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
         int i11 = j6.Oh;
@@ -354,7 +354,7 @@ public final class q5 extends ViewGroup {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                if (((LinkedHashSet) ((ei.d5) this.h).f8304b).contains((TL_iv.pageTableCell) obj)) {
+                if (((LinkedHashSet) ((ei.d5) this.h).f8303b).contains((TL_iv.pageTableCell) obj)) {
                     return true;
                 }
             }
@@ -657,7 +657,7 @@ public final class q5 extends ViewGroup {
         if (h6Var == null || (p5Var = this.h) == null || i10 < 0 || i10 >= h6Var.f11424b || i11 < 0 || i11 >= h6Var.f11425c) {
             return false;
         }
-        return ((LinkedHashSet) ((ei.d5) p5Var).f8304b).contains(h6Var.d[i10][i11]);
+        return ((LinkedHashSet) ((ei.d5) p5Var).f8303b).contains(h6Var.d[i10][i11]);
     }
 
     public final int q() {

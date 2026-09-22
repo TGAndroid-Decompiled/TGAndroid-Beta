@@ -12,22 +12,22 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class o1 extends View {
-    public boolean f5110a;
-    public final int f5111b;
-    public org.telegram.ui.Components.p5 f5112c;
+    public boolean f5108a;
+    public final int f5109b;
+    public org.telegram.ui.Components.p5 f5110c;
     public final p1 d;
     public ImageReceiver e;
-    public long f5113f;
+    public long f5111f;
     public final ImageReceiver.BackgroundThreadDrawHolder[] h;
-    public ImageReceiver f5114n;
-    public final org.telegram.ui.Components.yc f5115r;
-    public boolean f5116s;
+    public ImageReceiver f5112n;
+    public final org.telegram.ui.Components.yc f5113r;
+    public boolean f5114s;
 
     public o1(Context context, p1 p1Var) {
         super(context);
-        this.f5111b = UserConfig.selectedAccount;
+        this.f5109b = UserConfig.selectedAccount;
         this.h = new ImageReceiver.BackgroundThreadDrawHolder[2];
-        this.f5115r = new org.telegram.ui.Components.yc(this);
+        this.f5113r = new org.telegram.ui.Components.yc(this);
         setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
         this.d = p1Var;
     }
@@ -35,21 +35,21 @@ public final class o1 extends View {
     public final void a(TLRPC.Document document, boolean z10) {
         long j3;
         int i10;
-        long j10 = this.f5113f;
+        long j10 = this.f5111f;
         if (document == null) {
             j3 = 0;
         } else {
-            j3 = document.f18334id;
+            j3 = document.f18349id;
         }
         if (j10 != j3) {
-            org.telegram.ui.Components.p5 p5Var = this.f5112c;
+            org.telegram.ui.Components.p5 p5Var = this.f5110c;
             if (p5Var != null) {
                 p5Var.o(this);
             }
             if (document != null) {
                 int i11 = 1;
-                this.f5110a = true;
-                this.f5113f = document.f18334id;
+                this.f5108a = true;
+                this.f5111f = document.f18349id;
                 int i12 = t2.G;
                 if (!z10) {
                     i11 = 16388;
@@ -59,22 +59,22 @@ public final class o1 extends View {
                 } else {
                     i10 = 13;
                 }
-                org.telegram.ui.Components.p5 m10 = org.telegram.ui.Components.p5.m(this.f5111b, i10, document);
-                this.f5112c = m10;
-                if (this.f5116s) {
+                org.telegram.ui.Components.p5 m10 = org.telegram.ui.Components.p5.m(this.f5109b, i10, document);
+                this.f5110c = m10;
+                if (this.f5114s) {
                     m10.a(this);
                     return;
                 }
                 return;
             }
-            this.f5110a = false;
-            this.f5113f = 0L;
-            this.f5112c = null;
+            this.f5108a = false;
+            this.f5111f = 0L;
+            this.f5110c = null;
         }
     }
 
     public float getScale() {
-        return this.f5115r.a(0.15f);
+        return this.f5113r.a(0.15f);
     }
 
     @Override
@@ -85,8 +85,8 @@ public final class o1 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f5116s = true;
-        org.telegram.ui.Components.p5 p5Var = this.f5112c;
+        this.f5114s = true;
+        org.telegram.ui.Components.p5 p5Var = this.f5110c;
         if (p5Var != null) {
             p5Var.a(this);
         }
@@ -99,8 +99,8 @@ public final class o1 extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f5116s = false;
-        org.telegram.ui.Components.p5 p5Var = this.f5112c;
+        this.f5114s = false;
+        org.telegram.ui.Components.p5 p5Var = this.f5110c;
         if (p5Var != null) {
             p5Var.o(this);
         }
@@ -118,10 +118,10 @@ public final class o1 extends View {
             this.e.draw(canvas);
             return;
         }
-        org.telegram.ui.Components.p5 p5Var = this.f5112c;
+        org.telegram.ui.Components.p5 p5Var = this.f5110c;
         if (p5Var != null) {
             p5Var.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            this.f5112c.draw(canvas);
+            this.f5110c.draw(canvas);
         }
     }
 
@@ -132,19 +132,19 @@ public final class o1 extends View {
     }
 
     public void setDrawable(Drawable drawable) {
-        org.telegram.ui.Components.p5 p5Var = this.f5112c;
+        org.telegram.ui.Components.p5 p5Var = this.f5110c;
         if (p5Var != null) {
             p5Var.o(this);
         }
-        this.f5112c = null;
-        this.f5113f = 0L;
-        this.f5110a = false;
+        this.f5110c = null;
+        this.f5111f = 0L;
+        this.f5108a = false;
         if (this.e == null) {
             ImageReceiver imageReceiver = new ImageReceiver();
             this.e = imageReceiver;
             imageReceiver.setLayerNum(7);
             this.e.setAspectFit(true);
-            if (this.f5116s) {
+            if (this.f5114s) {
                 this.e.onAttachedToWindow();
             }
         }
@@ -154,29 +154,29 @@ public final class o1 extends View {
     @Override
     public void setPressed(boolean z10) {
         super.setPressed(z10);
-        this.f5115r.c(z10);
+        this.f5113r.c(z10);
     }
 
     public void setSticker(TLRPC.Document document) {
         View view;
         String str;
-        this.f5110a = false;
+        this.f5108a = false;
         if (document != null) {
-            long j3 = this.f5113f;
-            long j10 = document.f18334id;
+            long j3 = this.f5111f;
+            long j10 = document.f18349id;
             if (j3 != j10) {
-                this.f5113f = j10;
+                this.f5111f = j10;
                 if (this.e == null) {
                     ImageReceiver imageReceiver = new ImageReceiver();
                     this.e = imageReceiver;
                     imageReceiver.setLayerNum(7);
                     this.e.setAspectFit(true);
-                    if (this.f5116s) {
+                    if (this.f5114s) {
                         this.e.onAttachedToWindow();
                     }
                 }
                 ImageReceiver imageReceiver2 = this.e;
-                if (!this.f5110a) {
+                if (!this.f5108a) {
                     view = this;
                 } else {
                     view = this.d;
@@ -198,7 +198,7 @@ public final class o1 extends View {
         }
         ImageReceiver imageReceiver3 = this.e;
         if (imageReceiver3 != null) {
-            this.f5113f = 0L;
+            this.f5111f = 0L;
             imageReceiver3.clearImage();
         }
     }

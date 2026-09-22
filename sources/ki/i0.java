@@ -1,18 +1,15 @@
 package ki;
 public final class i0 {
-    public static final i0 f13731a;
-    public static final i0 f13732b;
-    public static final i0 f13733c;
-    public static final i0[] d;
+    public static final i0 f13741a;
+    public static final i0 f13742b;
+    public static final i0[] f13743c;
 
     static {
-        ?? r02 = new Enum("HIGH", 0);
-        f13731a = r02;
-        ?? r12 = new Enum("MEDIUM", 1);
-        f13732b = r12;
-        ?? r32 = new Enum("LOW", 2);
-        f13733c = r32;
-        d = new i0[]{r02, r12, r32};
+        ?? r02 = new Enum("FRONT", 0);
+        f13741a = r02;
+        ?? r12 = new Enum("BACK", 1);
+        f13742b = r12;
+        f13743c = new i0[]{r02, r12};
     }
 
     public static i0 valueOf(String str) {
@@ -20,6 +17,6 @@ public final class i0 {
     }
 
     public static i0[] values() {
-        return (i0[]) d.clone();
+        return (i0[]) f13743c.clone();
     }
 }

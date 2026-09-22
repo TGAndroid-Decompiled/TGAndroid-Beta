@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class in extends s4.d0 {
-    public final hg.e0 f25085r;
+    public final hg.e0 f25159r;
 
     public in(hg.e0 e0Var, Context context) {
         super(context);
-        this.f25085r = e0Var;
+        this.f25159r = e0Var;
     }
 
     @Override
     public final int k(int i10, View view) {
         int i11;
-        un unVar = (un) this.f25085r.V;
+        un unVar = (un) this.f25159r.V;
         if (unVar.V0) {
             i10 = -1;
         }

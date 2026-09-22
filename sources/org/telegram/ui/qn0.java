@@ -6,54 +6,54 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qn0 implements Runnable {
-    public final int f36947a;
-    public final xo0 f36948b;
-    public final TLObject f36949c;
+    public final int f36970a;
+    public final xo0 f36971b;
+    public final TLObject f36972c;
 
     public qn0(xo0 xo0Var, TLObject tLObject, int i10) {
-        this.f36947a = i10;
-        this.f36948b = xo0Var;
-        this.f36949c = tLObject;
+        this.f36970a = i10;
+        this.f36971b = xo0Var;
+        this.f36972c = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f36947a) {
+        switch (this.f36970a) {
             case 0:
-                xo0.e0(this.f36948b, this.f36949c);
+                xo0.e0(this.f36971b, this.f36972c);
                 return;
             case 1:
-                xo0 xo0Var = this.f36948b;
-                Utilities.Callback callback = xo0Var.f39653d1;
-                TLObject tLObject = this.f36949c;
+                xo0 xo0Var = this.f36971b;
+                Utilities.Callback callback = xo0Var.f39673d1;
+                TLObject tLObject = this.f36972c;
                 if (callback != null) {
                     callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
                 }
                 xo0Var.D0(false);
-                xo0Var.f39683z0 = true;
+                xo0Var.f39703z0 = true;
                 xo0Var.H0(true, true);
-                org.telegram.ui.Components.tq tqVar = xo0Var.f39670r;
+                org.telegram.ui.Components.tq tqVar = xo0Var.f39690r;
                 if (tqVar != null) {
                     tqVar.setVisibility(0);
                 }
-                org.telegram.ui.ActionBar.v0 v0Var = xo0Var.f39665n;
+                org.telegram.ui.ActionBar.v0 v0Var = xo0Var.f39685n;
                 if (v0Var != null) {
                     v0Var.setEnabled(false);
-                    xo0Var.f39665n.getContentView().setVisibility(4);
+                    xo0Var.f39685n.getContentView().setVisibility(4);
                 }
                 org.telegram.ui.ActionBar.d5 parentLayout = xo0Var.getParentLayout();
                 Activity parentActivity = xo0Var.getParentActivity();
                 xo0Var.getMessagesController().newMessageCallback = new b7(xo0Var, parentLayout, parentActivity, 17);
-                WebView webView = xo0Var.f39677w;
+                WebView webView = xo0Var.f39697w;
                 if (webView != null) {
                     webView.setVisibility(0);
-                    WebView webView2 = xo0Var.f39677w;
+                    WebView webView2 = xo0Var.f39697w;
                     String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
-                    xo0Var.f39679x = str;
+                    xo0Var.f39699x = str;
                     webView2.loadUrl(str);
                 }
-                xo0Var.f39645a1 = true;
-                xo0Var.f39658f1 = 3;
+                xo0Var.f39665a1 = true;
+                xo0Var.f39678f1 = 3;
                 wo0 wo0Var = xo0Var.Z0;
                 if (wo0Var != null) {
                     wo0Var.a(3);
@@ -61,7 +61,7 @@ public final class qn0 implements Runnable {
                 }
                 return;
             default:
-                xo0.c0(this.f36948b, this.f36949c);
+                xo0.c0(this.f36971b, this.f36972c);
                 return;
         }
     }

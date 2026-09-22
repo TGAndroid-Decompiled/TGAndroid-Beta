@@ -30,8 +30,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.rk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p90;
 import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.s90;
 import org.telegram.ui.ed0;
 public final class x7 extends FrameLayout {
     public boolean E;
@@ -41,20 +41,20 @@ public final class x7 extends FrameLayout {
     public CharSequence I;
     public Drawable J;
     public int K;
-    public final org.telegram.ui.Components.v9 f21844a;
-    public final org.telegram.ui.ActionBar.j5 f21845b;
-    public int f21846c;
+    public final org.telegram.ui.Components.v9 f21859a;
+    public final org.telegram.ui.ActionBar.j5 f21860b;
+    public int f21861c;
     public final TextView d;
     public boolean e;
-    public org.telegram.ui.Components.g9 f21847f;
+    public org.telegram.ui.Components.g9 f21862f;
     public final int h;
-    public final RectF f21848n;
-    public LocationController.SharingLocationInfo f21849r;
-    public ed0 f21850s;
+    public final RectF f21863n;
+    public LocationController.SharingLocationInfo f21864r;
+    public ed0 f21865s;
     public final Location v;
-    public final org.telegram.ui.ActionBar.f6 f21851w;
-    public int f21852x;
-    public final u6 f21853y;
+    public final org.telegram.ui.ActionBar.f6 f21866w;
+    public int f21867x;
+    public final u6 f21868y;
 
     public x7(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         super(context);
@@ -73,19 +73,19 @@ public final class x7 extends FrameLayout {
         int i15;
         float f17;
         float f18;
-        this.f21848n = new RectF();
+        this.f21863n = new RectF();
         this.v = new Location("network");
-        this.f21852x = UserConfig.selectedAccount;
-        this.f21853y = new u6(this, 2);
+        this.f21867x = UserConfig.selectedAccount;
+        this.f21868y = new u6(this, 2);
         this.I = "";
-        this.f21851w = f6Var;
+        this.f21866w = f6Var;
         this.h = i10;
         org.telegram.ui.Components.v9 v9Var = new org.telegram.ui.Components.v9(context);
-        this.f21844a = v9Var;
+        this.f21859a = v9Var;
         v9Var.setRoundRadius(AndroidUtilities.dp(21.0f));
-        this.f21847f = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
+        this.f21862f = new org.telegram.ui.Components.g9((org.telegram.ui.ActionBar.f6) null);
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f21845b = j5Var;
+        this.f21860b = j5Var;
         NotificationCenter.listenEmojiLoading(j5Var);
         j5Var.setTextSize(16);
         j5Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
@@ -215,29 +215,29 @@ public final class x7 extends FrameLayout {
         CharSequence charSequence;
         float f7;
         TLRPC.Message message;
-        org.telegram.ui.ActionBar.j5 j5Var = this.f21845b;
-        org.telegram.ui.Components.v9 v9Var = this.f21844a;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f21851w;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f21860b;
+        org.telegram.ui.Components.v9 v9Var = this.f21859a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f21866w;
         TextView textView = this.d;
         if (messageObject != null && (message = messageObject.messageOwner) != null && message.local_id == -1) {
             Drawable drawable = getResources().getDrawable(R.drawable.pin);
-            drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19288ni, f6Var), PorterDuff.Mode.MULTIPLY));
+            drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19303ni, f6Var), PorterDuff.Mode.MULTIPLY));
             int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.ti, f6Var);
             pq pqVar = new pq(org.telegram.ui.ActionBar.j6.h0(AndroidUtilities.dp(42.0f), v02, v02), drawable);
             int dp = AndroidUtilities.dp(42.0f);
             int dp2 = AndroidUtilities.dp(42.0f);
             pqVar.h = dp;
-            pqVar.f27423n = dp2;
+            pqVar.f27401n = dp2;
             int dp3 = AndroidUtilities.dp(24.0f);
             int dp4 = AndroidUtilities.dp(24.0f);
             pqVar.e = dp3;
-            pqVar.f27422f = dp4;
+            pqVar.f27400f = dp4;
             v9Var.setImageDrawable(pqVar);
-            j5Var.l(Emoji.replaceEmoji(MessagesController.getInstance(this.f21852x).getPeerName(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id)), j5Var.getPaint().getFontMetricsInt(), false), false);
+            j5Var.l(Emoji.replaceEmoji(MessagesController.getInstance(this.f21867x).getPeerName(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id)), j5Var.getPaint().getFontMetricsInt(), false), false);
             this.e = false;
             textView.setSingleLine(false);
             String str2 = messageObject.messageOwner.media.address;
-            this.f21846c = new StaticLayout(str2, textView.getPaint(), AndroidUtilities.displaySize.x - AndroidUtilities.dp(this.h + 73), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false).getHeight();
+            this.f21861c = new StaticLayout(str2, textView.getPaint(), AndroidUtilities.displaySize.x - AndroidUtilities.dp(this.h + 73), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false).getHeight();
             textView.setText(str2);
             requestLayout();
             return;
@@ -248,7 +248,7 @@ public final class x7 extends FrameLayout {
         if (messageObject.isForwarded()) {
             fromChatId = MessageObject.getPeerId(messageObject.messageOwner.fwd_from.from_id);
         }
-        this.f21852x = messageObject.currentAccount;
+        this.f21867x = messageObject.currentAccount;
         if (!TextUtils.isEmpty(messageObject.messageOwner.media.address)) {
             str = messageObject.messageOwner.media.address;
         } else {
@@ -258,23 +258,23 @@ public final class x7 extends FrameLayout {
         if (!isEmpty) {
             charSequence = "";
         } else {
-            this.f21847f = null;
+            this.f21862f = null;
             if (fromChatId > 0) {
-                TLRPC.User user = MessagesController.getInstance(this.f21852x).getUser(Long.valueOf(fromChatId));
+                TLRPC.User user = MessagesController.getInstance(this.f21867x).getUser(Long.valueOf(fromChatId));
                 if (user != null) {
-                    this.f21847f = new org.telegram.ui.Components.g9(0, user);
+                    this.f21862f = new org.telegram.ui.Components.g9(0, user);
                     charSequence = UserObject.getUserName(user);
-                    v9Var.e(user, this.f21847f);
+                    v9Var.e(user, this.f21862f);
                 } else {
                     TLRPC.GeoPoint geoPoint = messageObject.messageOwner.media.geo;
                     charSequence = a(geoPoint.lat, geoPoint._long);
                     isEmpty = false;
                 }
             } else {
-                TLRPC.Chat chat = MessagesController.getInstance(this.f21852x).getChat(Long.valueOf(-fromChatId));
+                TLRPC.Chat chat = MessagesController.getInstance(this.f21867x).getChat(Long.valueOf(-fromChatId));
                 if (chat != null) {
                     org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9(chat);
-                    this.f21847f = g9Var;
+                    this.f21862f = g9Var;
                     String str3 = chat.title;
                     v9Var.e(chat, g9Var);
                     charSequence = str3;
@@ -290,7 +290,7 @@ public final class x7 extends FrameLayout {
                 SpannableString spannableString = new SpannableString("dkaraush has been here");
                 this.H = spannableString;
                 f7 = 24.0f;
-                spannableString.setSpan(new p90(j5Var, AndroidUtilities.dp(100.0f), 0, f6Var), 0, this.H.length(), 33);
+                spannableString.setSpan(new s90(j5Var, AndroidUtilities.dp(100.0f), 0, f6Var), 0, this.H.length(), 33);
             } else {
                 f7 = 24.0f;
             }
@@ -303,17 +303,17 @@ public final class x7 extends FrameLayout {
                 charSequence = messageObject.messageOwner.media.title;
             }
             Drawable drawable2 = getResources().getDrawable(R.drawable.pin);
-            drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19288ni, f6Var), PorterDuff.Mode.MULTIPLY));
+            drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19303ni, f6Var), PorterDuff.Mode.MULTIPLY));
             int v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.ti, f6Var);
             pq pqVar2 = new pq(org.telegram.ui.ActionBar.j6.h0(AndroidUtilities.dp(42.0f), v03, v03), drawable2);
             int dp5 = AndroidUtilities.dp(42.0f);
             int dp6 = AndroidUtilities.dp(42.0f);
             pqVar2.h = dp5;
-            pqVar2.f27423n = dp6;
+            pqVar2.f27401n = dp6;
             int dp7 = AndroidUtilities.dp(f7);
             int dp8 = AndroidUtilities.dp(f7);
             pqVar2.e = dp7;
-            pqVar2.f27422f = dp8;
+            pqVar2.f27400f = dp8;
             v9Var.setImageDrawable(pqVar2);
         }
         j5Var.l(charSequence, false);
@@ -340,13 +340,13 @@ public final class x7 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.f21853y);
+        AndroidUtilities.runOnUIThread(this.f21868y);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f21853y);
+        AndroidUtilities.cancelRunOnUIThread(this.f21868y);
     }
 
     @Override
@@ -357,13 +357,13 @@ public final class x7 extends FrameLayout {
         float abs;
         int v02;
         float f7;
-        LocationController.SharingLocationInfo sharingLocationInfo = this.f21849r;
-        if (sharingLocationInfo != null || this.f21850s != null) {
+        LocationController.SharingLocationInfo sharingLocationInfo = this.f21864r;
+        if (sharingLocationInfo != null || this.f21865s != null) {
             if (sharingLocationInfo != null) {
                 i11 = sharingLocationInfo.stopTime;
                 i10 = sharingLocationInfo.period;
             } else {
-                TLRPC.Message message = this.f21850s.f33312b;
+                TLRPC.Message message = this.f21865s.f33332b;
                 int i12 = message.date;
                 i10 = message.media.period;
                 i11 = i12 + i10;
@@ -374,7 +374,7 @@ public final class x7 extends FrameLayout {
             } else {
                 z10 = false;
             }
-            int currentTime = ConnectionsManager.getInstance(this.f21852x).getCurrentTime();
+            int currentTime = ConnectionsManager.getInstance(this.f21867x).getCurrentTime();
             if (i13 < currentTime && !z10) {
                 return;
             }
@@ -387,7 +387,7 @@ public final class x7 extends FrameLayout {
             float f10 = 48.0f;
             float f11 = 12.0f;
             TextView textView = this.d;
-            RectF rectF = this.f21848n;
+            RectF rectF = this.f21863n;
             if (z11) {
                 float dp = AndroidUtilities.dp(13.0f);
                 if (textView != null) {
@@ -411,20 +411,20 @@ public final class x7 extends FrameLayout {
                 }
                 rectF.set(measuredWidth, dp4, measuredWidth2, AndroidUtilities.dp(f10));
             }
-            org.telegram.ui.ActionBar.f6 f6Var = this.f21851w;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f21866w;
             if (textView == null) {
                 v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.yi, f6Var);
             } else {
                 v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.si, f6Var);
             }
-            org.telegram.ui.ActionBar.j6.f19237l2.setColor(v02);
+            org.telegram.ui.ActionBar.j6.f19252l2.setColor(v02);
             org.telegram.ui.ActionBar.j6.F2.setColor(v02);
-            int alpha = org.telegram.ui.ActionBar.j6.f19237l2.getAlpha();
-            org.telegram.ui.ActionBar.j6.f19237l2.setAlpha((int) (alpha * 0.2f));
-            canvas.drawArc(rectF, -90.0f, 360.0f, false, org.telegram.ui.ActionBar.j6.f19237l2);
-            org.telegram.ui.ActionBar.j6.f19237l2.setAlpha(alpha);
-            canvas.drawArc(rectF, -90.0f, abs * (-360.0f), false, org.telegram.ui.ActionBar.j6.f19237l2);
-            org.telegram.ui.ActionBar.j6.f19237l2.setAlpha(alpha);
+            int alpha = org.telegram.ui.ActionBar.j6.f19252l2.getAlpha();
+            org.telegram.ui.ActionBar.j6.f19252l2.setAlpha((int) (alpha * 0.2f));
+            canvas.drawArc(rectF, -90.0f, 360.0f, false, org.telegram.ui.ActionBar.j6.f19252l2);
+            org.telegram.ui.ActionBar.j6.f19252l2.setAlpha(alpha);
+            canvas.drawArc(rectF, -90.0f, abs * (-360.0f), false, org.telegram.ui.ActionBar.j6.f19252l2);
+            org.telegram.ui.ActionBar.j6.f19252l2.setAlpha(alpha);
             if (z10) {
                 if (this.J == null) {
                     this.J = getContext().getResources().getDrawable(R.drawable.filled_location_forever).mutate();
@@ -463,7 +463,7 @@ public final class x7 extends FrameLayout {
         }
         int dp = AndroidUtilities.dp(f7);
         if (textView != null && !this.e) {
-            i12 = (-AndroidUtilities.dp(20.0f)) + this.f21846c;
+            i12 = (-AndroidUtilities.dp(20.0f)) + this.f21861c;
         } else {
             i12 = 0;
         }
@@ -471,27 +471,27 @@ public final class x7 extends FrameLayout {
     }
 
     public void setDialog(LocationController.SharingLocationInfo sharingLocationInfo) {
-        this.f21849r = sharingLocationInfo;
-        this.f21852x = sharingLocationInfo.account;
-        org.telegram.ui.Components.v9 v9Var = this.f21844a;
-        v9Var.getImageReceiver().setCurrentAccount(this.f21852x);
+        this.f21864r = sharingLocationInfo;
+        this.f21867x = sharingLocationInfo.account;
+        org.telegram.ui.Components.v9 v9Var = this.f21859a;
+        v9Var.getImageReceiver().setCurrentAccount(this.f21867x);
         boolean isUserDialog = DialogObject.isUserDialog(sharingLocationInfo.did);
-        org.telegram.ui.ActionBar.j5 j5Var = this.f21845b;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f21860b;
         if (isUserDialog) {
-            TLRPC.User user = MessagesController.getInstance(this.f21852x).getUser(Long.valueOf(sharingLocationInfo.did));
+            TLRPC.User user = MessagesController.getInstance(this.f21867x).getUser(Long.valueOf(sharingLocationInfo.did));
             if (user != null) {
-                this.f21847f.m(this.f21852x, user);
+                this.f21862f.m(this.f21867x, user);
                 j5Var.l(ContactsController.formatName(user.first_name, user.last_name), false);
-                v9Var.e(user, this.f21847f);
+                v9Var.e(user, this.f21862f);
                 return;
             }
             return;
         }
-        TLRPC.Chat chat = MessagesController.getInstance(this.f21852x).getChat(Long.valueOf(-sharingLocationInfo.did));
+        TLRPC.Chat chat = MessagesController.getInstance(this.f21867x).getChat(Long.valueOf(-sharingLocationInfo.did));
         if (chat != null) {
-            this.f21847f.k(this.f21852x, chat);
+            this.f21862f.k(this.f21867x, chat);
             j5Var.l(chat.title, false);
-            v9Var.e(chat, this.f21847f);
+            v9Var.e(chat, this.f21862f);
         }
     }
 }

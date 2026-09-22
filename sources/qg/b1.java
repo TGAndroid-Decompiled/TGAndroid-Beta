@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.ia;
-import org.telegram.ui.Components.ul0;
-public final class b1 extends ul0 {
-    public final Context f41600c;
+import org.telegram.ui.Components.xl0;
+public final class b1 extends xl0 {
+    public final Context f41621c;
     public final ia d;
     public final c7 e;
-    public final boolean f41601f;
+    public final boolean f41622f;
     public final c6 h;
 
     public b1(c6 c6Var, Context context, ia iaVar, c7 c7Var, boolean z10) {
         this.h = c6Var;
-        this.f41600c = context;
+        this.f41621c = context;
         this.d = iaVar;
         this.e = c7Var;
-        this.f41601f = z10;
+        this.f41622f = z10;
     }
 
     @Override
@@ -32,12 +32,12 @@ public final class b1 extends ul0 {
 
     @Override
     public final int h() {
-        return this.h.f41645s0.size();
+        return this.h.f41666s0.size();
     }
 
     @Override
     public final int j(int i10) {
-        ArrayList arrayList = this.h.f41645s0;
+        ArrayList arrayList = this.h.f41666s0;
         return ((MessageObject) arrayList.get((arrayList.size() - 1) - i10)).contentType;
     }
 
@@ -48,12 +48,12 @@ public final class b1 extends ul0 {
         MessageObject.GroupedMessagePosition position;
         boolean z12;
         c6 c6Var = this.h;
-        ArrayList arrayList = c6Var.f41645s0;
+        ArrayList arrayList = c6Var.f41666s0;
         MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
-        View view = c1Var.f42974a;
+        View view = c1Var.f42995a;
         if (view instanceof org.telegram.ui.Cells.u1) {
             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
-            MessageObject.GroupedMessages groupedMessages = c6Var.f41646t0;
+            MessageObject.GroupedMessages groupedMessages = c6Var.f41667t0;
             if (groupedMessages != null && (position = groupedMessages.getPosition(messageObject)) != null) {
                 if (position.minY != 0) {
                     z12 = true;
@@ -64,7 +64,7 @@ public final class b1 extends ul0 {
             } else {
                 z10 = false;
             }
-            MessageObject.GroupedMessages groupedMessages2 = c6Var.f41646t0;
+            MessageObject.GroupedMessages groupedMessages2 = c6Var.f41667t0;
             if (groupedMessages2 != null) {
                 z11 = true;
             } else {
@@ -79,7 +79,7 @@ public final class b1 extends ul0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         com.google.firebase.messaging.n nVar = this.h.D0;
-        Context context = this.f41600c;
+        Context context = this.f41621c;
         if (i10 == 1) {
             return new s4.c1(new z0(this, context, nVar));
         }

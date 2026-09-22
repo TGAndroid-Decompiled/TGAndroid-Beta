@@ -43,7 +43,7 @@ public final class i extends n0 {
                 }
                 return;
             default:
-                ((l3) this.d).f14444a.setVisibility(0);
+                ((l3) this.d).f14459a.setVisibility(0);
                 return;
         }
     }
@@ -55,20 +55,20 @@ public final class i extends n0 {
                 int i10 = this.f13148c + 1;
                 this.f13148c = i10;
                 bc.d dVar = (bc.d) this.d;
-                if (i10 == ((ArrayList) dVar.f3498c).size()) {
+                if (i10 == ((ArrayList) dVar.f3497c).size()) {
                     m0 m0Var = (m0) dVar.e;
                     if (m0Var != null) {
                         m0Var.c();
                     }
                     this.f13148c = 0;
                     this.f13147b = false;
-                    dVar.f3497b = false;
+                    dVar.f3496b = false;
                     return;
                 }
                 return;
             default:
                 if (!this.f13147b) {
-                    ((l3) this.d).f14444a.setVisibility(this.f13148c);
+                    ((l3) this.d).f14459a.setVisibility(this.f13148c);
                     return;
                 }
                 return;

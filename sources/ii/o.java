@@ -44,7 +44,7 @@ public final class o implements fk {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f11526b.f26655b.f29098f0.startActivityForResult(intent, 21);
+            this.f11526b.f26786b.f29096f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

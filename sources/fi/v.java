@@ -21,8 +21,8 @@ public final class v implements Runnable {
                 k0Var.f9125b.a(false, true);
                 k0Var.setAllowNestedScroll(true);
                 b20 b20Var = k0Var.f9133y;
-                AndroidUtilities.hideKeyboard(b20Var.f22856r);
-                b20Var.f22856r.clearFocus();
+                AndroidUtilities.hideKeyboard(b20Var.f22811r);
+                b20Var.f22811r.clearFocus();
                 return;
             case 1:
                 k0 k0Var2 = this.f9197b;
@@ -30,8 +30,8 @@ public final class v implements Runnable {
                 k0Var2.f9126c.a(false, true);
                 k0Var2.setAllowNestedScroll(true);
                 b20 b20Var2 = k0Var2.E;
-                AndroidUtilities.hideKeyboard(b20Var2.f22856r);
-                b20Var2.f22856r.clearFocus();
+                AndroidUtilities.hideKeyboard(b20Var2.f22811r);
+                b20Var2.f22811r.clearFocus();
                 return;
             default:
                 k0 k0Var3 = this.f9197b;

@@ -20,21 +20,21 @@ public final class l implements k4.b {
         this.e = qVar;
         this.f9377f = h0Var;
         this.f9378g = qVar2;
-        int i11 = qVar2.f7922a;
-        int i12 = qVar2.f7923b;
+        int i11 = qVar2.f7921a;
+        int i12 = qVar2.f7922b;
         int i13 = (qVar2.d * i11) / 8;
-        int i14 = qVar2.f7924c;
+        int i14 = qVar2.f7923c;
         if (i14 == i13) {
             int i15 = i12 * i13;
             int i16 = i15 * 8;
             int max = Math.max(i13, i15 / 10);
             this.f9374a = max;
             b2.r rVar = new b2.r();
-            rVar.f3252p = r0.n("audio/wav");
-            rVar.f3253q = r0.n(str);
+            rVar.f3251p = r0.n("audio/wav");
+            rVar.f3252q = r0.n(str);
             rVar.h = i16;
-            rVar.f3245i = i16;
-            rVar.f3254r = max;
+            rVar.f3244i = i16;
+            rVar.f3253r = max;
             rVar.I = i11;
             rVar.J = i12;
             rVar.K = i10;
@@ -71,13 +71,13 @@ public final class l implements k4.b {
             }
         }
         e2.q qVar = (e2.q) this.f9378g;
-        int i13 = qVar.f7924c;
+        int i13 = qVar.f7923c;
         int i14 = this.f9376c / i13;
         if (i14 > 0) {
             long j11 = this.f9375b;
             long j12 = this.d;
-            long j13 = qVar.f7923b;
-            String str = e2.d0.f7888a;
+            long j13 = qVar.f7922b;
+            String str = e2.d0.f7887a;
             int i15 = i14 * i13;
             int i16 = this.f9376c - i15;
             ((h0) this.f9377f).c(j11 + e2.d0.Y(j12, 1000000L, j13, RoundingMode.DOWN), 1, i15, i16, null);

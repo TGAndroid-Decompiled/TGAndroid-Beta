@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class hp extends org.telegram.ui.Components.vl0 {
-    public static final int f34249b3 = 0;
+public final class hp extends org.telegram.ui.Components.yl0 {
+    public static final int f34269b3 = 0;
     public final gp X2;
     public boolean Y2;
     public final Paint Z2;
-    public final ip f34250a3;
+    public final ip f34270a3;
 
     public hp(ip ipVar, Context context) {
         super(context, null);
-        this.f34250a3 = ipVar;
+        this.f34270a3 = ipVar;
         this.Y2 = false;
         this.Z2 = new Paint(1);
         gp gpVar = new gp(this);
@@ -32,7 +32,7 @@ public final class hp extends org.telegram.ui.Components.vl0 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int S;
-        int size = this.f34250a3.N.size();
+        int size = this.f34270a3.N.size();
         int i10 = Integer.MAX_VALUE;
         int i11 = Integer.MIN_VALUE;
         for (int i12 = 0; i12 < getChildCount(); i12++) {
@@ -43,7 +43,7 @@ public final class hp extends org.telegram.ui.Components.vl0 {
             }
         }
         if (i10 < i11) {
-            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19094d6, this.f29207p2);
+            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19109d6, this.f30704p2);
             Paint paint = this.Z2;
             paint.setColor(v02);
             canvas2 = canvas;
@@ -62,7 +62,7 @@ public final class hp extends org.telegram.ui.Components.vl0 {
     public final void x1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
         TLRPC.TL_username tL_username2;
         int min;
-        ip ipVar = this.f34250a3;
+        ip ipVar = this.f34270a3;
         ArrayList arrayList = ipVar.N;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -117,7 +117,7 @@ public final class hp extends org.telegram.ui.Components.vl0 {
                                 oaVar.setLoading(ipVar.P.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = oaVar.v;
                                 if (tL_username3 != null) {
-                                    oaVar.a(tL_username3, oaVar.f36231w, true, oaVar.f36232x);
+                                    oaVar.a(tL_username3, oaVar.f36249w, true, oaVar.f36250x);
                                 }
                             }
                         } else {
@@ -127,7 +127,7 @@ public final class hp extends org.telegram.ui.Components.vl0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         gp gpVar = this.X2;
-                        ArrayList arrayList2 = gpVar.f33946c.f34250a3.N;
+                        ArrayList arrayList2 = gpVar.f33962c.f34270a3.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             gpVar.p(i12, i13);

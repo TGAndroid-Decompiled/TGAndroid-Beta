@@ -7,7 +7,7 @@ import android.os.Looper;
 import com.google.android.gms.internal.vision.e2;
 import v7.w6;
 public final class e {
-    public final d9.i f10643a;
+    public final d9.j f10643a;
     public final Handler f10644b;
     public o0 f10645c;
     public b2.e d;
@@ -35,7 +35,7 @@ public final class e {
             e2.z zVar = o0Var.f10823n;
             zVar.getClass();
             e2.y b10 = e2.z.b();
-            b10.f7941a = zVar.f7943a.obtainMessage(33, i10, 0);
+            b10.f7940a = zVar.f7942a.obtainMessage(33, i10, 0);
             b10.b();
         }
     }
@@ -70,23 +70,23 @@ public final class e {
                     if (cVar == null) {
                         if (cVar == null) {
                             ?? obj = new Object();
-                            obj.f3658c = b2.e.h;
-                            obj.f3657b = i11;
+                            obj.f3657c = b2.e.h;
+                            obj.f3656b = i11;
                             aVar = obj;
                         } else {
                             ?? obj2 = new Object();
-                            obj2.f3657b = cVar.f3661a;
-                            obj2.f3658c = cVar.d;
-                            obj2.f3656a = cVar.e;
+                            obj2.f3656b = cVar.f3660a;
+                            obj2.f3657c = cVar.d;
+                            obj2.f3655a = cVar.e;
                             aVar = obj2;
                         }
                         b2.e eVar = this.d;
-                        if (eVar != null && eVar.f2968a == 1) {
+                        if (eVar != null && eVar.f2967a == 1) {
                             z11 = true;
                         }
                         eVar.getClass();
-                        aVar.f3658c = eVar;
-                        aVar.f3656a = z11;
+                        aVar.f3657c = eVar;
+                        aVar.f3655a = z11;
                         AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
                             @Override
                             public final void onAudioFocusChange(int i12) {
@@ -106,7 +106,7 @@ public final class e {
                                     eVar3.b(-1);
                                     eVar3.a();
                                     eVar3.c(1);
-                                } else if (i12 != -2 && ((eVar2 = eVar3.d) == null || eVar2.f2968a != 1)) {
+                                } else if (i12 != -2 && ((eVar2 = eVar3.d) == null || eVar2.f2967a != 1)) {
                                     eVar3.c(4);
                                 } else {
                                     eVar3.b(0);
@@ -116,7 +116,7 @@ public final class e {
                         };
                         Handler handler = this.f10644b;
                         handler.getClass();
-                        this.h = new c2.c(aVar.f3657b, onAudioFocusChangeListener, handler, (b2.e) aVar.f3658c, aVar.f3656a);
+                        this.h = new c2.c(aVar.f3656b, onAudioFocusChangeListener, handler, (b2.e) aVar.f3657c, aVar.f3655a);
                     }
                     if (c2.d.h((AudioManager) this.f10643a.get(), this.h) == 1) {
                         c(2);

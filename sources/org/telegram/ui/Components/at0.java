@@ -1,20 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class at0 implements View.OnLayoutChangeListener {
-    public final jv0 f22766a;
+import android.animation.ValueAnimator;
+public final class at0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f22735a;
+    public final eu0 f22736b;
+    public final lv0 f22737c;
 
-    public at0(jv0 jv0Var) {
-        this.f22766a = jv0Var;
+    public at0(lv0 lv0Var, eu0 eu0Var, int i10) {
+        this.f22735a = i10;
+        this.f22737c = lv0Var;
+        this.f22736b = eu0Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        jv0 jv0Var = this.f22766a;
-        org.telegram.ui.ActionBar.v0 v0Var = jv0Var.f25509n0;
-        if (v0Var == null) {
-            return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f22735a) {
+            case 0:
+                this.f22737c.f26216n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                this.f22736b.h.invalidate();
+                return;
+            default:
+                this.f22737c.f26216n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                this.f22736b.h.invalidate();
+                return;
         }
-        jv0Var.f25509n0.setTranslationX(((View) v0Var.getParent()).getMeasuredWidth() - jv0Var.f25509n0.getRight());
     }
 }

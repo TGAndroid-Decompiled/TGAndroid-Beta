@@ -7,39 +7,39 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xk implements Runnable {
-    public final int f18135a = 0;
-    public final boolean f18136b;
-    public final long f18137c;
+    public final int f18150a = 0;
+    public final boolean f18151b;
+    public final long f18152c;
     public final BaseController d;
     public final Object e;
-    public final Object f18138f;
+    public final Object f18153f;
     public final Object h;
-    public final Object f18139n;
+    public final Object f18154n;
 
     public xk(long j3, Set set, TranslateController.PendingTranslation pendingTranslation, TranslateController translateController, TLObject tLObject, TLRPC.TL_error tL_error, boolean z10) {
         this.d = translateController;
         this.e = pendingTranslation;
-        this.f18138f = tLObject;
-        this.f18136b = z10;
+        this.f18153f = tLObject;
+        this.f18151b = z10;
         this.h = tL_error;
-        this.f18137c = j3;
-        this.f18139n = set;
+        this.f18152c = j3;
+        this.f18154n = set;
     }
 
     @Override
     public final void run() {
-        switch (this.f18135a) {
+        switch (this.f18150a) {
             case 0:
-                long j3 = this.f18137c;
-                ((TranslateController) this.d).lambda$pushToTranslate$22((TranslateController.PendingTranslation) this.e, (TLObject) this.f18138f, this.f18136b, (TLRPC.TL_error) this.h, j3, (Set) this.f18139n);
+                long j3 = this.f18152c;
+                ((TranslateController) this.d).lambda$pushToTranslate$22((TranslateController.PendingTranslation) this.e, (TLObject) this.f18153f, this.f18151b, (TLRPC.TL_error) this.h, j3, (Set) this.f18154n);
                 return;
             case 1:
-                long j10 = this.f18137c;
-                ((MediaDataController) this.d).lambda$broadcastReplyMessages$179((ArrayList) this.e, this.f18136b, (ArrayList) this.f18138f, (ArrayList) this.h, (a0.i) this.f18139n, j10);
+                long j10 = this.f18152c;
+                ((MediaDataController) this.d).lambda$broadcastReplyMessages$179((ArrayList) this.e, this.f18151b, (ArrayList) this.f18153f, (ArrayList) this.h, (a0.i) this.f18154n, j10);
                 return;
             default:
-                long j11 = this.f18137c;
-                ((MemberRequestsController) this.d).lambda$getImporters$0((TLRPC.TL_error) this.h, (TLObject) this.f18138f, (TLRPC.TL_chatInviteImporter) this.e, this.f18136b, j11, (RequestDelegate) this.f18139n);
+                long j11 = this.f18152c;
+                ((MemberRequestsController) this.d).lambda$getImporters$0((TLRPC.TL_error) this.h, (TLObject) this.f18153f, (TLRPC.TL_chatInviteImporter) this.e, this.f18151b, j11, (RequestDelegate) this.f18154n);
                 return;
         }
     }
@@ -47,20 +47,20 @@ public final class xk implements Runnable {
     public xk(long j3, MemberRequestsController memberRequestsController, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.TL_error tL_error, boolean z10) {
         this.d = memberRequestsController;
         this.h = tL_error;
-        this.f18138f = tLObject;
+        this.f18153f = tLObject;
         this.e = tL_chatInviteImporter;
-        this.f18136b = z10;
-        this.f18137c = j3;
-        this.f18139n = requestDelegate;
+        this.f18151b = z10;
+        this.f18152c = j3;
+        this.f18154n = requestDelegate;
     }
 
     public xk(MediaDataController mediaDataController, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, a0.i iVar, long j3) {
         this.d = mediaDataController;
         this.e = arrayList;
-        this.f18136b = z10;
-        this.f18138f = arrayList2;
+        this.f18151b = z10;
+        this.f18153f = arrayList2;
         this.h = arrayList3;
-        this.f18139n = iVar;
-        this.f18137c = j3;
+        this.f18154n = iVar;
+        this.f18152c = j3;
     }
 }

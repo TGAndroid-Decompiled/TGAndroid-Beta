@@ -1,35 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class h01 extends ReplacementSpan {
-    public float f24514a;
-    public final String f24515b;
-    public final int f24516c;
-    public final Paint d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class h01 implements TextWatcher {
+    public final o01 f24666a;
 
-    public h01(int i10, Paint paint, String str) {
-        this.f24515b = str;
-        this.f24516c = i10;
-        this.d = paint;
+    public h01(o01 o01Var) {
+        this.f24666a = o01Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        float f10 = (i12 + i14) / 2.0f;
-        paint.setColor(this.f24516c);
-        float dp = AndroidUtilities.dp(19.0f) / 2.0f;
-        canvas.drawRoundRect(f7, f10 - dp, f7 + this.f24514a + AndroidUtilities.dp(11.33f), f10 + dp, dp, dp, this.d);
-        canvas.drawText(this.f24515b, AndroidUtilities.dpf2(5.66f) + f7, i14 - AndroidUtilities.dp(6.0f), paint);
+    public final void afterTextChanged(Editable editable) {
+        o01 o01Var = this.f24666a;
+        o6 o6Var = o01Var.f26945n;
+        if (!o01Var.f26949x) {
+            String trim = editable.toString().trim();
+            if (trim.length() > 16) {
+                o6Var.setText("-" + (trim.length() - 16));
+                trim = trim.substring(0, 16);
+            } else {
+                o6Var.setText("");
+            }
+            Utilities.Callback callback = o01Var.f26948w;
+            if (callback != null) {
+                callback.run(trim);
+            }
+            MessageObject messageObject = o01Var.f26946r;
+            if (messageObject != null) {
+                messageObject.forceUpdate = true;
+                o01Var.d.X3(messageObject, null, false, false, false, false);
+            }
+        }
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        float dpf2 = AndroidUtilities.dpf2(11.33f);
-        float measureText = paint.measureText(this.f24515b);
-        this.f24514a = measureText;
-        return (int) (dpf2 + measureText);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

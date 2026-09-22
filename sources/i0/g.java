@@ -114,7 +114,7 @@ public final class g extends i8 {
     }
 
     @Override
-    public final Typeface b(Context context, o0.h[] hVarArr, int i10) {
+    public final Typeface b(Context context, o0.i[] iVarArr, int i10) {
         Object obj;
         try {
             obj = f10604b.newInstance(null);
@@ -124,17 +124,17 @@ public final class g extends i8 {
         if (obj != null) {
             int i11 = 0;
             m mVar = new m(0);
-            int length = hVarArr.length;
+            int length = iVarArr.length;
             while (true) {
                 if (i11 < length) {
-                    o0.h hVar = hVarArr[i11];
-                    Uri uri = hVar.f15489a;
+                    o0.i iVar = iVarArr[i11];
+                    Uri uri = iVar.f15504a;
                     ByteBuffer byteBuffer = (ByteBuffer) mVar.get(uri);
                     if (byteBuffer == null) {
                         byteBuffer = j8.e(context, uri);
                         mVar.put(uri, byteBuffer);
                     }
-                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f15490b, hVar.f15491c, hVar.d)) {
+                    if (byteBuffer == null || !g(obj, byteBuffer, iVar.f15505b, iVar.f15506c, iVar.d)) {
                         break;
                     }
                     i11++;

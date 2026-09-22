@@ -2,5 +2,5 @@ package t0;
 
 import android.os.Bundle;
 public interface e {
-    boolean g(i iVar, int i10, Bundle bundle);
+    boolean f(i iVar, int i10, Bundle bundle);
 }

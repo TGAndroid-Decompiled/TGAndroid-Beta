@@ -9,7 +9,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.y70;
 public final class z3 implements View.OnClickListener {
     public final int f11803a;
     public final b4 f11804b;
@@ -44,7 +44,7 @@ public final class z3 implements View.OnClickListener {
                 return;
             default:
                 final r rVar = this.f11804b.f11259a.f11497a;
-                org.telegram.ui.ActionBar.f6 f6Var = rVar.f26654a;
+                org.telegram.ui.ActionBar.f6 f6Var = rVar.f26785a;
                 w3 w3Var = rVar.f11592r;
                 a R2 = w3Var.R2();
                 int i10 = this.f11805c;
@@ -100,11 +100,11 @@ public final class z3 implements View.OnClickListener {
                             return;
                         }
                     }
-                    v70 v70Var = rVar.H;
-                    if (v70Var != null) {
-                        v70Var.u();
+                    y70 y70Var = rVar.H;
+                    if (y70Var != null) {
+                        y70Var.u();
                     }
-                    final v70 F = v70.F(rVar, f6Var, view);
+                    final y70 F = y70.F(rVar, f6Var, view);
                     F.Q = true;
                     if (R2 != null && R2.b()) {
                         z17 = false;
@@ -181,13 +181,13 @@ public final class z3 implements View.OnClickListener {
                     return;
                 }
                 int i11 = rVar.f11591n;
-                v70 v70Var2 = rVar.H;
-                if (v70Var2 != null) {
-                    v70Var2.u();
+                y70 y70Var2 = rVar.H;
+                if (y70Var2 != null) {
+                    y70Var2.u();
                 }
-                v70 G = v70.G(rVar, f6Var, view, true);
+                y70 G = y70.G(rVar, f6Var, view, true);
                 G.Q = true;
-                v70 J = G.J();
+                y70 J = G.J();
                 if (!MessagesController.getInstance(i11).richEditorAllowed() && !UserConfig.getInstance(i11).isPremium()) {
                     z10 = true;
                 } else {

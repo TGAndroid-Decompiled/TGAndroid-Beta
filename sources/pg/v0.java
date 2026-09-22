@@ -2,39 +2,39 @@ package pg;
 
 import android.graphics.Bitmap;
 import android.graphics.PointF;
-import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.wv0;
 public final class v0 {
-    public final float f41316a;
-    public final float f41317b;
-    public final PointF f41318c;
+    public final float f41338a;
+    public final float f41339b;
+    public final PointF f41340c;
     public final PointF d;
     public final float e;
-    public final PointF f41319f;
-    public final PointF f41320g;
+    public final PointF f41341f;
+    public final PointF f41342g;
 
-    public v0(t8.a aVar, Bitmap bitmap, uv0 uv0Var, boolean z10) {
+    public v0(t8.a aVar, Bitmap bitmap, wv0 wv0Var, boolean z10) {
         float degrees;
         PointF pointF = null;
         PointF pointF2 = null;
         PointF pointF3 = null;
         PointF pointF4 = null;
-        for (t8.d dVar : aVar.f43340b) {
-            PointF pointF5 = dVar.f43347a;
-            int i10 = dVar.f43348b;
+        for (t8.d dVar : aVar.f43361b) {
+            PointF pointF5 = dVar.f43368a;
+            int i10 = dVar.f43369b;
             if (i10 != 4) {
                 if (i10 != 5) {
                     if (i10 != 10) {
                         if (i10 == 11) {
-                            pointF4 = b(pointF5, bitmap, uv0Var, z10);
+                            pointF4 = b(pointF5, bitmap, wv0Var, z10);
                         }
                     } else {
-                        pointF2 = b(pointF5, bitmap, uv0Var, z10);
+                        pointF2 = b(pointF5, bitmap, wv0Var, z10);
                     }
                 } else {
-                    pointF3 = b(pointF5, bitmap, uv0Var, z10);
+                    pointF3 = b(pointF5, bitmap, wv0Var, z10);
                 }
             } else {
-                pointF = b(pointF5, bitmap, uv0Var, z10);
+                pointF = b(pointF5, bitmap, wv0Var, z10);
             }
         }
         if (pointF != null && pointF2 != null) {
@@ -47,12 +47,12 @@ public final class v0 {
             this.d = pointF7;
             float hypot = (float) Math.hypot(pointF2.x - pointF.x, pointF2.y - pointF.y);
             this.e = hypot;
-            this.f41317b = (float) Math.toDegrees(Math.atan2(pointF2.y - pointF.y, pointF2.x - pointF.x) + 3.141592653589793d);
-            this.f41316a = 2.35f * hypot;
+            this.f41339b = (float) Math.toDegrees(Math.atan2(pointF2.y - pointF.y, pointF2.x - pointF.x) + 3.141592653589793d);
+            this.f41338a = 2.35f * hypot;
             float f7 = hypot * 0.8f;
             float f10 = pointF7.x;
             double radians = (float) Math.toRadians(degrees - 90.0f);
-            this.f41318c = new PointF((((float) Math.cos(radians)) * f7) + f10, (f7 * ((float) Math.sin(radians))) + pointF7.y);
+            this.f41340c = new PointF((((float) Math.cos(radians)) * f7) + f10, (f7 * ((float) Math.sin(radians))) + pointF7.y);
         }
         if (pointF3 != null && pointF4 != null) {
             if (pointF3.x < pointF4.x) {
@@ -61,15 +61,15 @@ public final class v0 {
                 pointF3 = pointF8;
             }
             PointF pointF9 = new PointF((pointF4.x * 0.5f) + (pointF3.x * 0.5f), (pointF4.y * 0.5f) + (pointF3.y * 0.5f));
-            this.f41319f = pointF9;
+            this.f41341f = pointF9;
             float f11 = this.e * 0.7f;
             float f12 = pointF9.x;
-            double radians2 = (float) Math.toRadians(this.f41317b + 90.0f);
-            this.f41320g = new PointF((((float) Math.cos(radians2)) * f11) + f12, (f11 * ((float) Math.sin(radians2))) + pointF9.y);
+            double radians2 = (float) Math.toRadians(this.f41339b + 90.0f);
+            this.f41342g = new PointF((((float) Math.cos(radians2)) * f11) + f12, (f11 * ((float) Math.sin(radians2))) + pointF9.y);
         }
     }
 
-    public static PointF b(PointF pointF, Bitmap bitmap, uv0 uv0Var, boolean z10) {
+    public static PointF b(PointF pointF, Bitmap bitmap, wv0 wv0Var, boolean z10) {
         int width;
         int height;
         if (z10) {
@@ -83,7 +83,7 @@ public final class v0 {
         } else {
             height = bitmap.getHeight();
         }
-        return new PointF((uv0Var.f28868a * pointF.x) / f7, (uv0Var.f28869b * pointF.y) / height);
+        return new PointF((wv0Var.f30161a * pointF.x) / f7, (wv0Var.f30162b * pointF.y) / height);
     }
 
     public final PointF a(int i10) {
@@ -93,12 +93,12 @@ public final class v0 {
                     if (i10 != 3) {
                         return null;
                     }
-                    return this.f41320g;
+                    return this.f41342g;
                 }
-                return this.f41319f;
+                return this.f41341f;
             }
             return this.d;
         }
-        return this.f41318c;
+        return this.f41340c;
     }
 }

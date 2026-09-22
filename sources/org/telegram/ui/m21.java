@@ -5,24 +5,24 @@ import android.text.TextWatcher;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class m21 implements TextWatcher {
-    public final int f35583a;
-    public final o21 f35584b;
+    public final int f35606a;
+    public final o21 f35607b;
 
     public m21(o21 o21Var, int i10) {
-        this.f35583a = i10;
-        this.f35584b = o21Var;
+        this.f35606a = i10;
+        this.f35607b = o21Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f35583a) {
+        switch (this.f35606a) {
             case 0:
-                this.f35584b.U(true);
+                this.f35607b.U(true);
                 return;
             case 1:
-                o21 o21Var = this.f35584b;
+                o21 o21Var = this.f35607b;
                 if (!o21Var.K) {
-                    EditTextBoldCursor editTextBoldCursor = o21Var.f36171a[1];
+                    EditTextBoldCursor editTextBoldCursor = o21Var.f36189a[1];
                     int selectionStart = editTextBoldCursor.getSelectionStart();
                     String obj = editTextBoldCursor.getText().toString();
                     StringBuilder sb2 = new StringBuilder(obj.length());
@@ -54,19 +54,19 @@ public final class m21 implements TextWatcher {
                 }
                 return;
             default:
-                this.f35584b.U(true);
+                this.f35607b.U(true);
                 return;
         }
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f35583a;
+        int i13 = this.f35606a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f35583a;
+        int i13 = this.f35606a;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

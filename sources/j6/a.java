@@ -52,7 +52,7 @@ public final class a {
                 if (f12887i == null) {
                     Intent intent2 = new Intent();
                     intent2.setPackage("com.google.example.invalidpackage");
-                    f12887i = PendingIntent.getBroadcast(context, 0, intent2, l7.a.f14120a);
+                    f12887i = PendingIntent.getBroadcast(context, 0, intent2, l7.a.f14135a);
                 }
                 intent.putExtra("app", f12887i);
             } catch (Throwable th2) {

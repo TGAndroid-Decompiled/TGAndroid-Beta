@@ -3,32 +3,32 @@ package ci;
 import android.graphics.Canvas;
 import org.telegram.ui.LaunchActivity;
 public final class ic extends jc {
-    public final ai.a0 f4821g;
+    public final ai.a0 f4819g;
     public final float h;
 
     public ic(ai.a0 a0Var, float f7) {
-        this.f4821g = a0Var;
+        this.f4819g = a0Var;
         this.h = f7;
     }
 
     @Override
     public final void a(Canvas canvas, float f7) {
         float pow = (float) Math.pow(f7, 16.0d);
-        ai.a0 a0Var = this.f4821g;
+        ai.a0 a0Var = this.f4819g;
         float f10 = this.h;
         a0Var.c(canvas, f10, f10, pow);
     }
 
     @Override
     public final void e() {
-        ai.a0 a0Var = this.f4821g;
+        ai.a0 a0Var = this.f4819g;
         a0Var.post(new ai.y(a0Var, 1));
     }
 
     @Override
     public final void f(boolean z10) {
-        ai.a0 a0Var = this.f4821g;
-        a0Var.f504w = true;
+        ai.a0 a0Var = this.f4819g;
+        a0Var.f501w = true;
         a0Var.invalidate();
         if (z10) {
             int[] iArr = new int[2];

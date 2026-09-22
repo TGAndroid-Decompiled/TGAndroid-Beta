@@ -14,10 +14,10 @@ public final class k1 extends u2.r {
             case 0:
                 b2.k1 k1Var = this.e;
                 b2.h1 f7 = k1Var.f(i10, h1Var, z10);
-                if (k1Var.m(f7.f3014c, (b2.j1) this.f10772g, 0L).a()) {
-                    f7.h(h1Var.f3012a, h1Var.f3013b, h1Var.f3014c, h1Var.d, h1Var.e, b2.b.f2935c, true);
+                if (k1Var.m(f7.f3013c, (b2.j1) this.f10772g, 0L).a()) {
+                    f7.h(h1Var.f3011a, h1Var.f3012b, h1Var.f3013c, h1Var.d, h1Var.e, b2.b.f2934c, true);
                 } else {
-                    f7.f3015f = true;
+                    f7.f3014f = true;
                 }
                 return f7;
             default:
@@ -31,8 +31,8 @@ public final class k1 extends u2.r {
             case 1:
                 super.m(i10, j1Var, j3);
                 b2.k0 k0Var = (b2.k0) this.f10772g;
-                j1Var.f3060c = k0Var;
-                b2.f0 f0Var = k0Var.f3078b;
+                j1Var.f3059c = k0Var;
+                b2.f0 f0Var = k0Var.f3077b;
                 j1Var.getClass();
                 return j1Var;
             default:

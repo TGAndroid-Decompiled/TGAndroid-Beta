@@ -20,21 +20,21 @@ public final class l extends AnimatorListenerAdapter {
         switch (i10) {
             case 0:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                qVar.f49454c.setVisibility(4);
+                qVar.f49451c.setVisibility(4);
                 if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
-                    qVar.f49455f.setFocusableInTouchMode(false);
+                    qVar.f49452f.setFocusableInTouchMode(false);
                     return;
                 }
                 return;
             case 1:
-                qVar.f49456n.setFocusableInTouchMode(true);
+                qVar.f49453n.setFocusableInTouchMode(true);
                 return;
             case 2:
-                qVar.f49459w.setVisibility(4);
+                qVar.f49456w.setVisibility(4);
                 return;
             default:
-                qVar.f49456n.setFocusableInTouchMode(false);
-                qVar.f49455f.setVisibility(4);
+                qVar.f49453n.setFocusableInTouchMode(false);
+                qVar.f49452f.setVisibility(4);
                 return;
         }
     }

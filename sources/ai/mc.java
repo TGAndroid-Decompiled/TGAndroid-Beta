@@ -12,7 +12,7 @@ public final class mc extends qg.t0 {
 
     @Override
     public final void invalidate() {
-        View view = this.Q.f1322c;
+        View view = this.Q.f1319c;
         if (view != null) {
             view.invalidate();
         }

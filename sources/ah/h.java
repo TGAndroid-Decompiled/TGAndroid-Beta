@@ -6,29 +6,29 @@ import android.graphics.RenderNode;
 import org.telegram.messenger.AndroidUtilities;
 import yf.f0;
 public final class h {
-    public final g f452b;
-    public final g f453c;
+    public final g f449b;
+    public final g f450c;
     public long e;
-    public final RenderNode f451a = f.c();
+    public final RenderNode f448a = f.c();
     public final Rect d = new Rect();
 
     public h(i iVar) {
         int i10;
-        if (iVar.f454a) {
+        if (iVar.f451a) {
             g gVar = new g(iVar, "glass", 0, true);
-            this.f453c = gVar;
+            this.f450c = gVar;
             gVar.e = 4;
-            gVar.f447f = 4;
+            gVar.f444f = 4;
             gVar.d(AndroidUtilities.dpf2(6.0f), f0.b());
             g gVar2 = new g(iVar, "blur", 0, false);
-            this.f452b = gVar2;
+            this.f449b = gVar2;
             gVar2.e = 8;
-            gVar2.f447f = 8;
+            gVar2.f444f = 8;
             gVar2.c(AndroidUtilities.dpf2(38.34f));
-        } else if (iVar.f456c) {
+        } else if (iVar.f453c) {
             g gVar3 = new g(iVar, "blur", 0, false);
-            this.f452b = gVar3;
-            boolean z10 = iVar.f455b;
+            this.f449b = gVar3;
+            boolean z10 = iVar.f452b;
             if (z10) {
                 i10 = 16;
             } else {
@@ -36,17 +36,17 @@ public final class h {
             }
             int i11 = z10 ? 16 : 8;
             gVar3.e = i10;
-            gVar3.f447f = i11;
+            gVar3.f444f = i11;
             gVar3.d(AndroidUtilities.dpf2(40.0f), f0.b());
-            this.f453c = null;
+            this.f450c = null;
         } else {
             g gVar4 = new g(iVar, "blur", 1, false);
-            this.f452b = gVar4;
+            this.f449b = gVar4;
             gVar4.e = 8;
-            gVar4.f447f = 8;
+            gVar4.f444f = 8;
             gVar4.c(AndroidUtilities.dpf2(40.0f));
             gVar4.e(f0.b());
-            this.f453c = null;
+            this.f450c = null;
         }
     }
 

@@ -19,36 +19,36 @@ import org.telegram.ui.oy;
 import org.telegram.ui.tx;
 import org.telegram.ui.uy;
 public final class f2 implements Utilities.Callback {
-    public final int f16303a;
-    public final long f16304b;
-    public final Object f16305c;
+    public final int f16318a;
+    public final long f16319b;
+    public final Object f16320c;
     public final Object d;
     public final Object e;
 
     public f2(Object obj, long j3, Object obj2, Object obj3, int i10) {
-        this.f16303a = i10;
-        this.f16305c = obj;
-        this.f16304b = j3;
+        this.f16318a = i10;
+        this.f16320c = obj;
+        this.f16319b = j3;
         this.d = obj2;
         this.e = obj3;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f16303a;
-        long j3 = this.f16304b;
+        int i10 = this.f16318a;
+        long j3 = this.f16319b;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f16305c;
+        Object obj4 = this.f16320c;
         switch (i10) {
             case 0:
-                ((FactCheckController) obj4).lambda$loadMissing$3(this.f16304b, (ArrayList) obj3, (HashMap) obj2, (ArrayList) obj);
+                ((FactCheckController) obj4).lambda$loadMissing$3(this.f16319b, (ArrayList) obj3, (HashMap) obj2, (ArrayList) obj);
                 return;
             case 1:
-                ((MessagesController) obj4).lambda$checkSensitive$448(this.f16304b, (boolean[]) obj3, (Runnable) obj2, (Boolean) obj);
+                ((MessagesController) obj4).lambda$checkSensitive$448(this.f16319b, (boolean[]) obj3, (Runnable) obj2, (Boolean) obj);
                 return;
             case 2:
-                ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f16304b, (TLRPC.TL_textWithEntities) obj);
+                ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f16319b, (TLRPC.TL_textWithEntities) obj);
                 return;
             case 3:
                 tx txVar = (tx) obj4;
@@ -56,7 +56,7 @@ public final class f2 implements Utilities.Callback {
                 Runnable runnable = (Runnable) obj;
                 txVar.getClass();
                 ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                uy uyVar = txVar.f37899b;
+                uy uyVar = txVar.f37900b;
                 uyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
                 oy oyVar = uyVar.C2;
                 uyVar.removeSelfFromStack();
@@ -94,7 +94,7 @@ public final class f2 implements Utilities.Callback {
                     float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
                     canvas.scale(max, max);
                     canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f16304b, str, createBitmap, 6));
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f16319b, str, createBitmap, 6));
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -111,18 +111,18 @@ public final class f2 implements Utilities.Callback {
     }
 
     public f2(Object obj, Dialog dialog, long j3, Object obj2, int i10) {
-        this.f16303a = i10;
-        this.f16305c = obj;
+        this.f16318a = i10;
+        this.f16320c = obj;
         this.d = dialog;
-        this.f16304b = j3;
+        this.f16319b = j3;
         this.e = obj2;
     }
 
     public f2(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f16303a = i10;
-        this.f16305c = obj;
+        this.f16318a = i10;
+        this.f16320c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f16304b = j3;
+        this.f16319b = j3;
     }
 }

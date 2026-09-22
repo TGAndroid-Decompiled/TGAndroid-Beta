@@ -1,8 +1,11 @@
 package pg;
-
-import java.util.ArrayList;
 public final class l1 {
-    public int f41196a;
-    public ArrayList f41197b = new ArrayList();
-    public int f41198c;
+    public double f41215a;
+    public double f41216b;
+    public double f41217c;
+    public double d;
+
+    public final String toString() {
+        return "RectD{left=" + this.f41215a + ", top=" + this.f41216b + ", right=" + this.f41217c + ", bottom=" + this.d + '}';
+    }
 }

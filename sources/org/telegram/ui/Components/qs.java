@@ -5,26 +5,26 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_bots;
 public final class qs {
-    public final int f27655a;
-    public final ms f27656b;
-    public boolean f27657c;
+    public final int f27665a;
+    public final ms f27666b;
+    public boolean f27667c;
     public boolean d;
     public boolean e;
-    public long f27658f;
-    public String f27659g;
+    public long f27668f;
+    public String f27669g;
     public final ArrayList h = new ArrayList();
-    public boolean f27660i = false;
+    public boolean f27670i = false;
 
     public qs(int i10, ms msVar) {
-        this.f27655a = i10;
-        this.f27656b = msVar;
+        this.f27665a = i10;
+        this.f27666b = msVar;
     }
 
     public final void a() {
-        if (!this.f27657c && !this.e) {
-            this.f27657c = true;
+        if (!this.f27667c && !this.e) {
+            this.f27667c = true;
             boolean z10 = this.d;
-            int i10 = this.f27655a;
+            int i10 = this.f27665a;
             if (!z10) {
                 ps psVar = new ps(this, 0);
                 MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
@@ -33,7 +33,7 @@ public final class qs {
             }
             TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
             getpopularappbots.limit = 20;
-            String str = this.f27659g;
+            String str = this.f27669g;
             if (str == null) {
                 str = "";
             }

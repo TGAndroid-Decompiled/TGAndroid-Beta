@@ -1,32 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class wr0 extends gv0 {
-    public final jv0 G;
-
-    public wr0(jv0 jv0Var, Context context) {
-        super(jv0Var, context, 0, true);
-        this.G = jv0Var;
-    }
+import android.view.animation.Interpolator;
+public final class wr0 implements Interpolator {
+    public final int f30132a;
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        jv0 jv0Var = this.G;
-        cu0 W = jv0Var.W(9);
-        if (W != null && W.f23407r.getVisibility() == 0) {
-            jv0Var.f25494f0.l();
-        }
-        if (W != null) {
-            ts0 ts0Var = W.f23409w;
-            ai.d9 d9Var = this.f24460s;
-            if (d9Var != null && (d9Var.k() || (jv0Var.i0() && this.f24460s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            ts0Var.e(z10, true);
+    public final float getInterpolation(float f7) {
+        switch (this.f30132a) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            default:
+                float f10 = f7 - 1.0f;
+                return (f10 * f10 * f10 * f10 * f10) + 1.0f;
         }
     }
 }

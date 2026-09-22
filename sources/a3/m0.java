@@ -2,11 +2,11 @@ package a3;
 public interface m0 {
     public static final na.d f147g = new na.d(1);
 
-    void D();
+    void B();
 
-    void K();
+    void J();
+
+    void U();
 
     void onFirstFrameRendered();
-
-    void v();
 }

@@ -15,7 +15,7 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.g9;
 import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.w51;
 import yf.p;
 public final class a extends View {
     public final int f10016a = 1;
@@ -29,11 +29,11 @@ public final class a extends View {
         this.f10018c = new le.b(this, qr.h, 380L);
         this.f10017b = new Paint(1);
         this.d = f6Var;
-        u51 u51Var = new u51(true);
-        this.e = u51Var;
-        u51Var.setCallback(this);
-        u51Var.b(-1);
-        u51Var.f28596i = true;
+        w51 w51Var = new w51(true);
+        this.e = w51Var;
+        w51Var.setCallback(this);
+        w51Var.b(-1);
+        w51Var.f29938i = true;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class a extends View {
         switch (this.f10016a) {
             case 1:
                 super.onAttachedToWindow();
-                ((u51) this.e).d();
+                ((w51) this.e).d();
                 return;
             case 2:
                 super.onAttachedToWindow();
@@ -59,7 +59,7 @@ public final class a extends View {
         switch (this.f10016a) {
             case 1:
                 super.onDetachedFromWindow();
-                ((u51) this.e).e();
+                ((w51) this.e).e();
                 return;
             case 2:
                 super.onDetachedFromWindow();
@@ -96,7 +96,7 @@ public final class a extends View {
                 float f7 = ((le.b) this.f10018c).e;
                 float f10 = 1.0f - f7;
                 if (f10 > 0.0f) {
-                    p.b(canvas, (u51) this.e, f10 * 1.35f);
+                    p.b(canvas, (w51) this.e, f10 * 1.35f);
                     invalidate();
                 }
                 if (f7 > 0.0f) {
@@ -141,7 +141,7 @@ public final class a extends View {
         switch (this.f10016a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
-                p.d((u51) this.e, i10 / 2.0f, i11 / 2.0f, 17);
+                p.d((w51) this.e, i10 / 2.0f, i11 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -153,7 +153,7 @@ public final class a extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f10016a) {
             case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((u51) this.e) || ((le.b) this.f10018c).f14170f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((w51) this.e) || ((le.b) this.f10018c).f14185f)) {
                     return false;
                 }
                 return true;
@@ -172,7 +172,7 @@ public final class a extends View {
         this.d = paint3;
         this.e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(j6.v0(j6.f19094d6, f6Var));
+        paint.setColor(j6.v0(j6.f19109d6, f6Var));
         paint3.setColor(j6.v0(j6.wj, f6Var));
     }
 

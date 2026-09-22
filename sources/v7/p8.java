@@ -1,16 +1,16 @@
 package v7;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cm0;
+import org.telegram.ui.Components.fm0;
 public abstract class p8 {
-    public static void a(cm0 cm0Var, org.telegram.ui.ActionBar.f6 f6Var) {
+    public static void a(fm0 fm0Var, org.telegram.ui.ActionBar.f6 f6Var) {
         boolean q6;
         if (f6Var != null) {
             q6 = f6Var.a();
         } else {
             q6 = org.telegram.ui.ActionBar.j6.I.q();
         }
-        cm0Var.q(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var), q6);
+        fm0Var.q(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var), q6);
     }
 
     public static int b(ii.a aVar) {

@@ -16,7 +16,7 @@ public final class j {
 
     public j(String str, String str2, String str3, String str4, String str5, String str6, String str7) {
         boolean z10;
-        int i10 = u6.e.f43933a;
+        int i10 = u6.e.f43954a;
         if (str != null && !str.trim().isEmpty()) {
             z10 = false;
         } else {
@@ -58,12 +58,12 @@ public final class j {
 
     public final String toString() {
         m5.e eVar = new m5.e(this);
-        eVar.g(this.f13559b, "applicationId");
-        eVar.g(this.f13558a, "apiKey");
-        eVar.g(this.f13560c, "databaseUrl");
-        eVar.g(this.e, "gcmSenderId");
-        eVar.g(this.f13561f, "storageBucket");
-        eVar.g(this.f13562g, "projectId");
+        eVar.c(this.f13559b, "applicationId");
+        eVar.c(this.f13558a, "apiKey");
+        eVar.c(this.f13560c, "databaseUrl");
+        eVar.c(this.e, "gcmSenderId");
+        eVar.c(this.f13561f, "storageBucket");
+        eVar.c(this.f13562g, "projectId");
         return eVar.toString();
     }
 }

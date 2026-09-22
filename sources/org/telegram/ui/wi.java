@@ -1,97 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class wi extends AnimatorListenerAdapter {
-    public final int f39158a;
-    public final zn f39159b;
+import org.telegram.messenger.MessageObject;
+public final class wi implements Runnable {
+    public final boolean f39179a;
+    public final boolean f39180b;
+    public final int f39181c;
+    public final boolean d;
+    public final org.telegram.ui.Components.sk0 e;
+    public final float f39182f;
+    public final float h;
+    public final zg.p0 f39183n;
+    public final MessageObject f39184r;
+    public final zn f39185s;
 
-    public wi(zn znVar, int i10) {
-        this.f39158a = i10;
-        this.f39159b = znVar;
+    public wi(zn znVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.sk0 sk0Var, float f7, float f10, zg.p0 p0Var, MessageObject messageObject) {
+        this.f39185s = znVar;
+        this.f39179a = z10;
+        this.f39180b = z11;
+        this.f39181c = i10;
+        this.d = z12;
+        this.e = sk0Var;
+        this.f39182f = f7;
+        this.h = f10;
+        this.f39183n = p0Var;
+        this.f39184r = messageObject;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        tj tjVar;
-        switch (this.f39158a) {
-            case 0:
-                zn znVar = this.f39159b;
-                org.telegram.ui.Components.e60 e60Var = znVar.f40258b3;
-                if (e60Var != null) {
-                    e60Var.setIsMessageTransition(false);
-                    znVar.f40258b3.c(true);
-                    znVar.f40258b3.setVisibility(4);
-                    return;
+    public final void run() {
+        if (!this.f39179a) {
+            zn znVar = this.f39185s;
+            if (znVar.f40288bc != null) {
+                znVar.f40288bc = null;
+                if (this.f39180b) {
+                    znVar.h8(new vi(this, this.f39181c, this.d, this.e, this.f39182f, this.h, this.f39183n, 0));
+                } else {
+                    znVar.h8(new gh(10, this, this.f39184r));
                 }
-                return;
-            case 1:
-                zn znVar2 = this.f39159b;
-                znVar2.A9 = AndroidUtilities.dp(30.0f);
-                znVar2.o9();
-                return;
-            case 2:
-                zn znVar3 = this.f39159b;
-                if (znVar3.fragmentView != null && (tjVar = znVar3.f40530x0) != null) {
-                    tjVar.invalidate();
-                    znVar3.fragmentView.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                this.f39159b.P.setVisibility(4);
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new cj(this, 3), 2000L);
-                return;
-            case 5:
-                zn znVar4 = this.f39159b;
-                if (animator.equals(znVar4.f40321g3)) {
-                    znVar4.f40321g3 = null;
-                    return;
-                }
-                return;
-            case 6:
-                zn znVar5 = this.f39159b;
-                if (animator.equals(znVar5.f40321g3)) {
-                    znVar5.f40321g3 = null;
-                    return;
-                }
-                return;
-            case 7:
-                zn znVar6 = this.f39159b;
-                if (animator.equals(znVar6.f40333h3)) {
-                    znVar6.f40345i3 = 1.0f;
-                    znVar6.lc();
-                    znVar6.f40333h3 = null;
-                    return;
-                }
-                return;
-            case 8:
-                zn znVar7 = this.f39159b;
-                if (animator.equals(znVar7.f40333h3)) {
-                    znVar7.f40345i3 = 0.0f;
-                    znVar7.lc();
-                    znVar7.f40333h3 = null;
-                    return;
-                }
-                return;
-            case 9:
-                this.f39159b.T4 = null;
-                return;
-            case 10:
-                zn znVar8 = this.f39159b;
-                znVar8.Da = 1.0f;
-                znVar8.Y.setVisibility(4);
-                znVar8.O0.setVisibility(4);
-                znVar8.o9();
-                return;
-            default:
-                zn znVar9 = this.f39159b;
-                znVar9.Da = 0.0f;
-                znVar9.o9();
-                return;
+                znVar.A7(true);
+            }
         }
     }
 }

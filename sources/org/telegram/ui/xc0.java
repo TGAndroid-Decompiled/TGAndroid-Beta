@@ -6,15 +6,15 @@ import android.net.Uri;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
 public final class xc0 extends org.telegram.ui.ActionBar.j {
-    public final kd0 f39457a;
+    public final kd0 f39481a;
 
     public xc0(kd0 kd0Var) {
-        this.f39457a = kd0Var;
+        this.f39481a = kd0Var;
     }
 
     @Override
     public final void b(int i10) {
-        kd0 kd0Var = this.f39457a;
+        kd0 kd0Var = this.f39481a;
         if (i10 == -1) {
             kd0Var.finishFragment();
         } else if (i10 == 1) {

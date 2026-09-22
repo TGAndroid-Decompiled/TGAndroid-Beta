@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.Utilities;
 public final class k1 extends AsyncTask {
-    public final HashMap f38969a = new HashMap();
-    public final Utilities.Callback f38970b;
-    public Exception f38971c;
+    public final HashMap f38990a = new HashMap();
+    public final Utilities.Callback f38991b;
+    public Exception f38992c;
 
     public k1(Utilities.Callback callback) {
-        this.f38970b = callback;
+        this.f38991b = callback;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class k1 extends AsyncTask {
         BufferedReader bufferedReader;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-            for (Map.Entry entry : this.f38969a.entrySet()) {
+            for (Map.Entry entry : this.f38990a.entrySet()) {
                 if (entry.getKey() != null && entry.getValue() != null) {
                     httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                 }
@@ -46,7 +46,7 @@ public final class k1 extends AsyncTask {
                 }
             }
         } catch (Exception e) {
-            this.f38971c = e;
+            this.f38992c = e;
             return null;
         }
     }
@@ -54,9 +54,9 @@ public final class k1 extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         String str = (String) obj;
-        Utilities.Callback callback = this.f38970b;
+        Utilities.Callback callback = this.f38991b;
         if (callback != null) {
-            if (this.f38971c == null) {
+            if (this.f38992c == null) {
                 callback.run(str);
             } else {
                 callback.run(null);

@@ -45,7 +45,7 @@ public class VoipAudioManager {
 
     public void setSpeakerphoneOn(boolean z10) {
         this.isSpeakerphoneOn = Boolean.valueOf(z10);
-        Utilities.globalQueue.postRunnable(new bi.f(16, getAudioManager(), z10));
+        Utilities.globalQueue.postRunnable(new bi.f(17, getAudioManager(), z10));
     }
 
     private VoipAudioManager() {

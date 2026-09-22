@@ -21,6 +21,6 @@ public final class d extends ContentObserver {
     @Override
     public final void onChange(boolean z10) {
         g7 g7Var = this.f13241c;
-        g7Var.a(b.c((Context) g7Var.f4694b, (b2.e) g7Var.f4699j, (a6.m) g7Var.f4698i));
+        g7Var.a(b.c((Context) g7Var.f4692b, (b2.e) g7Var.f4697j, (e) g7Var.f4696i));
     }
 }

@@ -1,11 +1,20 @@
 package n2;
 
-import java.io.IOException;
-public final class g extends IOException {
-    public final int f15123a;
+import java.util.UUID;
+public interface g {
+    void a(j jVar);
 
-    public g(int i10, Throwable th2) {
-        super(th2);
-        this.f15123a = i10;
-    }
+    void b(j jVar);
+
+    UUID c();
+
+    boolean d();
+
+    int e();
+
+    boolean f(String str);
+
+    f g();
+
+    h2.b h();
 }

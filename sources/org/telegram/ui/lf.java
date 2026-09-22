@@ -5,24 +5,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.tgnet.tl.TL_stories;
 public final class lf implements e2.h {
-    public final int f35431a;
-    public final zn f35432b;
+    public final int f35449a;
+    public final zn f35450b;
 
     public lf(zn znVar, int i10) {
-        this.f35431a = i10;
-        this.f35432b = znVar;
+        this.f35449a = i10;
+        this.f35450b = znVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f35431a) {
+        switch (this.f35449a) {
             case 0:
-                this.f35432b.E1 = (ChannelBoostsController.CanApplyBoost) obj;
+                this.f35450b.E1 = (ChannelBoostsController.CanApplyBoost) obj;
                 return;
             case 1:
                 View view = (View) obj;
                 boolean z10 = view instanceof org.telegram.ui.Cells.u1;
-                zn znVar = this.f35432b;
+                zn znVar = this.f35450b;
                 if (z10) {
                     org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
                     u1Var.E8 = znVar.t9();
@@ -30,9 +30,9 @@ public final class lf implements e2.h {
                     boolean B9 = znVar.B9();
                     if (u1Var.G8 != B9) {
                         u1Var.G8 = B9;
-                        znVar.f40530x0.getClass();
+                        znVar.f40551x0.getClass();
                         int S = RecyclerView.S(view);
-                        u1Var.f21417n8 = true;
+                        u1Var.f21432n8 = true;
                         u1Var.forceLayout();
                         if (S >= 0) {
                             znVar.A0.m(S);
@@ -49,13 +49,13 @@ public final class lf implements e2.h {
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.w0) {
                     org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
-                    w0Var.f21726e0 = znVar.t9();
-                    w0Var.f21739i0 = znVar.C9();
+                    w0Var.f21741e0 = znVar.t9();
+                    w0Var.f21754i0 = znVar.C9();
                     znVar.B9();
                     znVar.Q8();
                     int R82 = znVar.R8();
-                    if (w0Var.f21742j0 != R82) {
-                        w0Var.f21742j0 = R82;
+                    if (w0Var.f21757j0 != R82) {
+                        w0Var.f21757j0 = R82;
                         w0Var.invalidate();
                         return;
                     }
@@ -75,7 +75,7 @@ public final class lf implements e2.h {
             default:
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus != null) {
-                    zn znVar2 = this.f35432b;
+                    zn znVar2 = this.f35450b;
                     znVar2.D1 = tL_premium_boostsStatus;
                     znVar2.getMessagesController().getBoostsController().userCanBoostChannel(znVar2.T5, tL_premium_boostsStatus, new lf(znVar2, 0));
                     return;

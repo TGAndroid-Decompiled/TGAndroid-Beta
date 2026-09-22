@@ -10,6 +10,6 @@ public final class ax0 extends a71 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f31463s0 = null;
+        this.e.f31484s0 = null;
     }
 }

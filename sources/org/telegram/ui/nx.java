@@ -11,7 +11,7 @@ public final class nx extends s4.c0 {
     @Override
     public final int R0() {
         ty tyVar = this.I;
-        if (tyVar.f37910s == 0 && this.J.W.Z3() && tyVar.v == 2) {
+        if (tyVar.f37911s == 0 && this.J.W.Z3() && tyVar.v == 2) {
             return 1;
         }
         return 0;

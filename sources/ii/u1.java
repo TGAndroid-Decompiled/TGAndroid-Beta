@@ -8,7 +8,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ly;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.StickersActivity;
 public final class u1 implements ly {
     public final d2 f11655a;
@@ -152,7 +152,7 @@ public final class u1 implements ly {
     }
 
     @Override
-    public final void o(s51 s51Var) {
+    public final void o(u51 u51Var) {
     }
 
     @Override

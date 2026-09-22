@@ -99,7 +99,7 @@ public final class a5 implements NotificationCenter.NotificationCenterDelegate {
             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
             tL_documentAttributeVideo.supports_streaming = true;
             tL_documentAttributeVideo.duration = this.f11241n;
-            tL_documentAttributeVideo.f18335w = this.f11240f;
+            tL_documentAttributeVideo.f18350w = this.f11240f;
             tL_documentAttributeVideo.h = this.h;
             tL_inputMediaUploadedDocument.attributes.add(tL_documentAttributeVideo);
             tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;

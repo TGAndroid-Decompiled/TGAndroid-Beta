@@ -21,46 +21,46 @@ public class kb extends View {
     public long F;
     public final Path G;
     public final a3.d H;
-    public final org.telegram.ui.Components.d6 f1154a;
-    public final TL_stories.MediaArea f1155b;
-    public final Paint f1156c;
+    public final org.telegram.ui.Components.d6 f1151a;
+    public final TL_stories.MediaArea f1152b;
+    public final Paint f1153c;
     public final Paint d;
     public LinearGradient e;
-    public LinearGradient f1157f;
+    public LinearGradient f1154f;
     public final Matrix h;
-    public final org.telegram.ui.Cells.z f1158n;
-    public final yc f1159r;
-    public final boolean f1160s;
+    public final org.telegram.ui.Cells.z f1155n;
+    public final yc f1156r;
+    public final boolean f1157s;
     public final boolean v;
-    public final boolean f1161w;
-    public final boolean f1162x;
-    public final boolean f1163y;
+    public final boolean f1158w;
+    public final boolean f1159x;
+    public final boolean f1160y;
 
     public kb(Context context, View view, TL_stories.MediaArea mediaArea) {
         super(context);
         boolean z10;
         boolean z11;
         boolean z12 = true;
-        this.f1156c = new Paint(1);
+        this.f1153c = new Paint(1);
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = new Matrix();
         org.telegram.ui.Cells.z f02 = org.telegram.ui.ActionBar.j6.f0(1174405119, 2, -1);
-        this.f1158n = f02;
-        this.f1159r = new yc(this);
-        this.f1160s = false;
+        this.f1155n = f02;
+        this.f1156r = new yc(this);
+        this.f1157s = false;
         this.v = false;
         this.E = false;
         this.G = new Path();
         this.H = new a3.d(this, 21);
-        this.f1155b = mediaArea;
+        this.f1152b = mediaArea;
         boolean z13 = mediaArea instanceof TL_stories.TL_mediaAreaGeoPoint;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && !(mediaArea instanceof TL_stories.TL_mediaAreaUrl)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f1160s = z10;
+        this.f1157s = z10;
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue)) {
             z11 = false;
         } else {
@@ -70,16 +70,16 @@ public class kb extends View {
         if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && (mediaArea.coordinates.flags & 1) == 0) {
             z12 = false;
         }
-        this.f1161w = z12;
-        this.f1163y = z12;
-        this.f1162x = z12;
-        this.f1154a = new org.telegram.ui.Components.d6(view, 0L, 120L, new LinearInterpolator());
+        this.f1158w = z12;
+        this.f1160y = z12;
+        this.f1159x = z12;
+        this.f1151a = new org.telegram.ui.Components.d6(view, 0L, 120L, new LinearInterpolator());
         paint.setStyle(Paint.Style.STROKE);
         f02.setCallback(this);
     }
 
     public final void b(Canvas canvas) {
-        if (!this.f1163y) {
+        if (!this.f1160y) {
             return;
         }
         float innerRadius = getInnerRadius();
@@ -92,7 +92,7 @@ public class kb extends View {
         canvas.clipPath(path);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Cells.z zVar = this.f1158n;
+        org.telegram.ui.Cells.z zVar = this.f1155n;
         zVar.setBounds(0, 0, width, height);
         zVar.draw(canvas);
         canvas.restore();
@@ -101,13 +101,13 @@ public class kb extends View {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        org.telegram.ui.Cells.z zVar = this.f1158n;
-        yc ycVar = this.f1159r;
+        org.telegram.ui.Cells.z zVar = this.f1155n;
+        yc ycVar = this.f1156r;
         if (action == 0) {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                ycVar.f30499f = new nu(1, view);
+                ycVar.f30630f = new nu(1, view);
             }
             ycVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
@@ -123,7 +123,7 @@ public class kb extends View {
     public float getInnerRadius() {
         TL_stories.MediaArea mediaArea;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
-        if ((getParent() instanceof View) && (mediaArea = this.f1155b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
+        if ((getParent() instanceof View) && (mediaArea = this.f1152b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
             if ((mediaAreaCoordinates.flags & 1) != 0) {
                 return (float) (((mediaAreaCoordinates.radius / 100.0d) * getWidth()) / getScaleX());
             }
@@ -151,13 +151,13 @@ public class kb extends View {
             matrix.postTranslate(measuredWidth2, 0.0f);
             this.e.setLocalMatrix(matrix);
             LinearGradient linearGradient = this.e;
-            Paint paint = this.f1156c;
+            Paint paint = this.f1153c;
             paint.setShader(linearGradient);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             canvas.drawRoundRect(rectF, innerRadius, innerRadius, paint);
-            this.f1157f.setLocalMatrix(matrix);
-            LinearGradient linearGradient2 = this.f1157f;
+            this.f1154f.setLocalMatrix(matrix);
+            LinearGradient linearGradient2 = this.f1154f;
             Paint paint2 = this.d;
             paint2.setShader(linearGradient2);
             float dpf2 = AndroidUtilities.dpf2(1.5f);
@@ -172,7 +172,7 @@ public class kb extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f1158n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f1155n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

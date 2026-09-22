@@ -16,21 +16,21 @@ public final class dx extends tv {
     @Override
     public final void X(boolean z10) {
         kz kzVar = this.X;
-        ArrayList arrayList = kzVar.f25937p1;
+        ArrayList arrayList = kzVar.f25897p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f18355id))) {
-                arrayList.add(Long.valueOf(stickerSet.f18355id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f18370id))) {
+                arrayList.add(Long.valueOf(stickerSet.f18370id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f18355id));
+            arrayList.remove(Long.valueOf(stickerSet.f18370id));
         }
         kzVar.T();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f25958v2 = false;
+        this.X.f25918v2 = false;
         super.dismiss();
     }
 }

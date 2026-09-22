@@ -57,7 +57,7 @@ public final class iv extends ht {
             ArrayList arrayList = this.O;
             if (i10 < arrayList.size()) {
                 kv kvVar = (kv) arrayList.get(i10);
-                kvVar.f25869b.draw(canvas, kvVar.f25868a[this.K]);
+                kvVar.f25823b.draw(canvas, kvVar.f25822a[this.K]);
                 i10++;
             } else {
                 return;
@@ -71,8 +71,8 @@ public final class iv extends ht {
         if (this.N != null) {
             for (int i10 = 0; i10 < this.N.size(); i10++) {
                 kv kvVar = (kv) this.N.get(i10);
-                y5 y5Var = kvVar.f25870c;
-                if (y5Var != null && (p5Var = (p5) this.P.f25475y.f28450b.get(y5Var.getDocumentId())) != null && p5Var.f27162k != null && kvVar.f25869b != null) {
+                y5 y5Var = kvVar.f25824c;
+                if (y5Var != null && (p5Var = (p5) this.P.f25480y.f28534b.get(y5Var.getDocumentId())) != null && p5Var.f27256k != null && kvVar.f25823b != null) {
                     p5Var.setAlpha((int) (kvVar.getAlpha() * 255.0f * f7));
                     float width = ((kvVar.getWidth() - kvVar.getPaddingLeft()) - kvVar.getPaddingRight()) / 2.0f;
                     float height = ((kvVar.getHeight() - kvVar.getPaddingTop()) - kvVar.getPaddingBottom()) / 2.0f;
@@ -97,11 +97,11 @@ public final class iv extends ht {
         while (true) {
             ArrayList arrayList = this.O;
             if (i10 >= arrayList.size()) {
-                viewGroup = ((org.telegram.ui.ActionBar.f3) this.P.f25475y).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.f3) this.P.f25480y).containerView;
                 viewGroup.invalidate();
                 return;
             }
-            ((kv) arrayList.get(i10)).f25868a[this.K].release();
+            ((kv) arrayList.get(i10)).f25822a[this.K].release();
             i10++;
         }
     }
@@ -109,16 +109,16 @@ public final class iv extends ht {
     @Override
     public final void i(long j3) {
         p5 p5Var;
-        tv tvVar = this.P.f25475y;
+        tv tvVar = this.P.f25480y;
         ArrayList arrayList = this.O;
         arrayList.clear();
         for (int i10 = 0; i10 < this.N.size(); i10++) {
             kv kvVar = (kv) this.N.get(i10);
-            y5 y5Var = kvVar.f25870c;
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = kvVar.f25868a;
-            if (y5Var != null && (p5Var = (p5) tvVar.f28450b.get(y5Var.getDocumentId())) != null && p5Var.f27162k != null) {
+            y5 y5Var = kvVar.f25824c;
+            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = kvVar.f25822a;
+            if (y5Var != null && (p5Var = (p5) tvVar.f28534b.get(y5Var.getDocumentId())) != null && p5Var.f27256k != null) {
                 p5Var.t(j3);
-                ai.l4 l4Var = p5Var.f27162k;
+                ai.l4 l4Var = p5Var.f27256k;
                 int i11 = this.K;
                 ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = l4Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
                 backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
@@ -133,7 +133,7 @@ public final class iv extends ht {
                     tvVar.T = new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN);
                 }
                 p5Var.setColorFilter(tvVar.T);
-                kvVar.f25869b = p5Var.f27162k;
+                kvVar.f25823b = p5Var.f27256k;
                 arrayList.add(kvVar);
             }
         }

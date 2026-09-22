@@ -16,7 +16,7 @@ public final class h {
     public final j1 f12588a = new j1();
     public final h1 f12589b = new h1();
     public final HashMap f12590c = new HashMap();
-    public k1 e = k1.f3081a;
+    public k1 e = k1.f3080a;
     public long f12592g = -1;
 
     public final void a(g gVar) {
@@ -54,7 +54,7 @@ public final class h {
     }
 
     public final synchronized String d(k1 k1Var, f0 f0Var) {
-        return c(k1Var.g(f0Var.f43653a, this.f12589b).f3014c, f0Var).f12582a;
+        return c(k1Var.g(f0Var.f43674a, this.f12589b).f3013c, f0Var).f12582a;
     }
 
     public final void e(a aVar) {
@@ -80,8 +80,8 @@ public final class h {
         if (f0Var2 != null) {
             long j3 = f0Var2.d;
             if (f0Var2.b()) {
-                if (gVar2 == null || gVar2.f12584c != j3 || (f0Var = gVar2.d) == null || f0Var.f43654b != f0Var2.f43654b || f0Var.f43655c != f0Var2.f43655c) {
-                    c(i10, new f0(f0Var2.f43653a, j3));
+                if (gVar2 == null || gVar2.f12584c != j3 || (f0Var = gVar2.d) == null || f0Var.f43675b != f0Var2.f43675b || f0Var.f43676c != f0Var2.f43676c) {
+                    c(i10, new f0(f0Var2.f43674a, j3));
                     this.d.getClass();
                 }
             }

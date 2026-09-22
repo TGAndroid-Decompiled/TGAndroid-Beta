@@ -1,214 +1,77 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-public final class nv0 extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
-    public final ai.w0 f26741b;
-    public final lv0 f26742c;
-    public final Drawable d;
-    public TextView e;
-    public int f26743f;
-    public boolean h;
-    public final mv0 f26744n;
+public final class nv0 extends xl0 {
+    public final Context f26890c;
+    public final pv0 d;
 
-    public nv0(Context context, mv0 mv0Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(1, context, f6Var, false);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.liveLocationsChanged);
-        this.f26744n = mv0Var;
-        fixNavigationBar();
-        Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.d = mutate;
-        int i10 = org.telegram.ui.ActionBar.j6.f19165h5;
-        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i10), PorterDuff.Mode.MULTIPLY));
-        ai.f0 f0Var = new ai.f0(this, context, 19);
-        this.containerView = f0Var;
-        f0Var.setWillNotDraw(false);
-        ViewGroup viewGroup = this.containerView;
-        int i11 = this.backgroundPaddingLeft;
-        viewGroup.setPadding(i11, 0, i11, 0);
-        ai.w0 w0Var = new ai.w0(this, context, 22);
-        this.f26741b = w0Var;
-        getContext();
-        w0Var.setLayoutManager(new s4.c0(1, false));
-        lv0 lv0Var = new lv0(this, context);
-        this.f26742c = lv0Var;
-        w0Var.setAdapter(lv0Var);
-        w0Var.setVerticalScrollBarEnabled(false);
-        w0Var.setClipToPadding(false);
-        w0Var.setEnabled(true);
-        w0Var.setGlowColor(getThemedColor(org.telegram.ui.ActionBar.j6.A5));
-        w0Var.setOnScrollListener(new sb0(this, 6));
-        w0Var.setOnItemClickListener(new j(this, 13));
-        this.containerView.addView(w0Var, w7.y5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
-        View view = new View(context);
-        view.setBackgroundResource(R.drawable.header_shadow_reverse);
-        this.containerView.addView(view, w7.y5.d(-1, 3.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19094d6, false));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        int i12 = org.telegram.ui.ActionBar.j6.f19195ii;
-        com.google.android.gms.internal.vision.e2.p(i12, null, false, textView, 17);
-        textView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, i12, false) & 268435455, 0, -1));
-        textView.setPadding(AndroidUtilities.dp(33.0f), 0, AndroidUtilities.dp(33.0f), 0);
-        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
-        textView.setTypeface(AndroidUtilities.bold());
-        frameLayout.addView(textView, w7.y5.e(-2, -1, 51));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, i12, false) & 268435455, 0, -1));
-        linearLayout.setPadding(AndroidUtilities.dp(33.0f), 0, AndroidUtilities.dp(33.0f), 0);
-        frameLayout.addView(linearLayout, w7.y5.e(-2, -1, 53));
-        TextView textView2 = new TextView(context);
-        org.telegram.messenger.rk.k(13.0f, 1, textView2);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.f19252li, null, false, textView2, 17);
-        textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(11.0f), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19234ki, false)));
-        textView2.setMinWidth(AndroidUtilities.dp(23.0f));
-        textView2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView2, w7.y5.t(-2, 23, 16, 0, 0, 10, 0), context);
-        h.setTextSize(1, 14.0f);
-        com.google.android.gms.internal.vision.e2.p(i12, null, false, h, 17);
-        h.setCompoundDrawablePadding(AndroidUtilities.dp(8.0f));
-        h.setText(LocaleController.getString(R.string.Send).toUpperCase());
-        h.setTypeface(AndroidUtilities.bold());
-        linearLayout.addView(h, w7.y5.q(-2, -2, 16));
-        frameLayout.setBackgroundColor(getThemedColor(i10));
-        this.containerView.addView(frameLayout, w7.y5.e(-1, 48, 83));
-        textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.f19333q7));
-        textView.setText(LocaleController.getString(R.string.StopAllLocationSharings));
-        textView.setOnClickListener(new View.OnClickListener(this) {
-            public final nv0 f25872b;
-
-            {
-                this.f25872b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        int i13 = 0;
-                        while (true) {
-                            nv0 nv0Var = this.f25872b;
-                            if (i13 < 4) {
-                                nv0Var.getClass();
-                                LocationController.getInstance(i13).removeAllLocationSharings();
-                                i13++;
-                            } else {
-                                nv0Var.dismiss();
-                                return;
-                            }
-                        }
-                    default:
-                        this.f25872b.dismiss();
-                        return;
-                }
-            }
-        });
-        h.setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.f19278n5));
-        h.setText(LocaleController.getString(R.string.Close).toUpperCase());
-        linearLayout.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        linearLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final nv0 f25872b;
-
-            {
-                this.f25872b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        int i13 = 0;
-                        while (true) {
-                            nv0 nv0Var = this.f25872b;
-                            if (i13 < 4) {
-                                nv0Var.getClass();
-                                LocationController.getInstance(i13).removeAllLocationSharings();
-                                i13++;
-                            } else {
-                                nv0Var.dismiss();
-                                return;
-                            }
-                        }
-                    default:
-                        this.f25872b.dismiss();
-                        return;
-                }
-            }
-        });
-        textView2.setVisibility(8);
-        lv0Var.l();
-    }
-
-    public static void m(nv0 nv0Var) {
-        ai.w0 w0Var = nv0Var.f26741b;
-        if (w0Var.getChildCount() <= 0) {
-            int paddingTop = w0Var.getPaddingTop();
-            nv0Var.f26743f = paddingTop;
-            w0Var.setTopGlowOffset(paddingTop);
-            nv0Var.containerView.invalidate();
-            return;
-        }
-        int i10 = 0;
-        View childAt = w0Var.getChildAt(0);
-        fl0 fl0Var = (fl0) w0Var.H(childAt);
-        int top = childAt.getTop() - AndroidUtilities.dp(8.0f);
-        if (top > 0 && fl0Var != null && fl0Var.b() == 0) {
-            i10 = top;
-        }
-        if (nv0Var.f26743f != i10) {
-            nv0Var.f26743f = i10;
-            w0Var.setTopGlowOffset(i10);
-            nv0Var.containerView.invalidate();
-        }
-    }
-
-    public static LocationController.SharingLocationInfo p(int i10) {
-        for (int i11 = 0; i11 < 4; i11++) {
-            ArrayList<LocationController.SharingLocationInfo> arrayList = LocationController.getInstance(i11).sharingLocationsUI;
-            if (i10 >= arrayList.size()) {
-                i10 -= arrayList.size();
-            } else {
-                return arrayList.get(i10);
-            }
-        }
-        return null;
+    public nv0(pv0 pv0Var, Context context) {
+        this.d = pv0Var;
+        this.f26890c = context;
     }
 
     @Override
-    public final boolean canDismissWithSwipe() {
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f42998f == 0) {
+            return true;
+        }
         return false;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.liveLocationsChanged) {
-            if (LocationController.getLocationsCount() == 0) {
-                dismiss();
-            } else {
-                this.f26742c.l();
-            }
-        }
+    public final int h() {
+        return LocationController.getLocationsCount() + 1;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        TextView textView;
+        int i11 = c1Var.f42998f;
+        if (i11 != 0) {
+            if (i11 == 1 && (textView = this.d.e) != null) {
+                textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
+                return;
+            }
+            return;
+        }
+        ((org.telegram.ui.Cells.x7) c1Var.f42995a).setDialog(pv0.p(i10 - 1));
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout x7Var;
+        org.telegram.ui.ActionBar.f6 f6Var;
+        Context context = this.f26890c;
+        pv0 pv0Var = this.d;
+        if (i10 == 0) {
+            f6Var = ((org.telegram.ui.ActionBar.f3) pv0Var).resourcesProvider;
+            x7Var = new org.telegram.ui.Cells.x7(54, context, f6Var, false);
+        } else {
+            x7Var = new ai.x5(context, 18);
+            x7Var.setWillNotDraw(false);
+            TextView textView = new TextView(context);
+            pv0Var.e = textView;
+            textView.setTextColor(pv0Var.getThemedColor(org.telegram.ui.ActionBar.j6.J5));
+            pv0Var.e.setTextSize(1, 14.0f);
+            pv0Var.e.setGravity(17);
+            pv0Var.e.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+            x7Var.addView(pv0Var.e, w7.y5.c(40.0f, -1));
+        }
+        return new s4.c1(x7Var);
     }
 }

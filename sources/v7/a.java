@@ -3,12 +3,12 @@ package v7;
 import java.util.Iterator;
 import java.util.Map;
 public final class a extends j9 {
-    public final transient com.google.android.gms.internal.cast.l0 f44205c;
+    public final transient com.google.android.gms.internal.cast.l0 f44227c;
     public final transient Object[] d;
     public final transient int e = 1;
 
     public a(com.google.android.gms.internal.cast.l0 l0Var, Object[] objArr) {
-        this.f44205c = l0Var;
+        this.f44227c = l0Var;
         this.d = objArr;
     }
 
@@ -18,7 +18,7 @@ public final class a extends j9 {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f44205c.get(key))) {
+            if (value != null && value.equals(this.f44227c.get(key))) {
                 return true;
             }
         }

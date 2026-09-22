@@ -2,14 +2,14 @@ package lg;
 
 import android.content.DialogInterface;
 public final class j implements DialogInterface.OnClickListener {
-    public final int f14271a;
-    public final Object f14272b;
-    public final Object f14273c;
+    public final int f14286a;
+    public final Object f14287b;
+    public final Object f14288c;
 
     public j(int i10, Object obj, Object obj2) {
-        this.f14271a = i10;
-        this.f14272b = obj;
-        this.f14273c = obj2;
+        this.f14286a = i10;
+        this.f14287b = obj;
+        this.f14288c = obj2;
     }
 
     @Override

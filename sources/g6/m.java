@@ -174,10 +174,10 @@ public final class m extends p {
     public final void i() {
         xa.c cVar = this.h;
         if (cVar != null) {
-            e6.h hVar = (e6.h) cVar.f46035b;
+            e6.h hVar = (e6.h) cVar.f46056b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f8019i.iterator();
+                Iterator it2 = hVar.f8018i.iterator();
                 while (it2.hasNext()) {
                     ((e6.g) it2.next()).c();
                 }
@@ -191,10 +191,10 @@ public final class m extends p {
     public final void j() {
         xa.c cVar = this.h;
         if (cVar != null) {
-            e6.h hVar = (e6.h) cVar.f46035b;
+            e6.h hVar = (e6.h) cVar.f46056b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f8019i.iterator();
+                Iterator it2 = hVar.f8018i.iterator();
                 while (it2.hasNext()) {
                     ((e6.g) it2.next()).d();
                 }
@@ -208,10 +208,10 @@ public final class m extends p {
     public final void k() {
         xa.c cVar = this.h;
         if (cVar != null) {
-            e6.h hVar = (e6.h) cVar.f46035b;
+            e6.h hVar = (e6.h) cVar.f46056b;
             Iterator it = hVar.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = hVar.f8019i.iterator();
+                Iterator it2 = hVar.f8018i.iterator();
                 while (it2.hasNext()) {
                     ((e6.g) it2.next()).e();
                 }
@@ -225,8 +225,8 @@ public final class m extends p {
     public final void l() {
         xa.c cVar = this.h;
         if (cVar != null) {
-            e6.h hVar = (e6.h) cVar.f46035b;
-            Iterator it = hVar.f8020j.values().iterator();
+            e6.h hVar = (e6.h) cVar.f46056b;
+            Iterator it = hVar.f8019j.values().iterator();
             if (it.hasNext()) {
                 if (it.next() == null) {
                     if (!hVar.h()) {
@@ -241,7 +241,7 @@ public final class m extends p {
             }
             Iterator it2 = hVar.h.iterator();
             if (!it2.hasNext()) {
-                Iterator it3 = hVar.f8019i.iterator();
+                Iterator it3 = hVar.f8018i.iterator();
                 while (it3.hasNext()) {
                     ((e6.g) it3.next()).g();
                 }
@@ -275,7 +275,7 @@ public final class m extends p {
         if (qVar == null) {
             mediaInfo = null;
         } else {
-            mediaInfo = qVar.f4035a;
+            mediaInfo = qVar.f4033a;
         }
         long j10 = 0;
         if (mediaInfo != null && qVar != null) {
@@ -287,7 +287,7 @@ public final class m extends p {
                         long longValue = l4.longValue();
                         c6.q qVar3 = this.f9439f;
                         if (qVar3 != null && (jVar = qVar3.K) != null) {
-                            long j11 = jVar.f4003b;
+                            long j11 = jVar.f4001b;
                             if (!jVar.d) {
                                 j10 = e(1.0d, j11, -1L);
                             } else {
@@ -299,7 +299,7 @@ public final class m extends p {
                     if (qVar2 == null) {
                         mediaInfo2 = null;
                     } else {
-                        mediaInfo2 = qVar2.f4035a;
+                        mediaInfo2 = qVar2.f4033a;
                     }
                     if (mediaInfo2 != null) {
                         j3 = mediaInfo2.e;
@@ -310,7 +310,7 @@ public final class m extends p {
                         long longValue2 = l4.longValue();
                         c6.q qVar4 = this.f9439f;
                         if (qVar4 != null) {
-                            mediaInfo3 = qVar4.f4035a;
+                            mediaInfo3 = qVar4.f4033a;
                         }
                         if (mediaInfo3 != null) {
                             j10 = mediaInfo3.e;
@@ -335,7 +335,7 @@ public final class m extends p {
     public final long p() {
         c6.q qVar = this.f9439f;
         if (qVar != null) {
-            return qVar.f4036b;
+            return qVar.f4034b;
         }
         throw new Exception();
     }

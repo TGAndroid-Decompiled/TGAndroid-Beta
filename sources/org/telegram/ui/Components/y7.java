@@ -17,7 +17,7 @@ public final class y7 extends d8 {
         int action = motionEvent.getAction();
         i8 i8Var = this.e;
         if (action == 0) {
-            if (this.f23512a[this.f23513b].getImageReceiver().hasBitmapImage()) {
+            if (this.f23582a[this.f23583b].getImageReceiver().hasBitmapImage()) {
                 i8Var.A0(true, true);
                 this.d = SystemClock.elapsedRealtime();
                 return true;

@@ -1,36 +1,36 @@
 package org.telegram.messenger;
 public final class x5 implements Runnable {
-    public final int f18060a;
-    public final org.telegram.ui.ActionBar.b2 f18061b;
-    public final boolean[] f18062c;
+    public final int f18075a;
+    public final org.telegram.ui.ActionBar.b2 f18076b;
+    public final boolean[] f18077c;
 
     public x5(org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr, int i10) {
-        this.f18060a = i10;
-        this.f18061b = b2Var;
-        this.f18062c = zArr;
+        this.f18075a = i10;
+        this.f18076b = b2Var;
+        this.f18077c = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f18060a) {
+        switch (this.f18075a) {
             case 0:
-                MediaController.lambda$saveFile$45(this.f18062c, this.f18061b);
+                MediaController.lambda$saveFile$45(this.f18077c, this.f18076b);
                 return;
             case 1:
-                MediaController.lambda$saveFile$49(this.f18061b, this.f18062c);
+                MediaController.lambda$saveFile$49(this.f18076b, this.f18077c);
                 return;
             case 2:
-                MediaController.lambda$saveFile$52(this.f18062c, this.f18061b);
+                MediaController.lambda$saveFile$52(this.f18077c, this.f18076b);
                 return;
             default:
-                MediaController.lambda$saveFile$54(this.f18061b, this.f18062c);
+                MediaController.lambda$saveFile$54(this.f18076b, this.f18077c);
                 return;
         }
     }
 
     public x5(boolean[] zArr, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f18060a = i10;
-        this.f18062c = zArr;
-        this.f18061b = b2Var;
+        this.f18075a = i10;
+        this.f18077c = zArr;
+        this.f18076b = b2Var;
     }
 }

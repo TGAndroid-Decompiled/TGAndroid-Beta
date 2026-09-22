@@ -7,42 +7,42 @@ import rd.p;
 import za.y;
 import zd.c0;
 public final class i extends kd.j implements p {
-    public final int f3476a;
-    public int f3477b;
-    public Object f3478c;
+    public final int f3475a;
+    public int f3476b;
+    public Object f3477c;
     public final Object d;
 
     public i(Object obj, id.c cVar, int i10) {
         super(2, cVar);
-        this.f3476a = i10;
+        this.f3475a = i10;
         this.d = obj;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f3476a) {
+        switch (this.f3475a) {
             case 0:
                 return new i((l) this.d, cVar, 0);
             case 1:
                 i iVar = new i((List) this.d, cVar, 1);
-                iVar.f3478c = obj;
+                iVar.f3477c = obj;
                 return iVar;
             case 2:
                 return new i((t) this.d, cVar, 2);
             case 3:
-                return new i((p) this.f3478c, this.d, cVar, 3);
+                return new i((p) this.f3477c, this.d, cVar, 3);
             case 4:
-                return new i((za.l) this.f3478c, (id.h) this.d, cVar, 4);
+                return new i((za.l) this.f3477c, (id.h) this.d, cVar, 4);
             case 5:
-                return new i((y) this.f3478c, (String) this.d, cVar, 5);
+                return new i((y) this.f3477c, (String) this.d, cVar, 5);
             default:
-                return new i((oi.f) this.f3478c, (ArrayList) this.d, cVar, 6);
+                return new i((oi.f) this.f3477c, (ArrayList) this.d, cVar, 6);
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f3476a) {
+        switch (this.f3475a) {
             case 0:
                 return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9621a);
             case 1:
@@ -67,8 +67,8 @@ public final class i extends kd.j implements p {
 
     public i(Object obj, Object obj2, id.c cVar, int i10) {
         super(2, cVar);
-        this.f3476a = i10;
-        this.f3478c = obj;
+        this.f3475a = i10;
+        this.f3477c = obj;
         this.d = obj2;
     }
 }

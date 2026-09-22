@@ -1,58 +1,161 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
 import android.view.TextureView;
-import java.util.ArrayList;
-public final class l71 implements Runnable {
-    public final int f26047a;
-    public final Object f26048b;
+public final class l71 extends TextureView implements TextureView.SurfaceTextureListener {
+    public v71 f26010a;
+    public vz f26011b;
+    public final uk0 f26012c;
+    public int d;
+    public int e;
+    public ci.n8 f26013f;
+    public k71 h;
+    public int f26014n;
+    public int f26015r;
+    public ia f26016s;
 
-    public l71(Object obj, int i10) {
-        this.f26047a = i10;
-        this.f26048b = obj;
+    public l71(Context context, v71 v71Var) {
+        super(context);
+        this.f26012c = new Object();
+        this.f26010a = v71Var;
+        setSurfaceTextureListener(this);
+    }
+
+    public final void a(float f7, float f10, float f11, float f12) {
+        uk0 uk0Var = this.f26012c;
+        uk0Var.f28794a = f7;
+        uk0Var.f28795b = f10;
+        uk0Var.f28796c = f11;
+        uk0Var.d = f12;
+    }
+
+    public Bitmap getUiBlurBitmap() {
+        oa oaVar;
+        vz vzVar = this.f26011b;
+        if (vzVar == null || (oaVar = vzVar.I) == null) {
+            return null;
+        }
+        synchronized (oaVar.f27042n) {
+            try {
+                if (!oaVar.f27045q) {
+                    return null;
+                }
+                return oaVar.f27044p;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public int getVideoHeight() {
+        return this.e;
+    }
+
+    public int getVideoWidth() {
+        return this.d;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26047a) {
-            case 0:
-                t71 t71Var = (t71) this.f26048b;
-                i2.e0 e0Var = t71Var.d;
-                if (e0Var != null) {
-                    TextureView textureView = t71Var.f28331n;
-                    e0Var.B1();
-                    if (textureView != null && textureView == e0Var.V) {
-                        e0Var.B1();
-                        e0Var.o1();
-                        e0Var.t1(null);
-                        e0Var.m1(0, 0);
-                    }
-                    t71Var.d.v1(t71Var.f28331n);
-                    ArrayList arrayList = t71Var.N;
-                    if (arrayList != null) {
-                        t71Var.F(arrayList, t71Var.O);
-                    } else if (t71Var.U) {
-                        t71Var.G(t71Var.Q, t71Var.S, t71Var.R, t71Var.T);
-                    } else {
-                        t71Var.D(t71Var.Q, t71Var.S);
-                    }
-                    t71Var.C();
-                    return;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        int i12;
+        if (this.f26011b == null && surfaceTexture != null && this.f26010a != null) {
+            vz vzVar = new vz(surfaceTexture, new mv(this, 29), this.f26013f, this.f26016s, i10, i11);
+            this.f26011b = vzVar;
+            vzVar.i(this.f26014n, this.f26015r);
+            vz vzVar2 = this.f26011b;
+            ia iaVar = this.f26016s;
+            oa oaVar = vzVar2.I;
+            if (oaVar != null) {
+                ia iaVar2 = oaVar.f27048t;
+                if (iaVar2 != null && iaVar2.f25068m != null) {
+                    iaVar2.f25068m = null;
                 }
-                return;
-            case 1:
-                t71 t71Var2 = ((s71) this.f26048b).f28073f;
-                t71Var2.f28319a0.removeCallbacksAndMessages(null);
-                t71Var2.K.onVisualizerUpdate(false, true, null);
-                return;
-            case 2:
-                ((v71) this.f26048b).f29005g = false;
-                return;
-            case 3:
-                ((p91) ((ki.c) ((org.telegram.ui.Cells.ga) this.f26048b).f20353b).f13662b).v.b();
-                return;
-            default:
-                ((l91) this.f26048b).d(false, true);
-                return;
+                oaVar.f27048t = iaVar;
+                if (iaVar != null && iaVar.f25068m != oaVar) {
+                    iaVar.f25068m = oaVar;
+                    iaVar.d();
+                }
+            }
+            int i13 = this.d;
+            if (i13 != 0 && (i12 = this.e) != 0) {
+                vz vzVar3 = this.f26011b;
+                vzVar3.getClass();
+                vzVar3.postRunnable(new rz(vzVar3, i13, i12, 0));
+            }
+            this.f26011b.e(true, true, false);
+            k71 k71Var = this.h;
+            if (k71Var != null) {
+                k71Var.b(this.f26011b);
+            }
         }
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        vz vzVar = this.f26011b;
+        if (vzVar != null) {
+            vzVar.postRunnable(new sz(vzVar, 0));
+            this.f26011b = null;
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        vz vzVar = this.f26011b;
+        if (vzVar != null) {
+            vzVar.postRunnable(new rz(vzVar, i10, i11, 1));
+            this.f26011b.e(false, true, false);
+            this.f26011b.postRunnable(new j71(this, 0));
+        }
+    }
+
+    public void setDelegate(k71 k71Var) {
+        this.h = k71Var;
+        vz vzVar = this.f26011b;
+        if (vzVar != null) {
+            if (k71Var == null) {
+                vzVar.f(null);
+            } else {
+                k71Var.b(vzVar);
+            }
+        }
+    }
+
+    public void setHDRInfo(ci.n8 n8Var) {
+        this.f26013f = n8Var;
+        vz vzVar = this.f26011b;
+        if (vzVar != null) {
+            vzVar.postRunnable(new bv(8, vzVar, n8Var));
+        }
+    }
+
+    @Override
+    public void setTransform(Matrix matrix) {
+        super.setTransform(matrix);
+        vz vzVar = this.f26011b;
+        if (vzVar != null) {
+            int width = getWidth();
+            int height = getHeight();
+            oa oaVar = vzVar.I;
+            if (oaVar != null) {
+                Matrix matrix2 = oaVar.v;
+                matrix.invert(matrix2);
+                float f7 = width;
+                float f10 = height;
+                matrix2.preScale(f7, f10);
+                matrix2.postScale(1.0f / f7, 1.0f / f10);
+                oaVar.c(matrix2);
+                vzVar.e(false, false, false);
+            }
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

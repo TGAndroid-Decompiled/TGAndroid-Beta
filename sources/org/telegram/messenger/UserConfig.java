@@ -99,40 +99,40 @@ public class UserConfig extends BaseController {
     private void checkPremiumSelf(TLRPC.User user, final TLRPC.User user2) {
         if (user != null && user2 != null && user.premium != user2.premium) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f17709b;
+                public final UserConfig f17724b;
 
                 {
-                    this.f17709b = this;
+                    this.f17724b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f17709b.lambda$checkPremiumSelf$1(user2);
+                            this.f17724b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f17709b.lambda$checkPremiumSelf$2(user2);
+                            this.f17724b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
             });
         } else if (user == null) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f17709b;
+                public final UserConfig f17724b;
 
                 {
-                    this.f17709b = this;
+                    this.f17724b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f17709b.lambda$checkPremiumSelf$1(user2);
+                            this.f17724b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f17709b.lambda$checkPremiumSelf$2(user2);
+                            this.f17724b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
@@ -421,7 +421,7 @@ public class UserConfig extends BaseController {
             try {
                 TLRPC.User user = this.currentUser;
                 if (user != null) {
-                    j3 = user.f18475id;
+                    j3 = user.f18490id;
                 } else {
                     j3 = 0;
                 }
@@ -651,7 +651,7 @@ public class UserConfig extends BaseController {
     }
 
     public void saveConfig(boolean z10) {
-        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new bi.f(12, this, z10));
+        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new bi.f(13, this, z10));
     }
 
     public void savePassword(byte[] bArr, byte[] bArr2) {
@@ -664,7 +664,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC.User user2 = this.currentUser;
             this.currentUser = user;
-            this.clientUserId = user.f18475id;
+            this.clientUserId = user.f18490id;
             checkPremiumSelf(user2, user);
         }
     }

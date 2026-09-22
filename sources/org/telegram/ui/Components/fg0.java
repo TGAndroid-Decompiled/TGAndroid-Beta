@@ -1,47 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class fg0 extends FrameLayout {
-    public float f24109a;
-    public float f24110b;
-    public boolean f24111c;
-    public boolean d;
-    public final PipRoundVideoView e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class fg0 extends AnimatorListenerAdapter {
+    public final int f24226a;
+    public final gg0 f24227b;
 
-    public fg0(PipRoundVideoView pipRoundVideoView, Activity activity) {
-        super(activity);
-        this.e = pipRoundVideoView;
+    public fg0(gg0 gg0Var, int i10) {
+        this.f24226a = i10;
+        this.f24227b = gg0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.h5 h5Var = org.telegram.ui.ActionBar.j6.f19219k3;
-        if (h5Var != null) {
-            h5Var.setAlpha((int) (getAlpha() * 255.0f));
-            org.telegram.ui.ActionBar.j6.f19219k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
-            org.telegram.ui.ActionBar.j6.f19219k3.draw(canvas);
-            org.telegram.ui.ActionBar.j6.S1.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19355ra, false));
-            org.telegram.ui.ActionBar.j6.S1.setAlpha((int) (getAlpha() * 255.0f));
-            canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), org.telegram.ui.ActionBar.j6.S1);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24226a) {
+            case 0:
+                gg0 gg0Var = this.f24227b;
+                gg0Var.h = false;
+                gg0Var.f24518a = gg0Var.f24520c;
+                gg0Var.invalidate();
+                int i10 = gg0Var.J;
+                if (i10 >= 0) {
+                    gg0Var.b(i10);
+                    gg0Var.J = -1;
+                    return;
+                }
+                return;
+            default:
+                gg0 gg0Var2 = this.f24227b;
+                gg0Var2.f24522n = false;
+                gg0Var2.h = false;
+                gg0Var2.invalidate();
+                int i11 = gg0Var2.J;
+                if (i11 >= 0) {
+                    gg0Var2.b(i11);
+                    gg0Var2.J = -1;
+                }
+                gg0Var2.a();
+                return;
         }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.f24109a = motionEvent.getRawX();
-            this.f24110b = motionEvent.getRawY();
-            this.d = true;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fg0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

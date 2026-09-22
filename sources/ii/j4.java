@@ -14,13 +14,13 @@ import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.v70;
+import org.telegram.ui.Components.y70;
 import org.telegram.ui.uy;
 public abstract class j4 {
     public static EditTextBoldCursor a(Context context, org.telegram.ui.ActionBar.f6 f6Var, String str, String str2) {
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setTextColor(j6.v0(j6.f19201j5, f6Var));
+        editTextBoldCursor.setTextColor(j6.v0(j6.f19216j5, f6Var));
         editTextBoldCursor.setHintText(str);
         editTextBoldCursor.setHintColor(j6.v0(j6.H6, f6Var));
         editTextBoldCursor.setHeaderHintColor(j6.v0(j6.L6, f6Var));
@@ -32,16 +32,16 @@ public abstract class j4 {
             str2 = "";
         }
         editTextBoldCursor.setText(str2);
-        editTextBoldCursor.setLineColors(j6.v0(j6.f19222k6, f6Var), j6.v0(j6.f19240l6, f6Var), j6.v0(j6.f19315p7, f6Var));
+        editTextBoldCursor.setLineColors(j6.v0(j6.f19237k6, f6Var), j6.v0(j6.f19255l6, f6Var), j6.v0(j6.f19330p7, f6Var));
         editTextBoldCursor.setImeOptions(5);
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
-        editTextBoldCursor.setHighlightColor(j6.v0(j6.f19416uf, f6Var));
-        editTextBoldCursor.setHandlesColor(j6.v0(j6.f19433vf, f6Var));
+        editTextBoldCursor.setHighlightColor(j6.v0(j6.f19431uf, f6Var));
+        editTextBoldCursor.setHandlesColor(j6.v0(j6.f19448vf, f6Var));
         return editTextBoldCursor;
     }
 
-    public static v70 b(v70 v70Var, org.telegram.ui.ActionBar.n2 n2Var, final v3 v3Var, final boolean z10) {
+    public static y70 b(y70 y70Var, org.telegram.ui.ActionBar.n2 n2Var, final v3 v3Var, final boolean z10) {
         TL_keyboard.InlineButtonType inlineButtonType;
         TL_iv.textButton textbutton;
         k4 k4Var = v3Var.d;
@@ -61,7 +61,7 @@ public abstract class j4 {
             }
             return null;
         }
-        v70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
+        y70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
             @Override
             public final void run() {
                 switch (r3) {
@@ -74,7 +74,7 @@ public abstract class j4 {
                 }
             }
         }, false);
-        v70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+        y70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
                 switch (r3) {
@@ -87,12 +87,12 @@ public abstract class j4 {
                 }
             }
         }, false);
-        v70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.y0(n2Var, v3Var, z10, 6), false);
-        v70Var.Z();
-        return v70Var;
+        y70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.y0(n2Var, v3Var, z10, 6), false);
+        y70Var.Z();
+        return y70Var;
     }
 
-    public static v70 c(v70 v70Var, org.telegram.ui.ActionBar.n2 n2Var, final Context context, final org.telegram.ui.ActionBar.f6 f6Var, final t3 t3Var, final boolean z10) {
+    public static y70 c(y70 y70Var, org.telegram.ui.ActionBar.n2 n2Var, final Context context, final org.telegram.ui.ActionBar.f6 f6Var, final t3 t3Var, final boolean z10) {
         TL_keyboard.PageButton pageButton;
         TL_keyboard.InlineButtonType inlineButtonType;
         int i10 = t3Var.f11634b;
@@ -117,7 +117,7 @@ public abstract class j4 {
             }
             return null;
         }
-        v70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
+        y70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
             @Override
             public final void run() {
                 switch (r5) {
@@ -130,7 +130,7 @@ public abstract class j4 {
                 }
             }
         }, false);
-        v70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+        y70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
                 switch (r5) {
@@ -143,9 +143,9 @@ public abstract class j4 {
                 }
             }
         }, false);
-        v70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.u1(n2Var, context, f6Var, t3Var, z10, 3), false);
-        v70Var.Z();
-        return v70Var;
+        y70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.u1(n2Var, context, f6Var, t3Var, z10, 3), false);
+        y70Var.Z();
+        return y70Var;
     }
 
     public static void d(Context context, org.telegram.ui.ActionBar.f6 f6Var, t3 t3Var, boolean z10) {
@@ -244,7 +244,7 @@ public abstract class j4 {
             i10 = R.string.RichEditorCreateProfileButton;
         }
         String string2 = LocaleController.getString(i10);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18669a;
         b2Var.R = string2;
         alertDialog$Builder.n(f7);
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new ca.b(c10, s4Var, a2, t3Var, 2));
@@ -252,8 +252,8 @@ public abstract class j4 {
             alertDialog$Builder.i(LocaleController.getString(R.string.RichEditorChangeUser), new ei.d5(s4Var, 18));
             String string3 = LocaleController.getString(R.string.Delete);
             e4 e4Var = new e4(t3Var, 2);
-            b2Var.f18699p0 = string3;
-            b2Var.f18700q0 = e4Var;
+            b2Var.f18714p0 = string3;
+            b2Var.f18715q0 = e4Var;
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             b2Var.J0 = true;
             i11 = -4;
@@ -292,7 +292,7 @@ public abstract class j4 {
         } else {
             alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
         }
-        alertDialog$Builder.f18654a.R = str;
+        alertDialog$Builder.f18669a.R = str;
         alertDialog$Builder.n(f7);
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new ai.r5(a2, a10, e4Var, 12));
         if (t3Var.c()) {
@@ -365,11 +365,11 @@ public abstract class j4 {
     }
 
     public static void j(AlertDialog$Builder alertDialog$Builder, EditTextBoldCursor editTextBoldCursor, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18669a;
         b2Var.setOnShowListener(new hg.r(1, editTextBoldCursor));
         b2Var.q(250L);
         if (i10 != 0 && (b2Var.d(i10) instanceof TextView)) {
-            ((TextView) b2Var.d(i10)).setTextColor(j6.v0(j6.f19333q7, f6Var));
+            ((TextView) b2Var.d(i10)).setTextColor(j6.v0(j6.f19348q7, f6Var));
         }
     }
 
@@ -385,7 +385,7 @@ public abstract class j4 {
         uyVar.C2 = new ei.d5(i4Var, 19);
         if (z10) {
             ?? obj = new Object();
-            obj.f19577a = true;
+            obj.f19592a = true;
             n2Var.showAsSheet(uyVar, obj);
             return;
         }

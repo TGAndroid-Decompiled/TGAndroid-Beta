@@ -1,37 +1,59 @@
 package fb;
-public abstract class g {
-    public static final int f9028a;
 
-    static {
-        int i10;
-        String property = System.getProperty("java.version");
+import db.u;
+import db.v;
+import java.lang.reflect.Modifier;
+import java.util.Collections;
+import java.util.List;
+import v7.n8;
+public final class g implements v, Cloneable {
+    public static final g f9025c = new g();
+    public List f9026a;
+    public final List f9027b;
+
+    public g() {
+        List list = Collections.EMPTY_LIST;
+        this.f9026a = list;
+        this.f9027b = list;
+    }
+
+    public final g clone() {
         try {
-            String[] split = property.split("[._]", 3);
-            i10 = Integer.parseInt(split[0]);
-            if (i10 == 1 && split.length > 1) {
-                i10 = Integer.parseInt(split[1]);
-            }
-        } catch (NumberFormatException unused) {
-            i10 = -1;
+            return (g) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
         }
-        if (i10 == -1) {
-            try {
-                StringBuilder sb2 = new StringBuilder();
-                for (int i11 = 0; i11 < property.length(); i11++) {
-                    char charAt = property.charAt(i11);
-                    if (!Character.isDigit(charAt)) {
-                        break;
-                    }
-                    sb2.append(charAt);
-                }
-                i10 = Integer.parseInt(sb2.toString());
-            } catch (NumberFormatException unused2) {
-                i10 = -1;
+    }
+
+    public final boolean b(Class cls, boolean z10) {
+        List<db.a> list;
+        if (!z10 && !Enum.class.isAssignableFrom(cls)) {
+            n8 n8Var = ib.c.f11070a;
+            if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
+                return true;
             }
         }
-        if (i10 == -1) {
-            i10 = 6;
+        if (z10) {
+            list = this.f9026a;
+        } else {
+            list = this.f9027b;
         }
-        f9028a = i10;
+        for (db.a aVar : list) {
+            if (aVar.shouldSkipClass(cls)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final u create(db.g gVar, kb.a aVar) {
+        Class cls = aVar.f13575a;
+        boolean b10 = b(cls, true);
+        boolean b11 = b(cls, false);
+        if (!b10 && !b11) {
+            return null;
+        }
+        return new f(this, b11, b10, gVar, aVar);
     }
 }

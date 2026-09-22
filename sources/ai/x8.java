@@ -12,33 +12,33 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stories;
 public final class x8 {
-    public final int f1703a;
-    public final long f1704b;
-    public final boolean f1705c;
+    public final int f1700a;
+    public final long f1701b;
+    public final boolean f1702c;
     public boolean d;
     public boolean e;
-    public boolean f1706f;
-    public final ArrayList f1707g = new ArrayList();
+    public boolean f1703f;
+    public final ArrayList f1704g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public boolean f1708i;
-    public final l9 f1709j;
+    public boolean f1705i;
+    public final l9 f1706j;
 
     public x8(int i10, long j3, l9 l9Var) {
         boolean z10;
-        this.f1709j = l9Var;
-        this.f1703a = i10;
-        this.f1704b = j3;
+        this.f1706j = l9Var;
+        this.f1700a = i10;
+        this.f1701b = j3;
         if (j3 == UserConfig.getInstance(i10).getClientUserId()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f1705c = z10;
+        this.f1702c = z10;
         d();
     }
 
     public final boolean a() {
-        if ((this.f1705c || this.f1709j.i(this.f1704b)) && this.f1706f && this.h.size() < MessagesController.getInstance(this.f1703a).config.storiesAlbumsLimit.get()) {
+        if ((this.f1702c || this.f1706j.i(this.f1701b)) && this.f1703f && this.h.size() < MessagesController.getInstance(this.f1700a).config.storiesAlbumsLimit.get()) {
             return true;
         }
         return false;
@@ -50,7 +50,7 @@ public final class x8 {
             ArrayList arrayList = this.h;
             if (i11 < arrayList.size()) {
                 e9 e9Var = (e9) arrayList.get(i11);
-                if (i10 == e9Var.f773a) {
+                if (i10 == e9Var.f770a) {
                     return e9Var;
                 }
                 i11++;
@@ -65,7 +65,7 @@ public final class x8 {
         while (true) {
             ArrayList arrayList = this.h;
             if (i11 < arrayList.size()) {
-                if (i10 == ((e9) arrayList.get(i11)).f773a) {
+                if (i10 == ((e9) arrayList.get(i11)).f770a) {
                     return i11;
                 }
                 i11++;
@@ -76,11 +76,11 @@ public final class x8 {
     }
 
     public final void d() {
-        if (!this.e && !this.f1706f) {
+        if (!this.e && !this.f1703f) {
             this.e = true;
             boolean z10 = this.d;
-            long j3 = this.f1704b;
-            int i10 = this.f1703a;
+            long j3 = this.f1701b;
+            int i10 = this.f1700a;
             if (!z10) {
                 MessagesStorage.getInstance(i10).loadStoryAlbumsCache(j3, new Consumer() {
                     @Override
@@ -102,8 +102,8 @@ public final class x8 {
 
     public final void e() {
         TL_stories.TL_reorderAlbums tL_reorderAlbums = new TL_stories.TL_reorderAlbums();
-        int i10 = this.f1703a;
-        tL_reorderAlbums.peer = MessagesController.getInstance(i10).getInputPeer(this.f1704b);
+        int i10 = this.f1700a;
+        tL_reorderAlbums.peer = MessagesController.getInstance(i10).getInputPeer(this.f1701b);
         tL_reorderAlbums.order = new ArrayList<>();
         ArrayList arrayList = this.h;
         int size = arrayList.size();
@@ -111,16 +111,16 @@ public final class x8 {
         while (i11 < size) {
             Object obj = arrayList.get(i11);
             i11++;
-            tL_reorderAlbums.order.add(Integer.valueOf(((e9) obj).f773a));
+            tL_reorderAlbums.order.add(Integer.valueOf(((e9) obj).f770a));
         }
         ConnectionsManager.getInstance(i10).sendRequest(tL_reorderAlbums, null);
     }
 
     public final void f(boolean z10) {
-        int i10 = this.f1703a;
+        int i10 = this.f1700a;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
         ArrayList arrayList = this.h;
-        long j3 = this.f1704b;
+        long j3 = this.f1701b;
         messagesStorage.saveStoryAlbumsCache(j3, arrayList);
         if (z10) {
             NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyAlbumsCollectionsUpdate, Long.valueOf(j3), this);

@@ -17,7 +17,7 @@ public abstract class f implements i1 {
     public final Object f10685a = new Object();
     public final n4.y f10687c = new Object();
     public long f10693x = Long.MIN_VALUE;
-    public b2.k1 F = b2.k1.f3081a;
+    public b2.k1 F = b2.k1.f3080a;
 
     public f(int i10) {
         this.f10686b = i10;
@@ -91,13 +91,13 @@ public abstract class f implements i1 {
             return f7;
         }
         if (f7 == -5) {
-            b2.s sVar = (b2.s) yVar.f15218b;
+            b2.s sVar = (b2.s) yVar.f15231b;
             sVar.getClass();
-            long j10 = sVar.f3313w;
+            long j10 = sVar.f3312w;
             if (j10 != Long.MAX_VALUE) {
                 b2.r a2 = sVar.a();
                 a2.v = j10 + this.v;
-                yVar.f15218b = new b2.s(a2);
+                yVar.f15231b = new b2.s(a2);
             }
         }
         return f7;

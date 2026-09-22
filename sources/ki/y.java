@@ -5,21 +5,21 @@ import android.os.SystemClock;
 import java.io.File;
 import java.io.IOException;
 public final class y implements Runnable {
-    public final int f13866a;
-    public final o0 f13867b;
+    public final int f13879a;
+    public final q0 f13880b;
 
-    public y(o0 o0Var, int i10) {
-        this.f13866a = i10;
-        this.f13867b = o0Var;
+    public y(q0 q0Var, int i10) {
+        this.f13879a = i10;
+        this.f13880b = q0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f13866a) {
+        switch (this.f13879a) {
             case 0:
-                o0 o0Var = this.f13867b;
-                q qVar = o0Var.O;
-                File file = o0Var.P;
+                q0 q0Var = this.f13880b;
+                q qVar = q0Var.O;
+                File file = q0Var.P;
                 if (qVar != null) {
                     try {
                         synchronized (qVar) {
@@ -27,7 +27,7 @@ public final class y implements Runnable {
                         }
                     } catch (IOException unused) {
                     }
-                    w7.k.c(qVar.f13825a);
+                    w7.k.c(qVar.f13816a);
                 }
                 if (file != null) {
                     w7.k.c(file);
@@ -35,56 +35,56 @@ public final class y implements Runnable {
                 }
                 return;
             case 1:
-                o0 o0Var2 = this.f13867b;
-                if (o0Var2.U == 3) {
-                    o0Var2.o();
+                q0 q0Var2 = this.f13880b;
+                if (q0Var2.U == 3) {
+                    q0Var2.o();
                     return;
                 }
                 return;
             case 2:
-                o0 o0Var3 = this.f13867b;
-                o0Var3.A = false;
-                k kVar = o0Var3.f13808l;
-                kVar.b("recording segment stopped: state=" + hg.k0.C(o0Var3.U) + ", retainedDurationMs=" + o0Var3.D);
-                if (o0Var3.f13821z) {
-                    o0Var3.f13821z = false;
-                    o0Var3.h();
+                q0 q0Var3 = this.f13880b;
+                q0Var3.A = false;
+                k kVar = q0Var3.f13836l;
+                kVar.b("recording segment stopped: state=" + hg.k0.C(q0Var3.U) + ", retainedDurationMs=" + q0Var3.D);
+                if (q0Var3.f13849z) {
+                    q0Var3.f13849z = false;
+                    q0Var3.h();
                     return;
-                } else if (o0Var3.f13819x) {
-                    o0Var3.f13819x = false;
-                    boolean z10 = o0Var3.f13820y;
-                    o0Var3.f13805i.execute(new s4(o0Var3, o0Var3.O, z10, o0Var3.N, 6));
+                } else if (q0Var3.f13847x) {
+                    q0Var3.f13847x = false;
+                    boolean z10 = q0Var3.f13848y;
+                    q0Var3.f13833i.execute(new s4(q0Var3, q0Var3.O, z10, q0Var3.N, 6));
                     return;
-                } else if (o0Var3.U == 4) {
+                } else if (q0Var3.U == 4) {
                     try {
-                        File createTempFile = File.createTempFile("round_video_preview_", ".mp4", o0Var3.f13800a.getCacheDir());
-                        o0Var3.P = createTempFile;
-                        o0Var3.I = System.nanoTime();
-                        k kVar2 = o0Var3.f13808l;
+                        File createTempFile = File.createTempFile("round_video_preview_", ".mp4", q0Var3.f13828a.getCacheDir());
+                        q0Var3.P = createTempFile;
+                        q0Var3.I = System.nanoTime();
+                        k kVar2 = q0Var3.f13836l;
                         kVar2.b("preview snapshot started: file=" + createTempFile.getName());
-                        o0Var3.f13805i.execute(new gg.t(o0Var3, o0Var3.O, createTempFile, 23));
+                        q0Var3.f13833i.execute(new gg.t(q0Var3, q0Var3.O, createTempFile, 23));
                         return;
                     } catch (IOException e) {
-                        o0Var3.g(e);
+                        q0Var3.g(e);
                         return;
                     }
                 } else {
                     return;
                 }
             default:
-                o0 o0Var4 = this.f13867b;
-                int i10 = o0Var4.U;
+                q0 q0Var4 = this.f13880b;
+                int i10 = q0Var4.U;
                 if (i10 == 2 || i10 == 6) {
-                    o0Var4.E = SystemClock.elapsedRealtime();
-                    k kVar3 = o0Var4.f13808l;
-                    kVar3.b("recording started: retainedDurationMs=" + o0Var4.D);
-                    o0Var4.u(3);
-                    long j3 = o0Var4.f13810n - o0Var4.D;
+                    q0Var4.E = SystemClock.elapsedRealtime();
+                    k kVar3 = q0Var4.f13836l;
+                    kVar3.b("recording started: retainedDurationMs=" + q0Var4.D);
+                    q0Var4.u(3);
+                    long j3 = q0Var4.f13838n - q0Var4.D;
                     if (j3 <= 0) {
-                        o0Var4.o();
+                        q0Var4.o();
                         return;
                     } else {
-                        o0Var4.h.postDelayed(o0Var4.R, j3);
+                        q0Var4.h.postDelayed(q0Var4.R, j3);
                         return;
                     }
                 }

@@ -1,57 +1,158 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ca0 extends org.telegram.ui.ActionBar.j {
-    public final ja0 f23225a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Shader;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ca0 extends TextView {
+    public final Matrix f23331a;
+    public LinearGradient f23332b;
+    public int f23333c;
+    public boolean d;
+    public boolean e;
+    public float f23334f;
+    public long h;
+    public final xp f23335n;
+    public boolean f23336r;
+    public int f23337s;
 
-    public ca0(ja0 ja0Var) {
-        this.f23225a = ja0Var;
+    public ca0(Context context) {
+        super(context);
+        this.f23331a = new Matrix();
+        this.f23335n = new xp(this, 26);
+    }
+
+    public final void a() {
+        float min = Math.min(AndroidUtilities.dp(10.0f) / this.f23333c, 0.49f);
+        int currentTextColor = getCurrentTextColor();
+        int i10 = 1048575 & currentTextColor;
+        this.f23332b = new LinearGradient(0.0f, 0.0f, this.f23333c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
+        if (this.d) {
+            getPaint().setShader(this.f23332b);
+        } else {
+            getPaint().setShader(null);
+        }
+        this.f23332b.setLocalMatrix(this.f23331a);
+        invalidate();
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        ja0 ja0Var = this.f23225a;
-        if (i10 == -1) {
-            if (!ja0Var.V.L(true)) {
-                ja0Var.finishFragment();
-            }
-        } else if (i10 == 2) {
-            if (ja0Var.I != null) {
-                ArrayList arrayList = new ArrayList();
-                for (int i12 = 0; i12 < ja0Var.I.size(); i12++) {
-                    TL_stories.StoryItem storyItem = ((MessageObject) ja0Var.I.valueAt(i12)).storyItem;
-                    if (storyItem != null) {
-                        arrayList.add(storyItem);
-                    }
-                }
-                if (!arrayList.isEmpty()) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ja0Var.getParentActivity(), 0, ja0Var.getResourceProvider());
-                    if (arrayList.size() > 1) {
-                        i11 = R.string.DeleteStoriesTitle;
-                    } else {
-                        i11 = R.string.DeleteStoryTitle;
-                    }
-                    alertDialog$Builder.f18654a.R = LocaleController.getString(i11);
-                    alertDialog$Builder.f18654a.T = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new a3(13, this, arrayList));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new i2(19));
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18654a;
-                    b2Var.show();
-                    b2Var.h();
-                }
-            }
-        } else if (i10 == 10) {
-            ga0 ga0Var = ja0Var.V;
-            ga0Var.c1(ga0Var.getClosestTab(), false);
-        } else if (i10 == 11) {
-            ja0Var.V.L(true);
-            ja0Var.V.getSearchItem().z(false);
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        boolean z10;
+        long j3;
+        boolean z11;
+        int measuredWidth = getMeasuredWidth();
+        int dp = AndroidUtilities.dp(40.0f);
+        float f10 = this.f23334f;
+        float f11 = measuredWidth;
+        if (f10 < f11) {
+            f7 = w7.q.a(f10 / AndroidUtilities.dp(10.0f), 0.0f, 1.0f);
+        } else {
+            f7 = 0.0f;
         }
+        Matrix matrix = this.f23331a;
+        matrix.reset();
+        float f12 = this.f23333c;
+        matrix.postScale(com.google.android.gms.internal.vision.e2.z(1.0f, f7, AndroidUtilities.dp(10.0f) / f12, 1.0f), 1.0f, f12, 0.0f);
+        matrix.postScale(1.0f - (this.f23337s / this.f23333c), 1.0f, 0.0f, 0.0f);
+        matrix.postTranslate(this.f23334f, 0.0f);
+        this.f23332b.setLocalMatrix(matrix);
+        canvas.save();
+        canvas.translate(-this.f23334f, 0.0f);
+        super.onDraw(canvas);
+        canvas.restore();
+        if (measuredWidth > 0) {
+            float f13 = this.f23334f;
+            if (f13 > 0.0f && f13 + getWidth() > f11 && this.d && this.e) {
+                float f14 = -this.f23334f;
+                float f15 = dp;
+                matrix.postTranslate(f14 - ((f14 + f11) + f15), 0.0f);
+                this.f23332b.setLocalMatrix(matrix);
+                canvas.save();
+                canvas.translate((-this.f23334f) + f11 + f15, 0.0f);
+                super.onDraw(canvas);
+                canvas.restore();
+            }
+        }
+        if (this.f23334f < 1.0E-4d) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        long uptimeMillis = SystemClock.uptimeMillis();
+        long j10 = this.h;
+        if (j10 != 0 && !z10) {
+            j3 = Math.min(uptimeMillis - j10, 120L);
+        } else {
+            j3 = 16;
+        }
+        this.h = uptimeMillis;
+        boolean z12 = this.d;
+        xp xpVar = this.f23335n;
+        if ((z12 && this.e) || !z10) {
+            float e = a4.a.e((float) j3, 1000.0f, AndroidUtilities.dp(60.0f), this.f23334f);
+            this.f23334f = e;
+            if (e > measuredWidth + dp) {
+                AndroidUtilities.cancelRunOnUIThread(xpVar);
+                this.f23336r = false;
+                this.e = false;
+                this.f23334f = 0.0f;
+            }
+            invalidate();
+        }
+        if (this.d && !this.e && !(z11 = this.f23336r) && !z11) {
+            this.f23336r = true;
+            AndroidUtilities.runOnUIThread(xpVar, 1500L);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10 = false;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(0, 0), i11);
+        this.f23333c = View.MeasureSpec.getSize(i10);
+        if (getMeasuredWidth() > this.f23333c - this.f23337s) {
+            z10 = true;
+        }
+        this.d = z10;
+        a();
+    }
+
+    public void setCustomPaddingRight(int i10) {
+        boolean z10;
+        this.f23337s = i10;
+        if (getMeasuredWidth() > this.f23333c - this.f23337s) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.d = z10;
+        if (z10) {
+            getPaint().setShader(this.f23332b);
+        } else {
+            getPaint().setShader(null);
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        AndroidUtilities.cancelRunOnUIThread(this.f23335n);
+        this.f23336r = false;
+        this.e = false;
+        this.f23334f = 0.0f;
+    }
+
+    @Override
+    public void setTextColor(int i10) {
+        super.setTextColor(i10);
+        a();
     }
 }

@@ -49,7 +49,7 @@ public final class g1 {
     }
 
     public static g1 k(x2.w wVar) {
-        b2.g1 g1Var = b2.k1.f3081a;
+        b2.g1 g1Var = b2.k1.f3080a;
         u2.p1 p1Var = u2.p1.d;
         e9.a1 a1Var = e9.a1.e;
         b2.v0 v0Var = b2.v0.d;
@@ -107,7 +107,7 @@ public final class g1 {
             j3 = this.f10735t;
             j10 = this.f10734s;
         } while (j3 != this.f10735t);
-        return e2.d0.Q(e2.d0.e0(j10) + (((float) (SystemClock.elapsedRealtime() - j3)) * this.f10730o.f3336a));
+        return e2.d0.Q(e2.d0.e0(j10) + (((float) (SystemClock.elapsedRealtime() - j3)) * this.f10730o.f3335a));
     }
 
     public final boolean m() {

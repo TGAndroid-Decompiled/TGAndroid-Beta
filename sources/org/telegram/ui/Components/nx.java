@@ -15,7 +15,7 @@ public final class nx extends jz {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            this.d.f25907f0 = false;
+            this.d.f25867f0 = false;
         }
         super.a(recyclerView, i10);
     }
@@ -27,15 +27,15 @@ public final class nx extends jz {
         ky kyVar = kzVar.S;
         kx kxVar = kzVar.Q;
         kzVar.U(kxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (iVar = kzVar.f25921j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (iVar = kzVar.f25881j2) != null) {
             iVar.f(i10, i11);
         }
         super.b(recyclerView, i10, i11);
         if (kyVar != null && kzVar.P.getAdapter() == kyVar) {
-            ky kyVar2 = kyVar.f25887x.f25558a;
+            ky kyVar2 = kyVar.f25846x.f25513a;
             if (!kyVar2.F.V.F && !kyVar2.E) {
                 if (kxVar.N0() + 20 > kyVar.h()) {
-                    jy jyVar = kyVar.f25887x;
+                    jy jyVar = kyVar.f25846x;
                     Objects.requireNonNull(jyVar);
                     AndroidUtilities.runOnUIThread(new sw(jyVar, 1));
                 }

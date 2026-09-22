@@ -36,26 +36,21 @@ public final class b implements a {
                 BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
                 this.f9070c = bitmapShader;
                 paint.setShader(bitmapShader);
-                e();
+                c();
             }
         }
     }
 
-    public final void c(int i10, int i11) {
+    public final void b(int i10, int i11) {
         if (this.h == i10 && this.f9072n == i11) {
             return;
         }
         this.h = i10;
         this.f9072n = i11;
-        e();
+        c();
     }
 
-    @Override
-    public final ch.d d() {
-        return new f(this);
-    }
-
-    public final void e() {
+    public final void c() {
         Bitmap bitmap = this.d;
         Matrix matrix = this.f9069b;
         if (bitmap == null) {
@@ -79,7 +74,12 @@ public final class b implements a {
     }
 
     @Override
-    public final void y(Canvas canvas, float f7, float f10, float f11, float f12) {
+    public final ch.d l() {
+        return new f(this);
+    }
+
+    @Override
+    public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
         Bitmap bitmap = this.d;
         if (bitmap != null && !bitmap.isRecycled() && this.f9070c != null) {
             Matrix matrix = this.e;
@@ -92,6 +92,6 @@ public final class b implements a {
     }
 
     @Override
-    public final void b() {
+    public final void d() {
     }
 }

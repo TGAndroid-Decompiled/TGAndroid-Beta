@@ -1,7 +1,47 @@
 package org.telegram.ui.Components;
-public final class na0 implements o1.f {
+
+import android.widget.FrameLayout;
+public final class na0 extends wh.n {
+    public final int E = 1;
+    public final Object F;
+
+    public na0(org.telegram.ui.bi0 bi0Var, org.telegram.ui.bi0 bi0Var2, FrameLayout frameLayout, long j3) {
+        super(bi0Var2, frameLayout, j3, true);
+        this.F = bi0Var;
+    }
+
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        int i10 = va0.U;
+    public final void f(String str, boolean z10, boolean z11) {
+        switch (this.E) {
+            case 0:
+                wh.b bVar = (wh.b) this.F;
+                lx0 lx0Var = bVar.W;
+                if (this.e.isEmpty()) {
+                    if (lx0Var.getVisibility() != 4) {
+                        lx0Var.setVisibility(4);
+                        return;
+                    }
+                    return;
+                } else if (z11) {
+                    bVar.f23880w.J.setText("");
+                    return;
+                } else {
+                    super.f(str, z10, z11);
+                    return;
+                }
+            default:
+                if (z11) {
+                    org.telegram.ui.bi0.U((org.telegram.ui.bi0) this.F).setSearchFieldText("");
+                    return;
+                } else {
+                    super.f(str, z10, z11);
+                    return;
+                }
+        }
+    }
+
+    public na0(wh.b bVar, org.telegram.ui.ActionBar.n2 n2Var, FrameLayout frameLayout, long j3) {
+        super(n2Var, frameLayout, j3, false);
+        this.F = bVar;
     }
 }

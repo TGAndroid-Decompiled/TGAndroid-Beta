@@ -38,11 +38,11 @@ public final class n1 extends FrameLayout {
         setWillNotDraw(false);
         i9 i9Var = new i9(this, false);
         this.f9869b = i9Var;
-        i9Var.f24954l = true;
-        i9Var.f24958p = AndroidUtilities.dp(75.0f);
-        i9Var.f24957o = AndroidUtilities.dp(48.0f);
-        i9Var.f24965x = true;
-        i9Var.f24961s = AndroidUtilities.dp(22.0f);
+        i9Var.f25043l = true;
+        i9Var.f25047p = AndroidUtilities.dp(75.0f);
+        i9Var.f25046o = AndroidUtilities.dp(48.0f);
+        i9Var.f25054x = true;
+        i9Var.f25050s = AndroidUtilities.dp(22.0f);
         for (int i11 = 0; i11 < 2; i11++) {
             this.f9870c[i11] = new TextView(context);
             this.f9870c[i11].setTextColor(j6.v0(j6.G6, f6Var));
@@ -58,7 +58,7 @@ public final class n1 extends FrameLayout {
             textView.setVisibility(i10);
             addView(this.f9870c[i11], y5.d(-1, -2.0f, 48, 76.0f, 7.0f, 40.0f, 0.0f));
             this.d[i11] = new TextView(context);
-            this.d[i11].setTextColor(j6.v0(j6.f19496z6, f6Var));
+            this.d[i11].setTextColor(j6.v0(j6.f19511z6, f6Var));
             this.d[i11].setTextSize(1, 12.0f);
             TextView textView2 = this.d[i11];
             if (i11 == 0) {
@@ -79,17 +79,17 @@ public final class n1 extends FrameLayout {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = v8Var.f721i;
+            ArrayList arrayList = v8Var.f718i;
             str = v8Var.D;
             int size = arrayList.size();
             i9Var = this.f9869b;
             if (i10 >= size || i11 >= 3) {
                 break;
             }
-            MessageObject messageObject = (MessageObject) v8Var.f721i.get(i10);
+            MessageObject messageObject = (MessageObject) v8Var.f718i.get(i10);
             long j3 = messageObject.storyItem.dialogId;
             TextUtils.isEmpty(str);
-            i9Var.l(i11, messageObject.storyItem, v8Var.f718c);
+            i9Var.l(i11, messageObject.storyItem, v8Var.f715c);
             i11++;
             i10++;
         }
@@ -135,7 +135,7 @@ public final class n1 extends FrameLayout {
         super.onDraw(canvas);
         Paint T0 = j6.T0("paintDivider", this.f9868a);
         if (T0 == null) {
-            T0 = j6.f19216k0;
+            T0 = j6.f19231k0;
         }
         canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), T0);
     }

@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-public final class tl0 extends org.telegram.ui.Components.ul0 {
-    public final Context f37846c;
+public final class tl0 extends org.telegram.ui.Components.xl0 {
+    public final Context f37847c;
     public final PasscodeActivity d;
 
     public tl0(PasscodeActivity passcodeActivity, Context context) {
         this.d = passcodeActivity;
-        this.f37846c = context;
+        this.f37847c = context;
     }
 
     @Override
@@ -89,8 +89,8 @@ public final class tl0 extends org.telegram.ui.Components.ul0 {
         int i13;
         int i14;
         String formatString;
-        int i15 = c1Var.f42977f;
-        View view = c1Var.f42974a;
+        int i15 = c1Var.f42998f;
+        View view = c1Var.f42995a;
         PasscodeActivity passcodeActivity = this.d;
         if (i15 != 0) {
             if (i15 != 1) {
@@ -99,8 +99,8 @@ public final class tl0 extends org.telegram.ui.Components.ul0 {
                     if (i15 != 3) {
                         if (i15 == 4) {
                             ul0 ul0Var = (ul0) view;
-                            ul0Var.f38135a.f(R.raw.utyan_passcode, 100, 100, null);
-                            ul0Var.f38135a.d();
+                            ul0Var.f38156a.f(R.raw.utyan_passcode, 100, 100, null);
+                            ul0Var.f38156a.d();
                             return;
                         }
                         return;
@@ -121,7 +121,7 @@ public final class tl0 extends org.telegram.ui.Components.ul0 {
                     return;
                 } else if (i10 == passcodeActivity.H) {
                     f9Var.setText(LocaleController.getString(R.string.AutoLockInfo));
-                    org.telegram.ui.Components.k90 textView = f9Var.getTextView();
+                    org.telegram.ui.Components.n90 textView = f9Var.getTextView();
                     if (LocaleController.isRTL) {
                         i16 = 5;
                     }
@@ -129,7 +129,7 @@ public final class tl0 extends org.telegram.ui.Components.ul0 {
                     return;
                 } else if (i10 == passcodeActivity.K) {
                     f9Var.setText(LocaleController.getString(R.string.ScreenCaptureInfo));
-                    org.telegram.ui.Components.k90 textView2 = f9Var.getTextView();
+                    org.telegram.ui.Components.n90 textView2 = f9Var.getTextView();
                     if (LocaleController.isRTL) {
                         i16 = 5;
                     }
@@ -147,7 +147,7 @@ public final class tl0 extends org.telegram.ui.Components.ul0 {
                     i14 = passcodeActivity.disablePasscodeRow;
                     if (i10 == i14) {
                         faVar.b(LocaleController.getString(R.string.DisablePasscode), false);
-                        int i17 = org.telegram.ui.ActionBar.j6.f19333q7;
+                        int i17 = org.telegram.ui.ActionBar.j6.f19348q7;
                         faVar.setTag(Integer.valueOf(i17));
                         faVar.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i17, false));
                         return;
@@ -194,7 +194,7 @@ public final class tl0 extends org.telegram.ui.Components.ul0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View x8Var;
-        Context context = this.f37846c;
+        Context context = this.f37847c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {

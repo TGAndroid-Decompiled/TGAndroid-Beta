@@ -1,194 +1,136 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-public final class am0 extends Drawable implements Animator.AnimatorListener {
-    public final Context f22716a;
-    public ColorFilter f22717b;
-    public Drawable d;
-    public Drawable e;
-    public ValueAnimator f22719f;
-    public boolean f22721r;
-    public int f22718c = 0;
-    public float h = 1.0f;
-    public final ArrayList f22720n = new ArrayList();
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class am0 implements s4.r0 {
+    public RecyclerView f22690a;
+    public boolean f22692c;
+    public int d;
+    public int e;
+    public int f22693f;
+    public boolean f22694g;
+    public boolean h;
+    public int f22695i;
+    public final zl0 f22697k;
+    public int f22691b = -1;
+    public final int f22696j = AndroidUtilities.dp(80.0f);
+    public final org.telegram.ui.Cells.u6 f22698l = new org.telegram.ui.Cells.u6(this, 22);
 
-    public am0(Context context) {
-        this.f22716a = context;
-    }
-
-    public final void a(int i10, boolean z10) {
-        if (this.f22718c == i10) {
-            return;
-        }
-        b(this.f22716a.getDrawable(i10).mutate(), z10);
-        this.f22718c = i10;
-    }
-
-    public final void b(Drawable drawable, boolean z10) {
-        if (drawable == null) {
-            this.d = null;
-            this.e = null;
-            invalidateSelf();
-            return;
-        }
-        z10 = (getBounds() == null || getBounds().isEmpty()) ? false : false;
-        Drawable drawable2 = this.d;
-        if (drawable == drawable2) {
-            drawable2.setColorFilter(this.f22717b);
-            return;
-        }
-        this.f22718c = 0;
-        this.e = drawable2;
-        this.d = drawable;
-        drawable.setColorFilter(this.f22717b);
-        c(this.d, getBounds());
-        c(this.e, getBounds());
-        ValueAnimator valueAnimator = this.f22719f;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f22719f.cancel();
-        }
-        if (!z10) {
-            this.h = 1.0f;
-            this.e = null;
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f22719f = ofFloat;
-        ofFloat.addUpdateListener(new p70(this, 10));
-        this.f22719f.addListener(this);
-        this.f22719f.setDuration(150L);
-        this.f22719f.start();
-    }
-
-    public final void c(Drawable drawable, Rect rect) {
-        int height;
-        int intrinsicHeight;
-        int width;
-        int intrinsicWidth;
-        if (drawable == null) {
-            return;
-        }
-        if (this.f22721r) {
-            drawable.setBounds(rect);
-            return;
-        }
-        if (drawable.getIntrinsicHeight() < 0) {
-            height = rect.top;
-            intrinsicHeight = rect.bottom;
-        } else {
-            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
-            intrinsicHeight = drawable.getIntrinsicHeight() + height;
-        }
-        if (drawable.getIntrinsicWidth() < 0) {
-            width = rect.left;
-            intrinsicWidth = rect.right;
-        } else {
-            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
-            intrinsicWidth = drawable.getIntrinsicWidth() + width;
-        }
-        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
+    public am0(zl0 zl0Var) {
+        this.f22697k = zl0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        if (this.h != 1.0f && this.d != null) {
-            canvas.save();
-            float f7 = this.h;
-            canvas.scale(f7, f7, centerX, centerY);
-            this.d.setAlpha((int) (this.h * 255.0f));
-            this.d.draw(canvas);
-            canvas.restore();
+    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
+        int i10;
+        int i11;
+        View F = recyclerView.F(motionEvent.getX(), motionEvent.getY());
+        if (F != null) {
+            i10 = RecyclerView.S(F);
         } else {
-            Drawable drawable = this.d;
-            if (drawable != null) {
-                drawable.setAlpha(255);
-                this.d.draw(canvas);
+            i10 = -1;
+        }
+        float y3 = motionEvent.getY();
+        int action = motionEvent.getAction();
+        zl0 zl0Var = this.f22697k;
+        org.telegram.ui.Cells.u6 u6Var = this.f22698l;
+        if (action != 1) {
+            if (action == 2) {
+                if (this.f22696j > -1) {
+                    float f7 = 0;
+                    if (y3 >= f7 && y3 <= this.d) {
+                        this.h = false;
+                        if (!this.f22694g) {
+                            this.f22694g = true;
+                            AndroidUtilities.cancelRunOnUIThread(u6Var);
+                            AndroidUtilities.runOnUIThread(u6Var);
+                        }
+                        this.f22695i = ((int) (this.d - (y3 - f7))) / 2;
+                    } else if (y3 >= this.e && y3 <= this.f22693f) {
+                        this.f22694g = false;
+                        if (!this.h) {
+                            this.h = true;
+                            AndroidUtilities.cancelRunOnUIThread(u6Var);
+                            AndroidUtilities.runOnUIThread(u6Var);
+                        }
+                        this.f22695i = ((int) ((y3 + this.f22693f) - (this.e + i11))) / 2;
+                    } else if (this.f22694g || this.h) {
+                        AndroidUtilities.cancelRunOnUIThread(u6Var);
+                        this.f22694g = false;
+                        this.h = false;
+                    }
+                }
+                if (i10 != -1 && this.f22691b != i10) {
+                    this.f22691b = i10;
+                    zl0Var.c(F, !zl0Var.d(i10));
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        this.f22692c = false;
+        this.f22694g = false;
+        this.h = false;
+        AndroidUtilities.cancelRunOnUIThread(u6Var);
+        zl0Var.a(false);
+    }
+
+    @Override
+    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
+        boolean z10;
+        boolean z11;
+        if (recyclerView.getAdapter() != null && recyclerView.getAdapter().h() != 0) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        if (this.f22692c && !z10) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z11) {
+            this.f22690a = recyclerView;
+            int i10 = this.f22696j;
+            if (i10 > -1) {
+                this.d = i10;
+                this.e = recyclerView.getMeasuredHeight() - i10;
+                this.f22693f = recyclerView.getMeasuredHeight();
             }
         }
-        float f10 = this.h;
-        if (f10 != 1.0f && this.e != null) {
-            float f11 = 1.0f - f10;
-            canvas.save();
-            canvas.scale(f11, f11, centerX, centerY);
-            this.e.setAlpha((int) (f11 * 255.0f));
-            this.e.draw(canvas);
-            canvas.restore();
+        if (z11 && motionEvent.getAction() == 1) {
+            this.f22692c = false;
+            this.f22694g = false;
+            this.h = false;
+            AndroidUtilities.cancelRunOnUIThread(this.f22698l);
+            this.f22697k.a(false);
+        }
+        return z11;
+    }
+
+    public final void d(View view, int i10, boolean z10) {
+        if (this.f22692c) {
             return;
         }
-        Drawable drawable2 = this.e;
-        if (drawable2 != null) {
-            drawable2.setAlpha(255);
-            this.e.draw(canvas);
+        this.f22691b = -1;
+        AndroidUtilities.cancelRunOnUIThread(this.f22698l);
+        this.f22694g = false;
+        this.h = false;
+        zl0 zl0Var = this.f22697k;
+        if (!zl0Var.b(i10)) {
+            this.f22692c = false;
+            return;
         }
+        zl0Var.a(true);
+        zl0Var.c(view, z10);
+        this.f22692c = true;
+        this.f22691b = i10;
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        ArrayList arrayList = this.f22720n;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                ((View) arrayList.get(i10)).invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.e = null;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        c(this.d, rect);
-        c(this.e, rect);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f22717b = colorFilter;
-        Drawable drawable = this.d;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
-        Drawable drawable2 = this.e;
-        if (drawable2 != null) {
-            drawable2.setColorFilter(colorFilter);
-        }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationRepeat(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
+    public final void c(boolean z10) {
     }
 }

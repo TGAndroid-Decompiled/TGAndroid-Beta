@@ -22,7 +22,7 @@ public final class c1 implements Comparator {
                 while (true) {
                     ArrayList arrayList2 = this.f9689b;
                     if (i10 < Math.min(20, arrayList2.size())) {
-                        if (((TLRPC.Document) arrayList2.get(i10)).f18334id == j1Var.f9801a.f18334id) {
+                        if (((TLRPC.Document) arrayList2.get(i10)).f18349id == j1Var.f9801a.f18349id) {
                             return (arrayList2.size() - i10) + 1000000;
                         }
                         i10++;
@@ -30,7 +30,7 @@ public final class c1 implements Comparator {
                         return -1;
                     }
                 }
-            } else if (((TLRPC.Document) arrayList.get(i11)).f18334id == j1Var.f9801a.f18334id) {
+            } else if (((TLRPC.Document) arrayList.get(i11)).f18349id == j1Var.f9801a.f18349id) {
                 return i11 + 2000000;
             } else {
                 i11++;

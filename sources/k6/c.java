@@ -42,8 +42,8 @@ public final class c extends o6.a {
 
     public final String toString() {
         m5.e eVar = new m5.e(this);
-        eVar.g(this.f13506a, "name");
-        eVar.g(Long.valueOf(b()), "version");
+        eVar.c(this.f13506a, "name");
+        eVar.c(Long.valueOf(b()), "version");
         return eVar.toString();
     }
 

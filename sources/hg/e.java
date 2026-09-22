@@ -55,7 +55,7 @@ public final class e extends FrameLayout {
         linearLayout.setOrientation(1);
         o6 o6Var = new o6(activity, false, false, false);
         this.e = o6Var;
-        o6Var.f26820n = false;
+        o6Var.f26997n = false;
         o6Var.getDrawable().o(true, false, false);
         o6Var.setTypeface(AndroidUtilities.bold());
         o6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -65,11 +65,11 @@ public final class e extends FrameLayout {
         linearLayout.addView(o6Var, y5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         o6 o6Var2 = new o6(activity, false, false, false);
         this.f10260f = o6Var2;
-        o6Var2.f26820n = false;
+        o6Var2.f26997n = false;
         o6Var2.getDrawable().o(true, false, false);
         o6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         o6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));
-        o6Var2.setTextColor(j6.v0(j6.f19155ge, f6Var));
+        o6Var2.setTextColor(j6.v0(j6.f19170ge, f6Var));
         o6Var2.setEllipsizeByGradient(true);
         linearLayout.addView(o6Var2, y5.n(-1, 17));
         addView(linearLayout, y5.d(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
@@ -101,8 +101,8 @@ public final class e extends FrameLayout {
         this.f10261n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_mini_customize);
-        imageView.setBackground(j6.M(j6.v0(j6.f19184i6, f6Var), 0, 0));
-        imageView.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.f19102de, f6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setBackground(j6.M(j6.v0(j6.f19199i6, f6Var), 0, 0));
+        imageView.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.f19117de, f6Var), PorterDuff.Mode.MULTIPLY));
         imageView.setOnClickListener(new ai.d0(this, znVar, f6Var, 7));
         addView(imageView, y5.d(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
     }

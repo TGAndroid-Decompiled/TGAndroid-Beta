@@ -113,7 +113,7 @@ public final class c implements Executor, Closeable {
         } else {
             jVar = new j(runnable, nanoTime, aVar);
         }
-        if (jVar.f9643b.f6246a == 1) {
+        if (jVar.f9643b.f6244a == 1) {
             z10 = true;
         } else {
             z10 = false;
@@ -133,7 +133,7 @@ public final class c implements Executor, Closeable {
         if (aVar2 == null || !kotlin.jvm.internal.i.a(aVar2.f9627n, this)) {
             aVar2 = null;
         }
-        if (aVar2 != null && (bVar = aVar2.f9625c) != b.e && (jVar.f9643b.f6246a != 0 || bVar != b.f9629b)) {
+        if (aVar2 != null && (bVar = aVar2.f9625c) != b.e && (jVar.f9643b.f6244a != 0 || bVar != b.f9629b)) {
             aVar2.h = true;
             m mVar = aVar2.f9623a;
             mVar.getClass();
@@ -144,7 +144,7 @@ public final class c implements Executor, Closeable {
                 AtomicReferenceArray atomicReferenceArray = mVar.f9653a;
                 AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = m.f9652c;
                 if (atomicIntegerFieldUpdater.get(mVar) - m.d.get(mVar) != 127) {
-                    if (jVar.f9643b.f6246a == 1) {
+                    if (jVar.f9643b.f6244a == 1) {
                         m.e.incrementAndGet(mVar);
                     }
                     int i10 = atomicIntegerFieldUpdater.get(mVar) & 127;
@@ -158,7 +158,7 @@ public final class c implements Executor, Closeable {
             }
         }
         if (jVar != null) {
-            if (jVar.f9643b.f6246a == 1) {
+            if (jVar.f9643b.f6244a == 1) {
                 a2 = this.f9638f.a(jVar);
             } else {
                 a2 = this.e.a(jVar);

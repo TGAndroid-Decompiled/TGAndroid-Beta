@@ -11,7 +11,7 @@ public final class d extends x0 implements Executor {
 
     static {
         a0 a0Var = l.f9650c;
-        int i10 = w.f8203a;
+        int i10 = w.f8202a;
         if (64 >= i10) {
             i10 = 64;
         }

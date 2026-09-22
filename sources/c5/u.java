@@ -1,198 +1,226 @@
 package c5;
 
-import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.DeadObjectException;
-import android.os.Parcel;
-import j$.util.Objects;
-import java.util.concurrent.Callable;
-public final class u implements Callable {
-    public final int f3929a;
-    public final Object f3930b;
-    public final Object f3931c;
-    public final Object d;
+import android.os.Handler;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import androidx.sharetarget.ShortcutInfoCompatSaverImpl;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.ui.Cells.f3;
+import org.telegram.ui.Components.mg;
+import v7.j0;
+import w7.la;
+import y8.k0;
+public final class u implements Runnable {
+    public final int f3928a;
+    public Object f3929b;
+    public Object f3930c;
+    public Object d;
 
-    public u(Object obj, Object obj2, Object obj3, int i10) {
-        this.f3929a = i10;
-        this.f3930b = obj;
-        this.f3931c = obj2;
-        this.d = obj3;
+    public u() {
+        this.f3928a = 8;
     }
 
-    private final java.lang.Object a() {
-        throw new UnsupportedOperationException("Method not decompiled: c5.u.a():java.lang.Object");
-    }
-
-    private final java.lang.Object b() {
-        throw new UnsupportedOperationException("Method not decompiled: c5.u.b():java.lang.Object");
-    }
-
-    private final Object c() {
-        Bundle c10;
-        com.google.android.gms.internal.play_billing.c cVar;
-        c cVar2 = (c) this.f3930b;
-        String str = (String) this.f3931c;
-        String str2 = (String) this.d;
-        try {
-            synchronized (cVar2.f3849a) {
-                cVar = cVar2.f3854i;
-            }
-            if (cVar == null) {
-                return com.google.android.gms.internal.play_billing.u.c(107, g0.h);
-            }
-            return ((com.google.android.gms.internal.play_billing.a) cVar).Y0(cVar2.f3853g.getPackageName(), str, str2);
-        } catch (DeadObjectException e) {
-            h hVar = g0.h;
-            String a2 = e0.a(e);
-            c10 = com.google.android.gms.internal.play_billing.u.c(5, hVar);
-            if (a2 != null) {
-                c10.putString("ADDITIONAL_LOG_DETAILS", a2);
-            }
-            return c10;
-        } catch (Exception e7) {
-            h hVar2 = g0.f3885f;
-            String a10 = e0.a(e7);
-            c10 = com.google.android.gms.internal.play_billing.u.c(5, hVar2);
-            if (a10 != null) {
-                c10.putString("ADDITIONAL_LOG_DETAILS", a10);
-            }
-            return c10;
+    private final void a() {
+        c6.f fVar;
+        synchronized (((g6.v) this.f3929b).X) {
+            fVar = (c6.f) ((g6.v) this.f3929b).X.get((String) this.f3930c);
         }
+        if (fVar != null) {
+            ((e6.h) fVar).o((String) this.d);
+        } else {
+            g6.v.f9471n0.b("Discarded message for unknown namespace '%s'", (String) this.f3930c);
+        }
+    }
+
+    private final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: c5.u.b():void");
     }
 
     @Override
-    public final Object call() {
-        Exception exc;
-        DeadObjectException deadObjectException;
-        com.google.android.gms.internal.play_billing.c cVar;
-        int readInt;
-        String str;
-        switch (this.f3929a) {
+    public final void run() {
+        c6.f fVar;
+        w9.b bVar;
+        Bundle bundle = null;
+        Object obj = null;
+        switch (this.f3928a) {
             case 0:
-                c cVar2 = (c) this.f3930b;
-                j jVar = (j) this.f3931c;
-                i iVar = (i) this.d;
-                if (!cVar2.n()) {
-                    h hVar = g0.h;
-                    cVar2.y(2, 4, hVar);
-                    jVar.a(hVar, iVar.f3901a);
-                    return null;
-                }
-                String str2 = "Error consuming purchase with token. Response code: ";
-                String str3 = iVar.f3901a;
-                try {
-                    com.google.android.gms.internal.play_billing.u.g("BillingClient", "Consuming purchase with token: ".concat(str3));
-                    try {
-                        synchronized (cVar2.f3849a) {
-                            try {
-                                cVar = cVar2.f3854i;
-                            } catch (Throwable th2) {
-                                th = th2;
-                                while (true) {
-                                    try {
-                                        throw th;
-                                    } catch (Throwable th3) {
-                                        th = th3;
-                                    }
-                                }
-                            }
-                        }
-                        try {
-                            if (cVar == null) {
-                                str2 = str3;
-                                try {
-                                    cVar2.g(jVar, str2, g0.h, 107, "Service has been reset to null.", null);
-                                    return null;
-                                } catch (DeadObjectException e) {
-                                    e = e;
-                                    deadObjectException = e;
-                                    cVar2.g(jVar, str2, g0.h, 29, "Error consuming purchase!", deadObjectException);
-                                    return null;
-                                } catch (Exception e7) {
-                                    e = e7;
-                                    exc = e;
-                                    cVar2.g(jVar, str2, g0.f3885f, 29, "Error consuming purchase!", exc);
-                                    return null;
-                                }
-                            }
-                            if (cVar2.f3859n) {
-                                String packageName = cVar2.f3853g.getPackageName();
-                                boolean z10 = cVar2.f3859n;
-                                String str4 = cVar2.f3851c;
-                                String str5 = cVar2.d;
-                                long longValue = cVar2.A.longValue();
-                                Bundle bundle = new Bundle();
-                                if (z10) {
-                                    com.google.android.gms.internal.play_billing.u.b(bundle, str4, str5, longValue);
-                                }
-                                Bundle X0 = ((com.google.android.gms.internal.play_billing.a) cVar).X0(packageName, str3, bundle);
-                                readInt = X0.getInt("RESPONSE_CODE");
-                                str = com.google.android.gms.internal.play_billing.u.f("BillingClient", X0);
-                            } else {
-                                String packageName2 = cVar2.f3853g.getPackageName();
-                                com.google.android.gms.internal.play_billing.a aVar = (com.google.android.gms.internal.play_billing.a) cVar;
-                                Parcel U0 = aVar.U0();
-                                U0.writeInt(3);
-                                U0.writeString(packageName2);
-                                U0.writeString(str3);
-                                Parcel V0 = aVar.V0(U0, 5);
-                                readInt = V0.readInt();
-                                V0.recycle();
-                                str = "";
-                            }
-                            h a2 = g0.a(readInt, str);
-                            if (readInt == 0) {
-                                com.google.android.gms.internal.play_billing.u.g("BillingClient", "Successfully consumed purchase.");
-                                jVar.a(a2, str3);
-                                return null;
-                            }
-                            cVar2.g(jVar, str3, a2, 23, "Error consuming purchase with token. Response code: " + readInt, null);
-                            return null;
-                        } catch (DeadObjectException e10) {
-                            deadObjectException = e10;
-                            str2 = str3;
-                            cVar2.g(jVar, str2, g0.h, 29, "Error consuming purchase!", deadObjectException);
-                            return null;
-                        } catch (Exception e11) {
-                            exc = e11;
-                            str2 = str3;
-                            cVar2.g(jVar, str2, g0.f3885f, 29, "Error consuming purchase!", exc);
-                            return null;
-                        }
-                    } catch (DeadObjectException e12) {
-                        e = e12;
-                    } catch (Exception e13) {
-                        e = e13;
-                    }
-                } catch (DeadObjectException e14) {
-                    e = e14;
-                    str2 = str3;
-                } catch (Exception e15) {
-                    e = e15;
-                    str2 = str3;
-                }
+                h hVar = f0.f3880i;
+                ((c) this.f3929b).y(24, 4, hVar);
+                ((j) this.f3930c).a(hVar, ((i) this.d).f3901a);
+                return;
             case 1:
-                return a();
+                c0.I((c0) this.f3929b, (android.support.v4.media.c) this.f3930c, (org.telegram.messenger.c0) this.d);
+                return;
             case 2:
-                return b();
+                c0.H((c0) this.f3929b, (i) this.d, (j) this.f3930c);
+                return;
             case 3:
-                return c();
+                c6.d0 d0Var = (c6.d0) this.f3929b;
+                HashMap hashMap = d0Var.f3975b.C;
+                String str = (String) this.f3930c;
+                synchronized (hashMap) {
+                    fVar = (c6.f) d0Var.f3975b.C.get(str);
+                }
+                if (fVar != null) {
+                    ((e6.h) fVar).o((String) this.d);
+                    return;
+                } else {
+                    c6.e0.G.b("Discarded message for unknown namespace '%s'", str);
+                    return;
+                }
             case 4:
-                return Boolean.valueOf(((SharedPreferences) this.f3930b).getBoolean((String) this.f3931c, ((Boolean) this.d).booleanValue()));
+                ca.c cVar = (ca.c) this.d;
+                cVar.b((w9.b) this.f3929b, (TaskCompletionSource) this.f3930c);
+                ((AtomicInteger) cVar.f4192i.f14969c).set(0);
+                double min = Math.min(3600000.0d, Math.pow(cVar.f4188b, cVar.a()) * (60000.0d / cVar.f4187a));
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f45230b;
+                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                    Log.d("FirebaseCrashlytics", str2, null);
+                }
+                try {
+                    Thread.sleep((long) min);
+                    return;
+                } catch (InterruptedException unused) {
+                    return;
+                }
             case 5:
-                return Integer.valueOf(((SharedPreferences) this.f3930b).getInt((String) this.f3931c, ((Integer) this.d).intValue()));
+                com.google.android.gms.common.api.internal.l lVar = (com.google.android.gms.common.api.internal.l) this.f3929b;
+                a5.a aVar = (a5.a) this.d;
+                if (aVar.f276b > 0) {
+                    Bundle bundle2 = (Bundle) aVar.d;
+                    if (bundle2 != null) {
+                        bundle = bundle2.getBundle((String) this.f3930c);
+                    }
+                    lVar.onCreate(bundle);
+                }
+                if (aVar.f276b >= 2) {
+                    lVar.onStart();
+                }
+                if (aVar.f276b >= 3) {
+                    lVar.onResume();
+                }
+                if (aVar.f276b >= 4) {
+                    lVar.onStop();
+                }
+                if (aVar.f276b >= 5) {
+                    lVar.onDestroy();
+                    return;
+                }
+                return;
             case 6:
-                return Long.valueOf(((SharedPreferences) this.f3930b).getLong((String) this.f3931c, ((Long) this.d).longValue()));
+                g.f.b(((g.f) this.d).e, (View) this.f3929b, (View) this.f3930c);
+                return;
+            case 7:
+                a();
+                return;
+            case 8:
+                try {
+                    obj = ((o0.f) this.f3929b).call();
+                } catch (Exception unused2) {
+                }
+                ((Handler) this.d).post(new i9.s(20, (y) this.f3930c, obj));
+                return;
+            case 9:
+                ((mg) this.d).n((File) this.f3930c, (ArrayList) this.f3929b);
+                return;
+            case 10:
+                u4.f fVar2 = (u4.f) this.d;
+                fVar2.d.f2876c.remove((String) this.f3929b);
+                c0.l lVar2 = (c0.l) this.f3930c;
+                if (!(lVar2.f3635a instanceof c0.a)) {
+                    try {
+                        lVar2.get();
+                        return;
+                    } catch (Exception e) {
+                        fVar2.f43940c.l(e);
+                        return;
+                    }
+                }
+                return;
+            case 11:
+                Bitmap bitmap = (Bitmap) this.f3929b;
+                String str3 = (String) this.f3930c;
+                ((ShortcutInfoCompatSaverImpl) this.d).getClass();
+                if (bitmap != null) {
+                    if (!TextUtils.isEmpty(str3)) {
+                        try {
+                            FileOutputStream fileOutputStream = new FileOutputStream(new File(str3));
+                            try {
+                                if (bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)) {
+                                    fileOutputStream.close();
+                                    return;
+                                }
+                                Log.wtf("ShortcutInfoCompatSaver", "Unable to compress bitmap");
+                                throw new RuntimeException("Unable to compress bitmap for saving " + str3);
+                            } catch (Throwable th2) {
+                                try {
+                                    fileOutputStream.close();
+                                } catch (Throwable th3) {
+                                    th2.addSuppressed(th3);
+                                }
+                                throw th2;
+                            }
+                        } catch (IOException | OutOfMemoryError | RuntimeException e7) {
+                            Log.wtf("ShortcutInfoCompatSaver", "Unable to write bitmap to file", e7);
+                            throw new RuntimeException(j0.g("Unable to write bitmap to file ", str3), e7);
+                        }
+                    }
+                    throw new IllegalArgumentException("path is empty");
+                }
+                throw new IllegalArgumentException("bitmap is null");
+            case 12:
+                b();
+                return;
             default:
-                return ((SharedPreferences) this.f3930b).getString((String) this.f3931c, (String) this.d);
+                k0 k0Var = (k0) this.f3930c;
+                y8.e0 e0Var = (y8.e0) this.d;
+                Task<byte[]> onRequest = ((x8.m) this.f3929b).f46014c.onRequest(k0Var.d, k0Var.f46705b, k0Var.f46706c);
+                if (onRequest == null) {
+                    x8.m.M0(e0Var, false, null);
+                    return;
+                } else {
+                    onRequest.addOnCompleteListener(new ki.e0(e0Var, 24));
+                    return;
+                }
         }
     }
 
-    public u(c cVar, p pVar, String str) {
-        this.f3929a = 2;
-        this.f3931c = pVar;
+    public u(c0 c0Var, i iVar, j jVar) {
+        this.f3928a = 2;
+        this.f3929b = c0Var;
+        this.d = iVar;
+        this.f3930c = jVar;
+    }
+
+    public u(Object obj, Object obj2, Object obj3, int i10) {
+        this.f3928a = i10;
+        this.f3929b = obj;
+        this.f3930c = obj2;
+        this.d = obj3;
+    }
+
+    public u(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
+        this.f3928a = i10;
+        this.d = obj;
+        this.f3929b = obj2;
+        this.f3930c = obj3;
+    }
+
+    public u(la laVar, f3 f3Var, String str) {
+        this.f3928a = 12;
+        this.f3929b = laVar;
+        this.f3930c = f3Var;
         this.d = str;
-        Objects.requireNonNull(cVar);
-        this.f3930b = cVar;
     }
 }

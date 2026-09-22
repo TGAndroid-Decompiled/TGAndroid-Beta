@@ -13,9 +13,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class fo extends LinearLayout {
-    public final org.telegram.ui.ActionBar.f6 f24142a;
-    public final TextView f24143b;
-    public final ArrayList f24144c;
+    public final org.telegram.ui.ActionBar.f6 f24311a;
+    public final TextView f24312b;
+    public final ArrayList f24313c;
     public final ArrayList d;
 
     public fo(Activity activity, View view, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -26,9 +26,9 @@ public final class fo extends LinearLayout {
         int i13;
         int i14;
         ArrayList arrayList = new ArrayList();
-        this.f24144c = arrayList;
+        this.f24313c = arrayList;
         this.d = new ArrayList();
-        this.f24142a = f6Var;
+        this.f24311a = f6Var;
         int dp = AndroidUtilities.dp(18.0f);
         if (f6Var != null) {
             paint = f6Var.G("paintChatActionBackground");
@@ -36,24 +36,24 @@ public final class fo extends LinearLayout {
             paint = null;
         }
         paint = paint == null ? org.telegram.ui.ActionBar.j6.S0("paintChatActionBackground") : paint;
-        int i15 = org.telegram.ui.ActionBar.j6.f19031a;
+        int i15 = org.telegram.ui.ActionBar.j6.f19046a;
         setBackground(new org.telegram.ui.ActionBar.v5(this, view, dp, paint));
         setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f));
         setOrientation(1);
         if (i10 == 0) {
             TextView textView = new TextView(activity);
-            this.f24143b = textView;
+            this.f24312b = textView;
             textView.setTextSize(1, 15.0f);
-            textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19190ic, f6Var));
+            textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19205ic, f6Var));
             textView.setGravity(1);
             textView.setMaxWidth(AndroidUtilities.dp(210.0f));
             arrayList.add(textView);
             addView(textView, w7.y5.q(-2, -2, 49));
         } else if (i10 == 1) {
             TextView textView2 = new TextView(activity);
-            this.f24143b = textView2;
+            this.f24312b = textView2;
             textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19190ic, f6Var));
+            textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19205ic, f6Var));
             textView2.setGravity(1);
             textView2.setMaxWidth(AndroidUtilities.dp(210.0f));
             arrayList.add(textView2);
@@ -78,7 +78,7 @@ public final class fo extends LinearLayout {
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setGravity(1);
         }
-        textView3.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19190ic, f6Var));
+        textView3.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19205ic, f6Var));
         arrayList.add(textView3);
         textView3.setMaxWidth(AndroidUtilities.dp(260.0f));
         if (i10 != 2) {
@@ -106,8 +106,8 @@ public final class fo extends LinearLayout {
             }
             addView(e, w7.y5.t(-2, -2, i13, 0, 8, 0, 0));
             ImageView imageView2 = new ImageView(activity);
-            int i18 = org.telegram.ui.ActionBar.j6.f19190ic;
-            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i18, this.f24142a), PorterDuff.Mode.MULTIPLY));
+            int i18 = org.telegram.ui.ActionBar.j6.f19205ic;
+            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i18, this.f24311a), PorterDuff.Mode.MULTIPLY));
             if (i10 == 0) {
                 imageView2.setImageResource(R.drawable.ic_lock_white);
             } else if (i10 == 2) {
@@ -118,8 +118,8 @@ public final class fo extends LinearLayout {
             this.d.add(imageView2);
             TextView textView4 = new TextView(activity);
             textView4.setTextSize(1, 15.0f);
-            textView4.setTextColor(org.telegram.ui.ActionBar.j6.v0(i18, this.f24142a));
-            this.f24144c.add(textView4);
+            textView4.setTextColor(org.telegram.ui.ActionBar.j6.v0(i18, this.f24311a));
+            this.f24313c.add(textView4);
             if (LocaleController.isRTL) {
                 i14 = 5;
             } else {
@@ -183,14 +183,14 @@ public final class fo extends LinearLayout {
     }
 
     public void setStatusText(CharSequence charSequence) {
-        this.f24143b.setText(charSequence);
+        this.f24312b.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
         int i11 = 0;
         int i12 = 0;
         while (true) {
-            ArrayList arrayList = this.f24144c;
+            ArrayList arrayList = this.f24313c;
             if (i12 >= arrayList.size()) {
                 break;
             }
@@ -200,7 +200,7 @@ public final class fo extends LinearLayout {
         while (true) {
             ArrayList arrayList2 = this.d;
             if (i11 < arrayList2.size()) {
-                ((ImageView) arrayList2.get(i11)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19190ic, this.f24142a), PorterDuff.Mode.MULTIPLY));
+                ((ImageView) arrayList2.get(i11)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19205ic, this.f24311a), PorterDuff.Mode.MULTIPLY));
                 i11++;
             } else {
                 return;

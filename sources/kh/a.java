@@ -7,37 +7,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.voip.v2;
 public final class a implements d {
-    public final e f13644a;
-    public final e f13645b;
-    public final le.b f13646c;
+    public final e f13642a;
+    public final e f13643b;
+    public final le.b f13644c;
     public final le.b d;
     public final v2 e;
-    public final g0 f13647f;
+    public final g0 f13645f;
     public boolean h;
 
     public a(v2 v2Var, g0 g0Var) {
         qr qrVar = qr.h;
-        this.f13644a = new e(1, this, qrVar, 350L);
-        this.f13645b = new e(2, this, qrVar, 350L);
-        this.f13646c = new le.b(0, this, qrVar, 350L, true);
+        this.f13642a = new e(1, this, qrVar, 350L);
+        this.f13643b = new e(2, this, qrVar, 350L);
+        this.f13644c = new le.b(0, this, qrVar, 350L, true);
         this.d = new le.b(3, this, qrVar, 350L, true);
         this.h = true;
         this.e = v2Var;
-        this.f13647f = g0Var;
+        this.f13645f = g0Var;
     }
 
     @Override
-    public final void D(int i10, float f7, float f10, e eVar) {
+    public final void H(int i10, float f7, float f10, e eVar) {
         int i11;
         v2 v2Var = this.e;
         if (i10 == 1) {
-            v2Var.setTranslationX(this.f13644a.e);
+            v2Var.setTranslationX(this.f13642a.e);
         }
         if (i10 == 2) {
-            v2Var.setTranslationY(this.f13645b.e);
+            v2Var.setTranslationY(this.f13643b.e);
         }
         le.b bVar = this.d;
-        le.b bVar2 = this.f13646c;
+        le.b bVar2 = this.f13644c;
         if (i10 == 0) {
             v2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.e) * bVar2.e);
             v2Var.setScaleX(AndroidUtilities.lerp(0.3f, 1.0f, f7));
@@ -52,7 +52,7 @@ public final class a implements d {
         if (i10 == 3) {
             v2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.e) * bVar2.e);
         }
-        g0 g0Var = this.f13647f;
+        g0 g0Var = this.f13645f;
         if (g0Var != null) {
             g0Var.run();
         }

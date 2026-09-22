@@ -1,37 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class j80 implements DialogInterface.OnDismissListener {
-    public final int f25289a;
-    public final Object f25290b;
-    public final boolean f25291c;
-
-    public j80(int i10, Object obj, boolean z10) {
-        this.f25289a = i10;
-        this.f25290b = obj;
-        this.f25291c = z10;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class j80 extends FrameLayout {
+    public TextView f25319a;
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f25289a) {
-            case 0:
-                o80 o80Var = (o80) this.f25290b;
-                o80.w(o80Var.getContext(), o80Var.f26835c, o80Var.f26837n, this.f25291c);
-                return;
-            case 1:
-                o80 o80Var2 = (o80) this.f25290b;
-                o80.w(o80Var2.getContext(), o80Var2.f26835c, o80Var2.f26837n, this.f25291c);
-                return;
-            default:
-                ci.oc ocVar = (ci.oc) this.f25290b;
-                ocVar.f5289z2 = false;
-                ocVar.X0.x(7, true);
-                if (this.f25291c) {
-                    ocVar.q(true);
-                    return;
-                }
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f25319a.setText(charSequence);
     }
 }

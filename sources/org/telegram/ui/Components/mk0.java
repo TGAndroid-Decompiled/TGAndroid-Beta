@@ -1,146 +1,162 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class mk0 extends v9 {
-    public final int G;
-    public final nk0 H;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import androidx.recyclerview.widget.RecyclerView;
+public final class mk0 extends s4.s0 {
+    public boolean f26462a;
+    public boolean f26463b;
+    public ValueAnimator f26464c;
+    public ValueAnimator d;
+    public final sk0 e;
 
-    public mk0(nk0 nk0Var, Context context, int i10) {
-        super(context);
-        this.G = i10;
-        this.H = nk0Var;
+    public mk0(sk0 sk0Var) {
+        this.e = sk0Var;
+    }
+
+    public static ValueAnimator c(float f7, float f10, q0.a aVar, Runnable runnable) {
+        ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(Math.abs(f10 - f7) * 150.0f);
+        duration.addUpdateListener(new s70(aVar, 8));
+        duration.addListener(new org.telegram.ui.q0(1, runnable));
+        duration.start();
+        return duration;
     }
 
     @Override
-    public ImageReceiver c() {
-        switch (this.G) {
-            case 0:
-                return new lk0(0, this);
-            case 1:
-                return new lk0(1, this);
-            default:
-                return super.c();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z10;
+        float f7;
+        sk0 sk0Var = this.e;
+        gg.j0 j0Var = sk0Var.W;
+        boolean z11 = false;
+        if (j0Var.L0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
+        float f10 = 0.0f;
+        if (z10 != this.f26462a) {
+            ValueAnimator valueAnimator = this.f26464c;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            float f11 = sk0Var.f28257r;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.f26464c = c(f11, f7, new q0.a(this) {
+                public final mk0 f25752b;
 
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.G) {
-            case 0:
-                nk0 nk0Var = this.H;
-                mk0 mk0Var = nk0Var.f26671b;
-                super.dispatchDraw(canvas);
-                if (this.f29029a.getLottieAnimation() != null && !nk0Var.E) {
-                    this.f29029a.getLottieAnimation().start();
+                {
+                    this.f25752b = this;
                 }
-                if (nk0Var.f26676s && !nk0Var.v && this.f29029a.getLottieAnimation() != null && this.f29029a.getLottieAnimation().A() && mk0Var.f29029a.getLottieAnimation() != null && mk0Var.f29029a.getLottieAnimation().u()) {
-                    nk0Var.v = true;
-                    mk0Var.f29029a.getLottieAnimation().N(0, false, true);
-                    mk0Var.setVisibility(0);
-                    Runnable runnable = nk0Var.P.P0;
-                    if (runnable != null) {
-                        runnable.run();
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f12 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            sk0 sk0Var2 = this.f25752b.e;
+                            Paint paint = sk0Var2.h;
+                            float floatValue = f12.floatValue();
+                            sk0Var2.f28257r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            sk0Var2.invalidate();
+                            return;
+                        default:
+                            sk0 sk0Var3 = this.f25752b.e;
+                            Paint paint2 = sk0Var3.f28252n;
+                            float floatValue2 = f12.floatValue();
+                            sk0Var3.f28259s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            sk0Var3.invalidate();
+                            return;
                     }
-                    AndroidUtilities.runOnUIThread(new jc0(this, 17));
                 }
-                invalidate();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
+            }, new Runnable(this) {
+                public final mk0 f26134b;
 
-    @Override
-    public void invalidate(Rect rect) {
-        switch (this.G) {
-            case 0:
-                nk0 nk0Var = this.H;
-                if (zg.e0.c(this, nk0Var.P)) {
-                    return;
+                {
+                    this.f26134b = this;
                 }
-                super.invalidate(rect);
-                nk0Var.P.invalidate();
-                return;
-            default:
-                super.invalidate(rect);
-                return;
-        }
-    }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        switch (this.G) {
-            case 1:
-                this.H.b();
-                super.onDraw(canvas);
-                return;
-            case 2:
-                p5 p5Var = this.e;
-                if (p5Var != null) {
-                    imageReceiver = p5Var.f27162k;
-                } else {
-                    imageReceiver = this.f29029a;
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f26134b.f26464c = null;
+                            return;
+                        default:
+                            this.f26134b.d = null;
+                            return;
+                    }
                 }
-                if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
-                    imageReceiver.getLottieAnimation().start();
-                }
-                super.onDraw(canvas);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+            });
+            this.f26462a = z10;
         }
-    }
-
-    @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.G) {
-            case 0:
-                if (zg.e0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            case 1:
-                if (zg.e0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            default:
-                super.invalidate(i10, i11, i12, i13);
-                return;
+        if (j0Var.N0() != sk0Var.f28227a0.h() - 1) {
+            z11 = true;
         }
-    }
+        if (z11 != this.f26463b) {
+            ValueAnimator valueAnimator2 = this.d;
+            if (valueAnimator2 != null) {
+                valueAnimator2.cancel();
+            }
+            float f12 = sk0Var.f28259s;
+            if (z11) {
+                f10 = 1.0f;
+            }
+            this.d = c(f12, f10, new q0.a(this) {
+                public final mk0 f25752b;
 
-    @Override
-    public final void invalidate() {
-        int i10 = this.G;
-        nk0 nk0Var = this.H;
-        switch (i10) {
-            case 0:
-                if (zg.e0.c(this, nk0Var.P)) {
-                    return;
+                {
+                    this.f25752b = this;
                 }
-                super.invalidate();
-                nk0Var.P.invalidate();
-                return;
-            case 1:
-                if (zg.e0.c(this)) {
-                    return;
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f122 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            sk0 sk0Var2 = this.f25752b.e;
+                            Paint paint = sk0Var2.h;
+                            float floatValue = f122.floatValue();
+                            sk0Var2.f28257r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            sk0Var2.invalidate();
+                            return;
+                        default:
+                            sk0 sk0Var3 = this.f25752b.e;
+                            Paint paint2 = sk0Var3.f28252n;
+                            float floatValue2 = f122.floatValue();
+                            sk0Var3.f28259s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            sk0Var3.invalidate();
+                            return;
+                    }
                 }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                nk0Var.P.invalidate();
-                return;
+            }, new Runnable(this) {
+                public final mk0 f26134b;
+
+                {
+                    this.f26134b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f26134b.f26464c = null;
+                            return;
+                        default:
+                            this.f26134b.d = null;
+                            return;
+                    }
+                }
+            });
+            this.f26463b = z11;
         }
     }
 }

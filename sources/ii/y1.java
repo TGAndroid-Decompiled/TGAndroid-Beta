@@ -8,7 +8,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.ug;
-import org.telegram.ui.Components.uq0;
+import org.telegram.ui.Components.wq0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.uy;
 public final class y1 extends ug {
@@ -41,12 +41,12 @@ public final class y1 extends ug {
     public final boolean f() {
         switch (this.f11777l0) {
             case 0:
-                if (!((d2) this.m0).L0 && this.f28673r <= 0) {
+                if (!((d2) this.m0).L0 && this.f28774r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((b4) this.m0).W && this.f28673r <= 0) {
+                if (!((b4) this.m0).W && this.f28774r <= 0) {
                     return false;
                 }
                 return true;
@@ -65,12 +65,12 @@ public final class y1 extends ug {
         Object obj = this.m0;
         switch (i10) {
             case 2:
-                return ((uq0) obj).getThemedColor(j6.S5);
+                return ((wq0) obj).getThemedColor(j6.S5);
             case 3:
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = j6.f19505zf;
+                int i11 = j6.f19520zf;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).z1(i11);
         }

@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 public final class hg implements Runnable {
-    public final int f16563a;
-    public final MessagesStorage f16564b;
-    public final long f16565c;
+    public final int f16578a;
+    public final MessagesStorage f16579b;
+    public final long f16580c;
     public final boolean d;
 
     public hg(MessagesStorage messagesStorage, int i10, boolean z10, long j3) {
-        this.f16563a = i10;
-        this.f16564b = messagesStorage;
-        this.f16565c = j3;
+        this.f16578a = i10;
+        this.f16579b = messagesStorage;
+        this.f16580c = j3;
         this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f16563a) {
+        switch (this.f16578a) {
             case 0:
-                this.f16564b.lambda$setDialogUnread$248(this.f16565c, this.d);
+                this.f16579b.lambda$setDialogUnread$248(this.f16580c, this.d);
                 return;
             default:
-                this.f16564b.lambda$setDialogViewThreadAsMessages$249(this.f16565c, this.d);
+                this.f16579b.lambda$setDialogViewThreadAsMessages$249(this.f16580c, this.d);
                 return;
         }
     }

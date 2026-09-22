@@ -4,7 +4,7 @@ import ai.u9;
 import org.telegram.messenger.MessagesController;
 import org.telegram.ui.Cells.o2;
 import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.zn;
 public final class l1 implements o2 {
     public final o1 f9850a;
@@ -24,7 +24,7 @@ public final class l1 implements o2 {
         zn znVar = o1Var.f9878f;
         if (MessagesController.getInstance(o1Var.f9880r).getStoriesController().I(s2Var.getDialogId())) {
             znVar.getOrCreateStoryViewer().getClass();
-            znVar.getOrCreateStoryViewer().D(o1Var.f9877c, s2Var.getDialogId(), u9.a((vl0) s2Var.getParent()));
+            znVar.getOrCreateStoryViewer().D(o1Var.f9877c, s2Var.getDialogId(), u9.a((yl0) s2Var.getParent()));
         }
     }
 

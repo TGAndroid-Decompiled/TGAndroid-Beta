@@ -4,20 +4,20 @@ import b5.m;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class g implements Runnable {
-    public final int f15751a;
-    public final k f15752b;
+    public final int f15766a;
+    public final k f15767b;
 
     public g(k kVar, int i10) {
-        this.f15751a = i10;
-        this.f15752b = kVar;
+        this.f15766a = i10;
+        this.f15767b = kVar;
     }
 
     private final void a() {
-        k kVar = this.f15752b;
+        k kVar = this.f15767b;
         kVar.e();
-        synchronized (kVar.f15760a) {
+        synchronized (kVar.f15775a) {
             try {
-                if (kVar.f15774r) {
+                if (kVar.f15789r) {
                     return;
                 }
                 AndroidUtilities.runOnUIThread(new g(kVar, 2), 1000L);
@@ -31,14 +31,14 @@ public final class g implements Runnable {
     public final void run() {
         b5.h hVar;
         byte[] bArr;
-        switch (this.f15751a) {
+        switch (this.f15766a) {
             case 0:
-                k kVar = this.f15752b;
-                b5.h hVar2 = kVar.f15772p;
+                k kVar = this.f15767b;
+                b5.h hVar2 = kVar.f15787p;
                 if (hVar2 != null) {
                     try {
-                        if (m.f3426c.b()) {
-                            hVar2.f3421a.postMessage("{\"t\":\"close\"}");
+                        if (m.f3425c.b()) {
+                            hVar2.f3420a.postMessage("{\"t\":\"close\"}");
                         } else {
                             throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
                         }
@@ -48,27 +48,27 @@ public final class g implements Runnable {
                 kVar.e();
                 return;
             case 1:
-                k.b(this.f15752b);
+                k.b(this.f15767b);
                 return;
             case 2:
-                k.a(this.f15752b);
+                k.a(this.f15767b);
                 return;
             case 3:
                 a();
                 return;
             default:
-                k kVar2 = this.f15752b;
+                k kVar2 = this.f15767b;
                 while (true) {
-                    synchronized (kVar2.f15760a) {
-                        hVar = kVar2.f15772p;
-                        if (!kVar2.f15774r && hVar != null && !kVar2.f15770n.isEmpty()) {
-                            bArr = (byte[]) kVar2.f15770n.removeFirst();
-                            kVar2.f15776t -= bArr.length;
+                    synchronized (kVar2.f15775a) {
+                        hVar = kVar2.f15787p;
+                        if (!kVar2.f15789r && hVar != null && !kVar2.f15785n.isEmpty()) {
+                            bArr = (byte[]) kVar2.f15785n.removeFirst();
+                            kVar2.f15791t -= bArr.length;
                         }
                     }
                     try {
-                        if (m.f3424a.b()) {
-                            hVar.f3421a.postMessageWithPayload(new se.a(new b5.j(bArr)));
+                        if (m.f3423a.b()) {
+                            hVar.f3420a.postMessageWithPayload(new se.a(new b5.j(bArr)));
                         } else {
                             throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
                         }

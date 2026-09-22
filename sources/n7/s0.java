@@ -5,17 +5,17 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Locale;
 public class s0 implements Iterable, Serializable {
-    public static final s0 f15382c = new s0(t0.f15387a);
-    public int f15383a = 0;
-    public final byte[] f15384b;
+    public static final s0 f15395c = new s0(t0.f15400a);
+    public int f15396a = 0;
+    public final byte[] f15397b;
 
     static {
-        int i10 = q0.f15379a;
+        int i10 = q0.f15392a;
     }
 
     public s0(byte[] bArr) {
         bArr.getClass();
-        this.f15384b = bArr;
+        this.f15397b = bArr;
     }
 
     public static int s(int i10, int i11, int i12) {
@@ -45,18 +45,18 @@ public class s0 implements Iterable, Serializable {
                 if (p() != 0) {
                     if (obj instanceof s0) {
                         s0 s0Var = (s0) obj;
-                        int i10 = this.f15383a;
-                        int i11 = s0Var.f15383a;
+                        int i10 = this.f15396a;
+                        int i11 = s0Var.f15396a;
                         if (i10 == 0 || i11 == 0 || i10 == i11) {
                             int p5 = p();
                             if (p5 <= s0Var.p()) {
                                 if (p5 <= s0Var.p()) {
-                                    byte[] bArr = s0Var.f15384b;
+                                    byte[] bArr = s0Var.f15397b;
                                     int o9 = o() + p5;
                                     int o10 = o();
                                     int o11 = s0Var.o();
                                     while (o10 < o9) {
-                                        if (this.f15384b[o10] != bArr[o11]) {
+                                        if (this.f15397b[o10] != bArr[o11]) {
                                             return false;
                                         }
                                         o10++;
@@ -81,26 +81,26 @@ public class s0 implements Iterable, Serializable {
     }
 
     public final int hashCode() {
-        int i10 = this.f15383a;
+        int i10 = this.f15396a;
         if (i10 == 0) {
             int p5 = p();
             int o9 = o();
-            byte[] bArr = t0.f15387a;
+            byte[] bArr = t0.f15400a;
             int i11 = p5;
             for (int i12 = o9; i12 < o9 + p5; i12++) {
-                i11 = (i11 * 31) + this.f15384b[i12];
+                i11 = (i11 * 31) + this.f15397b[i12];
             }
             if (i11 == 0) {
                 i11 = 1;
             }
-            this.f15383a = i11;
+            this.f15396a = i11;
             return i11;
         }
         return i10;
     }
 
     public byte i(int i10) {
-        return this.f15384b[i10];
+        return this.f15397b[i10];
     }
 
     @Override
@@ -109,7 +109,7 @@ public class s0 implements Iterable, Serializable {
     }
 
     public byte n(int i10) {
-        return this.f15384b[i10];
+        return this.f15397b[i10];
     }
 
     public int o() {
@@ -117,15 +117,15 @@ public class s0 implements Iterable, Serializable {
     }
 
     public int p() {
-        return this.f15384b.length;
+        return this.f15397b.length;
     }
 
     public void q(int i10, byte[] bArr) {
-        System.arraycopy(this.f15384b, 0, bArr, 0, i10);
+        System.arraycopy(this.f15397b, 0, bArr, 0, i10);
     }
 
     public final ByteArrayInputStream r() {
-        return new ByteArrayInputStream(this.f15384b, o(), p());
+        return new ByteArrayInputStream(this.f15397b, o(), p());
     }
 
     public final String toString() {
@@ -139,9 +139,9 @@ public class s0 implements Iterable, Serializable {
         } else {
             int s10 = s(0, 47, p());
             if (s10 == 0) {
-                r0Var = f15382c;
+                r0Var = f15395c;
             } else {
-                r0Var = new r0(this.f15384b, o(), s10);
+                r0Var = new r0(this.f15397b, o(), s10);
             }
             concat = a.d(r0Var).concat("...");
         }
@@ -156,7 +156,7 @@ public class s0 implements Iterable, Serializable {
     public final byte[] u() {
         int p5 = p();
         if (p5 == 0) {
-            return t0.f15387a;
+            return t0.f15400a;
         }
         byte[] bArr = new byte[p5];
         q(p5, bArr);

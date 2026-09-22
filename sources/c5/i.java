@@ -8,37 +8,37 @@ public final class i {
     public String f3901a;
 
     public static void a(aa.a aVar, da.d dVar) {
-        String str = dVar.f7587a;
+        String str = dVar.f7586a;
         if (str != null) {
-            aVar.r("X-CRASHLYTICS-GOOGLE-APP-ID", str);
+            aVar.t("X-CRASHLYTICS-GOOGLE-APP-ID", str);
         }
-        aVar.r("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
-        aVar.r("X-CRASHLYTICS-API-CLIENT-VERSION", "18.6.0");
-        aVar.r("Accept", "application/json");
-        String str2 = dVar.f7588b;
+        aVar.t("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
+        aVar.t("X-CRASHLYTICS-API-CLIENT-VERSION", "18.6.0");
+        aVar.t("Accept", "application/json");
+        String str2 = dVar.f7587b;
         if (str2 != null) {
-            aVar.r("X-CRASHLYTICS-DEVICE-MODEL", str2);
+            aVar.t("X-CRASHLYTICS-DEVICE-MODEL", str2);
         }
-        String str3 = dVar.f7589c;
+        String str3 = dVar.f7588c;
         if (str3 != null) {
-            aVar.r("X-CRASHLYTICS-OS-BUILD-VERSION", str3);
+            aVar.t("X-CRASHLYTICS-OS-BUILD-VERSION", str3);
         }
         String str4 = dVar.d;
         if (str4 != null) {
-            aVar.r("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
+            aVar.t("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = dVar.e.b().f45212a;
+        String str5 = dVar.e.b().f45232a;
         if (str5 != null) {
-            aVar.r("X-CRASHLYTICS-INSTALLATION-ID", str5);
+            aVar.t("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
     }
 
     public static HashMap b(da.d dVar) {
         HashMap hashMap = new HashMap();
         hashMap.put("build_version", dVar.h);
-        hashMap.put("display_version", dVar.f7591g);
-        hashMap.put("source", Integer.toString(dVar.f7592i));
-        String str = dVar.f7590f;
+        hashMap.put("display_version", dVar.f7590g);
+        hashMap.put("source", Integer.toString(dVar.f7591i));
+        String str = dVar.f7589f;
         if (!TextUtils.isEmpty(str)) {
             hashMap.put("instance", str);
         }
@@ -47,8 +47,8 @@ public final class i {
 
     public JSONObject c(aa.b bVar) {
         String str = this.f3901a;
-        int i10 = bVar.f363c;
-        t9.b bVar2 = t9.b.f43352a;
+        int i10 = bVar.f360c;
+        t9.b bVar2 = t9.b.f43373a;
         bVar2.c("Settings response code was: " + i10);
         if (i10 != 200 && i10 != 201 && i10 != 202 && i10 != 203) {
             String str2 = "Settings request failed; (status: " + i10 + ") from " + str;
@@ -57,7 +57,7 @@ public final class i {
             }
             return null;
         }
-        String str3 = bVar.f362b;
+        String str3 = bVar.f359b;
         try {
             return new JSONObject(str3);
         } catch (Exception e) {

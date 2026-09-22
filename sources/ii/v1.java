@@ -10,9 +10,9 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.cw0;
 import org.telegram.ui.Components.xc;
-public final class v1 extends aw0 {
+public final class v1 extends cw0 {
     public boolean f11685w0;
     public final Paint f11686x0;
     public final RectF f11687y0;
@@ -30,7 +30,7 @@ public final class v1 extends aw0 {
     public final void dispatchDraw(Canvas canvas) {
         d2 d2Var = this.f11688z0;
         Rect rect = d2Var.f11327w;
-        int l1 = j6.l1(d2Var.I, d2Var.getThemedColor(j6.f19094d6));
+        int l1 = j6.l1(d2Var.I, d2Var.getThemedColor(j6.f19109d6));
         Paint paint = this.f11686x0;
         paint.setColor(l1);
         if (d2Var.E && d2Var.f11329x != null) {
@@ -55,9 +55,9 @@ public final class v1 extends aw0 {
                 canvas.restore();
                 canvas.restore();
                 canvas.save();
-                canvas.translate(AndroidUtilities.lerp(rectF.right, (d2Var.f11332y0.getX() + (d2Var.f11300a0.getX() + (d2Var.Z.getX() + d2Var.Y.getX()))) + d2Var.f11332y0.getWidth(), d2Var.I) - d2Var.v.f22095z1.getWidth(), AndroidUtilities.lerp(rectF.bottom, (d2Var.f11332y0.getY() + (d2Var.f11300a0.getY() + (d2Var.Z.getY() + d2Var.Y.getY()))) + d2Var.f11332y0.getHeight(), d2Var.I) - d2Var.v.f22095z1.getHeight());
-                canvas.saveLayerAlpha(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f), d2Var.v.f22095z1.getWidth(), d2Var.v.f22095z1.getHeight(), (int) ((1.0f - d2Var.I) * 255.0f), 31);
-                d2Var.v.f22095z1.draw(canvas);
+                canvas.translate(AndroidUtilities.lerp(rectF.right, (d2Var.f11332y0.getX() + (d2Var.f11300a0.getX() + (d2Var.Z.getX() + d2Var.Y.getX()))) + d2Var.f11332y0.getWidth(), d2Var.I) - d2Var.v.A1.getWidth(), AndroidUtilities.lerp(rectF.bottom, (d2Var.f11332y0.getY() + (d2Var.f11300a0.getY() + (d2Var.Z.getY() + d2Var.Y.getY()))) + d2Var.f11332y0.getHeight(), d2Var.I) - d2Var.v.A1.getHeight());
+                canvas.saveLayerAlpha(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f), d2Var.v.A1.getWidth(), d2Var.v.A1.getHeight(), (int) ((1.0f - d2Var.I) * 255.0f), 31);
+                d2Var.v.A1.draw(canvas);
                 canvas.restore();
                 canvas.restore();
             }

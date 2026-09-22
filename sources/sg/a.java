@@ -15,40 +15,40 @@ public final class a implements GLSurfaceView.Renderer {
     public final int B;
     public boolean C;
     public float D;
-    public int f43209a;
-    public int f43210b;
-    public f f43211c;
-    public float f43214i;
-    public final Context f43219n;
-    public Bitmap f43220o;
-    public float f43221p;
-    public float f43222q;
-    public float f43223r;
-    public float f43224s;
-    public boolean f43225t;
-    public int f43226u;
+    public int f43230a;
+    public int f43231b;
+    public f f43232c;
+    public float f43235i;
+    public final Context f43240n;
+    public Bitmap f43241o;
+    public float f43242p;
+    public float f43243q;
+    public float f43244r;
+    public float f43245s;
+    public boolean f43246t;
+    public int f43247u;
     public int v;
     public float d = 0.0f;
     public float e = 0.0f;
-    public float f43212f = 0.0f;
-    public float f43213g = 0.0f;
+    public float f43233f = 0.0f;
+    public float f43234g = 0.0f;
     public float h = 0.0f;
-    public final float[] f43215j = new float[16];
-    public final float[] f43216k = new float[16];
-    public final float[] f43217l = new float[16];
-    public final float[] f43218m = new float[16];
-    public int f43227w = j6.Vj;
-    public int f43228x = j6.Wj;
-    public final int f43229y = j6.fk;
-    public final int f43230z = j6.gk;
+    public final float[] f43236j = new float[16];
+    public final float[] f43237k = new float[16];
+    public final float[] f43238l = new float[16];
+    public final float[] f43239m = new float[16];
+    public int f43248w = j6.Vj;
+    public int f43249x = j6.Wj;
+    public final int f43250y = j6.fk;
+    public final int f43251z = j6.gk;
 
     public a(Context context, int i10, int i11) {
-        this.f43214i = 0.0f;
-        this.f43219n = context;
+        this.f43235i = 0.0f;
+        this.f43240n = context;
         this.A = i10;
         this.B = i11;
         if (i11 == 2) {
-            this.f43214i = 1.0f;
+            this.f43235i = 1.0f;
         }
         b();
     }
@@ -70,16 +70,16 @@ public final class a implements GLSurfaceView.Renderer {
 
     public final void b() {
         boolean z10;
-        int i10 = j6.f19165h5;
+        int i10 = j6.f19180h5;
         boolean z11 = false;
         if (i0.a.f(j6.w0(null, i10, false)) < 0.5d) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f43225t = z10;
-        this.f43226u = i0.a.d(this.f43214i, j6.w0(null, this.f43227w, false), j6.w0(null, this.f43229y, false));
-        this.v = i0.a.d(this.f43214i, j6.w0(null, this.f43228x, false), j6.w0(null, this.f43230z, false));
+        this.f43246t = z10;
+        this.f43247u = i0.a.d(this.f43235i, j6.w0(null, this.f43248w, false), j6.w0(null, this.f43250y, false));
+        this.v = i0.a.d(this.f43235i, j6.w0(null, this.f43249x, false), j6.w0(null, this.f43251z, false));
         if (this.A == 1 && i0.a.f(j6.w0(null, i10, false)) < 0.5d) {
             z11 = true;
         }
@@ -96,47 +96,47 @@ public final class a implements GLSurfaceView.Renderer {
         } else {
             f7 = 0.0f;
         }
-        Matrix.setLookAtM(this.f43217l, 0, 0.0f, f7, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        float[] fArr = this.f43218m;
+        Matrix.setLookAtM(this.f43238l, 0, 0.0f, f7, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+        float[] fArr = this.f43239m;
         Matrix.setIdentityM(fArr, 0);
         Matrix.translateM(fArr, 0, 0.0f, this.e, 0.0f);
-        Matrix.rotateM(this.f43218m, 0, -this.f43213g, 1.0f, 0.0f, 0.0f);
-        Matrix.rotateM(this.f43218m, 0, (-this.d) - this.f43212f, 0.0f, 1.0f, 0.0f);
-        Matrix.multiplyMM(this.f43215j, 0, this.f43217l, 0, this.f43218m, 0);
-        float[] fArr2 = this.f43215j;
-        Matrix.multiplyMM(fArr2, 0, this.f43216k, 0, fArr2, 0);
-        f fVar = this.f43211c;
+        Matrix.rotateM(this.f43239m, 0, -this.f43234g, 1.0f, 0.0f, 0.0f);
+        Matrix.rotateM(this.f43239m, 0, (-this.d) - this.f43233f, 0.0f, 1.0f, 0.0f);
+        Matrix.multiplyMM(this.f43236j, 0, this.f43238l, 0, this.f43239m, 0);
+        float[] fArr2 = this.f43236j;
+        Matrix.multiplyMM(fArr2, 0, this.f43237k, 0, fArr2, 0);
+        f fVar = this.f43232c;
         if (fVar != null) {
-            fVar.D = this.f43225t;
-            fVar.f43272y = this.f43226u;
-            fVar.f43273z = this.v;
-            int i10 = this.f43209a;
-            int i11 = this.f43210b;
-            float f10 = this.f43221p;
-            float f11 = this.f43223r;
-            float f12 = this.f43222q;
-            float f13 = this.f43224s;
+            fVar.D = this.f43246t;
+            fVar.f43293y = this.f43247u;
+            fVar.f43294z = this.v;
+            int i10 = this.f43230a;
+            int i11 = this.f43231b;
+            float f10 = this.f43242p;
+            float f11 = this.f43244r;
+            float f12 = this.f43243q;
+            float f13 = this.f43245s;
             float f14 = this.h;
-            float f15 = this.f43214i;
+            float f15 = this.f43235i;
             float f16 = this.D;
             if (fVar.V != null) {
-                GLES20.glBindTexture(3553, fVar.f43258j);
+                GLES20.glBindTexture(3553, fVar.f43279j);
                 GLUtils.texImage2D(3553, 0, fVar.V, 0);
                 fVar.V = null;
             }
-            GLES20.glUniform1i(fVar.f43256g, 0);
-            GLES20.glUniform1f(fVar.f43262n, fVar.f43267s);
-            GLES20.glUniform1f(fVar.f43263o, fVar.f43269u);
-            GLES20.glUniform1f(fVar.f43265q, f14);
-            GLES20.glUniform1f(fVar.f43266r, f15);
-            GLES20.glUniformMatrix4fv(fVar.f43253b, 1, false, this.f43215j, 0);
-            GLES20.glUniformMatrix4fv(fVar.f43254c, 1, false, fArr, 0);
+            GLES20.glUniform1i(fVar.f43277g, 0);
+            GLES20.glUniform1f(fVar.f43283n, fVar.f43288s);
+            GLES20.glUniform1f(fVar.f43284o, fVar.f43290u);
+            GLES20.glUniform1f(fVar.f43286q, f14);
+            GLES20.glUniform1f(fVar.f43287r, f15);
+            GLES20.glUniformMatrix4fv(fVar.f43274b, 1, false, this.f43236j, 0);
+            GLES20.glUniformMatrix4fv(fVar.f43275c, 1, false, fArr, 0);
             GLES20.glUniform1f(fVar.E, fVar.v);
-            GLES20.glUniform1f(fVar.F, fVar.f43270w);
-            GLES20.glUniform1f(fVar.G, fVar.f43271x);
+            GLES20.glUniform1f(fVar.F, fVar.f43291w);
+            GLES20.glUniform1f(fVar.G, fVar.f43292x);
             GLES20.glUniform1f(fVar.J, fVar.A);
-            GLES20.glUniform3f(fVar.H, Color.red(fVar.f43272y) / 255.0f, Color.green(fVar.f43272y) / 255.0f, Color.blue(fVar.f43272y) / 255.0f);
-            GLES20.glUniform3f(fVar.I, Color.red(fVar.f43273z) / 255.0f, Color.green(fVar.f43273z) / 255.0f, Color.blue(fVar.f43273z) / 255.0f);
+            GLES20.glUniform3f(fVar.H, Color.red(fVar.f43293y) / 255.0f, Color.green(fVar.f43293y) / 255.0f, Color.blue(fVar.f43293y) / 255.0f);
+            GLES20.glUniform3f(fVar.I, Color.red(fVar.f43294z) / 255.0f, Color.green(fVar.f43294z) / 255.0f, Color.blue(fVar.f43294z) / 255.0f);
             GLES20.glUniform3f(fVar.K, Color.red(fVar.B) / 255.0f, Color.green(fVar.B) / 255.0f, Color.blue(fVar.B) / 255.0f);
             GLES20.glUniform3f(fVar.L, Color.red(fVar.C) / 255.0f, Color.green(fVar.C) / 255.0f, Color.blue(fVar.C) / 255.0f);
             GLES20.glUniform2f(fVar.M, i10, i11);
@@ -158,18 +158,18 @@ public final class a implements GLSurfaceView.Renderer {
                     fVar.a(i12, false);
                 }
             }
-            float f18 = fVar.f43269u;
+            float f18 = fVar.f43290u;
             if (f18 < 1.0f) {
                 float f19 = f18 + 0.07272727f;
-                fVar.f43269u = f19;
+                fVar.f43290u = f19;
                 if (f19 > 1.0f) {
-                    fVar.f43269u = 1.0f;
+                    fVar.f43290u = 1.0f;
                 }
             }
-            float f20 = fVar.f43267s + 5.0E-4f;
-            fVar.f43267s = f20;
+            float f20 = fVar.f43288s + 5.0E-4f;
+            fVar.f43288s = f20;
             if (f20 > 1.0f) {
-                fVar.f43267s = f20 - 1.0f;
+                fVar.f43288s = f20 - 1.0f;
             }
         }
     }
@@ -177,8 +177,8 @@ public final class a implements GLSurfaceView.Renderer {
     @Override
     public final void onSurfaceChanged(GL10 gl10, int i10, int i11) {
         float f7;
-        this.f43209a = i10;
-        this.f43210b = i11;
+        this.f43230a = i10;
+        this.f43231b = i11;
         GLES20.glViewport(0, 0, i10, i11);
         float f10 = i10 / i11;
         if (this.B == 4) {
@@ -186,25 +186,25 @@ public final class a implements GLSurfaceView.Renderer {
         } else {
             f7 = 53.13f;
         }
-        Matrix.perspectiveM(this.f43216k, 0, f7, f10, 1.0f, 200.0f);
+        Matrix.perspectiveM(this.f43237k, 0, f7, f10, 1.0f, 200.0f);
     }
 
     @Override
     public final void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        f fVar = this.f43211c;
+        f fVar = this.f43232c;
         if (fVar != null) {
-            GLES20.glDeleteProgram(fVar.f43252a);
+            GLES20.glDeleteProgram(fVar.f43273a);
         }
-        f fVar2 = new f(this.f43219n, this.B);
-        this.f43211c = fVar2;
-        Bitmap bitmap = this.f43220o;
+        f fVar2 = new f(this.f43240n, this.B);
+        this.f43232c = fVar2;
+        Bitmap bitmap = this.f43241o;
         if (bitmap != null) {
             fVar2.V = bitmap;
         }
         if (this.C) {
             fVar2.v = 1.0f;
-            fVar2.f43270w = 0.2f;
+            fVar2.f43291w = 0.2f;
         }
     }
 }

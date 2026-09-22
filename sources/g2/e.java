@@ -181,7 +181,7 @@ public final class e extends c {
                 }
             }
             FileInputStream fileInputStream = this.d;
-            String str = e2.d0.f7888a;
+            String str = e2.d0.f7887a;
             int read = fileInputStream.read(bArr, i10, i11);
             if (read != -1) {
                 long j10 = this.e;

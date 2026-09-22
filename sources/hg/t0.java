@@ -41,7 +41,7 @@ public final class t0 implements TextView.OnEditorActionListener {
                     if (i1Var.f11437r) {
                         i1Var.p();
                     } else {
-                        h1Var.n(i1Var);
+                        h1Var.l(i1Var);
                     }
                     return true;
                 }

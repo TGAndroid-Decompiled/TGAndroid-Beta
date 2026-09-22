@@ -3,18 +3,18 @@ package m;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import w7.q6;
+import w7.p6;
 public final class t {
-    public final TextView f14533a;
-    public final k2.u f14534b;
+    public final TextView f14548a;
+    public final k2.e f14549b;
 
     public t(TextView textView) {
-        this.f14533a = textView;
-        this.f14534b = new k2.u(textView);
+        this.f14548a = textView;
+        this.f14549b = new k2.e(textView);
     }
 
     public final void a(AttributeSet attributeSet, int i10) {
-        TypedArray obtainStyledAttributes = this.f14533a.getContext().obtainStyledAttributes(attributeSet, f.a.f8771i, i10, 0);
+        TypedArray obtainStyledAttributes = this.f14548a.getContext().obtainStyledAttributes(attributeSet, f.a.f8770i, i10, 0);
         try {
             boolean z10 = true;
             if (obtainStyledAttributes.hasValue(14)) {
@@ -29,10 +29,10 @@ public final class t {
     }
 
     public final void b(boolean z10) {
-        ((q6) this.f14534b.f13384b).b(z10);
+        ((p6) this.f14549b.f13244b).b(z10);
     }
 
     public final void c(boolean z10) {
-        ((q6) this.f14534b.f13384b).c(z10);
+        ((p6) this.f14549b.f13244b).c(z10);
     }
 }

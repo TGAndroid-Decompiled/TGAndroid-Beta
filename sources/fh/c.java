@@ -11,16 +11,16 @@ public final class c implements a {
     }
 
     @Override
-    public final ch.d d() {
+    public final ch.d l() {
         return new f(this);
     }
 
     @Override
-    public final void y(Canvas canvas, float f7, float f10, float f11, float f12) {
+    public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
         canvas.drawRect(f7, f10, f11, f12, this.f9073a);
     }
 
     @Override
-    public final void b() {
+    public final void d() {
     }
 }

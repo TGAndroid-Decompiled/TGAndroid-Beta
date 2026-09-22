@@ -50,11 +50,11 @@ public final class o extends p {
             default:
                 aa.a aVar = (aa.a) this.e;
                 ah.a aVar2 = (ah.a) aVar.d;
-                LocationManager locationManager = (LocationManager) aVar.f360c;
-                if (aVar2.f418b > System.currentTimeMillis()) {
-                    z10 = aVar2.f417a;
+                LocationManager locationManager = (LocationManager) aVar.f357c;
+                if (aVar2.f415b > System.currentTimeMillis()) {
+                    z10 = aVar2.f414a;
                 } else {
-                    Context context = (Context) aVar.f359b;
+                    Context context = (Context) aVar.f356b;
                     Location location3 = null;
                     if (f0.e.a(context, "android.permission.ACCESS_COARSE_LOCATION", Process.myPid(), Process.myUid(), context.getPackageName()) == 0) {
                         try {
@@ -108,8 +108,8 @@ public final class o extends p {
                         } else {
                             j3 = currentTimeMillis + 43200000;
                         }
-                        aVar2.f417a = z10;
-                        aVar2.f418b = j3;
+                        aVar2.f414a = z10;
+                        aVar2.f415b = j3;
                     } else {
                         Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
                         int i10 = Calendar.getInstance().get(11);

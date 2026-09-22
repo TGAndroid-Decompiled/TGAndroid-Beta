@@ -24,10 +24,10 @@ public final class y01 extends org.telegram.ui.Cells.b7 {
         int i14;
         int i15;
         this.h = z01Var;
-        this.f20066f = UserConfig.selectedAccount;
+        this.f20081f = UserConfig.selectedAccount;
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f20063a = textView;
+        this.f20078a = textView;
         com.google.android.gms.internal.vision.e2.l(15.0f, 1, textView);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         if (LocaleController.isRTL) {
@@ -43,32 +43,32 @@ public final class y01 extends org.telegram.ui.Cells.b7 {
             i11 = 3;
         }
         addView(textView, w7.y5.t(-1, -2, i11 | 48, 21, 15, 21, 0));
-        org.telegram.ui.Components.k90 k90Var = new org.telegram.ui.Components.k90(context, f6Var);
-        this.f20064b = k90Var;
-        k90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
-        k90Var.setTextSize(1, 14.0f);
-        k90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.J6, f6Var));
-        k90Var.setHighlightColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.K6, f6Var));
-        k90Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
+        org.telegram.ui.Components.n90 n90Var = new org.telegram.ui.Components.n90(context, f6Var);
+        this.f20079b = n90Var;
+        n90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        n90Var.setTextSize(1, 14.0f);
+        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.J6, f6Var));
+        n90Var.setHighlightColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.K6, f6Var));
+        n90Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
             i12 = 3;
         }
-        k90Var.setGravity(i12);
+        n90Var.setGravity(i12);
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
             i13 = 3;
         }
-        addView(k90Var, w7.y5.t(-2, -2, i13, 21, 14, 21, 0));
+        addView(n90Var, w7.y5.t(-2, -2, i13, 21, 14, 21, 0));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         addView(linearLayout, w7.y5.k(21.0f, 16.0f, 21.0f, 15.0f, -1, 44));
         for (int i16 = 0; i16 < 2; i16++) {
             TextView textView2 = new TextView(context);
             textView2.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{8.0f}, org.telegram.ui.ActionBar.j6.Oh));
-            w7.b6.b(textView2, 0.02f, 1.5f);
+            w7.a6.b(textView2, 0.02f, 1.5f);
             textView2.setLines(1);
             textView2.setSingleLine(true);
             textView2.setGravity(1);
@@ -87,23 +87,23 @@ public final class y01 extends org.telegram.ui.Cells.b7 {
             }
             linearLayout.addView(textView2, w7.y5.m(0.5f, 0, 44, i14, i15, 0));
             if (i16 == 0) {
-                this.f20065c = textView2;
+                this.f20080c = textView2;
                 textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final y01 f20022b;
+                    public final y01 f20037b;
 
                     {
-                        this.f20022b = this;
+                        this.f20037b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                y01 y01Var = this.f20022b;
+                                y01 y01Var = this.f20037b;
                                 AndroidUtilities.runOnUIThread(new kd(y01Var, y01Var.e, 24));
                                 return;
                             default:
-                                y01 y01Var2 = this.f20022b;
+                                y01 y01Var2 = this.f20037b;
                                 int i17 = y01Var2.e;
                                 ProfileActivity profileActivity = y01Var2.h.e;
                                 if (i17 == 0) {
@@ -119,21 +119,21 @@ public final class y01 extends org.telegram.ui.Cells.b7 {
             } else {
                 this.d = textView2;
                 textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final y01 f20022b;
+                    public final y01 f20037b;
 
                     {
-                        this.f20022b = this;
+                        this.f20037b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                y01 y01Var = this.f20022b;
+                                y01 y01Var = this.f20037b;
                                 AndroidUtilities.runOnUIThread(new kd(y01Var, y01Var.e, 24));
                                 return;
                             default:
-                                y01 y01Var2 = this.f20022b;
+                                y01 y01Var2 = this.f20037b;
                                 int i17 = y01Var2.e;
                                 ProfileActivity profileActivity = y01Var2.h.e;
                                 if (i17 == 0) {

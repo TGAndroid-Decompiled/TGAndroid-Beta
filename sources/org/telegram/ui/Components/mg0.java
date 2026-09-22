@@ -1,191 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.SharedPreferences;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.PhotoViewer;
-public final class mg0 extends l20 {
-    public float f26400a;
-    public float f26401b;
-    public final int f26402c;
-    public final og0 d;
+public final class mg0 implements Runnable {
+    public final int f26446a;
+    public final rg0 f26447b;
 
-    public mg0(og0 og0Var, int i10) {
-        this.d = og0Var;
-        this.f26402c = i10;
+    public mg0(rg0 rg0Var, int i10) {
+        this.f26446a = i10;
+        this.f26447b = rg0Var;
     }
 
     @Override
-    public final boolean a() {
-        og0 og0Var = this.d;
-        PhotoViewer photoViewer = og0Var.V;
-        if (photoViewer != null) {
-            if ((photoViewer.F2 != null || og0Var.f26930r != null) && !og0Var.f26918c0 && !og0Var.Y && !og0Var.f26932w && !og0Var.f26931s.isInProgress() && og0Var.f26922f0) {
-                long l4 = og0Var.l();
-                long m10 = og0Var.m();
-                if (l4 != -9223372036854775807L && m10 >= 15000) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onDoubleTap(android.view.MotionEvent r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mg0.onDoubleTap(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        og0 og0Var = this.d;
-        if (og0Var.E) {
-            for (int i10 = 1; i10 < og0Var.e.getChildCount(); i10++) {
-                View childAt = og0Var.e.getChildAt(i10);
-                if (childAt.dispatchTouchEvent(motionEvent)) {
-                    og0Var.f26934y = childAt;
-                    return true;
-                }
-            }
-        }
-        this.f26400a = og0Var.K;
-        this.f26401b = og0Var.L;
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        float dp;
-        float f11;
-        og0 og0Var = this.d;
-        if (og0Var.f26932w && !og0Var.f26933x) {
-            o1.k kVar = og0Var.M;
-            kVar.f15512a = f7;
-            float f12 = og0Var.K;
-            kVar.f15513b = f12;
-            kVar.f15514c = true;
-            o1.l lVar = kVar.f15522u;
-            int i10 = og0Var.H;
-            float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
-            int i11 = AndroidUtilities.displaySize.x;
-            if (f13 >= i11 / 2.0f) {
-                dp = (i11 - i10) - AndroidUtilities.dp(16.0f);
-            } else {
-                dp = AndroidUtilities.dp(16.0f);
-            }
-            lVar.f15528i = dp;
-            og0Var.M.f();
-            o1.k kVar2 = og0Var.N;
-            kVar2.f15512a = f7;
-            kVar2.f15513b = og0Var.L;
-            kVar2.f15514c = true;
-            kVar2.f15522u.f15528i = w7.q.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - og0Var.I) - AndroidUtilities.dp(16.0f));
-            og0Var.N.f();
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        float dp;
-        og0 og0Var = this.d;
-        if (!og0Var.f26932w && og0Var.F == null && !og0Var.f26933x) {
-            float abs = Math.abs(f7);
-            float f11 = this.f26402c;
-            if (abs >= f11 || Math.abs(f10) >= f11) {
-                og0Var.f26932w = true;
-                og0Var.M.c();
-                og0Var.N.c();
-                og0Var.f26922f0 = false;
-                og0Var.i();
-                AndroidUtilities.cancelRunOnUIThread(og0Var.f26924h0);
-            }
-        }
-        if (og0Var.f26932w) {
-            float f12 = og0Var.K;
-            float rawX = (motionEvent2.getRawX() + this.f26400a) - motionEvent.getRawX();
-            og0Var.L = (motionEvent2.getRawY() + this.f26401b) - motionEvent.getRawY();
-            int i10 = og0Var.H;
-            if (rawX > (-i10) * 0.25f && rawX < AndroidUtilities.displaySize.x - (i10 * 0.75f)) {
-                boolean z10 = og0Var.f26919d0;
-                if (z10) {
-                    if (z10) {
-                        og0Var.M.a(new ci.va(this, rawX, 2));
-                        o1.k kVar = og0Var.M;
-                        kVar.f15513b = f12;
-                        kVar.f15514c = true;
-                        kVar.f15522u.f15528i = rawX;
-                        kVar.f();
+    public final void run() {
+        boolean z10;
+        switch (this.f26446a) {
+            case 0:
+                this.f26447b.u();
+                return;
+            case 1:
+                rg0 rg0Var = this.f26447b;
+                PhotoViewer photoViewer = rg0Var.V;
+                if (photoViewer != null) {
+                    bg0 bg0Var = rg0Var.f27978r;
+                    if (bg0Var != null) {
+                        rg0Var.Z = bg0Var.getCurrentPosition() / rg0Var.f27978r.getVideoDuration();
+                        rg0Var.f27962a0 = rg0Var.f27978r.getBufferedPosition();
+                    } else {
+                        v71 v71Var = photoViewer.F2;
+                        if (v71Var != null) {
+                            float m10 = (float) rg0Var.m();
+                            rg0Var.Z = ((float) v71Var.n()) / m10;
+                            rg0Var.f27962a0 = ((float) v71Var.j()) / m10;
+                        } else {
+                            return;
+                        }
                     }
-                    og0Var.f26919d0 = false;
-                    return true;
+                    rg0Var.f27964b0.invalidate();
+                    AndroidUtilities.runOnUIThread(rg0Var.f27968e0, 500L);
+                    return;
                 }
-                o1.k kVar2 = og0Var.M;
-                if (kVar2.f15515f) {
-                    kVar2.f15522u.f15528i = rawX;
-                } else {
-                    WindowManager.LayoutParams layoutParams = og0Var.f26917c;
-                    og0Var.K = rawX;
-                    layoutParams.x = (int) rawX;
-                    ((SharedPreferences) og0Var.n().f13384b).edit().putFloat("x", rawX).apply();
+                return;
+            case 2:
+                rg0 rg0Var2 = this.f26447b;
+                PhotoViewer photoViewer2 = rg0Var2.V;
+                if (photoViewer2 != null) {
+                    if ((photoViewer2.F2 != null || rg0Var2.f27978r != null) && !rg0Var2.f27966c0 && !rg0Var2.Y && !rg0Var2.f27980w && !rg0Var2.f27979s.isInProgress() && rg0Var2.f27970f0) {
+                        v71 v71Var2 = rg0Var2.V.F2;
+                        if (rg0Var2.f27971g0[0] >= rg0Var2.t() * rg0Var2.J * 0.5f) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        long l4 = rg0Var2.l();
+                        long m11 = rg0Var2.m();
+                        if (l4 != -9223372036854775807L && m11 >= 15000) {
+                            bg0 bg0Var2 = rg0Var2.f27978r;
+                            if (bg0Var2 != null) {
+                                PhotoViewer photoViewer3 = rg0Var2.V;
+                                photoViewer3.f31228c4.startRewind(bg0Var2, z10, rg0Var2.f27971g0[0], photoViewer3.f31374t1, rg0Var2.R);
+                            } else {
+                                PhotoViewer photoViewer4 = rg0Var2.V;
+                                photoViewer4.f31228c4.startRewind(v71Var2, z10, rg0Var2.f27971g0[0], photoViewer4.f31374t1, rg0Var2.R);
+                            }
+                            if (!rg0Var2.E) {
+                                rg0Var2.E = true;
+                                rg0Var2.y(true);
+                                if (!rg0Var2.f27973i0) {
+                                    AndroidUtilities.runOnUIThread(rg0Var2.f27974j0, 1500L);
+                                    rg0Var2.f27973i0 = true;
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
                 }
-                og0Var.f26917c.y = (int) og0Var.L;
-                ((SharedPreferences) og0Var.n().f13384b).edit().putFloat("y", og0Var.L).apply();
-                AndroidUtilities.updateViewLayout(og0Var.f26915b, og0Var.d, og0Var.f26917c);
-                return true;
-            }
-            if (!og0Var.f26919d0) {
-                o1.k kVar3 = og0Var.M;
-                kVar3.f15513b = f12;
-                kVar3.f15514c = true;
-                o1.l lVar = kVar3.f15522u;
-                int i11 = AndroidUtilities.displaySize.x;
-                if ((i10 / 2.0f) + rawX >= i11 / 2.0f) {
-                    dp = i11 - AndroidUtilities.dp(16.0f);
-                } else {
-                    dp = AndroidUtilities.dp(16.0f) - og0Var.H;
+                return;
+            default:
+                rg0 rg0Var3 = this.f26447b;
+                PhotoViewer photoViewer5 = rg0Var3.V;
+                if (photoViewer5 != null && photoViewer5.f31228c4.rewinding) {
+                    AndroidUtilities.runOnUIThread(rg0Var3.f27974j0, 1500L);
+                    return;
                 }
-                lVar.f15528i = dp;
-                og0Var.M.f();
-            }
-            og0Var.f26919d0 = true;
+                rg0Var3.E = false;
+                rg0Var3.y(false);
+                rg0Var3.f27973i0 = false;
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        og0 og0Var = this.d;
-        ValueAnimator valueAnimator = og0Var.F;
-        jg0 jg0Var = og0Var.f26926j0;
-        if (valueAnimator == null) {
-            if (og0Var.f26925i0) {
-                AndroidUtilities.cancelRunOnUIThread(jg0Var);
-                og0Var.f26925i0 = false;
-            }
-            boolean z10 = !og0Var.E;
-            og0Var.E = z10;
-            og0Var.y(z10);
-            if (og0Var.E && !og0Var.f26925i0) {
-                AndroidUtilities.runOnUIThread(jg0Var, 2500L);
-                og0Var.f26925i0 = true;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        if (!a()) {
-            onSingleTapConfirmed(motionEvent);
-            return true;
-        }
-        return super.onSingleTapUp(motionEvent);
     }
 }

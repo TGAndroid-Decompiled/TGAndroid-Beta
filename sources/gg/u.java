@@ -13,8 +13,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.br0;
 import org.telegram.ui.Components.e40;
-import org.telegram.ui.Components.zq0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.e9;
 import org.telegram.ui.ea;
@@ -59,7 +59,7 @@ public final class u implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new c9((e40) this.d, this.f9945b, tLObject, (String) this.f9946c, 20));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new c9((zq0) this.d, this.f9945b, tLObject, (String) this.f9946c, 22));
+                AndroidUtilities.runOnUIThread(new c9((br0) this.d, this.f9945b, tLObject, (String) this.f9946c, 22));
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new my0((ProfileActivity) this.d, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) this.f9946c, 0), this.f9945b);
@@ -77,8 +77,8 @@ public final class u implements RequestDelegate {
                         String str = tL_premiumGiftCodeOption.store_product;
                         if (str != null) {
                             c5.a aVar = new c5.a();
-                            aVar.f3843c = "inapp";
-                            aVar.f3842b = str;
+                            aVar.f3842c = "inapp";
+                            aVar.f3841b = str;
                             arrayList2.add(aVar.a());
                         }
                     }

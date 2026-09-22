@@ -13,9 +13,9 @@ import org.telegram.ui.Cells.s8;
 import org.telegram.ui.Cells.w3;
 import org.telegram.ui.Components.kn;
 import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.zs;
-public abstract class u1 extends ul0 {
+public abstract class u1 extends xl0 {
     public int E;
     public int F;
     public ArrayList G;
@@ -37,7 +37,7 @@ public abstract class u1 extends ul0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42977f;
+        int i10 = c1Var.f42998f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -155,7 +155,7 @@ public abstract class u1 extends ul0 {
                             t00 t00Var = new t00(context, null);
                             t00Var.setIsSingleCell(true);
                             t00Var.setViewType(29);
-                            t00Var.setBackgroundColor(j6.w0(null, j6.f19094d6, false));
+                            t00Var.setBackgroundColor(j6.w0(null, j6.f19109d6, false));
                             w3Var = t00Var;
                         }
                     } else {

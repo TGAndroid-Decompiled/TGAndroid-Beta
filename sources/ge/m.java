@@ -24,7 +24,7 @@ public final class m {
             }
             int i11 = i10 & 127;
             if (atomicIntegerFieldUpdater.compareAndSet(this, i10, i10 + 1) && (iVar = (i) this.f9653a.getAndSet(i11, null)) != null) {
-                if (iVar.f9643b.f6246a == 1) {
+                if (iVar.f9643b.f6244a == 1) {
                     e.decrementAndGet(this);
                 }
                 return iVar;
@@ -38,7 +38,7 @@ public final class m {
         i iVar = (i) atomicReferenceArray.get(i11);
         if (iVar != null) {
             boolean z11 = true;
-            if (iVar.f9643b.f6246a != 1) {
+            if (iVar.f9643b.f6244a != 1) {
                 z11 = false;
             }
             if (z11 == z10) {

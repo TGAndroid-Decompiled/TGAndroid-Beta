@@ -8,19 +8,19 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class es implements org.telegram.ui.Components.rv0, org.telegram.ui.Components.sv0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.yc0, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.ad0 {
-    public final int f33393a;
+public final class es implements org.telegram.ui.Components.tv0, org.telegram.ui.Components.uv0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.bd0, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.dd0 {
+    public final int f33418a;
 
     public es(int i10) {
-        this.f33393a = i10;
+        this.f33418a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         gs gsVar = (gs) obj;
-        switch (this.f33393a) {
+        switch (this.f33418a) {
             case 1:
-                gsVar.f33957c = f7;
+                gsVar.f33973c = f7;
                 if (gsVar.getParent() != null) {
                     ((View) gsVar.getParent()).invalidate();
                     return;
@@ -46,7 +46,7 @@ public final class es implements org.telegram.ui.Components.rv0, org.telegram.ui
 
     @Override
     public String e(int i10) {
-        switch (this.f33393a) {
+        switch (this.f33418a) {
             case 8:
                 return hg.k0.h(i10, "");
             case 9:
@@ -154,9 +154,9 @@ public final class es implements org.telegram.ui.Components.rv0, org.telegram.ui
     @Override
     public float get(Object obj) {
         gs gsVar = (gs) obj;
-        switch (this.f33393a) {
+        switch (this.f33418a) {
             case 0:
-                return gsVar.f33957c;
+                return gsVar.f33973c;
             case 1:
             default:
                 return gsVar.e;
@@ -167,7 +167,7 @@ public final class es implements org.telegram.ui.Components.rv0, org.telegram.ui
 
     @Override
     public void k(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f33393a) {
+        switch (this.f33418a) {
             case 11:
                 b2Var.dismiss();
                 return;
@@ -181,13 +181,13 @@ public final class es implements org.telegram.ui.Components.rv0, org.telegram.ui
     }
 
     @Override
-    public void q(org.telegram.ui.Components.cd0 cd0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.d5.f23492a;
+    public void q(org.telegram.ui.Components.fd0 fd0Var, int i10) {
+        Pattern pattern = org.telegram.ui.Components.d5.f23562a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f33393a) {
+        switch (this.f33418a) {
             case 6:
                 FileLog.e(exc);
                 return;

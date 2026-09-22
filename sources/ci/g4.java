@@ -3,29 +3,29 @@ package ci;
 import android.view.View;
 import android.widget.TextView;
 public final class g4 implements View.OnLayoutChangeListener {
-    public final int f4689a;
-    public final Object f4690b;
+    public final int f4687a;
+    public final Object f4688b;
 
     public g4(Object obj, int i10) {
-        this.f4689a = i10;
-        this.f4690b = obj;
+        this.f4687a = i10;
+        this.f4688b = obj;
     }
 
     @Override
     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        switch (this.f4689a) {
+        switch (this.f4687a) {
             case 0:
-                ((j4) this.f4690b).d();
+                ((j4) this.f4688b).d();
                 return;
             case 1:
-                kg.c cVar = (kg.c) this.f4690b;
-                TextView textView = cVar.f13601c;
+                kg.c cVar = (kg.c) this.f4688b;
+                TextView textView = cVar.f13599c;
                 textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
-                TextView textView2 = cVar.f13600b;
+                TextView textView2 = cVar.f13598b;
                 textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
             default:
-                ((ki.h) this.f4690b).C();
+                ((ki.h) this.f4688b).H();
                 return;
         }
     }

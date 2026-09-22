@@ -2,13 +2,13 @@ package yh;
 
 import android.app.Activity;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.vl0;
-public final class z6 extends k61 {
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.yl0;
+public final class z6 extends m61 {
     public final w7 N;
 
-    public z6(w7 w7Var, vl0 vl0Var, Activity activity, int i10, int i11, hi.a aVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(vl0Var, activity, i10, i11, true, aVar, f6Var);
+    public z6(w7 w7Var, yl0 yl0Var, Activity activity, int i10, int i11, hi.a aVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(yl0Var, activity, i10, i11, true, aVar, f6Var);
         this.N = w7Var;
     }
 
