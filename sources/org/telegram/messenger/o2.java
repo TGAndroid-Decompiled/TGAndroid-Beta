@@ -15,7 +15,7 @@ public final class o2 implements Runnable {
                 FileLoadOperation.w(this.f16900b);
                 return;
             case 1:
-                FileLoadOperation.a(this.f16900b);
+                this.f16900b.lambda$start$10();
                 return;
             case 2:
                 FileLoadOperation.k(this.f16900b);

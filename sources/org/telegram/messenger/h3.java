@@ -25,7 +25,7 @@ public final class h3 implements Runnable {
         switch (this.f16279a) {
             case 0:
                 int i10 = this.e;
-                ((FilePathDatabase) this.f16282f).lambda$putPath$1(this.f16281c, this.f16280b, this.d, (String) this.h, i10);
+                FilePathDatabase.a((FilePathDatabase) this.f16282f, this.f16281c, this.f16280b, this.d, (String) this.h, i10);
                 return;
             default:
                 int i11 = this.e;

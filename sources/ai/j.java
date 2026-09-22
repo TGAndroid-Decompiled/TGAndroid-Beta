@@ -101,7 +101,7 @@ public final class j implements Runnable {
                 ci.ba baVar = (ci.ba) obj;
                 Context context = baVar.getContext();
                 ci.ia iaVar = baVar.W;
-                org.telegram.ui.Components.c5.S(context, iaVar.attachedFragment, ((org.telegram.ui.ActionBar.f3) iaVar).resourcesProvider, new z1(baVar, j3, 1));
+                org.telegram.ui.Components.c5.S(context, iaVar.attachedFragment, ci.ia.Y(iaVar), new z1(baVar, j3, 1));
                 return;
             case 6:
                 ci.oc ocVar2 = (ci.oc) obj;

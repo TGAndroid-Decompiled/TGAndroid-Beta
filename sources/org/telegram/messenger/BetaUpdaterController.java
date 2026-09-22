@@ -188,7 +188,7 @@ public class BetaUpdaterController {
             }
             this.checkingForUpdate = true;
             this.firstCheck = false;
-            new org.telegram.ui.web.j1(new v(0, this, runnable)).execute("null");
+            new org.telegram.ui.web.j1(new v(0, this, runnable)).execute("https://telegram.org/dl/android/apk-public-beta.json");
         }
     }
 

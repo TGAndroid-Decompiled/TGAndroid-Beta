@@ -96,28 +96,38 @@ public final class s extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
+        float globalXOffset;
         Paint e;
+        float globalXOffset2;
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
         LimitPreviewView limitPreviewView = this.f42462y;
         Paint paint = limitPreviewView.K;
         if (limitPreviewView.J) {
             measuredHeight = getMeasuredHeight();
-            a1.d().f(LimitPreviewView.c(limitPreviewView) - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
+            a1 d = a1.d();
+            int measuredWidth = limitPreviewView.getMeasuredWidth();
+            int measuredHeight2 = limitPreviewView.getMeasuredHeight();
+            globalXOffset2 = limitPreviewView.getGlobalXOffset();
+            d.f(globalXOffset2 - getX(), -getTop(), measuredWidth, measuredHeight2);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, AndroidUtilities.dp(3.0f), getMeasuredWidth(), measuredHeight - AndroidUtilities.dp(3.0f));
             float f7 = measuredHeight / 2.0f;
-            a1 d = a1.d();
-            if (d.f42244c == null) {
-                d.f42244c = new Paint(1);
+            a1 d10 = a1.d();
+            if (d10.f42244c == null) {
+                d10.f42244c = new Paint(1);
             }
-            d.f42244c.setColor(i6.w0(null, i6.Oh, false));
-            canvas.drawRoundRect(rectF, f7, f7, d.f42244c);
+            d10.f42244c.setColor(i6.w0(null, i6.Oh, false));
+            canvas.drawRoundRect(rectF, f7, f7, d10.f42244c);
         } else {
             if (this.v) {
                 this.v = false;
                 b();
             }
-            a1.d().f(LimitPreviewView.c(limitPreviewView) - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
+            a1 d11 = a1.d();
+            int measuredWidth2 = limitPreviewView.getMeasuredWidth();
+            int measuredHeight3 = limitPreviewView.getMeasuredHeight();
+            globalXOffset = limitPreviewView.getGlobalXOffset();
+            d11.f(globalXOffset - getX(), -getTop(), measuredWidth2, measuredHeight3);
             RectF rectF2 = AndroidUtilities.rectTmp;
             float f10 = measuredHeight;
             rectF2.set(0.0f, 0.0f, getMeasuredWidth(), f10);
@@ -158,12 +168,12 @@ public final class s extends View {
         if (limitPreviewView.f22105e0 != null) {
             canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f42460w, 31);
         }
-        float measuredWidth = (getMeasuredWidth() - this.e) / 2.0f;
+        float measuredWidth3 = (getMeasuredWidth() - this.e) / 2.0f;
         float height = (i10 - this.d.getHeight()) / 2.0f;
         if (!this.f42458r) {
             if (this.d != null) {
                 canvas.save();
-                canvas.translate(measuredWidth, height);
+                canvas.translate(measuredWidth3, height);
                 this.d.draw(canvas);
                 canvas.restore();
             }
@@ -172,7 +182,7 @@ public final class s extends View {
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(8.0f));
             if (this.f42457n != null) {
                 canvas.save();
-                canvas.translate(measuredWidth, height);
+                canvas.translate(measuredWidth3, height);
                 this.f42457n.draw(canvas);
                 canvas.restore();
             }
@@ -187,19 +197,19 @@ public final class s extends View {
                 boolean z11 = rVar.f42442a;
                 ArrayList arrayList2 = rVar.f42443b;
                 if (z11) {
-                    canvas.translate(rVar.e + measuredWidth, ((i10 * rVar.f42444c) + height) - ((1 - arrayList2.size()) * i10));
+                    canvas.translate(rVar.e + measuredWidth3, ((i10 * rVar.f42444c) + height) - ((1 - arrayList2.size()) * i10));
                     for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                         canvas.translate(0.0f, -i10);
                         ((StaticLayout) arrayList2.get(i12)).draw(canvas);
                     }
                 } else if (rVar.d) {
-                    canvas.translate(rVar.e + measuredWidth, (height - ((i10 * 10) * rVar.f42444c)) + ((10 - arrayList2.size()) * i10));
+                    canvas.translate(rVar.e + measuredWidth3, (height - ((i10 * 10) * rVar.f42444c)) + ((10 - arrayList2.size()) * i10));
                     for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                         canvas.translate(0.0f, i10);
                         ((StaticLayout) arrayList2.get(i13)).draw(canvas);
                     }
                 } else {
-                    canvas.translate(rVar.e + measuredWidth, (((i10 * 10) * rVar.f42444c) + height) - ((10 - arrayList2.size()) * i10));
+                    canvas.translate(rVar.e + measuredWidth3, (((i10 * 10) * rVar.f42444c) + height) - ((10 - arrayList2.size()) * i10));
                     for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                         canvas.translate(0.0f, -i10);
                         ((StaticLayout) arrayList2.get(i14)).draw(canvas);

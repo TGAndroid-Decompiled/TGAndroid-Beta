@@ -222,6 +222,10 @@ public final class ia extends org.telegram.ui.ActionBar.f3 implements Notificati
         return iaVar.resourcesProvider;
     }
 
+    public static org.telegram.ui.ActionBar.e6 Y(ia iaVar) {
+        return iaVar.resourcesProvider;
+    }
+
     public static ArrayList Y0(ia iaVar) {
         TLRPC.Chat chat;
         ArrayList arrayList = new ArrayList();
