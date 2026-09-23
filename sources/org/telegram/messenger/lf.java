@@ -1,41 +1,36 @@
 package org.telegram.messenger;
+
+import java.util.ArrayList;
 public final class lf implements Runnable {
     public final int f16678a;
     public final MessagesStorage f16679b;
-    public final long f16680c;
+    public final ArrayList f16680c;
+    public final Runnable d;
 
-    public lf(int i10, long j3, MessagesStorage messagesStorage) {
+    public lf(MessagesStorage messagesStorage, ArrayList arrayList, Runnable runnable, int i10) {
         this.f16678a = i10;
         this.f16679b = messagesStorage;
-        this.f16680c = j3;
+        this.f16680c = arrayList;
+        this.d = runnable;
     }
 
     @Override
     public final void run() {
         switch (this.f16678a) {
             case 0:
-                this.f16679b.lambda$deleteStoryPushMessage$39(this.f16680c);
+                this.f16679b.lambda$loadMessageAttachPaths$235(this.f16680c, this.d);
                 return;
             case 1:
-                this.f16679b.lambda$clearUserPhotos$92(this.f16680c);
+                this.f16679b.lambda$processAnchoredEphemeralMessages$203(this.f16680c, this.d);
                 return;
             case 2:
-                this.f16679b.lambda$removeAllTopics$56(this.f16680c);
+                this.f16679b.lambda$processEphemeralMessages$201(this.f16680c, this.d);
                 return;
             case 3:
-                this.f16679b.lambda$deleteWallpaper$79(this.f16680c);
-                return;
-            case 4:
-                this.f16679b.lambda$deleteSavedDialog$55(this.f16680c);
-                return;
-            case 5:
-                this.f16679b.lambda$onDeleteQueryComplete$91(this.f16680c);
-                return;
-            case 6:
-                this.f16679b.lambda$removePendingTask$11(this.f16680c);
+                this.f16679b.lambda$checkLoadedRemoteFilters$69(this.f16680c, this.d);
                 return;
             default:
-                this.f16679b.lambda$loadChannelAdmins$123(this.f16680c);
+                this.f16679b.lambda$processEphemeralEditedMessages$202(this.f16680c, this.d);
                 return;
         }
     }

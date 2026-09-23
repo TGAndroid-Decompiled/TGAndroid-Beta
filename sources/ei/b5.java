@@ -19,112 +19,112 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.aj0;
-import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.g01;
-import org.telegram.ui.Components.o5;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.v6;
-public final class b5 extends Drawable implements v6, NotificationCenter.NotificationCenterDelegate {
-    public final Paint f8255a;
-    public final Paint f8256b;
-    public final ImageReceiver f8257c;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.bj0;
+import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.f01;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.x6;
+public final class b5 extends Drawable implements x6, NotificationCenter.NotificationCenterDelegate {
+    public final Paint f8241a;
+    public final Paint f8242b;
+    public final ImageReceiver f8243c;
     public final ImageReceiver d;
     public int e;
-    public final o5[] f8258f;
-    public final g01 h;
-    public final RectF f8259n;
-    public final boolean f8260r;
-    public final c6 f8261s;
+    public final q5[] f8244f;
+    public final f01 h;
+    public final RectF f8245n;
+    public final boolean f8246r;
+    public final e6 f8247s;
     public boolean v;
-    public boolean f8262w;
-    public View f8263x;
+    public boolean f8248w;
+    public View f8249x;
 
     public b5(TLRPC.User user) {
         Paint paint = new Paint(1);
-        this.f8255a = paint;
+        this.f8241a = paint;
         Paint paint2 = new Paint(1);
-        this.f8256b = paint2;
+        this.f8242b = paint2;
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f8257c = imageReceiver;
+        this.f8243c = imageReceiver;
         this.d = new ImageReceiver();
         this.e = 1;
-        this.f8258f = new o5[2];
-        this.f8259n = new RectF();
-        this.f8261s = new c6(new a5(this, 1), 320L, qr.h, 0);
-        this.f8260r = false;
-        int i10 = i6.f18834d6;
-        paint.setColor(i6.w0(null, i10, false));
-        paint2.setColor(i6.w0(null, i10, false));
-        paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), i6.l1(0.18f, -16777216));
-        f9 f9Var = new f9((e6) null);
-        f9Var.r(user);
-        imageReceiver.setForUserOrChat(user, f9Var);
+        this.f8244f = new q5[2];
+        this.f8245n = new RectF();
+        this.f8247s = new e6(new a5(this, 1), 320L, rr.h, 0);
+        this.f8246r = false;
+        int i10 = h6.f18789d6;
+        paint.setColor(h6.w0(null, i10, false));
+        paint2.setColor(h6.w0(null, i10, false));
+        paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), h6.l1(0.18f, -16777216));
+        h9 h9Var = new h9((d6) null);
+        h9Var.r(user);
+        imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         d();
-        this.h = new g01(UserObject.getUserName(user), 14.0f, null);
+        this.h = new f01(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override
-    public final void a(aj0 aj0Var) {
-        this.f8263x = aj0Var;
-        this.d.setParentView(aj0Var);
-        this.f8257c.setParentView(aj0Var);
+    public final void a(bj0 bj0Var) {
+        this.f8249x = bj0Var;
+        this.d.setParentView(bj0Var);
+        this.f8243c.setParentView(bj0Var);
     }
 
     @Override
     public final void b(ImageReceiver imageReceiver) {
-        this.f8262w = false;
-        this.f8257c.onDetachedFromWindow();
+        this.f8248w = false;
+        this.f8243c.onDetachedFromWindow();
         this.d.onDetachedFromWindow();
         NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, NotificationCenter.recentEmojiStatusesUpdate);
-        o5[] o5VarArr = this.f8258f;
-        o5 o5Var = o5VarArr[0];
-        if (o5Var != null) {
-            o5Var.o(this.f8263x);
+        q5[] q5VarArr = this.f8244f;
+        q5 q5Var = q5VarArr[0];
+        if (q5Var != null) {
+            q5Var.o(this.f8249x);
         }
-        o5 o5Var2 = o5VarArr[1];
-        if (o5Var2 != null) {
-            o5Var2.o(this.f8263x);
+        q5 q5Var2 = q5VarArr[1];
+        if (q5Var2 != null) {
+            q5Var2.o(this.f8249x);
         }
     }
 
     @Override
     public final void c(ImageReceiver imageReceiver) {
-        this.f8262w = true;
-        this.f8257c.onAttachedToWindow();
+        this.f8248w = true;
+        this.f8243c.onAttachedToWindow();
         this.d.onAttachedToWindow();
         NotificationCenter.getInstance(UserConfig.selectedAccount).addObserver(this, NotificationCenter.recentEmojiStatusesUpdate);
-        o5[] o5VarArr = this.f8258f;
-        o5 o5Var = o5VarArr[0];
-        if (o5Var != null) {
-            o5Var.a(this.f8263x);
+        q5[] q5VarArr = this.f8244f;
+        q5 q5Var = q5VarArr[0];
+        if (q5Var != null) {
+            q5Var.a(this.f8249x);
         }
-        o5 o5Var2 = o5VarArr[1];
-        if (o5Var2 != null) {
-            o5Var2.a(this.f8263x);
+        q5 q5Var2 = q5VarArr[1];
+        if (q5Var2 != null) {
+            q5Var2.a(this.f8249x);
         }
     }
 
     public final void d() {
-        o5 o5Var;
+        q5 q5Var;
         TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSet((TLRPC.InputStickerSet) new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
         if (stickerSet != null && !stickerSet.documents.isEmpty()) {
             TLRPC.Document document = stickerSet.documents.get((int) Math.floor(Math.random() * stickerSet.documents.size()));
             int i10 = 1 - this.e;
             this.e = i10;
-            o5[] o5VarArr = this.f8258f;
-            o5 o5Var2 = o5VarArr[i10];
-            if (o5Var2 != null) {
-                o5Var2.o(this.f8263x);
+            q5[] q5VarArr = this.f8244f;
+            q5 q5Var2 = q5VarArr[i10];
+            if (q5Var2 != null) {
+                q5Var2.o(this.f8249x);
             }
-            o5VarArr[this.e] = o5.m(UserConfig.selectedAccount, 9, document);
-            o5VarArr[this.e].setColorFilter(new PorterDuffColorFilter(i6.w0(null, i6.Oh, false), PorterDuff.Mode.SRC_IN));
-            if (this.f8262w && (o5Var = o5VarArr[this.e]) != null) {
-                o5Var.a(this.f8263x);
+            q5VarArr[this.e] = q5.m(UserConfig.selectedAccount, 9, document);
+            q5VarArr[this.e].setColorFilter(new PorterDuffColorFilter(h6.w0(null, h6.Oh, false), PorterDuff.Mode.SRC_IN));
+            if (this.f8248w && (q5Var = q5VarArr[this.e]) != null) {
+                q5Var.a(this.f8249x);
             }
             AndroidUtilities.runOnUIThread(new a5(this, 0), 2500L);
             return;
@@ -134,7 +134,7 @@ public final class b5 extends Drawable implements v6, NotificationCenter.Notific
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.groupStickersDidLoad && this.v && this.f8262w) {
+        if (i10 == NotificationCenter.groupStickersDidLoad && this.v && this.f8248w) {
             this.v = false;
             d();
         }
@@ -147,39 +147,39 @@ public final class b5 extends Drawable implements v6, NotificationCenter.Notific
         float f10;
         float f11;
         float f12;
-        o5 o5Var;
-        o5 o5Var2;
+        q5 q5Var;
+        q5 q5Var2;
         int i11;
         Rect bounds = getBounds();
-        boolean z10 = this.f8260r;
+        boolean z10 = this.f8246r;
         if (z10) {
             i10 = 48;
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f24146c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f23785c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
-        RectF rectF = this.f8259n;
+        RectF rectF = this.f8245n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
-        canvas.drawRoundRect(rectF, dp2, dp2, this.f8255a);
-        ImageReceiver imageReceiver = this.f8257c;
+        canvas.drawRoundRect(rectF, dp2, dp2, this.f8241a);
+        ImageReceiver imageReceiver = this.f8243c;
         imageReceiver.setImageCoords(rectF.left, rectF.top, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
         imageReceiver.draw(canvas);
-        this.h.c(AndroidUtilities.dp(36.0f) + rectF.left, rectF.centerY(), 1.0f, i6.w0(null, i6.G6, false), canvas);
+        this.h.c(AndroidUtilities.dp(36.0f) + rectF.left, rectF.centerY(), 1.0f, h6.w0(null, h6.G6, false), canvas);
         if (z10) {
             float dp3 = rectF.right - AndroidUtilities.dp(22.66f);
-            canvas.drawCircle(dp3, rectF.centerY(), AndroidUtilities.dp(24.0f), this.f8256b);
+            canvas.drawCircle(dp3, rectF.centerY(), AndroidUtilities.dp(24.0f), this.f8242b);
             ImageReceiver imageReceiver2 = this.d;
             imageReceiver2.setImageCoords(dp3 - AndroidUtilities.dp(16.0f), rectF.centerY() - AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
             imageReceiver2.draw(canvas);
             return;
         }
-        float d = this.f8261s.d(this.e, false);
+        float d = this.f8247s.d(this.e, false);
         canvas.save();
         canvas.translate((int) (rectF.right - AndroidUtilities.dp(30.66f)), (int) (rectF.centerY() - AndroidUtilities.dp(12.0f)));
         int i12 = -1;
-        o5[] o5VarArr = this.f8258f;
-        if (d < 1.0f && (o5Var2 = o5VarArr[0]) != null) {
+        q5[] q5VarArr = this.f8244f;
+        if (d < 1.0f && (q5Var2 = q5VarArr[0]) != null) {
             canvas.save();
             f7 = 24.0f;
             if (this.e == 0) {
@@ -194,9 +194,9 @@ public final class b5 extends Drawable implements v6, NotificationCenter.Notific
             f10 = 0.4f;
             f12 = 12.0f;
             canvas.scale(f14, f14, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-            o5Var2.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-            o5Var2.setAlpha((int) (f13 * 255.0f));
-            o5Var2.draw(canvas);
+            q5Var2.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+            q5Var2.setAlpha((int) (f13 * 255.0f));
+            q5Var2.draw(canvas);
             canvas.restore();
         } else {
             f7 = 24.0f;
@@ -204,7 +204,7 @@ public final class b5 extends Drawable implements v6, NotificationCenter.Notific
             f11 = 255.0f;
             f12 = 12.0f;
         }
-        if (d > 0.0f && (o5Var = o5VarArr[1]) != null) {
+        if (d > 0.0f && (q5Var = q5VarArr[1]) != null) {
             canvas.save();
             if (this.e != 1) {
                 i12 = 1;
@@ -212,9 +212,9 @@ public final class b5 extends Drawable implements v6, NotificationCenter.Notific
             canvas.translate(0.0f, (1.0f - d) * AndroidUtilities.dp(9.0f) * i12);
             float f15 = (d * f10) + 0.6f;
             canvas.scale(f15, f15, AndroidUtilities.dp(f12), AndroidUtilities.dp(f12));
-            o5Var.setBounds(0, 0, AndroidUtilities.dp(f7), AndroidUtilities.dp(f7));
-            o5Var.setAlpha((int) (d * f11));
-            o5Var.draw(canvas);
+            q5Var.setBounds(0, 0, AndroidUtilities.dp(f7), AndroidUtilities.dp(f7));
+            q5Var.setAlpha((int) (d * f11));
+            q5Var.draw(canvas);
             canvas.restore();
         }
         canvas.restore();
@@ -227,29 +227,29 @@ public final class b5 extends Drawable implements v6, NotificationCenter.Notific
 
     public b5(TLRPC.User user, TLRPC.Document document) {
         Paint paint = new Paint(1);
-        this.f8255a = paint;
+        this.f8241a = paint;
         Paint paint2 = new Paint(1);
-        this.f8256b = paint2;
+        this.f8242b = paint2;
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f8257c = imageReceiver;
+        this.f8243c = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver();
         this.d = imageReceiver2;
         this.e = 1;
-        this.f8258f = new o5[2];
-        this.f8259n = new RectF();
-        this.f8261s = new c6(new a5(this, 1), 320L, qr.h, 0);
-        this.f8260r = true;
-        int i10 = i6.f18834d6;
-        paint.setColor(i6.w0(null, i10, false));
-        paint2.setColor(i6.w0(null, i10, false));
-        paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), i6.l1(0.18f, -16777216));
-        f9 f9Var = new f9((e6) null);
-        f9Var.r(user);
-        imageReceiver.setForUserOrChat(user, f9Var);
+        this.f8244f = new q5[2];
+        this.f8245n = new RectF();
+        this.f8247s = new e6(new a5(this, 1), 320L, rr.h, 0);
+        this.f8246r = true;
+        int i10 = h6.f18789d6;
+        paint.setColor(h6.w0(null, i10, false));
+        paint2.setColor(h6.w0(null, i10, false));
+        paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), h6.l1(0.18f, -16777216));
+        h9 h9Var = new h9((d6) null);
+        h9Var.r(user);
+        imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
-        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, i6.f18778a7, 0.35f), 0L, null, null, 0);
-        this.h = new g01(UserObject.getUserName(user), 14.0f, null);
+        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, h6.f18733a7, 0.35f), 0L, null, null, 0);
+        this.h = new f01(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override

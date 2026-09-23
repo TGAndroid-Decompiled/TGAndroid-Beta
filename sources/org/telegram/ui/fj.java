@@ -1,32 +1,65 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.content.Context;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class fj extends FrameLayout {
-    public final bo f33614a;
+public final class fj extends org.telegram.ui.Components.j40 {
+    public final int I;
 
-    public fj(bo boVar, Activity activity) {
-        super(activity);
-        this.f33614a = boVar;
+    public fj(int i10, int i11, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        super(i10, context, d6Var, z10);
+        this.I = i11;
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            this.f33614a.A7(true);
+    public int c() {
+        switch (this.I) {
+            case 0:
+                return AndroidUtilities.dp(56.0f) / 2;
+            default:
+                return super.c();
         }
-        return super.dispatchKeyEvent(keyEvent);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int min = Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(300.0f));
-        if (min == 0) {
-            min = AndroidUtilities.dp(300.0f);
+    public void setVisibility(int i10) {
+        switch (this.I) {
+            case 1:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+                return;
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused2) {
+                        return;
+                    }
+                }
+                return;
+            case 3:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused3) {
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
     }
 }

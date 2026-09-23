@@ -1,183 +1,67 @@
 package xh;
 
+import android.content.Context;
 import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.a81;
+import org.telegram.ui.Components.g81;
+import org.telegram.ui.Components.h81;
 import org.telegram.ui.Components.nr0;
-import org.telegram.ui.Components.x5;
-import yh.l5;
-import yh.m5;
-public final class x1 extends a81 {
-    public final int f46192a;
-    public final e6 f46193b;
-    public final nr0 f46194c;
+import org.telegram.ui.Components.pq;
+import org.telegram.ui.ProfileActivity;
+public final class x1 extends h81 {
+    public final org.telegram.ui.ActionBar.n2 T;
+    public final nr0 U;
 
-    public x1(nr0 nr0Var, int i10, e6 e6Var) {
-        this.f46194c = nr0Var;
-        this.f46192a = i10;
-        this.f46193b = e6Var;
+    public x1(nr0 nr0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(context, null);
+        this.U = nr0Var;
+        this.T = n2Var;
     }
 
     @Override
-    public final void a(ArrayList arrayList) {
-        nr0 nr0Var = this.f46194c;
-        t1 t1Var = nr0Var.N;
-        l5 l5Var = nr0Var.e;
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            Integer num = (Integer) obj;
-            int intValue = num.intValue();
-            if (intValue != -1 && intValue != -2) {
-                arrayList2.add(num);
+    public final void h() {
+        nr0 nr0Var = this.U;
+        g81 g81Var = nr0Var.f46072n;
+        if (nr0Var.b() && g81Var != null) {
+            if (nr0Var.J == null) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.z0.h(R.string.Gift2NewCollection, new StringBuilder("+ ")));
+                pq pqVar = new pq(R.drawable.poll_add_plus, 0);
+                pqVar.spaceScaleX = 0.8f;
+                spannableStringBuilder.setSpan(pqVar, 0, 1, 33);
+                nr0Var.J = spannableStringBuilder;
+            }
+            g81Var.a(-1, nr0Var.J);
+        }
+    }
+
+    @Override
+    public final boolean i(MotionEvent motionEvent) {
+        return !this.U.g();
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        nr0 nr0Var = this.U;
+        nr0Var.l();
+        org.telegram.ui.ActionBar.n2 n2Var = this.T;
+        if (n2Var instanceof ProfileActivity) {
+            ((ProfileActivity) n2Var).R();
+            View fragmentView = n2Var.getFragmentView();
+            if (fragmentView != null) {
+                fragmentView.invalidate();
             }
         }
-        l5Var.getClass();
-        HashMap hashMap = new HashMap();
-        ArrayList arrayList3 = l5Var.e;
-        int size2 = arrayList3.size();
-        int i12 = 0;
-        while (i12 < size2) {
-            Object obj2 = arrayList3.get(i12);
-            i12++;
-            TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj2;
-            hashMap.put(Integer.valueOf(tL_starGiftCollection.collection_id), tL_starGiftCollection);
-        }
-        ArrayList arrayList4 = new ArrayList();
-        int size3 = arrayList2.size();
-        int i13 = 0;
-        while (i13 < size3) {
-            Object obj3 = arrayList2.get(i13);
-            i13++;
-            Integer num2 = (Integer) obj3;
-            num2.getClass();
-            TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) hashMap.get(num2);
-            if (tL_starGiftCollection2 != null) {
-                arrayList4.add(tL_starGiftCollection2);
-            }
-        }
-        arrayList3.clear();
-        arrayList3.addAll(arrayList4);
-        l5Var.j();
-        n2 currentPage = nr0Var.getCurrentPage();
-        if (currentPage != null) {
-            if (currentPage.d) {
-                i10 = l5Var.f(currentPage.e.d) + 1;
-            }
-            nr0Var.f46105n.e(0.0f, i10, i10);
-        }
-        AndroidUtilities.cancelRunOnUIThread(t1Var);
-        AndroidUtilities.runOnUIThread(t1Var, 1000L);
+        nr0Var.o();
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        m5 m5Var;
-        boolean z10;
-        nr0 nr0Var = this.f46194c;
-        l5 l5Var = nr0Var.e;
-        n2 n2Var = (n2) view;
-        int i12 = 0;
-        if (i11 == 0) {
-            m5Var = nr0Var.d;
-            z10 = false;
-        } else {
-            int i13 = i10 - 1;
-            if (i13 >= 0) {
-                if (i13 < l5Var.d().size()) {
-                    m5Var = l5Var.e(((TL_stars.TL_starGiftCollection) l5Var.d().get(i13)).collection_id);
-                    z10 = true;
-                }
-            } else {
-                l5Var.getClass();
-            }
-            m5Var = null;
-            z10 = true;
+    public final void z(int i10) {
+        this.U.l();
+        org.telegram.ui.ActionBar.n2 n2Var = this.T;
+        if (n2Var instanceof ProfileActivity) {
+            ((ProfileActivity) n2Var).R();
         }
-        n2Var.d = z10;
-        n2Var.e = m5Var;
-        if (m5Var != null) {
-            m5Var.a();
-        }
-        n2Var.f(false);
-        LinearLayout linearLayout = n2Var.E;
-        if (linearLayout != null) {
-            if (!n2Var.f46030a.e.h()) {
-                i12 = 8;
-            }
-            linearLayout.setVisibility(i12);
-        }
-        n2Var.setVisibleHeight(nr0Var.Q);
-        n2Var.setHasTabs(!l5Var.d().isEmpty());
-    }
-
-    @Override
-    public final boolean c(int i10) {
-        if (i10 == 0) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final View d(int i10) {
-        if (i10 == -1) {
-            return null;
-        }
-        return new n2(this.f46194c, this.f46192a, this.f46193b);
-    }
-
-    @Override
-    public final int e() {
-        return this.f46194c.e.d().size() + 1;
-    }
-
-    @Override
-    public final int f(int i10) {
-        if (i10 == 0) {
-            return -2;
-        }
-        return ((TL_stars.TL_starGiftCollection) this.f46194c.e.d().get(i10 - 1)).collection_id;
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        if (i10 == 0) {
-            return LocaleController.getString(R.string.Gift2CollectionAll);
-        }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f46194c.e.d().get(i10 - 1);
-        if (tL_starGiftCollection == null) {
-            return null;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_starGiftCollection.title);
-        if (tL_starGiftCollection.icon != null) {
-            TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
-            spannableStringBuilder2.setSpan(new x5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
-            spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
-        }
-        return spannableStringBuilder;
-    }
-
-    @Override
-    public final int h(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        return 1;
     }
 }

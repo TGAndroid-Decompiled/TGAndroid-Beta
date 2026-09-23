@@ -1,19 +1,19 @@
 package j4;
 public final class o {
-    public boolean f12739a;
-    public boolean f12740b;
-    public f2.n f12741c;
+    public boolean f12729a;
+    public boolean f12730b;
+    public f2.n f12731c;
     public int d;
     public int e;
-    public int f12742f;
-    public int f12743g;
+    public int f12732f;
+    public int f12733g;
     public boolean h;
-    public boolean f12744i;
-    public boolean f12745j;
-    public boolean f12746k;
-    public int f12747l;
-    public int f12748m;
-    public int f12749n;
-    public int f12750o;
-    public int f12751p;
+    public boolean f12734i;
+    public boolean f12735j;
+    public boolean f12736k;
+    public int f12737l;
+    public int f12738m;
+    public int f12739n;
+    public int f12740o;
+    public int f12741p;
 }

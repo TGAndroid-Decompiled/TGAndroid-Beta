@@ -4,16 +4,16 @@ import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.r01;
+import org.telegram.ui.j01;
 public final class e6 implements n2 {
-    public final org.telegram.ui.ActionBar.n2 f20022a;
-    public final Context f20023b;
-    public final r01 f20024c;
+    public final org.telegram.ui.ActionBar.n2 f19961a;
+    public final Context f19962b;
+    public final j01 f19963c;
 
-    public e6(r01 r01Var, org.telegram.ui.ActionBar.n2 n2Var, Context context) {
-        this.f20024c = r01Var;
-        this.f20022a = n2Var;
-        this.f20023b = context;
+    public e6(j01 j01Var, org.telegram.ui.ActionBar.n2 n2Var, Context context) {
+        this.f19963c = j01Var;
+        this.f19961a = n2Var;
+        this.f19962b = context;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class e6 implements n2 {
     @Override
     public final void c() {
         boolean z10;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f20022a;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f19961a;
         ai.l9 storiesController = n2Var.getMessagesController().getStoriesController();
         ArrayList arrayList = storiesController.h;
         if (arrayList.isEmpty()) {
@@ -42,15 +42,15 @@ public final class e6 implements n2 {
                 arrayList2.add(Long.valueOf(peerDialogId));
             }
         }
-        n2Var.getOrCreateStoryViewer().G(this.f20023b, null, arrayList2, 0, null, null, new ai.u9(this.f20024c), false);
+        n2Var.getOrCreateStoryViewer().G(this.f19962b, null, arrayList2, 0, null, null, new ai.u9(this.f19963c), false);
     }
 
     @Override
     public final void e(r2 r2Var) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f20022a;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f19961a;
         if (n2Var.getMessagesController().getStoriesController().I(r2Var.getDialogId())) {
             n2Var.getOrCreateStoryViewer().getClass();
-            n2Var.getOrCreateStoryViewer().D(n2Var.getContext(), r2Var.getDialogId(), new ai.u9(this.f20024c));
+            n2Var.getOrCreateStoryViewer().D(n2Var.getContext(), r2Var.getDialogId(), new ai.u9(this.f19963c));
         }
     }
 

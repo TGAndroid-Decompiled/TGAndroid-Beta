@@ -1,38 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 public final class r31 implements Runnable {
-    public final int f37017a;
-    public final org.telegram.messenger.video.a f37018b;
-    public final org.telegram.ui.Components.vc f37019c;
-    public final Context d;
-    public final ai.a1 e;
+    public final int f36679a;
+    public final t31 f36680b;
 
-    public r31(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.vc vcVar, Context context, ai.a1 a1Var, int i10) {
-        this.f37017a = i10;
-        this.f37018b = aVar;
-        this.f37019c = vcVar;
-        this.d = context;
-        this.e = a1Var;
+    public r31(t31 t31Var, int i10) {
+        this.f36679a = i10;
+        this.f36680b = t31Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37017a) {
+        switch (this.f36679a) {
             case 0:
-                this.f37018b.run();
-                this.f37019c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new ov(this.d, 2), this.e)).j();
-                return;
-            case 1:
-                this.f37018b.run();
-                this.f37019c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new ov(this.d, 5), this.e)).j();
-                return;
+                t31 t31Var = this.f36680b;
+                u31 u31Var = t31Var.v;
+                if (t31Var.f37512a == 0) {
+                    u31Var.dismiss();
+                    return;
+                } else {
+                    u31Var.onBackPressed();
+                    return;
+                }
             default:
-                this.f37018b.run();
-                this.f37019c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new ov(this.d, 6), this.e)).j();
+                AndroidUtilities.showKeyboard(this.f36680b.f37516n.f20177b);
                 return;
         }
     }

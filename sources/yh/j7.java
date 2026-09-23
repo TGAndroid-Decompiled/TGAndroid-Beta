@@ -1,102 +1,129 @@
 package yh;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableString;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.h90;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.w51;
-public final class j7 extends h51 {
-    public static final int f47283a = 0;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ul;
+import org.telegram.ui.Components.rr;
+public final class j7 extends FrameLayout {
+    public final org.telegram.ui.ActionBar.d6 f47256a;
+    public final Drawable f47257b;
+    public final Drawable f47258c;
+    public final TextView d;
+    public final org.telegram.ui.Components.p6 e;
+    public SpannableString f47259f;
+    public boolean h;
+    public int f47260n;
+    public final org.telegram.ui.Components.e6 f47261r;
 
-    static {
-        h51.setup(new h51());
-    }
-
-    public static i51 a(int i10, int i11, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
-        String formatCurrency;
-        i51 J = i51.J(j7.class);
-        J.d = i10;
-        J.f24913z = i11;
-        long j3 = tL_starsTopupOption.stars;
-        J.B = j3;
-        J.f24900l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j3);
-        if (tL_starsTopupOption.loadingStorePrice) {
-            formatCurrency = null;
+    public j7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        int i10;
+        this.f47261r = new org.telegram.ui.Components.e6(this, 0L, 500L, rr.h);
+        this.f47256a = d6Var;
+        Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
+        this.f47257b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18859h5, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f47258c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        setWillNotDraw(false);
+        TextView textView = new TextView(context);
+        this.d = textView;
+        ul.k(15.0f, 1, textView);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+        addView(textView, w7.x5.i(-2.0f, -2.0f, 8388627, 48.0f, 0.0f, 0.0f, 0.0f));
+        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, false, false, false);
+        this.e = p6Var;
+        p6Var.setTextSize(AndroidUtilities.dp(15.0f));
+        p6Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19189z6, d6Var));
+        if (LocaleController.isRTL) {
+            i10 = 3;
         } else {
-            formatCurrency = BillingController.getInstance().formatCurrency(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
+            i10 = 5;
         }
-        J.f24901m = formatCurrency;
-        J.G = tL_starsTopupOption;
-        return J;
+        p6Var.setGravity(i10);
+        addView(p6Var, w7.x5.i(-2.0f, 21.0f, 8388629, 0.0f, 0.0f, 19.0f, 0.0f));
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
+    public final void onDraw(Canvas canvas) {
         float f7;
-        k7 k7Var = (k7) view;
-        int i10 = i51Var.f24913z;
-        CharSequence charSequence = i51Var.f24900l;
-        CharSequence charSequence2 = i51Var.f24901m;
-        org.telegram.ui.Components.n6 n6Var = k7Var.e;
-        TextView textView = k7Var.d;
-        boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        k7Var.f47327n = i10;
-        if (!equals) {
-            k7Var.f47328r.d(i10, true);
-        }
-        textView.setText(charSequence);
-        if (charSequence2 == null) {
-            if (k7Var.f47326f == null) {
-                SpannableString spannableString = new SpannableString("x");
-                k7Var.f47326f = spannableString;
-                spannableString.setSpan(new h90(AndroidUtilities.dp(55.0f), n6Var), 0, k7Var.f47326f.length(), 33);
-            }
-            charSequence2 = k7Var.f47326f;
-        }
-        n6Var.setText(charSequence2);
+        float dp;
+        Paint paint;
+        float dp2;
+        int i10;
+        super.onDraw(canvas);
+        float d = this.f47261r.d(this.f47260n, false);
         if (LocaleController.isRTL) {
             f7 = -1.0f;
         } else {
             f7 = 1.0f;
         }
-        if (equals) {
-            textView.animate().translationX(f7 * (i10 - 1) * AndroidUtilities.dp(2.66f)).setDuration(320L).setInterpolator(qr.h).start();
+        float dp3 = AndroidUtilities.dp(24.0f);
+        float dp4 = AndroidUtilities.dp(24.0f);
+        float dp5 = AndroidUtilities.dp(2.5f);
+        if (LocaleController.isRTL) {
+            dp = (getWidth() - AndroidUtilities.dp(19.0f)) - dp3;
         } else {
-            textView.setTranslationX(f7 * (i10 - 1) * AndroidUtilities.dp(2.66f));
+            dp = AndroidUtilities.dp(19.0f);
         }
-        k7Var.h = z10;
-        k7Var.invalidate();
+        for (int ceil = ((int) Math.ceil(d)) - 1; ceil >= 0; ceil--) {
+            float clamp = Utilities.clamp(d - ceil, 1.0f, 0.0f);
+            float f10 = (((ceil - 1) - (1.0f - clamp)) * dp5 * f7) + dp;
+            float measuredHeight = (getMeasuredHeight() - dp4) / 2.0f;
+            int i11 = (int) f10;
+            int i12 = (int) measuredHeight;
+            int i13 = (int) (f10 + dp3);
+            int i14 = (int) (measuredHeight + dp4);
+            Drawable drawable = this.f47257b;
+            drawable.setBounds(i11, i12, i13, i14);
+            int i15 = (int) (clamp * 255.0f);
+            drawable.setAlpha(i15);
+            drawable.draw(canvas);
+            Drawable drawable2 = this.f47258c;
+            drawable2.setBounds(i11, i12, i13, i14);
+            drawable2.setAlpha(i15);
+            drawable2.draw(canvas);
+        }
+        if (this.h) {
+            org.telegram.ui.ActionBar.d6 d6Var = this.f47256a;
+            if (d6Var != null) {
+                paint = d6Var.G("paintDivider");
+            } else {
+                paint = null;
+            }
+            if (paint == null) {
+                paint = org.telegram.ui.ActionBar.h6.f18910k0;
+            }
+            Paint paint2 = paint;
+            if (LocaleController.isRTL) {
+                dp2 = 0.0f;
+            } else {
+                dp2 = AndroidUtilities.dp(22.0f);
+            }
+            float measuredHeight2 = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(22.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawRect(dp2, measuredHeight2, measuredWidth - i10, getMeasuredHeight(), paint2);
+        }
     }
 
     @Override
-    public final boolean contentsEquals(i51 i51Var, i51 i51Var2) {
-        if (i51Var.f24913z == i51Var2.f24913z && i51Var.d == i51Var2.d && TextUtils.equals(i51Var.f24901m, i51Var2.f24901m)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new k7(context, e6Var);
-    }
-
-    @Override
-    public final boolean equals(i51 i51Var, i51 i51Var2) {
-        if (i51Var.d == i51Var2.d) {
-            return true;
-        }
-        return false;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

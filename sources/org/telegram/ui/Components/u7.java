@@ -1,45 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class u7 extends AnimatorListenerAdapter {
-    public final int f28303a;
-    public final h8 f28304b;
+import android.content.Context;
+public final class u7 extends ml0 {
+    public boolean X2;
+    public final j8 Y2;
 
-    public u7(h8 h8Var, int i10) {
-        this.f28303a = i10;
-        this.f28304b = h8Var;
+    public u7(j8 j8Var, Context context) {
+        super(context, null);
+        this.Y2 = j8Var;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f28303a) {
-            case 2:
-                this.f28304b.C0 = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final boolean E0(float f7) {
+        j8 j8Var = this.Y2;
+        if (f7 < j8Var.E.getY() - j8Var.f25177n.getTop()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        j8 j8Var = this.Y2;
+        int i14 = j8Var.f25185s0;
+        if (i14 != -1 && !j8Var.f25165c.f19296n0) {
+            this.X2 = true;
+            j8Var.f25182r.h1(i14, j8Var.f25186t0 - j8Var.f25177n.getPaddingTop());
+            super.onLayout(false, i10, i11, i12, i13);
+            this.X2 = false;
+            j8Var.f25185s0 = -1;
+        } else if (j8Var.f25183r0) {
+            j8Var.f25183r0 = false;
+            this.X2 = true;
+            if (j8Var.w0(true)) {
+                super.onLayout(false, i10, i11, i12, i13);
+            }
+            this.X2 = false;
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f28303a) {
-            case 0:
-                this.f28304b.m0 = false;
-                return;
-            case 1:
-                h8 h8Var = this.f28304b;
-                h8Var.f24565i0.setVisibility(4);
-                h8Var.f24566j0.setImageBitmap(null);
-                h8Var.m0 = false;
-                return;
-            default:
-                return;
+    public final void requestLayout() {
+        if (this.X2) {
+            return;
         }
-    }
-
-    private final void a(Animator animator) {
+        super.requestLayout();
     }
 }

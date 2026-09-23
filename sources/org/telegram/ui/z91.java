@@ -1,62 +1,64 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class z91 extends org.telegram.ui.Components.a81 {
-    public final boolean f40101a;
-    public final boolean f40102b;
-    public final boolean f40103c;
-    public final FrameLayout d;
-    public final za1 e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.Window;
+public final class z91 extends AnimatorListenerAdapter {
+    public final int f40091a;
+    public final ba1 f40092b;
 
-    public z91(za1 za1Var, boolean z10, boolean z11, boolean z12, FrameLayout frameLayout) {
-        this.e = za1Var;
-        this.f40101a = z10;
-        this.f40102b = z11;
-        this.f40103c = z12;
-        this.d = frameLayout;
+    public z91(ba1 ba1Var, int i10) {
+        this.f40091a = i10;
+        this.f40092b = ba1Var;
     }
 
     @Override
-    public final View d(int i10) {
-        za1 za1Var = this.e;
-        if (za1Var.f40123l0) {
-            return za1Var.f40121j0;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40091a) {
+            case 0:
+                ba1 ba1Var = this.f40092b;
+                ba1Var.f32035b.setVisibility(4);
+                ig.g gVar = ba1Var.f32035b;
+                gVar.J = false;
+                ig.g gVar2 = ba1Var.f32036c;
+                gVar2.J = true;
+                gVar.f11160y0 = 0;
+                gVar2.f11160y0 = 0;
+                Window window = ba1Var.f32034a;
+                if (window != null) {
+                    window.clearFlags(16);
+                    return;
+                }
+                return;
+            case 1:
+                ba1 ba1Var2 = this.f40092b;
+                ig.g gVar3 = ba1Var2.f32036c;
+                gVar3.setVisibility(4);
+                ig.g gVar4 = ba1Var2.f32035b;
+                gVar4.f11160y0 = 0;
+                gVar3.f11160y0 = 0;
+                gVar4.J = true;
+                gVar3.J = false;
+                if (!(gVar4 instanceof ig.q)) {
+                    gVar4.f11153u0 = true;
+                    gVar4.x((gVar4.G0 * gVar4.f11133g0.f11174k) - ig.g.f11102k1);
+                    gVar4.c(true);
+                    gVar4.invalidate();
+                } else {
+                    gVar4.f11153u0 = false;
+                    gVar4.d();
+                }
+                Window window2 = ba1Var2.f32034a;
+                if (window2 != null) {
+                    window2.clearFlags(16);
+                    return;
+                }
+                return;
+            default:
+                ba1 ba1Var3 = this.f40092b;
+                ba1Var3.f32035b.f11160y0 = 0;
+                ba1Var3.e.setVisibility(8);
+                return;
         }
-        boolean z10 = this.f40101a;
-        FrameLayout frameLayout = this.d;
-        if (z10) {
-            if (i10 == 0) {
-                return frameLayout;
-            }
-            i10--;
-        }
-        if (this.f40102b) {
-            if (i10 == 0) {
-                return za1Var.f40121j0;
-            }
-            i10--;
-        }
-        if (this.f40103c && i10 == 0) {
-            return za1Var.f40122k0;
-        }
-        return frameLayout;
-    }
-
-    @Override
-    public final int e() {
-        if (this.e.f40123l0) {
-            return 1;
-        }
-        return (this.f40101a ? 1 : 0) + (this.f40102b ? 1 : 0) + (this.f40103c ? 1 : 0);
-    }
-
-    @Override
-    public final int h(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
     }
 }

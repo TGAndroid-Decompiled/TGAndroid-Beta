@@ -1,11 +1,10 @@
 package z3;
-public final class m {
-    public static final m f48092c = new m(-9223372036854775807L, false);
-    public final long f48093a;
-    public final boolean f48094b;
+public interface m {
+    int A();
 
-    public m(long j3, boolean z10) {
-        this.f48093a = j3;
-        this.f48094b = z10;
-    }
+    void B(byte[] bArr, int i10, int i11, l lVar, e2.h hVar);
+
+    d r(int i10, int i11, byte[] bArr);
+
+    void reset();
 }

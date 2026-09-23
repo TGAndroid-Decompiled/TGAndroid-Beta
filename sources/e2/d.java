@@ -5,7 +5,7 @@ import android.os.Bundle;
 import e9.a1;
 import e9.f0;
 import e9.i0;
-import i2.t0;
+import i2.u0;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,8 +33,8 @@ public abstract class d {
         throw new IndexOutOfBoundsException();
     }
 
-    public static void d(t0 t0Var) {
-        t0Var.getClass();
+    public static void d(u0 u0Var) {
+        u0Var.getClass();
     }
 
     public static void e(Object obj, String str) {

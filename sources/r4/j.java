@@ -1,12 +1,12 @@
 package r4;
 public final class j {
-    public final int f42033a;
-    public final byte[] f42034b;
-    public final boolean f42035c;
+    public final int f41989a;
+    public final byte[] f41990b;
+    public final boolean f41991c;
 
     public j(int i10, boolean z10, byte[] bArr) {
-        this.f42033a = i10;
-        this.f42034b = bArr;
-        this.f42035c = z10;
+        this.f41989a = i10;
+        this.f41990b = bArr;
+        this.f41991c = z10;
     }
 }

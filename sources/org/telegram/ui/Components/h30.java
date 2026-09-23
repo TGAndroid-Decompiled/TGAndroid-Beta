@@ -1,24 +1,46 @@
 package org.telegram.ui.Components;
-public final class h30 implements z4.e {
-    public final l30 f24508a;
 
-    public h30(l30 l30Var) {
-        this.f24508a = l30Var;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class h30 extends FrameLayout {
+    public final m30 f24488a;
+
+    public h30(m30 m30Var, Context context) {
+        super(context);
+        this.f24488a = m30Var;
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        l30 l30Var = this.f24508a;
-        l30Var.h = i10;
-        l30Var.f25821f = f7;
-        l30.m(l30Var);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        m30.m(this.f24488a);
     }
 
     @Override
-    public final void a(int i10) {
-    }
-
-    @Override
-    public final void c(int i10) {
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        if (View.MeasureSpec.getSize(i10) > View.MeasureSpec.getSize(i11)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        m30 m30Var = this.f24488a;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) m30Var.f26082c.getLayoutParams();
+        if (z10) {
+            int dp = AndroidUtilities.dp(80.0f);
+            marginLayoutParams.leftMargin = dp;
+            marginLayoutParams.rightMargin = dp;
+        } else {
+            int dp2 = AndroidUtilities.dp(16.0f);
+            marginLayoutParams.leftMargin = dp2;
+            marginLayoutParams.rightMargin = dp2;
+        }
+        int y3 = org.telegram.messenger.ul.y(200.0f, View.MeasureSpec.getSize(i10), 2);
+        m30Var.f26081b.setPadding(y3, 0, y3, 0);
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(370.0f), 1073741824));
+        measureChildWithMargins(m30Var.d, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
     }
 }

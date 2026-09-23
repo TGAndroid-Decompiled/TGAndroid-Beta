@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class v4 extends FrameLayout {
-    public FrameLayout f21459a;
+    public FrameLayout f21445a;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -12,6 +12,6 @@ public final class v4 extends FrameLayout {
     }
 
     public void setOnButtonClick(View.OnClickListener onClickListener) {
-        this.f21459a.setOnClickListener(onClickListener);
+        this.f21445a.setOnClickListener(onClickListener);
     }
 }

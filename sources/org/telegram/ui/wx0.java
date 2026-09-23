@@ -1,58 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class wx0 implements Utilities.Callback {
-    public final int f39397a;
-    public final yx0 f39398b;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.Iterator;
+import org.telegram.messenger.GenericProvider;
+public final class wx0 implements GenericProvider, org.telegram.ui.Components.cl0, x60 {
+    public final zx0 f39124a;
 
-    public wx0(yx0 yx0Var, int i10) {
-        this.f39397a = i10;
-        this.f39398b = yx0Var;
+    public wx0(zx0 zx0Var) {
+        this.f39124a = zx0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        TL_account.TL_birthday tL_birthday;
-        int i10;
-        int i11;
-        switch (this.f39397a) {
-            case 0:
-                PrivacyControlActivity privacyControlActivity = this.f39398b.d;
-                privacyControlActivity.L = ((Integer) obj).intValue();
-                AndroidUtilities.updateVisibleRow(privacyControlActivity.d, privacyControlActivity.f31200j0);
-                privacyControlActivity.E0();
-                return;
-            default:
-                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
-                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
-                updatebirthday.flags |= 1;
-                updatebirthday.birthday = tL_birthday2;
-                yx0 yx0Var = this.f39398b;
-                PrivacyControlActivity privacyControlActivity2 = yx0Var.d;
-                TLRPC.UserFull userFull = privacyControlActivity2.getMessagesController().getUserFull(privacyControlActivity2.getUserConfig().getClientUserId());
-                if (userFull != null) {
-                    tL_birthday = userFull.birthday;
-                } else {
-                    tL_birthday = null;
-                }
-                if (userFull != null) {
-                    userFull.flags2 |= 32;
-                    userFull.birthday = tL_birthday2;
-                    privacyControlActivity2.getMessagesStorage().updateUserInfo(userFull, false);
-                }
-                privacyControlActivity2.getMessagesController().invalidateContentSettings();
-                privacyControlActivity2.getConnectionsManager().sendRequest(updatebirthday, new ns0(yx0Var, userFull, tL_birthday, 1), 1024);
-                i10 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
-                MessagesController.getInstance(i10).removeSuggestion(0L, "BIRTHDAY_SETUP");
-                i11 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
-                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
-                privacyControlActivity2.F0(true);
-                return;
+    public void b(ArrayList arrayList, boolean z10, boolean z11) {
+        Iterator it = arrayList.iterator();
+        if (!it.hasNext()) {
+            this.f39124a.V();
+        } else {
+            Long l4 = (Long) it.next();
+            throw null;
         }
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        zx0 zx0Var = this.f39124a;
+        if (i10 >= zx0Var.f40269r && i10 < zx0Var.f40270s) {
+            if (zx0Var.f40273y == 1) {
+                zx0Var.U(Long.valueOf(zx0Var.getMessagesController().blockePeers.keyAt(i10 - zx0Var.f40269r)), view);
+                return true;
+            }
+            throw null;
+        }
+        return false;
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        zx0 zx0Var = this.f39124a;
+        zx0Var.getClass();
+        if (((Integer) obj).intValue() != zx0Var.f40271w) {
+            return null;
+        }
+        return Integer.valueOf(org.telegram.ui.ActionBar.h6.l1(0.12f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19008p7, false)));
     }
 }

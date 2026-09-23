@@ -6,23 +6,23 @@ import p7.j;
 import w7.e0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(26);
-    public int f43639a;
-    public int f43640b;
-    public int f43641c;
+    public int f43591a;
+    public int f43592b;
+    public int f43593c;
     public boolean d;
     public boolean e;
-    public float f43642f;
+    public float f43594f;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        int i11 = this.f43639a;
+        int i11 = this.f43591a;
         e0.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        int i12 = this.f43640b;
+        int i12 = this.f43592b;
         e0.s(parcel, 3, 4);
         parcel.writeInt(i12);
-        int i13 = this.f43641c;
+        int i13 = this.f43593c;
         e0.s(parcel, 4, 4);
         parcel.writeInt(i13);
         boolean z10 = this.d;
@@ -31,7 +31,7 @@ public final class b extends o6.a {
         boolean z11 = this.e;
         e0.s(parcel, 6, 4);
         parcel.writeInt(z11 ? 1 : 0);
-        float f7 = this.f43642f;
+        float f7 = this.f43594f;
         e0.s(parcel, 7, 4);
         parcel.writeFloat(f7);
         e0.r(parcel, q6);

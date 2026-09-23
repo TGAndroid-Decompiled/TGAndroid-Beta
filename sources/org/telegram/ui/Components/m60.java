@@ -1,144 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-public final class m60 extends kl0 {
-    public final r60 f26106c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class m60 implements v80 {
+    public final n60 f26100a;
 
-    public m60(r60 r60Var) {
-        this.f26106c = r60Var;
+    public m60(n60 n60Var) {
+        this.f26100a = n60Var;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int b10 = c1Var.b();
-        r60 r60Var = this.f26106c;
-        if (b10 == r60Var.f27571n) {
-            if (r60Var.f27557b.admin_id != UserConfig.getInstance(r60.M(r60Var)).clientUserId) {
-                return true;
-            }
-            return false;
-        } else if (b10 < r60Var.f27575x || b10 >= r60Var.f27576y) {
-            if (b10 >= r60Var.O && b10 < r60Var.P) {
-                return true;
-            }
-            return false;
+    public final void a() {
+        s60 s60Var = this.f26100a.f26353c;
+        org.telegram.ui.ActionBar.n2 n2Var = s60Var.U;
+        if (n2Var instanceof org.telegram.ui.th0) {
+            org.telegram.ui.th0 th0Var = (org.telegram.ui.th0) n2Var;
+            TLRPC.TL_chatInviteExported tL_chatInviteExported = s60Var.f27840b;
+            org.telegram.ui.sb0 sb0Var = new org.telegram.ui.sb0(1, th0Var.f37671n);
+            sb0Var.T = th0Var.f37679s0;
+            sb0Var.Y(tL_chatInviteExported);
+            th0Var.presentFragment(sb0Var);
         } else {
-            return true;
+            org.telegram.ui.sb0 sb0Var2 = new org.telegram.ui.sb0(1, s60Var.f27848g0);
+            sb0Var2.Y(s60Var.f27840b);
+            sb0Var2.T = new l60(this);
+            s60Var.U.presentFragment(sb0Var2);
         }
+        s60Var.dismiss();
     }
 
     @Override
-    public final int h() {
-        return this.f26106c.S;
+    public final void c() {
+        int i10;
+        int i11;
+        s60 s60Var = this.f26100a.f26353c;
+        org.telegram.ui.ActionBar.n2 n2Var = s60Var.U;
+        if (n2Var instanceof org.telegram.ui.th0) {
+            ((org.telegram.ui.th0) n2Var).e0(s60Var.f27840b);
+        } else {
+            TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
+            tL_messages_editExportedChatInvite.link = s60Var.f27840b.link;
+            tL_messages_editExportedChatInvite.revoked = true;
+            i10 = ((org.telegram.ui.ActionBar.f3) s60Var).currentAccount;
+            tL_messages_editExportedChatInvite.peer = MessagesController.getInstance(i10).getInputPeer(-s60Var.f27848g0);
+            i11 = ((org.telegram.ui.ActionBar.f3) s60Var).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(tL_messages_editExportedChatInvite, new k60(this, 0));
+        }
+        s60Var.dismiss();
     }
 
     @Override
-    public final int j(int i10) {
-        r60 r60Var = this.f26106c;
-        if (i10 == r60Var.h || i10 == r60Var.N || i10 == r60Var.f27574w || i10 == r60Var.e) {
-            return 0;
+    public final void j() {
+        int i10;
+        int i11;
+        s60 s60Var = this.f26100a.f26353c;
+        org.telegram.ui.ActionBar.n2 n2Var = s60Var.U;
+        if (n2Var instanceof org.telegram.ui.th0) {
+            ((org.telegram.ui.th0) n2Var).b0(s60Var.f27840b);
+        } else {
+            TLRPC.TL_messages_deleteExportedChatInvite tL_messages_deleteExportedChatInvite = new TLRPC.TL_messages_deleteExportedChatInvite();
+            tL_messages_deleteExportedChatInvite.link = s60Var.f27840b.link;
+            i10 = ((org.telegram.ui.ActionBar.f3) s60Var).currentAccount;
+            tL_messages_deleteExportedChatInvite.peer = MessagesController.getInstance(i10).getInputPeer(-s60Var.f27848g0);
+            i11 = ((org.telegram.ui.ActionBar.f3) s60Var).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteExportedChatInvite, new k60(this, 1));
         }
-        if (i10 != r60Var.f27571n) {
-            if (i10 < r60Var.O || i10 >= r60Var.P) {
-                if (i10 < r60Var.f27575x || i10 >= r60Var.f27576y) {
-                    if (i10 != r60Var.f27572r && i10 != r60Var.f27573s) {
-                        if (i10 == r60Var.H) {
-                            return 3;
-                        }
-                        if (i10 == r60Var.I) {
-                            return 4;
-                        }
-                        if (i10 == r60Var.J) {
-                            return 5;
-                        }
-                        r60Var.getClass();
-                        if (i10 != 0 && i10 != r60Var.K && i10 != r60Var.L) {
-                            if (i10 == r60Var.v) {
-                                return 7;
-                            }
-                            if (i10 == r60Var.M) {
-                                return 8;
-                            }
-                            if (i10 != r60Var.f27563f) {
-                                return 0;
-                            }
-                            return 9;
-                        }
-                        return 6;
-                    }
-                    return 2;
-                }
-                return 1;
-            }
-            return 1;
-        }
-        return 1;
+        s60Var.dismiss();
     }
 
     @Override
-    public final void v(s4.c1 r25, int r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m60.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        t00 t00Var;
-        t00 t00Var2;
-        Context context = viewGroup.getContext();
-        r60 r60Var = this.f26106c;
-        switch (i10) {
-            case 1:
-                t00Var2 = new p60(context);
-                break;
-            case 2:
-                t00Var2 = new org.telegram.ui.Cells.a7(context, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18778a7, false), 0);
-                break;
-            case 3:
-                i60 i60Var = new i60(this, context, r60Var.U, r60Var, r60Var.f27566h0);
-                i60Var.setDelegate(new l60(this));
-                i60Var.setLayoutParams(new s4.p0(-1, -2));
-                t00Var2 = i60Var;
-                break;
-            case 4:
-                t00Var2 = new q60(r60Var, context);
-                break;
-            case 5:
-                t00 t00Var3 = new t00(context, null);
-                t00Var3.setIsSingleCell(true);
-                t00Var3.setViewType(10);
-                t00Var3.f28015w = false;
-                t00Var3.setPaddingLeft(AndroidUtilities.dp(10.0f));
-                t00Var = t00Var3;
-                t00Var2 = t00Var;
-                break;
-            case 6:
-                t00Var2 = new kn(context, 12);
-                break;
-            case 7:
-                t00Var2 = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.q3) null);
-                break;
-            case 8:
-                ?? frameLayout = new FrameLayout(context);
-                TextView textView = new TextView(context);
-                frameLayout.f26333a = textView;
-                textView.setTextSize(1, 14.0f);
-                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.i6.f19215y6, null, false, textView, 1);
-                frameLayout.addView(textView, w7.x5.d(-1, -2.0f, 16, 60.0f, 0.0f, 60.0f, 0.0f));
-                t00Var = frameLayout;
-                t00Var2 = t00Var;
-                break;
-            case 9:
-                t00Var2 = new o60(r60Var, context);
-                break;
-            default:
-                t00Var2 = new org.telegram.ui.Cells.v3(context, r60.y(r60Var));
-                break;
-        }
-        return com.google.android.gms.internal.vision.e2.k(t00Var2, t00Var2, -1, -2);
+    public final void i() {
     }
 }

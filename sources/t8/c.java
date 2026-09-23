@@ -13,17 +13,17 @@ import lf.i;
 import n6.l;
 import org.telegram.ui.Cells.q3;
 public final class c extends g {
-    public final q8.a f43040b;
-    public final u2 f43041c;
+    public final q8.a f42995b;
+    public final u2 f42996c;
     public final Object d;
     public boolean e;
 
     public c(u2 u2Var) {
         super(3);
-        this.f43040b = new q8.a();
+        this.f42995b = new q8.a();
         this.d = new Object();
         this.e = true;
-        this.f43041c = u2Var;
+        this.f42996c = u2Var;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class c extends g {
                 if (!this.e) {
                     return;
                 }
-                this.f43041c.l();
+                this.f42996c.l();
                 this.e = false;
             } catch (Throwable th2) {
                 throw th2;
@@ -74,7 +74,7 @@ public final class c extends g {
         }
         synchronized (this.d) {
             if (this.e) {
-                u2 u2Var = this.f43041c;
+                u2 u2Var = this.f42996c;
                 l.h(I);
                 n10 = u2Var.n(I, g3.b(iVar));
             } else {
@@ -85,14 +85,14 @@ public final class c extends g {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i16 = 0;
         for (a aVar : n10) {
-            int i17 = aVar.f43034a;
+            int i17 = aVar.f42989a;
             i16 = Math.max(i16, i17);
             if (hashSet.contains(Integer.valueOf(i17))) {
                 i17 = i16 + 1;
                 i16 = i17;
             }
             hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f43040b.a(i17), aVar);
+            sparseArray.append(this.f42995b.a(i17), aVar);
         }
         return sparseArray;
     }

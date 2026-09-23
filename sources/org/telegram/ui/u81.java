@@ -1,30 +1,100 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class u81 implements RequestDelegate {
-    public final int f37847a;
-    public final f91 f37848b;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class u81 extends LinearLayout implements org.telegram.ui.ActionBar.y5 {
+    public final org.telegram.ui.ActionBar.d6 f37950a;
+    public final org.telegram.ui.Components.pb0 f37951b;
+    public final FrameLayout f37952c;
+    public final ImageView d;
+    public final TextView e;
+    public final TextView f37953f;
+    public final TextView h;
+    public boolean f37954n;
 
-    public u81(f91 f91Var, int i10) {
-        this.f37847a = i10;
-        this.f37848b = f91Var;
+    public u81(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f37950a = d6Var;
+        setOrientation(0);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f37952c = frameLayout;
+        org.telegram.ui.Components.pb0 pb0Var = new org.telegram.ui.Components.pb0(1);
+        this.f37951b = pb0Var;
+        frameLayout.setBackground(pb0Var);
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        frameLayout.addView(imageView, w7.x5.e(24, 24, 17));
+        LinearLayout f7 = org.telegram.messenger.ul.f(context, 1);
+        TextView textView = new TextView(context);
+        this.e = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView h = com.google.android.gms.internal.vision.e2.h(f7, textView, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
+        this.f37953f = h;
+        h.setTextSize(1, 13.0f);
+        TextView h10 = com.google.android.gms.internal.vision.e2.h(f7, h, w7.x5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2), context);
+        this.h = h10;
+        h10.setTextSize(1, 16.0f);
+        if (LocaleController.isRTL) {
+            addView(h10, w7.x5.t(-2, -2, 16, 20, 0, 0, 0));
+            addView(f7, w7.x5.p(0, -2, 1.0f, 23, 20, 0, 18, 0));
+            addView(frameLayout, w7.x5.t(28, 28, 21, 0, 0, 18, 0));
+        } else {
+            addView(frameLayout, w7.x5.t(28, 28, 19, 18, 0, 0, 0));
+            addView(f7, w7.x5.p(0, -2, 1.0f, 23, 18, 0, 20, 0));
+            addView(h10, w7.x5.t(-2, -2, 16, 0, 0, 20, 0));
+        }
+        e();
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f37847a) {
-            case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                f91 f91Var = this.f37848b;
-                f91Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new u81(f91Var, 1));
-                return;
-            default:
-                this.f37848b.getMessagesController().loadAppConfig();
-                return;
+    public final void e() {
+        boolean q6;
+        int i10 = org.telegram.ui.ActionBar.h6.G6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f37950a;
+        this.e.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
+        this.f37953f.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19170y6, d6Var));
+        this.h.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18973n6, d6Var));
+        if (d6Var != null) {
+            q6 = d6Var.a();
+        } else {
+            q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
+        this.f37951b.f26997b = q6;
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+        if (this.f37954n) {
+            f7 = 60.0f;
+        } else {
+            f7 = 50.0f;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824));
+    }
+
+    public void setValue(CharSequence charSequence) {
+        int i10;
+        if (!TextUtils.isEmpty(charSequence)) {
+            i10 = 0;
+        } else {
+            i10 = 8;
+        }
+        TextView textView = this.h;
+        textView.setVisibility(i10);
+        textView.setText(charSequence);
     }
 }

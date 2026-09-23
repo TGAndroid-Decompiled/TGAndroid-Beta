@@ -3,7 +3,7 @@ package n2;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import k2.c0;
+import k2.b0;
 public interface q {
     h2.b B(byte[] bArr);
 
@@ -15,7 +15,7 @@ public interface q {
 
     byte[] X(byte[] bArr, byte[] bArr2);
 
-    void a(c0 c0Var);
+    void a(b0 b0Var);
 
     Map d(byte[] bArr);
 

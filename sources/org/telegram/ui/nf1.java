@@ -1,51 +1,25 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class nf1 extends AnimatorListenerAdapter {
-    public final int f35978a;
-    public final boolean f35979b;
-    public final eg1 f35980c;
+import org.telegram.tgnet.TLRPC;
+public final class nf1 extends og.a {
+    public final TLRPC.TL_forumTopic f35518c;
 
-    public nf1(eg1 eg1Var, boolean z10, int i10) {
-        this.f35978a = i10;
-        this.f35980c = eg1Var;
-        this.f35979b = z10;
+    public nf1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
+        super(i10, true);
+        this.f35518c = tL_forumTopic;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        int i10;
-        switch (this.f35978a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                boolean z10 = this.f35979b;
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                eg1 eg1Var = this.f35980c;
-                eg1Var.S0(f7);
-                if (z10) {
-                    eg1Var.f33323q0.setVisibility(8);
-                    return;
-                }
-                Activity parentActivity = eg1Var.getParentActivity();
-                i10 = ((org.telegram.ui.ActionBar.n2) eg1Var).classGuid;
-                AndroidUtilities.setAdjustResizeToNothing(parentActivity, i10);
-                eg1Var.f33325r0.setVisibility(8);
-                eg1Var.Q0(true);
-                return;
-            default:
-                if (!this.f35979b) {
-                    this.f35980c.f33321o0.setVisibility(8);
-                    return;
-                }
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && nf1.class == obj.getClass()) {
+            nf1 nf1Var = (nf1) obj;
+            int i10 = this.f15508a;
+            if (i10 == nf1Var.f15508a && i10 == 0 && this.f35518c.f18135id == nf1Var.f35518c.f18135id) {
+                return true;
+            }
+        }
+        return false;
     }
 }

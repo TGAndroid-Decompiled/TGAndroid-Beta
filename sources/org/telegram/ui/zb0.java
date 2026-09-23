@@ -1,29 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-public final class zb0 implements Runnable {
-    public final int f40146a;
-    public final fc0 f40147b;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class zb0 extends xn {
+    public boolean Pc;
+    public final TLRPC.User Qc;
+    public final TLRPC.User[] Rc;
+    public final long Sc;
 
-    public zb0(fc0 fc0Var, int i10) {
-        this.f40146a = i10;
-        this.f40147b = fc0Var;
+    public zb0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j3) {
+        super(bundle);
+        this.Qc = user;
+        this.Rc = userArr;
+        this.Sc = j3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40146a) {
-            case 0:
-                fc0 fc0Var = this.f40147b;
-                if (fc0Var.h >= 0) {
-                    ConnectionsManager.getInstance(fc0Var.f33564b).cancelRequest(fc0Var.h, true);
-                    fc0Var.h = -1;
-                    return;
-                }
-                return;
-            default:
-                this.f40147b.a();
-                return;
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Pc) {
+            this.Pc = true;
+            org.telegram.ui.Components.xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Rc[0])), new ai.j(this, this.Sc, 25)), R.raw.contact_check).j();
         }
     }
 }

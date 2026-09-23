@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Rect;
-public final class tr0 extends org.telegram.ui.c21 {
+public final class tr0 extends org.telegram.ui.u11 {
     public final yu0 H;
 
     public tr0(yu0 yu0Var, Context context, pv0 pv0Var, ai.x8 x8Var, rr0 rr0Var) {
@@ -18,7 +18,7 @@ public final class tr0 extends org.telegram.ui.c21 {
         setClipBounds(rect);
         invalidate();
         yu0 yu0Var = this.H;
-        rt0[] rt0VarArr = yu0Var.f30365k0;
+        rt0[] rt0VarArr = yu0Var.f30426k0;
         if (rt0VarArr != null) {
             for (rt0 rt0Var : rt0VarArr) {
                 if (rt0Var != null && (xr0Var = rt0Var.h) != null) {
@@ -27,7 +27,7 @@ public final class tr0 extends org.telegram.ui.c21 {
                     int paddingRight = rt0Var.h.getPaddingRight();
                     xr0 xr0Var2 = rt0Var.h;
                     int Y = yu0Var.Y(yu0Var.v0());
-                    xr0Var2.f27442e3 = Y;
+                    xr0Var2.f27449e3 = Y;
                     xr0Var.setPadding(paddingLeft, Z, paddingRight, Y);
                 }
             }

@@ -2,15 +2,15 @@ package v7;
 
 import java.util.AbstractMap;
 public final class k9 extends h9 {
-    public final a f44033c;
+    public final a f43987c;
 
     public k9(a aVar) {
-        this.f44033c = aVar;
+        this.f43987c = aVar;
     }
 
     @Override
     public final Object get(int i10) {
-        a aVar = this.f44033c;
+        a aVar = this.f43987c;
         w7.w7.a(i10, aVar.e);
         int i11 = i10 + i10;
         Object[] objArr = aVar.d;
@@ -23,6 +23,6 @@ public final class k9 extends h9 {
 
     @Override
     public final int size() {
-        return this.f44033c.e;
+        return this.f43987c.e;
     }
 }

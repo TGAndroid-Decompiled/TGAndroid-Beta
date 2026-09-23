@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.widget.TextView;
-public final class sc extends yp0 {
+public final class sc extends sp0 {
     public final tc F;
 
-    public sc(tc tcVar, Context context, int i10, long j3, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(i10, j3, context, e6Var);
+    public sc(tc tcVar, Context context, int i10, long j3, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(i10, j3, context, d6Var);
         this.F = tcVar;
     }
 
@@ -16,7 +16,7 @@ public final class sc extends yp0 {
         tc tcVar = this.F;
         TextView textView = tcVar.d;
         if (textView != null) {
-            textView.setTextColor(tcVar.f37631b.h.getTextColor());
+            textView.setTextColor(tcVar.f37602b.h.getTextColor());
         }
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class o extends k implements List, RandomAccess {
-    public static final m f45528b = new m(s.e, 0);
+    public static final m f45482b = new m(s.e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -136,7 +136,7 @@ public abstract class o extends k implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f45528b;
+                return f45482b;
             }
             return new m(this, i10);
         }

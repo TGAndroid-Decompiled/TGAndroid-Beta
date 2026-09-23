@@ -1,26 +1,12 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class v91 implements RequestDelegate {
-    public final int f38453a;
-    public final za1 f38454b;
-
-    public v91(za1 za1Var, int i10) {
-        this.f38453a = i10;
-        this.f38454b = za1Var;
-    }
-
+import android.graphics.Canvas;
+public final class v91 extends kg.c {
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38453a) {
-            case 0:
-                za1.U(this.f38454b, tLObject);
-                return;
-            default:
-                za1.V(this.f38454b, tLObject);
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (getTranslationY() != 0.0f) {
+            canvas.drawColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18789d6, false));
         }
+        super.onDraw(canvas);
     }
 }

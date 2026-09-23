@@ -1,58 +1,40 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class sr implements org.telegram.ui.Cells.a5, gg.b2 {
-    public final tr f37441a;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class sr {
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f37404a;
+    public final LinearLayout f37405b;
+    public final kr0 f37406c;
 
-    public sr(tr trVar) {
-        this.f37441a = trVar;
-    }
-
-    @Override
-    public a0.i F() {
-        return null;
-    }
-
-    @Override
-    public boolean O(int i10) {
-        return true;
-    }
-
-    @Override
-    public boolean c(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
-        int intValue = ((Integer) b5Var.getTag()).intValue();
-        tr trVar = this.f37441a;
-        TLObject E = trVar.E(intValue);
-        if (E instanceof TLRPC.ChannelParticipant) {
-            return trVar.f37723y.h0((TLRPC.ChannelParticipant) E, !z10, b5Var);
+    public sr(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.vg0 vg0Var, kr0 kr0Var) {
+        this.f37406c = kr0Var;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
+        this.f37404a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
+        org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
+        c10.setOnClickListener(new rr(vg0Var, 0));
+        c10.c(-328966, -328966);
+        c10.setSelectorColor(268435455);
+        View w5Var = new ai.w5(contextThemeWrapper, 11);
+        w5Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        w5Var.setBackgroundColor(-15198184);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(w5Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) w5Var.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
         }
-        return false;
-    }
-
-    @Override
-    public void h(int i10) {
-        tr trVar = this.f37441a;
-        ur urVar = trVar.f37723y;
-        if (!trVar.h.e()) {
-            int i11 = trVar.f37719r;
-            trVar.l();
-            if (trVar.f37719r > i11) {
-                urVar.y0(i11);
-            }
-            if (!trVar.f37720s && trVar.f37719r == 0 && i10 != 0) {
-                urVar.f38110b.e(false, true);
-            }
-        }
-    }
-
-    @Override
-    public a0.i w() {
-        return null;
-    }
-
-    @Override
-    public void Q(ArrayList arrayList) {
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(8.0f);
+        w5Var.setLayoutParams(layoutParams);
+        LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
+        this.f37405b = linearLayout;
+        linearLayout.setOrientation(1);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }
 }

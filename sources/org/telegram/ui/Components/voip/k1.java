@@ -1,26 +1,26 @@
 package org.telegram.ui.Components.voip;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.aj0;
+import org.telegram.ui.Components.bj0;
 public final class k1 implements Runnable {
-    public final int f29031a;
-    public final o1 f29032b;
-    public final aj0 f29033c;
+    public final int f29005a;
+    public final o1 f29006b;
+    public final bj0 f29007c;
 
-    public k1(o1 o1Var, aj0 aj0Var, int i10) {
-        this.f29031a = i10;
-        this.f29032b = o1Var;
-        this.f29033c = aj0Var;
+    public k1(o1 o1Var, bj0 bj0Var, int i10) {
+        this.f29005a = i10;
+        this.f29006b = o1Var;
+        this.f29007c = bj0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f29031a) {
+        switch (this.f29005a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new k1(this.f29032b, this.f29033c, 1));
+                AndroidUtilities.runOnUIThread(new k1(this.f29006b, this.f29007c, 1));
                 return;
             default:
-                this.f29032b.removeView(this.f29033c);
+                this.f29006b.removeView(this.f29007c);
                 return;
         }
     }

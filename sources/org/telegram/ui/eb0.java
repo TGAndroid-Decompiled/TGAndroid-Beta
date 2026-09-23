@@ -1,45 +1,32 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-public final class eb0 implements qf.c {
-    public final kb0 f33259a;
-    public final LaunchActivity f33260b;
+import android.window.OnBackInvokedCallback;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class eb0 implements OnBackInvokedCallback {
+    public final LaunchActivity f32883a;
 
     public eb0(LaunchActivity launchActivity) {
-        this.f33260b = launchActivity;
-        Pattern pattern = LaunchActivity.B1;
-        this.f33259a = new kb0(launchActivity, false);
+        this.f32883a = launchActivity;
     }
 
-    @Override
-    public final void b() {
-        Pattern pattern = LaunchActivity.B1;
-        this.f33260b.getWindow();
-    }
-
-    @Override
-    public final void d() {
-        this.f33259a.a(false);
-    }
-
-    @Override
-    public final void f() {
-        Pattern pattern = LaunchActivity.B1;
-        LaunchActivity launchActivity = this.f33260b;
-        launchActivity.getClass();
-        this.f33259a.a(true);
-        launchActivity.getWindow();
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void e() {
+    public final void onBackInvoked() {
+        if (AndroidUtilities.isTablet()) {
+            this.f32883a.onBackPressed();
+        } else if (!this.f32883a.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f32883a;
+            ActionBarLayout actionBarLayout = launchActivity.f30815q0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f18358c1) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.f18358c1 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
+        }
     }
 }

@@ -1,31 +1,26 @@
 package ci;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.LaunchActivity;
 public final class ab implements Runnable {
-    public final int f4362a;
-    public final Utilities.Callback f4363b;
+    public final int f4355a;
+    public final lc f4356b;
 
-    public ab(int i10, Utilities.Callback callback) {
-        this.f4362a = i10;
-        this.f4363b = callback;
+    public ab(lc lcVar, int i10) {
+        this.f4355a = i10;
+        this.f4356b = lcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f4362a) {
+        switch (this.f4355a) {
             case 0:
-                this.f4363b.run(LaunchActivity.U());
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new ab(3, this.f4363b));
-                return;
-            case 2:
-                this.f4363b.run(null);
+                lc lcVar = this.f4356b;
+                lcVar.getClass();
+                lcVar.g(1.0f, true, new ha(lcVar, 6));
+                lcVar.f5031b1.b(true, true);
                 return;
             default:
-                this.f4363b.run(null);
+                lc lcVar2 = this.f4356b;
+                lcVar2.f(false);
+                lcVar2.f5065m2 = null;
                 return;
         }
     }

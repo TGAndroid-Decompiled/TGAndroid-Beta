@@ -22,42 +22,42 @@ import ka.c;
 import m5.e;
 import org.telegram.ui.Cells.q3;
 public final class b implements e {
-    public final c f12880a;
-    public final ConnectivityManager f12881b;
-    public final Context f12882c;
+    public final c f12870a;
+    public final ConnectivityManager f12871b;
+    public final Context f12872c;
     public final URL d;
     public final u5.a e;
-    public final u5.a f12883f;
-    public final int f12884g;
+    public final u5.a f12873f;
+    public final int f12874g;
 
     public b(Context context, u5.a aVar, u5.a aVar2) {
         ka.e eVar = new ka.e();
-        k5.c cVar = k5.c.f13451a;
+        k5.c cVar = k5.c.f13439a;
         eVar.m(o.class, cVar);
         eVar.m(i.class, cVar);
-        f fVar = f.f13461a;
+        f fVar = f.f13449a;
         eVar.m(s.class, fVar);
         eVar.m(l.class, fVar);
-        d dVar = d.f13453a;
+        d dVar = d.f13441a;
         eVar.m(q.class, dVar);
         eVar.m(j.class, dVar);
-        k5.b bVar = k5.b.f13441a;
+        k5.b bVar = k5.b.f13429a;
         eVar.m(k5.a.class, bVar);
         eVar.m(h.class, bVar);
-        k5.e eVar2 = k5.e.f13456a;
+        k5.e eVar2 = k5.e.f13444a;
         eVar.m(r.class, eVar2);
         eVar.m(k.class, eVar2);
-        g gVar = g.f13466a;
+        g gVar = g.f13454a;
         eVar.m(v.class, gVar);
         eVar.m(n.class, gVar);
         eVar.d = true;
-        this.f12880a = new c(eVar, 0);
-        this.f12882c = context;
-        this.f12881b = (ConnectivityManager) context.getSystemService("connectivity");
-        this.d = b(a.f12876c);
+        this.f12870a = new c(eVar, 0);
+        this.f12872c = context;
+        this.f12871b = (ConnectivityManager) context.getSystemService("connectivity");
+        this.d = b(a.f12866c);
         this.e = aVar2;
-        this.f12883f = aVar;
-        this.f12884g = 130000;
+        this.f12873f = aVar;
+        this.f12874g = 130000;
     }
 
     public static URL b(String str) {

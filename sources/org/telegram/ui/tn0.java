@@ -1,51 +1,79 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class tn0 implements Runnable {
-    public final int f37704a;
-    public final wo0 f37705b;
+import org.telegram.messenger.R;
+public final class tn0 extends LinearLayout {
+    public boolean f37721a;
+    public final int f37722b;
+    public final int[] f37723c;
+    public final int[] d;
 
-    public tn0(wo0 wo0Var, int i10) {
-        this.f37704a = i10;
-        this.f37705b = wo0Var;
+    public tn0(Context context, int i10, int[] iArr, int[] iArr2) {
+        super(context);
+        this.f37722b = i10;
+        this.f37723c = iArr;
+        this.d = iArr2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37704a) {
-            case 0:
-                wo0 wo0Var = this.f37705b;
-                wo0Var.f39315f[0].requestFocus();
-                AndroidUtilities.showKeyboard(wo0Var.f39315f[0]);
-                return;
-            case 1:
-                this.f37705b.t0();
-                return;
-            case 2:
-                wo0 wo0Var2 = this.f37705b;
-                wo0Var2.getMessagesController().newMessageCallback = null;
-                if (wo0Var2.f39317f1 == 3 && !wo0Var2.isFinishing()) {
-                    wo0Var2.f39317f1 = 4;
-                    vo0 vo0Var = wo0Var2.Z0;
-                    if (vo0Var != null) {
-                        vo0Var.a(4);
+    public final void onMeasure(int i10, int i11) {
+        View childAt;
+        int size = View.MeasureSpec.getSize(i10);
+        this.f37721a = true;
+        int dp = AndroidUtilities.dp(9.0f);
+        int i12 = this.f37722b;
+        int i13 = (i12 - 1) * dp;
+        int[] iArr = this.f37723c;
+        float f7 = 1.0f;
+        if ((iArr[0] * i12) + i13 <= size) {
+            setWeightSum(1.0f);
+            int childCount = getChildCount();
+            for (int i14 = 0; i14 < childCount; i14++) {
+                getChildAt(i14).getLayoutParams().width = 0;
+                ((LinearLayout.LayoutParams) getChildAt(i14).getLayoutParams()).weight = 1.0f / childCount;
+            }
+        } else if (this.d[0] + i13 <= size) {
+            setWeightSum(1.0f);
+            int i15 = size - i13;
+            int childCount2 = getChildCount();
+            for (int i16 = 0; i16 < childCount2; i16++) {
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i16).getLayoutParams();
+                layoutParams.width = 0;
+                float intValue = ((Integer) childAt.getTag(R.id.width_tag)).intValue() / i15;
+                layoutParams.weight = intValue;
+                f7 -= intValue;
+            }
+            float f10 = f7 / (i12 - 1);
+            if (f10 > 0.0f) {
+                int childCount3 = getChildCount();
+                for (int i17 = 0; i17 < childCount3; i17++) {
+                    View childAt2 = getChildAt(i17);
+                    LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
+                    if (((Integer) childAt2.getTag(R.id.width_tag)).intValue() != iArr[0]) {
+                        layoutParams2.weight += f10;
                     }
-                    wo0Var2.finishFragment();
-                    return;
-                } else if (wo0Var2.f39317f1 == 1 && !wo0Var2.isFinishing()) {
-                    wo0Var2.finishFragment();
-                    return;
-                } else {
-                    return;
                 }
-            default:
-                wo0 wo0Var3 = this.f37705b;
-                if (wo0Var3.f39311d0 != null) {
-                    wo0Var3.w0();
-                    wo0Var3.f39311d0 = null;
-                    return;
-                }
-                return;
+            }
+        } else {
+            setWeightSum(0.0f);
+            int childCount4 = getChildCount();
+            for (int i18 = 0; i18 < childCount4; i18++) {
+                getChildAt(i18).getLayoutParams().width = -2;
+                ((LinearLayout.LayoutParams) getChildAt(i18).getLayoutParams()).weight = 0.0f;
+            }
         }
+        this.f37721a = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f37721a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

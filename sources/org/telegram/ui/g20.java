@@ -1,50 +1,89 @@
 package org.telegram.ui;
+public final class g20 implements org.telegram.ui.Components.eo0 {
+    public final int f33442a;
+    public final sg.a f33443b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class g20 extends FrameLayout {
-    public org.telegram.ui.ActionBar.j5 f33755a;
-    public ImageView f33756b;
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp;
-        int measuredWidth;
-        ImageView imageView = this.f33756b;
-        int i14 = i12 - i10;
-        org.telegram.ui.ActionBar.j5 j5Var = this.f33755a;
-        int textHeight = ((i13 - i11) - j5Var.getTextHeight()) / 2;
-        float f7 = 23.0f;
-        if (LocaleController.isRTL) {
-            int measuredWidth2 = getMeasuredWidth() - j5Var.getMeasuredWidth();
-            if (imageView.getVisibility() == 0) {
-                f7 = 64.0f;
-            }
-            dp = measuredWidth2 - AndroidUtilities.dp(f7);
-        } else {
-            if (imageView.getVisibility() == 0) {
-                f7 = 64.0f;
-            }
-            dp = AndroidUtilities.dp(f7);
-        }
-        j5Var.layout(dp, textHeight, j5Var.getMeasuredWidth() + dp, j5Var.getMeasuredHeight() + textHeight);
-        if (!LocaleController.isRTL) {
-            measuredWidth = AndroidUtilities.dp(20.0f);
-        } else {
-            measuredWidth = (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
-        }
-        imageView.layout(measuredWidth, 0, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight());
+    public g20(sg.a aVar, int i10) {
+        this.f33442a = i10;
+        this.f33443b = aVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        AndroidUtilities.dp(48.0f);
-        this.f33755a.measure(org.telegram.messenger.vl.d(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f33756b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
+    public final void B() {
+        int i10 = this.f33442a;
+    }
+
+    @Override
+    public final void X(float f7, boolean z10) {
+        switch (this.f33442a) {
+            case 0:
+                sg.f fVar = this.f33443b.f42861c;
+                if (fVar != null) {
+                    fVar.v = f7 * 2.0f;
+                    return;
+                }
+                return;
+            case 1:
+                sg.f fVar2 = this.f33443b.f42861c;
+                if (fVar2 != null) {
+                    fVar2.f42920w = f7 * 2.0f;
+                    return;
+                }
+                return;
+            case 2:
+                sg.f fVar3 = this.f33443b.f42861c;
+                if (fVar3 != null) {
+                    fVar3.f42921x = f7;
+                    return;
+                }
+                return;
+            default:
+                sg.f fVar4 = this.f33443b.f42861c;
+                if (fVar4 != null) {
+                    fVar4.A = f7 * 2.0f;
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        switch (this.f33442a) {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            case 2:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public final int m0() {
+        switch (this.f33442a) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
+    }
+
+    private final void d() {
     }
 }

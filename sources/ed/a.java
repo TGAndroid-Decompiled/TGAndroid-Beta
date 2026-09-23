@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import org.telegram.ui.Cells.q3;
 public final class a extends h {
     public static final Pattern e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f8149f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+    public static final Pattern f8135f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
 
     @Override
     public final p b() {
@@ -18,7 +18,7 @@ public final class a extends h {
             kVar.b(new s(i10));
             return kVar;
         }
-        String a10 = a(f8149f);
+        String a10 = a(f8135f);
         if (a10 == null) {
             return null;
         }

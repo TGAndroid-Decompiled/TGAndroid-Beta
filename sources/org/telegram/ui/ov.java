@@ -1,55 +1,30 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ov implements Runnable {
-    public final int f36357a;
-    public final Context f36358b;
+import android.animation.ValueAnimator;
+public final class ov implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35959a;
+    public final ry f35960b;
 
-    public ov(Context context, int i10) {
-        this.f36357a = i10;
-        this.f36358b = context;
+    public ov(ry ryVar, int i10) {
+        this.f35959a = i10;
+        this.f35960b = ryVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36357a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35959a) {
             case 0:
-                org.telegram.ui.ActionBar.i6.J(this.f36358b, false);
+                ry ryVar = this.f35960b;
+                ryVar.getClass();
+                ryVar.z4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f36358b);
-                if (findActivity == null) {
-                    findActivity = LaunchActivity.G1;
-                }
-                if (findActivity != null && !findActivity.isFinishing()) {
-                    findActivity.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                nf.f.s(this.f36358b, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                nf.f.s(this.f36358b, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                nf.f.s(this.f36358b, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                nf.f.s(this.f36358b, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                nf.f.s(this.f36358b, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                nf.f.s(this.f36358b, "https://promote.telegram.org/guidelines");
+                this.f35960b.D4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                nf.f.s(this.f36358b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
+                ry ryVar2 = this.f35960b;
+                ryVar2.getClass();
+                ryVar2.F4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

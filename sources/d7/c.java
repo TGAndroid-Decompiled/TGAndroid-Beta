@@ -2,15 +2,15 @@ package d7;
 
 import java.util.ArrayList;
 public final class c {
-    public final ArrayList f7556a;
+    public final ArrayList f7542a;
 
     public c(int i10) {
         switch (i10) {
             case 1:
-                this.f7556a = new ArrayList();
+                this.f7542a = new ArrayList();
                 return;
             default:
-                this.f7556a = new ArrayList();
+                this.f7542a = new ArrayList();
                 new ArrayList();
                 new ArrayList();
                 return;
@@ -19,7 +19,7 @@ public final class c {
 
     public void a(StringBuilder sb2) {
         String str;
-        if (((Boolean) hg.c.z(1, this.f7556a)).booleanValue()) {
+        if (((Boolean) hg.c.z(1, this.f7542a)).booleanValue()) {
             str = "</ol>";
         } else {
             str = "</ul>";
@@ -28,7 +28,7 @@ public final class c {
     }
 
     public void b(StringBuilder sb2) {
-        while (!this.f7556a.isEmpty()) {
+        while (!this.f7542a.isEmpty()) {
             a(sb2);
         }
     }

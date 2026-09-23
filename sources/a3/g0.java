@@ -16,12 +16,12 @@ import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.po;
+import org.telegram.ui.Components.qo;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.bo;
-import org.telegram.ui.eg1;
-import org.telegram.ui.uy;
-import yh.z3;
+import org.telegram.ui.ry;
+import org.telegram.ui.wf1;
+import org.telegram.ui.xn;
+import yh.y3;
 public final class g0 implements Runnable {
     public final int f116a;
     public final long f117b;
@@ -46,8 +46,8 @@ public final class g0 implements Runnable {
         Object obj2 = this.d;
         switch (i10) {
             case 0:
-                String str = e2.d0.f7885a;
-                j2.f fVar = ((i2.b0) ((l0) ((of.b) obj2).f15510c)).f10623a.f10673s;
+                String str = e2.d0.f7871a;
+                j2.f fVar = ((i2.c0) ((l0) ((of.b) obj2).f15487c)).f10616a.f10675s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, (String) obj, this.f118c, this.f117b));
                 return;
@@ -56,8 +56,8 @@ public final class g0 implements Runnable {
                 ((o1) obj2).n(this.f117b, (TLRPC.TL_textWithEntities) obj, j11);
                 return;
             case 2:
-                String str2 = e2.d0.f7885a;
-                j2.f fVar2 = ((i2.b0) ((k2.j) ((n4.y) obj2).f14993c)).f10623a.f10673s;
+                String str2 = e2.d0.f7871a;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) obj2).f14970c)).f10616a.f10675s;
                 j2.a p10 = fVar2.p();
                 fVar2.q(p10, 1008, new hg.r(p10, (String) obj, this.f118c, this.f117b));
                 return;
@@ -91,26 +91,26 @@ public final class g0 implements Runnable {
                 ((GroupCallMessagesController) obj2).lambda$processUpdate$3(this.f117b, this.f118c, (byte[]) obj);
                 return;
             case 12:
-                ((po) obj2).d(this.f117b, this.f118c, (HashSet) obj);
+                ((qo) obj2).d(this.f117b, this.f118c, (HashSet) obj);
                 return;
             case 13:
-                uy uyVar = (uy) obj2;
-                eg1 eg1Var = (eg1) obj;
-                if (uyVar.C2 != null) {
+                ry ryVar = (ry) obj2;
+                wf1 wf1Var = (wf1) obj;
+                if (ryVar.C2 != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j10, j3));
-                    uyVar.C2.u(uyVar, arrayList, null, false, uyVar.J2, uyVar.K2, uyVar.L2, eg1Var);
-                    if (uyVar.f38245i2) {
-                        uyVar.C2 = null;
+                    ryVar.C2.u(ryVar, arrayList, null, false, ryVar.J2, ryVar.K2, ryVar.L2, wf1Var);
+                    if (ryVar.f37001i2) {
+                        ryVar.C2 = null;
                         return;
                     }
                     return;
                 }
-                uyVar.finishFragment();
+                ryVar.finishFragment();
                 return;
             case 14:
                 LaunchActivity launchActivity = (LaunchActivity) obj2;
-                bo boVar = (bo) obj;
+                xn xnVar = (xn) obj;
                 Pattern pattern = LaunchActivity.B1;
                 TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(launchActivity.O).getTopicsController().findTopic(j10, j3);
                 StringBuilder u10 = a4.a.u(j10, "LaunchActivity openForum after load ", " ");
@@ -118,14 +118,14 @@ public final class g0 implements Runnable {
                 u10.append(" TL_forumTopic ");
                 u10.append(findTopic);
                 FileLog.d(u10.toString());
-                if (launchActivity.f30841q0 != null) {
-                    ng.d.a(boVar, MessagesStorage.TopicKey.of(-j10, j3));
-                    ((ActionBarLayout) launchActivity.O()).P(boVar);
+                if (launchActivity.f30815q0 != null) {
+                    ng.d.a(xnVar, MessagesStorage.TopicKey.of(-j10, j3));
+                    ((ActionBarLayout) launchActivity.O()).P(xnVar);
                     return;
                 }
                 return;
             default:
-                z3.f0((z3) obj2, this.f117b, this.f118c, (Utilities.Callback) obj);
+                y3.e0((y3) obj2, this.f117b, this.f118c, (Utilities.Callback) obj);
                 return;
         }
     }

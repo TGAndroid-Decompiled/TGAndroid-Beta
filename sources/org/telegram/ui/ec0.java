@@ -1,30 +1,61 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class ec0 extends bo {
-    public boolean Pc;
-    public final TLRPC.User Qc;
-    public final TLRPC.User[] Rc;
-    public final long Sc;
+public final class ec0 extends org.telegram.ui.Components.y50 {
+    public final gc0 d;
 
-    public ec0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j3) {
-        super(bundle);
-        this.Qc = user;
-        this.Rc = userArr;
-        this.Sc = j3;
+    public ec0(gc0 gc0Var) {
+        this.d = gc0Var;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Pc) {
-            this.Pc = true;
-            org.telegram.ui.Components.vc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Rc[0])), new ai.j(this, this.Sc, 25)), R.raw.contact_check).j();
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final int h() {
+        return 5;
+    }
+
+    @Override
+    public final int i() {
+        return 100;
+    }
+
+    @Override
+    public final int j() {
+        return LiteMode.getPowerSaverLevel();
+    }
+
+    @Override
+    public final void k(int i10) {
+        gc0 gc0Var = this.d;
+        float f7 = i10 / 100.0f;
+        gc0Var.h.f24064w.X(f7, true);
+        gc0Var.h.setProgress(f7);
+    }
+
+    @Override
+    public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        super.onPopulateAccessibilityEvent(view, accessibilityEvent);
+        StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
+        sb2.append(", ");
+        int powerSaverLevel = LiteMode.getPowerSaverLevel();
+        if (powerSaverLevel <= 0) {
+            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
+        } else if (powerSaverLevel >= 100) {
+            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
+        } else {
+            sb2.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
         }
+        accessibilityEvent.setContentDescription(sb2);
+        this.d.setContentDescription(sb2);
     }
 }

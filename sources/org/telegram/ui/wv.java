@@ -1,161 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.XiaomiUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class wv implements org.telegram.ui.Components.lq0, org.telegram.ui.Components.al0, org.telegram.ui.Components.bl0, o10, org.telegram.ui.ActionBar.a2, r0.n, org.telegram.ui.Components.nk0 {
-    public final int f39390a;
-    public final uy f39391b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+public final class wv implements MessagesStorage.IntCallback {
+    public final int f39110a;
+    public final ry f39111b;
 
-    public wv(uy uyVar, int i10) {
-        this.f39390a = i10;
-        this.f39391b = uyVar;
+    public wv(ry ryVar, int i10) {
+        this.f39110a = i10;
+        this.f39111b = ryVar;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        UndoView[] undoViewArr;
-        uy uyVar = this.f39391b;
-        uyVar.v.i(l1Var);
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        uyVar.f38226e4 = defaultWindowInsets.f10591b;
-        uyVar.f38232f4 = defaultWindowInsets.d;
-        int i10 = l1Var.f41851a.f(8).d;
-        if (uyVar.f38237g4 != i10) {
-            uyVar.f38237g4 = i10;
-            uyVar.fragmentView.requestLayout();
-        }
-        uyVar.F0.setPadding(0, uyVar.f38226e4, 0, 0);
-        uyVar.X4();
-        for (UndoView undoView : uyVar.f38323y0) {
-            if (undoView != null) {
-                int i11 = uyVar.f38232f4 + uyVar.f38242h4;
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) undoView.getLayoutParams();
-                if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i11) {
-                    marginLayoutParams.bottomMargin = i11;
-                    undoView.setLayoutParams(marginLayoutParams);
+    public final void run(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.f39110a) {
+            case 0:
+                ry ryVar = this.f39111b;
+                ryVar.getClass();
+                if (i10 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-            }
-        }
-        ox oxVar = uyVar.F3;
-        if (oxVar != null) {
-            r0.i0.b(oxVar, l1Var);
-        }
-        return r0.l1.f41850b;
-    }
-
-    @Override
-    public void a() {
-        uy uyVar = this.f39391b;
-        uyVar.Q = true;
-        uyVar.fragmentView.invalidate();
-    }
-
-    @Override
-    public void c(float r7, float r8, int r9, android.view.View r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wv.c(float, float, int, android.view.View):void");
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        uy.o0(this.f39391b, i10);
-        return false;
-    }
-
-    @Override
-    public boolean d1(View view) {
-        switch (this.f39390a) {
-            case 1:
-                return false;
-            case 2:
-                return false;
+                ryVar.U1 = z10;
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", ryVar.U1).apply();
+                ryVar.k3(false);
+                return;
             default:
-                return false;
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39390a) {
-            case 6:
-                uy.g0(this.f39391b);
-                return;
-            case 7:
-            default:
-                uy uyVar = this.f39391b;
-                uyVar.getMessagesController().hidePromoDialog();
-                uyVar.b4(false);
-                return;
-            case 8:
-                uy uyVar2 = this.f39391b;
-                uyVar2.getClass();
-                Intent permissionManagerIntent = XiaomiUtilities.getPermissionManagerIntent();
-                if (permissionManagerIntent != null) {
-                    try {
-                        try {
-                            uyVar2.getParentActivity().startActivity(permissionManagerIntent);
-                            return;
-                        } catch (Exception unused) {
-                            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                            uyVar2.getParentActivity().startActivity(intent);
-                            return;
-                        }
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
+                ry ryVar2 = this.f39111b;
+                ryVar2.getClass();
+                if (i10 != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
                 }
+                ryVar2.U1 = z11;
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", ryVar2.U1).commit();
+                ryVar2.k3(false);
                 return;
-            case 9:
-                uy uyVar3 = this.f39391b;
-                uyVar3.getClass();
-                Intent intent2 = new Intent("android.settings.MANAGE_APP_USE_FULL_SCREEN_INTENT");
-                intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                try {
-                    uyVar3.getParentActivity().startActivity(intent2);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
         }
-    }
-
-    public void h(int i10) {
-        ex exVar = this.f39391b.B1;
-        if (exVar == null) {
-            return;
-        }
-        if (i10 == 0) {
-            exVar.r0(true);
-        } else {
-            exVar.y1(true, false);
-        }
-    }
-
-    public void i(boolean z10, ArrayList arrayList, ArrayList arrayList2, boolean z11) {
-        this.f39391b.W4(z10, arrayList, arrayList2, z11, true);
-    }
-
-    @Override
-    public void r0(View view, float f7, float f10) {
-        int i10 = this.f39390a;
-    }
-
-    private final void b(View view, float f7, float f10) {
-    }
-
-    private final void e(View view, float f7, float f10) {
-    }
-
-    private final void g(View view, float f7, float f10) {
     }
 }

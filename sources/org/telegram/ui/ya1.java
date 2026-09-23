@@ -1,5 +1,45 @@
 package org.telegram.ui;
-public final class ya1 {
-    public int f39795a;
-    public boolean f39796b;
+
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+public final class ya1 extends org.telegram.ui.Components.g51 {
+    public static final int f39779b = 0;
+    public org.telegram.ui.Cells.s7 f39780a;
+
+    static {
+        org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
+    }
+
+    @Override
+    public final void attachedView(org.telegram.ui.Components.ml0 ml0Var, View view, org.telegram.ui.Components.h51 h51Var) {
+        ((org.telegram.ui.Cells.t7) view).l(h51Var.h, false);
+    }
+
+    @Override
+    public final void bindView(View view, org.telegram.ui.Components.h51 h51Var, boolean z10, org.telegram.ui.Components.v51 v51Var, org.telegram.ui.Components.d61 d61Var) {
+        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
+        t7Var.k((MessageObject) h51Var.G, h51Var.v, false);
+        t7Var.i(h51Var.e, false);
+        t7Var.l(h51Var.h, false);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        if (this.f39780a == null) {
+            this.f39780a = new org.telegram.ui.Cells.s7(context, d6Var);
+        }
+        org.telegram.ui.Cells.t7 t7Var = new org.telegram.ui.Cells.t7(context, this.f39780a, i10);
+        t7Var.f21373w0 = true;
+        t7Var.f21350d0 = true;
+        return t7Var;
+    }
+
+    @Override
+    public final boolean equals(org.telegram.ui.Components.h51 h51Var, org.telegram.ui.Components.h51 h51Var2) {
+        if (h51Var.f24512q == h51Var2.f24512q && h51Var.e == h51Var2.e && h51Var.B == h51Var2.B) {
+            return true;
+        }
+        return false;
+    }
 }

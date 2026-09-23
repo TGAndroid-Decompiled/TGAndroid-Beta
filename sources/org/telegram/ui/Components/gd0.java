@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class gd0 implements Runnable {
-    public final int f24320a;
-    public final sd0 f24321b;
+    public final int f24265a;
+    public final sd0 f24266b;
 
     public gd0(sd0 sd0Var, int i10) {
-        this.f24320a = i10;
-        this.f24321b = sd0Var;
+        this.f24265a = i10;
+        this.f24266b = sd0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f24320a;
-        sd0 sd0Var = this.f24321b;
+        int i10 = this.f24265a;
+        sd0 sd0Var = this.f24266b;
         switch (i10) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = sd0Var.f27834r;
-                if (sd0Var.f27837x.getVisibility() != 0 && editTextBoldCursor != null) {
+                EditTextBoldCursor editTextBoldCursor = sd0Var.f27918r;
+                if (sd0Var.f27921x.getVisibility() != 0 && editTextBoldCursor != null) {
                     editTextBoldCursor.requestFocus();
                     AndroidUtilities.showKeyboard(editTextBoldCursor);
                     return;
@@ -29,7 +29,7 @@ public final class gd0 implements Runnable {
                 ofFloat.addUpdateListener(new hd0(sd0Var, 0));
                 ofFloat.addListener(new jd0(sd0Var, 0));
                 ofFloat.setDuration(420L);
-                ofFloat.setInterpolator(qr.h);
+                ofFloat.setInterpolator(rr.h);
                 ofFloat.start();
                 return;
         }

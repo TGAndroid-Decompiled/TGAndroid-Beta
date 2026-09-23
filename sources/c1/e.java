@@ -21,15 +21,15 @@ import v7.o6;
 import w7.g8;
 public final class e extends b1.d {
     public final Context e;
-    public i f3650f;
-    public Executor f3651g;
+    public i f3645f;
+    public Executor f3646g;
     public CancellationSignal h;
-    public final d f3652i;
+    public final d f3647i;
 
     public e(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
         this.e = context;
-        this.f3652i = new d(this, new Handler(Looper.getMainLooper()), 0);
+        this.f3647i = new d(this, new Handler(Looper.getMainLooper()), 0);
     }
 
     public final v0.p d(x5.g r14) {
@@ -37,7 +37,7 @@ public final class e extends b1.d {
     }
 
     public final i e() {
-        i iVar = this.f3650f;
+        i iVar = this.f3645f;
         if (iVar != null) {
             return iVar;
         }
@@ -46,7 +46,7 @@ public final class e extends b1.d {
     }
 
     public final Executor f() {
-        Executor executor = this.f3651g;
+        Executor executor = this.f3646g;
         if (executor != null) {
             return executor;
         }
@@ -60,8 +60,8 @@ public final class e extends b1.d {
         kotlin.jvm.internal.i.e(callback, "callback");
         kotlin.jvm.internal.i.e(executor, "executor");
         this.h = cancellationSignal;
-        this.f3650f = callback;
-        this.f3651g = executor;
+        this.f3645f = callback;
+        this.f3646g = executor;
         CredentialProviderPlayServicesImpl.Companion.getClass();
         if (g.a(cancellationSignal)) {
             return;
@@ -77,13 +77,13 @@ public final class e extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         x5.b bVar2 = bVar;
         boolean z11 = false;
-        for (q qVar : request.f43813a) {
+        for (q qVar : request.f43766a) {
             if ((qVar instanceof q) && !z11) {
                 if (j3 >= 231815000) {
-                    LinkedHashMap linkedHashMap = f.f7410a;
+                    LinkedHashMap linkedHashMap = f.f7396a;
                     bVar2 = new x5.b(qVar.d, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = f.f7410a;
+                    LinkedHashMap linkedHashMap2 = f.f7396a;
                     JSONObject jSONObject = new JSONObject(qVar.d);
                     String optString = jSONObject.optString("rpId", "");
                     kotlin.jvm.internal.i.b(optString);
@@ -97,18 +97,18 @@ public final class e extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z10 = request.f43814b;
+            z10 = request.f43767b;
         } else {
             z10 = false;
         }
         i7.b a2 = g8.a(context);
         new x5.a(false, null, null, true, null, null, false);
-        x5.e eVar = new x5.e(dVar, aVar, a2.f11016k, false, 0, cVar, bVar2, z10);
+        x5.e eVar = new x5.e(dVar, aVar, a2.f11004k, false, 0, cVar, bVar2, z10);
         v e = w.e();
         e.d = new k6.c[]{new k6.c("auth_api_credentials_begin_sign_in", 8L)};
-        e.f6180c = new a6.i(a2, eVar);
-        e.f6179b = false;
-        e.f6178a = 1553;
+        e.f6166c = new a6.i(a2, eVar);
+        e.f6165b = false;
+        e.f6164a = 1553;
         a2.e(0, e.a()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 13)).addOnFailureListener(new ah.b(4, this, cancellationSignal));
     }
 }

@@ -3,38 +3,38 @@ package ci;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.Utilities;
 public final class e1 implements Utilities.Callback {
-    public final int f4583a;
-    public final t2 f4584b;
+    public final int f4592a;
+    public final s2 f4593b;
 
-    public e1(t2 t2Var, int i10) {
-        this.f4583a = i10;
-        this.f4584b = t2Var;
+    public e1(s2 s2Var, int i10) {
+        this.f4592a = i10;
+        this.f4593b = s2Var;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f4583a;
-        t2 t2Var = this.f4584b;
+        int i10 = this.f4592a;
+        s2 s2Var = this.f4593b;
         Integer num = (Integer) obj;
         switch (i10) {
             case 0:
-                t2.m(t2Var);
+                s2.m(s2Var);
                 return;
             case 1:
-                i1 i1Var = t2Var.f5546f;
+                i1 i1Var = s2Var.f5474f;
                 ValueAnimator valueAnimator = i1Var.Q;
                 if ((valueAnimator == null || !valueAnimator.isRunning()) && i1Var.getCurrentPosition() != num.intValue()) {
                     i1Var.D(num.intValue());
-                    s2 s2Var = t2Var.h;
-                    s2Var.F = num.intValue();
-                    s2Var.invalidate();
+                    r2 r2Var = s2Var.h;
+                    r2Var.F = num.intValue();
+                    r2Var.invalidate();
                     return;
                 }
                 return;
             default:
                 int intValue = num.intValue();
-                int i11 = t2.G;
-                t2Var.p0(intValue);
+                int i11 = s2.G;
+                s2Var.p0(intValue);
                 return;
         }
     }

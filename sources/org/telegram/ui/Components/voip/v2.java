@@ -16,9 +16,9 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.aa;
-import org.telegram.ui.Components.v81;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.ca;
+import org.telegram.ui.Components.u81;
 import w7.x5;
 public class v2 extends FrameLayout {
     public String E;
@@ -40,26 +40,26 @@ public class v2 extends FrameLayout {
     public ValueAnimator U;
     public ValueAnimator V;
     public float W;
-    public final Paint f29309a;
-    public boolean f29310b;
-    public boolean f29311c;
+    public final Paint f29283a;
+    public boolean f29284b;
+    public boolean f29285c;
     public boolean d;
     public final Drawable[] e;
-    public final FrameLayout f29312f;
+    public final FrameLayout f29286f;
     public final TextView[] h;
-    public int f29313n;
-    public int f29314r;
-    public float f29315s;
+    public int f29287n;
+    public int f29288r;
+    public float f29289s;
     public ValueAnimator v;
-    public int f29316w;
-    public int f29317x;
-    public int f29318y;
+    public int f29290w;
+    public int f29291x;
+    public int f29292y;
 
     public v2(Context context, float f7) {
         super(context);
-        this.f29309a = new Paint(1);
-        this.f29310b = true;
-        this.f29311c = true;
+        this.f29283a = new Paint(1);
+        this.f29284b = true;
+        this.f29285c = true;
         this.e = new Drawable[2];
         this.h = new TextView[2];
         this.I = new Paint(1);
@@ -68,7 +68,7 @@ public class v2 extends FrameLayout {
         this.T = f7;
         setWillNotDraw(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f29312f = frameLayout;
+        this.f29286f = frameLayout;
         addView(frameLayout);
         for (int i10 = 0; i10 < 2; i10++) {
             TextView textView = new TextView(context);
@@ -76,7 +76,7 @@ public class v2 extends FrameLayout {
             textView.setTextSize(1, 11.0f);
             textView.setTextColor(-1);
             textView.setImportantForAccessibility(2);
-            this.f29312f.addView(textView, x5.d(-1, -2.0f, 0, 0.0f, f7 + 6.0f, 0.0f, 0.0f));
+            this.f29286f.addView(textView, x5.d(-1, -2.0f, 0, 0.0f, f7 + 6.0f, 0.0f, 0.0f));
             this.h[i10] = textView;
         }
         this.h[1].setVisibility(8);
@@ -90,7 +90,7 @@ public class v2 extends FrameLayout {
     public final void a(int i10, int i11) {
         this.R = i10;
         this.S = i11;
-        this.f29313n = i0.a.d(this.Q, i10, i11);
+        this.f29287n = i0.a.d(this.Q, i10, i11);
         invalidate();
     }
 
@@ -112,7 +112,7 @@ public class v2 extends FrameLayout {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
                     this.U = ofFloat;
                     ofFloat.addUpdateListener(new u2(this, 0));
-                    this.U.addListener(new v81(this, 9));
+                    this.U.addListener(new u81(this, 9));
                     this.U.setDuration(150L);
                     this.U.start();
                     return;
@@ -135,18 +135,18 @@ public class v2 extends FrameLayout {
             setVisibility(0);
             z12 = false;
         }
-        if (this.f29316w == i10 && this.f29317x == i11 && ((this.O || this.f29318y == i12) && (str2 = this.E) != null && str2.equals(str) && z11 == this.L)) {
+        if (this.f29290w == i10 && this.f29291x == i11 && ((this.O || this.f29292y == i12) && (str2 = this.E) != null && str2.equals(str) && z11 == this.L)) {
             return;
         }
         if (this.N == null || z10) {
             int alpha = Color.alpha(i12);
             float f11 = this.T;
             if (alpha == 255 && AndroidUtilities.computePerceivedBrightness(i12) > 0.5d) {
-                org.telegram.ui.Cells.z h02 = i6.h0(AndroidUtilities.dp(f11), 0, i0.a.k(-16777216, (int) (f7 * 25.5f)));
+                org.telegram.ui.Cells.z h02 = h6.h0(AndroidUtilities.dp(f11), 0, i0.a.k(-16777216, (int) (f7 * 25.5f)));
                 this.N = h02;
                 h02.setCallback(this);
             } else {
-                org.telegram.ui.Cells.z h03 = i6.h0(AndroidUtilities.dp(f11), 0, i0.a.k(-1, (int) (f7 * 76.5f)));
+                org.telegram.ui.Cells.z h03 = h6.h0(AndroidUtilities.dp(f11), 0, i0.a.k(-1, (int) (f7 * 76.5f)));
                 this.N = h03;
                 h03.setCallback(this);
             }
@@ -155,24 +155,24 @@ public class v2 extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f29318y != i12) {
+        if (this.f29292y != i12) {
             z13 = true;
         } else {
             z13 = false;
         }
         this.d = z13;
-        if (this.f29316w == i10) {
+        if (this.f29290w == i10) {
             z14 = true;
         } else {
             z14 = false;
         }
         this.G = z14;
         if (z14) {
-            this.H = this.f29317x;
+            this.H = this.f29291x;
         }
-        this.f29316w = i10;
-        this.f29317x = i11;
-        this.f29318y = i12;
+        this.f29290w = i10;
+        this.f29291x = i11;
+        this.f29292y = i12;
         this.E = str;
         this.L = z11;
         Drawable[] drawableArr = this.e;
@@ -185,7 +185,7 @@ public class v2 extends FrameLayout {
             }
             this.I.setColor(i11);
             if (!this.O) {
-                this.f29313n = i12;
+                this.f29287n = i12;
             }
             textViewArr[0].setText(str);
             if (this.L) {
@@ -195,7 +195,7 @@ public class v2 extends FrameLayout {
             }
             this.K = f10;
             this.G = false;
-            this.f29315s = 0.0f;
+            this.f29289s = 0.0f;
             invalidate();
             return;
         }
@@ -205,7 +205,7 @@ public class v2 extends FrameLayout {
             mutate2.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
         }
         if (!this.O) {
-            this.f29314r = i12;
+            this.f29288r = i12;
         }
         boolean equals = textViewArr[0].getText().toString().equals(str);
         boolean z15 = !equals;
@@ -221,14 +221,14 @@ public class v2 extends FrameLayout {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.v = ofFloat;
         ofFloat.addUpdateListener(new bb(8, this, z15));
-        this.v.addListener(new aa(25, this, z15));
+        this.v.addListener(new ca(25, this, z15));
         this.v.setDuration(150L).start();
         invalidate();
     }
 
     public final void d(boolean z10, boolean z11) {
         float f7 = 0.0f;
-        FrameLayout frameLayout = this.f29312f;
+        FrameLayout frameLayout = this.f29286f;
         if (z11) {
             if (z10) {
                 f7 = 1.0f;
@@ -295,11 +295,11 @@ public class v2 extends FrameLayout {
     }
 
     public void setDrawBackground(boolean z10) {
-        this.f29310b = z10;
+        this.f29284b = z10;
     }
 
     public void setDrawRipple(boolean z10) {
-        this.f29311c = z10;
+        this.f29285c = z10;
     }
 
     public void setPressedBtn(boolean z10) {

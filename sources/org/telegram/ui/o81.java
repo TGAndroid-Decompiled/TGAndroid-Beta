@@ -1,35 +1,128 @@
 package org.telegram.ui;
+public final class o81 extends org.telegram.ui.ActionBar.j {
+    public final int f35711a;
+    public final Object f35712b;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class o81 implements Runnable {
-    public final int f36134a;
-    public final p81 f36135b;
-
-    public o81(p81 p81Var, int i10) {
-        this.f36134a = i10;
-        this.f36135b = p81Var;
+    public o81(Object obj, int i10) {
+        this.f35711a = i10;
+        this.f35712b = obj;
     }
 
     @Override
-    public final void run() {
-        String sb2;
-        switch (this.f36134a) {
+    public final void b(int i10) {
+        switch (this.f35711a) {
             case 0:
-                p81 p81Var = this.f36135b;
-                String str = p81Var.f36472b.text;
-                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
-                    sb2 = LocaleController.getString(R.string.AccountAlreadyLoggedIn);
+                x81 x81Var = (x81) this.f35712b;
+                if (i10 == -1) {
+                    x81Var.finishFragment();
+                    return;
+                } else if (i10 == 2) {
+                    x81Var.l0(new org.telegram.ui.ActionBar.n2(null));
+                    return;
                 } else {
-                    StringBuilder sb3 = new StringBuilder();
-                    org.telegram.messenger.vl.m(R.string.ErrorOccurred, "\n", sb3);
-                    sb3.append(p81Var.f36472b.text);
-                    sb2 = sb3.toString();
+                    return;
                 }
-                org.telegram.ui.Components.c5.u0(p81Var.f36473c, LocaleController.getString(R.string.AuthAnotherClient), sb2, null);
+            case 1:
+                if (i10 == -1) {
+                    ((ra1) this.f35712b).finishFragment();
+                    return;
+                }
+                return;
+            case 2:
+                StickersActivity stickersActivity = (StickersActivity) this.f35712b;
+                if (i10 == -1) {
+                    if (stickersActivity.onBackPressed(true)) {
+                        stickersActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                }
+                StickersActivity.d0(stickersActivity, i10);
+                return;
+            case 3:
+                td1 td1Var = (td1) this.f35712b;
+                if (i10 == -1) {
+                    td1Var.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    td1.Y(td1Var);
+                    return;
+                } else {
+                    return;
+                }
+            case 4:
+                if (i10 == -1) {
+                    ((le1) this.f35712b).finishFragment();
+                    return;
+                }
+                return;
+            case 5:
+                if (i10 == -1) {
+                    ((cg1) this.f35712b).finishFragment();
+                    return;
+                }
+                return;
+            case 6:
+                if (i10 == -1) {
+                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f35712b;
+                    if (twoStepVerificationActivity.X >= 0) {
+                        twoStepVerificationActivity.x0();
+                        return;
+                    } else {
+                        twoStepVerificationActivity.finishFragment();
+                        return;
+                    }
+                }
+                return;
+            case 7:
+                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f35712b;
+                if (i10 == -1) {
+                    if (userInfoActivity.onBackPressed(true)) {
+                        userInfoActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    userInfoActivity.c0(true);
+                    return;
+                } else {
+                    return;
+                }
+            case 8:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f35712b;
+                if (i10 == -1) {
+                    usersSelectActivity.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    usersSelectActivity.X();
+                    return;
+                } else {
+                    return;
+                }
+            case 9:
+                if (i10 == -1) {
+                    ((rg.x0) this.f35712b).dismiss();
+                    return;
+                }
+                return;
+            case 10:
+                if (i10 == -1) {
+                    ((xh.i4) this.f35712b).finishFragment();
+                    return;
+                }
+                return;
+            case 11:
+                if (i10 == -1) {
+                    ((yh.g) this.f35712b).finishFragment();
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.Components.c5.u0(this.f36135b.f36473c, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred), null);
+                zg.q qVar = (zg.q) this.f35712b;
+                if (i10 == -1 && !qVar.X(true)) {
+                    qVar.finishFragment();
+                    return;
+                }
                 return;
         }
     }

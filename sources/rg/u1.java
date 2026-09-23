@@ -8,8 +8,8 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 public class u1 {
     public boolean B;
     public Matrix[] C;
@@ -17,35 +17,35 @@ public class u1 {
     public int[] E;
     public float[] F;
     public boolean G;
-    public e6 O;
+    public d6 O;
     public long Q;
     public long R;
-    public boolean f42496g;
+    public boolean f42451g;
     public boolean h;
-    public Utilities.CallbackReturn f42500l;
-    public boolean f42501m;
-    public final int f42504p;
-    public boolean f42505q;
-    public int f42513z;
-    public final RectF f42492a = new RectF();
-    public final RectF f42493b = new RectF();
-    public final RectF f42494c = new RectF();
+    public Utilities.CallbackReturn f42455l;
+    public boolean f42456m;
+    public final int f42459p;
+    public boolean f42460q;
+    public int f42468z;
+    public final RectF f42447a = new RectF();
+    public final RectF f42448b = new RectF();
+    public final RectF f42449c = new RectF();
     public Bitmap[] d = new Bitmap[3];
     public boolean[] e = new boolean[3];
-    public boolean[] f42495f = new boolean[3];
-    public final Paint f42497i = new Paint();
-    public float f42498j = 0.0f;
-    public float f42499k = 0.0f;
-    public final ArrayList f42502n = new ArrayList();
-    public float f42503o = 1.0f;
-    public int f42506r = 14;
-    public int f42507s = 12;
-    public int f42508t = 10;
-    public float f42509u = 0.85f;
+    public boolean[] f42450f = new boolean[3];
+    public final Paint f42452i = new Paint();
+    public float f42453j = 0.0f;
+    public float f42454k = 0.0f;
+    public final ArrayList f42457n = new ArrayList();
+    public float f42458o = 1.0f;
+    public int f42461r = 14;
+    public int f42462s = 12;
+    public int f42463t = 10;
+    public float f42464u = 0.85f;
     public float v = 0.85f;
-    public float f42510w = 0.9f;
-    public long f42511x = 2000;
-    public int f42512y = 1000;
+    public float f42465w = 0.9f;
+    public long f42466x = 2000;
+    public int f42467y = 1000;
     public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
     public boolean H = false;
     public boolean I = true;
@@ -54,11 +54,11 @@ public class u1 {
     public boolean L = false;
     public boolean M = true;
     public int N = -1;
-    public int P = i6.Uj;
+    public int P = h6.Uj;
     public int S = 0;
 
     public u1(int i10) {
-        this.f42504p = i10;
+        this.f42459p = i10;
         this.B = i10 < 50;
     }
 
@@ -68,15 +68,15 @@ public class u1 {
 
     public int b() {
         if (this.N == 100) {
-            return i0.a.k(i6.v0(this.P, this.O), 200);
+            return i0.a.k(h6.v0(this.P, this.O), 200);
         }
-        return i6.v0(this.P, this.O);
+        return h6.v0(this.P, this.O);
     }
 
     public final void c() {
         a();
         boolean z10 = this.G;
-        int i10 = this.f42504p;
+        int i10 = this.f42459p;
         if (z10) {
             int length = this.d.length;
             this.C = new Matrix[length];
@@ -88,7 +88,7 @@ public class u1 {
                 this.D[i11] = new float[i10 * 2];
             }
         }
-        ArrayList arrayList = this.f42502n;
+        ArrayList arrayList = this.f42457n;
         if (arrayList.isEmpty()) {
             for (int i12 = 0; i12 < i10; i12++) {
                 arrayList.add(new t1(this));
@@ -108,7 +108,7 @@ public class u1 {
         long currentTimeMillis = System.currentTimeMillis();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f42502n;
+            ArrayList arrayList = this.f42457n;
             if (i10 < arrayList.size()) {
                 ((t1) arrayList.get(i10)).b(currentTimeMillis);
                 i10++;
@@ -119,9 +119,9 @@ public class u1 {
     }
 
     public final void g() {
-        int v02 = i6.v0(this.P, this.O);
-        if (this.f42513z != v02) {
-            this.f42513z = v02;
+        int v02 = h6.v0(this.P, this.O);
+        if (this.f42468z != v02) {
+            this.f42468z = v02;
             a();
         }
     }

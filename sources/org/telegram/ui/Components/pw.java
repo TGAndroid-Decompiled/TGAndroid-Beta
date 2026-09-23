@@ -1,19 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class pw extends xy {
-    public final kz H;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class pw extends kz {
+    public final lz d;
 
-    public pw(kz kzVar, Context context) {
-        super(kzVar, context, 2);
-        this.H = kzVar;
+    public pw(lz lzVar) {
+        super(lzVar, 2);
+        this.d = lzVar;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            super.setTranslationY(f7);
-            this.H.f25712g0.invalidate();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ah.h hVar;
+        super.b(recyclerView, i10, i11);
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.d.f25991j2) != null) {
+            hVar.f(i10, i11);
         }
     }
 }

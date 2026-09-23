@@ -1,47 +1,59 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-import org.telegram.messenger.SaveToGallerySettingsHelper;
-public final class q41 extends og.a {
-    public final SaveToGallerySettingsHelper.DialogException f36757c;
-    public final String d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+import org.telegram.messenger.FileLog;
+public final class q41 extends AnimatorListenerAdapter {
+    public final int f36285a;
+    public final org.telegram.ui.Components.fm0 f36286b;
 
-    public q41(int i10) {
-        super(i10, false);
-        this.f36757c = null;
+    public q41(org.telegram.ui.Components.fm0 fm0Var, int i10) {
+        this.f36285a = i10;
+        this.f36286b = fm0Var;
     }
 
-    public final boolean equals(Object obj) {
-        SaveToGallerySettingsHelper.DialogException dialogException;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36285a) {
+            case 0:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36286b.f24009b;
+                secretMediaViewer.Z.getNextView().setText((CharSequence) null);
+                ut0 ut0Var = secretMediaViewer.f31408a0;
+                ut0Var.f33929l0 = false;
+                if (ut0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) ut0Var.f33931o0.getLayoutParams()).topMargin = ut0Var.m0;
+                    ut0Var.m0 = -1;
+                    ut0Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                ((SecretMediaViewer) this.f36286b.f24009b).Z.setTranslationY(0.0f);
+                return;
         }
-        if (obj == null || q41.class != obj.getClass()) {
-            return false;
-        }
-        q41 q41Var = (q41) obj;
-        if (this.f15531a != q41Var.f15531a) {
-            return false;
-        }
-        String str = this.d;
-        if (str != null) {
-            return Objects.equals(str, q41Var.d);
-        }
-        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f36757c;
-        if (dialogException2 == null || (dialogException = q41Var.f36757c) == null || dialogException2.dialogId == dialogException.dialogId) {
-            return true;
-        }
-        return false;
     }
 
-    public q41(SaveToGallerySettingsHelper.DialogException dialogException) {
-        super(2, false);
-        this.f36757c = dialogException;
-    }
-
-    public q41(int i10, String str) {
-        super(i10, false);
-        this.d = str;
-        this.f36757c = null;
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f36285a) {
+            case 0:
+                ut0 ut0Var = ((SecretMediaViewer) this.f36286b.f24009b).f31408a0;
+                Method method = ut0Var.f33923f0;
+                if (method != null) {
+                    try {
+                        method.invoke(ut0Var, null);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

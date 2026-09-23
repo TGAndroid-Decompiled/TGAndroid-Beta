@@ -1,85 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.webkit.WebView;
-import org.telegram.messenger.AndroidUtilities;
-public final class pu extends WebView {
-    public final int f27144a;
-    public final Context f27145b;
-    public final KeyEvent.Callback f27146c;
+import android.content.DialogInterface;
+public final class pu implements DialogInterface.OnShowListener {
+    public final wu f27135a;
 
-    public pu(KeyEvent.Callback callback, Context context, Context context2, int i10) {
-        super(context);
-        this.f27144a = i10;
-        this.f27146c = callback;
-        this.f27145b = context2;
+    public pu(wu wuVar) {
+        this.f27135a = wuVar;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.f27144a) {
-            case 1:
-                org.telegram.ui.iu0 iu0Var = (org.telegram.ui.iu0) this.f27146c;
-                super.draw(canvas);
-                if (eg0.f23635p0.f23644f == this && iu0Var.h.getVisibility() == 0) {
-                    canvas.drawColor(-16777216);
-                    iu0Var.j(canvas, getWidth(), getHeight());
-                    return;
-                }
-                return;
-            default:
-                super.draw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        switch (this.f27144a) {
-            case 0:
-                AndroidUtilities.checkAndroidTheme(this.f27145b, true);
-                super.onAttachedToWindow();
-                return;
-            default:
-                AndroidUtilities.checkAndroidTheme(this.f27145b, true);
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        switch (this.f27144a) {
-            case 0:
-                AndroidUtilities.checkAndroidTheme(this.f27145b, false);
-                super.onDetachedFromWindow();
-                return;
-            default:
-                AndroidUtilities.checkAndroidTheme(this.f27145b, false);
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f27144a) {
-            case 0:
-                vu vuVar = (vu) this.f27146c;
-                boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if (onTouchEvent) {
-                    if (motionEvent.getAction() == 1) {
-                        vuVar.setDisableScroll(false);
-                    } else {
-                        vuVar.setDisableScroll(true);
-                    }
-                }
-                return onTouchEvent;
-            default:
-                return super.onTouchEvent(motionEvent);
+    public final void onShow(DialogInterface dialogInterface) {
+        b91 b91Var = this.f27135a.f29811c;
+        if (eg0.f23661p0.P && b91Var.f()) {
+            b91Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.ga(this, 1));
         }
     }
 }

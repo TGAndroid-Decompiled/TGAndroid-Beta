@@ -1,28 +1,34 @@
 package ai;
 
 import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.in0;
 public final class l5 implements View.OnClickListener {
-    public final int f1178a;
-    public final w5 f1179b;
-    public final org.telegram.ui.ActionBar.e6 f1180c;
-    public final jc d;
+    public final int f1181a;
+    public final boolean f1182b;
+    public final Object f1183c;
+    public final Object d;
+    public final Object e;
 
-    public l5(w5 w5Var, jc jcVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f1178a = 0;
-        this.f1179b = w5Var;
-        this.d = jcVar;
-        this.f1180c = e6Var;
+    public l5(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
+        this.f1181a = i10;
+        this.f1183c = obj;
+        this.d = obj2;
+        this.f1182b = z10;
+        this.e = obj3;
     }
 
     @Override
-    public final void onClick(android.view.View r20) {
+    public final void onClick(android.view.View r11) {
         throw new UnsupportedOperationException("Method not decompiled: ai.l5.onClick(android.view.View):void");
     }
 
-    public l5(w5 w5Var, org.telegram.ui.ActionBar.e6 e6Var, jc jcVar, int i10) {
-        this.f1178a = i10;
-        this.f1179b = w5Var;
-        this.f1180c = e6Var;
-        this.d = jcVar;
+    public l5(ArrayList arrayList, TLRPC.TL_secureRequiredType tL_secureRequiredType, in0 in0Var, boolean z10) {
+        this.f1181a = 2;
+        this.f1183c = in0Var;
+        this.d = arrayList;
+        this.e = tL_secureRequiredType;
+        this.f1182b = z10;
     }
 }

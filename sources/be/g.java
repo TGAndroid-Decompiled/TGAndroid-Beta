@@ -1,4 +1,4 @@
 package be;
 public abstract class g {
-    public static final f f3531a = new Object();
+    public static final f f3526a = new Object();
 }

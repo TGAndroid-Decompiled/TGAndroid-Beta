@@ -1,22 +1,33 @@
 package ii;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class c6 {
-    public final TL_iv.PageBlock f11289a;
-    public final int f11290b;
-    public final int f11291c;
-    public final boolean d;
-    public final boolean e;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.v51;
+public final class c6 extends g51 {
+    public static final int f11283a = 0;
 
-    public c6(TL_iv.PageBlock pageBlock, int i10, int i11) {
-        this(pageBlock, i10, i11, false, false);
+    static {
+        g51.setup(new g51());
     }
 
-    public c6(TL_iv.PageBlock pageBlock, int i10, int i11, boolean z10, boolean z11) {
-        this.f11289a = pageBlock;
-        this.f11290b = i10;
-        this.f11291c = i11;
-        this.d = z10;
-        this.e = z11;
+    @Override
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        ((e6) view).g((a) h51Var.G, (b6) h51Var.H, h51Var.f24513r);
+    }
+
+    @Override
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        e6 e6Var = new e6(context, d6Var);
+        e6Var.setBackground(new b2(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18789d6, d6Var)));
+        return e6Var;
+    }
+
+    @Override
+    public final boolean isClickable() {
+        return false;
     }
 }

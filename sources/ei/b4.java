@@ -13,40 +13,40 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.u9;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.w9;
 import w7.x5;
 public final class b4 extends FrameLayout {
-    public final int f8248a;
-    public final e6 f8249b;
-    public final u9 f8250c;
+    public final int f8234a;
+    public final d6 f8235b;
+    public final w9 f8236c;
     public final View d;
     public final View e;
-    public final ImageView f8251f;
+    public final ImageView f8237f;
     public final TextView h;
-    public final TextView f8252n;
-    public final ImageView f8253r;
-    public boolean f8254s;
+    public final TextView f8238n;
+    public final ImageView f8239r;
+    public boolean f8240s;
 
-    public b4(Context context, int i10, e6 e6Var) {
+    public b4(Context context, int i10, d6 d6Var) {
         super(context);
-        this.f8248a = i10;
-        this.f8249b = e6Var;
-        u9 u9Var = new u9(context);
-        this.f8250c = u9Var;
-        u9Var.setRoundRadius(AndroidUtilities.dp(46.0f));
-        addView(u9Var, x5.d(46, 46.0f, 19, 13.0f, 0.0f, 13.0f, 0.0f));
+        this.f8234a = i10;
+        this.f8235b = d6Var;
+        w9 w9Var = new w9(context);
+        this.f8236c = w9Var;
+        w9Var.setRoundRadius(AndroidUtilities.dp(46.0f));
+        addView(w9Var, x5.d(46, 46.0f, 19, 13.0f, 0.0f, 13.0f, 0.0f));
         View view = new View(context);
         this.d = view;
-        view.setBackground(i6.K(AndroidUtilities.dp(11.0f), i6.v0(i6.f18834d6, e6Var)));
+        view.setBackground(h6.K(AndroidUtilities.dp(11.0f), h6.v0(h6.f18789d6, d6Var)));
         addView(view, x5.d(22, 22.0f, 19, 40.0f, 15.0f, 0.0f, 0.0f));
         View view2 = new View(context);
         this.e = view2;
-        view2.setBackground(i6.K(AndroidUtilities.dp(9.665f), i6.v0(i6.uj, e6Var)));
+        view2.setBackground(h6.K(AndroidUtilities.dp(9.665f), h6.v0(h6.uj, d6Var)));
         addView(view2, x5.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f8251f = imageView;
+        this.f8237f = imageView;
         imageView.setScaleX(0.6f);
         imageView.setScaleY(0.6f);
         addView(imageView, x5.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
@@ -61,19 +61,19 @@ public final class b4 extends FrameLayout {
         textView.setEllipsize(truncateAt);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(i6.v0(i6.G6, e6Var));
+        textView.setTextColor(h6.v0(h6.G6, d6Var));
         NotificationCenter.listenEmojiLoading(textView);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, x5.t(-1, -2, 55, 6, 0, 24, 0), context);
-        this.f8252n = h;
+        this.f8238n = h;
         h.setMaxLines(1);
         h.setSingleLine(true);
         h.setEllipsize(truncateAt);
         h.setTextSize(1, 14.0f);
-        h.setTextColor(i6.v0(i6.f19234z6, e6Var));
+        h.setTextColor(h6.v0(h6.f19189z6, d6Var));
         linearLayout.addView(h, x5.t(-1, -2, 55, 6, 1, 24, 0));
         ImageView imageView2 = new ImageView(context);
-        this.f8253r = imageView2;
-        imageView2.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.M6, e6Var), PorterDuff.Mode.SRC_IN));
+        this.f8239r = imageView2;
+        imageView2.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.M6, d6Var), PorterDuff.Mode.SRC_IN));
         imageView2.setImageResource(R.drawable.msg_arrowright);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView2, x5.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
@@ -82,8 +82,8 @@ public final class b4 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f8254s) {
-            canvas.drawRect(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth(), getHeight(), i6.f18955k0);
+        if (this.f8240s) {
+            canvas.drawRect(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth(), getHeight(), h6.f18910k0);
         }
     }
 

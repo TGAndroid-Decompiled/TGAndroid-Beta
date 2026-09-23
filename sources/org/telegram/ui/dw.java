@@ -1,58 +1,25 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class dw implements View.OnLongClickListener {
-    public final int f33112a;
-    public final uy f33113b;
+import android.app.Activity;
+import org.telegram.messenger.Utilities;
+public final class dw implements Utilities.Callback {
+    public final int f32732a;
+    public final Activity f32733b;
 
-    public dw(uy uyVar, int i10) {
-        this.f33112a = i10;
-        this.f33113b = uyVar;
+    public dw(Activity activity, int i10) {
+        this.f32732a = i10;
+        this.f32733b = activity;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        switch (this.f33112a) {
+    public final void run(Object obj) {
+        switch (this.f32732a) {
             case 0:
-                uy uyVar = this.f33113b;
-                uyVar.r4(uyVar.I2, 104, true, true, null);
-                return true;
-            case 1:
-                uy uyVar2 = this.f33113b;
-                ArrayList arrayList = uyVar2.I2;
-                if (uyVar2.getParentActivity() == null) {
-                    return false;
-                }
-                boolean z10 = true;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    long longValue = ((Long) arrayList.get(i10)).longValue();
-                    if (DialogObject.isEncryptedDialog(longValue)) {
-                        z10 = false;
-                    }
-                    TLRPC.Chat chat = uyVar2.getMessagesController().getChat(Long.valueOf(-longValue));
-                    if (chat != null && !ChatObject.canWriteToChat(chat)) {
-                        z10 = false;
-                    }
-                }
-                org.telegram.ui.Components.n70 H = org.telegram.ui.Components.n70.H(uyVar2, view);
-                H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new pv(uyVar2, 19), false);
-                H.l(R.drawable.msg_calendar2, LocaleController.getString(R.string.ScheduleMessage), new pv(uyVar2, 20), z10);
-                H.Z();
-                return true;
-            case 2:
-                this.f33113b.p4(view);
-                return true;
+                ry.B0(this.f32733b, (Boolean) obj);
+                return;
             default:
-                uy uyVar3 = this.f33113b;
-                uyVar3.getContactsController().loadGlobalPrivacySetting();
-                uyVar3.K4();
-                return true;
+                ry.s0(this.f32733b, (Boolean) obj);
+                return;
         }
     }
 }

@@ -1,137 +1,103 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class g31 extends org.telegram.ui.Components.kl0 {
-    public final Context f33761c;
-    public final h31 d;
+public final class g31 implements Runnable {
+    public final int f33448a;
+    public final xn f33449b;
+    public final Activity f33450c;
+    public final org.telegram.ui.ActionBar.d6 d;
+    public final MessageObject e;
 
-    public g31(h31 h31Var, Context context) {
-        this.d = h31Var;
-        this.f33761c = context;
+    public g31(xn xnVar, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject, int i10) {
+        this.f33448a = i10;
+        this.f33449b = xnVar;
+        this.f33450c = activity;
+        this.d = d6Var;
+        this.e = messageObject;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int b10 = c1Var.b();
-        if (b10 != 0) {
-            h31 h31Var = this.d;
-            if (b10 != h31Var.f34043c && b10 != h31Var.d && b10 != h31Var.e) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.h;
-    }
-
-    @Override
-    public final int j(int i10) {
-        h31 h31Var = this.d;
-        if (i10 == h31Var.f34044f) {
-            return 0;
-        }
-        if (i10 != 0 && i10 != h31Var.f34043c && i10 != h31Var.d && i10 != h31Var.e) {
-            return 1;
-        }
-        return i10 + 9;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        String str;
-        String str2;
-        int i11 = c1Var.f42674f;
-        View view = c1Var.f42671a;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                boolean z10 = false;
-                h31 h31Var = this.d;
-                if (i11 != 4) {
-                    switch (i11) {
-                        case 9:
-                        case 10:
-                        case 11:
-                        case 12:
-                            org.telegram.ui.Cells.j3 j3Var = (org.telegram.ui.Cells.j3) view;
-                            if (i10 == 0) {
-                                str = LocaleController.getString(R.string.QuickReplyDefault1);
-                                str2 = "quick_reply_msg1";
-                            } else if (i10 == h31Var.f34043c) {
-                                str = LocaleController.getString(R.string.QuickReplyDefault2);
-                                str2 = "quick_reply_msg2";
-                            } else if (i10 == h31Var.d) {
-                                str = LocaleController.getString(R.string.QuickReplyDefault3);
-                                str2 = "quick_reply_msg3";
-                            } else if (i10 == h31Var.e) {
-                                str = LocaleController.getString(R.string.QuickReplyDefault4);
-                                str2 = "quick_reply_msg4";
-                            } else {
-                                str = null;
-                                str2 = null;
-                            }
-                            String string = h31Var.getParentActivity().getSharedPreferences("mainconfig", 0).getString(str2, "");
-                            if (i10 != h31Var.e) {
-                                z10 = true;
-                            }
-                            EditTextBoldCursor editTextBoldCursor = j3Var.f20276a;
-                            editTextBoldCursor.setText(string);
-                            editTextBoldCursor.setHint(str);
-                            j3Var.f20277b = z10;
-                            j3Var.setWillNotDraw(!z10);
-                            return;
-                        default:
-                            return;
+    public final void run() {
+        switch (this.f33448a) {
+            case 0:
+                xn xnVar = this.f33449b;
+                org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(xnVar);
+                String string = LocaleController.getString(R.string.AdReported);
+                final Activity activity = this.f33450c;
+                a02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
                     }
-                }
-                ((org.telegram.ui.Cells.w8) view).f(LocaleController.getString(R.string.AllowCustomQuickReply), h31Var.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
+                }, this.d)).j();
+                MessageObject messageObject = this.e;
+                xnVar.Fa(messageObject);
+                xnVar.Ha(messageObject);
                 return;
-            }
-            org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
-            return;
+            case 1:
+                xn xnVar2 = this.f33449b;
+                org.telegram.ui.Components.xc a03 = org.telegram.ui.Components.xc.a0(xnVar2);
+                String string2 = LocaleController.getString(R.string.AdReported);
+                final Activity activity2 = this.f33450c;
+                a03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject2 = this.e;
+                xnVar2.Fa(messageObject2);
+                xnVar2.Ha(messageObject2);
+                return;
+            default:
+                xn xnVar3 = this.f33449b;
+                org.telegram.ui.Components.xc a04 = org.telegram.ui.Components.xc.a0(xnVar3);
+                String string3 = LocaleController.getString(R.string.AdReported);
+                final Activity activity3 = this.f33450c;
+                a04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject3 = this.e;
+                xnVar3.Fa(messageObject3);
+                xnVar3.Ha(messageObject3);
+                return;
         }
-        org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-        e9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.V0(this.f33761c, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f18798b7));
-        e9Var.setText(LocaleController.getString(R.string.VoipQuickRepliesExplain));
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View e9Var;
-        Context context = this.f33761c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                switch (i10) {
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                        org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context);
-                        j3Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18834d6, false));
-                        this.d.f34045n[i10 - 9] = j3Var;
-                        e9Var = j3Var;
-                        break;
-                    default:
-                        e9Var = new org.telegram.ui.Cells.w8(context);
-                        e9Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18834d6, false));
-                        break;
-                }
-            } else {
-                e9Var = new org.telegram.ui.Cells.ea(context);
-                e9Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18834d6, false));
-            }
-        } else {
-            e9Var = new org.telegram.ui.Cells.e9(context);
-        }
-        e9Var.setLayoutParams(new s4.p0(-1, -2));
-        return new s4.c1(e9Var);
     }
 }

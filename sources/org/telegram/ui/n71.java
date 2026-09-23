@@ -1,15 +1,19 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class n71 implements View.OnLayoutChangeListener {
-    public final r71 f35909a;
+public final class n71 implements View.OnClickListener {
+    public final w71 f35448a;
 
-    public n71(r71 r71Var) {
-        this.f35909a = r71Var;
+    public n71(w71 w71Var) {
+        this.f35448a = w71Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        r71.S(this.f35909a);
+    public final void onClick(View view) {
+        org.telegram.ui.Components.bj0 bj0Var = this.f35448a.d;
+        if (!bj0Var.b() && bj0Var.getAnimatedDrawable() != null) {
+            bj0Var.getAnimatedDrawable().M(40);
+            bj0Var.d();
+        }
     }
 }

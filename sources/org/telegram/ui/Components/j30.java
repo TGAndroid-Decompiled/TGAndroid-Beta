@@ -2,67 +2,52 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.accessibility.AccessibilityEvent;
-import android.widget.ImageView;
-public final class j30 extends ImageView {
-    public final int f25213a;
-    public final int f25214b;
-    public final Object f25215c;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class j30 extends TextView {
+    public final Paint[] f25123a;
+    public final m30 f25124b;
 
-    public j30(Object obj, Context context, int i10, int i11) {
+    public j30(m30 m30Var, Context context) {
         super(context);
-        this.f25213a = i11;
-        this.f25215c = obj;
-        this.f25214b = i10;
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f25213a) {
-            case 1:
-                super.onDraw(canvas);
-                org.telegram.ui.z10 z10Var = (org.telegram.ui.z10) this.f25215c;
-                g90 g90Var = z10Var.f40013s;
-                if (z10Var.f40012r) {
-                    int i10 = this.f25214b / 2;
-                    g90Var.setBounds(i10, i10, getWidth() - i10, getHeight() - i10);
-                    g90Var.draw(canvas);
-                    return;
-                }
+        this.f25124b = m30Var;
+        this.f25123a = new Paint[m30Var.e.length];
+        int i10 = 0;
+        while (true) {
+            Paint[] paintArr = this.f25123a;
+            if (i10 < paintArr.length) {
+                paintArr[i10] = new Paint(1);
+                i10++;
+            } else {
                 return;
-            default:
-                super.onDraw(canvas);
-                return;
+            }
         }
     }
 
     @Override
-    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        switch (this.f25213a) {
-            case 0:
-                super.onInitializeAccessibilityEvent(accessibilityEvent);
-                if (accessibilityEvent.getEventType() == 32768) {
-                    ((k30) this.f25215c).f25531c.f25819b.x(this.f25214b, true);
-                    return;
-                }
-                return;
-            default:
-                super.onInitializeAccessibilityEvent(accessibilityEvent);
-                return;
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        m30 m30Var = this.f25124b;
+        int i10 = m30Var.h;
+        Paint[] paintArr = this.f25123a;
+        paintArr[i10].setAlpha(255);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[m30Var.h]);
+        float f7 = m30Var.f26083f;
+        if (f7 > 0.0f) {
+            int i11 = m30Var.h;
+            if (i11 + 1 < paintArr.length) {
+                paintArr[i11 + 1].setAlpha((int) (f7 * 255.0f));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[m30Var.h + 1]);
+            }
         }
+        super.onDraw(canvas);
     }
 
     @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f25213a) {
-            case 1:
-                if (drawable != ((org.telegram.ui.z10) this.f25215c).f40013s && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
-        }
+    public final void onSizeChanged(int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j30.onSizeChanged(int, int, int, int):void");
     }
 }

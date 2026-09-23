@@ -3,276 +3,189 @@ package ci;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.de0;
-import org.telegram.ui.Components.h90;
+import org.telegram.messenger.Utilities;
 public final class r2 extends View {
-    public final Paint f5397a;
-    public final TextPaint f5398b;
-    public final ArrayList f5399c;
-    public float[] d;
-    public e1 e;
-    public final t2 f5400f;
+    public final RectF E;
+    public float F;
+    public e1 G;
+    public int H;
+    public final TextPaint f5426a;
+    public final Paint f5427b;
+    public StaticLayout f5428c;
+    public float d;
+    public float e;
+    public StaticLayout f5429f;
+    public float h;
+    public float f5430n;
+    public StaticLayout f5431r;
+    public float f5432s;
+    public float v;
+    public final RectF f5433w;
+    public final RectF f5434x;
+    public final RectF f5435y;
 
-    public r2(t2 t2Var, Context context) {
+    public r2(Context context) {
         super(context);
-        String str;
-        String a2;
-        int i10;
-        int i11;
-        this.f5400f = t2Var;
-        Paint paint = new Paint(1);
-        this.f5397a = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.f5398b = textPaint;
-        paint.setColor(436207615);
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-        textPaint.setTextSize(AndroidUtilities.dpf2(21.3f));
-        textPaint.setColor(-1);
-        ArrayList arrayList = new ArrayList();
-        this.f5399c = arrayList;
-        setPadding(0, 0, 0, 0);
-        if (t2Var.m0(4)) {
-            o2 o2Var = new o2(this, 4, R.drawable.msg_limit_links, LocaleController.getString(R.string.StoryWidgetLink));
-            i11 = ((org.telegram.ui.ActionBar.f3) t2Var).currentAccount;
-            if (!UserConfig.getInstance(i11).isPremium()) {
-                Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
-                o2Var.f5114j = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.l1(0.6f, -1), PorterDuff.Mode.SRC_IN));
-                Paint paint2 = new Paint(1);
-                o2Var.f5118n = paint2;
-                paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            }
-            arrayList.add(o2Var);
-        }
-        if (t2Var.m0(0)) {
-            arrayList.add(new o2(this, 0, R.drawable.map_pin3, LocaleController.getString(R.string.StoryWidgetLocation)));
-        }
-        if (t2Var.m0(5)) {
-            nd ndVar = od.f5287b;
-            o2[] o2VarArr = {null};
-            StringBuilder sb2 = new StringBuilder();
-            if (ndVar == null) {
-                str = "🌤";
-            } else {
-                str = ndVar.f5101c;
-            }
-            sb2.append(str);
-            sb2.append(" ");
-            if (ndVar == null) {
-                if (od.b()) {
-                    a2 = "24°C";
-                } else {
-                    a2 = "72°F";
-                }
-            } else {
-                a2 = ndVar.a();
-            }
-            sb2.append(a2);
-            CharSequence replaceEmoji = Emoji.replaceEmoji(sb2.toString(), textPaint.getFontMetricsInt(), false);
-            i10 = ((org.telegram.ui.ActionBar.f3) t2Var).currentAccount;
-            SpannableStringBuilder spannableStringBuilder = replaceEmoji;
-            if (MessagesController.getInstance(i10).storyWeatherPreload) {
-                spannableStringBuilder = replaceEmoji;
-                spannableStringBuilder = replaceEmoji;
-                if (de0.f("android.permission.ACCESS_COARSE_LOCATION") && ndVar == null) {
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
-                    spannableStringBuilder2.setSpan(new h90(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
-                    o2VarArr[0] = new o2(this, spannableStringBuilder2);
-                    od.a(false, new m2(0, this, o2VarArr));
-                    spannableStringBuilder = spannableStringBuilder2;
-                }
-            }
-            o2 o2Var2 = o2VarArr[0];
-            arrayList.add(o2Var2 == null ? new o2(this, spannableStringBuilder) : o2Var2);
-        }
-        if (t2Var.m0(1)) {
-            arrayList.add(new o2(this, 1, R.drawable.filled_widget_music, LocaleController.getString(R.string.StoryWidgetAudio)));
-        }
-        if (t2Var.m0(2)) {
-            arrayList.add(new o2(this, 2, R.drawable.filled_premium_camera, LocaleController.getString(R.string.StoryWidgetPhoto)));
-        }
-        if (t2Var.m0(3)) {
-            arrayList.add(new q2(this));
-        }
+        this.f5426a = new TextPaint(1);
+        this.f5427b = new Paint(1);
+        this.f5433w = new RectF();
+        this.f5434x = new RectF();
+        this.f5435y = new RectF();
+        this.E = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.f5399c;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            try {
-                float[] fArr = this.d;
-                if (i11 >= fArr.length) {
-                    break;
-                }
-                fArr[i11] = 0.0f;
-                i11++;
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
+        RectF rectF;
+        RectF rectF2;
+        canvas.drawColor(-14737633);
+        Paint paint = this.f5427b;
+        paint.setColor(-13224394);
+        float f7 = this.F;
+        int i10 = (int) f7;
+        RectF rectF3 = this.f5435y;
+        RectF rectF4 = this.f5434x;
+        RectF rectF5 = this.f5433w;
+        if (i10 <= 0) {
+            rectF = rectF5;
+        } else if (i10 == 1) {
+            rectF = rectF4;
+        } else {
+            rectF = rectF3;
         }
-        int size = arrayList.size();
-        int i12 = 0;
-        while (i12 < size) {
-            Object obj = arrayList.get(i12);
-            i12++;
-            n2 n2Var = (n2) obj;
-            int i13 = n2Var.e - 1;
-            float[] fArr2 = this.d;
-            float f7 = fArr2[i13];
-            if (f7 > 0.0f) {
-                fArr2[i13] = f7 + AndroidUtilities.dp(10.0f);
-            }
-            float[] fArr3 = this.d;
-            fArr3[i13] = fArr3[i13] + n2Var.h.d(n2Var.f5061b, false);
+        int ceil = (int) Math.ceil(f7);
+        if (ceil <= 0) {
+            rectF2 = rectF5;
+        } else if (ceil == 1) {
+            rectF2 = rectF4;
+        } else {
+            rectF2 = rectF3;
         }
-        int size2 = arrayList.size();
-        while (i10 < size2) {
-            Object obj2 = arrayList.get(i10);
-            i10++;
-            n2 n2Var2 = (n2) obj2;
-            n2Var2.a(canvas, com.google.android.gms.internal.vision.e2.A((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[n2Var2.e - 1], 2.0f, getPaddingLeft()) + n2Var2.d, org.telegram.messenger.y0.D(48.0f, n2Var2.e - 1, AndroidUtilities.dp(12.0f)));
+        float f10 = this.F;
+        RectF rectF6 = this.E;
+        AndroidUtilities.lerp(rectF, rectF2, f10 - ((int) f10), rectF6);
+        canvas.drawRoundRect(rectF6, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), paint);
+        StaticLayout staticLayout = this.f5428c;
+        TextPaint textPaint = this.f5426a;
+        if (staticLayout != null) {
+            canvas.save();
+            canvas.translate((rectF5.left + AndroidUtilities.dp(12.0f)) - this.e, com.google.android.gms.internal.vision.e2.A(rectF5.height(), this.f5428c.getHeight(), 2.0f, rectF5.top));
+            textPaint.setColor(i0.a.d(Utilities.clamp(1.0f - Math.abs(this.F - 0.0f), 1.0f, 0.0f), -8158333, -1));
+            this.f5428c.draw(canvas);
+            canvas.restore();
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ArrayList arrayList = this.f5399c;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((n2) obj).b(true);
+        if (this.f5429f != null) {
+            canvas.save();
+            canvas.translate((rectF4.left + AndroidUtilities.dp(12.0f)) - this.f5430n, com.google.android.gms.internal.vision.e2.A(rectF4.height(), this.f5429f.getHeight(), 2.0f, rectF4.top));
+            textPaint.setColor(i0.a.d(Utilities.clamp(1.0f - Math.abs(this.F - 1.0f), 1.0f, 0.0f), -8158333, -1));
+            this.f5429f.draw(canvas);
+            canvas.restore();
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ArrayList arrayList = this.f5399c;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((n2) obj).b(false);
+        if (this.f5431r != null) {
+            canvas.save();
+            canvas.translate((rectF3.left + AndroidUtilities.dp(12.0f)) - this.v, com.google.android.gms.internal.vision.e2.A(rectF3.height(), this.f5431r.getHeight(), 2.0f, rectF3.top));
+            textPaint.setColor(i0.a.d(Utilities.clamp(1.0f - Math.abs(this.F - 2.0f), 1.0f, 0.0f), -8158333, -1));
+            this.f5431r.draw(canvas);
+            canvas.restore();
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        ArrayList arrayList = this.f5399c;
-        int size2 = arrayList.size();
-        int i12 = 0;
-        int i13 = 1;
-        float f7 = 0.0f;
-        int i14 = 0;
-        while (i14 < size2) {
-            Object obj = arrayList.get(i14);
-            i14++;
-            n2 n2Var = (n2) obj;
-            n2Var.d = f7;
-            float dp = n2Var.f5061b + AndroidUtilities.dp(10.0f) + f7;
-            if (dp > paddingLeft) {
-                i13++;
-                n2Var.d = 0.0f;
-                f7 = n2Var.f5061b + AndroidUtilities.dp(10.0f) + 0.0f;
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(40.0f) + AndroidUtilities.navigationBarHeight);
+        if (getMeasuredWidth() != this.H || this.f5428c == null) {
+            TextPaint textPaint = this.f5426a;
+            textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            String string = LocaleController.getString("Emoji");
+            int measuredWidth = getMeasuredWidth();
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+            StaticLayout staticLayout = new StaticLayout(string, textPaint, measuredWidth, alignment, 1.0f, 0.0f, false);
+            this.f5428c = staticLayout;
+            float f14 = 0.0f;
+            if (staticLayout.getLineCount() >= 1) {
+                f7 = this.f5428c.getLineWidth(0);
             } else {
-                f7 = dp;
+                f7 = 0.0f;
             }
-            n2Var.e = i13;
-        }
-        float[] fArr = this.d;
-        if (fArr != null && fArr.length == i13) {
-            Arrays.fill(fArr, 0.0f);
-        } else {
-            this.d = new float[i13];
-        }
-        int size3 = arrayList.size();
-        while (i12 < size3) {
-            Object obj2 = arrayList.get(i12);
-            i12++;
-            n2 n2Var2 = (n2) obj2;
-            int i15 = n2Var2.e - 1;
-            float[] fArr2 = this.d;
-            float f10 = fArr2[i15];
-            if (f10 > 0.0f) {
-                fArr2[i15] = f10 + AndroidUtilities.dp(10.0f);
+            this.d = f7;
+            if (this.f5428c.getLineCount() >= 1) {
+                f10 = this.f5428c.getLineLeft(0);
+            } else {
+                f10 = 0.0f;
             }
-            float[] fArr3 = this.d;
-            fArr3[i15] = fArr3[i15] + n2Var2.f5061b;
+            this.e = f10;
+            StaticLayout staticLayout2 = new StaticLayout(LocaleController.getString("AccDescrStickers"), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            this.f5429f = staticLayout2;
+            if (staticLayout2.getLineCount() >= 1) {
+                f11 = this.f5429f.getLineWidth(0);
+            } else {
+                f11 = 0.0f;
+            }
+            this.h = f11;
+            if (this.f5429f.getLineCount() >= 1) {
+                f12 = this.f5429f.getLineLeft(0);
+            } else {
+                f12 = 0.0f;
+            }
+            this.f5430n = f12;
+            StaticLayout staticLayout3 = new StaticLayout(LocaleController.getString(R.string.AccDescrGIFs), textPaint, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            this.f5431r = staticLayout3;
+            if (staticLayout3.getLineCount() >= 1) {
+                f13 = this.f5431r.getLineWidth(0);
+            } else {
+                f13 = 0.0f;
+            }
+            this.f5432s = f13;
+            if (this.f5431r.getLineCount() >= 1) {
+                f14 = this.f5431r.getLineLeft(0);
+            }
+            this.v = f14;
+            float dp = AndroidUtilities.dp(14.0f) / 2.0f;
+            float dp2 = AndroidUtilities.dp(66.0f) / 2.0f;
+            float measuredWidth2 = (getMeasuredWidth() - ((((((AndroidUtilities.dp(12.0f) + this.d) + AndroidUtilities.dp(36.0f)) + this.h) + AndroidUtilities.dp(36.0f)) + this.f5432s) + AndroidUtilities.dp(12.0f))) / 2.0f;
+            this.f5433w.set(measuredWidth2, dp, this.d + measuredWidth2 + AndroidUtilities.dp(24.0f), dp2);
+            float dp3 = this.d + AndroidUtilities.dp(36.0f) + measuredWidth2;
+            this.f5434x.set(dp3, dp, this.h + dp3 + AndroidUtilities.dp(24.0f), dp2);
+            float dp4 = this.h + AndroidUtilities.dp(36.0f) + dp3;
+            this.f5435y.set(dp4, dp, this.f5432s + dp4 + AndroidUtilities.dp(24.0f), dp2);
+            AndroidUtilities.dp(36.0f);
         }
-        setMeasuredDimension(size, org.telegram.messenger.y0.D(12.0f, i13 - 1, org.telegram.messenger.y0.D(36.0f, i13, AndroidUtilities.dp(24.0f))));
+        this.H = getMeasuredWidth();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        n2 n2Var;
-        e1 e1Var;
-        boolean z10;
-        ArrayList arrayList = this.f5399c;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (true) {
-            if (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                n2Var = (n2) obj;
-                if (n2Var.f5063f.contains(motionEvent.getX(), motionEvent.getY())) {
-                    break;
+        if (motionEvent.getAction() != 0) {
+            if (motionEvent.getAction() == 1 && this.G != null) {
+                if (this.f5433w.contains(motionEvent.getX(), motionEvent.getY())) {
+                    this.G.run(0);
+                    return true;
+                }
+                if (this.f5434x.contains(motionEvent.getX(), motionEvent.getY())) {
+                    this.G.run(1);
+                    return true;
+                }
+                if (this.f5435y.contains(motionEvent.getX(), motionEvent.getY())) {
+                    this.G.run(2);
                 }
             } else {
-                n2Var = null;
-                break;
+                return super.onTouchEvent(motionEvent);
             }
-        }
-        int size2 = arrayList.size();
-        int i11 = 0;
-        while (i11 < size2) {
-            Object obj2 = arrayList.get(i11);
-            i11++;
-            n2 n2Var2 = (n2) obj2;
-            if (n2Var2 != n2Var) {
-                n2Var2.f5064g.c(false);
-            }
-        }
-        if (n2Var != null) {
-            org.telegram.ui.Components.wc wcVar = n2Var.f5064g;
-            if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            wcVar.c(z10);
-        }
-        if (motionEvent.getAction() == 1 && n2Var != null && (e1Var = this.e) != null) {
-            e1Var.run(Integer.valueOf(n2Var.f5060a));
-        }
-        if (n2Var == null) {
-            return false;
         }
         return true;
     }

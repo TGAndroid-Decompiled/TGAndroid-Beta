@@ -5,68 +5,68 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 public final class re implements Runnable {
-    public final int f37110a;
-    public final bo f37111b;
-    public final String f37112c;
+    public final int f36802a;
+    public final xn f36803b;
+    public final String f36804c;
 
-    public re(bo boVar, String str, int i10) {
-        this.f37110a = i10;
-        this.f37111b = boVar;
-        this.f37112c = str;
+    public re(xn xnVar, String str, int i10) {
+        this.f36802a = i10;
+        this.f36803b = xnVar;
+        this.f36804c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f37110a) {
+        switch (this.f36802a) {
             case 0:
-                bo.W0(this.f37111b, this.f37112c);
+                xn.W0(this.f36803b, this.f36804c);
                 return;
             case 1:
-                bo.h1(this.f37111b, this.f37112c);
+                xn.h1(this.f36803b, this.f36804c);
                 return;
             case 2:
-                h4.f(this.f37112c, r1.currentAccount, r1.X0, null, this.f37111b.f32293ea);
+                i4.f(this.f36804c, r1.currentAccount, r1.X0, null, this.f36803b.f39370ea);
                 return;
             case 3:
-                bo boVar = this.f37111b;
-                String str = this.f37112c;
+                xn xnVar = this.f36803b;
+                String str = this.f36804c;
                 if (str != null) {
-                    boVar.getClass();
+                    xnVar.getClass();
                     if (str.length() != 0) {
-                        boVar.getMessagesController().sendBotStart(boVar.f32295f, str);
+                        xnVar.getMessagesController().sendBotStart(xnVar.f39372f, str);
                         return;
                     }
                 }
-                boVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", boVar.T5, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                xnVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", xnVar.T5, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
-                this.f37111b.la(this.f37112c);
+                this.f36803b.la(this.f36804c);
                 return;
             case 5:
-                this.f37111b.da(this.f37112c, false);
+                this.f36803b.da(this.f36804c, false);
                 return;
             case 6:
-                Activity parentActivity = this.f37111b.getParentActivity();
-                nf.f.s(parentActivity, "tel:" + this.f37112c);
+                Activity parentActivity = this.f36803b.getParentActivity();
+                nf.f.s(parentActivity, "tel:" + this.f36804c);
                 return;
             case 7:
-                AndroidUtilities.addToClipboard(this.f37112c);
-                org.telegram.messenger.vl.p(R.string.PhoneCopied, org.telegram.ui.Components.vc.a0(this.f37111b));
+                AndroidUtilities.addToClipboard(this.f36804c);
+                org.telegram.messenger.ul.p(R.string.PhoneCopied, org.telegram.ui.Components.xc.a0(this.f36803b));
                 return;
             case 8:
-                bo.u1(this.f37111b, this.f37112c);
+                xn.u1(this.f36803b, this.f36804c);
                 return;
             case 9:
-                Activity parentActivity2 = this.f37111b.getParentActivity();
-                nf.f.s(parentActivity2, "tel:" + this.f37112c);
+                Activity parentActivity2 = this.f36803b.getParentActivity();
+                nf.f.s(parentActivity2, "tel:" + this.f36804c);
                 return;
             case 10:
-                AndroidUtilities.addToClipboard(this.f37112c);
-                org.telegram.messenger.vl.p(R.string.PhoneCopied, org.telegram.ui.Components.vc.a0(this.f37111b));
+                AndroidUtilities.addToClipboard(this.f36804c);
+                org.telegram.messenger.ul.p(R.string.PhoneCopied, org.telegram.ui.Components.xc.a0(this.f36803b));
                 return;
             default:
-                Activity parentActivity3 = this.f37111b.getParentActivity();
-                nf.f.s(parentActivity3, "https://fragment.com/username/" + this.f37112c);
+                Activity parentActivity3 = this.f36803b.getParentActivity();
+                nf.f.s(parentActivity3, "https://fragment.com/username/" + this.f36804c);
                 return;
         }
     }

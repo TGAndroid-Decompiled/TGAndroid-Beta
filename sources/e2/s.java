@@ -9,7 +9,7 @@ public abstract class s {
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
             telephonyManager.getClass();
             r rVar = new r(uVar);
-            telephonyManager.registerTelephonyCallback((Executor) uVar.f7929c, rVar);
+            telephonyManager.registerTelephonyCallback((Executor) uVar.f7915c, rVar);
             telephonyManager.unregisterTelephonyCallback(rVar);
         } catch (RuntimeException unused) {
             uVar.c(5);

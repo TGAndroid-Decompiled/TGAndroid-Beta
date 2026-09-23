@@ -10,15 +10,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class it0 extends kl0 {
-    public final Context f25132c;
+public final class it0 extends ll0 {
+    public final Context f25058c;
     public TLRPC.ChatFull d;
     public ArrayList e;
-    public final yu0 f25133f;
+    public final yu0 f25059f;
 
     public it0(yu0 yu0Var, Context context) {
-        this.f25133f = yu0Var;
-        this.f25132c = context;
+        this.f25059f = yu0Var;
+        this.f25058c = context;
     }
 
     @Override
@@ -60,11 +60,11 @@ public final class it0 extends kl0 {
         boolean z15;
         boolean z16;
         boolean z17;
-        yu0 yu0Var = this.f25133f;
-        org.telegram.ui.ActionBar.n2 n2Var = yu0Var.f30389v1;
-        View view = c1Var.f42671a;
-        if (view instanceof org.telegram.ui.Cells.ab) {
-            org.telegram.ui.Cells.ab abVar = (org.telegram.ui.Cells.ab) view;
+        yu0 yu0Var = this.f25059f;
+        org.telegram.ui.ActionBar.n2 n2Var = yu0Var.f30450v1;
+        View view = c1Var.f42627a;
+        if (view instanceof org.telegram.ui.Cells.bb) {
+            org.telegram.ui.Cells.bb bbVar = (org.telegram.ui.Cells.bb) view;
             if (!this.e.isEmpty()) {
                 chatParticipant = this.d.participants.participants.get(((Integer) this.e.get(i10)).intValue());
             } else {
@@ -134,30 +134,30 @@ public final class it0 extends kl0 {
                     z13 = false;
                 }
                 TLRPC.User user = n2Var.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(n2Var.getMessagesController().getChat(Long.valueOf(-yu0Var.f30364j1)))) {
+                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(n2Var.getMessagesController().getChat(Long.valueOf(-yu0Var.f30425j1)))) {
                     z14 = true;
                 } else {
                     z14 = false;
                 }
-                abVar.a(str, z10, z11, z14, new h60(this, user, str, z10, z11, z13, 1));
+                bbVar.a(str, z10, z11, z14, new i60(this, user, str, z10, z11, z13, 1));
                 if (i10 == this.d.participants.participants.size() - 1) {
                     z18 = false;
                 }
-                abVar.d(user, null, null, z18);
+                bbVar.d(user, null, null, z18);
             }
         }
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        yu0 yu0Var = this.f25133f;
+        yu0 yu0Var = this.f25059f;
         if (i10 == 20) {
-            lt0 M = yu0.M(7, yu0Var.f30364j1, this.f25132c, yu0Var.F1);
+            lt0 M = yu0.M(7, yu0Var.f30425j1, this.f25058c, yu0Var.F1);
             M.setLayoutParams(new s4.p0(-1, -1));
             return new s4.c1(M);
         }
-        org.telegram.ui.Cells.ab abVar = new org.telegram.ui.Cells.ab(9, 0, this.f25132c, yu0Var.F1, true, false);
-        abVar.setLayoutParams(new s4.p0(-1, -2));
-        return new s4.c1(abVar);
+        org.telegram.ui.Cells.bb bbVar = new org.telegram.ui.Cells.bb(9, 0, this.f25058c, yu0Var.F1, true, false);
+        bbVar.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(bbVar);
     }
 }

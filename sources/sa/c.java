@@ -23,13 +23,13 @@ import org.telegram.ui.Cells.q3;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f42882a;
-    public final pa.b f42883b;
-    public final d f42884c = new d();
+    public final Context f42838a;
+    public final pa.b f42839b;
+    public final d f42840c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f42882a = context;
-        this.f42883b = bVar;
+        this.f42838a = context;
+        this.f42839b = bVar;
     }
 
     public static URL a(String str) {

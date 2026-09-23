@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -11,7 +12,7 @@ public class UserNameResolver {
     private static final long CACHE_TIME = 3600000;
     private final int currentAccount;
     android.util.LruCache<String, CachedPeer> resolvedCache = new android.util.LruCache<>(100);
-    HashMap<String, ArrayList<e2.h>> resolvingConsumers = new HashMap<>();
+    HashMap<String, ArrayList<Utilities.Callback<Long>>> resolvingConsumers = new HashMap<>();
 
     public class CachedPeer {
         final long peerId;
@@ -29,25 +30,25 @@ public class UserNameResolver {
 
     public void lambda$resolve$0(String str, TLRPC.TL_error tL_error, TLObject tLObject) {
         org.telegram.ui.ActionBar.n2 R;
-        ArrayList<e2.h> remove = this.resolvingConsumers.remove(str);
+        ArrayList<Utilities.Callback<Long>> remove = this.resolvingConsumers.remove(str);
         if (remove != null) {
             int i10 = 0;
             if (tL_error != null) {
                 String str2 = tL_error.text;
                 if (str2 != null && "STARREF_EXPIRED".equals(str2)) {
                     while (i10 < remove.size()) {
-                        remove.get(i10).accept(Long.MAX_VALUE);
+                        remove.get(i10).run(Long.MAX_VALUE);
                         i10++;
                     }
                     return;
                 }
                 while (i10 < remove.size()) {
-                    remove.get(i10).accept(null);
+                    remove.get(i10).run(null);
                     i10++;
                 }
                 String str3 = tL_error.text;
                 if (str3 != null && str3.contains("FLOOD_WAIT") && (R = LaunchActivity.R()) != null) {
-                    y0.p(R.string.FloodWait, org.telegram.ui.Components.vc.a0(R), null);
+                    z0.p(R.string.FloodWait, org.telegram.ui.Components.xc.a0(R), null);
                     return;
                 }
                 return;
@@ -59,14 +60,14 @@ public class UserNameResolver {
             long peerId = MessageObject.getPeerId(tL_contacts_resolvedPeer.peer);
             this.resolvedCache.put(str, new CachedPeer(peerId));
             while (i10 < remove.size()) {
-                remove.get(i10).accept(Long.valueOf(peerId));
+                remove.get(i10).run(Long.valueOf(peerId));
                 i10++;
             }
         }
     }
 
     public void lambda$resolve$1(String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new ai(str, this, tLObject, tL_error), 2L);
+        AndroidUtilities.runOnUIThread(new zh(str, this, tLObject, tL_error), 2L);
     }
 
     public void lambda$resolve$2(String str, int i10) {
@@ -74,8 +75,8 @@ public class UserNameResolver {
         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i10, true);
     }
 
-    public Runnable resolve(String str, e2.h hVar) {
-        return resolve(str, null, hVar);
+    public Runnable resolve(String str, Utilities.Callback<Long> callback) {
+        return resolve(str, null, callback);
     }
 
     public void update(TLRPC.User user, TLRPC.User user2) {
@@ -86,20 +87,20 @@ public class UserNameResolver {
         this.resolvedCache.remove(user.username);
         String str2 = user2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(user2.f18256id));
+            this.resolvedCache.put(str2, new CachedPeer(user2.f18230id));
         }
     }
 
-    public Runnable resolve(String str, String str2, e2.h hVar) {
-        return resolve(str, str2, false, hVar);
+    public Runnable resolve(String str, String str2, Utilities.Callback<Long> callback) {
+        return resolve(str, str2, false, callback);
     }
 
-    public Runnable resolve(String str, String str2, boolean z10, e2.h hVar) {
+    public Runnable resolve(String str, String str2, boolean z10, Utilities.Callback<Long> callback) {
         TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername;
         CachedPeer cachedPeer;
         if (TextUtils.isEmpty(str2) && !z10 && (cachedPeer = this.resolvedCache.get(str)) != null) {
             if (System.currentTimeMillis() - cachedPeer.time < 3600000) {
-                hVar.accept(Long.valueOf(cachedPeer.peerId));
+                callback.run(Long.valueOf(cachedPeer.peerId));
                 StringBuilder sb2 = new StringBuilder("resolve username from cache ");
                 sb2.append(str);
                 sb2.append(" ");
@@ -108,13 +109,13 @@ public class UserNameResolver {
             }
             this.resolvedCache.remove(str);
         }
-        ArrayList<e2.h> arrayList = this.resolvingConsumers.get(str);
+        ArrayList<Utilities.Callback<Long>> arrayList = this.resolvingConsumers.get(str);
         if (arrayList != null) {
-            arrayList.add(hVar);
+            arrayList.add(callback);
             return null;
         }
-        ArrayList<e2.h> arrayList2 = new ArrayList<>();
-        arrayList2.add(hVar);
+        ArrayList<Utilities.Callback<Long>> arrayList2 = new ArrayList<>();
+        arrayList2.add(callback);
         this.resolvingConsumers.put(str, arrayList2);
         if (AndroidUtilities.isNumeric(str)) {
             TLRPC.TL_contacts_resolvePhone tL_contacts_resolvePhone = new TLRPC.TL_contacts_resolvePhone();
@@ -129,7 +130,7 @@ public class UserNameResolver {
             }
             tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
         }
-        return new q4(this, str, ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new s1(11, this, str)), 22);
+        return new q4(this, str, ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new t1(11, this, str)), 23);
     }
 
     public void update(TLRPC.Chat chat, TLRPC.Chat chat2) {
@@ -140,7 +141,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(chat.username);
         String str2 = chat2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(-chat2.f18109id));
+            this.resolvedCache.put(str2, new CachedPeer(-chat2.f18083id));
         }
     }
 }

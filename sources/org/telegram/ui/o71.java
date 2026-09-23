@@ -1,20 +1,18 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class o71 extends s4.s0 {
-    public final r71 f36127a;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class o71 implements View.OnClickListener {
+    public final TLRPC.TL_authorization f35703a;
+    public final w71 f35704b;
 
-    public o71(r71 r71Var) {
-        this.f36127a = r71Var;
+    public o71(w71 w71Var, TLRPC.TL_authorization tL_authorization) {
+        this.f35704b = w71Var;
+        this.f35703a = tL_authorization;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        r71 r71Var = this.f36127a;
-        if (r71Var.d.K1) {
-            AndroidUtilities.hideKeyboard(r71Var.f37053c0);
-        }
-        r71.S(r71Var);
+    public final void onClick(View view) {
+        w71.m(this.f35704b, this.f35703a.country);
     }
 }

@@ -10,8 +10,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class lf0 extends LinearLayout {
-    public final LinearLayout f25915a;
-    public final LinearLayout f25916b;
+    public final LinearLayout f25889a;
+    public final LinearLayout f25890b;
 
     public lf0(Context context) {
         super(context);
@@ -19,10 +19,10 @@ public final class lf0 extends LinearLayout {
         setGravity(17);
         setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
-        this.f25916b = a2;
+        this.f25890b = a2;
         addView(a2, w7.x5.n(-2, -1));
         LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
-        this.f25915a = a10;
+        this.f25889a = a10;
         addView(a10, w7.x5.n(-2, -1));
     }
 
@@ -48,7 +48,7 @@ public final class lf0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        LinearLayout linearLayout = this.f25915a;
+        LinearLayout linearLayout = this.f25889a;
         ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
         ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
         int size = View.MeasureSpec.getSize(i10);
@@ -59,7 +59,7 @@ public final class lf0 extends LinearLayout {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
         linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
-        LinearLayout linearLayout2 = this.f25916b;
+        LinearLayout linearLayout2 = this.f25890b;
         linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
         int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
         layoutParams2.width = min;

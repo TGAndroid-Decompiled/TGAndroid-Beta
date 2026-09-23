@@ -10,11 +10,11 @@ import java.util.concurrent.Future;
 import java.util.concurrent.RunnableFuture;
 import java.util.concurrent.TimeUnit;
 public class y extends AbstractExecutorService implements x, AutoCloseable {
-    public final ExecutorService f11060a;
+    public final ExecutorService f11048a;
 
     public y(ExecutorService executorService) {
         executorService.getClass();
-        this.f11060a = executorService;
+        this.f11048a = executorService;
     }
 
     public final w a(Callable callable) {
@@ -23,7 +23,7 @@ public class y extends AbstractExecutorService implements x, AutoCloseable {
 
     @Override
     public final boolean awaitTermination(long j3, TimeUnit timeUnit) {
-        return this.f11060a.awaitTermination(j3, timeUnit);
+        return this.f11048a.awaitTermination(j3, timeUnit);
     }
 
     public void close() {
@@ -32,17 +32,17 @@ public class y extends AbstractExecutorService implements x, AutoCloseable {
 
     @Override
     public final void execute(Runnable runnable) {
-        this.f11060a.execute(runnable);
+        this.f11048a.execute(runnable);
     }
 
     @Override
     public final boolean isShutdown() {
-        return this.f11060a.isShutdown();
+        return this.f11048a.isShutdown();
     }
 
     @Override
     public final boolean isTerminated() {
-        return this.f11060a.isTerminated();
+        return this.f11048a.isTerminated();
     }
 
     @Override
@@ -52,12 +52,12 @@ public class y extends AbstractExecutorService implements x, AutoCloseable {
 
     @Override
     public final void shutdown() {
-        this.f11060a.shutdown();
+        this.f11048a.shutdown();
     }
 
     @Override
     public final List shutdownNow() {
-        return this.f11060a.shutdownNow();
+        return this.f11048a.shutdownNow();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class y extends AbstractExecutorService implements x, AutoCloseable {
     }
 
     public final String toString() {
-        return super.toString() + "[" + this.f11060a + "]";
+        return super.toString() + "[" + this.f11048a + "]";
     }
 
     @Override

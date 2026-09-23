@@ -1,8 +1,41 @@
 package z3;
-public class j extends h2.h {
-    public long f48089r;
 
-    public j() {
-        super(1, 0);
+import java.util.List;
+public abstract class j extends h2.j implements d {
+    public d f48043a;
+    public long f48044b;
+
+    @Override
+    public final int A() {
+        d dVar = this.f48043a;
+        dVar.getClass();
+        return dVar.A();
+    }
+
+    @Override
+    public final void clear() {
+        super.clear();
+        this.f48043a = null;
+    }
+
+    @Override
+    public final int d(long j3) {
+        d dVar = this.f48043a;
+        dVar.getClass();
+        return dVar.d(j3 - this.f48044b);
+    }
+
+    @Override
+    public final long g(int i10) {
+        d dVar = this.f48043a;
+        dVar.getClass();
+        return dVar.g(i10) + this.f48044b;
+    }
+
+    @Override
+    public final List l(long j3) {
+        d dVar = this.f48043a;
+        dVar.getClass();
+        return dVar.l(j3 - this.f48044b);
     }
 }

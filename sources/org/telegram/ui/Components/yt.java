@@ -1,48 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class yt implements ActionMode.Callback {
-    public final ActionMode.Callback f30329a;
-    public final bu f30330b;
+import android.content.DialogInterface;
+import org.telegram.messenger.AndroidUtilities;
+public final class yt implements DialogInterface.OnShowListener {
+    public final int f30388a;
+    public final EditTextBoldCursor f30389b;
 
-    public yt(bu buVar, ActionMode.Callback callback) {
-        this.f30330b = buVar;
-        this.f30329a = callback;
+    public yt(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f30388a = i10;
+        this.f30389b = editTextBoldCursor;
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f30330b.performMenuAction(menuItem.getItemId())) {
-            actionMode.finish();
-            return true;
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f30388a) {
+            case 0:
+                fi.o oVar = (fi.o) this.f30389b;
+                oVar.requestFocus();
+                AndroidUtilities.showKeyboard(oVar);
+                return;
+            case 1:
+                fi.o oVar2 = (fi.o) this.f30389b;
+                oVar2.requestFocus();
+                AndroidUtilities.showKeyboard(oVar2);
+                return;
+            default:
+                f4 f4Var = (f4) this.f30389b;
+                f4Var.requestFocus();
+                AndroidUtilities.showKeyboard(f4Var);
+                return;
         }
-        try {
-            return this.f30329a.onActionItemClicked(actionMode, menuItem);
-        } catch (Exception unused) {
-            return true;
-        }
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        bu buVar = this.f30330b;
-        buVar.copyPasteShowed = true;
-        buVar.onContextMenuOpen();
-        return this.f30329a.onCreateActionMode(actionMode, menu);
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        bu buVar = this.f30330b;
-        buVar.copyPasteShowed = false;
-        buVar.onContextMenuClose();
-        this.f30329a.onDestroyActionMode(actionMode);
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f30329a.onPrepareActionMode(actionMode, menu);
     }
 }

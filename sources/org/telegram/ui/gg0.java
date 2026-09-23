@@ -1,44 +1,54 @@
 package org.telegram.ui;
+public final class gg0 implements Runnable {
+    public final int f33561a;
+    public final qg0 f33562b;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class gg0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33849a;
-    public final kg0 f33850b;
-
-    public gg0(kg0 kg0Var, int i10) {
-        this.f33849a = i10;
-        this.f33850b = kg0Var;
+    public gg0(qg0 qg0Var, int i10) {
+        this.f33561a = i10;
+        this.f33562b = qg0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33849a) {
+    public final void run() {
+        switch (this.f33561a) {
             case 0:
-                kg0 kg0Var = this.f33850b;
-                kg0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kg0Var.d.setAlpha(floatValue);
-                kg0Var.e.setAlpha(floatValue);
-                kg0Var.f35149f.setProgress(floatValue);
-                FrameLayout frameLayout = kg0Var.f35153w;
-                frameLayout.setAlpha(floatValue);
-                float f7 = (floatValue * 0.5f) + 0.5f;
-                frameLayout.setScaleX(f7);
-                frameLayout.setScaleY(f7);
+                qg0 qg0Var = this.f33562b;
+                uj0 uj0Var = qg0Var.f36422a;
+                rg0 rg0Var = qg0Var.V;
+                ng0 ng0Var = qg0Var.f36423b;
+                if (ng0Var != null) {
+                    if (rg0Var.f36823c0) {
+                        uj0Var.clearFocus();
+                        ng0Var.clearFocus();
+                    } else if (uj0Var.length() != 0) {
+                        ng0Var.requestFocus();
+                        if (!qg0Var.R) {
+                            ng0Var.setSelection(ng0Var.length());
+                        }
+                        rg0.T0(rg0Var, ng0Var);
+                    } else {
+                        uj0Var.requestFocus();
+                        rg0.T0(rg0Var, uj0Var);
+                    }
+                }
+                if (rg0Var.F == 0) {
+                    qg0Var.u(false);
+                    return;
+                }
+                return;
+            case 1:
+                qg0 qg0Var2 = this.f33562b;
+                qg0Var2.postDelayed(new gg0(qg0Var2, 2), 200L);
+                return;
+            case 2:
+                this.f33562b.h(null);
+                return;
+            case 3:
+                this.f33562b.u(true);
                 return;
             default:
-                kg0 kg0Var2 = this.f33850b;
-                kg0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kg0Var2.f35149f.setProgress(floatValue2);
-                kg0Var2.d.setAlpha(floatValue2);
-                kg0Var2.e.setAlpha(floatValue2);
-                FrameLayout frameLayout2 = kg0Var2.f35153w;
-                frameLayout2.setAlpha(floatValue2);
-                float f10 = (floatValue2 * 0.5f) + 0.5f;
-                frameLayout2.setScaleX(f10);
-                frameLayout2.setScaleY(f10);
+                qg0 qg0Var3 = this.f33562b;
+                rg0.T0(qg0Var3.V, qg0Var3.f36423b);
                 return;
         }
     }

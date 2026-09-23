@@ -1,146 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-public final class ck0 extends u9 {
-    public final int G;
-    public final dk0 H;
+public final class ck0 extends ImageReceiver {
+    public final int f23069a;
 
-    public ck0(dk0 dk0Var, Context context, int i10) {
-        super(context);
-        this.G = i10;
-        this.H = dk0Var;
+    public ck0(int i10, View view) {
+        super(view);
+        this.f23069a = i10;
     }
 
     @Override
-    public ImageReceiver c() {
-        switch (this.G) {
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
+        switch (this.f23069a) {
             case 0:
-                return new bk0(0, this);
-            case 1:
-                return new bk0(1, this);
+                if (drawable instanceof yi0) {
+                    ((yi0) drawable).N(0, false, true);
+                }
+                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             default:
-                return super.c();
-        }
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.G) {
-            case 0:
-                dk0 dk0Var = this.H;
-                ck0 ck0Var = dk0Var.f23345b;
-                super.dispatchDraw(canvas);
-                if (this.f28311a.getLottieAnimation() != null && !dk0Var.E) {
-                    this.f28311a.getLottieAnimation().start();
+                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+                if (imageBitmapByKey && (drawable instanceof yi0)) {
+                    yi0 yi0Var = (yi0) drawable;
+                    yi0Var.N(0, false, true);
+                    yi0Var.stop();
                 }
-                if (dk0Var.f23350s && !dk0Var.v && this.f28311a.getLottieAnimation() != null && this.f28311a.getLottieAnimation().A() && ck0Var.f28311a.getLottieAnimation() != null && ck0Var.f28311a.getLottieAnimation().u()) {
-                    dk0Var.v = true;
-                    ck0Var.f28311a.getLottieAnimation().N(0, false, true);
-                    ck0Var.setVisibility(0);
-                    Runnable runnable = dk0Var.P.P0;
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                    AndroidUtilities.runOnUIThread(new bc0(this, 17));
-                }
-                invalidate();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate(Rect rect) {
-        switch (this.G) {
-            case 0:
-                dk0 dk0Var = this.H;
-                if (zg.f0.c(this, dk0Var.P)) {
-                    return;
-                }
-                super.invalidate(rect);
-                dk0Var.P.invalidate();
-                return;
-            default:
-                super.invalidate(rect);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        switch (this.G) {
-            case 1:
-                this.H.b();
-                super.onDraw(canvas);
-                return;
-            case 2:
-                o5 o5Var = this.e;
-                if (o5Var != null) {
-                    imageReceiver = o5Var.f26689k;
-                } else {
-                    imageReceiver = this.f28311a;
-                }
-                if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
-                    imageReceiver.getLottieAnimation().start();
-                }
-                super.onDraw(canvas);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.G) {
-            case 0:
-                if (zg.f0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            case 1:
-                if (zg.f0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            default:
-                super.invalidate(i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        int i10 = this.G;
-        dk0 dk0Var = this.H;
-        switch (i10) {
-            case 0:
-                if (zg.f0.c(this, dk0Var.P)) {
-                    return;
-                }
-                super.invalidate();
-                dk0Var.P.invalidate();
-                return;
-            case 1:
-                if (zg.f0.c(this)) {
-                    return;
-                }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                dk0Var.P.invalidate();
-                return;
+                return imageBitmapByKey;
         }
     }
 }

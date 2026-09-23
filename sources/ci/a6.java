@@ -1,82 +1,46 @@
 package ci;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.bo;
-public final class a6 extends bo {
-    public final Utilities.Callback2 Pc;
-    public final r6 Qc;
-
-    public a6(r6 r6Var, Utilities.Callback2 callback2) {
-        super(null);
-        this.Qc = r6Var;
-        this.Pc = callback2;
-    }
-
+import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.ui;
+public final class a6 implements ui {
     @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint;
-        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint2;
-        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
-            tL_mediaAreaGeoPoint2 = new TL_stories.TL_mediaAreaGeoPoint();
-            tL_mediaAreaGeoPoint2.geo = messageMedia.geo;
-        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
-            TLRPC.TL_messageMediaVenue tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) messageMedia;
-            long j10 = tL_messageMediaVenue.query_id;
-            if (j10 != -1 && j10 != -2) {
-                TL_stories.TL_inputMediaAreaVenue tL_inputMediaAreaVenue = new TL_stories.TL_inputMediaAreaVenue();
-                tL_inputMediaAreaVenue.query_id = tL_messageMediaVenue.query_id;
-                tL_inputMediaAreaVenue.result_id = tL_messageMediaVenue.result_id;
-                tL_mediaAreaGeoPoint = tL_inputMediaAreaVenue;
-            } else {
-                TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint3 = new TL_stories.TL_mediaAreaGeoPoint();
-                tL_mediaAreaGeoPoint3.geo = messageMedia.geo;
-                TL_stories.TL_geoPointAddress tL_geoPointAddress = tL_messageMediaVenue.geoAddress;
-                tL_mediaAreaGeoPoint3.address = tL_geoPointAddress;
-                if (tL_geoPointAddress != null) {
-                    tL_mediaAreaGeoPoint3.flags |= 1;
-                }
-                Utilities.globalQueue.postRunnable(new ai.ba(18, messageMedia, tL_mediaAreaGeoPoint3));
-                tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
-            }
-            tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
-        } else {
-            return;
-        }
-        this.Pc.run(messageMedia, tL_mediaAreaGeoPoint2);
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.Qc.getContext());
-    }
-
-    @Override
-    public final org.telegram.ui.ActionBar.e6 getResourceProvider() {
-        return this.Qc.G1;
-    }
-
-    @Override
-    public final TLRPC.User i() {
-        return UserConfig.getInstance(this.currentAccount).getCurrentUser();
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
+    public final boolean S1() {
         return false;
     }
 
     @Override
-    public final boolean x9() {
+    public final boolean c0() {
         return false;
+    }
+
+    @Override
+    public final void x0(gh ghVar) {
+        ghVar.run();
+    }
+
+    @Override
+    public final void K0() {
+    }
+
+    @Override
+    public final void U0(Object obj) {
+    }
+
+    @Override
+    public final void j1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void u0() {
+    }
+
+    @Override
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+    }
+
+    @Override
+    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

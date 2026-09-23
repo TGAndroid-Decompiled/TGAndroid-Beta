@@ -5,19 +5,19 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class o0 implements Runnable {
-    public final int f1321a;
-    public final r3 f1322b;
+    public final int f1325a;
+    public final r3 f1326b;
 
     public o0(r3 r3Var, int i10) {
-        this.f1321a = i10;
-        this.f1322b = r3Var;
+        this.f1325a = i10;
+        this.f1326b = r3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f1321a) {
+        switch (this.f1325a) {
             case 0:
-                r3 r3Var = this.f1322b;
+                r3 r3Var = this.f1326b;
                 if (r3Var.O != null && !r3Var.U) {
                     AndroidUtilities.cancelRunOnUIThread(r3Var.V);
                     r3Var.U = true;
@@ -28,11 +28,11 @@ public final class o0 implements Runnable {
                 }
                 return;
             case 1:
-                r3 r3Var2 = this.f1322b;
-                AndroidUtilities.cancelRunOnUIThread(r3Var2.f1329d0);
-                org.telegram.ui.Components.oc ocVar = r3Var2.W;
-                if (ocVar != null) {
-                    ocVar.b();
+                r3 r3Var2 = this.f1326b;
+                AndroidUtilities.cancelRunOnUIThread(r3Var2.f1333d0);
+                org.telegram.ui.Components.qc qcVar = r3Var2.W;
+                if (qcVar != null) {
+                    qcVar.b();
                     r3Var2.W = null;
                 }
                 long j3 = r3Var2.R;
@@ -45,9 +45,9 @@ public final class o0 implements Runnable {
                 r3Var2.j();
                 return;
             default:
-                r3 r3Var3 = this.f1322b;
+                r3 r3Var3 = this.f1326b;
                 r3Var3.e.N(true);
-                r3Var3.f1334n.N(true);
+                r3Var3.f1338n.N(true);
                 return;
         }
     }

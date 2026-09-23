@@ -7,14 +7,14 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.KeyEvent;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.na0;
-import org.telegram.ui.Components.vi;
-public final class i extends na0 {
+import org.telegram.ui.Components.oa0;
+import org.telegram.ui.Components.wi;
+public final class i extends oa0 {
     public final int V;
     public final KeyEvent.Callback W;
 
-    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, j3, 0L, n2Var, e6Var);
+    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, j3, 0L, n2Var, d6Var);
         this.V = i10;
         this.W = callback;
     }
@@ -25,10 +25,10 @@ public final class i extends na0 {
             case 0:
                 m mVar = (m) this.W;
                 Paint paint = mVar.e;
-                RectF rectF = mVar.f5018z0;
+                RectF rectF = mVar.f5147z0;
                 rectF.set(rect);
                 if (mVar.g()) {
-                    mVar.h(mVar.T, canvas, mVar.f5018z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
+                    mVar.h(mVar.T, canvas, mVar.f5147z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
                     return;
                 }
                 Paint c10 = mVar.T.c(1.0f);
@@ -61,7 +61,7 @@ public final class i extends na0 {
     public void i() {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f28759j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f29677j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;
@@ -76,7 +76,7 @@ public final class i extends na0 {
     public void n(boolean z10) {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f28759j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f29677j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;

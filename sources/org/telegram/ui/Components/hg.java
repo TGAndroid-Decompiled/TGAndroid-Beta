@@ -1,134 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.os.Build;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessageChatArguments;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class hg implements Runnable {
-    public final ChatActivityEnterView f24699a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class hg extends AnimatorListenerAdapter {
+    public final int f24671a;
+    public final int f24672b;
+    public final ChatActivityEnterView f24673c;
 
-    public hg(ChatActivityEnterView chatActivityEnterView) {
-        this.f24699a = chatActivityEnterView;
+    public hg(ChatActivityEnterView chatActivityEnterView, int i10, int i11) {
+        this.f24671a = i11;
+        this.f24673c = chatActivityEnterView;
+        this.f24672b = i10;
     }
 
     @Override
-    public final void run() {
-        TL_stories.StoryItem storyItem;
-        MessageObject threadMessage;
-        boolean z10;
-        boolean z11;
-        int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f24699a;
-        ye yeVar = chatActivityEnterView.G3;
-        Activity activity = chatActivityEnterView.N2;
-        mg mgVar = chatActivityEnterView.Y2;
-        if (mgVar != null && activity != null) {
-            mgVar.D();
-            chatActivityEnterView.I3 = true;
-            chatActivityEnterView.H3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f21786j1;
-            if (slideTextView != null) {
-                slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f21786j1.setTranslationY(0.0f);
-            }
-            SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.f21738b3 = null;
-            chatActivityEnterView.f21731a3 = null;
-            if (chatActivityEnterView.f21743c1) {
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24671a) {
+            case 0:
+                int i10 = this.f24672b;
+                ChatActivityEnterView chatActivityEnterView = this.f24673c;
+                if (i10 == 0) {
+                    chatActivityEnterView.f21846z2 = 0;
+                }
+                chatActivityEnterView.V0 = null;
+                chatActivityEnterView.G1.setTranslationY(0.0f);
+                chatActivityEnterView.G1.setVisibility(8);
+                chatActivityEnterView.K3.unlock();
+                ng ngVar = chatActivityEnterView.Y2;
+                if (ngVar != null) {
+                    ngVar.y(0.0f);
+                }
+                chatActivityEnterView.requestLayout();
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView2 = this.f24673c;
+                pv0 pv0Var = chatActivityEnterView2.l1;
+                chatActivityEnterView2.f21847z3 = false;
+                chatActivityEnterView2.A3 = null;
+                dg dgVar = chatActivityEnterView2.U0;
+                if (dgVar != null) {
+                    if (chatActivityEnterView2.f21727d5 == null) {
+                        dgVar.getLayoutParams().height = this.f24672b;
                     }
-                    if (activity.checkSelfPermission("android.permission.CAMERA") == 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    if (!z10 || !z11) {
-                        if (!z10 && !z11) {
-                            i10 = 2;
-                        } else {
-                            i10 = 1;
-                        }
-                        String[] strArr = new String[i10];
-                        if (!z10 && !z11) {
-                            strArr[0] = "android.permission.RECORD_AUDIO";
-                            strArr[1] = "android.permission.CAMERA";
-                        } else if (!z10) {
-                            strArr[0] = "android.permission.RECORD_AUDIO";
-                        } else {
-                            strArr[0] = "android.permission.CAMERA";
-                        }
-                        activity.requestPermissions(strArr, 150);
-                        return;
-                    }
+                    chatActivityEnterView2.U0.setLayerType(0, null);
                 }
-                if (!CameraController.getInstance().isCameraInitied()) {
-                    CameraController.getInstance().initCamera(yeVar);
-                } else {
-                    yeVar.run();
+                if (pv0Var != null) {
+                    pv0Var.requestLayout();
+                    pv0Var.setForeground(null);
+                    pv0Var.setWillNotDraw(false);
                 }
-                if (!chatActivityEnterView.E2) {
-                    chatActivityEnterView.E2 = true;
-                    chatActivityEnterView.M1(0, true);
-                    ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.M1;
-                    if (recordCircle != null) {
-                        recordCircle.H = 0.5f;
-                        recordCircle.I = false;
-                    }
-                    vg vgVar = chatActivityEnterView.Y0;
-                    if (vgVar != null) {
-                        vgVar.f28705a = false;
-                        vgVar.d = 0L;
-                        vgVar.e = 0L;
-                        vgVar.f28706b = false;
-                    }
+                if (chatActivityEnterView2.f21842y2 && chatActivityEnterView2.u0()) {
+                    chatActivityEnterView2.u1(0, chatActivityEnterView2.f21730e2, true, true);
                 }
-            } else if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-                activity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 3);
-            } else {
-                chatActivityEnterView.Y2.a1(1);
-                chatActivityEnterView.C2 = -1.0f;
-                mg mgVar2 = chatActivityEnterView.Y2;
-                if (mgVar2 != null) {
-                    storyItem = mgVar2.d1();
-                } else {
-                    storyItem = null;
+                ie ieVar = chatActivityEnterView2.f21801r0;
+                if (ieVar != null) {
+                    ieVar.run();
+                    chatActivityEnterView2.f21801r0 = null;
                 }
-                MediaController mediaController = MediaController.getInstance();
-                int i11 = chatActivityEnterView.Q;
-                long j3 = chatActivityEnterView.P2;
-                MessageObject messageObject = chatActivityEnterView.S2;
-                threadMessage = chatActivityEnterView.getThreadMessage();
-                int i12 = chatActivityEnterView.F2;
-                org.telegram.ui.bo boVar = chatActivityEnterView.O2;
-                if (boVar != null) {
-                    sendMessageChatArguments = boVar.C8();
-                }
-                mediaController.startRecording(i11, j3, messageObject, threadMessage, storyItem, i12, true, sendMessageChatArguments, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
-                chatActivityEnterView.E2 = true;
-                chatActivityEnterView.M1(0, true);
-                vg vgVar2 = chatActivityEnterView.Y0;
-                if (vgVar2 != null) {
-                    vgVar2.a(0L);
-                }
-                sg sgVar = chatActivityEnterView.f21791k1;
-                if (sgVar != null) {
-                    sgVar.h = false;
-                }
-                chatActivityEnterView.Z0.getParent().requestDisallowInterceptTouchEvent(true);
-                ChatActivityEnterView.RecordCircle recordCircle2 = chatActivityEnterView.M1;
-                if (recordCircle2 != null) {
-                    recordCircle2.H = 1.0f;
-                    recordCircle2.I = true;
-                }
-            }
+                chatActivityEnterView2.K3.unlock();
+                return;
         }
     }
 }

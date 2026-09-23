@@ -1,48 +1,48 @@
 package m4;
 
 import java.util.List;
-public final class n0 implements d1, e1 {
-    public final int f14621a;
-    public final g1 f14622b;
-    public final int f14623c;
+public final class n0 implements y0, z0 {
+    public final int f14635a;
+    public final b1 f14636b;
+    public final int f14637c;
 
-    public n0(g1 g1Var, int i10, int i11) {
-        this.f14621a = i11;
-        this.f14622b = g1Var;
-        this.f14623c = i10;
+    public n0(b1 b1Var, int i10, int i11) {
+        this.f14635a = i11;
+        this.f14636b = b1Var;
+        this.f14637c = i10;
     }
 
     @Override
-    public void a(k1 k1Var, r rVar, List list) {
-        switch (this.f14621a) {
+    public void a(f1 f1Var, r rVar, List list) {
+        switch (this.f14635a) {
             case 1:
-                k1Var.b0(this.f14622b.K0(rVar, k1Var, this.f14623c), list);
+                f1Var.b0(this.f14636b.K0(rVar, f1Var, this.f14637c), list);
                 return;
             case 2:
-                g1 g1Var = this.f14622b;
-                g1Var.getClass();
+                b1 b1Var = this.f14636b;
+                b1Var.getClass();
                 int size = list.size();
-                int i10 = this.f14623c;
+                int i10 = this.f14637c;
                 if (size == 1) {
-                    k1Var.s0((b2.k0) list.get(0), g1Var.K0(rVar, k1Var, i10));
+                    f1Var.s0((b2.k0) list.get(0), b1Var.K0(rVar, f1Var, i10));
                     return;
                 }
-                k1Var.P(g1Var.K0(rVar, k1Var, i10), g1Var.K0(rVar, k1Var, i10 + 1), list);
+                f1Var.P(b1Var.K0(rVar, f1Var, i10), b1Var.K0(rVar, f1Var, i10 + 1), list);
                 return;
             default:
-                k1Var.b0(this.f14622b.K0(rVar, k1Var, this.f14623c), list);
+                f1Var.b0(this.f14636b.K0(rVar, f1Var, this.f14637c), list);
                 return;
         }
     }
 
     @Override
-    public void g(k1 k1Var, r rVar) {
-        switch (this.f14621a) {
+    public void g(f1 f1Var, r rVar) {
+        switch (this.f14635a) {
             case 0:
-                k1Var.Y(this.f14622b.K0(rVar, k1Var, this.f14623c));
+                f1Var.Y(this.f14636b.K0(rVar, f1Var, this.f14637c));
                 return;
             default:
-                k1Var.R(this.f14622b.K0(rVar, k1Var, this.f14623c));
+                f1Var.R(this.f14636b.K0(rVar, f1Var, this.f14637c));
                 return;
         }
     }

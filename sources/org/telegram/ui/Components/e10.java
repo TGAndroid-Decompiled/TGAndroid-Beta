@@ -1,31 +1,113 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.text.style.UpdateAppearance;
-public final class e10 extends CharacterStyle implements UpdateAppearance {
-    public int f23478a;
-    public int f23479b;
-    public float f23480c;
-    public final org.telegram.ui.ActionBar.e6 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class e10 extends Drawable {
+    public final Drawable f23526a;
+    public final Path f23527b;
+    public boolean f23528c = true;
+    public final Paint d;
+    public final Paint e;
 
-    public e10(int i10) {
-        this(i10, null);
+    public e10(Context context, int i10, int i11) {
+        this.f23526a = context.getResources().getDrawable(i10);
+        if (i11 >= 0) {
+            this.f23527b = new Path();
+            Paint paint = new Paint(1);
+            this.d = paint;
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setColor(-16777216);
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            paint.setStrokeJoin(Paint.Join.ROUND);
+            Paint paint2 = new Paint(1);
+            this.e = paint2;
+            paint2.setStyle(Paint.Style.FILL);
+            int[] iArr = org.telegram.ui.ActionBar.h6.f19046r8;
+            paint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, iArr[i11 % iArr.length], false));
+            paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
+            return;
+        }
+        this.f23527b = null;
+        this.d = null;
+        this.e = null;
+    }
+
+    public final int a(float f7) {
+        return AndroidUtilities.lerp(getBounds().left, getBounds().right, f7);
+    }
+
+    public final int b(float f7) {
+        return AndroidUtilities.lerp(getBounds().top, getBounds().bottom, f7);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        this.f23478a = org.telegram.ui.ActionBar.i6.l1(this.f23480c, org.telegram.ui.ActionBar.i6.v0(this.f23479b, this.d));
-        int color = textPaint.getColor();
-        int i10 = this.f23478a;
-        if (color != i10) {
-            textPaint.setColor(i10);
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.f23526a;
+        Path path = this.f23527b;
+        if (path != null) {
+            canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
+            drawable.setBounds(getBounds());
+            drawable.draw(canvas);
+            boolean z10 = this.f23528c;
+            Paint paint = this.d;
+            if (z10) {
+                path.rewind();
+                path.moveTo(a(0.4871f), b(0.6025f));
+                path.lineTo(a(0.8974f), b(0.6025f));
+                path.lineTo(a(1.0f), b(0.7564f));
+                path.lineTo(a(0.8974f), b(0.9102f));
+                path.lineTo(a(0.4871f), b(0.9102f));
+                path.close();
+                this.f23528c = false;
+                paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+            }
+            canvas.drawPath(path, paint);
+            canvas.drawPath(path, this.e);
+            canvas.restore();
+            return;
         }
+        drawable.setBounds(getBounds());
+        drawable.draw(canvas);
     }
 
-    public e10(int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f23480c = 1.0f;
-        this.f23479b = i10;
-        this.d = e6Var;
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f23526a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f23526a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return this.f23526a.getOpacity();
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f23526a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        this.f23528c = true;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f23526a.setColorFilter(colorFilter);
     }
 }

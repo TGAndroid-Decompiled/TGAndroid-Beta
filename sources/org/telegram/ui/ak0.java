@@ -1,79 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
-public final class ak0 extends AnimatedPhoneNumberEditText {
-    public final int G;
-    public final Object H;
+import android.view.View;
+public final class ak0 implements Runnable {
+    public final int f31813a;
+    public final NotificationsCustomSettingsActivity f31814b;
+    public final nk0 f31815c;
+    public final View d;
 
-    public ak0(Object obj, Context context, int i10) {
-        super(context);
-        this.G = i10;
-        this.H = obj;
+    public ak0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, nk0 nk0Var, View view, int i10, int i11) {
+        this.f31813a = i11;
+        this.f31814b = notificationsCustomSettingsActivity;
+        this.f31815c = nk0Var;
+        this.d = view;
     }
 
     @Override
-    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
-        float f7;
-        float f10;
-        float f11;
-        switch (this.G) {
+    public final void run() {
+        switch (this.f31813a) {
             case 0:
-                super.onFocusChanged(z10, i10, rect);
-                ck0 ck0Var = (ck0) this.H;
-                org.telegram.ui.Components.yc0 yc0Var = ck0Var.f32824s;
-                if (!z10 && !ck0Var.Q.isFocused()) {
-                    f7 = 0.0f;
-                } else {
-                    f7 = 1.0f;
-                }
-                yc0Var.b(f7, f7, true);
+                this.f31814b.k0(this.f31815c, this.d, false);
                 return;
             case 1:
-                super.onFocusChanged(z10, i10, rect);
-                ck0 ck0Var2 = (ck0) this.H;
-                org.telegram.ui.Components.yc0 yc0Var2 = ck0Var2.f32824s;
-                if (!z10 && !ck0Var2.O.isFocused()) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = 1.0f;
-                }
-                yc0Var2.b(f10, f10, true);
+                this.f31814b.e0(this.f31815c, this.d);
+                return;
+            case 2:
+                NotificationsCustomSettingsActivity.X(this.f31814b, this.f31815c, this.d);
+                return;
+            case 3:
+                NotificationsCustomSettingsActivity.V(this.f31814b, this.f31815c, this.d);
+                return;
+            case 4:
+                this.f31814b.e0(this.f31815c, this.d);
                 return;
             default:
-                super.onFocusChanged(z10, i10, rect);
-                vg0 vg0Var = (vg0) this.H;
-                org.telegram.ui.Components.yc0 yc0Var3 = vg0Var.f38534f;
-                if (!z10 && !vg0Var.f38532b.isFocused()) {
-                    f11 = 0.0f;
-                } else {
-                    f11 = 1.0f;
-                }
-                yc0Var3.b(f11, f11, true);
-                if (z10) {
-                    vg0Var.V.f39201c.setEditText(this);
-                    return;
-                }
+                this.f31814b.k0(this.f31815c, this.d, true);
                 return;
         }
     }
 
-    @Override
-    public boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        switch (this.G) {
-            case 1:
-                ck0 ck0Var = (ck0) this.H;
-                if (i10 == 67 && ck0Var.Q.length() == 0) {
-                    ck0Var.O.requestFocus();
-                    ak0 ak0Var = ck0Var.O;
-                    ak0Var.setSelection(ak0Var.length());
-                    ck0Var.O.dispatchKeyEvent(keyEvent);
-                }
-                return super.onKeyDown(i10, keyEvent);
-            default:
-                return super.onKeyDown(i10, keyEvent);
-        }
+    public ak0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, nk0 nk0Var, View view, boolean z10, int i10) {
+        this.f31813a = i10;
+        this.f31814b = notificationsCustomSettingsActivity;
+        this.f31815c = nk0Var;
+        this.d = view;
     }
 }

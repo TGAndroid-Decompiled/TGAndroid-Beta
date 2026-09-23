@@ -4,29 +4,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 public final class u implements Runnable {
-    public final int f43221a;
-    public final b0 f43222b;
+    public final int f43176a;
+    public final b0 f43177b;
 
     public u(b0 b0Var, int i10) {
-        this.f43221a = i10;
-        this.f43222b = b0Var;
+        this.f43176a = i10;
+        this.f43177b = b0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f43221a;
-        b0 b0Var = this.f43222b;
+        int i10 = this.f43176a;
+        b0 b0Var = this.f43177b;
         switch (i10) {
             case 0:
                 AndroidUtilities.hideKeyboard(b0Var.d);
                 return;
             case 1:
                 b0Var.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, b0Var.f43085b0, Boolean.TRUE);
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, b0Var.f43040b0, Boolean.TRUE);
                 return;
             case 2:
                 b0Var.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, b0Var.f43085b0, Boolean.FALSE);
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, b0Var.f43040b0, Boolean.FALSE);
                 return;
             case 3:
                 b0.R(b0Var);

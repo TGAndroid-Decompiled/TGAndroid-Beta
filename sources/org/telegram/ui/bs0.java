@@ -1,15 +1,18 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.drawable.Drawable;
-public final class bs0 implements ValueAnimator.AnimatorUpdateListener {
+import android.util.FloatProperty;
+public final class bs0 extends FloatProperty {
+    public bs0() {
+        super("progress");
+    }
+
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.Components.sb sbVar;
-        Drawable[] drawableArr = PhotoViewer.U8;
-        org.telegram.ui.Components.oc ocVar = org.telegram.ui.Components.oc.f26744w;
-        if (ocVar != null && (sbVar = ocVar.e) != null) {
-            sbVar.updatePosition();
-        }
+    public final Float get(Object obj) {
+        return Float.valueOf(((dv0) obj).f32725a);
+    }
+
+    @Override
+    public final void setValue(Object obj, float f7) {
+        ((dv0) obj).b(f7);
     }
 }

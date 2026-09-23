@@ -1,40 +1,80 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class an0 extends s4.j {
-    @Override
-    public final boolean r(s4.c1 c1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13) {
-        gn0 gn0Var;
-        fn0 fn0Var;
-        View view = c1Var.f42671a;
-        if ((view instanceof gn0) && (fn0Var = (gn0Var = (gn0) view).f24421a) != null) {
-            fn0Var.f49097i = fn0Var.N;
-            fn0Var.f49095g = fn0Var.O;
-            fn0Var.h = fn0Var.P;
-            gn0Var.f24422b.d(0.0f, true);
-            gn0Var.invalidate();
-        }
-        int translationX = i10 + ((int) view.getTranslationX());
-        int translationY = i11 + ((int) view.getTranslationY());
-        R(c1Var);
-        int i14 = i12 - translationX;
-        int i15 = i13 - translationY;
-        if (i14 == 0 && i15 == 0) {
-            v(c1Var);
-            return false;
-        }
-        if (i14 != 0) {
-            view.setTranslationX(-i14);
-        }
-        if (i15 != 0) {
-            view.setTranslationY(-i15);
-        }
-        this.f42731r.add(new s4.i(c1Var, translationX, translationY, i12, i13));
-        return true;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class an0 implements al0 {
+    public final int f22476a;
+    public final int f22477b;
+    public final org.telegram.ui.ActionBar.n2 f22478c;
+    public final Object d;
+
+    public an0(Object obj, int i10, org.telegram.ui.ActionBar.n2 n2Var, int i11) {
+        this.f22476a = i11;
+        this.d = obj;
+        this.f22477b = i10;
+        this.f22478c = n2Var;
     }
 
     @Override
-    public final boolean t(s4.c1 c1Var) {
-        return true;
+    public final void d(int i10, View view) {
+        zg.p0 p0Var;
+        switch (this.f22476a) {
+            case 0:
+                in0 in0Var = (in0) this.d;
+                ArrayList arrayList = in0Var.f25009r;
+                ai.w0 w0Var = in0Var.d;
+                if (i10 >= 0 && i10 < arrayList.size()) {
+                    if (!UserConfig.getInstance(this.f22477b).isPremium()) {
+                        new rg.x0(this.f22478c, 24, true).show();
+                        return;
+                    }
+                    long j3 = ((fn0) arrayList.get(i10)).f24013a.h;
+                    if (in0Var.h == j3) {
+                        p0Var = null;
+                    } else {
+                        p0Var = ((fn0) arrayList.get(i10)).f24013a;
+                    }
+                    if (in0Var.f(p0Var)) {
+                        for (int i11 = 0; i11 < w0Var.getChildCount(); i11++) {
+                            if (w0Var.getChildAt(i11) == view) {
+                                float f7 = 50.0f;
+                                if (i11 <= 1) {
+                                    if (i11 == 0) {
+                                        f7 = 90.0f;
+                                    }
+                                    w0Var.v0(-AndroidUtilities.dp(f7), 0, null);
+                                } else if (i11 >= w0Var.getChildCount() - 2) {
+                                    if (i11 == w0Var.getChildCount() - 1) {
+                                        f7 = 80.0f;
+                                    }
+                                    w0Var.v0(AndroidUtilities.dp(f7), 0, null);
+                                }
+                            }
+                        }
+                        w0Var.M(new org.telegram.ui.gr(3));
+                        if (in0Var.h == j3) {
+                            in0Var.h = 0L;
+                            return;
+                        }
+                        in0Var.h = j3;
+                        ((hn0) view).a(true, true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                rg.k1 k1Var = (rg.k1) this.d;
+                if (view instanceof org.telegram.ui.nw0) {
+                    org.telegram.ui.nw0 nw0Var = (org.telegram.ui.nw0) view;
+                    PremiumPreviewFragment.q0(this.f22477b, nw0Var.f35618f.f32736a);
+                    k1Var.showDialog(new rg.x0(this.f22478c, nw0Var.f35618f.f32736a, false));
+                    return;
+                }
+                return;
+        }
     }
 }

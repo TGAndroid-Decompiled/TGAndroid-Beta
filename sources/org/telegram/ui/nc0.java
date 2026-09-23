@@ -1,269 +1,66 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.os.Build;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class nc0 extends org.telegram.ui.ActionBar.n2 {
-    public FrameLayout f35952a;
-    public org.telegram.ui.Components.ll0 f35953b;
-    public s4.c0 f35954c;
-    public tu d;
-    public org.telegram.ui.Components.oc e;
-    public int f35955f;
-    public final s3 h;
-    public final boolean[] f35956n;
-    public final ArrayList f35957r;
-    public final ArrayList f35958s;
+import org.telegram.messenger.IMapsProvider;
+public final class nc0 implements Runnable {
+    public final int f35497a;
+    public final dd0 f35498b;
 
-    public nc0() {
-        super(null);
-        this.h = new s3(this, 7);
-        this.f35956n = new boolean[3];
-        this.f35957r = new ArrayList();
-        this.f35958s = new ArrayList();
+    public nc0(dd0 dd0Var, int i10) {
+        this.f35497a = i10;
+        this.f35498b = dd0Var;
     }
 
-    public final int U(int i10) {
-        if (i10 == 3) {
-            return 0;
-        }
-        if (i10 == 28700) {
-            return 1;
-        }
-        if (i10 == this.f35955f) {
-            return 2;
-        }
-        return -1;
-    }
-
-    public final void V(int i10) {
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.f35958s;
-            if (i11 < arrayList.size()) {
-                if (((hc0) arrayList.get(i11)).e == i10) {
-                    this.f35953b.e1(new i2.s(this, i11, 12), 700, true);
+    @Override
+    public final void run() {
+        switch (this.f35497a) {
+            case 0:
+                dd0 dd0Var = this.f35498b;
+                IMapsProvider.ICameraUpdate iCameraUpdate = dd0Var.J;
+                if (iCameraUpdate != null) {
+                    dd0Var.I.moveCamera(iCameraUpdate);
+                    dd0Var.J = null;
                     return;
                 }
-                i11++;
-            } else {
                 return;
-            }
-        }
-    }
-
-    public final void W(int i10) {
-        int U = U(i10);
-        if (U == -1) {
-            return;
-        }
-        this.f35956n[U] = true;
-        Y();
-        X();
-    }
-
-    public final void X() {
-        String formatString;
-        ArrayList arrayList = this.f35957r;
-        arrayList.clear();
-        ArrayList arrayList2 = this.f35958s;
-        arrayList.addAll(arrayList2);
-        arrayList2.clear();
-        int i10 = Build.VERSION.SDK_INT;
-        arrayList2.add(new hc0(1, 0, null, 0, 0));
-        if (LiteMode.getPowerSaverLevel() <= 0) {
-            formatString = LocaleController.getString(R.string.LiteBatteryInfoDisabled);
-        } else if (LiteMode.getPowerSaverLevel() >= 100) {
-            formatString = LocaleController.getString(R.string.LiteBatteryInfoEnabled);
-        } else {
-            formatString = LocaleController.formatString(R.string.LiteBatteryInfoBelow, String.format("%d%%", Integer.valueOf(LiteMode.getPowerSaverLevel())));
-        }
-        arrayList2.add(new hc0(2, 0, formatString, 0, 0));
-        arrayList2.add(new hc0(0, 0, LocaleController.getString(R.string.LiteOptionsTitle), 0, 0));
-        arrayList2.add(hc0.c(R.drawable.msg2_sticker, 3, LocaleController.getString(R.string.LiteOptionsStickers)));
-        boolean[] zArr = this.f35956n;
-        if (zArr[0]) {
-            arrayList2.add(hc0.b(1, LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard)));
-            arrayList2.add(hc0.b(2, LocaleController.getString(R.string.LiteOptionsAutoplayChat)));
-        }
-        arrayList2.add(hc0.c(R.drawable.msg2_smile_status, 28700, LocaleController.getString(R.string.LiteOptionsEmoji)));
-        if (zArr[1]) {
-            arrayList2.add(hc0.b(16388, LocaleController.getString(R.string.LiteOptionsAutoplayKeyboard)));
-            arrayList2.add(hc0.b(8200, LocaleController.getString(R.string.LiteOptionsAutoplayReactions)));
-            arrayList2.add(hc0.b(4112, LocaleController.getString(R.string.LiteOptionsAutoplayChat)));
-        }
-        arrayList2.add(hc0.c(R.drawable.msg2_ask_question, this.f35955f, LocaleController.getString(R.string.LiteOptionsChat)));
-        if (zArr[2]) {
-            arrayList2.add(hc0.b(32, LocaleController.getString("LiteOptionsBackground")));
-            if (!AndroidUtilities.isTablet()) {
-                arrayList2.add(hc0.b(64, LocaleController.getString("LiteOptionsTopics")));
-            }
-            arrayList2.add(hc0.b(128, LocaleController.getString("LiteOptionsSpoiler")));
-            if (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION) {
-                arrayList2.add(hc0.b(256, LocaleController.getString("LiteOptionsBlur2")));
-            }
-            if (i10 >= 33 && (SharedConfig.getDevicePerformanceClass() >= 1 || BuildVars.DEBUG_PRIVATE_VERSION)) {
-                arrayList2.add(hc0.b(262144, LocaleController.getString("LiteOptionsLiquidGlass")));
-            }
-            arrayList2.add(hc0.b(32768, LocaleController.getString("LiteOptionsScale")));
-            if (org.telegram.ui.Components.x01.c()) {
-                arrayList2.add(hc0.b(65536, LocaleController.getString("LiteOptionsThanos")));
-            }
-        }
-        arrayList2.add(hc0.c(R.drawable.msg2_call_earpiece, 512, LocaleController.getString(R.string.LiteOptionsCalls)));
-        arrayList2.add(hc0.c(R.drawable.msg2_videocall, 1024, LocaleController.getString(R.string.LiteOptionsAutoplayVideo)));
-        arrayList2.add(hc0.c(R.drawable.msg2_gif, 2048, LocaleController.getString(R.string.LiteOptionsAutoplayGifs)));
-        arrayList2.add(hc0.c(R.drawable.photo_star, 131072, LocaleController.getString(R.string.LiteOptionsParticles)));
-        arrayList2.add(new hc0(2, 0, "", 0, 0));
-        arrayList2.add(new hc0(5, 0, LocaleController.getString(R.string.LiteSmoothTransitions), 0, 1));
-        arrayList2.add(new hc0(2, 0, LocaleController.getString("LiteSmoothTransitionsInfo"), 0, 0));
-        this.d.E(arrayList, arrayList2);
-    }
-
-    public final void Y() {
-        boolean z10;
-        float f7;
-        if (this.f35953b != null) {
-            for (int i10 = 0; i10 < this.f35953b.getChildCount(); i10++) {
-                View childAt = this.f35953b.getChildAt(i10);
-                if (childAt != null) {
-                    this.f35953b.getClass();
-                    int R = RecyclerView.R(childAt);
-                    if (R >= 0) {
-                        ArrayList arrayList = this.f35958s;
-                        if (R < arrayList.size()) {
-                            hc0 hc0Var = (hc0) arrayList.get(R);
-                            int i11 = hc0Var.f15531a;
-                            if (i11 != 3 && i11 != 4) {
-                                if (i11 == 1) {
-                                    ((lc0) childAt).a();
-                                }
-                            } else {
-                                mc0 mc0Var = (mc0) childAt;
-                                ImageView imageView = mc0Var.e;
-                                nc0 nc0Var = mc0Var.f35701y;
-                                int i12 = hc0Var.e;
-                                if (i11 == 3) {
-                                    if (Integer.bitCount(i12) > 1) {
-                                        z10 = true;
-                                    } else {
-                                        z10 = false;
-                                    }
-                                    mc0Var.v = z10;
-                                    if (z10) {
-                                        mc0Var.c(hc0Var, true);
-                                        int U = nc0Var.U(i12);
-                                        imageView.clearAnimation();
-                                        ViewPropertyAnimator animate = imageView.animate();
-                                        if (U >= 0 && nc0Var.f35956n[U]) {
-                                            f7 = 180.0f;
-                                        } else {
-                                            f7 = 0.0f;
-                                        }
-                                        org.telegram.messenger.vl.r(animate.rotation(f7), org.telegram.ui.Components.qr.h, 240L);
-                                    }
-                                    mc0Var.f35695f.c(LiteMode.isEnabled(i12), true);
-                                } else {
-                                    mc0Var.h.a(LiteMode.isEnabled(i12), true);
-                                }
-                                mc0Var.b(LiteMode.isPowerSaverApplied(), true);
-                            }
+            case 1:
+                dd0 dd0Var2 = this.f35498b;
+                dd0Var2.getLocationController().setProximityLocation(dd0Var2.f32587e0, 0, true);
+                dd0Var2.G = false;
+                return;
+            case 2:
+                dd0 dd0Var3 = this.f35498b;
+                IMapsProvider.IMap iMap = dd0Var3.I;
+                if (iMap != null) {
+                    iMap.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
+                }
+                if (!dd0Var3.R.getRadiusSet()) {
+                    double d = dd0Var3.P;
+                    if (d > 0.0d) {
+                        dd0Var3.O.setRadius(d);
+                    } else {
+                        IMapsProvider.ICircle iCircle = dd0Var3.O;
+                        if (iCircle != null) {
+                            iCircle.remove();
+                            dd0Var3.O = null;
                         }
                     }
                 }
-            }
-            if (this.e != null && !LiteMode.isPowerSaverApplied()) {
-                this.e.b();
-                this.e = null;
-            }
+                dd0Var3.R = null;
+                return;
+            case 3:
+                ad0 ad0Var = this.f35498b.f32610x;
+                if (ad0Var != null) {
+                    ad0Var.a();
+                    return;
+                }
+                return;
+            case 4:
+                dd0.W(this.f35498b);
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new nc0(this.f35498b, 0));
+                return;
         }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        int i10;
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.PowerUsage));
-        this.actionBar.setActionBarMenuOnItemClick(new v70(this, 4));
-        org.telegram.ui.ActionBar.d5 d5Var = this.parentLayout;
-        if (d5Var != null && ((ActionBarLayout) d5Var).N0) {
-            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
-        }
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f35952a = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18778a7, false));
-        org.telegram.ui.Components.ll0 ll0Var = new org.telegram.ui.Components.ll0(context, null);
-        this.f35953b = ll0Var;
-        ll0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f35953b);
-        org.telegram.ui.Components.ll0 ll0Var2 = this.f35953b;
-        s4.c0 c0Var = new s4.c0();
-        this.f35954c = c0Var;
-        ll0Var2.setLayoutManager(c0Var);
-        org.telegram.ui.Components.ll0 ll0Var3 = this.f35953b;
-        tu tuVar = new tu(this, 1);
-        this.d = tuVar;
-        ll0Var3.setAdapter(tuVar);
-        s4.j jVar = new s4.j();
-        jVar.n(350L);
-        jVar.o(org.telegram.ui.Components.qr.h);
-        jVar.C = false;
-        jVar.f42706m = false;
-        this.f35953b.setItemAnimator(jVar);
-        this.f35952a.addView(this.f35953b, w7.x5.c(-1.0f, -1));
-        this.f35953b.setOnItemClickListener(new hu(this, 16));
-        this.fragmentView = this.f35952a;
-        if (AndroidUtilities.isTablet()) {
-            i10 = 360864;
-        } else {
-            i10 = 360928;
-        }
-        this.f35955f = i10;
-        X();
-        return this.fragmentView;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final void onBecomeFullyHidden() {
-        super.onBecomeFullyHidden();
-        LiteMode.removeOnPowerSaverAppliedListener(this.h);
-    }
-
-    @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        LiteMode.addOnPowerSaverAppliedListener(this.h);
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        LiteMode.savePreference();
-        org.telegram.ui.Components.o5.u();
-        org.telegram.ui.ActionBar.i6.o1(true);
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f35953b.setPadding(0, 0, 0, i13);
-        this.f35953b.setClipToPadding(false);
     }
 }

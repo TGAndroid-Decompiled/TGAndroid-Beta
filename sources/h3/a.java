@@ -7,15 +7,15 @@ import c3.i;
 import c3.p;
 import c3.s;
 public final class a {
-    public final e f10109a;
-    public final i f10110b;
-    public f f10111c;
+    public final e f10095a;
+    public final i f10096b;
+    public f f10097c;
     public final int d;
 
     public a(g gVar, i iVar, long j3, long j10, long j11, long j12, long j13, int i10) {
-        this.f10110b = iVar;
+        this.f10096b = iVar;
         this.d = i10;
-        this.f10109a = new e(gVar, j3, j10, j11, j12, j13);
+        this.f10095a = new e(gVar, j3, j10, j11, j12, j13);
     }
 
     public static int a(int i10, byte[] bArr) {
@@ -26,7 +26,7 @@ public final class a {
         if (j3 == pVar.getPosition()) {
             return 0;
         }
-        sVar.f3795a = j3;
+        sVar.f3790a = j3;
         return 1;
     }
 
@@ -35,11 +35,11 @@ public final class a {
     }
 
     public final void d(long j3) {
-        f fVar = this.f10111c;
-        if (fVar != null && fVar.f3757a == j3) {
+        f fVar = this.f10097c;
+        if (fVar != null && fVar.f3752a == j3) {
             return;
         }
-        e eVar = this.f10109a;
-        this.f10111c = new f(j3, eVar.f3753a.m(j3), eVar.f3755c, eVar.d, eVar.e, eVar.f3756f);
+        e eVar = this.f10095a;
+        this.f10097c = new f(j3, eVar.f3748a.m(j3), eVar.f3750c, eVar.d, eVar.e, eVar.f3751f);
     }
 }

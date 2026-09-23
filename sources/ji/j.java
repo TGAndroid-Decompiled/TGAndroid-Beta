@@ -7,37 +7,37 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Cells.t1;
 import s4.c1;
 public final class j extends AnimatorListenerAdapter {
-    public final c1 f13073a;
-    public final int f13074b;
-    public final View f13075c;
+    public final c1 f13063a;
+    public final int f13064b;
+    public final View f13065c;
     public final n d;
 
     public j(n nVar, c1 c1Var, int i10, View view) {
         this.d = nVar;
-        this.f13073a = c1Var;
-        this.f13074b = i10;
-        this.f13075c = view;
+        this.f13063a = c1Var;
+        this.f13064b = i10;
+        this.f13065c = view;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        if (this.f13074b != 0) {
-            this.f13075c.setTranslationY(0.0f);
+        if (this.f13064b != 0) {
+            this.f13065c.setTranslationY(0.0f);
         }
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         animator.removeAllListeners();
-        c1 c1Var = this.f13073a;
-        View view = c1Var.f42671a;
+        c1 c1Var = this.f13063a;
+        View view = c1Var.f42627a;
         n nVar = this.d;
         nVar.X(view);
-        View view2 = c1Var.f42671a;
+        View view2 = c1Var.f42627a;
         if (view2 instanceof t1) {
             t1 t1Var = (t1) view2;
-            if (t1Var.f21039fd) {
-                t1Var.f21039fd = false;
+            if (t1Var.f21026fd) {
+                t1Var.f21026fd = false;
                 t1Var.setVisibility(0);
             }
             MessageObject.GroupedMessages currentMessagesGroup = t1Var.getCurrentMessagesGroup();
@@ -45,7 +45,7 @@ public final class j extends AnimatorListenerAdapter {
                 currentMessagesGroup.transitionParams.reset();
             }
         }
-        if (nVar.f42738z.remove(c1Var)) {
+        if (nVar.f42694z.remove(c1Var)) {
             nVar.v(c1Var);
             nVar.G();
         }

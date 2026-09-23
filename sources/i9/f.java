@@ -6,8 +6,8 @@ public final class f extends k8 {
     public final boolean a(o oVar, c cVar, c cVar2) {
         synchronized (oVar) {
             try {
-                if (oVar.f11049b == cVar) {
-                    oVar.f11049b = cVar2;
+                if (oVar.f11037b == cVar) {
+                    oVar.f11037b = cVar2;
                     return true;
                 }
                 return false;
@@ -21,8 +21,8 @@ public final class f extends k8 {
     public final boolean b(o oVar, Object obj, Object obj2) {
         synchronized (oVar) {
             try {
-                if (oVar.f11048a == obj) {
-                    oVar.f11048a = obj2;
+                if (oVar.f11036a == obj) {
+                    oVar.f11036a = obj2;
                     return true;
                 }
                 return false;
@@ -36,8 +36,8 @@ public final class f extends k8 {
     public final boolean c(o oVar, n nVar, n nVar2) {
         synchronized (oVar) {
             try {
-                if (oVar.f11050c == nVar) {
-                    oVar.f11050c = nVar2;
+                if (oVar.f11038c == nVar) {
+                    oVar.f11038c = nVar2;
                     return true;
                 }
                 return false;
@@ -53,9 +53,9 @@ public final class f extends k8 {
         c cVar2 = c.d;
         synchronized (oVar) {
             try {
-                cVar = oVar.f11049b;
+                cVar = oVar.f11037b;
                 if (cVar != cVar2) {
-                    oVar.f11049b = cVar2;
+                    oVar.f11037b = cVar2;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -67,12 +67,12 @@ public final class f extends k8 {
     @Override
     public final n e(o oVar) {
         n nVar;
-        n nVar2 = n.f11044c;
+        n nVar2 = n.f11032c;
         synchronized (oVar) {
             try {
-                nVar = oVar.f11050c;
+                nVar = oVar.f11038c;
                 if (nVar != nVar2) {
-                    oVar.f11050c = nVar2;
+                    oVar.f11038c = nVar2;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -83,11 +83,11 @@ public final class f extends k8 {
 
     @Override
     public final void f(n nVar, n nVar2) {
-        nVar.f11046b = nVar2;
+        nVar.f11034b = nVar2;
     }
 
     @Override
     public final void g(n nVar, Thread thread) {
-        nVar.f11045a = thread;
+        nVar.f11033a = thread;
     }
 }

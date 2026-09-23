@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class np0 implements gg.g0 {
-    public final hq0 f26549a;
+    public final hq0 f26476a;
 
     public np0(hq0 hq0Var) {
-        this.f26549a = hq0Var;
+        this.f26476a = hq0Var;
     }
 
     @Override
@@ -19,27 +19,27 @@ public final class np0 implements gg.g0 {
         int i12;
         int i13 = 0;
         while (i13 < arrayList.size()) {
-            TLObject tLObject = ((gg.h0) arrayList.get(i13)).f9750a;
+            TLObject tLObject = ((gg.h0) arrayList.get(i13)).f9736a;
             if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
                 arrayList.remove(i13);
                 i13--;
             }
             i13++;
         }
-        hq0 hq0Var = this.f26549a;
+        hq0 hq0Var = this.f26476a;
         hq0Var.E0 = arrayList;
         for (int i14 = 0; i14 < hq0Var.E0.size(); i14++) {
             gg.h0 h0Var = (gg.h0) hq0Var.E0.get(i14);
-            TLObject tLObject2 = h0Var.f9750a;
+            TLObject tLObject2 = h0Var.f9736a;
             if (tLObject2 instanceof TLRPC.User) {
                 i12 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
-                MessagesController.getInstance(i12).putUser((TLRPC.User) h0Var.f9750a, true);
+                MessagesController.getInstance(i12).putUser((TLRPC.User) h0Var.f9736a, true);
             } else if (tLObject2 instanceof TLRPC.Chat) {
                 i11 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
-                MessagesController.getInstance(i11).putChat((TLRPC.Chat) h0Var.f9750a, true);
+                MessagesController.getInstance(i11).putChat((TLRPC.Chat) h0Var.f9736a, true);
             } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
                 i10 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
-                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) h0Var.f9750a, true);
+                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) h0Var.f9736a, true);
             }
         }
         hq0Var.M.l();

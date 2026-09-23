@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class gq0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.j5 f24440a;
-    public org.telegram.ui.ActionBar.j5 f24441b;
-    public ci.eb f24442c;
+    public org.telegram.ui.ActionBar.i5 f24392a;
+    public org.telegram.ui.ActionBar.i5 f24393b;
+    public ci.bb f24394c;
     public int d;
     public AnimatorSet e;
-    public Paint f24443f;
+    public Paint f24395f;
     public RectF h;
 
     public final void a(int i10) {
@@ -28,30 +28,30 @@ public abstract class gq0 extends FrameLayout {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.e = animatorSet2;
-        ci.eb ebVar = this.f24442c;
+        ci.bb bbVar = this.f24394c;
         if (this.d == 0) {
             measuredWidth = 0.0f;
         } else {
-            measuredWidth = ebVar.getMeasuredWidth();
+            measuredWidth = bbVar.getMeasuredWidth();
         }
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(ebVar, View.TRANSLATION_X, measuredWidth));
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(bbVar, View.TRANSLATION_X, measuredWidth));
         this.e.setDuration(180L);
-        this.e.setInterpolator(qr.f27421g);
+        this.e.setInterpolator(rr.f27702g);
         this.e.addListener(new jd0(this, 12));
         this.e.start();
-        ((tp0) this).f28162n.Z0();
+        ((tp0) this).f28289n.Z0();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
         int size = (View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(28.0f)) / 2;
-        ((FrameLayout.LayoutParams) this.f24441b.getLayoutParams()).width = size;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f24440a.getLayoutParams();
+        ((FrameLayout.LayoutParams) this.f24393b.getLayoutParams()).width = size;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f24392a.getLayoutParams();
         layoutParams.width = size;
         layoutParams.leftMargin = AndroidUtilities.dp(14.0f) + size;
-        ci.eb ebVar = this.f24442c;
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) ebVar.getLayoutParams();
+        ci.bb bbVar = this.f24394c;
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) bbVar.getLayoutParams();
         layoutParams2.width = size;
         AnimatorSet animatorSet = this.e;
         if (animatorSet != null) {
@@ -62,7 +62,7 @@ public abstract class gq0 extends FrameLayout {
         } else {
             f7 = layoutParams2.width;
         }
-        ebVar.setTranslationX(f7);
+        bbVar.setTranslationX(f7);
         super.onMeasure(i10, i11);
     }
 }

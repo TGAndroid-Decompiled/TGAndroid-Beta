@@ -1,9 +1,9 @@
 package org.telegram.tgnet;
 
 import ai.ga;
-import ai.i5;
+import ai.h5;
 import ai.n3;
-import ai.n8;
+import ai.o8;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.InstallSourceInfo;
@@ -18,7 +18,7 @@ import com.google.android.play.core.integrity.IntegrityManagerFactory;
 import com.google.android.play.core.integrity.IntegrityTokenRequest;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
 import ei.r2;
-import i2.z;
+import i2.a0;
 import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ByteArrayOutputStream;
@@ -67,13 +67,13 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.StatsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.lh;
+import org.telegram.messenger.kh;
 import org.telegram.messenger.voip.l0;
-import org.telegram.messenger.y0;
+import org.telegram.messenger.z0;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.q3;
-import org.telegram.ui.Components.g71;
-import org.telegram.ui.wg0;
+import org.telegram.ui.Components.f71;
+import org.telegram.ui.rg0;
 public class ConnectionsManager extends BaseController {
     private static final int CORE_POOL_SIZE;
     public static final int CPU_COUNT;
@@ -676,7 +676,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void checkWebProxyInternal(ni.b bVar, int i10, RequestTimeDelegate requestTimeDelegate) {
-        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f15246f, requestTimeDelegate);
+        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f15223f, requestTimeDelegate);
     }
 
     public static int generateClassGuid() {
@@ -818,7 +818,7 @@ public class ConnectionsManager extends BaseController {
         l4.append(System.currentTimeMillis() - j3);
         l4.append("ms");
         FileLog.e(l4.toString(), exc);
-        native_receivedIntegrityCheckClassic(i10, i11, str, "PLAYINTEGRITY_FAILED_EXCEPTION_" + wg0.f1(exc));
+        native_receivedIntegrityCheckClassic(i10, i11, str, "PLAYINTEGRITY_FAILED_EXCEPTION_" + rg0.f1(exc));
     }
 
     public static void lambda$onIntegrityCheckClassic$27(int i10, String str, String str2, int i11) {
@@ -974,7 +974,7 @@ public class ConnectionsManager extends BaseController {
                 }
                 i17 = 0;
             }
-            if ((i10 & 2) != 0 && g71.f24222k0.isEmpty()) {
+            if ((i10 & 2) != 0 && f71.f23879k0.isEmpty()) {
                 y2.f.b(ApplicationLoader.applicationContext).d(i17, Math.max(0L, (System.currentTimeMillis() - j3) - native_getCurrentPingTime(this.currentAccount)));
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -1161,11 +1161,11 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onConnectionStateChanged(int i10, int i11) {
-        AndroidUtilities.runOnUIThread(new lh(i11, i10, 2));
+        AndroidUtilities.runOnUIThread(new kh(i11, i10, 2));
     }
 
     public static void onIntegrityCheckClassic(int i10, int i11, String str, String str2) {
-        AndroidUtilities.runOnUIThread(new z(i10, i11, str, str2));
+        AndroidUtilities.runOnUIThread(new a0(i10, i11, str, str2));
     }
 
     public static void onInternalPushReceived(int i10) {
@@ -1215,7 +1215,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onRequestNewServerIpAndPort(int i10, int i11) {
-        Utilities.globalQueue.postRunnable(new lh(i10, i11, 1));
+        Utilities.globalQueue.postRunnable(new kh(i10, i11, 1));
     }
 
     public static void onRequestQuickAck(int i10, int i11) {
@@ -1272,7 +1272,7 @@ public class ConnectionsManager extends BaseController {
             wrap.reused = true;
             TLRPC.TL_config TLdeserialize = TLRPC.TL_config.TLdeserialize(wrap, wrap.readInt32(true), true);
             if (TLdeserialize != null) {
-                Utilities.stageQueue.postRunnable(new n8(i10, TLdeserialize, 14));
+                Utilities.stageQueue.postRunnable(new o8(i10, TLdeserialize, 14));
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -1342,12 +1342,12 @@ public class ConnectionsManager extends BaseController {
         int i11;
         String str5 = "";
         if (z10 && bVar != null && bVar.f()) {
-            String str6 = bVar.f15244b;
-            int i12 = bVar.f15245c;
+            String str6 = bVar.f15221b;
+            int i12 = bVar.f15222c;
             String str7 = bVar.d;
             String str8 = bVar.e;
-            String str9 = bVar.f15246f;
-            if (bVar.f15243a == 3) {
+            String str9 = bVar.f15223f;
+            if (bVar.f15220a == 3) {
                 i10 = ni.k.l(str6, str9);
                 if (i10 == 0) {
                     i10 = 9;
@@ -1359,10 +1359,10 @@ public class ConnectionsManager extends BaseController {
             } else {
                 synchronized (ni.k.v) {
                     try {
-                        ni.k kVar = ni.k.f15265w;
+                        ni.k kVar = ni.k.f15242w;
                         if (kVar != null) {
                             kVar.n();
-                            ni.k.f15265w = null;
+                            ni.k.f15242w = null;
                         }
                     } finally {
                     }
@@ -1466,7 +1466,7 @@ public class ConnectionsManager extends BaseController {
 
     public long checkProxy(ni.b bVar, RequestTimeDelegate requestTimeDelegate) {
         if (bVar != null && bVar.f()) {
-            if (bVar.f15243a == 3) {
+            if (bVar.f15220a == 3) {
                 ni.f fVar = ni.f.e;
                 if (fVar == null) {
                     synchronized (ni.f.class) {
@@ -1481,16 +1481,16 @@ public class ConnectionsManager extends BaseController {
                     }
                 }
                 ni.f fVar2 = fVar;
-                k2.v vVar = new k2.v(this, 8);
-                if (bVar.f15243a == 3 && bVar.f() && requestTimeDelegate != null) {
-                    AndroidUtilities.runOnUIThread(new i5(fVar2, vVar, bVar, requestTimeDelegate, 25));
+                le.b bVar2 = new le.b(this, 9);
+                if (bVar.f15220a == 3 && bVar.f() && requestTimeDelegate != null) {
+                    AndroidUtilities.runOnUIThread(new h5(fVar2, bVar2, bVar, requestTimeDelegate, 25));
                     return 0L;
                 } else if (requestTimeDelegate != null) {
                     requestTimeDelegate.run(-1L);
                     return 0L;
                 }
             } else {
-                return native_checkProxy(this.currentAccount, bVar.f15244b, bVar.f15245c, bVar.d, bVar.e, bVar.f15246f, requestTimeDelegate);
+                return native_checkProxy(this.currentAccount, bVar.f15221b, bVar.f15222c, bVar.d, bVar.e, bVar.f15223f, requestTimeDelegate);
             }
         }
         return 0L;
@@ -1615,11 +1615,11 @@ public class ConnectionsManager extends BaseController {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
         ni.b c10 = ni.b.c(sharedPreferences);
         if (sharedPreferences.getBoolean("proxy_enabled", false) && c10.f()) {
-            if (c10.f15243a == 3) {
-                int l4 = ni.k.l(c10.f15244b, c10.f15246f);
-                native_setProxySettings(this.currentAccount, "127.0.0.1", l4 != 0 ? l4 : 9, "", "", c10.f15246f);
+            if (c10.f15220a == 3) {
+                int l4 = ni.k.l(c10.f15221b, c10.f15223f);
+                native_setProxySettings(this.currentAccount, "127.0.0.1", l4 != 0 ? l4 : 9, "", "", c10.f15223f);
             } else {
-                native_setProxySettings(this.currentAccount, c10.f15244b, c10.f15245c, c10.d, c10.e, c10.f15246f);
+                native_setProxySettings(this.currentAccount, c10.f15221b, c10.f15222c, c10.d, c10.e, c10.f15223f);
             }
         }
         try {
@@ -1700,7 +1700,7 @@ public class ConnectionsManager extends BaseController {
                 this.appResumeCount++;
             }
             if (BuildVars.LOGS_ENABLED) {
-                y0.n(this.appResumeCount, new StringBuilder("app resume count "));
+                z0.n(this.appResumeCount, new StringBuilder("app resume count "));
             }
             if (this.appResumeCount < 0) {
                 this.appResumeCount = 0;

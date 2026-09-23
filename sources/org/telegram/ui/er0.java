@@ -1,28 +1,93 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class er0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.n2 f33394a;
-    public FrameLayout f33395b;
-    public org.telegram.ui.ActionBar.k f33396c;
-    public org.telegram.ui.Components.ll0 d;
-    public int e;
-    public final gr0 f33397f;
+import android.view.WindowManager;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.ClippingImageView;
+public final class er0 implements Runnable {
+    public final int f33009a;
+    public final PhotoViewer f33010b;
+    public final wu0 f33011c;
 
-    public er0(gr0 gr0Var, Context context) {
-        super(context);
-        this.f33397f = gr0Var;
+    public er0(PhotoViewer photoViewer, wu0 wu0Var, int i10) {
+        this.f33009a = i10;
+        this.f33010b = photoViewer;
+        this.f33011c = wu0Var;
     }
 
     @Override
-    public final void setTranslationX(float f7) {
-        er0 er0Var;
-        super.setTranslationX(f7);
-        gr0 gr0Var = this.f33397f;
-        er0[] er0VarArr = gr0Var.f33927n;
-        if (gr0Var.f33929s && (er0Var = er0VarArr[0]) == this) {
-            gr0Var.h.j(Math.abs(er0Var.getTranslationX()) / er0VarArr[0].getMeasuredWidth(), er0VarArr[1].e);
+    public final void run() {
+        ClippingImageView clippingImageView;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        switch (this.f33009a) {
+            case 0:
+                PhotoViewer photoViewer = this.f33010b;
+                photoViewer.f30934h0.setImageBitmap(null);
+                wu0 wu0Var = this.f33011c;
+                if (wu0Var != null && !AndroidUtilities.isTablet() && (clippingImageView = wu0Var.f39103m) != null) {
+                    clippingImageView.setImageBitmap(null);
+                }
+                try {
+                    if (photoViewer.f30925g0.getParent() != null) {
+                        ((WindowManager) photoViewer.f31086y.getSystemService("window")).removeView(photoViewer.f30925g0);
+                        photoViewer.V1();
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 1:
+                PhotoViewer photoViewer2 = this.f33010b;
+                photoViewer2.f31007p4 = null;
+                int i10 = 0;
+                photoViewer2.f30908e0.setLayerType(0, null);
+                photoViewer2.f30989n4 = 0;
+                photoViewer2.F1();
+                photoViewer2.X1(this.f33011c);
+                MediaController.getInstance().tryResumePausedAudio();
+                if (photoViewer2.f31064v7 && !photoViewer2.f31074w7 && (arrayList = photoViewer2.f30932g7) != null) {
+                    int size = arrayList.size();
+                    while (i10 < size) {
+                        Object obj = arrayList.get(i10);
+                        i10++;
+                        if (obj instanceof MediaController.PhotoEntry) {
+                            ((MediaController.PhotoEntry) obj).deleteAll();
+                        }
+                    }
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer3 = this.f33010b;
+                photoViewer3.f31007p4 = null;
+                ou0 ou0Var = photoViewer3.f30908e0;
+                if (ou0Var != null) {
+                    int i11 = 0;
+                    ou0Var.setLayerType(0, null);
+                    photoViewer3.f30989n4 = 0;
+                    photoViewer3.X1(this.f33011c);
+                    photoViewer3.f30908e0.setScaleX(1.0f);
+                    photoViewer3.f30908e0.setScaleY(1.0f);
+                    MediaController.getInstance().tryResumePausedAudio();
+                    if (photoViewer3.f31064v7 && !photoViewer3.f31074w7 && (arrayList2 = photoViewer3.f30932g7) != null) {
+                        int size2 = arrayList2.size();
+                        while (i11 < size2) {
+                            Object obj2 = arrayList2.get(i11);
+                            i11++;
+                            if (obj2 instanceof MediaController.PhotoEntry) {
+                                ((MediaController.PhotoEntry) obj2).deleteAll();
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

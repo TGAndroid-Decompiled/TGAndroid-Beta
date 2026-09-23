@@ -7,22 +7,22 @@ import android.view.SubMenu;
 import android.view.View;
 public final class d0 extends k implements SubMenu {
     public final m A;
-    public final k f13713z;
+    public final k f13701z;
 
     public d0(Context context, k kVar, m mVar) {
         super(context);
-        this.f13713z = kVar;
+        this.f13701z = kVar;
         this.A = mVar;
     }
 
     @Override
     public final boolean d(m mVar) {
-        return this.f13713z.d(mVar);
+        return this.f13701z.d(mVar);
     }
 
     @Override
     public final boolean e(k kVar, MenuItem menuItem) {
-        if (!super.e(kVar, menuItem) && !this.f13713z.e(kVar, menuItem)) {
+        if (!super.e(kVar, menuItem) && !this.f13701z.e(kVar, menuItem)) {
             return false;
         }
         return true;
@@ -30,7 +30,7 @@ public final class d0 extends k implements SubMenu {
 
     @Override
     public final boolean f(m mVar) {
-        return this.f13713z.f(mVar);
+        return this.f13701z.f(mVar);
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class d0 extends k implements SubMenu {
         int i10;
         m mVar = this.A;
         if (mVar != null) {
-            i10 = mVar.f13757a;
+            i10 = mVar.f13745a;
         } else {
             i10 = 0;
         }
@@ -55,27 +55,27 @@ public final class d0 extends k implements SubMenu {
 
     @Override
     public final k k() {
-        return this.f13713z.k();
+        return this.f13701z.k();
     }
 
     @Override
     public final boolean m() {
-        return this.f13713z.m();
+        return this.f13701z.m();
     }
 
     @Override
     public final boolean n() {
-        return this.f13713z.n();
+        return this.f13701z.n();
     }
 
     @Override
     public final boolean o() {
-        return this.f13713z.o();
+        return this.f13701z.o();
     }
 
     @Override
     public final void setGroupDividerEnabled(boolean z10) {
-        this.f13713z.setGroupDividerEnabled(z10);
+        this.f13701z.setGroupDividerEnabled(z10);
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class d0 extends k implements SubMenu {
 
     @Override
     public final void setQwertyMode(boolean z10) {
-        this.f13713z.setQwertyMode(z10);
+        this.f13701z.setQwertyMode(z10);
     }
 
     @Override

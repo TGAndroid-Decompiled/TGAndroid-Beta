@@ -1,39 +1,35 @@
 package org.telegram.ui;
+public final class el implements Runnable {
+    public final int f32966a;
+    public final fl f32967b;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class el implements org.telegram.ui.Components.ek0 {
-    public final bo f33371a;
-
-    public el(bo boVar) {
-        this.f33371a = boVar;
+    public el(fl flVar, int i10) {
+        this.f32966a = i10;
+        this.f32967b = flVar;
     }
 
     @Override
-    public final void h(android.view.View r24, zg.p0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.el.h(android.view.View, zg.p0, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean j() {
-        return true;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return false;
-    }
-
-    @Override
-    public final void o() {
-    }
-
-    @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void run() {
+        switch (this.f32966a) {
+            case 0:
+                jk jkVar = this.f32967b.H.Y;
+                if (jkVar != null) {
+                    jkVar.T0 = false;
+                    org.telegram.ui.Components.dg dgVar = jkVar.U0;
+                    if (dgVar != null) {
+                        dgVar.u(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                jk jkVar2 = this.f32967b.H.Y;
+                if (jkVar2 != null) {
+                    jkVar2.I0();
+                    return;
+                }
+                return;
+        }
     }
 }

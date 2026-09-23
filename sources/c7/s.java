@@ -5,32 +5,32 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class s extends o6.a {
     public static final Parcelable.Creator<s> CREATOR = new r0(24);
-    public final String f4142a;
+    public final String f4137a;
 
     public s(String str) {
         n6.l.h(str);
-        this.f4142a = str;
+        this.f4137a = str;
     }
 
     public final boolean equals(Object obj) {
         if (!(obj instanceof s)) {
             return false;
         }
-        return this.f4142a.equals(((s) obj).f4142a);
+        return this.f4137a.equals(((s) obj).f4137a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4142a});
+        return Arrays.hashCode(new Object[]{this.f4137a});
     }
 
     public final String toString() {
-        return a4.a.t(new StringBuilder("FidoAppIdExtension{appid='"), this.f4142a, "'}");
+        return a4.a.t(new StringBuilder("FidoAppIdExtension{appid='"), this.f4137a, "'}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.l(parcel, 2, this.f4142a);
+        w7.e0.l(parcel, 2, this.f4137a);
         w7.e0.r(parcel, q6);
     }
 }

@@ -1,170 +1,102 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
+import android.content.Context;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class ei implements ViewTreeObserver.OnPreDrawListener {
-    public final int f33349a;
-    public final Object f33350b;
+import java.util.List;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class ei extends z4.a {
+    public final int f32928c;
+    public final SparseArray d;
+    public final boolean e;
+    public final List f32929f;
+    public final MessageObject f32930g;
+    public final org.telegram.ui.Components.gj0 h;
+    public final MessageObject f32931i;
+    public final SparseIntArray f32932j;
+    public final int f32933k;
+    public final z4.g f32934l;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f32935m;
+    public final int[] f32936n;
+    public final int f32937o;
+    public final xn f32938p;
 
-    public ei(Object obj, int i10) {
-        this.f33349a = i10;
-        this.f33350b = obj;
+    public ei(xn xnVar, int i10, SparseArray sparseArray, boolean z10, List list, MessageObject messageObject, org.telegram.ui.Components.gj0 gj0Var, MessageObject messageObject2, SparseIntArray sparseIntArray, int i11, z4.g gVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr, int i12) {
+        this.f32938p = xnVar;
+        this.f32928c = i10;
+        this.d = sparseArray;
+        this.e = z10;
+        this.f32929f = list;
+        this.f32930g = messageObject;
+        this.h = gj0Var;
+        this.f32931i = messageObject2;
+        this.f32932j = sparseIntArray;
+        this.f32933k = i11;
+        this.f32934l = gVar;
+        this.f32935m = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f32936n = iArr;
+        this.f32937o = i12;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f33349a) {
-            case 0:
-                bo boVar = (bo) this.f33350b;
-                pj pjVar = boVar.f32233a1;
-                if (pjVar != null) {
-                    pjVar.getViewTreeObserver().removeOnPreDrawListener(this);
-                }
-                return boVar.s8();
-            case 1:
-                ((ci.s6) this.f33350b).invalidate();
-                return true;
-            case 2:
-                View view = ((w70) this.f33350b).fragmentView;
-                if (view != null) {
-                    view.getViewTreeObserver().removeOnPreDrawListener(this);
-                    int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-                    if (rotation != 3 && rotation != 1) {
-                        ((w70) this.f33350b).f38716f.setOrientation(1);
-                    } else {
-                        ((w70) this.f33350b).f38716f.setOrientation(0);
-                    }
-                    View view2 = ((w70) this.f33350b).fragmentView;
-                    view2.setPadding(view2.getPaddingLeft(), 0, ((w70) this.f33350b).fragmentView.getPaddingRight(), ((w70) this.f33350b).fragmentView.getPaddingBottom());
-                }
-                return true;
-            case 3:
-                jq0 jq0Var = (jq0) this.f33350b;
-                if (jq0Var.getParentActivity() != null) {
-                    int rotation2 = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-                    jq0Var.f34967f = 2;
-                    if (!AndroidUtilities.isTablet() && (rotation2 == 3 || rotation2 == 1)) {
-                        jq0Var.f34967f = 4;
-                    }
-                    jq0Var.f34968n.l();
-                }
-                org.telegram.ui.Components.ll0 ll0Var = ((jq0) this.f33350b).h;
-                if (ll0Var != null) {
-                    ll0Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                }
-                return true;
-            case 4:
-                PhotoViewer photoViewer = (PhotoViewer) this.f33350b;
-                photoViewer.f31096w3.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageView imageView = photoViewer.f31106x3;
-                if (imageView != null) {
-                    if (photoViewer.J3) {
-                        AndroidUtilities.runOnUIThread(new Runnable(this) {
-                            public final ei f35262b;
+    public final void a(z4.g gVar, Object obj) {
+        gVar.removeView((View) obj);
+    }
 
-                            {
-                                this.f35262b = this;
-                            }
+    @Override
+    public final int b() {
+        return this.f32928c;
+    }
 
-                            @Override
-                            public final void run() {
-                                switch (r2) {
-                                    case 0:
-                                        PhotoViewer photoViewer2 = (PhotoViewer) this.f35262b.f33350b;
-                                        photoViewer2.f31106x3.setVisibility(4);
-                                        photoViewer2.f31106x3.setImageDrawable(null);
-                                        Bitmap bitmap = photoViewer2.C3;
-                                        if (bitmap != null) {
-                                            bitmap.recycle();
-                                            photoViewer2.C3 = null;
-                                            return;
-                                        }
-                                        return;
-                                    default:
-                                        PhotoViewer photoViewer3 = (PhotoViewer) this.f35262b.f33350b;
-                                        if (photoViewer3.J3) {
-                                            photoViewer3.S0();
-                                            return;
-                                        }
-                                        return;
-                                }
-                            }
-                        }, 300L);
-                    } else {
-                        imageView.setVisibility(4);
-                        photoViewer.f31106x3.setImageDrawable(null);
-                        Bitmap bitmap = photoViewer.C3;
-                        if (bitmap != null) {
-                            bitmap.recycle();
-                            photoViewer.C3 = null;
-                        }
-                    }
-                }
-                AndroidUtilities.runOnUIThread(new Runnable(this) {
-                    public final ei f35262b;
-
-                    {
-                        this.f35262b = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                PhotoViewer photoViewer2 = (PhotoViewer) this.f35262b.f33350b;
-                                photoViewer2.f31106x3.setVisibility(4);
-                                photoViewer2.f31106x3.setImageDrawable(null);
-                                Bitmap bitmap2 = photoViewer2.C3;
-                                if (bitmap2 != null) {
-                                    bitmap2.recycle();
-                                    photoViewer2.C3 = null;
-                                    return;
-                                }
-                                return;
-                            default:
-                                PhotoViewer photoViewer3 = (PhotoViewer) this.f35262b.f33350b;
-                                if (photoViewer3.J3) {
-                                    photoViewer3.S0();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                photoViewer.G3 = 0;
-                return true;
-            case 5:
-                ProfileActivity profileActivity = (ProfileActivity) this.f33350b;
-                if (profileActivity.fragmentView != null) {
-                    profileActivity.A3();
-                    profileActivity.k4(true);
-                    profileActivity.fragmentView.getViewTreeObserver().removeOnPreDrawListener(this);
-                }
-                return true;
-            default:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f33350b;
-                int[][] iArr = WallpapersListActivity.f31615k0;
-                if (wallpapersListActivity.getParentActivity() != null) {
-                    int rotation3 = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-                    if (AndroidUtilities.isTablet()) {
-                        wallpapersListActivity.R = 3;
-                    } else if (rotation3 != 3 && rotation3 != 1) {
-                        wallpapersListActivity.R = 3;
-                    } else {
-                        wallpapersListActivity.R = 5;
-                    }
-                    wallpapersListActivity.C0();
-                }
-                org.telegram.ui.Components.ll0 ll0Var2 = ((WallpapersListActivity) this.f33350b).H;
-                if (ll0Var2 != null) {
-                    ll0Var2.getViewTreeObserver().removeOnPreDrawListener(this);
-                }
-                return true;
+    @Override
+    public final Object e(z4.g gVar, int i10) {
+        int i11;
+        TLRPC.ReactionCount reactionCount;
+        int i12;
+        SparseArray sparseArray = this.d;
+        View view = (View) sparseArray.get(i10);
+        if (view != null) {
+            gVar.addView(view);
+            return view;
         }
+        if (this.e) {
+            i11 = i10 - 1;
+        } else {
+            i11 = i10;
+        }
+        if (i11 >= 0) {
+            reactionCount = (TLRPC.ReactionCount) this.f32929f.get(i11);
+        } else {
+            reactionCount = null;
+        }
+        TLRPC.ReactionCount reactionCount2 = reactionCount;
+        Context context = gVar.getContext();
+        xn xnVar = this.f32938p;
+        vn vnVar = xnVar.f39370ea;
+        i12 = ((org.telegram.ui.ActionBar.n2) xnVar).currentAccount;
+        org.telegram.ui.Components.qj0 qj0Var = new org.telegram.ui.Components.qj0(context, vnVar, i12, this.f32930g, reactionCount2, true);
+        org.telegram.ui.Components.gj0 gj0Var = this.h;
+        qj0Var.h(gj0Var.getSeenUsers());
+        qj0Var.G = new z0(this, 16);
+        qj0Var.E = new u(10, this, this.f32931i);
+        qj0Var.f27373y = new ei.u4(this.f32932j, i10, this.f32933k, this.f32934l, this.f32935m, this.f32936n);
+        if (i11 < 0) {
+            qj0Var.setPredictiveCount(this.f32937o);
+            gj0Var.setSeenCallback(new h3(qj0Var, 1));
+        }
+        gVar.addView(qj0Var);
+        sparseArray.put(i10, qj0Var);
+        return qj0Var;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
+        }
+        return false;
     }
 }

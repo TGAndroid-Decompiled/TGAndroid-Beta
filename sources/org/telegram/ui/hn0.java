@@ -1,47 +1,69 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class hn0 extends TextView {
-    public final int f34334a;
+import org.telegram.messenger.LocaleController;
+public final class hn0 extends FrameLayout {
+    public TextView f33890a;
+    public TextView f33891b;
+    public ImageView f33892c;
+    public boolean d;
 
-    public hn0(Context context, int i10) {
-        super(context);
-        this.f34334a = i10;
+    public final void a(String str, boolean z10) {
+        this.f33890a.setText(str);
+        this.f33891b.setText("");
+        this.d = z10;
+        setWillNotDraw(!z10);
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f34334a) {
-            case 3:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.d) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(20.0f);
+            }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f18910k0);
         }
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f34334a) {
-            case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
-                return;
-            case 3:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 4:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
-                return;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z10) {
+        int i10;
+        ImageView imageView = this.f33892c;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
+        imageView.setVisibility(i10);
+    }
+
+    public void setNeedDivider(boolean z10) {
+        this.d = z10;
+        setWillNotDraw(!z10);
+        invalidate();
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.f33891b.setText(charSequence);
     }
 }

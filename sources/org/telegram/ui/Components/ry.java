@@ -1,80 +1,116 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ry extends FrameLayout {
-    public final ImageView f27705a;
-    public final TextView f27706b;
-    public final RadialProgressView f27707c;
-    public boolean d;
-    public final kz e;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.FileLoader;
+import org.telegram.tgnet.TLRPC;
+public final class ry extends oz {
+    public final jv0 X;
+    public final lz Y;
 
-    public ry(kz kzVar, Context context) {
-        super(context);
-        this.e = kzVar;
-        ImageView imageView = new ImageView(getContext());
-        this.f27705a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.gif_empty);
-        int i10 = org.telegram.ui.ActionBar.i6.Le;
-        imageView.setColorFilter(new PorterDuffColorFilter(kzVar.z(i10), PorterDuff.Mode.MULTIPLY));
-        addView(imageView, w7.x5.d(-2, -2.0f, 17, 0.0f, 8.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(getContext());
-        this.f27706b = textView;
-        textView.setText(LocaleController.getString(R.string.NoGIFsFound));
-        textView.setTextSize(1, 16.0f);
-        textView.setTextColor(kzVar.z(i10));
-        addView(textView, w7.x5.d(-2, -2.0f, 17, 0.0f, 42.0f, 0.0f, 0.0f));
-        RadialProgressView radialProgressView = new RadialProgressView(context, kzVar.Z1);
-        this.f27707c = radialProgressView;
-        radialProgressView.setVisibility(8);
-        radialProgressView.setProgressColor(kzVar.z(org.telegram.ui.ActionBar.i6.f18905h6));
-        addView(radialProgressView, w7.x5.e(-2, -2, 17));
-    }
-
-    public final void a(boolean z10) {
-        int i10;
-        int i11;
-        if (this.d != z10) {
-            this.d = z10;
-            int i12 = 0;
-            if (z10) {
-                i10 = 8;
-            } else {
-                i10 = 0;
-            }
-            this.f27705a.setVisibility(i10);
-            if (z10) {
-                i11 = 8;
-            } else {
-                i11 = 0;
-            }
-            this.f27706b.setVisibility(i11);
-            if (!z10) {
-                i12 = 8;
-            }
-            this.f27707c.setVisibility(i12);
-        }
+    public ry(lz lzVar) {
+        super(100, true);
+        this.Y = lzVar;
+        this.X = new Object();
+        this.O = new ci.x1(this, 4);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int dp;
-        kz kzVar = this.e;
-        int measuredHeight = kzVar.f25715h0.getMeasuredHeight();
-        if (!this.d) {
-            dp = (int) (org.telegram.messenger.vl.y(8.0f, measuredHeight - kzVar.f25696b1, 3) * 1.7f);
-        } else {
-            dp = measuredHeight - AndroidUtilities.dp(80.0f);
+    public final int A() {
+        lz lzVar = this.Y;
+        s4.h0 adapter = lzVar.f25983h0.getAdapter();
+        qy qyVar = lzVar.f25989j0;
+        if (adapter == qyVar && qyVar.f27486x.isEmpty()) {
+            return 0;
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
+        return B() - 1;
+    }
+
+    @Override
+    public final jv0 D1(int i10) {
+        ArrayList<TLRPC.DocumentAttribute> arrayList;
+        TLRPC.Document document;
+        lz lzVar = this.Y;
+        qy qyVar = lzVar.f25989j0;
+        s4.h0 adapter = lzVar.f25983h0.getAdapter();
+        qy qyVar2 = lzVar.f26000n0;
+        TLRPC.Document document2 = null;
+        r4 = null;
+        ArrayList<TLRPC.DocumentAttribute> arrayList2 = null;
+        if (adapter == qyVar2) {
+            int i11 = qyVar2.H;
+            if (i10 > i11) {
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) qyVar2.f27486x.get((i10 - i11) - 1);
+                document = botInlineResult.document;
+                if (document != null) {
+                    arrayList2 = document.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument = botInlineResult.content;
+                    if (webDocument != null) {
+                        arrayList2 = webDocument.attributes;
+                    } else {
+                        TLRPC.WebDocument webDocument2 = botInlineResult.thumb;
+                        if (webDocument2 != null) {
+                            arrayList2 = webDocument2.attributes;
+                        }
+                    }
+                }
+                arrayList = arrayList2;
+                document2 = document;
+                return F1(document2, arrayList);
+            } else if (i10 == i11) {
+                return null;
+            } else {
+                document2 = (TLRPC.Document) lzVar.f25987i1.get(i10);
+                arrayList = document2.attributes;
+                return F1(document2, arrayList);
+            }
+        } else if (!qyVar.f27486x.isEmpty()) {
+            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) qyVar.f27486x.get(i10);
+            document = botInlineResult2.document;
+            if (document != null) {
+                arrayList2 = document.attributes;
+            } else {
+                TLRPC.WebDocument webDocument3 = botInlineResult2.content;
+                if (webDocument3 != null) {
+                    arrayList2 = webDocument3.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument4 = botInlineResult2.thumb;
+                    if (webDocument4 != null) {
+                        arrayList2 = webDocument4.attributes;
+                    }
+                }
+            }
+            arrayList = arrayList2;
+            document2 = document;
+            return F1(document2, arrayList);
+        } else {
+            arrayList = null;
+            return F1(document2, arrayList);
+        }
+    }
+
+    public final jv0 F1(TLRPC.Document document, List list) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        int i10;
+        int i11;
+        jv0 jv0Var = this.X;
+        jv0Var.f25429b = 100.0f;
+        jv0Var.f25428a = 100.0f;
+        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i10 = closestPhotoSizeWithSize.f18108w) != 0 && (i11 = closestPhotoSizeWithSize.h) != 0) {
+            jv0Var.f25428a = i10;
+            jv0Var.f25429b = i11;
+        }
+        if (list != null) {
+            for (int i12 = 0; i12 < list.size(); i12++) {
+                TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i12);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                    jv0Var.f25428a = documentAttribute.f18090w;
+                    jv0Var.f25429b = documentAttribute.h;
+                    break;
+                }
+            }
+        }
+        return jv0Var;
     }
 }

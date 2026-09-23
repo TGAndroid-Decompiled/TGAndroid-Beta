@@ -1,6 +1,63 @@
 package org.telegram.ui;
-public abstract class i20 {
-    public static void a(android.app.Activity r30, int r31, java.lang.String r32, org.telegram.tgnet.TLObject r33, org.telegram.tgnet.tl.TL_fragment.TL_collectibleInfo r34, org.telegram.ui.ActionBar.e6 r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.i20.a(android.app.Activity, int, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.tl.TL_fragment$TL_collectibleInfo, org.telegram.ui.ActionBar.e6):void");
+
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+public final class i20 {
+    public LinearGradient f33969b;
+    public final Paint[] f33968a = new Paint[4];
+    public final Matrix f33970c = new Matrix();
+
+    public final void a(Canvas canvas, RectF rectF, float f7) {
+        Paint[] paintArr = this.f33968a;
+        if (paintArr[0] == null) {
+            Paint paint = new Paint(1);
+            paintArr[0] = paint;
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[0].setShader(this.f33969b);
+        paintArr[0].setAlpha((int) (f7 * 255.0f));
+        canvas.drawRect(rectF, paintArr[0]);
+    }
+
+    public final void b(Canvas canvas, RectF rectF, int i10, float f7) {
+        if (f7 <= 0.0f) {
+            return;
+        }
+        if (this.f33969b == null) {
+            this.f33969b = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        Paint[] paintArr = this.f33968a;
+        if (paintArr[i10] == null) {
+            paintArr[i10] = new Paint(1);
+            paintArr[i10].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[i10].setShader(this.f33969b);
+        Matrix matrix = this.f33970c;
+        matrix.reset();
+        if (i10 == 0) {
+            matrix.postScale(1.0f, rectF.width() / 16.0f);
+            matrix.postRotate(-90.0f);
+            matrix.postTranslate(rectF.left, rectF.top);
+        } else if (i10 == 1) {
+            matrix.postScale(1.0f, rectF.height() / 16.0f);
+            matrix.postTranslate(rectF.left, rectF.top);
+        } else if (i10 == 2) {
+            matrix.postScale(1.0f, rectF.width() / 16.0f);
+            matrix.postRotate(90.0f);
+            matrix.postTranslate(rectF.right, rectF.top);
+        } else if (i10 == 3) {
+            matrix.postScale(1.0f, rectF.height() / 16.0f);
+            matrix.postScale(1.0f, -1.0f);
+            matrix.postTranslate(rectF.left, rectF.bottom);
+        }
+        this.f33969b.setLocalMatrix(matrix);
+        paintArr[i10].setAlpha((int) (f7 * 255.0f));
+        canvas.drawRect(rectF, paintArr[i10]);
     }
 }

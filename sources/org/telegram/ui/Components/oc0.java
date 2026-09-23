@@ -1,35 +1,17 @@
 package org.telegram.ui.Components;
+public final class oc0 implements Runnable {
+    public boolean f26719a;
+    public final tc0 f26720b;
 
-import org.telegram.messenger.Utilities;
-public final class oc0 extends co0 {
-    public final uc0 d;
-
-    public oc0(uc0 uc0Var) {
-        this.d = uc0Var;
+    public oc0(tc0 tc0Var) {
+        this.f26720b = tc0Var;
     }
 
     @Override
-    public final boolean a() {
-        return true;
-    }
-
-    @Override
-    public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        this.d.a(!z10);
-    }
-
-    @Override
-    public final CharSequence d() {
-        uc0 uc0Var = this.d;
-        Utilities.CallbackReturn callbackReturn = uc0Var.f28366s0;
-        if (callbackReturn != null) {
-            return (CharSequence) callbackReturn.run(Integer.valueOf(uc0Var.G));
-        }
-        return uc0Var.d(uc0Var.G);
+    public final void run() {
+        boolean z10 = this.f26719a;
+        tc0 tc0Var = this.f26720b;
+        tc0Var.a(z10);
+        tc0Var.postDelayed(this, tc0Var.L);
     }
 }

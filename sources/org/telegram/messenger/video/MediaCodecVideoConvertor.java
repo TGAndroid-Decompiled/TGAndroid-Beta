@@ -5,7 +5,7 @@ import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
-import ci.n8;
+import ci.k8;
 import ci.t;
 import java.io.File;
 import java.nio.ByteBuffer;
@@ -53,7 +53,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        n8 hdrInfo;
+        k8 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -369,7 +369,7 @@ public class MediaCodecVideoConvertor {
         return sb2.toString();
     }
 
-    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, n8 n8Var, int i14, boolean z11) {
+    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, k8 k8Var, int i14, boolean z11) {
         int i15;
         int i16;
         String readRes;
@@ -431,7 +431,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f7);
         String glslFloat7 = glslFloat(1.0f / f11);
-        if (n8Var.a() == 1) {
+        if (k8Var.a() == 1) {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
         } else {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);

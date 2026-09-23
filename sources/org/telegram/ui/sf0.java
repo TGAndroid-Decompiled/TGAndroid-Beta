@@ -1,29 +1,68 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class sf0 implements Runnable {
-    public final int f37387a;
-    public final zf0 f37388b;
-    public final int f37389c;
+import android.content.Context;
+public final class sf0 extends org.telegram.ui.Components.voip.n2 {
+    public final int e;
+    public final org.telegram.ui.Components.uv0 f37275f;
 
-    public sf0(zf0 zf0Var, int i10, int i11) {
-        this.f37387a = i11;
-        this.f37388b = zf0Var;
-        this.f37389c = i10;
+    public sf0(uf0 uf0Var, Context context, int i10) {
+        super(uf0Var.f38093s0, context);
+        this.e = i10;
+        switch (i10) {
+            case 1:
+                this.f37275f = uf0Var;
+                super(uf0Var.f38093s0, context);
+                return;
+            default:
+                this.f37275f = uf0Var;
+                return;
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f37387a) {
+    public final boolean a() {
+        switch (this.e) {
             case 0:
-                AndroidUtilities.runOnUIThread(new sf0(this.f37388b, this.f37389c, 1));
-                return;
+                return ((uf0) this.f37275f).f38081i0;
             case 1:
-                this.f37388b.A(this.f37389c);
-                return;
+                return ((uf0) this.f37275f).f38081i0;
             default:
-                this.f37388b.f40175f.f33081f[this.f37389c].l(1.0f);
-                return;
+                return ((se0) this.f37275f).M;
         }
+    }
+
+    @Override
+    public final boolean b() {
+        sf0 sf0Var;
+        switch (this.e) {
+            case 0:
+                if (getVisibility() == 0) {
+                    uf0 uf0Var = (uf0) this.f37275f;
+                    if (uf0Var.V <= 0 || uf0Var.R == null) {
+                        return true;
+                    }
+                }
+                return false;
+            case 1:
+                uf0 uf0Var2 = (uf0) this.f37275f;
+                if (isClickable() && getVisibility() == 0 && !uf0Var2.f38075d0 && (((sf0Var = uf0Var2.v) == null || sf0Var.getVisibility() == 8) && !uf0Var2.f38081i0)) {
+                    return true;
+                }
+                return false;
+            default:
+                if (getVisibility() == 0) {
+                    se0 se0Var = (se0) this.f37275f;
+                    if (se0Var.P <= 0 || se0Var.N == null) {
+                        return true;
+                    }
+                }
+                return false;
+        }
+    }
+
+    public sf0(se0 se0Var, Context context) {
+        super(se0Var.f37253a0, context);
+        this.e = 2;
+        this.f37275f = se0Var;
     }
 }

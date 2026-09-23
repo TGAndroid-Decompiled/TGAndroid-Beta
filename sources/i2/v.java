@@ -1,72 +1,27 @@
 package i2;
+public final class v implements e2.m, e2.h {
+    public final int f10882a;
+    public final float f10883b;
 
-import j$.time.LocalDate;
-import j$.time.ZoneOffset;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.qc0;
-import org.telegram.ui.Components.wk0;
-public final class v implements e2.m, d9.e, wk0, qc0, a2 {
-    public final int f10897a;
-    public final int f10898b;
-
-    public v(int i10, int i11) {
-        this.f10897a = i11;
-        this.f10898b = i10;
+    public v(float f7, int i10) {
+        this.f10882a = i10;
+        this.f10883b = f7;
     }
 
     @Override
-    public Object apply(Object obj) {
-        Integer num = (Integer) obj;
-        return Integer.valueOf(this.f10898b);
-    }
-
-    @Override
-    public String e(int i10) {
-        int i11 = this.f10897a;
-        int i12 = this.f10898b;
-        switch (i11) {
-            case 4:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                LocalDate plusDays = LocalDate.now().plusDays(i10);
-                int year = plusDays.getYear();
-                long epochMilli = plusDays.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
-                if (year == i12) {
-                    return LocaleController.getInstance().getFormatterWeek().format(epochMilli) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(epochMilli);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(epochMilli);
+    public void accept(Object obj) {
+        switch (this.f10882a) {
+            case 1:
+                ((m4.f1) obj).a(this.f10883b);
+                return;
             default:
-                if (i10 == i12) {
-                    return "—";
-                }
-                return String.format("%02d", Integer.valueOf(i10));
+                ((m4.f1) obj).U(this.f10883b);
+                return;
         }
-    }
-
-    @Override
-    public void f(b2 b2Var, int i10) {
-        MessagesController.getInstance(this.f10898b).performLogout(1);
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f10897a) {
-            case 0:
-                ((b2.z0) obj).onRepeatModeChanged(this.f10898b);
-                return;
-            default:
-                ((b2.z0) obj).onAudioSessionIdChanged(this.f10898b);
-                return;
-        }
-    }
-
-    @Override
-    public int run() {
-        return this.f10898b;
+        ((b2.z0) obj).onVolumeChanged(this.f10883b);
     }
 }

@@ -1,136 +1,189 @@
 package ai;
 
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.media.AudioTrack;
-import android.os.Handler;
-import java.io.File;
-import java.util.ArrayDeque;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraSession;
-import org.telegram.messenger.video.VideoAds;
-import org.telegram.tgnet.RequestTimeDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.n70;
-public final class i5 implements Runnable {
-    public final int f978a;
-    public final Object f979b;
-    public final Object f980c;
-    public final Object d;
-    public final Object e;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.tgnet.tl.TL_stories;
+public final class i5 implements View.OnClickListener {
+    public final int f988a;
+    public final v5 f989b;
 
-    public i5(x8 x8Var, TLObject tLObject, Utilities.Callback callback, TLRPC.TL_error tL_error) {
-        this.f978a = 2;
-        this.f979b = x8Var;
-        this.f980c = tLObject;
-        this.e = callback;
-        this.d = tL_error;
-    }
-
-    private final void a() {
-        AudioTrack audioTrack = (AudioTrack) this.f979b;
-        k2.n nVar = (k2.n) this.f980c;
-        Handler handler = (Handler) this.d;
-        k2.k kVar = (k2.k) this.e;
-        try {
-            audioTrack.flush();
-            audioTrack.release();
-            if (nVar != null && handler.getLooper().getThread().isAlive()) {
-                handler.post(new gg.x1(26, nVar, kVar));
-            }
-            synchronized (k2.g0.f13255o0) {
-                try {
-                    int i10 = k2.g0.f13257q0 - 1;
-                    k2.g0.f13257q0 = i10;
-                    if (i10 == 0) {
-                        k2.g0.f13256p0.shutdown();
-                        k2.g0.f13256p0 = null;
-                    }
-                } finally {
-                }
-            }
-        } catch (Throwable th2) {
-            if (nVar != null && handler.getLooper().getThread().isAlive()) {
-                handler.post(new gg.x1(26, nVar, kVar));
-            }
-            synchronized (k2.g0.f13255o0) {
-                try {
-                    int i11 = k2.g0.f13257q0 - 1;
-                    k2.g0.f13257q0 = i11;
-                    if (i11 == 0) {
-                        k2.g0.f13256p0.shutdown();
-                        k2.g0.f13256p0 = null;
-                    }
-                    throw th2;
-                } finally {
-                }
-            }
-        }
-    }
-
-    private final void b() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.i5.b():void");
-    }
-
-    private final void c() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.i5.c():void");
-    }
-
-    private final void e() {
-        ni.f fVar = (ni.f) this.f979b;
-        ((ArrayDeque) fVar.f15255a).addLast(new ni.e((k2.v) this.f980c, (ni.b) this.d, (RequestTimeDelegate) this.e));
-        fVar.K();
-    }
-
-    private final void f() {
-        CameraController.lambda$openRound$9((CameraSession) this.f979b, (Runnable) this.f980c, (SurfaceTexture) this.d, (Runnable) this.e);
-    }
-
-    private final void g() {
-        CameraController.lambda$close$5((Runnable) this.f979b, (CameraSession) this.f980c, (CountDownLatch) this.d, (Runnable) this.e);
-    }
-
-    private final void h() {
-        ((VideoAds) this.f979b).lambda$show$14((Context) this.f980c, (TLRPC.TL_sponsoredMessage) this.d, (n70) this.e);
+    public i5(v5 v5Var, int i10) {
+        this.f988a = i10;
+        this.f989b = v5Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.i5.run():void");
-    }
-
-    public i5(gg.c cVar, TLRPC.TL_error tL_error, String str, TLObject tLObject) {
-        this.f978a = 12;
-        this.f979b = cVar;
-        this.d = tL_error;
-        this.e = str;
-        this.f980c = tLObject;
-    }
-
-    public i5(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f978a = i10;
-        this.f979b = obj;
-        this.f980c = obj2;
-        this.d = obj3;
-        this.e = obj4;
-    }
-
-    public i5(Utilities.Callback callback, File file, String str, String[] strArr) {
-        this.f978a = 29;
-        this.e = callback;
-        this.f979b = file;
-        this.f980c = str;
-        this.d = strArr;
-    }
-
-    public i5(TLObject tLObject, boolean[] zArr, org.telegram.ui.web.r rVar, TLRPC.UserFull userFull) {
-        this.f978a = 10;
-        this.f980c = tLObject;
-        this.f979b = zArr;
-        this.d = rVar;
-        this.e = userFull;
+    public final void onClick(View view) {
+        switch (this.f988a) {
+            case 0:
+                e6 e6Var = this.f989b.f1612l;
+                e6.e0(e6Var, e6Var.B1);
+                v5 v5Var = e6Var.f827t1;
+                if (v5Var != null) {
+                    v5Var.a();
+                    return;
+                }
+                return;
+            case 1:
+                e6 e6Var2 = this.f989b.f1612l;
+                e6.d0(e6Var2);
+                v5 v5Var2 = e6Var2.f827t1;
+                if (v5Var2 != null) {
+                    v5Var2.a();
+                    return;
+                }
+                return;
+            case 2:
+                e6 e6Var3 = this.f989b.f1612l;
+                AndroidUtilities.addToClipboard(e6Var3.O1.e());
+                e6.j0(e6Var3);
+                v5 v5Var3 = e6Var3.f827t1;
+                if (v5Var3 != null) {
+                    v5Var3.a();
+                    return;
+                }
+                return;
+            case 3:
+                e6 e6Var4 = this.f989b.f1612l;
+                e6Var4.Y0(false);
+                v5 v5Var4 = e6Var4.f827t1;
+                if (v5Var4 != null) {
+                    v5Var4.a();
+                    return;
+                }
+                return;
+            case 4:
+                e6 e6Var5 = this.f989b.f1612l;
+                c6 c6Var = e6Var5.O1;
+                c6Var.f642a.translated = false;
+                y9 y9Var = MessagesController.getInstance(e6Var5.C2).getStoriesController().f1199k;
+                TL_stories.StoryItem storyItem = c6Var.f642a;
+                y9Var.k(storyItem.dialogId, storyItem);
+                e6Var5.p0();
+                e6Var5.f1(false);
+                v5 v5Var5 = e6Var5.f827t1;
+                if (v5Var5 != null) {
+                    v5Var5.a();
+                    return;
+                }
+                return;
+            case 5:
+                v5 v5Var6 = this.f989b;
+                e6 e6Var6 = v5Var6.f1612l;
+                c6 c6Var2 = e6Var6.O1;
+                c6Var2.f642a.translated = true;
+                e6Var6.p0();
+                x5 x5Var = e6Var6.Q1;
+                if (x5Var != null) {
+                    jc jcVar = ((ac) x5Var).d;
+                    jcVar.Z0 = true;
+                    jcVar.P();
+                }
+                y9 y9Var2 = MessagesController.getInstance(e6Var6.C2).getStoriesController().f1199k;
+                TL_stories.StoryItem storyItem2 = c6Var2.f642a;
+                y9Var2.k(storyItem2.dialogId, storyItem2);
+                MessagesController.getInstance(e6Var6.C2).getTranslateController().translateStory(c6Var2.f642a, new j(new m5(v5Var6, 1), System.currentTimeMillis(), 2));
+                e6Var6.f1(false);
+                e6Var6.f795h3 = true;
+                e6Var6.K0.D(true);
+                v5 v5Var7 = e6Var6.f827t1;
+                if (v5Var7 != null) {
+                    v5Var7.a();
+                    return;
+                }
+                return;
+            case 6:
+                e6 e6Var7 = this.f989b.f1612l;
+                k9 k9Var = e6Var7.O1.f643b;
+                if (k9Var != null) {
+                    k9Var.a();
+                    e6Var7.j1();
+                }
+                v5 v5Var8 = e6Var7.f827t1;
+                if (v5Var8 != null) {
+                    v5Var8.a();
+                    return;
+                }
+                return;
+            case 7:
+                e6 e6Var8 = this.f989b.f1612l;
+                e6.d0(e6Var8);
+                v5 v5Var9 = e6Var8.f827t1;
+                if (v5Var9 != null) {
+                    v5Var9.a();
+                    return;
+                }
+                return;
+            case 8:
+                e6 e6Var9 = this.f989b.f1612l;
+                AndroidUtilities.addToClipboard(e6Var9.O1.e());
+                e6.j0(e6Var9);
+                v5 v5Var10 = e6Var9.f827t1;
+                if (v5Var10 != null) {
+                    v5Var10.a();
+                    return;
+                }
+                return;
+            case 9:
+                e6 e6Var10 = this.f989b.f1612l;
+                e6Var10.Y0(false);
+                v5 v5Var11 = e6Var10.f827t1;
+                if (v5Var11 != null) {
+                    v5Var11.a();
+                    return;
+                }
+                return;
+            case 10:
+                d2 d2Var = d2.W;
+                if (d2Var != null && d2Var.f698n) {
+                    long j3 = d2Var.J;
+                    boolean z10 = !d2Var.I;
+                    d2Var.I = z10;
+                    NativeInstance.switchCameraCapturer(j3, z10);
+                }
+                v5 v5Var12 = this.f989b.f1612l.f827t1;
+                if (v5Var12 != null) {
+                    v5Var12.a();
+                    return;
+                }
+                return;
+            case 11:
+                this.f989b.f1612l.D3.b();
+                return;
+            case 12:
+                this.f989b.f1612l.E3.b();
+                return;
+            case 13:
+                e6 e6Var11 = this.f989b.f1612l;
+                e6.f0(e6Var11);
+                v5 v5Var13 = e6Var11.f827t1;
+                if (v5Var13 != null) {
+                    v5Var13.a();
+                    return;
+                }
+                return;
+            case 14:
+                e6 e6Var12 = this.f989b.f1612l;
+                MediaDataController.getInstance(e6Var12.C2).removePeer(e6Var12.B1);
+                e6Var12.S1.i0(e6Var12.B1, true, false);
+                v5 v5Var14 = e6Var12.f827t1;
+                if (v5Var14 != null) {
+                    v5Var14.a();
+                    return;
+                }
+                return;
+            default:
+                e6 e6Var13 = this.f989b.f1612l;
+                e6.e0(e6Var13, e6Var13.B1);
+                v5 v5Var15 = e6Var13.f827t1;
+                if (v5Var15 != null) {
+                    v5Var15.a();
+                    return;
+                }
+                return;
+        }
     }
 }

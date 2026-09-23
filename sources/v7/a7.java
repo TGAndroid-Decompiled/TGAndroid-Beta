@@ -3,13 +3,13 @@ public abstract class a7 {
     public static void a(bf.s sVar, bf.s sVar2, int i10) {
         if (sVar != null && sVar2 != null && sVar != sVar2) {
             StringBuilder sb2 = new StringBuilder(i10);
-            sb2.append(sVar.f3553g);
-            bf.p pVar = (bf.p) sVar2.f3551f;
-            for (bf.p pVar2 = (bf.p) sVar.f3551f; pVar2 != pVar; pVar2 = (bf.p) pVar2.f3551f) {
-                sb2.append(((bf.s) pVar2).f3553g);
+            sb2.append(sVar.f3548g);
+            bf.p pVar = (bf.p) sVar2.f3546f;
+            for (bf.p pVar2 = (bf.p) sVar.f3546f; pVar2 != pVar; pVar2 = (bf.p) pVar2.f3546f) {
+                sb2.append(((bf.s) pVar2).f3548g);
                 pVar2.g();
             }
-            sVar.f3553g = sb2.toString();
+            sVar.f3548g = sb2.toString();
         }
     }
 
@@ -23,7 +23,7 @@ public abstract class a7 {
                 if (sVar == null) {
                     sVar = sVar2;
                 }
-                i10 = sVar2.f3553g.length() + i10;
+                i10 = sVar2.f3548g.length() + i10;
             } else {
                 a(sVar, sVar2, i10);
                 sVar = null;
@@ -33,7 +33,7 @@ public abstract class a7 {
             if (pVar == pVar2) {
                 break;
             }
-            pVar = (bf.p) pVar.f3551f;
+            pVar = (bf.p) pVar.f3546f;
         }
         a(sVar, sVar2, i10);
     }

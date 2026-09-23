@@ -19,9 +19,9 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.VideoEditedInfo;
 public final class fd0 extends FrameLayout {
-    public Bitmap f23912a;
-    public HashMap f23913b;
-    public boolean f23914c;
+    public Bitmap f23952a;
+    public HashMap f23953b;
+    public boolean f23954c;
     public BitmapDrawable d;
     public boolean e;
 
@@ -31,10 +31,10 @@ public final class fd0 extends FrameLayout {
     }
 
     public final void a() {
-        this.f23912a = null;
+        this.f23952a = null;
         this.d = null;
         setBackground(null);
-        HashMap hashMap = this.f23913b;
+        HashMap hashMap = this.f23953b;
         if (hashMap != null) {
             hashMap.clear();
         }
@@ -42,36 +42,36 @@ public final class fd0 extends FrameLayout {
     }
 
     public final void b(ArrayList arrayList, boolean z10, boolean z11, boolean z12) {
-        u9 u9Var;
+        w9 w9Var;
         int i10;
         int i11;
         int i12;
         setClipChildren(z12);
         a();
-        this.f23913b = new HashMap();
+        this.f23953b = new HashMap();
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = arrayList.size();
             for (int i13 = 0; i13 < size; i13++) {
                 VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i13);
                 byte b10 = mediaEntity.type;
                 if (b10 == 0) {
-                    u9 u9Var2 = new u9(getContext());
-                    u9Var2.setLayerNum(12);
-                    u9Var2.setAspectFit(true);
-                    ImageReceiver imageReceiver = u9Var2.getImageReceiver();
+                    w9 w9Var2 = new w9(getContext());
+                    w9Var2.setLayerNum(12);
+                    w9Var2.setAspectFit(true);
+                    ImageReceiver imageReceiver = w9Var2.getImageReceiver();
                     if (z10) {
                         imageReceiver.setAllowDecodeSingleFrame(true);
                         imageReceiver.setAllowStartLottieAnimation(false);
                         if (z11) {
-                            imageReceiver.setDelegate(new o2(22));
+                            imageReceiver.setDelegate(new xc0(6));
                         }
                     }
                     imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), null, null, null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), null, null, 0L, "webp", mediaEntity.parentObject, 1);
                     if ((2 & mediaEntity.subType) != 0) {
-                        u9Var2.setScaleX(-1.0f);
+                        w9Var2.setScaleX(-1.0f);
                     }
-                    mediaEntity.view = u9Var2;
-                    u9Var = u9Var2;
+                    mediaEntity.view = w9Var2;
+                    w9Var = w9Var2;
                 } else if (b10 == 1) {
                     qg.b bVar = new qg.b(getContext());
                     bVar.setBackgroundColor(0);
@@ -86,9 +86,9 @@ public final class fd0 extends FrameLayout {
                         VideoEditedInfo.EmojiEntity emojiEntity = arrayList2.get(i14);
                         i14++;
                         VideoEditedInfo.EmojiEntity emojiEntity2 = emojiEntity;
-                        x5 x5Var = new x5(emojiEntity2.document_id, bVar.getPaint().getFontMetricsInt());
+                        z5 z5Var = new z5(emojiEntity2.document_id, bVar.getPaint().getFontMetricsInt());
                         int i15 = emojiEntity2.offset;
-                        spannableString.setSpan(x5Var, i15, emojiEntity2.length + i15, 33);
+                        spannableString.setSpan(z5Var, i15, emojiEntity2.length + i15, 33);
                     }
                     Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannableString.getSpans(0, spannableString.length(), Emoji.EmojiSpan.class);
                     if (emojiSpanArr != null) {
@@ -156,16 +156,16 @@ public final class fd0 extends FrameLayout {
                     bVar.setTextColor(i21);
                     bVar.setCursorColor(i21);
                     bVar.setHandlesColor(i21);
-                    bVar.setHighlightColor(org.telegram.ui.ActionBar.i6.l1(0.4f, i21));
+                    bVar.setHighlightColor(org.telegram.ui.ActionBar.h6.l1(0.4f, i21));
                     mediaEntity.view = bVar;
-                    u9Var = bVar;
+                    w9Var = bVar;
                 } else {
-                    u9Var = null;
+                    w9Var = null;
                 }
-                if (u9Var != null) {
-                    addView(u9Var);
-                    u9Var.setRotation((float) (((-mediaEntity.rotation) / 3.141592653589793d) * 180.0d));
-                    this.f23913b.put(u9Var, mediaEntity);
+                if (w9Var != null) {
+                    addView(w9Var);
+                    w9Var.setRotation((float) (((-mediaEntity.rotation) / 3.141592653589793d) * 180.0d));
+                    this.f23953b.put(w9Var, mediaEntity);
                 }
             }
         }
@@ -193,7 +193,7 @@ public final class fd0 extends FrameLayout {
     }
 
     public Bitmap getBitmap() {
-        return this.f23912a;
+        return this.f23952a;
     }
 
     public Bitmap getThumb() {
@@ -219,20 +219,20 @@ public final class fd0 extends FrameLayout {
         int i15;
         int i16;
         int measuredHeight;
-        if (this.f23913b != null) {
+        if (this.f23953b != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight2 = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i17 = 0; i17 < childCount; i17++) {
                 View childAt = getChildAt(i17);
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f23913b.get(childAt);
+                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f23953b.get(childAt);
                 if (mediaEntity != null) {
                     int measuredWidth2 = childAt.getMeasuredWidth();
                     int measuredHeight3 = childAt.getMeasuredHeight();
                     if (childAt instanceof qg.b) {
                         if (mediaEntity.customTextView) {
-                            i14 = ((int) (((mediaEntity.width / 2.0f) + mediaEntity.f15624x) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
-                            i16 = (int) (((mediaEntity.height / 2.0f) + mediaEntity.f15625y) * measuredHeight2);
+                            i14 = ((int) (((mediaEntity.width / 2.0f) + mediaEntity.f15600x) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
+                            i16 = (int) (((mediaEntity.height / 2.0f) + mediaEntity.f15601y) * measuredHeight2);
                             measuredHeight = childAt.getMeasuredHeight() / 2;
                         } else {
                             i14 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
@@ -241,8 +241,8 @@ public final class fd0 extends FrameLayout {
                         }
                         i15 = i16 - measuredHeight;
                     } else {
-                        i14 = (int) (measuredWidth * mediaEntity.f15624x);
-                        i15 = (int) (measuredHeight2 * mediaEntity.f15625y);
+                        i14 = (int) (measuredWidth * mediaEntity.f15600x);
+                        i15 = (int) (measuredHeight2 * mediaEntity.f15601y);
                     }
                     childAt.layout(i14, i15, measuredWidth2 + i14, measuredHeight3 + i15);
                 }
@@ -253,15 +253,15 @@ public final class fd0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        this.f23914c = true;
+        this.f23954c = true;
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        if (this.f23913b != null) {
+        if (this.f23953b != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i12 = 0; i12 < childCount; i12++) {
                 View childAt = getChildAt(i12);
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f23913b.get(childAt);
+                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f23953b.get(childAt);
                 if (mediaEntity != null) {
                     if (childAt instanceof qg.b) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
@@ -278,7 +278,7 @@ public final class fd0 extends FrameLayout {
                 }
             }
         }
-        this.f23914c = false;
+        this.f23954c = false;
     }
 
     @Override
@@ -288,7 +288,7 @@ public final class fd0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f23914c) {
+        if (this.f23954c) {
             return;
         }
         super.requestLayout();
@@ -311,7 +311,7 @@ public final class fd0 extends FrameLayout {
     }
 
     public void setBitmap(Bitmap bitmap) {
-        this.f23912a = bitmap;
+        this.f23952a = bitmap;
         BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
         this.d = bitmapDrawable;
         setBackground(bitmapDrawable);

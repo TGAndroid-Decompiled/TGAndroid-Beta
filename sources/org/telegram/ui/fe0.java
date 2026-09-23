@@ -1,25 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.ViewSwitcher;
 import org.telegram.messenger.AndroidUtilities;
-public final class fe0 extends ViewSwitcher {
-    public final int f33581a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class fe0 implements RequestDelegate {
+    public final int f33298a;
+    public final he0 f33299b;
+    public final String f33300c;
+    public final String d;
 
-    public fe0(Context context, int i10) {
-        super(context);
-        this.f33581a = i10;
+    public fe0(he0 he0Var, String str, String str2, int i10) {
+        this.f33298a = i10;
+        this.f33299b = he0Var;
+        this.f33300c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f33581a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f33298a) {
             case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                AndroidUtilities.runOnUIThread(new ce0(this.f33299b, tL_error, this.f33300c, this.d, tLObject));
                 return;
             default:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                AndroidUtilities.runOnUIThread(new ce0(this.f33299b, tL_error, tLObject, this.f33300c, this.d));
                 return;
         }
     }

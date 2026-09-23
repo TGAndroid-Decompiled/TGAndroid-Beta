@@ -1,201 +1,176 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class yh extends ll0 {
-    public final int X2;
-    public final Paint Y2;
-    public final Paint Z2;
-    public boolean f30252a3;
-    public boolean f30253b3;
-    public final Object f30254c3;
-    public final Object f30255d3;
+import org.telegram.messenger.LocaleController;
+public final class yh extends FrameLayout {
+    public final int f30249a;
+    public final wi f30250b;
 
-    public yh(Context context, int i10) {
-        super(context, null);
-        this.X2 = i10;
-        switch (i10) {
-            case 1:
-                super(context, null);
-                Paint paint = new Paint(1);
-                this.Y2 = paint;
-                Paint paint2 = new Paint(1);
-                this.Z2 = paint2;
-                this.f30254c3 = new c6(this);
-                this.f30255d3 = new c6(this);
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
-                paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
-                return;
-            default:
-                qr qrVar = qr.h;
-                this.f30254c3 = new le.b(this, qrVar, 320L);
-                this.f30255d3 = new le.b(this, qrVar, 320L);
-                Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
-                LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
-                Paint paint3 = new Paint(1);
-                this.Y2 = paint3;
-                Paint paint4 = new Paint(1);
-                this.Z2 = paint4;
-                paint3.setShader(linearGradient);
-                PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
-                paint3.setXfermode(new PorterDuffXfermode(mode));
-                paint4.setShader(linearGradient2);
-                paint4.setXfermode(new PorterDuffXfermode(mode));
-                return;
-        }
+    public yh(wi wiVar, Context context, int i10) {
+        super(context);
+        this.f30249a = i10;
+        this.f30250b = wiVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        switch (this.X2) {
-            case 0:
-                this.f30253b3 = false;
-                this.f30252a3 = false;
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f30249a) {
+            case 2:
+                canvas.save();
+                canvas.clipRect(0.0f, this.f30250b.V1, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
-                ((le.b) this.f30254c3).a(this.f30252a3, true);
-                ((le.b) this.f30255d3).a(this.f30253b3, true);
+                canvas.restore();
                 return;
             default:
                 super.dispatchDraw(canvas);
-                c6 c6Var = (c6) this.f30254c3;
-                float f10 = 1.0f;
-                if (this.f30252a3) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                Paint paint = this.Y2;
-                paint.setAlpha((int) (c6Var.d(f7, false) * 255.0f));
-                canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint);
-                c6 c6Var2 = (c6) this.f30255d3;
-                if (!this.f30253b3) {
-                    f10 = 0.0f;
-                }
-                int d = (int) (c6Var2.d(f10, false) * 255.0f);
-                Paint paint2 = this.Z2;
-                paint2.setAlpha(d);
-                canvas.save();
-                canvas.translate(0.0f, getHeight() - AndroidUtilities.dp(8.0f));
-                canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint2);
-                canvas.restore();
                 return;
         }
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        boolean z10;
-        boolean z11;
-        switch (this.X2) {
-            case 0:
-                float x10 = view.getX();
-                float width = view.getWidth() + x10;
-                boolean z12 = true;
-                if (x10 < AndroidUtilities.dp(10.0f)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (width > getMeasuredWidth() - AndroidUtilities.dp(10.0f)) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                if (!z10 && !z11) {
-                    z12 = false;
-                }
-                this.f30252a3 |= z10;
-                this.f30253b3 |= z11;
-                canvas.save();
-                if (z12) {
-                    canvas.clipRect(AndroidUtilities.dp(19.0f), 0, getMeasuredWidth() - AndroidUtilities.dp(19.0f), getMeasuredHeight());
-                }
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                if (z10) {
-                    float dp = AndroidUtilities.dp(11.0f);
-                    canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
-                    super.drawChild(canvas, view, j3);
-                    canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((le.b) this.f30254c3).e, AndroidUtilities.dp(8.0f), dp), 0.0f);
-                    canvas.drawPaint(this.Y2);
-                    canvas.restore();
-                    canvas.restore();
-                }
-                if (z11) {
-                    float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(19.0f);
-                    canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
-                    super.drawChild(canvas, view, j3);
-                    canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.z(1.0f, ((le.b) this.f30255d3).e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
-                    canvas.drawPaint(this.Z2);
-                    canvas.restore();
-                    canvas.restore();
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void k0(int i10, int i11) {
-        switch (this.X2) {
-            case 1:
-                boolean canScrollVertically = canScrollVertically(-1);
-                boolean canScrollVertically2 = canScrollVertically(1);
-                if (canScrollVertically != this.f30252a3 || canScrollVertically2 != this.f30253b3) {
-                    this.f30252a3 = canScrollVertically;
-                    this.f30253b3 = canScrollVertically2;
-                    invalidate();
+    public void onDraw(Canvas canvas) {
+        switch (this.f30249a) {
+            case 2:
+                wi wiVar = this.f30250b;
+                yh yhVar = wiVar.D0;
+                if (wiVar.C0.getAlpha() > 0.0f) {
+                    float f7 = wiVar.W1;
+                    if (f7 != 0.0f && f7 != yhVar.getTop() + wiVar.W1) {
+                        ValueAnimator valueAnimator = wiVar.X1;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                        }
+                        float top = wiVar.W1 - (yhVar.getTop() + wiVar.V1);
+                        wiVar.V1 = top;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                        wiVar.X1 = ofFloat;
+                        ofFloat.addUpdateListener(new k6(this, 10));
+                        wiVar.X1.setInterpolator(rr.f27701f);
+                        wiVar.X1.setDuration(200L);
+                        wiVar.X1.start();
+                        wiVar.W1 = 0.0f;
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
+                super.onDraw(canvas);
                 return;
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f30249a) {
+            case 3:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                wi wiVar = this.f30250b;
+                oi oiVar = wiVar.f29726y0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29677j0;
+                if (oiVar == chatAttachAlertPhotoLayout) {
+                    accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
+                } else {
+                    pk pkVar = wiVar.f29694p0;
+                    if (oiVar == pkVar) {
+                        accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", pkVar.getSelectedItemsCount(), new Object[0]));
+                    } else {
+                        hj hjVar = wiVar.f29683l0;
+                        if (oiVar == hjVar) {
+                            accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", hjVar.getSelectedItemsCount(), new Object[0]));
+                        }
+                    }
+                }
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f30249a) {
+            case 0:
+                if (this.f30250b.f29675i1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
         }
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        float f7;
-        int i12;
-        switch (this.X2) {
-            case 0:
-                int childCount = getChildCount();
-                int size = (View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight();
-                float f10 = 0.0f;
-                for (int i13 = 0; i13 < childCount; i13++) {
-                    View childAt = getChildAt(i13);
-                    if (childAt instanceof qi) {
-                        f10 = ((qi) childAt).f27358a.c() + f10;
-                    }
-                }
-                if (size > f10 && childCount > 0) {
-                    i12 = (int) Math.floor((f7 - f10) / childCount);
-                } else {
-                    i12 = 0;
-                }
-                for (int i14 = 0; i14 < childCount; i14++) {
-                    View childAt2 = getChildAt(i14);
-                    if (childAt2 instanceof qi) {
-                        ((qi) childAt2).f27358a.setAdditionalWidth(i12);
-                    }
+        switch (this.f30249a) {
+            case 1:
+                wi wiVar = this.f30250b;
+                if (wiVar.H && wiVar.I != 0) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(wiVar.I))), 1073741824), i11);
+                    return;
                 }
                 super.onMeasure(i10, i11);
                 return;
             default:
                 super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f30249a) {
+            case 0:
+                if (this.f30250b.f29675i1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        switch (this.f30249a) {
+            case 0:
+                super.setAlpha(f7);
+                wi wiVar = this.f30250b;
+                wiVar.a2(0);
+                wi.O(wiVar).invalidate();
+                return;
+            case 1:
+            default:
+                super.setAlpha(f7);
+                return;
+            case 2:
+                super.setAlpha(f7);
+                invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        switch (this.f30249a) {
+            case 1:
+                super.setTranslationY(f7);
+                this.f30250b.f29726y0.j();
+                return;
+            default:
+                super.setTranslationY(f7);
                 return;
         }
     }

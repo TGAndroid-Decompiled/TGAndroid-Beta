@@ -36,7 +36,7 @@ public class LanguageDetector {
         if (z10) {
             try {
                 Context context = ApplicationLoader.applicationContext;
-                synchronized (qb.g.f41235b) {
+                synchronized (qb.g.f41191b) {
                     qb.g.d(context, TaskExecutors.MAIN_THREAD);
                 }
             } catch (IllegalStateException e) {

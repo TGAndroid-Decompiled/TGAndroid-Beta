@@ -4,16 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
-import ci.dc;
+import ci.ac;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.c90;
-import org.telegram.ui.Components.f51;
-import org.telegram.ui.Components.z80;
+import org.telegram.ui.Components.a90;
+import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.e51;
 import org.telegram.ui.ld;
-public final class x1 extends c90 {
+public final class x1 extends d90 {
     public final int L;
     public final Object M;
 
@@ -27,7 +27,7 @@ public final class x1 extends c90 {
     public int a() {
         switch (this.L) {
             case 4:
-                return ((UndoView) this.M).f22226a;
+                return ((UndoView) this.M).f22200a;
             default:
                 return super.a();
         }
@@ -37,7 +37,7 @@ public final class x1 extends c90 {
     public int c() {
         switch (this.L) {
             case 1:
-                Integer num = ((e9) this.M).d;
+                Integer num = ((f9) this.M).d;
                 if (num != null) {
                     return num.intValue();
                 }
@@ -55,10 +55,10 @@ public final class x1 extends c90 {
                 ((z1) this.M).f();
                 return;
             case 1:
-                e9 e9Var = (e9) this.M;
-                e9Var.b();
+                f9 f9Var = (f9) this.M;
+                f9Var.b();
                 super.onDraw(canvas);
-                e9Var.a();
+                f9Var.a();
                 return;
             default:
                 super.onDraw(canvas);
@@ -83,12 +83,12 @@ public final class x1 extends c90 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.pa) this.M).e.getThemedColor(org.telegram.ui.ActionBar.i6.f19053p7)), 0, indexOf, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(((org.telegram.ui.pa) this.M).e.getThemedColor(org.telegram.ui.ActionBar.h6.f19008p7)), 0, indexOf, 33);
                     }
-                    f51[] f51VarArr = (f51[]) charSequence.getSpans(0, charSequence.length(), f51.class);
-                    for (int i10 = 0; i10 < f51VarArr.length; i10++) {
-                        charSequence.setSpan(new dc(this, 2), charSequence.getSpanStart(f51VarArr[i10]), charSequence.getSpanEnd(f51VarArr[i10]), 33);
-                        charSequence.removeSpan(f51VarArr[i10]);
+                    e51[] e51VarArr = (e51[]) charSequence.getSpans(0, charSequence.length(), e51.class);
+                    for (int i10 = 0; i10 < e51VarArr.length; i10++) {
+                        charSequence.setSpan(new ac(this, 2), charSequence.getSpanStart(e51VarArr[i10]), charSequence.getSpanEnd(e51VarArr[i10]), 33);
+                        charSequence.removeSpan(e51VarArr[i10]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -100,18 +100,18 @@ public final class x1 extends c90 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new ForegroundColorSpan(ldVar.getThemedColor(org.telegram.ui.ActionBar.i6.f19053p7)), 0, indexOf2, 33);
+                        charSequence.setSpan(new ForegroundColorSpan(ldVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19008p7)), 0, indexOf2, 33);
                     }
-                    f51[] f51VarArr2 = (f51[]) charSequence.getSpans(0, charSequence.length(), f51.class);
-                    EditTextBoldCursor editTextBoldCursor = ldVar.f35435w;
+                    e51[] e51VarArr2 = (e51[]) charSequence.getSpans(0, charSequence.length(), e51.class);
+                    EditTextBoldCursor editTextBoldCursor = ldVar.f34943w;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = ldVar.f35435w.getText().toString();
+                        str = ldVar.f34943w.getText().toString();
                     } else {
                         str = "";
                     }
-                    for (int i11 = 0; i11 < f51VarArr2.length; i11++) {
-                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(f51VarArr2[i11]), charSequence.getSpanEnd(f51VarArr2[i11]), 33);
-                        charSequence.removeSpan(f51VarArr2[i11]);
+                    for (int i11 = 0; i11 < e51VarArr2.length; i11++) {
+                        charSequence.setSpan(new i(4, (Object) this, str), charSequence.getSpanStart(e51VarArr2[i11]), charSequence.getSpanEnd(e51VarArr2[i11]), 33);
+                        charSequence.removeSpan(e51VarArr2[i11]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -119,14 +119,14 @@ public final class x1 extends c90 {
         }
     }
 
-    public x1(e9 e9Var, Context context, z80 z80Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, z80Var, e6Var);
+    public x1(f9 f9Var, Context context, a90 a90Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, a90Var, d6Var);
         this.L = 1;
-        this.M = e9Var;
+        this.M = f9Var;
     }
 
-    public x1(UndoView undoView, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public x1(UndoView undoView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
         this.L = 4;
         this.M = undoView;
     }

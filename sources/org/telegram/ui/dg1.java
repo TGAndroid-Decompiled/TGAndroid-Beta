@@ -1,117 +1,35 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.TopicsController;
-import org.telegram.tgnet.TLRPC;
-public final class dg1 extends s4.v {
-    public boolean d;
-    public final eg1 e;
+import org.telegram.tgnet.tl.TL_account;
+public final class dg1 implements org.telegram.ui.ActionBar.a2 {
+    public final int f32655a;
+    public final TwoStepVerificationActivity f32656b;
 
-    public dg1(eg1 eg1Var) {
-        this.e = eg1Var;
+    public dg1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f32655a = i10;
+        this.f32656b = twoStepVerificationActivity;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        c1Var.f42671a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        int l4 = s4.v.l(0, 0);
-        int b10 = c1Var.b();
-        if (b10 >= 0) {
-            eg1 eg1Var = this.e;
-            if (b10 < eg1Var.f33294b.size() && ((vf1) eg1Var.f33294b.get(b10)).f38528c != null && ChatObject.canManageTopics(eg1Var.g())) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((vf1) eg1Var.f33294b.get(b10)).f38528c;
-                if (eg1Var.f33292a0.isEmpty()) {
-                    View view = c1Var.f42671a;
-                    if ((view instanceof bg1) && tL_forumTopic.f18161id == 1) {
-                        this.d = true;
-                        ((bg1) view).setSliding(true);
-                        return s4.v.l(0, 4);
-                    }
-                }
-                if (!tL_forumTopic.pinned) {
-                    return l4;
-                }
-                return s4.v.l(3, 0);
-            }
-        }
-        return l4;
-    }
-
-    @Override
-    public final boolean k() {
-        return !this.e.f33292a0.isEmpty();
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        int b10;
-        eg1 eg1Var = this.e;
-        ArrayList arrayList = eg1Var.f33294b;
-        if (c1Var.f42674f == c1Var2.f42674f && (b10 = c1Var2.b()) >= 0 && b10 < arrayList.size() && ((vf1) arrayList.get(b10)).f38528c != null && ((vf1) arrayList.get(b10)).f38528c.pinned) {
-            tf1 tf1Var = eg1Var.f33324r;
-            int b11 = c1Var.b();
-            int b12 = c1Var2.b();
-            eg1 eg1Var2 = tf1Var.d;
-            ArrayList arrayList2 = eg1Var2.f33294b;
-            arrayList2.add(b12, (vf1) arrayList2.remove(b11));
-            s4.m0 itemAnimator = eg1Var2.N.getItemAnimator();
-            rf1 rf1Var = eg1Var2.I0;
-            if (itemAnimator != rf1Var) {
-                eg1Var2.N.setItemAnimator(rf1Var);
-            }
-            tf1Var.p(b11, b12);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        eg1 eg1Var = this.e;
-        if (i10 == 0) {
-            ArrayList arrayList = eg1Var.f33294b;
-            ArrayList<Integer> arrayList2 = new ArrayList<>();
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((vf1) arrayList.get(i11)).f38528c;
-                if (tL_forumTopic != null && tL_forumTopic.pinned) {
-                    arrayList2.add(Integer.valueOf(tL_forumTopic.f18161id));
-                }
-            }
-            eg1Var.getMessagesController().getTopicsController().reorderPinnedTopics(eg1Var.f33291a, arrayList2);
-            return;
-        }
-        eg1Var.N.I0(false);
-        c1Var.f42671a.setPressed(true);
-    }
-
-    @Override
-    public final void q(s4.c1 c1Var) {
-        if (c1Var != null) {
-            bg1 bg1Var = (bg1) c1Var.f42671a;
-            TLRPC.TL_forumTopic tL_forumTopic = bg1Var.N;
-            eg1 eg1Var = this.e;
-            if (tL_forumTopic != null) {
-                TopicsController topicsController = eg1Var.getMessagesController().getTopicsController();
-                long j3 = eg1Var.f33291a;
-                TLRPC.TL_forumTopic tL_forumTopic2 = bg1Var.N;
-                topicsController.toggleShowTopic(j3, tL_forumTopic2.f18161id, tL_forumTopic2.hidden);
-            }
-            eg1Var.f33296b1 = bg1Var;
-            int i10 = cg1.f32785h3;
-            eg1Var.N.z1(!bg1Var.N.hidden, bg1Var);
-            eg1Var.U0(true, true);
-            TLRPC.TL_forumTopic tL_forumTopic3 = bg1Var.Y4;
-            if (tL_forumTopic3 != null) {
-                bg1Var.setTopicIcon(tL_forumTopic3);
-            }
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f32655a) {
+            case 0:
+                this.f32656b.finishFragment();
+                return;
+            case 1:
+                TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f32656b;
+                twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new eg1(twoStepVerificationActivity, 2));
+                return;
+            case 2:
+                this.f32656b.k0();
+                return;
+            case 3:
+                this.f32656b.u0();
+                return;
+            default:
+                this.f32656b.u0();
+                return;
         }
     }
 }

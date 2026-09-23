@@ -9,7 +9,7 @@ public interface kt0 {
 
     boolean T();
 
-    ll0 f();
+    ml0 f();
 
     TLRPC.Chat g();
 

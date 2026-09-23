@@ -20,22 +20,21 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.m3;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.ActionBar.n3;
-import org.telegram.ui.ActionBar.o3;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.h4;
-import org.telegram.ui.hz;
-import org.telegram.ui.l3;
-import org.telegram.ui.web.z0;
-import org.telegram.ui.y2;
+import org.telegram.ui.ez;
+import org.telegram.ui.i4;
+import org.telegram.ui.web.y0;
+import org.telegram.ui.z2;
 public abstract class f {
-    public static a1 f15210a;
-    public static o0.a f15211b;
-    public static a9.d f15212c;
+    public static a1 f15187a;
+    public static o0.a f15188b;
+    public static a9.d f15189c;
     public static String d;
     public static WeakReference e;
-    public static Pattern f15213f;
+    public static Pattern f15190f;
 
     public static java.lang.String a(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: nf.f.a(java.lang.String):java.lang.String");
@@ -64,24 +63,24 @@ public abstract class f {
     }
 
     public static a1 c() {
-        o0.a aVar = f15211b;
+        o0.a aVar = f15188b;
         a1 a1Var = null;
         if (aVar == null) {
-            f15210a = null;
-        } else if (f15210a == null) {
+            f15187a = null;
+        } else if (f15187a == null) {
             ?? obj = new Object();
-            vf.e eVar = (vf.e) aVar.f15298b;
+            vf.e eVar = (vf.e) aVar.f15275b;
             vf.b bVar = new vf.b(obj);
             try {
                 if (((vf.c) eVar).G0(bVar)) {
-                    a1Var = new a1(20, bVar, (ComponentName) aVar.f15299c);
+                    a1Var = new a1(20, bVar, (ComponentName) aVar.f15276c);
                 }
             } catch (RemoteException unused) {
             }
-            f15210a = a1Var;
+            f15187a = a1Var;
             new WeakReference(a1Var);
         }
-        return f15210a;
+        return f15187a;
     }
 
     public static boolean d(android.content.Context r8, java.lang.String r9) {
@@ -89,7 +88,7 @@ public abstract class f {
     }
 
     public static boolean e() {
-        hz sheetFragment;
+        ez sheetFragment;
         n2 U = LaunchActivity.U();
         if (U != null && (U.getParentLayout() instanceof ActionBarLayout) && (sheetFragment = ((ActionBarLayout) U.getParentLayout()).getSheetFragment()) != null && sheetFragment.getArticleViewer() != null) {
             return true;
@@ -229,16 +228,16 @@ public abstract class f {
 
     public static boolean j(String str) {
         boolean matches;
-        if (f15213f == null) {
-            f15213f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        if (f15190f == null) {
+            f15190f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            matches = f15213f.matcher(hostAuthority).matches();
+            matches = f15190f.matcher(hostAuthority).matches();
         } else {
             Uri parse = Uri.parse(str);
             if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
-                matches = f15213f.matcher(parse.getScheme()).matches();
+                matches = f15190f.matcher(parse.getScheme()).matches();
             } else {
                 return false;
             }
@@ -310,33 +309,33 @@ public abstract class f {
     }
 
     public static void n(String str) {
-        o3 P;
-        n3 n3Var;
+        n3 P;
+        m3 m3Var;
         String openURL;
-        l3[] l3VarArr;
-        l3 l3Var;
+        org.telegram.ui.m3[] m3VarArr;
+        org.telegram.ui.m3 m3Var2;
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity != null && (P = launchActivity.P()) != null) {
             if (!TextUtils.isEmpty(str)) {
-                ArrayList<n3> tabs = P.getTabs();
+                ArrayList<m3> tabs = P.getTabs();
                 for (int i10 = 0; i10 < tabs.size(); i10++) {
-                    n3Var = tabs.get(i10);
-                    h4 h4Var = n3Var.J;
-                    if (h4Var != null && !h4Var.f34074d0.isEmpty()) {
-                        Object h = hg.c.h(1, n3Var.J.f34074d0);
-                        if (h instanceof y2) {
-                            z0 z0Var = ((y2) h).f19423b;
-                            if (z0Var == null && (l3VarArr = n3Var.J.f34090u0) != null && (l3Var = l3VarArr[0]) != null) {
-                                z0Var = l3Var.getWebView();
+                    m3Var = tabs.get(i10);
+                    i4 i4Var = m3Var.J;
+                    if (i4Var != null && !i4Var.f34005d0.isEmpty()) {
+                        Object h = hg.c.h(1, m3Var.J.f34005d0);
+                        if (h instanceof z2) {
+                            y0 y0Var = ((z2) h).f19371b;
+                            if (y0Var == null && (m3VarArr = m3Var.J.f34021u0) != null && (m3Var2 = m3VarArr[0]) != null) {
+                                y0Var = m3Var2.getWebView();
                             }
-                            if (z0Var != null) {
-                                if (z0Var.canGoBack()) {
-                                    openURL = z0Var.getUrl();
+                            if (y0Var != null) {
+                                if (y0Var.canGoBack()) {
+                                    openURL = y0Var.getUrl();
                                 } else {
-                                    openURL = z0Var.getOpenURL();
+                                    openURL = y0Var.getOpenURL();
                                 }
-                                if (TextUtils.equals(o3.p(openURL), o3.p(str))) {
-                                    P.e(n3Var);
+                                if (TextUtils.equals(n3.p(openURL), n3.p(str))) {
+                                    P.e(m3Var);
                                     break;
                                 }
                             } else {
@@ -348,8 +347,8 @@ public abstract class f {
                     }
                 }
             }
-            n3Var = null;
-            if (n3Var != null) {
+            m3Var = null;
+            if (m3Var != null) {
                 return;
             }
         }
@@ -454,7 +453,7 @@ public abstract class f {
 
     public static void x(Activity activity) {
         Activity activity2;
-        if (f15212c == null) {
+        if (f15189c == null) {
             return;
         }
         WeakReference weakReference = e;
@@ -467,11 +466,11 @@ public abstract class f {
             e.clear();
         }
         try {
-            activity.unbindService(f15212c);
+            activity.unbindService(f15189c);
         } catch (Exception unused) {
         }
-        f15211b = null;
-        f15210a = null;
+        f15188b = null;
+        f15187a = null;
     }
 
     public static boolean y(String str) {

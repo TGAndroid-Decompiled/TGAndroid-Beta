@@ -5,25 +5,25 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ew0 extends za {
-    public rs X;
+public final class ew0 extends bb {
+    public ss X;
 
     public ew0(Context context) {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f30530y = true;
+        this.f22666y = true;
         K();
-        ll0 ll0Var = this.d;
+        ml0 ml0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        ll0Var.setPadding(i10, 0, i10, 0);
-        this.d.j(new kb0(this, 6));
+        ml0Var.setPadding(i10, 0, i10, 0);
+        this.d.j(new kg0(this, 5));
         this.d.setOnItemClickListener(new j(this, 14));
     }
 
     public static void P(ew0 ew0Var, int i10) {
         Object obj;
-        i51 G = ew0Var.X.G(i10 - 1);
+        h51 G = ew0Var.X.G(i10 - 1);
         if (G != null) {
             obj = G.G;
         } else {
@@ -35,11 +35,11 @@ public final class ew0 extends za {
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
-        rs rsVar = new rs(ll0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
-        this.X = rsVar;
-        rsVar.f29610r = false;
-        return rsVar;
+    public final ll0 v(ml0 ml0Var) {
+        ss ssVar = new ss(ml0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
+        this.X = ssVar;
+        ssVar.f28662r = false;
+        return ssVar;
     }
 
     @Override

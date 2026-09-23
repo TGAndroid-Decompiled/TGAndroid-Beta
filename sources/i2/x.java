@@ -1,42 +1,28 @@
 package i2;
+public final class x implements e2.n, e2.m {
+    public final int f10907a;
+    public final f0 f10908b;
 
-import android.os.Bundle;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.eh0;
-public final class x implements e2.m, p.a, GenericProvider {
-    public final int f10915a;
-    public final boolean f10916b;
-
-    public x(int i10, boolean z10) {
-        this.f10915a = i10;
-        this.f10916b = z10;
+    public x(f0 f0Var, int i10) {
+        this.f10907a = i10;
+        this.f10908b = f0Var;
     }
 
     @Override
-    public oc c(vc vcVar) {
-        return vcVar.k(this.f10916b);
+    public void e(Object obj, b2.q qVar) {
+        ((b2.z0) obj).onEvents(this.f10908b.f10655f, new b2.y0(qVar));
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f10915a) {
-            case 0:
-                ((b2.z0) obj).onShuffleModeEnabledChanged(this.f10916b);
+        b2.z0 z0Var = (b2.z0) obj;
+        switch (this.f10907a) {
+            case 3:
+                z0Var.onAvailableCommandsChanged(this.f10908b.N);
                 return;
             default:
-                ((b2.z0) obj).onSkipSilenceEnabledChanged(this.f10916b);
+                z0Var.onPlaylistMetadataChanged(this.f10908b.P);
                 return;
         }
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        Void r22 = (Void) obj;
-        Bundle i10 = a4.a.i("afterSignup", this.f10916b);
-        eh0 eh0Var = new eh0();
-        eh0Var.l0(i10);
-        return eh0Var;
     }
 }

@@ -1,41 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class k7 implements zk0 {
-    public final int f25555a;
+import android.view.ViewGroup;
+public final class k7 implements o1.g {
+    public final int f25528a;
+    public final Object f25529b;
 
-    public k7(int i10) {
-        this.f25555a = i10;
+    public k7(Object obj, int i10) {
+        this.f25528a = i10;
+        this.f25529b = obj;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        switch (this.f25555a) {
+    public final void a(o1.h hVar, float f7, float f10) {
+        ViewGroup viewGroup;
+        switch (this.f25528a) {
             case 0:
-                if (view instanceof org.telegram.ui.Cells.x) {
-                    ((org.telegram.ui.Cells.x) view).a();
-                    return;
-                }
+                ((j8) this.f25529b).T.setBufferedProgress(f7 / 1000.0f);
                 return;
             case 1:
-                boolean z10 = ChatAttachAlertPhotoLayout.f21895q1;
-                if (view instanceof org.telegram.ui.Cells.t5) {
-                    org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-                    t5Var.f21344w.b(t5Var);
+                qc qcVar = (qc) this.f25529b;
+                qcVar.f27311o = (int) f7;
+                qcVar.l();
+                return;
+            case 2:
+                if (Math.abs(f7) > ((ub) this.f25529b).getWidth()) {
+                    hVar.c();
                     return;
                 }
                 return;
-            case 2:
-                return;
             case 3:
-                int i11 = xh.c.f45808a0;
+                wi wiVar = (wi) ((hi) this.f25529b).d;
+                oi oiVar = wiVar.f29729z0;
+                if (oiVar == wiVar.m0 || oiVar == wiVar.f29688n0 || (wiVar.F && wiVar.f29709t1 != null)) {
+                    wiVar.a2(1);
+                }
+                wiVar.f29729z0.k(wiVar.f29684l2);
+                viewGroup = ((org.telegram.ui.ActionBar.f3) wiVar).containerView;
+                viewGroup.invalidate();
                 return;
             default:
-                int i12 = xh.m.A0;
+                ((bc0) this.f25529b).z();
                 return;
         }
-    }
-
-    private final void a(int i10, View view) {
     }
 }

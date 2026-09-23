@@ -1,19 +1,25 @@
 package org.telegram.ui.Components;
+public final class b61 extends g.p {
+    public final a61 f22588c;
+    public final d61 d;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class b61 extends nz {
-    public final e61 X;
-
-    public b61(e61 e61Var, int i10) {
-        super(i10, false);
-        this.X = e61Var;
+    public b61(d61 d61Var, a61 a61Var) {
+        this.d = d61Var;
+        this.f22588c = a61Var;
     }
 
     @Override
-    public final int W0(s4.z0 z0Var) {
-        if (this.X.f23555a3) {
-            return AndroidUtilities.displaySize.y;
+    public final int i(int i10) {
+        int i11;
+        v51 v51Var = this.d.Y2;
+        a61 a61Var = this.f22588c;
+        if (v51Var == null) {
+            return a61Var.J;
         }
-        return super.W0(z0Var);
+        h51 G = v51Var.G(i10);
+        if (G != null && (i11 = G.f24516u) != -1) {
+            return i11;
+        }
+        return a61Var.J;
     }
 }

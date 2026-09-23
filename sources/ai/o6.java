@@ -1,19 +1,18 @@
 package ai;
 
-import org.telegram.ui.Components.zk0;
-public final class o6 implements zk0 {
-    public final int f1349a;
-    public final Object f1350b;
-    public final Object f1351c;
+import android.content.Context;
+import android.view.View;
+public final class o6 extends f7 {
+    public final k7 Z2;
 
-    public o6(int i10, Object obj, Object obj2) {
-        this.f1349a = i10;
-        this.f1350b = obj;
-        this.f1351c = obj2;
+    public o6(k7 k7Var, Context context, d dVar) {
+        super(k7Var, context, dVar, 0);
+        this.Z2 = k7Var;
     }
 
     @Override
-    public final void d(int r25, android.view.View r26) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.o6.d(int, android.view.View):void");
+    public final void onMeasure(int i10, int i11) {
+        this.Z2.f1132n = View.MeasureSpec.getSize(i11);
+        super.onMeasure(i10, i11);
     }
 }

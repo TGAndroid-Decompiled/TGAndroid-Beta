@@ -1,30 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class km implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25627a;
-    public final pm f25628b;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class km {
+    public final ArrayList f25626a = new ArrayList();
+    public final HashMap f25627b = new HashMap();
+    public int f25628c;
+    public int d;
+    public int e;
+    public float f25629f;
+    public final ArrayList f25630g;
+    public final rm h;
 
-    public km(pm pmVar, int i10) {
-        this.f25627a = i10;
-        this.f25628b = pmVar;
+    public km(rm rmVar, ArrayList arrayList) {
+        this.h = rmVar;
+        this.f25630g = arrayList;
+        a();
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25627a) {
-            case 0:
-                pm pmVar = this.f25628b;
-                pmVar.getClass();
-                pmVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pmVar.invalidate();
-                return;
-            default:
-                pm pmVar2 = this.f25628b;
-                pmVar2.getClass();
-                pmVar2.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pmVar2.invalidate();
-                return;
+    public static float b(float[] fArr, int i10, int i11) {
+        float f7 = 0.0f;
+        while (i10 < i11) {
+            f7 += fArr[i10];
+            i10++;
         }
+        return 1000.0f / f7;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.km.a():void");
     }
 }

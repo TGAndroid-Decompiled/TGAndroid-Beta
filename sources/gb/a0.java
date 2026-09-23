@@ -1,59 +1,59 @@
 package gb;
 public final class a0 extends y {
-    public final db.o f9530a;
-    public final db.g f9531b;
-    public final kb.a f9532c;
+    public final db.o f9516a;
+    public final db.g f9517b;
+    public final kb.a f9518c;
     public final db.v d;
     public final a6.i e = new a6.i(this, 21);
-    public final boolean f9533f;
-    public volatile db.u f9534g;
+    public final boolean f9519f;
+    public volatile db.u f9520g;
 
     public a0(db.o oVar, db.g gVar, kb.a aVar, db.v vVar, boolean z10) {
-        this.f9530a = oVar;
-        this.f9531b = gVar;
-        this.f9532c = aVar;
+        this.f9516a = oVar;
+        this.f9517b = gVar;
+        this.f9518c = aVar;
         this.d = vVar;
-        this.f9533f = z10;
+        this.f9519f = z10;
     }
 
     @Override
     public final db.u a() {
-        if (this.f9530a != null) {
+        if (this.f9516a != null) {
             return this;
         }
-        db.u uVar = this.f9534g;
+        db.u uVar = this.f9520g;
         if (uVar != null) {
             return uVar;
         }
-        db.u c10 = this.f9531b.c(this.d, this.f9532c);
-        this.f9534g = c10;
+        db.u c10 = this.f9517b.c(this.d, this.f9518c);
+        this.f9520g = c10;
         return c10;
     }
 
     @Override
     public final Object read(lb.a aVar) {
-        db.u uVar = this.f9534g;
+        db.u uVar = this.f9520g;
         if (uVar == null) {
-            uVar = this.f9531b.c(this.d, this.f9532c);
-            this.f9534g = uVar;
+            uVar = this.f9517b.c(this.d, this.f9518c);
+            this.f9520g = uVar;
         }
         return uVar.read(aVar);
     }
 
     @Override
     public final void write(lb.b bVar, Object obj) {
-        db.o oVar = this.f9530a;
+        db.o oVar = this.f9516a;
         if (oVar == null) {
-            db.u uVar = this.f9534g;
+            db.u uVar = this.f9520g;
             if (uVar == null) {
-                uVar = this.f9531b.c(this.d, this.f9532c);
-                this.f9534g = uVar;
+                uVar = this.f9517b.c(this.d, this.f9518c);
+                this.f9520g = uVar;
             }
             uVar.write(bVar, obj);
-        } else if (this.f9533f && obj == null) {
+        } else if (this.f9519f && obj == null) {
             bVar.i();
         } else {
-            fb.d.l(oVar.serialize(obj, this.f9532c.f13578b, this.e), bVar);
+            fb.d.l(oVar.serialize(obj, this.f9518c.f13566b, this.e), bVar);
         }
     }
 }

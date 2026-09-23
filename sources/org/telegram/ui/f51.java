@@ -1,44 +1,43 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class f51 implements r0.n, org.telegram.ui.ActionBar.a2 {
-    public final int f33503a;
-    public final i51 f33504b;
+public final class f51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33092a;
+    public final z61 f33093b;
+    public final boolean f33094c;
 
-    public f51(i51 i51Var, int i10) {
-        this.f33503a = i10;
-        this.f33504b = i51Var;
+    public f51(z61 z61Var, boolean z10, int i10) {
+        this.f33092a = i10;
+        this.f33093b = z61Var;
+        this.f33094c = z10;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        i51 i51Var = this.f33504b;
-        i51Var.e = defaultWindowInsets;
-        i51Var.f34416c.setPadding(defaultWindowInsets.f10590a, defaultWindowInsets.f10591b, defaultWindowInsets.f10592c, defaultWindowInsets.d);
-        i51Var.f34414b.requestLayout();
-        return r0.l1.f41850b;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f33503a) {
-            case 1:
-                org.telegram.ui.ActionBar.b2 b2Var2 = this.f33504b.f34417c0;
-                if (b2Var2 != null) {
-                    b2Var2.dismiss();
-                    return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33092a) {
+            case 0:
+                z61 z61Var = this.f33093b;
+                w51 w51Var = z61Var.f40021h0;
+                m51 m51Var = z61Var.f40023i0;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f33094c) {
+                    floatValue = 1.0f - floatValue;
                 }
+                float f7 = 1.0f - floatValue;
+                w51Var.setAlpha(f7);
+                w51Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
+                m51Var.setAlpha(floatValue);
+                m51Var.setTranslationY(AndroidUtilities.dp(8.0f) * f7);
+                z61Var.f40025j0.setAlpha(m51Var.getAlpha() * floatValue);
                 return;
             default:
-                i51 i51Var = this.f33504b;
-                org.telegram.ui.ActionBar.b2 b2Var3 = i51Var.f34417c0;
-                if (b2Var3 != null) {
-                    b2Var3.dismiss();
-                    i51Var.f34417c0 = null;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f33094c) {
+                    floatValue2 = 1.0f - floatValue2;
                 }
-                i51Var.dismiss();
+                z61 z61Var2 = this.f33093b;
+                z61Var2.f40025j0.setAlpha(z61Var2.f40023i0.getAlpha() * floatValue2);
                 return;
         }
     }

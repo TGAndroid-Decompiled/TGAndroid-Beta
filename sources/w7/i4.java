@@ -1,6 +1,6 @@
 package w7;
 public final class i4 implements ia.d {
-    public static final i4 f44713a = new Object();
+    public static final i4 f44667a = new Object();
 
     static {
         org.telegram.ui.Cells.q3.t(w.c.j(d.class, w.c.m(2, w.c.j(d.class, new a(1)))));

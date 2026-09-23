@@ -1,21 +1,20 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class xe1 extends org.telegram.ui.Components.pv0 {
-    public boolean f39614w0;
+import android.view.MotionEvent;
+import android.view.View;
+import java.util.HashSet;
+public final class xe1 implements View.OnTouchListener {
+    public final int f39256a;
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        R();
-        if (getKeyboardHeight() == 0 && !this.f39614w0) {
-            int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
-            this.f27163f = i12;
-            setPadding(0, 0, 0, i12);
-        } else {
-            this.f39614w0 = true;
-            setPadding(0, 0, 0, 0);
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.f39256a) {
+            case 0:
+                HashSet hashSet = wf1.f38935n1;
+                return true;
+            default:
+                int[][] iArr = WallpapersListActivity.f31589k0;
+                return true;
         }
-        super.onMeasure(i10, i11);
     }
 }

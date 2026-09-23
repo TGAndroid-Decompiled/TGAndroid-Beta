@@ -1,78 +1,56 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class dj0 implements RequestDelegate {
-    public final int f33037a;
-    public final jj0 f33038b;
+public final class dj0 extends LinearLayout {
+    public static final int d = 0;
+    public final TextView[] f32671a;
+    public final TextView[] f32672b;
+    public final ej0 f32673c;
 
-    public dj0(jj0 jj0Var, int i10) {
-        this.f33037a = i10;
-        this.f33038b = jj0Var;
+    public dj0(ej0 ej0Var, Context context) {
+        super(context);
+        float f7;
+        this.f32673c = ej0Var;
+        this.f32671a = new TextView[4];
+        this.f32672b = new TextView[4];
+        setOrientation(1);
+        setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        for (int i10 = 0; i10 < 2; i10++) {
+            LinearLayout f10 = org.telegram.messenger.ul.f(context, 0);
+            for (int i11 = 0; i11 < 2; i11++) {
+                LinearLayout f11 = org.telegram.messenger.ul.f(context, 1);
+                LinearLayout f12 = org.telegram.messenger.ul.f(context, 0);
+                int i12 = (i10 * 2) + i11;
+                this.f32671a[i12] = new TextView(context);
+                this.f32672b[i12] = new TextView(context);
+                this.f32671a[i12].setTypeface(AndroidUtilities.bold());
+                this.f32671a[i12].setTextSize(1, 17.0f);
+                this.f32672b[i12].setTextSize(1, 13.0f);
+                this.f32672b[i12].setGravity(3);
+                f12.addView(this.f32671a[i12]);
+                f11.addView(f12);
+                f11.addView(this.f32672b[i12]);
+                f10.addView(f11, w7.x5.l(1.0f, -1, -2));
+            }
+            if (i10 == 0) {
+                f7 = 16.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            addView(f10, w7.x5.d(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, f7));
+        }
     }
 
-    @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f33037a) {
-            case 0:
-                final jj0 jj0Var = this.f33038b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                jj0.U(jj0Var, tL_error, tLObject);
-                                return;
-                            case 1:
-                                jj0.W(jj0Var, tL_error, tLObject);
-                                return;
-                            default:
-                                jj0.V(jj0Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                final jj0 jj0Var2 = this.f33038b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                jj0.U(jj0Var2, tL_error, tLObject);
-                                return;
-                            case 1:
-                                jj0.W(jj0Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                jj0.V(jj0Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final jj0 jj0Var3 = this.f33038b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                jj0.U(jj0Var3, tL_error, tLObject);
-                                return;
-                            case 1:
-                                jj0.W(jj0Var3, tL_error, tLObject);
-                                return;
-                            default:
-                                jj0.V(jj0Var3, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void a() {
+        for (int i10 = 0; i10 < 4; i10++) {
+            TextView textView = this.f32671a[i10];
+            int i11 = org.telegram.ui.ActionBar.h6.G6;
+            ej0 ej0Var = this.f32673c;
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, ej0Var.getResourceProvider()));
+            this.f32672b[i10].setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19189z6, ej0Var.getResourceProvider()));
         }
     }
 }

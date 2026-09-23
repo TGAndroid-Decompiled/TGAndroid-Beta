@@ -1,89 +1,50 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import android.app.Activity;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class dh1 implements Runnable {
-    public final int f33021a;
-    public final hh1 f33022b;
-    public final TLRPC.TL_error f33023c;
+import org.telegram.tgnet.tl.TL_account;
+public final class dh1 implements RequestDelegate {
+    public final int f32663a;
+    public final Object f32664b;
+    public final Object f32665c;
+    public final Object d;
+    public final Object e;
+    public final Object f32666f;
+    public final Object f32667g;
 
-    public dh1(hh1 hh1Var, TLRPC.TL_error tL_error, int i10) {
-        this.f33021a = i10;
-        this.f33022b = hh1Var;
-        this.f33023c = tL_error;
+    public dh1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f32663a = i10;
+        this.f32664b = obj;
+        this.f32665c = obj2;
+        this.d = obj3;
+        this.e = obj4;
+        this.f32666f = obj5;
+        this.f32667g = obj6;
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        String formatPluralString2;
-        int i10 = this.f33021a;
-        TLRPC.TL_error tL_error = this.f33023c;
-        hh1 hh1Var = this.f33022b;
-        switch (i10) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f32663a) {
             case 0:
-                hh1Var.w0();
-                if (tL_error == null) {
-                    hh1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hh1Var.getParentActivity());
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new yg1(hh1Var, 3));
-                    String string = LocaleController.getString(R.string.PasswordReset);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
-                    b2Var.T = string;
-                    b2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
-                    Dialog showDialog = hh1Var.showDialog(b2Var);
-                    if (showDialog != null) {
-                        showDialog.setCanceledOnTouchOutside(false);
-                        showDialog.setCancelable(false);
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue < 60) {
-                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-                    } else {
-                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-                    }
-                    hh1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-                    return;
-                } else {
-                    hh1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new ii.k((UserInfoActivity) this.f32664b, tL_error, (TLObject) this.f32665c, (TL_account.TL_birthday) this.d, (TLRPC.UserFull) this.e, tLObject, (int[]) this.f32666f, (ArrayList) this.f32667g));
+                return;
             case 1:
-                hh1Var.w0();
-                if (tL_error == null) {
-                    if (hh1Var.getParentActivity() != null) {
-                        hh1Var.u0(new zg1(hh1Var, 5));
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("CODE_INVALID")) {
-                    hh1Var.y0();
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue2 < 60) {
-                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
-                    } else {
-                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
-                    }
-                    hh1Var.G0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
-                    return;
-                } else {
-                    hh1Var.G0(LocaleController.getString(R.string.AppName), tL_error.text);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new ii.k(tL_error, (tg.w) this.f32664b, tLObject, (List) this.f32665c, (c5.h) this.d, (tg.w) this.e, (org.telegram.ui.ActionBar.n2) this.f32666f, (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f32667g, 3));
+                return;
             case 2:
-                hh1.e0(hh1Var, tL_error);
+                AndroidUtilities.runOnUIThread(new ii.k(tL_error, (Utilities.Callback) this.f32664b, tLObject, (List) this.f32665c, (c5.h) this.d, (Utilities.Callback) this.e, (org.telegram.ui.ActionBar.n2) this.f32666f, (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f32667g, 4));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new ii.k(tLObject, (c5.o) this.f32664b, (c5.h) this.f32665c, (ai.m0) this.d, (Activity) this.e, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f32666f, (List) this.f32667g, tL_error, 5));
                 return;
             default:
-                hh1.Z(hh1Var, tL_error);
+                AndroidUtilities.runOnUIThread(new ii.k(tLObject, (c5.o) this.f32664b, (c5.h) this.f32665c, (org.telegram.ui.Components.e80) this.d, (Activity) this.e, (TLRPC.TL_inputStorePaymentStarsGift) this.f32666f, (List) this.f32667g, tL_error, 6));
                 return;
         }
     }

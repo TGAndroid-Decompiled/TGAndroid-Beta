@@ -1,67 +1,37 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.app.Activity;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-public final class gu extends org.telegram.ui.Cells.d5 {
-    public final int e;
-    public final org.telegram.ui.Cells.e9 f33949f;
-    public final org.telegram.ui.Cells.w8[] h;
-    public final AnimatorSet[] f33950n;
-    public final DataAutoDownloadActivity f33951r;
+import org.telegram.messenger.AndroidUtilities;
+public final class gu implements Runnable {
+    public final int f33654a;
+    public final DataSettingsActivity f33655b;
 
-    public gu(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
-        super(activity);
-        int i11;
-        int i12;
-        int i13;
-        this.f33951r = dataAutoDownloadActivity;
-        this.e = i10;
-        this.f33949f = e9Var;
-        this.h = w8VarArr;
-        this.f33950n = animatorSetArr;
-        setWillNotDraw(false);
-        TextView textView = new TextView(activity);
-        this.f19895a = textView;
-        org.telegram.messenger.vl.s(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18940j5, false), 1, 16.0f, 1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
+    public gu(DataSettingsActivity dataSettingsActivity, int i10) {
+        this.f33654a = i10;
+        this.f33655b = dataSettingsActivity;
+    }
+
+    @Override
+    public final void run() {
+        int i10;
+        switch (this.f33654a) {
+            case 0:
+                this.f33655b.getMediaDataController().clearAllDrafts(true);
+                return;
+            case 1:
+                DataSettingsActivity dataSettingsActivity = this.f33655b;
+                dataSettingsActivity.X = true;
+                if (dataSettingsActivity.f30750a != null && (i10 = dataSettingsActivity.f30756s) >= 0) {
+                    dataSettingsActivity.n0(i10);
+                    return;
+                }
+                return;
+            default:
+                z6.m0 = null;
+                DataSettingsActivity dataSettingsActivity2 = this.f33655b;
+                gu guVar = new gu(dataSettingsActivity2, 1);
+                AndroidUtilities.runOnUIThread(guVar, 100L);
+                z6.j0(new hu(dataSettingsActivity2, guVar, System.currentTimeMillis(), 0));
+                return;
         }
-        textView.setGravity(i11 | 48);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setImportantForAccessibility(2);
-        if (LocaleController.isRTL) {
-            i12 = 5;
-        } else {
-            i12 = 3;
-        }
-        addView(textView, w7.x5.d(-1, -1.0f, i12 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-        TextView textView2 = new TextView(activity);
-        this.f19896b = textView2;
-        org.telegram.messenger.vl.s(textView2, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19017n5, false), 1, 16.0f, 1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i13 = 3;
-        } else {
-            i13 = 5;
-        }
-        textView2.setGravity(i13 | 48);
-        textView2.setImportantForAccessibility(2);
-        addView(textView2, w7.x5.d(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-        org.telegram.ui.Cells.j0 j0Var = new org.telegram.ui.Cells.j0(activity);
-        this.f19897c = j0Var;
-        j0Var.setReportChanges(true);
-        j0Var.setDelegate(new org.telegram.ui.Cells.c5(this));
-        j0Var.setImportantForAccessibility(2);
-        addView(j0Var, w7.x5.d(-1, 38.0f, 51, 6.0f, 36.0f, 6.0f, 0.0f));
-        setImportantForAccessibility(1);
-        setAccessibilityDelegate(j0Var.getSeekBarAccessibilityDelegate());
     }
 }

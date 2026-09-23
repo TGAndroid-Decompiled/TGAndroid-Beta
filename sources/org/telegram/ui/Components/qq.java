@@ -1,43 +1,178 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class qq extends Drawable {
-    public final Drawable f27415a;
-    public final Paint f27416b;
-    public final float f27417c;
+public class qq extends Drawable implements Drawable.Callback {
+    public Drawable f27424a;
+    public final Drawable f27425b;
+    public final int f27426c;
+    public final int d;
+    public int e;
+    public int f27427f;
+    public int h;
+    public int f27428n;
+    public boolean f27429r;
+    public int f27430s;
+    public int v;
+    public boolean f27431w;
+    public float f27432x;
 
-    public qq(Context context, float f7) {
-        Paint paint = new Paint(1);
-        this.f27416b = paint;
-        this.f27415a = context.getResources().getDrawable(R.drawable.msg_filled_menu_groups);
-        paint.setColor(org.telegram.ui.ActionBar.i6.l1(0.1552f, -16777216));
-        this.f27417c = f7;
+    public qq(Drawable drawable, Drawable drawable2, int i10, int i11) {
+        this.f27424a = drawable;
+        this.f27425b = drawable2;
+        this.f27426c = i10;
+        this.d = i11;
+        if (drawable2 != null) {
+            drawable2.setCallback(this);
+        }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f7 = this.f27417c;
-        canvas.drawRoundRect(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, f7, f7, this.f27416b);
-        yf.p.e(this.f27415a, getBounds().exactCenterX(), getBounds().exactCenterY(), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), 17);
-        this.f27415a.draw(canvas);
+    public void draw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(this.f27432x, 0.0f);
+        if (this.f27429r) {
+            Rect bounds = getBounds();
+            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
+        }
+        Drawable drawable = this.f27424a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            this.f27424a.draw(canvas);
+        }
+        Drawable drawable2 = this.f27425b;
+        if (drawable2 != null) {
+            boolean z10 = this.f27431w;
+            int i10 = this.d;
+            int i11 = this.f27426c;
+            if (z10) {
+                Rect bounds2 = getBounds();
+                if (i11 != 0) {
+                    drawable2.setBounds(bounds2.left + i11, bounds2.top + i10, bounds2.right - i11, bounds2.bottom - i10);
+                } else {
+                    drawable2.setBounds(bounds2);
+                }
+            } else if (this.e != 0) {
+                int centerX = (getBounds().centerX() - (this.e / 2)) + i11 + this.f27430s;
+                int centerY = getBounds().centerY();
+                int i12 = this.f27427f;
+                int i13 = (centerY - (i12 / 2)) + i10 + this.v;
+                drawable2.setBounds(centerX, i13, this.e + centerX, i12 + i13);
+            } else {
+                int centerX2 = (getBounds().centerX() - (drawable2.getIntrinsicWidth() / 2)) + i11;
+                int centerY2 = (getBounds().centerY() - (drawable2.getIntrinsicHeight() / 2)) + i10;
+                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, drawable2.getIntrinsicHeight() + centerY2);
+            }
+            drawable2.draw(canvas);
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final Drawable.ConstantState getConstantState() {
+        return this.f27425b.getConstantState();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        int i10 = this.f27428n;
+        if (i10 != 0) {
+            return i10;
+        }
+        return this.f27424a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        int i10 = this.h;
+        if (i10 != 0) {
+            return i10;
+        }
+        return this.f27424a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        int i10 = this.f27428n;
+        if (i10 != 0) {
+            return i10;
+        }
+        return this.f27424a.getMinimumHeight();
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        int i10 = this.h;
+        if (i10 != 0) {
+            return i10;
+        }
+        return this.f27424a.getMinimumWidth();
     }
 
     @Override
     public final int getOpacity() {
-        return -3;
+        return this.f27425b.getOpacity();
+    }
+
+    @Override
+    public final int[] getState() {
+        return this.f27425b.getState();
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final boolean isStateful() {
+        return this.f27425b.isStateful();
+    }
+
+    @Override
+    public final void jumpToCurrentState() {
+        this.f27425b.jumpToCurrentState();
+    }
+
+    @Override
+    public final boolean onStateChange(int[] iArr) {
+        return true;
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        scheduleSelf(runnable, j3);
     }
 
     @Override
     public final void setAlpha(int i10) {
+        this.f27425b.setAlpha(i10);
+        this.f27424a.setAlpha(i10);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.f27425b.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final boolean setState(int[] iArr) {
+        this.f27425b.setState(iArr);
+        return true;
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
+    }
+
+    public qq(Drawable drawable, Drawable drawable2) {
+        this.f27424a = drawable;
+        this.f27425b = drawable2;
+        if (drawable2 != null) {
+            drawable2.setCallback(this);
+        }
     }
 }

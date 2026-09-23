@@ -1,27 +1,11 @@
 package ci;
-public final class db implements Runnable {
-    public final int f4541a;
-    public final oc f4542b;
 
-    public db(oc ocVar, int i10) {
-        this.f4541a = i10;
-        this.f4542b = ocVar;
-    }
+import android.app.Activity;
+public final class db extends x8 {
+    public final lc f4550y;
 
-    @Override
-    public final void run() {
-        switch (this.f4541a) {
-            case 0:
-                oc ocVar = this.f4542b;
-                ocVar.getClass();
-                ocVar.g(1.0f, true, new ka(ocVar, 6));
-                ocVar.f5206b1.b(true, true);
-                return;
-            default:
-                oc ocVar2 = this.f4542b;
-                ocVar2.f(false);
-                ocVar2.f5240m2 = null;
-                return;
-        }
+    public db(lc lcVar, Activity activity) {
+        super(activity);
+        this.f4550y = lcVar;
     }
 }

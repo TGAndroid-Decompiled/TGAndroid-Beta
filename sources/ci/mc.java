@@ -1,52 +1,42 @@
 package ci;
+public final class mc implements Runnable {
+    public final int f5186a;
+    public final wc f5187b;
 
-import android.view.ScaleGestureDetector;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.e91;
-public final class mc extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    public final nc f5053a;
-
-    public mc(nc ncVar) {
-        this.f5053a = ncVar;
+    public mc(wc wcVar, int i10) {
+        this.f5186a = i10;
+        this.f5187b = wcVar;
     }
 
     @Override
-    public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
-        rb rbVar;
-        nc ncVar = this.f5053a;
-        oc ocVar = ncVar.E0;
-        if (!ncVar.A0 || (rbVar = ocVar.B0) == null || ocVar.f5219f0 != 0 || rbVar.f4481s || ocVar.A0.getFilledProgress() >= 1.0f) {
-            return false;
+    public final void run() {
+        switch (this.f5186a) {
+            case 0:
+                wc wcVar = this.f5187b;
+                uc ucVar = wcVar.M;
+                if (ucVar != null) {
+                    long j3 = ucVar.f5642a;
+                    if (j3 > 0) {
+                        wcVar.H = j3;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                pc pcVar = this.f5187b.f5743a;
+                if (pcVar != null) {
+                    pcVar.f0();
+                    return;
+                }
+                return;
+            default:
+                pc pcVar2 = this.f5187b.f5743a;
+                if (pcVar2 != null) {
+                    pcVar2.s();
+                    return;
+                }
+                return;
         }
-        float scaleFactor = ocVar.T1 + ((scaleGestureDetector.getScaleFactor() - 1.0f) * 0.75f);
-        ocVar.T1 = scaleFactor;
-        ocVar.T1 = Utilities.clamp(scaleFactor, 1.0f, 0.0f);
-        ocVar.B0.setZoom(ocVar.T1);
-        e91 e91Var = ocVar.V0;
-        if (e91Var != null) {
-            e91Var.b(ocVar.T1, false);
-        }
-        ocVar.j0(true);
-        return true;
-    }
-
-    @Override
-    public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-        nc ncVar = this.f5053a;
-        oc ocVar = ncVar.E0;
-        if (ocVar.B0 != null && ocVar.f5219f0 == 0 && !ocVar.K0) {
-            ncVar.A0 = true;
-            return super.onScaleBegin(scaleGestureDetector);
-        }
-        return false;
-    }
-
-    @Override
-    public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        nc ncVar = this.f5053a;
-        ncVar.A0 = false;
-        ncVar.E0.f(false);
-        oc.c(ncVar.E0);
-        super.onScaleEnd(scaleGestureDetector);
     }
 }

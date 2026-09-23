@@ -11,7 +11,7 @@ public final class h {
 
     public h() {
         this.f255a = 2;
-        this.f256b = d0.f7886b;
+        this.f256b = d0.f7872b;
     }
 
     public void a() {
@@ -269,12 +269,12 @@ public final class h {
     public long k(int i10) {
         if (i10 <= 32) {
             int i11 = i(i10);
-            String str = d0.f7885a;
+            String str = d0.f7871a;
             return 4294967295L & i11;
         }
         int i12 = i(i10 - 32);
         int i13 = i(32);
-        String str2 = d0.f7885a;
+        String str2 = d0.f7871a;
         return (4294967295L & i13) | ((i12 & 4294967295L) << 32);
     }
 
@@ -323,8 +323,8 @@ public final class h {
     }
 
     public void p(v vVar) {
-        o(vVar.f7933c, vVar.f7931a);
-        q(vVar.f7932b * 8);
+        o(vVar.f7919c, vVar.f7917a);
+        q(vVar.f7918b * 8);
     }
 
     public void q(int i10) {

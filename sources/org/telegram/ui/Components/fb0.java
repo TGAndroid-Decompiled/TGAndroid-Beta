@@ -5,8 +5,8 @@ import android.view.MotionEvent;
 public final class fb0 extends org.telegram.ui.ActionBar.f1 {
     public final int L;
 
-    public fb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, boolean z11) {
-        super(i10, context, e6Var, z10, z11);
+    public fb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
+        super(i10, context, d6Var, z10, z11);
         this.L = i11;
     }
 

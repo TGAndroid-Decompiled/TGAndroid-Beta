@@ -3,7 +3,6 @@ package ai;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
@@ -31,7 +30,7 @@ public final class v8 extends d9 {
     @Override
     public final MessageObject f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f718i;
+            ArrayList arrayList = this.f725i;
             if (i10 < arrayList.size()) {
                 return (MessageObject) arrayList.get(i10);
             }
@@ -52,7 +51,7 @@ public final class v8 extends d9 {
 
     @Override
     public final int i() {
-        return this.f718i.size();
+        return this.f725i.size();
     }
 
     @Override
@@ -66,7 +65,7 @@ public final class v8 extends d9 {
     }
 
     @Override
-    public final boolean q(final int i10, final List list, final boolean z10) {
+    public final boolean q(int i10, List list, boolean z10) {
         TLObject tLObject;
         if (this.G || this.H == null) {
             return false;
@@ -87,28 +86,11 @@ public final class v8 extends d9 {
         this.G = true;
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
-        int i11 = this.f715c;
+        int i11 = this.f722c;
         if (!isEmpty) {
             tLObject = MessagesController.getInstance(i11).getUserOrChat(str2);
             if (tLObject == null) {
-                MessagesController.getInstance(i11).getUserNameResolver().resolve(str2, new e2.h() {
-                    @Override
-                    public final void accept(Object obj) {
-                        Long l4 = (Long) obj;
-                        v8 v8Var = v8.this;
-                        y8 y8Var = v8Var.f726q;
-                        TLObject userOrChat = MessagesController.getInstance(v8Var.f715c).getUserOrChat(v8Var.D);
-                        v8Var.G = false;
-                        if (userOrChat != null) {
-                            v8Var.q(i10, list, z10);
-                            return;
-                        }
-                        v8Var.J = 0;
-                        v8Var.H = "";
-                        AndroidUtilities.cancelRunOnUIThread(y8Var);
-                        AndroidUtilities.runOnUIThread(y8Var);
-                    }
-                });
+                MessagesController.getInstance(i11).getUserNameResolver().resolve(str2, new d4(this, z10, i10, list));
                 return true;
             }
         } else {
@@ -118,7 +100,7 @@ public final class v8 extends d9 {
             tL_stories_searchPosts.flags |= 4;
             tL_stories_searchPosts.peer = MessagesController.getInputPeer(tLObject);
         }
-        this.I = ConnectionsManager.getInstance(i11).sendRequest(tL_stories_searchPosts, new m8(this, 1));
+        this.I = ConnectionsManager.getInstance(i11).sendRequest(tL_stories_searchPosts, new n8(this, 1));
         return true;
     }
 

@@ -7,27 +7,27 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class w extends FrameLayout {
-    public final RectF f46182a;
-    public final RectF f46183b;
-    public final c0 f46184c;
+    public final RectF f46140a;
+    public final RectF f46141b;
+    public final c0 f46142c;
 
     public w(c0 c0Var, Context context) {
         super(context);
-        this.f46184c = c0Var;
-        this.f46182a = new RectF();
-        this.f46183b = new RectF();
+        this.f46142c = c0Var;
+        this.f46140a = new RectF();
+        this.f46141b = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        c0 c0Var = this.f46184c;
-        x xVar = c0Var.f45810a0;
-        FrameLayout frameLayout = xVar.f47872b;
-        RectF rectF = this.f46182a;
+        c0 c0Var = this.f46142c;
+        x xVar = c0Var.f45767a0;
+        FrameLayout frameLayout = xVar.f47804b;
+        RectF rectF = this.f46140a;
         if (hh.k.c(frameLayout, this, rectF)) {
-            TextView textView = c0Var.f45811b0;
-            RectF rectF2 = this.f46183b;
+            TextView textView = c0Var.f45768b0;
+            RectF rectF2 = this.f46141b;
             if (hh.k.c(textView, this, rectF2)) {
                 float dp = rectF2.right - AndroidUtilities.dp(32.0f);
                 float centerY = rectF2.centerY() - AndroidUtilities.dp(16.0f);
@@ -35,7 +35,7 @@ public final class w extends FrameLayout {
                     canvas.save();
                     canvas.translate(dp, centerY);
                     canvas.scale(AndroidUtilities.dp(32.0f) / rectF.width(), AndroidUtilities.dp(32.0f) / rectF.height());
-                    xVar.f47872b.draw(canvas);
+                    xVar.f47804b.draw(canvas);
                     canvas.restore();
                 }
             }

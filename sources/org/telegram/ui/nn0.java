@@ -1,69 +1,51 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class nn0 extends FrameLayout {
-    public TextView f36018a;
-    public TextView f36019b;
-    public ImageView f36020c;
-    public boolean d;
+public final class nn0 implements Runnable {
+    public final int f35566a;
+    public final qo0 f35567b;
 
-    public final void a(String str, boolean z10) {
-        this.f36018a.setText(str);
-        this.f36019b.setText("");
-        this.d = z10;
-        setWillNotDraw(!z10);
+    public nn0(qo0 qo0Var, int i10) {
+        this.f35566a = i10;
+        this.f35567b = qo0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.d) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(20.0f);
-            }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f18955k0);
+    public final void run() {
+        switch (this.f35566a) {
+            case 0:
+                qo0 qo0Var = this.f35567b;
+                qo0Var.f36496f[0].requestFocus();
+                AndroidUtilities.showKeyboard(qo0Var.f36496f[0]);
+                return;
+            case 1:
+                this.f35567b.t0();
+                return;
+            case 2:
+                qo0 qo0Var2 = this.f35567b;
+                qo0Var2.getMessagesController().newMessageCallback = null;
+                if (qo0Var2.f36498f1 == 3 && !qo0Var2.isFinishing()) {
+                    qo0Var2.f36498f1 = 4;
+                    po0 po0Var = qo0Var2.Z0;
+                    if (po0Var != null) {
+                        po0Var.a(4);
+                    }
+                    qo0Var2.finishFragment();
+                    return;
+                } else if (qo0Var2.f36498f1 == 1 && !qo0Var2.isFinishing()) {
+                    qo0Var2.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                qo0 qo0Var3 = this.f35567b;
+                if (qo0Var3.f36492d0 != null) {
+                    qo0Var3.w0();
+                    qo0Var3.f36492d0 = null;
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
-    }
-
-    public void setChecked(boolean z10) {
-        int i10;
-        ImageView imageView = this.f36020c;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
-    }
-
-    public void setNeedDivider(boolean z10) {
-        this.d = z10;
-        setWillNotDraw(!z10);
-        invalidate();
-    }
-
-    public void setValue(CharSequence charSequence) {
-        this.f36019b.setText(charSequence);
     }
 }

@@ -1,52 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Rect;
 import android.view.View;
-import org.telegram.ui.Components.fo0;
-public final class k4 implements View.OnLayoutChangeListener {
-    public final int f19343a;
-    public final Object f19344b;
-    public final Object f19345c;
-    public final Object d;
+public final class k4 implements View.OnClickListener {
+    public final int f19345a;
+    public final u4 f19346b;
 
-    public k4(fo0 fo0Var, fo0 fo0Var2, fo0 fo0Var3) {
-        this.f19343a = 1;
-        this.f19344b = fo0Var;
-        this.f19345c = fo0Var2;
-        this.d = fo0Var3;
+    public k4(u4 u4Var, int i10) {
+        this.f19345a = i10;
+        this.f19346b = u4Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        switch (this.f19343a) {
+    public final void onClick(View view) {
+        switch (this.f19345a) {
             case 0:
-                Rect rect = (Rect) this.f19344b;
-                rect.set(i10, i11, i12, i13);
-                Rect rect2 = (Rect) this.f19345c;
-                rect2.set(i14, i15, i16, i17);
-                x4 x4Var = (x4) this.d;
-                v4 v4Var = x4Var.f19697b;
-                if (v4Var.f() && !rect.equals(rect2)) {
-                    x4Var.h = true;
-                    if (v4Var.f()) {
-                        x4Var.c();
-                        return;
-                    }
-                    return;
-                }
+                this.f19346b.g();
+                return;
+            case 1:
+                this.f19346b.g();
                 return;
             default:
-                ((fo0) this.f19344b).setProgress(org.telegram.ui.i5.f34409c);
-                ((fo0) this.f19345c).setProgress(org.telegram.ui.i5.d);
-                ((fo0) this.d).setProgress(org.telegram.ui.i5.e);
+                this.f19346b.g();
                 return;
         }
-    }
-
-    public k4(x4 x4Var) {
-        this.f19343a = 0;
-        this.d = x4Var;
-        this.f19344b = new Rect();
-        this.f19345c = new Rect();
     }
 }

@@ -8,13 +8,13 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.fh;
-import org.telegram.ui.Components.ti;
-public final class h4 implements ti {
-    public final f6 f940a;
+import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.ui;
+public final class h4 implements ui {
+    public final e6 f941a;
 
-    public h4(f6 f6Var) {
-        this.f940a = f6Var;
+    public h4(e6 e6Var) {
+        this.f941a = e6Var;
     }
 
     @Override
@@ -26,10 +26,10 @@ public final class h4 implements ti {
         boolean z16;
         String str;
         String str2;
-        f6 f6Var = this.f940a;
-        if (f6Var.J0.m0 && (storyItem = f6Var.O1.f703a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f28759j0.getSelectedPhotos().isEmpty())) {
-                g4 g4Var = f6Var.I2;
+        e6 e6Var = this.f941a;
+        if (e6Var.J0.m0 && (storyItem = e6Var.O1.f642a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || e6Var.I2.f29677j0.getSelectedPhotos().isEmpty())) {
+                g4 g4Var = e6Var.I2;
                 if (g4Var != null) {
                     g4Var.dismissWithButtonClick(i10);
                     return;
@@ -37,10 +37,10 @@ public final class h4 implements ti {
                 return;
             }
             if (i10 != 8) {
-                f6Var.I2.dismiss(true);
+                e6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = f6Var.I2.f28759j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f28759j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = e6Var.I2.f29677j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = e6Var.I2.f29677j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -89,34 +89,34 @@ public final class h4 implements ti {
                         z15 = false;
                     }
                     HashMap<Object, Object> hashMap = selectedPhotos;
-                    accountInstance = f6Var.getAccountInstance();
+                    accountInstance = e6Var.getAccountInstance();
                     ArrayList<Object> arrayList2 = selectedPhotosOrder;
-                    long j11 = f6Var.B1;
+                    long j11 = e6Var.B1;
                     if (i10 != 4 && !z13) {
                         z16 = false;
                     } else {
                         z16 = true;
                     }
-                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, null, null, storyItem, null, z16, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, f6Var.f797b2.getSendMonoForumPeerId(), f6Var.f797b2.getSendMessageSuggestionParams());
+                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, null, null, storyItem, null, z16, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, e6Var.f773b2.getSendMonoForumPeerId(), e6Var.f773b2.getSendMessageSuggestionParams());
                     i14++;
                     selectedPhotos = hashMap;
                     selectedPhotosOrder = arrayList2;
                     i13 = 0;
                 }
-                f6Var.f797b2.setFieldText("");
+                e6Var.f773b2.setFieldText("");
                 if (j10 <= 0) {
                     z14 = true;
                 } else {
                     z14 = false;
                 }
-                f6Var.k0(z14);
+                e6Var.k0(z14);
             }
         }
     }
 
     @Override
     public final void K0() {
-        this.f940a.f797b2.Q();
+        this.f941a.f773b2.Q();
     }
 
     @Override
@@ -129,33 +129,33 @@ public final class h4 implements ti {
         AccountInstance accountInstance;
         CharSequence charSequence2;
         boolean z12;
-        f6 f6Var = this.f940a;
-        TL_stories.StoryItem storyItem = f6Var.O1.f703a;
+        e6 e6Var = this.f941a;
+        TL_stories.StoryItem storyItem = e6Var.O1.f642a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            accountInstance = f6Var.getAccountInstance();
+            accountInstance = e6Var.getAccountInstance();
             if (charSequence != null) {
                 charSequence2 = charSequence;
             } else {
                 charSequence2 = null;
             }
-            SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, f6Var.B1, null, null, storyItem, z10, i10, i11, null, null, j3, z11, j10);
+            SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, e6Var.B1, null, null, storyItem, z10, i10, i11, null, null, j3, z11, j10);
             if (j10 <= 0) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            f6Var.k0(z12);
+            e6Var.k0(z12);
         }
     }
 
     @Override
     public final boolean c0() {
-        return this.f940a.N0();
+        return this.f941a.N0();
     }
 
     @Override
-    public final void x0(fh fhVar) {
-        NotificationCenter.getInstance(this.f940a.C2).doOnIdle(fhVar);
+    public final void x0(gh ghVar) {
+        NotificationCenter.getInstance(this.f941a.C2).doOnIdle(ghVar);
     }
 
     @Override

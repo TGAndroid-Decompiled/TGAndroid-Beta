@@ -1,224 +1,68 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gk implements qt {
-    public final bo f33877a;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import java.util.WeakHashMap;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class gk extends org.telegram.ui.Components.z71 {
+    public final Context f33583a;
+    public final xn f33584b;
 
-    public gk(bo boVar) {
-        this.f33877a = boVar;
+    public gk(xn xnVar, Context context) {
+        this.f33584b = xnVar;
+        this.f33583a = context;
     }
 
     @Override
-    public final boolean A() {
-        return false;
+    public final void b(View view, int i10, int i11) {
+        if (view instanceof zn) {
+            ((zn) view).f40196a.Jc(this.f33584b.f39560u3);
+        }
+        WeakHashMap weakHashMap = r0.i0.f41795a;
+        r0.y.c(view);
     }
 
     @Override
-    public final boolean C() {
-        return false;
+    public final View d(int i10) {
+        Context context = this.f33583a;
+        xn xnVar = this.f33584b;
+        if (i10 == 0) {
+            return new ln(xnVar, context);
+        }
+        Bundle bundle = new Bundle();
+        bundle.putInt("chatMode", 7);
+        bundle.putInt("searchType", i10);
+        bundle.putString("searchHashtag", xnVar.f39560u3);
+        fk fkVar = new fk(context, xnVar.getParentLayout(), bundle, 0);
+        fkVar.h = false;
+        yn ynVar = fkVar.f40196a;
+        ynVar.L.f9064a = xnVar.L;
+        ynVar.f39346ca = xnVar.f39370ea;
+        ynVar.f39358da = xnVar;
+        ynVar.V8 = new g(this, 13);
+        return fkVar;
     }
 
     @Override
-    public final boolean D(TLRPC.Document document) {
-        return false;
+    public final int e() {
+        return 3;
     }
 
     @Override
-    public final String F(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        if (inputStickerSet != null) {
-            bo boVar = this.f33877a;
-            if (boVar.getParentActivity() != null) {
-                TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-                tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f18129id = inputStickerSet.f18129id;
-                org.telegram.ui.Components.vx0 vx0Var = new org.telegram.ui.Components.vx0(boVar.getParentActivity(), boVar, tL_inputStickerSetID, null, boVar.Y, boVar.f32293ea);
-                vx0Var.setCalcMandatoryInsets(boVar.x9());
-                vx0Var.f29462i0 = z10;
-                boVar.showDialog(vx0Var);
+    public final CharSequence g(int i10) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return LocaleController.getString(R.string.SearchThisChat);
             }
+            return LocaleController.getString(R.string.SearchPublicPosts);
         }
+        return LocaleController.getString(R.string.SearchMyMessages);
     }
 
     @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return this.f33877a.T5;
-    }
-
-    @Override
-    public final boolean b() {
-        return this.f33877a.D6();
-    }
-
-    @Override
-    public final boolean c() {
-        if (this.f33877a.R3 == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h() {
-        return true;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.n70 i(ci.n6 n6Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final boolean l(int i10) {
-        return true;
-    }
-
-    @Override
-    public final void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f33877a.Y.d(document, str, obj, null, true, z10, i10, i11);
-    }
-
-    @Override
-    public final boolean p() {
-        return false;
-    }
-
-    @Override
-    public final boolean x() {
-        return true;
-    }
-
-    @Override
-    public final MessageObject z() {
-        return null;
-    }
-
-    @Override
-    public final void B(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void E(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void j(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void n(String str) {
-    }
-
-    @Override
-    public final void o(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void q(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void u(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void y(String str) {
-    }
-
-    @Override
-    public final void v(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void w(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void G(CharSequence charSequence, String str, nf nfVar) {
-    }
-
-    @Override
-    public final void s(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+    public final int h(int i10) {
+        return i10;
     }
 }

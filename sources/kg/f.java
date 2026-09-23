@@ -4,42 +4,42 @@ import android.animation.ValueAnimator;
 import android.graphics.Paint;
 import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 public class f {
-    public final jg.a f13620a;
-    public final Paint f13621b;
-    public final Paint f13622c;
+    public final jg.a f13608a;
+    public final Paint f13609b;
+    public final Paint f13610c;
     public final Paint d;
     public final Path e;
-    public final Path f13623f;
-    public final Path f13624g;
+    public final Path f13611f;
+    public final Path f13612g;
     public ValueAnimator h;
-    public ValueAnimator f13625i;
-    public int f13626j;
-    public final float[] f13627k;
-    public final float[] f13628l;
-    public int f13629m;
-    public boolean f13630n;
-    public float f13631o;
-    public final e6 f13632p;
+    public ValueAnimator f13613i;
+    public int f13614j;
+    public final float[] f13615k;
+    public final float[] f13616l;
+    public int f13617m;
+    public boolean f13618n;
+    public float f13619o;
+    public final d6 f13620p;
 
-    public f(jg.a aVar, boolean z10, e6 e6Var) {
+    public f(jg.a aVar, boolean z10, d6 d6Var) {
         int length;
         int length2;
         Paint paint = new Paint(1);
-        this.f13621b = paint;
+        this.f13609b = paint;
         Paint paint2 = new Paint(1);
-        this.f13622c = paint2;
+        this.f13610c = paint2;
         Paint paint3 = new Paint(1);
         this.d = paint3;
         this.e = new Path();
-        this.f13623f = new Path();
-        this.f13624g = new Path();
-        this.f13630n = true;
-        this.f13631o = 1.0f;
-        this.f13632p = e6Var;
-        this.f13620a = aVar;
+        this.f13611f = new Path();
+        this.f13612g = new Path();
+        this.f13618n = true;
+        this.f13619o = 1.0f;
+        this.f13620p = d6Var;
+        this.f13608a = aVar;
         paint2.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
@@ -54,39 +54,39 @@ public class f {
         paint3.setStyle(style);
         paint3.setStrokeCap(Paint.Cap.ROUND);
         paint3.setColor(aVar.h);
-        long[] jArr = aVar.f12994a;
+        long[] jArr = aVar.f12984a;
         if (z10) {
             length = jArr.length * 8;
         } else {
             length = jArr.length << 2;
         }
-        this.f13627k = new float[length];
-        long[] jArr2 = aVar.f12994a;
+        this.f13615k = new float[length];
+        long[] jArr2 = aVar.f12984a;
         if (z10) {
             length2 = jArr2.length * 8;
         } else {
             length2 = jArr2.length << 2;
         }
-        this.f13628l = new float[length2];
+        this.f13616l = new float[length2];
     }
 
     public void a() {
         int i10;
-        jg.a aVar = this.f13620a;
-        int i11 = aVar.f12998g;
-        e6 e6Var = this.f13632p;
-        if (i11 >= 0 && i6.c1(i11)) {
-            this.f13629m = i6.v0(aVar.f12998g, e6Var);
+        jg.a aVar = this.f13608a;
+        int i11 = aVar.f12988g;
+        d6 d6Var = this.f13620p;
+        if (i11 >= 0 && h6.c1(i11)) {
+            this.f13617m = h6.v0(aVar.f12988g, d6Var);
         } else {
-            if (i0.a.f(i6.v0(i6.f18834d6, e6Var)) < 0.5d) {
-                i10 = aVar.f12999i;
+            if (i0.a.f(h6.v0(h6.f18789d6, d6Var)) < 0.5d) {
+                i10 = aVar.f12989i;
             } else {
                 i10 = aVar.h;
             }
-            this.f13629m = i10;
+            this.f13617m = i10;
         }
-        this.f13622c.setColor(this.f13629m);
-        this.f13621b.setColor(this.f13629m);
-        this.d.setColor(this.f13629m);
+        this.f13610c.setColor(this.f13617m);
+        this.f13609b.setColor(this.f13617m);
+        this.d.setColor(this.f13617m);
     }
 }

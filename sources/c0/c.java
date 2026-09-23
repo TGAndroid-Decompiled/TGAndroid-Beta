@@ -1,6 +1,6 @@
 package c0;
 public final class c {
-    public final Throwable f3622a;
+    public final Throwable f3617a;
 
     static {
         new c(new b("Failure occurred while trying to finish a future.", 0));
@@ -9,6 +9,6 @@ public final class c {
     public c(Throwable th2) {
         boolean z10 = h.d;
         th2.getClass();
-        this.f3622a = th2;
+        this.f3617a = th2;
     }
 }

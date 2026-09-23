@@ -1,30 +1,33 @@
 package xh;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.tgnet.TLRPC;
 public final class p4 implements Runnable {
-    public final int f46064a;
-    public final TLRPC.User f46065b;
+    public final int f46021a;
+    public final z4 f46022b;
 
-    public p4(int i10, TLRPC.User user) {
-        this.f46064a = i10;
-        this.f46065b = user;
+    public p4(z4 z4Var, int i10) {
+        this.f46021a = i10;
+        this.f46022b = z4Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f46064a;
-        TLRPC.User user = this.f46065b;
-        switch (i10) {
+        switch (this.f46021a) {
             case 0:
-                tg.k0.c0(new ArrayList(Arrays.asList(user)));
+                this.f46022b.Y(false);
                 return;
             case 1:
-                tg.k0.c0(new ArrayList(Arrays.asList(user)));
+                this.f46022b.Y(true);
+                return;
+            case 2:
+                z4.U(this.f46022b);
+                return;
+            case 3:
+                z4.T(this.f46022b);
+                return;
+            case 4:
+                z4.R(this.f46022b);
                 return;
             default:
-                tg.k0.c0(new ArrayList(Arrays.asList(user)));
+                this.f46022b.dismiss();
                 return;
         }
     }

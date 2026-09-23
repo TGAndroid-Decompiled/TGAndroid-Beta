@@ -1,46 +1,36 @@
 package org.telegram.ui;
 
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-public final class n50 extends org.telegram.ui.ActionBar.j5 {
-    public LinearGradient M0;
-    public int N0;
-    public final Matrix O0;
-    public float P0;
-    public float Q0;
-    public float R0;
-    public float S0;
-    public float T0;
-    public long U0;
-    public final i60 V0;
+import org.telegram.messenger.AndroidUtilities;
+public final class n50 implements Runnable {
+    public final int f35438a;
+    public final o50 f35439b;
 
-    public n50(i60 i60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.V0 = i60Var;
-        this.O0 = new Matrix();
-        this.P0 = -1.0f;
+    public n50(o50 o50Var, int i10) {
+        this.f35438a = i10;
+        this.f35439b = o50Var;
     }
 
     @Override
-    public final void d(int i10) {
-        super.d(i10);
-        int textWidth = getTextWidth();
-        if (textWidth != this.N0) {
-            float f7 = textWidth;
-            this.T0 = 1.3f * f7;
-            float f10 = f7 * 2.0f;
-            int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18933ih, false);
-            int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18972kh, false);
-            int i11 = org.telegram.ui.ActionBar.i6.f18952jh;
-            this.M0 = new LinearGradient(0.0f, getTextHeight(), f10, 0.0f, new int[]{w02, w03, org.telegram.ui.ActionBar.i6.w0(null, i11, false), org.telegram.ui.ActionBar.i6.w0(null, i11, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
-            getPaint().setShader(this.M0);
-            this.N0 = textWidth;
+    public final void run() {
+        switch (this.f35438a) {
+            case 0:
+                o50 o50Var = this.f35439b;
+                p50 p50Var = o50Var.f35684b;
+                if (p50Var != null) {
+                    p50Var.setVisibility(0);
+                }
+                AndroidUtilities.runOnUIThread(new n50(o50Var, 2), 16L);
+                return;
+            case 1:
+                p50 p50Var2 = this.f35439b.f35684b;
+                if (p50Var2 != null) {
+                    p50Var2.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
         }
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n50.onDraw(android.graphics.Canvas):void");
     }
 }

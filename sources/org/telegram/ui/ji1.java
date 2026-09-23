@@ -1,20 +1,8 @@
 package org.telegram.ui;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.webrtc.RendererCommon;
-public final class ji1 implements RendererCommon.RendererEvents {
-    public final ui1 f34919a;
-
-    public ji1(ui1 ui1Var) {
-        this.f34919a = ui1Var;
-    }
-
+public final class ji1 extends org.telegram.ui.Components.voip.v2 {
     @Override
-    public final void onFirstFrameRendered() {
-        AndroidUtilities.runOnUIThread(new f01(this, 21));
-    }
-
-    @Override
-    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
+    public final void dispatchSetPressed(boolean z10) {
+        super.dispatchSetPressed(z10);
+        setPressedBtn(z10);
     }
 }

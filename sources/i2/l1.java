@@ -1,93 +1,47 @@
 package i2;
+public final class l1 extends u2.r {
+    public final int f10764f = 0;
+    public final Object f10765g;
 
-import java.util.HashMap;
-public final class l1 extends a {
-    public final int h;
-    public final int f10778i;
-    public final int[] f10779j;
-    public final int[] f10780k;
-    public final b2.k1[] f10781l;
-    public final Object[] f10782m;
-    public final HashMap f10783n;
+    public l1(b2.k1 k1Var, b2.k0 k0Var) {
+        super(k1Var);
+        this.f10765g = k0Var;
+    }
 
-    public l1(b2.k1[] k1VarArr, Object[] objArr, u2.g1 g1Var) {
-        super(g1Var);
-        int length = k1VarArr.length;
-        this.f10781l = k1VarArr;
-        this.f10779j = new int[length];
-        this.f10780k = new int[length];
-        this.f10782m = objArr;
-        this.f10783n = new HashMap();
-        int length2 = k1VarArr.length;
-        int i10 = 0;
-        int i11 = 0;
-        int i12 = 0;
-        int i13 = 0;
-        while (i10 < length2) {
-            b2.k1 k1Var = k1VarArr[i10];
-            this.f10781l[i13] = k1Var;
-            this.f10780k[i13] = i11;
-            this.f10779j[i13] = i12;
-            i11 += k1Var.o();
-            i12 += this.f10781l[i13].h();
-            this.f10783n.put(objArr[i13], Integer.valueOf(i13));
-            i10++;
-            i13++;
+    @Override
+    public b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
+        switch (this.f10764f) {
+            case 0:
+                b2.k1 k1Var = this.e;
+                b2.h1 f7 = k1Var.f(i10, h1Var, z10);
+                if (k1Var.m(f7.f3006c, (b2.j1) this.f10765g, 0L).a()) {
+                    f7.h(h1Var.f3004a, h1Var.f3005b, h1Var.f3006c, h1Var.d, h1Var.e, b2.b.f2927c, true);
+                } else {
+                    f7.f3007f = true;
+                }
+                return f7;
+            default:
+                return super.f(i10, h1Var, z10);
         }
-        this.h = i11;
-        this.f10778i = i12;
     }
 
     @Override
-    public final int h() {
-        return this.f10778i;
-    }
-
-    @Override
-    public final int o() {
-        return this.h;
-    }
-
-    @Override
-    public final int q(Object obj) {
-        Integer num = (Integer) this.f10783n.get(obj);
-        if (num == null) {
-            return -1;
+    public b2.j1 m(int i10, b2.j1 j1Var, long j3) {
+        switch (this.f10764f) {
+            case 1:
+                super.m(i10, j1Var, j3);
+                b2.k0 k0Var = (b2.k0) this.f10765g;
+                j1Var.f3052c = k0Var;
+                b2.f0 f0Var = k0Var.f3070b;
+                j1Var.getClass();
+                return j1Var;
+            default:
+                return super.m(i10, j1Var, j3);
         }
-        return num.intValue();
     }
 
-    @Override
-    public final int r(int i10) {
-        return e2.d0.d(this.f10779j, i10 + 1, false, false);
-    }
-
-    @Override
-    public final int s(int i10) {
-        return e2.d0.d(this.f10780k, i10 + 1, false, false);
-    }
-
-    @Override
-    public final Object t(int i10) {
-        return this.f10782m[i10];
-    }
-
-    @Override
-    public final int u(int i10) {
-        return this.f10779j[i10];
-    }
-
-    @Override
-    public final int v(int i10) {
-        return this.f10780k[i10];
-    }
-
-    @Override
-    public final b2.k1 x(int i10) {
-        return this.f10781l[i10];
-    }
-
-    public l1(java.util.ArrayList r8, u2.g1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.l1.<init>(java.util.ArrayList, u2.g1):void");
+    public l1(b2.k1 k1Var) {
+        super(k1Var);
+        this.f10765g = new b2.j1();
     }
 }

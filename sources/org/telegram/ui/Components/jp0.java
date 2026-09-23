@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-public final class jp0 extends ll0 {
+public final class jp0 extends ml0 {
     public final int X2;
     public final hq0 Y2;
 
-    public jp0(hq0 hq0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, e6Var);
+    public jp0(hq0 hq0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
         this.X2 = i10;
         this.Y2 = hq0Var;
     }
@@ -20,23 +20,23 @@ public final class jp0 extends ll0 {
         switch (this.X2) {
             case 0:
                 hq0 hq0Var = this.Y2;
-                if (hq0Var.f24764h0 && hq0Var.f24771o0[1] != null) {
+                if (hq0Var.f24783h0 && hq0Var.f24790o0[1] != null) {
                     f10 = 111.0f;
                 } else {
                     f10 = 58.0f;
                 }
-                if (f7 >= AndroidUtilities.dp(f10) + hq0Var.G0.f10591b) {
+                if (f7 >= AndroidUtilities.dp(f10) + hq0Var.G0.f10577b) {
                     return true;
                 }
                 return false;
             default:
                 hq0 hq0Var2 = this.Y2;
-                if (hq0Var2.f24764h0 && hq0Var2.f24771o0[1] != null) {
+                if (hq0Var2.f24783h0 && hq0Var2.f24790o0[1] != null) {
                     f11 = 111.0f;
                 } else {
                     f11 = 58.0f;
                 }
-                if (f7 >= AndroidUtilities.dp(f11) + hq0Var2.G0.f10591b) {
+                if (f7 >= AndroidUtilities.dp(f11) + hq0Var2.G0.f10577b) {
                     return true;
                 }
                 return false;
@@ -50,11 +50,11 @@ public final class jp0 extends ll0 {
         switch (this.X2) {
             case 0:
                 hq0 hq0Var = this.Y2;
-                ll0 ll0Var = hq0Var.E;
-                if (ll0Var.getVisibility() != 8) {
+                ml0 ml0Var = hq0Var.E;
+                if (ml0Var.getVisibility() != 8) {
                     canvas.save();
-                    int i10 = hq0Var.f24772p0;
-                    if (hq0Var.f24764h0 && hq0Var.f24771o0[1] != null) {
+                    int i10 = hq0Var.f24791p0;
+                    if (hq0Var.f24783h0 && hq0Var.f24790o0[1] != null) {
                         f7 = 111.0f;
                     } else {
                         f7 = 58.0f;
@@ -62,18 +62,18 @@ public final class jp0 extends ll0 {
                     canvas.clipRect(0, AndroidUtilities.dp(f7) + i10, getWidth(), getHeight());
                 }
                 super.draw(canvas);
-                if (ll0Var.getVisibility() != 8) {
+                if (ml0Var.getVisibility() != 8) {
                     canvas.restore();
                     return;
                 }
                 return;
             default:
                 hq0 hq0Var2 = this.Y2;
-                ll0 ll0Var2 = hq0Var2.E;
-                if (ll0Var2.getVisibility() != 8) {
+                ml0 ml0Var2 = hq0Var2.E;
+                if (ml0Var2.getVisibility() != 8) {
                     canvas.save();
-                    int i11 = hq0Var2.f24772p0;
-                    if (hq0Var2.f24764h0 && hq0Var2.f24771o0[1] != null) {
+                    int i11 = hq0Var2.f24791p0;
+                    if (hq0Var2.f24783h0 && hq0Var2.f24790o0[1] != null) {
                         f10 = 111.0f;
                     } else {
                         f10 = 58.0f;
@@ -81,7 +81,7 @@ public final class jp0 extends ll0 {
                     canvas.clipRect(0, AndroidUtilities.dp(f10) + i11, getWidth(), getHeight());
                 }
                 super.draw(canvas);
-                if (ll0Var2.getVisibility() != 8) {
+                if (ml0Var2.getVisibility() != 8) {
                     canvas.restore();
                     return;
                 }

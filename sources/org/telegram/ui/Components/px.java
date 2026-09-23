@@ -1,3 +1,7 @@
 package org.telegram.ui.Components;
-public interface px {
+
+import org.telegram.tgnet.TLRPC;
+public final class px {
+    public TLRPC.TL_messages_stickerSet f27173a;
+    public long f27174b;
 }

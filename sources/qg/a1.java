@@ -3,29 +3,29 @@ package qg;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
-import ci.c6;
+import ci.b6;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.pa0;
-public final class a1 extends ll0 {
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.qa0;
+public final class a1 extends ml0 {
     public final ArrayList X2;
     public final ArrayList Y2;
     public final ArrayList Z2;
-    public final ArrayList f41280a3;
-    public final ArrayList f41281b3;
-    public final c6 f41282c3;
+    public final ArrayList f41236a3;
+    public final ArrayList f41237b3;
+    public final b6 f41238c3;
 
-    public a1(c6 c6Var, Context context, com.google.firebase.messaging.n nVar) {
+    public a1(b6 b6Var, Context context, com.google.firebase.messaging.n nVar) {
         super(context, nVar);
-        this.f41282c3 = c6Var;
+        this.f41238c3 = b6Var;
         this.X2 = new ArrayList();
         this.Y2 = new ArrayList();
         this.Z2 = new ArrayList();
-        this.f41280a3 = new ArrayList();
-        this.f41281b3 = new ArrayList(10);
+        this.f41236a3 = new ArrayList();
+        this.f41237b3 = new ArrayList(10);
     }
 
     @Override
@@ -65,8 +65,8 @@ public final class a1 extends ll0 {
                     MessageObject.GroupedMessages currentMessagesGroup2 = t1Var.getCurrentMessagesGroup();
                     if (currentMessagesGroup2 == null || currentMessagesGroup2 != groupedMessages) {
                         MessageObject.GroupedMessagePosition currentPosition = t1Var.getCurrentPosition();
-                        pa0 backgroundDrawable = t1Var.getBackgroundDrawable();
-                        if ((backgroundDrawable.f26986f || t1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
+                        qa0 backgroundDrawable = t1Var.getBackgroundDrawable();
+                        if ((backgroundDrawable.f27291f || t1Var.g3()) && (currentPosition == null || (2 & currentPosition.flags) != 0)) {
                             int y3 = (int) t1Var.getY();
                             canvas.save();
                             if (currentPosition == null) {
@@ -80,13 +80,13 @@ public final class a1 extends ll0 {
                                     if (childAt2 instanceof org.telegram.ui.Cells.t1) {
                                         org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) childAt2;
                                         if (t1Var2.getCurrentMessagesGroup() == currentMessagesGroup2) {
-                                            pa0 backgroundDrawable2 = t1Var2.getBackgroundDrawable();
+                                            qa0 backgroundDrawable2 = t1Var2.getBackgroundDrawable();
                                             int min = Math.min(y3, (int) t1Var2.getY());
                                             int max = Math.max(measuredHeight, t1Var2.getMeasuredHeight() + ((int) t1Var2.getY()));
-                                            long j10 = backgroundDrawable2.f26991l;
+                                            long j10 = backgroundDrawable2.f27296l;
                                             if (j10 > j3) {
                                                 float x10 = t1Var2.getX() + backgroundDrawable2.h;
-                                                f16 = t1Var2.getY() + backgroundDrawable2.f26988i;
+                                                f16 = t1Var2.getY() + backgroundDrawable2.f27293i;
                                                 f7 = x10;
                                                 j3 = j10;
                                             }
@@ -95,14 +95,14 @@ public final class a1 extends ll0 {
                                         }
                                     }
                                 }
-                                backgroundDrawable.f26989j = f7;
-                                backgroundDrawable.f26990k = f16 - y3;
+                                backgroundDrawable.f27294j = f7;
+                                backgroundDrawable.f27295k = f16 - y3;
                                 i12 = measuredHeight - y3;
                             }
                             int i15 = i12 + y3;
                             canvas.clipRect(0, y3, getMeasuredWidth(), i15);
-                            backgroundDrawable.f26984b = null;
-                            backgroundDrawable.f26983a.setColor(i6.v0(i6.Hc, this.f25969p2));
+                            backgroundDrawable.f27289b = null;
+                            backgroundDrawable.f27288a.setColor(h6.v0(h6.Hc, this.f26222p2));
                             backgroundDrawable.setBounds(0, y3, getMeasuredWidth(), i15);
                             backgroundDrawable.draw(canvas);
                             canvas.restore();
@@ -125,7 +125,7 @@ public final class a1 extends ll0 {
         }
         int i16 = 0;
         while (i16 < 3) {
-            ArrayList arrayList = this.f41281b3;
+            ArrayList arrayList = this.f41237b3;
             arrayList.clear();
             if (i16 != i11 || this.X1) {
                 int i17 = 0;
@@ -133,7 +133,7 @@ public final class a1 extends ll0 {
                     View childAt3 = getChildAt(i17);
                     if (childAt3 instanceof org.telegram.ui.Cells.t1) {
                         org.telegram.ui.Cells.t1 t1Var3 = (org.telegram.ui.Cells.t1) childAt3;
-                        if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= f7 && t1Var3.getVisibility() != i10 && t1Var3.getVisibility() != 8 && (currentMessagesGroup = t1Var3.getCurrentMessagesGroup()) != null && ((i16 != 0 || currentMessagesGroup.messages.size() != z10) && ((i16 != z10 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i16 != 0 || !t1Var3.getMessageObject().deleted) && ((i16 != z10 || t1Var3.getMessageObject().deleted) && ((i16 != i11 || t1Var3.f21162oc) && (i16 == i11 || !t1Var3.f21162oc))))))) {
+                        if (childAt3.getY() <= getHeight() && childAt3.getY() + childAt3.getHeight() >= f7 && t1Var3.getVisibility() != i10 && t1Var3.getVisibility() != 8 && (currentMessagesGroup = t1Var3.getCurrentMessagesGroup()) != null && ((i16 != 0 || currentMessagesGroup.messages.size() != z10) && ((i16 != z10 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i16 != 0 || !t1Var3.getMessageObject().deleted) && ((i16 != z10 || t1Var3.getMessageObject().deleted) && ((i16 != i11 || t1Var3.f21149oc) && (i16 == i11 || !t1Var3.f21149oc))))))) {
                             if (!arrayList.contains(currentMessagesGroup)) {
                                 MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
                                 transitionParams.left = 0;
@@ -159,7 +159,7 @@ public final class a1 extends ll0 {
                                 backgroundDrawableBottom = AndroidUtilities.dp(10.0f) + backgroundDrawableBottom;
                             }
                             int i19 = backgroundDrawableBottom;
-                            if (t1Var3.f21162oc) {
+                            if (t1Var3.f21149oc) {
                                 currentMessagesGroup.transitionParams.cell = t1Var3;
                             }
                             MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
@@ -319,7 +319,7 @@ public final class a1 extends ll0 {
                     }
                     canvas.clipRect(f23 + AndroidUtilities.dp(8.0f), f24 + AndroidUtilities.dp(8.0f), f25 - AndroidUtilities.dp(8.0f), f26 - AndroidUtilities.dp(8.0f));
                 }
-                if (t1Var7.getTransitionParams().f20906v0) {
+                if (t1Var7.getTransitionParams().f20882v0) {
                     canvas.translate(E23, y11);
                     t1Var7.setInvalidatesParent(true);
                     t1Var7.I1(f13, canvas, z11);
@@ -334,7 +334,7 @@ public final class a1 extends ll0 {
         } else {
             f11 = 8.0f;
         }
-        ArrayList arrayList6 = this.f41280a3;
+        ArrayList arrayList6 = this.f41236a3;
         int size4 = arrayList6.size();
         if (size4 > 0) {
             for (int i29 = 0; i29 < size4; i29++) {
@@ -362,7 +362,7 @@ public final class a1 extends ll0 {
                         }
                         canvas.clipRect(f27 + AndroidUtilities.dp(f11), f28 + AndroidUtilities.dp(f11), f29 - AndroidUtilities.dp(f11), f30 - AndroidUtilities.dp(f11));
                     }
-                    if (t1Var8.getTransitionParams().f20906v0) {
+                    if (t1Var8.getTransitionParams().f20882v0) {
                         canvas.translate(E25, y12);
                         t1Var8.setInvalidatesParent(true);
                         t1Var8.d2(canvas, f12, null);

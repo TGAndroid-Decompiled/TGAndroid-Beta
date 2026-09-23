@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 public abstract class na extends z4.g {
     public ArrayList A0;
-    public y5 B0;
+    public x5 B0;
     public boolean C0;
     public boolean D0;
     public int E0;
     public int F0;
     public Runnable G0;
-    public c6 H0;
+    public b6 H0;
     public int I0;
     public int J0;
     public float K0;
@@ -22,10 +22,10 @@ public abstract class na extends z4.g {
     public jc N0;
     public int O0;
     public float P0;
-    public long f1304w0;
-    public ArrayList f1305x0;
-    public int f1306y0;
-    public ka f1307z0;
+    public long f1308w0;
+    public ArrayList f1309x0;
+    public int f1310y0;
+    public ka f1311z0;
 
     public static boolean C(ArrayList arrayList, ArrayList arrayList2) {
         if (arrayList == null && arrayList2 == null) {
@@ -48,7 +48,7 @@ public abstract class na extends z4.g {
         while (true) {
             if (i10 < getChildCount()) {
                 ma maVar = (ma) getChildAt(i10);
-                if (maVar.d && !maVar.f1258a.O1.d()) {
+                if (maVar.d && !maVar.f1268a.O1.d()) {
                     break;
                 }
                 i10++;
@@ -68,15 +68,15 @@ public abstract class na extends z4.g {
                     if (!maVar.d) {
                         this.O0 = -1;
                         maVar.a(true);
-                        if (this.f1305x0 != null) {
-                            f6 f6Var = maVar.f1258a;
-                            long j3 = maVar.f1259b;
-                            ArrayList arrayList = maVar.f1260c;
-                            f6Var.B1 = j3;
-                            f6Var.f872z1 = arrayList;
-                            f6Var.o0(0);
+                        if (this.f1309x0 != null) {
+                            e6 e6Var = maVar.f1268a;
+                            long j3 = maVar.f1269b;
+                            ArrayList arrayList = maVar.f1270c;
+                            e6Var.B1 = j3;
+                            e6Var.f848z1 = arrayList;
+                            e6Var.o0(0);
                         } else {
-                            maVar.f1258a.U0(0, maVar.f1259b);
+                            maVar.f1268a.U0(0, maVar.f1269b);
                         }
                     }
                 }
@@ -93,13 +93,13 @@ public abstract class na extends z4.g {
         boolean z11 = false;
         if (z10) {
             int currentItem = getCurrentItem();
-            ArrayList arrayList = this.f1305x0;
+            ArrayList arrayList = this.f1309x0;
             if (arrayList == null) {
                 arrayList = this.A0;
             }
             if (currentItem < arrayList.size() - 1) {
                 int currentItem2 = getCurrentItem() + 1;
-                if (jcVar.f1064a && Build.VERSION.SDK_INT < 33) {
+                if (jcVar.f1058a && Build.VERSION.SDK_INT < 33) {
                     z11 = true;
                 }
                 x(currentItem2, !z11);
@@ -110,7 +110,7 @@ public abstract class na extends z4.g {
             return false;
         }
         int currentItem3 = getCurrentItem() - 1;
-        if (jcVar.f1064a && Build.VERSION.SDK_INT < 33) {
+        if (jcVar.f1058a && Build.VERSION.SDK_INT < 33) {
             z11 = true;
         }
         x(currentItem3, !z11);
@@ -120,19 +120,19 @@ public abstract class na extends z4.g {
     public final void F() {
         boolean z10;
         for (int i10 = 0; i10 < getChildCount(); i10++) {
-            f6 f6Var = (f6) ((FrameLayout) getChildAt(i10)).getChildAt(0);
-            if (((Integer) getChildAt(i10).getTag()).intValue() == getCurrentItem() && !f6Var.U3) {
+            e6 e6Var = (e6) ((FrameLayout) getChildAt(i10)).getChildAt(0);
+            if (((Integer) getChildAt(i10).getTag()).intValue() == getCurrentItem() && !e6Var.U3) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            f6Var.setActive(z10);
+            e6Var.setActive(z10);
         }
     }
 
     public long getCurrentDialogId() {
-        if (this.f1305x0 != null) {
-            return this.f1304w0;
+        if (this.f1309x0 != null) {
+            return this.f1308w0;
         }
         if (getCurrentItem() < this.A0.size()) {
             return ((Long) this.A0.get(getCurrentItem())).longValue();
@@ -140,10 +140,10 @@ public abstract class na extends z4.g {
         return 0L;
     }
 
-    public f6 getCurrentPeerView() {
+    public e6 getCurrentPeerView() {
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             if (((Integer) getChildAt(i10).getTag()).intValue() == getCurrentItem()) {
-                return (f6) ((FrameLayout) getChildAt(i10)).getChildAt(0);
+                return (e6) ((FrameLayout) getChildAt(i10)).getChildAt(0);
             }
         }
         return null;
@@ -170,10 +170,10 @@ public abstract class na extends z4.g {
         super.onLayout(z10, i10, i11, i12, i13);
         if (this.C0) {
             this.C0 = false;
-            f6 currentPeerView = getCurrentPeerView();
+            e6 currentPeerView = getCurrentPeerView();
             if (currentPeerView != null) {
-                y5 y5Var = this.B0;
-                ac acVar = (ac) y5Var;
+                x5 x5Var = this.B0;
+                ac acVar = (ac) x5Var;
                 acVar.a(currentPeerView.getSelectedPosition(), currentPeerView.getCurrentPeer());
             }
         }
@@ -195,8 +195,8 @@ public abstract class na extends z4.g {
         return false;
     }
 
-    public void setDelegate(y5 y5Var) {
-        this.B0 = y5Var;
+    public void setDelegate(x5 x5Var) {
+        this.B0 = x5Var;
     }
 
     public void setHorizontalProgressToDismiss(float f7) {
@@ -216,7 +216,7 @@ public abstract class na extends z4.g {
     public void setKeyboardHeight(int i10) {
         if (this.E0 != i10) {
             this.E0 = i10;
-            f6 currentPeerView = getCurrentPeerView();
+            e6 currentPeerView = getCurrentPeerView();
             if (currentPeerView != null) {
                 currentPeerView.requestLayout();
             }
@@ -225,7 +225,7 @@ public abstract class na extends z4.g {
 
     public void setPaused(boolean z10) {
         for (int i10 = 0; i10 < getChildCount(); i10++) {
-            ((f6) ((FrameLayout) getChildAt(i10)).getChildAt(0)).setPaused(z10);
+            ((e6) ((FrameLayout) getChildAt(i10)).getChildAt(0)).setPaused(z10);
         }
     }
 }

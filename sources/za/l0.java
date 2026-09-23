@@ -1,116 +1,44 @@
 package za;
+public final class l0 {
+    public final String f48755a;
+    public final String f48756b;
+    public final int f48757c;
+    public final long d;
+    public final j e;
+    public final String f48758f;
 
-import android.os.Bundle;
-import android.os.DeadObjectException;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.os.Messenger;
-import android.util.Log;
-import java.util.ArrayList;
-public final class l0 extends Handler {
-    public boolean f48803a;
-    public long f48804b;
-    public final ArrayList f48805c;
-
-    public l0(Looper looper) {
-        super(looper);
-        this.f48805c = new ArrayList();
-    }
-
-    public final void a(Messenger messenger) {
-        String str;
-        if (this.f48803a) {
-            Object b10 = k9.h.c().b(i0.class);
-            kotlin.jvm.internal.i.d(b10, "Firebase.app[SessionGenerator::class.java]");
-            c(messenger, ((i0) b10).b().f48835a);
-            return;
-        }
-        Object b11 = k9.h.c().b(s.class);
-        kotlin.jvm.internal.i.d(b11, "Firebase.app[SessionDatastore::class.java]");
-        m mVar = (m) ((y) ((s) b11)).f48834c.get();
-        if (mVar != null) {
-            str = mVar.f48806a;
-        } else {
-            str = null;
-        }
-        Log.d("SessionLifecycleService", "App has not yet foregrounded. Using previously stored session: " + str);
-        if (str != null) {
-            c(messenger, str);
-        }
-    }
-
-    public final void b() {
-        String a2;
-        Object b10 = k9.h.c().b(i0.class);
-        kotlin.jvm.internal.i.d(b10, "Firebase.app[SessionGenerator::class.java]");
-        i0 i0Var = (i0) b10;
-        int i10 = i0Var.d + 1;
-        i0Var.d = i10;
-        if (i10 == 0) {
-            a2 = i0Var.f48790c;
-        } else {
-            a2 = i0Var.a();
-        }
-        String str = a2;
-        String str2 = i0Var.f48790c;
-        int i11 = i0Var.d;
-        i0Var.f48788a.getClass();
-        i0Var.e = new z(i11, System.currentTimeMillis() * 1000, str, str2);
-        i0Var.b();
-        StringBuilder sb2 = new StringBuilder("Generated new session ");
-        Object b11 = k9.h.c().b(i0.class);
-        kotlin.jvm.internal.i.d(b11, "Firebase.app[SessionGenerator::class.java]");
-        sb2.append(((i0) b11).b().f48835a);
-        Log.d("SessionLifecycleService", sb2.toString());
-        StringBuilder sb3 = new StringBuilder("Broadcasting new session: ");
-        Object b12 = k9.h.c().b(i0.class);
-        kotlin.jvm.internal.i.d(b12, "Firebase.app[SessionGenerator::class.java]");
-        sb3.append(((i0) b12).b());
-        Log.d("SessionLifecycleService", sb3.toString());
-        Object b13 = k9.h.c().b(c0.class);
-        kotlin.jvm.internal.i.d(b13, "Firebase.app[SessionFirelogPublisher::class.java]");
-        Object b14 = k9.h.c().b(i0.class);
-        kotlin.jvm.internal.i.d(b14, "Firebase.app[SessionGenerator::class.java]");
-        g0 g0Var = (g0) ((c0) b13);
-        zd.e0.q(zd.e0.b(g0Var.e), new e0(g0Var, ((i0) b14).b(), null));
-        ArrayList arrayList = new ArrayList(this.f48805c);
-        int size = arrayList.size();
-        int i12 = 0;
-        while (i12 < size) {
-            Object obj = arrayList.get(i12);
-            i12++;
-            Messenger it = (Messenger) obj;
-            kotlin.jvm.internal.i.d(it, "it");
-            a(it);
-        }
-        Object b15 = k9.h.c().b(s.class);
-        kotlin.jvm.internal.i.d(b15, "Firebase.app[SessionDatastore::class.java]");
-        Object b16 = k9.h.c().b(i0.class);
-        kotlin.jvm.internal.i.d(b16, "Firebase.app[SessionGenerator::class.java]");
-        String sessionId = ((i0) b16).b().f48835a;
-        y yVar = (y) ((s) b15);
+    public l0(String sessionId, String firstSessionId, int i10, long j3, j jVar, String str) {
         kotlin.jvm.internal.i.e(sessionId, "sessionId");
-        zd.e0.q(zd.e0.b(yVar.f48833b), new bb.i(yVar, sessionId, null, 5));
+        kotlin.jvm.internal.i.e(firstSessionId, "firstSessionId");
+        this.f48755a = sessionId;
+        this.f48756b = firstSessionId;
+        this.f48757c = i10;
+        this.d = j3;
+        this.e = jVar;
+        this.f48758f = str;
     }
 
-    public final void c(Messenger messenger, String str) {
-        try {
-            Bundle bundle = new Bundle();
-            bundle.putString("SessionUpdateExtra", str);
-            Message obtain = Message.obtain(null, 3, 0, 0);
-            obtain.setData(bundle);
-            messenger.send(obtain);
-        } catch (DeadObjectException unused) {
-            Log.d("SessionLifecycleService", "Removing dead client from list: " + messenger);
-            this.f48805c.remove(messenger);
-        } catch (Exception e) {
-            Log.w("SessionLifecycleService", "Unable to push new session to " + messenger + '.', e);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof l0)) {
+            return false;
+        }
+        l0 l0Var = (l0) obj;
+        if (kotlin.jvm.internal.i.a(this.f48755a, l0Var.f48755a) && kotlin.jvm.internal.i.a(this.f48756b, l0Var.f48756b) && this.f48757c == l0Var.f48757c && this.d == l0Var.d && kotlin.jvm.internal.i.a(this.e, l0Var.e) && kotlin.jvm.internal.i.a(this.f48758f, l0Var.f48758f)) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void handleMessage(android.os.Message r12) {
-        throw new UnsupportedOperationException("Method not decompiled: za.l0.handleMessage(android.os.Message):void");
+    public final int hashCode() {
+        long j3 = this.d;
+        int hashCode = this.e.hashCode();
+        return this.f48758f.hashCode() + ((hashCode + ((((a4.a.h(this.f48755a.hashCode() * 31, 31, this.f48756b) + this.f48757c) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31)) * 31);
+    }
+
+    public final String toString() {
+        return "SessionInfo(sessionId=" + this.f48755a + ", firstSessionId=" + this.f48756b + ", sessionIndex=" + this.f48757c + ", eventTimestampUs=" + this.d + ", dataCollectionStatus=" + this.e + ", firebaseInstallationId=" + this.f48758f + ')';
     }
 }

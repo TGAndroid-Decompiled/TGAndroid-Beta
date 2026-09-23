@@ -1,42 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class jh implements Runnable {
-    public final int f34909a;
-    public final EditTextBoldCursor f34910b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class jh implements View.OnClickListener {
+    public final int f34458a;
+    public final org.telegram.ui.Components.o70 f34459b;
 
-    public jh(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f34909a = i10;
-        this.f34910b = editTextBoldCursor;
+    public jh(org.telegram.ui.Components.o70 o70Var, int i10) {
+        this.f34458a = i10;
+        this.f34459b = o70Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34909a) {
+    public final void onClick(View view) {
+        int i10 = this.f34458a;
+        org.telegram.ui.Components.o70 o70Var = this.f34459b;
+        switch (i10) {
             case 0:
-                AndroidUtilities.showKeyboard(this.f34910b);
-                return;
-            case 1:
-                EditTextBoldCursor editTextBoldCursor = this.f34910b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                return;
-            case 2:
-                EditTextBoldCursor editTextBoldCursor2 = this.f34910b;
-                editTextBoldCursor2.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor2);
-                return;
-            case 3:
-                AndroidUtilities.showKeyboard(this.f34910b);
-                return;
-            case 4:
-                AndroidUtilities.showKeyboard(this.f34910b);
+                o70Var.s();
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor3 = this.f34910b;
-                editTextBoldCursor3.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor3);
+                Drawable[] drawableArr = PhotoViewer.U8;
+                o70Var.s();
                 return;
         }
     }

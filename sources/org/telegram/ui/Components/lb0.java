@@ -1,31 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class lb0 implements zk0 {
-    public final pb0 f25904a;
+import android.content.Context;
+import org.telegram.messenger.ChatMessageSharedResources;
+import org.telegram.messenger.MessageObject;
+public final class lb0 extends org.telegram.ui.Cells.t1 {
+    public final nb0 Ge;
 
-    public lb0(pb0 pb0Var) {
-        this.f25904a = pb0Var;
+    public lb0(nb0 nb0Var, Context context, int i10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, false, chatMessageSharedResources, d6Var);
+        this.Ge = nb0Var;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        pb0 pb0Var = this.f25904a;
-        if (pb0Var.f26993a == 1 && pb0Var.f27001r.previewMessages.size() > 1) {
-            int id2 = pb0Var.f27001r.previewMessages.get(i10).getId();
-            boolean z10 = pb0Var.f27001r.selectedIds.get(id2, false);
-            boolean z11 = !z10;
-            if (pb0Var.f27001r.selectedIds.size() != 1 || !z10) {
-                if (z10) {
-                    pb0Var.f27001r.selectedIds.delete(id2);
-                } else {
-                    pb0Var.f27001r.selectedIds.put(id2, z11);
-                }
-                if (view instanceof org.telegram.ui.Cells.t1) {
-                    ((org.telegram.ui.Cells.t1) view).L3(z11, z11, true);
-                }
-                pb0Var.k(true);
-            }
-        }
+    public final void X3(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z10, boolean z11, boolean z12, boolean z13) {
+        super.X3(messageObject, groupedMessages, z10, z11, z12, z13);
+        ob0.b(this.Ge.f26406c, this);
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.Ge.f26406c.f26709f.invalidate();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        ob0.b(this.Ge.f26406c, this);
+    }
+
+    @Override
+    public final void invalidate(int i10, int i11, int i12, int i13) {
+        super.invalidate(i10, i11, i12, i13);
+        this.Ge.f26406c.f26709f.invalidate();
     }
 }

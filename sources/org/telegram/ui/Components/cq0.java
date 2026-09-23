@@ -6,11 +6,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class cq0 extends gg.c0 {
-    public final dq0 f23125n;
+    public final dq0 f23091n;
 
-    public cq0(dq0 dq0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(i10, context, e6Var, true, true);
-        this.f23125n = dq0Var;
+    public cq0(dq0 dq0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(i10, context, d6Var, true, true);
+        this.f23091n = dq0Var;
     }
 
     @Override
@@ -22,16 +22,16 @@ public final class cq0 extends gg.c0 {
         boolean z10;
         String str;
         int i14;
-        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) c1Var.f42671a;
-        hq0 hq0Var = this.f23125n.K;
+        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) c1Var.f42627a;
+        hq0 hq0Var = this.f23091n.K;
         boolean z11 = false;
         TLRPC.User user = null;
-        if (hq0Var.f24764h0 || hq0Var.f24765i0) {
-            int i15 = org.telegram.ui.ActionBar.i6.f19025ng;
-            int i16 = org.telegram.ui.ActionBar.i6.f18878fg;
-            n4Var.f20457b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i15, false));
+        if (hq0Var.f24783h0 || hq0Var.f24784i0) {
+            int i15 = org.telegram.ui.ActionBar.h6.f18980ng;
+            int i16 = org.telegram.ui.ActionBar.h6.f18833fg;
+            n4Var.f20436b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i15, false));
             n4Var.H = i16;
-            n4Var.v.b(org.telegram.ui.ActionBar.i6.B5, i16, org.telegram.ui.ActionBar.i6.C5);
+            n4Var.v.b(org.telegram.ui.ActionBar.h6.B5, i16, org.telegram.ui.ActionBar.h6.C5);
         }
         i11 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
@@ -76,7 +76,7 @@ public final class cq0 extends gg.c0 {
         if (hq0Var.U.h(j3) >= 0) {
             z11 = true;
         }
-        if (n4Var.f20463w) {
+        if (n4Var.f20442w) {
             n4Var.v.a(z11, z10);
         }
     }

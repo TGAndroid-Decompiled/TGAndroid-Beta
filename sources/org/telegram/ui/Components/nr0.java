@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-public final class nr0 extends xh.r2 {
+public final class nr0 extends xh.s2 {
     public final yu0 U;
 
-    public nr0(int i10, long j3, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var, yu0 yu0Var) {
-        super(i10, j3, context, n2Var, e6Var);
+    public nr0(int i10, long j3, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.d6 d6Var, yu0 yu0Var) {
+        super(i10, j3, context, n2Var, d6Var);
         this.U = yu0Var;
     }
 
@@ -16,7 +16,7 @@ public final class nr0 extends xh.r2 {
         float f7;
         float f10;
         yu0 yu0Var = this.U;
-        TextView textView = yu0Var.f30376q0;
+        TextView textView = yu0Var.f30437q0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f11 = 1.0f;

@@ -1,26 +1,23 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class m60 extends org.telegram.ui.Components.voip.l {
-    public final o60 h;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+public final class m60 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final FrameLayout f35161a;
+    public final p60 f35162b;
 
-    public m60(o60 o60Var, Context context) {
-        super(context, true);
-        this.h = o60Var;
+    public m60(p60 p60Var, FrameLayout frameLayout) {
+        this.f35162b = p60Var;
+        this.f35161a = frameLayout;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        o60 o60Var = this.h;
-        if (o60Var.f36118r && getParticipant() != null) {
-            o60Var.E(this, true);
+    public final void onGlobalLayout() {
+        this.f35161a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        p60 p60Var = this.f35162b;
+        if (p60Var.f36030z0 == null) {
+            p60Var.f36030z0 = (tc) p60Var.y0(p60Var.Z);
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.h.E(this, false);
+        p60Var.f36030z0.f37604f.setOnClickListener(new h60(this, 1));
     }
 }

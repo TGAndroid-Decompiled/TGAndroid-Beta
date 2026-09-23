@@ -1,39 +1,37 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-public final class g0 extends org.telegram.ui.ActionBar.g5 {
-    public final int f33739f;
-    public final NotificationCenter.NotificationCenterDelegate h;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class g0 implements Utilities.Callback0Return {
+    public final i4 f33403a;
+    public final String f33404b;
+    public final boolean[] f33405c;
+    public final nf.e d;
 
-    public g0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f33739f = i10;
-        this.h = notificationCenterDelegate;
+    public g0(i4 i4Var, String str, boolean[] zArr, nf.e eVar) {
+        this.f33403a = i4Var;
+        this.f33404b = str;
+        this.f33405c = zArr;
+        this.d = eVar;
     }
 
     @Override
-    public boolean g() {
-        switch (this.f33739f) {
-            case 0:
-                h4 h4Var = (h4) this.h;
-                org.telegram.ui.Cells.q9 q9Var = h4Var.P0;
-                if (q9Var != null && q9Var.y()) {
-                    h4Var.P0.f(false);
-                    return false;
-                }
-                return true;
-            default:
-                return super.g();
+    public final Object run() {
+        String str = this.f33404b;
+        if (!nf.f.f(Uri.parse(str), false, this.f33405c)) {
+            return Boolean.FALSE;
         }
-    }
-
-    @Override
-    public void onOpenAnimationEnd() {
-        switch (this.f33739f) {
-            case 1:
-                ((org.telegram.ui.Components.hq0) this.h).Y = true;
-                return;
-            default:
-                return;
+        i4 i4Var = this.f33403a;
+        nf.e eVar = this.d;
+        if (eVar != null) {
+            eVar.f15186c = new m4.g0(28, i4Var, eVar);
+        } else {
+            v3 v3Var = i4Var.K;
+            if (v3Var != null) {
+                v3Var.dismiss(true);
+            }
         }
+        nf.f.r(i4Var.L, Uri.parse(str), true, true, false, eVar, null, true, true, false);
+        return Boolean.TRUE;
     }
 }

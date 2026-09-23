@@ -5,44 +5,44 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c2 implements RequestDelegate {
-    public final int f46980a;
-    public final z3 f46981b;
+    public final int f46940a;
+    public final y3 f46941b;
 
-    public c2(z3 z3Var, int i10) {
-        this.f46980a = i10;
-        this.f46981b = z3Var;
+    public c2(y3 y3Var, int i10) {
+        this.f46940a = i10;
+        this.f46941b = y3Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f46980a) {
+        switch (this.f46940a) {
             case 0:
-                final z3 z3Var = this.f46981b;
+                final y3 y3Var = this.f46941b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r4) {
                             case 0:
-                                z3.a0(z3Var, tLObject, tL_error);
+                                y3.a0(y3Var, tLObject, tL_error);
                                 return;
                             default:
-                                z3.z0(z3Var, tLObject, tL_error);
+                                y3.z0(y3Var, tLObject, tL_error);
                                 return;
                         }
                     }
                 });
                 return;
             default:
-                final z3 z3Var2 = this.f46981b;
+                final y3 y3Var2 = this.f46941b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r4) {
                             case 0:
-                                z3.a0(z3Var2, tLObject, tL_error);
+                                y3.a0(y3Var2, tLObject, tL_error);
                                 return;
                             default:
-                                z3.z0(z3Var2, tLObject, tL_error);
+                                y3.z0(y3Var2, tLObject, tL_error);
                                 return;
                         }
                     }

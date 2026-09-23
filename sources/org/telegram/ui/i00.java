@@ -1,27 +1,22 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class i00 implements RequestDelegate {
-    public final int f34384a;
-    public final f10 f34385b;
-
-    public i00(f10 f10Var, int i10) {
-        this.f34384a = i10;
-        this.f34385b = f10Var;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.style.ImageSpan;
+public final class i00 extends ImageSpan {
+    public int f33953a;
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f34384a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new kw(10, this.f34385b, tLObject));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new xq(this.f34385b, tL_error, tLObject, 6));
-                return;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        if (paint.getColor() != this.f33953a && getDrawable() != null) {
+            Drawable drawable = getDrawable();
+            int color = paint.getColor();
+            this.f33953a = color;
+            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         }
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
     }
 }

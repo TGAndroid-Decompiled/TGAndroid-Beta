@@ -1,30 +1,24 @@
 package org.telegram.ui;
 
-import android.widget.Toast;
-import java.util.List;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class u21 implements ResultCallback {
-    public final f31 f37785a;
+import android.app.Activity;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class u21 extends org.telegram.ui.Components.bj0 {
+    public final w21 f37887r;
 
-    public u21(f31 f31Var) {
-        this.f37785a = f31Var;
+    public u21(w21 w21Var, Activity activity) {
+        super(activity);
+        this.f37887r = w21Var;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        List list = (List) obj;
-        this.f37785a.c0(list);
-        f31.S = list;
-    }
-
-    @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.l.a(this, th2);
-    }
-
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f37785a.getParentActivity(), tL_error.text, 0).show();
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f37887r.S.K) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
+        } else {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
+        }
     }
 }

@@ -5,27 +5,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.vl;
-import org.telegram.ui.i60;
-import org.telegram.ui.o60;
+import org.telegram.messenger.ul;
+import org.telegram.ui.f60;
+import org.telegram.ui.l60;
 public abstract class l extends FrameLayout {
-    public int f29039a;
-    public o60 f29040b;
-    public u f29041c;
+    public int f29013a;
+    public l60 f29014b;
+    public u f29015c;
     public ChatObject.VideoParticipant d;
     public boolean e;
-    public final boolean f29042f;
+    public final boolean f29016f;
 
     public l(Context context, boolean z10) {
         super(context);
-        this.f29042f = z10;
+        this.f29016f = z10;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        o60 o60Var = this.f29040b;
-        if (o60Var != null) {
-            measuredHeight = o60Var.F();
+        l60 l60Var = this.f29014b;
+        if (l60Var != null) {
+            measuredHeight = l60Var.F();
         } else {
             measuredHeight = getMeasuredHeight();
         }
@@ -37,7 +37,7 @@ public abstract class l extends FrameLayout {
     }
 
     public u getRenderer() {
-        return this.f29041c;
+        return this.f29015c;
     }
 
     @Override
@@ -57,24 +57,24 @@ public abstract class l extends FrameLayout {
         float f7;
         int i12;
         float f10;
-        if (this.f29042f) {
+        if (this.f29016f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f29040b.F(), 1073741824));
+            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f29014b.F(), 1073741824));
             return;
         }
-        if (i60.F3) {
+        if (f60.F3) {
             f7 = 3.0f;
         } else {
             f7 = 2.0f;
         }
-        int A = vl.A(14.0f, 2, AndroidUtilities.displaySize.x);
-        if (i60.F3) {
+        int A = ul.A(14.0f, 2, AndroidUtilities.displaySize.x);
+        if (f60.F3) {
             i12 = -AndroidUtilities.dp(90.0f);
         } else {
             i12 = 0;
         }
         float f11 = A + i12;
-        if (i60.G3) {
+        if (f60.G3) {
             f10 = f11 / 2.0f;
         } else {
             f10 = f11 / f7;
@@ -83,6 +83,6 @@ public abstract class l extends FrameLayout {
     }
 
     public void setRenderer(u uVar) {
-        this.f29041c = uVar;
+        this.f29015c = uVar;
     }
 }

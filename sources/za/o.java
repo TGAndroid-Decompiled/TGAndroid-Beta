@@ -1,18 +1,25 @@
 package za;
-public enum o implements ka.g {
-    LOG_ENVIRONMENT_UNKNOWN(0),
-    LOG_ENVIRONMENT_AUTOPUSH(1),
-    LOG_ENVIRONMENT_STAGING(2),
-    LOG_ENVIRONMENT_PROD(3);
-    
-    public final int f48810a;
 
-    o(int i10) {
-        this.f48810a = i10;
+import com.google.firebase.sessions.FirebaseSessionsRegistrar;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+public final class o implements q9.d, i5.e {
+    @Override
+    public Object G(cf.c cVar) {
+        return FirebaseSessionsRegistrar.c(cVar);
     }
 
     @Override
-    public final int a() {
-        return this.f48810a;
+    public Object apply(Object obj) {
+        wa.e eVar = (wa.e) obj;
+        eVar.getClass();
+        aa.a aVar = com.google.firebase.messaging.r.f7330a;
+        aVar.getClass();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            aVar.j(eVar, byteArrayOutputStream);
+        } catch (IOException unused) {
+        }
+        return byteArrayOutputStream.toByteArray();
     }
 }

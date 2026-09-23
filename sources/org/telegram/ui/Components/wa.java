@@ -1,41 +1,129 @@
 package org.telegram.ui.Components;
-public final class wa extends s4.j0 {
-    public final s4.j0 f29674a;
-    public final xa f29675b;
 
-    public wa(xa xaVar, s4.j0 j0Var) {
-        this.f29675b = xaVar;
-        this.f29674a = j0Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class wa extends pv0 {
+    public final boolean f29592w0;
+    public final boolean f29593x0;
+    public final bb f29594y0;
+
+    public wa(bb bbVar, Context context, boolean z10, boolean z11) {
+        super(context, null);
+        this.f29594y0 = bbVar;
+        this.f29592w0 = z10;
+        this.f29593x0 = z11;
     }
 
     @Override
-    public final void a() {
-        this.f29674a.a();
+    public final void dispatchDraw(Canvas canvas) {
+        bb bbVar = this.f29594y0;
+        bbVar.I(canvas, this);
+        super.dispatchDraw(canvas);
+        bbVar.H(canvas, this);
     }
 
     @Override
-    public final void b(int i10, int i11) {
-        this.f29674a.b(i10 + (!((za) this.f29675b.f29909f).P ? 1 : 0), i11);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        Drawable drawable;
+        if (motionEvent.getAction() == 0) {
+            float y3 = motionEvent.getY();
+            bb bbVar = this.f29594y0;
+            drawable = ((org.telegram.ui.ActionBar.f3) bbVar).shadowDrawable;
+            if (y3 < drawable.getBounds().top) {
+                bbVar.dismiss();
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void c(int i10, int i11, Object obj) {
-        this.f29674a.c(i10 + (!((za) this.f29675b.f29909f).P ? 1 : 0), i11, obj);
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (!this.f29593x0) {
+            this.f29594y0.getClass();
+        }
+        return super.drawChild(canvas, view, j3);
     }
 
     @Override
-    public final void d(int i10, int i11) {
-        this.f29674a.d(i10 + (!((za) this.f29675b.f29909f).P ? 1 : 0), i11);
+    public final void onLayout(boolean r12, int r13, int r14, int r15, int r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wa.onLayout(boolean, int, int, int, int):void");
     }
 
     @Override
-    public final void e(int i10, int i11) {
-        int i12 = !((za) this.f29675b.f29909f).P ? 1 : 0;
-        this.f29674a.e(i10 + i12, i11 + i12);
-    }
-
-    @Override
-    public final void f(int i10, int i11) {
-        this.f29674a.f(i10 + (!((za) this.f29675b.f29909f).P ? 1 : 0), i11);
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        float f7;
+        boolean z10;
+        int i13;
+        ku kuVar;
+        int size = View.MeasureSpec.getSize(i11);
+        bb bbVar = this.f29594y0;
+        bbVar.h = size;
+        bbVar.E(i10, i11);
+        if (this.f29592w0) {
+            i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
+        }
+        if (bbVar.Q != null) {
+            int size2 = View.MeasureSpec.getSize(i10);
+            int size3 = View.MeasureSpec.getSize(i11);
+            setMeasuredDimension(size2, size3);
+            ku kuVar2 = bbVar.Q;
+            if (kuVar2 != null && !kuVar2.N && AndroidUtilities.dp(20.0f) >= 0) {
+                ku kuVar3 = bbVar.Q;
+                if (!kuVar3.e && !kuVar3.O) {
+                    kuVar3.j();
+                }
+            }
+            int i14 = 0;
+            if (AndroidUtilities.dp(20.0f) >= 0) {
+                z10 = ((org.telegram.ui.ActionBar.f3) bbVar).keyboardVisible;
+                if (!z10 && (kuVar = bbVar.Q) != null) {
+                    i13 = kuVar.getEmojiPadding();
+                } else {
+                    i13 = 0;
+                }
+                if (!AndroidUtilities.isInMultiwindow) {
+                    size3 -= i13;
+                    i11 = View.MeasureSpec.makeMeasureSpec(size3, 1073741824);
+                }
+            }
+            int i15 = i11;
+            int childCount = getChildCount();
+            while (i14 < childCount) {
+                View childAt = getChildAt(i14);
+                if (childAt != null && childAt.getVisibility() != 8) {
+                    ku kuVar4 = bbVar.Q;
+                    if (kuVar4 != null && kuVar4.l(childAt)) {
+                        if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
+                        } else if (AndroidUtilities.isTablet()) {
+                            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
+                            if (AndroidUtilities.isTablet()) {
+                                f7 = 200.0f;
+                            } else {
+                                f7 = 320.0f;
+                            }
+                            childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f7), getPaddingTop() + (size3 - AndroidUtilities.statusBarHeight)), 1073741824));
+                        } else {
+                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size3 - AndroidUtilities.statusBarHeight), 1073741824));
+                        }
+                    } else {
+                        i12 = i10;
+                        measureChildWithMargins(childAt, i12, 0, i15, 0);
+                        i14++;
+                        i10 = i12;
+                    }
+                }
+                i12 = i10;
+                i14++;
+                i10 = i12;
+            }
+            return;
+        }
+        super.onMeasure(i10, i11);
     }
 }

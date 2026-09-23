@@ -1,96 +1,78 @@
 package ci;
 
-import android.graphics.Point;
-import android.graphics.RectF;
+import android.animation.ValueAnimator;
+import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.uy;
-public final class ya implements Runnable {
-    public final int f5838a = 0;
-    public final long f5839b;
-    public final boolean f5840c;
-    public final boolean d;
-    public final NotificationCenter.NotificationCenterDelegate e;
-    public final TLObject f5841f;
-    public final TLObject h;
+import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.ui.Components.dw;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.fi1;
+public final class ya implements ValueAnimator.AnimatorUpdateListener {
+    public final int f5890a;
+    public final float f5891b;
+    public final float f5892c;
+    public final Object d;
 
-    public ya(oc ocVar, boolean z10, TL_stories.StoryItem storyItem, long j3, TLRPC.InputGroupCall inputGroupCall, boolean z11) {
-        this.e = ocVar;
-        this.f5840c = z10;
-        this.f5841f = storyItem;
-        this.f5839b = j3;
-        this.h = inputGroupCall;
-        this.d = z11;
+    public ya(Object obj, float f7, float f10, int i10) {
+        this.f5890a = i10;
+        this.d = obj;
+        this.f5891b = f7;
+        this.f5892c = f10;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f5838a;
-        TLObject tLObject = this.h;
-        TLObject tLObject2 = this.f5841f;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.e;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f5890a;
+        float f7 = this.f5892c;
+        float f10 = this.f5891b;
+        Object obj = this.d;
         switch (i10) {
             case 0:
-                oc ocVar = (oc) notificationCenterDelegate;
-                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
-                TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
-                boolean z10 = this.f5840c;
-                long j3 = this.f5839b;
-                if (!z10) {
-                    ai.d2.W = new ai.d2(ocVar.f5204b, ocVar.f5208c, storyItem, j3, storyItem.f18344id, z10, inputGroupCall, true, this.d);
+                lc lcVar = (lc) obj;
+                lcVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                lcVar.f5079r.setTranslationY(f10 * floatValue);
+                lcVar.f5079r.b(f7 * floatValue);
+                return;
+            case 1:
+                le.f fVar = (le.f) obj;
+                if (fVar.f13971g) {
+                    DecelerateInterpolator decelerateInterpolator = ke.a.f13577a;
+                    float animatedFraction = valueAnimator.getAnimatedFraction();
+                    fVar.d((f7 * animatedFraction) + f10, animatedFraction);
+                    return;
                 }
-                jc jcVar = ocVar.F;
-                if (jcVar != null) {
-                    jcVar.f(false);
-                }
-                ocVar.F = null;
-                ocVar.J = 0;
-                RectF rectF = ocVar.H;
-                Point point = AndroidUtilities.displaySize;
-                rectF.set(0.0f, 0.0f, point.x, point.y);
-                ocVar.G = AndroidUtilities.dp(8.0f);
-                ocVar.q(true);
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                storyItem.dialogId = j3;
-                storyItem.justUploaded = true;
-                U.getOrCreateStoryViewer().F(ocVar.f5204b, storyItem, null);
-                NotificationCenter.getInstance(ocVar.f5208c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f18126id));
+                return;
+            case 2:
+                dw dwVar = (dw) obj;
+                dwVar.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dwVar.L = floatValue2;
+                dwVar.K = AndroidUtilities.lerp(f10, f7, floatValue2);
+                dwVar.f26443b.invalidate();
+                return;
+            case 3:
+                fi1 fi1Var = (fi1) obj;
+                fi1Var.f28885y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float dp = f10 + AndroidUtilities.dp(28.0f);
+                float dp2 = f7 + AndroidUtilities.dp(52.0f);
+                float f11 = fi1Var.f28885y;
+                fi1Var.G = dp - (dp * f11);
+                fi1Var.H = dp2 - (f11 * dp2);
+                fi1Var.invalidate();
                 return;
             default:
-                uy uyVar = (uy) notificationCenterDelegate;
-                TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
-                TLRPC.User user = (TLRPC.User) tLObject;
-                long j10 = this.f5839b;
-                boolean z11 = this.f5840c;
-                if (chat != null) {
-                    uyVar.getClass();
-                    if (ChatObject.isNotInChat(chat)) {
-                        uyVar.getMessagesController().deleteDialog(j10, 0, z11);
-                    } else {
-                        uyVar.getMessagesController().deleteParticipantFromChat(-j10, uyVar.getMessagesController().getUser(Long.valueOf(uyVar.getUserConfig().getClientUserId())), (TLRPC.Chat) null, z11, z11);
-                    }
-                } else {
-                    uyVar.getMessagesController().deleteDialog(j10, 0, z11);
-                    if (user != null && user.bot && this.d) {
-                        uyVar.getMessagesController().blockPeer(user.f18256id);
-                    }
-                }
-                uyVar.getMessagesController().checkIfFolderEmpty(uyVar.V2);
+                PhotoViewer photoViewer = (PhotoViewer) obj;
+                CropAreaView cropAreaView = photoViewer.C1.f28468b.f14088a;
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f10;
+                float f12 = photoViewer.f30876a6;
+                cropAreaView.f21991n0 = floatValue3;
+                cropAreaView.f21992o0 = ((photoViewer.f30914e6 - f12) * photoViewer.f30973l6) + f12;
+                cropAreaView.f21993p0 = 0.0f;
+                cropAreaView.f21994q0 = 0.0f;
+                cropAreaView.invalidate();
+                photoViewer.C1.f28469c.b(AndroidUtilities.lerp(f7, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
         }
-    }
-
-    public ya(uy uyVar, TLRPC.Chat chat, long j3, boolean z10, TLRPC.User user, boolean z11) {
-        this.e = uyVar;
-        this.f5841f = chat;
-        this.f5839b = j3;
-        this.f5840c = z10;
-        this.h = user;
-        this.d = z11;
     }
 }

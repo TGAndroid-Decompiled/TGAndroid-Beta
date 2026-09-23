@@ -1,8 +1,23 @@
 package org.telegram.ui;
+public final class mq implements Runnable {
+    public final int f35373a;
+    public final qr f35374b;
 
-import org.telegram.tgnet.TLRPC;
-public interface mq {
-    void a(TLRPC.User user);
+    public mq(qr qrVar, int i10) {
+        this.f35373a = i10;
+        this.f35374b = qrVar;
+    }
 
-    void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str);
+    @Override
+    public final void run() {
+        switch (this.f35373a) {
+            case 0:
+                this.f35374b.r0();
+                return;
+            default:
+                qr qrVar = this.f35374b;
+                qrVar.getMessagesController().loadFullChat(qrVar.N, 0, true);
+                return;
+        }
+    }
 }

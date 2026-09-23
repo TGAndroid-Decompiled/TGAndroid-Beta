@@ -1,74 +1,92 @@
 package ii;
 
-import android.app.Activity;
-import android.net.Uri;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ar0;
+import android.view.View;
 public final class r2 implements Runnable {
-    public final int f11598a;
-    public final int f11599b;
-    public final boolean f11600c;
-    public final Object d;
-    public final Object e;
-    public final Object f11601f;
-    public final Object h;
+    public final int f11581a;
+    public final x3 f11582b;
+    public final a f11583c;
+    public final int d;
 
-    public r2(Activity activity, int i10, TLRPC.InputGroupCall inputGroupCall, boolean z10, TLRPC.GroupCall groupCall, HashSet hashSet) {
-        this.f11598a = 4;
-        this.d = activity;
-        this.f11599b = i10;
-        this.e = inputGroupCall;
-        this.f11600c = z10;
-        this.f11601f = groupCall;
-        this.h = hashSet;
+    public r2(x3 x3Var, a aVar, int i10, int i11) {
+        this.f11581a = i11;
+        this.f11582b = x3Var;
+        this.f11583c = aVar;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ii.r2.run():void");
-    }
-
-    public r2(w3 w3Var, Uri uri, boolean z10, String str, int i10, a aVar) {
-        this.f11598a = 0;
-        this.d = w3Var;
-        this.e = uri;
-        this.f11600c = z10;
-        this.f11601f = str;
-        this.f11599b = i10;
-        this.h = aVar;
-    }
-
-    public r2(Object obj, TLObject tLObject, int i10, Object obj2, Object obj3, boolean z10, int i11) {
-        this.f11598a = i11;
-        this.d = obj;
-        this.e = tLObject;
-        this.f11599b = i10;
-        this.f11601f = obj2;
-        this.h = obj3;
-        this.f11600c = z10;
-    }
-
-    public r2(ContactsController contactsController, int i10, ArrayList arrayList, ArrayList arrayList2, a0.i iVar, boolean z10) {
-        this.f11598a = 1;
-        this.d = contactsController;
-        this.f11599b = i10;
-        this.e = arrayList;
-        this.f11601f = arrayList2;
-        this.h = iVar;
-        this.f11600c = z10;
-    }
-
-    public r2(ar0 ar0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
-        this.f11598a = 5;
-        this.d = ar0Var;
-        this.f11601f = str;
-        this.f11599b = i10;
-        this.e = tLObject;
-        this.f11600c = z10;
-        this.h = user;
+        View z12;
+        View z13;
+        switch (this.f11581a) {
+            case 0:
+                x3 x3Var = this.f11582b;
+                a aVar = this.f11583c;
+                if (aVar == null) {
+                    x3Var.getClass();
+                    z12 = null;
+                } else {
+                    z12 = x3Var.z1(aVar);
+                }
+                if (z12 instanceof e6) {
+                    e6 e6Var = (e6) z12;
+                    e6Var.B();
+                    e6Var.getEditText().setSelection(Math.min(this.d, e6Var.getEditText().length()));
+                    return;
+                }
+                return;
+            case 1:
+                x3 x3Var2 = this.f11582b;
+                a aVar2 = this.f11583c;
+                if (aVar2 == null) {
+                    x3Var2.getClass();
+                    z13 = null;
+                } else {
+                    z13 = x3Var2.z1(aVar2);
+                }
+                if (z13 instanceof e6) {
+                    e6 e6Var2 = (e6) z13;
+                    e6Var2.B();
+                    e6Var2.getEditText().setSelection(Math.min(this.d, e6Var2.getEditText().length()));
+                    return;
+                }
+                return;
+            case 2:
+                View z14 = this.f11582b.z1(this.f11583c);
+                if (z14 instanceof e6) {
+                    e6 e6Var3 = (e6) z14;
+                    e6Var3.B();
+                    e6Var3.getEditText().setSelection(Math.max(0, Math.min(this.d, e6Var3.getEditText().length())));
+                    return;
+                }
+                return;
+            case 3:
+                View z15 = this.f11582b.z1(this.f11583c);
+                if (z15 instanceof e6) {
+                    e6 e6Var4 = (e6) z15;
+                    e6Var4.B();
+                    e6Var4.getEditText().setSelection(Math.max(0, Math.min(this.d, e6Var4.getEditText().length())));
+                    return;
+                }
+                return;
+            case 4:
+                View z16 = this.f11582b.z1(this.f11583c);
+                if (z16 instanceof e6) {
+                    e6 e6Var5 = (e6) z16;
+                    e6Var5.B();
+                    e6Var5.getEditText().setSelection(Math.max(0, Math.min(this.d, e6Var5.getEditText().length())));
+                    return;
+                }
+                return;
+            default:
+                View z17 = this.f11582b.z1(this.f11583c);
+                if (z17 instanceof e6) {
+                    e6 e6Var6 = (e6) z17;
+                    e6Var6.B();
+                    e6Var6.getEditText().setSelection(Math.max(0, Math.min(this.d, e6Var6.getEditText().length())));
+                    return;
+                }
+                return;
+        }
     }
 }

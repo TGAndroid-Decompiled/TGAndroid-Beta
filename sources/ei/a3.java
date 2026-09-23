@@ -5,13 +5,13 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons;
 public final class a3 extends p4 {
-    public final int f8231c0;
-    public final Object f8232d0;
+    public final int f8217c0;
+    public final Object f8218d0;
 
     public a3(Object obj, Context context, int i10) {
         super(context);
-        this.f8231c0 = i10;
-        this.f8232d0 = obj;
+        this.f8217c0 = i10;
+        this.f8218d0 = obj;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class a3 extends p4 {
 
     @Override
     public void requestLayout() {
-        switch (this.f8231c0) {
+        switch (this.f8217c0) {
             case 0:
-                if (!((k3) this.f8232d0).F) {
+                if (!((k3) this.f8218d0).F) {
                     super.requestLayout();
                     return;
                 }
@@ -36,19 +36,19 @@ public final class a3 extends p4 {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f8231c0) {
+        switch (this.f8217c0) {
             case 0:
                 super.setTranslationY(f7);
-                k3 k3Var = (k3) this.f8232d0;
+                k3 k3Var = (k3) this.f8218d0;
                 BotFullscreenButtons botFullscreenButtons = k3Var.m0;
                 if (botFullscreenButtons != null) {
                     botFullscreenButtons.setTranslationY(AndroidUtilities.dp(24.0f) + f7);
                 }
-                FrameLayout frameLayout = k3Var.f8442p0;
+                FrameLayout frameLayout = k3Var.f8428p0;
                 if (frameLayout != null) {
                     int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - AndroidUtilities.dp(24.0f);
                     int i10 = k3Var.h.top;
-                    frameLayout.setTranslationY(k3Var.v.getTranslationY() + AndroidUtilities.lerp(currentActionBarHeight, AndroidUtilities.dp(70.0f) + i10, k3Var.f8432f0));
+                    frameLayout.setTranslationY(k3Var.v.getTranslationY() + AndroidUtilities.lerp(currentActionBarHeight, AndroidUtilities.dp(70.0f) + i10, k3Var.f8418f0));
                     return;
                 }
                 return;

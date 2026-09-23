@@ -1,239 +1,158 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
+import android.os.SystemClock;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class s90 extends Drawable {
-    public lv A;
-    public org.telegram.ui.ActionBar.f5 B;
-    public LinearGradient C;
-    public Matrix D;
-    public boolean E;
-    public final TextPaint f27798a;
-    public final Paint f27799b;
-    public final Paint f27800c;
-    public final Paint d;
-    public final Paint e;
-    public final RectF f27801f;
-    public PorterDuffColorFilter f27802g;
-    public float h;
-    public final DecelerateInterpolator f27803i;
-    public boolean f27804j;
-    public float f27805k;
-    public int f27806l;
-    public String f27807m;
-    public int f27808n;
-    public float f27809o;
-    public int f27810p;
-    public int f27811q;
-    public float f27812r;
-    public float f27813s;
-    public long f27814t;
-    public boolean f27815u;
-    public float v;
-    public float f27816w;
-    public float f27817x;
-    public float f27818y;
-    public float f27819z;
+public final class s90 extends TextView {
+    public final Matrix f27879a;
+    public LinearGradient f27880b;
+    public int f27881c;
+    public boolean d;
+    public boolean e;
+    public float f27882f;
+    public long h;
+    public final yp f27883n;
+    public boolean f27884r;
+    public int f27885s;
 
-    public s90() {
-        TextPaint textPaint = new TextPaint(1);
-        this.f27798a = textPaint;
-        Paint paint = new Paint(1);
-        this.f27799b = paint;
-        this.f27800c = new Paint(1);
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        Paint paint3 = new Paint(1);
-        this.e = paint3;
-        this.f27801f = new RectF();
-        this.h = 1.0f;
-        this.f27803i = new DecelerateInterpolator();
-        this.f27805k = 400.0f;
-        this.f27806l = -1;
-        this.f27809o = 1.0f;
-        this.f27812r = 1.0f;
-        paint.setColor(-1);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setStyle(Paint.Style.STROKE);
-        paint3.setColor(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        textPaint.setColor(-1);
-        paint2.setColor(-1);
+    public s90(Context context) {
+        super(context);
+        this.f27879a = new Matrix();
+        this.f27883n = new yp(this, 25);
     }
 
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.f5 f5Var = this.B;
-        if (f5Var != null && f5Var.l() && !this.E) {
-            Rect bounds = getBounds();
-            org.telegram.ui.ActionBar.f5 f5Var2 = this.B;
-            Shader shader = f5Var2.f18643a;
-            Matrix matrix = f5Var2.f18650k;
-            matrix.reset();
-            this.B.a();
-            if (z10) {
-                matrix.postTranslate(-bounds.centerX(), (-this.B.f18657r) + bounds.top);
-            } else {
-                matrix.postTranslate(0.0f, -this.B.f18657r);
+    public final void a() {
+        float min = Math.min(AndroidUtilities.dp(10.0f) / this.f27881c, 0.49f);
+        int currentTextColor = getCurrentTextColor();
+        int i10 = 1048575 & currentTextColor;
+        this.f27880b = new LinearGradient(0.0f, 0.0f, this.f27881c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
+        if (this.d) {
+            getPaint().setShader(this.f27880b);
+        } else {
+            getPaint().setShader(null);
+        }
+        this.f27880b.setLocalMatrix(this.f27879a);
+        invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        boolean z10;
+        long j3;
+        boolean z11;
+        int measuredWidth = getMeasuredWidth();
+        int dp = AndroidUtilities.dp(40.0f);
+        float f10 = this.f27882f;
+        float f11 = measuredWidth;
+        if (f10 < f11) {
+            f7 = w7.p.a(f10 / AndroidUtilities.dp(10.0f), 0.0f, 1.0f);
+        } else {
+            f7 = 0.0f;
+        }
+        Matrix matrix = this.f27879a;
+        matrix.reset();
+        float f12 = this.f27881c;
+        matrix.postScale(com.google.android.gms.internal.vision.e2.z(1.0f, f7, AndroidUtilities.dp(10.0f) / f12, 1.0f), 1.0f, f12, 0.0f);
+        matrix.postScale(1.0f - (this.f27885s / this.f27881c), 1.0f, 0.0f, 0.0f);
+        matrix.postTranslate(this.f27882f, 0.0f);
+        this.f27880b.setLocalMatrix(matrix);
+        canvas.save();
+        canvas.translate(-this.f27882f, 0.0f);
+        super.onDraw(canvas);
+        canvas.restore();
+        if (measuredWidth > 0) {
+            float f13 = this.f27882f;
+            if (f13 > 0.0f && f13 + getWidth() > f11 && this.d && this.e) {
+                float f14 = -this.f27882f;
+                float f15 = dp;
+                matrix.postTranslate(f14 - ((f14 + f11) + f15), 0.0f);
+                this.f27880b.setLocalMatrix(matrix);
+                canvas.save();
+                canvas.translate((-this.f27882f) + f11 + f15, 0.0f);
+                super.onDraw(canvas);
+                canvas.restore();
             }
-            shader.setLocalMatrix(matrix);
+        }
+        if (this.f27882f < 1.0E-4d) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        long uptimeMillis = SystemClock.uptimeMillis();
+        long j10 = this.h;
+        if (j10 != 0 && !z10) {
+            j3 = Math.min(uptimeMillis - j10, 120L);
+        } else {
+            j3 = 16;
+        }
+        this.h = uptimeMillis;
+        boolean z12 = this.d;
+        yp ypVar = this.f27883n;
+        if ((z12 && this.e) || !z10) {
+            float e = a4.a.e((float) j3, 1000.0f, AndroidUtilities.dp(60.0f), this.f27882f);
+            this.f27882f = e;
+            if (e > measuredWidth + dp) {
+                AndroidUtilities.cancelRunOnUIThread(ypVar);
+                this.f27884r = false;
+                this.e = false;
+                this.f27882f = 0.0f;
+            }
+            invalidate();
+        }
+        if (this.d && !this.e && !(z11 = this.f27884r) && !z11) {
+            this.f27884r = true;
+            AndroidUtilities.runOnUIThread(ypVar, 1500L);
         }
     }
 
-    public final float b() {
-        if (this.f27815u) {
-            return this.f27812r;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10 = false;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(0, 0), i11);
+        this.f27881c = View.MeasureSpec.getSize(i10);
+        if (getMeasuredWidth() > this.f27881c - this.f27885s) {
+            z10 = true;
         }
-        return 1.0f;
+        this.d = z10;
+        a();
     }
 
-    public final void c(int i10) {
-        int i11 = (-16777216) | i10;
-        this.f27799b.setColor(i11);
-        this.d.setColor(i11);
-        this.e.setColor(i11);
-        this.f27798a.setColor(i11);
-        this.f27802g = new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY);
-    }
-
-    public final void d(int i10, boolean z10) {
-        int i11;
-        int i12;
-        if (this.f27810p == i10 && (i12 = this.f27811q) != i10) {
-            this.f27810p = i12;
-            this.f27812r = 1.0f;
+    public void setCustomPaddingRight(int i10) {
+        boolean z10;
+        this.f27885s = i10;
+        if (getMeasuredWidth() > this.f27881c - this.f27885s) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        this.d = z10;
         if (z10) {
-            int i13 = this.f27810p;
-            if (i13 != i10 && (i11 = this.f27811q) != i10) {
-                if ((i13 == 0 && i10 == 1) || (i13 == 1 && i10 == 0)) {
-                    this.f27805k = 300.0f;
-                } else if (i13 == 2 && (i10 == 3 || i10 == 14)) {
-                    this.f27805k = 400.0f;
-                } else if (i13 != 4 && i10 == 6) {
-                    this.f27805k = 360.0f;
-                } else if ((i13 == 4 && i10 == 14) || (i13 == 14 && i10 == 4)) {
-                    this.f27805k = 160.0f;
-                } else {
-                    this.f27805k = 220.0f;
-                }
-                if (this.f27815u) {
-                    this.f27810p = i11;
-                }
-                this.f27815u = true;
-                this.f27811q = i10;
-                this.f27813s = this.f27812r;
-                this.f27812r = 0.0f;
-            } else {
-                return;
-            }
-        } else if (this.f27810p == i10) {
-            return;
+            getPaint().setShader(this.f27880b);
         } else {
-            this.f27815u = false;
-            this.f27811q = i10;
-            this.f27810p = i10;
-            this.f27813s = this.f27812r;
-            this.f27812r = 1.0f;
+            getPaint().setShader(null);
         }
-        if (i10 == 3 || i10 == 14) {
-            this.v = 112.0f;
-            this.f27817x = 0.0f;
-            this.f27818y = 0.0f;
-            this.f27819z = 0.0f;
-        }
-        invalidateSelf();
+        invalidate();
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r42) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s90.draw(android.graphics.Canvas):void");
-    }
-
-    public final void e(float f7, boolean z10) {
-        if (this.f27816w == f7) {
-            return;
-        }
-        if (!z10) {
-            this.f27817x = f7;
-            this.f27818y = f7;
-        } else {
-            if (this.f27817x > f7) {
-                this.f27817x = f7;
-            }
-            this.f27818y = this.f27817x;
-        }
-        this.f27816w = f7;
-        this.f27819z = 0.0f;
-        invalidateSelf();
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        AndroidUtilities.cancelRunOnUIThread(this.f27883n);
+        this.f27884r = false;
+        this.e = false;
+        this.f27882f = 0.0f;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(48.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(48.0f);
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        return AndroidUtilities.dp(48.0f);
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        return AndroidUtilities.dp(48.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        lv lvVar = this.A;
-        if (lvVar != null) {
-            ((View) lvVar.f26014b).invalidate();
-        }
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        float dp = (i12 - i10) / AndroidUtilities.dp(48.0f);
-        this.h = dp;
-        if (dp < 0.7f) {
-            this.f27799b.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27799b.setColorFilter(colorFilter);
-        this.d.setColorFilter(colorFilter);
-        this.e.setColorFilter(colorFilter);
-        this.f27798a.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
+    public void setTextColor(int i10) {
+        super.setTextColor(i10);
+        a();
     }
 }

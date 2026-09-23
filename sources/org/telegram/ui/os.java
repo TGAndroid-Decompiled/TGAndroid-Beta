@@ -1,61 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class os extends org.telegram.ui.ActionBar.j {
-    public final ss f36336a;
+public final class os implements MessagesStorage.IntCallback {
+    public final int f35950a;
+    public final ContactsActivity f35951b;
 
-    public os(ss ssVar) {
-        this.f36336a = ssVar;
+    public os(ContactsActivity contactsActivity, int i10) {
+        this.f35950a = i10;
+        this.f35951b = contactsActivity;
     }
 
     @Override
-    public final void b(int i10) {
+    public final void run(int i10) {
         boolean z10;
-        int i11;
-        int i12;
-        ss ssVar = this.f36336a;
-        if (i10 == -1) {
-            ssVar.finishFragment();
-        } else if (i10 == 1 && ssVar.f37447b.getText().length() != 0) {
-            TLRPC.User user = ssVar.getMessagesController().getUser(Long.valueOf(ssVar.H));
-            TLRPC.UserFull userFull = ssVar.getMessagesController().getUserFull(ssVar.H);
-            user.first_name = ssVar.f37447b.getText().toString();
-            user.last_name = ssVar.f37448c.getText().toString();
-            user.contact = true;
-            TLRPC.TL_textWithEntities textWithEntities = ssVar.d.getTextWithEntities();
-            ssVar.getMessagesController().putUser(user, false);
-            ContactsController contactsController = ssVar.getContactsController();
-            if (ssVar.K && ssVar.X) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            contactsController.addContact(user, textWithEntities, z10);
-            i11 = ((org.telegram.ui.ActionBar.n2) ssVar).currentAccount;
-            MessagesController.getNotificationsSettings(i11).edit().putInt("dialog_bar_vis3" + ssVar.H, 3).commit();
-            ssVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
-            ssVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ssVar.H));
-            if (userFull != null) {
-                if (textWithEntities != null && textWithEntities.text.length() > 0) {
-                    userFull.flags2 |= 4194304;
-                    userFull.note = textWithEntities;
+        switch (this.f35950a) {
+            case 0:
+                ContactsActivity contactsActivity = this.f35951b;
+                contactsActivity.getClass();
+                if (i10 != 0) {
+                    z10 = true;
                 } else {
-                    userFull.flags2 &= -4194305;
-                    userFull.note = null;
+                    z10 = false;
                 }
-                i12 = ((org.telegram.ui.ActionBar.n2) ssVar).currentAccount;
-                MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
-                ssVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f18257id), userFull);
-            }
-            ssVar.finishFragment();
-            rs rsVar = ssVar.O;
-            if (rsVar != null) {
-                rsVar.b();
-            }
+                contactsActivity.f30708b0 = z10;
+                if (i10 != 0) {
+                    contactsActivity.f0(false);
+                    return;
+                }
+                return;
+            default:
+                ContactsActivity.W(this.f35951b, i10);
+                return;
         }
     }
 }

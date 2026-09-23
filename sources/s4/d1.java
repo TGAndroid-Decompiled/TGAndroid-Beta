@@ -18,23 +18,23 @@ public final class d1 extends r0.b {
     }
 
     @Override
-    public final void c(View view, s0.c cVar) {
+    public final void c(View view, s0.d dVar) {
         boolean z10;
         switch (this.d) {
             case 0:
-                this.f41807a.onInitializeAccessibilityNodeInfo(view, cVar.f42620a);
+                this.f41763a.onInitializeAccessibilityNodeInfo(view, dVar.f42576a);
                 e1 e1Var = (e1) this.e;
                 RecyclerView recyclerView = e1Var.d;
                 RecyclerView recyclerView2 = e1Var.d;
                 if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
-                    recyclerView2.getLayoutManager().T(view, cVar);
+                    recyclerView2.getLayoutManager().T(view, dVar);
                     return;
                 }
                 return;
             default:
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f42620a;
-                this.f41807a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-                cVar.i(z4.g.class.getName());
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42576a;
+                this.f41763a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                dVar.i(z4.g.class.getName());
                 z4.g gVar = (z4.g) this.e;
                 z4.a aVar = gVar.e;
                 if (aVar != null && aVar.b() > 1) {
@@ -44,10 +44,10 @@ public final class d1 extends r0.b {
                 }
                 accessibilityNodeInfo.setScrollable(z10);
                 if (gVar.canScrollHorizontally(1)) {
-                    cVar.a(4096);
+                    dVar.a(4096);
                 }
                 if (gVar.canScrollHorizontally(-1)) {
-                    cVar.a(8192);
+                    dVar.a(8192);
                     return;
                 }
                 return;
@@ -65,7 +65,7 @@ public final class d1 extends r0.b {
                 RecyclerView recyclerView = e1Var.d;
                 RecyclerView recyclerView2 = e1Var.d;
                 if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
-                    of.e eVar = recyclerView2.getLayoutManager().f42764b.f2837b;
+                    of.e eVar = recyclerView2.getLayoutManager().f42720b.f2832b;
                 }
                 return false;
             default:
@@ -75,11 +75,11 @@ public final class d1 extends r0.b {
                 }
                 if (i10 != 4096) {
                     if (i10 == 8192 && gVar.canScrollHorizontally(-1)) {
-                        gVar.setCurrentItem(gVar.f48126f - 1);
+                        gVar.setCurrentItem(gVar.f48076f - 1);
                         return true;
                     }
                 } else if (gVar.canScrollHorizontally(1)) {
-                    gVar.setCurrentItem(gVar.f48126f + 1);
+                    gVar.setCurrentItem(gVar.f48076f + 1);
                     return true;
                 }
                 return false;

@@ -1,149 +1,45 @@
 package ai;
 
-import android.text.TextUtils;
-import android.view.Surface;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.i51;
-public final class f3 implements e2.h {
-    public final int f787a;
-    public final Object f788b;
+public final class f3 implements Utilities.Callback {
+    public final int f871a;
+    public final e6 f872b;
 
-    public f3(Object obj, int i10) {
-        this.f787a = i10;
-        this.f788b = obj;
+    public f3(e6 e6Var, int i10) {
+        this.f871a = i10;
+        this.f872b = e6Var;
     }
 
     @Override
-    public final void accept(Object obj) {
-        String str;
-        boolean z10;
-        switch (this.f787a) {
+    public final void run(Object obj) {
+        switch (this.f871a) {
             case 0:
-                f6 f6Var = (f6) this.f788b;
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                e6 e6Var = this.f872b;
                 if (tL_premium_boostsStatus == null) {
-                    jc jcVar = f6Var.J0;
+                    jc jcVar = e6Var.J0;
                     if (jcVar != null) {
-                        jcVar.f1089k1 = false;
+                        jcVar.f1083k1 = false;
                         jcVar.P();
                         return;
                     }
                     return;
                 }
-                f6Var.J3 = tL_premium_boostsStatus;
-                MessagesController.getInstance(f6Var.C2).getBoostsController().userCanBoostChannel(f6Var.B1, tL_premium_boostsStatus, new g3(0, f6Var, tL_premium_boostsStatus));
-                return;
-            case 1:
-                j7 j7Var = (j7) obj;
-                r7 r7Var = ((o7) this.f788b).e;
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = r7Var.G;
-                    if (i10 < arrayList.size()) {
-                        if (j7Var != arrayList.get(i10)) {
-                            ((j7) arrayList.get(i10)).getClass();
-                        }
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 2:
-                sa saVar = (sa) this.f788b;
-                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
-                saVar.f1522p = true;
-                if (storyItem != null && (str = storyItem.caption) != null) {
-                    saVar.f1519m = true;
-                    saVar.f1518l = str;
-                    saVar.f1513f = TextUtils.isEmpty(str);
-                    View view = saVar.f1524r;
-                    if (view != null) {
-                        view.invalidate();
-                    }
-                    Runnable runnable = saVar.f1525s;
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 3:
-                ci.u4 u4Var = (ci.u4) this.f788b;
-                View view2 = (View) obj;
-                ci.p4 p4Var = u4Var.f5608b;
-                if (view2 instanceof ci.t4) {
-                    p4Var.getClass();
-                    int R = RecyclerView.R(view2);
-                    i51 G = p4Var.Y2.G(R);
-                    if (G != null) {
-                        ci.t4 t4Var = (ci.t4) view2;
-                        t4Var.setPosition(u4Var.b(R));
-                        if (u4Var.f5610f == G.d) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        t4Var.b(z10, true);
-                        boolean contains = u4Var.e.contains(Integer.valueOf(G.d));
-                        if (t4Var.f5558f != contains) {
-                            t4Var.f5558f = contains;
-                            t4Var.invalidate();
-                        }
-                        view2.setPressed(false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                ci.p4 p4Var2 = (ci.p4) this.f788b;
-                View view3 = (View) obj;
-                if (view3 instanceof ci.t4) {
-                    ci.fb fbVar = p4Var2.f5302f3;
-                    fbVar.f5608b.getClass();
-                    ((ci.t4) view3).setPosition(fbVar.b(RecyclerView.R(view3)));
-                    view3.setPressed(false);
-                    return;
-                }
-                return;
-            case 5:
-                ci.g8.P((ci.g8) this.f788b, (Long) obj);
-                return;
-            case 6:
-                ((m4.k1) obj).f((b2.v0) this.f788b);
-                return;
-            case 7:
-                ((m4.k1) obj).n((Surface) this.f788b);
-                return;
-            case 8:
-                ((m4.k1) obj).C((b2.n0) this.f788b);
-                return;
-            case 9:
-                z3.i iVar = (z3.i) this.f788b;
-                z3.b bVar = (z3.b) obj;
-                z3.h hVar = new z3.h(bVar.f48074b, ob.a.C2(bVar.f48073a, bVar.f48075c));
-                iVar.f48084c.add(hVar);
-                long j3 = iVar.f48088j;
-                if (j3 == -9223372036854775807L || bVar.d >= j3) {
-                    iVar.b(hVar);
-                    return;
-                }
-                return;
-            case 10:
-                ((e9.f0) this.f788b).b((z3.b) obj);
+                e6Var.J3 = tL_premium_boostsStatus;
+                MessagesController.getInstance(e6Var.C2).getBoostsController().userCanBoostChannel(e6Var.B1, tL_premium_boostsStatus, new g3(0, e6Var, tL_premium_boostsStatus));
                 return;
             default:
-                zg.q qVar = (zg.q) this.f788b;
-                qVar.Q = (TL_stories.TL_premium_boostsStatus) obj;
-                if (!qVar.E.keySet().equals(qVar.G.keySet())) {
-                    qVar.Y(false);
-                    return;
+                long longValue = ((Long) obj).longValue();
+                e6 e6Var2 = this.f872b;
+                e6Var2.L3 = longValue;
+                a4 a4Var = e6Var2.f773b2;
+                if (a4Var != null) {
+                    a4Var.L(true);
+                    e6Var2.f773b2.S1();
                 }
+                e6Var2.r0(true);
                 return;
         }
     }

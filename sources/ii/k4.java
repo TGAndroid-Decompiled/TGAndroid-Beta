@@ -1,82 +1,393 @@
 package ii;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Editable;
-import android.text.style.ReplacementSpan;
-import android.view.View;
+import android.content.Context;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.RichMessageLayout;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.ul;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-public final class k4 extends ReplacementSpan {
-    public final TL_iv.textButton f11475a;
-    public RichMessageLayout.RichButtonSpan f11476b;
-    public View f11477c;
-    public int d = UserConfig.selectedAccount;
-    public org.telegram.ui.ActionBar.e6 e;
-
-    public k4(TL_iv.textButton textbutton) {
-        this.f11475a = textbutton;
-    }
-
-    public static boolean c(TL_keyboard.InlineButtonType inlineButtonType) {
-        if (!(inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) && !(inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) && !(inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile)) {
-            return false;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.o70;
+import org.telegram.ui.ry;
+public abstract class k4 {
+    public static EditTextBoldCursor a(Context context, org.telegram.ui.ActionBar.d6 d6Var, String str, String str2) {
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        editTextBoldCursor.setTextSize(1, 18.0f);
+        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18895j5, d6Var));
+        editTextBoldCursor.setHintText(str);
+        editTextBoldCursor.setHintColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.H6, d6Var));
+        editTextBoldCursor.setHeaderHintColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.L6, d6Var));
+        editTextBoldCursor.setSingleLine(true);
+        editTextBoldCursor.setFocusable(true);
+        editTextBoldCursor.setTransformHintToHeaderOnFocus(false);
+        editTextBoldCursor.setTransformHintToHeader(true);
+        if (str2 == null) {
+            str2 = "";
         }
-        return true;
+        editTextBoldCursor.setText(str2);
+        editTextBoldCursor.setLineColors(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18916k6, d6Var), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18934l6, d6Var), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19008p7, d6Var));
+        editTextBoldCursor.setImeOptions(5);
+        editTextBoldCursor.setBackgroundDrawable(null);
+        editTextBoldCursor.setPadding(0, 0, 0, 0);
+        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19109uf, d6Var));
+        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19126vf, d6Var));
+        return editTextBoldCursor;
     }
 
-    public final void a(int i10, View view, org.telegram.ui.ActionBar.e6 e6Var) {
-        View view2;
-        RichMessageLayout.RichButtonSpan richButtonSpan = this.f11476b;
-        if (richButtonSpan != null && (view2 = this.f11477c) != null) {
-            richButtonSpan.detach(view2);
+    public static o70 b(o70 o70Var, org.telegram.ui.ActionBar.n2 n2Var, final w3 w3Var, final boolean z10) {
+        TL_keyboard.InlineButtonType inlineButtonType;
+        TL_iv.textButton textbutton;
+        l4 l4Var = w3Var.d;
+        if (l4Var != null && (textbutton = l4Var.f11487a) != null) {
+            inlineButtonType = textbutton.type;
+        } else {
+            inlineButtonType = null;
         }
-        this.f11477c = view;
-        this.d = i10;
-        this.e = e6Var;
-        this.f11476b = null;
-        b();
-    }
-
-    public final RichMessageLayout.RichButtonSpan b() {
-        if (this.f11476b == null) {
-            RichMessageLayout.RichButtonSpan createEditorButtonSpan = RichMessageLayout.createEditorButtonSpan(this.d, AndroidUtilities.dp(240.0f), this.e, this.f11475a);
-            this.f11476b = createEditorButtonSpan;
-            View view = this.f11477c;
-            if (view != null) {
-                createEditorButtonSpan.attach(view);
+        if (inlineButtonType != null) {
+            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
+                i(w3Var, z10);
+            } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) {
+                h(w3Var, z10);
+            } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                w3Var.f11702f.o3(true);
+                k(n2Var, z10, new h4(w3Var, 2));
             }
+            return null;
         }
-        return this.f11476b;
-    }
-
-    public final void d(Editable editable) {
-        ReplacementSpan[] replacementSpanArr;
-        int spanStart = editable.getSpanStart(this);
-        int spanEnd = editable.getSpanEnd(this);
-        if (spanStart >= 0 && spanEnd > spanStart) {
-            for (ReplacementSpan replacementSpan : (ReplacementSpan[]) editable.getSpans(spanStart, spanEnd, ReplacementSpan.class)) {
-                if (replacementSpan != this) {
-                    int spanStart2 = editable.getSpanStart(replacementSpan);
-                    int spanEnd2 = editable.getSpanEnd(replacementSpan);
-                    if (spanStart2 < spanEnd && spanEnd2 > spanStart) {
-                        editable.removeSpan(replacementSpan);
-                    }
+        o70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
+            @Override
+            public final void run() {
+                switch (r3) {
+                    case 0:
+                        k4.i(w3Var, z10);
+                        return;
+                    default:
+                        k4.h(w3Var, z10);
+                        return;
                 }
             }
+        }, false);
+        o70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+            @Override
+            public final void run() {
+                switch (r3) {
+                    case 0:
+                        k4.i(w3Var, z10);
+                        return;
+                    default:
+                        k4.h(w3Var, z10);
+                        return;
+                }
+            }
+        }, false);
+        o70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.y0(n2Var, w3Var, z10, 6), false);
+        o70Var.Z();
+        return o70Var;
+    }
+
+    public static o70 c(o70 o70Var, org.telegram.ui.ActionBar.n2 n2Var, final Context context, final org.telegram.ui.ActionBar.d6 d6Var, final u3 u3Var, final boolean z10) {
+        TL_keyboard.PageButton pageButton;
+        TL_keyboard.InlineButtonType inlineButtonType;
+        int i10 = u3Var.f11653b;
+        TL_iv.pageBlockButtonRow d = u3Var.d();
+        if (d != null && i10 >= 0 && i10 < d.buttons.size()) {
+            pageButton = d.buttons.get(i10);
+        } else {
+            pageButton = null;
+        }
+        if (pageButton == null) {
+            inlineButtonType = null;
+        } else {
+            inlineButtonType = pageButton.type;
+        }
+        if (inlineButtonType != null) {
+            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
+                e(context, d6Var, u3Var, z10);
+            } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) {
+                d(context, d6Var, u3Var, z10);
+            } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                f(n2Var, context, d6Var, u3Var, z10);
+            }
+            return null;
+        }
+        o70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
+            @Override
+            public final void run() {
+                switch (r5) {
+                    case 0:
+                        k4.e(context, d6Var, u3Var, z10);
+                        return;
+                    default:
+                        k4.d(context, d6Var, u3Var, z10);
+                        return;
+                }
+            }
+        }, false);
+        o70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+            @Override
+            public final void run() {
+                switch (r5) {
+                    case 0:
+                        k4.e(context, d6Var, u3Var, z10);
+                        return;
+                    default:
+                        k4.d(context, d6Var, u3Var, z10);
+                        return;
+                }
+            }
+        }, false);
+        o70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.u1(n2Var, context, d6Var, u3Var, z10, 3), false);
+        o70Var.Z();
+        return o70Var;
+    }
+
+    public static void d(Context context, org.telegram.ui.ActionBar.d6 d6Var, u3 u3Var, boolean z10) {
+        TL_keyboard.PageButton pageButton;
+        String str;
+        int i10;
+        boolean c10 = u3Var.c();
+        int i11 = u3Var.f11653b;
+        TL_iv.pageBlockButtonRow d = u3Var.d();
+        TL_keyboard.InlineButtonType inlineButtonType = null;
+        if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
+            pageButton = d.buttons.get(i11);
+        } else {
+            pageButton = null;
+        }
+        if (pageButton != null) {
+            inlineButtonType = pageButton.type;
+        }
+        if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) {
+            str = ((TL_keyboard.TL_inlineButtonTypeCopy) inlineButtonType).copy_text;
+        } else {
+            str = "";
+        }
+        String str2 = str;
+        if (c10) {
+            i10 = R.string.RichEditorEditCopyButton;
+        } else {
+            i10 = R.string.RichEditorCreateCopyButton;
+        }
+        g(context, d6Var, u3Var, z10, LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonCopyText), str2, new f4(u3Var, 3));
+    }
+
+    public static void e(Context context, org.telegram.ui.ActionBar.d6 d6Var, u3 u3Var, boolean z10) {
+        TL_keyboard.PageButton pageButton;
+        String str;
+        int i10;
+        boolean c10 = u3Var.c();
+        int i11 = u3Var.f11653b;
+        TL_iv.pageBlockButtonRow d = u3Var.d();
+        TL_keyboard.InlineButtonType inlineButtonType = null;
+        if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
+            pageButton = d.buttons.get(i11);
+        } else {
+            pageButton = null;
+        }
+        if (pageButton != null) {
+            inlineButtonType = pageButton.type;
+        }
+        if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
+            str = ((TL_keyboard.TL_inlineButtonTypeUrl) inlineButtonType).url;
+        } else {
+            str = "http://";
+        }
+        String str2 = str;
+        if (c10) {
+            i10 = R.string.RichEditorEditLinkButton;
+        } else {
+            i10 = R.string.RichEditorCreateLinkButton;
+        }
+        g(context, d6Var, u3Var, z10, LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonURL), str2, new f4(u3Var, 1));
+    }
+
+    public static void f(org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, u3 u3Var, boolean z10) {
+        TL_keyboard.PageButton pageButton;
+        String l4;
+        AlertDialog$Builder alertDialog$Builder;
+        int i10;
+        boolean c10 = u3Var.c();
+        LinearLayout f7 = ul.f(context, 1);
+        int i11 = 0;
+        f7.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
+        String string = LocaleController.getString(R.string.RichEditorButtonText);
+        int i12 = u3Var.f11653b;
+        TL_iv.pageBlockButtonRow d = u3Var.d();
+        if (d != null && i12 >= 0 && i12 < d.buttons.size()) {
+            pageButton = d.buttons.get(i12);
+        } else {
+            pageButton = null;
+        }
+        if (pageButton == null) {
+            l4 = "";
+        } else {
+            l4 = g6.l(pageButton.text);
+        }
+        EditTextBoldCursor a2 = a(context, d6Var, string, l4);
+        f7.addView(a2, w7.x5.n(-1, 64));
+        ai.s4 s4Var = new ai.s4(a2, n2Var, z10, u3Var, 5);
+        if (z10) {
+            alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+        } else {
+            alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+        }
+        if (c10) {
+            i10 = R.string.RichEditorEditProfileButton;
+        } else {
+            i10 = R.string.RichEditorCreateProfileButton;
+        }
+        String string2 = LocaleController.getString(i10);
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
+        b2Var.R = string2;
+        alertDialog$Builder.n(f7);
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new ca.b(c10, s4Var, a2, u3Var, 2));
+        if (c10) {
+            alertDialog$Builder.i(LocaleController.getString(R.string.RichEditorChangeUser), new ei.d5(s4Var, 17));
+            String string3 = LocaleController.getString(R.string.Delete);
+            f4 f4Var = new f4(u3Var, 2);
+            b2Var.f18468p0 = string3;
+            b2Var.f18469q0 = f4Var;
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            b2Var.J0 = true;
+            i11 = -4;
+        } else {
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        }
+        j(alertDialog$Builder, a2, i11, d6Var);
+    }
+
+    public static void g(Context context, org.telegram.ui.ActionBar.d6 d6Var, u3 u3Var, boolean z10, String str, String str2, String str3, f4 f4Var) {
+        TL_keyboard.PageButton pageButton;
+        String l4;
+        AlertDialog$Builder alertDialog$Builder;
+        LinearLayout f7 = ul.f(context, 1);
+        int i10 = 0;
+        f7.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
+        String string = LocaleController.getString(R.string.RichEditorButtonText);
+        int i11 = u3Var.f11653b;
+        TL_iv.pageBlockButtonRow d = u3Var.d();
+        if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
+            pageButton = d.buttons.get(i11);
+        } else {
+            pageButton = null;
+        }
+        if (pageButton == null) {
+            l4 = "";
+        } else {
+            l4 = g6.l(pageButton.text);
+        }
+        EditTextBoldCursor a2 = a(context, d6Var, string, l4);
+        EditTextBoldCursor a10 = a(context, d6Var, str2, str3);
+        f7.addView(a2, w7.x5.n(-1, 64));
+        f7.addView(a10, w7.x5.n(-1, 64));
+        if (z10) {
+            alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+        } else {
+            alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+        }
+        alertDialog$Builder.f18409a.R = str;
+        alertDialog$Builder.n(f7);
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new ai.q5(a2, a10, f4Var, 12));
+        if (u3Var.c()) {
+            alertDialog$Builder.i(LocaleController.getString(R.string.Delete), new f4(u3Var, 0));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        } else {
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        }
+        if (!TextUtils.isEmpty(a2.getText())) {
+            a2 = a10;
+        }
+        if (u3Var.c()) {
+            i10 = -3;
+        }
+        j(alertDialog$Builder, a2, i10, d6Var);
+    }
+
+    public static void h(w3 w3Var, boolean z10) {
+        TL_keyboard.InlineButtonType inlineButtonType;
+        String l4;
+        int i10;
+        TL_iv.textButton textbutton;
+        l4 l4Var = w3Var.d;
+        if (l4Var != null && (textbutton = l4Var.f11487a) != null) {
+            inlineButtonType = textbutton.type;
+        } else {
+            inlineButtonType = null;
+        }
+        boolean z11 = inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy;
+        if (z11) {
+            l4 = ((TL_keyboard.TL_inlineButtonTypeCopy) inlineButtonType).copy_text;
+        } else {
+            l4 = g6.l(w3Var.e);
+        }
+        String str = l4;
+        w3Var.f11702f.o3(false);
+        if (z11) {
+            i10 = R.string.RichEditorEditCopyButton;
+        } else {
+            i10 = R.string.RichEditorCreateCopyButton;
+        }
+        w3Var.f11699a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonCopyText), str, false, !z10, new h4(w3Var, 1));
+    }
+
+    public static void i(w3 w3Var, boolean z10) {
+        TL_keyboard.InlineButtonType inlineButtonType;
+        String str;
+        int i10;
+        TL_iv.textButton textbutton;
+        l4 l4Var = w3Var.d;
+        if (l4Var != null && (textbutton = l4Var.f11487a) != null) {
+            inlineButtonType = textbutton.type;
+        } else {
+            inlineButtonType = null;
+        }
+        boolean z11 = inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl;
+        if (z11) {
+            str = ((TL_keyboard.TL_inlineButtonTypeUrl) inlineButtonType).url;
+        } else {
+            str = "http://";
+        }
+        String str2 = str;
+        w3Var.f11702f.o3(false);
+        if (z11) {
+            i10 = R.string.RichEditorEditLinkButton;
+        } else {
+            i10 = R.string.RichEditorCreateLinkButton;
+        }
+        w3Var.f11699a.showInputDialog(LocaleController.getString(i10), LocaleController.getString(R.string.RichEditorButtonURL), str2, true, !z10, new h4(w3Var, 0));
+    }
+
+    public static void j(AlertDialog$Builder alertDialog$Builder, EditTextBoldCursor editTextBoldCursor, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
+        b2Var.setOnShowListener(new hg.t(1, editTextBoldCursor));
+        b2Var.q(250L);
+        if (i10 != 0 && (b2Var.d(i10) instanceof TextView)) {
+            ((TextView) b2Var.d(i10)).setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19026q7, d6Var));
         }
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        b().draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return b().getSize(paint, charSequence, i10, i11, fontMetricsInt);
+    public static void k(org.telegram.ui.ActionBar.n2 n2Var, boolean z10, j4 j4Var) {
+        if (n2Var == 0) {
+            return;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("onlySelect", true);
+        bundle.putBoolean("checkCanWrite", false);
+        bundle.putInt("dialogsType", 4);
+        ry ryVar = new ry(bundle);
+        ryVar.C2 = new ei.d5(j4Var, 18);
+        if (z10) {
+            ?? obj = new Object();
+            obj.f19352a = true;
+            n2Var.showAsSheet(ryVar, obj);
+            return;
+        }
+        n2Var.presentFragment(ryVar);
     }
 }

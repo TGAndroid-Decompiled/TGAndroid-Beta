@@ -1,10 +1,18 @@
 package org.telegram.ui;
 
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class cm extends org.telegram.ui.Cells.w0 {
+import android.content.Context;
+public final class cm extends org.telegram.ui.Cells.h0 {
+    public final km L;
+
+    public cm(km kmVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, d6Var);
+        this.L = kmVar;
+    }
+
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setVisibleToUser(true);
+    public final int getSideMenuWidth() {
+        xn xnVar = this.L.Q;
+        int i10 = xn.Gc;
+        return xnVar.R8();
     }
 }

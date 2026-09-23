@@ -1,24 +1,12 @@
 package i2;
+public final class e1 {
+    public final u2.a f10635a;
+    public final y0 f10636b;
+    public final d1 f10637c;
 
-import java.util.ArrayList;
-public final class e1 implements w0 {
-    public final u2.a0 f10680a;
-    public int d;
-    public boolean e;
-    public final ArrayList f10682c = new ArrayList();
-    public final Object f10681b = new Object();
-
-    public e1(u2.a aVar, boolean z10) {
-        this.f10680a = new u2.a0(aVar, z10);
-    }
-
-    @Override
-    public final Object a() {
-        return this.f10681b;
-    }
-
-    @Override
-    public final b2.k1 b() {
-        return this.f10680a.f43303o;
+    public e1(u2.a aVar, y0 y0Var, d1 d1Var) {
+        this.f10635a = aVar;
+        this.f10636b = y0Var;
+        this.f10637c = d1Var;
     }
 }

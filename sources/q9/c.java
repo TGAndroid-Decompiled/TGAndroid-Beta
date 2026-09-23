@@ -5,19 +5,19 @@ import com.google.firebase.components.ComponentRegistrar;
 import java.lang.reflect.InvocationTargetException;
 import org.telegram.ui.Cells.q3;
 public final class c implements pa.b {
-    public final int f41175a;
-    public final Object f41176b;
+    public final int f41131a;
+    public final Object f41132b;
 
     public c(Object obj, int i10) {
-        this.f41175a = i10;
-        this.f41176b = obj;
+        this.f41131a = i10;
+        this.f41132b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f41175a) {
+        switch (this.f41131a) {
             case 0:
-                String str = (String) this.f41176b;
+                String str = (String) this.f41132b;
                 try {
                     Class<?> cls = Class.forName(str);
                     if (ComponentRegistrar.class.isAssignableFrom(cls)) {
@@ -37,9 +37,9 @@ public final class c implements pa.b {
                     throw new RuntimeException(q3.i("Could not instantiate ", str), e11);
                 }
             case 1:
-                return (ComponentRegistrar) this.f41176b;
+                return (ComponentRegistrar) this.f41132b;
             default:
-                return new ra.c((k9.h) this.f41176b);
+                return new ra.c((k9.h) this.f41132b);
         }
     }
 }

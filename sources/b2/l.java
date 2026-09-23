@@ -1,13 +1,13 @@
 package b2;
 public final class l {
-    public static final l f3081c = new l(new Object());
+    public static final l f3076c = new l(new Object());
     public static final String d;
     public static final String e;
-    public final int f3082a = 0;
-    public final int f3083b = 0;
+    public final int f3077a = 0;
+    public final int f3078b = 0;
 
     static {
-        String str = e2.d0.f7885a;
+        String str = e2.d0.f7871a;
         Integer.toString(0, 36);
         d = Integer.toString(1, 36);
         e = Integer.toString(2, 36);
@@ -21,7 +21,7 @@ public final class l {
         if (this != obj) {
             if (obj instanceof l) {
                 l lVar = (l) obj;
-                if (this.f3082a == lVar.f3082a && this.f3083b == lVar.f3083b) {
+                if (this.f3077a == lVar.f3077a && this.f3078b == lVar.f3078b) {
                     return true;
                 }
                 return false;
@@ -32,6 +32,6 @@ public final class l {
     }
 
     public final int hashCode() {
-        return (((16337 + this.f3082a) * 31) + this.f3083b) * 31;
+        return (((16337 + this.f3077a) * 31) + this.f3078b) * 31;
     }
 }

@@ -1,48 +1,29 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-public final class j40 implements TextWatcher {
-    public final i60 f34789a;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.voip.VoIPService;
+public final class j40 implements org.telegram.ui.ActionBar.z2 {
+    public final f60 f34322a;
 
-    public j40(i60 i60Var) {
-        this.f34789a = i60Var;
+    public j40(f60 f60Var) {
+        this.f34322a = f60Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        String str;
-        int i10;
-        i60 i60Var = this.f34789a;
-        i60Var.A3.a(TextUtils.isEmpty(editable), true);
-        int codePointCount = Character.codePointCount(editable, 0, editable.length());
-        int i11 = i60Var.f34440d0;
-        if (codePointCount + 25 > i11) {
-            str = "" + (i11 - codePointCount);
-        } else {
-            str = null;
-        }
-        i60Var.M.a();
-        i60Var.M.setText(str);
-        org.telegram.ui.Components.n6 n6Var = i60Var.M;
-        if (codePointCount >= i11) {
-            i10 = -1280137;
-        } else {
-            i10 = -1;
-        }
-        n6Var.setTextColor(i10);
-        if (codePointCount > i11) {
-            BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        }
+    public final boolean g() {
+        return true;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onOpenAnimationEnd() {
+        CountDownLatch groupCallBottomSheetLatch;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
+            groupCallBottomSheetLatch.countDown();
+        }
+        f60 f60Var = this.f34322a;
+        if (f60Var.F1 == 6) {
+            f60.B0(f60Var);
+        }
     }
 }

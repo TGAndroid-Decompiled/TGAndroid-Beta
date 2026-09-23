@@ -1,46 +1,87 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class gq0 implements zq0 {
-    public final HashMap f33917a;
-    public final ArrayList f33918b;
-    public final jq0 f33919c;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class gq0 extends org.telegram.ui.ActionBar.n2 {
+    public Bitmap f33636a;
+    public BitmapDrawable f33637b;
+    public fq0 f33638c;
+    public eq0 d;
+    public boolean e;
+    public boolean f33639f;
 
-    public gq0(jq0 jq0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f33919c = jq0Var;
-        this.f33917a = hashMap;
-        this.f33918b = arrayList;
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackgroundColor(-13421773);
+        this.actionBar.A(-12763843, false);
+        this.actionBar.setTitleColor(-1);
+        this.actionBar.B(-1, false);
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
+        this.actionBar.setActionBarMenuOnItemClick(new s70(this, 14));
+        this.actionBar.n().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
+        eq0 eq0Var = new eq0(this, context);
+        this.d = eq0Var;
+        this.fragmentView = eq0Var;
+        eq0Var.G = getArguments().getBoolean("freeform", false);
+        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        return this.fragmentView;
     }
 
     @Override
-    public final void b(Editable editable) {
-        jq0 jq0Var = this.f33919c;
-        org.telegram.ui.Components.ju juVar = jq0Var.M;
-        jq0Var.f34964a = editable;
-        juVar.setText(editable);
+    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final boolean e() {
+    public final boolean onFragmentCreate() {
+        int max;
+        if (this.f33636a == null) {
+            String string = getArguments().getString("photoPath");
+            Uri uri = (Uri) getArguments().getParcelable("photoUri");
+            if (string == null && uri == null) {
+                return false;
+            }
+            if (string != null && !w.c.p(string)) {
+                return false;
+            }
+            if (AndroidUtilities.isTablet()) {
+                max = AndroidUtilities.dp(520.0f);
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                max = Math.max(point.x, point.y);
+            }
+            float f7 = max;
+            Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
+            this.f33636a = loadBitmap;
+            if (loadBitmap == null) {
+                return false;
+            }
+        }
+        this.f33637b = new BitmapDrawable(this.f33636a);
+        super.onFragmentCreate();
         return true;
     }
 
     @Override
-    public final void i(int i10, boolean z10, boolean z11) {
-        jq0 jq0Var = this.f33919c;
-        jq0Var.removeSelfFromStack();
-        if (!z10) {
-            jq0Var.V(this.f33917a, this.f33918b, z11, i10);
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        Bitmap bitmap = this.f33636a;
+        if (bitmap != null && !this.e) {
+            bitmap.recycle();
+            this.f33636a = null;
         }
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void g() {
+        this.f33637b = null;
     }
 }

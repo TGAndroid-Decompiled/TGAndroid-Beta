@@ -14,28 +14,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 public abstract class o0 {
-    public lf.i f42763a;
-    public RecyclerView f42764b;
-    public final o0.a f42765c;
+    public lf.i f42719a;
+    public RecyclerView f42720b;
+    public final o0.a f42721c;
     public final o0.a d;
     public y0 e;
-    public boolean f42766f;
-    public final boolean f42767g;
+    public boolean f42722f;
+    public final boolean f42723g;
     public final boolean h;
-    public int f42768i;
-    public boolean f42769j;
-    public int f42770k;
-    public int f42771l;
-    public int f42772m;
-    public int f42773n;
+    public int f42724i;
+    public boolean f42725j;
+    public int f42726k;
+    public int f42727l;
+    public int f42728m;
+    public int f42729n;
 
     public o0() {
         k2.u uVar = new k2.u(this, 24);
-        k2.c0 c0Var = new k2.c0(this, 26);
-        this.f42765c = new o0.a(uVar);
-        this.d = new o0.a(c0Var);
-        this.f42766f = false;
-        this.f42767g = true;
+        k2.b0 b0Var = new k2.b0(this, 26);
+        this.f42721c = new o0.a(uVar);
+        this.d = new o0.a(b0Var);
+        this.f42722f = false;
+        this.f42723g = true;
         this.h = true;
     }
 
@@ -66,7 +66,7 @@ public abstract class o0 {
 
     public static void O(View view, int i10, int i11, int i12, int i13) {
         p0 p0Var = (p0) view.getLayoutParams();
-        Rect rect = p0Var.f42778b;
+        Rect rect = p0Var.f42734b;
         view.layout(i10 + rect.left + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin, i11 + rect.top + ((ViewGroup.MarginLayoutParams) p0Var).topMargin, (i12 - rect.right) - ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, (i13 - rect.bottom) - ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin);
     }
 
@@ -87,33 +87,33 @@ public abstract class o0 {
     }
 
     public static int v(View view) {
-        return view.getBottom() + ((p0) view.getLayoutParams()).f42778b.bottom;
+        return view.getBottom() + ((p0) view.getLayoutParams()).f42734b.bottom;
     }
 
     public static void w(View view, Rect rect) {
         int[] iArr = RecyclerView.P0;
         p0 p0Var = (p0) view.getLayoutParams();
-        Rect rect2 = p0Var.f42778b;
+        Rect rect2 = p0Var.f42734b;
         rect.set((view.getLeft() - rect2.left) - ((ViewGroup.MarginLayoutParams) p0Var).leftMargin, (view.getTop() - rect2.top) - ((ViewGroup.MarginLayoutParams) p0Var).topMargin, view.getRight() + rect2.right + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, view.getBottom() + rect2.bottom + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin);
     }
 
     public static int x(View view) {
-        return view.getLeft() - ((p0) view.getLayoutParams()).f42778b.left;
+        return view.getLeft() - ((p0) view.getLayoutParams()).f42734b.left;
     }
 
     public static void x0(View view) {
         c1 U = RecyclerView.U(view);
-        U.f42679l &= -129;
+        U.f42635l &= -129;
         U.o();
         U.a(4);
     }
 
     public static int y(View view) {
-        return view.getRight() + ((p0) view.getLayoutParams()).f42778b.right;
+        return view.getRight() + ((p0) view.getLayoutParams()).f42734b.right;
     }
 
     public static int z(View view) {
-        return view.getTop() - ((p0) view.getLayoutParams()).f42778b.top;
+        return view.getTop() - ((p0) view.getLayoutParams()).f42734b.top;
     }
 
     public int A() {
@@ -122,7 +122,7 @@ public abstract class o0 {
 
     public final int B() {
         h0 h0Var;
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         if (recyclerView != null) {
             h0Var = recyclerView.getAdapter();
         } else {
@@ -135,7 +135,7 @@ public abstract class o0 {
     }
 
     public final int C() {
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         if (recyclerView != null) {
             return recyclerView.getPaddingBottom();
         }
@@ -143,7 +143,7 @@ public abstract class o0 {
     }
 
     public final int D() {
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         if (recyclerView != null) {
             return recyclerView.getPaddingLeft();
         }
@@ -151,7 +151,7 @@ public abstract class o0 {
     }
 
     public final int E() {
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         if (recyclerView != null) {
             return recyclerView.getPaddingRight();
         }
@@ -159,7 +159,7 @@ public abstract class o0 {
     }
 
     public final int F() {
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         if (recyclerView != null) {
             return recyclerView.getPaddingTop();
         }
@@ -171,9 +171,9 @@ public abstract class o0 {
     }
 
     public int I(of.e eVar, z0 z0Var) {
-        RecyclerView recyclerView = this.f42764b;
-        if (recyclerView != null && recyclerView.f2863w != null && e()) {
-            return this.f42764b.f2863w.h();
+        RecyclerView recyclerView = this.f42720b;
+        if (recyclerView != null && recyclerView.f2858w != null && e()) {
+            return this.f42720b.f2858w.h();
         }
         return 1;
     }
@@ -183,15 +183,15 @@ public abstract class o0 {
     }
 
     public int K() {
-        return (this.f42773n - F()) - C();
+        return (this.f42729n - F()) - C();
     }
 
     public final void L(View view, Rect rect) {
         Matrix matrix;
-        Rect rect2 = ((p0) view.getLayoutParams()).f42778b;
+        Rect rect2 = ((p0) view.getLayoutParams()).f42734b;
         rect.set(-rect2.left, -rect2.top, view.getWidth() + rect2.right, view.getHeight() + rect2.bottom);
-        if (this.f42764b != null && (matrix = view.getMatrix()) != null && !matrix.isIdentity()) {
-            RectF rectF = this.f42764b.v;
+        if (this.f42720b != null && (matrix = view.getMatrix()) != null && !matrix.isIdentity()) {
+            RectF rectF = this.f42720b.v;
             rectF.set(rect);
             matrix.mapRect(rectF);
             rect.set((int) Math.floor(rectF.left), (int) Math.floor(rectF.top), (int) Math.ceil(rectF.right), (int) Math.ceil(rectF.bottom));
@@ -201,23 +201,23 @@ public abstract class o0 {
 
     public final void M(View view) {
         ViewParent parent = view.getParent();
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         if (parent == recyclerView && recyclerView.indexOfChild(view) != -1) {
             c1 U = RecyclerView.U(view);
             U.a(128);
-            this.f42764b.f2843f.L(U);
+            this.f42720b.f2838f.L(U);
             return;
         }
-        throw new IllegalArgumentException("View should be fully attached to be ignored" + this.f42764b.C());
+        throw new IllegalArgumentException("View should be fully attached to be ignored" + this.f42720b.C());
     }
 
     public void P(View view) {
         p0 p0Var = (p0) view.getLayoutParams();
-        Rect W = this.f42764b.W(view);
+        Rect W = this.f42720b.W(view);
         int i10 = W.left + W.right;
         int i11 = W.top + W.bottom;
-        int s10 = s(d(), this.f42772m, this.f42770k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin + i10, ((ViewGroup.MarginLayoutParams) p0Var).width);
-        int s11 = s(e(), this.f42773n, this.f42771l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin + i11, ((ViewGroup.MarginLayoutParams) p0Var).height);
+        int s10 = s(d(), this.f42728m, this.f42726k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin + i10, ((ViewGroup.MarginLayoutParams) p0Var).width);
+        int s11 = s(e(), this.f42729n, this.f42727l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin + i11, ((ViewGroup.MarginLayoutParams) p0Var).height);
         if (u0(view, s10, s11, p0Var)) {
             view.measure(s10, s11);
         }
@@ -225,31 +225,31 @@ public abstract class o0 {
 
     public abstract View R(View view, int i10, of.e eVar, z0 z0Var);
 
-    public void S(of.e eVar, z0 z0Var, s0.c cVar) {
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f42620a;
-        if (this.f42764b.canScrollVertically(-1) || this.f42764b.canScrollHorizontally(-1)) {
-            cVar.a(8192);
+    public void S(of.e eVar, z0 z0Var, s0.d dVar) {
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42576a;
+        if (this.f42720b.canScrollVertically(-1) || this.f42720b.canScrollHorizontally(-1)) {
+            dVar.a(8192);
             accessibilityNodeInfo.setScrollable(true);
         }
-        if (this.f42764b.canScrollVertically(1) || this.f42764b.canScrollHorizontally(1)) {
-            cVar.a(4096);
+        if (this.f42720b.canScrollVertically(1) || this.f42720b.canScrollHorizontally(1)) {
+            dVar.a(4096);
             accessibilityNodeInfo.setScrollable(true);
         }
         accessibilityNodeInfo.setCollectionInfo(AccessibilityNodeInfo.CollectionInfo.obtain(I(eVar, z0Var), u(eVar, z0Var), false, 0));
     }
 
-    public final void T(View view, s0.c cVar) {
+    public final void T(View view, s0.d dVar) {
         c1 U = RecyclerView.U(view);
         if (U != null && !U.j()) {
-            lf.i iVar = this.f42763a;
-            if (!((ArrayList) iVar.d).contains(U.f42671a)) {
-                RecyclerView recyclerView = this.f42764b;
-                U(recyclerView.f2837b, recyclerView.f2860t0, view, cVar);
+            lf.i iVar = this.f42719a;
+            if (!((ArrayList) iVar.d).contains(U.f42627a)) {
+                RecyclerView recyclerView = this.f42720b;
+                U(recyclerView.f2832b, recyclerView.f2855t0, view, dVar);
             }
         }
     }
 
-    public void U(of.e eVar, z0 z0Var, View view, s0.c cVar) {
+    public void U(of.e eVar, z0 z0Var, View view, s0.d dVar) {
         int i10;
         int i11;
         if (e()) {
@@ -262,86 +262,86 @@ public abstract class o0 {
         } else {
             i11 = 0;
         }
-        cVar.f42620a.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(i10, 1, i11, 1, false, false));
+        dVar.f42576a.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(i10, 1, i11, 1, false, false));
     }
 
     public final void a(View view, int i10, boolean z10) {
         int w10;
         c1 U = RecyclerView.U(view);
         if (!z10 && !U.j()) {
-            this.f42764b.f2843f.J(U);
+            this.f42720b.f2838f.J(U);
         } else {
-            a0.f fVar = (a0.f) this.f42764b.f2843f.f15106b;
+            a0.f fVar = (a0.f) this.f42720b.f2838f.f15083b;
             i1 i1Var = (i1) fVar.get(U);
             if (i1Var == null) {
                 i1Var = i1.a();
                 fVar.put(U, i1Var);
             }
-            i1Var.f42725a |= 1;
+            i1Var.f42681a |= 1;
         }
         p0 p0Var = (p0) view.getLayoutParams();
         if (!U.s() && !U.k()) {
-            if (view.getParent() == this.f42764b) {
-                lf.i iVar = this.f42763a;
-                e6.n nVar = (e6.n) iVar.f14022c;
-                int indexOfChild = ((RecyclerView) ((k2.c0) iVar.f14021b).f13236b).indexOfChild(view);
+            if (view.getParent() == this.f42720b) {
+                lf.i iVar = this.f42719a;
+                e6.n nVar = (e6.n) iVar.f14012c;
+                int indexOfChild = ((RecyclerView) ((k2.b0) iVar.f14011b).f13222b).indexOfChild(view);
                 if (indexOfChild == -1 || nVar.z(indexOfChild)) {
                     w10 = -1;
                 } else {
                     w10 = indexOfChild - nVar.w(indexOfChild);
                 }
                 if (i10 == -1) {
-                    i10 = this.f42763a.C();
+                    i10 = this.f42719a.C();
                 }
                 if (w10 != -1) {
                     if (w10 != i10) {
-                        o0 o0Var = this.f42764b.f2865x;
+                        o0 o0Var = this.f42720b.f2860x;
                         View q6 = o0Var.q(w10);
                         if (q6 != null) {
                             o0Var.q(w10);
-                            o0Var.f42763a.y(w10);
+                            o0Var.f42719a.y(w10);
                             p0 p0Var2 = (p0) q6.getLayoutParams();
                             c1 U2 = RecyclerView.U(q6);
                             if (U2.j()) {
-                                a0.f fVar2 = (a0.f) o0Var.f42764b.f2843f.f15106b;
+                                a0.f fVar2 = (a0.f) o0Var.f42720b.f2838f.f15083b;
                                 i1 i1Var2 = (i1) fVar2.get(U2);
                                 if (i1Var2 == null) {
                                     i1Var2 = i1.a();
                                     fVar2.put(U2, i1Var2);
                                 }
-                                i1Var2.f42725a = 1 | i1Var2.f42725a;
+                                i1Var2.f42681a = 1 | i1Var2.f42681a;
                             } else {
-                                o0Var.f42764b.f2843f.J(U2);
+                                o0Var.f42720b.f2838f.J(U2);
                             }
-                            o0Var.f42763a.t(q6, i10, p0Var2, U2.j());
+                            o0Var.f42719a.t(q6, i10, p0Var2, U2.j());
                         } else {
-                            throw new IllegalArgumentException("Cannot move a child from non-existing index:" + w10 + o0Var.f42764b.toString());
+                            throw new IllegalArgumentException("Cannot move a child from non-existing index:" + w10 + o0Var.f42720b.toString());
                         }
                     }
                 } else {
-                    throw new IllegalStateException("Added View has RecyclerView as parent but view is not a real child. Unfiltered index:" + this.f42764b.indexOfChild(view) + this.f42764b.C());
+                    throw new IllegalStateException("Added View has RecyclerView as parent but view is not a real child. Unfiltered index:" + this.f42720b.indexOfChild(view) + this.f42720b.C());
                 }
             } else {
-                this.f42763a.s(view, i10, false);
-                p0Var.f42779c = true;
+                this.f42719a.s(view, i10, false);
+                p0Var.f42735c = true;
                 y0 y0Var = this.e;
                 if (y0Var != null && y0Var.e) {
-                    y0Var.f42822b.getClass();
-                    if (RecyclerView.S(view) == y0Var.f42821a) {
-                        y0Var.f42824f = view;
+                    y0Var.f42778b.getClass();
+                    if (RecyclerView.S(view) == y0Var.f42777a) {
+                        y0Var.f42780f = view;
                     }
                 }
             }
         } else {
             if (U.k()) {
-                U.f42683p.k(U);
+                U.f42639p.k(U);
             } else {
-                U.f42679l &= -33;
+                U.f42635l &= -33;
             }
-            this.f42763a.t(view, i10, view.getLayoutParams(), false);
+            this.f42719a.t(view, i10, view.getLayoutParams(), false);
         }
         if (p0Var.d) {
-            U.f42671a.invalidate();
+            U.f42627a.invalidate();
             p0Var.d = false;
         }
     }
@@ -355,7 +355,7 @@ public abstract class o0 {
     public abstract void b0(of.e eVar, z0 z0Var);
 
     public final void c(View view, Rect rect) {
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         if (recyclerView == null) {
             rect.set(0, 0, 0, 0);
         } else {
@@ -368,7 +368,7 @@ public abstract class o0 {
     public abstract boolean d();
 
     public void d0(of.e eVar, z0 z0Var, int i10, int i11) {
-        this.f42764b.q(i10, i11);
+        this.f42720b.q(i10, i11);
     }
 
     public abstract boolean e();
@@ -393,25 +393,25 @@ public abstract class o0 {
     public abstract int h(z0 z0Var);
 
     public final void h0(of.e eVar) {
-        ArrayList arrayList = (ArrayList) eVar.f15523c;
-        int size = ((ArrayList) eVar.f15523c).size();
+        ArrayList arrayList = (ArrayList) eVar.f15500c;
+        int size = ((ArrayList) eVar.f15500c).size();
         for (int i10 = size - 1; i10 >= 0; i10--) {
-            View view = ((c1) arrayList.get(i10)).f42671a;
+            View view = ((c1) arrayList.get(i10)).f42627a;
             c1 U = RecyclerView.U(view);
             if (!U.r()) {
                 U.q(false);
                 if (U.l()) {
-                    this.f42764b.removeDetachedView(view, false);
+                    this.f42720b.removeDetachedView(view, false);
                 }
-                m0 m0Var = this.f42764b.f2840c0;
+                m0 m0Var = this.f42720b.f2835c0;
                 if (m0Var != null) {
                     m0Var.f(U);
                 }
                 U.q(true);
                 c1 U2 = RecyclerView.U(view);
-                U2.f42683p = null;
-                U2.f42684q = false;
-                U2.f42679l &= -33;
+                U2.f42639p = null;
+                U2.f42640q = false;
+                U2.f42635l &= -33;
                 eVar.h(U2);
             }
         }
@@ -421,7 +421,7 @@ public abstract class o0 {
             arrayList2.clear();
         }
         if (size > 0) {
-            this.f42764b.invalidate();
+            this.f42720b.invalidate();
         }
     }
 
@@ -440,15 +440,15 @@ public abstract class o0 {
 
     public final void j0(int i10) {
         if (q(i10) != null) {
-            lf.i iVar = this.f42763a;
+            lf.i iVar = this.f42719a;
             int J = iVar.J(i10);
-            k2.c0 c0Var = (k2.c0) iVar.f14021b;
-            View childAt = ((RecyclerView) c0Var.f13236b).getChildAt(J);
+            k2.b0 b0Var = (k2.b0) iVar.f14011b;
+            View childAt = ((RecyclerView) b0Var.f13222b).getChildAt(J);
             if (childAt != null) {
-                if (((e6.n) iVar.f14022c).B(J)) {
+                if (((e6.n) iVar.f14012c).B(J)) {
                     iVar.Y(childAt);
                 }
-                c0Var.r(J);
+                b0Var.r(J);
             }
         }
     }
@@ -462,7 +462,7 @@ public abstract class o0 {
     public abstract int l(z0 z0Var);
 
     public final void l0() {
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         if (recyclerView != null) {
             recyclerView.requestLayout();
         }
@@ -497,7 +497,7 @@ public abstract class o0 {
     }
 
     public final View q(int i10) {
-        lf.i iVar = this.f42763a;
+        lf.i iVar = this.f42719a;
         if (iVar != null) {
             return iVar.B(i10);
         }
@@ -505,22 +505,22 @@ public abstract class o0 {
     }
 
     public final void q0(int i10, int i11) {
-        this.f42772m = View.MeasureSpec.getSize(i10);
+        this.f42728m = View.MeasureSpec.getSize(i10);
         int mode = View.MeasureSpec.getMode(i10);
-        this.f42770k = mode;
+        this.f42726k = mode;
         if (mode == 0 && !RecyclerView.Q0) {
-            this.f42772m = 0;
+            this.f42728m = 0;
         }
-        this.f42773n = View.MeasureSpec.getSize(i11);
+        this.f42729n = View.MeasureSpec.getSize(i11);
         int mode2 = View.MeasureSpec.getMode(i11);
-        this.f42771l = mode2;
+        this.f42727l = mode2;
         if (mode2 == 0 && !RecyclerView.Q0) {
-            this.f42773n = 0;
+            this.f42729n = 0;
         }
     }
 
     public final int r() {
-        lf.i iVar = this.f42763a;
+        lf.i iVar = this.f42719a;
         if (iVar != null) {
             return iVar.C();
         }
@@ -530,15 +530,15 @@ public abstract class o0 {
     public void r0(Rect rect, int i10, int i11) {
         int E = E() + D() + rect.width();
         int C = C() + F() + rect.height();
-        RecyclerView recyclerView = this.f42764b;
-        WeakHashMap weakHashMap = r0.i0.f41839a;
-        this.f42764b.setMeasuredDimension(g(i10, E, recyclerView.getMinimumWidth()), g(i11, C, this.f42764b.getMinimumHeight()));
+        RecyclerView recyclerView = this.f42720b;
+        WeakHashMap weakHashMap = r0.i0.f41795a;
+        this.f42720b.setMeasuredDimension(g(i10, E, recyclerView.getMinimumWidth()), g(i11, C, this.f42720b.getMinimumHeight()));
     }
 
     public final void s0(int i10, int i11) {
         int r10 = r();
         if (r10 == 0) {
-            this.f42764b.q(i10, i11);
+            this.f42720b.q(i10, i11);
             return;
         }
         int i12 = Integer.MIN_VALUE;
@@ -547,7 +547,7 @@ public abstract class o0 {
         int i15 = Integer.MAX_VALUE;
         for (int i16 = 0; i16 < r10; i16++) {
             View q6 = q(i16);
-            Rect rect = this.f42764b.f2856r;
+            Rect rect = this.f42720b.f2851r;
             w(q6, rect);
             int i17 = rect.left;
             if (i17 < i14) {
@@ -566,15 +566,15 @@ public abstract class o0 {
                 i13 = i20;
             }
         }
-        this.f42764b.f2856r.set(i14, i15, i12, i13);
-        r0(this.f42764b.f2856r, i10, i11);
+        this.f42720b.f2851r.set(i14, i15, i12, i13);
+        r0(this.f42720b.f2851r, i10, i11);
     }
 
     public int[] t(View view, Rect rect) {
         int D = D();
         int F = F();
-        int E = this.f42772m - E();
-        int C = this.f42773n - C();
+        int E = this.f42728m - E();
+        int C = this.f42729n - C();
         int left = (view.getLeft() + rect.left) - view.getScrollX();
         int top = (view.getTop() + rect.top) - view.getScrollY();
         int width = rect.width() + left;
@@ -586,8 +586,8 @@ public abstract class o0 {
         int i12 = width - E;
         int max = Math.max(0, i12);
         int max2 = Math.max(0, height - C);
-        RecyclerView recyclerView = this.f42764b;
-        WeakHashMap weakHashMap = r0.i0.f41839a;
+        RecyclerView recyclerView = this.f42720b;
+        WeakHashMap weakHashMap = r0.i0.f41795a;
         if (recyclerView.getLayoutDirection() == 1) {
             if (max == 0) {
                 max = Math.max(min, i12);
@@ -606,30 +606,30 @@ public abstract class o0 {
 
     public final void t0(RecyclerView recyclerView) {
         if (recyclerView == null) {
-            this.f42764b = null;
-            this.f42763a = null;
-            this.f42772m = 0;
-            this.f42773n = 0;
+            this.f42720b = null;
+            this.f42719a = null;
+            this.f42728m = 0;
+            this.f42729n = 0;
         } else {
-            this.f42764b = recyclerView;
-            this.f42763a = recyclerView.e;
-            this.f42772m = recyclerView.getWidth();
-            this.f42773n = recyclerView.getHeight();
+            this.f42720b = recyclerView;
+            this.f42719a = recyclerView.e;
+            this.f42728m = recyclerView.getWidth();
+            this.f42729n = recyclerView.getHeight();
         }
-        this.f42770k = 1073741824;
-        this.f42771l = 1073741824;
+        this.f42726k = 1073741824;
+        this.f42727l = 1073741824;
     }
 
     public int u(of.e eVar, z0 z0Var) {
-        RecyclerView recyclerView = this.f42764b;
-        if (recyclerView != null && recyclerView.f2863w != null && d()) {
-            return this.f42764b.f2863w.h();
+        RecyclerView recyclerView = this.f42720b;
+        if (recyclerView != null && recyclerView.f2858w != null && d()) {
+            return this.f42720b.f2858w.h();
         }
         return 1;
     }
 
     public final boolean u0(View view, int i10, int i11, p0 p0Var) {
-        if (!view.isLayoutRequested() && this.f42767g && N(view.getWidth(), i10, ((ViewGroup.MarginLayoutParams) p0Var).width) && N(view.getHeight(), i11, ((ViewGroup.MarginLayoutParams) p0Var).height)) {
+        if (!view.isLayoutRequested() && this.f42723g && N(view.getWidth(), i10, ((ViewGroup.MarginLayoutParams) p0Var).width) && N(view.getHeight(), i11, ((ViewGroup.MarginLayoutParams) p0Var).height)) {
             return false;
         }
         return true;
@@ -643,28 +643,28 @@ public abstract class o0 {
             y0Var2.h();
         }
         this.e = y0Var;
-        RecyclerView recyclerView = this.f42764b;
+        RecyclerView recyclerView = this.f42720b;
         y0Var.getClass();
         recyclerView.N0 = true;
-        b1 b1Var = recyclerView.f2855q0;
+        b1 b1Var = recyclerView.f2850q0;
         RecyclerView recyclerView2 = b1Var.h;
         if (recyclerView2.N0) {
             recyclerView2.removeCallbacks(b1Var);
-            b1Var.f42655c.abortAnimation();
+            b1Var.f42611c.abortAnimation();
         }
         if (y0Var.h) {
             Log.w("RecyclerView", "An instance of " + y0Var.getClass().getSimpleName() + " was started more than once. Each instance of" + y0Var.getClass().getSimpleName() + " is intended to only be used once. You should create a new instance for each use.");
         }
-        y0Var.f42822b = recyclerView;
-        y0Var.f42823c = this;
-        int i10 = y0Var.f42821a;
+        y0Var.f42778b = recyclerView;
+        y0Var.f42779c = this;
+        int i10 = y0Var.f42777a;
         if (i10 != -1) {
-            recyclerView.f2860t0.f42829a = i10;
+            recyclerView.f2855t0.f42785a = i10;
             y0Var.e = true;
             y0Var.d = true;
-            y0Var.f42824f = recyclerView.f2865x.m(i10);
+            y0Var.f42780f = recyclerView.f2860x.m(i10);
             y0Var.e();
-            y0Var.f42822b.f2855q0.a();
+            y0Var.f42778b.f2850q0.a();
             y0Var.h = true;
             return;
         }

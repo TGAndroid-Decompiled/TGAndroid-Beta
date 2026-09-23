@@ -1,10 +1,10 @@
 package y9;
 public final class u implements ia.d {
-    public static final u f46630a = new Object();
-    public static final ia.c f46631b = ia.c.c("content");
+    public static final u f46588a = new Object();
+    public static final ia.c f46589b = ia.c.c("content");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((ia.e) obj2).a(f46631b, ((v0) ((w1) obj)).f46639a);
+        ((ia.e) obj2).a(f46589b, ((v0) ((w1) obj)).f46597a);
     }
 }

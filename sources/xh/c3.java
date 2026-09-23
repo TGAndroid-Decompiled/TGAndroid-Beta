@@ -1,38 +1,33 @@
 package xh;
 
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.r00;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.bo;
-public final class c3 extends bo {
-    public boolean Pc;
-    public final TL_stars.TL_starGiftUnique Qc;
-    public final long Rc;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class c3 extends AnimatorListenerAdapter {
+    public final int f45775a;
+    public final boolean f45776b;
+    public final i4 f45777c;
 
-    public c3(Bundle bundle, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
-        super(bundle);
-        this.Qc = tL_starGiftUnique;
-        this.Rc = j3;
-        this.Pc = false;
+    public c3(i4 i4Var, boolean z10, int i10) {
+        this.f45775a = i10;
+        this.f45777c = i4Var;
+        this.f45776b = z10;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Pc) {
-            this.Pc = true;
-            oc O = vc.a0(this).O(this.Qc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Rc)));
-            O.f26759r = false;
-            O.j();
-            r00 r00Var = this.f32388m9;
-            if (r00Var != null) {
-                r00Var.c(true);
-            }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f45775a) {
+            case 0:
+                if (!this.f45776b) {
+                    this.f45777c.f45862y.setVisibility(8);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f45776b) {
+                    this.f45777c.f45860w.setVisibility(8);
+                    return;
+                }
+                return;
         }
     }
 }

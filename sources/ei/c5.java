@@ -1,6 +1,6 @@
 package ei;
 
-import ai.t5;
+import ai.s5;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,24 +18,24 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.l5;
-import org.telegram.ui.Components.o5;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.n5;
+import org.telegram.ui.Components.q5;
 import org.telegram.ui.LaunchActivity;
 public abstract class c5 {
-    public static void a(int i10, long j3, org.telegram.ui.web.r rVar) {
+    public static void a(int i10, long j3, org.telegram.ui.web.q qVar) {
         TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
         TLRPC.UserFull userFull = MessagesController.getInstance(i10).getUserFull(j3);
         if (userFull == null) {
-            MessagesController.getInstance(i10).loadFullUser(user, 0, true, new r4(rVar, i10, user, 0));
+            MessagesController.getInstance(i10).loadFullUser(user, 0, true, new r4(qVar, i10, user, 0));
         } else {
-            b(i10, user, userFull, rVar);
+            b(i10, user, userFull, qVar);
         }
     }
 
-    public static void b(final int i10, final TLRPC.User user, final TLRPC.UserFull userFull, final org.telegram.ui.web.r rVar) {
+    public static void b(final int i10, final TLRPC.User user, final TLRPC.UserFull userFull, final org.telegram.ui.web.q qVar) {
         if (userFull.bot_can_manage_emoji_status) {
-            rVar.run(Boolean.FALSE, "allowed");
+            qVar.run(Boolean.FALSE, "allowed");
             return;
         }
         Context findActivity = AndroidUtilities.findActivity(LaunchActivity.G1);
@@ -48,11 +48,11 @@ public abstract class c5 {
         final boolean[] zArr2 = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, null);
         b5 b5Var = new b5(currentUser);
-        int w02 = i6.w0(null, i6.L5, false);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
-        b2Var.f18463b0 = b5Var;
-        b2Var.f18466c0 = w02;
-        alertDialog$Builder.f18435a.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
+        int w02 = h6.w0(null, h6.L5, false);
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
+        b2Var.f18451b0 = b5Var;
+        b2Var.f18454c0 = w02;
+        alertDialog$Builder.f18409a.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
         alertDialog$Builder.k(LocaleController.getString(R.string.BotEmojiStatusPermissionAllow), new org.telegram.ui.ActionBar.a2() {
             @Override
             public final void f(org.telegram.ui.ActionBar.b2 b2Var2, int i11) {
@@ -60,27 +60,27 @@ public abstract class c5 {
                 boolean isPremium = UserConfig.getInstance(i12).isPremium();
                 boolean[] zArr3 = zArr2;
                 boolean[] zArr4 = zArr;
-                org.telegram.ui.web.r rVar2 = rVar;
+                org.telegram.ui.web.q qVar2 = qVar;
                 if (!isPremium) {
                     new rg.x0(new org.telegram.ui.ActionBar.n2(null), 12, false).show();
                     if (!zArr3[0] && !zArr4[0]) {
                         zArr4[0] = true;
-                        rVar2.run(Boolean.TRUE, "cancelled");
+                        qVar2.run(Boolean.TRUE, "cancelled");
                         return;
                     }
                     return;
                 }
                 zArr3[0] = true;
                 TLRPC.User user2 = user;
-                c5.e(context, i12, user2.f18256id);
+                c5.e(context, i12, user2.f18230id);
                 TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
                 toggleuseremojistatuspermission.bot = MessagesController.getInstance(i12).getInputUser(user2);
                 toggleuseremojistatuspermission.enabled = true;
-                ConnectionsManager.getInstance(i12).sendRequest(toggleuseremojistatuspermission, new t5(zArr4, rVar2, userFull, 3));
+                ConnectionsManager.getInstance(i12).sendRequest(toggleuseremojistatuspermission, new s5(zArr4, qVar2, userFull, 3));
             }
         });
         alertDialog$Builder.h(LocaleController.getString(R.string.BotEmojiStatusPermissionDecline), null);
-        org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f18435a;
+        org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f18409a;
         b2Var2.show();
         b2Var2.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
@@ -89,8 +89,8 @@ public abstract class c5 {
                     boolean[] zArr3 = zArr;
                     if (!zArr3[0]) {
                         zArr3[0] = true;
-                        c5.e(context, i10, user.f18256id);
-                        rVar.run(Boolean.TRUE, "cancelled");
+                        c5.e(context, i10, user.f18230id);
+                        qVar.run(Boolean.TRUE, "cancelled");
                     }
                 }
             }
@@ -110,7 +110,7 @@ public abstract class c5 {
         if (activity == null) {
             return false;
         }
-        return org.telegram.messenger.y0.v("requested_", j3, activity.getSharedPreferences("botemojistatus_" + i10, 0), false);
+        return org.telegram.messenger.z0.v("requested_", j3, activity.getSharedPreferences("botemojistatus_" + i10, 0), false);
     }
 
     public static void e(Context context, int i10, long j3) {
@@ -121,15 +121,15 @@ public abstract class c5 {
         edit.putBoolean("requested_" + j3, true).apply();
     }
 
-    public static void f(final int i10, final TLRPC.User user, long j3, final int i11, final org.telegram.ui.web.r rVar) {
-        TLRPC.Document f7 = o5.f(i10, j3);
+    public static void f(final int i10, final TLRPC.User user, long j3, final int i11, final org.telegram.ui.web.q qVar) {
+        TLRPC.Document f7 = q5.f(i10, j3);
         if (f7 != null) {
-            g(i10, user, f7, i11, new s4(rVar, f7, 1));
+            g(i10, user, f7, i11, new s4(qVar, f7, 1));
         } else {
-            o5.h(i10).b(j3, new l5() {
+            q5.h(i10).b(j3, new n5() {
                 @Override
                 public final void a(TLRPC.Document document) {
-                    AndroidUtilities.runOnUIThread(new x4(i10, user, document, i11, rVar));
+                    AndroidUtilities.runOnUIThread(new x4(i10, user, document, i11, qVar));
                 }
             });
         }
@@ -179,14 +179,14 @@ public abstract class c5 {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(findActivity, 0, null);
         b5 b5Var = new b5(currentUser, document);
-        int w02 = i6.w0(null, i6.L5, false);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
-        b2Var.f18463b0 = b5Var;
-        b2Var.f18466c0 = w02;
+        int w02 = h6.w0(null, h6.L5, false);
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
+        b2Var.f18451b0 = b5Var;
+        b2Var.f18454c0 = w02;
         b2Var.T = replaceTags;
         alertDialog$Builder.k(LocaleController.getString(R.string.BotEmojiStatusConfirm), new u4(i10, zArr2, document, i11, zArr, callback));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f18435a;
+        org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f18409a;
         b2Var2.show();
         b2Var2.setOnDismissListener(new t0(zArr2, zArr, callback));
     }

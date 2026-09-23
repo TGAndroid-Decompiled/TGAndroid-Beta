@@ -1,29 +1,43 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.voip.VoIPService;
-public final class m40 implements org.telegram.ui.ActionBar.z2 {
-    public final i60 f35595a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class m40 extends TextView {
+    public final RectF f35147a;
+    public final Paint f35148b;
 
-    public m40(i60 i60Var) {
-        this.f35595a = i60Var;
+    public m40(LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f35147a = new RectF();
+        Paint paint = new Paint(1);
+        this.f35148b = paint;
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(-16711936);
     }
 
     @Override
-    public final boolean g() {
-        return true;
+    public final void dispatchDraw(Canvas canvas) {
+        RectF rectF = this.f35147a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f35148b);
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final void onOpenAnimationEnd() {
-        CountDownLatch groupCallBottomSheetLatch;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
-            groupCallBottomSheetLatch.countDown();
-        }
-        i60 i60Var = this.f35595a;
-        if (i60Var.F1 == 6) {
-            i60.B0(i60Var);
-        }
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.f35148b;
+        paint.setColor(-16711936);
+        RectF rectF = this.f35147a;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
     }
 }

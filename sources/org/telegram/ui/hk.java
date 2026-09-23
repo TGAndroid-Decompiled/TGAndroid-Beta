@@ -1,53 +1,30 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class hk extends FragmentContextView {
-    public final int P0;
-    public final bo Q0;
+public final class hk extends org.telegram.ui.Components.uo {
+    public final xn f33875f;
 
-    public hk(bo boVar, Context context, bo boVar2, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, boVar2, null, true, e6Var);
-        this.P0 = i10;
-        switch (i10) {
-            case 1:
-                this.Q0 = boVar;
-                super(context, boVar2, null, false, e6Var);
-                return;
-            default:
-                this.Q0 = boVar;
-                return;
-        }
+    public hk(xn xnVar, Context context) {
+        super(context);
+        this.f33875f = xnVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.P0) {
-            case 0:
-                bo boVar = this.Q0;
-                org.telegram.ui.Components.bh bhVar = boVar.M0;
-                FrameLayout frameLayout = boVar.a2;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                bhVar.i(frameLayout, z10, true);
-                return;
-            default:
-                bo boVar2 = this.Q0;
-                org.telegram.ui.Components.bh bhVar2 = boVar2.M0;
-                FrameLayout frameLayout2 = boVar2.Y1;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                bhVar2.i(frameLayout2, z11, true);
-                return;
+    public final void a(boolean z10) {
+        xn xnVar = this.f33875f;
+        xnVar.t7();
+        xnVar.r7();
+        xnVar.u7();
+        xnVar.v7();
+        al alVar = xnVar.f39319ab;
+        if (alVar != null) {
+            alVar.setTranslationY(xnVar.f39592w9 + getCurrentHeight());
         }
+        if (z10) {
+            xnVar.D9 = true;
+            xnVar.jc();
+            return;
+        }
+        xnVar.o9();
     }
 }

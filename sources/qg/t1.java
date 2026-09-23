@@ -4,7 +4,7 @@ public interface t1 {
 
     void b(pg.m mVar);
 
-    pg.s0 v();
+    pg.t0 v();
 
     void y();
 }

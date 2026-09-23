@@ -2,9 +2,9 @@ package gf;
 
 import java.util.ArrayList;
 public final class a {
-    public String f9650a;
-    public ArrayList f9651b;
-    public ArrayList f9652c;
+    public String f9636a;
+    public ArrayList f9637b;
+    public ArrayList f9638c;
     public ArrayList d;
 
     public final String a(String str) {
@@ -12,11 +12,11 @@ public final class a {
         String str3;
         String str4;
         String str5 = null;
-        if (str.startsWith(this.f9650a)) {
-            str4 = this.f9650a;
+        if (str.startsWith(this.f9636a)) {
+            str4 = this.f9636a;
             str3 = str.substring(str4.length());
         } else {
-            ArrayList arrayList = this.f9651b;
+            ArrayList arrayList = this.f9637b;
             int size = arrayList.size();
             int i10 = 0;
             while (true) {

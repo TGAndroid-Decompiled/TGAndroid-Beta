@@ -2,17 +2,17 @@ package x7;
 
 import java.util.Iterator;
 public final class v extends p {
-    public final transient x f45640c;
+    public final transient x f45594c;
     public final transient w d;
 
     public v(x xVar, w wVar) {
-        this.f45640c = xVar;
+        this.f45594c = xVar;
         this.d = wVar;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        if (this.f45640c.get(obj) != null) {
+        if (this.f45594c.get(obj) != null) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public final class v extends p {
 
     @Override
     public final int size() {
-        this.f45640c.getClass();
+        this.f45594c.getClass();
         return 1;
     }
 }

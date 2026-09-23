@@ -6,7 +6,7 @@ public interface a {
 
     i0 b(long j3);
 
-    boolean c(z3.b bVar, long j3);
+    boolean c(z3.a aVar, long j3);
 
     void clear();
 

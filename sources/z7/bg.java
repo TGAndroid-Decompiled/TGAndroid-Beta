@@ -15,7 +15,7 @@ public final class bg extends e9.c implements ListIterator {
         e9.l lVar = this.e;
         boolean isEmpty = lVar.isEmpty();
         b();
-        ((ListIterator) this.f8057b).add(obj);
+        ((ListIterator) this.f8043b).add(obj);
         if (isEmpty) {
             lVar.p();
         }
@@ -24,35 +24,35 @@ public final class bg extends e9.c implements ListIterator {
     @Override
     public final boolean hasPrevious() {
         b();
-        return ((ListIterator) this.f8057b).hasPrevious();
+        return ((ListIterator) this.f8043b).hasPrevious();
     }
 
     @Override
     public final int nextIndex() {
         b();
-        return ((ListIterator) this.f8057b).nextIndex();
+        return ((ListIterator) this.f8043b).nextIndex();
     }
 
     @Override
     public final Object previous() {
         b();
-        return ((ListIterator) this.f8057b).previous();
+        return ((ListIterator) this.f8043b).previous();
     }
 
     @Override
     public final int previousIndex() {
         b();
-        return ((ListIterator) this.f8057b).previousIndex();
+        return ((ListIterator) this.f8043b).previousIndex();
     }
 
     @Override
     public final void set(Object obj) {
         b();
-        ((ListIterator) this.f8057b).set(obj);
+        ((ListIterator) this.f8043b).set(obj);
     }
 
     public bg(e9.l lVar, int i10) {
-        super(lVar, ((List) lVar.f8094c).listIterator(i10), (char) 0);
+        super(lVar, ((List) lVar.f8080c).listIterator(i10), (char) 0);
         this.e = lVar;
     }
 }

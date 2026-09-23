@@ -10,32 +10,32 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class ob implements org.telegram.ui.Cells.t0 {
-    public final qb f36183a;
+    public final qb f35756a;
 
     public ob(qb qbVar) {
-        this.f36183a = qbVar;
+        this.f35756a = qbVar;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.n2 O0() {
-        return this.f36183a.f36824n;
+        return this.f35756a.f36380n;
     }
 
     @Override
     public final void Q0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         Object obj;
-        ub ubVar = this.f36183a.f36824n;
+        ub ubVar = this.f35756a.f36380n;
         if (ubVar.A0) {
             return;
         }
-        if (ubVar.f37936y0.containsKey(tL_chatInviteExported.link)) {
-            obj = ubVar.f37936y0.get(tL_chatInviteExported.link);
+        if (ubVar.f38042y0.containsKey(tL_chatInviteExported.link)) {
+            obj = ubVar.f38042y0.get(tL_chatInviteExported.link);
         } else {
             obj = null;
         }
         if (obj == null) {
             TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
-            tL_messages_getExportedChatInvite.peer = ubVar.getMessagesController().getInputPeer(-ubVar.f37911f.f18109id);
+            tL_messages_getExportedChatInvite.peer = ubVar.getMessagesController().getInputPeer(-ubVar.f38017f.f18083id);
             tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
             ubVar.A0 = true;
             final boolean[] zArr = new boolean[1];
@@ -43,22 +43,22 @@ public final class ob implements org.telegram.ui.Cells.t0 {
             b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    ob.this.f36183a.f36824n.A0 = false;
+                    ob.this.f35756a.f36380n.A0 = false;
                     zArr[0] = true;
                 }
             });
             b2Var.q(300L);
             ubVar.getConnectionsManager().bindRequestToGuid(ubVar.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new ai.p3(this, tL_chatInviteExported, zArr, b2Var, 4)), ub.z0(ubVar));
         } else if (obj instanceof TLRPC.TL_messages_exportedChatInvite) {
-            ub.A0(ubVar, (TLRPC.TL_messages_exportedChatInvite) obj, ubVar.f37937z0);
+            ub.A0(ubVar, (TLRPC.TL_messages_exportedChatInvite) obj, ubVar.f38043z0);
         } else {
-            org.telegram.messenger.y0.o(R.string.LinkHashExpired, org.telegram.ui.Components.vc.a0(ubVar), R.raw.linkbroken, 36);
+            org.telegram.messenger.z0.o(R.string.LinkHashExpired, org.telegram.ui.Components.xc.a0(ubVar), R.raw.linkbroken, 36);
         }
     }
 
     @Override
     public final long a() {
-        return -this.f36183a.f36824n.f37911f.f18109id;
+        return -this.f35756a.f36380n.f38017f.f18083id;
     }
 
     @Override
@@ -73,11 +73,11 @@ public final class ob implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final void k0(org.telegram.ui.Cells.w0 w0Var) {
-        ub ubVar = this.f36183a.f36824n;
+        ub ubVar = this.f35756a.f36380n;
         MessageObject messageObject = w0Var.getMessageObject();
         if (messageObject.type == 22) {
             ad adVar = new ad(a());
-            adVar.f31750l0 = ubVar;
+            adVar.f31753l0 = ubVar;
             ubVar.presentFragment(adVar);
             return;
         }
@@ -92,19 +92,19 @@ public final class ob implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final boolean r2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
-        ub ubVar = this.f36183a.f36824n;
+        ub ubVar = this.f35756a.f36380n;
         int i10 = ub.Q0;
         return ubVar.P0(w0Var, 0.0f, 0.0f);
     }
 
     @Override
     public final void x1(long j3) {
-        ub ubVar = this.f36183a.f36824n;
+        ub ubVar = this.f35756a.f36380n;
         if (j3 < 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j3);
             if (MessagesController.getInstance(ub.x0(ubVar)).checkCanOpenChat(bundle, ubVar)) {
-                ubVar.presentFragment(new bo(bundle), true);
+                ubVar.presentFragment(new xn(bundle), true);
             }
         } else if (j3 != UserConfig.getInstance(ub.y0(ubVar)).getClientUserId()) {
             Bundle e = w.c.e(j3, "user_id");

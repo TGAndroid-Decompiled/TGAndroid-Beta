@@ -1,33 +1,31 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class wn0 implements RequestDelegate {
-    public final int f39263a;
-    public final wo0 f39264b;
+import org.telegram.tgnet.tl.TL_account;
+public final class wn0 implements oo0 {
+    public final qo0 f39059a;
 
-    public wn0(wo0 wo0Var, int i10) {
-        this.f39263a = i10;
-        this.f39264b = wo0Var;
+    public wn0(qo0 qo0Var) {
+        this.f39059a = qo0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39263a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new ml0(7, this.f39264b, tL_error));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new vn0(this.f39264b, tL_error, tLObject, 0));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new pn0(this.f39264b, tLObject, 2));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new pn0(this.f39264b, tLObject, 0));
-                return;
-        }
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        qo0 qo0Var = this.f39059a;
+        qo0Var.I0 = tL_payments_validateRequestedInfo;
+        qo0Var.B0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

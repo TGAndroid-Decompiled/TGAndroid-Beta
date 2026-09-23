@@ -1,33 +1,55 @@
 package org.telegram.ui;
-public final class lp implements Runnable {
-    public final int f35525a;
-    public final wp f35526b;
 
-    public lp(wp wpVar, int i10) {
-        this.f35525a = i10;
-        this.f35526b = wpVar;
+import android.widget.LinearLayout;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class lp extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    public org.telegram.ui.Components.w9 f35037a;
+    public org.telegram.ui.Components.j90 f35038b;
+    public int f35039c;
+
+    public final void a() {
+        boolean z10;
+        org.telegram.ui.Components.w9 w9Var = this.f35037a;
+        int i10 = this.f35039c;
+        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
+        if (stickerSetByName == null) {
+            stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 3) {
+            w9Var.i(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f35038b, tL_messages_stickerSet);
+            return;
+        }
+        MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+        if (tL_messages_stickerSet == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z10);
+        w9Var.setImageDrawable(this.f35038b);
     }
 
     @Override
-    public final void run() {
-        switch (this.f35525a) {
-            case 0:
-                wp wpVar = this.f35526b;
-                org.telegram.ui.ActionBar.b2 b2Var = wpVar.f39348r;
-                if (b2Var != null) {
-                    b2Var.setOnCancelListener(new pg(wpVar, 2));
-                    wpVar.showDialog(wpVar.f39348r);
-                    return;
-                }
-                return;
-            case 1:
-                wp wpVar2 = this.f35526b;
-                wpVar2.getMessagesController().loadFullChat(wpVar2.E, 0, true);
-                return;
-            default:
-                wp wpVar3 = this.f35526b;
-                wpVar3.getMessagesController().loadFullChat(wpVar3.E, 0, true);
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
+            a();
         }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        NotificationCenter.getInstance(this.f35039c).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.f35039c).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 }

@@ -2,9 +2,9 @@ package e2;
 
 import java.util.NoSuchElementException;
 public final class q implements w3.b {
-    public int f7919a;
-    public int f7920b;
-    public int f7921c;
+    public int f7905a;
+    public int f7906b;
+    public int f7907c;
     public int d;
     public Object e;
 
@@ -15,21 +15,21 @@ public final class q implements w3.b {
 
     @Override
     public int b() {
-        return this.f7919a;
+        return this.f7905a;
     }
 
     @Override
     public int c() {
         v vVar = (v) this.e;
-        int i10 = this.f7920b;
+        int i10 = this.f7906b;
         if (i10 == 8) {
             return vVar.x();
         }
         if (i10 == 16) {
             return vVar.D();
         }
-        int i11 = this.f7921c;
-        this.f7921c = i11 + 1;
+        int i11 = this.f7907c;
+        this.f7907c = i11 + 1;
         if (i11 % 2 == 0) {
             int x10 = vVar.x();
             this.d = x10;
@@ -39,12 +39,12 @@ public final class q implements w3.b {
     }
 
     public long d() {
-        int i10 = this.f7921c;
+        int i10 = this.f7907c;
         if (i10 != 0) {
-            int i11 = this.f7919a;
+            int i11 = this.f7905a;
             long j3 = ((long[]) this.e)[i11];
-            this.f7919a = this.d & (i11 + 1);
-            this.f7921c = i10 - 1;
+            this.f7905a = this.d & (i11 + 1);
+            this.f7907c = i10 - 1;
             return j3;
         }
         throw new NoSuchElementException();

@@ -1,34 +1,17 @@
 package org.telegram.ui;
-public final class qf1 implements Runnable {
-    public final int f36868a;
-    public final rf1 f36869b;
 
-    public qf1(rf1 rf1Var, int i10) {
-        this.f36868a = i10;
-        this.f36869b = rf1Var;
-    }
+import androidx.recyclerview.widget.RecyclerView;
+public final class qf1 extends s4.s0 {
+    public final int f36418a;
 
     @Override
-    public final void run() {
-        switch (this.f36868a) {
-            case 0:
-                rf1 rf1Var = this.f36869b;
-                rf1Var.F = null;
-                if (rf1Var.G != -1) {
-                    rf1Var.H.getNotificationCenter().onAnimationFinish(rf1Var.G);
-                    rf1Var.G = -1;
-                    return;
-                }
-                return;
-            default:
-                rf1 rf1Var2 = this.f36869b;
-                rf1Var2.F = null;
-                if (rf1Var2.G != -1) {
-                    rf1Var2.H.getNotificationCenter().onAnimationFinish(rf1Var2.G);
-                    rf1Var2.G = -1;
-                    return;
-                }
-                return;
-        }
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12 = this.f36418a;
+    }
+
+    private final void c(RecyclerView recyclerView, int i10, int i11) {
+    }
+
+    private final void d(RecyclerView recyclerView, int i10, int i11) {
     }
 }

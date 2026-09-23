@@ -1,42 +1,15 @@
 package org.telegram.ui.Components;
+public final class e50 implements Runnable {
+    public final int f23568a;
+    public final x50 f23569b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class e50 extends AnimatorListenerAdapter {
-    public final int f23537a;
-    public final w50 f23538b;
-
-    public e50(w50 w50Var, int i10) {
-        this.f23537a = i10;
-        this.f23538b = w50Var;
+    public e50(x50 x50Var, int i10) {
+        this.f23568a = i10;
+        this.f23569b = x50Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f23537a) {
-            case 0:
-                w50 w50Var = this.f23538b;
-                if (animator.equals(w50Var.G)) {
-                    w50Var.G = null;
-                    return;
-                }
-                return;
-            case 1:
-                w50 w50Var2 = this.f23538b;
-                if (w50Var2.f29576b1 != null) {
-                    w50Var2.f29576b1 = null;
-                    return;
-                }
-                return;
-            default:
-                w50 w50Var3 = this.f23538b;
-                if (animator.equals(w50Var3.W)) {
-                    w50Var3.h(true);
-                    w50Var3.W0 = false;
-                    w50Var3.setVisibility(4);
-                    return;
-                }
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e50.run():void");
     }
 }

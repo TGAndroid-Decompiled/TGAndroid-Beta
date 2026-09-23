@@ -2,10 +2,10 @@ package c7;
 
 import android.os.Parcelable;
 public final class r0 implements Parcelable.Creator {
-    public final int f4141a;
+    public final int f4136a;
 
     public r0(int i10) {
-        this.f4141a = i10;
+        this.f4136a = i10;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class r0 implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f4141a) {
+        switch (this.f4136a) {
             case 0:
                 return new b0[i10];
             case 1:

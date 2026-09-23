@@ -6,56 +6,56 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import bi.v;
-import ci.f4;
+import ci.e4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.va;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.za;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.xa;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.bo;
-import org.telegram.ui.mk;
+import org.telegram.ui.jk;
+import org.telegram.ui.xn;
 import s4.j;
 import w7.x5;
-import yh.u5;
-public final class h extends za implements NotificationCenter.NotificationCenterDelegate {
+import yh.t5;
+public final class h extends bb implements NotificationCenter.NotificationCenterDelegate {
     public final zf.a X;
     public final d1 Y;
     public final FrameLayout Z;
-    public Runnable f7754a0;
-    public w51 f7755b0;
+    public Runnable f7740a0;
+    public v51 f7741b0;
 
-    public h(Context context, e6 e6Var, zf.a aVar, boolean z10, Runnable runnable) {
-        super(context, null, false, false, e6Var);
+    public h(Context context, d6 d6Var, zf.a aVar, boolean z10, Runnable runnable) {
+        super(context, null, false, false, d6Var);
         this.v = 0.2f;
-        this.f7754a0 = runnable;
+        this.f7740a0 = runnable;
         fixNavigationBar();
-        ll0 ll0Var = this.d;
+        ml0 ml0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        ll0Var.setPadding(i10, 0, i10, 0);
+        ml0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.g(this, 7));
         j jVar = new j();
-        jVar.f42706m = false;
+        jVar.f42662m = false;
         jVar.C = false;
-        jVar.o(qr.h);
+        jVar.o(rr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        setBackgroundColor(i6.v0(i6.f18904h5, e6Var));
+        setBackgroundColor(h6.v0(h6.f18859h5, d6Var));
         this.X = aVar;
-        d1 d1Var = new d1(context, 1, e6Var);
+        d1 d1Var = new d1(context, 1, d6Var);
         this.Y = d1Var;
-        ((TextView) d1Var.f684c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f48946b - u5.y(this.currentAccount, true).s().f48946b, zf.b.f48948b).d()));
+        ((TextView) d1Var.f693c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f48897b - t5.y(this.currentAccount, true).s().f48897b, zf.b.f48899b).d()));
         TextView textView = (TextView) d1Var.d;
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
-        textView.setMaxWidth(f4.a(textView.getText(), textView.getPaint()));
+        textView.setMaxWidth(e4.a(textView.getText(), textView.getPaint()));
         this.e.setTitle(y());
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
@@ -64,20 +64,20 @@ public final class h extends za implements NotificationCenter.NotificationCenter
         if (!z10 && !i.B0()) {
             dVar.g(LocaleController.getString(R.string.Close), false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final h f7753b;
+                public final h f7739b;
 
                 {
-                    this.f7753b = this;
+                    this.f7739b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            nf.f.u(this.f7753b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            nf.f.u(this.f7739b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                             return;
                         default:
-                            this.f7753b.dismiss();
+                            this.f7739b.dismiss();
                             return;
                     }
                 }
@@ -85,28 +85,28 @@ public final class h extends za implements NotificationCenter.NotificationCenter
         } else {
             dVar.g(LocaleController.getString(R.string.TopUpViaFragment), false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final h f7753b;
+                public final h f7739b;
 
                 {
-                    this.f7753b = this;
+                    this.f7739b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            nf.f.u(this.f7753b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            nf.f.u(this.f7739b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                             return;
                         default:
-                            this.f7753b.dismiss();
+                            this.f7739b.dismiss();
                             return;
                     }
                 }
             });
         }
-        w51 w51Var = this.f7755b0;
-        if (w51Var != null) {
-            w51Var.N(false);
+        v51 v51Var = this.f7741b0;
+        if (v51Var != null) {
+            v51Var.N(false);
         }
     }
 
@@ -114,21 +114,21 @@ public final class h extends za implements NotificationCenter.NotificationCenter
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         Runnable runnable;
         if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            w51 w51Var = this.f7755b0;
-            if (w51Var != null) {
-                w51Var.N(true);
+            v51 v51Var = this.f7741b0;
+            if (v51Var != null) {
+                v51Var.N(true);
             }
-            zf.a s10 = u5.y(this.currentAccount, true).s();
+            zf.a s10 = t5.y(this.currentAccount, true).s();
             int i12 = R.string.TonNeededTitle;
             zf.a aVar = this.X;
-            ((TextView) this.Y.f684c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f48946b - s10.f48946b, zf.b.f48948b).d()));
-            va vaVar = this.e;
-            if (vaVar != null) {
-                vaVar.setTitle(y());
+            ((TextView) this.Y.f693c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f48897b - s10.f48897b, zf.b.f48899b).d()));
+            xa xaVar = this.e;
+            if (xaVar != null) {
+                xaVar.setTitle(y());
             }
-            if (s10.f48946b >= aVar.f48946b && (runnable = this.f7754a0) != null) {
+            if (s10.f48897b >= aVar.f48897b && (runnable = this.f7740a0) != null) {
                 runnable.run();
-                this.f7754a0 = null;
+                this.f7740a0 = null;
                 dismiss();
             }
         }
@@ -139,7 +139,7 @@ public final class h extends za implements NotificationCenter.NotificationCenter
         super.dismiss();
         d1 d1Var = this.Y;
         if (d1Var != null) {
-            ((sg.e) d1Var.f683b).setPaused(true);
+            ((sg.e) d1Var.f692b).setPaused(true);
         }
     }
 
@@ -152,21 +152,21 @@ public final class h extends za implements NotificationCenter.NotificationCenter
 
     @Override
     public final void show() {
-        mk mkVar;
-        if (u5.y(this.currentAccount, true).s().f48946b >= this.X.f48946b) {
-            Runnable runnable = this.f7754a0;
+        jk jkVar;
+        if (t5.y(this.currentAccount, true).s().f48897b >= this.X.f48897b) {
+            Runnable runnable = this.f7740a0;
             if (runnable != null) {
                 runnable.run();
-                this.f7754a0 = null;
+                this.f7740a0 = null;
                 return;
             }
             return;
         }
         n2 R = LaunchActivity.R();
-        if (R instanceof bo) {
-            bo boVar = (bo) R;
-            if (boVar.x9() && (mkVar = boVar.Y) != null) {
-                mkVar.Q();
+        if (R instanceof xn) {
+            xn xnVar = (xn) R;
+            if (xnVar.x9() && (jkVar = xnVar.Y) != null) {
+                jkVar.Q();
             }
         }
         super.show();
@@ -175,10 +175,10 @@ public final class h extends za implements NotificationCenter.NotificationCenter
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
-        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new v(this, 11), this.resourcesProvider);
-        this.f7755b0 = w51Var;
-        return w51Var;
+    public final ll0 v(ml0 ml0Var) {
+        v51 v51Var = new v51(this.d, getContext(), this.currentAccount, 0, true, new v(this, 11), this.resourcesProvider);
+        this.f7741b0 = v51Var;
+        return v51Var;
     }
 
     @Override
@@ -187,6 +187,6 @@ public final class h extends za implements NotificationCenter.NotificationCenter
         if (d1Var == null) {
             return null;
         }
-        return ((TextView) d1Var.f684c).getText();
+        return ((TextView) d1Var.f693c).getText();
     }
 }

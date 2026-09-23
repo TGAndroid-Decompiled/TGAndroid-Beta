@@ -4,31 +4,31 @@ import a6.m;
 import android.content.Context;
 import android.os.Bundle;
 import w7.q;
-import za.b0;
-import za.r;
+import za.d0;
+import za.t;
 public final class h {
-    public static final f f3470c = new Object();
-    public static final m1.c d = q.a(r.f48819b);
-    public final m f3471a;
-    public final d f3472b;
+    public static final f f3465c = new Object();
+    public static final m1.c d = q.a(t.f48777b);
+    public final m f3466a;
+    public final d f3467b;
 
     public h(k9.h hVar, id.h hVar2, id.h hVar3, qa.d dVar) {
         hVar.a();
-        Context context = hVar.f13548a;
+        Context context = hVar.f13536a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
-        b0 b0Var = b0.f48740a;
-        za.b a2 = b0.a(hVar);
+        d0 d0Var = d0.f48707a;
+        za.b a2 = d0.a(hVar);
         m mVar = new m(context);
         aa.a aVar = new aa.a(a2, hVar2);
-        f3470c.getClass();
-        d dVar2 = new d(hVar3, dVar, a2, aVar, d.a(context, f.f3466a[0]));
-        this.f3471a = mVar;
-        this.f3472b = dVar2;
+        f3465c.getClass();
+        d dVar2 = new d(hVar3, dVar, a2, aVar, d.a(context, f.f3461a[0]));
+        this.f3466a = mVar;
+        this.f3467b = dVar2;
     }
 
     public final double a() {
         Double d10;
-        Bundle bundle = (Bundle) this.f3471a.f307b;
+        Bundle bundle = (Bundle) this.f3466a.f307b;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {
@@ -40,9 +40,9 @@ public final class h {
                 return doubleValue;
             }
         }
-        e eVar = this.f3472b.f3462c.f3486b;
+        e eVar = this.f3467b.f3457c.f3481b;
         if (eVar != null) {
-            Double d11 = eVar.f3464b;
+            Double d11 = eVar.f3459b;
             if (d11 != null) {
                 double doubleValue2 = d11.doubleValue();
                 if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {

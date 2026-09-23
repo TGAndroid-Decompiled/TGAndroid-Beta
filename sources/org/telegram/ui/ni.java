@@ -1,72 +1,41 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class ni implements View.OnTouchListener {
-    public final int f35994a;
-    public final int[] f35995b;
-    public final Rect f35996c;
-    public final Object d;
+import android.util.SparseArray;
+import org.telegram.messenger.MessageObject;
+public final class ni {
+    public boolean f35530a;
+    public final boolean f35531b;
+    public final SparseArray f35532c;
+    public final xn d;
 
-    public ni(i60 i60Var, Rect rect) {
-        this.f35994a = 1;
-        this.d = i60Var;
-        this.f35996c = rect;
-        this.f35995b = new int[2];
+    public ni(xn xnVar, boolean z10, SparseArray sparseArray) {
+        this.d = xnVar;
+        this.f35531b = z10;
+        this.f35532c = sparseArray;
     }
 
-    @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        i50 i50Var;
-        switch (this.f35994a) {
-            case 0:
-                bo boVar = (bo) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    org.telegram.ui.ActionBar.n1 n1Var = boVar.Q8;
-                    if (n1Var != null && n1Var.isShowing()) {
-                        View contentView = boVar.Q8.getContentView();
-                        int[] iArr = this.f35995b;
-                        contentView.getLocationInWindow(iArr);
-                        int i10 = iArr[0];
-                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
-                        Rect rect = this.f35996c;
-                        rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
-                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            boVar.A7(true);
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4) {
-                    boVar.A7(true);
+    public final boolean a(int i10) {
+        xn xnVar = this.d;
+        int i11 = i10 - xnVar.A0.J;
+        if (i11 >= 0 && i11 < xnVar.f39563u6.size()) {
+            MessageObject messageObject = (MessageObject) xnVar.f39563u6.get(i11);
+            if (messageObject.contentType == 0) {
+                SparseArray sparseArray = this.f35532c;
+                boolean z10 = this.f35531b;
+                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
+                    return true;
+                }
+                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
+                    return true;
                 }
                 return false;
-            default:
-                i60 i60Var = (i60) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    i50 i50Var2 = i60Var.f34452f3;
-                    if (i50Var2 != null && i50Var2.isShowing()) {
-                        View contentView2 = i60Var.f34452f3.getContentView();
-                        int[] iArr2 = this.f35995b;
-                        contentView2.getLocationInWindow(iArr2);
-                        int i11 = iArr2[0];
-                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
-                        Rect rect2 = this.f35996c;
-                        rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
-                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            i60Var.f34452f3.dismiss();
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4 && (i50Var = i60Var.f34452f3) != null && i50Var.isShowing()) {
-                    i60Var.f34452f3.dismiss();
-                }
-                return false;
+            }
+            return false;
         }
+        return false;
     }
 
-    public ni(bo boVar, Rect rect) {
-        this.f35994a = 0;
-        this.d = boVar;
-        this.f35996c = rect;
-        this.f35995b = new int[2];
+    public final void b(int r8, boolean r9, float r10, float r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ni.b(int, boolean, float, float):void");
     }
 }

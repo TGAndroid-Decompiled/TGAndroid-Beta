@@ -1,46 +1,13 @@
 package ci;
 
+import android.content.Context;
+import android.graphics.PointF;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fh;
-import org.telegram.ui.Components.ti;
-public final class b6 implements ti {
-    @Override
-    public final boolean S1() {
-        return false;
-    }
+public final class b6 extends qg.h1 {
+    public final q6 M0;
 
-    @Override
-    public final boolean c0() {
-        return false;
-    }
-
-    @Override
-    public final void x0(fh fhVar) {
-        fhVar.run();
-    }
-
-    @Override
-    public final void K0() {
-    }
-
-    @Override
-    public final void U0(Object obj) {
-    }
-
-    @Override
-    public final void j1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void u0() {
-    }
-
-    @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public b6(q6 q6Var, Context context, PointF pointF, ArrayList arrayList, org.telegram.ui.Components.ja jaVar, boolean z10, a7 a7Var) {
+        super(context, pointF, arrayList, jaVar, z10, a7Var);
+        this.M0 = q6Var;
     }
 }

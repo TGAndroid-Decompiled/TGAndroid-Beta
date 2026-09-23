@@ -12,13 +12,13 @@ public final class b0 extends LinearLayout {
     public final RectF f22540b;
     public final RectF f22541c;
     public final Paint d;
-    public final org.telegram.ui.ActionBar.e6 e;
+    public final org.telegram.ui.ActionBar.d6 e;
     public final d0 f22542f;
 
-    public b0(d0 d0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public b0(d0 d0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.f22542f = d0Var;
-        this.e = e6Var;
+        this.e = d6Var;
         this.f22539a = new RectF();
         this.f22540b = new RectF();
         this.f22541c = new RectF();
@@ -29,11 +29,11 @@ public final class b0 extends LinearLayout {
     public final void dispatchDraw(Canvas canvas) {
         d0 d0Var;
         float d;
-        c6 c6Var = this.f22542f.h;
-        if (c6Var == null) {
+        e6 e6Var = this.f22542f.h;
+        if (e6Var == null) {
             d = 0.0f;
         } else {
-            d = c6Var.d(d0Var.f23172f, false);
+            d = e6Var.d(d0Var.f23173f, false);
         }
         double d10 = d;
         int floor = (int) Math.floor(d10);
@@ -51,7 +51,7 @@ public final class b0 extends LinearLayout {
         }
         RectF rectF3 = this.f22541c;
         AndroidUtilities.lerp(rectF, rectF2, f7, rectF3);
-        int l1 = org.telegram.ui.ActionBar.i6.l1(0.1f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, this.e));
+        int l1 = org.telegram.ui.ActionBar.h6.l1(0.1f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, this.e));
         Paint paint = this.d;
         paint.setColor(l1);
         canvas.drawRoundRect(rectF3, AndroidUtilities.dp(d0Var.d), AndroidUtilities.dp(d0Var.d), paint);

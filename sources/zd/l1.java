@@ -1,21 +1,21 @@
 package zd;
 public final class l1 extends m {
-    public final u1 f48898r;
+    public final u1 f48849r;
 
     public l1(id.c cVar, u1 u1Var) {
         super(1, cVar);
-        this.f48898r = u1Var;
+        this.f48849r = u1Var;
     }
 
     @Override
     public final Throwable q(u1 u1Var) {
         Throwable b10;
-        Object u10 = this.f48898r.u();
+        Object u10 = this.f48849r.u();
         if ((u10 instanceof n1) && (b10 = ((n1) u10).b()) != null) {
             return b10;
         }
         if (u10 instanceof v) {
-            return ((v) u10).f48931a;
+            return ((v) u10).f48882a;
         }
         return u1Var.getCancellationException();
     }

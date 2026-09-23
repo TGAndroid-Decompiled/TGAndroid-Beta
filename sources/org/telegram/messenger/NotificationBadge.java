@@ -156,7 +156,7 @@ public class NotificationBadge {
             bundle.putString("package", ApplicationLoader.applicationContext.getPackageName());
             bundle.putString("class", NotificationBadge.componentName.getClassName());
             bundle.putInt("badgenumber", i10);
-            AndroidUtilities.runOnUIThread(new vg(bundle, 1));
+            AndroidUtilities.runOnUIThread(new ug(bundle, 1));
         }
 
         @Override
@@ -467,7 +467,7 @@ public class NotificationBadge {
 
         @Override
         public void executeBadge(int i10) {
-            AndroidUtilities.runOnUIThread(new wg(0, this, org.telegram.ui.Cells.q3.e(i10, "app_badge_count")));
+            AndroidUtilities.runOnUIThread(new vg(0, this, org.telegram.ui.Cells.q3.e(i10, "app_badge_count")));
         }
 
         @Override

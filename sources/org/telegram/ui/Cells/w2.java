@@ -3,20 +3,20 @@ package org.telegram.ui.Cells;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class w2 extends AnimatorListenerAdapter {
-    public final int f21553a;
-    public final x2 f21554b;
+    public final int f21536a;
+    public final x2 f21537b;
 
     public w2(x2 x2Var, int i10) {
-        this.f21553a = i10;
-        this.f21554b = x2Var;
+        this.f21536a = i10;
+        this.f21537b = x2Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f21553a) {
+        switch (this.f21536a) {
             case 0:
-                x2 x2Var = this.f21554b;
-                Runnable runnable = x2Var.f21606b;
+                x2 x2Var = this.f21537b;
+                Runnable runnable = x2Var.f21585b;
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -26,8 +26,8 @@ public final class w2 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                x2 x2Var2 = this.f21554b;
-                Runnable runnable2 = x2Var2.f21606b;
+                x2 x2Var2 = this.f21537b;
+                Runnable runnable2 = x2Var2.f21585b;
                 if (runnable2 != null) {
                     runnable2.run();
                 }

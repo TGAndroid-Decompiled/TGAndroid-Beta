@@ -1,25 +1,41 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class hf implements Runnable {
-    public final int f16329a;
-    public final MessagesStorage f16330b;
-    public final TLRPC.TL_chatFull f16331c;
+    public final int f16300a;
+    public final MessagesStorage f16301b;
+    public final int f16302c;
 
-    public hf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
-        this.f16329a = i10;
-        this.f16330b = messagesStorage;
-        this.f16331c = tL_chatFull;
+    public hf(MessagesStorage messagesStorage, int i10, int i11) {
+        this.f16300a = i11;
+        this.f16301b = messagesStorage;
+        this.f16302c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f16329a) {
+        switch (this.f16300a) {
             case 0:
-                this.f16330b.lambda$updateChatParticipants$121(this.f16331c);
+                this.f16301b.lambda$readAllDialogs$65(this.f16302c);
+                return;
+            case 1:
+                this.f16301b.lambda$checkIfFolderEmptyInternal$245(this.f16302c);
+                return;
+            case 2:
+                this.f16301b.lambda$clearDownloadQueue$184(this.f16302c);
+                return;
+            case 3:
+                this.f16301b.lambda$putMessagesInternal$196(this.f16302c);
+                return;
+            case 4:
+                this.f16301b.lambda$getDownloadQueue$186(this.f16302c);
+                return;
+            case 5:
+                this.f16301b.lambda$getUnsentMessages$152(this.f16302c);
+                return;
+            case 6:
+                this.f16301b.lambda$checkIfFolderEmpty$246(this.f16302c);
                 return;
             default:
-                this.f16330b.lambda$updateChatInfo$139(this.f16331c);
+                this.f16301b.lambda$clearWidgetDialogs$167(this.f16302c);
                 return;
         }
     }

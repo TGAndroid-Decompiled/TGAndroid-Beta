@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class rv0 extends x50 {
+public final class rv0 extends y50 {
     public final tv0 d;
 
     public rv0(tv0 tv0Var) {

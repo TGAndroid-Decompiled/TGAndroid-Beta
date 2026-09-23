@@ -1,102 +1,97 @@
 package ii;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Outline;
-import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.i6;
-public final class c2 extends Drawable implements Drawable.Callback {
-    public final Drawable f11281a;
-    public final Paint f11282b;
-    public final Path f11283c;
-    public final RectF d;
-    public final Outline e;
-    public boolean f11284f;
+import org.telegram.messenger.R;
+import org.telegram.messenger.ul;
+public final class c2 extends Drawable {
+    public final Context f11264a;
+    public final Drawable f11265b;
+    public Drawable f11266c;
+    public int d;
+    public int e;
+    public Drawable f11267f;
+    public boolean f11268g;
 
-    public c2(Drawable drawable) {
-        Paint paint = new Paint(1);
-        this.f11282b = paint;
-        this.f11283c = new Path();
-        this.d = new RectF();
-        this.e = new Outline();
-        this.f11284f = true;
-        this.f11281a = drawable;
-        drawable.setCallback(this);
-        paint.setColor(0);
-        if (i6.I.q()) {
-            paint.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(4.0f), i6.l1(0.3f, -16777216));
-        } else {
-            paint.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(4.0f), i6.l1(0.1f, -16777216));
+    public c2(Context context, int i10) {
+        Drawable mutate = context.getResources().getDrawable(i10).mutate();
+        this.d = org.telegram.ui.ActionBar.h6.f18789d6;
+        this.f11268g = true;
+        this.f11264a = context;
+        this.f11265b = mutate;
+    }
+
+    public final void a(boolean z10) {
+        if (this.f11268g == z10) {
+            return;
         }
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r7) {
-        throw new UnsupportedOperationException("Method not decompiled: ii.c2.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
+        this.f11268g = z10;
         invalidateSelf();
     }
 
     @Override
-    public final boolean isStateful() {
-        return this.f11281a.isStateful();
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int centerX = bounds.centerX();
+        int centerY = bounds.centerY();
+        Drawable drawable = this.f11265b;
+        drawable.setBounds(ul.x(2, centerX, drawable), ul.e(2, centerY, drawable), ul.B(2, centerX, drawable), ul.z(2, centerY, drawable));
+        drawable.draw(canvas);
+        if (this.f11268g) {
+            int dp = AndroidUtilities.dp(9.0f) + centerX;
+            int dp2 = AndroidUtilities.dp(9.0f) + centerY;
+            int w02 = org.telegram.ui.ActionBar.h6.w0(null, this.d, false);
+            Drawable drawable2 = this.f11266c;
+            Context context = this.f11264a;
+            if (drawable2 == null) {
+                Drawable mutate = context.getResources().getDrawable(R.drawable.star_premium_cutout).mutate();
+                this.f11266c = mutate;
+                this.e = w02;
+                mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+            }
+            if (w02 != this.e) {
+                Drawable drawable3 = this.f11266c;
+                this.e = w02;
+                drawable3.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+            }
+            if (this.f11267f == null) {
+                this.f11267f = context.getResources().getDrawable(R.drawable.star_premium).mutate();
+            }
+            this.f11266c.setBounds(dp - AndroidUtilities.dp(9.0f), dp2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + dp, AndroidUtilities.dp(9.0f) + dp2);
+            this.f11266c.draw(canvas);
+            this.f11267f.setBounds(dp - AndroidUtilities.dp(9.0f), dp2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + dp, AndroidUtilities.dp(9.0f) + dp2);
+            this.f11267f.draw(canvas);
+        }
     }
 
     @Override
-    public final void jumpToCurrentState() {
-        this.f11281a.jumpToCurrentState();
+    public final int getIntrinsicHeight() {
+        return Math.max(AndroidUtilities.dp(38.0f), this.f11265b.getIntrinsicHeight());
     }
 
     @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f11281a.setBounds(rect);
-        this.f11284f = true;
+    public final int getIntrinsicWidth() {
+        return Math.max(AndroidUtilities.dp(38.0f), this.f11265b.getIntrinsicWidth());
     }
 
     @Override
-    public final boolean onStateChange(int[] iArr) {
-        return this.f11281a.setState(iArr);
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
+    public final int getOpacity() {
+        return this.f11265b.getOpacity();
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f11281a.setAlpha(i10);
+        this.f11265b.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f11281a.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setHotspot(float f7, float f10) {
-        this.f11281a.setHotspot(f7, f10);
-    }
-
-    @Override
-    public final void setHotspotBounds(int i10, int i11, int i12, int i13) {
-        this.f11281a.setHotspotBounds(i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
+        this.f11265b.setColorFilter(colorFilter);
     }
 }

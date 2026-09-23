@@ -4,17 +4,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.Instance;
 public final class c2 implements Instance.OnStateUpdatedListener {
-    public final d2 f618a;
+    public final d2 f636a;
 
     public c2(d2 d2Var) {
-        this.f618a = d2Var;
+        this.f636a = d2Var;
     }
 
     @Override
     public final void onStateUpdated(int i10, boolean z10) {
-        d2 d2Var = this.f618a;
+        d2 d2Var = this.f636a;
         boolean m10 = d2Var.m();
-        d2Var.f694y = i10;
+        d2Var.f703y = i10;
         FileLog.d("[LivePlayer] connectionState = " + i10);
         if (m10 != d2Var.m()) {
             AndroidUtilities.runOnUIThread(new a3.d(this, 4));

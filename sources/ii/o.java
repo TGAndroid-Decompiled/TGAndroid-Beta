@@ -5,26 +5,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fk;
-import org.telegram.ui.Components.vi;
-public final class o implements fk {
-    public final vi f11523a;
-    public final r f11524b;
+import org.telegram.ui.Components.gk;
+import org.telegram.ui.Components.wi;
+public final class o implements gk {
+    public final wi f11517a;
+    public final r f11518b;
 
-    public o(r rVar, vi viVar) {
-        this.f11524b = rVar;
-        this.f11523a = viVar;
+    public o(r rVar, wi wiVar) {
+        this.f11518b = rVar;
+        this.f11517a = wiVar;
     }
 
     @Override
     public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
         String str2;
-        w3 w3Var = this.f11524b.f11590r;
+        x3 x3Var = this.f11518b.f11572r;
         if (!arrayList.isEmpty()) {
-            w3Var.c2((String) arrayList.get(0));
+            x3Var.c2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
             MessageObject messageObject = (MessageObject) arrayList3.get(0);
-            w3Var.getClass();
+            x3Var.getClass();
             if (messageObject != null && messageObject.getDocument() != null) {
                 TLRPC.Document document = messageObject.getDocument();
                 TLRPC.Message message = messageObject.messageOwner;
@@ -33,10 +33,10 @@ public final class o implements fk {
                 } else {
                     str2 = null;
                 }
-                w3Var.d2(document, str2);
+                x3Var.d2(document, str2);
             }
         }
-        this.f11523a.dismiss(true);
+        this.f11517a.dismiss(true);
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class o implements fk {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f11524b.f26461b.f28747f0.startActivityForResult(intent, 21);
+            this.f11518b.f26744b.f29665f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

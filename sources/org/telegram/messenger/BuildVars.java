@@ -33,7 +33,7 @@ public class BuildVars {
             z10 = false;
         }
         NO_SCOPED_STORAGE = z10;
-        BUILD_VERSION_STRING = "12.10.4";
+        BUILD_VERSION_STRING = "12.10.5";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -81,7 +81,7 @@ public class BuildVars {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ArrayList arrayList2 = ((c5.n) obj).f3911b.f3909a;
+                ArrayList arrayList2 = ((c5.n) obj).f3906b.f3904a;
                 int size2 = arrayList2.size();
                 int i11 = 0;
                 while (i11 < size2) {
@@ -89,7 +89,7 @@ public class BuildVars {
                     i11++;
                     c5.l lVar = (c5.l) obj2;
                     for (String str : MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency) {
-                        if (Objects.equals(lVar.f3908c, str)) {
+                        if (Objects.equals(lVar.f3903c, str)) {
                             return true;
                         }
                     }

@@ -1,36 +1,33 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.tgnet.tl.TL_stories;
-public final class e90 implements e2.h {
-    public final int f33229a = 0;
-    public final LaunchActivity f33230b;
-    public final nf.e f33231c;
-    public final Runnable d;
-    public final Long e;
-    public final org.telegram.ui.Cells.t1 f33232f;
-    public final Object f33233g;
+import android.content.DialogInterface;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+public final class e90 implements DialogInterface.OnDismissListener {
+    public final int f32850a;
+    public final LaunchActivity f32851b;
 
-    public e90(LaunchActivity launchActivity, nf.e eVar, Long l4, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.Cells.t1 t1Var, Runnable runnable) {
-        this.f33230b = launchActivity;
-        this.f33231c = eVar;
-        this.e = l4;
-        this.f33233g = tL_premium_boostsStatus;
-        this.f33232f = t1Var;
-        this.d = runnable;
+    public e90(LaunchActivity launchActivity, int i10) {
+        this.f32850a = i10;
+        this.f32851b = launchActivity;
     }
 
     @Override
-    public final void accept(java.lang.Object r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.e90.accept(java.lang.Object):void");
-    }
-
-    public e90(LaunchActivity launchActivity, nf.e eVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l4, org.telegram.ui.Cells.t1 t1Var) {
-        this.f33230b = launchActivity;
-        this.f33231c = eVar;
-        this.d = runnable;
-        this.f33233g = channelBoostsController;
-        this.e = l4;
-        this.f33232f = t1Var;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        int i10 = this.f32850a;
+        LaunchActivity launchActivity = this.f32851b;
+        switch (i10) {
+            case 0:
+                launchActivity.f30826v1 = false;
+                return;
+            case 1:
+                Pattern pattern = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new c90(launchActivity, 9), 30000L);
+                return;
+            default:
+                Pattern pattern2 = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new c90(launchActivity, 10), 30000L);
+                return;
+        }
     }
 }

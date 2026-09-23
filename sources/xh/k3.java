@@ -2,42 +2,30 @@ package xh;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.vl;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.u9;
-import org.telegram.ui.Components.xi0;
-import w7.x5;
-public final class k3 extends LinearLayout {
-    public final TextView f45963a;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.v51;
+public final class k3 extends g51 {
+    static {
+        g51.setup(new g51());
+    }
 
-    public k3(Context context, e6 e6Var) {
-        super(context);
-        setOrientation(1);
-        u9 u9Var = new u9(context);
-        u9Var.setImageDrawable(new xi0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
-        addView(u9Var, x5.t(64, 64, 17, 0, 32, 0, 0));
-        TextView textView = new TextView(context);
-        this.f45963a = textView;
-        vl.o(i6.A6, e6Var, textView, 1, 14.0f);
-        textView.setGravity(17);
-        addView(textView, x5.t(-1, -2, 7, 12, 12, 12, 24));
+    public static h51 a(String str) {
+        h51 J = h51.J(k3.class);
+        J.f24507l = str;
+        return J;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            size = AndroidUtilities.dp(250.0f);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        ((l3) view).set(h51Var.f24507l);
     }
 
-    public void set(CharSequence charSequence) {
-        this.f45963a.setText(charSequence);
+    @Override
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, d6 d6Var) {
+        return new l3(context, d6Var);
     }
 }

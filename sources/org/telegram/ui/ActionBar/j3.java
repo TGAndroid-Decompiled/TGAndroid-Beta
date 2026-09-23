@@ -1,66 +1,40 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import android.content.DialogInterface;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.xa;
-import org.telegram.ui.f41;
-public final class j3 implements Utilities.Callback {
-    public final int f19248a;
+public final class j3 implements DialogInterface.OnDismissListener {
+    public final int f19246a = 1;
+    public final Utilities.Callback f19247b;
+    public final boolean[] f19248c;
 
-    public j3(int i10) {
-        this.f19248a = i10;
+    public j3(Utilities.Callback callback, boolean[] zArr) {
+        this.f19247b = callback;
+        this.f19248c = zArr;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f19248a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f19246a) {
             case 0:
-                Boolean bool = (Boolean) obj;
-                HashMap hashMap = o3.K;
-                return;
-            case 1:
-                Boolean bool2 = (Boolean) obj;
-                int i10 = m3.f19399r;
-                return;
-            case 2:
-                ArrayList arrayList = (ArrayList) obj;
-                int i11 = xa.f21630f;
-                return;
-            case 3:
-                ((Boolean) obj).getClass();
-                return;
-            case 4:
-                Integer num = (Integer) obj;
-                return;
-            case 5:
-                HashSet hashSet = (HashSet) obj;
-                String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
-                hashSet.addAll(f41.Y());
-                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
-                    edit.remove("translate_button_restricted_languages");
-                } else {
-                    edit.putStringSet("translate_button_restricted_languages", hashSet);
-                }
-                edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                f41.f33493s = false;
-                for (int i12 = 0; i12 < 4; i12++) {
-                    try {
-                        MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();
-                    } catch (Exception unused) {
-                    }
+                boolean[] zArr = this.f19248c;
+                if (!zArr[0]) {
+                    this.f19247b.run(Boolean.FALSE);
+                    zArr[0] = true;
+                    return;
                 }
                 return;
             default:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                Utilities.Callback callback = this.f19247b;
+                if (callback != null && !this.f19248c[0]) {
+                    callback.run(Boolean.FALSE);
+                    return;
+                }
                 return;
         }
+    }
+
+    public j3(boolean[] zArr, Utilities.Callback callback) {
+        this.f19248c = zArr;
+        this.f19247b = callback;
     }
 }

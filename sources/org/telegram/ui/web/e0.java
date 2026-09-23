@@ -1,39 +1,32 @@
 package org.telegram.ui.web;
 
-import ai.da;
-import android.app.Activity;
-import org.json.JSONObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.u9;
-public final class e0 implements NotificationCenter.NotificationCenterDelegate {
-    public final da f38940a;
-    public final d1 f38941b;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.xn;
+public final class e0 extends xn {
+    public boolean Pc;
+    public final TLRPC.User Qc;
+    public final long Rc;
+    public final b1 Sc;
 
-    public e0(d1 d1Var, da daVar) {
-        this.f38941b = d1Var;
-        this.f38940a = daVar;
+    public e0(b1 b1Var, Bundle bundle, TLRPC.User user, long j3) {
+        super(bundle);
+        this.Sc = b1Var;
+        this.Qc = user;
+        this.Rc = j3;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.onRequestPermissionResultReceived;
-        if (i10 == i12) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == 5000) {
-                NotificationCenter.getGlobalInstance().removeObserver(this, i12);
-                int i13 = iArr[0];
-                d1 d1Var = this.f38941b;
-                if (i13 == 0) {
-                    Activity activity = d1Var.W;
-                    if (activity != null) {
-                        d1Var.f38909g0 = u9.e0(activity, 3, new k2.u(d1Var, 16));
-                        return;
-                    }
-                    return;
-                }
-                d1Var.y(this.f38940a, "scan_qr_popup_closed", new JSONObject());
-            }
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Pc) {
+            this.Pc = true;
+            xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Sc.U)), new ai.j(this, this.Rc, 28)), R.raw.contact_check).j();
         }
     }
 }

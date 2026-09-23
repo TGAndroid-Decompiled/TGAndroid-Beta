@@ -17,11 +17,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.ActionBar.c5;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.bo;
-import org.telegram.ui.uy;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.ry;
+import org.telegram.ui.xn;
 public abstract class u0 {
     public static SpannableStringBuilder a(MessageObject messageObject, String str, String str2, boolean z10, boolean z11) {
         boolean z12;
@@ -135,7 +135,7 @@ public abstract class u0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (DialogObject.getPeerDialogId(communityPeer2.peer) == j3) {
                     if (user != null) {
-                        dialog = MessagesController.getInstance(i10).getDialog(user.f18256id);
+                        dialog = MessagesController.getInstance(i10).getDialog(user.f18230id);
                     }
                     return c(communityPeer2, chat, user, dialog);
                 }
@@ -170,49 +170,49 @@ public abstract class u0 {
     }
 
     public static void d(n2 n2Var, long j3, int i10) {
-        d5 d5Var;
-        bo boVar;
+        c5 c5Var;
+        xn xnVar;
         int i11;
         List list = null;
         if (!AndroidUtilities.isTablet()) {
-            d5Var = n2Var.getParentLayout();
-            if (d5Var != null) {
-                List fragmentStack = d5Var.getFragmentStack();
+            c5Var = n2Var.getParentLayout();
+            if (c5Var != null) {
+                List fragmentStack = c5Var.getFragmentStack();
                 i11 = fragmentStack.size() - 2;
                 while (i11 >= 0) {
                     n2 n2Var2 = (n2) fragmentStack.get(i11);
-                    if (n2Var2 instanceof bo) {
-                        boVar = (bo) n2Var2;
-                        if (boVar.a() == j3) {
+                    if (n2Var2 instanceof xn) {
+                        xnVar = (xn) n2Var2;
+                        if (xnVar.a() == j3) {
                             list = fragmentStack;
                             break;
                         }
                     }
                     i11--;
                 }
-                boVar = null;
+                xnVar = null;
                 list = fragmentStack;
             } else {
-                boVar = null;
+                xnVar = null;
             }
         } else {
-            d5Var = null;
-            boVar = null;
+            c5Var = null;
+            xnVar = null;
         }
         i11 = -1;
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(j3, n2Var.getCurrentAccount());
         if (i11 != -1) {
             for (int size = list.size() - 2; size > i11; size--) {
-                ((ActionBarLayout) d5Var).a0((n2) list.get(size), false);
+                ((ActionBarLayout) c5Var).a0((n2) list.get(size), false);
             }
             n2Var.finishFragment();
-            AndroidUtilities.runOnUIThread(new p0(i10, boVar, isChannelAndNotMegaGroup), 250L);
+            AndroidUtilities.runOnUIThread(new p0(i10, xnVar, isChannelAndNotMegaGroup), 250L);
             return;
         }
-        if (!(n2Var instanceof uy)) {
+        if (!(n2Var instanceof ry)) {
             n2Var.finishFragment();
         }
-        f(vc.X(), i10, isChannelAndNotMegaGroup);
+        f(xc.X(), i10, isChannelAndNotMegaGroup);
     }
 
     public static void e(final b2[] b2VarArr, n2 n2Var, final int i10, TLRPC.Chat chat) {
@@ -233,7 +233,7 @@ public abstract class u0 {
         });
     }
 
-    public static void f(vc vcVar, int i10, boolean z10) {
+    public static void f(xc xcVar, int i10, boolean z10) {
         int i11;
         int i12;
         String string;
@@ -260,6 +260,6 @@ public abstract class u0 {
         } else {
             string = LocaleController.getString(R.string.CommunityCommunityPending);
         }
-        vcVar.G(i11, i12, string).j();
+        xcVar.G(i11, i12, string).j();
     }
 }

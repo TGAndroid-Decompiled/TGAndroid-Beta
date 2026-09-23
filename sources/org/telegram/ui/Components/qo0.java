@@ -12,18 +12,18 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class qo0 extends kl0 {
-    public final org.telegram.ui.ActionBar.e6 f27406c;
+public final class qo0 extends ll0 {
+    public final org.telegram.ui.ActionBar.d6 f27417c;
     public final List d;
     public final MessagesController e;
-    public final int f27407f;
+    public final int f27418f;
     public final TLRPC.Peer h;
 
-    public qo0(org.telegram.ui.ActionBar.e6 e6Var, List list, MessagesController messagesController, int i10, TLRPC.Peer peer) {
-        this.f27406c = e6Var;
+    public qo0(org.telegram.ui.ActionBar.d6 d6Var, List list, MessagesController messagesController, int i10, TLRPC.Peer peer) {
+        this.f27417c = d6Var;
         this.d = list;
         this.e = messagesController;
-        this.f27407f = i10;
+        this.f27418f = i10;
         this.h = peer;
     }
 
@@ -41,7 +41,7 @@ public final class qo0 extends kl0 {
     public final void v(s4.c1 c1Var, int i10) {
         long j3;
         String str;
-        uo0 uo0Var = (uo0) c1Var.f42671a;
+        uo0 uo0Var = (uo0) c1Var.f42627a;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i10);
         TLRPC.Peer peer = tL_sendAsPeer.peer;
         long j10 = peer.channel_id;
@@ -65,31 +65,31 @@ public final class qo0 extends kl0 {
                 if (tL_sendAsPeer.premium_required) {
                     StringBuilder sb2 = new StringBuilder();
                     String str2 = chat.title;
-                    TextView textView = uo0Var.f28475b;
-                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f27407f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
+                    TextView textView = uo0Var.f28528b;
+                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f27418f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
                     sb2.append(" d");
                     SpannableString spannableString = new SpannableString(sb2.toString());
-                    oq oqVar = new oq(R.drawable.msg_mini_premiumlock, 0);
-                    oqVar.setTopOffset(1);
-                    oqVar.setSize(AndroidUtilities.dp(14.0f));
-                    oqVar.setColorKey(org.telegram.ui.ActionBar.i6.C6);
-                    spannableString.setSpan(oqVar, spannableString.length() - 1, spannableString.length(), 33);
+                    pq pqVar = new pq(R.drawable.msg_mini_premiumlock, 0);
+                    pqVar.setTopOffset(1);
+                    pqVar.setSize(AndroidUtilities.dp(14.0f));
+                    pqVar.setColorKey(org.telegram.ui.ActionBar.h6.C6);
+                    spannableString.setSpan(pqVar, spannableString.length() - 1, spannableString.length(), 33);
                     textView.setEllipsize(null);
                     textView.setText(spannableString);
                 } else {
-                    uo0Var.f28475b.setEllipsize(TextUtils.TruncateAt.END);
-                    uo0Var.f28475b.setText(chat.title);
+                    uo0Var.f28528b.setEllipsize(TextUtils.TruncateAt.END);
+                    uo0Var.f28528b.setText(chat.title);
                 }
-                TextView textView2 = uo0Var.f28476c;
+                TextView textView2 = uo0Var.f28529c;
                 if (ChatObject.isChannel(chat) && !chat.megagroup) {
                     str = "Subscribers";
                 } else {
                     str = "Members";
                 }
                 textView2.setText(LocaleController.formatPluralString(str, chat.participants_count, new Object[0]));
-                uo0Var.f28474a.setAvatar(chat);
+                uo0Var.f28527a.setAvatar(chat);
             }
-            fv0 fv0Var = uo0Var.f28474a;
+            fv0 fv0Var = uo0Var.f28527a;
             if (peer2 == null ? i10 != 0 : peer2.channel_id != peer.channel_id) {
                 z10 = false;
             }
@@ -98,11 +98,11 @@ public final class qo0 extends kl0 {
         }
         TLRPC.User user = messagesController.getUser(Long.valueOf(j3));
         if (user != null) {
-            uo0Var.f28475b.setText(UserObject.getUserName(user));
-            uo0Var.f28476c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
-            uo0Var.f28474a.setAvatar(user);
+            uo0Var.f28528b.setText(UserObject.getUserName(user));
+            uo0Var.f28529c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
+            uo0Var.f28527a.setAvatar(user);
         }
-        fv0 fv0Var2 = uo0Var.f28474a;
+        fv0 fv0Var2 = uo0Var.f28527a;
         if (peer2 == null ? i10 != 0 : peer2.user_id != peer.user_id) {
             z10 = false;
         }
@@ -111,6 +111,6 @@ public final class qo0 extends kl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new uo0(viewGroup.getContext(), this.f27406c));
+        return new s4.c1(new uo0(viewGroup.getContext(), this.f27417c));
     }
 }

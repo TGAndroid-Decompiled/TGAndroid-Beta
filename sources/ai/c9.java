@@ -3,19 +3,19 @@ package ai;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ny0;
-import org.telegram.ui.Components.q30;
+import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.r30;
 public final class c9 implements Runnable {
-    public final int f644a;
-    public final int f645b;
-    public final Object f646c;
+    public final int f653a;
+    public final int f654b;
+    public final Object f655c;
     public final Object d;
     public final Object e;
 
     public c9(int i10, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback) {
-        this.f644a = 1;
-        this.f645b = i10;
-        this.f646c = arrayList;
+        this.f653a = 1;
+        this.f654b = i10;
+        this.f655c = arrayList;
         this.d = hashMap;
         this.e = callback;
     }
@@ -26,42 +26,42 @@ public final class c9 implements Runnable {
     }
 
     public c9(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f644a = i11;
+        this.f653a = i11;
         this.d = obj;
-        this.f645b = i10;
-        this.f646c = obj2;
+        this.f654b = i10;
+        this.f655c = obj2;
         this.e = obj3;
     }
 
     public c9(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f644a = i11;
+        this.f653a = i11;
         this.d = obj;
-        this.f646c = obj2;
-        this.f645b = i10;
+        this.f655c = obj2;
+        this.f654b = i10;
         this.e = obj3;
     }
 
     public c9(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f644a = i11;
+        this.f653a = i11;
         this.d = obj;
-        this.f646c = obj2;
+        this.f655c = obj2;
         this.e = obj3;
-        this.f645b = i10;
+        this.f654b = i10;
     }
 
-    public c9(q30 q30Var, String str, int i10, ArrayList arrayList) {
-        this.f644a = 19;
-        this.d = q30Var;
+    public c9(r30 r30Var, String str, int i10, ArrayList arrayList) {
+        this.f653a = 19;
+        this.d = r30Var;
         this.e = str;
-        this.f645b = i10;
-        this.f646c = arrayList;
+        this.f654b = i10;
+        this.f655c = arrayList;
     }
 
-    public c9(ny0 ny0Var, int i10, String str, ArrayList arrayList) {
-        this.f644a = 28;
-        this.d = ny0Var;
-        this.f645b = i10;
+    public c9(my0 my0Var, int i10, String str, ArrayList arrayList) {
+        this.f653a = 28;
+        this.d = my0Var;
+        this.f654b = i10;
         this.e = str;
-        this.f646c = arrayList;
+        this.f655c = arrayList;
     }
 }

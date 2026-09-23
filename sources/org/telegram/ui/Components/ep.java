@@ -1,46 +1,97 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.nd1;
-public final class ep implements nd1 {
-    public final mp f23728a;
+import org.telegram.ui.zi1;
+public final class ep implements ui {
+    public final np f23731a;
 
-    public ep(mp mpVar) {
-        this.f23728a = mpVar;
+    public ep(np npVar) {
+        this.f23731a = npVar;
     }
 
     @Override
-    public final boolean Y0() {
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        np npVar = this.f23731a;
+        try {
+            HashMap<Object, Object> selectedPhotos = npVar.Y.f29677j0.getSelectedPhotos();
+            if (!selectedPhotos.isEmpty()) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
+                String str = photoEntry.imagePath;
+                if (str == null) {
+                    str = photoEntry.path;
+                }
+                if (str != null) {
+                    File directory = FileLoader.getDirectory(4);
+                    File file = new File(directory, Utilities.random.nextInt() + ".jpg");
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+                    bp bpVar = new bp(new zi1(file, file, ""), loadBitmap, false, 2);
+                    bpVar.V1 = npVar.f26467f0;
+                    bpVar.F1 = false;
+                    bpVar.E1 = false;
+                    bpVar.f35819n1 = 0.2f;
+                    bpVar.c1(npVar.v.a());
+                    bpVar.I1 = new dp(this, 0);
+                    np.q(npVar, bpVar);
+                }
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+        }
+    }
+
+    @Override
+    public final boolean S1() {
+        System.currentTimeMillis();
         return true;
     }
 
     @Override
-    public final boolean a() {
-        return this.f23728a.N;
+    public final void U0(Object obj) {
+        bp bpVar = new bp(obj, null, true, 3);
+        np npVar = this.f23731a;
+        bpVar.V1 = npVar.f26467f0;
+        bpVar.c1(npVar.v.a());
+        bpVar.I1 = new dp(this, 1);
+        np.q(npVar, bpVar);
     }
 
     @Override
-    public final void o1(boolean z10) {
-        TLRPC.WallPaper wallPaper;
-        mp mpVar = this.f23728a;
-        org.telegram.ui.bo boVar = mpVar.v;
-        mpVar.N = !mpVar.N;
-        if (mpVar.M != null) {
-            mpVar.P = true;
-            boVar.e7 = true;
-            if (mpVar.v()) {
-                wallPaper = null;
-            } else {
-                wallPaper = mpVar.f26203n.h;
-            }
-            TLRPC.WallPaper wallPaper2 = wallPaper;
-            org.telegram.ui.ActionBar.d4 d4Var = mpVar.M.f25997a;
-            if (d4Var.f18587a) {
-                mpVar.f26203n.i(null, wallPaper2, z10, Boolean.valueOf(mpVar.N), false);
-            } else {
-                mpVar.f26203n.i(d4Var, wallPaper2, z10, Boolean.valueOf(mpVar.N), false);
-            }
-            boVar.e7 = false;
-        }
+    public final boolean c0() {
+        return false;
+    }
+
+    @Override
+    public final void x0(gh ghVar) {
+        ghVar.run();
+    }
+
+    @Override
+    public final void K0() {
+    }
+
+    @Override
+    public final void j1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void u0() {
+    }
+
+    @Override
+    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

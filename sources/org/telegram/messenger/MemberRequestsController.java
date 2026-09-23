@@ -47,7 +47,7 @@ public class MemberRequestsController extends BaseController {
     }
 
     public void lambda$getImporters$1(TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, long j3, RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new xk(j3, this, requestDelegate, tLObject, tL_chatInviteImporter, tL_error, z10));
+        AndroidUtilities.runOnUIThread(new wk(j3, this, requestDelegate, tLObject, tL_chatInviteImporter, tL_error, z10));
     }
 
     public TLRPC.TL_messages_chatInviteImporters getCachedImporters(long j3) {
@@ -61,7 +61,7 @@ public class MemberRequestsController extends BaseController {
         tL_messages_getChatInviteImporters.requested = true;
         tL_messages_getChatInviteImporters.limit = 30;
         if (!isEmpty) {
-            tL_messages_getChatInviteImporters.f18196q = str;
+            tL_messages_getChatInviteImporters.f18170q = str;
             tL_messages_getChatInviteImporters.flags |= 4;
         }
         if (tL_chatInviteImporter == null) {

@@ -1,34 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class xt implements DialogInterface.OnShowListener {
-    public final int f30056a;
-    public final EditTextBoldCursor f30057b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+public final class xt implements org.telegram.ui.ActionBar.a2 {
+    public final int f30051a;
+    public final int f30052b;
+    public final Object f30053c;
 
-    public xt(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f30056a = i10;
-        this.f30057b = editTextBoldCursor;
+    public xt(int i10, int i11, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f30051a = i10;
+        this.f30052b = i11;
+        this.f30053c = n2Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f30056a) {
-            case 0:
-                fi.o oVar = (fi.o) this.f30057b;
-                oVar.requestFocus();
-                AndroidUtilities.showKeyboard(oVar);
-                return;
-            case 1:
-                fi.o oVar2 = (fi.o) this.f30057b;
-                oVar2.requestFocus();
-                AndroidUtilities.showKeyboard(oVar2);
-                return;
-            default:
-                d4 d4Var = (d4) this.f30057b;
-                d4Var.requestFocus();
-                AndroidUtilities.showKeyboard(d4Var);
-                return;
-        }
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        nf.e g10 = b2Var.g(-1, true, true);
+        g10.d();
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = this.f30051a;
+        int i11 = this.f30052b;
+        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new ei.h1(i11, (org.telegram.ui.ActionBar.n2) this.f30053c, g10, b2Var));
+    }
+
+    public xt(cu cuVar, int i10, int i11) {
+        this.f30053c = cuVar;
+        this.f30051a = i10;
+        this.f30052b = i11;
     }
 }

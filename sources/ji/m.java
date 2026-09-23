@@ -1,21 +1,21 @@
 package ji;
 public final class m extends s4.i {
-    public int f13081f;
-    public int f13082g;
+    public int f13071f;
+    public int f13072g;
     public int h;
-    public int f13083i;
-    public boolean f13084j;
-    public boolean f13085k;
-    public boolean f13086l;
-    public boolean f13087m;
-    public boolean f13088n;
-    public float f13089o;
-    public float f13090p;
-    public float f13091q;
-    public float f13092r;
-    public int f13093s;
-    public int f13094t;
-    public int f13095u;
+    public int f13073i;
+    public boolean f13074j;
+    public boolean f13075k;
+    public boolean f13076l;
+    public boolean f13077m;
+    public boolean f13078n;
+    public float f13079o;
+    public float f13080p;
+    public float f13081q;
+    public float f13082r;
+    public int f13083s;
+    public int f13084t;
+    public int f13085u;
     public int v;
-    public boolean f13096w;
+    public boolean f13086w;
 }

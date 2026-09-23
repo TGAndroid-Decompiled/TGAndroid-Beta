@@ -7,26 +7,26 @@ import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import org.telegram.ui.web.u0;
+import org.telegram.ui.web.t0;
 public final class t {
     public static volatile k e;
-    public final u5.a f13917a;
-    public final u5.a f13918b;
-    public final q5.b f13919c;
+    public final u5.a f13905a;
+    public final u5.a f13906b;
+    public final q5.b f13907c;
     public final da.b d;
 
     public t(u5.a aVar, u5.a aVar2, q5.b bVar, da.b bVar2, com.google.firebase.messaging.t tVar) {
-        this.f13917a = aVar;
-        this.f13918b = aVar2;
-        this.f13919c = bVar;
+        this.f13905a = aVar;
+        this.f13906b = aVar2;
+        this.f13907c = bVar;
         this.d = bVar2;
-        ((Executor) tVar.f7349b).execute(new u0(tVar, 23));
+        ((Executor) tVar.f7335b).execute(new t0(tVar, 23));
     }
 
     public static t a() {
         k kVar = e;
         if (kVar != null) {
-            return (t) kVar.f13902f.mo28get();
+            return (t) kVar.f13890f.mo28get();
         }
         throw new IllegalStateException("Not initialized!");
     }
@@ -38,7 +38,7 @@ public final class t {
                     if (e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f13898a = context;
+                        obj.f13886a = context;
                         e = obj.a();
                     }
                 } catch (Throwable th2) {
@@ -60,8 +60,8 @@ public final class t {
         lVar.getClass();
         a2.f359b = "cct";
         j5.a aVar = (j5.a) lVar;
-        String str = aVar.f12878a;
-        String str2 = aVar.f12879b;
+        String str = aVar.f12868a;
+        String str2 = aVar.f12869b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {

@@ -1,47 +1,35 @@
 package i2;
-public final class k1 extends u2.r {
-    public final int f10769f = 0;
-    public final Object f10770g;
 
-    public k1(b2.k1 k1Var, b2.k0 k0Var) {
-        super(k1Var);
-        this.f10770g = k0Var;
+import android.os.Looper;
+public final class k1 {
+    public final j1 f10754a;
+    public final i1 f10755b;
+    public int f10756c;
+    public Object d;
+    public final Looper e;
+    public boolean f10757f;
+
+    public k1(i1 i1Var, j1 j1Var, b2.k1 k1Var, int i10, Looper looper) {
+        this.f10755b = i1Var;
+        this.f10754a = j1Var;
+        this.e = looper;
     }
 
-    @Override
-    public b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
-        switch (this.f10769f) {
-            case 0:
-                b2.k1 k1Var = this.e;
-                b2.h1 f7 = k1Var.f(i10, h1Var, z10);
-                if (k1Var.m(f7.f3011c, (b2.j1) this.f10770g, 0L).a()) {
-                    f7.h(h1Var.f3009a, h1Var.f3010b, h1Var.f3011c, h1Var.d, h1Var.e, b2.b.f2932c, true);
-                } else {
-                    f7.f3012f = true;
-                }
-                return f7;
-            default:
-                return super.f(i10, h1Var, z10);
+    public final synchronized void a(boolean z10) {
+        synchronized (this) {
+            notifyAll();
         }
     }
 
-    @Override
-    public b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        switch (this.f10769f) {
-            case 1:
-                super.m(i10, j1Var, j3);
-                b2.k0 k0Var = (b2.k0) this.f10770g;
-                j1Var.f3057c = k0Var;
-                b2.f0 f0Var = k0Var.f3075b;
-                j1Var.getClass();
-                return j1Var;
-            default:
-                return super.m(i10, j1Var, j3);
+    public final void b() {
+        e2.d.g(!this.f10757f);
+        this.f10757f = true;
+        p0 p0Var = (p0) this.f10755b;
+        if (!p0Var.X && p0Var.f10839s.getThread().isAlive()) {
+            p0Var.f10832n.a(14, this).b();
+            return;
         }
-    }
-
-    public k1(b2.k1 k1Var) {
-        super(k1Var);
-        this.f10770g = new b2.j1();
+        e2.a.n("ExoPlayerImplInternal", "Ignoring messages sent after release.");
+        a(false);
     }
 }

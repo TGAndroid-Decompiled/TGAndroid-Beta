@@ -1,93 +1,37 @@
 package ci;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import java.io.File;
 import org.telegram.messenger.Utilities;
-public final class ed extends View implements x2 {
-    public Paint f4611a;
-    public Paint f4612b;
-    public org.telegram.ui.Components.m6 f4613c;
-    public boolean d;
-    public org.telegram.ui.Components.c6 e;
+import org.telegram.ui.Components.sl;
+public final class ed implements Utilities.Callback {
+    public final int f4663a;
+    public final boolean f4664b;
+    public final Object f4665c;
+    public final Object d;
 
-    public final void a(long j3, boolean z10) {
-        long j10 = j3 % 60;
-        long j11 = (j3 - j10) / 60;
-        StringBuilder sb2 = new StringBuilder(5);
-        if (j11 < 10) {
-            sb2.append('0');
-        }
-        sb2.append(j11);
-        sb2.append(':');
-        if (j10 < 10) {
-            sb2.append('0');
-        }
-        sb2.append(j10);
-        this.f4613c.q(sb2, z10, true);
-    }
-
-    public final void b(boolean z10, boolean z11) {
-        float f7;
-        this.d = z10;
-        if (!z11) {
-            org.telegram.ui.Components.c6 c6Var = this.e;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            c6Var.d(f7, true);
-        }
-        invalidate();
+    public ed(Object obj, boolean z10, Object obj2, int i10) {
+        this.f4663a = i10;
+        this.f4665c = obj;
+        this.f4664b = z10;
+        this.d = obj2;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f4612b;
-        org.telegram.ui.Components.m6 m6Var = this.f4613c;
-        super.onDraw(canvas);
-        org.telegram.ui.Components.c6 c6Var = this.e;
-        if (this.d) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = c6Var.d(f7, false);
-        float dp = AndroidUtilities.dp(12.66f) * d;
-        float d10 = m6Var.d() + dp;
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(((getWidth() - d10) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + d10) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f4611a);
-        if (d > 0.0f) {
-            paint.setAlpha((int) (Utilities.clamp((((float) Math.sin((((float) (System.currentTimeMillis() % 2000)) / 1000.0f) * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
-            invalidate();
-            canvas.drawCircle(rectF.left + AndroidUtilities.dp(10.66f), rectF.centerY(), AndroidUtilities.dp(4.0f) * d, paint);
-        }
-        m6Var.setBounds((int) (rectF.left + dp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
-        m6Var.draw(canvas);
+    public final void run(java.lang.Object r23) {
+        throw new UnsupportedOperationException("Method not decompiled: ci.ed.run(java.lang.Object):void");
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
+    public ed(sl slVar, File file, boolean z10) {
+        this.f4663a = 1;
+        this.f4665c = slVar;
+        this.d = file;
+        this.f4664b = z10;
     }
 
-    @Override
-    public void setInvert(float f7) {
-        this.f4611a.setColor(i0.a.d(f7, 1056964608, 268435456));
-        this.f4613c.r(i0.a.d(f7, -1, -16777216));
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f4613c != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public ed(boolean z10, Object obj, Object obj2, int i10) {
+        this.f4663a = i10;
+        this.f4664b = z10;
+        this.f4665c = obj;
+        this.d = obj2;
     }
 }

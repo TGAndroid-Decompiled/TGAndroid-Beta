@@ -3,13 +3,13 @@ package f5;
 import com.google.android.gms.internal.vision.e2;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
-import k2.c0;
+import k2.b0;
 public final class i extends com.googlecode.mp4parser.a {
-    public static final c0 d;
-    public static final c0 e;
-    public String f8910a;
-    public long f8911b;
-    public LinkedList f8912c;
+    public static final b0 d;
+    public static final b0 e;
+    public String f8896a;
+    public long f8897b;
+    public LinkedList f8898c;
 
     static {
         re.a aVar = new re.a(i.class, "FileTypeBox.java");
@@ -23,37 +23,37 @@ public final class i extends com.googlecode.mp4parser.a {
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        this.f8910a = e5.b.d(byteBuffer);
-        this.f8911b = e5.b.i(byteBuffer);
+        this.f8896a = e5.b.d(byteBuffer);
+        this.f8897b = e5.b.i(byteBuffer);
         int remaining = byteBuffer.remaining() / 4;
-        this.f8912c = new LinkedList();
+        this.f8898c = new LinkedList();
         for (int i10 = 0; i10 < remaining; i10++) {
-            this.f8912c.add(e5.b.d(byteBuffer));
+            this.f8898c.add(e5.b.d(byteBuffer));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
-        byteBuffer.put(e5.c.d(this.f8910a));
-        byteBuffer.putInt((int) this.f8911b);
-        for (String str : this.f8912c) {
+        byteBuffer.put(e5.c.d(this.f8896a));
+        byteBuffer.putInt((int) this.f8897b);
+        for (String str : this.f8898c) {
             byteBuffer.put(e5.c.d(str));
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f8912c.size() * 4) + 8;
+        return (this.f8898c.size() * 4) + 8;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("FileTypeBox[majorBrand=");
         e2.q(re.a.b(d, this, this));
-        sb2.append(this.f8910a);
+        sb2.append(this.f8896a);
         sb2.append(";minorVersion=");
         e2.q(re.a.b(e, this, this));
-        sb2.append(this.f8911b);
-        for (String str : this.f8912c) {
+        sb2.append(this.f8897b);
+        for (String str : this.f8898c) {
             sb2.append(";compatibleBrand=");
             sb2.append(str);
         }

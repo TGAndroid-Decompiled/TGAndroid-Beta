@@ -1,59 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public abstract class nd extends FrameLayout {
-    public ai.f0 f26436a;
-    public ld f26437b;
-    public boolean f26438c;
+import android.content.Context;
+import android.widget.LinearLayout;
+public final class nd extends LinearLayout {
+    public final od[] f26410a;
 
-    public final void a(ld ldVar, FrameLayout.LayoutParams layoutParams) {
-        if (this.f26437b == null) {
-            this.f26437b = ldVar;
-            ldVar.setVisibility(8);
-            addView(ldVar, layoutParams);
+    public nd(Context context) {
+        super(context);
+        this.f26410a = new od[2];
+    }
+
+    public final void a(org.telegram.ui.mk mkVar, LinearLayout.LayoutParams layoutParams) {
+        int childCount = getChildCount();
+        if (childCount < 2) {
+            this.f26410a[childCount] = mkVar;
+            addView(mkVar, layoutParams);
         }
     }
 
-    public final void b(ai.f0 f0Var, FrameLayout.LayoutParams layoutParams) {
-        if (this.f26436a == null) {
-            this.f26436a = f0Var;
-            addView(f0Var, layoutParams);
-        }
-    }
-
-    public ld getEditView() {
-        return this.f26437b;
-    }
-
-    public View getReplyView() {
-        return this.f26436a;
-    }
-
-    public void setEditMode(boolean z10) {
-        int i10;
-        this.f26438c = z10;
-        ai.f0 f0Var = this.f26436a;
-        int i11 = 0;
-        if (z10) {
-            i10 = 8;
-        } else {
-            i10 = 0;
-        }
-        f0Var.setVisibility(i10);
-        ld ldVar = this.f26437b;
-        if (!z10) {
-            i11 = 8;
-        }
-        ldVar.setVisibility(i11);
-    }
-
-    public void setEditSuggestionMode(boolean z10) {
-        setEditMode(z10);
-        if (z10) {
-            this.f26436a.setVisibility(0);
-        }
-        this.f26437b.f25908a[0].setOnlyIconMode(z10);
-        this.f26437b.f25908a[1].setOnlyIconMode(z10);
+    public od[] getButtons() {
+        return this.f26410a;
     }
 }

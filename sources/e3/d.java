@@ -1,23 +1,23 @@
 package e3;
 public final class d implements a {
-    public final int f7957a;
-    public final int f7958b;
-    public final int f7959c;
+    public final int f7943a;
+    public final int f7944b;
+    public final int f7945c;
     public final int d;
     public final int e;
-    public final int f7960f;
+    public final int f7946f;
 
     public d(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f7957a = i10;
-        this.f7958b = i11;
-        this.f7959c = i12;
+        this.f7943a = i10;
+        this.f7944b = i11;
+        this.f7945c = i12;
         this.d = i13;
         this.e = i14;
-        this.f7960f = i15;
+        this.f7946f = i15;
     }
 
     public final int a() {
-        int i10 = this.f7957a;
+        int i10 = this.f7943a;
         if (i10 != 1935960438) {
             if (i10 != 1935963489) {
                 if (i10 != 1937012852) {

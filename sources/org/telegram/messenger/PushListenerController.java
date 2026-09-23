@@ -44,13 +44,13 @@ public class PushListenerController {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 k9.h.f(ApplicationLoader.applicationContext);
-                com.google.firebase.messaging.v vVar = FirebaseMessaging.f7263l;
+                com.google.firebase.messaging.v vVar = FirebaseMessaging.f7249l;
                 synchronized (FirebaseMessaging.class) {
                     firebaseMessaging = FirebaseMessaging.getInstance(k9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7269f.execute(new ci.b9(5, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.f7255f.execute(new ci.y8(5, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new c0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
@@ -72,7 +72,7 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f13510a) == 0) {
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f13498a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -96,7 +96,7 @@ public class PushListenerController {
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("FCM Registration not found.");
             }
-            Utilities.globalQueue.postRunnable(new vg(this, 5));
+            Utilities.globalQueue.postRunnable(new ug(this, 5));
         }
     }
 
@@ -468,7 +468,7 @@ public class PushListenerController {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " POST INIT APP");
         }
-        Utilities.stageQueue.postRunnable(new th(0, j3, str, str2));
+        Utilities.stageQueue.postRunnable(new sh(0, j3, str, str2));
     }
 
     public static void lambda$sendRegistrationToServer$0(int i10, int i11, String str) {
@@ -545,7 +545,7 @@ public class PushListenerController {
             FileLog.d(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        AndroidUtilities.runOnUIThread(new th(1, j3, str3, str));
+        AndroidUtilities.runOnUIThread(new sh(1, j3, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {

@@ -1,6 +1,6 @@
 package z7;
 public final class u8 implements ia.d {
-    public static final u8 f48623a = new Object();
+    public static final u8 f48573a = new Object();
 
     static {
         org.telegram.ui.Cells.q3.t(w.c.l(w.class, new s(1)));

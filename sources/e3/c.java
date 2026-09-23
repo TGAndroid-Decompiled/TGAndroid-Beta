@@ -1,13 +1,13 @@
 package e3;
 public final class c implements a {
-    public final int f7954a;
-    public final int f7955b;
-    public final int f7956c;
+    public final int f7940a;
+    public final int f7941b;
+    public final int f7942c;
 
     public c(int i10, int i11, int i12) {
-        this.f7954a = i10;
-        this.f7955b = i11;
-        this.f7956c = i12;
+        this.f7940a = i10;
+        this.f7941b = i11;
+        this.f7942c = i12;
     }
 
     @Override

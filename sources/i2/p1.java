@@ -1,51 +1,29 @@
 package i2;
+
+import j$.util.Objects;
 public final class p1 {
-    public static final p1 f10858c;
-    public static final p1 d;
-    public static final p1 e;
-    public final long f10859a;
-    public final long f10860b;
+    public static final p1 f10845b;
+    public final e9.m0 f10846a;
 
     static {
-        p1 p1Var = new p1(0L, 0L);
-        f10858c = p1Var;
-        d = new p1(Long.MAX_VALUE, Long.MAX_VALUE);
-        new p1(Long.MAX_VALUE, 0L);
-        new p1(0L, Long.MAX_VALUE);
-        e = p1Var;
+        a4.m mVar = new a4.m(18, false);
+        mVar.f275b = e9.m0.u(2, 1, 5);
+        f10845b = new p1(mVar);
     }
 
-    public p1(long j3, long j10) {
-        boolean z10;
-        if (j3 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        e2.d.b(z10);
-        e2.d.b(j10 >= 0);
-        this.f10859a = j3;
-        this.f10860b = j10;
-    }
-
-    public final long a(long r11, long r13, long r15) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.p1.a(long, long, long):long");
+    public p1(a4.m mVar) {
+        this.f10846a = (e9.m0) mVar.f275b;
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
+        if ((obj instanceof p1) && this.f10846a.equals(((p1) obj).f10846a)) {
             return true;
-        }
-        if (obj != null && p1.class == obj.getClass()) {
-            p1 p1Var = (p1) obj;
-            if (this.f10859a == p1Var.f10859a && this.f10860b == p1Var.f10860b) {
-                return true;
-            }
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((int) this.f10859a) * 31) + ((int) this.f10860b);
+        Boolean bool = Boolean.TRUE;
+        return Objects.hash(this.f10846a, null, null, bool, bool, bool, bool);
     }
 }

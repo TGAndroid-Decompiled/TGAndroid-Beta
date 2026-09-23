@@ -8,44 +8,44 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.g51;
 import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.w51;
-public final class d extends h51 {
-    public static final int f38895a = 0;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.v51;
+public final class d extends g51 {
+    public static final int f38674a = 0;
 
     static {
-        h51.setup(new h51());
+        g51.setup(new g51());
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
         int i10;
         e eVar = (e) view;
-        if (i51Var.G == null) {
-            eVar.setAsShowMore((k) i51Var.H);
+        if (h51Var.G == null) {
+            eVar.setAsShowMore((k) h51Var.H);
             return;
         }
-        int i11 = i51Var.f24913z;
-        String charSequence = i51Var.f24900l.toString();
-        View.OnClickListener onClickListener = i51Var.D;
-        k kVar = (k) i51Var.H;
-        ImageView imageView = eVar.f38937a;
+        int i11 = h51Var.f24520z;
+        String charSequence = h51Var.f24507l.toString();
+        View.OnClickListener onClickListener = h51Var.D;
+        k kVar = (k) h51Var.H;
+        ImageView imageView = eVar.f38680a;
         imageView.setVisibility(0);
         int i12 = kVar.F;
         int i13 = kVar.H;
-        TextView textView = eVar.f38938b;
+        TextView textView = eVar.f38681b;
         textView.setTextColor(i13);
-        int l1 = i6.l1(0.6f, i13);
+        int l1 = h6.l1(0.6f, i13);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(l1, mode));
-        ImageView imageView2 = eVar.f38939c;
-        imageView2.setColorFilter(new PorterDuffColorFilter(i6.l1(0.6f, i13), mode));
-        imageView2.setBackground(i6.Z(0, i6.l1(0.15f, i13), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
+        ImageView imageView2 = eVar.f38682c;
+        imageView2.setColorFilter(new PorterDuffColorFilter(h6.l1(0.6f, i13), mode));
+        imageView2.setBackground(h6.Z(0, h6.l1(0.15f, i13), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
         if (i11 == 0) {
             i10 = R.drawable.msg_clear_recent;
         } else {
@@ -54,13 +54,13 @@ public final class d extends h51 {
         imageView.setImageResource(i10);
         textView.setText(charSequence);
         imageView2.setOnClickListener(onClickListener);
-        eVar.d.setColor(i6.l1(0.1f, kVar.H));
+        eVar.d.setColor(h6.l1(0.1f, kVar.H));
         eVar.e = z10;
         eVar.setWillNotDraw(!z10);
     }
 
     @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, e6 e6Var) {
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, d6 d6Var) {
         return new e(context);
     }
 }

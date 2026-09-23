@@ -1,117 +1,22 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-public final class c71 {
-    public final boolean f22967a;
-    public final int f22968b;
-    public final int f22969c;
-    public final ArrayList d;
+import android.graphics.SurfaceTexture;
+public interface c71 {
+    void onError(f71 f71Var, Exception exc);
 
-    public c71(e71 e71Var) {
-        ArrayList arrayList = new ArrayList();
-        this.d = arrayList;
-        this.f22967a = e71Var.f23566b;
-        this.f22968b = e71Var.f23570i;
-        this.f22969c = e71Var.f23571j;
-        arrayList.add(e71Var);
-    }
+    void onRenderedFirstFrame();
 
-    public final e71 a() {
-        ArrayList arrayList = this.d;
-        e71 e71Var = null;
-        if (arrayList.isEmpty()) {
-            return null;
-        }
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            e71 e71Var2 = (e71) obj;
-            if (e71Var2.b()) {
-                return e71Var2;
-            }
-        }
-        long j3 = Long.MAX_VALUE;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            e71 e71Var3 = (e71) arrayList.get(i11);
-            if (e71Var3.f23572k < j3 && g71.Y(e71Var3.f23574m)) {
-                j3 = e71Var3.f23572k;
-                e71Var = e71Var3;
-            }
-        }
-        if (e71Var != null) {
-            return e71Var;
-        }
-        return (e71) arrayList.get(0);
-    }
+    void onRenderedFirstFrame(j2.a aVar);
 
-    public final int b() {
-        int min = Math.min(this.f22968b, this.f22969c);
-        if (Math.abs(min - 2160) < 55) {
-            return 2160;
-        }
-        if (Math.abs(min - 1440) < 55) {
-            return 1440;
-        }
-        if (Math.abs(min - 1080) < 55) {
-            return 1080;
-        }
-        if (Math.abs(min - 720) < 55) {
-            return 720;
-        }
-        if (Math.abs(min - 480) < 55) {
-            return 480;
-        }
-        if (Math.abs(min - 360) < 55) {
-            return 360;
-        }
-        if (Math.abs(min - 240) < 55) {
-            return 240;
-        }
-        if (Math.abs(min - 144) < 55) {
-            return 144;
-        }
-        return min;
-    }
+    void onSeekFinished(j2.a aVar);
 
-    public final String toString() {
-        String str;
-        boolean z10 = SharedConfig.debugVideoQualities;
-        boolean z11 = this.f22967a;
-        String str2 = "";
-        if (z10) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f22968b);
-            sb2.append("x");
-            sb2.append(this.f22969c);
-            if (!z11) {
-                str = "";
-            } else {
-                str = " (" + LocaleController.getString(R.string.QualitySource) + ")";
-            }
-            sb2.append(str);
-            sb2.append("\n");
-            ArrayList arrayList = this.d;
-            sb2.append(AndroidUtilities.formatFileSize((long) ((e71) arrayList.get(0)).f23573l).replace(" ", ""));
-            sb2.append("/s");
-            if (((e71) arrayList.get(0)).f23574m != null) {
-                str2 = ", " + ((e71) arrayList.get(0)).f23574m;
-            }
-            sb2.append(str2);
-            return sb2.toString();
-        }
-        StringBuilder sb3 = new StringBuilder();
-        sb3.append(b());
-        sb3.append("p");
-        if (z11) {
-            str2 = " (" + LocaleController.getString(R.string.QualitySource) + ")";
-        }
-        sb3.append(str2);
-        return sb3.toString();
-    }
+    void onSeekStarted(j2.a aVar);
+
+    void onStateChanged(boolean z10, int i10);
+
+    boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture);
+
+    void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture);
+
+    void onVideoSizeChanged(int i10, int i11, int i12, float f7);
 }

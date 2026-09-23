@@ -199,14 +199,14 @@ public class LiteMode {
     private static void onFlagsUpdate(int i10, int i11) {
         int i12 = (~i10) & i11;
         if ((i12 & 28700) > 0) {
-            org.telegram.ui.Components.o5.u();
+            org.telegram.ui.Components.q5.u();
         }
         int i13 = i12 & 32;
         if (i13 > 0) {
             SvgHelper.SvgDrawable.updateLiteValues();
         }
         if (i13 > 0) {
-            org.telegram.ui.ActionBar.i6.o1(true);
+            org.telegram.ui.ActionBar.h6.o1(true);
         }
     }
 

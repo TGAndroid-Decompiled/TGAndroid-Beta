@@ -2,12 +2,19 @@ package ci;
 
 import android.content.Context;
 import android.graphics.PointF;
-import java.util.ArrayList;
-public final class c6 extends qg.h1 {
-    public final r6 M0;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.jv0;
+import org.telegram.ui.Components.yi0;
+public final class c6 extends qg.q2 {
+    public final q6 f4440y0;
 
-    public c6(r6 r6Var, Context context, PointF pointF, ArrayList arrayList, org.telegram.ui.Components.ha haVar, boolean z10, c7 c7Var) {
-        super(context, pointF, arrayList, haVar, z10, c7Var);
-        this.M0 = r6Var;
+    public c6(q6 q6Var, Context context, PointF pointF, float f7, float f10, jv0 jv0Var, TLRPC.Document document, Object obj) {
+        super(context, pointF, f7, f10, jv0Var, document, obj);
+        this.f4440y0 = q6Var;
+    }
+
+    @Override
+    public final void q(yi0 yi0Var) {
+        this.f4440y0.getClass();
     }
 }

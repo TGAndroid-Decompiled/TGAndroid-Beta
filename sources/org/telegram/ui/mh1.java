@@ -1,47 +1,55 @@
 package org.telegram.ui;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class mh1 implements Utilities.Callback {
-    public final int f35753a;
-    public final UserInfoActivity f35754b;
+public final class mh1 implements TextWatcher {
+    public final UsersSelectActivity f35297a;
 
-    public mh1(UserInfoActivity userInfoActivity, int i10) {
-        this.f35753a = i10;
-        this.f35754b = userInfoActivity;
+    public mh1(UsersSelectActivity usersSelectActivity) {
+        this.f35297a = usersSelectActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f35753a) {
-            case 0:
-                UserInfoActivity userInfoActivity = this.f35754b;
-                userInfoActivity.J = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.y51 y51Var = userInfoActivity.f31603x;
-                if (y51Var != null) {
-                    y51Var.Y2.N(true);
+    public final void afterTextChanged(Editable editable) {
+        UsersSelectActivity usersSelectActivity = this.f35297a;
+        if (usersSelectActivity.f31581c.length() != 0) {
+            ph1 ph1Var = usersSelectActivity.h;
+            boolean z10 = ph1Var.f36117n;
+            if (!z10) {
+                usersSelectActivity.M = true;
+                usersSelectActivity.L = true;
+                if (!z10) {
+                    ph1Var.f36117n = true;
+                    ph1Var.l();
                 }
-                userInfoActivity.b0(true);
-                return;
-            default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f35754b;
-                if (userInfoActivity2.K != chat) {
-                    userInfoActivity2.K = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.y0.o(R.string.EditProfileChannelSet, org.telegram.ui.Components.vc.a0(userInfoActivity2), R.raw.contact_check, 36);
-                    }
-                    userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.y51 y51Var2 = userInfoActivity2.f31603x;
-                    if (y51Var2 != null) {
-                        y51Var2.Y2.N(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
+                usersSelectActivity.d.setFastScrollVisible(false);
+                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
+                usersSelectActivity.f31582f.d.setText(LocaleController.getString(R.string.NoResult));
+            }
+            usersSelectActivity.f31582f.e(true, true);
+            usersSelectActivity.h.L(usersSelectActivity.f31581c.getText().toString());
+            return;
         }
+        usersSelectActivity.M = false;
+        usersSelectActivity.L = false;
+        ph1 ph1Var2 = usersSelectActivity.h;
+        if (ph1Var2.f36117n) {
+            ph1Var2.f36117n = false;
+            ph1Var2.l();
+        }
+        usersSelectActivity.h.L(null);
+        usersSelectActivity.d.setFastScrollVisible(true);
+        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
+        usersSelectActivity.f31582f.d.setText(LocaleController.getString(R.string.NoContacts));
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

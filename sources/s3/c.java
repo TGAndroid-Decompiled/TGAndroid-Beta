@@ -9,12 +9,11 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import k2.c0;
 import w7.l;
 public final class c extends l {
-    public final v f42628a = new v();
-    public final h f42629b = new h();
-    public b0 f42630c;
+    public final v f42584a = new v();
+    public final h f42585b = new h();
+    public b0 f42586c;
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
@@ -29,17 +28,17 @@ public final class c extends l {
         boolean z16;
         long j10;
         long j11;
-        b0 b0Var = this.f42630c;
-        if (b0Var == null || aVar.f13872r != b0Var.e()) {
+        b0 b0Var = this.f42586c;
+        if (b0Var == null || aVar.f13860r != b0Var.e()) {
             b0 b0Var2 = new b0(aVar.e);
-            this.f42630c = b0Var2;
-            b0Var2.a(aVar.e - aVar.f13872r);
+            this.f42586c = b0Var2;
+            b0Var2.a(aVar.e - aVar.f13860r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        v vVar = this.f42628a;
+        v vVar = this.f42584a;
         vVar.H(limit, array);
-        h hVar = this.f42629b;
+        h hVar = this.f42585b;
         hVar.o(limit, array);
         hVar.t(39);
         long i10 = (hVar.i(1) << 32) | hVar.i(32);
@@ -54,12 +53,12 @@ public final class c extends l {
                         if (i12 != 6) {
                             obj = null;
                         } else {
-                            b0 b0Var3 = this.f42630c;
+                            b0 b0Var3 = this.f42586c;
                             long d = a.d(i10, vVar);
                             obj = new a(d, b0Var3.b(d), 1);
                         }
                     } else {
-                        b0 b0Var4 = this.f42630c;
+                        b0 b0Var4 = this.f42586c;
                         vVar.z();
                         if ((vVar.x() & 128) != 0) {
                             z13 = true;
@@ -161,7 +160,7 @@ public final class c extends l {
                             vVar.x();
                             vVar.x();
                         }
-                        arrayList2.add(new c0(arrayList3));
+                        arrayList2.add(new k2.b0(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }

@@ -6,7 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import w7.v6;
 public abstract class h extends Activity implements androidx.lifecycle.t, r0.j {
-    public final androidx.lifecycle.v f7784a = new androidx.lifecycle.v(this);
+    public final androidx.lifecycle.v f7770a = new androidx.lifecycle.v(this);
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
@@ -39,14 +39,14 @@ public abstract class h extends Activity implements androidx.lifecycle.t, r0.j {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        int i10 = androidx.lifecycle.h0.f2569b;
+        int i10 = androidx.lifecycle.h0.f2564b;
         androidx.lifecycle.f0.b(this);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         kotlin.jvm.internal.i.e(outState, "outState");
-        this.f7784a.g();
+        this.f7770a.g();
         super.onSaveInstanceState(outState);
     }
 }

@@ -10,9 +10,9 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.eg1;
-public final class rq0 implements v10, org.telegram.ui.oy {
-    public final yu0 f27662a;
+import org.telegram.ui.wf1;
+public final class rq0 implements w10, org.telegram.ui.ly {
+    public final yu0 f27700a;
 
     @Override
     public boolean A() {
@@ -20,12 +20,12 @@ public final class rq0 implements v10, org.telegram.ui.oy {
     }
 
     @Override
-    public boolean K(org.telegram.ui.uy uyVar) {
+    public boolean K(org.telegram.ui.ry ryVar) {
         return false;
     }
 
     public void a(boolean z10) {
-        yu0 yu0Var = this.f27662a;
+        yu0 yu0Var = this.f27700a;
         if (!z10) {
             yu0Var.requestLayout();
         }
@@ -33,11 +33,11 @@ public final class rq0 implements v10, org.telegram.ui.oy {
     }
 
     @Override
-    public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
+    public boolean u(org.telegram.ui.ry ryVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
         UndoView undoView;
-        yu0 yu0Var = this.f27662a;
+        yu0 yu0Var = this.f27700a;
         SparseArray[] sparseArrayArr = yu0Var.Z0;
-        org.telegram.ui.ActionBar.n2 n2Var = yu0Var.f30389v1;
+        org.telegram.ui.ActionBar.n2 n2Var = yu0Var.f30450v1;
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         int i12 = 1;
         while (true) {
@@ -62,11 +62,11 @@ public final class rq0 implements v10, org.telegram.ui.oy {
             sparseArrayArr[i12].clear();
             i12--;
         }
-        yu0Var.f30341a1 = 0;
+        yu0Var.f30402a1 = 0;
         yu0Var.b1(false);
         iu0 iu0Var = yu0Var.R;
         if (iu0Var != null) {
-            iu0Var.f25139w.clear();
+            iu0Var.f25066w.clear();
         }
         if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != n2Var.getUserConfig().getClientUserId() && charSequence == null) {
             long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
@@ -79,15 +79,15 @@ public final class rq0 implements v10, org.telegram.ui.oy {
                 } else {
                     i15.putLong("chat_id", -j3);
                 }
-                if (!n2Var.getMessagesController().checkCanOpenChat(i15, uyVar)) {
+                if (!n2Var.getMessagesController().checkCanOpenChat(i15, ryVar)) {
                     return true;
                 }
             }
             n2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-            org.telegram.ui.bo boVar = new org.telegram.ui.bo(i15);
-            ng.d.a(boVar, (MessagesStorage.TopicKey) arrayList.get(0));
-            uyVar.presentFragment(boVar, true);
-            boVar.Ab(arrayList2);
+            org.telegram.ui.xn xnVar = new org.telegram.ui.xn(i15);
+            ng.d.a(xnVar, (MessagesStorage.TopicKey) arrayList.get(0));
+            ryVar.presentFragment(xnVar, true);
+            xnVar.Ab(arrayList2);
             return true;
         }
         yu0Var.r1(true);
@@ -98,7 +98,7 @@ public final class rq0 implements v10, org.telegram.ui.oy {
             }
             n2Var.getSendMessagesHelper().sendMessage(arrayList2, j10, false, false, true, 0, 0L);
         }
-        uyVar.finishFragment();
+        ryVar.finishFragment();
         if (n2Var instanceof ProfileActivity) {
             undoView = ((ProfileActivity) n2Var).M;
         } else {

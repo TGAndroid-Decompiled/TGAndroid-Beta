@@ -1,75 +1,39 @@
 package org.telegram.ui.web;
 
 import ai.da;
-import android.content.DialogInterface;
-import org.telegram.messenger.Utilities;
-import yh.u5;
-public final class d0 implements DialogInterface.OnDismissListener {
-    public final int f38896a;
-    public final boolean[] f38897b;
-    public final Object f38898c;
-    public final Object d;
-    public final Object e;
+import android.app.Activity;
+import org.json.JSONObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.u9;
+public final class d0 implements NotificationCenter.NotificationCenterDelegate {
+    public final da f38675a;
+    public final b1 f38676b;
 
-    public d0(d1 d1Var, boolean[] zArr, da daVar, String str) {
-        this.f38896a = 0;
-        this.f38898c = d1Var;
-        this.f38897b = zArr;
-        this.d = daVar;
-        this.e = str;
+    public d0(b1 b1Var, da daVar) {
+        this.f38676b = b1Var;
+        this.f38675a = daVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f38896a) {
-            case 0:
-                d1 d1Var = (d1) this.f38898c;
-                da daVar = (da) this.d;
-                String str = (String) this.e;
-                d1Var.getClass();
-                boolean[] zArr = this.f38897b;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    d1Var.y(daVar, "requested_chat_failed", d1.B(str, "req_id"));
-                    return;
-                }
-                return;
-            case 1:
-                Utilities.Callback callback = (Utilities.Callback) this.f38898c;
-                boolean[] zArr2 = (boolean[]) this.d;
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.e;
-                if (callback != null && !this.f38897b[0]) {
-                    callback.run(Boolean.FALSE);
-                    if (!zArr2[0]) {
-                        callback2.run("cancelled", 0L);
-                        zArr2[0] = true;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.onRequestPermissionResultReceived;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == 5000) {
+                NotificationCenter.getGlobalInstance().removeObserver(this, i12);
+                int i13 = iArr[0];
+                b1 b1Var = this.f38676b;
+                if (i13 == 0) {
+                    Activity activity = b1Var.W;
+                    if (activity != null) {
+                        b1Var.f38639g0 = u9.e0(activity, 3, new k2.u(b1Var, 16));
                         return;
                     }
                     return;
                 }
-                return;
-            default:
-                Utilities.Callback callback3 = (Utilities.Callback) this.f38898c;
-                boolean[] zArr3 = (boolean[]) this.d;
-                Utilities.Callback callback4 = (Utilities.Callback) this.e;
-                if (callback3 != null && !this.f38897b[0]) {
-                    callback3.run(Boolean.FALSE);
-                    if (!zArr3[0] && callback4 != null) {
-                        callback4.run("cancelled");
-                        zArr3[0] = true;
-                        return;
-                    }
-                    return;
-                }
-                return;
+                b1Var.y(this.f38675a, "scan_qr_popup_closed", new JSONObject());
+            }
         }
-    }
-
-    public d0(u5 u5Var, Utilities.Callback callback, boolean[] zArr, boolean[] zArr2, Object obj, int i10) {
-        this.f38896a = i10;
-        this.f38898c = callback;
-        this.f38897b = zArr;
-        this.d = zArr2;
-        this.e = obj;
     }
 }

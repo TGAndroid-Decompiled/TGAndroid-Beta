@@ -1,6 +1,6 @@
 package gg;
 
-import ai.m8;
+import ai.n8;
 import ai.z8;
 import android.location.Location;
 import android.text.TextUtils;
@@ -25,14 +25,14 @@ public abstract class c extends og.b {
     public final boolean d;
     public final boolean e;
     public boolean h;
-    public boolean f9676n;
+    public boolean f9662n;
     public Location v;
-    public String f9679w;
-    public String f9680x;
-    public b f9681y;
-    public boolean f9675f = false;
-    public final ArrayList f9677r = new ArrayList();
-    public final ArrayList f9678s = new ArrayList();
+    public String f9665w;
+    public String f9666x;
+    public b f9667y;
+    public boolean f9661f = false;
+    public final ArrayList f9663r = new ArrayList();
+    public final ArrayList f9664s = new ArrayList();
     public final int G = UserConfig.selectedAccount;
 
     public c(boolean z10, boolean z11) {
@@ -60,8 +60,8 @@ public abstract class c extends og.b {
             dispatchQueue.postRunnable(aVar, 400L);
             return;
         }
-        this.f9678s.clear();
-        this.f9677r.clear();
+        this.f9664s.clear();
+        this.f9663r.clear();
         this.J = false;
         l();
     }
@@ -84,7 +84,7 @@ public abstract class c extends og.b {
                 location3 = new Location(location);
             }
             this.v = location3;
-            this.f9679w = str;
+            this.f9665w = str;
             if (this.h) {
                 this.h = false;
                 if (this.F != 0) {
@@ -94,7 +94,7 @@ public abstract class c extends og.b {
             }
             h();
             this.h = true;
-            this.f9675f = true;
+            this.f9661f = true;
             MessagesController messagesController = MessagesController.getInstance(this.G);
             if (this.d) {
                 str2 = MessagesController.getInstance(this.G).storyVenueSearchBot;
@@ -114,7 +114,7 @@ public abstract class c extends og.b {
                             str5 = MessagesController.getInstance(i10).venueSearchBot;
                         }
                         tL_contacts_resolveUsername.username = str5;
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new m8(this, 8));
+                        ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new n8(this, 8));
                     }
                 }
             } else {
@@ -144,9 +144,9 @@ public abstract class c extends og.b {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    cVar.f9676n = false;
+                    cVar.f9662n = false;
                 } else {
-                    this.f9676n = true;
+                    this.f9662n = true;
                     Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     if (this.d) {
                         if (currentLocale.getLanguage().contains("en")) {

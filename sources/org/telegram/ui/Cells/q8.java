@@ -1,37 +1,22 @@
 package org.telegram.ui.Cells;
 
+import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class q8 implements View.OnAttachStateChangeListener {
-    public final int f20614a;
-    public final ImageReceiver f20615b;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class q8 extends FrameLayout {
+    public TextView f20605a;
 
-    public q8(ImageReceiver imageReceiver, int i10) {
-        this.f20614a = i10;
-        this.f20615b = imageReceiver;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    public void setTextColor(int i10) {
+        this.f20605a.setTextColor(i10);
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        switch (this.f20614a) {
-            case 0:
-                this.f20615b.onAttachedToWindow();
-                return;
-            default:
-                this.f20615b.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        switch (this.f20614a) {
-            case 0:
-                this.f20615b.onDetachedFromWindow();
-                return;
-            default:
-                this.f20615b.onDetachedFromWindow();
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
     }
 }

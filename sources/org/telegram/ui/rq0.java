@@ -1,55 +1,70 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-public final class rq0 extends org.telegram.ui.ActionBar.g5 {
-    public final pl0 f37193f = new pl0(this, 11);
-    public final ar0 h;
+import org.telegram.tgnet.TLRPC;
+public final class rq0 implements org.telegram.ui.Cells.s5 {
+    public final sq0 f36918a;
 
-    public rq0(ar0 ar0Var) {
-        this.h = ar0Var;
+    public rq0(sq0 sq0Var) {
+        this.f36918a = sq0Var;
     }
 
-    @Override
-    public final boolean b() {
-        this.h.finishFragment();
-        return false;
-    }
-
-    @Override
-    public final void p(ci.h2 h2Var) {
-        this.h.b0(h2Var);
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        int i10;
-        if (editText.getText().length() == 0) {
-            ar0 ar0Var = this.h;
-            ar0Var.f31901f.clear();
-            ar0Var.h.clear();
-            ar0Var.v = null;
-            ar0Var.f31916s = true;
-            ar0Var.f31914r = false;
-            if (ar0Var.f31923x != 0) {
-                i10 = ((org.telegram.ui.ActionBar.n2) ar0Var).currentAccount;
-                ConnectionsManager.getInstance(i10).cancelRequest(ar0Var.f31923x, true);
-                ar0Var.f31923x = 0;
+    public final void a() {
+        xn xnVar;
+        TLRPC.Chat chat;
+        uq0 uq0Var = this.f36918a.d;
+        if (uq0Var.I && (xnVar = uq0Var.U) != null && (chat = xnVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && uq0Var.W != 2) {
+            org.telegram.ui.Components.e5.u0(uq0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
+            if (uq0Var.W == 1) {
+                uq0Var.W = 2;
             }
-            ar0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
-            ar0Var.N.e(false, true);
-            ar0Var.j0();
-            return;
         }
-        pl0 pl0Var = this.f37193f;
-        AndroidUtilities.cancelRunOnUIThread(pl0Var);
-        AndroidUtilities.runOnUIThread(pl0Var, 1200L);
     }
 
     @Override
-    public final void n() {
+    public final void b(org.telegram.ui.Cells.t5 t5Var) {
+        boolean z10;
+        int intValue = ((Integer) t5Var.getTag()).intValue();
+        uq0 uq0Var = this.f36918a.d;
+        MediaController.AlbumEntry albumEntry = uq0Var.J;
+        int i10 = -1;
+        int i11 = 1;
+        if (albumEntry != null) {
+            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
+            boolean containsKey = uq0Var.f38169b.containsKey(Integer.valueOf(photoEntry.imageId));
+            z10 = !containsKey;
+            if (!containsKey && uq0Var.H > 0 && uq0Var.f38169b.size() >= uq0Var.H) {
+                a();
+                return;
+            }
+            if (uq0Var.e && !containsKey) {
+                i10 = uq0Var.f38171c.size();
+            }
+            t5Var.b(i10, z10, true);
+            uq0Var.Y(intValue, photoEntry);
+        } else {
+            AndroidUtilities.hideKeyboard(uq0Var.getParentActivity().getCurrentFocus());
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) uq0Var.f38175f.get(intValue);
+            boolean containsKey2 = uq0Var.f38169b.containsKey(searchImage.f15571id);
+            z10 = !containsKey2;
+            if (!containsKey2 && uq0Var.H > 0 && uq0Var.f38169b.size() >= uq0Var.H) {
+                a();
+                return;
+            }
+            if (uq0Var.e && !containsKey2) {
+                i10 = uq0Var.f38171c.size();
+            }
+            t5Var.b(i10, z10, true);
+            uq0Var.Y(intValue, searchImage);
+        }
+        if (!z10) {
+            i11 = 2;
+        }
+        uq0Var.i0(i11);
+        uq0Var.f38191s0.a();
     }
 }

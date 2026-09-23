@@ -1,19 +1,15 @@
 package org.telegram.ui;
-public final class nx extends s4.c0 {
-    public final ty I;
-    public final ox J;
+public final class nx extends q61 {
+    public final ry e;
 
-    public nx(ox oxVar, ty tyVar) {
-        this.J = oxVar;
-        this.I = tyVar;
+    public nx(ry ryVar, mx mxVar) {
+        super(mxVar);
+        this.e = ryVar;
     }
 
     @Override
-    public final int R0() {
-        ty tyVar = this.I;
-        if (tyVar.f37758s == 0 && this.J.W.Z3() && tyVar.v == 2) {
-            return 1;
-        }
-        return 0;
+    public final void dismiss() {
+        super.dismiss();
+        this.e.M0 = null;
     }
 }

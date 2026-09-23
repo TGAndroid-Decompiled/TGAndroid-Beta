@@ -11,8 +11,8 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bc0;
-import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.ac0;
+import org.telegram.ui.Components.rr;
 public final class u extends Drawable {
     public final int f5583a = 1;
     public final Path f5584b;
@@ -31,7 +31,7 @@ public final class u extends Drawable {
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
-        this.f5587g = new org.telegram.ui.Components.c6(new bc0(this, 1), 320L, qr.h, 0);
+        this.f5587g = new org.telegram.ui.Components.e6(new ac0(this, 1), 320L, rr.h, 0);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setColor(-1);
@@ -70,7 +70,7 @@ public final class u extends Drawable {
                 float dpf22 = AndroidUtilities.dpf2(3.32f);
                 Paint paint2 = this.e;
                 paint2.setStrokeWidth(dpf22);
-                float e = ((org.telegram.ui.Components.c6) this.f5587g).e(this.f5586f);
+                float e = ((org.telegram.ui.Components.e6) this.f5587g).e(this.f5586f);
                 float centerX = getBounds().centerX();
                 float centerY = getBounds().centerY();
                 float dpf23 = AndroidUtilities.dpf2(10.66f);
@@ -180,7 +180,7 @@ public final class u extends Drawable {
         rectF.set((-dpf2) / 2.0f, (-dpf22) / 2.0f, dpf2 / 2.0f, dpf22 / 2.0f);
         path.addRoundRect(rectF, dpf23, dpf23, Path.Direction.CW);
         ArrayList arrayList = tVar2.e;
-        int i10 = tVar2.f5530c;
+        int i10 = tVar2.f5514c;
         int size = arrayList.size();
         int i11 = 0;
         int i12 = 0;
@@ -189,8 +189,8 @@ public final class u extends Drawable {
             int i13 = i12 + 1;
             s sVar = (s) obj;
             int[] iArr = tVar2.d;
-            int i14 = sVar.f5479c;
-            int i15 = sVar.f5478b;
+            int i14 = sVar.f5469c;
+            int i15 = sVar.f5468b;
             int i16 = iArr[i14];
             int i17 = i16 - 1;
             float max = (dpf24 - (Math.max(i11, i17) * dpf27)) / i16;

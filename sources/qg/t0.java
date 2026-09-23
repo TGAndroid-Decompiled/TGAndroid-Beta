@@ -4,26 +4,26 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.vl;
-import org.telegram.ui.Components.hk0;
+import org.telegram.messenger.ul;
+import org.telegram.ui.Components.ik0;
 import w7.x5;
 public final class t0 extends j {
-    public final r0 f41648q0;
-    public int f41649r0;
-    public int f41650s0;
-    public boolean f41651t0;
-    public q0 f41652u0;
+    public final r0 f41604q0;
+    public int f41605r0;
+    public int f41606s0;
+    public boolean f41607t0;
+    public q0 f41608u0;
 
     public t0(Context context, PointF pointF, int i10, q0 q0Var, float f7, int i11) {
         super(context, pointF);
         r0 r0Var = new r0(context, f7);
-        this.f41648q0 = r0Var;
+        this.f41604q0 = r0Var;
         r0Var.setMaxWidth(i11);
-        this.f41652u0 = q0Var;
+        this.f41608u0 = q0Var;
         r0Var.b(i10, q0Var, false);
         m();
-        this.f41650s0 = 3;
-        r0Var.c(3, this.f41649r0);
+        this.f41606s0 = 3;
+        r0Var.c(3, this.f41605r0);
         addView(r0Var, x5.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -36,7 +36,7 @@ public final class t0 extends j {
     }
 
     public int getColor() {
-        return this.f41649r0;
+        return this.f41605r0;
     }
 
     @Override
@@ -45,15 +45,15 @@ public final class t0 extends j {
     }
 
     public int getNextType() {
-        int i10 = this.f41650s0 + 1;
+        int i10 = this.f41606s0 + 1;
         if (i10 == 4) {
-            return !this.f41651t0 ? 1 : 0;
+            return !this.f41607t0 ? 1 : 0;
         }
         return i10;
     }
 
     @Override
-    public hk0 getSelectionBounds() {
+    public ik0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -63,32 +63,32 @@ public final class t0 extends j {
         float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float v = vl.v(dp, 2.0f, getPositionX(), scaleX);
-        return new hk0(v, vl.v(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + v) - v, dp2 * scaleX);
+        float v = ul.v(dp, 2.0f, getPositionX(), scaleX);
+        return new ik0(v, ul.v(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + v) - v, dp2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f41648q0.h;
+        return this.f41604q0.h;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f41648q0.f41604f;
+        return this.f41604q0.f41560f;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f41648q0.f41604f;
+        return this.f41604q0.f41560f;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f41648q0.h;
+        return this.f41604q0.h;
     }
 
     public int getType() {
-        return this.f41650s0;
+        return this.f41606s0;
     }
 
     @Override
@@ -104,16 +104,16 @@ public final class t0 extends j {
     }
 
     public void setColor(int i10) {
-        this.f41651t0 = true;
-        this.f41649r0 = i10;
+        this.f41607t0 = true;
+        this.f41605r0 = i10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f41648q0.setMaxWidth(i10);
+        this.f41604q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f41650s0 = i10;
-        this.f41648q0.c(i10, this.f41649r0);
+        this.f41606s0 = i10;
+        this.f41604q0.c(i10, this.f41605r0);
     }
 }

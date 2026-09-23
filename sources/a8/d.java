@@ -25,11 +25,11 @@ public final class d {
             case 1:
                 c6.e eVar = (c6.e) obj;
                 n6.l.i(eVar, "Setting the API options is required.");
-                return new w(context, looper, commonSettings, eVar.f3974a, 0, eVar.f3976c, eVar.d, kVar, lVar);
+                return new w(context, looper, commonSettings, eVar.f3969a, 0, eVar.f3971c, eVar.d, kVar, lVar);
             case 2:
                 c6.e eVar2 = (c6.e) obj;
                 n6.l.i(eVar2, "Setting the API options is required.");
-                return new v(context, looper, commonSettings, eVar2.f3974a, 0, eVar2.f3975b, eVar2.f3976c, kVar, lVar);
+                return new v(context, looper, commonSettings, eVar2.f3969a, 0, eVar2.f3970b, eVar2.f3971c, kVar, lVar);
             case 3:
                 com.google.android.gms.common.api.a aVar = (com.google.android.gms.common.api.a) obj;
                 return new n6.g(context, looper, 161, commonSettings, kVar, lVar, 0);
@@ -108,7 +108,7 @@ public final class d {
                 if (oVar == null) {
                     oVar = new o(new com.google.android.gms.internal.cast.a());
                 }
-                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f44249a);
+                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f44203a);
             case 16:
                 return new i7.g(context, looper, commonSettings, (w5.b) obj, kVar, lVar);
             case 17:

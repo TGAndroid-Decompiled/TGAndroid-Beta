@@ -3,20 +3,20 @@ package r7;
 import android.os.Parcel;
 import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationResult;
-import k2.c0;
-import org.telegram.ui.Cells.ia;
+import k2.b0;
+import org.telegram.ui.Cells.ja;
 public final class i extends b8.b implements g8.n {
-    public static final int f42066c = 0;
-    public final androidx.activity.n f42067b;
+    public static final int f42022c = 0;
+    public final androidx.activity.n f42023b;
 
     public i(androidx.activity.n nVar) {
         super("com.google.android.gms.location.ILocationCallback", 9);
-        this.f42067b = nVar;
+        this.f42023b = nVar;
     }
 
     @Override
     public final boolean K0(Parcel parcel, int i10) {
-        androidx.activity.n nVar = this.f42067b;
+        androidx.activity.n nVar = this.f42023b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -26,26 +26,26 @@ public final class i extends b8.b implements g8.n {
                 return true;
             }
             d.b(parcel);
-            nVar.e().a(new ia((LocationAvailability) d.a(parcel, LocationAvailability.CREATOR), 10));
+            nVar.e().a(new ja((LocationAvailability) d.a(parcel, LocationAvailability.CREATOR), 10));
             return true;
         }
         d.b(parcel);
-        nVar.e().a(new c0((LocationResult) d.a(parcel, LocationResult.CREATOR), 22));
+        nVar.e().a(new b0((LocationResult) d.a(parcel, LocationResult.CREATOR), 22));
         return true;
     }
 
     public final void L0() {
-        this.f42067b.e().a(new ka.c(this, 15));
+        this.f42023b.e().a(new ka.c(this, 15));
     }
 
     public final void M0(com.google.android.gms.common.api.internal.p pVar) {
-        androidx.activity.n nVar = this.f42067b;
+        androidx.activity.n nVar = this.f42023b;
         synchronized (nVar) {
-            com.google.android.gms.common.api.internal.p pVar2 = (com.google.android.gms.common.api.internal.p) nVar.f1906c;
+            com.google.android.gms.common.api.internal.p pVar2 = (com.google.android.gms.common.api.internal.p) nVar.f1901c;
             if (pVar2 != pVar) {
-                pVar2.f6141b = null;
-                pVar2.f6142c = null;
-                nVar.f1906c = pVar;
+                pVar2.f6127b = null;
+                pVar2.f6128c = null;
+                nVar.f1901c = pVar;
             }
         }
     }

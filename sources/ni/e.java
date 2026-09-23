@@ -1,16 +1,15 @@
 package ni;
 
-import k2.v;
 import org.telegram.tgnet.RequestTimeDelegate;
 public final class e {
-    public final v f15252a;
-    public final b f15253b;
-    public final RequestTimeDelegate f15254c;
+    public final le.b f15229a;
+    public final b f15230b;
+    public final RequestTimeDelegate f15231c;
     public int d;
 
-    public e(v vVar, b bVar, RequestTimeDelegate requestTimeDelegate) {
-        this.f15252a = vVar;
-        this.f15253b = bVar;
-        this.f15254c = requestTimeDelegate;
+    public e(le.b bVar, b bVar2, RequestTimeDelegate requestTimeDelegate) {
+        this.f15229a = bVar;
+        this.f15230b = bVar2;
+        this.f15231c = requestTimeDelegate;
     }
 }

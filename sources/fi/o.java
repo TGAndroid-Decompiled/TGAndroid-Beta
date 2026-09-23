@@ -6,16 +6,16 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class o extends EditTextBoldCursor {
-    public final int f9145b;
+    public final int f9131b;
 
     public o(Context context, int i10) {
         super(context);
-        this.f9145b = i10;
+        this.f9131b = i10;
     }
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f9145b) {
+        switch (this.f9131b) {
             case 1:
                 super.onDetachedFromWindow();
                 AndroidUtilities.hideKeyboard(this);
@@ -32,7 +32,7 @@ public final class o extends EditTextBoldCursor {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f9145b) {
+        switch (this.f9131b) {
             case 2:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
                 return;
@@ -44,7 +44,7 @@ public final class o extends EditTextBoldCursor {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f9145b) {
+        switch (this.f9131b) {
             case 0:
                 if (!isEnabled()) {
                     return false;

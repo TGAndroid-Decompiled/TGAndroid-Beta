@@ -1,16 +1,14 @@
 package ci;
-public final class h3 extends g.p {
-    public final x3 f4740c;
 
-    public h3(x3 x3Var) {
-        this.f4740c = x3Var;
-    }
-
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class h3 extends s4.n0 {
     @Override
-    public final int i(int i10) {
-        if (i10 != 0 && i10 != 1 && i10 != this.f4740c.f5738f.h() - 1) {
-            return 1;
-        }
-        return 3;
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        int dp = AndroidUtilities.dp(5.0f);
+        rect.right = dp;
+        rect.bottom = dp;
     }
 }

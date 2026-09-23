@@ -1,34 +1,70 @@
 package ci;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class r5 extends qg.l1 {
-    public final Path f5404g3;
-    public final qb f5405h3;
+import android.graphics.Matrix;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class r5 implements pg.u {
+    public boolean f5453a;
+    public final pg.t0 f5454b;
+    public final nb f5455c;
 
-    public r5(qb qbVar, Context context) {
-        super(context);
-        this.f5405h3 = qbVar;
-        this.f5404g3 = new Path();
+    public r5(nb nbVar, pg.t0 t0Var) {
+        this.f5455c = nbVar;
+        this.f5454b = t0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        ViewGroup barView;
-        qb qbVar = this.f5405h3;
-        barView = qbVar.getBarView();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.lerp(barView.getLeft() - getLeft(), 0, qbVar.D1), AndroidUtilities.lerp(barView.getTop() - getTop(), 0, qbVar.D1), AndroidUtilities.lerp(barView.getRight() - getLeft(), getWidth(), qbVar.D1), AndroidUtilities.lerp(barView.getBottom() - getTop(), getHeight(), qbVar.D1));
-        Path path = this.f5404g3;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
+    public final void a() {
+        this.f5453a = true;
+    }
+
+    @Override
+    public final void b(Canvas canvas) {
+        f6 f6Var = this.f5455c.O0;
+        Matrix matrix = f6Var.getMatrix();
         canvas.save();
-        canvas.clipPath(path);
-        super.draw(canvas);
-        canvas.restore();
+        canvas.translate(f6Var.getX(), f6Var.getY());
+        canvas.concat(matrix);
+        f6Var.getWidth();
+        throw null;
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f5453a;
+    }
+
+    @Override
+    public final void d() {
+        this.f5453a = false;
+    }
+
+    @Override
+    public final View e() {
+        return this.f5455c;
+    }
+
+    @Override
+    public final FrameLayout f() {
+        return this.f5455c.V0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void h(int i10) {
+        nb nbVar = this.f5455c;
+        nbVar.I0(false);
+        pg.t0 t0Var = this.f5454b;
+        t0Var.h(i10, true);
+        t0Var.g();
+        nbVar.setNewColor(i10);
+        q5 q5Var = nbVar.f5373w1;
+        q5Var.setSelectedColorIndex(t0Var.d());
+        q5Var.getAdapter().l();
     }
 }

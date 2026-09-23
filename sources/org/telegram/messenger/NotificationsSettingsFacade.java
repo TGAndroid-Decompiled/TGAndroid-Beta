@@ -34,9 +34,9 @@ public class NotificationsSettingsFacade {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         NotificationsController notificationsController = NotificationsController.getInstance(this.currentAccount);
-        int c10 = y0.c("notify2_", sharedPrefKey, getPreferences(), -1);
+        int c10 = z0.c("notify2_", sharedPrefKey, getPreferences(), -1);
         boolean z11 = true;
-        int c11 = y0.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
+        int c11 = z0.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
         SharedPreferences.Editor edit = getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
             edit.putBoolean(org.telegram.ui.Cells.q3.i("silent_", sharedPrefKey), peerNotifySettings.silent);
@@ -123,7 +123,7 @@ public class NotificationsSettingsFacade {
         applySoundSettings(peerNotifySettings.android_sound, edit, j3, j10, 0, false);
         edit.apply();
         if (z11) {
-            AndroidUtilities.runOnUIThread(new vg(this, 2));
+            AndroidUtilities.runOnUIThread(new ug(this, 2));
         }
     }
 

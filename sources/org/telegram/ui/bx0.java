@@ -1,70 +1,49 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class bx0 extends uw0 {
-    public final int f32588r = 0;
-    public final org.telegram.ui.Components.kl0 f32589s;
+import android.view.ViewGroup;
+public final class bx0 extends org.telegram.ui.Components.ll0 {
+    public final Context f32194c;
+    public final cx0 d;
 
-    public bx0(rg.j1 j1Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        this.f32589s = j1Var;
+    public bx0(cx0 cx0Var, Context context) {
+        this.d = cx0Var;
+        this.f32194c = context;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.e6 e6Var;
-        boolean q6;
-        org.telegram.ui.ActionBar.e6 e6Var2;
-        switch (this.f32588r) {
-            case 0:
-                float dp = AndroidUtilities.dp(10.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                ImageView imageView = this.f38188c;
-                rectF.set(imageView.getLeft(), imageView.getTop(), imageView.getRight(), imageView.getBottom());
-                PremiumPreviewFragment premiumPreviewFragment = ((cx0) this.f32589s).f32884c;
-                premiumPreviewFragment.S.reset();
-                premiumPreviewFragment.S.postScale(1.0f, premiumPreviewFragment.N / 100.0f, 0.0f, 0.0f);
-                premiumPreviewFragment.S.postTranslate(0.0f, -this.f38189f.e);
-                premiumPreviewFragment.R.setLocalMatrix(premiumPreviewFragment.S);
-                canvas.drawRoundRect(rectF, dp, dp, premiumPreviewFragment.T);
-                e6Var = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).resourceProvider;
-                if (e6Var != null) {
-                    e6Var2 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).resourceProvider;
-                    q6 = e6Var2.a();
-                } else {
-                    q6 = org.telegram.ui.ActionBar.i6.I.q();
-                }
-                if (q6) {
-                    float dp2 = AndroidUtilities.dp(1.0f);
-                    premiumPreviewFragment.Q.setStrokeWidth(dp2);
-                    canvas.save();
-                    canvas.translate(rectF.left, rectF.top);
-                    rectF.offset(-rectF.left, -rectF.top);
-                    float f7 = dp2 / 2.0f;
-                    rectF.inset(f7, f7);
-                    canvas.drawRoundRect(rectF, dp, dp, premiumPreviewFragment.Q);
-                    canvas.restore();
-                }
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                ImageView imageView2 = this.f38188c;
-                rectF2.set(imageView2.getLeft(), imageView2.getTop(), imageView2.getRight(), imageView2.getBottom());
-                rg.j1 j1Var = (rg.j1) this.f32589s;
-                j1Var.f42331c.f42354p0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f38189f.e, j1Var.f42331c.f42344e0);
-                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), j1Var.f42331c.f42354p0.f42552f);
-                super.dispatchDraw(canvas);
-                return;
-        }
+    public final boolean D(s4.c1 c1Var) {
+        return !((ex0) this.d.f32435n.d.get(c1Var.b())).f33032a.current;
     }
 
-    public bx0(cx0 cx0Var, Context context) {
-        super(context, null);
-        this.f32589s = cx0Var;
+    @Override
+    public final int h() {
+        return this.d.f32435n.d.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        rg.p1 p1Var = (rg.p1) c1Var.f42627a;
+        PremiumPreviewFragment premiumPreviewFragment = this.d.f32435n;
+        ex0 ex0Var = (ex0) premiumPreviewFragment.d.get(i10);
+        boolean z11 = true;
+        if (i10 != h() - 1) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        p1Var.a(ex0Var, z10);
+        if (premiumPreviewFragment.e != i10) {
+            z11 = false;
+        }
+        p1Var.c(z11, false);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        ax0 ax0Var = new ax0(this, this.f32194c);
+        ax0Var.setCirclePaintProvider(new kv0(2, this, ax0Var));
+        return new s4.c1(ax0Var);
     }
 }

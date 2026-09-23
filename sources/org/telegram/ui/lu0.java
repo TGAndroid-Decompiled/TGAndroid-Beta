@@ -1,10 +1,13 @@
 package org.telegram.ui;
 
-import android.view.animation.DecelerateInterpolator;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
 public final class lu0 {
-    public static final lu0 e = new lu0();
-    public DecelerateInterpolator f35544b;
-    public int f35543a = 200;
-    public boolean f35545c = true;
-    public boolean d = true;
+    public String f35090a;
+    public String f35091b;
+    public MediaController.CropState f35092c;
+    public MediaController.SavedFilterState d;
+    public ArrayList e;
+    public ArrayList f35093f;
+    public long f35094g;
 }

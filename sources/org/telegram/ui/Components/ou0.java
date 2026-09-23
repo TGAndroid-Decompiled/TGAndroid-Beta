@@ -9,25 +9,25 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class ou0 extends qt0 {
-    public final HashSet f26886f3;
-    public final ArrayList f26887g3;
-    public final ArrayList f26888h3;
-    public final ArrayList f26889i3;
+    public final HashSet f26856f3;
+    public final ArrayList f26857g3;
+    public final ArrayList f26858h3;
+    public final ArrayList f26859i3;
     public TextPaint j3;
-    public StaticLayout f26890k3;
-    public float f26891l3;
-    public float f26892m3;
-    public ai.rc f26893n3;
-    public int f26894o3;
-    public final ArrayList f26895p3;
+    public StaticLayout f26860k3;
+    public float f26861l3;
+    public float f26862m3;
+    public ai.rc f26863n3;
+    public int f26864o3;
+    public final ArrayList f26865p3;
 
     public ou0(Context context) {
         super(context, null);
-        this.f26886f3 = new HashSet();
-        this.f26887g3 = new ArrayList();
-        this.f26888h3 = new ArrayList();
-        this.f26889i3 = new ArrayList();
-        this.f26895p3 = new ArrayList();
+        this.f26856f3 = new HashSet();
+        this.f26857g3 = new ArrayList();
+        this.f26858h3 = new ArrayList();
+        this.f26859i3 = new ArrayList();
+        this.f26865p3 = new ArrayList();
     }
 
     public abstract boolean A1();
@@ -43,7 +43,7 @@ public abstract class ou0 extends qt0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        tk0 movingAdapter = getMovingAdapter();
+        uk0 movingAdapter = getMovingAdapter();
         if (B1() && getAdapter() == movingAdapter && z1() && (view instanceof org.telegram.ui.Cells.t7)) {
             return true;
         }
@@ -66,7 +66,7 @@ public abstract class ou0 extends qt0 {
         return null;
     }
 
-    public tk0 getMovingAdapter() {
+    public uk0 getMovingAdapter() {
         return null;
     }
 
@@ -74,7 +74,7 @@ public abstract class ou0 extends qt0 {
         return 0;
     }
 
-    public tk0 getSupportingAdapter() {
+    public uk0 getSupportingAdapter() {
         return null;
     }
 

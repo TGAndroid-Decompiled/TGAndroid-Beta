@@ -14,28 +14,28 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class s extends View {
-    public final Paint f40977a;
-    public final Paint f40978b;
-    public final Paint f40979c;
+    public final Paint f40930a;
+    public final Paint f40931b;
+    public final Paint f40932c;
     public float d;
     public float e;
-    public final Drawable f40980f;
+    public final Drawable f40933f;
     public final float[] h;
-    public final x f40981n;
+    public final x f40934n;
 
     public s(x xVar, Context context) {
         super(context);
-        this.f40981n = xVar;
-        this.f40977a = new Paint(1);
-        this.f40978b = new Paint(1);
+        this.f40934n = xVar;
+        this.f40930a = new Paint(1);
+        this.f40931b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f40979c = paint;
+        this.f40932c = paint;
         this.h = new float[3];
         setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f));
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        this.f40980f = context.getDrawable(R.drawable.knob_shadow);
+        this.f40933f = context.getDrawable(R.drawable.knob_shadow);
     }
 
     public final void a(MotionEvent motionEvent) {
@@ -65,8 +65,8 @@ public final class s extends View {
             fArr[2] = f11;
         }
         int HSVToColor = Color.HSVToColor(fArr);
-        x xVar = this.f40981n;
-        xVar.f41034f = HSVToColor;
+        x xVar = this.f40934n;
+        xVar.f40990f = HSVToColor;
         xVar.m(HSVToColor, 0);
         invalidate();
     }
@@ -76,10 +76,10 @@ public final class s extends View {
         super.onDraw(canvas);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f40977a);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f40978b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f40930a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f40931b);
         float dp = AndroidUtilities.dp(13.0f);
-        Paint paint = this.f40979c;
+        Paint paint = this.f40932c;
         float dp2 = AndroidUtilities.dp(16.0f);
         int width = (getWidth() - getPaddingLeft()) - getPaddingRight();
         int height = (getHeight() - getPaddingTop()) - getPaddingBottom();
@@ -88,20 +88,20 @@ public final class s extends View {
         float f10 = height;
         float a10 = w7.p.a(this.e * f10, dp2, f10 - dp2) + getPaddingTop();
         Rect rect = AndroidUtilities.rectTmp2;
-        Drawable drawable = this.f40980f;
+        Drawable drawable = this.f40933f;
         drawable.getPadding(rect);
         int i10 = rect.bottom;
         drawable.setBounds((int) ((a2 - dp) - rect.left), (int) ((a10 - dp) - rect.top), (int) (a2 + dp + i10), (int) (a10 + dp + i10));
         drawable.draw(canvas);
         canvas.drawCircle(a2, a10, dp, paint);
-        qg.l1.x1(a2, a10, dp - (paint.getStrokeWidth() / 2.0f), i0.a.k(this.f40981n.f41034f, 255), canvas);
+        qg.l1.x1(a2, a10, dp - (paint.getStrokeWidth() / 2.0f), i0.a.k(this.f40934n.f40990f, 255), canvas);
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        this.f40977a.setShader(new LinearGradient(0.0f, getPaddingTop(), 0.0f, i11 - getPaddingBottom(), new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, Shader.TileMode.CLAMP));
-        this.f40978b.setShader(new LinearGradient(getPaddingLeft(), 0.0f, i10 - getPaddingRight(), 0.0f, new int[]{-1, 0, 0, -16777216}, new float[]{0.06f, 0.22f, 0.78f, 0.94f}, Shader.TileMode.MIRROR));
+        this.f40930a.setShader(new LinearGradient(0.0f, getPaddingTop(), 0.0f, i11 - getPaddingBottom(), new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f40931b.setShader(new LinearGradient(getPaddingLeft(), 0.0f, i10 - getPaddingRight(), 0.0f, new int[]{-1, 0, 0, -16777216}, new float[]{0.06f, 0.22f, 0.78f, 0.94f}, Shader.TileMode.MIRROR));
     }
 
     @Override

@@ -1,22 +1,46 @@
 package org.telegram.ui;
-public final class oi implements org.telegram.ui.Components.tg0 {
-    public boolean f36231a = true;
-    public final org.telegram.ui.Components.fk0 f36232b;
+public final class oi extends org.telegram.ui.ActionBar.n1 {
+    public final org.telegram.ui.Components.gk0 f35884o;
+    public final xn f35885p;
 
-    public oi(org.telegram.ui.Components.fk0 fk0Var) {
-        this.f36232b = fk0Var;
+    public oi(xn xnVar, db dbVar, org.telegram.ui.Components.gk0 gk0Var) {
+        super(dbVar, -2, -2);
+        this.f35885p = xnVar;
+        this.f35884o = gk0Var;
     }
 
     @Override
-    public final void a(float f7, float f10) {
-        org.telegram.ui.Components.fk0 fk0Var = this.f36232b;
-        if (f7 == 0.0f && !this.f36231a) {
-            fk0Var.r(false);
-            this.f36231a = true;
-        } else if (f7 == 1.0f && this.f36231a) {
-            fk0Var.setAlpha(1.0f - f10);
-            if (f10 == 1.0f) {
-                this.f36231a = false;
+    public final void d(boolean z10) {
+        super.d(true);
+        org.telegram.ui.Components.gk0 gk0Var = this.f35884o;
+        if (gk0Var != null) {
+            gk0Var.d();
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        d(true);
+        xn xnVar = this.f35885p;
+        if (xnVar.Q8 == this) {
+            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27299w;
+            org.telegram.ui.Components.qc qcVar2 = xnVar.f39471n1;
+            if (qcVar == qcVar2 && qcVar2 != null) {
+                qcVar2.b();
+                xnVar.f39471n1 = null;
+            }
+            xnVar.Q8 = null;
+            xnVar.T8 = null;
+            xnVar.S8 = null;
+            xnVar.f39621z0.R = true;
+            if (xnVar.R8) {
+                xnVar.g8(false, true, 0.0f);
+            } else {
+                xnVar.R8 = true;
+            }
+            jk jkVar = xnVar.Y;
+            if (jkVar != null && jkVar.getEditField() != null) {
+                xnVar.Y.getEditField().setAllowDrawCursor(true);
             }
         }
     }

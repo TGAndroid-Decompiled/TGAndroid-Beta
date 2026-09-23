@@ -9,20 +9,20 @@ import e9.p;
 import e9.x0;
 import java.util.ArrayList;
 public final class c implements a {
-    public static final a0 f44473b = new a0(new p(new t0.a(16), x0.f8140b), new p(new t0.a(17), x0.f8141c));
-    public final ArrayList f44474a = new ArrayList();
+    public static final a0 f44427b = new a0(new p(new v3.d(1), x0.f8126b), new p(new v3.d(2), x0.f8127c));
+    public final ArrayList f44428a = new ArrayList();
 
     @Override
     public final long a(long j3) {
         int i10 = 0;
         long j10 = -9223372036854775807L;
         while (true) {
-            ArrayList arrayList = this.f44474a;
+            ArrayList arrayList = this.f44428a;
             if (i10 >= arrayList.size()) {
                 break;
             }
-            long j11 = ((z3.b) arrayList.get(i10)).f48074b;
-            long j12 = ((z3.b) arrayList.get(i10)).d;
+            long j11 = ((z3.a) arrayList.get(i10)).f48027b;
+            long j12 = ((z3.a) arrayList.get(i10)).d;
             if (j3 < j11) {
                 if (j10 == -9223372036854775807L) {
                     j10 = j11;
@@ -48,79 +48,79 @@ public final class c implements a {
 
     @Override
     public final i0 b(long j3) {
-        ArrayList arrayList = this.f44474a;
+        ArrayList arrayList = this.f44428a;
         if (!arrayList.isEmpty()) {
-            if (j3 >= ((z3.b) arrayList.get(0)).f48074b) {
+            if (j3 >= ((z3.a) arrayList.get(0)).f48027b) {
                 ArrayList arrayList2 = new ArrayList();
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    z3.b bVar = (z3.b) arrayList.get(i10);
-                    if (j3 >= bVar.f48074b && j3 < bVar.d) {
-                        arrayList2.add(bVar);
+                    z3.a aVar = (z3.a) arrayList.get(i10);
+                    if (j3 >= aVar.f48027b && j3 < aVar.d) {
+                        arrayList2.add(aVar);
                     }
-                    if (j3 < bVar.f48074b) {
+                    if (j3 < aVar.f48027b) {
                         break;
                     }
                 }
-                a1 B = i0.B(f44473b, arrayList2);
+                a1 B = i0.B(f44427b, arrayList2);
                 f0 u10 = i0.u();
                 for (int i11 = 0; i11 < B.d; i11++) {
-                    u10.d(((z3.b) B.get(i11)).f48073a);
+                    u10.d(((z3.a) B.get(i11)).f48026a);
                 }
                 return u10.i();
             }
         }
-        g0 g0Var = i0.f8081b;
+        g0 g0Var = i0.f8067b;
         return a1.e;
     }
 
     @Override
-    public final boolean c(z3.b bVar, long j3) {
+    public final boolean c(z3.a aVar, long j3) {
         boolean z10;
         boolean z11;
         boolean z12;
-        long j10 = bVar.f48074b;
+        long j10 = aVar.f48027b;
         if (j10 != -9223372036854775807L) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        if (bVar.f48075c != -9223372036854775807L) {
+        if (aVar.f48028c != -9223372036854775807L) {
             z11 = true;
         } else {
             z11 = false;
         }
         e2.d.b(z11);
-        if (j10 <= j3 && j3 < bVar.d) {
+        if (j10 <= j3 && j3 < aVar.d) {
             z12 = true;
         } else {
             z12 = false;
         }
-        ArrayList arrayList = this.f44474a;
+        ArrayList arrayList = this.f44428a;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (j10 >= ((z3.b) arrayList.get(size)).f48074b) {
-                arrayList.add(size + 1, bVar);
+            if (j10 >= ((z3.a) arrayList.get(size)).f48027b) {
+                arrayList.add(size + 1, aVar);
                 return z12;
             }
         }
-        arrayList.add(0, bVar);
+        arrayList.add(0, aVar);
         return z12;
     }
 
     @Override
     public final void clear() {
-        this.f44474a.clear();
+        this.f44428a.clear();
     }
 
     @Override
     public final long d(long j3) {
-        ArrayList arrayList = this.f44474a;
+        ArrayList arrayList = this.f44428a;
         if (!arrayList.isEmpty()) {
-            if (j3 >= ((z3.b) arrayList.get(0)).f48074b) {
-                long j10 = ((z3.b) arrayList.get(0)).f48074b;
+            if (j3 >= ((z3.a) arrayList.get(0)).f48027b) {
+                long j10 = ((z3.a) arrayList.get(0)).f48027b;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    long j11 = ((z3.b) arrayList.get(i10)).f48074b;
-                    long j12 = ((z3.b) arrayList.get(i10)).d;
+                    long j11 = ((z3.a) arrayList.get(i10)).f48027b;
+                    long j12 = ((z3.a) arrayList.get(i10)).d;
                     if (j12 <= j3) {
                         j10 = Math.max(j10, j12);
                     } else if (j11 > j3) {
@@ -140,10 +140,10 @@ public final class c implements a {
     public final void e(long j3) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f44474a;
+            ArrayList arrayList = this.f44428a;
             if (i10 < arrayList.size()) {
-                int i11 = (j3 > ((z3.b) arrayList.get(i10)).f48074b ? 1 : (j3 == ((z3.b) arrayList.get(i10)).f48074b ? 0 : -1));
-                if (i11 > 0 && j3 > ((z3.b) arrayList.get(i10)).d) {
+                int i11 = (j3 > ((z3.a) arrayList.get(i10)).f48027b ? 1 : (j3 == ((z3.a) arrayList.get(i10)).f48027b ? 0 : -1));
+                if (i11 > 0 && j3 > ((z3.a) arrayList.get(i10)).d) {
                     arrayList.remove(i10);
                     i10--;
                 } else if (i11 < 0) {

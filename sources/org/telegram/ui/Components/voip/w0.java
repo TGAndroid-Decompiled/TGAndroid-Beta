@@ -12,13 +12,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.cc0;
+import org.telegram.ui.Components.bc0;
 import w7.x5;
 public final class w0 extends z4.a {
-    public final x0 f29321c;
+    public final x0 f29295c;
 
     public w0(x0 x0Var) {
-        this.f29321c = x0Var;
+        this.f29295c = x0Var;
     }
 
     @Override
@@ -28,19 +28,19 @@ public final class w0 extends z4.a {
 
     @Override
     public final int b() {
-        return this.f29321c.f29340f.length;
+        return this.f29295c.f29314f.length;
     }
 
     @Override
     public final Object e(z4.g gVar, int i10) {
         Bitmap bitmap;
         ImageView imageView;
-        x0 x0Var = this.f29321c;
-        boolean z10 = x0Var.f29346y;
+        x0 x0Var = this.f29295c;
+        boolean z10 = x0Var.f29320y;
         int i11 = 1;
         if (z10 && i10 == 0) {
             ?? frameLayout = new FrameLayout(x0Var.getContext());
-            frameLayout.setBackground(new cc0(true, -14602694, -13935795, -14395293, -14203560));
+            frameLayout.setBackground(new bc0(true, -14602694, -13935795, -14395293, -14203560));
             ImageView imageView2 = new ImageView(x0Var.getContext());
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             imageView2.setImageResource(R.drawable.screencast_big);
@@ -49,7 +49,7 @@ public final class w0 extends z4.a {
             textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
             textView.setGravity(17);
             textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            org.telegram.messenger.y0.q(textView, -1, 1, 15.0f);
+            org.telegram.messenger.z0.q(textView, -1, 1, 15.0f);
             frameLayout.addView(textView, x5.d(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
             imageView = frameLayout;
         } else {

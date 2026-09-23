@@ -13,14 +13,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
-import org.telegram.ui.js0;
+import pg.e0;
 import v7.r6;
 public final class i extends w7.l {
-    public static final js0 f41120b = new js0(19);
-    public final g f41121a;
+    public static final e0 f41076b = new e0(3);
+    public final g f41077a;
 
     public i(g gVar) {
-        this.f41121a = gVar;
+        this.f41077a = gVar;
     }
 
     public static a d(v vVar, int i10, int i11) {
@@ -53,7 +53,7 @@ public final class i extends w7.l {
         String str2 = new String(bArr, i14, u10 - i14, s10);
         int r10 = r(x10) + u10;
         if (i12 <= r10) {
-            copyOfRange = d0.f7886b;
+            copyOfRange = d0.f7872b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r10, i12);
         }
@@ -62,9 +62,9 @@ public final class i extends w7.l {
 
     public static c e(v vVar, int i10, int i11, boolean z10, int i12, g gVar) {
         long j3;
-        int i13 = vVar.f7932b;
-        int v = v(i13, vVar.f7931a);
-        String str = new String(vVar.f7931a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = vVar.f7918b;
+        int v = v(i13, vVar.f7917a);
+        String str = new String(vVar.f7917a, i13, v - i13, StandardCharsets.ISO_8859_1);
         vVar.J(v + 1);
         int j10 = vVar.j();
         int j11 = vVar.j();
@@ -80,7 +80,7 @@ public final class i extends w7.l {
         }
         ArrayList arrayList = new ArrayList();
         int i14 = i13 + i10;
-        while (vVar.f7932b < i14) {
+        while (vVar.f7918b < i14) {
             j h = h(i11, vVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -92,9 +92,9 @@ public final class i extends w7.l {
     public static d f(v vVar, int i10, int i11, boolean z10, int i12, g gVar) {
         boolean z11;
         boolean z12;
-        int i13 = vVar.f7932b;
-        int v = v(i13, vVar.f7931a);
-        String str = new String(vVar.f7931a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = vVar.f7918b;
+        int v = v(i13, vVar.f7917a);
+        String str = new String(vVar.f7917a, i13, v - i13, StandardCharsets.ISO_8859_1);
         vVar.J(v + 1);
         int x10 = vVar.x();
         if ((x10 & 2) != 0) {
@@ -110,14 +110,14 @@ public final class i extends w7.l {
         int x11 = vVar.x();
         String[] strArr = new String[x11];
         for (int i14 = 0; i14 < x11; i14++) {
-            int i15 = vVar.f7932b;
-            int v9 = v(i15, vVar.f7931a);
-            strArr[i14] = new String(vVar.f7931a, i15, v9 - i15, StandardCharsets.ISO_8859_1);
+            int i15 = vVar.f7918b;
+            int v9 = v(i15, vVar.f7917a);
+            strArr[i14] = new String(vVar.f7917a, i15, v9 - i15, StandardCharsets.ISO_8859_1);
             vVar.J(v9 + 1);
         }
         ArrayList arrayList = new ArrayList();
         int i16 = i13 + i10;
-        while (vVar.f7932b < i16) {
+        while (vVar.f7918b < i16) {
             j h = h(i11, vVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -165,7 +165,7 @@ public final class i extends w7.l {
         String l10 = l(bArr, r10, u11, s10);
         int r11 = r(x10) + u11;
         if (i11 <= r11) {
-            copyOfRange = d0.f7886b;
+            copyOfRange = d0.f7872b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r11, i11);
         }
@@ -200,7 +200,7 @@ public final class i extends w7.l {
         String str = new String(bArr, 0, v, StandardCharsets.ISO_8859_1);
         int i11 = v + 1;
         if (i10 <= i11) {
-            copyOfRange = d0.f7886b;
+            copyOfRange = d0.f7872b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, i11, i10);
         }
@@ -327,8 +327,8 @@ public final class i extends w7.l {
     }
 
     public static int w(int i10, v vVar) {
-        byte[] bArr = vVar.f7931a;
-        int i11 = vVar.f7932b;
+        byte[] bArr = vVar.f7917a;
+        int i11 = vVar.f7918b;
         int i12 = i11;
         while (true) {
             int i13 = i12 + 1;

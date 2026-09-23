@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.SortedMap;
 import java.util.SortedSet;
 public class i extends d implements SortedMap {
-    public SortedSet f8080f;
+    public SortedSet f8066f;
     public final v0 h;
 
     public i(v0 v0Var, SortedMap sortedMap) {
@@ -18,10 +18,10 @@ public class i extends d implements SortedMap {
 
     @Override
     public SortedSet keySet() {
-        SortedSet sortedSet = this.f8080f;
+        SortedSet sortedSet = this.f8066f;
         if (sortedSet == null) {
             SortedSet b10 = b();
-            this.f8080f = b10;
+            this.f8066f = b10;
             return b10;
         }
         return sortedSet;
@@ -33,7 +33,7 @@ public class i extends d implements SortedMap {
     }
 
     public SortedMap d() {
-        return (SortedMap) this.f8061b;
+        return (SortedMap) this.f8047b;
     }
 
     @Override

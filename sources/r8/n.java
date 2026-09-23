@@ -10,17 +10,17 @@ import com.google.android.gms.internal.vision.g3;
 import com.google.android.gms.internal.vision.u2;
 import java.nio.ByteBuffer;
 public final class n extends b2.g {
-    public final u2 f42144b;
+    public final u2 f42100b;
 
     public n(u2 u2Var) {
         super(3);
-        this.f42144b = u2Var;
+        this.f42100b = u2Var;
     }
 
     @Override
     public final void U0() {
         super.U0();
-        this.f42144b.l();
+        this.f42100b.l();
     }
 
     public final SparseArray Z0(lf.i iVar) {
@@ -28,7 +28,7 @@ public final class n extends b2.g {
         if (iVar != null) {
             g3 b10 = g3.b(iVar);
             Bitmap bitmap = (Bitmap) iVar.d;
-            u2 u2Var = this.f42144b;
+            u2 u2Var = this.f42100b;
             if (bitmap != null) {
                 if (!u2Var.k()) {
                     mVarArr = new m[0];
@@ -38,7 +38,7 @@ public final class n extends b2.g {
                         e3 e3Var = (e3) u2Var.m();
                         n6.l.h(e3Var);
                         Parcel G0 = e3Var.G0();
-                        int i10 = com.google.android.gms.internal.vision.a.f6912a;
+                        int i10 = com.google.android.gms.internal.vision.a.f6898a;
                         G0.writeStrongBinder(bVar);
                         com.google.android.gms.internal.vision.a.a(G0, b10);
                         Parcel P0 = e3Var.P0(G0, 2);
@@ -64,7 +64,7 @@ public final class n extends b2.g {
                         e3 e3Var2 = (e3) u2Var.m();
                         n6.l.h(e3Var2);
                         Parcel G02 = e3Var2.G0();
-                        int i11 = com.google.android.gms.internal.vision.a.f6912a;
+                        int i11 = com.google.android.gms.internal.vision.a.f6898a;
                         G02.writeStrongBinder(bVar2);
                         com.google.android.gms.internal.vision.a.a(G02, b10);
                         Parcel P02 = e3Var2.P0(G02, 1);
@@ -79,7 +79,7 @@ public final class n extends b2.g {
             }
             SparseArray sparseArray = new SparseArray(mVarArr.length);
             for (m mVar : mVarArr) {
-                sparseArray.append(mVar.f42135b.hashCode(), mVar);
+                sparseArray.append(mVar.f42091b.hashCode(), mVar);
             }
             return sparseArray;
         }

@@ -1,6 +1,12 @@
 package i2;
 public final class q0 {
-    public long f10862a = -9223372036854775807L;
-    public float f10863b = -3.4028235E38f;
-    public long f10864c = -9223372036854775807L;
+    public final j2.k f10848a;
+    public final long f10849b;
+    public final float f10850c;
+
+    public q0(j2.k kVar, long j3, float f7, boolean z10, long j10) {
+        this.f10848a = kVar;
+        this.f10849b = j3;
+        this.f10850c = f7;
+    }
 }

@@ -28,31 +28,31 @@ public final class d extends pb.a {
 
     public static Map a(i iVar) {
         boolean z10;
-        cd.c cVar = iVar.f7689k;
-        int i10 = cVar.f4220a;
+        cd.c cVar = iVar.f7675k;
+        int i10 = cVar.f4215a;
         if (i10 > 0) {
             HashMap hashMap = new HashMap(i10);
             int i11 = 0;
             while (true) {
-                if (i11 < cVar.f4220a) {
+                if (i11 < cVar.f4215a) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (z10) {
-                    String str = cVar.f4222c[i11];
-                    String str2 = cVar.f4221b[i11];
+                    String str = cVar.f4217c[i11];
+                    String str2 = cVar.f4216b[i11];
                     if (str == null) {
                         str = "";
                     }
                     ?? obj = new Object();
                     if (str2 != null) {
-                        obj.f4214a = str2.trim();
+                        obj.f4209a = str2.trim();
                         if (str2.length() != 0) {
-                            obj.f4215b = str;
-                            obj.f4216c = cVar;
+                            obj.f4210b = str;
+                            obj.f4211c = cVar;
                             i11++;
-                            hashMap.put(obj.f4214a.toLowerCase(Locale.US), obj.f4215b);
+                            hashMap.put(obj.f4209a.toLowerCase(Locale.US), obj.f4210b);
                         } else {
                             throw new IllegalArgumentException("String must not be empty");
                         }

@@ -1,82 +1,108 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 public final class xl0 extends Drawable {
-    public final RectF f29995a = new RectF();
-    public final Paint f29996b;
-    public final TextPaint f29997c;
-    public int d;
-    public String e;
-    public final int f29998f;
-    public int f29999g;
-    public final int h;
-
-    public xl0(int i10) {
-        Paint paint = new Paint(1);
-        this.f29996b = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.f29997c = textPaint;
-        this.f29999g = 255;
-        this.h = 255;
-        this.f29998f = i10;
-        textPaint.setTextSize(AndroidUtilities.dp(11));
-        textPaint.setTypeface(AndroidUtilities.bold());
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        if (i10 == 0) {
-            this.e = LocaleController.getString(R.string.ScamMessage);
-        } else {
-            this.e = LocaleController.getString(R.string.FakeMessage);
-        }
-        this.d = (int) Math.ceil(textPaint.measureText(this.e));
-    }
+    public long f30006a;
+    public boolean f30007b;
+    public Paint f30008c;
+    public float d;
+    public float e;
+    public float f30009f;
+    public int f30010g;
+    public int h;
+    public int f30011i;
+    public org.telegram.ui.Cells.t1 f30012j;
+    public float f30013k;
+    public int f30014l;
+    public int f30015m;
+    public org.telegram.ui.ActionBar.d6 f30016n;
 
     public final void a() {
-        String string;
-        if (this.f29998f == 0) {
-            string = LocaleController.getString(R.string.ScamMessage);
-        } else {
-            string = LocaleController.getString(R.string.FakeMessage);
+        if (this.f30007b) {
+            return;
         }
-        if (!string.equals(this.e)) {
-            this.e = string;
-            this.d = (int) Math.ceil(this.f29997c.measureText(string));
-        }
+        this.f30006a = System.currentTimeMillis();
+        this.f30007b = true;
+        this.f30012j.invalidate();
     }
 
-    public final void b(int i10) {
-        this.f29997c.setColor(i10);
-        this.f29996b.setColor(i10);
-        this.f29999g = Color.alpha(i10);
+    public final void b() {
+        if (!this.f30007b) {
+            return;
+        }
+        this.f30007b = false;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f29995a;
-        rectF.set(bounds);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.f29996b);
-        canvas.drawText(this.e, rectF.left + AndroidUtilities.dp(5.0f), rectF.top + AndroidUtilities.dp(12.0f), this.f29997c);
+        Paint paint = this.f30008c;
+        paint.setColor(i0.a.d(this.f30013k, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18884ic, this.f30016n), this.f30014l));
+        int i10 = this.f30015m;
+        if (i10 != 255) {
+            paint.setAlpha((int) ((paint.getAlpha() / 255.0f) * i10));
+        }
+        int i11 = getBounds().left;
+        int i12 = getBounds().top;
+        int i13 = 0;
+        while (i13 < 3) {
+            Canvas canvas2 = canvas;
+            canvas2.drawRect(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp((this.d * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(4.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            canvas2.drawRect(AndroidUtilities.dp(5.0f) + i11, AndroidUtilities.dp((this.e * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(7.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            canvas2.drawRect(AndroidUtilities.dp(8.0f) + i11, AndroidUtilities.dp((this.f30009f * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(10.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            i13++;
+            canvas = canvas2;
+        }
+        if (this.f30007b) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f30006a;
+            this.f30006a = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            float f7 = (float) j3;
+            float f10 = ((f7 / 300.0f) * this.f30010g) + this.d;
+            this.d = f10;
+            if (f10 > 1.0f) {
+                this.f30010g = -1;
+                this.d = 1.0f;
+            } else if (f10 < 0.0f) {
+                this.f30010g = 1;
+                this.d = 0.0f;
+            }
+            float f11 = ((f7 / 310.0f) * this.h) + this.e;
+            this.e = f11;
+            if (f11 > 1.0f) {
+                this.h = -1;
+                this.e = 1.0f;
+            } else if (f11 < 0.0f) {
+                this.h = 1;
+                this.e = 0.0f;
+            }
+            float f12 = ((f7 / 320.0f) * this.f30011i) + this.f30009f;
+            this.f30009f = f12;
+            if (f12 > 1.0f) {
+                this.f30011i = -1;
+                this.f30009f = 1.0f;
+            } else if (f12 < 0.0f) {
+                this.f30011i = 1;
+                this.f30009f = 0.0f;
+            }
+            this.f30012j.invalidate();
+        }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(16.0f);
+        return AndroidUtilities.dp(12.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(10.0f) + this.d;
+        return AndroidUtilities.dp(12.0f);
     }
 
     @Override
@@ -86,11 +112,7 @@ public final class xl0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        if (this.h != i10) {
-            int i11 = (int) ((i10 / 255.0f) * this.f29999g);
-            this.f29996b.setAlpha(i11);
-            this.f29997c.setAlpha(i11);
-        }
+        this.f30015m = i10;
     }
 
     @Override

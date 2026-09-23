@@ -1,91 +1,45 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.ImageView;
+import android.graphics.Typeface;
+import android.text.method.LinkMovementMethod;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mc extends kb {
-    public Runnable f26136a;
-    public Runnable f26137b;
-    public oc f26138c;
-    public final TextView d;
-    public boolean e;
+public class mc extends nb {
+    public final w9 f26159a;
+    public final TextView f26160b;
+    public final TextView f26161c;
 
-    public mc(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, boolean z11) {
-        super(context);
-        int w02;
-        int i10 = org.telegram.ui.ActionBar.i6.Gi;
-        if (e6Var != null) {
-            w02 = e6Var.G0(i10);
-        } else {
-            w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
-        }
-        if (z10) {
-            TextView textView = new TextView(context);
-            this.d = textView;
-            textView.setBackground(org.telegram.ui.ActionBar.i6.f0((w02 & 16777215) | 419430400, 7, -1));
-            textView.setTextSize(1, 14.0f);
-            textView.setTypeface(AndroidUtilities.bold());
-            textView.setTextColor(w02);
-            org.telegram.messenger.vl.l(R.string.UndoNoCaps, textView, 16);
-            float f7 = z11 ? 34.0f : 12.0f;
-            boolean z12 = LocaleController.isRTL;
-            w7.d6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
-            addView(textView, w7.x5.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
-        }
-        if (z11) {
-            ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource(R.drawable.chats_undo);
-            imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
-            if (!z10) {
-                imageView.setBackground(org.telegram.ui.ActionBar.i6.f0((w02 & 16777215) | 419430400, 1, -1));
-            }
-            w7.d6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, w7.x5.h(56.0f, 48.0f, 16));
-        }
-        setOnClickListener(new f0(this, 6));
+    public mc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.Hi);
+        w9 w9Var = new w9(context);
+        this.f26159a = w9Var;
+        addView(w9Var, w7.x5.i(29.0f, 29.0f, 8388627, 12.0f, 12.0f, 12.0f, 12.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.x5.i(-2.0f, -2.0f, 8388627, 54.0f, 8.0f, 12.0f, 8.0f));
+        TextView textView = new TextView(context);
+        this.f26160b = textView;
+        textView.setSingleLine();
+        textView.setTextColor(themedColor);
+        textView.setTextSize(1, 14.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(textView);
+        TextView textView2 = new TextView(context);
+        this.f26161c = textView2;
+        textView2.setMaxLines(2);
+        textView2.setTextColor(themedColor);
+        textView2.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.Gi));
+        textView2.setMovementMethod(new LinkMovementMethod());
+        textView2.setTypeface(Typeface.SANS_SERIF);
+        textView2.setTextSize(1, 13.0f);
+        linearLayout.addView(textView2);
     }
 
     @Override
-    public final void a(oc ocVar) {
-        this.f26138c = ocVar;
-    }
-
-    @Override
-    public final void b() {
-        this.f26138c = null;
-        Runnable runnable = this.f26137b;
-        if (runnable != null && !this.e) {
-            runnable.run();
-        }
-    }
-
-    public final void e(CharSequence charSequence) {
-        TextView textView = this.d;
-        if (textView != null) {
-            textView.setText(charSequence);
-        }
-    }
-
-    public final void f() {
-        if (this.f26138c != null) {
-            this.e = true;
-            Runnable runnable = this.f26136a;
-            if (runnable != null) {
-                runnable.run();
-            }
-            oc ocVar = this.f26138c;
-            if (ocVar != null) {
-                ocVar.b();
-            }
-        }
-    }
-
-    public mc(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        this(context, e6Var, z10, !z10);
+    public CharSequence getAccessibilityText() {
+        return ((Object) this.f26160b.getText()) + ".\n" + ((Object) this.f26161c.getText());
     }
 }

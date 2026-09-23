@@ -1,37 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class yo0 implements Utilities.Callback {
-    public final int f39920a;
-    public final aq0 f39921b;
+import android.view.View;
+public final class yo0 extends org.telegram.ui.Components.z71 {
+    public final up0 f39863a;
 
-    public yo0(aq0 aq0Var, int i10) {
-        this.f39920a = i10;
-        this.f39921b = aq0Var;
+    public yo0(up0 up0Var) {
+        this.f39863a = up0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f39920a) {
-            case 0:
-                aq0 aq0Var = this.f39921b;
-                aq0Var.f31886r = false;
-                aq0Var.Q.setLoading(false);
-                if (((Boolean) obj).booleanValue()) {
-                    aq0Var.x0();
-                    aq0Var.finishFragment();
-                    aq0Var.E0();
-                    return;
-                }
-                return;
-            default:
-                Integer num = (Integer) obj;
-                ci.i1 i1Var = this.f39921b.I;
-                if (i1Var != null) {
-                    i1Var.D(num.intValue());
-                    return;
-                }
-                return;
+    public final View d(int i10) {
+        up0 up0Var = this.f39863a;
+        if (i10 == 1) {
+            return up0Var.h;
         }
+        if (i10 == 0) {
+            return up0Var.f38158n;
+        }
+        return null;
+    }
+
+    @Override
+    public final int e() {
+        return 2;
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

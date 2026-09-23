@@ -8,19 +8,19 @@ import android.os.RemoteException;
 import c7.r0;
 import w7.e0;
 public final class a extends o6.a {
-    public final String f7980a;
-    public final String f7981b;
-    public final l f7982c;
+    public final String f7966a;
+    public final String f7967b;
+    public final l f7968c;
     public final f d;
     public final boolean e;
-    public final boolean f7983f;
+    public final boolean f7969f;
     public static final g6.b h = new g6.b("CastMediaOptions", null);
     public static final Parcelable.Creator<a> CREATOR = new r0(29);
 
     public a(String str, String str2, IBinder iBinder, f fVar, boolean z10, boolean z11) {
         l aVar;
-        this.f7980a = str;
-        this.f7981b = str2;
+        this.f7966a = str;
+        this.f7967b = str2;
         if (iBinder == null) {
             aVar = 0;
         } else {
@@ -31,14 +31,14 @@ public final class a extends o6.a {
                 aVar = new a9.a(iBinder, "com.google.android.gms.cast.framework.media.IImagePicker", 1);
             }
         }
-        this.f7982c = aVar;
+        this.f7968c = aVar;
         this.d = fVar;
         this.e = z10;
-        this.f7983f = z11;
+        this.f7969f = z11;
     }
 
     public final void b() {
-        l lVar = this.f7982c;
+        l lVar = this.f7968c;
         if (lVar != null) {
             try {
                 Parcel Q0 = lVar.Q0(lVar.O0(), 2);
@@ -57,9 +57,9 @@ public final class a extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         IBinder iBinder;
         int q6 = e0.q(parcel, 20293);
-        e0.l(parcel, 2, this.f7980a);
-        e0.l(parcel, 3, this.f7981b);
-        l lVar = this.f7982c;
+        e0.l(parcel, 2, this.f7966a);
+        e0.l(parcel, 3, this.f7967b);
+        l lVar = this.f7968c;
         if (lVar == null) {
             iBinder = null;
         } else {
@@ -70,7 +70,7 @@ public final class a extends o6.a {
         e0.s(parcel, 6, 4);
         parcel.writeInt(this.e ? 1 : 0);
         e0.s(parcel, 7, 4);
-        parcel.writeInt(this.f7983f ? 1 : 0);
+        parcel.writeInt(this.f7969f ? 1 : 0);
         e0.r(parcel, q6);
     }
 }

@@ -7,20 +7,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class n8 implements View.OnClickListener {
-    public final int f35910a;
-    public final k9 f35911b;
+    public final int f35449a;
+    public final k9 f35450b;
 
     public n8(k9 k9Var, int i10) {
-        this.f35910a = i10;
-        this.f35911b = k9Var;
+        this.f35449a = i10;
+        this.f35450b = k9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f35910a) {
+        switch (this.f35449a) {
             case 0:
                 Long l4 = (Long) view.getTag();
-                k9 k9Var = this.f35911b;
+                k9 k9Var = this.f35450b;
                 ChatObject.Call groupCall = k9Var.getMessagesController().getGroupCall(l4.longValue(), false);
                 TLRPC.Chat chat = k9Var.getMessagesController().getChat(l4);
                 k9Var.Q = chat;
@@ -32,12 +32,12 @@ public final class n8 implements View.OnClickListener {
                 k9Var.getMessagesController().loadFullChat(l4.longValue(), 0, true);
                 return;
             case 1:
-                this.f35911b.k0(true);
+                this.f35450b.k0(true);
                 return;
             case 2:
-                k9 k9Var2 = this.f35911b;
-                org.telegram.ui.Components.n70 H = org.telegram.ui.Components.n70.H(k9Var2, k9Var2.F);
-                H.f26367s = 8;
+                k9 k9Var2 = this.f35450b;
+                org.telegram.ui.Components.o70 H = org.telegram.ui.Components.o70.H(k9Var2, k9Var2.F);
+                H.f26669s = 8;
                 if (k9Var2.getUserConfig().showCallsTab) {
                     H.c(R.drawable.msg_archive_hide, LocaleController.getString(R.string.HideCallTab), new j8(k9Var2, 1), false);
                 }
@@ -46,7 +46,7 @@ public final class n8 implements View.OnClickListener {
                 H.X(-AndroidUtilities.dp(64.0f));
                 return;
             default:
-                k9 k9Var3 = this.f35911b;
+                k9 k9Var3 = this.f35450b;
                 k9Var3.getClass();
                 k9.m0(k9Var3);
                 return;

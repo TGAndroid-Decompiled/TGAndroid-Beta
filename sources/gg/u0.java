@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.u4;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.t00;
+import org.telegram.ui.Components.u00;
 public abstract class u0 extends c {
     public final Context K;
-    public final e6 L;
+    public final d6 L;
     public boolean M;
 
-    public u0(Context context, e6 e6Var, boolean z10, boolean z11) {
+    public u0(Context context, d6 d6Var, boolean z10, boolean z11) {
         super(z10, z11);
         this.M = false;
         this.K = context;
-        this.L = e6Var;
-        new t00(context, null).setIsSingleCell(true);
+        this.L = d6Var;
+        new u00(context, null).setIsSingleCell(true);
     }
 
     @Override
@@ -30,7 +30,7 @@ public abstract class u0 extends c {
     }
 
     public final TLRPC.TL_messageMediaVenue I(int i10) {
-        ArrayList arrayList = this.f9677r;
+        ArrayList arrayList = this.f9663r;
         if (!arrayList.isEmpty()) {
             i10--;
         }
@@ -43,7 +43,7 @@ public abstract class u0 extends c {
                 size--;
             }
             if (size >= 0) {
-                ArrayList arrayList2 = this.f9678s;
+                ArrayList arrayList2 = this.f9664s;
                 if (size < arrayList2.size()) {
                     return (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
                 }
@@ -57,7 +57,7 @@ public abstract class u0 extends c {
     @Override
     public final int h() {
         int i10;
-        ArrayList arrayList = this.f9677r;
+        ArrayList arrayList = this.f9663r;
         if (!arrayList.isEmpty()) {
             i10 = arrayList.size() + 1;
         } else {
@@ -68,7 +68,7 @@ public abstract class u0 extends c {
                 return i10 + 3;
             }
             boolean isEmpty = arrayList.isEmpty();
-            ArrayList arrayList2 = this.f9678s;
+            ArrayList arrayList2 = this.f9664s;
             if (!isEmpty && !arrayList2.isEmpty()) {
                 i10++;
             }
@@ -79,7 +79,7 @@ public abstract class u0 extends c {
 
     @Override
     public final int j(int i10) {
-        ArrayList arrayList = this.f9677r;
+        ArrayList arrayList = this.f9663r;
         if ((i10 == 0 || i10 == arrayList.size() + 1) && !arrayList.isEmpty()) {
             return 1;
         }
@@ -91,10 +91,10 @@ public abstract class u0 extends c {
         int i11;
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         int i12;
-        int i13 = c1Var.f42674f;
-        View view = c1Var.f42671a;
+        int i13 = c1Var.f42630f;
+        View view = c1Var.f42627a;
         boolean z10 = true;
-        ArrayList arrayList = this.f9677r;
+        ArrayList arrayList = this.f9663r;
         if (i13 == 0) {
             if (!arrayList.isEmpty()) {
                 i11 = i10 - 1;
@@ -107,12 +107,12 @@ public abstract class u0 extends c {
             } else {
                 if (!this.J) {
                     int size = i11 - arrayList.size();
-                    if (!this.f9676n && !arrayList.isEmpty()) {
+                    if (!this.f9662n && !arrayList.isEmpty()) {
                         size--;
                     }
                     i12 = size;
                     if (i12 >= 0) {
-                        ArrayList arrayList2 = this.f9678s;
+                        ArrayList arrayList2 = this.f9664s;
                         if (i12 < arrayList2.size()) {
                             tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(i12);
                         }
@@ -122,7 +122,7 @@ public abstract class u0 extends c {
                 i12 = i10;
             }
             u4 u4Var = (u4) view;
-            if (i10 == h() - 1 || (!this.f9676n && !arrayList.isEmpty() && i10 == arrayList.size())) {
+            if (i10 == h() - 1 || (!this.f9662n && !arrayList.isEmpty() && i10 == arrayList.size())) {
                 z10 = false;
             }
             u4Var.b(tL_messageMediaVenue, i12, z10, false);
@@ -138,12 +138,12 @@ public abstract class u0 extends c {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View v3Var;
-        e6 e6Var = this.L;
+        d6 d6Var = this.L;
         Context context = this.K;
         if (i10 == 0) {
-            v3Var = new u4(context, e6Var);
+            v3Var = new u4(context, d6Var);
         } else {
-            v3Var = new v3(context, e6Var);
+            v3Var = new v3(context, d6Var);
         }
         return new s4.c1(v3Var);
     }

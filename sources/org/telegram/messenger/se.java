@@ -1,53 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.messenger.MessagesStorage;
 public final class se implements Runnable {
-    public final int f17312a;
-    public final MessagesStorage f17313b;
-    public final ArrayList f17314c;
-    public final long d;
+    public final int f17288a;
+    public final MessagesStorage.IntCallback f17289b;
+    public final int f17290c;
 
-    public se(MessagesStorage messagesStorage, long j3, ArrayList arrayList, int i10) {
-        this.f17312a = i10;
-        this.f17313b = messagesStorage;
-        this.d = j3;
-        this.f17314c = arrayList;
+    public se(MessagesStorage.IntCallback intCallback, int i10, int i11) {
+        this.f17288a = i11;
+        this.f17289b = intCallback;
+        this.f17290c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17312a) {
+        switch (this.f17288a) {
             case 0:
-                this.f17313b.lambda$deleteUserChatHistory$86(this.f17314c, this.d);
+                this.f17289b.run(this.f17290c);
                 return;
             case 1:
-                this.f17313b.lambda$emptyMessagesMedia$99(this.f17314c, this.d);
-                return;
-            case 2:
-                this.f17313b.lambda$deleteSavedDialog$54(this.d, this.f17314c);
-                return;
-            case 3:
-                this.f17313b.lambda$updateChannelUsers$125(this.d, this.f17314c);
-                return;
-            case 4:
-                this.f17313b.lambda$markVoiceMessageContentAsRead$217(this.f17314c, this.d);
-                return;
-            case 5:
-                this.f17313b.lambda$markMessagesAsDeletedInternal$226(this.f17314c, this.d);
-                return;
-            case 6:
-                this.f17313b.lambda$removeTopics$58(this.f17314c, this.d);
+                this.f17289b.run(this.f17290c);
                 return;
             default:
-                this.f17313b.lambda$createTaskForSecretChat$117(this.d, this.f17314c);
+                this.f17289b.run(this.f17290c);
                 return;
         }
-    }
-
-    public se(MessagesStorage messagesStorage, ArrayList arrayList, long j3, int i10) {
-        this.f17312a = i10;
-        this.f17313b = messagesStorage;
-        this.f17314c = arrayList;
-        this.d = j3;
     }
 }

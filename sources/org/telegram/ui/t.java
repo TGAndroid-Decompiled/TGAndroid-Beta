@@ -2,20 +2,20 @@ package org.telegram.ui;
 
 import android.view.KeyEvent;
 import android.view.View;
-public final class t implements mv0, org.telegram.ui.Components.bl0, org.telegram.ui.ActionBar.l1 {
-    public final h4 f37514a;
+public final class t implements fv0, org.telegram.ui.Components.cl0, org.telegram.ui.ActionBar.l1 {
+    public final i4 f37475a;
 
-    public t(h4 h4Var) {
-        this.f37514a = h4Var;
+    public t(i4 i4Var) {
+        this.f37475a = i4Var;
     }
 
     @Override
     public boolean d(int i10, View view) {
-        h4 h4Var = this.f37514a;
-        h4Var.getClass();
-        if (view instanceof h2) {
-            b4 b4Var = ((h2) view).f34027n;
-            h4Var.Z(b4Var.f32028a.articles.get(b4Var.f32029b).url);
+        i4 i4Var = this.f37475a;
+        i4Var.getClass();
+        if (view instanceof i2) {
+            c4 c4Var = ((i2) view).f33964n;
+            i4Var.Z(c4Var.f32251a.articles.get(c4Var.f32252b).url);
             return true;
         }
         return false;
@@ -23,18 +23,18 @@ public final class t implements mv0, org.telegram.ui.Components.bl0, org.telegra
 
     @Override
     public void g(float[] fArr) {
-        h4 h4Var = this.f37514a;
-        fArr[0] = h4Var.I0;
-        fArr[1] = h4Var.f34090u0[0].f35307b.getMeasuredHeight();
+        i4 i4Var = this.f37475a;
+        fArr[0] = i4Var.I0;
+        fArr[1] = i4Var.f34021u0[0].f35130b.getMeasuredHeight();
     }
 
     @Override
     public void o(KeyEvent keyEvent) {
         org.telegram.ui.ActionBar.n1 n1Var;
-        h4 h4Var = this.f37514a;
-        h4Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = h4Var.H) != null && n1Var.isShowing()) {
-            h4Var.H.d(true);
+        i4 i4Var = this.f37475a;
+        i4Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = i4Var.H) != null && n1Var.isShowing()) {
+            i4Var.H.d(true);
         }
     }
 }

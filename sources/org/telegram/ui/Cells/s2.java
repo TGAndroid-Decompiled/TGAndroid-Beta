@@ -12,15 +12,15 @@ public final class s2 extends a0 {
     public int F;
     public boolean G;
     public int H;
-    public TLRPC.RecentMeUrl f20925f;
+    public TLRPC.RecentMeUrl f20901f;
     public ImageReceiver h;
-    public org.telegram.ui.Components.f9 f20926n;
-    public int f20927r;
-    public StaticLayout f20928s;
+    public org.telegram.ui.Components.h9 f20902n;
+    public int f20903r;
+    public StaticLayout f20904s;
     public int v;
-    public int f20929w;
-    public int f20930x;
-    public StaticLayout f20931y;
+    public int f20905w;
+    public int f20906x;
+    public StaticLayout f20907y;
 
     @Override
     public final void onAttachedToWindow() {
@@ -39,31 +39,31 @@ public final class s2 extends a0 {
         Canvas canvas2;
         if (this.G) {
             canvas2 = canvas;
-            canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.i6.f19139u0);
+            canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f19094u0);
         } else {
             canvas2 = canvas;
         }
-        if (this.f20928s != null) {
+        if (this.f20904s != null) {
             canvas2.save();
-            canvas2.translate(this.f20927r, AndroidUtilities.dp(13.0f));
-            this.f20928s.draw(canvas2);
+            canvas2.translate(this.f20903r, AndroidUtilities.dp(13.0f));
+            this.f20904s.draw(canvas2);
             canvas2.restore();
         }
-        if (this.f20931y != null) {
+        if (this.f20907y != null) {
             canvas2.save();
-            canvas2.translate(this.f20930x, this.f20929w);
+            canvas2.translate(this.f20906x, this.f20905w);
             try {
-                this.f20931y.draw(canvas2);
+                this.f20907y.draw(canvas2);
             } catch (Exception e) {
                 FileLog.e(e);
             }
             canvas2.restore();
         }
         if (this.E) {
-            a0.o(this.v, AndroidUtilities.dp(16.5f), org.telegram.ui.ActionBar.i6.f18865f1);
-            a0.o(this.v, AndroidUtilities.dp(16.5f), org.telegram.ui.ActionBar.i6.f18918i1);
-            org.telegram.ui.ActionBar.i6.f18865f1.draw(canvas2);
-            org.telegram.ui.ActionBar.i6.f18918i1.draw(canvas2);
+            a0.o(this.v, AndroidUtilities.dp(16.5f), org.telegram.ui.ActionBar.h6.f18820f1);
+            a0.o(this.v, AndroidUtilities.dp(16.5f), org.telegram.ui.ActionBar.h6.f18873i1);
+            org.telegram.ui.ActionBar.h6.f18820f1.draw(canvas2);
+            org.telegram.ui.ActionBar.h6.f18873i1.draw(canvas2);
         }
         this.h.draw(canvas2);
     }
@@ -86,7 +86,7 @@ public final class s2 extends a0 {
     }
 
     public void setRecentMeUrl(TLRPC.RecentMeUrl recentMeUrl) {
-        this.f20925f = recentMeUrl;
+        this.f20901f = recentMeUrl;
         requestLayout();
     }
 }

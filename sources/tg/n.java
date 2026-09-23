@@ -1,14 +1,14 @@
 package tg;
 
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 public final class n {
-    public final b0 f43166a;
-    public final e6 f43167b;
-    public final o f43168c;
+    public final b0 f43121a;
+    public final d6 f43122b;
+    public final o f43123c;
 
-    public n(o oVar, b0 b0Var, e6 e6Var) {
-        this.f43168c = oVar;
-        this.f43166a = b0Var;
-        this.f43167b = e6Var;
+    public n(o oVar, b0 b0Var, d6 d6Var) {
+        this.f43123c = oVar;
+        this.f43121a = b0Var;
+        this.f43122b = d6Var;
     }
 }

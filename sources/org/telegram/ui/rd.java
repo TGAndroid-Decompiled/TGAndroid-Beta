@@ -1,28 +1,28 @@
 package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
-public final class rd implements ug1 {
-    public final int f37105a;
-    public final je f37106b;
-    public final TwoStepVerificationActivity f37107c;
+public final class rd implements mg1 {
+    public final int f36796a;
+    public final je f36797b;
+    public final TwoStepVerificationActivity f36798c;
 
     public rd(je jeVar, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f37105a = i10;
-        this.f37106b = jeVar;
-        this.f37107c = twoStepVerificationActivity;
+        this.f36796a = i10;
+        this.f36797b = jeVar;
+        this.f36798c = twoStepVerificationActivity;
     }
 
     @Override
     public final void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f37105a) {
+        switch (this.f36796a) {
             case 0:
-                this.f37106b.b0(false, tL_inputCheckPasswordSRP, this.f37107c);
+                this.f36797b.b0(false, tL_inputCheckPasswordSRP, this.f36798c);
                 return;
             case 1:
-                this.f37106b.b0(true, tL_inputCheckPasswordSRP, this.f37107c);
+                this.f36797b.b0(true, tL_inputCheckPasswordSRP, this.f36798c);
                 return;
             default:
-                this.f37106b.b0(true, tL_inputCheckPasswordSRP, this.f37107c);
+                this.f36797b.b0(true, tL_inputCheckPasswordSRP, this.f36798c);
                 return;
         }
     }

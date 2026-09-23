@@ -13,38 +13,38 @@ import android.os.Build;
 import java.util.Iterator;
 import java.util.List;
 public final class d implements a {
-    public final a f9071a;
-    public k f9073c;
+    public final a f9057a;
+    public k f9059c;
     public h d;
     public int e;
-    public a f9074f;
+    public a f9060f;
     public boolean h;
-    public boolean f9075n;
-    public RecordingCanvas f9076r;
+    public boolean f9061n;
+    public RecordingCanvas f9062r;
     public Runnable v;
-    public final pe.b f9077s = new pe.b(true);
-    public final RenderNode f9072b = ah.e.c();
+    public final pe.b f9063s = new pe.b(true);
+    public final RenderNode f9058b = ah.e.c();
 
     public d(a aVar) {
-        this.f9071a = aVar;
+        this.f9057a = aVar;
     }
 
     public final RecordingCanvas a(int i10, int i11) {
-        if (!this.f9075n) {
-            this.f9075n = true;
-            this.f9072b.setPosition(0, 0, i10, i11);
-            RecordingCanvas beginRecording = this.f9072b.beginRecording(i10, i11);
-            this.f9076r = beginRecording;
+        if (!this.f9061n) {
+            this.f9061n = true;
+            this.f9058b.setPosition(0, 0, i10, i11);
+            RecordingCanvas beginRecording = this.f9058b.beginRecording(i10, i11);
+            this.f9062r = beginRecording;
             return beginRecording;
         }
         throw new IllegalStateException();
     }
 
     public final void b() {
-        if (this.f9075n) {
-            this.f9072b.endRecording();
-            this.f9075n = false;
-            this.f9076r = null;
+        if (this.f9061n) {
+            this.f9058b.endRecording();
+            this.f9061n = false;
+            this.f9062r = null;
             return;
         }
         throw new IllegalStateException();
@@ -52,21 +52,21 @@ public final class d implements a {
 
     public final int c(int i10, int i11, List list) {
         RectF rectF;
-        Iterator it = this.f9077s.iterator();
+        Iterator it = this.f9063s.iterator();
         int i12 = 0;
         while (it.hasNext()) {
             ch.e eVar = (ch.e) it.next();
             boolean j3 = eVar.j();
-            ch.c cVar = eVar.f4285j;
-            if (j3 && eVar.f4287l > 0 && !cVar.f4276m.isEmpty()) {
+            ch.c cVar = eVar.f4280j;
+            if (j3 && eVar.f4282l > 0 && !cVar.f4271m.isEmpty()) {
                 if (i10 < list.size()) {
                     rectF = (RectF) list.get(i10);
                 } else {
                     rectF = new RectF();
                     list.add(rectF);
                 }
-                rectF.set(cVar.f4276m);
-                rectF.offset(eVar.f4279a, eVar.f4280b);
+                rectF.set(cVar.f4271m);
+                rectF.offset(eVar.f4274a, eVar.f4275b);
                 float f7 = -i11;
                 rectF.inset(f7, f7);
                 i10++;
@@ -85,14 +85,14 @@ public final class d implements a {
     }
 
     public final void e() {
-        Iterator it = this.f9077s.iterator();
+        Iterator it = this.f9063s.iterator();
         while (it.hasNext()) {
             ((ch.e) it.next()).O = true;
         }
     }
 
     public final boolean f(int i10, int i11) {
-        if (this.f9072b.hasDisplayList() && this.f9072b.getWidth() == i10 && this.f9072b.getHeight() == i11) {
+        if (this.f9058b.hasDisplayList() && this.f9058b.getWidth() == i10 && this.f9058b.getHeight() == i11) {
             return false;
         }
         return true;
@@ -100,7 +100,7 @@ public final class d implements a {
 
     public final void g(float f7) {
         RenderEffect renderEffect;
-        RenderNode renderNode = this.f9072b;
+        RenderNode renderNode = this.f9058b;
         if (f7 > 0.0f) {
             renderEffect = RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP);
         } else {
@@ -110,27 +110,27 @@ public final class d implements a {
     }
 
     public final void h(float f7, RenderEffect renderEffect) {
-        this.f9072b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP), renderEffect));
+        this.f9058b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP), renderEffect));
     }
 
     public final void i(int i10, int i11) {
-        this.f9072b.setPosition(0, 0, i10, i11);
+        this.f9058b.setPosition(0, 0, i10, i11);
     }
 
     public final void j(j jVar) {
-        if (this.f9073c == null) {
-            this.f9073c = new k(this.f9072b, jVar);
+        if (this.f9059c == null) {
+            this.f9059c = new k(this.f9058b, jVar);
         }
     }
 
     public final void k() {
-        this.f9073c.a();
+        this.f9059c.a();
     }
 
     @Override
     public final ch.d l() {
         ch.e eVar = new ch.e(this);
-        this.f9077s.add(eVar);
+        this.f9063s.add(eVar);
         return eVar;
     }
 
@@ -138,12 +138,12 @@ public final class d implements a {
     public final void y(Canvas canvas, float f7, float f10, float f11, float f12) {
         h hVar;
         if (!canvas.isHardwareAccelerated()) {
-            a aVar = this.f9071a;
+            a aVar = this.f9057a;
             if (aVar != null) {
                 aVar.y(canvas, f7, f10, f11, f12);
             }
-        } else if (!this.f9075n) {
-            a aVar2 = this.f9074f;
+        } else if (!this.f9061n) {
+            a aVar2 = this.f9060f;
             if (aVar2 != null) {
                 aVar2.y(canvas, f7, f10, f11, f12);
             }
@@ -154,7 +154,7 @@ public final class d implements a {
             if (Build.VERSION.SDK_INT >= 31 && (hVar = this.d) != null) {
                 hVar.c(canvas, this.e);
             } else {
-                canvas.drawRenderNode(this.f9072b);
+                canvas.drawRenderNode(this.f9058b);
             }
             canvas.restore();
         } else {

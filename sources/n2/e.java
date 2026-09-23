@@ -19,8 +19,8 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import k2.c0;
-import m4.u0;
+import k2.b0;
+import m4.p0;
 import w7.a0;
 public final class e implements m {
     public int E;
@@ -32,43 +32,43 @@ public final class e implements m {
     public byte[] K;
     public j2.k L;
     public volatile androidx.mediarouter.app.c M;
-    public final UUID f14887a;
-    public final u0 f14888b;
-    public final com.google.firebase.messaging.m f14889c;
+    public final UUID f14864a;
+    public final p0 f14865b;
+    public final com.google.firebase.messaging.m f14866c;
     public final HashMap d;
     public final boolean e;
-    public final int[] f14890f;
+    public final int[] f14867f;
     public final boolean h;
-    public final of.b f14891n;
-    public final qb.b f14892r;
-    public final a4.m f14893s;
+    public final of.b f14868n;
+    public final qb.b f14869r;
+    public final a4.m f14870s;
     public final long v;
-    public final ArrayList f14894w;
-    public final Set f14895x;
-    public final Set f14896y;
+    public final ArrayList f14871w;
+    public final Set f14872x;
+    public final Set f14873y;
 
     public e(UUID uuid, com.google.firebase.messaging.m mVar, HashMap hashMap, boolean z10, int[] iArr, boolean z11, qb.b bVar) {
         uuid.getClass();
-        e2.d.a("Use C.CLEARKEY_UUID instead", !b2.i.f3015b.equals(uuid));
-        this.f14887a = uuid;
-        this.f14888b = t.d;
-        this.f14889c = mVar;
+        e2.d.a("Use C.CLEARKEY_UUID instead", !b2.i.f3010b.equals(uuid));
+        this.f14864a = uuid;
+        this.f14865b = t.d;
+        this.f14866c = mVar;
         this.d = hashMap;
         this.e = z10;
-        this.f14890f = iArr;
+        this.f14867f = iArr;
         this.h = z11;
-        this.f14892r = bVar;
-        this.f14891n = new of.b(28);
-        this.f14893s = new a4.m(this, 27);
-        this.f14894w = new ArrayList();
-        this.f14895x = Collections.newSetFromMap(new IdentityHashMap());
-        this.f14896y = Collections.newSetFromMap(new IdentityHashMap());
+        this.f14869r = bVar;
+        this.f14868n = new of.b(28);
+        this.f14870s = new a4.m(this, 27);
+        this.f14871w = new ArrayList();
+        this.f14872x = Collections.newSetFromMap(new IdentityHashMap());
+        this.f14873y = Collections.newSetFromMap(new IdentityHashMap());
         this.v = 300000L;
     }
 
     public static boolean c(b bVar) {
         bVar.p();
-        if (bVar.f14875o == 1) {
+        if (bVar.f14852o == 1) {
             f g10 = bVar.g();
             g10.getClass();
             Throwable cause = g10.getCause();
@@ -83,8 +83,8 @@ public final class e implements m {
     public static ArrayList f(b2.o oVar, UUID uuid, boolean z10) {
         ArrayList arrayList = new ArrayList(oVar.d);
         for (int i10 = 0; i10 < oVar.d; i10++) {
-            b2.n nVar = oVar.f3164a[i10];
-            if ((nVar.a(uuid) || (b2.i.f3016c.equals(uuid) && nVar.a(b2.i.f3015b))) && (nVar.e != null || z10)) {
+            b2.n nVar = oVar.f3159a[i10];
+            if ((nVar.a(uuid) || (b2.i.f3011c.equals(uuid) && nVar.a(b2.i.f3010b))) && (nVar.e != null || z10)) {
                 arrayList.add(nVar);
             }
         }
@@ -124,10 +124,10 @@ public final class e implements m {
         int m0 = qVar.m0();
         b2.o oVar = sVar.v;
         if (oVar == null) {
-            int h = r0.h(sVar.f3306r);
+            int h = r0.h(sVar.f3301r);
             int i10 = 0;
             while (true) {
-                int[] iArr = this.f14890f;
+                int[] iArr = this.f14867f;
                 if (i10 < iArr.length) {
                     if (iArr[i10] == h) {
                         break;
@@ -142,14 +142,14 @@ public final class e implements m {
                 return 0;
             }
         } else if (this.K == null) {
-            UUID uuid = this.f14887a;
+            UUID uuid = this.f14864a;
             if (f(oVar, uuid, true).isEmpty()) {
-                if (oVar.d == 1 && oVar.f3164a[0].a(b2.i.f3015b)) {
+                if (oVar.d == 1 && oVar.f3159a[0].a(b2.i.f3010b)) {
                     e2.a.n("DefaultDrmSessionMgr", "DrmInitData only contains common PSSH SchemeData. Assuming support for: " + uuid);
                 }
                 return 1;
             }
-            String str = oVar.f3166c;
+            String str = oVar.f3161c;
             if (str != null && !"cenc".equals(str) && (!"cbcs".equals(str) ? "cbc1".equals(str) || "cens".equals(str) : Build.VERSION.SDK_INT < 25)) {
                 return 1;
             }
@@ -178,11 +178,11 @@ public final class e implements m {
         int i10 = 0;
         b bVar = null;
         if (oVar == null) {
-            int h = r0.h(sVar.f3306r);
+            int h = r0.h(sVar.f3301r);
             q qVar = this.F;
             qVar.getClass();
-            if (qVar.m0() != 2 || !r.f14913c) {
-                int[] iArr = this.f14890f;
+            if (qVar.m0() != 2 || !r.f14890c) {
+                int[] iArr = this.f14867f;
                 while (true) {
                     if (i10 < iArr.length) {
                         if (iArr[i10] == h) {
@@ -197,9 +197,9 @@ public final class e implements m {
                 if (i10 != -1 && qVar.m0() != 1) {
                     b bVar2 = this.G;
                     if (bVar2 == null) {
-                        g0 g0Var = i0.f8081b;
+                        g0 g0Var = i0.f8067b;
                         b e = e(a1.e, true, null, z10);
-                        this.f14894w.add(e);
+                        this.f14871w.add(e);
                         this.G = e;
                     } else {
                         bVar2.b(null);
@@ -210,9 +210,9 @@ public final class e implements m {
             return null;
         }
         if (this.K == null) {
-            arrayList = f(oVar, this.f14887a, false);
+            arrayList = f(oVar, this.f14864a, false);
             if (arrayList.isEmpty()) {
-                Exception exc = new Exception("Media does not support uuid: " + this.f14887a);
+                Exception exc = new Exception("Media does not support uuid: " + this.f14864a);
                 e2.a.f("DefaultDrmSessionMgr", "DRM error", exc);
                 if (jVar != null) {
                     jVar.d(exc);
@@ -225,7 +225,7 @@ public final class e implements m {
         if (!this.e) {
             bVar = this.H;
         } else {
-            ArrayList arrayList2 = this.f14894w;
+            ArrayList arrayList2 = this.f14871w;
             int size = arrayList2.size();
             int i11 = 0;
             while (true) {
@@ -235,7 +235,7 @@ public final class e implements m {
                 Object obj = arrayList2.get(i11);
                 i11++;
                 b bVar3 = (b) obj;
-                if (Objects.equals(bVar3.f14864a, arrayList)) {
+                if (Objects.equals(bVar3.f14841a, arrayList)) {
                     bVar = bVar3;
                     break;
                 }
@@ -246,7 +246,7 @@ public final class e implements m {
             if (!this.e) {
                 this.H = e7;
             }
-            this.f14894w.add(e7);
+            this.f14871w.add(e7);
             return e7;
         }
         bVar.b(jVar);
@@ -261,8 +261,8 @@ public final class e implements m {
         this.E = i10 + 1;
         if (i10 == 0) {
             if (this.F == null) {
-                UUID uuid = this.f14887a;
-                this.f14888b.getClass();
+                UUID uuid = this.f14864a;
+                this.f14865b.getClass();
                 try {
                     try {
                         bVar = new t(uuid);
@@ -271,7 +271,7 @@ public final class e implements m {
                         bVar = new qb.b(13);
                     }
                     this.F = bVar;
-                    bVar.a(new c0(this, 6));
+                    bVar.a(new b0(this, 6));
                 } catch (UnsupportedSchemeException e) {
                     throw new Exception(e);
                 } catch (Exception e7) {
@@ -280,7 +280,7 @@ public final class e implements m {
             } else if (this.v != -9223372036854775807L) {
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f14894w;
+                    ArrayList arrayList = this.f14871w;
                     if (i11 < arrayList.size()) {
                         ((b) arrayList.get(i11)).b(null);
                         i11++;
@@ -300,7 +300,7 @@ public final class e implements m {
         looper.getClass();
         j2.k kVar = this.L;
         kVar.getClass();
-        b bVar = new b(this.f14887a, qVar, this.f14891n, this.f14893s, list, this.h | z10, z10, bArr, this.d, this.f14889c, looper, this.f14892r, kVar);
+        b bVar = new b(this.f14864a, qVar, this.f14868n, this.f14870s, list, this.h | z10, z10, bArr, this.d, this.f14866c, looper, this.f14869r, kVar);
         bVar.b(jVar);
         if (this.v != -9223372036854775807L) {
             bVar.b(null);
@@ -312,7 +312,7 @@ public final class e implements m {
         b d = d(list, z10, jVar);
         boolean c10 = c(d);
         long j3 = this.v;
-        Set set = this.f14896y;
+        Set set = this.f14873y;
         if (c10 && !set.isEmpty()) {
             o1 it = m0.v(set).iterator();
             while (it.hasNext()) {
@@ -325,7 +325,7 @@ public final class e implements m {
             d = d(list, z10, jVar);
         }
         if (c(d) && z11) {
-            Set set2 = this.f14895x;
+            Set set2 = this.f14872x;
             if (!set2.isEmpty()) {
                 o1 it2 = m0.v(set2).iterator();
                 while (it2.hasNext()) {
@@ -348,7 +348,7 @@ public final class e implements m {
     }
 
     public final void g() {
-        if (this.F != null && this.E == 0 && this.f14894w.isEmpty() && this.f14895x.isEmpty()) {
+        if (this.F != null && this.E == 0 && this.f14871w.isEmpty() && this.f14872x.isEmpty()) {
             q qVar = this.F;
             qVar.getClass();
             qVar.release();
@@ -395,12 +395,12 @@ public final class e implements m {
             return;
         }
         if (this.v != -9223372036854775807L) {
-            ArrayList arrayList = new ArrayList(this.f14894w);
+            ArrayList arrayList = new ArrayList(this.f14871w);
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 ((b) arrayList.get(i11)).a(null);
             }
         }
-        o1 it = m0.v(this.f14895x).iterator();
+        o1 it = m0.v(this.f14872x).iterator();
         while (it.hasNext()) {
             ((d) it.next()).release();
         }

@@ -1,20 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-public final class qa0 extends x5 {
-    public final ta0 f27295a;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class qa0 extends Drawable {
+    public Paint f27288a;
+    public Paint f27289b;
+    public long f27290c;
+    public float d;
+    public boolean e;
+    public boolean f27291f;
+    public float f27292g;
+    public float h;
+    public float f27293i;
+    public float f27294j;
+    public float f27295k;
+    public long f27296l;
+    public org.telegram.ui.Cells.t1 f27297m;
 
-    public qa0(ta0 ta0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
-        super(document, fontMetricsInt);
-        this.f27295a = ta0Var;
+    public final void a() {
+        int i10;
+        int i11;
+        Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float centerY = bounds.centerY();
+        float f7 = bounds.left - centerX;
+        float f10 = bounds.top - centerY;
+        this.f27292g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.vision.e2.z(i11, centerY, f10, f7 * (i10 - centerX))));
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = i14 + i12;
-        int i16 = this.measuredSize;
-        this.f27295a.f28077c.set((int) f7, (i15 - i16) / 2, (int) (f7 + i16), (i15 + i16) / 2);
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qa0.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f27288a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        a();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f27288a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setBounds(Rect rect) {
+        super.setBounds(rect);
+        a();
     }
 }

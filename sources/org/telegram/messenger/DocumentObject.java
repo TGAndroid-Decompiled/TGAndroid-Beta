@@ -8,25 +8,25 @@ import org.telegram.tgnet.TLRPC;
 public class DocumentObject {
 
     public static class ThemeDocument extends TLRPC.TL_document {
-        public org.telegram.ui.ActionBar.g6 accent;
-        public org.telegram.ui.ActionBar.h6 baseTheme;
+        public org.telegram.ui.ActionBar.f6 accent;
+        public org.telegram.ui.ActionBar.g6 baseTheme;
         public TLRPC.ThemeSettings themeSettings;
         public TLRPC.Document wallpaper;
 
         public ThemeDocument(TLRPC.ThemeSettings themeSettings) {
             this.themeSettings = themeSettings;
-            org.telegram.ui.ActionBar.h6 N0 = org.telegram.ui.ActionBar.i6.N0(org.telegram.ui.ActionBar.i6.q0(themeSettings));
+            org.telegram.ui.ActionBar.g6 N0 = org.telegram.ui.ActionBar.h6.N0(org.telegram.ui.ActionBar.h6.q0(themeSettings));
             this.baseTheme = N0;
             N0.getClass();
-            org.telegram.ui.ActionBar.g6 g6Var = new org.telegram.ui.ActionBar.g6();
-            org.telegram.ui.ActionBar.h6.i(g6Var, themeSettings);
-            g6Var.f18691b = N0;
-            this.accent = g6Var;
+            org.telegram.ui.ActionBar.f6 f6Var = new org.telegram.ui.ActionBar.f6();
+            org.telegram.ui.ActionBar.g6.i(f6Var, themeSettings);
+            f6Var.f18637b = N0;
+            this.accent = f6Var;
             TLRPC.WallPaper wallPaper = this.themeSettings.wallpaper;
             if (wallPaper instanceof TLRPC.TL_wallPaper) {
                 TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
                 this.wallpaper = document;
-                this.f18115id = document.f18115id;
+                this.f18089id = document.f18089id;
                 this.access_hash = document.access_hash;
                 this.file_reference = document.file_reference;
                 this.user_id = document.user_id;
@@ -42,7 +42,7 @@ public class DocumentObject {
                 this.attributes = document.attributes;
                 return;
             }
-            this.f18115id = -2147483648L;
+            this.f18089id = -2147483648L;
             this.dc_id = Integer.MIN_VALUE;
         }
     }
@@ -81,7 +81,7 @@ public class DocumentObject {
         return getSvgThumb(arrayList, i10, f7, false);
     }
 
-    public static SvgHelper.SvgDrawable getCircleThumb(float f7, int i10, org.telegram.ui.ActionBar.e6 e6Var, float f10) {
+    public static SvgHelper.SvgDrawable getCircleThumb(float f7, int i10, org.telegram.ui.ActionBar.d6 d6Var, float f10) {
         try {
             SvgHelper.SvgDrawable svgDrawable = new SvgHelper.SvgDrawable();
             SvgHelper.Circle circle = new SvgHelper.Circle(256.0f, 256.0f, f7 * 512.0f);
@@ -107,7 +107,7 @@ public class DocumentObject {
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
             } else if ((photoSize instanceof TLRPC.TL_photoSize) && z10) {
-                i11 = photoSize.f18134w;
+                i11 = photoSize.f18108w;
                 i12 = photoSize.h;
             }
         }
@@ -125,7 +125,7 @@ public class DocumentObject {
         return getSvgThumb(document, i10, f7, 1.0f, null);
     }
 
-    public static SvgHelper.SvgDrawable getSvgThumb(TLRPC.Document document, int i10, float f7, float f10, org.telegram.ui.ActionBar.e6 e6Var) {
+    public static SvgHelper.SvgDrawable getSvgThumb(TLRPC.Document document, int i10, float f7, float f10, org.telegram.ui.ActionBar.d6 d6Var) {
         int i11;
         int i12;
         if (document == null) {
@@ -143,7 +143,7 @@ public class DocumentObject {
                 for (int i14 = 0; i14 < size2; i14++) {
                     TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i14);
                     if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i11 = documentAttribute.f18116w;
+                        i11 = documentAttribute.f18090w;
                         i12 = documentAttribute.h;
                         break;
                     }
@@ -153,7 +153,7 @@ public class DocumentObject {
                 if (i11 != 0 && i12 != 0) {
                     SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(((TLRPC.TL_photoPathSize) photoSize).svgPath, (int) (i11 * f10), (int) (i12 * f10));
                     if (drawableByPath != null) {
-                        drawableByPath.setupGradient(i10, e6Var, f7, false);
+                        drawableByPath.setupGradient(i10, d6Var, f7, false);
                     }
                     return drawableByPath;
                 }

@@ -2,28 +2,45 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-public final class le implements Runnable {
-    public final int f16675a;
-    public final int f16676b;
-    public final Utilities.Callback2 f16677c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_aicompose;
+import org.telegram.tgnet.tl.TL_payments;
+public final class le implements Utilities.Callback2 {
+    public final int f16676a;
+    public final Object f16677b;
 
-    public le(int i10, int i11, Utilities.Callback2 callback2) {
-        this.f16675a = i11;
-        this.f16676b = i10;
-        this.f16677c = callback2;
+    public le(Object obj, int i10) {
+        this.f16676a = i10;
+        this.f16677b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f16675a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f16676a) {
             case 0:
-                MessagesController.AnonymousClass1.lambda$getLocal$1(this.f16676b, this.f16677c);
+                MessagesController.AnonymousClass5.lambda$getRemote$0((Utilities.Callback4) this.f16677b, (TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                MessagesController.AnonymousClass4.lambda$getLocal$1(this.f16676b, this.f16677c);
+                ((AiTonesController) this.f16677b).lambda$request$0((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 2:
+                ((ChatThemeController) this.f16677b).lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 3:
+                ((GiftAuctionController) this.f16677b).lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 4:
+                ((MediaDataController) this.f16677b).lambda$loadHints$148((TLRPC.contacts_TopPeers) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 5:
+                MessagesController.lambda$getNextReactionMentionInternal$3((q0.a) this.f16677b, (TLRPC.messages_Messages) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 6:
+                MessagesController.lambda$createCommunity$255((Utilities.Callback2) this.f16677b, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                MessagesController.AnonymousClass5.lambda$getLocal$2(this.f16676b, this.f16677c);
+                ((SendMessagesHelper) this.f16677b).lambda$deletePollOption$27((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

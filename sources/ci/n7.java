@@ -1,42 +1,37 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.camera.CameraController;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
 import org.telegram.messenger.camera.CameraView;
-public final class n7 implements CameraView.CameraViewDelegate, CameraController.VideoTakeCallback {
-    public final q7 f5073a;
+public final class n7 extends CameraView {
+    public final Path f5213a;
+    public final o7 f5214b;
 
-    public n7(q7 q7Var) {
-        this.f5073a = q7Var;
+    public n7(o7 o7Var, Context context) {
+        super(context, true, false);
+        this.f5214b = o7Var;
+        this.f5213a = new Path();
     }
 
     @Override
-    public void onCameraInit() {
-        q7 q7Var = this.f5073a;
-        p7 p7Var = q7Var.f5346a;
-        if (q7Var.f5348c > 0) {
-            return;
-        }
-        CameraController.getInstance().recordVideo(p7Var.getCameraSessionObject(), q7Var.f5347b, false, new n7(q7Var), new m7(q7Var, 1), p7Var, true);
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.f5213a;
+        path.rewind();
+        path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth() / 2.0f, getHeight() / 2.0f), Path.Direction.CW);
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public void onFinishVideoRecording(String str, long j3) {
-        long currentTimeMillis = System.currentTimeMillis();
-        q7 q7Var = this.f5073a;
-        q7Var.d = currentTimeMillis;
-        AndroidUtilities.cancelRunOnUIThread(q7Var.h);
-        if (!q7Var.f5354x) {
-            if (j3 > 1000) {
-                q7Var.f5346a.destroy(true, null);
-                ai.q0 q0Var = q7Var.f5350n;
-                if (q0Var != null) {
-                    q0Var.run(q7Var.f5347b, str, Long.valueOf(j3));
-                    return;
-                }
-                return;
-            }
-            q7Var.a(false);
-        }
+    public final void receivedAmplitude(double d) {
+        ((p) this.f5214b).F.setAmplitude(d);
+    }
+
+    @Override
+    public final boolean square() {
+        return true;
     }
 }

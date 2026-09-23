@@ -23,27 +23,27 @@ public abstract class qf0 extends FrameLayout {
     public int I;
     public float J;
     public boolean K;
-    public bc0 L;
-    public int f27319a;
-    public PhotoViewer f27320b;
-    public LinearLayout f27321c;
+    public ac0 L;
+    public int f27329a;
+    public PhotoViewer f27330b;
+    public LinearLayout f27331c;
     public TextView d;
     public TextView e;
-    public pu f27322f;
-    public ci.eb h;
-    public RadialProgressView f27323n;
-    public View f27324r;
-    public String f27325s;
+    public qu f27332f;
+    public ci.bb h;
+    public RadialProgressView f27333n;
+    public View f27334r;
+    public String f27335s;
     public ArrayList v;
-    public String f27326w;
-    public boolean f27327x;
-    public TLRPC.WebPage f27328y;
+    public String f27336w;
+    public boolean f27337x;
+    public TLRPC.WebPage f27338y;
 
-    public static void a(org.telegram.ui.iu0 iu0Var, String str) {
+    public static void a(org.telegram.ui.bu0 bu0Var, String str) {
         String str2;
         double ceil;
-        int videoDuration = iu0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = iu0Var.v;
+        int videoDuration = bu0Var.getVideoDuration() / 1000;
+        ArrayList arrayList = bu0Var.v;
         arrayList.clear();
         if (videoDuration > 15) {
             String[] split = str.split("\\|");
@@ -76,11 +76,11 @@ public abstract class qf0 extends FrameLayout {
     }
 
     public final void b(boolean z10) {
-        bc0 bc0Var = this.L;
+        ac0 ac0Var = this.L;
         if (!z10 && this.G) {
-            AndroidUtilities.runOnUIThread(bc0Var, 500L);
+            AndroidUtilities.runOnUIThread(ac0Var, 500L);
         } else if (z10 && !this.G) {
-            AndroidUtilities.cancelRunOnUIThread(bc0Var);
+            AndroidUtilities.cancelRunOnUIThread(ac0Var);
         }
     }
 
@@ -89,7 +89,7 @@ public abstract class qf0 extends FrameLayout {
     }
 
     public final boolean d() {
-        return this.f27327x;
+        return this.f27337x;
     }
 
     @Override
@@ -102,27 +102,27 @@ public abstract class qf0 extends FrameLayout {
 
     public final boolean e() {
         boolean z10;
-        if (this.f27327x && "inapp".equals(MessagesController.getInstance(this.f27319a).youtubePipType)) {
+        if (this.f27337x && "inapp".equals(MessagesController.getInstance(this.f27329a).youtubePipType)) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (!z10 && Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(getContext())) {
-            c5.B((Activity) getContext(), null, false);
+            e5.B((Activity) getContext(), null, false);
             return false;
-        } else if (this.f27323n.getVisibility() == 0) {
+        } else if (this.f27333n.getVisibility() == 0) {
             return false;
         } else {
-            if (eg0.f23635p0.P) {
+            if (eg0.f23661p0.P) {
                 eg0.j(false);
                 AndroidUtilities.runOnUIThread(new mf0(this, 0), 300L);
                 return true;
             }
             this.h.setVisibility(0);
             Activity activity = (Activity) getContext();
-            pu puVar = this.f27322f;
-            TLRPC.WebPage webPage = this.f27328y;
-            if (eg0.x(z10, activity, this, puVar, webPage.embed_width, webPage.embed_height, false)) {
+            qu quVar = this.f27332f;
+            TLRPC.WebPage webPage = this.f27338y;
+            if (eg0.x(z10, activity, this, quVar, webPage.embed_width, webPage.embed_height, false)) {
                 eg0.w(PhotoViewer.t1());
             }
             return true;
@@ -130,7 +130,7 @@ public abstract class qf0 extends FrameLayout {
     }
 
     public final void f() {
-        if (this.G && this.f27327x) {
+        if (this.G && this.f27337x) {
             h("pauseVideo();");
             this.G = false;
             b(true);
@@ -138,7 +138,7 @@ public abstract class qf0 extends FrameLayout {
     }
 
     public final void g() {
-        if (!this.G && this.f27327x) {
+        if (!this.G && this.f27337x) {
             h("playVideo();");
             this.G = true;
             b(false);
@@ -158,11 +158,11 @@ public abstract class qf0 extends FrameLayout {
     }
 
     public WebView getWebView() {
-        return this.f27322f;
+        return this.f27332f;
     }
 
     public final void h(String str) {
-        this.f27322f.evaluateJavascript(str, null);
+        this.f27332f.evaluateJavascript(str, null);
     }
 
     public final void i(long j3) {
@@ -180,9 +180,9 @@ public abstract class qf0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        pu puVar = this.f27322f;
-        if (puVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.f27328y;
+        qu quVar = this.f27332f;
+        if (quVar.getParent() == this) {
+            TLRPC.WebPage webPage = this.f27338y;
             int i12 = webPage.embed_width;
             int i13 = 100;
             if (i12 == 0) {
@@ -197,7 +197,7 @@ public abstract class qf0 extends FrameLayout {
             float f7 = i12;
             float f10 = i13;
             float min = Math.min(size / f7, size2 / f10);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) puVar.getLayoutParams();
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) quVar.getLayoutParams();
             int i15 = (int) (f7 * min);
             layoutParams.width = i15;
             int i16 = (int) (f10 * min);
@@ -210,8 +210,8 @@ public abstract class qf0 extends FrameLayout {
 
     public void setPlaybackSpeed(float f7) {
         this.E = f7;
-        if (this.f27323n.getVisibility() != 0) {
-            if (this.f27327x) {
+        if (this.f27333n.getVisibility() != 0) {
+            if (this.f27337x) {
                 h("setPlaybackSpeed(" + f7 + ");");
                 return;
             }

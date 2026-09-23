@@ -6,29 +6,29 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadialProgressView;
 public final class z0 extends FrameLayout {
-    public final ci.n6 f21664a;
-    public final org.telegram.ui.ActionBar.e6 f21665b;
-    public float f21666c;
+    public final ci.m6 f21651a;
+    public final org.telegram.ui.ActionBar.d6 f21652b;
+    public float f21653c;
     public int d;
 
-    public z0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public z0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f21665b = e6Var;
-        ci.n6 n6Var = new ci.n6(this, context);
-        this.f21664a = n6Var;
-        n6Var.setWillNotDraw(false);
-        addView(n6Var, w7.x5.e(36, 36, 17));
-        RadialProgressView radialProgressView = new RadialProgressView(context, e6Var);
+        this.f21652b = d6Var;
+        ci.m6 m6Var = new ci.m6(this, context);
+        this.f21651a = m6Var;
+        m6Var.setWillNotDraw(false);
+        addView(m6Var, w7.x5.e(36, 36, 17));
+        RadialProgressView radialProgressView = new RadialProgressView(context, d6Var);
         radialProgressView.setSize(AndroidUtilities.dp(28.0f));
-        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18929ic, e6Var));
-        n6Var.addView(radialProgressView, w7.x5.e(32, 32, 17));
+        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18884ic, d6Var));
+        m6Var.addView(radialProgressView, w7.x5.e(32, 32, 17));
     }
 
     public final void a(float f7, int i10) {
-        if (this.f21666c != f7) {
+        if (this.f21653c != f7) {
             invalidate();
         }
-        this.f21666c = f7;
+        this.f21653c = f7;
         this.d = i10;
     }
 
@@ -44,6 +44,6 @@ public final class z0 extends FrameLayout {
         } else {
             i10 = 4;
         }
-        this.f21664a.setVisibility(i10);
+        this.f21651a.setVisibility(i10);
     }
 }

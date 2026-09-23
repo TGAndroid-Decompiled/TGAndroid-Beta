@@ -1,39 +1,92 @@
 package org.telegram.ui;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
 public final class ay0 implements Runnable {
-    public final int f31989a;
-    public final PrivacySettingsActivity f31990b;
+    public final int f31898a;
+    public final ProfileActivity f31899b;
+    public final TLRPC.User f31900c;
 
-    public ay0(PrivacySettingsActivity privacySettingsActivity, int i10) {
-        this.f31989a = i10;
-        this.f31990b = privacySettingsActivity;
+    public ay0(ProfileActivity profileActivity, TLRPC.User user, int i10) {
+        this.f31898a = i10;
+        this.f31899b = profileActivity;
+        this.f31900c = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f31989a) {
+        boolean z10;
+        boolean z11;
+        switch (this.f31898a) {
             case 0:
-                PrivacySettingsActivity privacySettingsActivity = this.f31990b;
-                privacySettingsActivity.f31222a.l();
-                privacySettingsActivity.R = true;
+                ProfileActivity profileActivity = this.f31899b;
+                TLRPC.User user = this.f31900c;
+                profileActivity.getClass();
+                profileActivity.presentFragment(xn.R9(user.f18230id));
                 return;
             case 1:
-                this.f31990b.f31226c.dismiss();
-                return;
-            default:
-                PrivacySettingsActivity privacySettingsActivity2 = this.f31990b;
-                org.telegram.ui.Components.wb wbVar = new org.telegram.ui.Components.wb(privacySettingsActivity2.getParentActivity(), null);
-                wbVar.d(R.raw.email_check_inbox, new String[0]);
-                wbVar.f29679b.setText(LocaleController.getString(R.string.YourLoginEmailChangedSuccess));
-                org.telegram.ui.Components.oc.g(privacySettingsActivity2, wbVar, 1500).j();
-                try {
-                    privacySettingsActivity2.fragmentView.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
+                ProfileActivity profileActivity2 = this.f31899b;
+                TLRPC.User user2 = this.f31900c;
+                if (profileActivity2.getParentActivity() != null) {
+                    TLRPC.UserFull userFull = profileActivity2.f31358v2;
+                    if (userFull != null && userFull.video_calls_available) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    org.telegram.ui.Components.voip.f2.m(user2, false, z10, profileActivity2.getParentActivity(), profileActivity2.f31358v2, profileActivity2.getAccountInstance());
+                    return;
                 }
-                privacySettingsActivity2.z0();
                 return;
+            case 2:
+                ProfileActivity profileActivity3 = this.f31899b;
+                TLRPC.User user3 = this.f31900c;
+                if (profileActivity3.getParentActivity() != null) {
+                    TLRPC.UserFull userFull2 = profileActivity3.f31358v2;
+                    if (userFull2 != null && userFull2.video_calls_available) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    org.telegram.ui.Components.voip.f2.m(user3, true, z11, profileActivity3.getParentActivity(), profileActivity3.f31358v2, profileActivity3.getAccountInstance());
+                    return;
+                }
+                return;
+            case 3:
+                ProfileActivity profileActivity4 = this.f31899b;
+                TLRPC.User user4 = this.f31900c;
+                profileActivity4.getClass();
+                try {
+                    Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + user4.phone));
+                    intent.addFlags(268435456);
+                    profileActivity4.getParentActivity().startActivityForResult(intent, 500);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            default:
+                ProfileActivity profileActivity5 = this.f31899b;
+                TLRPC.User user5 = this.f31900c;
+                try {
+                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
+                    if (AndroidUtilities.shouldShowClipboardToast()) {
+                        org.telegram.ui.Components.xc.a0(profileActivity5).i(LocaleController.getString(R.string.PhoneCopied)).j();
+                        return;
+                    }
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
         }
     }
 }

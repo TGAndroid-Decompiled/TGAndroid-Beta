@@ -1,55 +1,66 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
 public final class gt implements View.OnClickListener {
-    public final int f33944a;
-    public final st f33945b;
+    public final ArrayList f33650a;
+    public final boolean f33651b;
+    public final lt f33652c;
 
-    public gt(st stVar, int i10) {
-        this.f33944a = i10;
-        this.f33945b = stVar;
+    public gt(lt ltVar, ArrayList arrayList, boolean z10) {
+        this.f33652c = ltVar;
+        this.f33650a = arrayList;
+        this.f33651b = z10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f33944a) {
-            case 0:
-                st stVar = this.f33945b;
-                stVar.K = false;
-                stVar.f37486z.invalidate();
-                stVar.n();
-                return;
-            case 1:
-                st stVar2 = this.f33945b;
-                Activity activity = stVar2.f37483w;
-                if (activity instanceof LaunchActivity) {
-                    LaunchActivity launchActivity = (LaunchActivity) activity;
-                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
-                        launchActivity.O().getLastFragment().dismissCurrentDialog();
+        pt ptVar = this.f33652c.f35086a;
+        if (ptVar.f36203w != null) {
+            int intValue = ((Integer) view.getTag()).intValue();
+            ArrayList arrayList = this.f33650a;
+            if (((Integer) arrayList.get(intValue)).intValue() != 0 && ((Integer) arrayList.get(intValue)).intValue() != 6) {
+                if (((Integer) arrayList.get(intValue)).intValue() == 1) {
+                    nt ntVar = ptVar.f36193l;
+                    if (ntVar != null) {
+                        ntVar.M(ptVar.f36181a0, ptVar.f36190i);
                     }
-                    launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 2) {
+                    MediaDataController.getInstance(ptVar.f36199r).addRecentSticker(2, ptVar.f36183b0, ptVar.W, (int) (System.currentTimeMillis() / 1000), this.f33651b);
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 3) {
+                    TLRPC.Document document = ptVar.W;
+                    Object obj = ptVar.f36183b0;
+                    String str = ptVar.Y;
+                    nt ntVar2 = ptVar.f36193l;
+                    if (ntVar2 == null) {
+                        return;
+                    }
+                    org.telegram.ui.Components.e5.L(ptVar.f36203w, ntVar2.a(), new a1.d(ntVar2, document, str, obj, 10));
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 4) {
+                    MediaDataController.getInstance(ptVar.f36199r).addRecentSticker(0, ptVar.f36183b0, ptVar.W, (int) (System.currentTimeMillis() / 1000), true);
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 5) {
+                    ptVar.f36193l.k(ptVar.X);
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 7) {
+                    ptVar.f36193l.p(ptVar.W);
+                } else if (((Integer) arrayList.get(intValue)).intValue() == 8) {
+                    ptVar.f36193l.F(ptVar.W);
                 }
-                stVar2.K = false;
-                stVar2.f37486z.invalidate();
-                stVar2.n();
-                return;
-            case 2:
-                st stVar3 = this.f33945b;
-                qt qtVar = stVar3.f37473l;
-                if (qtVar != null) {
-                    qtVar.K();
+            } else {
+                nt ntVar3 = ptVar.f36193l;
+                if (ntVar3 != null) {
+                    TLRPC.Document document2 = ptVar.W;
+                    String str2 = ptVar.Y;
+                    boolean z10 = true;
+                    Object obj2 = ptVar.f36183b0;
+                    if (((Integer) arrayList.get(intValue)).intValue() != 0) {
+                        z10 = false;
+                    }
+                    ntVar3.n(document2, str2, obj2, z10, 0, 0);
                 }
-                stVar3.p();
-                return;
-            default:
-                st stVar4 = this.f33945b;
-                qt qtVar2 = stVar4.f37473l;
-                if (qtVar2 != null) {
-                    qtVar2.r();
-                }
-                stVar4.p();
-                return;
+            }
+            ptVar.p();
         }
     }
 }

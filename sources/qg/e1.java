@@ -1,25 +1,25 @@
 package qg;
 
 import android.view.View;
-import ci.c6;
+import ci.b6;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class e1 extends s4.t {
-    public final c6 S;
+    public final b6 S;
 
-    public e1(c6 c6Var) {
+    public e1(b6 b6Var) {
         super(true);
-        this.S = c6Var;
+        this.S = b6Var;
     }
 
     @Override
     public final boolean B1(int i10) {
         MessageObject.GroupedMessagePosition position;
         byte b10;
-        c6 c6Var = this.S;
-        ArrayList arrayList = c6Var.f41368s0;
+        b6 b6Var = this.S;
+        ArrayList arrayList = b6Var.f41324s0;
         int size = (arrayList.size() - 1) - i10;
-        MessageObject.GroupedMessages groupedMessages = c6Var.f41369t0;
+        MessageObject.GroupedMessages groupedMessages = b6Var.f41325t0;
         if (groupedMessages != null && size >= 0 && size < arrayList.size() && (position = groupedMessages.getPosition((MessageObject) arrayList.get(size))) != null && position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
             int size2 = groupedMessages.posArray.size();
             for (int i11 = 0; i11 < size2; i11++) {

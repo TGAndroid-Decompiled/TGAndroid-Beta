@@ -1,19 +1,29 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class sw extends org.telegram.ui.Components.k00 {
-    public final uy B0;
+import android.view.View;
+public final class sw extends org.telegram.ui.Components.bt {
+    public final qy E;
 
-    public sw(uy uyVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        this.B0 = uyVar;
+    public sw(ny nyVar, qy qyVar) {
+        super(nyVar);
+        this.E = qyVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        getParent().requestDisallowInterceptTouchEvent(true);
-        this.B0.f38262m3 = false;
-        return super.onInterceptTouchEvent(motionEvent);
+    public final void y() {
+        qy qyVar = this.E;
+        if (qyVar.f36631c.L0() == 0) {
+            View m10 = qyVar.f36631c.m(0);
+            if (m10 != null) {
+                m10.invalidate();
+            }
+            if (qyVar.v == 2) {
+                qyVar.v = 1;
+            }
+            xw xwVar = qyVar.f36633n;
+            if (xwVar != null) {
+                xwVar.b();
+            }
+        }
     }
 }

@@ -2,14 +2,14 @@ package r5;
 
 import java.util.Set;
 public final class b {
-    public final long f42038a;
-    public final long f42039b;
-    public final Set f42040c;
+    public final long f41994a;
+    public final long f41995b;
+    public final Set f41996c;
 
     public b(long j3, long j10, Set set) {
-        this.f42038a = j3;
-        this.f42039b = j10;
-        this.f42040c = set;
+        this.f41994a = j3;
+        this.f41995b = j10;
+        this.f41996c = set;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class b {
         }
         if (obj instanceof b) {
             b bVar = (b) obj;
-            if (this.f42038a == bVar.f42038a && this.f42039b == bVar.f42039b && this.f42040c.equals(bVar.f42040c)) {
+            if (this.f41994a == bVar.f41994a && this.f41995b == bVar.f41995b && this.f41996c.equals(bVar.f41996c)) {
                 return true;
             }
         }
@@ -26,12 +26,12 @@ public final class b {
     }
 
     public final int hashCode() {
-        long j3 = this.f42038a;
-        long j10 = this.f42039b;
-        return this.f42040c.hashCode() ^ ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
+        long j3 = this.f41994a;
+        long j10 = this.f41995b;
+        return this.f41996c.hashCode() ^ ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
     }
 
     public final String toString() {
-        return "ConfigValue{delta=" + this.f42038a + ", maxAllowedDelay=" + this.f42039b + ", flags=" + this.f42040c + "}";
+        return "ConfigValue{delta=" + this.f41994a + ", maxAllowedDelay=" + this.f41995b + ", flags=" + this.f41996c + "}";
     }
 }

@@ -5,37 +5,37 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.bo;
+import org.telegram.ui.xn;
 public final class i0 extends FrameLayout {
-    public final n2 f49036a;
-    public final View f49037b;
-    public final boolean f49038c;
+    public final n2 f48987a;
+    public final View f48988b;
+    public final boolean f48989c;
     public final MessageObject d;
-    public final bo e;
-    public final int f49039f;
+    public final xn e;
+    public final int f48990f;
     public final int h;
-    public final boolean f49040n;
-    public final float f49041r;
-    public final float f49042s;
+    public final boolean f48991n;
+    public final float f48992r;
+    public final float f48993s;
     public final float v;
-    public final p0 f49043w;
-    public final l0 f49044x;
+    public final p0 f48994w;
+    public final l0 f48995x;
 
-    public i0(l0 l0Var, Context context, n2 n2Var, View view, boolean z10, MessageObject messageObject, bo boVar, int i10, int i11, boolean z11, float f7, float f10, float f11, p0 p0Var) {
+    public i0(l0 l0Var, Context context, n2 n2Var, View view, boolean z10, MessageObject messageObject, xn xnVar, int i10, int i11, boolean z11, float f7, float f10, float f11, p0 p0Var) {
         super(context);
-        this.f49044x = l0Var;
-        this.f49036a = n2Var;
-        this.f49037b = view;
-        this.f49038c = z10;
+        this.f48995x = l0Var;
+        this.f48987a = n2Var;
+        this.f48988b = view;
+        this.f48989c = z10;
         this.d = messageObject;
-        this.e = boVar;
-        this.f49039f = i10;
+        this.e = xnVar;
+        this.f48990f = i10;
         this.h = i11;
-        this.f49040n = z11;
-        this.f49041r = f7;
-        this.f49042s = f10;
+        this.f48991n = z11;
+        this.f48992r = f7;
+        this.f48993s = f10;
         this.v = f11;
-        this.f49043w = p0Var;
+        this.f48994w = p0Var;
     }
 
     @Override
@@ -48,9 +48,9 @@ public final class i0 extends FrameLayout {
         super.onAttachedToWindow();
         int i10 = 0;
         while (true) {
-            l0 l0Var = this.f49044x;
-            if (i10 < l0Var.f49079x.size()) {
-                ((k0) l0Var.f49079x.get(i10)).f49049a.onAttachedToWindow();
+            l0 l0Var = this.f48995x;
+            if (i10 < l0Var.f49030x.size()) {
+                ((k0) l0Var.f49030x.get(i10)).f49000a.onAttachedToWindow();
                 i10++;
             } else {
                 return;
@@ -63,9 +63,9 @@ public final class i0 extends FrameLayout {
         super.onDetachedFromWindow();
         int i10 = 0;
         while (true) {
-            l0 l0Var = this.f49044x;
-            if (i10 < l0Var.f49079x.size()) {
-                ((k0) l0Var.f49079x.get(i10)).f49049a.onDetachedFromWindow();
+            l0 l0Var = this.f48995x;
+            if (i10 < l0Var.f49030x.size()) {
+                ((k0) l0Var.f49030x.get(i10)).f49000a.onDetachedFromWindow();
                 i10++;
             } else {
                 return;

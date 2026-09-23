@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.ky;
-public final class p implements ky {
-    public final r f11547a;
+import org.telegram.ui.Components.d51;
+import org.telegram.ui.Components.ly;
+public final class p implements ly {
+    public final r f11534a;
 
     public p(r rVar) {
-        this.f11547a = rVar;
+        this.f11534a = rVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class p implements ky {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        r rVar = this.f11547a;
-        if (i10 != 0 && (focusedEditTextOrNull = rVar.f11590r.getFocusedEditTextOrNull()) != null) {
+        r rVar = this.f11534a;
+        if (i10 != 0 && (focusedEditTextOrNull = rVar.f11572r.getFocusedEditTextOrNull()) != null) {
             rVar.F = focusedEditTextOrNull;
             rVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        rVar.f11594y = z10;
+        rVar.f11576y = z10;
         rVar.S();
     }
 
@@ -69,7 +69,7 @@ public final class p implements ky {
 
     @Override
     public final boolean k() {
-        i1 M = r.M(this.f11547a);
+        i1 M = r.M(this.f11534a);
         if (M == null || M.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class p implements ky {
 
     @Override
     public final void l(String str) {
-        r rVar = this.f11547a;
+        r rVar = this.f11534a;
         i1 M = r.M(rVar);
         if (M != null) {
             int N = r.N(rVar, M);
@@ -103,8 +103,8 @@ public final class p implements ky {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.x5 x5Var;
-        r rVar = this.f11547a;
+        org.telegram.ui.Components.z5 z5Var;
+        r rVar = this.f11534a;
         i1 M = r.M(rVar);
         if (M != null) {
             int N = r.N(rVar, M);
@@ -114,12 +114,12 @@ public final class p implements ky {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    x5Var = new org.telegram.ui.Components.x5(document, M.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(document, M.getPaint().getFontMetricsInt());
                 } else {
-                    x5Var = new org.telegram.ui.Components.x5(j3, M.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(j3, M.getPaint().getFontMetricsInt());
                 }
-                x5Var.cacheType = org.telegram.ui.Components.o5.g();
-                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
+                z5Var.cacheType = org.telegram.ui.Components.q5.g();
+                spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
                 M.setText(M.getText().insert(N, spannableString));
                 int length = N + spannableString.length();
                 M.setSelection(length, length);
@@ -133,7 +133,7 @@ public final class p implements ky {
 
     @Override
     public final boolean z() {
-        return this.f11547a.f11594y;
+        return this.f11534a.f11576y;
     }
 
     @Override
@@ -145,7 +145,7 @@ public final class p implements ky {
     }
 
     @Override
-    public final void o(e51 e51Var) {
+    public final void o(d51 d51Var) {
     }
 
     @Override

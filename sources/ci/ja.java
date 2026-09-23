@@ -1,149 +1,315 @@
 package ci;
 
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC;
-public abstract class ja extends View {
-    public static final int f4855a = 0;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.fg0;
+import org.telegram.ui.Components.rr;
+public final class ja implements View.OnClickListener {
+    public final int f4867a;
+    public final lc f4868b;
 
-    public static void a(int i10, o8 o8Var) {
-        ga gaVar;
-        if (o8Var != null) {
-            try {
-                String string = MessagesController.getInstance(i10).getMainSettings().getString("story_privacy2", null);
-                if (string == null) {
-                    gaVar = new ga();
-                } else {
-                    SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-                    gaVar = b(serializedData);
-                    serializedData.cleanup();
-                    if (gaVar.f4725f.isEmpty() && gaVar.f4723b.isEmpty()) {
-                        gaVar = new ga();
-                    } else {
-                        HashSet hashSet = new HashSet();
-                        hashSet.addAll(gaVar.f4724c);
-                        for (ArrayList arrayList : gaVar.d.values()) {
-                            hashSet.addAll(arrayList);
-                        }
-                        if (!hashSet.isEmpty()) {
-                            MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-                            messagesStorage.getStorageQueue().postRunnable(new ai.s1(messagesStorage, hashSet, i10, 6));
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-                gaVar = new ga();
-            }
-            o8Var.E0 = gaVar;
-            o8Var.F0.clear();
-            o8Var.F0.addAll(o8Var.E0.f4723b);
-            if (UserConfig.getInstance(i10).isPremium()) {
-                o8Var.I0 = MessagesController.getInstance(i10).getMainSettings().getInt("story_period", 86400);
-            } else {
-                o8Var.I0 = 86400;
-            }
-        }
+    public ja(lc lcVar, int i10) {
+        this.f4867a = i10;
+        this.f4868b = lcVar;
     }
 
-    public static ga b(SerializedData serializedData) {
-        int readInt32 = serializedData.readInt32(true);
-        if (serializedData.readInt32(true) == 481674261) {
-            int readInt322 = serializedData.readInt32(true);
-            ArrayList arrayList = new ArrayList(readInt322);
-            for (int i10 = 0; i10 < readInt322; i10++) {
-                arrayList.add(TLRPC.InputUser.TLdeserialize(serializedData, serializedData.readInt32(true), true));
-            }
-            if (serializedData.readInt32(true) == 481674261) {
-                int readInt323 = serializedData.readInt32(true);
-                ArrayList arrayList2 = new ArrayList(readInt323);
-                for (int i11 = 0; i11 < readInt323; i11++) {
-                    arrayList2.add(Long.valueOf(serializedData.readInt64(true)));
-                }
-                if (serializedData.readInt32(true) == 481674261) {
-                    int readInt324 = serializedData.readInt32(true);
-                    HashMap hashMap = new HashMap();
-                    for (int i12 = 0; i12 < readInt324; i12++) {
-                        long readInt64 = serializedData.readInt64(true);
-                        if (serializedData.readInt32(true) == 481674261) {
-                            int readInt325 = serializedData.readInt32(true);
-                            ArrayList arrayList3 = new ArrayList(readInt325);
-                            for (int i13 = 0; i13 < readInt325; i13++) {
-                                arrayList3.add(Long.valueOf(serializedData.readInt64(true)));
-                            }
-                            hashMap.put(Long.valueOf(readInt64), arrayList3);
+    @Override
+    public final void onClick(View view) {
+        long j3;
+        rr rrVar;
+        boolean z10;
+        int i10;
+        String string;
+        int i11;
+        int i12;
+        y yVar;
+        int i13 = this.f4867a;
+        boolean z11 = false;
+        lc lcVar = this.f4868b;
+        switch (i13) {
+            case 0:
+                lc lcVar2 = this.f4868b;
+                if (lcVar2.K1 != null && lcVar2.C2 == null && lcVar2.f5054i1 != null) {
+                    ValueAnimator valueAnimator = lcVar2.E2;
+                    if (valueAnimator == null || !valueAnimator.isRunning()) {
+                        boolean z12 = lcVar2.K1.f5013y0;
+                        Bitmap createBitmap = Bitmap.createBitmap(lcVar2.f5066n.getWidth(), lcVar2.f5066n.getHeight(), Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(createBitmap);
+                        lcVar2.f5054i1.setAlpha(0.0f);
+                        zb zbVar = lcVar2.X0;
+                        if (zbVar != null) {
+                            zbVar.f4387g0 = true;
+                        }
+                        nb nbVar = lcVar2.f5094v1;
+                        if (nbVar != null) {
+                            nbVar.I0 = true;
+                        }
+                        lcVar2.f5066n.draw(canvas);
+                        zb zbVar2 = lcVar2.X0;
+                        if (zbVar2 != null) {
+                            zbVar2.f4387g0 = false;
+                        }
+                        nb nbVar2 = lcVar2.f5094v1;
+                        if (nbVar2 != null) {
+                            nbVar2.I0 = false;
+                        }
+                        lcVar2.f5054i1.setAlpha(1.0f);
+                        Paint paint = new Paint(1);
+                        paint.setColor(-16777216);
+                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                        Paint paint2 = new Paint(1);
+                        paint2.setFilterBitmap(true);
+                        int[] iArr = new int[2];
+                        lcVar2.f5054i1.getLocationInWindow(iArr);
+                        float f7 = iArr[0];
+                        float f10 = iArr[1];
+                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                        paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
+                        tb tbVar = new tb(lcVar2, lcVar2.f5029b, z12, canvas, (lcVar2.f5054i1.getMeasuredWidth() / 2.0f) + f7, (lcVar2.f5054i1.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
+                        lcVar2.C2 = tbVar;
+                        tbVar.setOnTouchListener(new bi.d(2));
+                        lcVar2.D2 = 0.0f;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        lcVar2.E2 = ofFloat;
+                        ofFloat.addUpdateListener(new ub(lcVar2, 0));
+                        lcVar2.E2.addListener(new jb(lcVar2, 2));
+                        lcVar2.E2.setStartDelay(80L);
+                        ValueAnimator valueAnimator2 = lcVar2.E2;
+                        if (z12) {
+                            j3 = 320;
                         } else {
-                            throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (4)");
+                            j3 = 450;
+                        }
+                        valueAnimator2.setDuration(j3);
+                        ValueAnimator valueAnimator3 = lcVar2.E2;
+                        if (z12) {
+                            rrVar = rr.f27703i;
+                        } else {
+                            rrVar = rr.h;
+                        }
+                        valueAnimator3.setInterpolator(rrVar);
+                        lcVar2.E2.start();
+                        lcVar2.f5066n.addView(lcVar2.C2, new ViewGroup.LayoutParams(-1, -1));
+                        AndroidUtilities.runOnUIThread(new ha(lcVar2, 4));
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                if (!lcVar.S1) {
+                    lcVar.M();
+                    return;
+                }
+                return;
+            case 2:
+                l8 l8Var = lcVar.K1;
+                if (l8Var != null && !lcVar.S1) {
+                    l8Var.Y = !l8Var.Y;
+                    ArrayList arrayList = l8Var.T;
+                    if (arrayList != null) {
+                        int size = arrayList.size();
+                        int i14 = 0;
+                        while (i14 < size) {
+                            Object obj = arrayList.get(i14);
+                            i14++;
+                            ((l8) obj).Y = lcVar.K1.Y;
                         }
                     }
-                    HashSet hashSet = new HashSet();
-                    hashSet.addAll(arrayList2);
-                    for (ArrayList arrayList4 : hashMap.values()) {
-                        hashSet.addAll(arrayList4);
+                    boolean isEmpty = TextUtils.isEmpty(lcVar.K1.f5012y);
+                    l8 l8Var2 = lcVar.K1;
+                    if (l8Var2.f4994o0 != null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
                     }
-                    ga gaVar = new ga(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = gaVar.f4724c;
-                    arrayList5.clear();
-                    arrayList5.addAll(arrayList2);
-                    HashMap hashMap2 = gaVar.d;
-                    hashMap2.clear();
-                    hashMap2.putAll(hashMap);
-                    return gaVar;
+                    if (lcVar.f5047g0 == -1) {
+                        e4 e4Var = lcVar.f5060k1;
+                        if (l8Var2.Y) {
+                            if (isEmpty && !z10) {
+                                i11 = R.string.StorySoundMuted;
+                            } else {
+                                i11 = R.string.StoryOriginalSoundMuted;
+                            }
+                            string = LocaleController.getString(i11);
+                        } else {
+                            if (isEmpty && !z10) {
+                                i10 = R.string.StorySoundNotMuted;
+                            } else {
+                                i10 = R.string.StoryOriginalSoundNotMuted;
+                            }
+                            string = LocaleController.getString(i10);
+                        }
+                        boolean z13 = lcVar.f5060k1.V;
+                        if (e4Var.getMeasuredWidth() < 0) {
+                            e4Var.G = string;
+                        } else {
+                            org.telegram.ui.Components.o6 o6Var = e4Var.H;
+                            if (!LocaleController.isRTL && z13) {
+                                z11 = true;
+                            }
+                            o6Var.q(string, z11, true);
+                        }
+                        lcVar.f5060k1.u();
+                    }
+                    lcVar.f0(lcVar.K1.Y, true);
+                    lcVar.X0.c();
+                    return;
                 }
-                throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (3)");
-            }
-            throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (2)");
-        }
-        throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy");
-    }
-
-    public static void c(SerializedData serializedData, ga gaVar) {
-        int i10 = gaVar.f4722a;
-        HashMap hashMap = gaVar.d;
-        ArrayList arrayList = gaVar.f4724c;
-        serializedData.writeInt32(i10);
-        serializedData.writeInt32(481674261);
-        ArrayList arrayList2 = gaVar.e;
-        serializedData.writeInt32(arrayList2.size());
-        int size = arrayList2.size();
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList2.get(i11);
-            i11++;
-            ((TLRPC.InputUser) obj).serializeToStream(serializedData);
-        }
-        serializedData.writeInt32(481674261);
-        serializedData.writeInt32(arrayList.size());
-        int size2 = arrayList.size();
-        int i12 = 0;
-        while (i12 < size2) {
-            Object obj2 = arrayList.get(i12);
-            i12++;
-            serializedData.writeInt64(((Long) obj2).longValue());
-        }
-        serializedData.writeInt32(481674261);
-        serializedData.writeInt32(hashMap.size());
-        for (Map.Entry entry : hashMap.entrySet()) {
-            serializedData.writeInt64(((Long) entry.getKey()).longValue());
-            serializedData.writeInt32(481674261);
-            serializedData.writeInt32(((ArrayList) entry.getValue()).size());
-            ArrayList arrayList3 = (ArrayList) entry.getValue();
-            int size3 = arrayList3.size();
-            int i13 = 0;
-            while (i13 < size3) {
-                Object obj3 = arrayList3.get(i13);
-                i13++;
-                serializedData.writeInt64(((Long) obj3).longValue());
-            }
+                return;
+            case 3:
+                boolean k10 = lcVar.X0.k();
+                lcVar.X0.x(-9982, k10);
+                ((fg0) lcVar.f5057j1.f5458c).a(!k10, true);
+                return;
+            case 4:
+                if (lcVar.B0 != null && !lcVar.S1) {
+                    String C = lcVar.C();
+                    String F = lcVar.F();
+                    if (C != null && !C.equals(F)) {
+                        ob obVar = lcVar.B0;
+                        if (obVar != null && obVar.getCameraSession() != null) {
+                            if (lcVar.B0.isFrontface() && !lcVar.B0.getCameraSession().hasFlashModes()) {
+                                int indexOf = lcVar.f5092u2.indexOf(F);
+                                if (indexOf >= 0) {
+                                    lcVar.f5089t2 = indexOf;
+                                    MessagesController.getGlobalMainSettings().edit().putInt("frontflash", lcVar.f5089t2).apply();
+                                }
+                            } else {
+                                lcVar.B0.getCameraSession().setCurrentFlashMode(F);
+                            }
+                        }
+                        lcVar.e0(F);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                ob obVar2 = lcVar.B0;
+                if (obVar2 != null && lcVar.f5044f0 == 0) {
+                    obVar2.toggleDual();
+                    lcVar.F0.setValue(lcVar.B0.isDual());
+                    yc ycVar = lcVar.F0;
+                    if (lcVar.B0.isDual()) {
+                        i12 = R.string.AccDescrDualCameraOn;
+                    } else {
+                        i12 = R.string.AccDescrDualCameraOff;
+                    }
+                    ycVar.setContentDescription(LocaleController.getString(i12));
+                    lcVar.l1.e(true);
+                    MessagesController.getGlobalMainSettings().edit().putInt("storydualhint", 2).apply();
+                    if (lcVar.f5064m1.V) {
+                        MessagesController.getGlobalMainSettings().edit().putInt("storysvddualhint", 2).apply();
+                    }
+                    lcVar.f5064m1.e(true);
+                    return;
+                }
+                return;
+            case 6:
+                if (lcVar.f5044f0 == 0 && !lcVar.a2) {
+                    ob obVar3 = lcVar.B0;
+                    if (obVar3 != null && obVar3.isDual()) {
+                        lcVar.B0.toggleDual();
+                    }
+                    if (!lcVar.I0.e && !lcVar.A0.j()) {
+                        lcVar.A0.o(lcVar.f5108z0);
+                        lcVar.I0.setSelected(lcVar.f5108z0);
+                        lcVar.G0.a(new u(lcVar.f5108z0, false), true);
+                        lcVar.G0.setSelected(true);
+                        ob obVar4 = lcVar.B0;
+                        if (obVar4 != null) {
+                            obVar4.recordHevc = !lcVar.A0.j();
+                        }
+                        kb kbVar = lcVar.M0;
+                        if (kbVar != null) {
+                            kbVar.setMultipleOnClick(lcVar.A0.j());
+                            lcVar.M0.setMaxCount(Math.min(10, t.b() - lcVar.A0.getFilledCount()));
+                        }
+                    }
+                    lcVar.I0.a(!yVar.e, true);
+                    lcVar.m0(true);
+                    return;
+                }
+                return;
+            case 7:
+                lcVar.A0.o(null);
+                lcVar.A0.e();
+                lcVar.I0.setSelected((t) null);
+                ob obVar5 = lcVar.B0;
+                if (obVar5 != null) {
+                    obVar5.recordHevc = !lcVar.A0.j();
+                }
+                lcVar.I0.a(false, true);
+                lcVar.m0(true);
+                kb kbVar2 = lcVar.M0;
+                if (kbVar2 != null) {
+                    kbVar2.setMultipleOnClick(lcVar.A0.j());
+                    lcVar.M0.setMaxCount(Math.min(10, t.b() - lcVar.A0.getFilledCount()));
+                    return;
+                }
+                return;
+            case 8:
+                lcVar.k0();
+                return;
+            case 9:
+                ob obVar6 = lcVar.B0;
+                if (obVar6 != null && !lcVar.S1 && !lcVar.P1 && obVar6.isInited() && lcVar.f5044f0 == 0) {
+                    lcVar.B0.switchCamera();
+                    lcVar.O0.d(180.0f);
+                    lc.a0(lcVar.B0.isFrontface());
+                    if (lcVar.q0()) {
+                        lcVar.f5083s.c(null);
+                        return;
+                    } else {
+                        lcVar.f5083s.d();
+                        return;
+                    }
+                }
+                return;
+            case 10:
+                lcVar.k0();
+                return;
+            case 11:
+                l8 l8Var3 = lcVar.K1;
+                if (l8Var3 != null) {
+                    l8Var3.f4978f0 = true;
+                    l8Var3.f4975e0 = lcVar.M1;
+                    lcVar.X();
+                    l8 l8Var4 = lcVar.K1;
+                    if (l8Var4 != null && !l8Var4.f4968b0) {
+                        AndroidUtilities.runOnUIThread(new ha(lcVar, 24), 400L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 12:
+                if (lcVar.f5086s2) {
+                    lcVar.Z(true);
+                    return;
+                }
+                return;
+            case 13:
+                lcVar.l0(-1, false, true);
+                return;
+            default:
+                lcVar.l0(-1, false, true);
+                return;
         }
     }
 }

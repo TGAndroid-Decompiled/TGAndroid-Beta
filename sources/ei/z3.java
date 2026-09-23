@@ -1,8 +1,8 @@
 package ei;
 
 import android.os.Bundle;
-import org.telegram.ui.bo;
-public final class z3 extends bo {
+import org.telegram.ui.xn;
+public final class z3 extends xn {
     public final org.telegram.ui.ActionBar.f3 Pc;
 
     public z3(Bundle bundle, org.telegram.ui.ActionBar.f3 f3Var) {

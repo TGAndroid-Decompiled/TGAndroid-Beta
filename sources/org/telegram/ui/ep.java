@@ -1,77 +1,93 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class ep extends org.telegram.ui.Cells.e9 {
-    public ValueAnimator v;
-    public int f33383w;
-    public final kp f33384x;
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class ep extends org.telegram.ui.Components.ll0 {
+    public final fp f32994c;
 
-    public ep(kp kpVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 12, e6Var);
-        this.f33384x = kpVar;
-        this.f33383w = -1;
+    public ep(fp fpVar) {
+        this.f32994c = fpVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f33383w != -1) {
-            kp kpVar = this.f33384x;
-            if (kpVar.h != null) {
-                ArrayList arrayList = new ArrayList();
-                boolean z11 = false;
-                for (int i14 = 0; i14 < kpVar.h.getChildCount(); i14++) {
-                    View childAt = kpVar.h.getChildAt(i14);
-                    if (z11) {
-                        arrayList.add(childAt);
-                    } else if (childAt == this) {
-                        z11 = true;
-                    }
-                }
-                float height = this.f33383w - getHeight();
-                ValueAnimator valueAnimator = this.v;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.v = ofFloat;
-                ofFloat.addUpdateListener(new ng(arrayList, height, 1));
-                this.v.setInterpolator(org.telegram.ui.Components.qr.h);
-                this.v.setDuration(350L);
-                this.v.start();
-            }
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f42630f == 1) {
+            return true;
         }
-        this.f33383w = getHeight();
+        return false;
     }
 
     @Override
-    public final void setText(CharSequence charSequence) {
-        String str;
-        if (charSequence != 0) {
-            charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-            int indexOf = charSequence.toString().indexOf(10);
-            kp kpVar = this.f33384x;
-            if (indexOf >= 0) {
-                charSequence.replace(indexOf, indexOf + 1, " ");
-                charSequence.setSpan(new ForegroundColorSpan(kpVar.getThemedColor(org.telegram.ui.ActionBar.i6.f19053p7)), 0, indexOf, 33);
+    public final int h() {
+        return this.f32994c.f33354a3.N.size() + 2;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 <= this.f32994c.f33354a3.N.size()) {
+            return 1;
+        }
+        return 2;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        fp fpVar = this.f32994c;
+        gp gpVar = fpVar.f33354a3;
+        int i11 = c1Var.f42630f;
+        View view = c1Var.f42627a;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    org.telegram.ui.Cells.f9 f9Var = (org.telegram.ui.Cells.f9) view;
+                    f9Var.setText(LocaleController.getString(R.string.UsernamesChannelHelp));
+                    f9Var.setBackground(org.telegram.ui.ActionBar.h6.V0(fpVar.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f18753b7));
+                    return;
+                }
+                return;
             }
-            org.telegram.ui.Components.f51[] f51VarArr = (org.telegram.ui.Components.f51[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.f51.class);
-            ci.h2 h2Var = kpVar.f35203a;
-            if (h2Var != null && h2Var.getText() != null) {
-                str = kpVar.f35203a.getText().toString();
+            TLRPC.TL_username tL_username = (TLRPC.TL_username) gpVar.N.get(i10 - 1);
+            na naVar = (na) view;
+            if (naVar.H) {
+                gpVar.O = null;
+            }
+            if (i10 < gpVar.N.size()) {
+                z10 = true;
             } else {
-                str = "";
+                z10 = false;
             }
-            for (int i10 = 0; i10 < f51VarArr.length; i10++) {
-                charSequence.setSpan(new org.telegram.ui.Cells.i(5, (Object) this, str), charSequence.getSpanStart(f51VarArr[i10]), charSequence.getSpanEnd(f51VarArr[i10]), 33);
-                charSequence.removeSpan(f51VarArr[i10]);
+            naVar.a(tL_username, z10, false, 0L);
+            if (tL_username != null && tL_username.editable) {
+                gpVar.O = naVar;
+                return;
             }
+            return;
         }
-        super.setText(charSequence);
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
+        m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18789d6, fpVar.f26222p2));
+        m4Var.setText(LocaleController.getString(R.string.UsernamesChannelHeader));
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        fp fpVar = this.f32994c;
+        org.telegram.ui.ActionBar.d6 d6Var = fpVar.f26222p2;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    return null;
+                }
+                return new s4.c1(new org.telegram.ui.Cells.f9(fpVar.getContext(), 12, d6Var));
+            }
+            return new s4.c1(new ga(this, fpVar.getContext(), d6Var));
+        }
+        return new s4.c1(new org.telegram.ui.Cells.m4(fpVar.getContext(), d6Var));
     }
 }

@@ -6,21 +6,21 @@ import p7.j;
 import w7.e0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(6);
-    public final boolean f42049a;
-    public final int f42050b;
+    public final boolean f42005a;
+    public final int f42006b;
 
     public a(int i10, boolean z10) {
-        this.f42049a = z10;
-        this.f42050b = i10;
+        this.f42005a = z10;
+        this.f42006b = i10;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
         e0.s(parcel, 1, 4);
-        parcel.writeInt(this.f42049a ? 1 : 0);
+        parcel.writeInt(this.f42005a ? 1 : 0);
         e0.s(parcel, 2, 4);
-        parcel.writeInt(this.f42050b);
+        parcel.writeInt(this.f42006b);
         e0.r(parcel, q6);
     }
 }

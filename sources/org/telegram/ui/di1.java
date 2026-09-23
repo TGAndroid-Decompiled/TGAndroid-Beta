@@ -1,40 +1,20 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.voip.VoIPService;
-public final class di1 implements View.OnClickListener {
-    public final int f33032a;
-    public final ui1 f33033b;
-    public final VoIPService f33034c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class di1 extends AnimatorListenerAdapter {
+    public final mi1 f32670a;
 
-    public di1(ui1 ui1Var, VoIPService voIPService, int i10) {
-        this.f33032a = i10;
-        this.f33033b = ui1Var;
-        this.f33034c = voIPService;
+    public di1(mi1 mi1Var) {
+        this.f32670a = mi1Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f33032a) {
-            case 0:
-                ui1 ui1Var = this.f33033b;
-                AndroidUtilities.runOnUIThread(new ei1(ui1Var, 8));
-                int i10 = ui1Var.L;
-                if (i10 > 0) {
-                    this.f33034c.sendCallRating(i10);
-                    return;
-                }
-                return;
-            default:
-                ui1 ui1Var2 = this.f33033b;
-                AndroidUtilities.runOnUIThread(new ei1(ui1Var2, 10));
-                int i11 = ui1Var2.L;
-                if (i11 > 0) {
-                    this.f33034c.sendCallRating(i11);
-                    return;
-                }
-                return;
-        }
+    public final void onAnimationEnd(Animator animator) {
+        mi1 mi1Var = this.f32670a;
+        mi1Var.E.setText(LocaleController.getString(R.string.VoipCallEnded));
+        mi1Var.E.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
     }
 }

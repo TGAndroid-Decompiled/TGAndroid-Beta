@@ -10,44 +10,44 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vl;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.Components.pq;
+import org.telegram.messenger.ul;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i5;
+import org.telegram.ui.Components.qq;
 public final class b extends FrameLayout {
-    public final j5 f44299a;
-    public final ImageView f44300b;
+    public final i5 f44253a;
+    public final ImageView f44254b;
 
-    public b(Context context, e6 e6Var) {
+    public b(Context context, d6 d6Var) {
         super(context);
         int i10;
-        j5 j5Var = new j5(context);
-        this.f44299a = j5Var;
-        j5Var.setTextSize(16);
+        i5 i5Var = new i5(context);
+        this.f44253a = i5Var;
+        i5Var.setTextSize(16);
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        j5Var.setGravity(i10);
-        int i11 = i6.L6;
-        j5Var.setTextColor(i6.v0(i11, e6Var));
-        j5Var.setTag(Integer.valueOf(i11));
-        addView(j5Var);
+        i5Var.setGravity(i10);
+        int i11 = h6.L6;
+        i5Var.setTextColor(h6.v0(i11, d6Var));
+        i5Var.setTag(Integer.valueOf(i11));
+        addView(i5Var);
         ImageView imageView = new ImageView(context);
-        this.f44300b = imageView;
+        this.f44254b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        j5Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
+        i5Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
         Drawable drawable = getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = getResources().getDrawable(R.drawable.poll_add_plus);
-        int v02 = i6.v0(i6.N6, e6Var);
+        int v02 = h6.v0(h6.N6, d6Var);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         drawable.setColorFilter(new PorterDuffColorFilter(v02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.f18962k7, e6Var), mode));
-        imageView.setImageDrawable(new pq(drawable, drawable2));
-        setBackgroundColor(i6.v0(i6.f18904h5, e6Var));
+        drawable2.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f18917k7, d6Var), mode));
+        imageView.setImageDrawable(new qq(drawable, drawable2));
+        setBackgroundColor(h6.v0(h6.f18859h5, d6Var));
     }
 
     @Override
@@ -55,13 +55,13 @@ public final class b extends FrameLayout {
         int dp;
         int measuredWidth;
         int i14 = i12 - i10;
-        j5 j5Var = this.f44299a;
-        int textHeight = ((i13 - i11) - j5Var.getTextHeight()) / 2;
+        i5 i5Var = this.f44253a;
+        int textHeight = ((i13 - i11) - i5Var.getTextHeight()) / 2;
         boolean z11 = LocaleController.isRTL;
         float f7 = 23.0f;
-        ImageView imageView = this.f44300b;
+        ImageView imageView = this.f44254b;
         if (z11) {
-            int measuredWidth2 = getMeasuredWidth() - j5Var.getMeasuredWidth();
+            int measuredWidth2 = getMeasuredWidth() - i5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
                 f7 = 68.0f;
             }
@@ -72,7 +72,7 @@ public final class b extends FrameLayout {
             }
             dp = AndroidUtilities.dp(f7);
         }
-        j5Var.layout(dp, textHeight, j5Var.getMeasuredWidth() + dp, j5Var.getMeasuredHeight() + textHeight);
+        i5Var.layout(dp, textHeight, i5Var.getMeasuredWidth() + dp, i5Var.getMeasuredHeight() + textHeight);
         if (!LocaleController.isRTL) {
             measuredWidth = AndroidUtilities.dp(24.0f);
         } else {
@@ -84,8 +84,8 @@ public final class b extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f44299a.measure(vl.d(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f44300b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        this.f44253a.measure(ul.d(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f44254b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

@@ -1,54 +1,45 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class aj0 extends org.telegram.ui.Cells.t1 {
-    public int Ge;
-    public int He;
-    public int Ie;
-    public final bj0 Je;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public final class aj0 extends org.telegram.ui.Components.fo {
+    public final ej0 f31810v0;
 
-    public aj0(bj0 bj0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i10, true, null, e6Var);
-        this.Je = bj0Var;
-        this.Ge = Integer.MAX_VALUE;
-        this.He = Integer.MAX_VALUE;
-        this.Ie = -1;
+    public aj0(ej0 ej0Var, Context context) {
+        super(context, null, false, null);
+        this.f31810v0 = ej0Var;
     }
 
     @Override
-    public final boolean isPressed() {
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int id2;
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.Zc.f20910w0 && i11 != 0 && this.Ge != Integer.MAX_VALUE && i13 != 0 && this.He != Integer.MAX_VALUE) {
-            int i14 = this.Ie;
-            int i15 = 0;
-            if (getMessageObject() == null) {
-                id2 = 0;
-            } else {
-                id2 = getMessageObject().getId();
-            }
-            if (i14 == id2) {
-                if (!this.Je.f32202w0) {
-                    setTranslationY(-(i11 - this.Ge));
-                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.qr.h).start();
-                }
-                this.Ge = getTop();
-                this.He = getBottom();
-                if (getMessageObject() != null) {
-                    i15 = getMessageObject().getId();
-                }
-                this.Ie = i15;
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        ej0 ej0Var = this.f31810v0;
+        ej0Var.W.setImageCoords(ej0Var.f32947b0.getAvatarImageView().getX(), ej0Var.f32947b0.getAvatarImageView().getY(), ej0Var.f32947b0.getAvatarImageView().getWidth(), ej0Var.f32947b0.getAvatarImageView().getHeight());
+        if (ej0Var.Y) {
+            canvas.save();
+            canvas.scale(0.9f, 0.9f, ej0Var.W.getCenterX(), ej0Var.W.getCenterY());
+            ej0Var.W.draw(canvas);
+            canvas.restore();
+        }
+        if (ej0Var.X) {
+            int centerX = (int) (ej0Var.W.getCenterX() - (org.telegram.ui.ActionBar.h6.U0.getIntrinsicWidth() / 2));
+            int centerY = (int) (ej0Var.W.getCenterY() - (org.telegram.ui.ActionBar.h6.U0.getIntrinsicHeight() / 2));
+            Drawable drawable = org.telegram.ui.ActionBar.h6.U0;
+            drawable.setBounds(centerX, centerY, drawable.getIntrinsicWidth() + centerX, org.telegram.ui.ActionBar.h6.U0.getIntrinsicHeight() + centerY);
+            org.telegram.ui.ActionBar.h6.U0.draw(canvas);
         }
     }
 
     @Override
-    public final vh.g w3() {
-        return vh.g.d(1, this, this.Je.F);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f31810v0.W.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f31810v0.W.onDetachedFromWindow();
     }
 }

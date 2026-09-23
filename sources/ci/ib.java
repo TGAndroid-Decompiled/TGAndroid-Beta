@@ -1,50 +1,34 @@
 package ci;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ib implements Runnable {
-    public final int f4814a = 1;
-    public final jb f4815b;
-    public final Runnable f4816c;
-    public final boolean d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ib extends AnimatorListenerAdapter {
+    public final int f4794a;
+    public final int f4795b;
+    public final int f4796c;
+    public final lc d;
 
-    public ib(jb jbVar, Runnable runnable, boolean z10) {
-        this.f4815b = jbVar;
-        this.f4816c = runnable;
-        this.d = z10;
+    public ib(lc lcVar, int i10, int i11, int i12) {
+        this.f4794a = i12;
+        this.d = lcVar;
+        this.f4795b = i10;
+        this.f4796c = i11;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f4814a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f4794a) {
             case 0:
-                boolean z10 = this.d;
-                this.f4815b.f(this.f4816c, z10);
+                this.d.N(this.f4795b, this.f4796c);
                 return;
             default:
-                this.f4816c.run();
-                oc ocVar = this.f4815b.f4856a;
-                c4 c4Var = ocVar.T0;
-                if (this.d) {
-                    i10 = R.string.StoryHintSwipeToZoom;
-                } else {
-                    i10 = R.string.StoryHintPinchToZoom;
+                int i10 = this.f4795b;
+                int i11 = this.f4796c;
+                if (i10 != i11) {
+                    this.d.Q(i10, i11);
+                    return;
                 }
-                c4Var.f4424a.q(LocaleController.getString(i10), false, true);
-                c4Var.invalidate();
-                ocVar.h(true, true);
-                ocVar.d0(true);
-                ocVar.I0.a(false, true);
-                ocVar.J0.b(true, true);
-                ocVar.i0(true, true);
                 return;
         }
-    }
-
-    public ib(jb jbVar, boolean z10, Runnable runnable) {
-        this.f4815b = jbVar;
-        this.d = z10;
-        this.f4816c = runnable;
     }
 }

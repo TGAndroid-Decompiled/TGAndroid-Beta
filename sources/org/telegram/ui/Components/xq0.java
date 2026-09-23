@@ -6,37 +6,37 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xq0 implements Runnable {
-    public final int f30038a;
-    public final yu0 f30039b;
-    public final TLRPC.TL_error f30040c;
+    public final int f30035a;
+    public final yu0 f30036b;
+    public final TLRPC.TL_error f30037c;
     public final int d;
     public final int e;
-    public final TLObject f30041f;
+    public final TLObject f30038f;
 
     public xq0(yu0 yu0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
-        this.f30038a = i12;
-        this.f30039b = yu0Var;
-        this.f30040c = tL_error;
+        this.f30035a = i12;
+        this.f30036b = yu0Var;
+        this.f30037c = tL_error;
         this.d = i10;
         this.e = i11;
-        this.f30041f = tLObject;
+        this.f30038f = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f30038a) {
+        switch (this.f30035a) {
             case 0:
-                yu0 yu0Var = this.f30039b;
-                NotificationCenter.getInstance(yu0Var.f30389v1.getCurrentAccount()).doOnIdle(new xq0(yu0Var, this.f30040c, this.d, this.e, this.f30041f, 1));
+                yu0 yu0Var = this.f30036b;
+                NotificationCenter.getInstance(yu0Var.f30450v1.getCurrentAccount()).doOnIdle(new xq0(yu0Var, this.f30037c, this.d, this.e, this.f30038f, 1));
                 return;
             default:
-                yu0 yu0Var2 = this.f30039b;
-                nu0[] nu0VarArr = yu0Var2.f30385t1;
-                if (this.f30040c == null) {
+                yu0 yu0Var2 = this.f30036b;
+                nu0[] nu0VarArr = yu0Var2.f30446t1;
+                if (this.f30037c == null) {
                     int i10 = this.e;
                     nu0 nu0Var = nu0VarArr[i10];
-                    if (this.d == nu0Var.f26587p) {
-                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f30041f;
+                    if (this.d == nu0Var.f26524p) {
+                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f30038f;
                         nu0Var.e.clear();
                         int size = tL_messages_searchResultsPositions.positions.size();
                         int i11 = 0;
@@ -45,24 +45,24 @@ public final class xq0 implements Runnable {
                             int i13 = tL_searchResultPosition.date;
                             if (i13 != 0) {
                                 ?? obj = new Object();
-                                obj.f29781c = i13;
+                                obj.f29809c = i13;
                                 obj.d = tL_searchResultPosition.msg_id;
-                                obj.f29780b = tL_searchResultPosition.offset;
-                                obj.f29779a = LocaleController.formatYearMont(i13, true);
+                                obj.f29808b = tL_searchResultPosition.offset;
+                                obj.f29807a = LocaleController.formatYearMont(i13, true);
                                 nu0VarArr[i10].e.add(obj);
                             }
                         }
                         Collections.sort(nu0VarArr[i10].e, new org.telegram.ui.df(17));
                         nu0 nu0Var2 = nu0VarArr[i10];
-                        nu0Var2.f26578f[0] = tL_messages_searchResultsPositions.count;
+                        nu0Var2.f26515f[0] = tL_messages_searchResultsPositions.count;
                         nu0Var2.h = true;
                         if (!nu0Var2.e.isEmpty()) {
                             while (true) {
-                                rt0[] rt0VarArr = yu0Var2.f30365k0;
+                                rt0[] rt0VarArr = yu0Var2.f30426k0;
                                 if (i11 < rt0VarArr.length) {
                                     rt0 rt0Var = rt0VarArr[i11];
                                     if (rt0Var.F == i10) {
-                                        rt0Var.f27681b = true;
+                                        rt0Var.f27724b = true;
                                         yu0Var2.o1(rt0Var, true);
                                     }
                                     i11++;

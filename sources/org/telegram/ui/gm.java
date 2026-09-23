@@ -1,18 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class gm extends org.telegram.ui.Cells.b0 {
-    public final nm f33892f;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+public final class gm extends org.telegram.ui.Components.r6 {
+    public final jm f33589b;
 
-    public gm(nm nmVar, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i10, e6Var);
-        this.f33892f = nmVar;
+    public gm(jm jmVar) {
+        super("p2", 0);
+        this.f33589b = jmVar;
     }
 
     @Override
-    public final int getSideMenuWidth() {
-        bo boVar = this.f33892f.Q;
-        int i10 = bo.Gc;
-        return boVar.R8();
+    public final void b(Object obj, float f7) {
+        ((MessageObject.SendAnimationData) obj).currentX = f7;
+        View view = this.f33589b.f34476b.Q.fragmentView;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        return Float.valueOf(((MessageObject.SendAnimationData) obj).currentX);
     }
 }

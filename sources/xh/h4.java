@@ -1,982 +1,572 @@
 package xh;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.os.Bundle;
-import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.vl;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d5;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.bu;
-import org.telegram.ui.Components.c90;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.kb0;
-import org.telegram.ui.Components.n70;
-import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.qn;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.r00;
-import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.u9;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.xi0;
-import org.telegram.ui.Components.y10;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.w8;
-import org.telegram.ui.w81;
-import org.telegram.ui.wy0;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.cu;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.e80;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.kg0;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.o70;
+import org.telegram.ui.Components.rn;
+import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.u00;
+import org.telegram.ui.py0;
+import org.telegram.ui.vo0;
 import w7.x5;
-import w7.z5;
-import yh.l7;
-import yh.u5;
-public class h4 extends org.telegram.ui.ActionBar.n2 implements le.d {
-    public LinearLayout E;
-    public l3 F;
-    public l3 G;
-    public l3 H;
-    public l3 I;
-    public r00 J;
-    public boolean K;
-    public fh.c L;
-    public ah.c M;
-    public final le.b f45890a;
-    public final long f45891b;
-    public final String f45892c;
-    public final u3 d;
-    public Utilities.Callback e;
-    public org.telegram.ui.ActionBar.g2 f45893f;
-    public View h;
-    public d3 f45894n;
-    public FrameLayout f45895r;
-    public FrameLayout f45896s;
-    public TextView v;
-    public m3 f45897w;
-    public boolean f45898x;
-    public HorizontalScrollView f45899y;
+import yh.l5;
+import yh.t5;
+public final class h4 extends bb {
+    public static final int f45839k0 = 0;
+    public final String X;
+    public final g4 Y;
+    public final HorizontalScrollView Z;
+    public final m3 f45840a0;
+    public final m3 f45841b0;
+    public final m3 f45842c0;
+    public final m3 f45843d0;
+    public final yh.j2 f45844e0;
+    public yh.w0 f45845f0;
+    public final HashSet f45846g0;
+    public boolean f45847h0;
+    public f4 f45848i0;
+    public boolean f45849j0;
 
-    public h4(long j3, String str, long j10, e6 e6Var) {
-        super(null);
-        this.f45890a = new le.b(0, this, qr.h, 380L, false);
-        this.K = true;
-        this.f45891b = j3;
-        this.f45892c = str;
-        this.resourceProvider = e6Var;
-        u3 u3Var = new u3(j10, this.currentAccount, new org.telegram.ui.web.b1(this, 18));
-        this.d = u3Var;
-        u3Var.g(false);
-    }
-
-    public static void U(h4 h4Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z10) {
-        if (j3 == UserConfig.getInstance(h4Var.currentAccount).getClientUserId()) {
-            h4Var.d.d.remove(tL_starGiftUnique);
-            h4Var.e0(false);
-            if (j3 == UserConfig.getInstance(h4Var.currentAccount).getClientUserId()) {
-                vc a02 = vc.a0(h4Var);
-                TLRPC.Document document = tL_starGiftUnique.getDocument();
-                String string = LocaleController.getString(R.string.BoughtResoldGiftTitle);
-                int i10 = R.string.BoughtResoldGiftText;
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(tL_starGiftUnique.title);
-                sb2.append(" #");
-                oc O = a02.O(document, string, LocaleController.formatString(i10, hg.c.k(tL_starGiftUnique.num, ',', sb2)));
-                O.f26759r = false;
-                O.j();
-            } else {
-                oc O2 = vc.a0(h4Var).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(h4Var.currentAccount, j3)));
-                O2.f26759r = false;
-                O2.j();
-            }
-            h4Var.J.c(true);
-            return;
-        }
-        Bundle bundle = new Bundle();
-        if (j3 >= 0) {
-            bundle.putLong("user_id", j3);
-        } else {
-            bundle.putLong("chat_id", -j3);
-        }
-        c3 c3Var = new c3(bundle, tL_starGiftUnique, j3);
-        d5 d5Var = h4Var.parentLayout;
-        if (d5Var != null && ((ActionBarLayout) d5Var).f18379b) {
-            Dialog dialog = h4Var.parentDialog;
-            if ((dialog instanceof org.telegram.ui.ActionBar.f3) && z10) {
-                ((org.telegram.ui.ActionBar.f3) dialog).skipDismissAnimation();
-            }
-            h4Var.finishFragment();
-            org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-            if (U != null) {
-                U.presentFragment(c3Var, false, z10);
-            }
-        } else {
-            h4Var.presentFragment(c3Var, true, z10);
-        }
-        Utilities.Callback callback = h4Var.e;
-        if (callback != null) {
-            callback.run(Boolean.valueOf(z10));
-        }
-    }
-
-    public static void V(h4 h4Var, Context context) {
-        u3 u3Var = h4Var.d;
-        if (!h4Var.K || u3Var.h.isEmpty()) {
-            return;
-        }
-        n70 n70Var = new n70(h4Var, h4Var.I, false, false);
-        n70Var.f26368t = false;
-        n70Var.Y = true;
-        n70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
-        n70Var.R = true;
-        n70Var.f26362p = new ii.h(n70Var, 3);
-        String[] strArr = {""};
-        ArrayList arrayList = new ArrayList(u3Var.h);
-        Collections.sort(arrayList, new t2(h4Var, 0));
-        e61 e61Var = new e61(h4Var, new u2(h4Var, strArr, arrayList, 0), new v2(h4Var, n70Var, 0), null);
-        e61Var.Y2.f29610r = false;
-        FrameLayout frameLayout = new FrameLayout(context);
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.smiles_inputsearch);
-        imageView.setColorFilter(new PorterDuffColorFilter(h4Var.getThemedColor(i6.F8), PorterDuff.Mode.SRC_IN));
-        frameLayout.addView(imageView, x5.d(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
-        bu buVar = new bu(context, h4Var.resourceProvider);
-        buVar.setTextSize(1, 16.0f);
-        buVar.setInputType(573441);
-        buVar.setRawInputType(573441);
-        buVar.setHintTextColor(i6.v0(i6.A6, h4Var.resourceProvider));
-        buVar.setCursorColor(i6.v0(i6.G6, h4Var.resourceProvider));
-        buVar.setCursorSize(AndroidUtilities.dp(19.0f));
-        buVar.setCursorWidth(1.5f);
-        buVar.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
-        buVar.setTextColor(i6.v0(i6.E8, h4Var.resourceProvider));
-        buVar.setBackground(null);
-        frameLayout.addView(buVar, x5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        buVar.addTextChangedListener(new qn(strArr, e61Var, false, 8));
-        if (arrayList.size() > 8) {
-            n70Var.r(frameLayout, x5.n(-1, 44));
-            n70Var.k();
-        }
-        if (!u3Var.f46147l.isEmpty()) {
-            n70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new w2(h4Var, 0), false);
-        }
-        n70Var.q(e61Var);
-        n70Var.Z();
-    }
-
-    public static void W(h4 h4Var, Context context) {
-        u3 u3Var = h4Var.d;
-        if (!h4Var.K || u3Var.f46142f.isEmpty()) {
-            return;
-        }
-        n70 n70Var = new n70(h4Var, h4Var.G, false, false);
-        n70Var.f26368t = false;
-        n70Var.Y = true;
-        n70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
-        n70Var.R = true;
-        n70Var.f26362p = new ii.h(n70Var, 5);
-        String[] strArr = {""};
-        ArrayList arrayList = new ArrayList(u3Var.f46142f);
-        Collections.sort(arrayList, new t2(h4Var, 2));
-        e61 e61Var = new e61(h4Var, new u2(h4Var, strArr, arrayList, 2), new v2(h4Var, n70Var, 2), null);
-        e61Var.Y2.f29610r = false;
-        FrameLayout frameLayout = new FrameLayout(context);
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.smiles_inputsearch);
-        imageView.setColorFilter(new PorterDuffColorFilter(h4Var.getThemedColor(i6.F8), PorterDuff.Mode.SRC_IN));
-        frameLayout.addView(imageView, x5.d(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
-        bu buVar = new bu(context, h4Var.resourceProvider);
-        buVar.setTextSize(1, 16.0f);
-        buVar.setInputType(573441);
-        buVar.setRawInputType(573441);
-        buVar.setHintTextColor(i6.v0(i6.A6, h4Var.resourceProvider));
-        buVar.setCursorColor(i6.v0(i6.G6, h4Var.resourceProvider));
-        buVar.setCursorSize(AndroidUtilities.dp(19.0f));
-        buVar.setCursorWidth(1.5f);
-        buVar.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
-        buVar.setTextColor(i6.v0(i6.E8, h4Var.resourceProvider));
-        buVar.setBackground(null);
-        frameLayout.addView(buVar, x5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        buVar.addTextChangedListener(new qn(strArr, e61Var, false, 9));
-        if (arrayList.size() > 8) {
-            n70Var.r(frameLayout, x5.n(-1, 44));
-            n70Var.k();
-        }
-        if (!u3Var.f46145j.isEmpty()) {
-            n70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new w2(h4Var, 2), false);
-        }
-        n70Var.q(e61Var);
-        n70Var.Z();
-    }
-
-    public static void X(h4 h4Var, Context context) {
-        u3 u3Var = h4Var.d;
-        if (!h4Var.K || u3Var.f46143g.isEmpty()) {
-            return;
-        }
-        n70 n70Var = new n70(h4Var, h4Var.H, false, false);
-        n70Var.f26368t = false;
-        n70Var.Y = true;
-        n70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
-        n70Var.R = true;
-        n70Var.f26362p = new ii.h(n70Var, 4);
-        String[] strArr = {""};
-        ArrayList arrayList = new ArrayList(u3Var.f46143g);
-        Collections.sort(arrayList, new t2(h4Var, 1));
-        e61 e61Var = new e61(h4Var, new u2(h4Var, strArr, arrayList, 1), new v2(h4Var, n70Var, 1), null);
-        e61Var.Y2.f29610r = false;
-        FrameLayout frameLayout = new FrameLayout(context);
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.smiles_inputsearch);
-        imageView.setColorFilter(new PorterDuffColorFilter(h4Var.getThemedColor(i6.F8), PorterDuff.Mode.SRC_IN));
-        frameLayout.addView(imageView, x5.d(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
-        bu buVar = new bu(context, h4Var.resourceProvider);
-        buVar.setTextSize(1, 16.0f);
-        buVar.setInputType(573441);
-        buVar.setRawInputType(573441);
-        buVar.setHintTextColor(i6.v0(i6.A6, h4Var.resourceProvider));
-        buVar.setCursorColor(i6.v0(i6.G6, h4Var.resourceProvider));
-        buVar.setCursorSize(AndroidUtilities.dp(19.0f));
-        buVar.setCursorWidth(1.5f);
-        buVar.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
-        buVar.setTextColor(i6.v0(i6.E8, h4Var.resourceProvider));
-        buVar.setBackground(null);
-        frameLayout.addView(buVar, x5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        buVar.addTextChangedListener(new qn(strArr, e61Var, false, 10));
-        if (arrayList.size() > 8) {
-            n70Var.r(frameLayout, x5.n(-1, 44));
-            n70Var.k();
-        }
-        if (!u3Var.f46146k.isEmpty()) {
-            n70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new w2(h4Var, 1), false);
-        }
-        n70Var.q(e61Var);
-        n70Var.Z();
-    }
-
-    public static void Y(h4 h4Var, i51 i51Var) {
-        Object obj = i51Var.G;
-        if (obj instanceof TL_stars.TL_starGiftUnique) {
-            TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj;
-            yh.z3 z3Var = new yh.z3(h4Var.getParentActivity(), h4Var.currentAccount, h4Var.f45891b, h4Var.resourceProvider, null);
-            z3Var.h2(tL_starGiftUnique.slug, tL_starGiftUnique, h4Var.d);
-            z3Var.O0 = new y2(h4Var);
-            h4Var.showDialog(z3Var);
-        }
-    }
-
-    public static org.telegram.ui.ActionBar.k Z(h4 h4Var) {
-        return h4Var.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k a0(h4 h4Var) {
-        return h4Var.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k b0(h4 h4Var) {
-        return h4Var.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k c0(h4 h4Var) {
-        return h4Var.actionBar;
-    }
-
-    @Override
-    public final void D(int i10, float f7, float f10, le.e eVar) {
-        if (i10 == 0) {
-            this.f45896s.setTranslationY((-AndroidUtilities.dp(52.0f)) * f7);
-            y10.d(this.f45895r, f7);
-        }
-    }
-
-    @Override
-    public final View createView(final Context context) {
-        fh.c cVar = new fh.c();
-        this.L = cVar;
-        int i10 = i6.f18834d6;
-        cVar.a(getThemedColor(i10));
-        this.M = new ah.c(this.L);
-        org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        org.telegram.ui.ActionBar.g2 g2Var = new org.telegram.ui.ActionBar.g2(false);
-        this.f45893f = g2Var;
-        kVar.setBackButtonDrawable(g2Var);
-        this.f45893f.f18682k = 240.0f;
-        this.actionBar.setCastShadows(false);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setActionBarMenuOnItemClick(new w81(this, 11));
-        this.actionBar.setTitle(this.f45892c);
-        this.actionBar.setBackgroundColor(getThemedColor(i10));
-        org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
-        int i11 = i6.G6;
-        kVar2.B(getThemedColor(i11), false);
-        this.actionBar.B(getThemedColor(i11), true);
-        this.actionBar.A(getThemedColor(i6.f19236z8), false);
-        this.actionBar.setTitleColor(getThemedColor(i11));
-        this.actionBar.setSubtitleColor(getThemedColor(i6.f19234z6));
-        w8 w8Var = new w8(this, context, 9);
-        int v = i6.v(i6.v0(i10, this.resourceProvider), i6.l1(0.04f, i6.v0(i11, this.resourceProvider)));
-        w8Var.setBackgroundColor(v);
-        this.fragmentView = w8Var;
-        l7 l7Var = new l7(context, this.currentAccount, this.resourceProvider);
-        l7Var.d = true;
-        z5.a(l7Var);
-        l7Var.setOnClickListener(new wy0(25, this, l7Var));
-        this.actionBar.addView(l7Var, x5.d(-2, -2.0f, 85, 0.0f, 0.0f, 4.0f, 0.0f));
-        ?? e61Var = new e61(this, new hi.a(this, 18), new y2(this), new y2(this));
-        this.f45894n = e61Var;
-        e61Var.Y2.f29610r = false;
-        e61Var.setSpanCount(3);
-        this.f45894n.j(new kb0(this, 16));
-        this.f45894n.setPadding(0, AndroidUtilities.dp(45.0f), 0, AndroidUtilities.dp(101.0f));
-        this.f45894n.setClipToPadding(false);
-        w8Var.addView(this.f45894n, x5.d(-1, -1.0f, 119, 7.33f, 0.0f, 7.33f, -45.0f));
-        w8Var.addView(this.actionBar);
-        View.OnClickListener onClickListener = new View.OnClickListener(this) {
-            public final h4 f46236b;
+    public h4(final Context context, String str, final g4 g4Var) {
+        super(2, context, (d6) null, false);
+        this.f45846g0 = new HashSet();
+        this.K = AndroidUtilities.dp(12.0f);
+        fixNavigationBar();
+        this.X = str;
+        this.Y = g4Var;
+        this.e.setTitle(y());
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f));
+        linearLayout.setOrientation(0);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
+        this.Z = horizontalScrollView;
+        horizontalScrollView.setHorizontalScrollBarEnabled(false);
+        horizontalScrollView.setClipChildren(false);
+        horizontalScrollView.setClipToPadding(false);
+        horizontalScrollView.addView(linearLayout);
+        m3 m3Var = new m3(context, this.resourcesProvider);
+        this.f45840a0 = m3Var;
+        m3Var.setSorting(g4Var.f45831c.f46134p);
+        linearLayout.addView(m3Var, x5.t(-2, -2, 16, 0, 0, 6, 0));
+        m3Var.setOnClickListener(new py0(26, this, g4Var));
+        m3 m3Var2 = new m3(context, this.resourcesProvider);
+        this.f45841b0 = m3Var2;
+        m3Var2.setValue(LocaleController.getString(R.string.Gift2AttributeModel));
+        linearLayout.addView(m3Var2, x5.t(-2, -2, 16, 0, 0, 6, 0));
+        m3Var2.setOnClickListener(new View.OnClickListener(this) {
+            public final h4 f45763b;
 
             {
-                this.f46236b = this;
+                this.f45763b = this;
             }
 
             @Override
             public final void onClick(View view) {
-                switch (r2) {
+                switch (r4) {
                     case 0:
-                        u3 u3Var = this.f46236b.d;
-                        u3Var.f46146k.clear();
-                        u3Var.f46145j.clear();
-                        u3Var.f46147l.clear();
-                        u3Var.h();
-                        return;
-                    default:
-                        u3 u3Var2 = this.f46236b.d;
-                        u3Var2.f46146k.clear();
-                        u3Var2.f46145j.clear();
-                        u3Var2.f46147l.clear();
-                        u3Var2.h();
-                        return;
-                }
-            }
-        };
-        e6 e6Var = this.resourceProvider;
-        ?? frameLayout = new FrameLayout(context);
-        LinearLayout f7 = vl.f(context, 1);
-        frameLayout.addView(f7, x5.e(-1, -2, 23));
-        u9 u9Var = new u9(context);
-        u9Var.setImageDrawable(new xi0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
-        f7.addView(u9Var, x5.q(130, 130, 17));
-        TextView textView = new TextView(context);
-        vl.o(i6.G6, e6Var, textView, 1, 17.0f);
-        textView.setGravity(17);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(R.string.Gift2ResaleFiltersEmptyTitle));
-        f7.addView(textView, x5.t(-2, -2, 17, 32, 12, 32, 9));
-        c90 c90Var = new c90(context, null);
-        c90Var.setTextColor(i6.v0(i6.A6, e6Var));
-        c90Var.setTextSize(1, 14.0f);
-        c90Var.setGravity(17);
-        c90Var.setText(LocaleController.getString(R.string.Gift2ResaleFiltersEmptySubtitle));
-        c90Var.setMaxWidth(AndroidUtilities.dp(200.0f));
-        f7.addView(c90Var, x5.t(-2, -2, 17, 32, 0, 32, 12));
-        TextView textView2 = new TextView(context);
-        int i12 = i6.Oh;
-        textView2.setTextColor(i6.v0(i12, e6Var));
-        textView2.setBackground(i6.Y(i6.l1(0.1f, i6.v0(i12, e6Var)), 6, 6));
-        textView2.setGravity(17);
-        textView2.setPadding(org.telegram.ui.Cells.q3.b(13.0f, R.string.Gift2ResaleFiltersEmptyClear, textView2), 0, AndroidUtilities.dp(13.0f), 0);
-        z5.a(textView2);
-        f7.addView(textView2, x5.t(-2, 27, 17, 32, 0, 32, 12));
-        textView2.setOnClickListener(onClickListener);
-        this.f45897w = frameLayout;
-        this.f45898x = false;
-        frameLayout.setAlpha(0.0f);
-        this.f45897w.setScaleX(0.95f);
-        this.f45897w.setScaleY(0.95f);
-        this.f45897w.setVisibility(8);
-        w8Var.addView(this.f45897w, x5.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, -45.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.E = linearLayout;
-        linearLayout.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
-        this.E.setOrientation(0);
-        HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f45899y = horizontalScrollView;
-        horizontalScrollView.setHorizontalScrollBarEnabled(false);
-        this.f45899y.addView(this.E);
-        this.f45899y.setBackgroundColor(v);
-        this.f45899y.setClipChildren(false);
-        w8Var.addView(this.f45899y, x5.e(-1, 47, 55));
-        View view = new View(context);
-        this.h = view;
-        view.setBackgroundColor(getThemedColor(i6.f18835d7));
-        this.h.setAlpha(0.0f);
-        w8Var.addView(this.h, x5.a(-1.0f, 2.0f / AndroidUtilities.density, 55));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(15.0f), 0);
-        linearLayout2.setOrientation(0);
-        final np npVar = new np(context, 24, this.resourceProvider);
-        npVar.b(i6.f18906h7, i6.f18942j7, i6.f18962k7);
-        npVar.setDrawUnchecked(true);
-        npVar.a(false, false);
-        npVar.setDrawBackgroundAsArc(10);
-        npVar.setTranslationX(AndroidUtilities.dp(4.0f));
-        npVar.setScaleX(0.8f);
-        npVar.setScaleY(0.8f);
-        linearLayout2.addView(npVar, x5.q(26, 26, 16));
-        TextView textView3 = new TextView(context);
-        vl.o(i6.f18940j5, this.resourceProvider, textView3, 1, 14.0f);
-        textView3.setText(LocaleController.getString(R.string.GiftResaleStarsOnly));
-        linearLayout2.addView(textView3, x5.t(-2, -2, 16, 9, 0, 0, 0));
-        int dp = AndroidUtilities.dp(18.0f);
-        int themedColor = getThemedColor(i10);
-        int i13 = i6.Oh;
-        int v9 = i6.v(themedColor, i6.l1(0.1f, getThemedColor(i13)));
-        linearLayout2.setBackground(i6.i0(dp, dp, dp, dp, 0, v9, v9));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f45896s = frameLayout2;
-        frameLayout2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        FrameLayout frameLayout3 = this.f45896s;
-        ch.d c10 = this.M.c(frameLayout3, null, false);
-        c10.o(eh.b.l(this.resourceProvider));
-        c10.p(AndroidUtilities.dp(8.0f));
-        c10.q(AndroidUtilities.dp(18.0f));
-        frameLayout3.setBackground(c10);
-        this.f45896s.setOnClickListener(new View.OnClickListener(this) {
-            public final h4 f45793b;
-
-            {
-                this.f45793b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r3) {
-                    case 0:
-                        u3 u3Var = this.f45793b.d;
-                        if (u3Var != null) {
-                            boolean z10 = !u3Var.f46153r;
-                            u3Var.f46153r = z10;
-                            npVar.a(z10, true);
-                            u3Var.h();
-                            return;
-                        }
-                        return;
-                    default:
-                        final h4 h4Var = this.f45793b;
-                        u3 u3Var2 = h4Var.d;
-                        if (h4Var.K) {
-                            n70 H = n70.H(h4Var, h4Var.F);
-                            H.c(R.drawable.menu_sort_value, LocaleController.getString(t3.BY_PRICE.f46127a), new w2(h4Var, 3), false);
-                            H.c(R.drawable.menu_sort_date, LocaleController.getString(t3.BY_DATE.f46127a), new w2(h4Var, 4), false);
-                            H.c(R.drawable.menu_sort_number, LocaleController.getString(t3.BY_NUMBER.f46127a), new w2(h4Var, 5), false);
-                            H.k();
-                            String string = LocaleController.getString(R.string.GiftResaleFilterAllListings);
-                            final np npVar2 = npVar;
-                            H.i(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    switch (r3) {
-                                        case 0:
-                                            u3 u3Var3 = h4Var.d;
-                                            if (u3Var3.f46153r) {
-                                                u3Var3.f46153r = false;
-                                                npVar2.a(false, true);
-                                                u3Var3.h();
-                                                return;
-                                            }
-                                            return;
-                                        default:
-                                            u3 u3Var4 = h4Var.d;
-                                            if (!u3Var4.f46153r) {
-                                                u3Var4.f46153r = true;
-                                                npVar2.a(true, true);
-                                                u3Var4.h();
-                                                return;
-                                            }
-                                            return;
-                                    }
-                                }
-                            }, string, !u3Var2.f46153r);
-                            H.i(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    switch (r3) {
-                                        case 0:
-                                            u3 u3Var3 = h4Var.d;
-                                            if (u3Var3.f46153r) {
-                                                u3Var3.f46153r = false;
-                                                npVar2.a(false, true);
-                                                u3Var3.h();
-                                                return;
-                                            }
-                                            return;
-                                        default:
-                                            u3 u3Var4 = h4Var.d;
-                                            if (!u3Var4.f46153r) {
-                                                u3Var4.f46153r = true;
-                                                npVar2.a(true, true);
-                                                u3Var4.h();
-                                                return;
-                                            }
-                                            return;
-                                    }
-                                }
-                            }, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), u3Var2.f46153r);
-                            H.f26368t = false;
-                            H.Y = true;
-                            H.a0(0.0f, AndroidUtilities.dp(-8.0f));
-                            H.Z();
-                            return;
-                        }
-                        return;
-                }
-            }
-        });
-        this.f45896s.addView(linearLayout2, x5.c(-1.0f, -2));
-        z5.b(this.f45896s, 0.04f, 1.5f);
-        w8Var.addView(this.f45896s, x5.d(-2, 52.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
-        u5 y3 = u5.y(this.currentAccount, true);
-        if (y3.e && !y3.s().k()) {
-            this.f45896s.setVisibility(8);
-        }
-        FrameLayout frameLayout4 = new FrameLayout(context);
-        this.f45895r = frameLayout4;
-        frameLayout4.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        FrameLayout frameLayout5 = this.f45895r;
-        ch.d c11 = this.M.c(frameLayout5, null, false);
-        c11.o(eh.b.l(this.resourceProvider));
-        c11.p(AndroidUtilities.dp(8.0f));
-        c11.q(AndroidUtilities.dp(22.0f));
-        frameLayout5.setBackground(c11);
-        w8Var.addView(this.f45895r, x5.d(-2, 60.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
-        this.v = new TextView(context);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x");
-        spannableStringBuilder.setSpan(new oq(R.drawable.msg_clearcache, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.Gift2ResaleFiltersClear));
-        this.v.setText(spannableStringBuilder);
-        this.v.setTextColor(getThemedColor(i13));
-        this.v.setTypeface(AndroidUtilities.bold());
-        this.v.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        TextView textView4 = this.v;
-        int dp2 = AndroidUtilities.dp(22.0f);
-        int v10 = i6.v(getThemedColor(i10), i6.l1(0.1f, getThemedColor(i13)));
-        textView4.setBackground(i6.i0(dp2, dp2, dp2, dp2, 0, v10, v10));
-        this.v.setGravity(17);
-        this.f45895r.setOnClickListener(new View.OnClickListener(this) {
-            public final h4 f46236b;
-
-            {
-                this.f46236b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        u3 u3Var = this.f46236b.d;
-                        u3Var.f46146k.clear();
-                        u3Var.f46145j.clear();
-                        u3Var.f46147l.clear();
-                        u3Var.h();
-                        return;
-                    default:
-                        u3 u3Var2 = this.f46236b.d;
-                        u3Var2.f46146k.clear();
-                        u3Var2.f46145j.clear();
-                        u3Var2.f46147l.clear();
-                        u3Var2.h();
-                        return;
-                }
-            }
-        });
-        this.f45895r.addView(this.v, x5.c(-1.0f, -2));
-        this.f45895r.setVisibility(8);
-        z5.b(this.f45895r, 0.05f, 1.5f);
-        l3 l3Var = new l3(context, this.resourceProvider);
-        this.F = l3Var;
-        l3Var.setSorting(this.d.f46151p);
-        this.E.addView(this.F, x5.t(-2, -2, 16, 0, 0, 6, 0));
-        this.F.setOnClickListener(new View.OnClickListener(this) {
-            public final h4 f45793b;
-
-            {
-                this.f45793b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r3) {
-                    case 0:
-                        u3 u3Var = this.f45793b.d;
-                        if (u3Var != null) {
-                            boolean z10 = !u3Var.f46153r;
-                            u3Var.f46153r = z10;
-                            npVar.a(z10, true);
-                            u3Var.h();
-                            return;
-                        }
-                        return;
-                    default:
-                        final h4 h4Var = this.f45793b;
-                        u3 u3Var2 = h4Var.d;
-                        if (h4Var.K) {
-                            n70 H = n70.H(h4Var, h4Var.F);
-                            H.c(R.drawable.menu_sort_value, LocaleController.getString(t3.BY_PRICE.f46127a), new w2(h4Var, 3), false);
-                            H.c(R.drawable.menu_sort_date, LocaleController.getString(t3.BY_DATE.f46127a), new w2(h4Var, 4), false);
-                            H.c(R.drawable.menu_sort_number, LocaleController.getString(t3.BY_NUMBER.f46127a), new w2(h4Var, 5), false);
-                            H.k();
-                            String string = LocaleController.getString(R.string.GiftResaleFilterAllListings);
-                            final np npVar2 = npVar;
-                            H.i(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    switch (r3) {
-                                        case 0:
-                                            u3 u3Var3 = h4Var.d;
-                                            if (u3Var3.f46153r) {
-                                                u3Var3.f46153r = false;
-                                                npVar2.a(false, true);
-                                                u3Var3.h();
-                                                return;
-                                            }
-                                            return;
-                                        default:
-                                            u3 u3Var4 = h4Var.d;
-                                            if (!u3Var4.f46153r) {
-                                                u3Var4.f46153r = true;
-                                                npVar2.a(true, true);
-                                                u3Var4.h();
-                                                return;
-                                            }
-                                            return;
-                                    }
-                                }
-                            }, string, !u3Var2.f46153r);
-                            H.i(new Runnable() {
-                                @Override
-                                public final void run() {
-                                    switch (r3) {
-                                        case 0:
-                                            u3 u3Var3 = h4Var.d;
-                                            if (u3Var3.f46153r) {
-                                                u3Var3.f46153r = false;
-                                                npVar2.a(false, true);
-                                                u3Var3.h();
-                                                return;
-                                            }
-                                            return;
-                                        default:
-                                            u3 u3Var4 = h4Var.d;
-                                            if (!u3Var4.f46153r) {
-                                                u3Var4.f46153r = true;
-                                                npVar2.a(true, true);
-                                                u3Var4.h();
-                                                return;
-                                            }
-                                            return;
-                                    }
-                                }
-                            }, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), u3Var2.f46153r);
-                            H.f26368t = false;
-                            H.Y = true;
-                            H.a0(0.0f, AndroidUtilities.dp(-8.0f));
-                            H.Z();
-                            return;
-                        }
-                        return;
-                }
-            }
-        });
-        l3 l3Var2 = new l3(context, this.resourceProvider);
-        this.G = l3Var2;
-        l3Var2.setValue(LocaleController.getString(R.string.Gift2AttributeModel));
-        this.E.addView(this.G, x5.t(-2, -2, 16, 0, 0, 6, 0));
-        this.G.setOnClickListener(new View.OnClickListener(this) {
-            public final h4 f46116b;
-
-            {
-                this.f46116b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r3) {
-                    case 0:
-                        h4.W(this.f46116b, context);
+                        h4.R(this.f45763b, g4Var, context);
                         return;
                     case 1:
-                        h4.X(this.f46116b, context);
+                        h4.W(this.f45763b, g4Var, context);
                         return;
                     default:
-                        h4.V(this.f46116b, context);
+                        h4.S(this.f45763b, g4Var, context);
                         return;
                 }
             }
         });
-        l3 l3Var3 = new l3(context, this.resourceProvider);
-        this.H = l3Var3;
-        l3Var3.setValue(LocaleController.getString(R.string.Gift2AttributeBackdrop));
-        this.E.addView(this.H, x5.t(-2, -2, 16, 0, 0, 6, 0));
-        this.H.setOnClickListener(new View.OnClickListener(this) {
-            public final h4 f46116b;
+        m3 m3Var3 = new m3(context, this.resourcesProvider);
+        this.f45842c0 = m3Var3;
+        m3Var3.setValue(LocaleController.getString(R.string.Gift2AttributeBackdrop));
+        linearLayout.addView(m3Var3, x5.t(-2, -2, 16, 0, 0, 6, 0));
+        m3Var3.setOnClickListener(new View.OnClickListener(this) {
+            public final h4 f45763b;
 
             {
-                this.f46116b = this;
+                this.f45763b = this;
             }
 
             @Override
-            public final void onClick(View view2) {
-                switch (r3) {
+            public final void onClick(View view) {
+                switch (r4) {
                     case 0:
-                        h4.W(this.f46116b, context);
+                        h4.R(this.f45763b, g4Var, context);
                         return;
                     case 1:
-                        h4.X(this.f46116b, context);
+                        h4.W(this.f45763b, g4Var, context);
                         return;
                     default:
-                        h4.V(this.f46116b, context);
+                        h4.S(this.f45763b, g4Var, context);
                         return;
                 }
             }
         });
-        l3 l3Var4 = new l3(context, this.resourceProvider);
-        this.I = l3Var4;
-        l3Var4.setValue(LocaleController.getString(R.string.Gift2AttributeSymbol));
-        this.E.addView(this.I, x5.t(-2, -2, 16, 0, 0, 0, 0));
-        this.I.setOnClickListener(new View.OnClickListener(this) {
-            public final h4 f46116b;
+        m3 m3Var4 = new m3(context, this.resourcesProvider);
+        this.f45843d0 = m3Var4;
+        m3Var4.setValue(LocaleController.getString(R.string.Gift2AttributeSymbol));
+        linearLayout.addView(m3Var4, x5.t(-2, -2, 16, 0, 0, 0, 0));
+        m3Var4.setOnClickListener(new View.OnClickListener(this) {
+            public final h4 f45763b;
 
             {
-                this.f46116b = this;
+                this.f45763b = this;
             }
 
             @Override
-            public final void onClick(View view2) {
-                switch (r3) {
+            public final void onClick(View view) {
+                switch (r4) {
                     case 0:
-                        h4.W(this.f46116b, context);
+                        h4.R(this.f45763b, g4Var, context);
                         return;
                     case 1:
-                        h4.X(this.f46116b, context);
+                        h4.W(this.f45763b, g4Var, context);
                         return;
                     default:
-                        h4.V(this.f46116b, context);
+                        h4.S(this.f45763b, g4Var, context);
                         return;
                 }
             }
         });
-        r00 r00Var = new r00(getParentActivity());
-        this.J = r00Var;
-        w8Var.addView(r00Var, x5.c(-1.0f, -1));
-        d0(false, false);
-        return w8Var;
+        getContext();
+        s4.s sVar = new s4.s(3);
+        sVar.O = new ci.x1(this, 7);
+        this.d.setLayoutManager(sVar);
+        this.d.setOnItemClickListener(new tg.d(14, this, g4Var));
+        this.d.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
+        this.d.setOnScrollListener(new kg0(this, 16));
+        s4.j jVar = new s4.j();
+        jVar.f42662m = false;
+        jVar.C = false;
+        jVar.o(rr.h);
+        jVar.n(350L);
+        this.d.setItemAnimator(jVar);
+        this.d.setItemSelectorColorProvider(new v3.d(11));
+        yh.j2 j2Var = new yh.j2(context);
+        this.f45844e0 = j2Var;
+        int dp = AndroidUtilities.dp(20.0f);
+        int dp2 = AndroidUtilities.dp(9.0f);
+        j2Var.h = dp;
+        j2Var.f47241n = dp2;
+        j2Var.setRoundRadius(AndroidUtilities.dp(22.0f));
+        j2Var.setFullRect(true);
+        AndroidUtilities.makeGlobalBlurBitmap(new ii.q1(j2Var, 26), 12.0f, 12, null, new ArrayList());
+        j2Var.setPivotY(0.0f);
+        this.container.addView(j2Var, x5.e(-1, -2, 55));
+        this.f45848i0.N(false);
+        g4Var.d = new z3(this, 1);
     }
 
-    public final void d0(boolean z10, boolean z11) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        if (this.K == z10) {
+    public static void P(h4 h4Var, g4 g4Var) {
+        o70 F = o70.F(h4Var.container, h4Var.resourcesProvider, h4Var.f45840a0);
+        F.c(R.drawable.menu_sort_value, LocaleController.getString(u3.BY_PRICE.f46097a), new y3(g4Var, 3), false);
+        F.c(R.drawable.menu_sort_date, LocaleController.getString(u3.BY_DATE.f46097a), new y3(g4Var, 4), false);
+        F.c(R.drawable.menu_sort_number, LocaleController.getString(u3.BY_NUMBER.f46097a), new y3(g4Var, 5), false);
+        F.f26670t = false;
+        F.Y = true;
+        F.a0(0.0f, AndroidUtilities.dp(-8.0f));
+        F.Z();
+    }
+
+    public static void Q(h4 h4Var, g4 g4Var, int i10) {
+        TL_stars.SavedStarGift savedStarGift;
+        zf.b bVar;
+        h51 G = h4Var.f45848i0.G(i10 - 1);
+        if (G != null) {
+            Object obj = G.G;
+            if (obj instanceof TL_stars.StarGift) {
+                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
+                boolean z10 = G.f24513r;
+                if (!TextUtils.isEmpty(starGift.gift_address) && h4Var.f45847h0) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h4Var.getContext(), 0, h4Var.resourcesProvider);
+                    String string = LocaleController.getString(R.string.GiftCraftCantChooseFirstTitle);
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
+                    b2Var.R = string;
+                    b2Var.T = LocaleController.getString(R.string.GiftCraftCantChooseFirst);
+                    hg.c.A(R.string.OK, alertDialog$Builder, null);
+                } else if (z10 && (starGift instanceof TL_stars.TL_starGiftUnique)) {
+                    TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) G.G;
+                    org.telegram.ui.ActionBar.b2 b2Var2 = new org.telegram.ui.ActionBar.b2(h4Var.getContext(), 3, null);
+                    b2Var2.q(400L);
+                    long clientUserId = UserConfig.getInstance(h4Var.currentAccount).getClientUserId();
+                    if (tL_starGiftUnique.resale_ton_only) {
+                        bVar = zf.b.f48899b;
+                    } else {
+                        bVar = zf.b.f48898a;
+                    }
+                    zf.b bVar2 = bVar;
+                    t5.x(h4Var.currentAccount, bVar2).H(tL_starGiftUnique, clientUserId, null, true, new vo0(h4Var, b2Var2, bVar2, tL_starGiftUnique, clientUserId));
+                } else {
+                    if (!z10) {
+                        ArrayList arrayList = g4Var.f45830b.f47337l;
+                        int size = arrayList.size();
+                        int i11 = 0;
+                        while (true) {
+                            if (i11 < size) {
+                                Object obj2 = arrayList.get(i11);
+                                i11++;
+                                savedStarGift = (TL_stars.SavedStarGift) obj2;
+                                if (savedStarGift.gift == starGift) {
+                                    break;
+                                }
+                            } else {
+                                savedStarGift = null;
+                                break;
+                            }
+                        }
+                        if (savedStarGift != null && savedStarGift.can_craft_at > 0 && savedStarGift.can_craft_at > ConnectionsManager.getInstance(h4Var.currentAccount).getCurrentTime()) {
+                            AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(h4Var.getContext());
+                            String string2 = LocaleController.getString(R.string.GiftCraftUnavailableTitle);
+                            org.telegram.ui.ActionBar.b2 b2Var3 = alertDialog$Builder2.f18409a;
+                            b2Var3.R = string2;
+                            b2Var3.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftUnavailableTextTime, LocaleController.formatDateTime(savedStarGift.can_craft_at, true)));
+                            hg.c.A(R.string.OK, alertDialog$Builder2, null);
+                            return;
+                        }
+                    }
+                    h4Var.f45845f0.run(starGift);
+                    h4Var.dismiss();
+                }
+            }
+        }
+    }
+
+    public static void R(h4 h4Var, g4 g4Var, Context context) {
+        v3 v3Var = g4Var.f45831c;
+        if (v3Var.f46125f.isEmpty()) {
             return;
         }
-        this.K = z10;
-        float f13 = 1.0f;
+        o70 o70Var = new o70(h4Var.container, h4Var.resourcesProvider, h4Var.f45841b0, false, true, false);
+        o70Var.f26670t = false;
+        o70Var.Y = true;
+        o70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
+        o70Var.R = true;
+        o70Var.f26664p = new ii.h(o70Var, 8);
+        String[] strArr = {""};
+        ArrayList arrayList = new ArrayList(v3Var.f46125f);
+        Collections.sort(arrayList, new a4(g4Var, 2));
+        d61 d61Var = new d61(context, h4Var.currentAccount, 0, false, new w3(strArr, g4Var, arrayList, 0), new x3(g4Var, o70Var, 0), null, h4Var.resourcesProvider);
+        d61Var.Y2.f28662r = false;
+        FrameLayout frameLayout = new FrameLayout(context);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.smiles_inputsearch);
+        imageView.setColorFilter(new PorterDuffColorFilter(h4Var.getThemedColor(h6.F8), PorterDuff.Mode.SRC_IN));
+        frameLayout.addView(imageView, x5.d(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+        cu cuVar = new cu(context, h4Var.resourcesProvider);
+        cuVar.setTextSize(1, 16.0f);
+        cuVar.setInputType(573441);
+        cuVar.setRawInputType(573441);
+        cuVar.setHintTextColor(h6.v0(h6.A6, h4Var.resourcesProvider));
+        cuVar.setCursorColor(h6.v0(h6.G6, h4Var.resourcesProvider));
+        cuVar.setCursorSize(AndroidUtilities.dp(19.0f));
+        cuVar.setCursorWidth(1.5f);
+        cuVar.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
+        cuVar.setTextColor(h6.v0(h6.E8, h4Var.resourcesProvider));
+        cuVar.setBackground(null);
+        frameLayout.addView(cuVar, x5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
+        cuVar.addTextChangedListener(new rn(strArr, d61Var, false, 11));
+        if (arrayList.size() > 8) {
+            o70Var.r(frameLayout, x5.n(-1, 44));
+            o70Var.k();
+        }
+        if (!v3Var.f46128j.isEmpty()) {
+            o70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new y3(g4Var, 0), false);
+        }
+        o70Var.q(d61Var);
+        o70Var.Z();
+    }
+
+    public static void S(h4 h4Var, g4 g4Var, Context context) {
+        v3 v3Var = g4Var.f45831c;
+        if (v3Var.h.isEmpty()) {
+            return;
+        }
+        o70 o70Var = new o70(h4Var.container, h4Var.resourcesProvider, h4Var.f45843d0, false, true, false);
+        o70Var.f26670t = false;
+        o70Var.Y = true;
+        o70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
+        o70Var.R = true;
+        o70Var.f26664p = new ii.h(o70Var, 7);
+        String[] strArr = {""};
+        ArrayList arrayList = new ArrayList(v3Var.h);
+        Collections.sort(arrayList, new a4(g4Var, 1));
+        d61 d61Var = new d61(context, h4Var.currentAccount, 0, false, new w3(strArr, g4Var, arrayList, 2), new x3(g4Var, o70Var, 2), null, h4Var.resourcesProvider);
+        d61Var.Y2.f28662r = false;
+        FrameLayout frameLayout = new FrameLayout(context);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.smiles_inputsearch);
+        imageView.setColorFilter(new PorterDuffColorFilter(h4Var.getThemedColor(h6.F8), PorterDuff.Mode.SRC_IN));
+        frameLayout.addView(imageView, x5.d(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+        cu cuVar = new cu(context, h4Var.resourcesProvider);
+        cuVar.setTextSize(1, 16.0f);
+        cuVar.setInputType(573441);
+        cuVar.setRawInputType(573441);
+        cuVar.setHintTextColor(h6.v0(h6.A6, h4Var.resourcesProvider));
+        cuVar.setCursorColor(h6.v0(h6.G6, h4Var.resourcesProvider));
+        cuVar.setCursorSize(AndroidUtilities.dp(19.0f));
+        cuVar.setCursorWidth(1.5f);
+        cuVar.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
+        cuVar.setTextColor(h6.v0(h6.E8, h4Var.resourcesProvider));
+        cuVar.setBackground(null);
+        frameLayout.addView(cuVar, x5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
+        cuVar.addTextChangedListener(new rn(strArr, d61Var, false, 13));
+        if (arrayList.size() > 8) {
+            o70Var.r(frameLayout, x5.n(-1, 44));
+            o70Var.k();
+        }
+        if (!v3Var.f46130l.isEmpty()) {
+            o70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new y3(g4Var, 2), false);
+        }
+        o70Var.q(d61Var);
+        o70Var.Z();
+    }
+
+    public static void T(h4 h4Var, ArrayList arrayList) {
+        boolean z10;
+        g4 g4Var = h4Var.Y;
+        if (g4Var != null) {
+            l5 l5Var = g4Var.f45830b;
+            v3 v3Var = g4Var.f45831c;
+            if (l5Var != null && v3Var != null) {
+                int currentTime = ConnectionsManager.getInstance(h4Var.currentAccount).getCurrentTime();
+                arrayList.add(h51.s(-1, LocaleController.getString(R.string.GiftCraftSelectYour)));
+                ArrayList arrayList2 = l5Var.f47337l;
+                int size = arrayList2.size();
+                int i10 = 0;
+                boolean z11 = true;
+                int i11 = 0;
+                int i12 = 0;
+                while (i12 < size) {
+                    Object obj = arrayList2.get(i12);
+                    i12++;
+                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
+                    if (!h4Var.f45846g0.contains(Long.valueOf(savedStarGift.gift.f18308id))) {
+                        if (savedStarGift.can_craft_at <= currentTime) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        h51 a2 = i1.a(0, savedStarGift.gift, false, true, false, false, true);
+                        a2.f24503g = z10;
+                        arrayList.add(a2);
+                        i11++;
+                        z11 = false;
+                    }
+                }
+                if (!l5Var.f47334i && l5Var.f47335j) {
+                    if (z11) {
+                        arrayList.add(h51.g(LocaleController.getString(R.string.GiftCraftSelectYourEmpty)));
+                    }
+                } else {
+                    int i13 = i11 % 3;
+                    int i14 = 6 - i13;
+                    for (int i15 = 0; i15 < i14; i15++) {
+                        h51 o9 = h51.o((i15 - i13) + 1, 35);
+                        o9.f24516u = 1;
+                        arrayList.add(o9);
+                    }
+                }
+                if (v3Var.e > 0 || h4Var.f45849j0) {
+                    h4Var.f45849j0 = true;
+                    String string = LocaleController.getString(R.string.GiftCraftSelectResale);
+                    h51 h51Var = new h51(42);
+                    h51Var.d = -2;
+                    h51Var.f24510o = string;
+                    arrayList.add(h51Var);
+                    HorizontalScrollView horizontalScrollView = h4Var.Z;
+                    if (horizontalScrollView != null) {
+                        arrayList.add(h51.j(-3, horizontalScrollView));
+                    }
+                    ArrayList arrayList3 = v3Var.d;
+                    int size2 = arrayList3.size();
+                    while (i10 < size2) {
+                        Object obj2 = arrayList3.get(i10);
+                        i10++;
+                        arrayList.add(i1.a(0, (TL_stars.TL_starGiftUnique) obj2, false, true, false, true, true));
+                    }
+                    if (v3Var.f46138t || !v3Var.f46139u) {
+                        h51 o10 = h51.o(10, 35);
+                        o10.f24516u = 1;
+                        arrayList.add(o10);
+                        h51 o11 = h51.o(11, 35);
+                        o11.f24516u = 1;
+                        arrayList.add(o11);
+                        h51 o12 = h51.o(12, 35);
+                        o12.f24516u = 1;
+                        arrayList.add(o12);
+                        h51 o13 = h51.o(13, 35);
+                        o13.f24516u = 1;
+                        arrayList.add(o13);
+                        h51 o14 = h51.o(14, 35);
+                        o14.f24516u = 1;
+                        arrayList.add(o14);
+                        h51 o15 = h51.o(15, 35);
+                        o15.f24516u = 1;
+                        arrayList.add(o15);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void U(h4 h4Var, org.telegram.ui.ActionBar.b2 b2Var, zf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
+        b2Var.dismiss();
+        if (tL_payments_paymentFormStarGift == null) {
+            return;
+        }
+        yh.b3 b3Var = new yh.b3(bVar, tL_payments_paymentFormStarGift);
+        Context context = h4Var.getContext();
+        d6 d6Var = h4Var.resourcesProvider;
+        int i10 = h4Var.currentAccount;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(tL_starGiftUnique.title);
+        sb2.append(" #");
+        new yh.d3(context, d6Var, tL_starGiftUnique, b3Var, i10, j3, hg.c.k(tL_starGiftUnique.num, ',', sb2), true, new e80(h4Var, tL_starGiftUnique, j3, 1)).b();
+    }
+
+    public static void V(h4 h4Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, yh.b3 b3Var, nf.e eVar) {
+        eVar.d();
+        t5.x(h4Var.currentAccount, b3Var.f46918a).h(b3Var.f46919b, tL_starGiftUnique, j3, null, true, new org.telegram.tgnet.e(h4Var, eVar, tL_starGiftUnique, 6));
+    }
+
+    public static void W(h4 h4Var, g4 g4Var, Context context) {
+        v3 v3Var = g4Var.f45831c;
+        if (v3Var.f46126g.isEmpty()) {
+            return;
+        }
+        o70 o70Var = new o70(h4Var.container, h4Var.resourcesProvider, h4Var.f45842c0, false, true, false);
+        o70Var.f26670t = false;
+        o70Var.Y = true;
+        o70Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
+        o70Var.R = true;
+        o70Var.f26664p = new ii.h(o70Var, 6);
+        String[] strArr = {""};
+        ArrayList arrayList = new ArrayList(v3Var.f46126g);
+        Collections.sort(arrayList, new a4(g4Var, 0));
+        d61 d61Var = new d61(context, h4Var.currentAccount, 0, false, new w3(strArr, g4Var, arrayList, 1), new x3(g4Var, o70Var, 1), null, h4Var.resourcesProvider);
+        d61Var.Y2.f28662r = false;
+        FrameLayout frameLayout = new FrameLayout(context);
+        ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.smiles_inputsearch);
+        imageView.setColorFilter(new PorterDuffColorFilter(h4Var.getThemedColor(h6.F8), PorterDuff.Mode.SRC_IN));
+        frameLayout.addView(imageView, x5.d(24, 24.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+        cu cuVar = new cu(context, h4Var.resourcesProvider);
+        cuVar.setTextSize(1, 16.0f);
+        cuVar.setInputType(573441);
+        cuVar.setRawInputType(573441);
+        cuVar.setHintTextColor(h6.v0(h6.A6, h4Var.resourcesProvider));
+        cuVar.setCursorColor(h6.v0(h6.G6, h4Var.resourcesProvider));
+        cuVar.setCursorSize(AndroidUtilities.dp(19.0f));
+        cuVar.setCursorWidth(1.5f);
+        cuVar.setHint(LocaleController.getString(R.string.Gift2ResaleFiltersSearch));
+        cuVar.setTextColor(h6.v0(h6.E8, h4Var.resourcesProvider));
+        cuVar.setBackground(null);
+        frameLayout.addView(cuVar, x5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
+        cuVar.addTextChangedListener(new rn(strArr, d61Var, false, 12));
+        if (arrayList.size() > 8) {
+            o70Var.r(frameLayout, x5.n(-1, 44));
+            o70Var.k();
+        }
+        if (!v3Var.f46129k.isEmpty()) {
+            o70Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new y3(g4Var, 1), false);
+        }
+        o70Var.q(d61Var);
+        o70Var.Z();
+    }
+
+    @Override
+    public final void F(float f7) {
+        float y3 = this.containerView.getY() + f7;
+        yh.j2 j2Var = this.f45844e0;
+        float measuredHeight = y3 - j2Var.getMeasuredHeight();
+        float clamp01 = 1.0f - Utilities.clamp01(Math.max(0.0f, (-measuredHeight) + AndroidUtilities.dp(8.0f)) / j2Var.getMeasuredHeight());
+        float height = this.container.getHeight() / 2.0f;
+        if (measuredHeight > height) {
+            clamp01 = Math.min(clamp01, Utilities.clamp01(1.0f - ((measuredHeight - height) / AndroidUtilities.dpf2(128.0f))));
+        }
+        j2Var.setScaleX(clamp01);
+        j2Var.setScaleY(clamp01);
+        j2Var.setAlpha(AndroidUtilities.ilerp(clamp01, 0.5f, 1.0f));
+        j2Var.setTranslationY(measuredHeight);
+    }
+
+    public final void Z() {
+        int R;
+        h51 G;
         int i10 = 0;
-        float f14 = 0.0f;
-        if (z11) {
-            this.f45899y.setVisibility(0);
-            ViewPropertyAnimator animate = this.f45899y.animate();
-            if (z10) {
-                f11 = 0.0f;
-            } else {
-                f11 = -AndroidUtilities.dp(45.0f);
-            }
-            ViewPropertyAnimator translationY = animate.translationY(f11);
-            if (!z10) {
-                f13 = 0.0f;
-            }
-            ViewPropertyAnimator alpha = translationY.alpha(f13);
-            qr qrVar = qr.h;
-            alpha.setInterpolator(qrVar).setDuration(420L).setListener(new b3(this, z10, 0)).start();
-            ViewPropertyAnimator animate2 = this.h.animate();
-            if (z10) {
-                f12 = 0.0f;
-            } else {
-                f12 = -AndroidUtilities.dp(45.0f);
-            }
-            animate2.translationY(f12).setInterpolator(qrVar).setDuration(420L).start();
-            ViewPropertyAnimator animate3 = this.f45894n.animate();
-            if (!z10) {
-                f14 = -AndroidUtilities.dp(39.0f);
-            }
-            animate3.translationY(f14).setInterpolator(qrVar).setDuration(420L).start();
-            return;
-        }
-        HorizontalScrollView horizontalScrollView = this.f45899y;
-        if (!z10) {
-            i10 = 8;
-        }
-        horizontalScrollView.setVisibility(i10);
-        HorizontalScrollView horizontalScrollView2 = this.f45899y;
-        if (z10) {
-            f7 = 0.0f;
-        } else {
-            f7 = -AndroidUtilities.dp(45.0f);
-        }
-        horizontalScrollView2.setTranslationY(f7);
-        HorizontalScrollView horizontalScrollView3 = this.f45899y;
-        if (!z10) {
-            f13 = 0.0f;
-        }
-        horizontalScrollView3.setAlpha(f13);
-        View view = this.h;
-        if (z10) {
-            f10 = 0.0f;
-        } else {
-            f10 = -AndroidUtilities.dp(45.0f);
-        }
-        view.setTranslationY(f10);
-        d3 d3Var = this.f45894n;
-        if (!z10) {
-            f14 = -AndroidUtilities.dp(39.0f);
-        }
-        d3Var.setTranslationY(f14);
-    }
-
-    public final void e0(boolean z10) {
-        String string;
-        String string2;
-        String string3;
-        String formatPluralStringComma;
-        w51 w51Var;
-        u3 u3Var = this.d;
-        int i10 = u3Var.e;
-        HashSet hashSet = u3Var.f46147l;
-        ArrayList arrayList = u3Var.h;
-        HashSet hashSet2 = u3Var.f46146k;
-        ArrayList arrayList2 = u3Var.f46143g;
-        HashSet hashSet3 = u3Var.f46145j;
-        ArrayList arrayList3 = u3Var.f46142f;
-        if (i10 > 12) {
-            d0(true, true);
-        }
-        d3 d3Var = this.f45894n;
+        boolean z10 = false;
         boolean z11 = false;
-        if (d3Var != null && (w51Var = d3Var.Y2) != null) {
-            w51Var.N(true);
-            if (z10) {
-                this.f45894n.u0(0);
-            }
-        }
-        org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        if (kVar != null) {
-            kVar.setTitle(this.f45892c);
-            org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
-            int i11 = u3Var.e;
-            if (i11 <= 0) {
-                formatPluralStringComma = LocaleController.getString(R.string.Gift2ResaleNoCount);
-            } else {
-                formatPluralStringComma = LocaleController.formatPluralStringComma("Gift2ListingsCount", i11);
-            }
-            kVar2.setSubtitle(formatPluralStringComma);
-        }
-        l3 l3Var = this.F;
-        if (l3Var != null) {
-            l3Var.setSorting(u3Var.f46151p);
-        }
-        if (this.G != null) {
-            int size = arrayList3.size() - hashSet3.size();
-            l3 l3Var2 = this.G;
-            if (size > 0 && size != arrayList3.size()) {
-                string3 = LocaleController.formatPluralStringComma("Gift2ResaleFilterModels", size);
-            } else {
-                string3 = LocaleController.getString(R.string.Gift2ResaleFilterModel);
-            }
-            l3Var2.setValue(string3);
-        }
-        if (this.H != null) {
-            int size2 = arrayList2.size() - hashSet2.size();
-            l3 l3Var3 = this.H;
-            if (size2 > 0 && size2 != arrayList2.size()) {
-                string2 = LocaleController.formatPluralStringComma("Gift2ResaleFilterBackdrops", size2);
-            } else {
-                string2 = LocaleController.getString(R.string.Gift2ResaleFilterBackdrop);
-            }
-            l3Var3.setValue(string2);
-        }
-        if (this.I != null) {
-            int size3 = arrayList.size() - hashSet.size();
-            l3 l3Var4 = this.I;
-            if (size3 > 0 && size3 != arrayList.size()) {
-                string = LocaleController.formatPluralStringComma("Gift2ResaleFilterSymbols", size3);
-            } else {
-                string = LocaleController.getString(R.string.Gift2ResaleFilterSymbol);
-            }
-            l3Var4.setValue(string);
-        }
-        int i12 = 0;
         while (true) {
-            if (i12 >= this.f45894n.getChildCount()) {
+            ml0 ml0Var = this.d;
+            if (i10 >= ml0Var.getChildCount()) {
                 break;
-            } else if (this.f45894n.getChildAt(i12) instanceof t00) {
-                u3Var.g(false);
-                break;
-            } else {
-                i12++;
             }
+            View childAt = ml0Var.getChildAt(i10);
+            if ((childAt instanceof u00) && (R = RecyclerView.R(childAt) - 1) >= 0 && (G = this.f45848i0.G(R)) != null) {
+                if (G.d < 10) {
+                    z10 = true;
+                } else {
+                    z11 = true;
+                }
+            }
+            i10++;
         }
-        if ((u3Var.f46155t || u3Var.e > 0) && (!hashSet3.isEmpty() || !hashSet2.isEmpty() || !hashSet.isEmpty())) {
-            z11 = true;
+        g4 g4Var = this.Y;
+        if (z10) {
+            g4Var.f45830b.a();
         }
-        this.f45890a.a(z11, true);
+        if (z11) {
+            g4Var.f45831c.g(false);
+        }
     }
 
     @Override
-    public final boolean isLightStatusBar() {
-        if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
-            int w02 = i6.w0(null, i6.f18834d6, false);
-            if (this.actionBar.s()) {
-                w02 = i6.w0(null, i6.f19183w8, false);
-            }
-            if (i0.a.f(w02) > 0.699999988079071d) {
-                return true;
-            }
+    public final ll0 v(ml0 ml0Var) {
+        f4 f4Var = new f4(this, ml0Var, getContext(), this.currentAccount, new hi.a(this, 19), this.resourcesProvider);
+        this.f45848i0 = f4Var;
+        return f4Var;
+    }
+
+    @Override
+    public final CharSequence y() {
+        String str = this.X;
+        if (str != null) {
+            return str;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final void C(float f7, int i10) {
+        return LocaleController.getString(R.string.GiftCraftSelectTitle);
     }
 }

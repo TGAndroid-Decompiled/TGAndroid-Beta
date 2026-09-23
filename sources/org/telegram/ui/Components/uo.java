@@ -1,54 +1,67 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.za1;
-public final class uo implements Runnable {
-    public final int f28472a;
-    public final mp f28473b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class uo extends FrameLayout {
+    public g81 f28524a;
+    public float f28525b;
+    public boolean f28526c;
+    public float d;
+    public ValueAnimator e;
 
-    public uo(mp mpVar, int i10) {
-        this.f28472a = i10;
-        this.f28473b = mpVar;
+    public abstract void a(boolean z10);
+
+    public final void b(boolean z10) {
+        float f7;
+        this.f28526c = z10;
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            this.e = null;
+            valueAnimator.cancel();
+        }
+        if (z10) {
+            setVisibility(0);
+        }
+        float f10 = this.d;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+        this.e = ofFloat;
+        ofFloat.addUpdateListener(new k6(this, 12));
+        this.e.setInterpolator(rr.h);
+        this.e.setDuration(320L);
+        this.e.addListener(new ca(4, this, z10));
+        this.e.start();
+    }
+
+    public int getCurrentHeight() {
+        return (int) (getMeasuredHeight() * this.f28525b);
     }
 
     @Override
-    public final void run() {
-        switch (this.f28472a) {
-            case 0:
-                this.f28473b.h.l();
-                return;
-            case 1:
-                this.f28473b.s(true);
-                return;
-            case 2:
-                mp mpVar = this.f28473b;
-                org.telegram.ui.bo boVar = mpVar.v;
-                org.telegram.ui.ActionBar.n2 d02 = za1.d0(boVar.getMessagesController().getChat(Long.valueOf(-boVar.a())), true);
-                ?? obj = new Object();
-                obj.f19364a = true;
-                d02.setResourceProvider(boVar.getResourceProvider());
-                obj.f19366c = new sh(2);
-                obj.d = new uo(mpVar, 3);
-                obj.f19365b = new uo(mpVar, 4);
-                obj.e = true;
-                mpVar.X = d02;
-                boVar.showAsSheet(d02, obj);
-                return;
-            case 3:
-                this.f28473b.u();
-                return;
-            case 4:
-                this.f28473b.X = null;
-                return;
-            case 5:
-                this.f28473b.u();
-                return;
-            case 6:
-                this.f28473b.X = null;
-                return;
-            default:
-                mp mpVar2 = this.f28473b;
-                mpVar2.U.f(mpVar2.G, true);
-                return;
+    public final boolean isShown() {
+        return this.f28526c;
+    }
+
+    public void setShown(float f7) {
+        this.f28525b = f7;
+        g81 g81Var = this.f28524a;
+        if (g81Var != null) {
+            g81Var.setPivotX(g81Var.getWidth() / 2.0f);
+            this.f28524a.setPivotY(0.0f);
+            this.f28524a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+            this.f28524a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
         }
+        setAlpha(f7);
+        invalidate();
+    }
+
+    public void setTabs(g81 g81Var) {
+        this.f28524a = g81Var;
+        addView(g81Var, w7.x5.c(-1.0f, -1));
     }
 }

@@ -1,187 +1,78 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class rc1 extends org.telegram.ui.Components.ll0 {
-    public boolean X2;
-    public float Y2;
-    public final wd1 Z2;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class rc1 implements org.telegram.ui.Components.mq {
+    public final od1 f36795a;
 
-    public rc1(Context context, wd1 wd1Var) {
-        super(context, null);
-        this.Z2 = wd1Var;
+    public rc1(od1 od1Var) {
+        this.f36795a = od1Var;
     }
 
     @Override
-    public final boolean F0(View view) {
-        s4.c1 T;
-        rc1 rc1Var = this.Z2.f38840u0;
-        View F = rc1Var.F(view);
-        if (F == null) {
-            T = null;
-        } else {
-            T = rc1Var.T(F);
-        }
-        if (T != null && T.f42674f == 2) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        s4.c1 T;
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        if (view instanceof org.telegram.ui.Cells.t1) {
-            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
-            t1Var.getMessageObject();
-            ImageReceiver avatarImage = t1Var.getAvatarImage();
-            if (avatarImage != null) {
-                int top = view.getTop();
-                boolean m32 = t1Var.m3();
-                wd1 wd1Var = this.Z2;
-                if (m32 && (T = wd1Var.f38840u0.T(view)) != null) {
-                    if (wd1Var.f38840u0.K(T.b() - 1) != null) {
-                        avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
-                        avatarImage.draw(canvas);
-                        return drawChild;
-                    }
-                }
-                float translationX = t1Var.getTranslationX();
-                int layoutHeight = t1Var.getLayoutHeight() + view.getTop();
-                int measuredHeight = wd1Var.f38840u0.getMeasuredHeight() - wd1Var.f38840u0.getPaddingBottom();
-                if (layoutHeight > measuredHeight) {
-                    layoutHeight = measuredHeight;
-                }
-                if (t1Var.n3() && (r11 = wd1Var.f38840u0.T(view)) != null) {
-                    int i10 = 0;
-                    while (i10 < 20) {
-                        i10++;
-                        s4.c1 T2 = wd1Var.f38840u0.K(T2.b() + 1);
-                        if (T2 == null) {
-                            break;
-                        }
-                        View view2 = T2.f42671a;
-                        int top2 = view2.getTop();
-                        if (layoutHeight - AndroidUtilities.dp(48.0f) < view2.getBottom()) {
-                            translationX = Math.min(view2.getTranslationX(), translationX);
-                        }
-                        if ((view2 instanceof org.telegram.ui.Cells.t1) && ((org.telegram.ui.Cells.t1) view2).n3()) {
-                            top = top2;
-                        } else {
-                            top = top2;
-                            break;
-                        }
-                    }
-                }
-                if (layoutHeight - AndroidUtilities.dp(48.0f) < top) {
-                    layoutHeight = AndroidUtilities.dp(48.0f) + top;
-                }
-                int i11 = (translationX > 0.0f ? 1 : (translationX == 0.0f ? 0 : -1));
-                if (i11 != 0) {
-                    canvas.save();
-                    canvas.translate(translationX, 0.0f);
-                }
-                avatarImage.setImageY(layoutHeight - AndroidUtilities.dp(44.0f));
-                avatarImage.draw(canvas);
-                if (i11 != 0) {
-                    canvas.restore();
-                }
+    public final int K0(int i10) {
+        org.telegram.ui.ActionBar.f6 f6Var;
+        od1 od1Var = this.f36795a;
+        if (od1Var.f35817n == 3) {
+            org.telegram.ui.ActionBar.g6 g6Var = od1Var.f35794e0;
+            if (g6Var.S && i10 == 0 && (f6Var = (org.telegram.ui.ActionBar.f6) g6Var.f18683a0.get(org.telegram.ui.ActionBar.h6.f18966n)) != null) {
+                return f6Var.e;
             }
+            return 0;
         }
-        return drawChild;
+        return 0;
     }
 
     @Override
-    public final void h1(View view, float f7, float f10, boolean z10) {
-        if (z10 && (view instanceof org.telegram.ui.Cells.t1) && !((org.telegram.ui.Cells.t1) view).i3(f7)) {
+    public final void l(boolean z10) {
+        int i10;
+        int i11;
+        od1 od1Var = this.f36795a;
+        org.telegram.ui.ActionBar.f6 f6Var = od1Var.f35829s;
+        if (z10) {
+            if (f6Var.f18650r == null) {
+                od1Var.finishFragment();
+                i11 = ((org.telegram.ui.ActionBar.n2) od1Var).currentAccount;
+                MessagesController.getInstance(i11).saveThemeToServer(f6Var.f18637b, f6Var);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, f6Var.f18637b, f6Var);
+                return;
+            }
+            StringBuilder sb2 = new StringBuilder("https://");
+            i10 = ((org.telegram.ui.ActionBar.n2) od1Var).currentAccount;
+            sb2.append(MessagesController.getInstance(i10).linkPrefix);
+            sb2.append("/addtheme/");
+            sb2.append(f6Var.f18650r.slug);
+            String sb3 = sb2.toString();
+            od1Var.showDialog(new org.telegram.ui.Components.hq0(od1Var.getParentActivity(), null, sb3, false, sb3, false, null));
             return;
         }
-        super.h1(view, f7, f10, z10);
+        org.telegram.ui.Components.e5.W(od1Var, 1, null, null);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.Z2.V0();
+    public final void x0(int r15, int r16, boolean r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rc1.x0(int, int, boolean):void");
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        wd1 wd1Var = this.Z2;
-        if (action == 1) {
-            if (!wd1Var.f38833r0 && (wd1Var.B1 instanceof gj1) && wd1Var.L0[0].getVisibility() == 0) {
-                wd1Var.f1(0, false, true);
+    public final void y() {
+        od1 od1Var = this.f36795a;
+        if (od1Var.getParentActivity() != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(od1Var.getParentActivity());
+            alertDialog$Builder.f18409a.R = LocaleController.getString(R.string.DeleteThemeTitle);
+            alertDialog$Builder.f18409a.T = LocaleController.getString(R.string.DeleteThemeAlert);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new nl0(this, 21));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
+            od1Var.showDialog(b2Var);
+            TextView textView = (TextView) b2Var.d(-1);
+            if (textView != null) {
+                textView.setTextColor(od1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19026q7));
             }
-            wd1Var.f38833r0 = false;
-        }
-        if (wd1Var.a2) {
-            if (motionEvent.getAction() == 0) {
-                this.Y2 = motionEvent.getX();
-                motionEvent.getY();
-                if (getParent() != null) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                this.X2 = true;
-            } else if (motionEvent.getAction() == 2) {
-                if (!this.X2 && Math.abs(this.Y2 - motionEvent.getX()) > AndroidUtilities.touchSlop) {
-                    if (getParent() != null) {
-                        getParent().requestDisallowInterceptTouchEvent(true);
-                    }
-                    this.X2 = true;
-                }
-            } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-                this.X2 = false;
-                if (getParent() != null) {
-                    getParent().requestDisallowInterceptTouchEvent(false);
-                }
-            }
-            wd1Var.S1.a(motionEvent);
-        }
-        if (!this.X2 && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        wd1 wd1Var = this.Z2;
-        int i10 = 0;
-        if (wd1Var.J0 != null) {
-            int i11 = 0;
-            while (true) {
-                org.telegram.ui.Components.j81[] j81VarArr = wd1Var.J0;
-                if (i11 >= j81VarArr.length) {
-                    break;
-                }
-                j81VarArr[i11].invalidate();
-                i11++;
-            }
-        }
-        if (wd1Var.K0 != null) {
-            while (true) {
-                org.telegram.ui.Components.j81[] j81VarArr2 = wd1Var.K0;
-                if (i10 >= j81VarArr2.length) {
-                    break;
-                }
-                j81VarArr2[i10].invalidate();
-                i10++;
-            }
-        }
-        uc1 uc1Var = wd1Var.D0;
-        if (uc1Var != null) {
-            uc1Var.invalidate();
-        }
-        uc1 uc1Var2 = wd1Var.E0;
-        if (uc1Var2 != null) {
-            uc1Var2.invalidate();
         }
     }
 }

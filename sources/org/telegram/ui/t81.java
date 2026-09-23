@@ -1,45 +1,75 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
-public final class t81 implements View.OnClickListener {
-    public final int f37600a;
-    public final f91 f37601b;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class t81 extends org.telegram.ui.Components.g51 {
+    static {
+        org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
+    }
 
-    public t81(f91 f91Var, int i10) {
-        this.f37600a = i10;
-        this.f37601b = f91Var;
+    public static org.telegram.ui.Components.h51 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        org.telegram.ui.Components.h51 J = org.telegram.ui.Components.h51.J(t81.class);
+        J.d = i10;
+        J.f24506k = i13;
+        J.f24507l = charSequence;
+        J.f24508m = charSequence2;
+        J.f24509n = charSequence3;
+        J.B = (i11 & 4294967295L) | (i12 << 32);
+        return J;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37600a) {
-            case 0:
-                f91 f91Var = this.f37601b;
-                nf.f.s(f91Var.getParentActivity(), f91Var.getMessagesController().premiumManageSubscriptionUrl);
-                f91Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                return;
-            case 1:
-                f91 f91Var2 = this.f37601b;
-                f91Var2.getClass();
-                f91Var2.presentFragment(new h(3));
-                return;
-            case 2:
-                this.f37601b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
-                return;
-            case 3:
-                f91 f91Var3 = this.f37601b;
-                f91Var3.getClass();
-                f91Var3.presentFragment(new hh1(8, null));
-                return;
-            case 4:
-                this.f37601b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                return;
-            case 5:
-                f91.W(this.f37601b);
-                return;
-            default:
-                f91.Z(this.f37601b);
-                return;
+    public final void bindView(View view, org.telegram.ui.Components.h51 h51Var, boolean z10, org.telegram.ui.Components.v51 v51Var, org.telegram.ui.Components.d61 d61Var) {
+        int i10;
+        float f7;
+        long j3 = h51Var.B;
+        int i11 = (int) j3;
+        int i12 = (int) (j3 >>> 32);
+        u81 u81Var = (u81) view;
+        int i13 = h51Var.f24506k;
+        CharSequence charSequence = h51Var.f24507l;
+        CharSequence charSequence2 = h51Var.f24508m;
+        CharSequence charSequence3 = h51Var.f24509n;
+        TextView textView = u81Var.e;
+        TextView textView2 = u81Var.f37953f;
+        FrameLayout frameLayout = u81Var.f37952c;
+        int i14 = 8;
+        if (i13 != 0) {
+            i10 = 0;
+        } else {
+            i10 = 8;
         }
+        frameLayout.setVisibility(i10);
+        float f10 = 0.0f;
+        if (i13 == 0) {
+            f7 = AndroidUtilities.dp(2.0f);
+        } else {
+            f7 = 0.0f;
+        }
+        textView.setTranslationX(f7);
+        if (i13 == 0) {
+            f10 = AndroidUtilities.dp(2.0f);
+        }
+        textView2.setTranslationX(f10);
+        u81Var.f37951b.b(i11, i12);
+        u81Var.d.setImageResource(i13);
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        u81Var.f37954n = !isEmpty;
+        if (!isEmpty) {
+            i14 = 0;
+        }
+        textView2.setVisibility(i14);
+        textView2.setText(charSequence2);
+        u81Var.setValue(charSequence3);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new u81(context, d6Var);
     }
 }

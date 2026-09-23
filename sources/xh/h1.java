@@ -1,200 +1,83 @@
 package xh;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.e61;
-import org.telegram.ui.Components.f51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.t01;
-import org.telegram.ui.Components.u9;
-import org.telegram.ui.Components.w51;
-import yh.x7;
-public final class h1 extends h51 {
-    public static final int f45887a = 0;
+import yh.w7;
+public final class h1 extends FrameLayout {
+    public final int f45834a;
+    public final Object f45835b;
 
-    static {
-        h51.setup(new h51());
-    }
-
-    public static i51 a(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        i51 J = i51.J(h1.class);
-        J.f24909u = 1;
-        J.f24913z = i10;
-        J.G = starGift;
-        J.e = z10;
-        J.H = Boolean.valueOf(z11);
-        J.f24906r = z13;
-        J.f24905q = z12;
-        J.f24908t = z14;
-        return J;
+    public h1(Object obj, Context context, int i10) {
+        super(context);
+        this.f45834a = i10;
+        this.f45835b = obj;
     }
 
     @Override
-    public final void attachedView(ll0 ll0Var, View view, i51 i51Var) {
-        ((i1) view).d(i51Var.h, false);
-    }
-
-    @Override
-    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
-        boolean z11;
-        float f7;
-        int i10;
-        i1 i1Var = (i1) view;
-        Object obj = i51Var.G;
-        boolean z12 = false;
-        if (obj instanceof rg.k) {
-            rg.k kVar = (rg.k) obj;
-            g1 g1Var = i1Var.J;
-            TextView textView = i1Var.I;
-            TextView textView2 = i1Var.H;
-            e1 e1Var = i1Var.e;
-            u9 u9Var = i1Var.f45921y;
-            TextView textView3 = i1Var.L;
-            TextView textView4 = i1Var.M;
-            int d = kVar.d();
-            if (i1Var.f45912h0 != kVar) {
-                t01 c12 = x7.c1(u9Var, u9Var.getImageReceiver(), d);
-                i1Var.N = c12;
-                c12.run();
-                i1Var.N = null;
-            }
-            e1Var.d(null);
-            e1Var.e(null);
-            e1Var.g(null);
-            textView2.setText(LocaleController.formatPluralString("Gift2Months", d, new Object[0]));
-            textView.setText(LocaleController.getString(R.string.TelegramPremiumShort));
-            textView2.setVisibility(0);
-            textView.setVisibility(0);
-            u9Var.setTranslationY(-AndroidUtilities.dp(8.0f));
-            i1Var.f45916n.setVisibility(8);
-            i1Var.F.setVisibility(8);
-            if (kVar.f42334c == null && kVar.d == null) {
-                textView4.setVisibility(8);
-            } else {
-                if (i6.I.q()) {
-                    i10 = -1333971;
-                } else {
-                    i10 = -2722014;
-                }
-                textView4.setTextColor(i10);
-                textView4.setVisibility(0);
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("" + LocaleController.formatNumber(kVar.g(), ','));
-                spannableStringBuilder.setSpan(new f51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
-                oq[] oqVarArr = new oq[1];
-                textView4.setText(x7.X0(false, LocaleController.formatSpannable(R.string.PremiumOrStarsPrice, spannableStringBuilder), 0.48f, oqVarArr));
-                oqVarArr[0].spaceScaleX = 0.8f;
-            }
-            FrameLayout.LayoutParams layoutParams = i1Var.E;
-            layoutParams.gravity = 49;
-            u9Var.setLayoutParams(layoutParams);
-            textView3.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-            textView3.setTextSize(1, 12.0f);
-            textView3.setText(kVar.c());
-            i1Var.K.setBackground(i6.b0(AndroidUtilities.dp(13.0f), 422810068));
-            textView3.setTextColor(-13397548);
-            ((ViewGroup.MarginLayoutParams) g1Var.getLayoutParams()).topMargin = AndroidUtilities.dp(130.0f);
-            ((FrameLayout.LayoutParams) g1Var.getLayoutParams()).gravity = 49;
-            i1Var.f45912h0 = kVar;
-            i1Var.f45913i0 = null;
-            i1Var.V = kVar;
-            i1Var.W = null;
-            i1Var.f45904b0 = false;
-            i1Var.f45906c0 = null;
-            i1Var.f45907d0 = false;
-            i1Var.f45908e0 = false;
-            i1Var.f45910f0 = false;
-            i1Var.O = null;
-            i1Var.P = null;
-            i1Var.c(false, false);
-            i1Var.j();
-        } else if (obj instanceof TL_stars.StarGift) {
-            TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-            boolean z13 = i51Var.e;
-            Object obj2 = i51Var.H;
-            if (obj2 instanceof Boolean) {
-                z11 = ((Boolean) obj2).booleanValue();
-            } else {
-                z11 = false;
-            }
-            i1Var.g(starGift, z13, z11, i51Var.f24905q, i51Var.f24906r, i51Var.f24908t);
-        } else if (obj instanceof TL_stars.SavedStarGift) {
-            z12 = i1Var.h((TL_stars.SavedStarGift) obj, i51Var.f24905q, i51Var.f24906r);
-        }
-        if (i51Var.f24895f) {
-            i1Var.b(i51Var.e, z12);
-        }
-        i1Var.d(i51Var.h, z12);
-        FrameLayout frameLayout = i1Var.d;
-        float f10 = 1.0f;
-        if (i51Var.f24896g) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.65f;
-        }
-        frameLayout.setAlpha(f7);
-        j1 j1Var = i1Var.f45909f;
-        if (!i51Var.f24896g) {
-            f10 = 0.5f;
-        }
-        j1Var.setAlpha(f10);
-    }
-
-    @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, e6 e6Var) {
-        return new i1(context, i10, e6Var);
-    }
-
-    @Override
-    public final boolean equals(i51 i51Var, i51 i51Var2) {
-        if (i51Var.f24905q == i51Var2.f24905q) {
-            Object obj = i51Var.G;
-            if (obj != null || i51Var2.G != null) {
-                if (obj instanceof rg.k) {
-                    if (obj == i51Var2.G) {
-                        return true;
-                    }
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f45834a) {
+            case 2:
+                if (((w7) this.f45835b).f47879f0) {
                     return false;
                 }
-                if (obj instanceof TL_stars.StarGift) {
-                    Object obj2 = i51Var2.G;
-                    if (obj2 instanceof TL_stars.StarGift) {
-                        if (((TL_stars.StarGift) obj).f18334id == ((TL_stars.StarGift) obj2).f18334id) {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-                if (obj instanceof TL_stars.SavedStarGift) {
-                    Object obj3 = i51Var2.G;
-                    if (obj3 instanceof TL_stars.SavedStarGift) {
-                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                        TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                        if (savedStarGift.gift.f18334id == savedStarGift2.gift.f18334id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
-            if (i51Var.f24913z == i51Var2.f24913z && i51Var.e == i51Var2.e && i51Var.B == i51Var2.B && TextUtils.equals(i51Var.f24900l, i51Var2.f24900l)) {
-                return true;
-            }
-            return false;
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
         }
-        return false;
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f45834a) {
+            case 3:
+                super.onLayout(z10, i10, i11, i12, i13);
+                zg.q qVar = (zg.q) this.f45835b;
+                if (qVar.K && z10) {
+                    qVar.f49080w.setTranslationY(-qVar.f49075c.getMeasuredHeight());
+                    int measuredHeight = qVar.f49075c.getMeasuredHeight();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f49082y.getLayoutParams();
+                    marginLayoutParams.bottomMargin = measuredHeight;
+                    qVar.f49082y.setLayoutParams(marginLayoutParams);
+                    return;
+                }
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f45834a) {
+            case 0:
+                super.onMeasure(i10, i11);
+                ((j1) this.f45835b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        switch (this.f45834a) {
+            case 1:
+                super.setTranslationY(f7);
+                yh.y3 y3Var = (yh.y3) this.f45835b;
+                yh.j2 j2Var = y3Var.f47952d0;
+                if (j2Var != null && j2Var.getVisibility() == 0) {
+                    y3Var.f47952d0.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setTranslationY(f7);
+                return;
+        }
     }
 }

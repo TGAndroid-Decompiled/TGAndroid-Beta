@@ -1,29 +1,17 @@
 package org.telegram.ui.Components;
+public abstract class wp extends z4.a {
+    public abstract int j();
 
-import android.content.Context;
-public abstract class wp extends z4.g {
-    public vp f29765w0;
-
-    public wp(Context context) {
-        super(context);
-        b(new up((oh0) this));
-    }
-
-    @Override
-    @Deprecated
-    public void setAdapter(z4.a aVar) {
-        if (aVar instanceof vp) {
-            setAdapter((vp) aVar);
-            return;
+    public final int k(int i10) {
+        int size = ((oh0) this).f26740c.size();
+        int j3 = j();
+        if (i10 < j3) {
+            return ((size - (j3 * 2)) - ((j3 - i10) - 1)) - 1;
         }
-        throw new IllegalArgumentException();
-    }
-
-    public void setAdapter(vp vpVar) {
-        this.f29765w0 = vpVar;
-        super.setAdapter((z4.a) vpVar);
-        if (vpVar != null) {
-            x(vpVar.j(), false);
+        int i11 = size - j3;
+        if (i10 >= i11) {
+            return i10 - i11;
         }
+        return i10 - j3;
     }
 }

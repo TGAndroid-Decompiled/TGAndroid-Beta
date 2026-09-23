@@ -11,13 +11,13 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class j7 extends f7 {
-    public final ArrayList f34806f;
+    public final ArrayList f34345f;
     public final s7 h;
 
     public j7(s7 s7Var) {
         super(0);
         this.h = s7Var;
-        this.f34806f = new ArrayList();
+        this.f34345f = new ArrayList();
     }
 
     @Override
@@ -27,16 +27,16 @@ public final class j7 extends f7 {
 
     @Override
     public final void F() {
-        ArrayList arrayList = this.f34806f;
+        ArrayList arrayList = this.f34345f;
         arrayList.clear();
         ArrayList arrayList2 = this.e;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         s7 s7Var = this.h;
-        if (s7Var.f37283f != null) {
-            for (int i10 = 0; i10 < s7Var.f37283f.f49193b.size(); i10++) {
+        if (s7Var.f37140f != null) {
+            for (int i10 = 0; i10 < s7Var.f37140f.f49144b.size(); i10++) {
                 ?? aVar = new og.a(1, true);
-                aVar.f35623c = (s6) s7Var.f37283f.f49193b.get(i10);
+                aVar.f35165c = (s6) s7Var.f37140f.f49144b.get(i10);
                 arrayList2.add(aVar);
             }
         }
@@ -49,70 +49,70 @@ public final class j7 extends f7 {
         String dialogPhotoTitle;
         float f7;
         boolean z11;
-        if (c1Var.f42674f == 1) {
-            y6 y6Var = (y6) c1Var.f42671a;
+        if (c1Var.f42630f == 1) {
+            y6 y6Var = (y6) c1Var.f42627a;
             ArrayList arrayList = this.e;
-            s6 s6Var = ((m7) arrayList.get(i10)).f35623c;
+            s6 s6Var = ((m7) arrayList.get(i10)).f35165c;
             s7 s7Var = this.h;
-            TLObject userOrChat = s7Var.d.getMessagesController().getUserOrChat(s6Var.f37274a);
-            s6 s6Var2 = y6Var.f39762a;
-            if (s6Var2 != null && s6Var2.f37274a == s6Var.f37274a) {
+            TLObject userOrChat = s7Var.d.getMessagesController().getUserOrChat(s6Var.f37130a);
+            s6 s6Var2 = y6Var.f39729a;
+            if (s6Var2 != null && s6Var2.f37130a == s6Var.f37130a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (s6Var.f37274a == Long.MAX_VALUE) {
+            if (s6Var.f37130a == Long.MAX_VALUE) {
                 dialogPhotoTitle = LocaleController.getString(R.string.CacheOtherChats);
                 y6Var.getImageView().getAvatarDrawable().g(14);
                 y6Var.getImageView().e(null, y6Var.getImageView().getAvatarDrawable());
             } else {
                 dialogPhotoTitle = DialogObject.setDialogPhotoTitle(y6Var.getImageView(), userOrChat);
             }
-            y6Var.f39762a = s6Var;
-            org.telegram.ui.Components.u9 imageView = y6Var.getImageView();
+            y6Var.f39729a = s6Var;
+            org.telegram.ui.Components.w9 imageView = y6Var.getImageView();
             if ((userOrChat instanceof TLRPC.Chat) && ((TLRPC.Chat) userOrChat).forum) {
                 f7 = 12.0f;
             } else {
                 f7 = 19.0f;
             }
             imageView.setRoundRadius(AndroidUtilities.dp(f7));
-            String formatFileSize = AndroidUtilities.formatFileSize(s6Var.f37276c);
+            String formatFileSize = AndroidUtilities.formatFileSize(s6Var.f37132c);
             if (i10 < arrayList.size() - 1) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            org.telegram.ui.Components.n6 n6Var = y6Var.d;
-            TextView textView = y6Var.f39764c;
+            org.telegram.ui.Components.p6 p6Var = y6Var.d;
+            TextView textView = y6Var.f39731c;
             textView.setText(Emoji.replaceEmoji(dialogPhotoTitle, textView.getPaint().getFontMetricsInt(), false));
             if (formatFileSize != null) {
-                n6Var.c(formatFileSize, false, true);
-                n6Var.setVisibility(0);
+                p6Var.c(formatFileSize, false, true);
+                p6Var.setVisibility(0);
             } else {
-                n6Var.setVisibility(4);
+                p6Var.setVisibility(4);
             }
-            y6Var.f39765f = z11;
+            y6Var.f39732f = z11;
             y6Var.setWillNotDraw(!z11);
             y6Var.requestLayout();
-            boolean contains = s7Var.f37283f.f49200l.contains(Long.valueOf(s6Var.f37274a));
-            org.telegram.ui.Components.np npVar = y6Var.f39766n;
-            if (npVar == null && !contains) {
+            boolean contains = s7Var.f37140f.f49151l.contains(Long.valueOf(s6Var.f37130a));
+            org.telegram.ui.Components.op opVar = y6Var.f39733n;
+            if (opVar == null && !contains) {
                 return;
             }
-            if (npVar == null) {
-                org.telegram.ui.Components.np npVar2 = new org.telegram.ui.Components.np(y6Var.getContext(), 21, y6Var.f39763b);
-                y6Var.f39766n = npVar2;
-                npVar2.b(-1, org.telegram.ui.ActionBar.i6.f18834d6, org.telegram.ui.ActionBar.i6.f18962k7);
-                y6Var.f39766n.setDrawUnchecked(false);
+            if (opVar == null) {
+                org.telegram.ui.Components.op opVar2 = new org.telegram.ui.Components.op(y6Var.getContext(), 21, y6Var.f39730b);
+                y6Var.f39733n = opVar2;
+                opVar2.b(-1, org.telegram.ui.ActionBar.h6.f18789d6, org.telegram.ui.ActionBar.h6.f18917k7);
+                y6Var.f39733n.setDrawUnchecked(false);
                 int i11 = 3;
-                y6Var.f39766n.setDrawBackgroundAsArc(3);
-                org.telegram.ui.Components.np npVar3 = y6Var.f39766n;
+                y6Var.f39733n.setDrawBackgroundAsArc(3);
+                org.telegram.ui.Components.op opVar3 = y6Var.f39733n;
                 if (LocaleController.isRTL) {
                     i11 = 5;
                 }
-                y6Var.addView(npVar3, w7.x5.d(24, 24.0f, i11 | 48, 38.0f, 25.0f, 38.0f, 0.0f));
+                y6Var.addView(opVar3, w7.x5.d(24, 24.0f, i11 | 48, 38.0f, 25.0f, 38.0f, 0.0f));
             }
-            y6Var.f39766n.a(contains, z10);
+            y6Var.f39733n.a(contains, z10);
         }
     }
 
@@ -121,7 +121,7 @@ public final class j7 extends f7 {
         y6 y6Var = null;
         if (i10 == 1) {
             y6 y6Var2 = new y6(this.h.getContext(), null);
-            y6Var2.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18834d6, false));
+            y6Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18789d6, false));
             y6Var = y6Var2;
         }
         return new s4.c1(y6Var);

@@ -1,44 +1,26 @@
 package org.telegram.messenger;
+public final class gd implements Runnable {
+    public final int f16209a;
+    public final long f16210b;
+    public final long f16211c;
+    public final BaseController d;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gd implements RequestDelegate {
-    public final int f16217a = 0;
-    public final long f16218b;
-    public final int f16219c;
-    public final Object d;
-    public final Object e;
-    public final Object f16220f;
-
-    public gd(MessagesController messagesController, long j3, Utilities.Callback callback, TLRPC.User user, int i10) {
-        this.d = messagesController;
-        this.f16218b = j3;
-        this.e = callback;
-        this.f16220f = user;
-        this.f16219c = i10;
+    public gd(BaseController baseController, long j3, long j10, int i10) {
+        this.f16209a = i10;
+        this.d = baseController;
+        this.f16210b = j3;
+        this.f16211c = j10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16217a) {
+    public final void run() {
+        switch (this.f16209a) {
             case 0:
-                int i10 = this.f16219c;
-                ((MessagesController) this.d).lambda$loadFullUser$72(this.f16218b, (Utilities.Callback) this.e, (TLRPC.User) this.f16220f, i10, tLObject, tL_error);
+                ((MessagesController) this.d).lambda$markDialogAsReadNow$240(this.f16210b, this.f16211c);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ei.p3((org.telegram.ui.Cells.g6) this.d, tLObject, (MessagesStorage) this.e, this.f16218b, this.f16219c, (ArrayList) this.f16220f, 2));
+                ((NotificationsController) this.d).lambda$setOpenedDialogId$3(this.f16210b, this.f16211c);
                 return;
         }
-    }
-
-    public gd(org.telegram.ui.Cells.g6 g6Var, MessagesStorage messagesStorage, long j3, int i10, ArrayList arrayList) {
-        this.d = g6Var;
-        this.e = messagesStorage;
-        this.f16218b = j3;
-        this.f16219c = i10;
-        this.f16220f = arrayList;
     }
 }

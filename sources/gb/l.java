@@ -133,14 +133,14 @@ public final class l extends lb.a {
     @Override
     public final void a() {
         F(1);
-        L(((db.h) J()).f7605a.iterator());
+        L(((db.h) J()).f7591a.iterator());
         this.H[this.F - 1] = 0;
     }
 
     @Override
     public final void b() {
         F(3);
-        L(((fb.k) ((db.l) J()).f7607a.entrySet()).iterator());
+        L(((fb.k) ((db.l) J()).f7593a.entrySet()).iterator());
     }
 
     @Override
@@ -236,7 +236,7 @@ public final class l extends lb.a {
             throw new IllegalStateException("Expected " + hg.c.E(7) + " but was " + hg.c.E(x10) + H());
         }
         db.m mVar = (db.m) J();
-        if (mVar.f7608a instanceof Number) {
+        if (mVar.f7594a instanceof Number) {
             parseInt = mVar.r().intValue();
         } else {
             parseInt = Integer.parseInt(mVar.n());
@@ -259,7 +259,7 @@ public final class l extends lb.a {
             throw new IllegalStateException("Expected " + hg.c.E(7) + " but was " + hg.c.E(x10) + H());
         }
         db.m mVar = (db.m) J();
-        if (mVar.f7608a instanceof Number) {
+        if (mVar.f7594a instanceof Number) {
             parseLong = mVar.r().longValue();
         } else {
             parseLong = Long.parseLong(mVar.n());
@@ -339,7 +339,7 @@ public final class l extends lb.a {
                 return 1;
             }
             if (J2 instanceof db.m) {
-                Serializable serializable = ((db.m) J2).f7608a;
+                Serializable serializable = ((db.m) J2).f7594a;
                 if (serializable instanceof String) {
                     return 6;
                 }

@@ -3,26 +3,26 @@ package bi;
 import android.view.KeyEvent;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.hj;
-import org.telegram.ui.Components.ni;
-import org.telegram.ui.Components.vx0;
-import org.telegram.ui.Components.zl;
+import org.telegram.ui.Components.am;
+import org.telegram.ui.Components.ij;
+import org.telegram.ui.Components.oi;
+import org.telegram.ui.Components.ux0;
 import s4.z0;
 public final class l extends s4.s {
     public final int Q;
     public final KeyEvent.Callback R;
 
-    public l(ni niVar, int i10, int i11) {
+    public l(oi oiVar, int i10, int i11) {
         super(i10);
         this.Q = i11;
-        this.R = niVar;
+        this.R = oiVar;
     }
 
     @Override
     public boolean Y0() {
         switch (this.Q) {
             case 3:
-                if (((vx0) this.R).W != null && LocaleController.isRTL) {
+                if (((ux0) this.R).W != null && LocaleController.isRTL) {
                     return true;
                 }
                 return false;
@@ -35,7 +35,7 @@ public final class l extends s4.s {
     public int o0(int i10, of.e eVar, z0 z0Var) {
         switch (this.Q) {
             case 0:
-                if (((u) this.R).f3589b) {
+                if (((u) this.R).f3584b) {
                     i10 = 0;
                 }
                 return super.o0(i10, eVar, z0Var);
@@ -48,14 +48,14 @@ public final class l extends s4.s {
     public void v0(RecyclerView recyclerView, z0 z0Var, int i10) {
         switch (this.Q) {
             case 1:
-                hj hjVar = new hj(this, recyclerView.getContext());
-                hjVar.f42821a = i10;
-                w0(hjVar);
+                ij ijVar = new ij(this, recyclerView.getContext());
+                ijVar.f42777a = i10;
+                w0(ijVar);
                 return;
             case 2:
-                zl zlVar = new zl(this, recyclerView.getContext());
-                zlVar.f42821a = i10;
-                w0(zlVar);
+                am amVar = new am(this, recyclerView.getContext());
+                amVar.f42777a = i10;
+                w0(amVar);
                 return;
             default:
                 super.v0(recyclerView, z0Var, i10);
@@ -77,10 +77,10 @@ public final class l extends s4.s {
         }
     }
 
-    public l(vx0 vx0Var) {
+    public l(ux0 ux0Var) {
         super(5);
         this.Q = 3;
-        this.R = vx0Var;
+        this.R = ux0Var;
     }
 
     public l(u uVar) {

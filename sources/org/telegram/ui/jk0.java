@@ -1,54 +1,37 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class jk0 extends org.telegram.ui.ActionBar.g5 {
-    public final NotificationsCustomSettingsActivity f34947f;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class jk0 implements Runnable {
+    public final int f34470a;
+    public final kk0 f34471b;
+    public final String f34472c;
 
-    public jk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
-        this.f34947f = notificationsCustomSettingsActivity;
+    public jk0(kk0 kk0Var, String str, int i10) {
+        this.f34470a = i10;
+        this.f34471b = kk0Var;
+        this.f34472c = str;
     }
 
     @Override
-    public final void m() {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f34947f;
-        notificationsCustomSettingsActivity.d.F(null);
-        notificationsCustomSettingsActivity.f30864f = false;
-        notificationsCustomSettingsActivity.getClass();
-        notificationsCustomSettingsActivity.f30863c.setText(LocaleController.getString("NoExceptions", R.string.NoExceptions));
-        notificationsCustomSettingsActivity.f30861a.setAdapter(notificationsCustomSettingsActivity.f30862b);
-        notificationsCustomSettingsActivity.f30862b.l();
-        notificationsCustomSettingsActivity.f30861a.setFastScrollVisible(true);
-        notificationsCustomSettingsActivity.f30861a.setVerticalScrollBarEnabled(false);
-        notificationsCustomSettingsActivity.f30863c.setShowAtCenter(false);
-    }
-
-    @Override
-    public final void n() {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f34947f;
-        notificationsCustomSettingsActivity.f30864f = true;
-        notificationsCustomSettingsActivity.f30863c.setShowAtCenter(true);
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f34947f;
-        if (notificationsCustomSettingsActivity.d == null) {
-            return;
+    public final void run() {
+        switch (this.f34470a) {
+            case 0:
+                kk0 kk0Var = this.f34471b;
+                String str = this.f34472c;
+                kk0Var.getClass();
+                AndroidUtilities.runOnUIThread(new jk0(kk0Var, str, 1));
+                return;
+            default:
+                kk0 kk0Var2 = this.f34471b;
+                String str2 = this.f34472c;
+                gg.c2 c2Var = kk0Var2.h;
+                int i10 = kk0Var2.f34742n.f30841s;
+                boolean z10 = true;
+                c2Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
+                Utilities.searchQueue.postRunnable(new kf0(kk0Var2, str2, new ArrayList(kk0Var2.f34742n.f30842w), 8));
+                return;
         }
-        String obj = editText.getText().toString();
-        if (obj.length() != 0) {
-            notificationsCustomSettingsActivity.getClass();
-            if (notificationsCustomSettingsActivity.f30861a != null) {
-                notificationsCustomSettingsActivity.f30863c.setText(LocaleController.getString("NoResult", R.string.NoResult));
-                notificationsCustomSettingsActivity.f30863c.b();
-                notificationsCustomSettingsActivity.f30861a.setAdapter(notificationsCustomSettingsActivity.d);
-                notificationsCustomSettingsActivity.d.l();
-                notificationsCustomSettingsActivity.f30861a.setFastScrollVisible(false);
-                notificationsCustomSettingsActivity.f30861a.setVerticalScrollBarEnabled(true);
-            }
-        }
-        notificationsCustomSettingsActivity.d.F(obj);
     }
 }

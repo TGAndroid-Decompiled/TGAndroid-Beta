@@ -1,30 +1,21 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class pe1 extends AnimatorListenerAdapter {
-    public final int f36555a;
-    public final te1 f36556b;
-
-    public pe1(te1 te1Var, int i10) {
-        this.f36555a = i10;
-        this.f36556b = te1Var;
-    }
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class pe1 extends org.telegram.ui.Components.pv0 {
+    public boolean f36099w0;
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36555a) {
-            case 0:
-                te1 te1Var = this.f36556b;
-                te1Var.v = 0;
-                te1Var.f37652n.setVisibility(8);
-                return;
-            case 1:
-                this.f36556b.v = 0;
-                return;
-            default:
-                this.f36556b.F.setVisibility(8);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        R();
+        if (getKeyboardHeight() == 0 && !this.f36099w0) {
+            int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
+            this.f27150f = i12;
+            setPadding(0, 0, 0, i12);
+        } else {
+            this.f36099w0 = true;
+            setPadding(0, 0, 0, 0);
         }
+        super.onMeasure(i10, i11);
     }
 }

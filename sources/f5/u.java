@@ -1,17 +1,17 @@
 package f5;
 
 import java.nio.ByteBuffer;
-import k2.c0;
+import k2.b0;
 import w7.s6;
 public final class u extends com.googlecode.mp4parser.c {
-    public static final c0 f8946f;
-    public static final c0 h;
+    public static final b0 f8932f;
+    public static final b0 h;
     public long[] e;
 
     static {
         re.a aVar = new re.a(u.class, "SyncSampleBox.java");
         aVar.e(aVar.d("getSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "[J"));
-        f8946f = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "java.lang.String"));
+        f8932f = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SyncSampleBox", "", "", "java.lang.String"));
         h = aVar.e(aVar.d("setSampleNumber", "com.coremedia.iso.boxes.SyncSampleBox", "[J", "sampleNumber", "void"));
     }
 
@@ -40,7 +40,7 @@ public final class u extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        com.google.firebase.messaging.t b10 = re.a.b(f8946f, this, this);
+        com.google.firebase.messaging.t b10 = re.a.b(f8932f, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         return a4.a.o(this.e.length, "]", new StringBuilder("SyncSampleBox[entryCount="));

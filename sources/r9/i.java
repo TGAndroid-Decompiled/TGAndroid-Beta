@@ -1,71 +1,71 @@
 package r9;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Base64;
-import android.util.Log;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-public final class i implements q9.d, a2, s5.e, pa.a {
-    public final int f42164a;
+import i9.s;
+import java.util.ArrayDeque;
+import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.logging.Logger;
+import l5.p;
+import n6.l;
+public final class i implements Executor {
+    public static final Logger f42120f = Logger.getLogger(i.class.getName());
+    public final Executor f42121a;
+    public final ArrayDeque f42122b = new ArrayDeque();
+    public int f42123c = 1;
+    public long d = 0;
+    public final s e = new s(this);
 
-    public i(int i10) {
-        this.f42164a = i10;
+    public i(Executor executor) {
+        l.h(executor);
+        this.f42121a = executor;
     }
 
     @Override
-    public java.lang.Object G(cf.c r44) {
-        throw new UnsupportedOperationException("Method not decompiled: r9.i.G(cf.c):java.lang.Object");
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        byte[] decode;
-        Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
-        try {
-            ArrayList arrayList = new ArrayList();
-            while (rawQuery.moveToNext()) {
-                aa.a a2 = l5.i.a();
-                a2.u(rawQuery.getString(1));
-                a2.d = v5.a.b(rawQuery.getInt(2));
-                String string = rawQuery.getString(3);
-                if (string == null) {
-                    decode = null;
-                } else {
-                    decode = Base64.decode(string, 0);
+    public final void execute(Runnable runnable) {
+        l.h(runnable);
+        synchronized (this.f42122b) {
+            int i10 = this.f42123c;
+            if (i10 != 4 && i10 != 3) {
+                long j3 = this.d;
+                p pVar = new p(1, runnable);
+                this.f42122b.add(pVar);
+                this.f42123c = 2;
+                try {
+                    this.f42121a.execute(this.e);
+                    if (this.f42123c == 2) {
+                        synchronized (this.f42122b) {
+                            try {
+                                if (this.d == j3 && this.f42123c == 2) {
+                                    this.f42123c = 3;
+                                }
+                            } finally {
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Error | RuntimeException e) {
+                    synchronized (this.f42122b) {
+                        try {
+                            int i11 = this.f42123c;
+                            boolean z10 = true;
+                            if ((i11 != 1 && i11 != 2) || !this.f42122b.removeLastOccurrence(pVar)) {
+                                z10 = false;
+                            }
+                            if (!(e instanceof RejectedExecutionException) || z10) {
+                                throw e;
+                            }
+                        } finally {
+                        }
+                    }
+                    return;
                 }
-                a2.f360c = decode;
-                arrayList.add(a2.e());
             }
-            return arrayList;
-        } finally {
-            rawQuery.close();
+            this.f42122b.add(runnable);
         }
     }
 
-    @Override
-    public void f(b2 b2Var, int i10) {
-        switch (this.f42164a) {
-            case 3:
-                b2Var.dismiss();
-                return;
-            default:
-                b2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public void j(pa.b bVar) {
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
-        }
-        bVar.get().getClass();
-        throw new ClassCastException();
-    }
-
-    public i(Object obj, int i10) {
-        this.f42164a = i10;
+    public final String toString() {
+        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.f42121a + "}";
     }
 }

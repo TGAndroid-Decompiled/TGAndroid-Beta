@@ -5,7 +5,7 @@ import a6.d;
 import androidx.lifecycle.p0;
 import b2.p;
 public class b extends p0 {
-    public static final qb.b f44470f = new qb.b(24);
+    public static final qb.b f44424f = new qb.b(24);
     public final n d = new n();
     public boolean e = false;
 
@@ -15,10 +15,10 @@ public class b extends p0 {
         int i10 = nVar.f33c;
         for (int i11 = 0; i11 < i10; i11++) {
             a aVar = (a) nVar.f32b[i11];
-            d dVar = aVar.f44467l;
+            d dVar = aVar.f44421l;
             dVar.a();
             dVar.f292c = true;
-            p pVar = aVar.f44469n;
+            p pVar = aVar.f44423n;
             if (pVar != null) {
                 aVar.i(pVar);
             }
@@ -27,7 +27,7 @@ public class b extends p0 {
                 if (aVar2 == aVar) {
                     dVar.f290a = null;
                     if (pVar != null) {
-                        boolean z10 = pVar.f3173b;
+                        boolean z10 = pVar.f3168b;
                     }
                     dVar.d = true;
                     dVar.f291b = false;

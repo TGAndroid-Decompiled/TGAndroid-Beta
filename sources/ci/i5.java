@@ -1,34 +1,25 @@
 package ci;
 
-import android.view.KeyEvent;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class i5 implements org.telegram.ui.ActionBar.l1, Utilities.Callback3Return {
-    public final r6 f4783a;
+import android.widget.PopupWindow;
+import org.telegram.ui.Components.qv0;
+public final class i5 implements PopupWindow.OnDismissListener {
+    public final int f4783a;
+    public final qv0 f4784b;
 
-    public i5(r6 r6Var) {
-        this.f4783a = r6Var;
+    public i5(qv0 qv0Var, int i10) {
+        this.f4783a = i10;
+        this.f4784b = qv0Var;
     }
 
     @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        r6 r6Var = this.f4783a;
-        r6Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = r6Var.H1) != null && n1Var.isShowing()) {
-            r6Var.H1.d(true);
+    public final void onDismiss() {
+        switch (this.f4783a) {
+            case 0:
+                ((q6) this.f4784b).I1.d();
+                return;
+            default:
+                ((qg.p0) this.f4784b).S1.d();
+                return;
         }
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3) {
-        r6 r6Var = this.f4783a;
-        r6Var.f5427l2 = true;
-        d6 n02 = r6Var.n0(obj, (TLRPC.Document) obj2);
-        if (((Boolean) obj3).booleanValue()) {
-            n02.setScale(1.5f);
-        }
-        r6Var.d0(n02);
-        return Boolean.TRUE;
     }
 }

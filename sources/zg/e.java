@@ -6,34 +6,34 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class e extends ImageView {
-    public long f49008a;
-    public final f f49009b;
+    public long f48959a;
+    public final f f48960b;
 
     public e(f fVar, Context context) {
         super(context);
-        this.f49009b = fVar;
-        this.f49008a = 0L;
+        this.f48960b = fVar;
+        this.f48959a = 0L;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         Utilities.Callback callback;
         int action = motionEvent.getAction();
-        f fVar = this.f49009b;
+        f fVar = this.f48960b;
         if (action == 0) {
-            if (System.currentTimeMillis() < this.f49008a + 350) {
+            if (System.currentTimeMillis() < this.f48959a + 350) {
                 return false;
             }
-            this.f49008a = System.currentTimeMillis();
-            fVar.f49013b = true;
-            fVar.f49014c = false;
+            this.f48959a = System.currentTimeMillis();
+            fVar.f48964b = true;
+            fVar.f48965c = false;
             AndroidUtilities.runOnUIThread(new qg.v(fVar, 350, 6), 350);
         } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            fVar.f49013b = false;
-            if (!fVar.f49014c && (callback = fVar.d) != null) {
+            fVar.f48964b = false;
+            if (!fVar.f48965c && (callback = fVar.d) != null) {
                 callback.run(Boolean.FALSE);
                 try {
-                    fVar.f49012a.performHapticFeedback(3);
+                    fVar.f48963a.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
             }

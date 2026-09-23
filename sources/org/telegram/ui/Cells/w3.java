@@ -11,22 +11,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public abstract class w3 extends FrameLayout {
-    public org.telegram.ui.Components.u9 f21555a;
-    public org.telegram.ui.ActionBar.j5 f21556b;
-    public org.telegram.ui.ActionBar.j5 f21557c;
+    public org.telegram.ui.Components.w9 f21538a;
+    public org.telegram.ui.ActionBar.i5 f21539b;
+    public org.telegram.ui.ActionBar.i5 f21540c;
     public ImageView d;
-    public org.telegram.ui.Components.f9 e;
-    public TLRPC.User f21558f;
+    public org.telegram.ui.Components.h9 e;
+    public TLRPC.User f21541f;
     public Paint h;
-    public int f21559n;
-    public boolean f21560r;
+    public int f21542n;
+    public boolean f21543r;
 
     public final void a(int i10, int i11) {
-        this.f21559n = i10;
+        this.f21542n = i10;
         ImageView imageView = this.d;
         imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f21557c.setTextColor(i11);
-        org.telegram.ui.ActionBar.i6.B1(imageView.getDrawable(), i11 & 620756991, true);
+        this.f21540c.setTextColor(i11);
+        org.telegram.ui.ActionBar.h6.B1(imageView.getDrawable(), i11 & 620756991, true);
     }
 
     @Override
@@ -34,7 +34,7 @@ public abstract class w3 extends FrameLayout {
         Canvas canvas2;
         float dp;
         int i10;
-        if (this.f21560r) {
+        if (this.f21543r) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -56,11 +56,11 @@ public abstract class w3 extends FrameLayout {
     }
 
     public CharSequence getName() {
-        return this.f21556b.getText();
+        return this.f21539b.getText();
     }
 
     public TLRPC.User getUser() {
-        return this.f21558f;
+        return this.f21541f;
     }
 
     @Override
@@ -74,7 +74,7 @@ public abstract class w3 extends FrameLayout {
     }
 
     public void setDrawDivider(boolean z10) {
-        this.f21560r = z10;
+        this.f21543r = z10;
         invalidate();
     }
 }

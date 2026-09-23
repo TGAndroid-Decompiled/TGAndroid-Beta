@@ -4,35 +4,35 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class jf implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34898a;
-    public final bo f34899b;
-    public final View f34900c;
+    public final int f34448a;
+    public final xn f34449b;
+    public final View f34450c;
 
-    public jf(bo boVar, org.telegram.ui.Cells.w0 w0Var, int i10) {
-        this.f34898a = i10;
-        this.f34899b = boVar;
-        this.f34900c = w0Var;
+    public jf(xn xnVar, org.telegram.ui.Cells.w0 w0Var, int i10) {
+        this.f34448a = i10;
+        this.f34449b = xnVar;
+        this.f34450c = w0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34898a) {
+        switch (this.f34448a) {
             case 0:
-                bo boVar = this.f34899b;
-                boVar.getClass();
+                xn xnVar = this.f34449b;
+                xnVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                boVar.A9 = AndroidUtilities.dp(30.0f) * floatValue;
-                boVar.o9();
-                this.f34900c.setAlpha(floatValue);
+                xnVar.A9 = AndroidUtilities.dp(30.0f) * floatValue;
+                xnVar.o9();
+                this.f34450c.setAlpha(floatValue);
                 return;
             default:
-                bo boVar2 = this.f34899b;
-                boVar2.getClass();
+                xn xnVar2 = this.f34449b;
+                xnVar2.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                boVar2.A9 = AndroidUtilities.dp(30.0f) * floatValue2;
-                boVar2.o9();
-                boVar2.r9();
-                this.f34900c.setAlpha(floatValue2);
+                xnVar2.A9 = AndroidUtilities.dp(30.0f) * floatValue2;
+                xnVar2.o9();
+                xnVar2.r9();
+                this.f34450c.setAlpha(floatValue2);
                 return;
         }
     }

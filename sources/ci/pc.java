@@ -1,42 +1,44 @@
 package ci;
-public final class pc implements Runnable {
-    public final int f5317a;
-    public final zc f5318b;
+public interface pc {
+    void C(float f7, int i10);
 
-    public pc(zc zcVar, int i10) {
-        this.f5317a = i10;
-        this.f5318b = zcVar;
-    }
+    void F(float f7);
 
-    @Override
-    public final void run() {
-        switch (this.f5317a) {
-            case 0:
-                zc zcVar = this.f5318b;
-                xc xcVar = zcVar.M;
-                if (xcVar != null) {
-                    long j3 = xcVar.f5785a;
-                    if (j3 > 0) {
-                        zcVar.H = j3;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                sc scVar = this.f5318b.f5880a;
-                if (scVar != null) {
-                    scVar.f0();
-                    return;
-                }
-                return;
-            default:
-                sc scVar2 = this.f5318b.f5880a;
-                if (scVar2 != null) {
-                    scVar2.s();
-                    return;
-                }
-                return;
-        }
-    }
+    void H(float f7, boolean z10);
+
+    void O(long j3);
+
+    void Q(boolean z10);
+
+    void T(float f7, int i10);
+
+    void V(float f7);
+
+    void Z(float f7);
+
+    void b(int i10);
+
+    void d0(float f7, int i10);
+
+    void e0(float f7);
+
+    void f0();
+
+    void h(float f7);
+
+    void i0(float f7);
+
+    void j0(int i10, long j3);
+
+    void n(float f7);
+
+    void o(long j3, boolean z10);
+
+    void o0(long j3);
+
+    void s();
+
+    void u(float f7);
+
+    void w(boolean z10);
 }

@@ -1,69 +1,68 @@
 package w2;
 
+import h2.f;
 import h2.h;
 import h2.l;
 import java.nio.ByteBuffer;
-import z3.f;
-import z3.g;
+import z3.i;
 import z3.j;
-import z3.k;
-import z3.n;
-public final class b extends l implements f {
-    public final String f44471o;
-    public final n f44472p;
+import z3.m;
+public final class b extends l implements z3.e {
+    public final String f44425o;
+    public final m f44426p;
 
-    public b(String str, n nVar) {
-        super(new j[2], new k[2]);
-        this.f44471o = str;
+    public b(String str, m mVar) {
+        super(new i[2], new j[2]);
+        this.f44425o = str;
         o(1024);
-        this.f44472p = nVar;
+        this.f44426p = mVar;
     }
 
     @Override
     public final h f() {
-        return new j();
+        return new i();
     }
 
     @Override
     public final h2.j g() {
-        return new z3.d(this);
+        return new z3.c(this);
     }
 
     @Override
     public final String getName() {
-        return this.f44471o;
+        return this.f44425o;
     }
 
     @Override
-    public final h2.f h(Throwable th2) {
+    public final f h(Throwable th2) {
         return new Exception("Unexpected decode error", th2);
     }
 
     @Override
-    public final h2.f i(h hVar, h2.j jVar, boolean z10) {
-        j jVar2 = (j) hVar;
-        k kVar = (k) jVar;
+    public final f i(h hVar, h2.j jVar, boolean z10) {
+        i iVar = (i) hVar;
+        j jVar2 = (j) jVar;
         try {
-            ByteBuffer byteBuffer = jVar2.f10093c;
+            ByteBuffer byteBuffer = iVar.f10079c;
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
-            n nVar = this.f44472p;
+            m mVar = this.f44426p;
             if (z10) {
-                nVar.reset();
+                mVar.reset();
             }
-            z3.e r10 = nVar.r(0, limit, array);
-            long j3 = jVar2.e;
-            long j10 = jVar2.f48089r;
-            kVar.timeUs = j3;
-            kVar.f48090a = r10;
+            z3.d r10 = mVar.r(0, limit, array);
+            long j3 = iVar.e;
+            long j10 = iVar.f48042r;
+            jVar2.timeUs = j3;
+            jVar2.f48043a = r10;
             if (j10 != Long.MAX_VALUE) {
                 j3 = j10;
             }
-            kVar.f48091b = j3;
-            kVar.shouldBeSkipped = false;
+            jVar2.f48044b = j3;
+            jVar2.shouldBeSkipped = false;
             return null;
-        } catch (g e) {
+        } catch (z3.f e) {
             return e;
         }
     }

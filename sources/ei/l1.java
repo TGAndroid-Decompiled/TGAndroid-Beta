@@ -4,14 +4,14 @@ import android.text.style.CharacterStyle;
 import java.util.ArrayList;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.vl;
+import org.telegram.messenger.ul;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Cells.r9;
-import org.telegram.ui.Components.x5;
-import org.telegram.ui.pv0;
+import org.telegram.ui.Cells.s9;
+import org.telegram.ui.Components.z5;
+import org.telegram.ui.iv0;
 public final class l1 implements org.telegram.ui.Cells.k1 {
     @Override
     public final boolean A1() {
@@ -89,7 +89,7 @@ public final class l1 implements org.telegram.ui.Cells.k1 {
     }
 
     @Override
-    public final pv0 Y1() {
+    public final iv0 Y1() {
         return null;
     }
 
@@ -145,7 +145,7 @@ public final class l1 implements org.telegram.ui.Cells.k1 {
 
     @Override
     public final boolean h1(MessageObject messageObject) {
-        return vl.a(messageObject);
+        return ul.a(messageObject);
     }
 
     @Override
@@ -159,7 +159,7 @@ public final class l1 implements org.telegram.ui.Cells.k1 {
     }
 
     @Override
-    public final boolean o0(x5 x5Var) {
+    public final boolean o0(z5 z5Var) {
         return false;
     }
 
@@ -179,7 +179,7 @@ public final class l1 implements org.telegram.ui.Cells.k1 {
     }
 
     @Override
-    public final r9 z2() {
+    public final s9 z2() {
         return null;
     }
 

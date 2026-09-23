@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import v7.m7;
 import v7.r6;
 public final class j extends v2.k {
-    public static final AtomicInteger f15389c0 = new AtomicInteger();
+    public static final AtomicInteger f15366c0 = new AtomicInteger();
     public final int E;
     public final g2.h F;
     public final g2.m G;
@@ -48,12 +48,12 @@ public final class j extends v2.k {
     public boolean X;
     public i0 Y;
     public boolean Z;
-    public long f15390a0;
-    public boolean f15391b0;
+    public long f15367a0;
+    public boolean f15368b0;
     public final int v;
-    public final int f15392w;
-    public final Uri f15393x;
-    public final boolean f15394y;
+    public final int f15369w;
+    public final Uri f15370x;
+    public final boolean f15371y;
 
     public j(c cVar, g2.h hVar, g2.m mVar, b2.s sVar, boolean z10, g2.h hVar2, g2.m mVar2, boolean z11, Uri uri, List list, int i10, Object obj, long j3, long j10, long j11, int i11, boolean z12, int i12, boolean z13, boolean z14, b0 b0Var, b2.o oVar, b bVar, q3.i iVar, v vVar, boolean z15, boolean z16, j2.k kVar) {
         super(hVar, mVar, sVar, i10, obj, j3, j10, j11);
@@ -66,8 +66,8 @@ public final class j extends v2.k {
         } else {
             j12 = -9223372036854775807L;
         }
-        this.f15390a0 = j12;
-        this.f15392w = i12;
+        this.f15367a0 = j12;
+        this.f15369w = i12;
         this.G = mVar2;
         this.F = hVar2;
         if (mVar2 != null) {
@@ -77,7 +77,7 @@ public final class j extends v2.k {
         }
         this.V = z17;
         this.R = z11;
-        this.f15393x = uri;
+        this.f15370x = uri;
         this.I = z14;
         this.K = b0Var;
         this.J = z13;
@@ -87,11 +87,11 @@ public final class j extends v2.k {
         this.H = bVar;
         this.O = iVar;
         this.P = vVar;
-        this.f15391b0 = z15;
-        this.f15394y = z16;
-        g0 g0Var = i0.f8081b;
+        this.f15368b0 = z15;
+        this.f15371y = z16;
+        g0 g0Var = i0.f8067b;
         this.Y = a1.e;
-        this.v = f15389c0.getAndIncrement();
+        this.v = f15366c0.getAndIncrement();
     }
 
     public static byte[] e(String str) {
@@ -120,7 +120,7 @@ public final class j extends v2.k {
         b bVar;
         this.T.getClass();
         if (this.S == null && (bVar = this.H) != null) {
-            c3.o c10 = bVar.f15361a.c();
+            c3.o c10 = bVar.f15338a.c();
             if ((c10 instanceof d0) || (c10 instanceof w3.h)) {
                 this.S = this.H;
                 this.V = false;
@@ -137,7 +137,7 @@ public final class j extends v2.k {
         }
         if (!this.W) {
             if (!this.J) {
-                d(this.f43843r, this.f43839b, this.Q);
+                d(this.f43796r, this.f43792b, this.Q);
             }
             this.X = !this.W;
         }
@@ -176,14 +176,14 @@ public final class j extends v2.k {
                         break;
                     }
                 } catch (EOFException e) {
-                    if ((this.d.f3295f & 16384) != 0) {
-                        this.S.f15361a.h(0L, 0L);
+                    if ((this.d.f3290f & 16384) != 0) {
+                        this.S.f15338a.h(0L, 0L);
                         j3 = h.d;
                     } else {
                         throw e;
                     }
                 }
-            } while (this.S.f15361a.m(h, b.f15360f) == 0);
+            } while (this.S.f15338a.m(h, b.f15337f) == 0);
             j3 = h.d;
             this.U = (int) (j3 - mVar.e);
         } catch (Exception unused) {
@@ -195,7 +195,7 @@ public final class j extends v2.k {
     }
 
     public final int f(int i10) {
-        e2.d.g(!this.f15391b0);
+        e2.d.g(!this.f15368b0);
         if (i10 >= this.Y.size()) {
             return 0;
         }
@@ -203,7 +203,7 @@ public final class j extends v2.k {
     }
 
     public final boolean g() {
-        if (this.f15390a0 != -9223372036854775807L) {
+        if (this.f15367a0 != -9223372036854775807L) {
             return true;
         }
         return false;
@@ -220,34 +220,34 @@ public final class j extends v2.k {
         ArrayList arrayList;
         c3.o aVar;
         boolean z10;
-        z3.l lVar;
+        z3.k kVar;
         boolean z11;
         int i11;
-        z3.l lVar2;
+        z3.k kVar2;
         a1 a1Var;
         List singletonList;
         int i12;
-        z3.l lVar3;
+        z3.k kVar3;
         boolean z12;
         p[] pVarArr;
         long j12;
         p[] pVarArr2;
         boolean z13;
         boolean z14;
-        c3.o dVar;
+        c3.o eVar;
         o0[] o0VarArr;
         long j13 = this.h;
         b0 b0Var2 = this.K;
         long open = hVar.open(mVar);
         try {
             b0Var2.h(j13, this.I);
-            c3.l lVar4 = new c3.l(hVar, mVar.e, open);
+            c3.l lVar = new c3.l(hVar, mVar.e, open);
             if (this.S == null) {
                 v vVar = this.P;
-                lVar4.f3788f = 0;
+                lVar.f3783f = 0;
                 try {
                     vVar.G(10);
-                    lVar4.h(vVar.f7931a, 0, 10, false);
+                    lVar.h(vVar.f7917a, 0, 10, false);
                 } catch (EOFException unused) {
                     j3 = -9223372036854775807L;
                 }
@@ -258,20 +258,20 @@ public final class j extends v2.k {
                     vVar.K(3);
                     int w10 = vVar.w();
                     int i13 = w10 + 10;
-                    byte[] bArr = vVar.f7931a;
+                    byte[] bArr = vVar.f7917a;
                     j3 = -9223372036854775807L;
                     if (i13 > bArr.length) {
                         vVar.G(i13);
-                        System.arraycopy(bArr, 0, vVar.f7931a, 0, 10);
+                        System.arraycopy(bArr, 0, vVar.f7917a, 0, 10);
                     }
-                    lVar4.h(vVar.f7931a, 10, w10, false);
-                    p0 c10 = this.O.c(w10, vVar.f7931a);
+                    lVar.h(vVar.f7917a, 10, w10, false);
+                    p0 c10 = this.O.c(w10, vVar.f7917a);
                     if (c10 != null) {
-                        for (o0 o0Var : c10.f3175a) {
+                        for (o0 o0Var : c10.f3170a) {
                             if (o0Var instanceof q3.n) {
                                 q3.n nVar = (q3.n) o0Var;
-                                if ("com.apple.streaming.transportStreamTimestamp".equals(nVar.f41129b)) {
-                                    System.arraycopy(nVar.f41130c, 0, vVar.f7931a, 0, 8);
+                                if ("com.apple.streaming.transportStreamTimestamp".equals(nVar.f41085b)) {
+                                    System.arraycopy(nVar.f41086c, 0, vVar.f7917a, 0, 8);
                                     vVar.J(0);
                                     vVar.I(8);
                                     j10 = vVar.r() & 8589934591L;
@@ -282,10 +282,10 @@ public final class j extends v2.k {
                     }
                     j10 = j3;
                 }
-                lVar4.f3788f = 0;
+                lVar.f3783f = 0;
                 b bVar2 = this.H;
                 if (bVar2 != null) {
-                    c3.o oVar = bVar2.f15361a;
+                    c3.o oVar = bVar2.f15338a;
                     c3.o c11 = oVar.c();
                     if (!(c11 instanceof d0) && !(c11 instanceof w3.h)) {
                         z13 = false;
@@ -300,27 +300,27 @@ public final class j extends v2.k {
                     }
                     e2.d.f("Can't recreate wrapped extractors. Outer type: " + oVar.getClass(), z14);
                     if (oVar instanceof t) {
-                        dVar = new t(bVar2.f15362b.d, bVar2.f15363c, bVar2.d, bVar2.e);
+                        eVar = new t(bVar2.f15339b.d, bVar2.f15340c, bVar2.d, bVar2.e);
                     } else if (oVar instanceof j4.d) {
-                        dVar = new j4.d(0);
+                        eVar = new j4.d(0);
                     } else if (oVar instanceof j4.a) {
-                        dVar = new j4.a();
+                        eVar = new j4.a();
                     } else if (oVar instanceof j4.c) {
-                        dVar = new j4.c();
-                    } else if (oVar instanceof v3.d) {
-                        dVar = new v3.d(0);
+                        eVar = new j4.c();
+                    } else if (oVar instanceof v3.e) {
+                        eVar = new v3.e(0);
                     } else {
                         throw new IllegalStateException("Unexpected extractor type for recreation: ".concat(oVar.getClass().getSimpleName()));
                     }
-                    bVar = new b(dVar, bVar2.f15362b, bVar2.f15363c, bVar2.d, bVar2.e);
+                    bVar = new b(eVar, bVar2.f15339b, bVar2.f15340c, bVar2.d, bVar2.e);
                     j11 = j13;
                 } else {
-                    Uri uri = mVar.f9377a;
+                    Uri uri = mVar.f9363a;
                     Map responseHeaders = hVar.getResponseHeaders();
                     c cVar = this.L;
                     cVar.getClass();
                     b2.s sVar = this.d;
-                    int a2 = v7.g0.a(sVar.f3306r);
+                    int a2 = v7.g0.a(sVar.f3301r);
                     List list = (List) responseHeaders.get("Content-Type");
                     if (list != null && !list.isEmpty()) {
                         str = (String) list.get(0);
@@ -335,10 +335,10 @@ public final class j extends v2.k {
                     c.a(b10, arrayList2);
                     int i14 = 0;
                     for (int i15 = 7; i14 < i15; i15 = 7) {
-                        c.a(c.f15364c[i14], arrayList2);
+                        c.a(c.f15341c[i14], arrayList2);
                         i14++;
                     }
-                    lVar4.f3788f = 0;
+                    lVar.f3783f = 0;
                     int i16 = 0;
                     c3.o oVar2 = null;
                     while (true) {
@@ -352,7 +352,7 @@ public final class j extends v2.k {
                                     if (intValue != 2) {
                                         if (intValue != 7) {
                                             List list2 = this.M;
-                                            z3.l lVar5 = z3.l.D;
+                                            z3.k kVar4 = z3.k.D;
                                             if (intValue != 8) {
                                                 if (intValue != 11) {
                                                     if (intValue != 13) {
@@ -363,24 +363,24 @@ public final class j extends v2.k {
                                                     } else {
                                                         i10 = i16;
                                                         arrayList = arrayList2;
-                                                        aVar = new t(sVar.d, b0Var3, cVar.f15365a, cVar.f15366b);
+                                                        aVar = new t(sVar.d, b0Var3, cVar.f15342a, cVar.f15343b);
                                                         b0Var = b0Var3;
                                                     }
                                                 } else {
                                                     i10 = i16;
                                                     arrayList = arrayList2;
-                                                    z3.l lVar6 = cVar.f15365a;
-                                                    boolean z15 = cVar.f15366b;
+                                                    z3.k kVar5 = cVar.f15342a;
+                                                    boolean z15 = cVar.f15343b;
                                                     if (list2 != null) {
                                                         singletonList = list2;
                                                         i12 = 48;
                                                     } else {
                                                         b2.r rVar = new b2.r();
-                                                        rVar.f3250q = r0.n("application/cea-608");
+                                                        rVar.f3245q = r0.n("application/cea-608");
                                                         singletonList = Collections.singletonList(new b2.s(rVar));
                                                         i12 = 16;
                                                     }
-                                                    String str2 = sVar.f3299k;
+                                                    String str2 = sVar.f3294k;
                                                     if (!TextUtils.isEmpty(str2)) {
                                                         if (r0.b(str2, "audio/mp4a-latm") == null) {
                                                             i12 |= 2;
@@ -390,38 +390,38 @@ public final class j extends v2.k {
                                                         }
                                                     }
                                                     if (!z15) {
-                                                        lVar3 = lVar5;
+                                                        kVar3 = kVar4;
                                                     } else {
-                                                        lVar3 = lVar6;
+                                                        kVar3 = kVar5;
                                                     }
-                                                    aVar = new d0(2, !z15 ? 1 : 0, lVar3, b0Var3, new j4.f(i12, singletonList));
+                                                    aVar = new d0(2, !z15 ? 1 : 0, kVar3, b0Var3, new j4.f(i12, singletonList));
                                                     b0Var = b0Var3;
                                                 }
                                             } else {
                                                 i10 = i16;
                                                 b0Var = b0Var3;
                                                 arrayList = arrayList2;
-                                                z3.l lVar7 = cVar.f15365a;
-                                                boolean z16 = cVar.f15366b;
-                                                p0 p0Var = sVar.f3300l;
+                                                z3.k kVar6 = cVar.f15342a;
+                                                boolean z16 = cVar.f15343b;
+                                                p0 p0Var = sVar.f3295l;
                                                 if (p0Var == null) {
-                                                    lVar = lVar7;
+                                                    kVar = kVar6;
                                                 } else {
                                                     int i17 = 0;
-                                                    z3.l lVar8 = lVar7;
+                                                    z3.k kVar7 = kVar6;
                                                     while (true) {
-                                                        o0[] o0VarArr2 = p0Var.f3175a;
-                                                        lVar = lVar8;
+                                                        o0[] o0VarArr2 = p0Var.f3170a;
+                                                        kVar = kVar7;
                                                         if (i17 >= o0VarArr2.length) {
                                                             break;
                                                         }
                                                         o0 o0Var2 = o0VarArr2[i17];
                                                         if (o0Var2 instanceof s) {
-                                                            z11 = !((s) o0Var2).f15456c.isEmpty();
+                                                            z11 = !((s) o0Var2).f15433c.isEmpty();
                                                             break;
                                                         }
                                                         i17++;
-                                                        lVar8 = lVar;
+                                                        kVar7 = kVar;
                                                     }
                                                 }
                                                 z11 = false;
@@ -432,9 +432,9 @@ public final class j extends v2.k {
                                                 }
                                                 if (!z16) {
                                                     i11 |= 32;
-                                                    lVar2 = lVar5;
+                                                    kVar2 = kVar4;
                                                 } else {
-                                                    lVar2 = lVar;
+                                                    kVar2 = kVar;
                                                 }
                                                 int i18 = i11;
                                                 if (list2 != null) {
@@ -442,13 +442,13 @@ public final class j extends v2.k {
                                                 } else {
                                                     a1Var = a1.e;
                                                 }
-                                                aVar = new w3.h(lVar2, i18, b0Var, a1Var, null);
+                                                aVar = new w3.h(kVar2, i18, b0Var, a1Var, null);
                                             }
                                         } else {
                                             i10 = i16;
                                             b0Var = b0Var3;
                                             arrayList = arrayList2;
-                                            aVar = new v3.d(0, 0L);
+                                            aVar = new v3.e(0, 0L);
                                         }
                                     } else {
                                         i10 = i16;
@@ -470,17 +470,17 @@ public final class j extends v2.k {
                             }
                             aVar.getClass();
                             try {
-                                z10 = aVar.a(lVar4);
-                                lVar4.f3788f = 0;
+                                z10 = aVar.a(lVar);
+                                lVar.f3783f = 0;
                             } catch (EOFException unused2) {
-                                lVar4.f3788f = 0;
+                                lVar.f3783f = 0;
                                 z10 = false;
                             } catch (Throwable th2) {
-                                lVar4.f3788f = 0;
+                                lVar.f3783f = 0;
                                 throw th2;
                             }
                             if (z10) {
-                                bVar = new b(aVar, sVar, b0Var, cVar.f15365a, cVar.f15366b);
+                                bVar = new b(aVar, sVar, b0Var, cVar.f15342a, cVar.f15343b);
                                 break;
                             }
                             b2.s sVar2 = sVar;
@@ -494,15 +494,15 @@ public final class j extends v2.k {
                         } else {
                             j11 = j13;
                             oVar2.getClass();
-                            bVar = new b(oVar2, sVar, b0Var3, cVar.f15365a, cVar.f15366b);
+                            bVar = new b(oVar2, sVar, b0Var3, cVar.f15342a, cVar.f15343b);
                             break;
                         }
                     }
                 }
                 b bVar3 = bVar;
                 this.S = bVar3;
-                c3.o c12 = bVar3.f15361a.c();
-                if (!(c12 instanceof j4.d) && !(c12 instanceof j4.a) && !(c12 instanceof j4.c) && !(c12 instanceof v3.d)) {
+                c3.o c12 = bVar3.f15338a.c();
+                if (!(c12 instanceof j4.d) && !(c12 instanceof j4.a) && !(c12 instanceof j4.c) && !(c12 instanceof v3.e)) {
                     z12 = false;
                 } else {
                     z12 = true;
@@ -514,29 +514,29 @@ public final class j extends v2.k {
                     } else {
                         j12 = j11;
                     }
-                    if (qVar.f15442l0 != j12) {
-                        qVar.f15442l0 = j12;
+                    if (qVar.f15419l0 != j12) {
+                        qVar.f15419l0 = j12;
                         for (p pVar : qVar.L) {
                             if (pVar.F != j12) {
                                 pVar.F = j12;
-                                pVar.f43329z = true;
+                                pVar.f43485z = true;
                             }
                         }
                     }
                 } else {
                     q qVar2 = this.T;
-                    if (qVar2.f15442l0 != 0) {
-                        qVar2.f15442l0 = 0L;
+                    if (qVar2.f15419l0 != 0) {
+                        qVar2.f15419l0 = 0L;
                         for (p pVar2 : qVar2.L) {
                             if (pVar2.F != 0) {
                                 pVar2.F = 0L;
-                                pVar2.f43329z = true;
+                                pVar2.f43485z = true;
                             }
                         }
                     }
                 }
                 this.T.N.clear();
-                this.S.f15361a.g(this.T);
+                this.S.f15338a.g(this.T);
             }
             q qVar3 = this.T;
             b2.o oVar3 = qVar3.m0;
@@ -549,15 +549,15 @@ public final class j extends v2.k {
                     if (i19 >= pVarArr3.length) {
                         break;
                     }
-                    if (qVar3.f15434e0[i19]) {
+                    if (qVar3.f15411e0[i19]) {
                         p pVar3 = pVarArr3[i19];
                         pVar3.I = oVar4;
-                        pVar3.f43329z = true;
+                        pVar3.f43485z = true;
                     }
                     i19++;
                 }
             }
-            return lVar4;
+            return lVar;
         } catch (InterruptedException unused3) {
             throw new InterruptedIOException();
         } catch (TimeoutException e) {

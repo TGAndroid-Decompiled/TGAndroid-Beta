@@ -1,39 +1,12 @@
 package org.telegram.ui;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import org.telegram.messenger.ApplicationLoader;
-public final class xb1 implements LocationListener {
-    public final ThemeActivity f39586a;
-
-    public xb1(ThemeActivity themeActivity) {
-        this.f39586a = themeActivity;
-    }
-
+import android.view.MotionEvent;
+public final class xb1 extends org.telegram.ui.Cells.ka {
     @Override
-    public final void onLocationChanged(Location location) {
-        ThemeActivity themeActivity = this.f39586a;
-        if (location == null) {
-            return;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (getParent() != null && getParent().getParent() != null) {
+            getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
         }
-        themeActivity.K0 = false;
-        LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
-        locationManager.removeUpdates(themeActivity.Q0);
-        locationManager.removeUpdates(themeActivity.R0);
-        themeActivity.B0(location, false);
-    }
-
-    @Override
-    public final void onProviderDisabled(String str) {
-    }
-
-    @Override
-    public final void onProviderEnabled(String str) {
-    }
-
-    @Override
-    public final void onStatusChanged(String str, int i10, Bundle bundle) {
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

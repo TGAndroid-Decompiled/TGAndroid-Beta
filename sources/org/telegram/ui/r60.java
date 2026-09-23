@@ -1,22 +1,33 @@
 package org.telegram.ui;
+public final class r60 implements Runnable {
+    public final int f36701a;
+    public final b70 f36702b;
 
-import android.app.Activity;
-public final class r60 extends rg.j0 {
-    public final s60 W0;
-
-    public r60(s60 s60Var, s60 s60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(i10, i11, activity, s60Var2, e6Var);
-        this.W0 = s60Var;
+    public r60(b70 b70Var, int i10) {
+        this.f36701a = i10;
+        this.f36702b = b70Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.W0.B0 = false;
-    }
-
-    @Override
-    public final void onOpenAnimationEnd() {
-        this.W0.B0 = false;
+    public final void run() {
+        switch (this.f36701a) {
+            case 0:
+                this.f36702b.finishFragment();
+                return;
+            case 1:
+                b70 b70Var = this.f36702b;
+                b70Var.i0();
+                b70Var.e0();
+                return;
+            case 2:
+                b70 b70Var2 = this.f36702b;
+                b70Var2.getClass();
+                b70Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
+            default:
+                b70 b70Var3 = this.f36702b;
+                b70Var3.f31999n.postOnAnimation(new r60(b70Var3, 1));
+                return;
+        }
     }
 }

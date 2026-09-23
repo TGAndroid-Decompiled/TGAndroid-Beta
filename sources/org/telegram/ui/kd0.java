@@ -1,36 +1,26 @@
 package org.telegram.ui;
+public final class kd0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f34681a;
+    public final rg0 f34682b;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class kd0 implements Runnable {
-    public final int f35127a;
-    public final wg0 f35128b;
-
-    public kd0(wg0 wg0Var, int i10) {
-        this.f35127a = i10;
-        this.f35128b = wg0Var;
+    public kd0(rg0 rg0Var, int i10) {
+        this.f34681a = i10;
+        this.f34682b = rg0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35127a) {
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f34681a) {
             case 0:
-                wg0 wg0Var = this.f35128b;
-                wg0Var.f39219r0 = false;
-                wg0Var.x1(true, true);
-                return;
-            case 1:
-                this.f35128b.f39202c0 = false;
+                rg0 rg0Var = this.f34682b;
+                rg0Var.f36820b[rg0Var.f36818a].d();
+                rg0Var.k1(true, true);
                 return;
             default:
-                wg0 wg0Var2 = this.f35128b;
-                if (wg0Var2.getParentActivity() != null && !wg0Var2.getParentActivity().isFinishing() && wg0Var2.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wg0Var2.getParentActivity());
-                    alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
-                    alertDialog$Builder.f18435a.T = LocaleController.getString(R.string.SafetyNetErrorOccurred);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new pd0(wg0Var2, 1));
-                    alertDialog$Builder.o();
+                rg0 rg0Var2 = this.f34682b;
+                rg0Var2.f36833l0 = true;
+                if (rg0Var2.f36818a != 0) {
+                    rg0Var2.u1(0, true, null, true);
                     return;
                 }
                 return;

@@ -1,55 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class lw0 extends org.telegram.ui.Cells.t1 {
-    public final int Ge;
-    public final int He;
-    public final int Ie;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class lw0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
+    public final int f35101a;
+    public final mw0 f35102b;
 
-    public lw0(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, int i12, int i13) {
-        super(context, i10, false, null, e6Var);
-        this.Ge = i13;
-        this.He = i11;
-        this.Ie = i12;
+    public lw0(mw0 mw0Var, int i10) {
+        this.f35101a = i10;
+        this.f35102b = mw0Var;
     }
 
     @Override
-    public final void Y1(Canvas canvas) {
-        switch (this.Ge) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f35101a) {
             case 0:
-                this.f21073i6 = 0;
-                this.f21087j6 = this.Y5.size() - 1;
-                super.Y1(canvas);
+                this.f35102b.Y();
                 return;
             default:
-                this.f21073i6 = 0;
-                this.f21087j6 = this.Y5.size() - 1;
-                super.Y1(canvas);
+                this.f35102b.finishFragment();
                 return;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.Ge) {
-            case 0:
-                setMeasuredDimension(this.He, this.Ie);
-                return;
-            default:
-                setMeasuredDimension(this.He, this.Ie);
-                return;
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        mw0 mw0Var = this.f35102b;
+        mw0Var.getClass();
+        if (((org.telegram.ui.Components.h51) obj).d == 1) {
+            org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) view;
+            boolean z10 = !x8Var.e.h;
+            mw0Var.f35401r = z10;
+            x8Var.setChecked(z10);
+            mw0Var.d.Y2.N(true);
+            mw0Var.V(true);
         }
-    }
-
-    @Override
-    public final void setPressed(boolean z10) {
-        int i10 = this.Ge;
-    }
-
-    private final void A4(boolean z10) {
-    }
-
-    private final void B4(boolean z10) {
     }
 }

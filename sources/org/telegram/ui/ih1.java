@@ -1,33 +1,80 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.view.View;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class ih1 extends FrameLayout {
-    public final rg.p0 f34671a;
+public final class ih1 extends org.telegram.ui.Components.y51 {
+    public gh1 d;
+    public long e;
+    public eh1 f34143f;
+    public String h;
+    public org.telegram.ui.ActionBar.v0 f34144n;
+    public boolean f34145r;
 
-    public ih1(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        LinearLayout linearLayout = new LinearLayout(context);
-        addView(linearLayout, w7.x5.e(-1, -2, 80));
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(context);
-        textView.setTextColor(i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, e6Var), 100));
-        textView.setTextSize(1, 13.0f);
-        textView.setGravity(17);
-        textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
-        linearLayout.addView(textView, w7.x5.t(-1, -2, 0, 16, 17, 17, 16));
-        rg.p0 p0Var = new rg.p0(context, e6Var, false);
-        this.f34671a = p0Var;
-        String string = LocaleController.getString(R.string.UnlockPremiumStickers);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.oq(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) string);
-        p0Var.d.setText(spannableStringBuilder);
-        linearLayout.addView(p0Var, w7.x5.t(-1, 48, 0, 16, 0, 16, 16));
+    @Override
+    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.v51 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ih1.U(java.util.ArrayList, org.telegram.ui.Components.v51):void");
+    }
+
+    @Override
+    public final CharSequence V() {
+        return LocaleController.getString(R.string.EditProfileChannelTitle);
+    }
+
+    @Override
+    public final void W(org.telegram.ui.Components.h51 h51Var, View view) {
+        eh1 eh1Var = this.f34143f;
+        int i10 = h51Var.d;
+        if (i10 == 1) {
+            eh1Var.run(null);
+            finishFragment();
+        } else if (i10 == 2) {
+            this.f34145r = true;
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
+                presentFragment(new ld(org.telegram.ui.Cells.q3.e(0, "step")));
+                return;
+            }
+            presentFragment(new h(0));
+            globalMainSettings.edit().putBoolean("channel_intro", true).apply();
+        } else if (h51Var.f15508a == 12) {
+            finishFragment();
+            eh1Var.run(getMessagesController().getChat(Long.valueOf(-h51Var.f24518x)));
+        }
+    }
+
+    @Override
+    public final boolean X(org.telegram.ui.Components.h51 h51Var, View view) {
+        return false;
+    }
+
+    @Override
+    public final View createView(Context context) {
+        org.telegram.ui.ActionBar.v0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
+        c10.F();
+        c10.H = new hg.e2(this, 19);
+        this.f34144n = c10;
+        c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        this.f34144n.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f34144n.setVisibility(8);
+        super.createView(context);
+        this.f30163a.p1();
+        this.actionBar.setAdaptiveBackground(this.f30163a);
+        return this.fragmentView;
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        if (this.f34145r) {
+            gh1 gh1Var = this.d;
+            gh1Var.f33574c = false;
+            gh1Var.f33575f.add(new hh1(this, 0));
+            this.f34145r = false;
+        }
     }
 }

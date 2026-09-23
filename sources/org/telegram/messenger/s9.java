@@ -4,12 +4,12 @@ import java.util.Comparator;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class s9 implements Comparator {
-    public final int f17300a;
-    public final MessagesController f17301b;
+    public final int f17275a;
+    public final MessagesController f17276b;
 
     public s9(MessagesController messagesController, int i10) {
-        this.f17300a = i10;
-        this.f17301b = messagesController;
+        this.f17275a = i10;
+        this.f17276b = messagesController;
     }
 
     @Override
@@ -21,27 +21,27 @@ public final class s9 implements Comparator {
         int lambda$processUpdatesQueue$327;
         int lambda$renameSavedReactionTag$484;
         int lambda$updateSavedReactionTags$483;
-        switch (this.f17300a) {
+        switch (this.f17275a) {
             case 0:
-                lambda$new$9 = this.f17301b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                lambda$new$9 = this.f17276b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
                 return lambda$new$9;
             case 1:
-                lambda$new$10 = this.f17301b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                lambda$new$10 = this.f17276b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
                 return lambda$new$10;
             case 2:
-                lambda$new$11 = this.f17301b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
+                lambda$new$11 = this.f17276b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
                 return lambda$new$11;
             case 3:
-                lambda$new$12 = this.f17301b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
+                lambda$new$12 = this.f17276b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
                 return lambda$new$12;
             case 4:
-                lambda$processUpdatesQueue$327 = this.f17301b.lambda$processUpdatesQueue$327((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
+                lambda$processUpdatesQueue$327 = this.f17276b.lambda$processUpdatesQueue$327((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
                 return lambda$processUpdatesQueue$327;
             case 5:
-                lambda$renameSavedReactionTag$484 = this.f17301b.lambda$renameSavedReactionTag$484((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                lambda$renameSavedReactionTag$484 = this.f17276b.lambda$renameSavedReactionTag$484((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
                 return lambda$renameSavedReactionTag$484;
             default:
-                lambda$updateSavedReactionTags$483 = this.f17301b.lambda$updateSavedReactionTags$483((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                lambda$updateSavedReactionTags$483 = this.f17276b.lambda$updateSavedReactionTags$483((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
                 return lambda$updateSavedReactionTags$483;
         }
     }

@@ -6,9 +6,9 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class wf0 extends FrameLayout {
-    public float f29716a;
-    public float f29717b;
-    public boolean f29718c;
+    public float f29620a;
+    public float f29621b;
+    public boolean f29622c;
     public boolean d;
     public final PipRoundVideoView e;
 
@@ -19,22 +19,22 @@ public final class wf0 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.h5 h5Var = org.telegram.ui.ActionBar.i6.f18958k3;
-        if (h5Var != null) {
-            h5Var.setAlpha((int) (getAlpha() * 255.0f));
-            org.telegram.ui.ActionBar.i6.f18958k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
-            org.telegram.ui.ActionBar.i6.f18958k3.draw(canvas);
-            org.telegram.ui.ActionBar.i6.S1.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19093ra, false));
-            org.telegram.ui.ActionBar.i6.S1.setAlpha((int) (getAlpha() * 255.0f));
-            canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), org.telegram.ui.ActionBar.i6.S1);
+        org.telegram.ui.ActionBar.g5 g5Var = org.telegram.ui.ActionBar.h6.f18913k3;
+        if (g5Var != null) {
+            g5Var.setAlpha((int) (getAlpha() * 255.0f));
+            org.telegram.ui.ActionBar.h6.f18913k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
+            org.telegram.ui.ActionBar.h6.f18913k3.draw(canvas);
+            org.telegram.ui.ActionBar.h6.S1.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19048ra, false));
+            org.telegram.ui.ActionBar.h6.S1.setAlpha((int) (getAlpha() * 255.0f));
+            canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), org.telegram.ui.ActionBar.h6.S1);
         }
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f29716a = motionEvent.getRawX();
-            this.f29717b = motionEvent.getRawY();
+            this.f29620a = motionEvent.getRawX();
+            this.f29621b = motionEvent.getRawY();
             this.d = true;
         }
         return true;

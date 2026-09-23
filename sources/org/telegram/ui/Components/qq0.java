@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class qq0 implements Runnable {
-    public final int f27418a;
-    public final yu0 f27419b;
+    public final int f27433a;
+    public final yu0 f27434b;
 
     public qq0(yu0 yu0Var, int i10) {
-        this.f27418a = i10;
-        this.f27419b = yu0Var;
+        this.f27433a = i10;
+        this.f27434b = yu0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f27418a) {
+        switch (this.f27433a) {
             case 0:
-                yu0 yu0Var = this.f27419b;
-                ks ksVar = yu0Var.P0;
-                yu0Var.f30345b2 = (int) ksVar.c(AndroidUtilities.dp(14.0f));
+                yu0 yu0Var = this.f27434b;
+                ls lsVar = yu0Var.P0;
+                yu0Var.f30406b2 = (int) lsVar.c(AndroidUtilities.dp(14.0f));
                 nr0 nr0Var = yu0Var.V;
                 if (nr0Var != null) {
-                    nr0Var.setPaddingTop(AndroidUtilities.dp(48.0f) + ((int) ksVar.c(AndroidUtilities.dp(7.0f))));
+                    nr0Var.setPaddingTop(AndroidUtilities.dp(48.0f) + ((int) lsVar.c(AndroidUtilities.dp(7.0f))));
                 }
-                rt0[] rt0VarArr = yu0Var.f30365k0;
+                rt0[] rt0VarArr = yu0Var.f30426k0;
                 if (rt0VarArr != null) {
                     for (rt0 rt0Var : rt0VarArr) {
                         if (rt0Var != null) {
@@ -32,22 +32,22 @@ public final class qq0 implements Runnable {
                             int paddingRight = rt0Var.h.getPaddingRight();
                             xr0 xr0Var2 = rt0Var.h;
                             int Y = yu0Var.Y(yu0Var.v0());
-                            xr0Var2.f27442e3 = Y;
+                            xr0Var2.f27449e3 = Y;
                             xr0Var.setPadding(paddingLeft, Z, paddingRight, Y);
-                            AndroidUtilities.doOnLayout(rt0Var.h, new id(rt0Var, paddingTop - rt0Var.h.getPaddingTop(), 8));
+                            AndroidUtilities.doOnLayout(rt0Var.h, new kd(rt0Var, paddingTop - rt0Var.h.getPaddingTop(), 8));
                         }
                     }
                     return;
                 }
                 return;
             case 1:
-                yu0 yu0Var2 = this.f27419b;
+                yu0 yu0Var2 = this.f27434b;
                 yu0Var2.b1(false);
                 yu0Var2.G.h(true);
-                yu0Var2.f30341a1 = 0;
+                yu0Var2.f30402a1 = 0;
                 return;
             default:
-                this.f27419b.k0();
+                this.f27434b.k0();
                 return;
         }
     }

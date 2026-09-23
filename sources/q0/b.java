@@ -2,12 +2,12 @@ package q0;
 
 import j$.util.Objects;
 public final class b {
-    public final Object f41071a;
-    public final Object f41072b;
+    public final Object f41027a;
+    public final Object f41028b;
 
     public b(Object obj, Object obj2) {
-        this.f41071a = obj;
-        this.f41072b = obj2;
+        this.f41027a = obj;
+        this.f41028b = obj2;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +15,7 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (!Objects.equals(bVar.f41071a, this.f41071a) || !Objects.equals(bVar.f41072b, this.f41072b)) {
+        if (!Objects.equals(bVar.f41027a, this.f41027a) || !Objects.equals(bVar.f41028b, this.f41028b)) {
             return false;
         }
         return true;
@@ -24,13 +24,13 @@ public final class b {
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        Object obj = this.f41071a;
+        Object obj = this.f41027a;
         if (obj == null) {
             hashCode = 0;
         } else {
             hashCode = obj.hashCode();
         }
-        Object obj2 = this.f41072b;
+        Object obj2 = this.f41028b;
         if (obj2 != null) {
             i10 = obj2.hashCode();
         }
@@ -38,6 +38,6 @@ public final class b {
     }
 
     public final String toString() {
-        return "Pair{" + this.f41071a + " " + this.f41072b + "}";
+        return "Pair{" + this.f41027a + " " + this.f41028b + "}";
     }
 }

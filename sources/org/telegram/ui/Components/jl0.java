@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
-
-import java.util.ArrayList;
-public abstract class jl0 {
-    public static final ArrayList f25369a = new ArrayList();
+public final class jl0 {
+    public float f25344a;
+    public float f25345b;
+    public float f25346c;
 }

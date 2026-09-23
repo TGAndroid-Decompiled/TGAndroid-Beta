@@ -7,21 +7,21 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.CheckBoxSquare;
-import org.telegram.ui.Components.c90;
-import org.telegram.ui.Components.z80;
+import org.telegram.ui.Components.a90;
+import org.telegram.ui.Components.d90;
 public final class p6 extends FrameLayout {
-    public final z80 f20583a;
-    public final c90 f20584b;
-    public final CheckBoxSquare f20585c;
+    public final a90 f20563a;
+    public final d90 f20564b;
+    public final CheckBoxSquare f20565c;
 
-    public p6(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public p6(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         int i10;
         int i11;
         float f7;
         float f10;
         CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
-        this.f20585c = checkBoxSquare;
+        this.f20565c = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
         checkBoxSquare.setFocusable(false);
         checkBoxSquare.setFocusableInTouchMode(false);
@@ -32,21 +32,21 @@ public final class p6 extends FrameLayout {
             i10 = 3;
         }
         addView(checkBoxSquare, w7.x5.d(18, 18.0f, i10 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
-        z80 z80Var = new z80(this);
-        this.f20583a = z80Var;
-        c90 c90Var = new c90(context, z80Var, e6Var);
-        this.f20584b = c90Var;
-        c90Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, e6Var));
-        c90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.J6, e6Var));
-        c90Var.setTextSize(1, 15.0f);
-        c90Var.setMaxLines(2);
+        a90 a90Var = new a90(this);
+        this.f20563a = a90Var;
+        d90 d90Var = new d90(context, a90Var, d6Var);
+        this.f20564b = d90Var;
+        d90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.J6, d6Var));
+        d90Var.setTextSize(1, 15.0f);
+        d90Var.setMaxLines(2);
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
             i11 = 3;
         }
-        c90Var.setGravity(i11 | 16);
-        c90Var.setEllipsize(TextUtils.TruncateAt.END);
+        d90Var.setGravity(i11 | 16);
+        d90Var.setEllipsize(TextUtils.TruncateAt.END);
         boolean z10 = LocaleController.isRTL;
         int i12 = (z10 ? 5 : 3) | 48;
         if (z10) {
@@ -59,27 +59,27 @@ public final class p6 extends FrameLayout {
         } else {
             f10 = 16.0f;
         }
-        addView(c90Var, w7.x5.d(-1, -1.0f, i12, f7, 21.0f, f10, 21.0f));
+        addView(d90Var, w7.x5.d(-1, -1.0f, i12, f7, 21.0f, f10, 21.0f));
         setWillNotDraw(false);
     }
 
     public CheckBoxSquare getCheckBox() {
-        return this.f20585c;
+        return this.f20565c;
     }
 
     public TextView getTextView() {
-        return this.f20584b;
+        return this.f20564b;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        z80 z80Var = this.f20583a;
-        if (z80Var != null) {
+        a90 a90Var = this.f20563a;
+        if (a90Var != null) {
             canvas.save();
-            c90 c90Var = this.f20584b;
-            canvas.translate(c90Var.getLeft(), c90Var.getTop());
-            if (z80Var.f(canvas)) {
+            d90 d90Var = this.f20564b;
+            canvas.translate(d90Var.getLeft(), d90Var.getTop());
+            if (a90Var.f(canvas)) {
                 invalidate();
             }
             canvas.restore();
@@ -87,10 +87,10 @@ public final class p6 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        this.f20585c.a(z10, true);
+        this.f20565c.a(z10, true);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f20584b.setText(charSequence);
+        this.f20564b.setText(charSequence);
     }
 }

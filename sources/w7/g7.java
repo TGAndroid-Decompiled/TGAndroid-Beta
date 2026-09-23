@@ -7,12 +7,12 @@ public abstract class g7 {
     public static LanguageIdentifierImpl a() {
         String a2;
         ub.a aVar = (ub.a) qb.g.c().a(ub.a.class);
-        ub.e eVar = aVar.f43646b;
+        ub.e eVar = aVar.f43598b;
         eVar.getClass();
-        v7.y8 y8Var = aVar.f43645a;
-        LanguageIdentifierImpl languageIdentifierImpl = new LanguageIdentifierImpl(eVar, y8Var, (Executor) aVar.f43647c.f41231a.get());
+        v7.y8 y8Var = aVar.f43597a;
+        LanguageIdentifierImpl languageIdentifierImpl = new LanguageIdentifierImpl(eVar, y8Var, (Executor) aVar.f43599c.f41187a.get());
         ?? obj = new Object();
-        obj.f15257c = languageIdentifierImpl.f7380f;
+        obj.f15234c = languageIdentifierImpl.f7366f;
         v7.r1 r1Var = new v7.r1(3, false);
         r1Var.d = LanguageIdentifierImpl.k();
         obj.d = new v7.g7(r1Var);
@@ -21,10 +21,10 @@ public abstract class g7 {
         if (task.isSuccessful()) {
             a2 = (String) task.getResult();
         } else {
-            a2 = n6.i.f15046c.a(y8Var.f44190g);
+            a2 = n6.i.f15023c.a(y8Var.f44144g);
         }
-        qb.m.f41250a.execute(new com.google.android.gms.internal.cast.p(y8Var, aVar2, v7.j6.ON_DEVICE_LANGUAGE_IDENTIFICATION_CREATE, a2, 6));
-        ((ub.e) languageIdentifierImpl.d.get()).f41241b.incrementAndGet();
+        qb.m.f41206a.execute(new com.google.android.gms.internal.cast.p(y8Var, aVar2, v7.j6.ON_DEVICE_LANGUAGE_IDENTIFICATION_CREATE, a2, 6));
+        ((ub.e) languageIdentifierImpl.d.get()).f41197b.incrementAndGet();
         return languageIdentifierImpl;
     }
 }

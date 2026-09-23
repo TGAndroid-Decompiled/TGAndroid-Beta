@@ -13,7 +13,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     public static final int DEFAULT_TIMEOUT_INDEX = 1;
     private static final ProxyRotationController INSTANCE = new ProxyRotationController();
     public static final List<Integer> ROTATION_TIMEOUTS = Arrays.asList(5, 10, 15, 30, 60);
-    private Runnable checkProxyAndSwitchRunnable = new vg(this, 4);
+    private Runnable checkProxyAndSwitchRunnable = new ug(this, 4);
     private boolean isCurrentlyChecking;
 
     public static void init() {
@@ -42,7 +42,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j3) {
-        AndroidUtilities.runOnUIThread(new rh(proxyInfo, j3, 0));
+        AndroidUtilities.runOnUIThread(new qh(proxyInfo, j3, 0));
     }
 
     public void lambda$new$2() {

@@ -21,7 +21,7 @@ public final class b implements View.OnClickListener {
             case 1:
                 e0 e0Var = this.f22538b;
                 org.telegram.ui.Cells.i3 i3Var = e0Var.A0;
-                AndroidUtilities.hideKeyboard(i3Var.f20190b);
+                AndroidUtilities.hideKeyboard(i3Var.f20177b);
                 e0Var.I0 = i3Var.getText().toString();
                 e0Var.q0();
                 e0Var.p0(true);
@@ -29,13 +29,13 @@ public final class b implements View.OnClickListener {
                 return;
             case 2:
                 e0 e0Var2 = this.f22538b;
-                if (e0Var2.f23461k0 != null) {
+                if (e0Var2.f23505k0 != null) {
                     TL_iv.RichMessage g02 = e0Var2.g0();
                     if (g02 != null) {
-                        e0Var2.f23461k0.run(g02);
+                        e0Var2.f23505k0.run(g02);
                     }
-                } else if (e0Var2.f23460j0 != null && e0Var2.h0() != null) {
-                    e0Var2.f23460j0.run(e0Var2.h0());
+                } else if (e0Var2.f23504j0 != null && e0Var2.h0() != null) {
+                    e0Var2.f23504j0.run(e0Var2.h0());
                 }
                 e0Var2.dismiss();
                 return;

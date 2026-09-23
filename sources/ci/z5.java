@@ -1,85 +1,82 @@
 package ci;
 
-import android.content.Context;
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-public final class z5 extends t2 {
-    public final int H;
-    public final r6 I;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.xn;
+public final class z5 extends xn {
+    public final Utilities.Callback2 Pc;
+    public final q6 Qc;
 
-    public z5(r6 r6Var, Context context, e6 e6Var, int i10) {
-        super(context, e6Var, false, false);
-        this.I = r6Var;
-        this.H = i10;
+    public z5(q6 q6Var, Utilities.Callback2 callback2) {
+        super(null);
+        this.Qc = q6Var;
+        this.Pc = callback2;
     }
 
     @Override
-    public final boolean l0(Integer num) {
-        k6 k6Var = this.I.R0;
-        if (num.intValue() == 3) {
-            int i10 = 0;
-            for (int i11 = 0; i11 < k6Var.getChildCount(); i11++) {
-                if (k6Var.getChildAt(i11) instanceof qg.d2) {
-                    i10++;
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
+        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint;
+        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint2;
+        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
+            tL_mediaAreaGeoPoint2 = new TL_stories.TL_mediaAreaGeoPoint();
+            tL_mediaAreaGeoPoint2.geo = messageMedia.geo;
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            TLRPC.TL_messageMediaVenue tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) messageMedia;
+            long j10 = tL_messageMediaVenue.query_id;
+            if (j10 != -1 && j10 != -2) {
+                TL_stories.TL_inputMediaAreaVenue tL_inputMediaAreaVenue = new TL_stories.TL_inputMediaAreaVenue();
+                tL_inputMediaAreaVenue.query_id = tL_messageMediaVenue.query_id;
+                tL_inputMediaAreaVenue.result_id = tL_messageMediaVenue.result_id;
+                tL_mediaAreaGeoPoint = tL_inputMediaAreaVenue;
+            } else {
+                TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint3 = new TL_stories.TL_mediaAreaGeoPoint();
+                tL_mediaAreaGeoPoint3.geo = messageMedia.geo;
+                TL_stories.TL_geoPointAddress tL_geoPointAddress = tL_messageMediaVenue.geoAddress;
+                tL_mediaAreaGeoPoint3.address = tL_geoPointAddress;
+                if (tL_geoPointAddress != null) {
+                    tL_mediaAreaGeoPoint3.flags |= 1;
                 }
+                Utilities.globalQueue.postRunnable(new ai.ba(18, messageMedia, tL_mediaAreaGeoPoint3));
+                tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
-            if (i10 >= MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitDefault && !UserConfig.getInstance(this.currentAccount).isPremium()) {
-                String formatPluralString = LocaleController.formatPluralString("StoryPremiumWidgets2", MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium, new Object[0]);
-                try {
-                    this.container.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
-                new org.telegram.ui.Components.vc(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.i6.gc, 0, new androidx.fragment.app.a0(this, 10), this.resourcesProvider), R.raw.star_premium_2).k(true);
-                return false;
-            } else if (i10 >= MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium) {
-                try {
-                    this.container.performHapticFeedback(3);
-                } catch (Exception unused2) {
-                }
-                new org.telegram.ui.Components.vc(this.container, this.resourcesProvider).M(LocaleController.getString("LimitReached", R.string.LimitReached), LocaleController.formatPluralString("StoryReactionsWidgetLimit2", MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium, new Object[0]), R.raw.chats_infotip).k(true);
-                return false;
-            }
+            tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
+        } else {
+            return;
         }
-        return true;
+        this.Pc.run(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
-    public final boolean m0(Integer num) {
-        r6 r6Var = this.I;
-        k6 k6Var = r6Var.R0;
-        boolean z10 = false;
-        if (r6Var.X1) {
-            if (num.intValue() != 2) {
-                return false;
-            }
-        } else if (num.intValue() == 5) {
-            int i10 = 0;
-            while (true) {
-                if (i10 >= k6Var.getChildCount()) {
-                    break;
-                } else if (k6Var.getChildAt(i10) instanceof qg.y2) {
-                    z10 = true;
-                    break;
-                } else {
-                    i10++;
-                }
-            }
-            return !z10;
-        }
-        return true;
+    public final Activity getParentActivity() {
+        return AndroidUtilities.findActivity(this.Qc.getContext());
     }
 
     @Override
-    public final boolean n0(ai.n8 n8Var) {
-        return this.I.f0(n8Var);
+    public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
+        return this.Qc.G1;
     }
 
     @Override
-    public final void onDismissAnimationStart() {
-        super.onDismissAnimationStart();
-        this.I.R0(this.H);
+    public final TLRPC.User i() {
+        return UserConfig.getInstance(this.currentAccount).getCurrentUser();
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        return false;
+    }
+
+    @Override
+    public final boolean x9() {
+        return false;
     }
 }

@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class va implements bh.a {
-    public final int f38455a;
-    public final Object f38456b;
+    public final int f38334a;
+    public final Object f38335b;
 
     public va(Object obj, int i10) {
-        this.f38455a = i10;
-        this.f38456b = obj;
+        this.f38334a = i10;
+        this.f38335b = obj;
     }
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f38455a) {
+        switch (this.f38334a) {
             case 0:
             case 1:
             default:
@@ -24,22 +24,22 @@ public final class va implements bh.a {
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f38455a) {
+        switch (this.f38334a) {
             case 0:
-                ((rb) this.f38456b).Z(canvas, rectF);
+                ((rb) this.f38335b).Z(canvas, rectF);
                 return;
             case 1:
-                aq0 aq0Var = (aq0) this.f38456b;
-                j0 j0Var = aq0Var.d;
-                lp0 lp0Var = aq0Var.h.f38080b;
-                gh.d.a(lp0Var, canvas, rectF, lp0Var, j0Var);
-                lp0 lp0Var2 = aq0Var.f31885n.f38080b;
-                gh.d.a(lp0Var2, canvas, rectF, lp0Var2, j0Var);
+                up0 up0Var = (up0) this.f38335b;
+                k0 k0Var = up0Var.d;
+                fp0 fp0Var = up0Var.h.f35921b;
+                gh.d.a(fp0Var, canvas, rectF, fp0Var, k0Var);
+                fp0 fp0Var2 = up0Var.f38158n.f35921b;
+                gh.d.a(fp0Var2, canvas, rectF, fp0Var2, k0Var);
                 return;
             default:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f38456b;
-                org.telegram.ui.Components.ll0 ll0Var = premiumPreviewFragment.f31152a;
-                gh.d.a(ll0Var, canvas, rectF, ll0Var, premiumPreviewFragment.f31158d0);
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f38335b;
+                org.telegram.ui.Components.ml0 ml0Var = premiumPreviewFragment.f31126a;
+                gh.d.a(ml0Var, canvas, rectF, ml0Var, premiumPreviewFragment.f31132d0);
                 return;
         }
     }

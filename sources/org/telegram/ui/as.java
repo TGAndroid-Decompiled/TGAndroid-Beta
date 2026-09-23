@@ -1,20 +1,59 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class as {
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f31926a;
-    public org.telegram.ui.ActionBar.b1 f31927b;
-    public org.telegram.ui.ActionBar.f1[] f31928c;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class as implements ActionMode.Callback {
+    public final bs f31876a;
 
-    public final void a(float f7, boolean z10) {
-        org.telegram.ui.ActionBar.f1[] f1VarArr = this.f31928c;
-        for (int i10 = 0; i10 < f1VarArr.length; i10++) {
-            if (z10 && ((i10 == 0 && Math.abs(f7 - 0.2f) < 0.01f) || ((i10 == 1 && Math.abs(f7 - 0.5f) < 0.1f) || ((i10 == 2 && Math.abs(f7 - 1.0f) < 0.1f) || ((i10 == 3 && Math.abs(f7 - 1.5f) < 0.1f) || (i10 == 4 && Math.abs(f7 - 2.0f) < 0.1f)))))) {
-                f1VarArr[i10].c(-9718023, -9718023);
-            } else {
-                f1VarArr[i10].c(-328966, -328966);
+    public as(bs bsVar) {
+        this.f31876a = bsVar;
+    }
+
+    @Override
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        zr zrVar;
+        ClipboardManager clipboardManager;
+        ClipData primaryClip;
+        int i10;
+        if (menuItem.getItemId() != 16908322) {
+            return true;
+        }
+        bs bsVar = this.f31876a;
+        if (bsVar.getParent() instanceof zr) {
+            zrVar = (zr) bsVar.getParent();
+        } else {
+            zrVar = null;
+        }
+        if (zrVar != null && (clipboardManager = (ClipboardManager) f0.e.f(bsVar.getContext(), ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
+            String charSequence = primaryClip.getItemAt(0).getText().toString();
+            try {
+                i10 = Integer.parseInt(charSequence);
+            } catch (Exception unused) {
+                i10 = -1;
+            }
+            if (i10 > 0) {
+                zrVar.c(charSequence, true);
             }
         }
-        this.f31927b.d(f7, true);
+        bsVar.hideActionMode();
+        return true;
+    }
+
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        menu.add(0, 16908322, 0, 17039371);
+        return true;
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return true;
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
     }
 }

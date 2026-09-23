@@ -6,40 +6,40 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.qe;
-import yh.z3;
+import yh.y3;
 public final class f implements RequestDelegate {
-    public final int f45082a = 0;
-    public final boolean f45083b;
-    public final boolean f45084c;
+    public final int f45036a = 0;
+    public final boolean f45037b;
+    public final boolean f45038c;
     public final Object d;
     public final Object e;
-    public final Object f45085f;
+    public final Object f45039f;
 
     public f(n nVar, boolean z10, e eVar, String str, boolean z11) {
         this.d = nVar;
-        this.f45083b = z10;
+        this.f45037b = z10;
         this.e = eVar;
-        this.f45085f = str;
-        this.f45084c = z11;
+        this.f45039f = str;
+        this.f45038c = z11;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f45082a) {
+        switch (this.f45036a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new qe((n) this.d, this.f45083b, (Runnable) this.e, (String) this.f45085f, tL_error, tLObject, this.f45084c));
+                AndroidUtilities.runOnUIThread(new qe((n) this.d, this.f45037b, (Runnable) this.e, (String) this.f45039f, tL_error, tLObject, this.f45038c));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new qe((z3) this.d, tLObject, this.f45083b, (TLRPC.Document) this.e, this.f45084c, tL_error, (TL_stars.saveStarGift) this.f45085f));
+                AndroidUtilities.runOnUIThread(new qe((y3) this.d, tLObject, this.f45037b, (TLRPC.Document) this.e, this.f45038c, tL_error, (TL_stars.saveStarGift) this.f45039f));
                 return;
         }
     }
 
-    public f(z3 z3Var, boolean z10, TLRPC.Document document, boolean z11, TL_stars.saveStarGift savestargift) {
-        this.d = z3Var;
-        this.f45083b = z10;
+    public f(y3 y3Var, boolean z10, TLRPC.Document document, boolean z11, TL_stars.saveStarGift savestargift) {
+        this.d = y3Var;
+        this.f45037b = z10;
         this.e = document;
-        this.f45084c = z11;
-        this.f45085f = savestargift;
+        this.f45038c = z11;
+        this.f45039f = savestargift;
     }
 }

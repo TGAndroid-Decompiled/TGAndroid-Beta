@@ -1,4 +1,4 @@
 package k6;
 public abstract class n {
-    public static final l[] f13523a = {o.f13524a, o.f13525b};
+    public static final l[] f13511a = {o.f13512a, o.f13513b};
 }

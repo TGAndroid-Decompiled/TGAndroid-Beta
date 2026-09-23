@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.lx;
-public final class q extends ll0 {
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.ix;
+public final class q extends ml0 {
     public final int X2;
-    public final lx Y2;
+    public final ix Y2;
 
-    public q(lx lxVar, Context context, int i10) {
+    public q(ix ixVar, Context context, int i10) {
         super(context, null);
         this.X2 = i10;
-        this.Y2 = lxVar;
+        this.Y2 = ixVar;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class q extends ll0 {
         boolean z10;
         switch (this.X2) {
             case 1:
-                lx lxVar = this.Y2;
-                ArrayList arrayList = lxVar.P;
+                ix ixVar = this.Y2;
+                ArrayList arrayList = ixVar.P;
                 arrayList.clear();
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
@@ -42,13 +42,13 @@ public final class q extends ll0 {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (R != lxVar.f569y.size() - 1) {
+                    if (R != ixVar.f576y.size() - 1) {
                         z11 = false;
                     }
                     a0Var.f496c = z11;
                     arrayList.add(a0Var);
                 }
-                Collections.sort(arrayList, lxVar.f566w0);
+                Collections.sort(arrayList, ixVar.f573w0);
                 while (i10 < arrayList.size()) {
                     a0 a0Var2 = (a0) arrayList.get(i10);
                     int save = canvas.save();
@@ -77,8 +77,8 @@ public final class q extends ll0 {
         switch (this.X2) {
             case 0:
                 if (motionEvent.getAction() == 0) {
-                    lx lxVar = this.Y2;
-                    if (lxVar.f542c0 > 0.2f || lxVar.getAlpha() == 0.0f) {
+                    ix ixVar = this.Y2;
+                    if (ixVar.f549c0 > 0.2f || ixVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }
@@ -105,9 +105,9 @@ public final class q extends ll0 {
     public void k0(int i10, int i11) {
         switch (this.X2) {
             case 1:
-                ci.f4 f4Var = this.Y2.J;
-                if (f4Var != null) {
-                    f4Var.e(true);
+                ci.e4 e4Var = this.Y2.J;
+                if (e4Var != null) {
+                    e4Var.e(true);
                     return;
                 }
                 return;
@@ -130,7 +130,7 @@ public final class q extends ll0 {
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         switch (this.X2) {
             case 0:
-                ArrayList arrayList = this.Y2.f540b0;
+                ArrayList arrayList = this.Y2.f547b0;
                 super.onLayout(z10, i10, i11, i12, i13);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((Runnable) arrayList.get(i14)).run();

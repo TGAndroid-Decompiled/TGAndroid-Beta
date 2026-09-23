@@ -29,43 +29,43 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.g01;
-import org.telegram.ui.Components.o20;
-import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.f01;
+import org.telegram.ui.Components.p20;
+import org.telegram.ui.Components.pq;
 public abstract class ia {
-    public static o20 f1013b;
-    public static o20 f1014c;
-    public static o20 d;
+    public static p20 f1001b;
+    public static p20 f1002c;
+    public static p20 d;
     public static Paint e;
-    public static RectF f1015f;
-    public static Paint f1016g;
+    public static RectF f1003f;
+    public static Paint f1004g;
     public static Paint h;
-    public static g01 f1017i;
-    public static int f1018j;
-    public static BitmapDrawable f1021m;
-    public static final o20[] f1012a = new o20[2];
-    public static final Paint[] f1019k = new Paint[2];
-    public static final int[] f1020l = new int[2];
-    public static final RectF f1022n = new RectF();
-    public static final z9 f1023o = new z9(0);
-    public static final RectF f1024p = new RectF();
-    public static final Path f1025q = new Path();
-    public static final Matrix f1026r = new Matrix();
-    public static final PathMeasure f1027s = new PathMeasure();
-    public static final Path f1028t = new Path();
+    public static f01 f1005i;
+    public static int f1006j;
+    public static BitmapDrawable f1009m;
+    public static final p20[] f1000a = new p20[2];
+    public static final Paint[] f1007k = new Paint[2];
+    public static final int[] f1008l = new int[2];
+    public static final RectF f1010n = new RectF();
+    public static final z9 f1011o = new z9(0);
+    public static final RectF f1012p = new RectF();
+    public static final Path f1013q = new Path();
+    public static final Matrix f1014r = new Matrix();
+    public static final PathMeasure f1015s = new PathMeasure();
+    public static final Path f1016t = new Path();
 
-    public static void a(org.telegram.ui.ActionBar.j5 j5Var) {
+    public static void a(org.telegram.ui.ActionBar.i5 i5Var) {
         String string = LocaleController.getString(R.string.UploadingStory);
         if (string.indexOf("…") > 0) {
             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
             pc pcVar = new pc();
             valueOf.setSpan(pcVar, valueOf.length() - 1, valueOf.length(), 0);
-            pcVar.f1402a = j5Var;
-            pcVar.f1406n = true;
-            j5Var.l(valueOf, false);
+            pcVar.f1403a = i5Var;
+            pcVar.f1407n = true;
+            i5Var.l(valueOf, false);
             return;
         }
-        j5Var.l(string, false);
+        i5Var.l(string, false);
     }
 
     public static void b(TL_stories.StoryItem storyItem, TLRPC.User user) {
@@ -76,12 +76,12 @@ public abstract class ia {
             TL_stories.StoryViews storyViews = storyItem.views;
             if (storyViews.views_count == 0) {
                 storyViews.views_count = 1;
-                storyViews.recent_viewers.add(Long.valueOf(user.f18256id));
+                storyViews.recent_viewers.add(Long.valueOf(user.f18230id));
             }
         }
     }
 
-    public static void c(org.telegram.ui.ActionBar.e6 e6Var) {
+    public static void c(org.telegram.ui.ActionBar.d6 d6Var) {
         if (e == null) {
             Paint paint = new Paint(1);
             e = paint;
@@ -89,9 +89,9 @@ public abstract class ia {
             e.setStrokeWidth(AndroidUtilities.dpf2(1.3f));
             e.setStrokeCap(Paint.Cap.ROUND);
         }
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18834d6, e6Var);
-        if (f1018j != v02) {
-            f1018j = v02;
+        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18789d6, d6Var);
+        if (f1006j != v02) {
+            f1006j = v02;
             float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(v02);
             if (computePerceivedBrightness < 0.721f) {
                 if (computePerceivedBrightness < 0.25f) {
@@ -106,9 +106,9 @@ public abstract class ia {
         }
     }
 
-    public static void d(org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+    public static void d(org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         int i10;
-        Paint[] paintArr = f1019k;
+        Paint[] paintArr = f1007k;
         if (paintArr[z10 ? 1 : 0] == null) {
             Paint paint = new Paint(1);
             paintArr[z10 ? 1 : 0] = paint;
@@ -117,12 +117,12 @@ public abstract class ia {
             paintArr[z10 ? 1 : 0].setStrokeCap(Paint.Cap.ROUND);
         }
         if (!z10) {
-            i10 = org.telegram.ui.ActionBar.i6.f19110s8;
+            i10 = org.telegram.ui.ActionBar.h6.f19065s8;
         } else {
-            i10 = org.telegram.ui.ActionBar.i6.M8;
+            i10 = org.telegram.ui.ActionBar.h6.M8;
         }
-        int v02 = org.telegram.ui.ActionBar.i6.v0(i10, e6Var);
-        int[] iArr = f1020l;
+        int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
+        int[] iArr = f1008l;
         if (iArr[z10 ? 1 : 0] != v02) {
             iArr[z10 ? 1 : 0] = v02;
             float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(v02);
@@ -142,20 +142,20 @@ public abstract class ia {
     public static SpannableStringBuilder e(int i10, boolean z10, Object... objArr) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) LocaleController.formatString(i10, objArr));
-        oq oqVar = new oq(R.drawable.msg_mini_bomb, 0);
+        pq pqVar = new pq(R.drawable.msg_mini_bomb, 0);
         if (z10) {
-            oqVar.setScale(0.8f, 0.8f);
+            pqVar.setScale(0.8f, 0.8f);
         } else {
-            oqVar.setTopOffset(-1);
+            pqVar.setTopOffset(-1);
         }
-        spannableStringBuilder.setSpan(oqVar, 0, 1, 0);
+        spannableStringBuilder.setSpan(pqVar, 0, 1, 0);
         return spannableStringBuilder;
     }
 
     public static SpannableStringBuilder f() {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) LocaleController.getString(R.string.Story));
-        spannableStringBuilder.setSpan(new oq(R.drawable.msg_mini_replystory2, 0), 0, 1, 0);
+        spannableStringBuilder.setSpan(new pq(R.drawable.msg_mini_replystory2, 0), 0, 1, 0);
         return spannableStringBuilder;
     }
 
@@ -202,15 +202,15 @@ public abstract class ia {
     }
 
     public static void j(Canvas canvas, ca caVar, Paint paint, boolean z10) {
-        RectF rectF = f1022n;
+        RectF rectF = f1010n;
         if (z10) {
-            RectF rectF2 = f1024p;
+            RectF rectF2 = f1012p;
             rectF2.set(rectF);
             rectF2.inset(AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f));
             canvas.drawRoundRect(rectF2, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
             return;
         }
-        float f7 = caVar.f650f;
+        float f7 = caVar.f659f;
         if (f7 == 0.0f) {
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, paint);
         } else {
@@ -220,42 +220,42 @@ public abstract class ia {
 
     public static void k(Canvas canvas, RectF rectF, float f7, boolean z10, float f10) {
         Canvas canvas2;
-        if (f1017i == null) {
-            f1017i = new g01(LocaleController.getString(R.string.LiveStoryBadge), 9.66f, AndroidUtilities.bold());
+        if (f1005i == null) {
+            f1005i = new f01(LocaleController.getString(R.string.LiveStoryBadge), 9.66f, AndroidUtilities.bold());
         }
-        if (f1016g == null) {
+        if (f1004g == null) {
             Paint paint = new Paint(1);
-            f1016g = paint;
+            f1004g = paint;
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         }
         if (h == null) {
             h = new Paint(1);
         }
-        if (f1015f == null) {
-            f1015f = new RectF();
+        if (f1003f == null) {
+            f1003f = new RectF();
         }
-        h.setColor(org.telegram.ui.ActionBar.i6.l1(f7, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.ok, false)));
+        h.setColor(org.telegram.ui.ActionBar.h6.l1(f7, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.ok, false)));
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(7.0f), f10);
         float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(18.0f), f10);
         float dp = AndroidUtilities.dp(2.0f);
         canvas.save();
-        float l4 = ((f1017i.l() + lerp) + lerp) / 2.0f;
+        float l4 = ((f1005i.l() + lerp) + lerp) / 2.0f;
         float f11 = 0.8f * lerp2;
         float f12 = lerp2 * 0.2f;
-        f1015f.set((rectF.centerX() - l4) - dp, (rectF.bottom - f11) - dp, rectF.centerX() + l4 + dp, rectF.bottom + f12 + dp);
+        f1003f.set((rectF.centerX() - l4) - dp, (rectF.bottom - f11) - dp, rectF.centerX() + l4 + dp, rectF.bottom + f12 + dp);
         float lerp3 = AndroidUtilities.lerp(0.7f, 1.0f, f7);
-        canvas.scale(lerp3, lerp3, f1015f.centerX(), f1015f.centerY());
-        AndroidUtilities.scaleRect(f1015f, f7);
-        RectF rectF2 = f1015f;
-        canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, f1015f.height() / 2.0f, f1016g);
+        canvas.scale(lerp3, lerp3, f1003f.centerX(), f1003f.centerY());
+        AndroidUtilities.scaleRect(f1003f, f7);
+        RectF rectF2 = f1003f;
+        canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, f1003f.height() / 2.0f, f1004g);
         if (z10) {
-            f1015f.set(rectF.centerX() - l4, rectF.bottom - f11, rectF.centerX() + l4, rectF.bottom + f12);
-            RectF rectF3 = f1015f;
-            canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, f1015f.height() / 2.0f, h);
-            g01 g01Var = f1017i;
-            RectF rectF4 = f1015f;
+            f1003f.set(rectF.centerX() - l4, rectF.bottom - f11, rectF.centerX() + l4, rectF.bottom + f12);
+            RectF rectF3 = f1003f;
+            canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, f1003f.height() / 2.0f, h);
+            f01 f01Var = f1005i;
+            RectF rectF4 = f1003f;
             canvas2 = canvas;
-            g01Var.c(rectF4.left + lerp, rectF4.centerY(), f7, -1, canvas2);
+            f01Var.c(rectF4.left + lerp, rectF4.centerY(), f7, -1, canvas2);
         } else {
             canvas2 = canvas;
         }
@@ -267,47 +267,47 @@ public abstract class ia {
             float height = rectF.height() * 0.32f;
             float f11 = ((((int) f7) / 90) * 90) + 90;
             float f12 = (-199.0f) + f11;
-            Path path = f1025q;
+            Path path = f1013q;
             path.rewind();
             path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = f1026r;
+            Matrix matrix = f1014r;
             matrix.reset();
             matrix.postRotate(f11, rectF.centerX(), rectF.centerY());
             path.transform(matrix);
-            PathMeasure pathMeasure = f1027s;
+            PathMeasure pathMeasure = f1015s;
             pathMeasure.setPath(path, false);
             float length = pathMeasure.getLength();
-            Path path2 = f1028t;
+            Path path2 = f1016t;
             path2.reset();
             pathMeasure.getSegment(((f7 - f12) / 360.0f) * length, length * ((f10 - f12) / 360.0f), path2, true);
             path2.rLineTo(0.0f, 0.0f);
             canvas.drawPath(path2, paint);
-        } else if (caVar.f654k) {
-            boolean z11 = caVar.f656m;
-            if (!z11 && !caVar.f655l) {
+        } else if (caVar.f663k) {
+            boolean z11 = caVar.f665m;
+            if (!z11 && !caVar.f664l) {
                 if (f7 < 90.0f) {
-                    float f13 = caVar.f650f;
+                    float f13 = caVar.f659f;
                     g(canvas, rectF, paint, f7, f10, (-f13) / 2.0f, f13 / 2.0f);
                     return;
                 }
-                float f14 = caVar.f650f;
+                float f14 = caVar.f659f;
                 g(canvas, rectF, paint, f7, f10, ((-f14) / 2.0f) + 180.0f, (f14 / 2.0f) + 180.0f);
-            } else if (caVar.f655l) {
-                float f15 = caVar.f650f;
+            } else if (caVar.f664l) {
+                float f15 = caVar.f659f;
                 g(canvas, rectF, paint, f7, f10, ((-f15) / 2.0f) + 180.0f, (f15 / 2.0f) + 180.0f);
             } else if (z11) {
-                float f16 = caVar.f650f;
+                float f16 = caVar.f659f;
                 g(canvas, rectF, paint, f7, f10, (-f16) / 2.0f, f16 / 2.0f);
             } else {
                 canvas.drawArc(rectF, f7, f10 - f7, false, paint);
             }
-        } else if (caVar.f655l) {
-            float f17 = caVar.f650f;
+        } else if (caVar.f664l) {
+            float f17 = caVar.f659f;
             g(canvas, rectF, paint, f7, f10, ((-f17) / 2.0f) + 180.0f, (f17 / 2.0f) + 180.0f);
         } else if (f7 < 90.0f) {
-            g(canvas, rectF, paint, f7, f10, caVar.f651g, caVar.h);
+            g(canvas, rectF, paint, f7, f10, caVar.f660g, caVar.h);
         } else {
-            g(canvas, rectF, paint, f7, f10, -caVar.f652i, caVar.f653j);
+            g(canvas, rectF, paint, f7, f10, -caVar.f661i, caVar.f662j);
         }
     }
 
@@ -325,11 +325,11 @@ public abstract class ia {
         int lastIndexOf;
         if (peerStories != null && !peerStories.stories.isEmpty() && DialogObject.getPeerDialogId(peerStories.peer) != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
             l9 l9Var = MessagesController.getInstance(UserConfig.selectedAccount).storiesController;
-            int i10 = l9Var.f1193f.get(DialogObject.getPeerDialogId(peerStories.peer));
+            int i10 = l9Var.f1195f.get(DialogObject.getPeerDialogId(peerStories.peer));
             int i11 = 0;
             while (true) {
                 if (i11 < peerStories.stories.size()) {
-                    if (peerStories.stories.get(i11).f18344id > i10) {
+                    if (peerStories.stories.get(i11).f18318id > i10) {
                         storyItem = peerStories.stories.get(i11);
                         break;
                     }
@@ -382,9 +382,9 @@ public abstract class ia {
             }
             long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
             ?? obj = new Object();
-            obj.f736b = false;
-            obj.f735a = peerDialogId;
-            obj.f737c = l9Var;
+            obj.f743b = false;
+            obj.f742a = peerDialogId;
+            obj.f744c = l9Var;
             obj.d = new a1.e(28, obj, runnable);
             a1.e eVar = new a1.e(29, r0, obj);
             Runnable[] runnableArr = {eVar};
@@ -417,22 +417,22 @@ public abstract class ia {
     }
 
     public static Paint o(ImageReceiver imageReceiver) {
-        if (f1013b == null) {
-            o20 o20Var = new o20();
-            f1013b = o20Var;
-            o20Var.f26655a = true;
-            o20Var.f26656b = true;
-            o20Var.d(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.lk, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.mk, false), 0, 0);
-            f1013b.f26657c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-            f1013b.f26657c.setStyle(Paint.Style.STROKE);
-            f1013b.f26657c.setStrokeCap(Paint.Cap.ROUND);
+        if (f1001b == null) {
+            p20 p20Var = new p20();
+            f1001b = p20Var;
+            p20Var.f26910a = true;
+            p20Var.f26911b = true;
+            p20Var.d(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.lk, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.mk, false), 0, 0);
+            f1001b.f26912c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+            f1001b.f26912c.setStyle(Paint.Style.STROKE);
+            f1001b.f26912c.setStrokeCap(Paint.Cap.ROUND);
         }
-        f1013b.b(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        return f1013b.f26657c;
+        f1001b.b(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        return f1001b.f26912c;
     }
 
     public static Drawable p() {
-        if (f1021m == null) {
+        if (f1009m == null) {
             Bitmap createBitmap = Bitmap.createBitmap(360, 180, Bitmap.Config.ARGB_8888);
             createBitmap.eraseColor(-7829368);
             Canvas canvas = new Canvas(createBitmap);
@@ -442,24 +442,24 @@ public abstract class ia {
             textPaint.setColor(i0.a.k(-16777216, 100));
             canvas.drawText("expired", 180.0f, 86.0f, textPaint);
             canvas.drawText("story", 180.0f, 106.0f, textPaint);
-            f1021m = new BitmapDrawable(createBitmap);
+            f1009m = new BitmapDrawable(createBitmap);
         }
-        return f1021m;
+        return f1009m;
     }
 
     public static Paint q(ImageReceiver imageReceiver) {
-        if (f1014c == null) {
-            o20 o20Var = new o20();
-            f1014c = o20Var;
-            o20Var.f26655a = true;
-            o20Var.f26656b = true;
-            o20Var.d(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.nk, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.ok, false), 0, 0);
-            f1014c.f26657c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-            f1014c.f26657c.setStyle(Paint.Style.STROKE);
-            f1014c.f26657c.setStrokeCap(Paint.Cap.ROUND);
+        if (f1002c == null) {
+            p20 p20Var = new p20();
+            f1002c = p20Var;
+            p20Var.f26910a = true;
+            p20Var.f26911b = true;
+            p20Var.d(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.nk, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.ok, false), 0, 0);
+            f1002c.f26912c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+            f1002c.f26912c.setStyle(Paint.Style.STROKE);
+            f1002c.f26912c.setStrokeCap(Paint.Cap.ROUND);
         }
-        f1014c.b(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        return f1014c.f26657c;
+        f1002c.b(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        return f1002c.f26912c;
     }
 
     public static int r(l9 l9Var, long j3) {
@@ -474,7 +474,7 @@ public abstract class ia {
             if (j3 == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId || user == null || (tL_recentStory2 = user.stories_max_id) == null || tL_recentStory2.max_id <= 0 || user.stories_unavailable) {
                 return 0;
             }
-            int i11 = l9Var.f1193f.get(j3, 0);
+            int i11 = l9Var.f1195f.get(j3, 0);
             TLRPC.TL_recentStory tL_recentStory3 = user.stories_max_id;
             if (tL_recentStory3.live) {
                 return 3;
@@ -488,7 +488,7 @@ public abstract class ia {
         if (chat == null || (tL_recentStory = chat.stories_max_id) == null || tL_recentStory.max_id <= 0 || chat.stories_unavailable) {
             return 0;
         }
-        int i12 = l9Var.f1193f.get(j3, 0);
+        int i12 = l9Var.f1195f.get(j3, 0);
         TLRPC.TL_recentStory tL_recentStory4 = chat.stories_max_id;
         if (tL_recentStory4.live) {
             return 3;
@@ -505,23 +505,23 @@ public abstract class ia {
     }
 
     public static Paint t(ImageReceiver imageReceiver, boolean z10) {
-        o20[] o20VarArr = f1012a;
-        if (o20VarArr[z10 ? 1 : 0] == null) {
-            o20 o20Var = new o20();
-            o20VarArr[z10 ? 1 : 0] = o20Var;
-            o20Var.f26655a = true;
-            o20Var.f26656b = true;
+        p20[] p20VarArr = f1000a;
+        if (p20VarArr[z10 ? 1 : 0] == null) {
+            p20 p20Var = new p20();
+            p20VarArr[z10 ? 1 : 0] = p20Var;
+            p20Var.f26910a = true;
+            p20Var.f26911b = true;
             if (z10) {
-                o20Var.d(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.jk, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.kk, false), 0, 0);
+                p20Var.d(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.jk, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.kk, false), 0, 0);
             } else {
-                o20Var.d(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.hk, false), org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.ik, false), 0, 0);
+                p20Var.d(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.hk, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.ik, false), 0, 0);
             }
-            o20VarArr[z10 ? 1 : 0].f26657c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-            o20VarArr[z10 ? 1 : 0].f26657c.setStyle(Paint.Style.STROKE);
-            o20VarArr[z10 ? 1 : 0].f26657c.setStrokeCap(Paint.Cap.ROUND);
+            p20VarArr[z10 ? 1 : 0].f26912c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+            p20VarArr[z10 ? 1 : 0].f26912c.setStyle(Paint.Style.STROKE);
+            p20VarArr[z10 ? 1 : 0].f26912c.setStrokeCap(Paint.Cap.ROUND);
         }
-        o20VarArr[z10 ? 1 : 0].b(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        return o20VarArr[z10 ? 1 : 0].f26657c;
+        p20VarArr[z10 ? 1 : 0].b(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        return p20VarArr[z10 ? 1 : 0].f26912c;
     }
 
     public static CharSequence u(TextView textView, boolean z10) {
@@ -535,8 +535,8 @@ public abstract class ia {
             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string);
             pc pcVar = new pc();
             valueOf.setSpan(pcVar, valueOf.length() - 1, valueOf.length(), 0);
-            pcVar.f1402a = textView;
-            pcVar.f1406n = false;
+            pcVar.f1403a = textView;
+            pcVar.f1407n = false;
             return valueOf;
         }
         return string;

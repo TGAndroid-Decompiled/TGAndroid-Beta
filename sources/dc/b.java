@@ -2,17 +2,17 @@ package dc;
 
 import java.util.Arrays;
 public final class b implements Cloneable {
-    public int f7615a;
-    public int f7616b;
-    public int f7617c;
+    public int f7601a;
+    public int f7602b;
+    public int f7603c;
     public int[] d;
 
     public b(int i10, int i11) {
         if (i10 >= 1 && i11 >= 1) {
-            this.f7615a = i10;
-            this.f7616b = i11;
+            this.f7601a = i10;
+            this.f7602b = i11;
             int i12 = (i10 + 31) / 32;
-            this.f7617c = i12;
+            this.f7603c = i12;
             this.d = new int[i12 * i11];
             return;
         }
@@ -20,13 +20,13 @@ public final class b implements Cloneable {
     }
 
     public final void a(int i10, int i11) {
-        int i12 = (i10 / 32) + (i11 * this.f7617c);
+        int i12 = (i10 / 32) + (i11 * this.f7603c);
         int[] iArr = this.d;
         iArr[i12] = (1 << (i10 & 31)) ^ iArr[i12];
     }
 
     public final boolean b(int i10, int i11) {
-        if (((this.d[(i10 / 32) + (i11 * this.f7617c)] >>> (i10 & 31)) & 1) != 0) {
+        if (((this.d[(i10 / 32) + (i11 * this.f7603c)] >>> (i10 & 31)) & 1) != 0) {
             return true;
         }
         return false;
@@ -37,9 +37,9 @@ public final class b implements Cloneable {
             if (i13 >= 1 && i12 >= 1) {
                 int i14 = i12 + i10;
                 int i15 = i13 + i11;
-                if (i15 <= this.f7616b && i14 <= this.f7615a) {
+                if (i15 <= this.f7602b && i14 <= this.f7601a) {
                     while (i11 < i15) {
-                        int i16 = this.f7617c * i11;
+                        int i16 = this.f7603c * i11;
                         for (int i17 = i10; i17 < i14; i17++) {
                             int[] iArr = this.d;
                             int i18 = (i17 / 32) + i16;
@@ -57,13 +57,13 @@ public final class b implements Cloneable {
     }
 
     public final Object clone() {
-        int i10 = this.f7615a;
-        int i11 = this.f7616b;
-        int i12 = this.f7617c;
+        int i10 = this.f7601a;
+        int i11 = this.f7602b;
+        int i12 = this.f7603c;
         ?? obj = new Object();
-        obj.f7615a = i10;
-        obj.f7616b = i11;
-        obj.f7617c = i12;
+        obj.f7601a = i10;
+        obj.f7602b = i11;
+        obj.f7603c = i12;
         obj.d = (int[]) this.d.clone();
         return obj;
     }
@@ -73,21 +73,21 @@ public final class b implements Cloneable {
             return false;
         }
         b bVar = (b) obj;
-        if (this.f7615a != bVar.f7615a || this.f7616b != bVar.f7616b || this.f7617c != bVar.f7617c || !Arrays.equals(this.d, bVar.d)) {
+        if (this.f7601a != bVar.f7601a || this.f7602b != bVar.f7602b || this.f7603c != bVar.f7603c || !Arrays.equals(this.d, bVar.d)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        int i10 = this.f7615a;
-        return Arrays.hashCode(this.d) + (((((((i10 * 31) + i10) * 31) + this.f7616b) * 31) + this.f7617c) * 31);
+        int i10 = this.f7601a;
+        return Arrays.hashCode(this.d) + (((((((i10 * 31) + i10) * 31) + this.f7602b) * 31) + this.f7603c) * 31);
     }
 
     public final String toString() {
         String str;
-        int i10 = this.f7616b;
-        int i11 = this.f7615a;
+        int i10 = this.f7602b;
+        int i11 = this.f7601a;
         StringBuilder sb2 = new StringBuilder((i11 + 1) * i10);
         for (int i12 = 0; i12 < i10; i12++) {
             for (int i13 = 0; i13 < i11; i13++) {

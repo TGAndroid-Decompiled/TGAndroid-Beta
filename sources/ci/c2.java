@@ -2,13 +2,13 @@ package ci;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cw;
-public final class c2 extends cw {
-    public final e2 f4423g0;
+import org.telegram.ui.Components.dw;
+public final class c2 extends dw {
+    public final e2 f4432g0;
 
-    public c2(e2 e2Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19163v6, e6Var), false);
-        this.f4423g0 = e2Var;
+    public c2(e2 e2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19118v6, d6Var), false);
+        this.f4432g0 = e2Var;
     }
 
     @Override
@@ -16,29 +16,29 @@ public final class c2 extends cw {
         int i11;
         int paddingTop;
         k2 k2Var;
-        e2 e2Var = this.f4423g0;
-        p1 p1Var = e2Var.f4585b;
-        d2 d2Var = e2Var.f4586c;
-        l2 l2Var = e2Var.f4587f;
+        e2 e2Var = this.f4432g0;
+        p1 p1Var = e2Var.f4594b;
+        d2 d2Var = e2Var.f4595c;
+        l2 l2Var = e2Var.f4596f;
         int i12 = 0;
         if (this.d) {
             return false;
         }
-        if (l2Var != null && (k2Var = l2Var.f4918f) != null) {
+        if (l2Var != null && (k2Var = l2Var.f4950f) != null) {
             if (k2Var.getSelectedCategory() != null) {
                 p1.w1(p1Var, 0, 0);
-                l2Var.f4918f.F1(null);
+                l2Var.f4950f.F1(null);
             }
-            l2Var.f4918f.D1();
+            l2Var.f4950f.D1();
             l2Var.b();
         }
         if (d2Var != null) {
             d2Var.D(null);
         }
         while (true) {
-            if (i12 < d2Var.f4492y.size()) {
-                i11 = d2Var.f4492y.keyAt(i12);
-                if (d2Var.f4492y.valueAt(i12) == i10) {
+            if (i12 < d2Var.f4509y.size()) {
+                i11 = d2Var.f4509y.keyAt(i12);
+                if (d2Var.f4509y.valueAt(i12) == i10) {
                     break;
                 }
                 i12++;
@@ -48,12 +48,12 @@ public final class c2 extends cw {
             }
         }
         if (i11 >= 0) {
-            float f7 = e2Var.f4588n;
+            float f7 = e2Var.f4597n;
             if (f7 >= 0.0f) {
                 paddingTop = p1Var.getPaddingTop();
             } else {
                 f7 = e2Var.b();
-                e2Var.f4588n = f7;
+                e2Var.f4597n = f7;
                 paddingTop = p1Var.getPaddingTop();
             }
             p1.w1(p1Var, i11, ((int) (f7 + paddingTop)) - AndroidUtilities.dp(102.0f));

@@ -1,45 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class ff0 implements Runnable {
-    public final int f33586a;
-    public final gf0 f33587b;
+import android.content.Intent;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class ff0 implements NotificationCenter.NotificationCenterDelegate {
+    public final gf0 f33305a;
 
-    public ff0(gf0 gf0Var, int i10) {
-        this.f33586a = i10;
-        this.f33587b = gf0Var;
+    public ff0(gf0 gf0Var) {
+        this.f33305a = gf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33586a) {
-            case 0:
-                gf0 gf0Var = this.f33587b;
-                hf0 hf0Var = gf0Var.d;
-                if (gf0Var.f33844b) {
-                    boolean z10 = hf0Var.K;
-                    org.telegram.ui.Components.xi0 xi0Var = hf0Var.J;
-                    id idVar = hf0Var.f34247n;
-                    if (z10 && System.currentTimeMillis() - gf0Var.f33843a >= 10000) {
-                        idVar.setAnimation(xi0Var);
-                        xi0Var.N(0, false, false);
-                        xi0Var.f29967t0 = new ff0(gf0Var, 1);
-                        idVar.d();
-                        gf0Var.f33843a = System.currentTimeMillis();
-                    }
-                    idVar.postDelayed(gf0Var.f33845c, 1000L);
-                    return;
-                }
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new ff0(this.f33587b, 2));
-                return;
-            default:
-                hf0 hf0Var2 = this.f33587b.d;
-                org.telegram.ui.Components.xi0 xi0Var2 = hf0Var2.I;
-                xi0Var2.N(0, false, false);
-                hf0Var2.f34247n.setAnimation(xi0Var2);
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        gf0 gf0Var = this.f33305a;
+        int intValue = ((Integer) objArr[0]).intValue();
+        ((Integer) objArr[1]).getClass();
+        Intent intent = (Intent) objArr[2];
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
+        if (intValue == 200) {
+            try {
+                gf0Var.f33555y = (GoogleSignInAccount) w7.d9.b(intent).getResult(com.google.android.gms.common.api.f.class);
+                gf0Var.h(null);
+            } catch (com.google.android.gms.common.api.f e) {
+                FileLog.e(e);
+            }
         }
     }
 }

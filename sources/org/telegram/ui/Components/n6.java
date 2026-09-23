@@ -1,240 +1,122 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeInterpolator;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
+import android.os.Build;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public class n6 extends View {
-    public boolean f26327a;
-    public Drawable f26328b;
-    public final m6 f26329c;
-    public int d;
-    public int e;
-    public CharSequence f26330f;
-    public boolean h;
-    public boolean f26331n;
-    public boolean f26332r;
+import j$.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.stream.IntStream;
+public final class n6 implements CharSequence {
+    public final CharSequence[] f26351a;
+    public final int f26352b;
 
-    public n6(Context context, boolean z10, boolean z11, boolean z12) {
-        super(context);
-        this.f26331n = true;
-        this.f26332r = true;
-        m6 m6Var = new m6(z10, z11, z12, false);
-        this.f26329c = m6Var;
-        m6Var.setCallback(this);
-        m6Var.C = new ng(this, 8);
-    }
-
-    public final void a() {
-        this.f26329c.b();
-    }
-
-    public final void b(float f7, long j3, TimeInterpolator timeInterpolator) {
-        this.f26329c.k(f7, j3, timeInterpolator);
-    }
-
-    public final void c(CharSequence charSequence, boolean z10, boolean z11) {
-        boolean z12;
-        if (!this.f26332r && z10) {
-            z12 = true;
-        } else {
-            z12 = false;
+    public n6(CharSequence charSequence) {
+        int i10;
+        if (charSequence == null) {
+            this.f26351a = new CharSequence[0];
+            this.f26352b = 0;
+            return;
         }
-        this.f26332r = false;
-        m6 m6Var = this.f26329c;
-        if (z12 && !TextUtils.equals(charSequence, m6Var.f26088g)) {
-            if (m6Var.D) {
-                ValueAnimator valueAnimator = m6Var.f26095o;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    m6Var.f26095o = null;
+        this.f26352b = charSequence.length();
+        int i11 = 0;
+        for (int i12 = 0; i12 < this.f26352b; i12++) {
+            if (charSequence.charAt(i12) == ' ') {
+                i11++;
+            }
+        }
+        this.f26351a = new CharSequence[i11 + 1];
+        int i13 = 0;
+        int i14 = 0;
+        int i15 = 0;
+        while (true) {
+            int i16 = this.f26352b;
+            if (i13 <= i16) {
+                if (i13 == i16 || charSequence.charAt(i13) == ' ') {
+                    CharSequence[] charSequenceArr = this.f26351a;
+                    int i17 = i14 + 1;
+                    if (i13 < this.f26352b) {
+                        i10 = 1;
+                    } else {
+                        i10 = 0;
+                    }
+                    charSequenceArr[i14] = charSequence.subSequence(i15, i10 + i13);
+                    i15 = i13 + 1;
+                    i14 = i17;
                 }
-            } else if (m6Var.f()) {
-                this.f26330f = charSequence;
-                this.h = z11;
+                i13++;
+            } else {
                 return;
             }
         }
-        m6Var.setBounds(getPaddingLeft(), getPaddingTop(), this.d - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
-        m6Var.q(charSequence, z12, z11);
-        float e = (int) m6Var.e();
-        if (e >= m6Var.e() && (z12 || e == m6Var.e())) {
-            return;
-        }
-        requestLayout();
-    }
-
-    public final int d() {
-        return getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(this.f26329c.d()));
-    }
-
-    public m6 getDrawable() {
-        return this.f26329c;
-    }
-
-    public TextPaint getPaint() {
-        return this.f26329c.f26084a;
-    }
-
-    public float getRightPadding() {
-        return this.f26329c.H;
-    }
-
-    public Drawable getSizeableBackground() {
-        return this.f26328b;
-    }
-
-    public CharSequence getText() {
-        return this.f26329c.f26088g;
-    }
-
-    public int getTextColor() {
-        return this.f26329c.f26084a.getColor();
-    }
-
-    public int getTextHeight() {
-        return getPaint().getFontMetricsInt().descent - getPaint().getFontMetricsInt().ascent;
     }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        super.invalidateDrawable(drawable);
-        invalidate();
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        Drawable drawable = this.f26328b;
-        m6 m6Var = this.f26329c;
-        if (drawable != null && (!this.f26327a || m6Var.g() > 0.0f)) {
-            int d = (int) (m6Var.d() + getPaddingLeft() + getPaddingRight());
-            if ((m6Var.f26085b & 7) == 5) {
-                this.f26328b.setBounds(getWidth() - d, 0, getWidth(), getHeight());
-            } else {
-                this.f26328b.setBounds(0, 0, d, getHeight());
+    public final char charAt(int i10) {
+        int i11 = 0;
+        while (true) {
+            CharSequence[] charSequenceArr = this.f26351a;
+            if (i11 >= charSequenceArr.length) {
+                return (char) 0;
             }
-            this.f26328b.draw(canvas);
+            if (i10 < charSequenceArr[i11].length()) {
+                return charSequenceArr[i11].charAt(i10);
+            }
+            i10 -= charSequenceArr[i11].length();
+            i11++;
         }
-        m6Var.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
-        m6Var.draw(canvas);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(getText());
+    public IntStream chars() {
+        return IntStream.Wrapper.convert(chars());
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        int i12 = this.e;
-        if (i12 > 0) {
-            size = Math.min(size, i12);
+    public java.util.stream.IntStream codePoints() {
+        return IntStream.Wrapper.convert(codePoints());
+    }
+
+    @Override
+    public final int length() {
+        return this.f26351a.length;
+    }
+
+    @Override
+    public final CharSequence subSequence(int i10, int i11) {
+        return TextUtils.concat((CharSequence[]) Arrays.copyOfRange(this.f26351a, i10, i11));
+    }
+
+    @Override
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder();
+        int i10 = 0;
+        while (true) {
+            CharSequence[] charSequenceArr = this.f26351a;
+            if (i10 < charSequenceArr.length) {
+                sb2.append(charSequenceArr[i10]);
+                i10++;
+            } else {
+                return sb2.toString();
+            }
         }
-        int i13 = this.d;
-        m6 m6Var = this.f26329c;
-        if (i13 != size && getLayoutParams().width != 0) {
-            m6Var.setBounds(getPaddingLeft(), getPaddingTop(), size - getPaddingRight(), size2 - getPaddingBottom());
-            m6Var.q(m6Var.f26088g, false, true);
+    }
+
+    @Override
+    public final j$.util.stream.IntStream chars() {
+        j$.util.stream.IntStream convert;
+        if (Build.VERSION.SDK_INT >= 24) {
+            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f26351a).chars());
+            return convert;
         }
-        this.d = size;
-        if (this.f26331n && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            size = getPaddingRight() + getPaddingLeft() + ((int) Math.ceil(m6Var.e()));
+        return null;
+    }
+
+    @Override
+    public final j$.util.stream.IntStream codePoints() {
+        j$.util.stream.IntStream convert;
+        if (Build.VERSION.SDK_INT >= 24) {
+            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f26351a).codePoints());
+            return convert;
         }
-        setMeasuredDimension(size, size2);
-    }
-
-    public void setAllowCancel(boolean z10) {
-        this.f26329c.D = z10;
-    }
-
-    public void setEllipsizeByGradient(boolean z10) {
-        this.f26329c.n(z10);
-    }
-
-    public void setEmojiCacheType(int i10) {
-        this.f26329c.f26092l = i10;
-    }
-
-    public void setEmojiColor(int i10) {
-        m6 m6Var = this.f26329c;
-        if (m6Var.T != i10) {
-            m6Var.T = i10;
-            m6Var.U = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
-        }
-        invalidate();
-    }
-
-    public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f26329c.U = colorFilter;
-        invalidate();
-    }
-
-    public void setGravity(int i10) {
-        this.f26329c.f26085b = i10;
-    }
-
-    public void setHideBackgroundIfEmpty(boolean z10) {
-        this.f26327a = z10;
-    }
-
-    public void setIgnoreRTL(boolean z10) {
-        this.f26329c.E = z10;
-    }
-
-    public void setIncludeFontPadding(boolean z10) {
-        this.f26329c.M = z10;
-    }
-
-    public void setMaxWidth(int i10) {
-        this.e = i10;
-    }
-
-    public void setOnWidthUpdatedListener(Runnable runnable) {
-        this.f26329c.V = runnable;
-    }
-
-    public void setRightPadding(float f7) {
-        m6 m6Var = this.f26329c;
-        m6Var.H = f7;
-        m6Var.invalidateSelf();
-    }
-
-    public void setScaleProperty(float f7) {
-        this.f26329c.v = f7;
-    }
-
-    public void setSizeableBackground(Drawable drawable) {
-        this.f26328b = drawable;
-        invalidate();
-    }
-
-    public void setText(CharSequence charSequence) {
-        c(charSequence, true, true);
-    }
-
-    public void setTextColor(int i10) {
-        this.f26329c.r(i10);
-        invalidate();
-    }
-
-    public void setTextSize(float f7) {
-        this.f26329c.t(f7);
-    }
-
-    public void setTypeface(Typeface typeface) {
-        this.f26329c.u(typeface);
+        return null;
     }
 }

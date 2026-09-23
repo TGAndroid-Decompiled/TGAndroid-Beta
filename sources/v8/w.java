@@ -11,19 +11,19 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
 public final class w extends Fragment {
     public static final int d = 0;
-    public int f44271a;
-    public v f44272b;
-    public boolean f44273c;
+    public int f44225a;
+    public v f44226b;
+    public boolean f44227c;
 
     public final void a(Task task) {
-        if (!this.f44273c) {
+        if (!this.f44227c) {
             int i10 = 1;
-            this.f44273c = true;
+            this.f44227c = true;
             Activity activity = getActivity();
             activity.getFragmentManager().beginTransaction().remove(this).commit();
             if (task != null) {
-                int i11 = this.f44271a;
-                int i12 = a.f44201c;
+                int i11 = this.f44225a;
+                int i12 = a.f44155c;
                 if (activity.isFinishing()) {
                     if (Log.isLoggable("AutoResolveHelper", 3)) {
                         Log.d("AutoResolveHelper", "Ignoring task result for, Activity is finishing.");
@@ -66,41 +66,41 @@ public final class w extends Fragment {
                 a.b(activity, i11, i10, intent);
                 return;
             }
-            a.b(activity, this.f44271a, 0, new Intent());
+            a.b(activity, this.f44225a, 0, new Intent());
         }
     }
 
     @Override
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        this.f44271a = getArguments().getInt("requestCode");
-        if (a.f44200b != getArguments().getLong("initializationElapsedRealtime")) {
-            this.f44272b = null;
+        this.f44225a = getArguments().getInt("requestCode");
+        if (a.f44154b != getArguments().getLong("initializationElapsedRealtime")) {
+            this.f44226b = null;
         } else {
-            this.f44272b = (v) v.e.get(getArguments().getInt("resolveCallId"));
+            this.f44226b = (v) v.e.get(getArguments().getInt("resolveCallId"));
         }
         boolean z10 = false;
         if (bundle != null && bundle.getBoolean("delivered")) {
             z10 = true;
         }
-        this.f44273c = z10;
+        this.f44227c = z10;
     }
 
     @Override
     public final void onPause() {
         super.onPause();
-        v vVar = this.f44272b;
-        if (vVar != null && vVar.f44269b == this) {
-            vVar.f44269b = null;
+        v vVar = this.f44226b;
+        if (vVar != null && vVar.f44223b == this) {
+            vVar.f44223b = null;
         }
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        v vVar = this.f44272b;
+        v vVar = this.f44226b;
         if (vVar != null) {
-            vVar.f44269b = this;
+            vVar.f44223b = this;
             vVar.a();
             return;
         }
@@ -113,10 +113,10 @@ public final class w extends Fragment {
     @Override
     public final void onSaveInstanceState(Bundle bundle) {
         super.onSaveInstanceState(bundle);
-        bundle.putBoolean("delivered", this.f44273c);
-        v vVar = this.f44272b;
-        if (vVar != null && vVar.f44269b == this) {
-            vVar.f44269b = null;
+        bundle.putBoolean("delivered", this.f44227c);
+        v vVar = this.f44226b;
+        if (vVar != null && vVar.f44223b == this) {
+            vVar.f44223b = null;
         }
     }
 }

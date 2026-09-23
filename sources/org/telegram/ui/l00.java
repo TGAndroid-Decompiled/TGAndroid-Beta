@@ -1,22 +1,113 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.style.ImageSpan;
-public final class l00 extends ImageSpan {
-    public int f35291a;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class l00 extends v00 {
+    public final m00 E;
+
+    public l00(m00 m00Var, Context context, int i10, int i11) {
+        super(context, null, i10, i11);
+        this.E = m00Var;
+    }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        if (paint.getColor() != this.f35291a && getDrawable() != null) {
-            Drawable drawable = getDrawable();
-            int color = paint.getColor();
-            this.f35291a = color;
-            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
+        m00 m00Var = this.E;
+        m00Var.d.Y.remove(tL_exportedChatlistInvite);
+        m00Var.d.T();
+        m00Var.d.U(true);
+    }
+
+    @Override
+    public final void c() {
+        org.telegram.ui.Components.o70 F = org.telegram.ui.Components.o70.F(this.E.d.container, null, this);
+        F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
+            public final l00 f34538b;
+
+            {
+                this.f34538b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        l00 l00Var = this.f34538b;
+                        String str = l00Var.f38253x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.xc(l00Var.E.d.Z, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f34538b.d();
+                        return;
+                    default:
+                        this.f34538b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
+            public final l00 f34538b;
+
+            {
+                this.f34538b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        l00 l00Var = this.f34538b;
+                        String str = l00Var.f38253x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.xc(l00Var.E.d.Z, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f34538b.d();
+                        return;
+                    default:
+                        this.f34538b.a();
+                        return;
+                }
+            }
+        }, false);
+        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
+            public final l00 f34538b;
+
+            {
+                this.f34538b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        l00 l00Var = this.f34538b;
+                        String str = l00Var.f38253x;
+                        if (str != null && AndroidUtilities.addToClipboard(str)) {
+                            new org.telegram.ui.Components.xc(l00Var.E.d.Z, null).k(false).j();
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f34538b.d();
+                        return;
+                    default:
+                        this.f34538b.a();
+                        return;
+                }
+            }
+        }, true);
+        if (LocaleController.isRTL) {
+            F.f26651i = 3;
         }
-        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+        F.Z();
     }
 }

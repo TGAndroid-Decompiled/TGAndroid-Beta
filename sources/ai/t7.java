@@ -1,100 +1,155 @@
 package ai;
 
-import android.graphics.Paint;
-import java.util.Comparator;
-import java.util.List;
-import java.util.regex.Pattern;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.KeyEvent;
+import android.view.View;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.PasskeysController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f01;
-import org.telegram.ui.Components.k00;
-import org.telegram.ui.Components.ww;
-import org.telegram.ui.e81;
-import org.telegram.ui.jp;
-import org.telegram.ui.kn0;
-import org.telegram.ui.pl0;
-import org.telegram.ui.wo0;
-import org.telegram.ui.zf0;
-public final class t7 implements RequestDelegate {
-    public final int f1553a;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.ck0;
+import org.telegram.ui.f50;
+import org.telegram.ui.f60;
+import org.telegram.ui.wf1;
+public final class t7 implements View.OnClickListener {
+    public final int f1556a;
+    public final int f1557b;
+    public final Object f1558c;
+    public final Object d;
+    public final Object e;
 
-    public t7(int i10) {
-        this.f1553a = i10;
+    public t7(KeyEvent.Callback callback, Object obj, int i10, Object obj2, int i11) {
+        this.f1556a = i11;
+        this.f1558c = callback;
+        this.d = obj;
+        this.f1557b = i10;
+        this.e = obj2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f1553a) {
+    public final void onClick(View view) {
+        switch (this.f1556a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new f(4));
+                x7.m((x7) this.f1558c, (TLRPC.User) this.d, this.f1557b, (org.telegram.ui.ActionBar.d6) this.e);
                 return;
             case 1:
-                Comparator comparator = l9.X;
+                org.telegram.ui.ub.W((org.telegram.ui.ub) this.f1558c, this.f1557b, (ArrayList) this.d, (Integer) this.e);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new f(18));
+                int[] iArr = (int[]) this.f1558c;
+                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.d;
+                ck0 ck0Var = (ck0) this.e;
+                iArr[0] = ((Integer) view.getTag()).intValue();
+                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
+                int i10 = this.f1557b;
+                if (i10 == 1) {
+                    edit.putInt("popupAll", iArr[0]);
+                } else if (i10 == 0) {
+                    edit.putInt("popupGroup", iArr[0]);
+                } else {
+                    edit.putInt("popupChannel", iArr[0]);
+                }
+                edit.commit();
+                alertDialog$Builder.f18409a.L0.run();
+                ck0Var.run();
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new f(18));
+                f60 f60Var = (f60) this.f1558c;
+                ArrayList arrayList = (ArrayList) this.d;
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.e;
+                int size = arrayList.size();
+                int i11 = this.f1557b;
+                if (i11 < size) {
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) f60Var.f33099a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    if (groupCallParticipant2 != null) {
+                        groupCallParticipant = groupCallParticipant2;
+                    }
+                    f60Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
+                    f50 f50Var = f60Var.f33123f3;
+                    if (f50Var != null) {
+                        f50Var.dismiss();
+                        return;
+                    } else if (((Integer) arrayList.get(i11)).intValue() != 9 && ((Integer) arrayList.get(i11)).intValue() != 10 && ((Integer) arrayList.get(i11)).intValue() != 11) {
+                        f60Var.d1(true);
+                        return;
+                    } else {
+                        return;
+                    }
+                }
                 return;
             case 4:
-                int[] iArr = ci.d1.f4474a0;
+                ci.d dVar = (ci.d) this.f1558c;
+                Context context = (Context) this.d;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.e;
+                if (!dVar.N) {
+                    dVar.setLoading(true);
+                    int i12 = this.f1557b;
+                    PasskeysController.create(context, i12, new ei.h1(dVar, context, f3Var, i12, 6));
+                    return;
+                }
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new f(13));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new f(13));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new f(13));
-                return;
-            case 8:
-                return;
-            case 9:
-                Paint paint = org.telegram.ui.qa.H;
-                return;
-            case 10:
-                int i10 = jp.f34959b3;
-                return;
-            case 11:
-                AndroidUtilities.runOnUIThread(new f(18));
-                return;
-            case 12:
-                Pattern pattern = org.telegram.ui.Components.c5.f22944a;
-                return;
-            case 13:
-                int i11 = ww.H0;
-                return;
-            case 14:
-                int i12 = k00.A0;
-                return;
-            case 15:
-                AndroidUtilities.runOnUIThread(new f(18));
-                return;
-            case 16:
-                int i13 = f01.e;
-                return;
-            case 17:
-                int i14 = zf0.f40166t0;
-                return;
-            case 18:
-                AndroidUtilities.runOnUIThread(new pl0(tLObject, 2));
-                return;
-            case 19:
-                int i15 = kn0.R;
-                return;
-            case 20:
-                List list = wo0.f39300g1;
-                return;
+                ProfileActivity profileActivity = (ProfileActivity) this.f1558c;
+                String str = (String) this.e;
+                ((org.telegram.ui.ActionBar.n1) ((AtomicReference) this.d).get()).dismiss();
+                try {
+                    AndroidUtilities.addToClipboard(str);
+                    if (this.f1557b == profileActivity.O3) {
+                        xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessHoursCopied)).j();
+                    } else {
+                        xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessLocationCopied)).j();
+                    }
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
             default:
-                int i16 = e81.e;
+                wf1 wf1Var = (wf1) this.f1558c;
+                TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.e;
+                MessagesController messagesController = wf1Var.getMessagesController();
+                long j3 = -wf1Var.f38936a;
+                if (messagesController.isDialogMuted(j3, tL_forumTopic.f18135id)) {
+                    wf1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f18135id, false);
+                    wf1Var.finishPreviewFragment();
+                    if (xc.a(wf1Var)) {
+                        xc.z(wf1Var, 4, 0, wf1Var.getResourceProvider()).j();
+                        return;
+                    }
+                    return;
+                }
+                actionBarPopupWindow$ActionBarPopupWindowLayoutArr[0].getSwipeBack().e(this.f1557b);
                 return;
         }
     }
 
-    private final void a(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public t7(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f1556a = i11;
+        this.f1558c = obj;
+        this.f1557b = i10;
+        this.d = obj2;
+        this.e = obj3;
+    }
+
+    public t7(org.telegram.ui.ActionBar.n2 n2Var, Object obj, Serializable serializable, int i10, int i11) {
+        this.f1556a = i11;
+        this.f1558c = n2Var;
+        this.d = obj;
+        this.e = serializable;
+        this.f1557b = i10;
     }
 }

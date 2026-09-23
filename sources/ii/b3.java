@@ -1,8 +1,8 @@
 package ii;
-public final class b3 implements e5 {
-    public final w3 f11256a;
+public final class b3 {
+    public final x3 f11241a;
 
-    public b3(w3 w3Var) {
-        this.f11256a = w3Var;
+    public b3(x3 x3Var) {
+        this.f11241a = x3Var;
     }
 }

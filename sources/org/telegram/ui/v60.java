@@ -1,45 +1,23 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class v60 implements View.OnClickListener {
-    public final int f38383a;
-    public final e70 f38384b;
-
-    public v60(e70 e70Var, int i10) {
-        this.f38383a = i10;
-        this.f38384b = e70Var;
+import java.util.Comparator;
+import org.telegram.messenger.ContactsController;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class v60 implements Comparator {
+    public static String a(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) tLObject;
+            return ContactsController.formatName(user.first_name, user.last_name);
+        } else if (tLObject instanceof TLRPC.Chat) {
+            return ((TLRPC.Chat) tLObject).title;
+        } else {
+            return "";
+        }
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f38383a) {
-            case 0:
-                e70 e70Var = this.f38384b;
-                e70Var.f33192f.f22569r.clearFocus();
-                e70Var.f33192f.f22569r.requestFocus();
-                AndroidUtilities.showKeyboard(e70Var.f33192f.f22569r);
-                return;
-            case 1:
-                this.f38384b.o0();
-                return;
-            case 2:
-                e70 e70Var2 = this.f38384b;
-                e70Var2.n0(e70Var2.l0());
-                return;
-            case 3:
-                e70 e70Var3 = this.f38384b;
-                e70Var3.n0(e70Var3.l0());
-                return;
-            default:
-                e70 e70Var4 = this.f38384b;
-                e70Var4.X = null;
-                e70Var4.Z.b();
-                e70Var4.h.b();
-                e70Var4.k0();
-                e70Var4.r0();
-                e70Var4.s0();
-                return;
-        }
+    public final int compare(Object obj, Object obj2) {
+        return a((TLObject) obj).compareTo(a((TLObject) obj2));
     }
 }

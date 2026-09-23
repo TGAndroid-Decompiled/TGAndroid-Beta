@@ -11,63 +11,63 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g01;
-import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.f01;
+import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.yc;
 public final class sa {
-    public static CharSequence[] f1509y;
-    public int f1510a;
-    public Long f1511b;
-    public Integer f1512c;
+    public static CharSequence[] f1511y;
+    public int f1512a;
+    public Long f1513b;
+    public Integer f1514c;
     public Integer d;
     public boolean e;
-    public TLRPC.Document f1514g;
-    public SpannableStringBuilder f1517k;
-    public String f1518l;
-    public boolean f1519m;
-    public g01 f1520n;
-    public g01 f1521o;
-    public boolean f1522p;
-    public boolean f1523q;
-    public View f1524r;
-    public Runnable f1525s;
-    public int f1529x;
-    public boolean f1513f = true;
-    public final org.telegram.ui.Components.c6 h = new org.telegram.ui.Components.c6(0, 350, qr.h);
-    public final wc f1515i = new wc((View) null);
-    public final org.telegram.ui.Cells.z f1516j = org.telegram.ui.ActionBar.i6.Y(553648127, 0, 0);
-    public final Paint f1526t = new Paint(1);
-    public final Paint f1527u = new Paint(1);
+    public TLRPC.Document f1516g;
+    public SpannableStringBuilder f1519k;
+    public String f1520l;
+    public boolean f1521m;
+    public f01 f1522n;
+    public f01 f1523o;
+    public boolean f1524p;
+    public boolean f1525q;
+    public View f1526r;
+    public Runnable f1527s;
+    public int f1531x;
+    public boolean f1515f = true;
+    public final org.telegram.ui.Components.e6 h = new org.telegram.ui.Components.e6(0, 350, rr.h);
+    public final yc f1517i = new yc((View) null);
+    public final org.telegram.ui.Cells.z f1518j = org.telegram.ui.ActionBar.h6.Y(553648127, 0, 0);
+    public final Paint f1528t = new Paint(1);
+    public final Paint f1529u = new Paint(1);
     public final Path v = new Path();
-    public final RectF f1528w = new RectF();
+    public final RectF f1530w = new RectF();
 
     public static CharSequence d() {
-        if (f1509y == null) {
-            f1509y = new CharSequence[2];
+        if (f1511y == null) {
+            f1511y = new CharSequence[2];
         }
-        CharSequence[] charSequenceArr = f1509y;
+        CharSequence[] charSequenceArr = f1511y;
         if (charSequenceArr[0] == null) {
             charSequenceArr[0] = new SpannableStringBuilder("u");
-            oq oqVar = new oq(R.drawable.filled_widget_music, 0);
-            oqVar.setSize(AndroidUtilities.dp(16.0f));
-            oqVar.spaceScaleX = 1.0f;
-            oqVar.translate(-AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            ((SpannableStringBuilder) f1509y[0]).setSpan(oqVar, 0, 1, 33);
+            pq pqVar = new pq(R.drawable.filled_widget_music, 0);
+            pqVar.setSize(AndroidUtilities.dp(16.0f));
+            pqVar.spaceScaleX = 1.0f;
+            pqVar.translate(-AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+            ((SpannableStringBuilder) f1511y[0]).setSpan(pqVar, 0, 1, 33);
         }
-        return f1509y[0];
+        return f1511y[0];
     }
 
     public final void a(Canvas canvas, float f7) {
         float f10;
         Typeface bold;
         String str = "";
-        if (this.f1520n == null) {
-            SpannableStringBuilder spannableStringBuilder = this.f1517k;
+        if (this.f1522n == null) {
+            SpannableStringBuilder spannableStringBuilder = this.f1519k;
             if (spannableStringBuilder == null) {
                 spannableStringBuilder = "";
             }
-            TLRPC.Document document = this.f1514g;
+            TLRPC.Document document = this.f1516g;
             if (document != null) {
                 f10 = 12.0f;
             } else {
@@ -78,26 +78,26 @@ public final class sa {
             } else {
                 bold = AndroidUtilities.bold();
             }
-            this.f1520n = new g01(spannableStringBuilder, f10, bold);
+            this.f1522n = new f01(spannableStringBuilder, f10, bold);
         }
-        if (this.f1521o == null || this.f1519m) {
-            String str2 = this.f1518l;
+        if (this.f1523o == null || this.f1521m) {
+            String str2 = this.f1520l;
             if (str2 != null) {
                 str = str2;
             }
-            this.f1521o = new g01(str, 14.0f, null);
+            this.f1523o = new f01(str, 14.0f, null);
         }
-        float e = this.h.e(this.f1513f);
-        Paint paint = this.f1526t;
+        float e = this.h.e(this.f1515f);
+        Paint paint = this.f1528t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f7, Math.max(this.f1520n.f24146c, this.f1521o.f24146c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
-        this.f1529x = min;
+        int min = (int) Math.min(f7, Math.max(this.f1522n.f23785c, this.f1523o.f23785c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
+        this.f1531x = min;
         int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(22.0f), e);
         float f11 = min;
-        RectF rectF = this.f1528w;
+        RectF rectF = this.f1530w;
         rectF.set(0.0f, 0.0f, f11, lerp);
         canvas.save();
-        float a2 = this.f1515i.a(0.02f);
+        float a2 = this.f1517i.a(0.02f);
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
         float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(11.0f), e);
         canvas.drawRoundRect(rectF, lerp2, lerp2, paint);
@@ -106,7 +106,7 @@ public final class sa {
         path.rewind();
         path.addRoundRect(rectF, lerp2, lerp2, Path.Direction.CW);
         canvas.clipPath(path);
-        org.telegram.ui.Cells.z zVar = this.f1516j;
+        org.telegram.ui.Cells.z zVar = this.f1518j;
         zVar.setBounds(0, 0, min, lerp);
         zVar.draw(canvas);
         canvas.restore();
@@ -114,7 +114,7 @@ public final class sa {
         canvas.clipRect(0, 0, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(42.0f));
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(0.0f, 0.0f, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(42.0f));
-        Paint paint2 = this.f1527u;
+        Paint paint2 = this.f1529u;
         paint2.setColor(-1);
         float f12 = 1.0f - e;
         paint2.setAlpha((int) (255.0f * f12));
@@ -124,19 +124,19 @@ public final class sa {
         if (f11 < f7) {
             dp = (int) Math.min(AndroidUtilities.dp(12.0f) + dp, f7 - AndroidUtilities.dp(20.0f));
         }
-        g01 g01Var = this.f1520n;
+        f01 f01Var = this.f1522n;
         float f13 = dp;
-        g01Var.f24156p = f13;
-        g01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
-        g01 g01Var2 = this.f1521o;
-        g01Var2.f24156p = f13;
-        g01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
+        f01Var.f23795p = f13;
+        f01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
+        f01 f01Var2 = this.f1523o;
+        f01Var2.f23795p = f13;
+        f01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
         canvas.restore();
     }
 
     public final int b() {
         float f7;
-        if (this.f1513f) {
+        if (this.f1515f) {
             f7 = 22.0f;
         } else {
             f7 = 42.0f;
@@ -145,16 +145,16 @@ public final class sa {
     }
 
     public final void c() {
-        if (!this.f1522p && !this.f1523q && this.f1511b != null && this.f1512c != null && this.f1524r != null) {
-            this.f1523q = true;
-            MessagesController.getInstance(this.f1510a).getStoriesController().d0(this.f1511b.longValue(), this.f1512c.intValue(), new f3(this, 2));
+        if (!this.f1524p && !this.f1525q && this.f1513b != null && this.f1514c != null && this.f1526r != null) {
+            this.f1525q = true;
+            MessagesController.getInstance(this.f1512a).getStoriesController().d0(this.f1513b.longValue(), this.f1514c.intValue(), new y1(this, 3));
         }
     }
 
     public final void e(float f7, float f10, boolean z10) {
-        this.f1515i.c(z10);
+        this.f1517i.c(z10);
         int[] iArr = z10 ? new int[]{16842919, 16842910} : new int[0];
-        org.telegram.ui.Cells.z zVar = this.f1516j;
+        org.telegram.ui.Cells.z zVar = this.f1518j;
         zVar.setState(iArr);
         if (z10) {
             zVar.setHotspot(f7, f10);

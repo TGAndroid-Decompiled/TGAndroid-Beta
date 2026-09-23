@@ -11,36 +11,36 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class x9 implements RequestDelegate {
-    public final int f1707a = 0;
-    public final Timer.Task f1708b;
-    public final long f1709c;
+    public final int f1705a = 0;
+    public final Timer.Task f1706b;
+    public final long f1707c;
     public final boolean d;
     public final Timer e;
-    public final Runnable f1710f;
-    public final Object f1711g;
+    public final Runnable f1708f;
+    public final Object f1709g;
     public final Cloneable h;
-    public final Serializable f1712i;
+    public final Serializable f1710i;
 
     public x9(y9 y9Var, Timer.Task task, ArrayList arrayList, long j3, boolean z10, Timer timer, int[] iArr, Runnable runnable) {
-        this.f1711g = y9Var;
-        this.f1708b = task;
+        this.f1709g = y9Var;
+        this.f1706b = task;
         this.h = arrayList;
-        this.f1709c = j3;
+        this.f1707c = j3;
         this.d = z10;
         this.e = timer;
-        this.f1712i = iArr;
-        this.f1710f = runnable;
+        this.f1710i = iArr;
+        this.f1708f = runnable;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f1707a) {
+        switch (this.f1705a) {
             case 0:
-                y9 y9Var = (y9) this.f1711g;
+                y9 y9Var = (y9) this.f1709g;
                 ArrayList arrayList = (ArrayList) this.h;
-                int[] iArr = (int[]) this.f1712i;
-                int i10 = y9Var.f1764a;
-                Timer.done(this.f1708b);
+                int[] iArr = (int[]) this.f1710i;
+                int i10 = y9Var.f1761a;
+                Timer.done(this.f1706b);
                 if (tLObject != null) {
                     TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -48,21 +48,21 @@ public final class x9 implements RequestDelegate {
                         int i12 = 0;
                         while (true) {
                             int size = tL_stories_stories.stories.size();
-                            long j3 = this.f1709c;
+                            long j3 = this.f1707c;
                             if (i12 < size) {
-                                if (tL_stories_stories.stories.get(i12).f18344id == y9.e(messageObject)) {
+                                if (tL_stories_stories.stories.get(i12).f18318id == y9.e(messageObject)) {
                                     y9.b(i10, j3, messageObject, tL_stories_stories.stories.get(i12));
                                 } else {
                                     i12++;
                                 }
                             } else {
                                 TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
-                                tL_storyItemDeleted.f18344id = y9.e(messageObject);
+                                tL_storyItemDeleted.f18318id = y9.e(messageObject);
                                 y9.b(i10, j3, messageObject, tL_storyItemDeleted);
                             }
                         }
                         if (this.d) {
-                            y9Var.f1765b.getStorageQueue().postRunnable(new a1.e(26, y9Var, arrayList));
+                            y9Var.f1762b.getStorageQueue().postRunnable(new a1.e(26, y9Var, arrayList));
                         }
                     }
                 } else if (tL_error != null) {
@@ -71,24 +71,24 @@ public final class x9 implements RequestDelegate {
                 int i13 = iArr[0] - 1;
                 iArr[0] = i13;
                 if (i13 == 0) {
-                    this.f1710f.run();
+                    this.f1708f.run();
                     return;
                 }
                 return;
             default:
-                ((MediaDataController) this.f1711g).lambda$loadReplyMessagesForMessages$176(this.f1708b, this.f1709c, (a0.i) this.h, this.d, this.e, (AtomicInteger) this.f1712i, this.f1710f, tLObject, tL_error);
+                ((MediaDataController) this.f1709g).lambda$loadReplyMessagesForMessages$176(this.f1706b, this.f1707c, (a0.i) this.h, this.d, this.e, (AtomicInteger) this.f1710i, this.f1708f, tLObject, tL_error);
                 return;
         }
     }
 
     public x9(MediaDataController mediaDataController, Timer.Task task, long j3, a0.i iVar, boolean z10, Timer timer, AtomicInteger atomicInteger, Runnable runnable) {
-        this.f1711g = mediaDataController;
-        this.f1708b = task;
-        this.f1709c = j3;
+        this.f1709g = mediaDataController;
+        this.f1706b = task;
+        this.f1707c = j3;
         this.h = iVar;
         this.d = z10;
         this.e = timer;
-        this.f1712i = atomicInteger;
-        this.f1710f = runnable;
+        this.f1710i = atomicInteger;
+        this.f1708f = runnable;
     }
 }

@@ -15,56 +15,56 @@ import java.util.Map;
 import v7.r8;
 import w7.n7;
 public final class p {
-    public Parcelable f14268a;
-    public Object f14269b;
-    public boolean f14270c;
+    public Parcelable f14258a;
+    public Object f14259b;
+    public boolean f14260c;
     public boolean d;
     public boolean e;
-    public final Object f14271f;
+    public final Object f14261f;
 
     public p(TextView textView) {
-        this.f14268a = null;
-        this.f14269b = null;
-        this.f14270c = false;
+        this.f14258a = null;
+        this.f14259b = null;
+        this.f14260c = false;
         this.d = false;
-        this.f14271f = textView;
+        this.f14261f = textView;
     }
 
     public void a() {
         Drawable drawable;
-        CompoundButton compoundButton = (CompoundButton) this.f14271f;
+        CompoundButton compoundButton = (CompoundButton) this.f14261f;
         if (Build.VERSION.SDK_INT >= 23) {
             drawable = e0.b.e(compoundButton);
         } else {
-            if (!n7.f44784b) {
+            if (!n7.f44738b) {
                 try {
                     Field declaredField = CompoundButton.class.getDeclaredField("mButtonDrawable");
-                    n7.f44783a = declaredField;
+                    n7.f44737a = declaredField;
                     declaredField.setAccessible(true);
                 } catch (NoSuchFieldException e) {
                     Log.i("CompoundButtonCompat", "Failed to retrieve mButtonDrawable field", e);
                 }
-                n7.f44784b = true;
+                n7.f44738b = true;
             }
-            Field field = n7.f44783a;
+            Field field = n7.f44737a;
             if (field != null) {
                 try {
                     drawable = (Drawable) field.get(compoundButton);
                 } catch (IllegalAccessException e7) {
                     Log.i("CompoundButtonCompat", "Failed to get button drawable via reflection", e7);
-                    n7.f44783a = null;
+                    n7.f44737a = null;
                 }
             }
             drawable = null;
         }
         if (drawable != null) {
-            if (this.f14270c || this.d) {
+            if (this.f14260c || this.d) {
                 Drawable mutate = r8.d(drawable).mutate();
-                if (this.f14270c) {
-                    mutate.setTintList((ColorStateList) this.f14268a);
+                if (this.f14260c) {
+                    mutate.setTintList((ColorStateList) this.f14258a);
                 }
                 if (this.d) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f14269b);
+                    mutate.setTintMode((PorterDuff.Mode) this.f14259b);
                 }
                 if (mutate.isStateful()) {
                     mutate.setState(compoundButton.getDrawableState());
@@ -75,16 +75,16 @@ public final class p {
     }
 
     public void b() {
-        o oVar = (o) this.f14271f;
+        o oVar = (o) this.f14261f;
         Drawable checkMarkDrawable = oVar.getCheckMarkDrawable();
         if (checkMarkDrawable != null) {
-            if (this.f14270c || this.d) {
+            if (this.f14260c || this.d) {
                 Drawable mutate = r8.d(checkMarkDrawable).mutate();
-                if (this.f14270c) {
-                    mutate.setTintList((ColorStateList) this.f14268a);
+                if (this.f14260c) {
+                    mutate.setTintList((ColorStateList) this.f14258a);
                 }
                 if (this.d) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f14269b);
+                    mutate.setTintMode((PorterDuff.Mode) this.f14259b);
                 }
                 if (mutate.isStateful()) {
                     mutate.setState(oVar.getDrawableState());
@@ -96,20 +96,20 @@ public final class p {
 
     public Bundle c(String str) {
         if (this.d) {
-            Bundle bundle = (Bundle) this.f14268a;
+            Bundle bundle = (Bundle) this.f14258a;
             if (bundle == null) {
                 return null;
             }
             Bundle bundle2 = bundle.getBundle(str);
-            Bundle bundle3 = (Bundle) this.f14268a;
+            Bundle bundle3 = (Bundle) this.f14258a;
             if (bundle3 != null) {
                 bundle3.remove(str);
             }
-            Bundle bundle4 = (Bundle) this.f14268a;
+            Bundle bundle4 = (Bundle) this.f14258a;
             if (bundle4 != null && !bundle4.isEmpty()) {
                 return bundle2;
             }
-            this.f14268a = null;
+            this.f14258a = null;
             return bundle2;
         }
         throw new IllegalStateException("You can consumeRestoredStateForKey only after super.onCreate of corresponding component");
@@ -118,7 +118,7 @@ public final class p {
     public t4.d d() {
         Map.Entry components;
         t4.d dVar;
-        Iterator it = ((o.f) this.f14271f).iterator();
+        Iterator it = ((o.f) this.f14261f).iterator();
         do {
             o.b bVar = (o.b) it;
             if (bVar.hasNext()) {
@@ -139,21 +139,21 @@ public final class p {
     public void f(String str, t4.d provider) {
         Object obj;
         kotlin.jvm.internal.i.e(provider, "provider");
-        o.f fVar = (o.f) this.f14271f;
+        o.f fVar = (o.f) this.f14261f;
         o.c i10 = fVar.i(str);
         if (i10 != null) {
-            obj = i10.f15289b;
+            obj = i10.f15266b;
         } else {
             o.c cVar = new o.c(str, provider);
             fVar.d++;
-            o.c cVar2 = fVar.f15295b;
+            o.c cVar2 = fVar.f15272b;
             if (cVar2 == null) {
-                fVar.f15294a = cVar;
-                fVar.f15295b = cVar;
+                fVar.f15271a = cVar;
+                fVar.f15272b = cVar;
             } else {
-                cVar2.f15290c = cVar;
+                cVar2.f15267c = cVar;
                 cVar.d = cVar2;
-                fVar.f15295b = cVar;
+                fVar.f15272b = cVar;
             }
             obj = null;
         }
@@ -165,16 +165,16 @@ public final class p {
 
     public void g() {
         if (this.e) {
-            t4.a aVar = (t4.a) this.f14269b;
+            t4.a aVar = (t4.a) this.f14259b;
             if (aVar == null) {
                 aVar = new t4.a(this);
             }
-            this.f14269b = aVar;
+            this.f14259b = aVar;
             try {
                 androidx.lifecycle.j.class.getDeclaredConstructor(null);
-                t4.a aVar2 = (t4.a) this.f14269b;
+                t4.a aVar2 = (t4.a) this.f14259b;
                 if (aVar2 != null) {
-                    aVar2.f43003a.add(androidx.lifecycle.j.class.getName());
+                    aVar2.f42958a.add(androidx.lifecycle.j.class.getName());
                     return;
                 }
                 return;
@@ -186,7 +186,7 @@ public final class p {
     }
 
     public p() {
-        this.f14271f = new o.f();
+        this.f14261f = new o.f();
         this.e = true;
     }
 }

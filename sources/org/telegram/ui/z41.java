@@ -1,53 +1,69 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class z41 extends AnimatorListenerAdapter {
-    public final int f40049a;
-    public final SecretMediaViewer f40050b;
+import android.graphics.SurfaceTexture;
+import org.telegram.messenger.AndroidUtilities;
+public final class z41 implements org.telegram.ui.Components.c71, org.telegram.ui.Components.y61 {
+    public final a51 f39960a;
 
-    public z41(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f40049a = i10;
-        this.f40050b = secretMediaViewer;
+    public z41(a51 a51Var) {
+        this.f39960a = a51Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40049a) {
-            case 0:
-                SecretMediaViewer secretMediaViewer = this.f40050b;
-                Runnable runnable = secretMediaViewer.f31464o0;
-                if (runnable != null) {
-                    runnable.run();
-                    secretMediaViewer.f31464o0 = null;
-                    return;
-                }
-                return;
-            case 1:
-                SecretMediaViewer secretMediaViewer2 = this.f40050b;
-                AnimatorSet animatorSet = secretMediaViewer2.G;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    secretMediaViewer2.F.setVisibility(8);
-                    secretMediaViewer2.G = null;
-                    secretMediaViewer2.f31434a0.scrollTo(0, 0);
-                    return;
-                }
-                return;
-            case 2:
-                SecretMediaViewer secretMediaViewer3 = this.f40050b;
-                Runnable runnable2 = secretMediaViewer3.f31464o0;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    secretMediaViewer3.f31464o0 = null;
-                    return;
-                }
-                return;
-            default:
-                SecretMediaViewer secretMediaViewer4 = this.f40050b;
-                secretMediaViewer4.K0 = null;
-                secretMediaViewer4.e.invalidate();
-                return;
+    public boolean needUpdate() {
+        if (this.f39960a.V.f25540i != null) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public void onRenderedFirstFrame(j2.a aVar) {
+    }
+
+    @Override
+    public void onStateChanged(boolean z10, int i10) {
+        a51 a51Var = this.f39960a;
+        if (i10 == 4) {
+            a51Var.dismiss();
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(a51Var.Z);
+        AndroidUtilities.runOnUIThread(a51Var.Z, 16L);
+    }
+
+    @Override
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
+        this.f39960a.V.e(z10, true, fArr);
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        AndroidUtilities.runOnUIThread(new xz0(this, 12));
+    }
+
+    @Override
+    public void onSeekFinished(j2.a aVar) {
+    }
+
+    @Override
+    public void onSeekStarted(j2.a aVar) {
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public void onError(org.telegram.ui.Components.f71 f71Var, Exception exc) {
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
     }
 }

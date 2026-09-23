@@ -1,34 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class pz0 extends n01 {
-    public pz0(Context context) {
-        super(context);
+import org.telegram.tgnet.TLRPC;
+public final class pz0 extends lq {
+    public final boolean[] f36228d1;
+    public final TLRPC.User f36229e1;
+    public final ProfileActivity f36230f1;
+
+    public pz0(ProfileActivity profileActivity, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
+        super(j3, j10, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
+        this.f36230f1 = profileActivity;
+        this.f36228d1 = zArr;
+        this.f36229e1 = user;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ai.l4 l4Var;
-        super.dispatchDraw(canvas);
-        org.telegram.ui.Components.o5 o5Var = this.e;
-        if (o5Var != null && (l4Var = o5Var.f26689k) != null) {
-            l4Var.startAnimation();
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f36228d1[0]) {
+            ProfileActivity profileActivity = this.f36230f1;
+            if (org.telegram.ui.Components.xc.a(profileActivity)) {
+                org.telegram.ui.Components.xc.C(profileActivity, this.f36229e1.first_name).j();
+            }
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
-            return;
-        }
-        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

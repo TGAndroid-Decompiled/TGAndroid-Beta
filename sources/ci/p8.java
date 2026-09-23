@@ -1,24 +1,17 @@
 package ci;
 
-import android.view.View;
-public final class p8 implements View.OnClickListener {
-    public final int f5308a;
-    public final x8 f5309b;
+import android.view.ViewGroup;
+public final class p8 extends s4.j {
+    public final u8 F;
 
-    public p8(x8 x8Var, int i10) {
-        this.f5308a = i10;
-        this.f5309b = x8Var;
+    public p8(u8 u8Var) {
+        this.F = u8Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f5308a) {
-            case 0:
-                this.f5309b.U();
-                return;
-            default:
-                this.f5309b.X();
-                return;
-        }
+    public final void P(s4.c1 c1Var) {
+        ViewGroup viewGroup;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
+        viewGroup.invalidate();
     }
 }

@@ -8,21 +8,21 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.t5;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i5;
+import org.telegram.ui.u5;
 import w7.x5;
 public final class f0 extends FrameLayout {
-    public final ImageView f42282a;
-    public final j5 f42283b;
-    public final t5 f42284c;
-    public final j5 d;
+    public final ImageView f42237a;
+    public final i5 f42238b;
+    public final u5 f42239c;
+    public final i5 d;
     public e0 e;
-    public d0 f42285f;
+    public d0 f42240f;
 
-    public f0(j0 j0Var, Context context, e6 e6Var) {
+    public f0(j0 j0Var, Context context, d6 d6Var) {
         super(context);
         int i10;
         int i11;
@@ -33,20 +33,20 @@ public final class f0 extends FrameLayout {
         i11 = ((f3) j0Var).backgroundPaddingLeft;
         setPadding(i10, 0, i11, 0);
         ImageView imageView = new ImageView(context);
-        this.f42282a = imageView;
+        this.f42237a = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.Lj, e6Var), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.Lj, d6Var), PorterDuff.Mode.SRC_IN));
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
             i12 = 3;
         }
         addView(imageView, x5.d(24, 24.0f, i12 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
-        j5 j5Var = new j5(context);
-        this.f42283b = j5Var;
-        j5Var.setWidthWrapContent(true);
-        j5Var.setTextColor(i6.v0(i6.f18940j5, e6Var));
-        j5Var.setTextSize(14);
+        i5 i5Var = new i5(context);
+        this.f42238b = i5Var;
+        i5Var.setWidthWrapContent(true);
+        i5Var.setTextColor(h6.v0(h6.f18895j5, d6Var));
+        i5Var.setTextSize(14);
         boolean z10 = LocaleController.isRTL;
         int i13 = (z10 ? 5 : 3) | 16;
         if (z10) {
@@ -59,24 +59,24 @@ public final class f0 extends FrameLayout {
         } else {
             f10 = 30.0f;
         }
-        addView(j5Var, x5.d(-2, -2.0f, i13, f7, 0.0f, f10, 0.0f));
-        j5 j5Var2 = new j5(context);
-        this.d = j5Var2;
-        j5Var2.setTextColor(-1);
-        j5Var2.setWidthWrapContent(true);
-        j5Var2.setTypeface(AndroidUtilities.bold());
-        j5Var2.setTextSize(14);
-        t5 t5Var = new t5(this, context, e6Var);
-        this.f42284c = t5Var;
-        t5Var.setWillNotDraw(false);
-        t5Var.addView(j5Var2, x5.e(-2, -2, 17));
-        addView(t5Var, x5.c(-1.0f, -1));
+        addView(i5Var, x5.d(-2, -2.0f, i13, f7, 0.0f, f10, 0.0f));
+        i5 i5Var2 = new i5(context);
+        this.d = i5Var2;
+        i5Var2.setTextColor(-1);
+        i5Var2.setWidthWrapContent(true);
+        i5Var2.setTypeface(AndroidUtilities.bold());
+        i5Var2.setTextSize(14);
+        u5 u5Var = new u5(this, context, d6Var);
+        this.f42239c = u5Var;
+        u5Var.setWillNotDraw(false);
+        u5Var.addView(i5Var2, x5.e(-2, -2, 17));
+        addView(u5Var, x5.c(-1.0f, -1));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        if (this.f42285f != null) {
+        if (this.f42240f != null) {
             f7 = 49.0f;
         } else {
             f7 = 36.0f;

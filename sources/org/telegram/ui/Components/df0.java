@@ -5,11 +5,11 @@ import android.graphics.Matrix;
 import android.view.TextureView;
 import android.view.View;
 public final class df0 extends TextureView {
-    public final jf0 f23316a;
+    public final jf0 f23401a;
 
     public df0(jf0 jf0Var, Context context) {
         super(context);
-        this.f23316a = jf0Var;
+        this.f23401a = jf0Var;
     }
 
     @Override
@@ -21,20 +21,20 @@ public final class df0 extends TextureView {
     @Override
     public final void setTransform(Matrix matrix) {
         super.setTransform(matrix);
-        vz vzVar = this.f23316a.f25322l0;
-        if (vzVar != null) {
+        wz wzVar = this.f23401a.f25282l0;
+        if (wzVar != null) {
             int width = getWidth();
             int height = getHeight();
-            na naVar = vzVar.I;
-            if (naVar != null) {
-                Matrix matrix2 = naVar.v;
+            pa paVar = wzVar.I;
+            if (paVar != null) {
+                Matrix matrix2 = paVar.v;
                 matrix.invert(matrix2);
                 float f7 = width;
                 float f10 = height;
                 matrix2.preScale(f7, f10);
                 matrix2.postScale(1.0f / f7, 1.0f / f10);
-                naVar.c(matrix2);
-                vzVar.e(false, false, false);
+                paVar.c(matrix2);
+                wzVar.e(false, false, false);
             }
         }
     }

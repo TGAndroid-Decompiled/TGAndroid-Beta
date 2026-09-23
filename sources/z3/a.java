@@ -1,33 +1,21 @@
 package z3;
 
-import com.google.firebase.sessions.FirebaseSessionsRegistrar;
-public final class a implements d9.e, q9.d {
-    public final int f48072a;
+import e9.i0;
+import java.util.List;
+public final class a {
+    public final i0 f48026a;
+    public final long f48027b;
+    public final long f48028c;
+    public final long d;
 
-    public a(int i10) {
-        this.f48072a = i10;
-    }
-
-    @Override
-    public Object G(cf.c cVar) {
-        switch (this.f48072a) {
-            case 9:
-                return FirebaseSessionsRegistrar.e(cVar);
-            case 10:
-                return FirebaseSessionsRegistrar.f(cVar);
-            case 11:
-                return FirebaseSessionsRegistrar.a(cVar);
-            case 12:
-                return FirebaseSessionsRegistrar.b(cVar);
-            case 13:
-                return FirebaseSessionsRegistrar.d(cVar);
-            default:
-                return FirebaseSessionsRegistrar.c(cVar);
+    public a(long j3, long j10, List list) {
+        this.f48026a = i0.v(list);
+        this.f48027b = j3;
+        this.f48028c = j10;
+        long j11 = -9223372036854775807L;
+        if (j3 != -9223372036854775807L && j10 != -9223372036854775807L) {
+            j11 = j3 + j10;
         }
-    }
-
-    @Override
-    public java.lang.Object apply(java.lang.Object r26) {
-        throw new UnsupportedOperationException("Method not decompiled: z3.a.apply(java.lang.Object):java.lang.Object");
+        this.d = j11;
     }
 }

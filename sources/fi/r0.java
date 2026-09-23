@@ -5,26 +5,26 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
 public final class r0 implements Utilities.Callback2 {
-    public final int f9165a;
-    public final t0 f9166b;
+    public final int f9151a;
+    public final t0 f9152b;
 
     public r0(t0 t0Var, int i10) {
-        this.f9165a = i10;
-        this.f9166b = t0Var;
+        this.f9151a = i10;
+        this.f9152b = t0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f9165a) {
+        switch (this.f9151a) {
             case 0:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                t0 t0Var = this.f9166b;
-                t0Var.f9189q.dismiss();
-                t0Var.f9189q = null;
-                t0Var.f9190r = 0;
+                t0 t0Var = this.f9152b;
+                t0Var.f9175q.dismiss();
+                t0Var.f9175q = null;
+                t0Var.f9176r = 0;
                 if (tL_error != null) {
-                    t0Var.f9178c.d0(tL_error, false);
+                    t0Var.f9164c.d0(tL_error, false);
                     return;
                 }
                 s0 s0Var = t0Var.h;
@@ -36,23 +36,23 @@ public final class r0 implements Utilities.Callback2 {
             case 1:
                 TL_communities.PeerLinkRequests peerLinkRequests = (TL_communities.PeerLinkRequests) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                t0 t0Var2 = this.f9166b;
+                t0 t0Var2 = this.f9152b;
                 boolean z10 = false;
-                t0Var2.f9185m = false;
+                t0Var2.f9171m = false;
                 if (peerLinkRequests != null) {
-                    ArrayList arrayList = t0Var2.f9182j;
+                    ArrayList arrayList = t0Var2.f9168j;
                     if (arrayList == null) {
-                        t0Var2.f9182j = new ArrayList(peerLinkRequests.requests);
+                        t0Var2.f9168j = new ArrayList(peerLinkRequests.requests);
                     } else {
                         arrayList.addAll(peerLinkRequests.requests);
                     }
                     String str = peerLinkRequests.next_offset;
-                    t0Var2.f9183k = str;
-                    t0Var2.f9184l = peerLinkRequests.total_count;
+                    t0Var2.f9169k = str;
+                    t0Var2.f9170l = peerLinkRequests.total_count;
                     if (str == null) {
                         z10 = true;
                     }
-                    t0Var2.f9186n = z10;
+                    t0Var2.f9172n = z10;
                     t0Var2.a();
                     s0 s0Var2 = t0Var2.h;
                     if (s0Var2 != null) {
@@ -65,9 +65,9 @@ public final class r0 implements Utilities.Callback2 {
             default:
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                t0 t0Var3 = this.f9166b;
+                t0 t0Var3 = this.f9152b;
                 if (tL_error3 != null) {
-                    t0Var3.f9178c.d0(tL_error3, false);
+                    t0Var3.f9164c.d0(tL_error3, false);
                     return;
                 } else {
                     t0Var3.getClass();

@@ -1,176 +1,29 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ih0 implements RequestDelegate {
-    public final int f34668a;
-    public final yh0 f34669b;
-    public final TLRPC.TL_chatInviteExported f34670c;
+public final class ih0 implements Runnable {
+    public final th0 f34142a;
 
-    public ih0(yh0 yh0Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, int i10) {
-        this.f34668a = i10;
-        this.f34669b = yh0Var;
-        this.f34670c = tL_chatInviteExported;
+    public ih0(th0 th0Var) {
+        this.f34142a = th0Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f34668a) {
-            case 0:
-                final yh0 yh0Var = this.f34669b;
-                final TLRPC.TL_chatInviteExported tL_chatInviteExported = this.f34670c;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                if (tL_error == null) {
-                                    TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) tLObject;
-                                    yh0 yh0Var2 = yh0Var;
-                                    yh0Var2.e = tL_chatInviteExported2;
-                                    TLRPC.ChatFull chatFull = yh0Var2.d;
-                                    if (chatFull != null) {
-                                        chatFull.exported_invite = tL_chatInviteExported2;
-                                    }
-                                    if (yh0Var2.getParentActivity() != null) {
-                                        TLRPC.TL_chatInviteExported tL_chatInviteExported3 = tL_chatInviteExported;
-                                        tL_chatInviteExported3.revoked = true;
-                                        ph0 f02 = yh0Var2.f0();
-                                        yh0Var2.f39865j0.add(0, tL_chatInviteExported3);
-                                        yh0Var2.h0(f02);
-                                        org.telegram.messenger.y0.o(R.string.InviteRevokedHint, org.telegram.ui.Components.vc.a0(yh0Var2), R.raw.linkbroken, 36);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                yh0 yh0Var3 = yh0Var;
-                                ArrayList arrayList = yh0Var3.f39864i0;
-                                if (tL_error == null) {
-                                    TLObject tLObject2 = tLObject;
-                                    boolean z10 = tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced;
-                                    TLRPC.TL_chatInviteExported tL_chatInviteExported4 = tL_chatInviteExported;
-                                    if (z10) {
-                                        TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
-                                        if (!yh0Var3.f39870o0) {
-                                            yh0Var3.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
-                                        }
-                                        tL_chatInviteExported4.revoked = true;
-                                        ph0 f03 = yh0Var3.f0();
-                                        if (yh0Var3.f39870o0 && yh0Var3.f39860f == yh0Var3.getAccountInstance().getUserConfig().getClientUserId()) {
-                                            arrayList.remove(tL_chatInviteExported4);
-                                            arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
-                                        } else if (yh0Var3.e != null) {
-                                            yh0Var3.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
-                                        }
-                                        yh0Var3.f39865j0.add(0, tL_chatInviteExported4);
-                                        yh0Var3.h0(f03);
-                                    } else {
-                                        yh0Var3.f39876s0.b(tL_chatInviteExported4, tLObject2);
-                                        TLRPC.ChatFull chatFull2 = yh0Var3.d;
-                                        if (chatFull2 != null) {
-                                            int i10 = chatFull2.invitesCount - 1;
-                                            chatFull2.invitesCount = i10;
-                                            if (i10 < 0) {
-                                                chatFull2.invitesCount = 0;
-                                            }
-                                            yh0Var3.getMessagesStorage().saveChatLinksCount(yh0Var3.f39868n, yh0Var3.d.invitesCount);
-                                        }
-                                    }
-                                    if (yh0Var3.getParentActivity() != null) {
-                                        org.telegram.messenger.y0.o(R.string.InviteRevokedHint, org.telegram.ui.Components.vc.a0(yh0Var3), R.raw.linkbroken, 36);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                yh0 yh0Var2 = this.f34669b;
-                yh0Var2.getClass();
-                AndroidUtilities.runOnUIThread(new pf0(yh0Var2, tL_error, this.f34670c, 5));
-                return;
-            default:
-                final yh0 yh0Var3 = this.f34669b;
-                final TLRPC.TL_chatInviteExported tL_chatInviteExported2 = this.f34670c;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                if (tL_error == null) {
-                                    TLRPC.TL_chatInviteExported tL_chatInviteExported22 = (TLRPC.TL_chatInviteExported) tLObject;
-                                    yh0 yh0Var22 = yh0Var3;
-                                    yh0Var22.e = tL_chatInviteExported22;
-                                    TLRPC.ChatFull chatFull = yh0Var22.d;
-                                    if (chatFull != null) {
-                                        chatFull.exported_invite = tL_chatInviteExported22;
-                                    }
-                                    if (yh0Var22.getParentActivity() != null) {
-                                        TLRPC.TL_chatInviteExported tL_chatInviteExported3 = tL_chatInviteExported2;
-                                        tL_chatInviteExported3.revoked = true;
-                                        ph0 f02 = yh0Var22.f0();
-                                        yh0Var22.f39865j0.add(0, tL_chatInviteExported3);
-                                        yh0Var22.h0(f02);
-                                        org.telegram.messenger.y0.o(R.string.InviteRevokedHint, org.telegram.ui.Components.vc.a0(yh0Var22), R.raw.linkbroken, 36);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                yh0 yh0Var32 = yh0Var3;
-                                ArrayList arrayList = yh0Var32.f39864i0;
-                                if (tL_error == null) {
-                                    TLObject tLObject2 = tLObject;
-                                    boolean z10 = tLObject2 instanceof TLRPC.TL_messages_exportedChatInviteReplaced;
-                                    TLRPC.TL_chatInviteExported tL_chatInviteExported4 = tL_chatInviteExported2;
-                                    if (z10) {
-                                        TLRPC.TL_messages_exportedChatInviteReplaced tL_messages_exportedChatInviteReplaced = (TLRPC.TL_messages_exportedChatInviteReplaced) tLObject2;
-                                        if (!yh0Var32.f39870o0) {
-                                            yh0Var32.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
-                                        }
-                                        tL_chatInviteExported4.revoked = true;
-                                        ph0 f03 = yh0Var32.f0();
-                                        if (yh0Var32.f39870o0 && yh0Var32.f39860f == yh0Var32.getAccountInstance().getUserConfig().getClientUserId()) {
-                                            arrayList.remove(tL_chatInviteExported4);
-                                            arrayList.add(0, (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite);
-                                        } else if (yh0Var32.e != null) {
-                                            yh0Var32.e = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInviteReplaced.new_invite;
-                                        }
-                                        yh0Var32.f39865j0.add(0, tL_chatInviteExported4);
-                                        yh0Var32.h0(f03);
-                                    } else {
-                                        yh0Var32.f39876s0.b(tL_chatInviteExported4, tLObject2);
-                                        TLRPC.ChatFull chatFull2 = yh0Var32.d;
-                                        if (chatFull2 != null) {
-                                            int i10 = chatFull2.invitesCount - 1;
-                                            chatFull2.invitesCount = i10;
-                                            if (i10 < 0) {
-                                                chatFull2.invitesCount = 0;
-                                            }
-                                            yh0Var32.getMessagesStorage().saveChatLinksCount(yh0Var32.f39868n, yh0Var32.d.invitesCount);
-                                        }
-                                    }
-                                    if (yh0Var32.getParentActivity() != null) {
-                                        org.telegram.messenger.y0.o(R.string.InviteRevokedHint, org.telegram.ui.Components.vc.a0(yh0Var32), R.raw.linkbroken, 36);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void run() {
+        th0 th0Var = this.f34142a;
+        if (th0Var.f37657b == null) {
+            return;
         }
+        for (int i10 = 0; i10 < th0Var.f37657b.getChildCount(); i10++) {
+            View childAt = th0Var.f37657b.getChildAt(i10);
+            if (childAt instanceof qh0) {
+                qh0 qh0Var = (qh0) childAt;
+                if (qh0Var.I) {
+                    qh0Var.b(qh0Var.f36445n, qh0Var.f36446r);
+                }
+            }
+        }
+        AndroidUtilities.runOnUIThread(this, 500L);
     }
 }

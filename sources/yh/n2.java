@@ -1,99 +1,112 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RadialGradient;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.widget.FrameLayout;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.u9;
-public final class n2 extends FrameLayout {
-    public final u9 f47453a;
-    public final t2 f47454b;
-    public final org.telegram.ui.Components.n6 f47455c;
-    public TL_stars.starGiftAttributeBackdrop d;
-    public TL_stars.starGiftAttributePattern e;
-    public float f47456f;
+import org.telegram.ui.Components.rr;
+public final class n2 extends Drawable {
+    public final Paint f47439a;
+    public final LinearGradient[] f47440b;
+    public final Matrix f47441c;
+    public final org.telegram.ui.Components.e6 d;
+    public final Path e;
+    public final i8 f47442f;
+    public int f47443g;
+    public int h;
 
-    public n2(Context context) {
-        super(context);
-        u9 u9Var = new u9(context);
-        this.f47453a = u9Var;
-        u9Var.setRoundRadius(AndroidUtilities.dp(13.0f));
-        addView(u9Var, w7.x5.d(26, 26.0f, 49, 0.0f, 11.33f, 0.0f, 0.0f));
-        t2 t2Var = new t2(context);
-        this.f47454b = t2Var;
-        t2Var.e = AndroidUtilities.dp(18.0f);
-        t2Var.f47751a.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        addView(t2Var, w7.x5.d(48, 48.0f, 49, 0.0f, 0.66f, 0.0f, 0.0f));
-        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(context, false, false, false);
-        this.f47455c = n6Var;
-        n6Var.setTypeface(AndroidUtilities.bold());
-        n6Var.setGravity(17);
-        n6Var.setTextSize(AndroidUtilities.dp(12.0f));
-        n6Var.setTextColor(-1);
-        addView(n6Var, w7.x5.d(-1, 14.0f, 48, 0.0f, 39.0f, 0.0f, 0.0f));
-        c(0.0f, false);
-        w7.z5.a(this);
+    public n2() {
+        Paint paint = new Paint(1);
+        Paint paint2 = new Paint(1);
+        this.f47439a = new Paint(1);
+        this.f47440b = new LinearGradient[2];
+        this.f47441c = new Matrix();
+        this.d = new org.telegram.ui.Components.e6(1.0f, new rg.w1(this, 27), 0L, 420L, rr.h);
+        this.e = new Path();
+        this.f47442f = new i8(1, 45);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setColor(117440511);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        paint2.setStyle(style);
+        paint2.setColor(301989887);
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
     }
 
-    public final void a(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.d = stargiftattributebackdrop;
-        this.e = null;
-        u9 u9Var = this.f47453a;
-        u9Var.setScaleX(1.0f);
-        u9Var.setScaleY(1.0f);
-        if (stargiftattributebackdrop != null) {
-            u9Var.setAlpha(1.0f);
-            OvalShape ovalShape = new OvalShape();
-            ovalShape.resize(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
-            ShapeDrawable shapeDrawable = new ShapeDrawable(ovalShape);
-            shapeDrawable.setIntrinsicWidth(AndroidUtilities.dp(26.0f));
-            shapeDrawable.setIntrinsicHeight(AndroidUtilities.dp(26.0f));
-            shapeDrawable.getPaint().setShader(new RadialGradient(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            u9Var.setImageDrawable(shapeDrawable);
+    public final void a(int i10, int i11) {
+        if (this.f47443g == i10 && this.h == i11) {
             return;
         }
-        u9Var.setAlpha(1.0f);
-        u9Var.setImageDrawable(org.telegram.ui.ActionBar.i6.K(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.i6.l1(0.25f, -1)));
+        LinearGradient[] linearGradientArr = this.f47440b;
+        linearGradientArr[0] = linearGradientArr[1];
+        this.f47443g = i10;
+        this.h = i11;
+        linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.d.d(0.0f, true);
+        invalidateSelf();
     }
 
-    public final void b(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-        this.d = null;
-        this.e = stargiftattributepattern;
-        u9 u9Var = this.f47453a;
-        if (stargiftattributepattern == null) {
-            u9Var.setAlpha(0.25f);
-            u9Var.setScaleX(0.75f);
-            u9Var.setScaleY(0.75f);
-            u9Var.setTranslationY(0.0f);
-            u9Var.setAnimatedEmojiDrawable(null);
-            u9Var.setImageResource(R.drawable.mini_roll);
-            return;
+    @Override
+    public final void draw(Canvas canvas) {
+        AndroidUtilities.rectTmp.set(getBounds());
+        float dp = AndroidUtilities.dp(24.0f);
+        int i10 = 0;
+        float d = this.d.d(1.0f, false);
+        while (true) {
+            LinearGradient[] linearGradientArr = this.f47440b;
+            if (i10 < linearGradientArr.length) {
+                if (linearGradientArr[i10] != null) {
+                    float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
+                    if (pow > 0.0f) {
+                        Matrix matrix = this.f47441c;
+                        matrix.reset();
+                        RectF rectF = AndroidUtilities.rectTmp;
+                        matrix.postScale(rectF.width() / 100.0f, 1.0f);
+                        linearGradientArr[i10].setLocalMatrix(matrix);
+                        LinearGradient linearGradient = linearGradientArr[i10];
+                        Paint paint = this.f47439a;
+                        paint.setShader(linearGradient);
+                        paint.setAlpha((int) (pow * 255.0f));
+                        canvas.drawRoundRect(rectF, dp, dp, paint);
+                    }
+                }
+                i10++;
+            } else {
+                Path path = this.e;
+                path.rewind();
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                path.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
+                canvas.save();
+                canvas.clipPath(path);
+                i8 i8Var = this.f47442f;
+                i8Var.g(rectF2);
+                i8Var.h = 30.0f;
+                i8Var.d();
+                i8Var.a(canvas, org.telegram.ui.ActionBar.h6.l1(0.6f, -1));
+                invalidateSelf();
+                canvas.restore();
+                AndroidUtilities.drawStroke(canvas, rectF2, dp);
+                return;
+            }
         }
-        u9Var.setAlpha(1.0f);
-        u9Var.setScaleX(0.95f);
-        u9Var.setScaleY(0.95f);
-        u9Var.setTranslationY(AndroidUtilities.dp(2.0f));
-        org.telegram.ui.Components.o5 m10 = org.telegram.ui.Components.o5.m(UserConfig.selectedAccount, 9, stargiftattributepattern.document);
-        m10.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        u9Var.setAnimatedEmojiDrawable(m10);
     }
 
-    public final void c(float f7, boolean z10) {
-        this.f47456f = f7;
-        t2 t2Var = this.f47454b;
-        t2Var.d = f7;
-        if (!z10) {
-            t2Var.f47752b.d(f7, true);
-        }
-        t2Var.invalidate();
-        this.f47455c.c(Math.round(f7 * 100.0f) + "%", z10, true);
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

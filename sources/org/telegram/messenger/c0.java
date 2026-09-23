@@ -24,35 +24,35 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.WriteToSocketDelegate;
 import org.telegram.ui.Components.ao0;
-import org.telegram.ui.bo;
-public final class c0 implements ResultCallback, WriteToSocketDelegate, OnSuccessListener, OnFailureListener, ci.m8, TelegramMediaSession.BrowseChildrenCallback, ImageReceiver.ImageReceiverDelegate, RequestTimeDelegate, OnCompleteListener, ao0, org.telegram.ui.ActionBar.a2 {
-    public final int f15791a;
-    public final Object f15792b;
+import org.telegram.ui.xn;
+public final class c0 implements ResultCallback, WriteToSocketDelegate, OnSuccessListener, OnFailureListener, ci.j8, TelegramMediaSession.BrowseChildrenCallback, ImageReceiver.ImageReceiverDelegate, RequestTimeDelegate, OnCompleteListener, ao0, org.telegram.ui.ActionBar.a2 {
+    public final int f15782a;
+    public final Object f15783b;
 
     public c0(Object obj, int i10) {
-        this.f15791a = i10;
-        this.f15792b = obj;
+        this.f15782a = i10;
+        this.f15783b = obj;
     }
 
     public void a(c5.h hVar, c5.s sVar) {
-        BillingController.lambda$queryProductDetails$0((BillingController.ProductDetailsResponseListenerLegacy) this.f15792b, hVar, sVar);
+        BillingController.lambda$queryProductDetails$0((BillingController.ProductDetailsResponseListenerLegacy) this.f15783b, hVar, sVar);
     }
 
     @Override
     public void b(float f7) {
-        ((RichMessageLayout.RichAudioBlock) this.f15792b).lambda$new$0(f7);
+        ((RichMessageLayout.RichAudioBlock) this.f15783b).lambda$new$0(f7);
     }
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
         Bitmap lambda$rebuildPhoto$0;
-        lambda$rebuildPhoto$0 = ((MediaController.PhotoEntry) this.f15792b).lambda$rebuildPhoto$0(options);
+        lambda$rebuildPhoto$0 = ((MediaController.PhotoEntry) this.f15783b).lambda$rebuildPhoto$0(options);
         return lambda$rebuildPhoto$0;
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        MusicPlayerService.a((MusicPlayerService) this.f15792b, imageReceiver, z10, z11, z12);
+        MusicPlayerService.a((MusicPlayerService) this.f15783b, imageReceiver, z10, z11, z12);
     }
 
     @Override
@@ -62,7 +62,7 @@ public final class c0 implements ResultCallback, WriteToSocketDelegate, OnSucces
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        SendMessagesHelper.lambda$sendCallback$42((bo) this.f15792b, b2Var, i10);
+        SendMessagesHelper.lambda$sendCallback$42((xn) this.f15783b, b2Var, i10);
     }
 
     @Override
@@ -72,56 +72,56 @@ public final class c0 implements ResultCallback, WriteToSocketDelegate, OnSucces
 
     @Override
     public void onComplete(Task task) {
-        ((PushListenerController.GooglePushListenerServiceProvider) this.f15792b).lambda$onRequestPushToken$0(task);
+        ((PushListenerController.GooglePushListenerServiceProvider) this.f15783b).lambda$onRequestPushToken$0(task);
     }
 
     @Override
     public void onError(Throwable th2) {
-        int i10 = this.f15791a;
+        int i10 = this.f15782a;
         org.telegram.tgnet.l.a(this, th2);
     }
 
     @Override
     public void onFailure(Exception exc) {
-        LanguageDetector.lambda$detectLanguage$1((LanguageDetector.ExceptionCallback) this.f15792b, exc);
+        LanguageDetector.lambda$detectLanguage$1((LanguageDetector.ExceptionCallback) this.f15783b, exc);
     }
 
     @Override
     public void onResult(List list) {
-        ((MediaBrowserService.Result) this.f15792b).sendResult(list);
+        ((MediaBrowserService.Result) this.f15783b).sendResult(list);
     }
 
     @Override
     public void onSuccess(Object obj) {
-        LanguageDetector.lambda$detectLanguage$0((LanguageDetector.StringCallback) this.f15792b, (String) obj);
+        LanguageDetector.lambda$detectLanguage$0((LanguageDetector.StringCallback) this.f15783b, (String) obj);
     }
 
     @Override
     public void run() {
-        ((FileUploadOperation) this.f15792b).lambda$startUploadRequest$8();
+        ((FileUploadOperation) this.f15783b).lambda$startUploadRequest$8();
     }
 
     @Override
     public void onComplete(Object obj) {
-        switch (this.f15791a) {
+        switch (this.f15782a) {
             case 1:
-                ChatThemeController.h((Utilities.Callback) this.f15792b, (Bitmap) obj);
+                ChatThemeController.h((Utilities.Callback) this.f15783b, (Bitmap) obj);
                 return;
             default:
-                ChatThemeController.c((ChatThemeController) this.f15792b, (Pair) obj);
+                ChatThemeController.c((ChatThemeController) this.f15783b, (Pair) obj);
                 return;
         }
     }
 
     @Override
     public void onError(TLRPC.TL_error tL_error) {
-        int i10 = this.f15791a;
+        int i10 = this.f15782a;
         org.telegram.tgnet.l.b(this, tL_error);
     }
 
     @Override
     public void run(long j3) {
-        ProxyRotationController.c((SharedConfig.ProxyInfo) this.f15792b, j3);
+        ProxyRotationController.c((SharedConfig.ProxyInfo) this.f15783b, j3);
     }
 
     @Override

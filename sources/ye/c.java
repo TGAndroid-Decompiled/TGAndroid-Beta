@@ -3,29 +3,29 @@ package ye;
 import bf.p;
 import bf.t;
 public final class c extends df.a {
-    public final int f46711a;
-    public final bf.a f46712b;
+    public final int f46669a;
+    public final bf.a f46670b;
 
     public c(int i10) {
-        this.f46711a = i10;
+        this.f46669a = i10;
         switch (i10) {
             case 1:
-                this.f46712b = new p();
+                this.f46670b = new p();
                 return;
             default:
-                this.f46712b = new p();
+                this.f46670b = new p();
                 return;
         }
     }
 
     @Override
     public void a(CharSequence charSequence) {
-        int i10 = this.f46711a;
+        int i10 = this.f46669a;
     }
 
     @Override
     public boolean b(bf.a aVar) {
-        switch (this.f46711a) {
+        switch (this.f46669a) {
             case 0:
                 return true;
             default:
@@ -35,17 +35,17 @@ public final class c extends df.a {
 
     @Override
     public final bf.a e() {
-        switch (this.f46711a) {
+        switch (this.f46669a) {
             case 0:
-                return (bf.f) this.f46712b;
+                return (bf.f) this.f46670b;
             default:
-                return (t) this.f46712b;
+                return (t) this.f46670b;
         }
     }
 
     @Override
     public boolean f() {
-        switch (this.f46711a) {
+        switch (this.f46669a) {
             case 0:
                 return true;
             default:
@@ -55,9 +55,9 @@ public final class c extends df.a {
 
     @Override
     public final q3.h h(d dVar) {
-        switch (this.f46711a) {
+        switch (this.f46669a) {
             case 0:
-                return q3.h.a(dVar.f46716b);
+                return q3.h.a(dVar.f46674b);
             default:
                 return null;
         }

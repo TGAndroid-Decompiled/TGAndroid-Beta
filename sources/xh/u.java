@@ -5,26 +5,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.hq0;
 public final class u extends org.telegram.ui.ActionBar.j {
-    public final TL_stars.StarGift f46130a;
-    public final Context f46131b;
-    public final e6 f46132c;
+    public final TL_stars.StarGift f46087a;
+    public final Context f46088b;
+    public final d6 f46089c;
 
-    public u(Context context, TL_stars.StarGift starGift, e6 e6Var) {
-        this.f46130a = starGift;
-        this.f46131b = context;
-        this.f46132c = e6Var;
+    public u(Context context, TL_stars.StarGift starGift, d6 d6Var) {
+        this.f46087a = starGift;
+        this.f46088b = context;
+        this.f46089c = d6Var;
     }
 
     @Override
     public final void b(int i10) {
-        Context context = this.f46131b;
-        TL_stars.StarGift starGift = this.f46130a;
+        Context context = this.f46088b;
+        TL_stars.StarGift starGift = this.f46087a;
         if (i10 != 3 && i10 != 2) {
             if (i10 == 4) {
-                v.U(context, starGift, this.f46132c);
+                v.U(context, starGift, this.f46089c);
                 return;
             }
             return;

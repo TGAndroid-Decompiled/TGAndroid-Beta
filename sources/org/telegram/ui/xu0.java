@@ -1,32 +1,55 @@
 package org.telegram.ui;
 
-import java.io.File;
-import java.util.List;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public interface xu0 {
-    boolean a(int i10);
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class xu0 extends org.telegram.ui.Components.y50 {
+    public final yu0 d;
 
-    File b(int i10);
+    public xu0(yu0 yu0Var) {
+        this.d = yu0Var;
+    }
 
-    String c(int i10);
+    @Override
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+        if (this.d.f39901s.Z7 > 0) {
+            sb2.append(", ");
+            sb2.append(this.d.f39901s.Y7 + 1);
+            sb2.append(" / ");
+            sb2.append(this.d.f39901s.Z7);
+        }
+        sb2.append(", ");
+        sb2.append(this.d.h);
+        sb2.append(" – ");
+        sb2.append(this.d.f39899n);
+        return sb2.toString();
+    }
 
-    TLObject d(int i10);
+    @Override
+    public final int i() {
+        return Math.max(0, this.d.f39901s.Z7 - 1);
+    }
 
-    boolean e(int i10);
+    @Override
+    public final int j() {
+        return this.d.f39901s.Y7;
+    }
 
-    TLRPC.PhotoSize f(TLObject tLObject, int[] iArr);
-
-    Object g();
-
-    TL_iv.PageBlock get(int i10);
-
-    List getAll();
-
-    void h(TL_iv.PageBlock pageBlock);
-
-    CharSequence i(int i10);
-
-    int j();
+    @Override
+    public final void k(int i10) {
+        int max;
+        if (this.d.f39901s.Z7 > 0 && (max = Math.max(0, Math.min(this.d.f39901s.Z7 - 1, i10))) != this.d.f39901s.Y7) {
+            yu0 yu0Var = this.d;
+            yu0Var.f39900r = yu0Var.f39901s.Y7;
+            this.d.f39901s.Y7 = max;
+            this.d.f39901s.R0();
+            this.d.invalidate();
+            int i11 = this.d.f39901s.Y7;
+            yu0 yu0Var2 = this.d;
+            if (i11 != yu0Var2.f39900r) {
+                yu0Var2.f39901s.o2(1);
+            }
+        }
+    }
 }

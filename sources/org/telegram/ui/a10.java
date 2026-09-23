@@ -1,59 +1,97 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class a10 implements TextWatcher {
-    public final c10 f31648a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+public class a10 extends ReplacementSpan {
+    public final TextPaint f31632a;
+    public final Paint f31633b;
+    public StaticLayout f31634c;
+    public float d;
+    public float e;
+    public int f31635f;
+    public final int h;
+    public CharSequence f31636n;
 
-    public a10(c10 c10Var) {
-        this.f31648a = c10Var;
+    public a10(int i10) {
+        TextPaint textPaint = new TextPaint(1);
+        this.f31632a = textPaint;
+        Paint paint = new Paint(1);
+        this.f31633b = paint;
+        this.f31636n = "NEW";
+        this.h = i10;
+        textPaint.setTypeface(AndroidUtilities.bold());
+        paint.setStyle(Paint.Style.FILL);
+        textPaint.setTextSize(AndroidUtilities.dp(i10 < 0 ? 12.0f : i10));
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        String str;
-        int i10;
-        f10 f10Var = this.f31648a.e;
-        if (!TextUtils.equals(editable, f10Var.f33454w)) {
-            f10Var.f33451n = !TextUtils.isEmpty(editable);
-            f10Var.f33454w = org.telegram.ui.Components.x5.onlyEmojiSpans(editable);
-            t00 t00Var = f10Var.I;
-            if (t00Var != null) {
-                t00Var.e(org.telegram.ui.Components.x5.cloneSpans(f10Var.f33454w, -1, t00Var.f37519s.getPaint().getFontMetricsInt(), 0.5f), true);
-            }
-            u00 u00Var = f10Var.J;
-            if (u00Var != null) {
-                org.telegram.ui.Cells.u3 u3Var = u00Var.f37769r;
-                if (f10.k0(f10Var.f33454w)) {
-                    if (f10Var.f33455x) {
-                        i10 = R.string.FilterNameAnimationsDisable;
-                    } else {
-                        i10 = R.string.FilterNameAnimationsEnable;
-                    }
-                    str = LocaleController.getString(i10);
-                } else {
-                    str = null;
-                }
-                u3Var.setText(str);
-            }
-            kVar = ((org.telegram.ui.ActionBar.n2) f10Var).actionBar;
-            CharSequence charSequence = f10Var.f33454w;
-            kVar2 = ((org.telegram.ui.ActionBar.n2) f10Var).actionBar;
-            kVar.setTitle(org.telegram.ui.Components.x5.cloneSpans(charSequence, -1, kVar2.getTitleFontMetricsInt()));
+    public final void a() {
+        if (this.f31634c == null) {
+            StaticLayout staticLayout = new StaticLayout(this.f31636n, this.f31632a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f31634c = staticLayout;
+            this.d = staticLayout.getLineWidth(0);
+            this.e = this.f31634c.getHeight();
         }
-        f10Var.i0(true);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15;
+        float f10;
+        a();
+        int i16 = this.f31635f;
+        if (i16 == 0) {
+            i16 = paint.getColor();
+        }
+        Paint paint2 = this.f31633b;
+        paint2.setColor(i16);
+        if (AndroidUtilities.computePerceivedBrightness(i16) > 0.721f) {
+            i15 = -16777216;
+        } else {
+            i15 = -1;
+        }
+        TextPaint textPaint = this.f31632a;
+        textPaint.setColor(i15);
+        paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
+        textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
+        float dp = f7 + AndroidUtilities.dp(2.0f);
+        float dp2 = (i13 - this.e) + AndroidUtilities.dp(1.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(dp, dp2, this.d + dp, this.e + dp2);
+        float dp3 = AndroidUtilities.dp(4.4f);
+        float dp4 = AndroidUtilities.dp(-4.0f);
+        if (this.h == 8) {
+            f10 = -3.66f;
+        } else {
+            f10 = -2.33f;
+        }
+        rectF.inset(dp4, AndroidUtilities.dp(f10));
+        canvas.drawRoundRect(rectF, dp3, dp3, paint2);
+        canvas.save();
+        canvas.translate(dp, dp2);
+        this.f31634c.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        a();
+        return (int) (AndroidUtilities.dp(10.0f) + this.d);
+    }
+
+    public a10() {
+        TextPaint textPaint = new TextPaint(1);
+        this.f31632a = textPaint;
+        Paint paint = new Paint(1);
+        this.f31633b = paint;
+        this.f31636n = "NEW";
+        textPaint.setTypeface(AndroidUtilities.bold());
+        paint.setStyle(Paint.Style.FILL);
+        textPaint.setTextSize(AndroidUtilities.dp(10.0f));
     }
 }

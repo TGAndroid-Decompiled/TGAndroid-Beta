@@ -3,13 +3,13 @@ package gb;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 public final class b extends db.u {
-    public static final a f9535c = new a();
-    public final Class f9536a;
-    public final o f9537b;
+    public static final a f9521c = new a();
+    public final Class f9522a;
+    public final o f9523b;
 
     public b(db.g gVar, db.u uVar, Class cls) {
-        this.f9537b = new o(gVar, uVar, cls);
-        this.f9536a = cls;
+        this.f9523b = new o(gVar, uVar, cls);
+        this.f9522a = cls;
     }
 
     @Override
@@ -21,11 +21,11 @@ public final class b extends db.u {
         ArrayList arrayList = new ArrayList();
         aVar.a();
         while (aVar.k()) {
-            arrayList.add(((db.u) this.f9537b.f9575c).read(aVar));
+            arrayList.add(((db.u) this.f9523b.f9561c).read(aVar));
         }
         aVar.e();
         int size = arrayList.size();
-        Class cls = this.f9536a;
+        Class cls = this.f9522a;
         if (cls.isPrimitive()) {
             Object newInstance = Array.newInstance(cls, size);
             for (int i10 = 0; i10 < size; i10++) {
@@ -45,7 +45,7 @@ public final class b extends db.u {
         bVar.b();
         int length = Array.getLength(obj);
         for (int i10 = 0; i10 < length; i10++) {
-            this.f9537b.write(bVar, Array.get(obj, i10));
+            this.f9523b.write(bVar, Array.get(obj, i10));
         }
         bVar.e();
     }

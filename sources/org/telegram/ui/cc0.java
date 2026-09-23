@@ -1,73 +1,53 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_update;
-public final class cc0 extends e70 {
-    public cc0(fc0 fc0Var, Bundle bundle) {
-        super(bundle);
+import android.text.TextUtils;
+public final class cc0 extends og.a {
+    public final CharSequence f32307c;
+    public final int d;
+    public final int e;
+    public final int f32308f;
+
+    public cc0(int i10, int i11, CharSequence charSequence, int i12, int i13) {
+        super(i10, false);
+        this.f32307c = charSequence;
+        this.d = i11;
+        this.e = i12;
+        this.f32308f = i13;
     }
 
-    public static void t0(cc0 cc0Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_error tL_error) {
-        int i10 = 0;
-        if (tLObject instanceof TLRPC.Updates) {
-            TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            MessagesController.getInstance(cc0Var.currentAccount).putUsers(updates.users, false);
-            MessagesController.getInstance(cc0Var.currentAccount).putChats(updates.chats, false);
-            ArrayList findUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class);
-            int size = findUpdatesAndRemove.size();
-            TLRPC.GroupCall groupCall = null;
-            while (i10 < size) {
-                Object obj = findUpdatesAndRemove.get(i10);
-                i10++;
-                groupCall = ((TL_update.TL_updateGroupCall) obj).call;
-            }
-            if (LaunchActivity.G1 != null && groupCall != null) {
-                TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f18126id = groupCall.f18119id;
-                tL_inputGroupCall.access_hash = groupCall.access_hash;
-                org.telegram.ui.Components.voip.f2.g(LaunchActivity.G1, cc0Var.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
-            }
-        } else if (tLObject instanceof TL_phone.groupCall) {
-            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            MessagesController.getInstance(cc0Var.currentAccount).putUsers(groupcall.users, false);
-            MessagesController.getInstance(cc0Var.currentAccount).putChats(groupcall.chats, false);
-            if (LaunchActivity.G1 != null) {
-                TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
-                TLRPC.GroupCall groupCall2 = groupcall.call;
-                tL_inputGroupCall2.f18126id = groupCall2.f18119id;
-                tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                org.telegram.ui.Components.voip.f2.g(LaunchActivity.G1, cc0Var.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
-            }
-        } else if (tL_error != null) {
-            fc0.b().d0(tL_error, false);
-        }
+    public static cc0 b(int i10, String str) {
+        return new cc0(4, 0, str, i10, 0);
     }
 
-    @Override
-    public final void n0(HashSet hashSet) {
-        if (hashSet.size() == 1) {
-            TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f18256id);
-            if (userFull == null) {
-                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f18249id = getMessagesController().getInputUser(user.f18256id);
-                getConnectionsManager().sendRequest(tL_users_getFullUser, new qo(29, this, user));
-                return;
+    public static cc0 c(int i10, int i11, String str) {
+        return new cc0(3, i10, str, i11, 0);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof cc0) {
+                cc0 cc0Var = (cc0) obj;
+                int i10 = cc0Var.f15508a;
+                int i11 = this.f15508a;
+                if (i10 == i11) {
+                    if (i11 != 3 || cc0Var.d == this.d) {
+                        if (i11 != 5 || cc0Var.f32308f == this.f32308f) {
+                            if ((i11 != 3 && i11 != 4) || cc0Var.e == this.e) {
+                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(cc0Var.f32307c, this.f32307c)) {
+                                    return false;
+                                }
+                                return true;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
             }
-            org.telegram.ui.Components.voip.f2.m(user, false, userFull.video_calls_available, getParentActivity(), userFull, getAccountInstance());
-        } else {
-            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-            createconferencecall.random_id = Utilities.random.nextInt();
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new bc0(0, this, hashSet));
+            return false;
         }
-        finishFragment();
+        return true;
     }
 }

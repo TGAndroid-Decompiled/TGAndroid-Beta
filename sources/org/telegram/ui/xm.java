@@ -1,19 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class xm extends org.telegram.ui.Components.ll0 implements ai.s9 {
-    public final bo X2;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class xm implements Runnable {
+    public final int f39304a;
+    public final jn f39305b;
+    public final TLRPC.Chat f39306c;
 
-    public xm(bo boVar, Context context, zn znVar) {
-        super(context, znVar);
-        this.X2 = boVar;
+    public xm(jn jnVar, TLRPC.Chat chat, int i10) {
+        this.f39304a = i10;
+        this.f39305b = jnVar;
+        this.f39306c = chat;
     }
 
     @Override
-    public final void a(int[] iArr) {
-        bo boVar = this.X2;
-        iArr[0] = ((int) boVar.f32464s9) - AndroidUtilities.dp(4.0f);
-        iArr[1] = org.telegram.messenger.y0.z(3.0f, boVar.f32519x0.getPaddingBottom(), boVar.f32519x0.getMeasuredHeight());
+    public final void run() {
+        String str;
+        int i10 = this.f39304a;
+        TLRPC.Chat chat = this.f39306c;
+        jn jnVar = this.f39305b;
+        switch (i10) {
+            case 0:
+                jnVar.x(chat);
+                return;
+            case 1:
+                jnVar.b(chat);
+                return;
+            case 2:
+                jnVar.f34487a.ka(chat);
+                return;
+            default:
+                org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(jnVar.f34487a);
+                int i11 = R.raw.contact_check;
+                int i12 = R.string.YouJoinedChannel;
+                if (chat == null) {
+                    str = "";
+                } else {
+                    str = chat.title;
+                }
+                a02.Q(i11, 36, LocaleController.formatString(i12, str)).k(true);
+                return;
+        }
     }
 }

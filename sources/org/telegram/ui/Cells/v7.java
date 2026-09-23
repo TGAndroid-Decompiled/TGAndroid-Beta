@@ -12,26 +12,26 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
-import org.telegram.ui.Components.gl;
+import org.telegram.ui.Components.hl;
 public final class v7 implements Runnable {
-    public final int f21464a;
-    public final FrameLayout f21465b;
-    public final double f21466c;
+    public final int f21450a;
+    public final FrameLayout f21451b;
+    public final double f21452c;
     public final double d;
 
     public v7(FrameLayout frameLayout, double d, double d10, int i10) {
-        this.f21464a = i10;
-        this.f21465b = frameLayout;
-        this.f21466c = d;
+        this.f21450a = i10;
+        this.f21451b = frameLayout;
+        this.f21452c = d;
         this.d = d10;
     }
 
     @Override
     public final void run() {
-        switch (this.f21464a) {
+        switch (this.f21450a) {
             case 0:
-                w7 w7Var = (w7) this.f21465b;
-                double d = this.f21466c;
+                w7 w7Var = (w7) this.f21451b;
+                double d = this.f21452c;
                 double d10 = this.d;
                 try {
                     List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d, d10, 1);
@@ -72,20 +72,20 @@ public final class v7 implements Runnable {
                 AndroidUtilities.runOnUIThread(new v7(w7Var, d, d10, 1));
                 return;
             case 1:
-                w7 w7Var2 = (w7) this.f21465b;
-                double d11 = this.f21466c;
+                w7 w7Var2 = (w7) this.f21451b;
+                double d11 = this.f21452c;
                 double d12 = this.d;
                 w7Var2.F = d11;
                 w7Var2.G = d12;
                 w7Var2.E = false;
                 CharSequence charSequence = w7Var2.I;
-                org.telegram.ui.ActionBar.j5 j5Var = w7Var2.f21570b;
-                CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, j5Var.getPaint().getFontMetricsInt(), false);
+                org.telegram.ui.ActionBar.i5 i5Var = w7Var2.f21553b;
+                CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, i5Var.getPaint().getFontMetricsInt(), false);
                 w7Var2.I = replaceEmoji;
-                j5Var.l(replaceEmoji, false);
+                i5Var.l(replaceEmoji, false);
                 return;
             default:
-                ((gl) this.f21465b).b0(this.f21466c, this.d);
+                ((hl) this.f21451b).b0(this.f21452c, this.d);
                 return;
         }
     }

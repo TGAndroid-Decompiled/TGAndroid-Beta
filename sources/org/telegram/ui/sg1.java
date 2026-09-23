@@ -1,16 +1,62 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class sg1 extends hh1 {
-    public final TwoStepVerificationActivity f37395k0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class sg1 implements RequestDelegate {
+    public final int f37298a;
+    public final zg1 f37299b;
 
-    public sg1(TwoStepVerificationActivity twoStepVerificationActivity, int i10, TL_account.Password password) {
-        super(i10, 4, password);
-        this.f37395k0 = twoStepVerificationActivity;
+    public sg1(zg1 zg1Var, int i10) {
+        this.f37298a = i10;
+        this.f37299b = zg1Var;
     }
 
     @Override
-    public final void B0() {
-        this.f37395k0.N = true;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f37298a) {
+            case 0:
+                final zg1 zg1Var = this.f37299b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                zg1.b0(zg1Var, tL_error, tLObject);
+                                return;
+                            default:
+                                zg1.h0(zg1Var, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new vg1(this.f37299b, tL_error, 0));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new vg1(this.f37299b, tL_error, 1));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new vg1(this.f37299b, tL_error, 2));
+                return;
+            default:
+                final zg1 zg1Var2 = this.f37299b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                zg1.b0(zg1Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                zg1.h0(zg1Var2, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+        }
     }
 }

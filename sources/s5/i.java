@@ -6,23 +6,23 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.Arrays;
 import java.util.List;
 public final class i extends SQLiteOpenHelper {
-    public static final String f42854c = "INSERT INTO global_log_event_state VALUES (" + System.currentTimeMillis() + ")";
+    public static final String f42810c = "INSERT INTO global_log_event_state VALUES (" + System.currentTimeMillis() + ")";
     public static final int d = 5;
     public static final List e = Arrays.asList(new h(0), new h(1), new h(2), new h(3), new h(4));
-    public final int f42855a;
-    public boolean f42856b;
+    public final int f42811a;
+    public boolean f42812b;
 
     public i(Context context, String str, int i10) {
         super(context, str, (SQLiteDatabase.CursorFactory) null, i10);
-        this.f42856b = false;
-        this.f42855a = i10;
+        this.f42812b = false;
+        this.f42811a = i10;
     }
 
     public static void a(SQLiteDatabase sQLiteDatabase, int i10, int i11) {
         List list = e;
         if (i11 <= list.size()) {
             while (i10 < i11) {
-                switch (((h) list.get(i10)).f42853a) {
+                switch (((h) list.get(i10)).f42809a) {
                     case 0:
                         sQLiteDatabase.execSQL("CREATE TABLE events (_id INTEGER PRIMARY KEY, context_id INTEGER NOT NULL, transport_name TEXT NOT NULL, timestamp_ms INTEGER NOT NULL, uptime_ms INTEGER NOT NULL, payload BLOB NOT NULL, code INTEGER, num_attempts INTEGER NOT NULL,FOREIGN KEY (context_id) REFERENCES transport_contexts(_id) ON DELETE CASCADE)");
                         sQLiteDatabase.execSQL("CREATE TABLE event_metadata (_id INTEGER PRIMARY KEY, event_id INTEGER NOT NULL, name TEXT NOT NULL, value TEXT NOT NULL,FOREIGN KEY (event_id) REFERENCES events(_id) ON DELETE CASCADE)");
@@ -48,7 +48,7 @@ public final class i extends SQLiteOpenHelper {
                         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS global_log_event_state");
                         sQLiteDatabase.execSQL("CREATE TABLE log_event_dropped (log_source VARCHAR(45) NOT NULL,reason INTEGER NOT NULL,events_dropped_count BIGINT NOT NULL,PRIMARY KEY(log_source, reason))");
                         sQLiteDatabase.execSQL("CREATE TABLE global_log_event_state (last_metrics_upload_ms BIGINT PRIMARY KEY)");
-                        sQLiteDatabase.execSQL(f42854c);
+                        sQLiteDatabase.execSQL(f42810c);
                         break;
                 }
                 i10++;
@@ -63,17 +63,17 @@ public final class i extends SQLiteOpenHelper {
 
     @Override
     public final void onConfigure(SQLiteDatabase sQLiteDatabase) {
-        this.f42856b = true;
+        this.f42812b = true;
         sQLiteDatabase.rawQuery("PRAGMA busy_timeout=0;", new String[0]).close();
         sQLiteDatabase.setForeignKeyConstraintsEnabled(true);
     }
 
     @Override
     public final void onCreate(SQLiteDatabase sQLiteDatabase) {
-        if (!this.f42856b) {
+        if (!this.f42812b) {
             onConfigure(sQLiteDatabase);
         }
-        a(sQLiteDatabase, 0, this.f42855a);
+        a(sQLiteDatabase, 0, this.f42811a);
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class i extends SQLiteOpenHelper {
         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS event_payloads");
         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS log_event_dropped");
         sQLiteDatabase.execSQL("DROP TABLE IF EXISTS global_log_event_state");
-        if (!this.f42856b) {
+        if (!this.f42812b) {
             onConfigure(sQLiteDatabase);
         }
         a(sQLiteDatabase, 0, i11);
@@ -92,14 +92,14 @@ public final class i extends SQLiteOpenHelper {
 
     @Override
     public final void onOpen(SQLiteDatabase sQLiteDatabase) {
-        if (!this.f42856b) {
+        if (!this.f42812b) {
             onConfigure(sQLiteDatabase);
         }
     }
 
     @Override
     public final void onUpgrade(SQLiteDatabase sQLiteDatabase, int i10, int i11) {
-        if (!this.f42856b) {
+        if (!this.f42812b) {
             onConfigure(sQLiteDatabase);
         }
         a(sQLiteDatabase, i10, i11);

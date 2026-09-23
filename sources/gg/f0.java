@@ -7,13 +7,13 @@ public enum f0 {
     Groups(4, R.string.SearchMessagesFilterGroup, R.string.SearchMessagesFilterGroupFrom),
     Channels(2, R.string.SearchMessagesFilterChannels, R.string.SearchMessagesFilterChannelsFrom);
     
-    public final int f9727a;
-    public final int f9728b;
-    public final int f9729c;
+    public final int f9713a;
+    public final int f9714b;
+    public final int f9715c;
 
     f0(int i10, int i11, int i12) {
-        this.f9727a = i10;
-        this.f9728b = i11;
-        this.f9729c = i12;
+        this.f9713a = i10;
+        this.f9714b = i11;
+        this.f9715c = i12;
     }
 }

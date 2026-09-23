@@ -1,8 +1,8 @@
 package k6;
 public final class f extends Exception {
-    public final int f13512a;
+    public final int f13500a;
 
     public f(int i10) {
-        this.f13512a = i10;
+        this.f13500a = i10;
     }
 }

@@ -1,6 +1,6 @@
 package zd;
 public final class w1 implements o0, p {
-    public static final w1 f48936a = new Object();
+    public static final w1 f48887a = new Object();
 
     @Override
     public final boolean b(Throwable th2) {

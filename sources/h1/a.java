@@ -5,75 +5,75 @@ import m.d2;
 import m.z2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.d11;
-import org.telegram.ui.f01;
+import org.telegram.ui.v01;
+import org.telegram.ui.xz0;
 import z4.g;
 public final class a extends DataSetObserver {
-    public final int f10075a;
-    public final Object f10076b;
+    public final int f10061a;
+    public final Object f10062b;
 
     public a(Object obj, int i10) {
-        this.f10075a = i10;
-        this.f10076b = obj;
+        this.f10061a = i10;
+        this.f10062b = obj;
     }
 
     @Override
     public final void onChanged() {
-        switch (this.f10075a) {
+        switch (this.f10061a) {
             case 0:
-                z2 z2Var = (z2) this.f10076b;
-                z2Var.f10077a = true;
+                z2 z2Var = (z2) this.f10062b;
+                z2Var.f10063a = true;
                 z2Var.notifyDataSetChanged();
                 return;
             case 1:
-                d2 d2Var = (d2) this.f10076b;
+                d2 d2Var = (d2) this.f10062b;
                 if (d2Var.O.isShowing()) {
                     d2Var.h();
                     return;
                 }
                 return;
             case 2:
-                d11 d11Var = (d11) this.f10076b;
-                ProfileActivity profileActivity = d11Var.f32914n;
-                int realCount = profileActivity.f31326n0.getRealCount();
+                v01 v01Var = (v01) this.f10062b;
+                ProfileActivity profileActivity = v01Var.f38259n;
+                int realCount = profileActivity.f31300n0.getRealCount();
                 if (profileActivity.A0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.E) {
                     profileActivity.A0 = 1;
                 }
-                d11Var.a(false);
-                d11Var.b(1.0f);
-                if (profileActivity.f31346q0 != null) {
+                v01Var.a(false);
+                v01Var.b(1.0f);
+                if (profileActivity.f31320q0 != null) {
                     if (profileActivity.T0.t()) {
-                        AndroidUtilities.runOnUIThread(new f01(d11Var, 2), 500L);
+                        AndroidUtilities.runOnUIThread(new xz0(v01Var, 2), 500L);
                         return;
                     } else {
-                        d11Var.c();
+                        v01Var.c();
                         return;
                     }
                 }
                 return;
             default:
-                ((g) this.f10076b).f();
+                ((g) this.f10062b).f();
                 return;
         }
     }
 
     @Override
     public void onInvalidated() {
-        switch (this.f10075a) {
+        switch (this.f10061a) {
             case 0:
-                z2 z2Var = (z2) this.f10076b;
-                z2Var.f10077a = false;
+                z2 z2Var = (z2) this.f10062b;
+                z2Var.f10063a = false;
                 z2Var.notifyDataSetInvalidated();
                 return;
             case 1:
-                ((d2) this.f10076b).dismiss();
+                ((d2) this.f10062b).dismiss();
                 return;
             case 2:
             default:
                 super.onInvalidated();
                 return;
             case 3:
-                ((g) this.f10076b).f();
+                ((g) this.f10062b).f();
                 return;
         }
     }

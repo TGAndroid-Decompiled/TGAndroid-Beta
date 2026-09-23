@@ -1,105 +1,224 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class my0 extends View {
-    public String f26258a;
-    public Drawable f26259b;
-    public boolean f26260c;
-    public int d;
-    public final c6 e;
-    public final ny0 f26261f;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.NotificationCenter;
+public class my0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public boolean E;
+    public jq0 F;
+    public int G;
+    public String H;
+    public int I;
+    public String[] J;
+    public Runnable K;
+    public long L;
+    public Path M;
+    public Path N;
+    public Paint O;
+    public e6 P;
+    public e6 Q;
+    public e6 R;
+    public e6 S;
+    public Emoji.EmojiSpan T;
+    public float U;
+    public Integer V;
+    public Integer W;
+    public final int f26288a;
+    public float f26289a0;
+    public final org.telegram.ui.ActionBar.d6 f26290b;
+    public e6 f26291b0;
+    public ky0 f26292c;
+    public e6 f26293c0;
+    public ai.f0 d;
+    public e6 f26294d0;
+    public iy0 e;
+    public jy0 f26295f;
+    public int h;
+    public int f26296n;
+    public hy0 f26297r;
+    public boolean f26298s;
+    public boolean v;
+    public ArrayList f26299w;
+    public boolean f26300x;
+    public boolean f26301y;
 
-    public my0(ny0 ny0Var, Context context) {
+    public my0(Context context, int i10, org.telegram.ui.jk jkVar, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f26261f = ny0Var;
-        this.d = 0;
-        this.e = new c6(this, 350L, new OvershootInterpolator(5.0f));
+        this.h = 0;
+        this.f26296n = AndroidUtilities.dp(10.0f);
+        this.L = 0L;
+        this.f26288a = i10;
+        this.f26292c = jkVar;
+        this.f26290b = d6Var;
+        postDelayed(new ei.r2(i10, 10), 260L);
+    }
+
+    public static boolean a(my0 my0Var, j jVar, MotionEvent motionEvent) {
+        return org.telegram.ui.pt.q().s(motionEvent, my0Var.e, jVar, my0Var.getPreviewDelegate(), my0Var.f26290b);
+    }
+
+    public org.telegram.ui.nt getPreviewDelegate() {
+        if (this.f26297r == null) {
+            this.f26297r = new hy0(this);
+        }
+        return this.f26297r;
+    }
+
+    public final void c() {
+        if (this.e == null) {
+            this.M = new Path();
+            this.N = new Path();
+            ai.f0 f0Var = new ai.f0(this, getContext(), 21);
+            this.d = f0Var;
+            rr rrVar = rr.h;
+            this.P = new e6(f0Var, 120L, 350L, rrVar);
+            this.Q = new e6(this.d, 150L, 600L, rrVar);
+            new OvershootInterpolator(0.4f);
+            this.R = new e6(this.d, 300L, rrVar);
+            this.S = new e6(this.d, 300L, rrVar);
+            this.f26291b0 = new e6(this.d, 200L, rrVar);
+            this.f26293c0 = new e6(this.d, 350L, rrVar);
+            this.f26294d0 = new e6(this.d, 350L, rrVar);
+            iy0 iy0Var = new iy0(this, getContext());
+            this.e = iy0Var;
+            jy0 jy0Var = new jy0(this, this);
+            this.f26295f = jy0Var;
+            iy0Var.setAdapter(jy0Var);
+            getContext();
+            s4.c0 c0Var = new s4.c0();
+            c0Var.j1(0);
+            this.e.setLayoutManager(c0Var);
+            s4.j jVar = new s4.j();
+            jVar.n(45L);
+            jVar.f42684o = rrVar;
+            this.e.setItemAnimator(jVar);
+            this.e.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18878i6, this.f26290b));
+            iy0 iy0Var2 = this.e;
+            j jVar2 = new j(this, 17);
+            iy0Var2.setOnItemClickListener(jVar2);
+            this.e.setOnTouchListener(new ci.q1(4, this, jVar2));
+            this.d.addView(this.e, w7.x5.c(52.0f, -1));
+            addView(this.d, w7.x5.a(-1.0f, 66.66f, 80));
+            ky0 ky0Var = this.f26292c;
+            if (ky0Var != null) {
+                ky0Var.a(new ci.i2(this, 13));
+            }
+        }
+    }
+
+    public int d() {
+        return 2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        if (isPressed()) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = ((1.0f - this.e.d(f7, false)) * 0.2f) + 0.8f;
-        if (this.f26259b != null) {
-            int height = getHeight() - getPaddingBottom();
-            this.f26259b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
-            Drawable drawable = this.f26259b;
-            if (drawable instanceof o5) {
-                ((o5) drawable).q(System.currentTimeMillis());
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.newEmojiSuggestionsAvailable) {
+            ArrayList arrayList = this.f26299w;
+            if (arrayList != null && !arrayList.isEmpty()) {
+                e();
             }
-            this.f26259b.draw(canvas);
+        } else if (i10 == NotificationCenter.emojiLoaded && this.e != null) {
+            for (int i12 = 0; i12 < this.e.getChildCount(); i12++) {
+                this.e.getChildAt(i12).invalidate();
+            }
         }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        iy0 iy0Var = this.e;
+        if (iy0Var == null) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        float f7 = this.f26294d0.f23575c;
+        float f10 = this.f26293c0.f23575c;
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f11 = f7 / 2.0f;
+        rectF.set(this.e.getTranslationX() + (f10 - f11) + iy0Var.getPaddingLeft(), this.e.getPaddingTop() + this.e.getTop(), Math.min(this.e.getTranslationX() + f10 + f11 + this.e.getPaddingLeft(), getWidth() - this.d.getPaddingRight()), this.e.getBottom());
+        rectF.offset(this.d.getX(), this.d.getY());
+        if (this.f26298s && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        if (motionEvent.getAction() == 0) {
+            return false;
+        }
+        if (motionEvent.getAction() == 0) {
+            motionEvent.setAction(3);
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public final void e() {
+        jq0 jq0Var = this.F;
+        if (jq0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(jq0Var);
+        }
+        jq0 jq0Var2 = new jq0(this, 11);
+        this.F = jq0Var2;
+        AndroidUtilities.runOnUIThread(jq0Var2, 16L);
+    }
+
+    public final void f() {
+        jq0 jq0Var = this.F;
+        if (jq0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(jq0Var);
+            this.F = null;
+        }
+        this.f26298s = false;
+        this.v = true;
+        ai.f0 f0Var = this.d;
+        if (f0Var != null) {
+            f0Var.invalidate();
+        }
+    }
+
+    public ky0 getDelegate() {
+        return this.f26292c;
+    }
+
+    public int getDirection() {
+        return this.h;
+    }
+
+    @Override
+    public final boolean isShown() {
+        return this.f26298s;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Drawable drawable = this.f26259b;
-        if (drawable instanceof o5) {
-            ((o5) drawable).a(this);
-        }
-        this.f26260c = true;
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getInstance(this.f26288a).addObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Drawable drawable = this.f26259b;
-        if (drawable instanceof o5) {
-            ((o5) drawable).o(this);
-        }
-        this.f26260c = false;
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getInstance(this.f26288a).removeObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        int dp = AndroidUtilities.dp(3.0f);
-        float f10 = 6.66f;
-        if (this.d == 0) {
-            f7 = 0.0f;
-        } else {
-            f7 = 6.66f;
-        }
-        int dp2 = AndroidUtilities.dp(f7 + 3.0f);
-        int dp3 = AndroidUtilities.dp(3.0f);
-        if (this.d != 0) {
-            f10 = 0.0f;
-        }
-        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f10 + 3.0f));
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
+    public void setDelegate(ky0 ky0Var) {
+        this.f26292c = ky0Var;
     }
 
     public void setDirection(int i10) {
-        this.d = i10;
-        invalidate();
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f26259b;
-        if (drawable2 instanceof o5) {
-            ((o5) drawable2).o(this);
-        }
-        this.f26259b = drawable;
-        if ((drawable instanceof o5) && this.f26260c) {
-            ((o5) drawable).a(this);
+        if (this.h != i10) {
+            this.h = i10;
+            requestLayout();
         }
     }
 
-    @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        invalidate();
+    public void setHorizontalPadding(int i10) {
+        this.f26296n = i10;
     }
 }

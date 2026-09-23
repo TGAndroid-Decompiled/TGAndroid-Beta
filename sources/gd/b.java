@@ -1,13 +1,13 @@
 package gd;
 public final class b implements Comparable {
-    public static final b f9607b = new b();
-    public final int f9608a = 131348;
+    public static final b f9593b = new b();
+    public final int f9594a = 131348;
 
     @Override
     public final int compareTo(Object obj) {
         b other = (b) obj;
         kotlin.jvm.internal.i.e(other, "other");
-        return this.f9608a - other.f9608a;
+        return this.f9594a - other.f9594a;
     }
 
     public final boolean equals(Object obj) {
@@ -20,14 +20,14 @@ public final class b implements Comparable {
         } else {
             bVar = null;
         }
-        if (bVar != null && this.f9608a == bVar.f9608a) {
+        if (bVar != null && this.f9594a == bVar.f9594a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f9608a;
+        return this.f9594a;
     }
 
     public final String toString() {

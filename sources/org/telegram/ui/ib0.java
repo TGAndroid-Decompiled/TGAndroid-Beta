@@ -1,68 +1,63 @@
 package org.telegram.ui;
 
-import android.window.BackEvent;
-import android.window.OnBackAnimationCallback;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ib0 implements OnBackAnimationCallback {
-    public boolean f34593b;
-    public boolean e;
-    public final LaunchActivity f34595f;
-    public final AnimationNotificationsLocker f34592a = new AnimationNotificationsLocker();
-    public boolean f34594c = false;
-    public boolean d = false;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+public final class ib0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.sv0 {
+    public final int f34091a;
+    public final sb0 f34092b;
 
-    public ib0(LaunchActivity launchActivity) {
-        this.f34595f = launchActivity;
+    public ib0(sb0 sb0Var, int i10) {
+        this.f34091a = i10;
+        this.f34092b = sb0Var;
     }
 
-    public final void onBackCancelled() {
-        ActionBarLayout actionBarLayout;
-        this.f34594c = false;
-        this.d = false;
-        if (this.f34593b) {
-            this.f34592a.unlock();
-            this.f34593b = false;
-        }
-        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f34595f.f30841q0) != null && actionBarLayout.f18384c1) {
-            actionBarLayout.f18384c1 = false;
-            actionBarLayout.e(true);
-        }
+    @Override
+    public void J(int i10, int i11, boolean z10) {
+        this.f34092b.V(i10);
     }
 
-    public final void onBackInvoked() {
-        this.d = true;
-        if (this.f34593b) {
-            this.f34592a.unlock();
-            this.f34593b = false;
-        }
-        if (AndroidUtilities.isTablet()) {
-            this.f34595f.onBackPressed();
-        } else if (!this.f34595f.c0(true)) {
-        } else {
-            LaunchActivity launchActivity = this.f34595f;
-            ActionBarLayout actionBarLayout = launchActivity.f30841q0;
-            if (actionBarLayout != null) {
-                if (!actionBarLayout.f18384c1) {
-                    actionBarLayout.G();
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        sb0 sb0Var = this.f34092b;
+        sb0Var.T.a(sb0Var.e);
+        sb0Var.finishFragment();
+    }
+
+    @Override
+    public void g(int i10) {
+        switch (this.f34091a) {
+            case 2:
+                sb0 sb0Var = this.f34092b;
+                ArrayList arrayList = sb0Var.P;
+                if (i10 < arrayList.size()) {
+                    sb0Var.f37233w.setText(LocaleController.formatDateAudio(sb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
                     return;
                 }
-                actionBarLayout.f18384c1 = false;
-                actionBarLayout.e(false);
+                sb0Var.f37233w.setText("");
                 return;
-            }
-            launchActivity.onBackPressed();
+            default:
+                sb0 sb0Var2 = this.f34092b;
+                sb0Var2.F.clearFocus();
+                sb0Var2.O = true;
+                ArrayList arrayList2 = sb0Var2.R;
+                if (i10 < arrayList2.size()) {
+                    sb0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
+                } else {
+                    sb0Var2.F.setText("");
+                }
+                sb0Var2.O = false;
+                return;
         }
     }
 
-    public final void onBackProgressed(android.window.BackEvent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ib0.onBackProgressed(android.window.BackEvent):void");
+    @Override
+    public void l() {
+        int i10 = this.f34091a;
     }
 
-    public final void onBackStarted(BackEvent backEvent) {
-        this.f34594c = true;
-        this.d = false;
-        this.e = false;
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

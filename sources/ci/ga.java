@@ -1,336 +1,149 @@
 package ci;
 
+import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
+import java.util.HashSet;
+import java.util.Map;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-public final class ga {
-    public final int f4722a;
-    public final ArrayList f4723b;
-    public final ArrayList f4724c;
-    public final HashMap d;
-    public final ArrayList e;
-    public final ArrayList f4725f;
+public abstract class ga extends View {
+    public static final int f4733a = 0;
 
-    public ga(int i10, ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList();
-        this.f4723b = arrayList2;
-        this.f4724c = new ArrayList();
-        this.d = new HashMap();
-        this.e = new ArrayList();
-        this.f4725f = new ArrayList();
-        int i11 = 0;
-        if (a(arrayList, TLRPC.TL_privacyValueAllowAll.class) != null) {
-            this.f4722a = 4;
-            arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowAll());
-            TLRPC.TL_privacyValueDisallowUsers tL_privacyValueDisallowUsers = (TLRPC.TL_privacyValueDisallowUsers) a(arrayList, TLRPC.TL_privacyValueDisallowUsers.class);
-            if (tL_privacyValueDisallowUsers != null) {
-                TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
-                MessagesController messagesController = MessagesController.getInstance(i10);
-                while (i11 < tL_privacyValueDisallowUsers.users.size()) {
-                    Long l4 = tL_privacyValueDisallowUsers.users.get(i11);
-                    TLRPC.InputUser inputUser = messagesController.getInputUser(l4.longValue());
-                    if (!(inputUser instanceof TLRPC.TL_inputUserEmpty)) {
-                        tL_inputPrivacyValueDisallowUsers.users.add(inputUser);
-                        this.f4724c.add(l4);
-                        this.e.add(inputUser);
-                    }
-                    i11++;
-                }
-                this.f4723b.add(tL_inputPrivacyValueDisallowUsers);
-            }
-        } else if (a(arrayList, TLRPC.TL_privacyValueAllowCloseFriends.class) != null) {
-            this.f4722a = 1;
-            arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowCloseFriends());
-        } else {
-            TLRPC.TL_privacyValueAllowUsers tL_privacyValueAllowUsers = (TLRPC.TL_privacyValueAllowUsers) a(arrayList, TLRPC.TL_privacyValueAllowUsers.class);
-            if (tL_privacyValueAllowUsers != null) {
-                this.f4722a = 3;
-                TLRPC.TL_inputPrivacyValueAllowUsers tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueAllowUsers();
-                MessagesController messagesController2 = MessagesController.getInstance(i10);
-                while (i11 < tL_privacyValueAllowUsers.users.size()) {
-                    Long l10 = tL_privacyValueAllowUsers.users.get(i11);
-                    TLRPC.InputUser inputUser2 = messagesController2.getInputUser(l10.longValue());
-                    if (inputUser2 != null && !(inputUser2 instanceof TLRPC.TL_inputUserEmpty)) {
-                        tL_inputPrivacyValueAllowUsers.users.add(inputUser2);
-                        this.f4724c.add(l10);
-                        this.e.add(inputUser2);
-                    }
-                    i11++;
-                }
-                this.f4723b.add(tL_inputPrivacyValueAllowUsers);
-            } else if (a(arrayList, TLRPC.TL_privacyValueAllowContacts.class) != null) {
-                this.f4722a = 2;
-                arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowContacts());
-                TLRPC.TL_privacyValueDisallowUsers tL_privacyValueDisallowUsers2 = (TLRPC.TL_privacyValueDisallowUsers) a(arrayList, TLRPC.TL_privacyValueDisallowUsers.class);
-                if (tL_privacyValueDisallowUsers2 != null) {
-                    TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers2 = new TLRPC.TL_inputPrivacyValueDisallowUsers();
-                    MessagesController messagesController3 = MessagesController.getInstance(i10);
-                    while (i11 < tL_privacyValueDisallowUsers2.users.size()) {
-                        Long l11 = tL_privacyValueDisallowUsers2.users.get(i11);
-                        TLRPC.InputUser inputUser3 = messagesController3.getInputUser(l11.longValue());
-                        if (!(inputUser3 instanceof TLRPC.TL_inputUserEmpty)) {
-                            tL_inputPrivacyValueDisallowUsers2.users.add(inputUser3);
-                            this.f4724c.add(l11);
-                            this.e.add(inputUser3);
+    public static void a(int i10, l8 l8Var) {
+        da daVar;
+        if (l8Var != null) {
+            try {
+                String string = MessagesController.getInstance(i10).getMainSettings().getString("story_privacy2", null);
+                if (string == null) {
+                    daVar = new da();
+                } else {
+                    SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+                    daVar = b(serializedData);
+                    serializedData.cleanup();
+                    if (daVar.f4549f.isEmpty() && daVar.f4547b.isEmpty()) {
+                        daVar = new da();
+                    } else {
+                        HashSet hashSet = new HashSet();
+                        hashSet.addAll(daVar.f4548c);
+                        for (ArrayList arrayList : daVar.d.values()) {
+                            hashSet.addAll(arrayList);
                         }
-                        i11++;
+                        if (!hashSet.isEmpty()) {
+                            MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
+                            messagesStorage.getStorageQueue().postRunnable(new ai.s1(messagesStorage, hashSet, i10, 6));
+                        }
                     }
-                    this.f4723b.add(tL_inputPrivacyValueDisallowUsers2);
                 }
+            } catch (Exception e) {
+                FileLog.e(e);
+                daVar = new da();
+            }
+            l8Var.E0 = daVar;
+            l8Var.F0.clear();
+            l8Var.F0.addAll(l8Var.E0.f4547b);
+            if (UserConfig.getInstance(i10).isPremium()) {
+                l8Var.I0 = MessagesController.getInstance(i10).getMainSettings().getInt("story_period", 86400);
             } else {
-                this.f4722a = 4;
+                l8Var.I0 = 86400;
             }
         }
     }
 
-    public static TLRPC.PrivacyRule a(ArrayList arrayList, Class cls) {
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            TLRPC.PrivacyRule privacyRule = (TLRPC.PrivacyRule) arrayList.get(i10);
-            if (cls.isInstance(privacyRule)) {
-                return privacyRule;
+    public static da b(SerializedData serializedData) {
+        int readInt32 = serializedData.readInt32(true);
+        if (serializedData.readInt32(true) == 481674261) {
+            int readInt322 = serializedData.readInt32(true);
+            ArrayList arrayList = new ArrayList(readInt322);
+            for (int i10 = 0; i10 < readInt322; i10++) {
+                arrayList.add(TLRPC.InputUser.TLdeserialize(serializedData, serializedData.readInt32(true), true));
             }
-        }
-        return null;
-    }
-
-    public final boolean b(TLRPC.User user) {
-        if (user == null) {
-            return false;
-        }
-        ArrayList arrayList = this.f4724c;
-        int i10 = this.f4722a;
-        if (i10 == 4) {
-            return !arrayList.contains(Long.valueOf(user.f18256id));
-        }
-        if (i10 == 2) {
-            if (arrayList.contains(Long.valueOf(user.f18256id)) || !user.contact) {
-                return false;
-            }
-            return true;
-        } else if (i10 == 1) {
-            return user.close_friend;
-        } else {
-            if (i10 == 3) {
-                if (arrayList.contains(Long.valueOf(user.f18256id))) {
-                    return true;
+            if (serializedData.readInt32(true) == 481674261) {
+                int readInt323 = serializedData.readInt32(true);
+                ArrayList arrayList2 = new ArrayList(readInt323);
+                for (int i11 = 0; i11 < readInt323; i11++) {
+                    arrayList2.add(Long.valueOf(serializedData.readInt64(true)));
                 }
-                for (ArrayList arrayList2 : this.d.values()) {
-                    if (arrayList2.contains(Long.valueOf(user.f18256id))) {
-                        return true;
+                if (serializedData.readInt32(true) == 481674261) {
+                    int readInt324 = serializedData.readInt32(true);
+                    HashMap hashMap = new HashMap();
+                    for (int i12 = 0; i12 < readInt324; i12++) {
+                        long readInt64 = serializedData.readInt64(true);
+                        if (serializedData.readInt32(true) == 481674261) {
+                            int readInt325 = serializedData.readInt32(true);
+                            ArrayList arrayList3 = new ArrayList(readInt325);
+                            for (int i13 = 0; i13 < readInt325; i13++) {
+                                arrayList3.add(Long.valueOf(serializedData.readInt64(true)));
+                            }
+                            hashMap.put(Long.valueOf(readInt64), arrayList3);
+                        } else {
+                            throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (4)");
+                        }
                     }
-                }
-            }
-            return false;
-        }
-    }
-
-    public final String toString() {
-        int size;
-        ArrayList arrayList = this.f4725f;
-        if (!arrayList.isEmpty()) {
-            return LocaleController.formatPluralString("StoryPrivacyRecipients", arrayList.size(), new Object[0]);
-        }
-        ArrayList arrayList2 = this.f4723b;
-        if (arrayList2.isEmpty()) {
-            return LocaleController.getString(R.string.StoryPrivacyNone);
-        }
-        TLRPC.InputPrivacyRule inputPrivacyRule = (TLRPC.InputPrivacyRule) arrayList2.get(0);
-        TLRPC.InputPrivacyRule inputPrivacyRule2 = null;
-        int i10 = this.f4722a;
-        if (i10 == 4) {
-            if (arrayList2.size() >= 2) {
-                inputPrivacyRule2 = (TLRPC.InputPrivacyRule) arrayList2.get(1);
-            }
-            if ((inputPrivacyRule2 instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) && (size = ((TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule2).users.size()) > 0) {
-                return LocaleController.formatPluralString("StoryPrivacyEveryoneExclude", size, new Object[0]);
-            }
-            return LocaleController.getString(R.string.StoryPrivacyEveryone);
-        } else if (i10 == 1) {
-            return LocaleController.getString(R.string.StoryPrivacyCloseFriends);
-        } else {
-            if (i10 == 3 && (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowUsers)) {
-                return LocaleController.formatPluralString("StoryPrivacyContacts", ((TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule).users.size(), new Object[0]);
-            }
-            if (i10 == 2) {
-                if (arrayList2.size() >= 2) {
-                    inputPrivacyRule2 = (TLRPC.InputPrivacyRule) arrayList2.get(1);
-                }
-                if (inputPrivacyRule2 instanceof TLRPC.TL_inputPrivacyValueDisallowUsers) {
-                    int size2 = ((TLRPC.TL_inputPrivacyValueDisallowUsers) inputPrivacyRule2).users.size();
-                    if (size2 > 0) {
-                        return LocaleController.formatPluralString("StoryPrivacyContactsExclude", size2, new Object[0]);
+                    HashSet hashSet = new HashSet();
+                    hashSet.addAll(arrayList2);
+                    for (ArrayList arrayList4 : hashMap.values()) {
+                        hashSet.addAll(arrayList4);
                     }
-                    return LocaleController.getString(R.string.StoryPrivacyAllContacts);
+                    da daVar = new da(readInt32, arrayList, 0);
+                    ArrayList arrayList5 = daVar.f4548c;
+                    arrayList5.clear();
+                    arrayList5.addAll(arrayList2);
+                    HashMap hashMap2 = daVar.d;
+                    hashMap2.clear();
+                    hashMap2.putAll(hashMap);
+                    return daVar;
                 }
-                return LocaleController.getString(R.string.StoryPrivacyAllContacts);
-            } else if (i10 == 0) {
-                if (inputPrivacyRule instanceof TLRPC.TL_inputPrivacyValueAllowUsers) {
-                    int size3 = ((TLRPC.TL_inputPrivacyValueAllowUsers) inputPrivacyRule).users.size();
-                    if (size3 <= 0) {
-                        return LocaleController.getString(R.string.StoryPrivacyNone);
-                    }
-                    return LocaleController.formatPluralString("StoryPrivacyContacts", size3, new Object[0]);
-                }
-                return LocaleController.getString(R.string.StoryPrivacyNone);
-            } else {
-                return LocaleController.getString(R.string.StoryPrivacyNone);
+                throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (3)");
             }
+            throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (2)");
         }
+        throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy");
     }
 
-    public ga() {
-        ArrayList arrayList = new ArrayList();
-        this.f4723b = arrayList;
-        this.f4724c = new ArrayList();
-        this.d = new HashMap();
-        this.e = new ArrayList();
-        this.f4725f = new ArrayList();
-        this.f4722a = 4;
-        arrayList.add(new TLRPC.TL_inputPrivacyValueAllowAll());
-    }
-
-    public ga(int i10, int i11, ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList();
-        this.f4723b = arrayList2;
-        this.f4724c = new ArrayList();
-        this.d = new HashMap();
-        this.e = new ArrayList();
-        ArrayList arrayList3 = new ArrayList();
-        this.f4725f = arrayList3;
-        this.f4722a = i10;
+    public static void c(SerializedData serializedData, da daVar) {
+        int i10 = daVar.f4546a;
+        HashMap hashMap = daVar.d;
+        ArrayList arrayList = daVar.f4548c;
+        serializedData.writeInt32(i10);
+        serializedData.writeInt32(481674261);
+        ArrayList arrayList2 = daVar.e;
+        serializedData.writeInt32(arrayList2.size());
+        int size = arrayList2.size();
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList2.get(i11);
+            i11++;
+            ((TLRPC.InputUser) obj).serializeToStream(serializedData);
+        }
+        serializedData.writeInt32(481674261);
+        serializedData.writeInt32(arrayList.size());
+        int size2 = arrayList.size();
         int i12 = 0;
-        if (i10 == 4) {
-            arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowAll());
-            if (i11 < 0 || arrayList == null || arrayList.isEmpty()) {
-                return;
-            }
-            TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
-            while (i12 < arrayList.size()) {
-                Long l4 = (Long) arrayList.get(i12);
-                long longValue = l4.longValue();
-                this.f4724c.add(l4);
-                TLRPC.InputUser inputUser = MessagesController.getInstance(i11).getInputUser(longValue);
-                if (inputUser != null && !(inputUser instanceof TLRPC.TL_inputUserEmpty)) {
-                    tL_inputPrivacyValueDisallowUsers.users.add(inputUser);
-                    this.e.add(inputUser);
-                }
-                i12++;
-            }
-            this.f4723b.add(tL_inputPrivacyValueDisallowUsers);
-        } else if (i10 == 1) {
-            arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowCloseFriends());
-        } else if (i10 == 2) {
-            arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowContacts());
-            if (i11 < 0 || arrayList == null || arrayList.isEmpty()) {
-                return;
-            }
-            TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers2 = new TLRPC.TL_inputPrivacyValueDisallowUsers();
-            while (i12 < arrayList.size()) {
-                Long l10 = (Long) arrayList.get(i12);
-                long longValue2 = l10.longValue();
-                this.f4724c.add(l10);
-                TLRPC.InputUser inputUser2 = MessagesController.getInstance(i11).getInputUser(longValue2);
-                if (inputUser2 != null && !(inputUser2 instanceof TLRPC.TL_inputUserEmpty)) {
-                    tL_inputPrivacyValueDisallowUsers2.users.add(inputUser2);
-                    this.e.add(inputUser2);
-                }
-                i12++;
-            }
-            this.f4723b.add(tL_inputPrivacyValueDisallowUsers2);
-        } else if (i10 != 3) {
-            if (i10 != 5 || arrayList == null) {
-                return;
-            }
-            arrayList3.addAll(arrayList);
-        } else {
-            TLRPC.TL_inputPrivacyValueAllowUsers tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueAllowUsers();
-            if (i11 >= 0 && arrayList != null && !arrayList.isEmpty()) {
-                while (i12 < arrayList.size()) {
-                    Long l11 = (Long) arrayList.get(i12);
-                    long longValue3 = l11.longValue();
-                    this.f4724c.add(l11);
-                    TLRPC.InputUser inputUser3 = MessagesController.getInstance(i11).getInputUser(longValue3);
-                    if (inputUser3 != null && !(inputUser3 instanceof TLRPC.TL_inputUserEmpty)) {
-                        tL_inputPrivacyValueAllowUsers.users.add(inputUser3);
-                        this.e.add(inputUser3);
-                    }
-                    i12++;
-                }
-            }
-            this.f4723b.add(tL_inputPrivacyValueAllowUsers);
+        while (i12 < size2) {
+            Object obj2 = arrayList.get(i12);
+            i12++;
+            serializedData.writeInt64(((Long) obj2).longValue());
         }
-    }
-
-    public ga(int i10, ArrayList arrayList, int i11) {
-        ArrayList arrayList2 = new ArrayList();
-        this.f4723b = arrayList2;
-        this.f4724c = new ArrayList();
-        this.d = new HashMap();
-        this.e = new ArrayList();
-        this.f4725f = new ArrayList();
-        this.f4722a = i10;
-        int i12 = 0;
-        if (i10 == 4) {
-            arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowAll());
-            if (arrayList.isEmpty()) {
-                return;
+        serializedData.writeInt32(481674261);
+        serializedData.writeInt32(hashMap.size());
+        for (Map.Entry entry : hashMap.entrySet()) {
+            serializedData.writeInt64(((Long) entry.getKey()).longValue());
+            serializedData.writeInt32(481674261);
+            serializedData.writeInt32(((ArrayList) entry.getValue()).size());
+            ArrayList arrayList3 = (ArrayList) entry.getValue();
+            int size3 = arrayList3.size();
+            int i13 = 0;
+            while (i13 < size3) {
+                Object obj3 = arrayList3.get(i13);
+                i13++;
+                serializedData.writeInt64(((Long) obj3).longValue());
             }
-            TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers = new TLRPC.TL_inputPrivacyValueDisallowUsers();
-            while (i12 < arrayList.size()) {
-                TLRPC.InputUser inputUser = (TLRPC.InputUser) arrayList.get(i12);
-                if (inputUser != null) {
-                    tL_inputPrivacyValueDisallowUsers.users.add(inputUser);
-                    this.f4724c.add(Long.valueOf(inputUser.user_id));
-                    this.e.add(inputUser);
-                }
-                i12++;
-            }
-            this.f4723b.add(tL_inputPrivacyValueDisallowUsers);
-        } else if (i10 == 1) {
-            arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowCloseFriends());
-        } else if (i10 == 2) {
-            arrayList2.add(new TLRPC.TL_inputPrivacyValueAllowContacts());
-            if (arrayList.isEmpty()) {
-                return;
-            }
-            TLRPC.TL_inputPrivacyValueDisallowUsers tL_inputPrivacyValueDisallowUsers2 = new TLRPC.TL_inputPrivacyValueDisallowUsers();
-            while (i12 < arrayList.size()) {
-                TLRPC.InputUser inputUser2 = (TLRPC.InputUser) arrayList.get(i12);
-                if (inputUser2 != null) {
-                    tL_inputPrivacyValueDisallowUsers2.users.add(inputUser2);
-                    this.f4724c.add(Long.valueOf(inputUser2.user_id));
-                    this.e.add(inputUser2);
-                }
-                i12++;
-            }
-            this.f4723b.add(tL_inputPrivacyValueDisallowUsers2);
-        } else if (i10 != 3) {
-            if (i10 == 5) {
-                while (i12 < arrayList.size()) {
-                    TLRPC.InputUser inputUser3 = (TLRPC.InputUser) arrayList.get(i12);
-                    if (inputUser3 != null) {
-                        this.f4725f.add(Long.valueOf(inputUser3.user_id));
-                    }
-                    i12++;
-                }
-            }
-        } else {
-            TLRPC.TL_inputPrivacyValueAllowUsers tL_inputPrivacyValueAllowUsers = new TLRPC.TL_inputPrivacyValueAllowUsers();
-            if (!arrayList.isEmpty()) {
-                while (i12 < arrayList.size()) {
-                    TLRPC.InputUser inputUser4 = (TLRPC.InputUser) arrayList.get(i12);
-                    if (inputUser4 != null) {
-                        tL_inputPrivacyValueAllowUsers.users.add(inputUser4);
-                        this.f4724c.add(Long.valueOf(inputUser4.user_id));
-                        this.e.add(inputUser4);
-                    }
-                    i12++;
-                }
-            }
-            this.f4723b.add(tL_inputPrivacyValueAllowUsers);
         }
     }
 }

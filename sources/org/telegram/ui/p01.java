@@ -1,43 +1,60 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class p01 implements View.OnClickListener {
-    public final int f36389a;
-    public final a11 f36390b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class p01 extends View {
+    public int f35991a;
+    public int f35992b;
+    public final s01 f35993c;
 
-    public p01(a11 a11Var, int i10) {
-        this.f36389a = i10;
-        this.f36390b = a11Var;
+    public p01(s01 s01Var, Context context) {
+        super(context);
+        this.f35993c = s01Var;
+        this.f35991a = 0;
+        this.f35992b = 0;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f36389a) {
-            case 0:
-                a11 a11Var = this.f36390b;
-                ProfileActivity profileActivity = a11Var.e;
-                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f31266e1));
-                MessagesController messagesController = profileActivity.getMessagesController();
-                ProfileActivity profileActivity2 = a11Var.e;
-                messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
-                return;
-            default:
-                ProfileActivity profileActivity3 = this.f36390b.e;
-                profileActivity3.O4 = !profileActivity3.O4;
-                if (!profileActivity3.N4) {
-                    profileActivity3.N4 = true;
-                }
-                profileActivity3.F4();
-                view.requestLayout();
-                profileActivity3.d.m(profileActivity3.O3);
-                int i10 = profileActivity3.U5;
-                if (i10 >= 0) {
-                    profileActivity3.f31250c.h1(i10, profileActivity3.V5 - profileActivity3.f31235a.getPaddingTop());
-                    return;
-                }
-                return;
+    public final void onMeasure(int i10, int i11) {
+        int measuredHeight;
+        int i12 = this.f35992b;
+        ProfileActivity profileActivity = this.f35993c.e;
+        int i13 = 0;
+        if (i12 != profileActivity.f31209a.getMeasuredHeight()) {
+            this.f35991a = 0;
         }
+        this.f35992b = profileActivity.f31209a.getMeasuredHeight();
+        int childCount = profileActivity.f31209a.getChildCount();
+        if (childCount == profileActivity.d.e.N2) {
+            int i14 = 0;
+            for (int i15 = 0; i15 < childCount; i15++) {
+                View childAt = profileActivity.f31209a.getChildAt(i15);
+                profileActivity.f31209a.getClass();
+                int R = RecyclerView.R(childAt);
+                if (R >= 0 && R != profileActivity.C3) {
+                    i14 += profileActivity.f31209a.getChildAt(i15).getMeasuredHeight();
+                }
+            }
+            View view = profileActivity.fragmentView;
+            if (view == null) {
+                measuredHeight = 0;
+            } else {
+                measuredHeight = view.getMeasuredHeight();
+            }
+            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - i14;
+            if (currentActionBarHeight > profileActivity.T3()) {
+                currentActionBarHeight = 0;
+            }
+            if (currentActionBarHeight > 0) {
+                i13 = currentActionBarHeight;
+            }
+            int measuredWidth = profileActivity.f31209a.getMeasuredWidth();
+            this.f35991a = i13;
+            setMeasuredDimension(measuredWidth, i13);
+            return;
+        }
+        setMeasuredDimension(profileActivity.f31209a.getMeasuredWidth(), this.f35991a);
     }
 }

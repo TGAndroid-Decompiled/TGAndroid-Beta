@@ -14,26 +14,26 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.ny0;
-import org.telegram.ui.Components.sv;
-import org.telegram.ui.Components.vm;
+import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.tv;
+import org.telegram.ui.Components.wm;
 import org.telegram.ui.FiltersSetupActivity;
 import org.telegram.ui.az;
-import org.telegram.ui.d20;
-import org.telegram.ui.dz;
-import org.telegram.ui.e20;
-import org.telegram.ui.on0;
-import org.telegram.ui.st;
-import org.telegram.ui.z10;
+import org.telegram.ui.b20;
+import org.telegram.ui.in0;
+import org.telegram.ui.pt;
+import org.telegram.ui.w10;
+import org.telegram.ui.x10;
+import org.telegram.ui.xy;
 public final class q1 implements View.OnTouchListener {
-    public final int f5328a;
-    public final Object f5329b;
-    public final Object f5330c;
+    public final int f5319a;
+    public final Object f5320b;
+    public final Object f5321c;
 
     public q1(int i10, Object obj, Object obj2) {
-        this.f5328a = i10;
-        this.f5329b = obj;
-        this.f5330c = obj2;
+        this.f5319a = i10;
+        this.f5320b = obj;
+        this.f5321c = obj2;
     }
 
     @Override
@@ -44,13 +44,13 @@ public final class q1 implements View.OnTouchListener {
         int i12;
         int i13;
         int i14;
-        switch (this.f5328a) {
+        switch (this.f5319a) {
             case 0:
-                z1 z1Var = (z1) this.f5329b;
-                return st.q().s(motionEvent, z1Var.f5853b, (ai.g) this.f5330c, z1Var.f5855f, t2.I(z1Var.f5857r));
+                z1 z1Var = (z1) this.f5320b;
+                return pt.q().s(motionEvent, z1Var.f5902b, (ai.g) this.f5321c, z1Var.f5904f, s2.I(z1Var.f5906r));
             case 1:
-                org.telegram.ui.ActionBar.n1 n1Var = (org.telegram.ui.ActionBar.n1) this.f5329b;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f5330c;
+                org.telegram.ui.ActionBar.n1 n1Var = (org.telegram.ui.ActionBar.n1) this.f5320b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f5321c;
                 if (motionEvent.getAction() == 0) {
                     Drawable backgroundDrawable = actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundDrawable();
                     RectF rectF = AndroidUtilities.rectTmp;
@@ -63,42 +63,42 @@ public final class q1 implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                org.telegram.ui.Components.g8 g8Var = (org.telegram.ui.Components.g8) this.f5329b;
-                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f5330c;
+                org.telegram.ui.Components.i8 i8Var = (org.telegram.ui.Components.i8) this.f5320b;
+                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f5321c;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.h8 h8Var = g8Var.f24245n;
-                    h8Var.H.r(h8Var.f24569n.T(xVar));
+                    org.telegram.ui.Components.j8 j8Var = i8Var.f24898n;
+                    j8Var.H.r(j8Var.f25177n.T(xVar));
                     return false;
                 }
                 return false;
             case 3:
-                return sv.m((sv) this.f5329b, (vm) this.f5330c, motionEvent);
+                return tv.m((tv) this.f5320b, (wm) this.f5321c, motionEvent);
             case 4:
-                return ny0.a((ny0) this.f5329b, (org.telegram.ui.Components.j) this.f5330c, motionEvent);
+                return my0.a((my0) this.f5320b, (org.telegram.ui.Components.j) this.f5321c, motionEvent);
             case 5:
-                az azVar = (az) this.f5329b;
-                org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) this.f5330c;
-                azVar.getClass();
+                xy xyVar = (xy) this.f5320b;
+                org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) this.f5321c;
+                xyVar.getClass();
                 if (motionEvent.getAction() == 0) {
-                    dz dzVar = azVar.d;
-                    dzVar.f33127c.r(dzVar.f33126b.T(g4Var));
+                    az azVar = xyVar.d;
+                    azVar.f31903c.r(azVar.f31902b.T(g4Var));
                     return false;
                 }
                 return false;
             case 6:
-                e20 e20Var = (e20) this.f5329b;
-                z10 z10Var = (z10) this.f5330c;
+                b20 b20Var = (b20) this.f5320b;
+                x10 x10Var = (x10) this.f5321c;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = e20Var.e;
-                    filtersSetupActivity.f30798c.r(filtersSetupActivity.f30796a.T(z10Var));
+                    FiltersSetupActivity filtersSetupActivity = b20Var.e;
+                    filtersSetupActivity.f30772c.r(filtersSetupActivity.f30770a.T(x10Var));
                     return false;
                 }
                 return false;
             default:
-                on0 on0Var = (on0) this.f5329b;
-                Context context = (Context) this.f5330c;
+                in0 in0Var = (in0) this.f5320b;
+                Context context = (Context) this.f5321c;
                 int i15 = 0;
-                if (on0Var.getParentActivity() == null) {
+                if (in0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
@@ -135,11 +135,11 @@ public final class q1 implements View.OnTouchListener {
                         }
                         int i16 = i10;
                         int i17 = i12;
-                        AlertDialog$Builder x10 = org.telegram.ui.Components.c5.x(context, i16, i15, i11, i17, i14, i13, string, z10, new gg.d2(on0Var, intValue, editTextBoldCursor, 14));
+                        AlertDialog$Builder x10 = org.telegram.ui.Components.e5.x(context, i16, i15, i11, i17, i14, i13, string, z10, new gg.d2(in0Var, intValue, editTextBoldCursor, 15));
                         if (intValue == 8) {
-                            x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new d20(21, on0Var, editTextBoldCursor));
+                            x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new w10(22, in0Var, editTextBoldCursor));
                         }
-                        on0Var.showDialog(x10.f18435a);
+                        in0Var.showDialog(x10.f18409a);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }

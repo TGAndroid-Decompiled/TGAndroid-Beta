@@ -3,90 +3,55 @@ package ci;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.SpannableString;
-import android.view.View;
+import android.graphics.RectF;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.h90;
-public final class w8 extends FrameLayout {
-    public final Paint f5708a;
-    public final ImageView f5709b;
-    public final ImageView f5710c;
-    public final org.telegram.ui.Components.n6 d;
-    public final org.telegram.ui.Components.n6 e;
-    public final ImageView f5711f;
-    public final SpannableString h;
-    public final SpannableString f5712n;
+public final class w8 extends LinearLayout {
+    public final RectF f5734a;
+    public final RectF f5735b;
+    public final RectF f5736c;
+    public final Paint d;
+    public final x8 e;
 
-    public w8(Context context) {
+    public w8(x8 x8Var, Context context) {
         super(context);
-        Paint paint = new Paint(1);
-        this.f5708a = paint;
-        setWillNotDraw(false);
-        paint.setColor(-16777216);
-        ImageView imageView = new ImageView(context);
-        this.f5709b = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.filled_link);
-        imageView.setColorFilter(new PorterDuffColorFilter(-15033089, PorterDuff.Mode.SRC_IN));
-        addView(imageView, w7.x5.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f5710c = imageView2;
-        imageView2.setBackground(new u8(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089));
-        addView(imageView2, w7.x5.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
-        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(context, false, false, false);
-        this.d = n6Var;
-        n6Var.setTextColor(-15033089);
-        n6Var.setTextSize(AndroidUtilities.dp(14.21f));
-        n6Var.setTypeface(AndroidUtilities.bold());
-        n6Var.setEllipsizeByGradient(true);
-        n6Var.getDrawable().G = AndroidUtilities.displaySize.x;
-        addView(n6Var, w7.x5.d(-1, 24.0f, 55, 57.0f, 2.33f, 48.0f, 0.0f));
-        org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(context, false, false, false);
-        this.e = n6Var2;
-        n6Var2.setTextColor(-8355712);
-        n6Var2.setTextSize(AndroidUtilities.dp(14.21f));
-        n6Var2.setEllipsizeByGradient(true);
-        n6Var2.getDrawable().G = AndroidUtilities.displaySize.x;
-        addView(n6Var2, w7.x5.d(-1, 24.0f, 55, 57.0f, 20.66f, 48.0f, 0.0f));
-        int textColor = n6Var.getTextColor();
-        SpannableString spannableString = new SpannableString("x");
-        this.h = spannableString;
-        h90 h90Var = new h90(AndroidUtilities.dp(200.0f), n6Var);
-        h90Var.e = 0.8f;
-        h90Var.a(org.telegram.ui.ActionBar.i6.l1(0.4f, textColor), org.telegram.ui.ActionBar.i6.l1(0.08f, textColor));
-        spannableString.setSpan(h90Var, 0, spannableString.length(), 33);
-        int textColor2 = n6Var2.getTextColor();
-        SpannableString spannableString2 = new SpannableString("x");
-        this.f5712n = spannableString2;
-        h90 h90Var2 = new h90(AndroidUtilities.dp(140.0f), n6Var2);
-        h90Var2.e = 0.8f;
-        h90Var2.a(org.telegram.ui.ActionBar.i6.l1(0.4f, textColor2), org.telegram.ui.ActionBar.i6.l1(0.08f, textColor2));
-        spannableString2.setSpan(h90Var2, 0, spannableString2.length(), 33);
-        ImageView imageView3 = new ImageView(context);
-        this.f5711f = imageView3;
-        imageView3.setColorFilter(new PorterDuffColorFilter(1694498815, PorterDuff.Mode.MULTIPLY));
-        imageView3.setImageResource(R.drawable.input_clear);
-        imageView3.setScaleType(scaleType);
-        imageView3.setBackground(org.telegram.ui.ActionBar.i6.f0(436207615, 1, AndroidUtilities.dp(18.0f)));
-        addView(imageView3, w7.x5.d(48, 48.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
+        this.e = x8Var;
+        this.f5734a = new RectF();
+        this.f5735b = new RectF();
+        this.f5736c = new RectF();
+        this.d = new Paint(1);
+    }
+
+    public final void a(RectF rectF, int i10) {
+        FrameLayout frameLayout;
+        x8 x8Var = this.e;
+        if (i10 <= -1) {
+            frameLayout = x8Var.f5839b;
+        } else if (i10 >= 1) {
+            frameLayout = x8Var.f5841f;
+        } else {
+            frameLayout = x8Var.d;
+        }
+        rectF.set(frameLayout.getLeft(), frameLayout.getBottom() - AndroidUtilities.dp(30.0f), frameLayout.getRight(), frameLayout.getBottom());
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        Paint paint = this.f5708a;
-        canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.getShadowHeight(), paint);
-        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public final void dispatchDraw(Canvas canvas) {
+        x8 x8Var = this.e;
+        RectF rectF = this.f5734a;
+        a(rectF, (int) Math.floor(x8Var.f5843r));
+        int ceil = (int) Math.ceil(x8Var.f5843r);
+        RectF rectF2 = this.f5735b;
+        a(rectF2, ceil);
+        float f7 = x8Var.f5843r;
+        float floor = f7 - ((float) Math.floor(f7));
+        RectF rectF3 = this.f5736c;
+        AndroidUtilities.lerp(rectF, rectF2, floor, rectF3);
+        int l1 = org.telegram.ui.ActionBar.h6.l1(0.15f, i0.a.d(x8Var.f5842n, -1, -16777216));
+        Paint paint = this.d;
+        paint.setColor(l1);
+        canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, paint);
+        super.dispatchDraw(canvas);
     }
 }

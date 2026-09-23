@@ -1,47 +1,49 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class l41 extends AnimatorListenerAdapter {
-    public final int f35321a;
-    public final m41 f35322b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class l41 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
+    public final Path f34859a;
+    public ch.d f34860b;
 
-    public l41(m41 m41Var, int i10) {
-        this.f35321a = i10;
-        this.f35322b = m41Var;
+    public l41(Activity activity) {
+        super(activity);
+        this.f34859a = new Path();
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35321a) {
-            case 0:
-                m41 m41Var = this.f35322b;
-                if (m41Var.h != null) {
-                    m41Var.h = null;
-                    m41Var.e = 0.0f;
-                    m41Var.g();
-                    m41Var.f35600n.unlock();
-                    vx vxVar = m41Var.f35596a;
-                    if (vxVar != null) {
-                        vxVar.onPause();
-                        m41Var.f35596a.onFragmentDestroy();
-                        m41Var.removeAllViews();
-                        m41Var.f35596a = null;
-                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-                    }
-                    m41Var.d(false);
-                    return;
-                }
-                return;
-            default:
-                m41 m41Var2 = this.f35322b;
-                if (m41Var2.h != null) {
-                    m41Var2.h = null;
-                    m41Var2.d(true);
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f34859a);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void e() {
+        ch.d dVar = this.f34860b;
+        if (dVar != null) {
+            dVar.v();
         }
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        Path path = this.f34859a;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(ch.d dVar) {
+        this.f34860b = dVar;
+        setBackground(dVar);
     }
 }

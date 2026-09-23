@@ -1,65 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class hi0 extends Drawable {
-    public Path f24706a;
-    public Paint f24707b;
-    public float f24708c;
+import android.animation.ValueAnimator;
+public final class hi0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f24681a;
+    public final ji0 f24682b;
 
-    public final void a() {
-        int dp = AndroidUtilities.dp(18.0f);
-        Path path = this.f24706a;
-        path.reset();
-        float f7 = dp >> 1;
-        path.moveTo(f7, AndroidUtilities.dpf2(4.98f));
-        path.lineTo(AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
-        path.lineTo(dp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
-        path.lineTo(f7, AndroidUtilities.dpf2(4.98f));
-        Paint paint = this.f24707b;
-        paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        this.f24708c = AndroidUtilities.density;
+    public hi0(ji0 ji0Var, int i10) {
+        this.f24681a = i10;
+        this.f24682b = ji0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Paint paint = this.f24707b;
-        if (this.f24708c != AndroidUtilities.density) {
-            a();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f24681a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ji0 ji0Var = this.f24682b;
+                ji0Var.v = floatValue;
+                org.telegram.ui.Cells.r2 r2Var = ji0Var.H;
+                if (r2Var != null) {
+                    r2Var.invalidate();
+                }
+                ml0 ml0Var = ji0Var.I;
+                if (ml0Var != null) {
+                    ml0Var.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ji0 ji0Var2 = this.f24682b;
+                ji0Var2.f25330w = floatValue2;
+                org.telegram.ui.Cells.r2 r2Var2 = ji0Var2.H;
+                if (r2Var2 != null) {
+                    r2Var2.invalidate();
+                }
+                ml0 ml0Var2 = ji0Var2.I;
+                if (ml0Var2 != null) {
+                    ml0Var2.invalidate();
+                    return;
+                }
+                return;
+            case 2:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ji0 ji0Var3 = this.f24682b;
+                ji0Var3.f25324p = floatValue3;
+                org.telegram.ui.Cells.r2 r2Var3 = ji0Var3.H;
+                if (r2Var3 != null) {
+                    r2Var3.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ji0 ji0Var4 = this.f24682b;
+                ji0Var4.f25323o = floatValue4;
+                org.telegram.ui.Cells.r2 r2Var4 = ji0Var4.H;
+                if (r2Var4 != null) {
+                    r2Var4.invalidate();
+                    return;
+                }
+                return;
+            case 4:
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ji0 ji0Var5 = this.f24682b;
+                ji0Var5.f25331x = floatValue5;
+                org.telegram.ui.Cells.r2 r2Var5 = ji0Var5.H;
+                if (r2Var5 != null) {
+                    r2Var5.invalidate();
+                    return;
+                }
+                return;
+            case 5:
+                ji0 ji0Var6 = this.f24682b;
+                ji0Var6.getClass();
+                ji0Var6.e(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                org.telegram.ui.Cells.r2 r2Var6 = ji0Var6.H;
+                if (r2Var6 != null) {
+                    r2Var6.invalidate();
+                    return;
+                }
+                return;
+            case 6:
+                ji0 ji0Var7 = this.f24682b;
+                ji0Var7.getClass();
+                ji0Var7.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ji0Var7.F = true;
+                org.telegram.ui.Cells.r2 r2Var7 = ji0Var7.H;
+                if (r2Var7 != null) {
+                    r2Var7.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ji0 ji0Var8 = this.f24682b;
+                ji0Var8.getClass();
+                ji0Var8.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ji0Var8.F = false;
+                org.telegram.ui.Cells.r2 r2Var8 = ji0Var8.H;
+                if (r2Var8 != null) {
+                    r2Var8.invalidate();
+                    return;
+                }
+                return;
         }
-        canvas.save();
-        canvas.translate(getBounds().left, getBounds().top);
-        canvas.drawPath(this.f24706a, paint);
-        canvas.drawRect(AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(8.0f), AndroidUtilities.dp(18.0f) - AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(11.1f), paint);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -2,14 +2,14 @@ package x2;
 
 import b2.l1;
 public final class q {
-    public final l1 f45205a;
-    public final int[] f45206b;
+    public final l1 f45159a;
+    public final int[] f45160b;
 
     public q(l1 l1Var, int... iArr) {
         if (iArr.length == 0) {
             e2.a.f("ETSDefinition", "Empty tracks are not allowed", new IllegalArgumentException());
         }
-        this.f45205a = l1Var;
-        this.f45206b = iArr;
+        this.f45159a = l1Var;
+        this.f45160b = iArr;
     }
 }

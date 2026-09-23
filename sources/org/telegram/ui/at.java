@@ -1,40 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class at extends gg.e {
-    public final ContactsActivity L;
+import android.graphics.Bitmap;
+public final class at implements Runnable {
+    public final int f31880a;
+    public final pt f31881b;
 
-    public at(ContactsActivity contactsActivity, Context context, int i10, boolean z10, a0.i iVar, int i11) {
-        super(context, i10, z10, iVar, i11);
-        this.L = contactsActivity;
+    public at(pt ptVar, int i10) {
+        this.f31880a = i10;
+        this.f31881b = ptVar;
     }
 
     @Override
-    public final int R() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.at.R():int");
-    }
-
-    @Override
-    public final void l() {
-        boolean z10 = false;
-        X(false);
-        ContactsActivity contactsActivity = this.L;
-        org.telegram.ui.Components.ll0 ll0Var = contactsActivity.f30739f;
-        if (ll0Var != null && ll0Var.getAdapter() == this) {
-            int h = h();
-            if (contactsActivity.H) {
-                org.telegram.ui.Components.ll0 ll0Var2 = contactsActivity.f30739f;
-                if (h != 2) {
-                    z10 = true;
-                }
-                ll0Var2.setFastScrollVisible(z10);
+    public final void run() {
+        switch (this.f31880a) {
+            case 0:
+                this.f31881b.f36185c0 = null;
                 return;
-            }
-            org.telegram.ui.Components.ll0 ll0Var3 = contactsActivity.f30739f;
-            if (h != 0) {
-                z10 = true;
-            }
-            ll0Var3.setFastScrollVisible(z10);
+            case 1:
+                pt ptVar = this.f31881b;
+                ptVar.A.setImageBitmap((Bitmap) null);
+                org.telegram.ui.Components.fd0 fd0Var = ptVar.C;
+                if (fd0Var != null) {
+                    fd0Var.a();
+                    ptVar.f36206z.removeView(ptVar.C);
+                    ptVar.C = null;
+                    return;
+                }
+                return;
+            default:
+                this.f31881b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.rr.h).start();
+                return;
         }
     }
 }

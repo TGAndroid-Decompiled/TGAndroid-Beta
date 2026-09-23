@@ -16,33 +16,33 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vl;
-import org.telegram.ui.Components.qr;
+import org.telegram.messenger.ul;
+import org.telegram.ui.Components.rr;
 public final class c extends FrameLayout {
-    public final ImageView f602a;
-    public final org.telegram.ui.Components.m6 f603b;
-    public final Paint f604c;
+    public final ImageView f620a;
+    public final org.telegram.ui.Components.o6 f621b;
+    public final Paint f622c;
     public final Paint d;
     public boolean e;
-    public int f605f;
+    public int f623f;
     public float h;
-    public ValueAnimator f606n;
+    public ValueAnimator f624n;
 
     public c(Context context, dh.b bVar) {
         super(context);
         Paint paint = new Paint(1);
-        this.f604c = paint;
+        this.f622c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.h = 1.0f;
         w7.z5.a(this);
-        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, true, true, false);
-        this.f603b = m6Var;
-        m6Var.r(-9866632);
-        m6Var.t(AndroidUtilities.dp(9.0f));
-        m6Var.setCallback(this);
-        m6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
-        m6Var.D = true;
+        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
+        this.f621b = o6Var;
+        o6Var.r(-9866632);
+        o6Var.t(AndroidUtilities.dp(9.0f));
+        o6Var.setCallback(this);
+        o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
+        o6Var.D = true;
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -59,7 +59,7 @@ public final class c extends FrameLayout {
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
         frameLayout.addView(imageView, w7.x5.e(20, 20, 17));
         ImageView imageView2 = new ImageView(context);
-        this.f602a = imageView2;
+        this.f620a = imageView2;
         imageView2.setImageResource(R.drawable.menu_comments_arrow);
         imageView2.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
         frameLayout.addView(imageView2, w7.x5.e(20, 20, 17));
@@ -73,13 +73,13 @@ public final class c extends FrameLayout {
         }
         this.e = z10;
         float f7 = 180.0f;
-        ImageView imageView = this.f602a;
+        ImageView imageView = this.f620a;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
             if (z10) {
                 f7 = 0.0f;
             }
-            vl.r(animate.rotation(f7), qr.h, 420L);
+            ul.r(animate.rotation(f7), rr.h, 420L);
             return;
         }
         if (z10) {
@@ -93,9 +93,9 @@ public final class c extends FrameLayout {
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         super.dispatchDraw(canvas);
         float f7 = this.h;
-        org.telegram.ui.Components.m6 m6Var = this.f603b;
-        float g10 = m6Var.g() * f7;
-        float max = Math.max(AndroidUtilities.dp(12.0f), m6Var.d() + AndroidUtilities.dp(6.0f));
+        org.telegram.ui.Components.o6 o6Var = this.f621b;
+        float g10 = o6Var.g() * f7;
+        float max = Math.max(AndroidUtilities.dp(12.0f), o6Var.d() + AndroidUtilities.dp(6.0f));
         canvas.save();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
@@ -103,9 +103,9 @@ public final class c extends FrameLayout {
         rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.d);
         rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
-        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f604c);
-        canvas.translate(((max - m6Var.d()) / 2.0f) + rectF.left, AndroidUtilities.dp(7.0f));
-        m6Var.draw(canvas);
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f622c);
+        canvas.translate(((max - o6Var.d()) / 2.0f) + rectF.left, AndroidUtilities.dp(7.0f));
+        o6Var.draw(canvas);
         canvas.restore();
         canvas.restore();
     }
@@ -117,28 +117,28 @@ public final class c extends FrameLayout {
         } else {
             formatNumber = LocaleController.formatNumber(i10, ',');
         }
-        this.f603b.q(formatNumber, true, true);
-        if (this.f605f != i10) {
-            ValueAnimator valueAnimator = this.f606n;
+        this.f621b.q(formatNumber, true, true);
+        if (this.f623f != i10) {
+            ValueAnimator valueAnimator = this.f624n;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f606n = null;
+                this.f624n = null;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f606n = ofFloat;
+            this.f624n = ofFloat;
             ofFloat.addUpdateListener(new a(this, 0));
-            this.f606n.addListener(new b(this, 0));
-            this.f606n.setInterpolator(new OvershootInterpolator(2.5f));
-            this.f606n.setDuration(200L);
-            this.f606n.start();
-            this.f605f = i10;
+            this.f624n.addListener(new b(this, 0));
+            this.f624n.setInterpolator(new OvershootInterpolator(2.5f));
+            this.f624n.setDuration(200L);
+            this.f624n.start();
+            this.f623f = i10;
         }
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f603b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f621b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -6,88 +6,88 @@ import android.text.TextUtils;
 import android.widget.FrameLayout;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.qr;
-public abstract class m extends FrameLayout implements le.k {
-    public final e6 f19393a;
-    public final com.google.firebase.messaging.m f19394b;
-    public final le.l f19395c;
+import org.telegram.ui.Components.rr;
+public abstract class m extends FrameLayout implements le.l {
+    public final d6 f19364a;
+    public final com.google.firebase.messaging.m f19365b;
+    public final le.m f19366c;
 
-    public m(Context context, e6 e6Var, com.google.firebase.messaging.m mVar) {
+    public m(Context context, d6 d6Var, com.google.firebase.messaging.m mVar) {
         super(context);
-        this.f19395c = new le.l(this, qr.h, 350L);
-        this.f19393a = e6Var;
-        this.f19394b = mVar;
+        this.f19366c = new le.m(this, rr.h, 350L);
+        this.f19364a = d6Var;
+        this.f19365b = mVar;
     }
 
     public final void b(CharSequence charSequence) {
         boolean z10;
         SpannableString spannableString;
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        le.l lVar = this.f19395c;
+        le.m mVar = this.f19366c;
         if (isEmpty) {
-            lVar.f13995a.r(null, true);
+            mVar.f13985a.r(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
-        com.google.firebase.messaging.m mVar = this.f19394b;
+        com.google.firebase.messaging.m mVar2 = this.f19365b;
         if (indexOf >= 0) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
-            mVar.x(valueOf, indexOf);
+            mVar2.x(valueOf, indexOf);
             z10 = true;
             spannableString = valueOf;
         } else {
             z10 = false;
             spannableString = charSequence;
         }
-        l lVar2 = new l(this, getContext());
-        int i10 = i6.gl;
-        e6 e6Var = this.f19393a;
-        lVar2.setTextColor(i6.v0(i10, e6Var));
-        lVar2.setLinkTextColor(i6.v0(i10, e6Var));
-        lVar2.setTextSize(1, 14.0f);
-        lVar2.setAlpha(0.0f);
-        lVar2.setText(spannableString);
+        l lVar = new l(this, getContext());
+        int i10 = h6.gl;
+        d6 d6Var = this.f19364a;
+        lVar.setTextColor(h6.v0(i10, d6Var));
+        lVar.setLinkTextColor(h6.v0(i10, d6Var));
+        lVar.setTextSize(1, 14.0f);
+        lVar.setAlpha(0.0f);
+        lVar.setText(spannableString);
         if (z10) {
-            mVar.c(lVar2);
+            mVar2.c(lVar);
         }
-        addView(lVar2, w7.x5.c(-2.0f, -2));
-        lVar.i(lVar2, true);
+        addView(lVar, w7.x5.c(-2.0f, -2));
+        mVar.i(lVar, true);
     }
 
-    public void c(le.l lVar) {
+    public void c(le.m mVar) {
         float f7;
-        Iterator it = this.f19395c.iterator();
+        Iterator it = this.f19366c.iterator();
         while (it.hasNext()) {
-            le.g gVar = (le.g) it.next();
-            float c10 = gVar.c();
-            Object obj = gVar.f13982a;
+            le.h hVar = (le.h) it.next();
+            float c10 = hVar.c();
+            Object obj = hVar.f13972a;
             float lerp = AndroidUtilities.lerp(0.85f, 1.0f, c10);
-            l lVar2 = (l) obj;
-            lVar2.setAlpha(c10);
-            lVar2.setScaleX(lerp);
-            lVar2.setScaleY(lerp);
-            if (!gVar.h) {
+            l lVar = (l) obj;
+            lVar.setAlpha(c10);
+            lVar.setScaleX(lerp);
+            lVar.setScaleY(lerp);
+            if (!hVar.h) {
                 f7 = 9.0f;
             } else {
                 f7 = -9.0f;
             }
-            lVar2.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(f7), 0, c10));
+            lVar.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(f7), 0, c10));
         }
     }
 
     public final void d() {
-        Iterator it = this.f19395c.iterator();
+        Iterator it = this.f19366c.iterator();
         while (it.hasNext()) {
-            le.g gVar = (le.g) it.next();
-            int i10 = i6.gl;
-            e6 e6Var = this.f19393a;
-            ((l) gVar.f13982a).setTextColor(i6.v0(i10, e6Var));
-            ((l) gVar.f13982a).setLinkTextColor(i6.v0(i10, e6Var));
+            le.h hVar = (le.h) it.next();
+            int i10 = h6.gl;
+            d6 d6Var = this.f19364a;
+            ((l) hVar.f13972a).setTextColor(h6.v0(i10, d6Var));
+            ((l) hVar.f13972a).setLinkTextColor(h6.v0(i10, d6Var));
         }
     }
 
     public float getTotalVisibility() {
-        return this.f19395c.f13995a.d.f13988c.f13996a;
+        return this.f19366c.f13985a.d.f13978c.f13986a;
     }
 
     @Override

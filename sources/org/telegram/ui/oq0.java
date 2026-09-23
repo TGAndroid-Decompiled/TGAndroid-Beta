@@ -1,39 +1,28 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-public final class oq0 extends s4.s0 {
-    public final ar0 f36323a;
+public final class oq0 extends g.p {
+    public final uq0 f35946c;
 
-    public oq0(ar0 ar0Var) {
-        this.f36323a = ar0Var;
+    public oq0(uq0 uq0Var) {
+        this.f35946c = uq0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 1) {
-            AndroidUtilities.hideKeyboard(this.f36323a.getParentActivity().getCurrentFocus());
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        ar0 ar0Var = this.f36323a;
-        if (ar0Var.J == null) {
-            int L0 = ar0Var.M.L0();
-            boolean z10 = false;
-            if (L0 == -1) {
-                abs = 0;
+    public final int i(int i10) {
+        int i11;
+        uq0 uq0Var = this.f35946c;
+        if (uq0Var.L.j(i10) != 1 && !uq0Var.Y && (uq0Var.J != null || !TextUtils.isEmpty(uq0Var.v))) {
+            int i12 = uq0Var.R;
+            int i13 = uq0Var.f38177g0;
+            if (i10 % i13 != i13 - 1) {
+                i11 = AndroidUtilities.dp(2.0f);
             } else {
-                abs = Math.abs(ar0Var.M.N0() - L0) + 1;
+                i11 = 0;
             }
-            if (abs > 0 && L0 + abs > ar0Var.M.B() - 2 && !ar0Var.f31914r && !ar0Var.f31916s) {
-                if (ar0Var.f31893a == 1) {
-                    z10 = true;
-                }
-                ar0Var.d0(ar0Var.v, ar0Var.f31921w, z10, true);
-            }
+            return i12 + i11;
         }
+        return uq0Var.M.J;
     }
 }

@@ -1,49 +1,18 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class iz0 extends s4.c0 {
-    public final ProfileActivity I;
+import android.content.Context;
+public final class iz0 extends org.telegram.ui.Components.ph0 {
+    public final ProfileActivity f34290s1;
 
-    public iz0(ProfileActivity profileActivity) {
-        this.I = profileActivity;
+    public iz0(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.ActionBar.k kVar, yy0 yy0Var, hz0 hz0Var, org.telegram.ui.Components.kh0 kh0Var, org.telegram.ui.Components.gh0 gh0Var) {
+        super(context, j3, kVar, yy0Var, hz0Var, kh0Var, gh0Var);
+        this.f34290s1 = profileActivity;
     }
 
     @Override
-    public final int o0(int i10, of.e eVar, s4.z0 z0Var) {
-        ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f31250c.m(0);
-        if (m10 != null && !profileActivity.F0) {
-            int top = m10.getTop() - profileActivity.T3();
-            boolean z10 = profileActivity.f31335o2;
-            boolean z11 = true;
-            if (!z10 && top > i10) {
-                if (!profileActivity.f31326n0.X0.isEmpty() && profileActivity.f31265e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f31328n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
-                    if (profileActivity.J2 != null) {
-                        z11 = false;
-                    }
-                    profileActivity.f31335o2 = z11;
-                }
-            } else if (z10) {
-                if (i10 >= top) {
-                    profileActivity.f31335o2 = false;
-                } else if (profileActivity.f31235a.getScrollState() == 1 && !profileActivity.f31342p2) {
-                    i10 /= 2;
-                }
-            }
-            i10 = top;
-        }
-        if (profileActivity.O1 && !profileActivity.f31235a.O0) {
-            return 0;
-        }
-        return super.o0(i10, eVar, z0Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        if (this.I.f31346q0 != null) {
-            return true;
-        }
-        return false;
+    public final void setCustomAvatarProgress(float f7) {
+        ProfileActivity profileActivity = this.f34290s1;
+        profileActivity.f31305n5 = f7;
+        profileActivity.B3();
     }
 }

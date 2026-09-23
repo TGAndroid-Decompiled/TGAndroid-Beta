@@ -1,60 +1,6 @@
 package ci;
 
-import org.telegram.ui.n01;
-public final class hc extends jc {
-    public final int f4767g;
-    public final Object h;
-
-    public hc(Object obj, int i10) {
-        this.f4767g = i10;
-        this.h = obj;
-    }
-
-    @Override
-    public final void e() {
-        switch (this.f4767g) {
-            case 0:
-                n01 n01Var = (n01) this.h;
-                n01Var.Q = false;
-                n01Var.invalidate();
-                return;
-            case 1:
-                ai.f6 t10 = ((ai.jc) this.h).t();
-                if (t10 != null) {
-                    t10.m0(true);
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Components.u9 u9Var = (org.telegram.ui.Components.u9) this.h;
-                u9Var.post(new androidx.fragment.app.a0(u9Var, 27));
-                return;
-        }
-    }
-
-    @Override
-    public final void f(boolean z10) {
-        switch (this.f4767g) {
-            case 0:
-                n01 n01Var = (n01) this.h;
-                n01Var.Q = true;
-                n01Var.invalidate();
-                return;
-            case 1:
-                ai.f6 t10 = ((ai.jc) this.h).t();
-                if (t10 != null) {
-                    t10.m0(false);
-                }
-                ai.a5 a5Var = this.f4860f;
-                if (a5Var != null) {
-                    a5Var.setTranslationX(0.0f);
-                    this.f4860f.setTranslationY(0.0f);
-                    return;
-                }
-                return;
-            default:
-                ((org.telegram.ui.Components.u9) this.h).setVisibility(0);
-                return;
-        }
-    }
+import android.view.MotionEvent;
+public interface hc {
+    boolean m(MotionEvent motionEvent);
 }

@@ -1,145 +1,47 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class w81 extends org.telegram.ui.ActionBar.j {
-    public final int f38725a;
-    public final Object f38726b;
+import android.content.Context;
+import android.widget.LinearLayout;
+public final class w81 extends LinearLayout implements org.telegram.ui.ActionBar.y5 {
+    public final org.telegram.ui.ActionBar.d6 f38561a;
+    public final org.telegram.ui.Components.d90 f38562b;
+    public final org.telegram.ui.Components.d90 f38563c;
+    public final ci.d d;
+    public final ci.d e;
 
-    public w81(Object obj, int i10) {
-        this.f38725a = i10;
-        this.f38726b = obj;
+    public w81(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f38561a = d6Var;
+        setOrientation(1);
+        int i10 = org.telegram.ui.ActionBar.h6.G6;
+        org.telegram.ui.Components.d90 a2 = w7.b6.a(context, 15.0f, i10, true, d6Var);
+        this.f38562b = a2;
+        a2.setGravity(17);
+        addView(a2, w7.x5.t(-1, -2, 55, 32, 20, 32, 0));
+        org.telegram.ui.Components.d90 a10 = w7.b6.a(context, 13.0f, i10, false, d6Var);
+        this.f38563c = a10;
+        a10.setGravity(17);
+        addView(a10, w7.x5.r(-1, -2, 55, 32.0f, 9.33f, 32.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        ci.d g10 = org.telegram.messenger.ul.g(24, context, d6Var, true);
+        this.d = g10;
+        ci.d g11 = org.telegram.messenger.ul.g(24, context, d6Var, true);
+        this.e = g11;
+        linearLayout.addView(g10, w7.x5.p(0, 42, 1.0f, 112, 0, 0, 12, 0));
+        linearLayout.addView(g11, w7.x5.p(0, 42, 1.0f, 112, 0, 0, 0, 0));
+        addView(linearLayout, w7.x5.t(-1, -2, 55, 24, 18, 24, 16));
     }
 
     @Override
-    public final void b(int i10) {
-        switch (this.f38725a) {
-            case 0:
-                f91 f91Var = (f91) this.f38726b;
-                if (i10 == -1) {
-                    f91Var.finishFragment();
-                    return;
-                } else if (i10 == 2) {
-                    f91Var.l0(new org.telegram.ui.ActionBar.n2(null));
-                    return;
-                } else {
-                    return;
-                }
-            case 1:
-                if (i10 == -1) {
-                    ((za1) this.f38726b).finishFragment();
-                    return;
-                }
-                return;
-            case 2:
-                StickersActivity stickersActivity = (StickersActivity) this.f38726b;
-                if (i10 == -1) {
-                    if (stickersActivity.onBackPressed(true)) {
-                        stickersActivity.finishFragment();
-                        return;
-                    }
-                    return;
-                }
-                StickersActivity.d0(stickersActivity, i10);
-                return;
-            case 3:
-                be1 be1Var = (be1) this.f38726b;
-                if (i10 == -1) {
-                    be1Var.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    be1.Y(be1Var);
-                    return;
-                } else {
-                    return;
-                }
-            case 4:
-                if (i10 == -1) {
-                    ((te1) this.f38726b).finishFragment();
-                    return;
-                }
-                return;
-            case 5:
-                if (i10 == -1) {
-                    ((kg1) this.f38726b).finishFragment();
-                    return;
-                }
-                return;
-            case 6:
-                if (i10 == -1) {
-                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f38726b;
-                    if (twoStepVerificationActivity.X >= 0) {
-                        twoStepVerificationActivity.x0();
-                        return;
-                    } else {
-                        twoStepVerificationActivity.finishFragment();
-                        return;
-                    }
-                }
-                return;
-            case 7:
-                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f38726b;
-                if (i10 == -1) {
-                    if (userInfoActivity.onBackPressed(true)) {
-                        userInfoActivity.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    userInfoActivity.c0(true);
-                    return;
-                } else {
-                    return;
-                }
-            case 8:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f38726b;
-                if (i10 == -1) {
-                    usersSelectActivity.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    usersSelectActivity.X();
-                    return;
-                } else {
-                    return;
-                }
-            case 9:
-                org.telegram.ui.web.h1 h1Var = (org.telegram.ui.web.h1) this.f38726b;
-                if (i10 == -1) {
-                    if (org.telegram.ui.web.h1.Y(h1Var).s()) {
-                        org.telegram.ui.web.h1.Z(h1Var).r();
-                        h1Var.f38976s.clear();
-                        AndroidUtilities.forEachViews((RecyclerView) h1Var.f30482a, (e2.h) new org.telegram.ui.web.m(1));
-                        return;
-                    }
-                    h1Var.finishFragment();
-                    return;
-                }
-                return;
-            case 10:
-                if (i10 == -1) {
-                    ((rg.x0) this.f38726b).dismiss();
-                    return;
-                }
-                return;
-            case 11:
-                if (i10 == -1) {
-                    ((xh.h4) this.f38726b).finishFragment();
-                    return;
-                }
-                return;
-            case 12:
-                if (i10 == -1) {
-                    ((yh.g) this.f38726b).finishFragment();
-                    return;
-                }
-                return;
-            default:
-                zg.q qVar = (zg.q) this.f38726b;
-                if (i10 == -1 && !qVar.X(true)) {
-                    qVar.finishFragment();
-                    return;
-                }
-                return;
-        }
+    public final void e() {
+        int i10 = org.telegram.ui.ActionBar.h6.G6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38561a;
+        this.f38562b.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
+        this.f38563c.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
+    }
+
+    public int[] getColorKeys() {
+        return null;
     }
 }

@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class l9 extends e9.l1 {
-    public final e9.d f48530b;
+    public final e9.d f48480b;
 
     public l9(e9.d dVar) {
         super(2);
-        this.f48530b = dVar;
+        this.f48480b = dVar;
     }
 
     @Override
     public final void clear() {
-        this.f48530b.clear();
+        this.f48480b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f48530b.f8061b.entrySet();
+        Set entrySet = this.f48480b.f8047b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class l9 extends e9.l1 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f48530b.isEmpty();
+        return this.f48480b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.c(this.f48530b, (char) 0);
+        return new e9.c(this.f48480b, (char) 0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class l9 extends e9.l1 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((lg) this.f48530b.e).f48531c;
+        d dVar = ((lg) this.f48480b.e).f48481c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -107,11 +107,11 @@ public final class l9 extends e9.l1 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            lg lgVar = (lg) this.f48530b.e;
-            ed edVar = lgVar.f48521a;
+            lg lgVar = (lg) this.f48480b.e;
+            ed edVar = lgVar.f48471a;
             if (edVar == null) {
-                edVar = new ed(lgVar, lgVar.f48531c);
-                lgVar.f48521a = edVar;
+                edVar = new ed(lgVar, lgVar.f48481c);
+                lgVar.f48471a = edVar;
             }
             return edVar.retainAll(hashSet);
         }
@@ -119,6 +119,6 @@ public final class l9 extends e9.l1 {
 
     @Override
     public final int size() {
-        return this.f48530b.f8061b.size();
+        return this.f48480b.f8047b.size();
     }
 }

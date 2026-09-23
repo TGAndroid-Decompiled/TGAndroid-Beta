@@ -1,5 +1,5 @@
 package zd;
 public final class b0 implements id.g {
-    public static final b0 f48861a = new Object();
-    public static final b0 f48862b = new Object();
+    public static final b0 f48812a = new Object();
+    public static final b0 f48813b = new Object();
 }

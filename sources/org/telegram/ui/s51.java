@@ -1,44 +1,68 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-public final class s51 extends g.p {
-    public final int f37273c;
-    public final h71 d;
+public final class s51 extends AnimatorListenerAdapter {
+    public final int f37127a;
+    public final boolean f37128b;
+    public final z61 f37129c;
 
-    public s51(h71 h71Var, int i10) {
-        this.f37273c = i10;
-        this.d = h71Var;
+    public s51(z61 z61Var, boolean z10, int i10) {
+        this.f37127a = i10;
+        this.f37129c = z61Var;
+        this.f37128b = z10;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
         ArrayList arrayList;
-        int i12;
-        switch (this.f37273c) {
+        ArrayList arrayList2;
+        int i11;
+        switch (this.f37127a) {
             case 0:
-                h71 h71Var = this.d;
-                if (h71Var.f34164w0.indexOfKey(i10) < 0 && h71Var.f34172z0.indexOfKey(i10) < 0 && i10 != h71Var.f34127f && i10 != h71Var.f34169y && i10 != h71Var.f34142n && i10 != h71Var.h && i10 != h71Var.v && i10 != h71Var.f34114a && i10 != h71Var.f34166x) {
-                    if ((i10 >= h71Var.E && i10 < h71Var.F) || h71Var.Q) {
-                        return 8;
-                    }
-                    return 5;
+                z61 z61Var = this.f37129c;
+                m51 m51Var = z61Var.f40023i0;
+                int i12 = 8;
+                boolean z10 = this.f37128b;
+                if (z10) {
+                    i10 = 0;
+                } else {
+                    i10 = 8;
                 }
-                return h71Var.f34152r0.J;
+                m51Var.setVisibility(i10);
+                w51 w51Var = z61Var.f40021h0;
+                if (!z10) {
+                    i12 = 0;
+                }
+                w51Var.setVisibility(i12);
+                z61Var.E1 = null;
+                if (!z10 && (arrayList2 = z61Var.A1) != null) {
+                    arrayList2.clear();
+                    ArrayList arrayList3 = z61Var.D1;
+                    if (arrayList3 != null) {
+                        arrayList3.clear();
+                    }
+                    z61Var.f40038q0.E(false);
+                }
+                if (!z10 && (arrayList = z61Var.B1) != null) {
+                    arrayList.clear();
+                    return;
+                }
+                return;
             default:
-                h71 h71Var2 = this.d;
-                r61 r61Var = h71Var2.f34149q0;
-                int j3 = r61Var.j(i10);
-                if (j3 == 6) {
-                    return h71Var2.f34152r0.J;
+                z61 z61Var2 = this.f37129c;
+                FrameLayout frameLayout = z61Var2.f40025j0;
+                if (this.f37128b && z61Var2.f40023i0.getVisibility() == 0) {
+                    i11 = 0;
+                } else {
+                    i11 = 8;
                 }
-                if (j3 != 5) {
-                    h71 h71Var3 = r61Var.f37046s;
-                    if (h71Var3.W != 14 ? i10 <= (i11 = r61Var.f37042c) || (i10 - i11) - 1 >= h71Var3.C1.size() : (arrayList = h71Var3.B1) == null || i10 < (i12 = r61Var.f37042c) || i10 - i12 >= arrayList.size()) {
-                        return 5;
-                    }
-                }
-                return 8;
+                frameLayout.setVisibility(i11);
+                z61Var2.H1 = null;
+                return;
         }
     }
 }

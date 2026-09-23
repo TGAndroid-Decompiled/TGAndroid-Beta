@@ -5,11 +5,11 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class kb extends ji.n {
     public int W;
-    public mu0 X;
+    public fu0 X;
     public final ub Y;
 
-    public kb(ub ubVar, jb jbVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(null, jbVar, e6Var);
+    public kb(ub ubVar, jb jbVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(null, jbVar, d6Var);
         this.Y = ubVar;
         this.W = -1;
     }
@@ -17,13 +17,13 @@ public final class kb extends ji.n {
     @Override
     public final void N() {
         super.N();
-        mu0 mu0Var = this.X;
-        if (mu0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(mu0Var);
+        fu0 fu0Var = this.X;
+        if (fu0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(fu0Var);
         }
-        mu0 mu0Var2 = new mu0(this, 20);
-        this.X = mu0Var2;
-        AndroidUtilities.runOnUIThread(mu0Var2);
+        fu0 fu0Var2 = new fu0(this, 20);
+        this.X = fu0Var2;
+        AndroidUtilities.runOnUIThread(fu0Var2);
     }
 
     @Override
@@ -31,9 +31,9 @@ public final class kb extends ji.n {
         if (this.W == -1) {
             this.W = this.Y.getNotificationCenter().setAnimationInProgress(this.W, ub.R0, false);
         }
-        mu0 mu0Var = this.X;
-        if (mu0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(mu0Var);
+        fu0 fu0Var = this.X;
+        if (fu0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(fu0Var);
             this.X = null;
         }
         if (BuildVars.LOGS_ENABLED) {

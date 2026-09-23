@@ -8,14 +8,14 @@ public enum p implements a {
     ES384(-35),
     ES512(-36);
     
-    public final int f4125a;
+    public final int f4120a;
 
     p(int i10) {
-        this.f4125a = i10;
+        this.f4120a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f4125a;
+        return this.f4120a;
     }
 }

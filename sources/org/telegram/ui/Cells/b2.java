@@ -1,11 +1,11 @@
 package org.telegram.ui.Cells;
 public final class b2 implements Runnable {
-    public final boolean f19812a;
-    public final e2 f19813b;
+    public final boolean f19792a;
+    public final e2 f19793b;
 
     public b2(e2 e2Var, boolean z10) {
-        this.f19813b = e2Var;
-        this.f19812a = z10;
+        this.f19793b = e2Var;
+        this.f19792a = z10;
     }
 
     @Override

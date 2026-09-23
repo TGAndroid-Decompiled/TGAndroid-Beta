@@ -1,60 +1,27 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import java.util.ArrayList;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class s1 implements RequestDelegate {
-    public final int f17271a;
-    public final Object f17272b;
-    public final Object f17273c;
+import java.util.HashMap;
+public final class s1 implements Runnable {
+    public final int f17252a;
+    public final ContactsController f17253b;
+    public final HashMap f17254c;
+    public final HashMap d;
 
-    public s1(int i10, Object obj, Object obj2) {
-        this.f17271a = i10;
-        this.f17272b = obj;
-        this.f17273c = obj2;
+    public s1(ContactsController contactsController, HashMap hashMap, HashMap hashMap2, int i10) {
+        this.f17252a = i10;
+        this.f17253b = contactsController;
+        this.f17254c = hashMap;
+        this.d = hashMap2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17271a) {
+    public final void run() {
+        switch (this.f17252a) {
             case 0:
-                ((ContactsController) this.f17272b).lambda$reloadContactsStatuses$59((SharedPreferences.Editor) this.f17273c, tLObject, tL_error);
-                return;
-            case 1:
-                ((ContactsController) this.f17272b).lambda$deleteAllContacts$9((Runnable) this.f17273c, tLObject, tL_error);
-                return;
-            case 2:
-                ((ContactsController) this.f17272b).lambda$addContact$52((TLRPC.User) this.f17273c, tLObject, tL_error);
-                return;
-            case 3:
-                ((MediaDataController) this.f17272b).lambda$removeRecentGif$24((TLRPC.TL_messages_saveGif) this.f17273c, tLObject, tL_error);
-                return;
-            case 4:
-                ((MediaDataController) this.f17272b).lambda$saveToRingtones$204((TLRPC.Document) this.f17273c, tLObject, tL_error);
-                return;
-            case 5:
-                ((MediaDataController) this.f17272b).lambda$loadAttachMenuBots$4((Runnable) this.f17273c, tLObject, tL_error);
-                return;
-            case 6:
-                ((MessagesController) this.f17272b).lambda$requestIsUserContactBlocked$495((ArrayList) this.f17273c, tLObject, tL_error);
-                return;
-            case 7:
-                ((MessagesController) this.f17272b).lambda$changeChatTitle$317((Runnable) this.f17273c, tLObject, tL_error);
-                return;
-            case 8:
-                ((SavedMessagesController) this.f17272b).lambda$loadDialogs$3((ArrayList) this.f17273c, tLObject, tL_error);
-                return;
-            case 9:
-                ((SendMessagesHelper) this.f17272b).lambda$sendReaction$35((Runnable) this.f17273c, tLObject, tL_error);
-                return;
-            case 10:
-                ((SendMessagesHelper) this.f17272b).lambda$performSendDelayedMessage$50((SendMessagesHelper.DelayedMessage) this.f17273c, tLObject, tL_error);
+                this.f17253b.lambda$processLoadedContacts$35(this.f17254c, this.d);
                 return;
             default:
-                UserNameResolver.a((String) this.f17273c, (UserNameResolver) this.f17272b, tLObject, tL_error);
+                this.f17253b.lambda$processLoadedContacts$34(this.f17254c, this.d);
                 return;
         }
     }

@@ -4,27 +4,27 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.ActionBar.f3;
 public final class r0 extends s4.s0 {
-    public final int f42446a;
-    public final x0 f42447b;
+    public final int f42401a;
+    public final x0 f42402b;
 
     public r0(x0 x0Var, int i10) {
-        this.f42446a = i10;
-        this.f42447b = x0Var;
+        this.f42401a = i10;
+        this.f42402b = x0Var;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
-        switch (this.f42446a) {
+        switch (this.f42401a) {
             case 0:
-                x0 x0Var = this.f42447b;
+                x0 x0Var = this.f42402b;
                 viewGroup = ((f3) x0Var).containerView;
                 viewGroup.invalidate();
                 x0Var.y();
                 return;
             default:
-                x0 x0Var2 = this.f42447b;
+                x0 x0Var2 = this.f42402b;
                 viewGroup2 = ((f3) x0Var2).containerView;
                 viewGroup2.invalidate();
                 x0Var2.y();

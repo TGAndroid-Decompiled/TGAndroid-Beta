@@ -7,15 +7,15 @@ import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.j5;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i5;
 import w7.x5;
 public final class h extends FrameLayout {
-    public final j5 f44323a;
-    public long f44324b;
+    public final i5 f44277a;
+    public long f44278b;
 
-    public h(Context context, e6 e6Var) {
+    public h(Context context, d6 d6Var) {
         super(context);
         int i10;
         int i11;
@@ -24,28 +24,28 @@ public final class h extends FrameLayout {
         float f10;
         float f11;
         float f12;
-        j5 j5Var = new j5(context);
-        j5Var.setTextSize(16);
-        j5Var.setTextColor(i6.v0(i6.f18940j5, e6Var));
+        i5 i5Var = new i5(context);
+        i5Var.setTextSize(16);
+        i5Var.setTextColor(h6.v0(h6.f18895j5, d6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        j5Var.setGravity(i10);
-        addView(j5Var);
-        j5 j5Var2 = new j5(context);
-        this.f44323a = j5Var2;
-        j5Var2.setTextSize(16);
-        j5Var2.setTextColor(i6.v0(i6.L6, e6Var));
+        i5Var.setGravity(i10);
+        addView(i5Var);
+        i5 i5Var2 = new i5(context);
+        this.f44277a = i5Var2;
+        i5Var2.setTextSize(16);
+        i5Var2.setTextColor(h6.v0(h6.L6, d6Var));
         if (LocaleController.isRTL) {
             i11 = 3;
         } else {
             i11 = 5;
         }
-        j5Var2.setGravity(i11);
-        addView(j5Var2);
-        j5Var.l(LocaleController.formatString("BoostingDateAndTime", R.string.BoostingDateAndTime, new Object[0]), false);
+        i5Var2.setGravity(i11);
+        addView(i5Var2);
+        i5Var.l(LocaleController.formatString("BoostingDateAndTime", R.string.BoostingDateAndTime, new Object[0]), false);
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i12 = 5;
@@ -63,7 +63,7 @@ public final class h extends FrameLayout {
         } else {
             f10 = 0.0f;
         }
-        j5Var.setLayoutParams(x5.d(-1, -2.0f, i13, f7, 0.0f, f10, 0.0f));
+        i5Var.setLayoutParams(x5.d(-1, -2.0f, i13, f7, 0.0f, f10, 0.0f));
         boolean z11 = LocaleController.isRTL;
         int i14 = (z11 ? 3 : 5) | 16;
         if (z11) {
@@ -76,12 +76,12 @@ public final class h extends FrameLayout {
         } else {
             f12 = 21.0f;
         }
-        j5Var2.setLayoutParams(x5.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
-        setBackgroundColor(i6.v0(i6.f18904h5, e6Var));
+        i5Var2.setLayoutParams(x5.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
+        setBackgroundColor(h6.v0(h6.f18859h5, d6Var));
     }
 
     public long getSelectedTime() {
-        return this.f44324b;
+        return this.f44278b;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j3) {
-        this.f44324b = j3;
+        this.f44278b = j3;
         Date date = new Date(j3);
-        this.f44323a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
+        this.f44277a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
     }
 }

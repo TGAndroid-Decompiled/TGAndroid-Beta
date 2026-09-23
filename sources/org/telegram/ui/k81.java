@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class k81 implements Utilities.Callback {
-    public final int f35083a;
-    public final SessionsActivity f35084b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class k81 implements Runnable {
+    public final int f34602a;
+    public final x81 f34603b;
 
-    public k81(SessionsActivity sessionsActivity, int i10) {
-        this.f35083a = i10;
-        this.f35084b = sessionsActivity;
+    public k81(x81 x81Var, int i10) {
+        this.f34602a = i10;
+        this.f34603b = x81Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f35083a) {
+    public final void run() {
+        switch (this.f34602a) {
             case 0:
-                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
-                SessionsActivity sessionsActivity = this.f35084b;
-                sessionsActivity.getClass();
-                if (connectedbots != null) {
-                    sessionsActivity.h = connectedbots.connected_bots;
-                    if (sessionsActivity.f31493a != null) {
-                        sessionsActivity.m0();
-                        sessionsActivity.f31493a.l();
-                        return;
-                    }
-                    return;
-                }
+                this.f34603b.f39210c.Y2.N(true);
+                return;
+            case 1:
+                nf.f.s(this.f34603b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                return;
+            case 2:
+                x81 x81Var = this.f34603b;
+                x81Var.f39210c.postOnAnimation(new k81(x81Var, 3));
+                return;
+            case 3:
+                this.f34603b.i0();
                 return;
             default:
-                SessionsActivity.V(this.f35084b, (Boolean) obj);
+                MessagesController.getInstance(this.f34603b.currentAccount).deleteUserPhoto(null);
                 return;
         }
     }

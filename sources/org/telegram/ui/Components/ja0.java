@@ -1,26 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class ja0 extends org.telegram.ui.tu0 {
-    public final na0 f25272a;
+import org.telegram.messenger.AndroidUtilities;
+public final class ja0 {
+    public final org.telegram.ui.ActionBar.n2 f25241a;
+    public final oa0 f25242b;
 
-    public ja0(na0 na0Var) {
-        this.f25272a = na0Var;
+    public ja0(oa0 oa0Var, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f25242b = oa0Var;
+        this.f25241a = n2Var;
     }
 
-    @Override
-    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ja0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        if (i10 >= 0) {
-            na0 na0Var = this.f25272a;
-            if (i10 < na0Var.P.size()) {
-                na0Var.f26429x.f((TLRPC.BotInlineResult) na0Var.P.get(i10), z10, i11);
+    public final void a(boolean z10) {
+        oa0 oa0Var = this.f25242b;
+        boolean z11 = false;
+        if (oa0Var.getNeededLayoutManager() != oa0Var.getCurrentLayoutManager() && oa0Var.a()) {
+            if (oa0Var.f26696f.M0 > 0) {
+                oa0Var.N = true;
+                oa0Var.o(false);
+                return;
             }
+            oa0Var.f26694b.setLayoutManager(oa0Var.getNeededLayoutManager());
+        }
+        if (z10 && !oa0Var.a()) {
+            z10 = false;
+        }
+        if (!z10 || oa0Var.f26696f.K() > 0) {
+            z11 = z10;
+        }
+        oa0Var.o(z11);
+    }
+
+    public final void b(boolean z10) {
+        this.f25242b.l(z10);
+    }
+
+    public final void c() {
+        long j3;
+        oa0 oa0Var = this.f25242b;
+        yp ypVar = oa0Var.J;
+        if (oa0Var.f26694b.getLayoutManager() != oa0Var.d && oa0Var.I) {
+            AndroidUtilities.cancelRunOnUIThread(ypVar);
+            if (this.f25241a.getFragmentBeginToShow()) {
+                j3 = 0;
+            } else {
+                j3 = 100;
+            }
+            AndroidUtilities.runOnUIThread(ypVar, j3);
         }
     }
 }

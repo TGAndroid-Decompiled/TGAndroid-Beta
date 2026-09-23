@@ -1,16 +1,13 @@
 package org.telegram.ui.Components;
+public final class c81 extends s4.j {
+    public final g81 F;
 
-import android.content.Context;
-public final class c81 extends s4.d0 {
-    public final gg.j0 f22976r;
-
-    public c81(gg.j0 j0Var, Context context) {
-        super(context);
-        this.f22976r = j0Var;
+    public c81(g81 g81Var) {
+        this.F = g81Var;
     }
 
     @Override
-    public final void g(android.view.View r6, s4.x0 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c81.g(android.view.View, s4.x0):void");
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
     }
 }

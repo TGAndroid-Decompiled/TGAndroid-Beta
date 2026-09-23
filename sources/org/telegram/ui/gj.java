@@ -1,20 +1,39 @@
 package org.telegram.ui;
+public final class gj extends dh.b {
+    public final int f33578n;
+    public final xn f33579r;
 
-import android.app.Activity;
-import java.util.ArrayList;
-public final class gj extends org.telegram.ui.Components.sv {
-    public final bo W;
-
-    public gj(bo boVar, org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.e6 e6Var, ArrayList arrayList) {
-        super(n2Var, activity, e6Var, arrayList);
-        this.W = boVar;
+    public gj(xn xnVar, org.telegram.ui.ActionBar.d6 d6Var, int i10, int i11) {
+        super(i10, d6Var);
+        this.f33578n = i11;
+        this.f33579r = xnVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        bo boVar = this.W;
-        boVar.getClass();
-        boVar.g8(false, true, 0.0f);
+    public final int H() {
+        int i10;
+        int i11;
+        switch (this.f33578n) {
+            case 0:
+                xn xnVar = this.f33579r;
+                i10 = ((org.telegram.ui.ActionBar.n2) xnVar).currentAccount;
+                if (!eh.b.c(i10, xnVar.f39370ea)) {
+                    return i0.a.k(xnVar.getThemedColor(org.telegram.ui.ActionBar.h6.Sd), 255);
+                }
+                if (xnVar.f39370ea != null && !org.telegram.ui.ActionBar.h6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
+            default:
+                xn xnVar2 = this.f33579r;
+                i11 = ((org.telegram.ui.ActionBar.n2) xnVar2).currentAccount;
+                if (!eh.b.c(i11, xnVar2.f39370ea)) {
+                    return i0.a.k(xnVar2.getThemedColor(org.telegram.ui.ActionBar.h6.f18789d6), 255);
+                }
+                if (xnVar2.f39370ea != null && !org.telegram.ui.ActionBar.h6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
+        }
     }
 }

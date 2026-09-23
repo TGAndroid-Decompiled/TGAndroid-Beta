@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
-import org.telegram.ui.Cells.ia;
+import org.telegram.ui.Cells.ja;
 public interface l {
     void a(long j3, int i10, int i11, int i12);
 
@@ -14,7 +14,7 @@ public interface l {
 
     void c(int i10);
 
-    boolean d(ia iaVar);
+    boolean d(ja jaVar);
 
     void e(a3.m mVar, Handler handler);
 

@@ -1,22 +1,26 @@
 package ci;
+public final class i6 implements qg.c {
+    public final nb f4785a;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-public final class i6 extends View {
-    public final qb f4784a;
-
-    public i6(qb qbVar, Context context) {
-        super(context);
-        this.f4784a = qbVar;
+    public i6(nb nbVar) {
+        this.f4785a = nbVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        g6 g6Var = this.f4784a.O0;
-        if (g6Var != null) {
-            g6Var.d(canvas);
+    public final void a() {
+        nb nbVar = this.f4785a;
+        nbVar.D0(null, true);
+        if (nbVar.M0) {
+            lc lcVar = nbVar.A2;
+            lcVar.f5035c1.f5121f.d();
+            lcVar.l0(-1, false, true);
+            nbVar.M0 = false;
         }
+        nbVar.O0(false);
+    }
+
+    @Override
+    public final qg.j b() {
+        return this.f4785a.J0;
     }
 }

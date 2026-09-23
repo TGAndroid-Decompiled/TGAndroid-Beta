@@ -1,37 +1,31 @@
 package org.telegram.ui;
-public final class xn0 implements Runnable {
-    public final int f39658a;
-    public final long f39659b;
 
-    public xn0(long j3, int i10) {
-        this.f39658a = i10;
-        this.f39659b = j3;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class xn0 implements oo0 {
+    public final qo0 f39634a;
+
+    public xn0(qo0 qo0Var) {
+        this.f39634a = qo0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39658a) {
-            case 0:
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(bo.R9(this.f39659b));
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    U2.presentFragment(bo.R9(this.f39659b));
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
-                if (U3 != null) {
-                    U3.presentFragment(bo.R9(this.f39659b));
-                    return;
-                }
-                return;
-        }
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        qo0 qo0Var = this.f39634a;
+        qo0Var.I0 = tL_payments_validateRequestedInfo;
+        qo0Var.B0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

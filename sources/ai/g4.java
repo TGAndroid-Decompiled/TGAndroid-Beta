@@ -4,15 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.vi;
-import org.telegram.ui.bo;
-import org.telegram.ui.mk;
-public final class g4 extends vi {
+import org.telegram.ui.Components.wi;
+import org.telegram.ui.jk;
+import org.telegram.ui.xn;
+public final class g4 extends wi {
     public final int P2;
     public final NotificationCenter.NotificationCenterDelegate Q2;
 
-    public g4(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(activity, n2Var2, false, false, true, e6Var);
+    public g4(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(activity, n2Var2, false, false, true, d6Var);
         this.P2 = i10;
         this.Q2 = (NotificationCenter.NotificationCenterDelegate) n2Var;
     }
@@ -30,15 +30,15 @@ public final class g4 extends vi {
                 super.dismissInternal();
                 return;
             case 2:
-                bo boVar = (bo) this.Q2;
-                g4 g4Var2 = boVar.J1;
+                xn xnVar = (xn) this.Q2;
+                g4 g4Var2 = xnVar.J1;
                 if (g4Var2 != null && g4Var2.isShowing()) {
-                    Activity parentActivity = boVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) boVar).classGuid;
+                    Activity parentActivity = xnVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.n2) xnVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 super.dismissInternal();
-                boVar.T9(false, true);
+                xnVar.T9(false, true);
                 return;
             default:
                 super.dismissInternal();
@@ -51,14 +51,14 @@ public final class g4 extends vi {
         int i10;
         switch (this.P2) {
             case 0:
-                f6 f6Var = (f6) this.Q2;
-                g4 g4Var = f6Var.I2;
+                e6 e6Var = (e6) this.Q2;
+                g4 g4Var = e6Var.I2;
                 if (g4Var != null) {
                     g4Var.setFocusable(false);
                 }
-                a4 a4Var = f6Var.f797b2;
+                a4 a4Var = e6Var.f773b2;
                 if (a4Var != null && a4Var.getEditField() != null) {
-                    f6Var.f797b2.getEditField().requestFocus();
+                    e6Var.f773b2.getEditField().requestFocus();
                     return;
                 }
                 return;
@@ -75,29 +75,29 @@ public final class g4 extends vi {
                 }
                 return;
             default:
-                bo boVar = (bo) this.Q2;
-                g4 g4Var4 = boVar.J1;
+                xn xnVar = (xn) this.Q2;
+                g4 g4Var4 = xnVar.J1;
                 if (g4Var4 != null) {
                     g4Var4.setFocusable(false);
                 }
-                mk mkVar = boVar.Y;
-                if (mkVar != null && mkVar.getEditField() != null) {
-                    boVar.Y.getEditField().requestFocus();
+                jk jkVar = xnVar.Y;
+                if (jkVar != null && jkVar.getEditField() != null) {
+                    xnVar.Y.getEditField().requestFocus();
                 }
-                g4 g4Var5 = boVar.J1;
+                g4 g4Var5 = xnVar.J1;
                 if (g4Var5 != null && g4Var5.isShowing()) {
-                    Activity parentActivity = boVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) boVar).classGuid;
+                    Activity parentActivity = xnVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.n2) xnVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
-                boVar.T9(false, false);
+                xnVar.T9(false, false);
                 return;
         }
     }
 
-    public g4(f6 f6Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, false, false, true, e6Var);
+    public g4(e6 e6Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, null, false, false, true, d6Var);
         this.P2 = 0;
-        this.Q2 = f6Var;
+        this.Q2 = e6Var;
     }
 }

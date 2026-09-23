@@ -2,13 +2,13 @@ package gb;
 
 import j$.util.concurrent.ConcurrentHashMap;
 public final class j implements db.v {
-    public static final i f9570c = new i(0);
+    public static final i f9556c = new i(0);
     public static final i d = new i(0);
-    public final of.b f9571a;
-    public final ConcurrentHashMap f9572b = new ConcurrentHashMap();
+    public final of.b f9557a;
+    public final ConcurrentHashMap f9558b = new ConcurrentHashMap();
 
     public j(of.b bVar) {
-        this.f9571a = bVar;
+        this.f9557a = bVar;
     }
 
     public final db.u a(of.b bVar, db.g gVar, kb.a aVar, eb.a aVar2, boolean z10) {
@@ -22,7 +22,7 @@ public final class j implements db.v {
         } else if (p22 instanceof db.v) {
             db.v vVar = (db.v) p22;
             if (z10) {
-                db.v vVar2 = (db.v) this.f9572b.putIfAbsent(aVar.f13577a, vVar);
+                db.v vVar2 = (db.v) this.f9558b.putIfAbsent(aVar.f13565a, vVar);
                 if (vVar2 != null) {
                     vVar = vVar2;
                 }
@@ -38,7 +38,7 @@ public final class j implements db.v {
                 }
                 db.o oVar2 = oVar;
                 if (z10) {
-                    iVar = f9570c;
+                    iVar = f9556c;
                 } else {
                     iVar = d;
                 }
@@ -46,7 +46,7 @@ public final class j implements db.v {
                 nullSafe = false;
                 uVar = a0Var;
             } else {
-                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + p22.getClass().getName() + " as a @JsonAdapter for " + fb.d.k(aVar.f13578b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
+                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + p22.getClass().getName() + " as a @JsonAdapter for " + fb.d.k(aVar.f13566b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
             }
         }
         if (uVar != null && nullSafe) {
@@ -57,10 +57,10 @@ public final class j implements db.v {
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
-        eb.a aVar2 = (eb.a) aVar.f13577a.getAnnotation(eb.a.class);
+        eb.a aVar2 = (eb.a) aVar.f13565a.getAnnotation(eb.a.class);
         if (aVar2 == null) {
             return null;
         }
-        return a(this.f9571a, gVar, aVar, aVar2, true);
+        return a(this.f9557a, gVar, aVar, aVar2, true);
     }
 }

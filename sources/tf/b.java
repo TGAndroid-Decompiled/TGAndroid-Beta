@@ -2,9 +2,9 @@ package tf;
 
 import ai.n4;
 public final class b {
-    public final n4 f43052a;
+    public final n4 f43007a;
 
     public b(n4 n4Var) {
-        this.f43052a = n4Var;
+        this.f43007a = n4Var;
     }
 }

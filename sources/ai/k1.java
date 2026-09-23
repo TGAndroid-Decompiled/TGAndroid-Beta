@@ -2,31 +2,31 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.g51;
 import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.w51;
-public final class k1 extends h51 {
-    public static final int f1124a = 0;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.v51;
+public final class k1 extends g51 {
+    public static final int f1118a = 0;
 
     static {
-        h51.setup(new h51());
+        g51.setup(new g51());
     }
 
     @Override
-    public final void bindView(View view, i51 i51Var, boolean z10, w51 w51Var, e61 e61Var) {
-        ((l1) view).set((n1) i51Var.G);
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        ((l1) view).set((n1) h51Var.G);
     }
 
     @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+    public final View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new l1(context);
     }
 
     @Override
-    public final boolean equals(i51 i51Var, i51 i51Var2) {
-        if (i51Var.G == i51Var2.G) {
+    public final boolean equals(h51 h51Var, h51 h51Var2) {
+        if (h51Var.G == h51Var2.G) {
             return true;
         }
         return false;

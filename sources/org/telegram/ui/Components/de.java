@@ -1,68 +1,55 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class de implements Utilities.Callback {
-    public final int f23306a = 0;
-    public final Object f23307b;
-    public final boolean f23308c;
-    public final int d;
-    public final int e;
-    public final boolean f23309f;
-    public final String f23310g;
-    public final Object h;
-    public final Object f23311i;
-    public final Object f23312j;
+import org.telegram.tgnet.tl.TL_iv;
+public final class de implements Utilities.Callback4 {
+    public final int f23396a;
+    public final ChatActivityEnterView f23397b;
+    public final long f23398c;
+    public final org.telegram.ui.ActionBar.d6 d;
 
-    public de(fg fgVar, Object obj, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11, String str, Object obj2) {
-        this.h = fgVar;
-        this.f23307b = obj;
-        this.f23311i = photoEntry;
-        this.f23308c = z10;
-        this.d = i10;
-        this.e = i11;
-        this.f23309f = z11;
-        this.f23310g = str;
-        this.f23312j = obj2;
+    public de(ChatActivityEnterView chatActivityEnterView, long j3, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        this.f23396a = i10;
+        this.f23397b = chatActivityEnterView;
+        this.f23398c = j3;
+        this.d = d6Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f23306a;
-        Object obj2 = this.f23311i;
-        Object obj3 = this.h;
+    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+        int i10 = this.f23396a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.d;
+        long j3 = this.f23398c;
         switch (i10) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
-                int i11 = ChatActivityEnterView.f21727n5;
-                pd pdVar = new pd(chatActivityEnterView, (TLRPC.Document) obj2, this.f23310g, (MessageObject.SendAnimationData) this.f23312j, this.f23308c, this.d, this.e, this.f23307b, (Long) obj, this.f23309f);
-                if (!chatActivityEnterView.s1(pdVar)) {
-                    pdVar.run();
+                Integer num = (Integer) obj2;
+                Integer num2 = (Integer) obj3;
+                Boolean bool = (Boolean) obj4;
+                int i11 = ChatActivityEnterView.f21701n5;
+                ChatActivityEnterView chatActivityEnterView = this.f23397b;
+                chatActivityEnterView.R0((TL_iv.RichMessage) obj);
+                if (chatActivityEnterView.c() && num.intValue() == 0) {
+                    e5.M(chatActivityEnterView.N2, j3, new qe(chatActivityEnterView, 0), d6Var);
                     return;
                 }
+                chatActivityEnterView.U0(num.intValue(), bool.booleanValue(), num2.intValue(), true, 0L);
                 return;
             default:
-                fg fgVar = (fg) obj3;
-                pd pdVar2 = new pd(fgVar, this.f23307b, (MediaController.PhotoEntry) obj2, this.f23308c, this.d, this.e, this.f23309f, (Long) obj, this.f23310g, this.f23312j);
-                if (!fgVar.f23928a.s1(pdVar2)) {
-                    pdVar2.run();
+                Integer num3 = (Integer) obj2;
+                Integer num4 = (Integer) obj3;
+                Boolean bool2 = (Boolean) obj4;
+                ChatActivityEnterView chatActivityEnterView2 = this.f23397b;
+                chatActivityEnterView2.E0.setText((CharSequence) obj);
+                if (chatActivityEnterView2.Y1 != null) {
+                    chatActivityEnterView2.e0();
+                    return;
+                } else if (chatActivityEnterView2.c() && num3.intValue() == 0) {
+                    e5.M(chatActivityEnterView2.N2, j3, new re(chatActivityEnterView2), d6Var);
+                    return;
+                } else {
+                    chatActivityEnterView2.U0(num3.intValue(), bool2.booleanValue(), num4.intValue(), true, 0L);
                     return;
                 }
-                return;
         }
-    }
-
-    public de(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10, int i11, Object obj, boolean z11) {
-        this.h = chatActivityEnterView;
-        this.f23311i = document;
-        this.f23310g = str;
-        this.f23312j = sendAnimationData;
-        this.f23308c = z10;
-        this.d = i10;
-        this.e = i11;
-        this.f23307b = obj;
-        this.f23309f = z11;
     }
 }

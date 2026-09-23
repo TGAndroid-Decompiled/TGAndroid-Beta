@@ -20,7 +20,7 @@ import androidx.fragment.app.s;
 import b2.p;
 import b2.u0;
 import b2.x0;
-import ci.h4;
+import ci.g4;
 import com.google.android.gms.common.api.internal.v;
 import com.google.android.gms.internal.vision.e2;
 import com.google.firebase.messaging.t;
@@ -47,42 +47,43 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import m4.a0;
+import m4.d1;
+import m4.h1;
 import m4.i1;
-import m4.n1;
 import m4.r;
 import n7.a1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.c91;
-import org.telegram.ui.Components.g10;
+import org.telegram.ui.Components.b91;
+import org.telegram.ui.Components.h10;
+import org.telegram.ui.web.k1;
 import org.telegram.ui.web.l1;
-import org.telegram.ui.web.m1;
 import y9.t0;
 import y9.z0;
 import zd.e0;
 public final class f implements n5.b {
     public static volatile f e;
-    public Object f15255a;
-    public Object f15256b;
-    public Object f15257c;
+    public Object f15232a;
+    public Object f15233b;
+    public Object f15234c;
     public Object d;
 
     public f(File file) {
         HashMap hashMap = new HashMap();
         ArrayList arrayList = new ArrayList();
-        this.f15256b = arrayList;
+        this.f15233b = arrayList;
         HashMap hashMap2 = new HashMap();
-        this.f15257c = hashMap2;
+        this.f15234c = hashMap2;
         long[] jArr = new long[1];
         this.d = jArr;
-        this.f15255a = file;
+        this.f15232a = file;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
         hashMap.putAll(J(bufferedReader));
-        m1 m1Var = (m1) hashMap.get("content-type");
-        String str = m1Var == null ? null : (String) m1Var.f39033b.get("boundary");
+        l1 l1Var = (l1) hashMap.get("content-type");
+        String str = l1Var == null ? null : (String) l1Var.f38768b.get("boundary");
         if (str != null) {
             int length = str.length() + 2;
-            l1 l1Var = null;
+            k1 k1Var = null;
             while (true) {
                 String readLine = bufferedReader.readLine();
                 if (readLine == null) {
@@ -90,22 +91,22 @@ public final class f implements n5.b {
                 }
                 jArr[0] = jArr[0] + readLine.getBytes().length + 2;
                 if (readLine.length() == length && readLine.substring(2).equals(str)) {
-                    if (l1Var != null) {
-                        l1Var.d = (jArr[0] - length) - 2;
-                        arrayList.add(l1Var);
-                        m1 m1Var2 = (m1) l1Var.f39025a.get("content-location");
-                        hashMap2.put(m1Var2 == null ? null : m1Var2.f39032a, l1Var);
+                    if (k1Var != null) {
+                        k1Var.d = (jArr[0] - length) - 2;
+                        arrayList.add(k1Var);
+                        l1 l1Var2 = (l1) k1Var.f38759a.get("content-location");
+                        hashMap2.put(l1Var2 == null ? null : l1Var2.f38767a, k1Var);
                     }
-                    l1Var = new l1();
-                    l1Var.f39026b = (File) this.f15255a;
-                    l1Var.f39025a.putAll(J(bufferedReader));
-                    l1Var.f39027c = jArr[0];
+                    k1Var = new k1();
+                    k1Var.f38760b = (File) this.f15232a;
+                    k1Var.f38759a.putAll(J(bufferedReader));
+                    k1Var.f38761c = jArr[0];
                 }
             }
-            if (l1Var != null && l1Var.f39027c != 0 && l1Var.d != 0) {
-                arrayList.add(l1Var);
-                m1 m1Var3 = (m1) l1Var.f39025a.get("content-location");
-                hashMap2.put(m1Var3 != null ? m1Var3.f39032a : null, l1Var);
+            if (k1Var != null && k1Var.f38761c != 0 && k1Var.d != 0) {
+                arrayList.add(k1Var);
+                l1 l1Var3 = (l1) k1Var.f38759a.get("content-location");
+                hashMap2.put(l1Var3 != null ? l1Var3.f38767a : null, k1Var);
             }
         }
         bufferedReader.close();
@@ -147,7 +148,7 @@ public final class f implements n5.b {
     }
 
     public static void e(String str, String str2, HashMap hashMap) {
-        m1 m1Var = new m1();
+        l1 l1Var = new l1();
         String[] split = str2.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
         for (int i10 = 0; i10 < split.length; i10++) {
             String trim = split[i10].trim();
@@ -159,19 +160,19 @@ public final class f implements n5.b {
                     if (trim3.length() >= 2 && trim3.charAt(0) == '\"' && trim3.charAt(trim3.length() - 1) == '\"') {
                         trim3 = e2.i(1, 1, trim3);
                     }
-                    m1Var.f39033b.put(trim2, trim3);
+                    l1Var.f38768b.put(trim2, trim3);
                 } else {
-                    m1Var.f39032a = trim;
+                    l1Var.f38767a = trim;
                 }
             }
         }
-        hashMap.put(str.trim().toLowerCase(), m1Var);
+        hashMap.put(str.trim().toLowerCase(), l1Var);
     }
 
     public boolean A(r rVar) {
         boolean z10;
-        synchronized (this.f15255a) {
-            if (((a0.f) this.f15257c).get(rVar) != null) {
+        synchronized (this.f15232a) {
+            if (((a0.f) this.f15234c).get(rVar) != null) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -182,11 +183,11 @@ public final class f implements n5.b {
 
     public boolean B(r rVar, int i10) {
         m4.e eVar;
-        synchronized (this.f15255a) {
-            eVar = (m4.e) ((a0.f) this.f15257c).get(rVar);
+        synchronized (this.f15232a) {
+            eVar = (m4.e) ((a0.f) this.f15234c).get(rVar);
         }
         a0 a0Var = (a0) ((WeakReference) this.d).get();
-        if (eVar != null && eVar.e.a(i10) && a0Var != null && a0Var.f14464t.t().a(i10)) {
+        if (eVar != null && eVar.e.a(i10) && a0Var != null && a0Var.f14454t.t().a(i10)) {
             return true;
         }
         return false;
@@ -195,20 +196,20 @@ public final class f implements n5.b {
     public boolean C(r rVar, int i10) {
         m4.e eVar;
         boolean z10;
-        synchronized (this.f15255a) {
-            eVar = (m4.e) ((a0.f) this.f15257c).get(rVar);
+        synchronized (this.f15232a) {
+            eVar = (m4.e) ((a0.f) this.f15234c).get(rVar);
         }
         if (eVar != null) {
-            n1 n1Var = eVar.d;
-            n1Var.getClass();
+            i1 i1Var = eVar.d;
+            i1Var.getClass();
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             e2.d.a("Use contains(Command) for custom command", z10);
-            for (m4.m1 m1Var : n1Var.f14625a) {
-                if (m1Var.f14615a == i10) {
+            for (h1 h1Var : i1Var.f14573a) {
+                if (h1Var.f14568a == i10) {
                     return true;
                 }
             }
@@ -216,15 +217,15 @@ public final class f implements n5.b {
         return false;
     }
 
-    public boolean D(r rVar, m4.m1 m1Var) {
+    public boolean D(r rVar, h1 h1Var) {
         m4.e eVar;
-        synchronized (this.f15255a) {
-            eVar = (m4.e) ((a0.f) this.f15257c).get(rVar);
+        synchronized (this.f15232a) {
+            eVar = (m4.e) ((a0.f) this.f15234c).get(rVar);
         }
         if (eVar != null) {
-            m0 m0Var = eVar.d.f14625a;
-            m1Var.getClass();
-            if (m0Var.contains(m1Var)) {
+            m0 m0Var = eVar.d.f14573a;
+            h1Var.getClass();
+            if (m0Var.contains(h1Var)) {
                 return true;
             }
             return false;
@@ -233,9 +234,9 @@ public final class f implements n5.b {
     }
 
     public void E(q0 q0Var) {
-        s sVar = q0Var.f2489c;
+        s sVar = q0Var.f2484c;
         String str = sVar.e;
-        HashMap hashMap = (HashMap) this.f15256b;
+        HashMap hashMap = (HashMap) this.f15233b;
         if (hashMap.get(str) != null) {
             return;
         }
@@ -246,8 +247,8 @@ public final class f implements n5.b {
     }
 
     public void F(q0 q0Var) {
-        HashMap hashMap = (HashMap) this.f15256b;
-        s sVar = q0Var.f2489c;
+        HashMap hashMap = (HashMap) this.f15233b;
+        s sVar = q0Var.f2484c;
         if (sVar.S) {
             ((n0) this.d).f(sVar);
         }
@@ -257,16 +258,16 @@ public final class f implements n5.b {
     }
 
     public boolean G(k.a aVar, MenuItem menuItem) {
-        return ((ActionMode.Callback) this.f15255a).onActionItemClicked(o(aVar), new l.r((Context) this.f15256b, (l0.a) menuItem));
+        return ((ActionMode.Callback) this.f15232a).onActionItemClicked(o(aVar), new l.r((Context) this.f15233b, (l0.a) menuItem));
     }
 
     public boolean H(k.a aVar, Menu menu) {
-        ActionMode.Callback callback = (ActionMode.Callback) this.f15255a;
+        ActionMode.Callback callback = (ActionMode.Callback) this.f15232a;
         k.e o9 = o(aVar);
         m mVar = (m) this.d;
         Menu menu2 = (Menu) mVar.get(menu);
         if (menu2 == null) {
-            menu2 = new l.a0((Context) this.f15256b, (l.k) menu);
+            menu2 = new l.a0((Context) this.f15233b, (l.k) menu);
             mVar.put(menu, menu2);
         }
         return callback.onCreateActionMode(o9, menu2);
@@ -274,7 +275,7 @@ public final class f implements n5.b {
 
     public bf.f I(String str) {
         if (str != null) {
-            ye.d dVar = new ye.d((ArrayList) this.f15255a, (cf.b) this.f15257c, (ArrayList) this.f15256b);
+            ye.d dVar = new ye.d((ArrayList) this.f15232a, (cf.b) this.f15234c, (ArrayList) this.f15233b);
             int i10 = 0;
             while (true) {
                 int length = str.length();
@@ -303,12 +304,12 @@ public final class f implements n5.b {
             if (str.length() > 0 && (i10 == 0 || i10 < str.length())) {
                 dVar.i(str.substring(i10));
             }
-            dVar.f(dVar.f46725n);
-            cf.a F1 = dVar.f46721j.F1(new a1(27, dVar.f46722k, dVar.f46724m));
-            for (df.a aVar : dVar.f46726o) {
+            dVar.f(dVar.f46683n);
+            cf.a F1 = dVar.f46679j.F1(new a1(27, dVar.f46680k, dVar.f46682m));
+            for (df.a aVar : dVar.f46684o) {
                 aVar.g(F1);
             }
-            bf.f fVar = (bf.f) dVar.f46723l.f46712b;
+            bf.f fVar = (bf.f) dVar.f46681l.f46670b;
             Iterator it = ((ArrayList) this.d).iterator();
             if (!it.hasNext()) {
                 return fVar;
@@ -363,44 +364,44 @@ public final class f implements n5.b {
     }
 
     public void K() {
-        if (((e) this.f15256b) == null) {
-            e eVar = (e) ((ArrayDeque) this.f15255a).pollFirst();
-            this.f15256b = eVar;
+        if (((e) this.f15233b) == null) {
+            e eVar = (e) ((ArrayDeque) this.f15232a).pollFirst();
+            this.f15233b = eVar;
             if (eVar != null) {
                 c cVar = new c(this, eVar, 0);
-                this.f15257c = cVar;
+                this.f15234c = cVar;
                 AndroidUtilities.runOnUIThread(cVar, 10000L);
-                b bVar = eVar.f15253b;
-                String str = bVar.f15244b;
-                String str2 = bVar.f15246f;
+                b bVar = eVar.f15230b;
+                String str = bVar.f15221b;
+                String str2 = bVar.f15223f;
                 d dVar = new d(this, eVar);
                 lf.i i10 = k.i(str);
                 byte[] d = k.d(str2);
                 int i11 = 0;
                 if (i10 != null && d != null && k.h()) {
                     synchronized (k.v) {
-                        k kVar = k.f15266x;
+                        k kVar = k.f15243x;
                         if (kVar != null) {
                             kVar.n();
-                            k.f15266x = null;
+                            k.f15243x = null;
                         }
                         try {
                             k kVar2 = new k(i10, str2, d);
-                            k.f15266x = kVar2;
-                            kVar2.f15284u = dVar;
-                            g10 g10Var = g10.getInstance();
-                            if (g10Var != null) {
-                                g10Var.addListener(kVar2);
+                            k.f15243x = kVar2;
+                            kVar2.f15261u = dVar;
+                            h10 h10Var = h10.getInstance();
+                            if (h10Var != null) {
+                                h10Var.addListener(kVar2);
                             }
-                            kVar2.f15273j.execute(new g(kVar2, 1));
+                            kVar2.f15250j.execute(new g(kVar2, 1));
                             AndroidUtilities.runOnUIThread(new g(kVar2, 2));
-                            i11 = k.f15266x.f15272i.getLocalPort();
+                            i11 = k.f15243x.f15249i.getLocalPort();
                         } catch (Exception e7) {
                             FileLog.e(e7);
-                            k kVar3 = k.f15266x;
+                            k kVar3 = k.f15243x;
                             if (kVar3 != null) {
                                 kVar3.n();
-                                k.f15266x = null;
+                                k.f15243x = null;
                             }
                         }
                     }
@@ -414,7 +415,7 @@ public final class f implements n5.b {
     }
 
     public void L(Message message) {
-        LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) this.f15257c;
+        LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) this.f15234c;
         if (linkedBlockingDeque.offer(message)) {
             Log.d("SessionLifecycleClient", "Queued message " + message.what + ". Queue size " + linkedBlockingDeque.size());
             return;
@@ -423,17 +424,17 @@ public final class f implements n5.b {
     }
 
     public void M(r rVar) {
-        synchronized (this.f15255a) {
+        synchronized (this.f15232a) {
             try {
-                m4.e eVar = (m4.e) ((a0.f) this.f15257c).remove(rVar);
+                m4.e eVar = (m4.e) ((a0.f) this.f15234c).remove(rVar);
                 if (eVar == null) {
                     return;
                 }
-                ((a0.f) this.f15256b).remove(eVar.f14491a);
-                eVar.f14492b.g();
+                ((a0.f) this.f15233b).remove(eVar.f14511a);
+                eVar.f14512b.g();
                 a0 a0Var = (a0) ((WeakReference) this.d).get();
                 if (a0Var != null && !a0Var.j()) {
-                    d0.U(a0Var.f14456l, new m4.b(a0Var, rVar, 0));
+                    d0.U(a0Var.f14446l, new m4.b(a0Var, rVar, 0));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -443,15 +444,15 @@ public final class f implements n5.b {
 
     public void N(int i10) {
         ArrayList arrayList = new ArrayList();
-        ((LinkedBlockingDeque) this.f15257c).drainTo(arrayList);
+        ((LinkedBlockingDeque) this.f15234c).drainTo(arrayList);
         Message obtain = Message.obtain(null, i10, 0, 0);
         kotlin.jvm.internal.i.d(obtain, "obtain(null, messageCode, 0, 0)");
         arrayList.add(obtain);
-        e0.q(e0.b((id.h) this.f15255a), new bb.i(this, arrayList, null, 6));
+        e0.q(e0.b((id.h) this.f15232a), new bb.i(this, arrayList, null, 6));
     }
 
     public Bundle O(String str, Bundle bundle) {
-        HashMap hashMap = (HashMap) this.f15257c;
+        HashMap hashMap = (HashMap) this.f15234c;
         if (bundle != null) {
             return (Bundle) hashMap.put(str, bundle);
         }
@@ -460,11 +461,11 @@ public final class f implements n5.b {
 
     public void P(View view) {
         u2 u2Var = (u2) this.d;
-        if (((View) this.f15256b) == view) {
+        if (((View) this.f15233b) == view) {
             return;
         }
         Q(null);
-        View view2 = (View) this.f15256b;
+        View view2 = (View) this.f15233b;
         if (view2 != null) {
             view2.removeOnAttachStateChangeListener(u2Var);
         }
@@ -474,38 +475,38 @@ public final class f implements n5.b {
                 Q(view.getViewTreeObserver());
             }
         }
-        this.f15256b = view;
+        this.f15233b = view;
     }
 
     public void Q(ViewTreeObserver viewTreeObserver) {
-        h4 h4Var = (h4) this.f15255a;
-        ViewTreeObserver viewTreeObserver2 = (ViewTreeObserver) this.f15257c;
+        g4 g4Var = (g4) this.f15232a;
+        ViewTreeObserver viewTreeObserver2 = (ViewTreeObserver) this.f15234c;
         if (viewTreeObserver2 == viewTreeObserver) {
             return;
         }
         if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-            ((ViewTreeObserver) this.f15257c).removeOnGlobalLayoutListener(h4Var);
+            ((ViewTreeObserver) this.f15234c).removeOnGlobalLayoutListener(g4Var);
         }
         if (viewTreeObserver != null) {
-            viewTreeObserver.addOnGlobalLayoutListener(h4Var);
+            viewTreeObserver.addOnGlobalLayoutListener(g4Var);
         }
-        this.f15257c = viewTreeObserver;
+        this.f15234c = viewTreeObserver;
     }
 
-    public void b(Object obj, r rVar, n1 n1Var, x0 x0Var) {
-        synchronized (this.f15255a) {
+    public void b(Object obj, r rVar, i1 i1Var, x0 x0Var) {
+        synchronized (this.f15232a) {
             try {
                 r t10 = t(obj);
                 if (t10 == null) {
-                    ((a0.f) this.f15256b).put(obj, rVar);
+                    ((a0.f) this.f15233b).put(obj, rVar);
                     ?? obj2 = new Object();
-                    obj2.f6180c = new Object();
+                    obj2.f6166c = new Object();
                     obj2.d = new m(0);
-                    ((a0.f) this.f15257c).put(rVar, new m4.e(obj, obj2, n1Var, x0Var));
+                    ((a0.f) this.f15234c).put(rVar, new m4.e(obj, obj2, i1Var, x0Var));
                 } else {
-                    m4.e eVar = (m4.e) ((a0.f) this.f15257c).get(t10);
+                    m4.e eVar = (m4.e) ((a0.f) this.f15234c).get(t10);
                     e2.d.h(eVar);
-                    eVar.d = n1Var;
+                    eVar.d = i1Var;
                     eVar.e = x0Var;
                 }
             } catch (Throwable th2) {
@@ -515,9 +516,9 @@ public final class f implements n5.b {
     }
 
     public void c(s sVar) {
-        if (!((ArrayList) this.f15255a).contains(sVar)) {
-            synchronized (((ArrayList) this.f15255a)) {
-                ((ArrayList) this.f15255a).add(sVar);
+        if (!((ArrayList) this.f15232a).contains(sVar)) {
+            synchronized (((ArrayList) this.f15232a)) {
+                ((ArrayList) this.f15232a).add(sVar);
             }
             sVar.v = true;
             return;
@@ -526,17 +527,17 @@ public final class f implements n5.b {
     }
 
     public void d(r rVar, int i10, m4.d dVar) {
-        synchronized (this.f15255a) {
+        synchronized (this.f15232a) {
             try {
-                m4.e eVar = (m4.e) ((a0.f) this.f15257c).get(rVar);
+                m4.e eVar = (m4.e) ((a0.f) this.f15234c).get(rVar);
                 if (eVar != null) {
-                    x0 x0Var = eVar.f14495g;
+                    x0 x0Var = eVar.f14515g;
                     x0Var.getClass();
                     p pVar = new p();
-                    pVar.c(x0Var.f3346a);
+                    pVar.c(x0Var.f3341a);
                     pVar.b(i10);
-                    eVar.f14495g = new x0(pVar.d());
-                    eVar.f14493c.add(dVar);
+                    eVar.f14515g = new x0(pVar.d());
+                    eVar.f14513c.add(dVar);
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -546,51 +547,51 @@ public final class f implements n5.b {
 
     public t0 f() {
         String str;
-        if (((String) this.f15255a) == null) {
+        if (((String) this.f15232a) == null) {
             str = " processName";
         } else {
             str = "";
         }
-        if (((Integer) this.f15256b) == null) {
+        if (((Integer) this.f15233b) == null) {
             str = str.concat(" pid");
         }
-        if (((Integer) this.f15257c) == null) {
+        if (((Integer) this.f15234c) == null) {
             str = w.c.g(str, " importance");
         }
         if (((Boolean) this.d) == null) {
             str = w.c.g(str, " defaultProcess");
         }
         if (str.isEmpty()) {
-            return new t0((String) this.f15255a, ((Integer) this.f15256b).intValue(), ((Integer) this.f15257c).intValue(), ((Boolean) this.d).booleanValue());
+            return new t0((String) this.f15232a, ((Integer) this.f15233b).intValue(), ((Integer) this.f15234c).intValue(), ((Boolean) this.d).booleanValue());
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public z0 g() {
         String str;
-        if (((Integer) this.f15255a) == null) {
+        if (((Integer) this.f15232a) == null) {
             str = " platform";
         } else {
             str = "";
         }
-        if (((String) this.f15256b) == null) {
+        if (((String) this.f15233b) == null) {
             str = str.concat(" version");
         }
-        if (((String) this.f15257c) == null) {
+        if (((String) this.f15234c) == null) {
             str = w.c.g(str, " buildVersion");
         }
         if (((Boolean) this.d) == null) {
             str = w.c.g(str, " jailbroken");
         }
         if (str.isEmpty()) {
-            return new z0(((Integer) this.f15255a).intValue(), (String) this.f15256b, (String) this.f15257c, ((Boolean) this.d).booleanValue());
+            return new z0(((Integer) this.f15232a).intValue(), (String) this.f15233b, (String) this.f15234c, ((Boolean) this.d).booleanValue());
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     @Override
     public Object mo28get() {
-        return new t((Executor) ((fd.a) this.f15255a).mo28get(), (s5.d) ((fd.a) this.f15256b).mo28get(), (lf.i) ((lf.i) this.f15257c).mo28get(), (t5.c) ((fd.a) this.d).mo28get(), 9);
+        return new t((Executor) ((fd.a) this.f15232a).mo28get(), (s5.d) ((fd.a) this.f15233b).mo28get(), (lf.i) ((lf.i) this.f15234c).mo28get(), (t5.c) ((fd.a) this.d).mo28get(), 9);
     }
 
     public void h(String str, String[] strArr) {
@@ -608,11 +609,11 @@ public final class f implements n5.b {
     }
 
     public String i(String str) {
-        ArrayList arrayList = (ArrayList) this.f15255a;
+        ArrayList arrayList = (ArrayList) this.f15232a;
         try {
             String quote = Pattern.quote(str);
             Locale locale = Locale.US;
-            Matcher matcher = Pattern.compile("(?x)(?:function\\s+" + quote + "|[{;,]\\s*" + quote + "\\s*=\\s*function|var\\s+" + quote + "\\s*=\\s*function)\\s*\\(([^)]*)\\)\\s*\\{([^}]+)\\}").matcher((String) this.f15256b);
+            Matcher matcher = Pattern.compile("(?x)(?:function\\s+" + quote + "|[{;,]\\s*" + quote + "\\s*=\\s*function|var\\s+" + quote + "\\s*=\\s*function)\\s*\\(([^)]*)\\)\\s*\\{([^}]+)\\}").matcher((String) this.f15233b);
             if (matcher.find()) {
                 String group = matcher.group();
                 if (!arrayList.contains(group)) {
@@ -628,13 +629,13 @@ public final class f implements n5.b {
     }
 
     public void j(e eVar) {
-        if (((e) this.f15256b) != eVar) {
+        if (((e) this.f15233b) != eVar) {
             return;
         }
-        c cVar = (c) this.f15257c;
+        c cVar = (c) this.f15234c;
         if (cVar != null) {
             AndroidUtilities.cancelRunOnUIThread(cVar);
-            this.f15257c = null;
+            this.f15234c = null;
         }
         c cVar2 = (c) this.d;
         if (cVar2 != null) {
@@ -643,34 +644,34 @@ public final class f implements n5.b {
         }
         synchronized (k.v) {
             try {
-                k kVar = k.f15266x;
+                k kVar = k.f15243x;
                 if (kVar != null) {
                     kVar.n();
-                    k.f15266x = null;
+                    k.f15243x = null;
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        this.f15256b = null;
-        eVar.f15254c.run(-1L);
+        this.f15233b = null;
+        eVar.f15231c.run(-1L);
         K();
     }
 
     public s k(String str) {
-        q0 q0Var = (q0) ((HashMap) this.f15256b).get(str);
+        q0 q0Var = (q0) ((HashMap) this.f15233b).get(str);
         if (q0Var != null) {
-            return q0Var.f2489c;
+            return q0Var.f2484c;
         }
         return null;
     }
 
     public s l(String str) {
-        for (q0 q0Var : ((HashMap) this.f15256b).values()) {
+        for (q0 q0Var : ((HashMap) this.f15233b).values()) {
             if (q0Var != null) {
-                s sVar = q0Var.f2489c;
+                s sVar = q0Var.f2484c;
                 if (!str.equals(sVar.e)) {
-                    sVar = sVar.L.f2424c.l(str);
+                    sVar = sVar.L.f2419c.l(str);
                 }
                 if (sVar != null) {
                     return sVar;
@@ -686,14 +687,14 @@ public final class f implements n5.b {
             AtomicBoolean atomicBoolean = new AtomicBoolean(true);
             while (atomicBoolean.get()) {
                 atomicBoolean.set(false);
-                m4.d dVar = (m4.d) eVar.f14493c.poll();
+                m4.d dVar = (m4.d) eVar.f14513c.poll();
                 if (dVar == null) {
-                    eVar.f14494f = false;
+                    eVar.f14514f = false;
                     return;
                 }
                 AtomicBoolean atomicBoolean2 = new AtomicBoolean(true);
                 m4.e eVar2 = eVar;
-                d0.U(a0Var.f14456l, new x1(a0Var, t(eVar.f14491a), new m3(this, dVar, atomicBoolean2, eVar2, atomicBoolean, 10)));
+                d0.U(a0Var.f14446l, new x1(a0Var, t(eVar.f14511a), new m3(this, dVar, atomicBoolean2, eVar2, atomicBoolean, 10)));
                 atomicBoolean2.set(false);
                 eVar = eVar2;
             }
@@ -701,30 +702,30 @@ public final class f implements n5.b {
     }
 
     public void n(final r rVar) {
-        synchronized (this.f15255a) {
+        synchronized (this.f15232a) {
             try {
-                m4.e eVar = (m4.e) ((a0.f) this.f15257c).get(rVar);
+                m4.e eVar = (m4.e) ((a0.f) this.f15234c).get(rVar);
                 if (eVar == null) {
                     return;
                 }
-                final x0 x0Var = eVar.f14495g;
-                eVar.f14495g = x0.f3344b;
-                eVar.f14493c.add(new m4.d(rVar, x0Var) {
-                    public final r f14482b;
+                final x0 x0Var = eVar.f14515g;
+                eVar.f14515g = x0.f3339b;
+                eVar.f14513c.add(new m4.d(rVar, x0Var) {
+                    public final r f14469b;
 
                     @Override
                     public final i9.w run() {
                         a0 a0Var = (a0) ((WeakReference) ni.f.this.d).get();
                         if (a0Var != null) {
-                            a0Var.p(this.f14482b);
+                            a0Var.p(this.f14469b);
                         }
-                        return i9.u.f11056b;
+                        return i9.u.f11044b;
                     }
                 });
-                if (eVar.f14494f) {
+                if (eVar.f14514f) {
                     return;
                 }
-                eVar.f14494f = true;
+                eVar.f14514f = true;
                 m(eVar);
             } catch (Throwable th2) {
                 throw th2;
@@ -733,22 +734,22 @@ public final class f implements n5.b {
     }
 
     public k.e o(k.a aVar) {
-        ArrayList arrayList = (ArrayList) this.f15257c;
+        ArrayList arrayList = (ArrayList) this.f15234c;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             k.e eVar = (k.e) arrayList.get(i10);
-            if (eVar != null && eVar.f13114b == aVar) {
+            if (eVar != null && eVar.f13104b == aVar) {
                 return eVar;
             }
         }
-        k.e eVar2 = new k.e((Context) this.f15256b, aVar);
+        k.e eVar2 = new k.e((Context) this.f15233b, aVar);
         arrayList.add(eVar2);
         return eVar2;
     }
 
     public ArrayList p() {
         ArrayList arrayList = new ArrayList();
-        for (q0 q0Var : ((HashMap) this.f15256b).values()) {
+        for (q0 q0Var : ((HashMap) this.f15233b).values()) {
             if (q0Var != null) {
                 arrayList.add(q0Var);
             }
@@ -758,9 +759,9 @@ public final class f implements n5.b {
 
     public ArrayList q() {
         ArrayList arrayList = new ArrayList();
-        for (q0 q0Var : ((HashMap) this.f15256b).values()) {
+        for (q0 q0Var : ((HashMap) this.f15233b).values()) {
             if (q0Var != null) {
-                arrayList.add(q0Var.f2489c);
+                arrayList.add(q0Var.f2484c);
             } else {
                 arrayList.add(null);
             }
@@ -769,9 +770,9 @@ public final class f implements n5.b {
     }
 
     public x0 r(r rVar) {
-        synchronized (this.f15255a) {
+        synchronized (this.f15232a) {
             try {
-                m4.e eVar = (m4.e) ((a0.f) this.f15257c).get(rVar);
+                m4.e eVar = (m4.e) ((a0.f) this.f15234c).get(rVar);
                 if (eVar != null) {
                     return eVar.e;
                 }
@@ -784,45 +785,45 @@ public final class f implements n5.b {
 
     public i0 s() {
         i0 v;
-        synchronized (this.f15255a) {
-            v = i0.v(((a0.f) this.f15256b).values());
+        synchronized (this.f15232a) {
+            v = i0.v(((a0.f) this.f15233b).values());
         }
         return v;
     }
 
     public r t(Object obj) {
         r rVar;
-        synchronized (this.f15255a) {
-            rVar = (r) ((a0.f) this.f15256b).get(obj);
+        synchronized (this.f15232a) {
+            rVar = (r) ((a0.f) this.f15233b).get(obj);
         }
         return rVar;
     }
 
     public List u() {
         ArrayList arrayList;
-        if (((ArrayList) this.f15255a).isEmpty()) {
+        if (((ArrayList) this.f15232a).isEmpty()) {
             return Collections.EMPTY_LIST;
         }
-        synchronized (((ArrayList) this.f15255a)) {
-            arrayList = new ArrayList((ArrayList) this.f15255a);
+        synchronized (((ArrayList) this.f15232a)) {
+            arrayList = new ArrayList((ArrayList) this.f15232a);
         }
         return arrayList;
     }
 
     public u0 v(r rVar) {
-        synchronized (this.f15255a) {
+        synchronized (this.f15232a) {
             try {
-                return ((m4.e) ((a0.f) this.f15257c).get(rVar)) != null ? null : null;
+                return ((m4.e) ((a0.f) this.f15234c).get(rVar)) != null ? null : null;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
     }
 
-    public i1 w(r rVar) {
-        synchronized (this.f15255a) {
+    public d1 w(r rVar) {
+        synchronized (this.f15232a) {
             try {
-                if (((m4.e) ((a0.f) this.f15257c).get(rVar)) != null) {
+                if (((m4.e) ((a0.f) this.f15234c).get(rVar)) != null) {
                     return null;
                 }
                 return null;
@@ -834,11 +835,11 @@ public final class f implements n5.b {
 
     public v x(r rVar) {
         m4.e eVar;
-        synchronized (this.f15255a) {
-            eVar = (m4.e) ((a0.f) this.f15257c).get(rVar);
+        synchronized (this.f15232a) {
+            eVar = (m4.e) ((a0.f) this.f15234c).get(rVar);
         }
         if (eVar != null) {
-            return eVar.f14492b;
+            return eVar.f14512b;
         }
         return null;
     }
@@ -851,11 +852,11 @@ public final class f implements n5.b {
         if (i10 >= 0) {
             zArr[0] = false;
             String trim = str.trim();
-            Matcher matcher = c91.f23012x0.matcher(trim);
+            Matcher matcher = b91.f22616x0.matcher(trim);
             if (matcher.find()) {
                 trim = trim.substring(matcher.group(0).length());
             } else {
-                Matcher matcher2 = c91.f23013y0.matcher(trim);
+                Matcher matcher2 = b91.f22617y0.matcher(trim);
                 if (matcher2.find()) {
                     trim = trim.substring(matcher2.group(0).length());
                     zArr[0] = true;
@@ -870,28 +871,28 @@ public final class f implements n5.b {
     public f(int i10) {
         switch (i10) {
             case 1:
-                this.f15255a = new ArrayList();
-                this.f15256b = new HashMap();
-                this.f15257c = new HashMap();
+                this.f15232a = new ArrayList();
+                this.f15233b = new HashMap();
+                this.f15234c = new HashMap();
                 return;
             default:
-                this.f15255a = new ArrayDeque();
+                this.f15232a = new ArrayDeque();
                 return;
         }
     }
 
     public f(a0 a0Var) {
-        this.f15256b = new m(0);
-        this.f15257c = new m(0);
-        this.f15255a = new Object();
+        this.f15233b = new m(0);
+        this.f15234c = new m(0);
+        this.f15232a = new Object();
         this.d = new WeakReference(a0Var);
     }
 
     public f(String str) {
-        this.f15255a = new ArrayList();
-        this.f15257c = new String[]{"|", "^", "&", ">>", "<<", "-", "+", "%", "/", "*"};
+        this.f15232a = new ArrayList();
+        this.f15234c = new String[]{"|", "^", "&", ">>", "<<", "-", "+", "%", "/", "*"};
         this.d = new String[]{"|=", "^=", "&=", ">>=", "<<=", "-=", "+=", "%=", "/=", "*=", "="};
-        this.f15256b = str;
+        this.f15233b = str;
     }
 
     public f(e9.a1 a1Var, f2.i iVar, of.b bVar, f2.i iVar2) {
@@ -899,12 +900,12 @@ public final class f implements n5.b {
         if (a1Var != null) {
             obj = i0.v(a1Var);
         } else {
-            g0 g0Var = i0.f8081b;
+            g0 g0Var = i0.f8067b;
             obj = e9.a1.e;
         }
-        this.f15255a = obj;
-        this.f15256b = iVar;
-        this.f15257c = bVar;
+        this.f15232a = obj;
+        this.f15233b = iVar;
+        this.f15234c = bVar;
         this.d = iVar2;
     }
 }

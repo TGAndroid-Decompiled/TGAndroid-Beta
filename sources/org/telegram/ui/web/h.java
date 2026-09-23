@@ -11,39 +11,40 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import ci.q3;
+import ci.p3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Components.u9;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.y5;
+import org.telegram.ui.Components.w9;
 import w7.x5;
-public final class h extends FrameLayout implements z5 {
-    public final e6 f38965a;
-    public final u9 f38966b;
-    public final LinearLayout f38967c;
+import w7.z5;
+public final class h extends FrameLayout implements y5 {
+    public final d6 f38709a;
+    public final w9 f38710b;
+    public final LinearLayout f38711c;
     public final FrameLayout.LayoutParams d;
     public final TextView e;
-    public final TextView f38968f;
+    public final TextView f38712f;
     public final TextView h;
-    public final ImageView f38969n;
-    public final q3 f38970r;
-    public int f38971s;
+    public final ImageView f38713n;
+    public final p3 f38714r;
+    public int f38715s;
     public final Paint v;
-    public boolean f38972w;
+    public boolean f38716w;
 
-    public h(Context context, e6 e6Var) {
+    public h(Context context, d6 d6Var) {
         super(context);
         this.v = new Paint(1);
-        this.f38965a = e6Var;
-        w7.z5.b(this, 0.03f, 1.25f);
-        u9 u9Var = new u9(context);
-        this.f38966b = u9Var;
-        u9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
-        addView(u9Var, x5.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        this.f38709a = d6Var;
+        z5.b(this, 0.03f, 1.25f);
+        w9 w9Var = new w9(context);
+        this.f38710b = w9Var;
+        w9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
+        addView(w9Var, x5.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f38967c = linearLayout;
+        this.f38711c = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
         this.e = textView;
@@ -53,7 +54,7 @@ public final class h extends FrameLayout implements z5 {
         textView.setEllipsize(truncateAt);
         linearLayout.addView(textView, x5.q(-1, -2, 51));
         TextView textView2 = new TextView(context);
-        this.f38968f = textView2;
+        this.f38712f = textView2;
         textView2.setTextSize(1, 13.0f);
         textView2.setMaxLines(1);
         textView2.setEllipsize(truncateAt);
@@ -70,31 +71,31 @@ public final class h extends FrameLayout implements z5 {
         textView3.setTextAlignment(6);
         addView(textView3, x5.d(-2, -2.0f, 21, 64.0f, -10.0f, 12.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f38969n = imageView;
+        this.f38713n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.attach_arrow_right);
         addView(imageView, x5.d(32, 32.0f, 21, 8.0f, 8.0f, 8.0f, 8.0f));
-        q3 q3Var = new q3(this, getContext(), e6Var, 2);
-        this.f38970r = q3Var;
-        q3Var.b(-1, i6.f18834d6, i6.f18962k7);
-        q3Var.setDrawUnchecked(false);
-        q3Var.setDrawBackgroundAsArc(3);
-        addView(q3Var, x5.d(24, 24.0f, 19, 26.0f, 12.0f, 0.0f, 0.0f));
+        p3 p3Var = new p3(this, getContext(), d6Var, 2);
+        this.f38714r = p3Var;
+        p3Var.b(-1, h6.f18789d6, h6.f18917k7);
+        p3Var.setDrawUnchecked(false);
+        p3Var.setDrawBackgroundAsArc(3);
+        addView(p3Var, x5.d(24, 24.0f, 19, 26.0f, 12.0f, 0.0f, 0.0f));
     }
 
     @Override
     public final void e() {
-        int i10 = i6.f18834d6;
-        e6 e6Var = this.f38965a;
-        int v02 = i6.v0(i10, e6Var);
-        int v03 = i6.v0(i6.G6, e6Var);
-        this.f38971s = v03;
+        int i10 = h6.f18789d6;
+        d6 d6Var = this.f38709a;
+        int v02 = h6.v0(i10, d6Var);
+        int v03 = h6.v0(h6.G6, d6Var);
+        this.f38715s = v03;
         this.e.setTextColor(v03);
-        this.f38968f.setTextColor(i6.v(v02, i6.l1(0.55f, v03)));
-        this.h.setTextColor(i6.l1(0.55f, v03));
-        this.f38969n.setColorFilter(new PorterDuffColorFilter(i6.l1(0.6f, v03), PorterDuff.Mode.SRC_IN));
-        this.v.setColor(i6.l1(0.1f, v03));
-        this.f38966b.invalidate();
+        this.f38712f.setTextColor(h6.v(v02, h6.l1(0.55f, v03)));
+        this.h.setTextColor(h6.l1(0.55f, v03));
+        this.f38713n.setColorFilter(new PorterDuffColorFilter(h6.l1(0.6f, v03), PorterDuff.Mode.SRC_IN));
+        this.v.setColor(h6.l1(0.1f, v03));
+        this.f38710b.invalidate();
     }
 
     public int[] getColorKeys() {
@@ -104,7 +105,7 @@ public final class h extends FrameLayout implements z5 {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f38972w) {
+        if (this.f38716w) {
             canvas.drawRect(AndroidUtilities.dp(59.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.v);
         }
     }
@@ -115,6 +116,6 @@ public final class h extends FrameLayout implements z5 {
     }
 
     public void setChecked(boolean z10) {
-        this.f38970r.a(z10, true);
+        this.f38714r.a(z10, true);
     }
 }

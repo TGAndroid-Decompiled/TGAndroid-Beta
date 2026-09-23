@@ -1,20 +1,16 @@
 package org.telegram.ui;
-public final class uk extends org.telegram.ui.Components.ok0 {
-    public final bo f38062l;
 
-    public uk(bo boVar, uj ujVar, xj xjVar) {
-        super(ujVar, xjVar);
-        this.f38062l = boVar;
+import android.widget.FrameLayout;
+public final class uk extends dz {
+    public final xn N;
+
+    public uk(xn xnVar, xn xnVar2, FrameLayout frameLayout, rj rjVar, int i10, long j3, long j10) {
+        super(xnVar2, frameLayout, rjVar, i10, j3, j10);
+        this.N = xnVar;
     }
 
-    public final void e(int i10) {
-        if (this.f38062l.Pa) {
-            if (i10 == 0) {
-                i10 = 1;
-            } else if (i10 == 1) {
-                i10 = 0;
-            }
-        }
-        this.f26827b = i10;
+    @Override
+    public final void i() {
+        this.N.uc();
     }
 }

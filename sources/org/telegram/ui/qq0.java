@@ -1,36 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class qq0 implements org.telegram.ui.ActionBar.s0 {
-    public final ar0 f36934a;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class qq0 extends org.telegram.ui.Components.u00 {
+    public final int U;
 
-    public qq0(ar0 ar0Var) {
-        this.f36934a = ar0Var;
+    public qq0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.U = i10;
     }
 
     @Override
-    public final void e() {
-        int i10;
-        int i11;
-        ar0 ar0Var = this.f36934a;
-        org.telegram.ui.ActionBar.f1 f1Var = ar0Var.Q;
-        if (ar0Var.Y) {
-            i10 = R.string.ShowAsGrid;
-        } else {
-            i10 = R.string.ShowAsList;
+    public int getColumnsCount() {
+        switch (this.U) {
+            case 0:
+                return 3;
+            default:
+                return super.getColumnsCount();
         }
-        f1Var.setText(LocaleController.getString(i10));
-        org.telegram.ui.ActionBar.f1 f1Var2 = ar0Var.Q;
-        if (ar0Var.Y) {
-            i11 = R.drawable.msg_media;
-        } else {
-            i11 = R.drawable.msg_list;
-        }
-        f1Var2.setIcon(i11);
     }
 
     @Override
-    public final void c() {
+    public int getViewType() {
+        switch (this.U) {
+            case 0:
+                return 2;
+            default:
+                return super.getViewType();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.U) {
+            case 1:
+                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

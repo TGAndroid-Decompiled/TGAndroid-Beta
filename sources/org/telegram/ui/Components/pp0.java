@@ -4,20 +4,20 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.View;
 public final class pp0 implements View.OnTouchListener {
-    public final int f27112a;
-    public final Rect f27113b;
-    public final hq0 f27114c;
+    public final int f27115a;
+    public final Rect f27116b;
+    public final hq0 f27117c;
 
     public pp0(hq0 hq0Var, int i10) {
-        this.f27112a = i10;
+        this.f27115a = i10;
         switch (i10) {
             case 1:
-                this.f27114c = hq0Var;
-                this.f27113b = new Rect();
+                this.f27117c = hq0Var;
+                this.f27116b = new Rect();
                 return;
             default:
-                this.f27114c = hq0Var;
-                this.f27113b = new Rect();
+                this.f27117c = hq0Var;
+                this.f27116b = new Rect();
                 return;
         }
     }
@@ -28,10 +28,10 @@ public final class pp0 implements View.OnTouchListener {
         org.telegram.ui.ActionBar.n1 n1Var;
         hq0 hq0Var2;
         org.telegram.ui.ActionBar.n1 n1Var2;
-        switch (this.f27112a) {
+        switch (this.f27115a) {
             case 0:
-                if (motionEvent.getActionMasked() == 0 && (n1Var = (hq0Var = this.f27114c).J0) != null && n1Var.isShowing()) {
-                    Rect rect = this.f27113b;
+                if (motionEvent.getActionMasked() == 0 && (n1Var = (hq0Var = this.f27117c).J0) != null && n1Var.isShowing()) {
+                    Rect rect = this.f27116b;
                     view.getHitRect(rect);
                     if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                         hq0Var.J0.d(true);
@@ -41,8 +41,8 @@ public final class pp0 implements View.OnTouchListener {
                 }
                 return false;
             default:
-                if (motionEvent.getActionMasked() == 0 && (n1Var2 = (hq0Var2 = this.f27114c).J0) != null && n1Var2.isShowing()) {
-                    Rect rect2 = this.f27113b;
+                if (motionEvent.getActionMasked() == 0 && (n1Var2 = (hq0Var2 = this.f27117c).J0) != null && n1Var2.isShowing()) {
+                    Rect rect2 = this.f27116b;
                     view.getHitRect(rect2);
                     if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                         hq0Var2.J0.d(true);

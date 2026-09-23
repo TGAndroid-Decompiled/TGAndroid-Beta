@@ -10,19 +10,19 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import ci.o8;
+import ci.l8;
 import com.google.mlkit.vision.segmentation.subject.internal.zzd;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.vl;
+import org.telegram.messenger.ul;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.hk0;
+import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.ik0;
 import org.telegram.ui.Components.jv0;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.rv0;
+import org.telegram.ui.Components.rr;
+import org.telegram.ui.kv0;
 import w7.x5;
 public final class a2 extends j {
     public final Bitmap A0;
@@ -32,22 +32,22 @@ public final class a2 extends j {
     public final Rect E0;
     public final Paint F0;
     public MediaController.CropState G0;
-    public final TLObject f41283q0;
-    public final String f41284r0;
-    public final int f41285s0;
-    public boolean f41286t0;
-    public final c6 f41287u0;
-    public final jv0 f41288v0;
-    public final int f41289w0;
-    public boolean f41290x0;
-    public final c6 f41291y0;
-    public final ai.f0 f41292z0;
+    public final TLObject f41239q0;
+    public final String f41240r0;
+    public final int f41241s0;
+    public boolean f41242t0;
+    public final e6 f41243u0;
+    public final jv0 f41244v0;
+    public final int f41245w0;
+    public boolean f41246x0;
+    public final e6 f41247y0;
+    public final ai.f0 f41248z0;
 
     public a2(Context context, PointF pointF, jv0 jv0Var, String str, int i10) {
         super(context, pointF);
-        this.f41285s0 = -1;
-        this.f41286t0 = false;
-        this.f41290x0 = false;
+        this.f41241s0 = -1;
+        this.f41242t0 = false;
+        this.f41246x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -56,16 +56,16 @@ public final class a2 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f41284r0 = str;
-        this.f41288v0 = jv0Var;
+        this.f41240r0 = str;
+        this.f41244v0 = jv0Var;
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f41292z0 = f0Var;
+        this.f41248z0 = f0Var;
         addView(f0Var, x5.c(-1.0f, -1));
-        qr qrVar = qr.h;
-        this.f41287u0 = new c6(f0Var, 0L, 500L, qrVar);
-        this.f41291y0 = new c6(f0Var, 0L, 350L, qrVar);
-        this.f41289w0 = i10;
-        Bitmap q6 = o8.q(new k2.v(str, 21), 1920, 1920, 0, false);
+        rr rrVar = rr.h;
+        this.f41243u0 = new e6(f0Var, 0L, 500L, rrVar);
+        this.f41247y0 = new e6(f0Var, 0L, 350L, rrVar);
+        this.f41245w0 = i10;
+        Bitmap q6 = l8.q(new le.b(str, 22), 1920, 1920, 0, false);
         this.A0 = q6;
         if (q6 != null) {
             s(q6);
@@ -85,11 +85,11 @@ public final class a2 extends j {
     }
 
     public int getAnchor() {
-        return this.f41285s0;
+        return this.f41241s0;
     }
 
     public jv0 getBaseSize() {
-        return this.f41288v0;
+        return this.f41244v0;
     }
 
     public int getContentHeight() {
@@ -109,7 +109,7 @@ public final class a2 extends j {
     }
 
     public int getOrientation() {
-        return this.f41289w0;
+        return this.f41245w0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -117,7 +117,7 @@ public final class a2 extends j {
     }
 
     @Override
-    public hk0 getSelectionBounds() {
+    public ik0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -130,15 +130,15 @@ public final class a2 extends j {
         getMeasuredHeight();
         getScale();
         AndroidUtilities.dp(64.0f);
-        float v = vl.v(dp, 2.0f, getPositionX(), scaleX);
-        return new hk0(v, vl.v(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + v) - v, dp2 * scaleX);
+        float v = ul.v(dp, 2.0f, getPositionX(), scaleX);
+        return new ik0(v, ul.v(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + v) - v, dp2 * scaleX);
     }
 
     @Override
     public final void k() {
-        jv0 jv0Var = this.f41288v0;
-        float f7 = jv0Var.f25440a / 2.0f;
-        float f10 = jv0Var.f25441b / 2.0f;
+        jv0 jv0Var = this.f41244v0;
+        float f7 = jv0Var.f25428a / 2.0f;
+        float f10 = jv0Var.f25429b / 2.0f;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -161,9 +161,9 @@ public final class a2 extends j {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        jv0 jv0Var = this.f41288v0;
-        float f7 = jv0Var.f25440a;
-        float f10 = jv0Var.f25441b;
+        jv0 jv0Var = this.f41244v0;
+        float f7 = jv0Var.f25428a;
+        float f10 = jv0Var.f25429b;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -173,23 +173,23 @@ public final class a2 extends j {
     }
 
     public final String q(int i10) {
-        TLObject tLObject = this.f41283q0;
+        TLObject tLObject = this.f41239q0;
         if (tLObject instanceof TLRPC.Photo) {
             try {
                 return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
             } catch (Exception unused) {
             }
         }
-        return this.f41284r0;
+        return this.f41240r0;
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f41286t0;
-        this.f41286t0 = z11;
+        boolean z11 = !this.f41242t0;
+        this.f41242t0 = z11;
         if (!z10) {
-            this.f41287u0.f(z11, true);
+            this.f41243u0.f(z11, true);
         }
-        ai.f0 f0Var = this.f41292z0;
+        ai.f0 f0Var = this.f41248z0;
         if (f0Var != null) {
             f0Var.invalidate();
         }
@@ -201,17 +201,17 @@ public final class a2 extends j {
             dVar.f382a = true;
             zzd a2 = i8.d.a(new ac.e(dVar));
             this.B0 = true;
-            a2.g(vb.a.a(bitmap, this.f41289w0)).addOnSuccessListener(new k2.v(this, 22)).addOnFailureListener(new rv0(25, this, bitmap));
+            a2.g(vb.a.a(bitmap, this.f41245w0)).addOnSuccessListener(new le.b(this, 23)).addOnFailureListener(new kv0(25, this, bitmap));
         }
     }
 
     public final void t(boolean z10) {
-        boolean z11 = !this.f41290x0;
-        this.f41290x0 = z11;
+        boolean z11 = !this.f41246x0;
+        this.f41246x0 = z11;
         if (!z10) {
-            this.f41291y0.f(z11, true);
+            this.f41247y0.f(z11, true);
         }
-        ai.f0 f0Var = this.f41292z0;
+        ai.f0 f0Var = this.f41248z0;
         if (f0Var != null) {
             f0Var.invalidate();
         }
@@ -219,9 +219,9 @@ public final class a2 extends j {
 
     public a2(Context context, PointF pointF, jv0 jv0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f41285s0 = -1;
-        this.f41286t0 = false;
-        this.f41290x0 = false;
+        this.f41241s0 = -1;
+        this.f41242t0 = false;
+        this.f41246x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -230,14 +230,14 @@ public final class a2 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f41283q0 = tLObject;
-        this.f41288v0 = jv0Var;
+        this.f41239q0 = tLObject;
+        this.f41244v0 = jv0Var;
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f41292z0 = f0Var;
+        this.f41248z0 = f0Var;
         addView(f0Var, x5.c(-1.0f, -1));
-        qr qrVar = qr.h;
-        this.f41287u0 = new c6(f0Var, 0L, 500L, qrVar);
-        this.f41291y0 = new c6(f0Var, 0L, 350L, qrVar);
+        rr rrVar = rr.h;
+        this.f41243u0 = new e6(f0Var, 0L, 500L, rrVar);
+        this.f41247y0 = new e6(f0Var, 0L, 350L, rrVar);
         k();
     }
 }

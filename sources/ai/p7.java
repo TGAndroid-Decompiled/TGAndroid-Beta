@@ -2,87 +2,48 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-public final class p7 extends FrameLayout implements r0.m {
-    public final b2.q0 f1391a;
-    public final r7 f1392b;
+import org.telegram.messenger.AndroidUtilities;
+public final class p7 extends z4.a {
+    public final jc f1393c;
+    public final Context d;
+    public final s7 e;
 
-    public p7(r7 r7Var, Context context) {
-        super(context);
-        this.f1392b = r7Var;
-        this.f1391a = new Object();
+    public p7(s7 s7Var, jc jcVar, Context context) {
+        this.e = s7Var;
+        this.f1393c = jcVar;
+        this.d = context;
     }
 
     @Override
-    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
-        r7 r7Var = this.f1392b;
-        jc jcVar = r7Var.f1473r;
-        if (r7Var.f1476x <= 0) {
-            float f7 = jcVar.f1075e0;
-            float f10 = r7Var.f1470c;
-            if (f7 < f10 && i11 > 0) {
-                float f11 = f7 + i11;
-                iArr[1] = i11;
-                if (f11 <= f10) {
-                    f10 = f11;
-                }
-                r7Var.setOffset(f10);
-                jcVar.f1075e0 = f10;
-                f6 currentPeerView = jcVar.f1093n0.getCurrentPeerView();
-                if (currentPeerView != null) {
-                    currentPeerView.invalidate();
-                }
-                yb ybVar = jcVar.v;
-                if (ybVar != null) {
-                    ybVar.invalidate();
-                }
-            }
-        }
+    public final void a(z4.g gVar, Object obj) {
+        gVar.removeView((View) obj);
+        this.e.G.remove(obj);
     }
 
     @Override
-    public final void j(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
-        r7 r7Var = this.f1392b;
-        jc jcVar = r7Var.f1473r;
-        if (r7Var.f1476x <= 0 && i13 != 0 && i11 == 0) {
-            float f7 = jcVar.f1075e0;
-            float f10 = i13 + f7;
-            if (f10 <= f7) {
-                f7 = f10;
-            }
-            r7Var.setOffset(f7);
-            jcVar.f1075e0 = f7;
-            f6 currentPeerView = jcVar.f1093n0.getCurrentPeerView();
-            if (currentPeerView != null) {
-                currentPeerView.invalidate();
-            }
-            yb ybVar = jcVar.v;
-            if (ybVar != null) {
-                ybVar.invalidate();
-            }
-        }
+    public final int b() {
+        return this.e.F.size();
     }
 
     @Override
-    public final void o(int i10, View view) {
-        this.f1391a.f3200a = 0;
+    public final Object e(z4.g gVar, int i10) {
+        s7 s7Var = this.e;
+        o7 o7Var = new o7(this, this.f1393c, this.d, s7Var.H, new y1(this, 2));
+        o7Var.setTag(Integer.valueOf(i10));
+        o7Var.setShadowDrawable(s7Var.f1504s);
+        o7Var.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
+        o7Var.g(s7Var.f1507y, (r7) s7Var.F.get(i10));
+        o7Var.setListBottomPadding(s7Var.d);
+        gVar.addView(o7Var);
+        s7Var.G.add(o7Var);
+        return o7Var;
     }
 
     @Override
-    public final boolean p(View view, View view2, int i10, int i11) {
-        if (this.f1392b.f1476x <= 0 && i10 == 2) {
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public final void s(View view, View view2, int i10, int i11) {
-        this.f1391a.f3200a = i10;
-    }
-
-    @Override
-    public final void c(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

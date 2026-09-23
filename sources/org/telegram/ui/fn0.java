@@ -1,26 +1,17 @@
 package org.telegram.ui;
-public final class fn0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f33635a;
-    public final kn0 f33636b;
 
-    public fn0(kn0 kn0Var, int i10) {
-        this.f33635a = i10;
-        this.f33636b = kn0Var;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+public final class fn0 extends View {
+    public Paint f33346a;
+    public Paint f33347b;
+    public float f33348c;
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f33635a) {
-            case 0:
-                kn0 kn0Var = this.f33636b;
-                kn0Var.c(true);
-                kn0Var.Q.finishFragment();
-                return;
-            default:
-                kn0 kn0Var2 = this.f33636b;
-                kn0Var2.c(true);
-                kn0Var2.Q.K1(null, 0, true);
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = (int) (getMeasuredWidth() * this.f33348c);
+        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f33347b);
+        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f33346a);
     }
 }

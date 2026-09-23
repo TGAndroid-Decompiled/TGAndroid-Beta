@@ -7,12 +7,12 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.j;
 import w7.f0;
 public final class b extends j {
-    public static final com.google.android.gms.common.api.e f11015l = new com.google.android.gms.common.api.e("Auth.Api.Identity.SignIn.API", new a8.d(6), new Object());
-    public final String f11016k;
+    public static final com.google.android.gms.common.api.e f11003l = new com.google.android.gms.common.api.e("Auth.Api.Identity.SignIn.API", new a8.d(6), new Object());
+    public final String f11004k;
 
     public b(Context context, x5.i iVar) {
-        super(context, f11015l, iVar, com.google.android.gms.common.api.i.f6031c);
-        this.f11016k = e.a();
+        super(context, f11003l, iVar, com.google.android.gms.common.api.i.f6017c);
+        this.f11004k = e.a();
     }
 
     public final x5.g f(Intent intent) {
@@ -43,7 +43,7 @@ public final class b extends j {
                 }
                 throw new com.google.android.gms.common.api.f(status2);
             }
-            throw new com.google.android.gms.common.api.f(Status.f6018r);
+            throw new com.google.android.gms.common.api.f(Status.f6004r);
         }
         throw new com.google.android.gms.common.api.f(status);
     }

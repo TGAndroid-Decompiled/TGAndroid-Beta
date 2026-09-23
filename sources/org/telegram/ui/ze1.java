@@ -1,52 +1,61 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ze1 extends h71 {
-    public boolean f40161d2;
-    public final af1 f40162e2;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ze1 extends s4.s0 {
+    public final int f40115a;
+    public final wf1 f40116b;
 
-    public ze1(af1 af1Var, af1 af1Var2, Activity activity) {
-        super(af1Var2, activity, false, null, 3, null);
-        this.f40162e2 = af1Var;
-        this.f40161d2 = true;
+    public ze1(wf1 wf1Var, int i10) {
+        this.f40115a = i10;
+        this.f40116b = wf1Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f40161d2) {
-            this.f40161d2 = false;
-            this.f40162e2.f31792f.s(null);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        boolean z10;
+        wf1 wf1Var;
+        ah.h hVar;
+        switch (this.f40115a) {
+            case 0:
+                wf1 wf1Var2 = this.f40116b;
+                int L0 = wf1Var2.F.L0();
+                if (L0 != -1) {
+                    s4.c1 K = recyclerView.K(L0);
+                    boolean z11 = false;
+                    if (K != null) {
+                        i12 = K.f42627a.getTop();
+                    } else {
+                        i12 = 0;
+                    }
+                    if (L0 == 0) {
+                        int i13 = 0 - i12;
+                        if (i12 < 0) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        Math.abs(i13);
+                    } else if (L0 > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    wf1Var2.G0((z10 || !wf1Var2.K) ? true : true, true);
+                    return;
+                }
+                return;
+            case 1:
+                this.f40116b.y0();
+                return;
+            default:
+                if (Build.VERSION.SDK_INT >= 31 && (hVar = (wf1Var = this.f40116b).f38951f1) != null) {
+                    hVar.f(i10, i11);
+                    wf1Var.x0();
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i10;
-        int i11;
-        long j3;
-        af1 af1Var = this.f40162e2;
-        i10 = ((org.telegram.ui.ActionBar.n2) af1Var).currentAccount;
-        boolean z10 = false;
-        if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
-            MediaDataController mediaDataController = af1Var.getMediaDataController();
-            i11 = ((org.telegram.ui.ActionBar.n2) af1Var).currentAccount;
-            TLRPC.TL_messages_stickerSet stickerSetByEmojiOrName = mediaDataController.getStickerSetByEmojiOrName(UserConfig.getInstance(i11).defaultTopicIcons);
-            if (stickerSetByEmojiOrName == null) {
-                j3 = 0;
-            } else {
-                j3 = stickerSetByEmojiOrName.set.f18136id;
-            }
-            if (j3 == MediaDataController.getStickerSetId(document)) {
-                z10 = true;
-            }
-        }
-        af1Var.b0(l4, z10);
     }
 }

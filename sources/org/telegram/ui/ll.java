@@ -1,143 +1,31 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.concurrent.atomic.AtomicReference;
-public final class ll extends org.telegram.ui.ActionBar.j5 {
-    public final int M0;
-    public final Object N0;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+public final class ll extends ViewOutlineProvider {
+    public final xn f35021a;
 
-    public ll(Object obj, Context context, int i10) {
-        super(context);
-        this.M0 = i10;
-        this.N0 = obj;
+    public ll(xn xnVar) {
+        this.f35021a = xnVar;
     }
 
     @Override
-    public boolean k(CharSequence charSequence) {
-        org.telegram.ui.ActionBar.j5 j5Var;
-        switch (this.M0) {
-            case 1:
-                AtomicReference atomicReference = (AtomicReference) this.N0;
-                if (atomicReference != null && (j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get()) != null) {
-                    j5Var.k(charSequence);
-                }
-                return l(charSequence, false);
-            default:
-                return super.k(charSequence);
+    public final void getOutline(View view, Outline outline) {
+        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
+        if (imageReceiver != null) {
+            int[] roundRadius = imageReceiver.getRoundRadius();
+            int i10 = 0;
+            for (int i11 = 0; i11 < 4; i11++) {
+                i10 = Math.max(i10, roundRadius[i11]);
+            }
+            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
+            return;
         }
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.M0) {
-            case 2:
-                super.onAttachedToWindow();
-                ((yp0) this.N0).f39930s.a();
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.M0) {
-            case 2:
-                super.onDetachedFromWindow();
-                ((yp0) this.N0).f39930s.b();
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.M0) {
-            case 3:
-                int rightDrawableX = getRightDrawableX();
-                super.onDraw(canvas);
-                if (rightDrawableX != getRightDrawableX()) {
-                    ((ProfileActivity) this.N0).V4();
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.M0) {
-            case 3:
-                ProfileActivity profileActivity = (ProfileActivity) this.N0;
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f31325n != null) {
-                        StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f31325n != null) {
-                            if (sb2.length() > 0) {
-                                sb2.append(", ");
-                            }
-                            sb2.append(profileActivity.f31325n);
-                        }
-                        if (profileActivity.h != null) {
-                            if (sb2.length() > 0) {
-                                sb2.append(", ");
-                            }
-                            sb2.append(profileActivity.h);
-                        }
-                        accessibilityNodeInfo.setText(sb2);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        org.telegram.ui.ActionBar.j5 j5Var;
-        switch (this.M0) {
-            case 0:
-                super.setTranslationY(f7);
-                bo boVar = (bo) this.N0;
-                if (this == boVar.D2[0] && boVar.H2[1] != null) {
-                    if (boVar.O4 && f7 < 0.0f) {
-                        boVar.f32546z2.setTranslationY(f7 / 2.0f);
-                        return;
-                    } else {
-                        boVar.f32546z2.setTranslationY(0.0f);
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                AtomicReference atomicReference = (AtomicReference) this.N0;
-                if (atomicReference != null && (j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get()) != null) {
-                    j5Var.setTranslationY(f7);
-                }
-                super.setTranslationY(f7);
-                return;
-            default:
-                super.setTranslationY(f7);
-                return;
-        }
-    }
-
-    public ll(Context context, AtomicReference atomicReference) {
-        super(context);
-        this.M0 = 1;
-        this.N0 = atomicReference;
+        xn xnVar = this.f35021a;
+        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(xnVar.C9()), AndroidUtilities.roundPlayingMessageSize(xnVar.C9()));
     }
 }

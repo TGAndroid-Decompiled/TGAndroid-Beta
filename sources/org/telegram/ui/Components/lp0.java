@@ -9,24 +9,24 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class lp0 extends FrameLayout {
-    public final int f26000a;
-    public final hq0 f26001b;
+    public final int f25932a;
+    public final hq0 f25933b;
 
     public lp0(hq0 hq0Var, Context context, int i10) {
         super(context);
-        this.f26000a = i10;
-        this.f26001b = hq0Var;
+        this.f25932a = i10;
+        this.f25933b = hq0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f26000a) {
+        switch (this.f25932a) {
             case 0:
-                hq0 hq0Var = this.f26001b;
-                hq0Var.X0.setBounds(0, (int) hq0Var.f24779u0, getMeasuredWidth(), getMeasuredHeight());
+                hq0 hq0Var = this.f25933b;
+                hq0Var.X0.setBounds(0, (int) hq0Var.f24798u0, getMeasuredWidth(), getMeasuredHeight());
                 hq0Var.X0.draw(canvas);
                 canvas.save();
-                canvas.clipRect(0.0f, hq0Var.f24779u0, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(0.0f, hq0Var.f24798u0, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
                 canvas.restore();
                 return;
@@ -38,27 +38,27 @@ public final class lp0 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f26000a) {
+        switch (this.f25932a) {
             case 0:
-                hq0 hq0Var = this.f26001b;
-                lp0 lp0Var = hq0Var.f24757c;
-                float f7 = hq0Var.f24780v0;
-                if (f7 != 0.0f && f7 != lp0Var.getTop() + hq0Var.f24780v0) {
-                    ValueAnimator valueAnimator = hq0Var.f24782w0;
+                hq0 hq0Var = this.f25933b;
+                lp0 lp0Var = hq0Var.f24776c;
+                float f7 = hq0Var.f24799v0;
+                if (f7 != 0.0f && f7 != lp0Var.getTop() + hq0Var.f24799v0) {
+                    ValueAnimator valueAnimator = hq0Var.f24801w0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    float top = hq0Var.f24780v0 - (lp0Var.getTop() + hq0Var.f24779u0);
-                    hq0Var.f24779u0 = top;
+                    float top = hq0Var.f24799v0 - (lp0Var.getTop() + hq0Var.f24798u0);
+                    hq0Var.f24798u0 = top;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    hq0Var.f24782w0 = ofFloat;
-                    ofFloat.addUpdateListener(new h70(this, 17));
-                    hq0Var.f24782w0.setInterpolator(qr.f27420f);
-                    hq0Var.f24782w0.setDuration(200L);
-                    hq0Var.f24782w0.start();
-                    hq0Var.f24780v0 = 0.0f;
+                    hq0Var.f24801w0 = ofFloat;
+                    ofFloat.addUpdateListener(new i70(this, 17));
+                    hq0Var.f24801w0.setInterpolator(rr.f27701f);
+                    hq0Var.f24801w0.setDuration(200L);
+                    hq0Var.f24801w0.start();
+                    hq0Var.f24799v0 = 0.0f;
                 }
-                hq0Var.S[1].setTranslationY((-(lp0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + hq0Var.f24779u0 + hq0Var.f24778t0 + ((1.0f - getAlpha()) * (lp0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
+                hq0Var.S[1].setTranslationY((-(lp0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + hq0Var.f24798u0 + hq0Var.f24797t0 + ((1.0f - getAlpha()) * (lp0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
                 return;
             default:
                 super.onDraw(canvas);
@@ -68,10 +68,10 @@ public final class lp0 extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f26000a) {
+        switch (this.f25932a) {
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f26001b.U.m(), new Object[0]));
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f25933b.U.m(), new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
@@ -84,7 +84,7 @@ public final class lp0 extends FrameLayout {
 
     @Override
     public void setAlpha(float f7) {
-        switch (this.f26000a) {
+        switch (this.f25932a) {
             case 0:
                 super.setAlpha(f7);
                 invalidate();
@@ -97,11 +97,11 @@ public final class lp0 extends FrameLayout {
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f26000a) {
+        switch (this.f25932a) {
             case 0:
                 super.setVisibility(i10);
                 if (i10 != 0) {
-                    this.f26001b.S[1].setTranslationY(0.0f);
+                    this.f25933b.S[1].setTranslationY(0.0f);
                     return;
                 }
                 return;

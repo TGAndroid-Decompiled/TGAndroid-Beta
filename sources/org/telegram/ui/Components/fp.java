@@ -1,24 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class fp extends aj0 {
-    public final mp f24046r;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.fd1;
+public final class fp implements fd1 {
+    public final np f24067a;
 
-    public fp(mp mpVar, Context context) {
-        super(context);
-        this.f24046r = mpVar;
+    public fp(np npVar) {
+        this.f24067a = npVar;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f24046r.N) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
-        } else {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
+    public final boolean Y0() {
+        return true;
+    }
+
+    @Override
+    public final boolean a() {
+        return this.f24067a.N;
+    }
+
+    @Override
+    public final void o1(boolean z10) {
+        TLRPC.WallPaper wallPaper;
+        np npVar = this.f24067a;
+        org.telegram.ui.xn xnVar = npVar.v;
+        npVar.N = !npVar.N;
+        if (npVar.M != null) {
+            npVar.P = true;
+            xnVar.e7 = true;
+            if (npVar.v()) {
+                wallPaper = null;
+            } else {
+                wallPaper = npVar.f26470n.h;
+            }
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            org.telegram.ui.ActionBar.c4 c4Var = npVar.M.f26253a;
+            if (c4Var.f18533a) {
+                npVar.f26470n.i(null, wallPaper2, z10, Boolean.valueOf(npVar.N), false);
+            } else {
+                npVar.f26470n.i(c4Var, wallPaper2, z10, Boolean.valueOf(npVar.N), false);
+            }
+            xnVar.e7 = false;
         }
     }
 }

@@ -1,81 +1,224 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class dk extends org.telegram.ui.Cells.w0 {
-    public final bo f33040l2;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class dk implements nt {
+    public final xn f32677a;
 
-    public dk(Context context, org.telegram.ui.ActionBar.e6 e6Var, bo boVar) {
-        super(context, e6Var, false);
-        this.f33040l2 = boVar;
+    public dk(xn xnVar) {
+        this.f32677a = xnVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        bo boVar = this.f33040l2;
-        if (boVar.B8 == null) {
-            float y3 = ((boVar.f32519x0.getY() + boVar.f32464s9) - getY()) - AndroidUtilities.dp(4.0f);
-            if (y3 > 0.0f) {
-                if (y3 < getMeasuredHeight()) {
-                    canvas.save();
-                    canvas.clipRect(0.0f, y3, getMeasuredWidth(), getMeasuredHeight());
-                    super.onDraw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
+    public final MessageObject A() {
+        return null;
+    }
+
+    @Override
+    public final boolean B() {
+        return false;
+    }
+
+    @Override
+    public final boolean D() {
+        return false;
+    }
+
+    @Override
+    public final boolean E(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final String G(boolean z10) {
+        return null;
+    }
+
+    @Override
+    public final boolean I() {
+        return false;
+    }
+
+    @Override
+    public final boolean J() {
+        return false;
+    }
+
+    @Override
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+        if (inputStickerSet != null) {
+            xn xnVar = this.f32677a;
+            if (xnVar.getParentActivity() != null) {
+                TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
+                tL_inputStickerSetID.f18103id = inputStickerSet.f18103id;
+                org.telegram.ui.Components.ux0 ux0Var = new org.telegram.ui.Components.ux0(xnVar.getParentActivity(), xnVar, tL_inputStickerSetID, null, xnVar.Y, xnVar.f39370ea);
+                ux0Var.setCalcMandatoryInsets(xnVar.x9());
+                ux0Var.f28577i0 = z10;
+                xnVar.showDialog(ux0Var);
             }
-            super.onDraw(canvas);
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            bo boVar = this.f33040l2;
-            kVar = ((org.telegram.ui.ActionBar.n2) boVar).actionBar;
-            if (!kVar.s() && !boVar.A9()) {
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-            return false;
+    public final boolean N(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final Boolean P(TLRPC.Document document) {
+        return null;
+    }
+
+    @Override
+    public final boolean Q() {
+        return true;
+    }
+
+    @Override
+    public final long a() {
+        return this.f32677a.T5;
+    }
+
+    @Override
+    public final boolean b() {
+        return this.f32677a.D6();
+    }
+
+    @Override
+    public final boolean c() {
+        if (this.f32677a.R3 == 1) {
+            return true;
         }
         return false;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            bo boVar = this.f33040l2;
-            kVar = ((org.telegram.ui.ActionBar.n2) boVar).actionBar;
-            if (!kVar.s() && !boVar.A9()) {
-                return super.onTouchEvent(motionEvent);
-            }
-            return false;
-        }
+    public final TLRPC.TL_messageMediaPoll d() {
+        return null;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        int i10;
-        super.setAlpha(f7);
-        if (f7 > 0.0f) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        setVisibility(i10);
+    public final boolean g() {
+        return false;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            invalidate();
-        }
-        super.setTranslationY(f7);
+    public final TLRPC.PollAnswer h() {
+        return null;
+    }
+
+    @Override
+    public final boolean i() {
+        return true;
+    }
+
+    @Override
+    public final org.telegram.ui.Components.o70 j(ci.m6 m6Var) {
+        return null;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final boolean m(int i10) {
+        return true;
+    }
+
+    @Override
+    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+        this.f32677a.Y.d(document, str, obj, null, true, z10, i10, i11);
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
+    }
+
+    @Override
+    public final void C(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void F(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void H(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void O(String str) {
+    }
+
+    @Override
+    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
+    }
+
+    @Override
+    public final void o(String str) {
+    }
+
+    @Override
+    public final void p(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void r(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void v(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void z(String str) {
+    }
+
+    @Override
+    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    }
+
+    @Override
+    public final void x(TLObject tLObject, Object obj) {
+    }
+
+    @Override
+    public final void f(CharSequence charSequence, String str, dt dtVar) {
+    }
+
+    @Override
+    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
     }
 }

@@ -1,44 +1,35 @@
 package ci;
-public final class u5 implements qg.y1 {
-    public final int f5617a;
-    public final qg.x2 f5618b;
-    public final float f5619c;
 
-    public u5(qg.x2 x2Var, float f7, int i10) {
-        this.f5617a = i10;
-        this.f5618b = x2Var;
-        this.f5619c = f7;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.gk0;
+public final class u5 extends AnimatorListenerAdapter {
+    public final int f5606a;
+    public final gk0 f5607b;
+
+    public u5(gk0 gk0Var, int i10) {
+        this.f5606a = i10;
+        this.f5607b = gk0Var;
     }
 
     @Override
-    public final float get() {
-        float baseFontSize;
-        float f7;
-        switch (this.f5617a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f5606a) {
             case 0:
-                baseFontSize = this.f5618b.getBaseFontSize();
-                f7 = this.f5619c;
-                break;
-            default:
-                baseFontSize = this.f5618b.getBaseFontSize();
-                f7 = this.f5619c;
-                break;
-        }
-        return baseFontSize / f7;
-    }
-
-    @Override
-    public final void l(float f7) {
-        switch (this.f5617a) {
-            case 0:
-                qg.x2 x2Var = this.f5618b;
-                x2Var.f41711z0 = true;
-                x2Var.setBaseFontSize((int) (this.f5619c * f7));
+                AndroidUtilities.removeFromParent(this.f5607b);
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                this.f5607b.L0.unlock();
                 return;
             default:
-                qg.x2 x2Var2 = this.f5618b;
-                x2Var2.f41711z0 = true;
-                x2Var2.setBaseFontSize((int) (this.f5619c * f7));
+                super.onAnimationEnd(animator);
+                gk0 gk0Var = this.f5607b;
+                gk0Var.Q = null;
+                gk0Var.f24345n0 = 0.0f;
+                gk0Var.f24343l0 = null;
+                gk0Var.invalidate();
                 return;
         }
     }

@@ -12,9 +12,9 @@ import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c90;
-import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.xc;
 public abstract class q3 {
     public static float a(float f7, float f10, float f11, float f12) {
         return (f7 * f10) + f11 + f12;
@@ -29,8 +29,8 @@ public abstract class q3 {
         return Math.abs(random.nextInt() % i10);
     }
 
-    public static int d(t00 t00Var, int i10) {
-        return t00Var.c(t00Var.getMeasuredWidth()) + i10;
+    public static int d(u00 u00Var, int i10) {
+        return u00Var.c(u00Var.getMeasuredWidth()) + i10;
     }
 
     public static Bundle e(int i10, String str) {
@@ -88,18 +88,18 @@ public abstract class q3 {
         arrayList2.add(num);
     }
 
-    public static void p(int i10, org.telegram.ui.ActionBar.e6 e6Var, TextView textView, int i11, float f7) {
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var));
+    public static void p(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11, float f7) {
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
         textView.setTextSize(i11, f7);
         textView.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void q(int i10, c90 c90Var) {
-        c90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void q(int i10, d90 d90Var) {
+        d90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
-    public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new vc(frameLayout, e6Var).d0(tL_error, z10);
+    public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {
+        new xc(frameLayout, d6Var).d0(tL_error, z10);
     }
 
     public static void s(String str, int i10, ArrayList arrayList) {

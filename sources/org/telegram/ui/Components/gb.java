@@ -1,38 +1,36 @@
 package org.telegram.ui.Components;
+public final class gb implements q0.a {
+    public final int f24249a;
+    public final Object f24250b;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
-import android.widget.FrameLayout;
-public final class gb extends FrameLayout {
-    public final sb f24283a;
-    public final Rect f24284b;
-    public final GestureDetector f24285c;
-    public boolean d;
-    public boolean e;
-    public float f24286f;
-    public float h;
-    public float f24287n;
-    public boolean f24288r;
-    public boolean f24289s;
-    public boolean v;
-    public boolean f24290w;
-    public final FrameLayout f24291x;
-    public final oc f24292y;
-
-    public gb(oc ocVar, sb sbVar, FrameLayout frameLayout) {
-        super(sbVar.getContext());
-        this.f24292y = ocVar;
-        this.f24291x = frameLayout;
-        this.f24284b = new Rect();
-        this.f24283a = sbVar;
-        GestureDetector gestureDetector = new GestureDetector(sbVar.getContext(), new dc(this, sbVar));
-        this.f24285c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(sbVar);
+    public gb(Object obj, int i10) {
+        this.f24249a = i10;
+        this.f24250b = obj;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gb.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void accept(Object obj) {
+        switch (this.f24249a) {
+            case 0:
+                qc qcVar = (qc) this.f24250b;
+                Float f7 = (Float) obj;
+                ob obVar = qcVar.f27312p;
+                if (obVar != null) {
+                    ub ubVar = qcVar.e;
+                    if (!ubVar.top) {
+                        obVar.c(ubVar.getHeight() - f7.floatValue());
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                ui uiVar = ((wi) this.f24250b).Z1;
+                if (uiVar != null) {
+                    uiVar.U0(obj);
+                    return;
+                }
+                return;
+        }
     }
 }

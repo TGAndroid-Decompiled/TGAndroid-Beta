@@ -11,8 +11,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.xc;
 public abstract class c {
     public static void A(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.a2 a2Var) {
         alertDialog$Builder.k(LocaleController.getString(i10), a2Var);
@@ -403,7 +403,7 @@ public abstract class c {
     }
 
     public static void p(int i10, ArrayList arrayList) {
-        arrayList.add(i51.B(LocaleController.getString(i10)));
+        arrayList.add(h51.B(LocaleController.getString(i10)));
     }
 
     public static void q(int i10, HashMap hashMap, String str, int i11, String str2) {
@@ -416,8 +416,8 @@ public abstract class c {
         alertDialog$Builder.o();
     }
 
-    public static void s(int i10, Object[] objArr, vc vcVar, int i11, int i12) {
-        vcVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
+    public static void s(int i10, Object[] objArr, xc xcVar, int i11, int i12) {
+        xcVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
     }
 
     public static void t(MediaMetadataRetriever mediaMetadataRetriever) {

@@ -1,83 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
 import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
+import java.util.HashMap;
 import org.telegram.messenger.SendMessagesHelper;
-public final class ii implements fk {
-    public final vi f25016a;
+import org.telegram.tgnet.TLRPC;
+public final class ii implements qj {
+    public final wi f24981a;
 
-    public ii(vi viVar) {
-        this.f25016a = viVar;
+    public ii(wi wiVar) {
+        this.f24981a = wiVar;
     }
 
     @Override
-    public final void O() {
-        this.f25016a.B1(true);
-    }
-
-    @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        vi viVar = this.f25016a;
-        fk fkVar = viVar.X;
-        if (fkVar != null) {
-            fkVar.k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
-            return;
-        }
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f28747f0;
-        if (n2Var instanceof fk) {
-            ((fk) n2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
-        } else if (n2Var instanceof org.telegram.ui.on0) {
-            org.telegram.ui.on0 on0Var = (org.telegram.ui.on0) n2Var;
-            ArrayList arrayList4 = new ArrayList();
-            int size = arrayList.size();
-            for (int i11 = 0; i11 < size; i11++) {
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                sendingMediaInfo.path = (String) arrayList.get(i11);
-                arrayList4.add(sendingMediaInfo);
-            }
-            on0Var.G1(arrayList4);
+    public final void a(TLRPC.User user, boolean z10, int i10, long j3) {
+        org.telegram.ui.xn xnVar = (org.telegram.ui.xn) this.f24981a.f29665f0;
+        if (xnVar.f7()) {
+            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, xnVar.T5, xnVar.f39475n5, xnVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
+            of2.sendMessageChatArguments = xnVar.C8();
+            of2.effect_id = 0L;
+            of2.invert_media = false;
+            of2.payStars = j3;
+            of2.monoForumPeer = xnVar.N8();
+            of2.suggestionParams = xnVar.f39390g5;
+            xnVar.getSendMessagesHelper().sendMessage(of2);
+            xnVar.y6();
         }
     }
 
     @Override
-    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        vi viVar = this.f25016a;
-        fk fkVar = viVar.X;
-        if (fkVar != null) {
-            fkVar.l(j3, arrayList, z10, i10);
-            return;
-        }
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f28747f0;
-        if (n2Var instanceof org.telegram.ui.bo) {
-            ((org.telegram.ui.bo) n2Var).l(j3, arrayList, z10, i10);
-        } else if (n2Var instanceof org.telegram.ui.on0) {
-            ((org.telegram.ui.on0) n2Var).G1(arrayList);
-        }
-    }
-
-    @Override
-    public final void w() {
-        vi viVar = this.f25016a;
-        fk fkVar = viVar.X;
-        if (fkVar != null) {
-            fkVar.w();
-            return;
-        }
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f28747f0;
-        if (n2Var instanceof fk) {
-            ((fk) n2Var).w();
-        } else if (n2Var instanceof org.telegram.ui.on0) {
-            org.telegram.ui.on0 on0Var = (org.telegram.ui.on0) n2Var;
-            on0Var.getClass();
-            try {
-                Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-                intent.setType("*/*");
-                on0Var.startActivityForResult(intent, 21);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
+    public final void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
+        ((org.telegram.ui.xn) this.f24981a.f29665f0).db(arrayList, str, z10, i10, j3, z11);
     }
 }

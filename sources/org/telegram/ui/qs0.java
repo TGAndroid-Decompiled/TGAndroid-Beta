@@ -1,12 +1,11 @@
 package org.telegram.ui;
-public final class qs0 extends tu0 {
-    @Override
-    public final boolean P() {
-        return true;
-    }
 
-    @Override
-    public final boolean z() {
-        return false;
+import android.view.View;
+public final class qs0 extends su0 {
+    public final PhotoViewer f36613t;
+
+    public qs0(PhotoViewer photoViewer, View view) {
+        super(photoViewer, view);
+        this.f36613t = photoViewer;
     }
 }

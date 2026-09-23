@@ -1,6 +1,6 @@
 package ai;
 public interface fc {
-    void Z(long j3, int i10, e5 e5Var);
+    void Z(long j3, int i10, d5 d5Var);
 
     void b(boolean z10);
 

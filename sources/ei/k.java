@@ -8,24 +8,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.vl;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.messenger.ul;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import w7.x5;
 public final class k extends FrameLayout {
-    public final ImageView f8408a;
-    public final TextView f8409b;
-    public final TextView f8410c;
+    public final ImageView f8394a;
+    public final TextView f8395b;
+    public final TextView f8396c;
 
-    public k(Context context, e6 e6Var, boolean z10) {
+    public k(Context context, d6 d6Var, boolean z10) {
         super(context);
         float f7;
         float f10;
         ImageView imageView = new ImageView(context);
-        this.f8408a = imageView;
+        this.f8394a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i10 = i6.G6;
-        imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i10, e6Var), PorterDuff.Mode.SRC_IN));
+        int i10 = h6.G6;
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(i10, d6Var), PorterDuff.Mode.SRC_IN));
         addView(imageView, x5.d(24, 24.0f, 51, 20.0f, 11.46f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -41,23 +41,23 @@ public final class k extends FrameLayout {
         }
         addView(linearLayout, x5.d(-1, -2.0f, 23, 64.0f, f7, 24.0f, f10));
         TextView textView = new TextView(context);
-        this.f8409b = textView;
-        textView.setTextColor(i6.v0(i10, e6Var));
+        this.f8395b = textView;
+        textView.setTextColor(h6.v0(i10, d6Var));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 14.0f);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, x5.t(-1, -2, 55, 0, 0, 0, 1), context);
-        this.f8410c = h;
-        vl.o(i6.f19234z6, e6Var, h, 1, 14.0f);
+        this.f8396c = h;
+        ul.o(h6.f19189z6, d6Var, h, 1, 14.0f);
         linearLayout.addView(h, x5.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
     public final void a(CharSequence charSequence, CharSequence charSequence2, int i10) {
-        this.f8408a.setImageResource(i10);
-        this.f8409b.setText(charSequence);
-        this.f8410c.setText(charSequence2);
+        this.f8394a.setImageResource(i10);
+        this.f8395b.setText(charSequence);
+        this.f8396c.setText(charSequence2);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f8410c.setText(charSequence);
+        this.f8396c.setText(charSequence);
     }
 }

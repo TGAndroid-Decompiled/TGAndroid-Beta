@@ -1,93 +1,45 @@
 package ci;
-public final class ob implements sc {
-    public final bi.v f5200a;
 
-    public ob(bi.v vVar) {
-        this.f5200a = vVar;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class ob extends d1 {
+    public final lc f5263b0;
+
+    public ob(lc lcVar, Context context, boolean z10) {
+        super(context, z10);
+        this.f5263b0 = lcVar;
     }
 
     @Override
-    public final void H(float f7, boolean z10) {
-        this.f5200a.run(Boolean.FALSE, Float.valueOf(f7));
+    public final void receivedAmplitude(double d) {
+        j7 j7Var = this.f5263b0.O0;
+        if (j7Var != null) {
+            j7Var.f4838g0 = Utilities.clamp((float) (d / 1800.0d), 1.0f, 0.0f);
+        }
     }
 
     @Override
-    public final void F(float f7) {
+    public final void toggleDual() {
+        int i10;
+        super.toggleDual();
+        lc lcVar = this.f5263b0;
+        lcVar.F0.setValue(isDual());
+        yc ycVar = lcVar.F0;
+        if (isDual()) {
+            i10 = R.string.AccDescrDualCameraOn;
+        } else {
+            i10 = R.string.AccDescrDualCameraOff;
+        }
+        ycVar.setContentDescription(LocaleController.getString(i10));
+        lcVar.e0(lcVar.C());
     }
 
     @Override
-    public final void O(long j3) {
-    }
-
-    @Override
-    public final void Q(boolean z10) {
-    }
-
-    @Override
-    public final void V(float f7) {
-    }
-
-    @Override
-    public final void Z(float f7) {
-    }
-
-    @Override
-    public final void b(int i10) {
-    }
-
-    @Override
-    public final void e0(float f7) {
-    }
-
-    @Override
-    public final void f0() {
-    }
-
-    @Override
-    public final void h(float f7) {
-    }
-
-    @Override
-    public final void i0(float f7) {
-    }
-
-    @Override
-    public final void n(float f7) {
-    }
-
-    @Override
-    public final void o0(long j3) {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void u(float f7) {
-    }
-
-    @Override
-    public final void w(boolean z10) {
-    }
-
-    @Override
-    public final void C(float f7, int i10) {
-    }
-
-    @Override
-    public final void T(float f7, int i10) {
-    }
-
-    @Override
-    public final void d0(float f7, int i10) {
-    }
-
-    @Override
-    public final void j0(int i10, long j3) {
-    }
-
-    @Override
-    public final void o(long j3, boolean z10) {
+    public final void u(boolean z10) {
+        lc lcVar = this.f5263b0;
+        lcVar.f5071o1.b(lcVar.f5035c1.getText());
+        lcVar.f5071o1.a(false, z10, lcVar.f5059k0);
     }
 }

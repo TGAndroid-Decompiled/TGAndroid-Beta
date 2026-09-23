@@ -1,42 +1,22 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.graphics.Rect;
+import android.animation.ValueAnimator;
 import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class c61 extends ViewOutlineProvider {
-    public final Rect f32686a = new Rect();
-    public final Integer f32687b;
-    public final h71 f32688c;
-
-    public c61(h71 h71Var, Integer num) {
-        this.f32688c = h71Var;
-        this.f32687b = num;
-    }
+public final class c61 extends FrameLayout {
+    public FrameLayout f32273a;
+    public org.telegram.ui.Cells.u3 f32274b;
+    public rg.p0 f32275c;
+    public String d;
+    public ValueAnimator e;
+    public float f32276f;
+    public Boolean h;
+    public ValueAnimator f32277n;
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        float intValue;
-        Integer num = this.f32687b;
-        if (num == null) {
-            intValue = view.getWidth() / 2.0f;
-        } else {
-            intValue = num.intValue();
-        }
-        float dp = intValue + AndroidUtilities.dp(20.0f);
-        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
-        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
-        h71 h71Var = this.f32688c;
-        boolean n10 = h71Var.n();
-        Rect rect = this.f32686a;
-        if (n10) {
-            int paddingLeft = (int) ((dp - (h71Var.f34116a1 * dp)) + view.getPaddingLeft());
-            float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, h71Var.f34119b1, height, view.getPaddingTop());
-            rect.set(paddingLeft, (int) com.google.android.gms.internal.vision.e2.z(1.0f, h71Var.f34119b1, AndroidUtilities.dp(h71Var.f34124d1), z10), (int) (((width - dp) * h71Var.f34116a1) + view.getPaddingLeft() + dp), (int) com.google.android.gms.internal.vision.e2.z(1.0f, h71Var.f34119b1, AndroidUtilities.dp(h71Var.f34124d1), view.getPaddingTop() + height));
-        } else {
-            rect.set((int) ((dp - (h71Var.f34116a1 * dp)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - dp) * h71Var.f34116a1) + view.getPaddingLeft() + dp), (int) ((height * h71Var.f34119b1) + view.getPaddingTop()));
-        }
-        outline.setRoundRect(rect, AndroidUtilities.dp(12.0f));
+    public final void onMeasure(int i10, int i11) {
+        setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + AndroidUtilities.dp(44.0f), 1073741824));
     }
 }

@@ -1,68 +1,73 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class qp0 extends h71 {
-    public final tp0 f36929d2;
-    public final y61[] f36930e2;
-    public final up0 f36931f2;
+public final class qp0 {
+    public boolean f36530f;
+    public boolean f36531g;
+    public boolean h;
+    public Path f36532i;
+    public Paint f36533j;
+    public Drawable f36534k;
+    public final org.telegram.ui.Components.yc f36535l;
+    public boolean f36536m;
+    public final org.telegram.ui.Components.e6 f36537n;
+    public int f36538o;
+    public final rp0 f36541r;
+    public final Paint f36527a = new Paint(1);
+    public final Paint f36528b = new Paint(1);
+    public final Paint f36529c = new Paint(1);
+    public final Path d = new Path();
+    public final Path e = new Path();
+    public final RectF f36539p = new RectF();
+    public final RectF f36540q = new RectF();
 
-    public qp0(up0 up0Var, org.telegram.ui.ActionBar.n2 n2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, int i12, tp0 tp0Var, y61[] y61VarArr) {
-        super(n2Var, context, true, num, i10, true, e6Var, i11, i12);
-        this.f36931f2 = up0Var;
-        this.f36929d2 = tp0Var;
-        this.f36930e2 = y61VarArr;
+    public qp0(rp0 rp0Var) {
+        this.f36541r = rp0Var;
+        this.f36535l = new org.telegram.ui.Components.yc(rp0Var);
+        this.f36537n = new org.telegram.ui.Components.e6(rp0Var, 0L, 320L, org.telegram.ui.Components.rr.h);
     }
 
-    @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        up0 up0Var = this.f36931f2;
-        if (tL_starGiftUnique != null) {
-            if (up0Var.m0 == 0) {
-                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
-                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    up0Var.f38099s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    up0Var.f38098r = null;
-                } else {
-                    return;
-                }
-            } else {
-                up0Var.f38099s = null;
-                up0Var.f38098r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
-            }
-            up0Var.I = null;
-            up0Var.h = -1;
+    public final void a(MessagesController.PeerColor peerColor) {
+        boolean a2;
+        int color;
+        rp0 rp0Var = this.f36541r;
+        org.telegram.ui.ActionBar.d6 d6Var = rp0Var.f36906a;
+        if (peerColor == null) {
+            return;
+        }
+        if (d6Var == null) {
+            a2 = org.telegram.ui.ActionBar.h6.I.q();
         } else {
-            if (l4 == null) {
-                longValue = 0;
+            a2 = d6Var.a();
+        }
+        int i10 = rp0Var.f36908c;
+        Paint paint = this.f36528b;
+        Paint paint2 = this.f36527a;
+        if (i10 == 1) {
+            if (a2 && peerColor.hasColor2() && !peerColor.hasColor3()) {
+                paint2.setColor(peerColor.getColor(1, d6Var));
+                paint.setColor(peerColor.getColor(0, d6Var));
             } else {
-                longValue = l4.longValue();
+                paint2.setColor(peerColor.getColor(0, d6Var));
+                paint.setColor(peerColor.getColor(1, d6Var));
             }
-            up0Var.f38094n = longValue;
-            up0Var.f38098r = null;
-            up0Var.f38099s = null;
-            up0Var.I = null;
+            this.f36529c.setColor(peerColor.getColor(2, d6Var));
+            this.f36530f = peerColor.hasColor2(a2);
+            this.f36531g = peerColor.hasColor3(a2);
+            return;
         }
-        tp0 tp0Var = this.f36929d2;
-        if (tp0Var != null) {
-            tp0Var.b(true);
+        paint2.setColor(peerColor.getColor(0, d6Var));
+        if (peerColor.hasColor6(a2)) {
+            color = peerColor.getColor(1, d6Var);
+        } else {
+            color = peerColor.getColor(0, d6Var);
         }
-        up0Var.j(true);
-        up0Var.i();
-        up0Var.f(true);
-        y61 y61Var = this.f36930e2[0];
-        if (y61Var != null) {
-            up0Var.f38096o0 = null;
-            y61Var.dismiss();
-        }
+        paint.setColor(color);
+        this.f36530f = peerColor.hasColor6(a2);
+        this.f36531g = false;
     }
 }

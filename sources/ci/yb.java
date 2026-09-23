@@ -1,11 +1,12 @@
 package ci;
 
-import android.content.Context;
-public final class yb extends j0 {
-    public final oc E;
+import android.app.Activity;
+import android.widget.FrameLayout;
+public final class yb extends e0 {
+    public final lc f5893y0;
 
-    public yb(oc ocVar, Context context, cc ccVar) {
-        super(context, ccVar);
-        this.E = ocVar;
+    public yb(lc lcVar, Activity activity, org.telegram.ui.Components.ja jaVar, FrameLayout frameLayout, ai.d dVar) {
+        super(activity, jaVar, frameLayout, dVar);
+        this.f5893y0 = lcVar;
     }
 }

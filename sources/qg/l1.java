@@ -7,28 +7,28 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.qr;
-public abstract class l1 extends ll0 {
-    public static final Paint f41440c3;
-    public static final Paint f41441d3;
-    public static final Path f41442e3;
-    public static final Paint f41443f3;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.rr;
+public abstract class l1 extends ml0 {
+    public static final Paint f41396c3;
+    public static final Paint f41397d3;
+    public static final Path f41398e3;
+    public static final Paint f41399f3;
     public final Paint X2;
     public final Paint Y2;
     public int Z2;
-    public pg.s0 f41444a3;
-    public q0.a f41445b3;
+    public pg.t0 f41400a3;
+    public q0.a f41401b3;
 
     static {
         Paint paint = new Paint(1);
-        f41440c3 = paint;
+        f41396c3 = paint;
         Paint paint2 = new Paint(1);
-        f41441d3 = paint2;
+        f41397d3 = paint2;
         paint.setColor(-2013265920);
         paint2.setColor(-1996488705);
-        f41442e3 = new Path();
-        f41443f3 = new Paint(1);
+        f41398e3 = new Path();
+        f41399f3 = new Paint(1);
     }
 
     public l1(Context context) {
@@ -54,12 +54,12 @@ public abstract class l1 extends ll0 {
                 float f11 = i10;
                 float f12 = f7 + f11;
                 float f13 = f10 + f11;
-                Paint paint = f41440c3;
+                Paint paint = f41396c3;
                 Canvas canvas2 = canvas;
                 canvas2.drawRect(f7, f10, f12, f13, paint);
                 float f14 = i10 * 2;
                 float f15 = f7 + f14;
-                Paint paint2 = f41441d3;
+                Paint paint2 = f41397d3;
                 float f16 = f10;
                 canvas2.drawRect(f12, f16, f15, f13, paint2);
                 float f17 = f16 + f14;
@@ -74,14 +74,14 @@ public abstract class l1 extends ll0 {
     }
 
     public static void x1(float f7, float f10, float f11, int i10, Canvas canvas) {
-        Paint paint = f41443f3;
+        Paint paint = f41399f3;
         paint.setColor(i10);
         if (paint.getAlpha() != 255) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
             paint.setAlpha(255);
             canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
-            Path path = f41442e3;
+            Path path = f41398e3;
             path.rewind();
             path.moveTo(rectF.centerX(), rectF.centerY());
             path.lineTo((float) hg.c.e(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
@@ -104,11 +104,11 @@ public abstract class l1 extends ll0 {
     }
 
     public void setColorListener(q0.a aVar) {
-        this.f41445b3 = aVar;
+        this.f41401b3 = aVar;
     }
 
-    public void setColorPalette(pg.s0 s0Var) {
-        this.f41444a3 = s0Var;
+    public void setColorPalette(pg.t0 t0Var) {
+        this.f41400a3 = t0Var;
         getAdapter().l();
     }
 
@@ -121,9 +121,9 @@ public abstract class l1 extends ll0 {
         float interpolation;
         float f10;
         if (z10) {
-            interpolation = qr.f27421g.getInterpolation(f7);
+            interpolation = rr.f27702g.getInterpolation(f7);
         } else {
-            interpolation = qr.f27422i.getInterpolation(f7);
+            interpolation = rr.f27703i.getInterpolation(f7);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i10 = 0; i10 < getChildCount(); i10++) {

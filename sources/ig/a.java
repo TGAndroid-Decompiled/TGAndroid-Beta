@@ -3,7 +3,7 @@ package ig;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import java.util.ArrayList;
-import org.telegram.messenger.vl;
+import org.telegram.messenger.ul;
 public final class a extends g {
     @Override
     public float getMinDistance() {
@@ -31,33 +31,33 @@ public final class a extends g {
         ArrayList arrayList2;
         float f11;
         int measuredHeight = getMeasuredHeight();
-        int i13 = g.f11119q1;
+        int i13 = g.f11107q1;
         int i14 = measuredHeight - i13;
         int measuredHeight2 = (getMeasuredHeight() - this.B0) - i13;
         ArrayList arrayList3 = this.d;
         int size = arrayList3.size();
-        if (this.f11147h0 != null) {
+        if (this.f11135h0 != null) {
             int i15 = 0;
             while (i15 < size) {
                 kg.a aVar = (kg.a) arrayList3.get(i15);
-                boolean z10 = aVar.f13630n;
-                Paint paint = aVar.f13622c;
-                float[] fArr = aVar.f13627k;
-                if (!z10 && aVar.f13631o == 0.0f) {
+                boolean z10 = aVar.f13618n;
+                Paint paint = aVar.f13610c;
+                float[] fArr = aVar.f13615k;
+                if (!z10 && aVar.f13619o == 0.0f) {
                     i10 = i14;
                     arrayList = arrayList3;
                     i11 = i15;
                 } else {
                     aVar.e.reset();
-                    float[] fArr2 = this.f11147h0.f13001b;
+                    float[] fArr2 = this.f11135h0.f12991b;
                     int length = fArr2.length;
                     if (fArr2.length < 2) {
                         f7 = 1.0f;
                     } else {
                         f7 = fArr2[1] * this.C0;
                     }
-                    long[] jArr = aVar.f13620a.f12994a;
-                    float f12 = aVar.f13631o;
+                    long[] jArr = aVar.f13608a.f12984a;
+                    float f12 = aVar.f13619o;
                     int i16 = 0;
                     int i17 = 0;
                     while (i16 < length) {
@@ -67,11 +67,11 @@ public final class a extends g {
                             i12 = i14;
                             arrayList2 = arrayList3;
                         } else {
-                            jg.b bVar = this.f11147h0;
+                            jg.b bVar = this.f11135h0;
                             i12 = i14;
-                            float f13 = this.C0 * bVar.f13001b[i16];
+                            float f13 = this.C0 * bVar.f12991b[i16];
                             if (g.B1) {
-                                f11 = this.f11151j0;
+                                f11 = this.f11139j0;
                                 f10 = f13;
                                 arrayList2 = arrayList3;
                             } else {
@@ -79,13 +79,13 @@ public final class a extends g {
                                 arrayList2 = arrayList3;
                                 f11 = (float) bVar.e;
                             }
-                            float c10 = vl.c((float) j3, f11, f12, 1.0f) * (i12 - measuredHeight2);
+                            float c10 = ul.c((float) j3, f11, f12, 1.0f) * (i12 - measuredHeight2);
                             fArr[i17] = f10;
                             fArr[i17 + 1] = c10;
                             int i19 = i17 + 3;
                             fArr[i17 + 2] = f10;
                             i17 += 4;
-                            fArr[i19] = getMeasuredHeight() - this.f11162s;
+                            fArr[i19] = getMeasuredHeight() - this.f11150s;
                         }
                         i16++;
                         i15 = i18;
@@ -110,16 +110,16 @@ public final class a extends g {
         F();
         k(canvas);
         i(canvas);
-        ArrayList arrayList = this.f11132b;
+        ArrayList arrayList = this.f11120b;
         this.m0 = arrayList.size();
         int i10 = 0;
         while (true) {
-            this.f11156n0 = i10;
-            int i11 = this.f11156n0;
+            this.f11144n0 = i10;
+            int i11 = this.f11144n0;
             if (i11 < this.m0) {
                 l(canvas, (kg.d) arrayList.get(i11));
-                p(canvas, (kg.d) arrayList.get(this.f11156n0));
-                i10 = this.f11156n0 + 1;
+                p(canvas, (kg.d) arrayList.get(this.f11144n0));
+                i10 = this.f11144n0 + 1;
             } else {
                 j(canvas);
                 m(canvas);

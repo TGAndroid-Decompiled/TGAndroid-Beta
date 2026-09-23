@@ -2,19 +2,19 @@ package ii;
 
 import android.graphics.Rect;
 import android.text.Layout;
-import org.telegram.ui.Cells.ba;
-public final class c0 implements ba {
-    public final Layout f11277a;
-    public final Rect f11278b;
+import org.telegram.ui.Cells.ca;
+public final class c0 implements ca {
+    public final Layout f11260a;
+    public final Rect f11261b;
 
     public c0(Layout layout, Rect rect) {
-        this.f11277a = layout;
-        this.f11278b = rect;
+        this.f11260a = layout;
+        this.f11261b = rect;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f11277a;
+        return this.f11260a;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class c0 implements ba {
 
     @Override
     public final Rect getSelectionBounds() {
-        return this.f11278b;
+        return this.f11261b;
     }
 
     @Override

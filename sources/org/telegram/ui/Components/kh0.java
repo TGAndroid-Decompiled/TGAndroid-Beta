@@ -1,6 +1,10 @@
 package org.telegram.ui.Components;
-public final class kh0 {
-    public boolean f25604a;
-    public lh0 f25605b;
-    public ih0 f25606c;
+public interface kh0 {
+    void a();
+
+    void b(boolean z10);
+
+    void c();
+
+    void d();
 }

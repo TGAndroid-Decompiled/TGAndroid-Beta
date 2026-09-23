@@ -1,20 +1,22 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import java.util.ArrayList;
-public final class pi extends org.telegram.ui.Components.sv {
-    public final bo W;
+import org.telegram.tgnet.TLRPC;
+public final class pi extends org.telegram.ui.Components.ko {
+    public final xn M;
 
-    public pi(bo boVar, org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.e6 e6Var, ArrayList arrayList) {
-        super(n2Var, activity, e6Var, arrayList);
-        this.W = boVar;
+    public pi(xn xnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(activity, i10, document, d6Var);
+        this.M = xnVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        bo boVar = this.W;
-        boVar.getClass();
-        boVar.g8(false, true, 0.0f);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        float y3 = getY();
+        xn xnVar = this.M;
+        float y10 = xnVar.R0.getY() + y3;
+        this.J = xnVar.X0.getBackgroundSizeY();
+        this.I = y10;
     }
 }

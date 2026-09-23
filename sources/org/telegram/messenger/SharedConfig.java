@@ -230,8 +230,8 @@ public class SharedConfig {
             if (readString == null) {
                 readString = "";
             }
-            a2.f15238b = readString;
-            a2.f15239c = inputSerializedData.readInt32(false);
+            a2.f15215b = readString;
+            a2.f15216c = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -246,7 +246,7 @@ public class SharedConfig {
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f15240f = str;
+            a2.f15217f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j3 = inputSerializedData.readInt64(false);
@@ -260,12 +260,12 @@ public class SharedConfig {
                 if (e == 0) {
                     e = 1;
                 }
-                a2.f15237a = e;
+                a2.f15214a = e;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f15237a = i11;
+                a2.f15214a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.a());
             proxyInfo.availableCheckTime = j10;
@@ -278,14 +278,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f15244b);
-            outputSerializedData.writeInt32(this.settings.f15245c);
+            outputSerializedData.writeString(this.settings.f15221b);
+            outputSerializedData.writeInt32(this.settings.f15222c);
             outputSerializedData.writeString(this.settings.d);
             outputSerializedData.writeString(this.settings.e);
-            outputSerializedData.writeString(this.settings.f15246f);
+            outputSerializedData.writeString(this.settings.f15223f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f15243a);
+            int c10 = m1.j.c(this.settings.f15220a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -490,12 +490,12 @@ public class SharedConfig {
     }
 
     public static void checkSaveToGalleryFiles() {
-        Utilities.globalQueue.postRunnable(new v1(23));
+        Utilities.globalQueue.postRunnable(new w1(23));
     }
 
     public static void checkSdCard(File file) {
         if (file != null && storageCacheDir != null && !readOnlyStorageDirAlertShowed && file.getPath().startsWith(storageCacheDir)) {
-            AndroidUtilities.runOnUIThread(new v1(22));
+            AndroidUtilities.runOnUIThread(new w1(22));
         }
     }
 
@@ -908,13 +908,13 @@ public class SharedConfig {
         if (!readOnlyStorageDirAlertShowed && (R = LaunchActivity.R()) != null && R.getParentActivity() != null) {
             storageCacheDir = null;
             saveConfig();
-            ImageLoader.getInstance().checkMediaPaths(new v1(21));
+            ImageLoader.getInstance().checkMediaPaths(new w1(21));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f18435a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f18409a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f18409a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
             b2Var.setCanceledOnTouchOutside(false);
             b2Var.show();
         }
@@ -1210,7 +1210,7 @@ public class SharedConfig {
 
     public static void saveProxyList() {
         ArrayList arrayList = new ArrayList(proxyList);
-        Collections.sort(arrayList, new bi(3));
+        Collections.sort(arrayList, new ai(3));
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(-1);
         serializedData.writeByte(3);

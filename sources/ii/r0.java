@@ -3,20 +3,20 @@ package ii;
 import android.text.Editable;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.q9;
+import org.telegram.ui.Cells.r9;
 public final class r0 implements h1 {
-    public final u0 f11595a;
+    public final u0 f11577a;
 
     public r0(u0 u0Var) {
-        this.f11595a = u0Var;
+        this.f11577a = u0Var;
     }
 
     @Override
     public final void D(i1 i1Var, int i10, int i11) {
-        d3 d3Var;
-        q9 textSelectionHelper;
-        u0 u0Var = this.f11595a;
-        if (!u0Var.f11652n && i10 != i11 && (d3Var = u0Var.h) != null && (textSelectionHelper = d3Var.f11332a.getTextSelectionHelper()) != null) {
+        e3 e3Var;
+        r9 textSelectionHelper;
+        u0 u0Var = this.f11577a;
+        if (!u0Var.f11648n && i10 != i11 && (e3Var = u0Var.h) != null && (textSelectionHelper = e3Var.f11342a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.y() || textSelectionHelper.W != u0Var) {
                 u0Var.post(new ei.x4(this, i1Var, i11, textSelectionHelper, i10, 2));
             }
@@ -25,34 +25,34 @@ public final class r0 implements h1 {
 
     @Override
     public final void M(CharSequence charSequence) {
-        d3 d3Var = this.f11595a.h;
-        if (d3Var != null && charSequence != null && charSequence.length() > 0) {
-            d3Var.f11332a.t4(charSequence.toString());
+        e3 e3Var = this.f11577a.h;
+        if (e3Var != null && charSequence != null && charSequence.length() > 0) {
+            e3Var.f11342a.t4(charSequence.toString());
         }
     }
 
     @Override
     public final void W(Editable editable) {
-        u0 u0Var = this.f11595a;
-        a aVar = u0Var.f11651f;
+        u0 u0Var = this.f11577a;
+        a aVar = u0Var.f11647f;
         if (aVar != null) {
-            aVar.f11217s = true;
-            aVar.f11216r = u0Var.d.E;
+            aVar.f11205s = true;
+            aVar.f11204r = u0Var.d.E;
         }
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f11203b;
+            TL_iv.PageBlock pageBlock = aVar.f11191b;
             if (pageBlock instanceof TL_iv.pageBlockDetails) {
-                ((TL_iv.pageBlockDetails) pageBlock).title = f6.f(editable);
+                ((TL_iv.pageBlockDetails) pageBlock).title = g6.f(editable);
             }
         }
-        d3 d3Var = u0Var.h;
-        if (d3Var != null && u0Var.f11651f != null) {
-            w3 w3Var = d3Var.f11332a;
-            h2 h2Var = w3Var.J3;
-            if (h2Var != null) {
-                h2Var.g();
+        e3 e3Var = u0Var.h;
+        if (e3Var != null && u0Var.f11647f != null) {
+            x3 x3Var = e3Var.f11342a;
+            i2 i2Var = x3Var.J3;
+            if (i2Var != null) {
+                i2Var.g();
             }
-            w3Var.f11713h3.onContentChanged();
+            x3Var.f11728h3.onContentChanged();
         }
     }
 
@@ -63,20 +63,20 @@ public final class r0 implements h1 {
 
     @Override
     public final void c(i1 i1Var) {
-        d3 d3Var = this.f11595a.h;
-        if (d3Var != null) {
-            w3 w3Var = d3Var.f11332a;
-            w3.M1(w3Var, i1Var);
-            w3Var.f11713h3.t(i1Var, true);
+        e3 e3Var = this.f11577a.h;
+        if (e3Var != null) {
+            x3 x3Var = e3Var.f11342a;
+            x3.M1(x3Var, i1Var);
+            x3Var.f11728h3.t(i1Var, true);
         }
     }
 
     @Override
     public final boolean f() {
-        u0 u0Var = this.f11595a;
-        d3 d3Var = u0Var.h;
-        if (d3Var != null && u0Var.f11651f != null) {
-            return d3Var.f11332a.S4();
+        u0 u0Var = this.f11577a;
+        e3 e3Var = u0Var.h;
+        if (e3Var != null && u0Var.f11647f != null) {
+            return e3Var.f11342a.S4();
         }
         return false;
     }
@@ -84,20 +84,20 @@ public final class r0 implements h1 {
     @Override
     public final void m(i1 i1Var) {
         a aVar;
-        w3 w3Var;
+        x3 x3Var;
         ArrayList arrayList;
         int indexOf;
-        u0 u0Var = this.f11595a;
-        d3 d3Var = u0Var.h;
-        if (d3Var != null && (aVar = u0Var.f11651f) != null && (indexOf = (arrayList = (w3Var = d3Var.f11332a).f11720l3).indexOf(aVar)) >= 0) {
-            TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f11203b;
+        u0 u0Var = this.f11577a;
+        e3 e3Var = u0Var.h;
+        if (e3Var != null && (aVar = u0Var.f11647f) != null && (indexOf = (arrayList = (x3Var = e3Var.f11342a).f11735l3).indexOf(aVar)) >= 0) {
+            TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f11191b;
             if (!pageblockdetails.open) {
                 pageblockdetails.open = true;
-                w3Var.Y2.N(true);
+                x3Var.Y2.N(true);
             }
             int i10 = indexOf + 1;
-            if (i10 < arrayList.size() && !((a) arrayList.get(i10)).f11207i && !w3.x3((a) arrayList.get(i10))) {
-                w3Var.post(new o2(w3Var, (a) arrayList.get(i10), 24));
+            if (i10 < arrayList.size() && !((a) arrayList.get(i10)).f11195i && !x3.x3((a) arrayList.get(i10))) {
+                x3Var.post(new p2(x3Var, (a) arrayList.get(i10), 24));
             }
         }
     }
@@ -109,9 +109,9 @@ public final class r0 implements h1 {
 
     @Override
     public final boolean t(i1 i1Var) {
-        u0 u0Var = this.f11595a;
-        if (u0Var.h != null && u0Var.f11651f != null && i1Var.length() == 0) {
-            u0Var.h.a(u0Var.f11651f);
+        u0 u0Var = this.f11577a;
+        if (u0Var.h != null && u0Var.f11647f != null && i1Var.length() == 0) {
+            u0Var.h.a(u0Var.f11647f);
             return true;
         }
         return false;
@@ -120,10 +120,10 @@ public final class r0 implements h1 {
     @Override
     public final void x() {
         a aVar;
-        u0 u0Var = this.f11595a;
-        d3 d3Var = u0Var.h;
-        if (d3Var != null && (aVar = u0Var.f11651f) != null) {
-            d3Var.a(aVar);
+        u0 u0Var = this.f11577a;
+        e3 e3Var = u0Var.h;
+        if (e3Var != null && (aVar = u0Var.f11647f) != null) {
+            e3Var.a(aVar);
         }
     }
 

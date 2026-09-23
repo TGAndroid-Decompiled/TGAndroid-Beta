@@ -1,7 +1,7 @@
 package hg;
 
-import org.telegram.ui.Components.jo;
-public final class j extends jo {
+import org.telegram.ui.Components.ko;
+public final class j extends ko {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);

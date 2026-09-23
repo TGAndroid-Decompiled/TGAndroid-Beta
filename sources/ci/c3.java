@@ -1,9 +1,24 @@
 package ci;
 
-import org.telegram.ui.Components.t00;
-public final class c3 extends t00 {
+import android.animation.ValueAnimator;
+public final class c3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f4433a;
+    public final d3 f4434b;
+
+    public c3(d3 d3Var, int i10) {
+        this.f4433a = i10;
+        this.f4434b = d3Var;
+    }
+
     @Override
-    public final int getColumnsCount() {
-        return 3;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f4433a) {
+            case 0:
+                this.f4434b.h.invalidate();
+                return;
+            default:
+                this.f4434b.h.invalidate();
+                return;
+        }
     }
 }

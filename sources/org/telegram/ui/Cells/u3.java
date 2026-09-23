@@ -4,17 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
-public final class u3 extends org.telegram.ui.Components.n6 {
-    public final int f21410s;
+public final class u3 extends org.telegram.ui.Components.p6 {
+    public final int f21396s;
 
     public u3(Context context, boolean z10, boolean z11, boolean z12, int i10) {
         super(context, z10, z11, z12);
-        this.f21410s = i10;
+        this.f21396s = i10;
     }
 
     @Override
     public CharSequence getAccessibilityClassName() {
-        switch (this.f21410s) {
+        switch (this.f21396s) {
             case 0:
                 return Button.class.getName();
             case 1:
@@ -26,7 +26,7 @@ public final class u3 extends org.telegram.ui.Components.n6 {
 
     @Override
     public void invalidate() {
-        switch (this.f21410s) {
+        switch (this.f21396s) {
             case 4:
                 if (zg.f0.b(this)) {
                     return;
@@ -41,7 +41,7 @@ public final class u3 extends org.telegram.ui.Components.n6 {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f21410s) {
+        switch (this.f21396s) {
             case 2:
                 canvas.save();
                 canvas.translate(AndroidUtilities.dp(17.0f), 0.0f);
@@ -56,7 +56,7 @@ public final class u3 extends org.telegram.ui.Components.n6 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f21410s) {
+        switch (this.f21396s) {
             case 3:
                 super.onMeasure(i10, i11);
                 setPivotX(getMeasuredWidth());
@@ -69,7 +69,7 @@ public final class u3 extends org.telegram.ui.Components.n6 {
 
     @Override
     public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f21410s) {
+        switch (this.f21396s) {
             case 4:
                 if (zg.f0.b(this)) {
                     return;

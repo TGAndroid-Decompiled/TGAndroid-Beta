@@ -2,45 +2,41 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.View;
 public final class v5 extends Drawable {
-    public final RectF f19628a = new RectF();
-    public final View f19629b;
-    public final View f19630c;
+    public final RectF f19608a = new RectF();
+    public final int f19609b;
+    public final int f19610c;
     public final int d;
-    public final Paint e;
+    public final int e;
+    public final float f19611f;
 
-    public v5(View view, View view2, int i10, Paint paint) {
-        this.f19629b = view;
-        this.f19630c = view2;
-        this.d = i10;
-        this.e = paint;
+    public v5(int i10, int i11, int i12, int i13, float f7) {
+        this.f19609b = i10;
+        this.f19610c = i11;
+        this.d = i12;
+        this.e = i13;
+        this.f19611f = f7;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f19628a;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        i6.s(this.f19629b, this.f19630c, null);
-        float f7 = this.d;
-        Paint paint = this.e;
-        if (paint == null) {
-            paint = i6.S0("paintChatActionBackground");
-        }
-        canvas.drawRoundRect(rectF, f7, f7, paint);
-        if (i6.a1()) {
-            canvas.drawRoundRect(rectF, f7, f7, i6.S0("paintChatActionBackgroundDarken"));
-        }
+        RectF rectF = this.f19608a;
+        rectF.set(bounds);
+        rectF.left += this.f19609b;
+        rectF.top += this.f19610c;
+        rectF.right -= this.d;
+        rectF.bottom -= this.e;
+        float f7 = this.f19611f;
+        canvas.drawRoundRect(rectF, f7, f7, h6.f19182z);
     }
 
     @Override
     public final int getOpacity() {
-        return -2;
+        return 0;
     }
 
     @Override

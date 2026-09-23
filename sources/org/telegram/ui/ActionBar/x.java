@@ -16,10 +16,10 @@ public final class x implements View.OnClickListener {
         switch (this.f19664a) {
             case 0:
                 z zVar = (z) this.f19665b;
-                k kVar = zVar.f19732b;
+                k kVar = zVar.f19701b;
                 v0 v0Var = (v0) view;
                 if (v0Var.q()) {
-                    if (kVar.f19328u0.a()) {
+                    if (kVar.f19311u0.a()) {
                         v0Var.M(null, null);
                         return;
                     }

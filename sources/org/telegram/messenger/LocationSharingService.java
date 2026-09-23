@@ -46,7 +46,7 @@ public class LocationSharingService extends Service implements NotificationCente
 
     public void lambda$onCreate$1() {
         this.handler.postDelayed(this.runnable, 1000L);
-        Utilities.stageQueue.postRunnable(new v1(15));
+        Utilities.stageQueue.postRunnable(new w1(15));
     }
 
     private void updateNotification(boolean z10) {
@@ -134,10 +134,10 @@ public class LocationSharingService extends Service implements NotificationCente
                 tVar.E.when = System.currentTimeMillis();
                 e0.t tVar2 = this.builder;
                 tVar2.E.icon = R.drawable.live_loc;
-                tVar2.f7836g = activity;
+                tVar2.f7822g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
                 e0.t tVar3 = this.builder;
-                tVar3.f7852y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                tVar3.f7838y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
                 tVar3.g(LocaleController.getString(R.string.AppName));
                 this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }

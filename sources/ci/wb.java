@@ -1,112 +1,11 @@
 package ci;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.mp;
-import org.telegram.ui.e31;
-public final class wb extends View {
-    public final int f5715a;
-    public final boolean f5716b;
-    public final Canvas f5717c;
-    public final float d;
-    public final float e;
-    public final float f5718f;
-    public final Paint h;
-    public final Bitmap f5719n;
-    public final Paint f5720r;
-    public final float f5721s;
-    public final float v;
-    public final NotificationCenter.NotificationCenterDelegate f5722w;
+public final class wb extends m0 {
+    public final lc F;
 
-    public wb(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, boolean z10, Canvas canvas, float f7, float f10, float f11, Paint paint, Bitmap bitmap, Paint paint2, float f12, float f13, int i10) {
-        super(context);
-        this.f5715a = i10;
-        this.f5722w = notificationCenterDelegate;
-        this.f5716b = z10;
-        this.f5717c = canvas;
-        this.d = f7;
-        this.e = f10;
-        this.f5718f = f11;
-        this.h = paint;
-        this.f5719n = bitmap;
-        this.f5720r = paint2;
-        this.f5721s = f12;
-        this.v = f13;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f5715a) {
-            case 0:
-                oc ocVar = (oc) this.f5722w;
-                super.onDraw(canvas);
-                boolean z10 = this.f5716b;
-                Paint paint = this.f5720r;
-                float f7 = this.f5718f;
-                float f10 = this.e;
-                float f11 = this.d;
-                if (z10) {
-                    float f12 = ocVar.D2;
-                    if (f12 > 0.0f) {
-                        this.f5717c.drawCircle(f11, f10, f7 * f12, this.h);
-                    }
-                    canvas.drawBitmap(this.f5719n, 0.0f, 0.0f, paint);
-                } else {
-                    canvas.drawCircle(f11, f10, (1.0f - ocVar.D2) * f7, paint);
-                }
-                canvas.save();
-                canvas.translate(this.f5721s, this.v);
-                ocVar.f5229i1.draw(canvas);
-                canvas.restore();
-                return;
-            case 1:
-                mp mpVar = (mp) this.f5722w;
-                super.onDraw(canvas);
-                boolean z11 = this.f5716b;
-                Paint paint2 = this.f5720r;
-                float f13 = this.f5718f;
-                float f14 = this.e;
-                float f15 = this.d;
-                if (z11) {
-                    float f16 = mpVar.S;
-                    if (f16 > 0.0f) {
-                        this.f5717c.drawCircle(f15, f14, f13 * f16, this.h);
-                    }
-                    canvas.drawBitmap(this.f5719n, 0.0f, 0.0f, paint2);
-                } else {
-                    canvas.drawCircle(f15, f14, (1.0f - mpVar.S) * f13, paint2);
-                }
-                canvas.save();
-                canvas.translate(this.f5721s, this.v);
-                mpVar.G.draw(canvas);
-                canvas.restore();
-                return;
-            default:
-                e31 e31Var = (e31) this.f5722w;
-                super.onDraw(canvas);
-                boolean z12 = this.f5716b;
-                Paint paint3 = this.f5720r;
-                float f17 = this.f5718f;
-                float f18 = this.e;
-                float f19 = this.d;
-                if (z12) {
-                    float f20 = e31Var.P;
-                    if (f20 > 0.0f) {
-                        this.f5717c.drawCircle(f19, f18, f17 * f20, this.h);
-                    }
-                    canvas.drawBitmap(this.f5719n, 0.0f, 0.0f, paint3);
-                } else {
-                    canvas.drawCircle(f19, f18, (1.0f - e31Var.P) * f17, paint3);
-                }
-                canvas.save();
-                canvas.translate(this.f5721s, this.v);
-                e31Var.F.draw(canvas);
-                canvas.restore();
-                return;
-        }
+    public wb(lc lcVar, Context context, zb zbVar) {
+        super(context, zbVar);
+        this.F = lcVar;
     }
 }

@@ -1,51 +1,76 @@
 package org.telegram.ui;
 
-import android.util.LongSparseArray;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class dj1 extends org.telegram.ui.ActionBar.j {
-    public final WallpapersListActivity f33039a;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
+import java.util.Arrays;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+public abstract class dj1 {
+    public static final BigInteger f32674a = new BigInteger("FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB9ED529077096966D670C354E4ABC9804F1746C08CA18217C32905E462E36CE3BE39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9DE2BCBF6955817183995497CEA956AE515D2261898FA051015728E5A8AACAA68FFFFFFFFFFFFFFFF", 16);
+    public static final BigInteger f32675b = BigInteger.valueOf(2);
+    public static org.telegram.ui.ActionBar.f3 f32676c;
+    public static cf.c d;
 
-    public dj1(WallpapersListActivity wallpapersListActivity) {
-        this.f33039a = wallpapersListActivity;
+    public static byte[] a(BigInteger bigInteger) {
+        byte[] byteArray = bigInteger.toByteArray();
+        if (byteArray.length == 256) {
+            return byteArray;
+        }
+        if (byteArray.length == 257 && byteArray[0] == 0) {
+            return Arrays.copyOfRange(byteArray, 1, byteArray.length);
+        }
+        if (byteArray.length < 256) {
+            byte[] bArr = new byte[256];
+            System.arraycopy(byteArray, 0, bArr, 256 - byteArray.length, byteArray.length);
+            return bArr;
+        }
+        throw new IllegalStateException("unexpected DH value size " + byteArray.length);
     }
 
-    @Override
-    public final void b(int i10) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        WallpapersListActivity wallpapersListActivity = this.f33039a;
-        LongSparseArray longSparseArray = wallpapersListActivity.f31631i0;
-        if (i10 == -1) {
-            kVar = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).actionBar;
-            if (kVar.s()) {
-                longSparseArray.clear();
-                kVar2 = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).actionBar;
-                kVar2.r();
-                wallpapersListActivity.D0();
-                return;
+    public static byte[] b(byte[][] bArr) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            for (byte[] bArr2 : bArr) {
+                messageDigest.update(bArr2);
             }
-            wallpapersListActivity.finishFragment();
-        } else if (i10 == 4) {
-            if (wallpapersListActivity.getParentActivity() != null) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wallpapersListActivity.getParentActivity());
-                alertDialog$Builder.f18435a.R = LocaleController.formatPluralString("DeleteBackground", longSparseArray.size(), new Object[0]);
-                alertDialog$Builder.f18435a.T = LocaleController.formatString("DeleteChatBackgroundsAlert", R.string.DeleteChatBackgroundsAlert, new Object[0]);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new bj1(this));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
-                wallpapersListActivity.showDialog(b2Var);
-                TextView textView = (TextView) b2Var.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19071q7, false));
-                }
-            }
-        } else if (i10 == 3) {
-            uy uyVar = new uy(org.telegram.messenger.y0.e(3, "onlySelect", "dialogsType", true));
-            uyVar.C2 = new bj1(this);
-            wallpapersListActivity.presentFragment(uyVar);
+            return messageDigest.digest();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    public static byte[] c(cf.c cVar, String str, int i10, boolean z10) {
+        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
+        ByteBuffer allocate = ByteBuffer.allocate(bytes.length + 9);
+        allocate.order(ByteOrder.BIG_ENDIAN);
+        allocate.putInt(bytes.length);
+        allocate.put(bytes);
+        allocate.putInt(i10);
+        allocate.put(z10 ? (byte) 1 : (byte) 0);
+        byte[] array = allocate.array();
+        byte[] bArr = new byte[12];
+        new SecureRandom().nextBytes(bArr);
+        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        cipher.init(1, new SecretKeySpec((byte[]) cVar.e, "AES"), new GCMParameterSpec(128, bArr));
+        byte[] doFinal = cipher.doFinal(array);
+        byte[] bArr2 = new byte[doFinal.length + 28];
+        System.arraycopy((byte[]) cVar.f4253b, 0, bArr2, 0, 16);
+        System.arraycopy(bArr, 0, bArr2, 16, 12);
+        System.arraycopy(doFinal, 0, bArr2, 28, doFinal.length);
+        return bArr2;
+    }
+
+    public static String d(byte[] bArr) {
+        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
+        int length = bArr.length;
+        for (int i10 = 0; i10 < length; i10++) {
+            sb2.append(String.format("%02x", Byte.valueOf(bArr[i10])));
+        }
+        return sb2.toString();
     }
 }

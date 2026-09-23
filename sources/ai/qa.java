@@ -3,52 +3,52 @@ package ai;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class qa implements o1.g {
-    public final int f1439a;
-    public final FrameLayout f1440b;
+    public final int f1440a;
+    public final FrameLayout f1441b;
 
     public qa(int i10, FrameLayout frameLayout) {
-        this.f1439a = i10;
-        this.f1440b = frameLayout;
+        this.f1440a = i10;
+        this.f1441b = frameLayout;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f1439a) {
+        switch (this.f1440a) {
             case 0:
-                xa xaVar = (xa) this.f1440b;
-                xaVar.f1716d0 = f7;
-                xaVar.f1718f0 = f10;
+                xa xaVar = (xa) this.f1441b;
+                xaVar.f1714d0 = f7;
+                xaVar.f1716f0 = f10;
                 return;
             case 1:
-                ci.r6 r6Var = (ci.r6) this.f1440b;
+                ci.q6 q6Var = (ci.q6) this.f1441b;
                 float f11 = f7 / 1000.0f;
-                r6Var.f5442t1 = f11;
-                qg.w1 w1Var = r6Var.f5428m1;
+                q6Var.f5367t1 = f11;
+                qg.w1 w1Var = q6Var.f5353m1;
                 w1Var.setAlpha(f11);
                 w1Var.invalidate();
-                r6Var.U0.invalidate();
-                r6Var.l1.getTypefaceCell().setAlpha(1.0f - r6Var.f5442t1);
+                q6Var.U0.invalidate();
+                q6Var.l1.getTypefaceCell().setAlpha(1.0f - q6Var.f5367t1);
                 return;
             case 2:
-                mg.i iVar = (mg.i) this.f1440b;
+                mg.i iVar = (mg.i) this.f1441b;
                 float f12 = f7 / 1000.0f;
-                ci.n6 n6Var = iVar.f14822a;
-                n6Var.setPivotX(AndroidUtilities.dp(28.0f));
-                n6Var.setPivotY(AndroidUtilities.dp(28.0f));
-                n6Var.setScaleX(f12);
-                n6Var.setScaleY(f12);
-                n6Var.setAlpha(w7.p.a(f12, 0.0f, 1.0f));
+                ci.m6 m6Var = iVar.f14799a;
+                m6Var.setPivotX(AndroidUtilities.dp(28.0f));
+                m6Var.setPivotY(AndroidUtilities.dp(28.0f));
+                m6Var.setScaleX(f12);
+                m6Var.setScaleY(f12);
+                m6Var.setAlpha(w7.p.a(f12, 0.0f, 1.0f));
                 iVar.invalidate();
                 return;
             default:
-                qg.p0 p0Var = (qg.p0) this.f1440b;
+                qg.p0 p0Var = (qg.p0) this.f1441b;
                 float f13 = f7 / 1000.0f;
                 p0Var.D1 = f13;
-                qg.w1 w1Var2 = p0Var.f41544v1;
+                qg.w1 w1Var2 = p0Var.f41500v1;
                 w1Var2.setAlpha(f13);
                 w1Var2.invalidate();
-                p0Var.f41516d1.invalidate();
-                p0Var.f41543u1.getTypefaceCell().setAlpha(1.0f - p0Var.D1);
+                p0Var.f41472d1.invalidate();
+                p0Var.f41499u1.getTypefaceCell().setAlpha(1.0f - p0Var.D1);
                 return;
         }
     }

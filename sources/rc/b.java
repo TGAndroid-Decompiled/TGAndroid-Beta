@@ -2,25 +2,25 @@ package rc;
 
 import java.util.ArrayList;
 public final class b {
-    public int f42199a;
-    public int f42200b;
-    public int f42201c;
+    public int f42154a;
+    public int f42155b;
+    public int f42156c;
     public int d;
     public int e;
-    public ArrayList f42202f;
-    public ArrayList f42203g;
+    public ArrayList f42157f;
+    public ArrayList f42158g;
     public boolean h;
-    public int f42204i;
-    public int f42205j;
-    public int f42206k;
-    public ArrayList f42207l;
-    public int f42208m;
-    public int f42209n;
-    public int f42210o;
-    public int f42211p;
-    public int f42212q;
+    public int f42159i;
+    public int f42160j;
+    public int f42161k;
+    public ArrayList f42162l;
+    public int f42163m;
+    public int f42164n;
+    public int f42165o;
+    public int f42166p;
+    public int f42167q;
 
     public final String toString() {
-        return "AvcDecoderConfigurationRecord{configurationVersion=" + this.f42199a + ", avcProfileIndication=" + this.f42200b + ", profileCompatibility=" + this.f42201c + ", avcLevelIndication=" + this.d + ", lengthSizeMinusOne=" + this.e + ", hasExts=" + this.h + ", chromaFormat=" + this.f42204i + ", bitDepthLumaMinus8=" + this.f42205j + ", bitDepthChromaMinus8=" + this.f42206k + ", lengthSizeMinusOnePaddingBits=" + this.f42208m + ", numberOfSequenceParameterSetsPaddingBits=" + this.f42209n + ", chromaFormatPaddingBits=" + this.f42210o + ", bitDepthLumaMinus8PaddingBits=" + this.f42211p + ", bitDepthChromaMinus8PaddingBits=" + this.f42212q + '}';
+        return "AvcDecoderConfigurationRecord{configurationVersion=" + this.f42154a + ", avcProfileIndication=" + this.f42155b + ", profileCompatibility=" + this.f42156c + ", avcLevelIndication=" + this.d + ", lengthSizeMinusOne=" + this.e + ", hasExts=" + this.h + ", chromaFormat=" + this.f42159i + ", bitDepthLumaMinus8=" + this.f42160j + ", bitDepthChromaMinus8=" + this.f42161k + ", lengthSizeMinusOnePaddingBits=" + this.f42163m + ", numberOfSequenceParameterSetsPaddingBits=" + this.f42164n + ", chromaFormatPaddingBits=" + this.f42165o + ", bitDepthLumaMinus8PaddingBits=" + this.f42166p + ", bitDepthChromaMinus8PaddingBits=" + this.f42167q + '}';
     }
 }

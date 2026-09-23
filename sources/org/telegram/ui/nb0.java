@@ -1,63 +1,23 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-public final class nb0 implements org.telegram.ui.Components.b5, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.sv0 {
-    public final int f35946a;
-    public final xb0 f35947b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class nb0 extends xd {
+    public final sb0 f35491c;
 
-    public nb0(xb0 xb0Var, int i10) {
-        this.f35946a = i10;
-        this.f35947b = xb0Var;
+    public nb0(sb0 sb0Var, Context context) {
+        super(context);
+        this.f35491c = sb0Var;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z10) {
-        this.f35947b.V(i10);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.f35491c.getClass();
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        xb0 xb0Var = this.f35947b;
-        xb0Var.T.a(xb0Var.e);
-        xb0Var.finishFragment();
-    }
-
-    @Override
-    public void g(int i10) {
-        switch (this.f35946a) {
-            case 2:
-                xb0 xb0Var = this.f35947b;
-                ArrayList arrayList = xb0Var.P;
-                if (i10 < arrayList.size()) {
-                    xb0Var.f39583w.setText(LocaleController.formatDateAudio(xb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
-                    return;
-                }
-                xb0Var.f39583w.setText("");
-                return;
-            default:
-                xb0 xb0Var2 = this.f35947b;
-                xb0Var2.F.clearFocus();
-                xb0Var2.O = true;
-                ArrayList arrayList2 = xb0Var2.R;
-                if (i10 < arrayList2.size()) {
-                    xb0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
-                } else {
-                    xb0Var2.F.setText("");
-                }
-                xb0Var2.O = false;
-                return;
-        }
-    }
-
-    @Override
-    public void l() {
-        int i10 = this.f35946a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
     }
 }

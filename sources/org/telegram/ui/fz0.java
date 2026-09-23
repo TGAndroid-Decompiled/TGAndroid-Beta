@@ -1,78 +1,75 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class fz0 implements org.telegram.ui.ActionBar.s0, lv0, org.telegram.ui.Components.l8 {
-    public final ProfileActivity f33736a;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class fz0 extends s4.s0 {
+    public final int f33399a;
+    public final ProfileActivity f33400b;
 
-    public fz0(ProfileActivity profileActivity) {
-        this.f33736a = profileActivity;
+    public fz0(ProfileActivity profileActivity, int i10) {
+        this.f33399a = i10;
+        this.f33400b = profileActivity;
     }
 
     @Override
-    public void E0(MessageObject messageObject) {
-        ProfileActivity profileActivity = this.f33736a;
-        profileActivity.f31235a.I0(true);
-        m01 m01Var = profileActivity.O;
-        if (m01Var != null && m01Var.getCurrentListView() != null) {
-            profileActivity.O.getCurrentListView().I0(true);
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        switch (this.f33399a) {
+            case 0:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f33400b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            default:
+                ProfileActivity profileActivity = this.f33400b;
+                boolean z11 = true;
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
+                }
+                if (profileActivity.F0 && i10 != 2) {
+                    profileActivity.F0 = false;
+                }
+                org.telegram.ui.ActionBar.v0 v0Var = profileActivity.U0;
+                if (v0Var != null) {
+                    if (i10 != 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    profileActivity.f31384z1 = z10;
+                    v0Var.setEnabled((z10 || profileActivity.f31316p2) ? false : false);
+                }
+                e01 e01Var = profileActivity.O;
+                boolean z12 = profileActivity.f31209a.K1;
+                e01Var.getClass();
+                return;
         }
-        profileActivity.f31259d1.setBackgroundColor(i0.a.d(0.1f, profileActivity.P3(profileActivity.V4.f36689f), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18778a7, profileActivity.f31409z0)));
     }
 
     @Override
-    public void H(MessageObject messageObject) {
-        org.telegram.ui.Components.fh0 fh0Var = this.f33736a.m0;
-        if (fh0Var != null && fh0Var.f23936a) {
-            fh0Var.O.d(0.0f, true);
-            fh0Var.invalidate();
+    public void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f33399a) {
+            case 1:
+                ProfileActivity profileActivity = this.f33400b;
+                org.telegram.ui.Components.j40 j40Var = profileActivity.X;
+                boolean z10 = true;
+                if (j40Var != null) {
+                    j40Var.b(true);
+                }
+                profileActivity.A3();
+                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f31224c.N0() > profileActivity.f31360v4 - 8) {
+                    profileActivity.R3(false);
+                }
+                e01 e01Var = profileActivity.O;
+                if (e01Var.getY() > 0.0f) {
+                    z10 = false;
+                }
+                e01Var.setPinnedToTop(z10);
+                profileActivity.U4();
+                return;
+            default:
+                return;
         }
-    }
-
-    @Override
-    public void U0(int i10, int i11) {
-        int i12;
-        ProfileActivity profileActivity = this.f33736a;
-        long a2 = profileActivity.a();
-        profileActivity.getMessagesController().setDialogHistoryTTL(a2, i10);
-        if (profileActivity.f31384v2 == null && profileActivity.f31377u2 == null) {
-            return;
-        }
-        UndoView undoView = profileActivity.M;
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(a2));
-        TLRPC.UserFull userFull = profileActivity.f31384v2;
-        if (userFull != null) {
-            i12 = userFull.ttl_period;
-        } else {
-            i12 = profileActivity.f31377u2.ttl_period;
-        }
-        undoView.k(a2, i11, user, Integer.valueOf(i12), null, null);
-    }
-
-    @Override
-    public void dismiss() {
-        this.f33736a.T0.M(null, null);
-    }
-
-    @Override
-    public void e() {
-        org.telegram.ui.Components.am0.d(new b5(this.f33736a, 18));
-    }
-
-    @Override
-    public TextureView j0() {
-        return null;
-    }
-
-    @Override
-    public void j1() {
-        this.f33736a.presentFragment(new p4());
-        dismiss();
-    }
-
-    @Override
-    public void c() {
     }
 }

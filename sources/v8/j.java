@@ -7,39 +7,39 @@ import java.util.ArrayList;
 import w7.e0;
 public final class j extends o6.a {
     public static final Parcelable.Creator<j> CREATOR = new p7.j(29);
-    public boolean f44234a;
-    public boolean f44235b;
-    public c f44236c;
+    public boolean f44188a;
+    public boolean f44189b;
+    public c f44190c;
     public boolean d;
     public m e;
-    public ArrayList f44237f;
+    public ArrayList f44191f;
     public l h;
-    public n f44238n;
-    public boolean f44239r;
-    public String f44240s;
+    public n f44192n;
+    public boolean f44193r;
+    public String f44194s;
     public Bundle v;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        boolean z10 = this.f44234a;
+        boolean z10 = this.f44188a;
         e0.s(parcel, 1, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        boolean z11 = this.f44235b;
+        boolean z11 = this.f44189b;
         e0.s(parcel, 2, 4);
         parcel.writeInt(z11 ? 1 : 0);
-        e0.k(parcel, 3, this.f44236c, i10);
+        e0.k(parcel, 3, this.f44190c, i10);
         boolean z12 = this.d;
         e0.s(parcel, 4, 4);
         parcel.writeInt(z12 ? 1 : 0);
         e0.k(parcel, 5, this.e, i10);
-        e0.h(parcel, 6, this.f44237f);
+        e0.h(parcel, 6, this.f44191f);
         e0.k(parcel, 7, this.h, i10);
-        e0.k(parcel, 8, this.f44238n, i10);
-        boolean z13 = this.f44239r;
+        e0.k(parcel, 8, this.f44192n, i10);
+        boolean z13 = this.f44193r;
         e0.s(parcel, 9, 4);
         parcel.writeInt(z13 ? 1 : 0);
-        e0.l(parcel, 10, this.f44240s);
+        e0.l(parcel, 10, this.f44194s);
         e0.b(parcel, 11, this.v);
         e0.r(parcel, q6);
     }

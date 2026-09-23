@@ -1,16 +1,25 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class gv0 {
-    public final int f33955a;
-    public final ArrayList f33956b;
-    public final bv0 f33957c;
-    public final PhotoViewer d;
-
-    public gv0(PhotoViewer photoViewer, int i10, ArrayList arrayList, bv0 bv0Var) {
-        this.d = photoViewer;
-        this.f33956b = arrayList;
-        this.f33955a = i10;
-        this.f33957c = bv0Var;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+public final class gv0 extends ViewOutlineProvider {
+    @Override
+    public final void getOutline(View view, Outline outline) {
+        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
+        if (imageReceiver != null) {
+            int[] roundRadius = imageReceiver.getRoundRadius(true);
+            int i10 = 0;
+            for (int i11 = 0; i11 < 4; i11++) {
+                i10 = Math.max(i10, roundRadius[i11]);
+            }
+            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
+            return;
+        }
+        int i12 = AndroidUtilities.roundMessageSize;
+        outline.setOval(0, 0, i12, i12);
     }
 }

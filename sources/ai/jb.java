@@ -4,15 +4,15 @@ import android.graphics.Paint;
 import android.text.style.LineHeightSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class jb implements LineHeightSpan {
-    public final int f1060a;
+    public final int f1054a;
 
     public jb(int i10) {
-        this.f1060a = i10;
+        this.f1054a = i10;
     }
 
     @Override
     public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f1060a) {
+        switch (this.f1054a) {
             case 0:
                 fontMetricsInt.ascent -= AndroidUtilities.dp(2.0f);
                 fontMetricsInt.top -= AndroidUtilities.dp(2.0f);

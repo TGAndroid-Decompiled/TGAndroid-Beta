@@ -12,35 +12,35 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.eg1;
-import org.telegram.ui.of1;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.gf1;
+import org.telegram.ui.wf1;
 public final class s3 implements Utilities.Callback {
-    public final int f8605a = 0;
-    public final int f8606b;
-    public final long f8607c;
+    public final int f8591a = 0;
+    public final int f8592b;
+    public final long f8593c;
     public final Object d;
     public final Object e;
-    public final Object f8608f;
-    public final Object f8609g;
+    public final Object f8594f;
+    public final Object f8595g;
 
-    public s3(int i10, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.f3 f3Var, e6 e6Var) {
-        this.f8606b = i10;
+    public s3(int i10, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.f3 f3Var, d6 d6Var) {
+        this.f8592b = i10;
         this.d = connectedbotstarref;
         this.e = f3Var;
-        this.f8608f = context;
-        this.f8607c = j3;
-        this.f8609g = e6Var;
+        this.f8594f = context;
+        this.f8593c = j3;
+        this.f8595g = d6Var;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
         SpannableStringBuilder replaceTags;
-        int i11 = this.f8605a;
-        Object obj2 = this.f8609g;
-        Object obj3 = this.f8608f;
+        int i11 = this.f8591a;
+        Object obj2 = this.f8595g;
+        Object obj3 = this.f8594f;
         Object obj4 = this.e;
         Object obj5 = this.d;
         switch (i11) {
@@ -48,38 +48,38 @@ public final class s3 implements Utilities.Callback {
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj5;
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj4;
                 Context context = (Context) obj3;
-                e6 e6Var = (e6) obj2;
+                d6 d6Var = (d6) obj2;
                 TL_payments.connectedBotStarRef connectedbotstarref2 = (TL_payments.connectedBotStarRef) obj;
-                int i12 = this.f8606b;
-                long j3 = this.f8607c;
+                int i12 = this.f8592b;
+                long j3 = this.f8593c;
                 if (connectedbotstarref2 == null) {
                     TLRPC.User user = MessagesController.getInstance(i12).getUser(Long.valueOf(connectedbotstarref.bot_id));
                     if (user != null) {
-                        MessagesController.getInstance(i12).loadFullUser(user, 0, true, new q3(f3Var, context, i12, j3, e6Var, 1));
+                        MessagesController.getInstance(i12).loadFullUser(user, 0, true, new q3(f3Var, context, i12, j3, d6Var, 1));
                         return;
                     }
                     return;
                 }
                 f3Var.dismiss();
-                e4.H0(context, i12, connectedbotstarref2, j3, e6Var);
+                e4.H0(context, i12, connectedbotstarref2, j3, d6Var);
                 return;
             default:
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                eg1 eg1Var = ((of1) obj5).f36215b;
+                wf1 wf1Var = ((gf1) obj5).f33557b;
                 if (tL_messages_invitedUsers2 != null) {
                     tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
                 int i13 = iArr[0] + 1;
                 iArr[0] = i13;
-                if (i13 == this.f8606b) {
+                if (i13 == this.f8592b) {
                     boolean isEmpty = tL_messages_invitedUsers.missing_invitees.isEmpty();
-                    long j10 = this.f8607c;
+                    long j10 = this.f8593c;
                     if (isEmpty) {
-                        vc a02 = vc.a0(eg1Var);
-                        TLRPC.Chat chat = eg1Var.getMessagesController().getChat(Long.valueOf(j10));
+                        xc a02 = xc.a0(wf1Var);
+                        TLRPC.Chat chat = wf1Var.getMessagesController().getChat(Long.valueOf(j10));
                         a02.getClass();
                         if (arrayList.size() == 0) {
                             replaceTags = null;
@@ -97,21 +97,21 @@ public final class s3 implements Utilities.Callback {
                         a02.V(arrayList, replaceTags, null, null).j();
                         return;
                     }
-                    TLRPC.Chat chat2 = eg1Var.getMessagesController().getChat(Long.valueOf(j10));
-                    i10 = ((org.telegram.ui.ActionBar.n2) eg1Var).currentAccount;
-                    org.telegram.ui.Components.c5.f(i10, chat2, tL_messages_invitedUsers);
+                    TLRPC.Chat chat2 = wf1Var.getMessagesController().getChat(Long.valueOf(j10));
+                    i10 = ((org.telegram.ui.ActionBar.n2) wf1Var).currentAccount;
+                    org.telegram.ui.Components.e5.f(i10, chat2, tL_messages_invitedUsers);
                     return;
                 }
                 return;
         }
     }
 
-    public s3(of1 of1Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, ArrayList arrayList, long j3) {
-        this.d = of1Var;
+    public s3(gf1 gf1Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, ArrayList arrayList, long j3) {
+        this.d = gf1Var;
         this.e = tL_messages_invitedUsers;
-        this.f8608f = iArr;
-        this.f8606b = i10;
-        this.f8609g = arrayList;
-        this.f8607c = j3;
+        this.f8594f = iArr;
+        this.f8592b = i10;
+        this.f8595g = arrayList;
+        this.f8593c = j3;
     }
 }

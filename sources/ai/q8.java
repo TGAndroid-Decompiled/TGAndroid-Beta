@@ -1,23 +1,37 @@
 package ai;
+public final class q8 implements Runnable {
+    public final int f1430a;
+    public final long f1431b;
+    public final Object f1432c;
+    public final Object d;
+    public final Object e;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ta0;
-public final class q8 implements RequestDelegate {
-    public final long f1429a;
-    public final ta0 f1430b;
-    public final l9 f1431c;
-
-    public q8(l9 l9Var, long j3, ta0 ta0Var) {
-        this.f1431c = l9Var;
-        this.f1429a = j3;
-        this.f1430b = ta0Var;
+    public q8(Object obj, long j3, Object obj2, Object obj3, int i10) {
+        this.f1430a = i10;
+        this.f1432c = obj;
+        this.f1431b = j3;
+        this.d = obj2;
+        this.e = obj3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new p8(this, tLObject, this.f1429a, this.f1430b, 1));
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ai.q8.run():void");
+    }
+
+    public q8(Object obj, Object obj2, long j3, Object obj3, int i10) {
+        this.f1430a = i10;
+        this.f1432c = obj;
+        this.d = obj2;
+        this.f1431b = j3;
+        this.e = obj3;
+    }
+
+    public q8(Object obj, Object obj2, Object obj3, long j3, int i10) {
+        this.f1430a = i10;
+        this.f1432c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f1431b = j3;
     }
 }

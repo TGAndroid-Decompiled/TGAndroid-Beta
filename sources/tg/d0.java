@@ -1,10 +1,10 @@
 package tg;
 
 import ai.e4;
-import ai.t5;
+import ai.s5;
 import android.content.Intent;
 import android.net.Uri;
-import ci.d9;
+import ci.a9;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -14,17 +14,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d3;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.pv0;
-import org.telegram.ui.Components.za;
+import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
-public final class d0 extends za {
+public final class d0 extends bb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public c0 Z;
-    public final String f43119a0;
+    public final String f43074a0;
 
     public d0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(n2Var, true);
@@ -36,7 +36,7 @@ public final class d0 extends za {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f43119a0 = str;
+        this.f43074a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -46,9 +46,9 @@ public final class d0 extends za {
         c0Var.getClass();
         c0Var.d = tL_payments_checkedGiftCode.used_date == 0;
         c0Var.e = n2Var;
-        c0Var.f43717f = tL_payments_checkedGiftCode;
+        c0Var.f43669f = tL_payments_checkedGiftCode;
         c0Var.h = str;
-        c0Var.f43718n = d3Var;
+        c0Var.f43670n = d3Var;
     }
 
     public static boolean S(Intent intent, nf.e eVar) {
@@ -89,24 +89,24 @@ public final class d0 extends za {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (eVar != null) {
             eVar.d();
-            eVar.f15208b = new f(atomicBoolean, 1);
+            eVar.f15185b = new f(atomicBoolean, 1);
         }
-        e4 e4Var = new e4(atomicBoolean, n2Var, str, eVar, 15);
+        e4 e4Var = new e4(atomicBoolean, n2Var, str, eVar, 16);
         h hVar = new h(atomicBoolean, eVar, 1);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
-        connectionsManager.sendRequest(tL_payments_checkGiftCode, new t5(messagesController, e4Var, hVar, 19));
+        connectionsManager.sendRequest(tL_payments_checkGiftCode, new s5(messagesController, e4Var, hVar, 19));
     }
 
     @Override
     public final void G(pv0 pv0Var) {
-        oc.a(this.container, new d9(14));
+        qc.a(this.container, new a9(14));
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
+    public final ll0 v(ml0 ml0Var) {
         c0 c0Var = new c0(this, this.resourcesProvider);
         this.Z = c0Var;
         return c0Var;

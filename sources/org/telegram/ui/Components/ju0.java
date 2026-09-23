@@ -19,27 +19,27 @@ import org.telegram.messenger.SavedMessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class ju0 extends kl0 {
+public final class ju0 extends ll0 {
     public int E;
     public final yu0 G;
-    public final Context f25429c;
+    public final Context f25410c;
     public final int d;
-    public boolean f25432r;
-    public String f25434w;
-    public zg.p0 f25435x;
+    public boolean f25413r;
+    public String f25415w;
+    public zg.p0 f25416x;
     public final ArrayList e = new ArrayList();
-    public final ArrayList f25430f = new ArrayList();
+    public final ArrayList f25411f = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f25431n = new ArrayList();
-    public boolean f25433s = false;
+    public final ArrayList f25412n = new ArrayList();
+    public boolean f25414s = false;
     public int v = 0;
-    public int f25436y = -1;
+    public int f25417y = -1;
     public final jq0 F = new jq0(this, 6);
 
     public ju0(yu0 yu0Var, Context context) {
         this.G = yu0Var;
-        this.f25429c = context;
-        this.d = yu0Var.f30389v1.getCurrentAccount();
+        this.f25410c = context;
+        this.d = yu0Var.f30450v1.getCurrentAccount();
         C(true);
     }
 
@@ -50,8 +50,8 @@ public final class ju0 extends kl0 {
 
     public final void E(zg.p0 p0Var, String str) {
         long j3;
-        if (TextUtils.equals(str, this.f25434w)) {
-            zg.p0 p0Var2 = this.f25435x;
+        if (TextUtils.equals(str, this.f25415w)) {
+            zg.p0 p0Var2 = this.f25416x;
             if (p0Var2 != null || p0Var != null) {
                 if (p0Var2 != null && p0Var2.equals(p0Var)) {
                     return;
@@ -60,43 +60,43 @@ public final class ju0 extends kl0 {
                 return;
             }
         }
-        this.f25434w = str;
-        this.f25435x = p0Var;
-        int i10 = this.f25436y;
+        this.f25415w = str;
+        this.f25416x = p0Var;
+        int i10 = this.f25417y;
         int i11 = this.d;
         if (i10 >= 0) {
-            ConnectionsManager.getInstance(i11).cancelRequest(this.f25436y, true);
-            this.f25436y = -1;
+            ConnectionsManager.getInstance(i11).cancelRequest(this.f25417y, true);
+            this.f25417y = -1;
         }
-        this.f25431n.clear();
+        this.f25412n.clear();
         this.h.clear();
-        this.f25430f.clear();
+        this.f25411f.clear();
         int i12 = 0;
         this.v = 0;
-        this.f25433s = false;
-        this.f25432r = true;
+        this.f25414s = false;
+        this.f25413r = true;
         ArrayList arrayList = this.e;
         arrayList.clear();
-        if (this.f25435x == null) {
+        if (this.f25416x == null) {
             arrayList.addAll(MessagesController.getInstance(i11).getSavedMessagesController().searchDialogs(str));
         }
         while (true) {
-            rt0[] rt0VarArr = this.G.f30365k0;
+            rt0[] rt0VarArr = this.G.f30426k0;
             if (i12 >= rt0VarArr.length) {
                 break;
             }
             rt0 rt0Var = rt0VarArr[i12];
             if (rt0Var.F == 11) {
-                rt0Var.f27687w.e(true, true);
+                rt0Var.f27730w.e(true, true);
             }
             i12++;
         }
-        if (this.f25435x == null) {
+        if (this.f25416x == null) {
             l();
         }
         jq0 jq0Var = this.F;
         AndroidUtilities.cancelRunOnUIThread(jq0Var);
-        if (this.f25435x != null) {
+        if (this.f25416x != null) {
             j3 = 60;
         } else {
             j3 = 600;
@@ -105,16 +105,16 @@ public final class ju0 extends kl0 {
     }
 
     public final void F() {
-        if (TextUtils.isEmpty(this.f25434w) && this.f25435x == null) {
-            this.f25432r = false;
+        if (TextUtils.isEmpty(this.f25415w) && this.f25416x == null) {
+            this.f25413r = false;
             return;
         }
         TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
         int i10 = this.d;
         tL_messages_search.peer = MessagesController.getInstance(i10).getInputPeer(UserConfig.getInstance(i10).getClientUserId());
         tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-        tL_messages_search.f18218q = this.f25434w;
-        zg.p0 p0Var = this.f25435x;
+        tL_messages_search.f18192q = this.f25415w;
+        zg.p0 p0Var = this.f25416x;
         if (p0Var != null) {
             tL_messages_search.flags |= 8;
             tL_messages_search.saved_reaction.add(p0Var.g());
@@ -124,14 +124,14 @@ public final class ju0 extends kl0 {
             tL_messages_search.offset_id = ((MessageObject) hg.c.h(1, arrayList)).getId();
         }
         tL_messages_search.limit = 10;
-        this.f25433s = false;
+        this.f25414s = false;
         int i11 = this.E + 1;
         this.E = i11;
-        wm wmVar = new wm(this, i11, tL_messages_search, 15);
-        if (this.f25435x != null) {
-            MessagesStorage.getInstance(i10).searchSavedByTag(this.f25435x.g(), 0L, this.f25434w, 100, this.f25431n.size(), new ai.k3(1, this, wmVar), false);
+        xm xmVar = new xm(this, i11, tL_messages_search, 15);
+        if (this.f25416x != null) {
+            MessagesStorage.getInstance(i10).searchSavedByTag(this.f25416x.g(), 0L, this.f25415w, 100, this.f25412n.size(), new ai.k3(1, this, xmVar), false);
         } else {
-            wmVar.run();
+            xmVar.run();
         }
     }
 
@@ -139,8 +139,8 @@ public final class ju0 extends kl0 {
         ArrayList arrayList;
         CharSequence formatString;
         CharSequence charSequence;
-        rt0[] rt0VarArr = this.G.f30365k0;
-        ArrayList arrayList2 = this.f25430f;
+        rt0[] rt0VarArr = this.G.f30426k0;
+        ArrayList arrayList2 = this.f25411f;
         arrayList2.clear();
         HashSet hashSet = new HashSet();
         int i10 = 0;
@@ -158,7 +158,7 @@ public final class ju0 extends kl0 {
         }
         int i11 = 0;
         while (true) {
-            arrayList = this.f25431n;
+            arrayList = this.f25412n;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -172,25 +172,25 @@ public final class ju0 extends kl0 {
         if (!z10 || !arrayList.isEmpty()) {
             for (int i12 = 0; i12 < rt0VarArr.length; i12++) {
                 if (rt0VarArr[i12].F == 11 && arrayList2.isEmpty() && this.e.isEmpty()) {
-                    vh.o oVar = rt0VarArr[i12].f27687w.d;
-                    if (this.f25435x != null && TextUtils.isEmpty(this.f25434w)) {
+                    vh.o oVar = rt0VarArr[i12].f27730w.d;
+                    if (this.f25416x != null && TextUtils.isEmpty(this.f25415w)) {
                         String string = LocaleController.getString(R.string.NoResultFoundForTag);
-                        zg.p0 p0Var = this.f25435x;
-                        Paint.FontMetricsInt fontMetricsInt = rt0VarArr[i12].f27687w.d.getPaint().getFontMetricsInt();
-                        if (!TextUtils.isEmpty(p0Var.f49120f)) {
-                            charSequence = p0Var.f49120f;
+                        zg.p0 p0Var = this.f25416x;
+                        Paint.FontMetricsInt fontMetricsInt = rt0VarArr[i12].f27730w.d.getPaint().getFontMetricsInt();
+                        if (!TextUtils.isEmpty(p0Var.f49071f)) {
+                            charSequence = p0Var.f49071f;
                         } else {
                             SpannableString spannableString = new SpannableString("😀");
-                            spannableString.setSpan(new x5(p0Var.f49121g, fontMetricsInt), 0, spannableString.length(), 17);
+                            spannableString.setSpan(new z5(p0Var.f49072g, fontMetricsInt), 0, spannableString.length(), 17);
                             charSequence = spannableString;
                         }
                         formatString = AndroidUtilities.replaceCharSequence("%s", string, charSequence);
                     } else {
-                        formatString = LocaleController.formatString(R.string.NoResultFoundFor, this.f25434w);
+                        formatString = LocaleController.formatString(R.string.NoResultFoundFor, this.f25415w);
                     }
                     oVar.setText(formatString);
-                    rt0VarArr[i12].f27687w.f30418f.setVisibility(8);
-                    rt0VarArr[i12].f27687w.e(false, true);
+                    rt0VarArr[i12].f27730w.f30080f.setVisibility(8);
+                    rt0VarArr[i12].f27730w.e(false, true);
                 }
             }
         }
@@ -199,7 +199,7 @@ public final class ju0 extends kl0 {
 
     @Override
     public final int h() {
-        return this.f25430f.size() + this.e.size();
+        return this.f25411f.size() + this.e.size();
     }
 
     @Override
@@ -213,7 +213,7 @@ public final class ju0 extends kl0 {
             hash = Objects.hash(1, Long.valueOf(((SavedMessagesController.SavedDialog) arrayList.get(i10)).dialogId));
         } else {
             int size = i10 - arrayList.size();
-            ArrayList arrayList2 = this.f25430f;
+            ArrayList arrayList2 = this.f25411f;
             if (size < arrayList2.size()) {
                 hash = Objects.hash(2, Long.valueOf(((MessageObject) arrayList2.get(size)).getSavedDialogId()), Integer.valueOf(((MessageObject) arrayList2.get(size)).getId()));
             } else {
@@ -232,7 +232,7 @@ public final class ju0 extends kl0 {
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
         if (i10 >= 0) {
-            View view = c1Var.f42671a;
+            View view = c1Var.f42627a;
             if (view instanceof org.telegram.ui.Cells.r2) {
                 org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) view;
                 if (i10 + 1 < h()) {
@@ -240,7 +240,7 @@ public final class ju0 extends kl0 {
                 } else {
                     z10 = false;
                 }
-                r2Var.f20748s2 = z10;
+                r2Var.f20724s2 = z10;
                 ArrayList arrayList = this.e;
                 if (i10 < arrayList.size()) {
                     SavedMessagesController.SavedDialog savedDialog = (SavedMessagesController.SavedDialog) arrayList.get(i10);
@@ -248,7 +248,7 @@ public final class ju0 extends kl0 {
                     return;
                 }
                 int size = i10 - arrayList.size();
-                ArrayList arrayList2 = this.f25430f;
+                ArrayList arrayList2 = this.f25411f;
                 if (size < arrayList2.size()) {
                     MessageObject messageObject = (MessageObject) arrayList2.get(size);
                     r2Var.W(messageObject.getSavedDialogId(), messageObject, messageObject.messageOwner.date, false, false);
@@ -259,11 +259,11 @@ public final class ju0 extends kl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        gg.a0 a0Var = new gg.a0(1, this.f25429c, true);
+        gg.a0 a0Var = new gg.a0(1, this.f25410c, true);
         yu0 yu0Var = this.G;
         a0Var.setDialogCellDelegate(yu0Var);
-        a0Var.f20740r0 = true;
-        a0Var.setBackgroundColor(yu0Var.h0(org.telegram.ui.ActionBar.i6.f18834d6));
+        a0Var.f20716r0 = true;
+        a0Var.setBackgroundColor(yu0Var.h0(org.telegram.ui.ActionBar.h6.f18789d6));
         return new s4.c1(a0Var);
     }
 }

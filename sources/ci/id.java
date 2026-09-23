@@ -1,38 +1,33 @@
 package ci;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.web.HttpGetFileTask;
-public final class id implements DialogInterface.OnCancelListener {
-    public final int f4818a;
-    public final Object f4819b;
+import android.content.Context;
+import android.content.Intent;
+public final class id implements org.telegram.ui.ActionBar.a2 {
+    public final int f4798a;
+    public final Context f4799b;
 
-    public id(Object obj, int i10) {
-        this.f4818a = i10;
-        this.f4819b = obj;
+    public id(Context context, int i10) {
+        this.f4798a = i10;
+        this.f4799b = context;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f4818a) {
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f4798a) {
             case 0:
-                ((b9) this.f4819b).run();
-                return;
-            case 1:
-                ((ai.s1) this.f4819b).run();
-                return;
-            case 2:
-                ((HttpGetFileTask) this.f4819b).cancel(true);
-                return;
-            case 3:
-                fi.t0 t0Var = (fi.t0) this.f4819b;
-                ConnectionsManager.getInstance(t0Var.d).cancelRequest(t0Var.f9190r, true);
-                t0Var.f9189q = null;
-                t0Var.f9190r = 0;
-                return;
+                try {
+                    this.f4799b.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
             default:
-                ((lg.p) this.f4819b).I = false;
-                return;
+                try {
+                    this.f4799b.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    return;
+                } catch (Exception unused2) {
+                    return;
+                }
         }
     }
 }

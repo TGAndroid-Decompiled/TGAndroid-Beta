@@ -6,8 +6,8 @@ import android.util.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 public abstract class z7 {
-    public static long f44879a;
-    public static Method f44880b;
+    public static long f44833a;
+    public static Method f44834b;
 
     public static void a(String str) {
         if (str.length() > 127) {
@@ -21,11 +21,11 @@ public abstract class z7 {
             return w4.a.a();
         }
         try {
-            if (f44880b == null) {
-                f44879a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
-                f44880b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
+            if (f44834b == null) {
+                f44833a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                f44834b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
             }
-            return ((Boolean) f44880b.invoke(null, Long.valueOf(f44879a))).booleanValue();
+            return ((Boolean) f44834b.invoke(null, Long.valueOf(f44833a))).booleanValue();
         } catch (Exception e) {
             if (e instanceof InvocationTargetException) {
                 Throwable cause = e.getCause();

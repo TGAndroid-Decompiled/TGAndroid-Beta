@@ -14,22 +14,22 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import v7.w;
 public final class h implements androidx.emoji2.text.k {
-    public static h f13516b;
-    public final Context f13517a;
+    public static h f13504b;
+    public final Context f13505a;
 
     public h(Context context, int i10) {
         switch (i10) {
             case 1:
-                this.f13517a = context.getApplicationContext();
+                this.f13505a = context.getApplicationContext();
                 return;
             case 2:
-                this.f13517a = context.getApplicationContext();
+                this.f13505a = context.getApplicationContext();
                 return;
             case 3:
-                this.f13517a = context;
+                this.f13505a = context;
                 return;
             default:
-                this.f13517a = context.getApplicationContext();
+                this.f13505a = context.getApplicationContext();
                 return;
         }
     }
@@ -38,15 +38,15 @@ public final class h implements androidx.emoji2.text.k {
         n6.l.h(context);
         synchronized (h.class) {
             try {
-                if (f13516b == null) {
+                if (f13504b == null) {
                     o.a(context);
-                    f13516b = new h(context, 0);
+                    f13504b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f13516b;
+        return f13504b;
     }
 
     public static final l d(PackageInfo packageInfo, l... lVarArr) {
@@ -83,21 +83,21 @@ public final class h implements androidx.emoji2.text.k {
         if (pVar != null) {
             synchronized (pVar) {
                 try {
-                    if (((CancellationSignal) pVar.f3174c) == null) {
+                    if (((CancellationSignal) pVar.f3169c) == null) {
                         CancellationSignal cancellationSignal2 = new CancellationSignal();
-                        pVar.f3174c = cancellationSignal2;
-                        if (pVar.f3173b) {
+                        pVar.f3169c = cancellationSignal2;
+                        if (pVar.f3168b) {
                             cancellationSignal2.cancel();
                         }
                     }
-                    cancellationSignal = (CancellationSignal) pVar.f3174c;
+                    cancellationSignal = (CancellationSignal) pVar.f3169c;
                 } finally {
                 }
             }
         } else {
             cancellationSignal = null;
         }
-        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f13517a)) != null) {
+        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f13505a)) != null) {
             e0.b.a(g10, e0.b.M(aVar), cancellationSignal, new k0.a(mVar));
         }
     }

@@ -1,119 +1,75 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.os.Bundle;
-import androidx.recyclerview.widget.RecyclerView;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class bx extends gg.m {
-    public final ty f32586d0;
-    public final uy f32587e0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class bx extends ChatActivityEnterView {
+    public final ry f32193o5;
 
-    public bx(uy uyVar, uy uyVar2, Context context, int i10, int i11, boolean z10, ArrayList arrayList, int i12, TLRPC.RequestPeerType requestPeerType, ty tyVar) {
-        super(uyVar2, context, i10, i11, z10, arrayList, i12, requestPeerType);
-        this.f32587e0 = uyVar;
-        this.f32586d0 = tyVar;
+    public bx(ry ryVar, Activity activity, ky kyVar) {
+        super(activity, kyVar, null, false, null);
+        this.f32193o5 = ryVar;
     }
 
     @Override
-    public final void J() {
-        this.f32587e0.presentFragment(new l());
+    public final void B0(float f7) {
+        ry ryVar = this.f32193o5;
+        ryVar.f37080y1.setInputBubbleHeight(f7);
+        ryVar.s3();
+        ryVar.m3();
+        ryVar.t3();
     }
 
     @Override
-    public final void K() {
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i10;
-        uy uyVar = this.f32587e0;
-        org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(uyVar.getParentActivity(), 3, null);
-        TLRPC.RequestPeerType requestPeerType = uyVar.G;
-        if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
-            Bundle e = org.telegram.ui.Cells.q3.e(0, "step");
-            Boolean bool = uyVar.G.has_username;
-            if (bool != null) {
-                e.putBoolean("forcePublic", bool.booleanValue());
+        if (motionEvent.getAction() == 0) {
+            ry ryVar = this.f32193o5;
+            Activity parentActivity = ryVar.getParentActivity();
+            i10 = ((org.telegram.ui.ActionBar.n2) ryVar).classGuid;
+            AndroidUtilities.requestAdjustResize(parentActivity, i10);
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final int getMessagesCount() {
+        CharSequence fieldText;
+        ry ryVar = this.f32193o5;
+        int i10 = ryVar.S0;
+        bx bxVar = ryVar.B1;
+        if (bxVar == null) {
+            fieldText = "";
+        } else {
+            fieldText = bxVar.getFieldText();
+        }
+        return Math.max(1, i10 + (!TextUtils.isEmpty(fieldText) ? 1 : 0));
+    }
+
+    @Override
+    public final long getStarsPrice() {
+        ry ryVar = this.f32193o5;
+        ArrayList arrayList = ryVar.I2;
+        if (arrayList == null) {
+            return 0L;
+        }
+        int size = arrayList.size();
+        int i10 = 0;
+        long j3 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            long longValue = ((Long) obj).longValue();
+            long sendPaidMessagesStars = ryVar.getMessagesController().getSendPaidMessagesStars(longValue);
+            if (sendPaidMessagesStars <= 0 && longValue > 0) {
+                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(ryVar.getMessagesController().isUserContactBlocked(longValue));
             }
-            ld ldVar = new ld(e);
-            ldVar.f35432t0 = new m6(uyVar, ldVar, b2Var, 2);
-            uyVar.presentFragment(ldVar);
-        } else if (requestPeerType instanceof TLRPC.TL_requestPeerTypeChat) {
-            Bundle bundle = new Bundle();
-            Boolean bool2 = uyVar.G.bot_participant;
-            bundle.putLongArray("result", (bool2 == null || !bool2.booleanValue()) ? new long[]{uyVar.getUserConfig().getClientUserId()} : new long[]{uyVar.getUserConfig().getClientUserId(), uyVar.H});
-            Boolean bool3 = uyVar.G.forum;
-            if (bool3 != null && bool3.booleanValue()) {
-                i10 = 5;
-            } else {
-                i10 = 4;
-            }
-            bundle.putInt("chatType", i10);
-            bundle.putBoolean("canToggleTopics", false);
-            l70 l70Var = new l70(bundle);
-            l70Var.Y = new tx(uyVar, b2Var);
-            uyVar.presentFragment(l70Var);
+            j3 += sendPaidMessagesStars;
         }
-    }
-
-    @Override
-    public final void L(TLRPC.User user) {
-        int i10;
-        i10 = ((org.telegram.ui.ActionBar.n2) this.f32587e0).currentAccount;
-        MessagesController.getInstance(i10).openApp(user, 0);
-    }
-
-    @Override
-    public final boolean S() {
-        if (this.f32587e0.R0 == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void a(org.telegram.ui.Cells.r2 r2Var) {
-        ty tyVar = this.f32586d0;
-        tyVar.f37752a.getClass();
-        this.f32587e0.o4(r2Var, RecyclerView.R(r2Var), 0.0f, tyVar.d);
-    }
-
-    @Override
-    public final void d(org.telegram.ui.Cells.r2 r2Var) {
-        int i10;
-        if (r2Var.getMessage() != null) {
-            uy uyVar = this.f32587e0;
-            i10 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
-            TLRPC.TL_forumTopic findTopic = uyVar.getMessagesController().getTopicsController().findTopic(-r2Var.getDialogId(), MessageObject.getTopicId(i10, r2Var.getMessage().messageOwner, true));
-            if (findTopic != null) {
-                if (uyVar.f38258l2) {
-                    uyVar.O3(r2Var.getDialogId(), findTopic.f18161id, false, null);
-                } else {
-                    ng.d.m(uyVar, -r2Var.getDialogId(), findTopic, 0);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void l() {
-        int i10;
-        h();
-        int i11 = ty.L;
-        try {
-            super.l();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        uy uyVar = this.f32587e0;
-        if (uyVar.R0 == 15) {
-            org.telegram.ui.ActionBar.v0 v0Var = uyVar.f38248j0;
-            if (this.U) {
-                i10 = 8;
-            } else {
-                i10 = 0;
-            }
-            v0Var.setVisibility(i10);
-        }
+        return j3;
     }
 }

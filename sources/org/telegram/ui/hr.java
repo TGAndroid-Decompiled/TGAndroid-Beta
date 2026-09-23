@@ -1,38 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AnimationNotificationsLocker;
-public final class hr extends s4.j {
-    public final AnimationNotificationsLocker F = new AnimationNotificationsLocker();
-    public final ur G;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class hr implements w60 {
+    public final b70 f33905a;
+    public final qr f33906b;
 
-    public hr(ur urVar) {
-        this.G = urVar;
+    public hr(qr qrVar, b70 b70Var) {
+        this.f33906b = qrVar;
+        this.f33905a = b70Var;
     }
 
     @Override
-    public final void N() {
-        this.F.unlock();
+    public final void i(TLRPC.User user) {
+        this.f33906b.t0(user.f18230id, null, null, null, "", true, 0, false);
     }
 
     @Override
-    public final void O() {
-        this.G.f38113c.invalidate();
-    }
-
-    @Override
-    public final void P(s4.c1 c1Var) {
-        this.G.f38113c.invalidate();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f42729p.isEmpty();
-        boolean isEmpty2 = this.f42731r.isEmpty();
-        boolean isEmpty3 = this.f42732s.isEmpty();
-        boolean isEmpty4 = this.f42730q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            this.F.lock();
+    public final void j(int i10, ArrayList arrayList) {
+        if (this.f33905a.getParentActivity() == null) {
+            return;
         }
-        super.m();
+        qr qrVar = this.f33906b;
+        qrVar.getMessagesController().addUsersToChat(qrVar.f36582r, qrVar, arrayList, i10, new h3(this, 2), new gr(0), null);
     }
 }

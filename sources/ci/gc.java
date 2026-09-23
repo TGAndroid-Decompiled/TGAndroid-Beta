@@ -1,181 +1,92 @@
 package ci;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.Shader;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.jf0;
-import org.telegram.ui.Components.l70;
-public final class gc extends FrameLayout {
-    public float f4727a;
-    public float f4728b;
-    public final Paint f4729c;
-    public LinearGradient d;
-    public final oc e;
+import org.telegram.messenger.ImageReceiver;
+public abstract class gc {
+    public float f4736b;
+    public org.telegram.ui.Cells.e7 d;
+    public ImageReceiver e;
+    public ai.a5 f4738f;
+    public int f4735a = 0;
+    public final RectF f4737c = new RectF();
 
-    public gc(oc ocVar, Activity activity) {
-        super(activity);
-        this.e = ocVar;
-        this.f4729c = new Paint(1);
-    }
-
-    public static void a(View view, int i10, int i11) {
-        view.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, 1073741824));
-    }
-
-    public final void b(float f7) {
-        float f10 = this.f4727a;
-        this.f4728b = f7;
-        super.setTranslationY(f10 + f7);
-    }
-
-    public final void c() {
-        if (this.e.J == 0) {
-            setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(12.0f), -16777216));
-        } else {
-            setBackground(null);
+    public static ec b(org.telegram.ui.Cells.f7 f7Var) {
+        int i10;
+        if (f7Var == null) {
+            return null;
         }
+        org.telegram.ui.Components.w9 imageView = f7Var.getImageView();
+        ec ecVar = new ec(imageView, 2);
+        int[] iArr = new int[2];
+        imageView.getLocationOnScreen(iArr);
+        ecVar.f4737c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
+        ecVar.d = new org.telegram.ui.Cells.e7(imageView.getContext(), null, false, f7Var.f20049y);
+        ecVar.f4736b = Math.max(ecVar.f4737c.width(), ecVar.f4737c.height()) / 2.0f;
+        return ecVar;
     }
 
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        float f7;
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        oc ocVar = this.e;
-        if (view == ocVar.f5225h0) {
-            if (ocVar.V) {
-                f7 = AndroidUtilities.statusBarHeight;
-            } else {
-                f7 = 0.0f;
+    public static fc c(ai.a0 a0Var) {
+        if (a0Var != null) {
+            ImageReceiver imageReceiver = a0Var.f499r;
+            if (a0Var.getRootView() != null) {
+                float imageWidth = imageReceiver.getImageWidth();
+                fc fcVar = new fc(a0Var, imageWidth / 2.0f);
+                int[] iArr = new int[2];
+                float[] fArr = new float[2];
+                a0Var.getRootView().getLocationOnScreen(iArr);
+                AndroidUtilities.getViewPositionInParent(a0Var, (ViewGroup) a0Var.getRootView(), fArr);
+                float imageX = imageReceiver.getImageX() + iArr[0] + fArr[0];
+                float imageY = imageReceiver.getImageY() + iArr[1] + fArr[1];
+                fcVar.f4737c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
+                fcVar.e = imageReceiver;
+                fcVar.f4736b = Math.max(fcVar.f4737c.width(), fcVar.f4737c.height()) / 2.0f;
+                return fcVar;
             }
-            LinearGradient linearGradient = this.d;
-            Paint paint = this.f4729c;
-            if (linearGradient == null) {
-                LinearGradient linearGradient2 = new LinearGradient(0.0f, f7, 0.0f, f7 + AndroidUtilities.dp(72.0f), new int[]{1073741824, 0}, new float[]{f7 / (AndroidUtilities.dp(72.0f) + f7), 1.0f}, Shader.TileMode.CLAMP);
-                this.d = linearGradient2;
-                paint.setShader(linearGradient2);
+            return null;
+        }
+        return null;
+    }
+
+    public static ec d(ai.jc jcVar) {
+        ai.e6 currentPeerView;
+        ai.a5 a5Var;
+        float x10;
+        if (jcVar != null) {
+            ec ecVar = new ec(jcVar, 1);
+            ai.zb zbVar = jcVar.f1087n0;
+            if (zbVar != null && (currentPeerView = zbVar.getCurrentPeerView()) != null && (a5Var = currentPeerView.f776c1) != null) {
+                ai.xb xbVar = jcVar.f1098s;
+                float f7 = 0.0f;
+                if (xbVar == null) {
+                    x10 = 0.0f;
+                } else {
+                    x10 = xbVar.getX();
+                }
+                ai.xb xbVar2 = jcVar.f1098s;
+                if (xbVar2 != null) {
+                    f7 = xbVar2.getY();
+                }
+                ecVar.f4737c.set(a5Var.getX() + currentPeerView.getX() + jcVar.X + x10 + jcVar.v.getLeft(), a5Var.getY() + currentPeerView.getY() + jcVar.W + f7 + jcVar.v.getTop(), (((x10 + jcVar.X) + jcVar.v.getRight()) - (jcVar.v.getWidth() - currentPeerView.getRight())) - (currentPeerView.getWidth() - a5Var.getRight()), (((f7 + jcVar.W) + jcVar.v.getBottom()) - (jcVar.v.getHeight() - currentPeerView.getBottom())) - (currentPeerView.getHeight() - a5Var.getBottom()));
+                ecVar.f4735a = 1;
+                ecVar.f4736b = AndroidUtilities.dp(8.0f);
+                ai.e6 t10 = jcVar.t();
+                if (t10 != null) {
+                    ecVar.f4738f = t10.f776c1;
+                }
+                return ecVar;
             }
-            paint.setAlpha(255);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(84.0f) + f7);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), paint);
+            return null;
         }
-        return drawChild;
+        return null;
     }
 
-    @Override
-    public final void invalidate() {
-        ValueAnimator valueAnimator = this.e.E;
-        if (valueAnimator != null && valueAnimator.isRunning()) {
-            return;
-        }
-        super.invalidate();
-    }
+    public abstract void e();
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        oc ocVar = this.e;
-        if (ocVar.V) {
-            i14 = ocVar.Z;
-        } else {
-            i14 = 0;
-        }
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        ocVar.f5225h0.layout(0, 0, ocVar.S, ocVar.T);
-        ocVar.f5225h0.setPivotX(ocVar.S * 0.5f);
-        FrameLayout frameLayout = ocVar.f5228i0;
-        frameLayout.layout(0, i14, ocVar.S, frameLayout.getMeasuredHeight() + i14);
-        FrameLayout frameLayout2 = ocVar.f5234k0;
-        frameLayout2.layout(0, ocVar.T - frameLayout2.getMeasuredHeight(), ocVar.S, ocVar.T);
-        FrameLayout frameLayout3 = ocVar.m0;
-        int i15 = ocVar.T;
-        frameLayout3.layout(0, i15, ocVar.S, frameLayout3.getMeasuredHeight() + i15);
-        ocVar.f5237l0.layout(0, 0, ocVar.S, ocVar.T);
-        eb ebVar = ocVar.f5262t0;
-        if (ebVar != null) {
-            ebVar.layout(0, 0, measuredWidth, measuredHeight);
-        }
-        ocVar.f5258s.f5805c.layout(0, 0, measuredWidth, measuredHeight);
-        i iVar = ocVar.f5210c1.M;
-        if (iVar != null) {
-            iVar.layout(0, 0, ocVar.S, ocVar.T);
-            ocVar.f5210c1.y();
-        }
-        jf0 jf0Var = ocVar.B1;
-        if (jf0Var != null) {
-            jf0Var.layout(0, 0, jf0Var.getMeasuredWidth(), ocVar.B1.getMeasuredHeight());
-        }
-        qb qbVar = ocVar.f5269v1;
-        if (qbVar != null) {
-            qbVar.layout(0, 0, qbVar.getMeasuredWidth(), ocVar.f5269v1.getMeasuredHeight());
-        }
-        for (int i16 = 0; i16 < getChildCount(); i16++) {
-            View childAt = getChildAt(i16);
-            if (childAt instanceof l70) {
-                childAt.layout(0, 0, measuredWidth, measuredHeight);
-            }
-        }
-        setPivotX(measuredWidth / 2.0f);
-        setPivotY((-measuredHeight) * 0.2f);
-    }
+    public abstract void f(boolean z10);
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        oc ocVar = this.e;
-        a(ocVar.f5225h0, ocVar.S, ocVar.T);
-        ocVar.j();
-        a(ocVar.f5228i0, ocVar.S, AndroidUtilities.dp(150.0f));
-        a(ocVar.f5234k0, ocVar.S, AndroidUtilities.dp(220.0f));
-        a(ocVar.m0, ocVar.S, ocVar.U);
-        a(ocVar.f5237l0, ocVar.S, ocVar.T);
-        a(ocVar.f5258s.f5805c, size, size2);
-        eb ebVar = ocVar.f5262t0;
-        if (ebVar != null) {
-            a(ebVar, size, size2);
-        }
-        i iVar = ocVar.f5210c1.M;
-        if (iVar != null) {
-            a(iVar, ocVar.S, ocVar.T);
-        }
-        jf0 jf0Var = ocVar.B1;
-        if (jf0Var != null) {
-            a(jf0Var, size, size2);
-        }
-        qb qbVar = ocVar.f5269v1;
-        if (qbVar != null) {
-            a(qbVar, size, size2);
-        }
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt instanceof l70) {
-                a(childAt, size, size2);
-            }
-        }
-        setMeasuredDimension(size, size2);
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        this.f4727a = f7;
-        super.setTranslationY(this.f4728b + f7);
-        float clamp = Utilities.clamp((f7 / getMeasuredHeight()) * 4.0f, 1.0f, 0.0f);
-        oc ocVar = this.e;
-        ocVar.K = clamp;
-        ocVar.o();
-        ocVar.f5241n.invalidate();
-        float clamp2 = 1.0f - (Utilities.clamp(getTranslationY() / AndroidUtilities.dp(320.0f), 1.0f, 0.0f) * 0.1f);
-        setScaleX(clamp2);
-        setScaleY(clamp2);
+    public void a(Canvas canvas, float f7) {
     }
 }

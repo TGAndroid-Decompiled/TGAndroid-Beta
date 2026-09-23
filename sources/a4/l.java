@@ -2,7 +2,7 @@ package a4;
 
 import e2.d0;
 import java.util.ArrayDeque;
-public abstract class l implements z3.f {
+public abstract class l implements z3.e {
     public final ArrayDeque f269a = new ArrayDeque();
     public final ArrayDeque f270b;
     public final ArrayDeque f271c;
@@ -13,7 +13,7 @@ public abstract class l implements z3.f {
 
     public l() {
         for (int i10 = 0; i10 < 10; i10++) {
-            this.f269a.add(new z3.j());
+            this.f269a.add(new z3.i());
         }
         this.f270b = new ArrayDeque();
         for (int i11 = 0; i11 < 2; i11++) {
@@ -58,29 +58,29 @@ public abstract class l implements z3.f {
     @Override
     public final void e(Object obj) {
         boolean z10;
-        z3.j jVar = (z3.j) obj;
-        if (jVar == this.d) {
+        z3.i iVar = (z3.i) obj;
+        if (iVar == this.d) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        j jVar2 = (j) jVar;
-        if (!jVar2.isEndOfStream()) {
-            long j3 = jVar2.e;
+        j jVar = (j) iVar;
+        if (!jVar.isEndOfStream()) {
+            long j3 = jVar.e;
             if (j3 != Long.MIN_VALUE) {
                 long j10 = this.f273g;
                 if (j10 != -9223372036854775807L && j3 < j10) {
-                    jVar2.clear();
-                    this.f269a.add(jVar2);
+                    jVar.clear();
+                    this.f269a.add(jVar);
                     this.d = null;
                 }
             }
         }
         long j11 = this.f272f;
         this.f272f = 1 + j11;
-        jVar2.f267s = j11;
-        this.f271c.add(jVar2);
+        jVar.f267s = j11;
+        this.f271c.add(jVar);
         this.d = null;
     }
 
@@ -99,7 +99,7 @@ public abstract class l implements z3.f {
                 break;
             }
             j jVar = (j) arrayDeque2.poll();
-            String str = d0.f7885a;
+            String str = d0.f7871a;
             jVar.clear();
             arrayDeque.add(jVar);
         }
@@ -114,7 +114,7 @@ public abstract class l implements z3.f {
     public abstract void g(j jVar);
 
     @Override
-    public z3.k c() {
+    public z3.j c() {
         ArrayDeque arrayDeque = this.f270b;
         if (arrayDeque.isEmpty()) {
             return null;
@@ -122,29 +122,29 @@ public abstract class l implements z3.f {
         while (true) {
             ArrayDeque arrayDeque2 = this.f271c;
             if (!arrayDeque2.isEmpty()) {
-                String str = d0.f7885a;
+                String str = d0.f7871a;
                 if (((j) arrayDeque2.peek()).e <= this.e) {
                     j jVar = (j) arrayDeque2.poll();
                     boolean isEndOfStream = jVar.isEndOfStream();
                     ArrayDeque arrayDeque3 = this.f269a;
                     if (isEndOfStream) {
-                        z3.k kVar = (z3.k) arrayDeque.pollFirst();
-                        kVar.addFlag(4);
+                        z3.j jVar2 = (z3.j) arrayDeque.pollFirst();
+                        jVar2.addFlag(4);
                         jVar.clear();
                         arrayDeque3.add(jVar);
-                        return kVar;
+                        return jVar2;
                     }
                     g(jVar);
                     if (i()) {
                         m f7 = f();
-                        z3.k kVar2 = (z3.k) arrayDeque.pollFirst();
+                        z3.j jVar3 = (z3.j) arrayDeque.pollFirst();
                         long j3 = jVar.e;
-                        kVar2.timeUs = j3;
-                        kVar2.f48090a = f7;
-                        kVar2.f48091b = j3;
+                        jVar3.timeUs = j3;
+                        jVar3.f48043a = f7;
+                        jVar3.f48044b = j3;
                         jVar.clear();
                         arrayDeque3.add(jVar);
-                        return kVar2;
+                        return jVar3;
                     }
                     jVar.clear();
                     arrayDeque3.add(jVar);

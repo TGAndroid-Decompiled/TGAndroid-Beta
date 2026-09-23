@@ -1,54 +1,35 @@
 package m4;
 
+import android.media.session.MediaSession;
 import android.os.Bundle;
-import android.text.TextUtils;
-import j$.util.Objects;
 public final class m1 {
-    public static final e9.a1 d = e9.i0.z(40010);
-    public static final e9.a1 e;
-    public static final String f14613f;
-    public static final String f14614g;
-    public static final String h;
-    public final int f14615a;
-    public final String f14616b;
-    public final Bundle f14617c;
+    public static final String f14629b;
+    public static final String f14630c;
+    public final n1 f14631a;
 
     static {
-        Object[] objArr = {50000, 50001, 50002, 50003, 50004, 50005, 50006};
-        e9.q.d(7, objArr);
-        e = e9.i0.t(7, objArr);
-        String str = e2.d0.f7885a;
-        f14613f = Integer.toString(0, 36);
-        f14614g = Integer.toString(1, 36);
-        h = Integer.toString(2, 36);
+        b2.l0.a("media3.session");
+        String str = e2.d0.f7871a;
+        f14629b = Integer.toString(0, 36);
+        f14630c = Integer.toString(1, 36);
     }
 
-    public m1(int i10) {
-        e2.d.a("commandCode shouldn't be COMMAND_CODE_CUSTOM", i10 != 0);
-        this.f14615a = i10;
-        this.f14616b = "";
-        this.f14617c = Bundle.EMPTY;
+    public m1(int i10, String str, b1 b1Var, Bundle bundle, MediaSession.Token token) {
+        this.f14631a = new n1(i10, str, b1Var, bundle, token);
     }
 
     public final boolean equals(Object obj) {
         if (!(obj instanceof m1)) {
             return false;
         }
-        m1 m1Var = (m1) obj;
-        if (this.f14615a != m1Var.f14615a || !TextUtils.equals(this.f14616b, m1Var.f14616b)) {
-            return false;
-        }
-        return true;
+        return this.f14631a.equals(((m1) obj).f14631a);
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f14616b, Integer.valueOf(this.f14615a));
+        return this.f14631a.hashCode();
     }
 
-    public m1(String str, Bundle bundle) {
-        this.f14615a = 0;
-        this.f14616b = str;
-        bundle.getClass();
-        this.f14617c = new Bundle(bundle);
+    public final String toString() {
+        return this.f14631a.toString();
     }
 }

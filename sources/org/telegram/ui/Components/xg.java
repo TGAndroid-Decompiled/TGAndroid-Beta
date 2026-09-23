@@ -1,34 +1,51 @@
 package org.telegram.ui.Components;
-public final class xg {
-    public static final xg f29924a;
-    public static final xg f29925b;
-    public static final xg f29926c;
-    public static final xg d;
-    public static final xg e;
-    public static final xg f29927f;
-    public static final xg[] h;
 
-    static {
-        ?? r02 = new Enum("VOICE", 0);
-        f29924a = r02;
-        ?? r12 = new Enum("VIDEO", 1);
-        f29925b = r12;
-        ?? r32 = new Enum("STICKER", 2);
-        f29926c = r32;
-        ?? r52 = new Enum("KEYBOARD", 3);
-        d = r52;
-        ?? r72 = new Enum("SMILE", 4);
-        e = r72;
-        ?? r92 = new Enum("GIF", 5);
-        f29927f = r92;
-        h = new xg[]{r02, r12, r32, r52, r72, r92};
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+public final class xg extends HashMap {
+    public final int f29991a;
+    public final Object f29992b;
+
+    public xg(Object obj, int i10) {
+        this.f29991a = i10;
+        this.f29992b = obj;
     }
 
-    public static xg valueOf(String str) {
-        return (xg) Enum.valueOf(xg.class, str);
+    @Override
+    public Object get(Object obj) {
+        switch (this.f29991a) {
+            case 0:
+                int i10 = ((ah) this.f29992b).v;
+                yi0 yi0Var = (yi0) super.get(obj);
+                if (yi0Var == null) {
+                    zg zgVar = (zg) obj;
+                    yi0 yi0Var2 = new yi0(zgVar.f30584c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
+                    put(zgVar, yi0Var2);
+                    return yi0Var2;
+                }
+                return yi0Var;
+            default:
+                return super.get(obj);
+        }
     }
 
-    public static xg[] values() {
-        return (xg[]) h.clone();
+    @Override
+    public Object put(Object obj, Object obj2) {
+        String lowerCase;
+        switch (this.f29991a) {
+            case 1:
+                String str = (String) obj;
+                String str2 = (String) obj2;
+                HashMap hashMap = ((yc.g) this.f29992b).f46646f;
+                if (str == null) {
+                    lowerCase = str;
+                } else {
+                    lowerCase = str.toLowerCase();
+                }
+                hashMap.put(lowerCase, str2);
+                return (String) super.put(str, str2);
+            default:
+                return super.put(obj, obj2);
+        }
     }
 }

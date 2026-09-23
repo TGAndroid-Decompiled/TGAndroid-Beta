@@ -4,38 +4,38 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class od0 extends AnimatorListenerAdapter {
-    public final int f26765a;
-    public final ci.m9 f26766b;
+    public final int f26724a;
+    public final ci.j9 f26725b;
 
-    public od0(ci.m9 m9Var, int i10) {
-        this.f26765a = i10;
-        this.f26766b = m9Var;
+    public od0(ci.j9 j9Var, int i10) {
+        this.f26724a = i10;
+        this.f26725b = j9Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f26765a) {
+        switch (this.f26724a) {
             case 0:
-                ci.m9 m9Var = this.f26766b;
-                AnimatorSet animatorSet = (AnimatorSet) m9Var.e;
+                ci.j9 j9Var = this.f26725b;
+                AnimatorSet animatorSet = (AnimatorSet) j9Var.e;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    m9Var.e = null;
+                    j9Var.e = null;
                     return;
                 }
                 return;
             case 1:
-                ci.m9 m9Var2 = this.f26766b;
-                AnimatorSet animatorSet2 = (AnimatorSet) m9Var2.e;
+                ci.j9 j9Var2 = this.f26725b;
+                AnimatorSet animatorSet2 = (AnimatorSet) j9Var2.e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    m9Var2.e = null;
+                    j9Var2.e = null;
                     return;
                 }
                 return;
             default:
-                ci.m9 m9Var3 = this.f26766b;
-                AnimatorSet animatorSet3 = (AnimatorSet) m9Var3.e;
+                ci.j9 j9Var3 = this.f26725b;
+                AnimatorSet animatorSet3 = (AnimatorSet) j9Var3.e;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    m9Var3.e = null;
+                    j9Var3.e = null;
                     return;
                 }
                 return;

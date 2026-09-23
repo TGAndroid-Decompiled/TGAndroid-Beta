@@ -1,72 +1,102 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class br0 implements org.telegram.ui.Components.lm0 {
-    public final gr0 f32571a;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class br0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f32164a;
+    public final PhotoViewer f32165b;
 
-    public br0(gr0 gr0Var) {
-        this.f32571a = gr0Var;
+    public br0(PhotoViewer photoViewer, int i10) {
+        this.f32164a = i10;
+        this.f32165b = photoViewer;
     }
 
     @Override
-    public final void C0(float f7) {
-        gr0 gr0Var = this.f32571a;
-        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        if (i10 != 0 || gr0Var.f33927n[1].getVisibility() == 0) {
-            if (gr0Var.v) {
-                er0 er0Var = gr0Var.f33927n[0];
-                er0Var.setTranslationX((-f7) * er0Var.getMeasuredWidth());
-                er0[] er0VarArr = gr0Var.f33927n;
-                er0VarArr[1].setTranslationX(er0VarArr[0].getMeasuredWidth() - (f7 * gr0Var.f33927n[0].getMeasuredWidth()));
-            } else {
-                er0 er0Var2 = gr0Var.f33927n[0];
-                er0Var2.setTranslationX(er0Var2.getMeasuredWidth() * f7);
-                er0[] er0VarArr2 = gr0Var.f33927n;
-                er0VarArr2[1].setTranslationX((f7 * er0VarArr2[0].getMeasuredWidth()) - gr0Var.f33927n[0].getMeasuredWidth());
-            }
-            if (i10 == 0) {
-                er0[] er0VarArr3 = gr0Var.f33927n;
-                er0 er0Var3 = er0VarArr3[0];
-                er0VarArr3[0] = er0VarArr3[1];
-                er0VarArr3[1] = er0Var3;
-                er0Var3.setVisibility(8);
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f32164a;
+        PhotoViewer photoViewer = this.f32165b;
+        switch (i10) {
+            case 0:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f30946i3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                CropAreaView cropAreaView = photoViewer.C1.f28468b.f14088a;
+                float lerp = AndroidUtilities.lerp(photoViewer.f30876a6, photoViewer.f30914e6, photoViewer.f30973l6);
+                float lerp2 = AndroidUtilities.lerp(photoViewer.X5, photoViewer.f30896c6, photoViewer.f30973l6);
+                float lerp3 = AndroidUtilities.lerp(photoViewer.Y5, photoViewer.f30905d6, photoViewer.f30973l6);
+                cropAreaView.f21991n0 = 0.0f;
+                cropAreaView.f21992o0 = lerp;
+                cropAreaView.f21993p0 = lerp2;
+                cropAreaView.f21994q0 = lerp3;
+                cropAreaView.invalidate();
+                return;
+            case 2:
+                photoViewer.L1.u0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 3:
+                photoViewer.L1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 4:
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f30981m6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 5:
+                Drawable[] drawableArr3 = PhotoViewer.U8;
+                photoViewer.r3();
+                return;
+            case 6:
+                photoViewer.L1.u0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 7:
+                photoViewer.L1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 8:
+                tt0 tt0Var = photoViewer.L1;
+                if (tt0Var != null) {
+                    tt0Var.f41472d1.invalidate();
+                    return;
+                }
+                return;
+            case 9:
+                Drawable[] drawableArr4 = PhotoViewer.U8;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.Z5 = floatValue;
+                tt0 tt0Var2 = photoViewer.L1;
+                if (tt0Var2 != null && Math.abs(floatValue - tt0Var2.X1) > 0.1f) {
+                    tt0Var2.X1 = floatValue;
+                    tt0Var2.w0(tt0Var2.I0, tt0Var2.J0, tt0Var2.K0, tt0Var2.N0, tt0Var2.O0);
+                }
+                photoViewer.f30908e0.invalidate();
+                return;
+            case 10:
+                Drawable[] drawableArr5 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f30981m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.F1();
+                return;
+            case 11:
+                Drawable[] drawableArr6 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f30981m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 12:
+                Drawable[] drawableArr7 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f30981m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 13:
+                photoViewer.W0[0].e(1, ((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
+                return;
+            default:
+                Drawable[] drawableArr8 = PhotoViewer.U8;
+                photoViewer.getClass();
+                photoViewer.f30981m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
         }
-    }
-
-    @Override
-    public final void d(int i10, boolean z10) {
-        boolean z11;
-        gr0 gr0Var = this.f32571a;
-        if (gr0Var.f33927n[0].e == i10) {
-            return;
-        }
-        if (i10 == gr0Var.h.getFirstTabId()) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        gr0Var.e = z11;
-        er0 er0Var = gr0Var.f33927n[1];
-        er0Var.e = i10;
-        er0Var.setVisibility(0);
-        gr0Var.j0(true);
-        gr0Var.v = z10;
-        if (i10 == 0) {
-            gr0Var.f33925c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
-        } else {
-            gr0Var.f33925c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
-        }
-    }
-
-    @Override
-    public final boolean n1(int i10, View view) {
-        return false;
-    }
-
-    @Override
-    public final void C() {
     }
 }

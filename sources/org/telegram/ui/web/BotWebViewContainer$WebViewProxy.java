@@ -5,17 +5,17 @@ import java.io.Serializable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.fr0;
 public class BotWebViewContainer$WebViewProxy {
-    public d1 f38862a;
-    public final z0 f38863b;
+    public b1 f38610a;
+    public final y0 f38611b;
 
-    public BotWebViewContainer$WebViewProxy(z0 z0Var, d1 d1Var) {
-        this.f38863b = z0Var;
-        this.f38862a = d1Var;
+    public BotWebViewContainer$WebViewProxy(y0 y0Var, b1 b1Var) {
+        this.f38611b = y0Var;
+        this.f38610a = b1Var;
     }
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        if (this.f38862a == null) {
+        if (this.f38610a == null) {
             return;
         }
         AndroidUtilities.runOnUIThread(new fr0(this, str, str2, 18));
@@ -23,6 +23,6 @@ public class BotWebViewContainer$WebViewProxy {
 
     @JavascriptInterface
     public void resolveShare(String str, byte[] bArr, String str2, String str3) {
-        AndroidUtilities.runOnUIThread(new b0((Object) this, str, (Serializable) bArr, str2, str3, 5));
+        AndroidUtilities.runOnUIThread(new a0((Object) this, str, (Serializable) bArr, str2, str3, 5));
     }
 }

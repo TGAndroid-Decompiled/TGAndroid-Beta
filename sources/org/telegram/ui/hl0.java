@@ -1,32 +1,34 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public final class hl0 extends Drawable {
-    public final org.telegram.ui.Components.g01 f34321a;
-    public final org.telegram.ui.ActionBar.e6 f34322b;
+import org.telegram.messenger.AndroidUtilities;
+public final class hl0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.f1 f33883a;
+    public final PasscodeActivity f33884b;
 
-    public hl0(org.telegram.ui.Components.g01 g01Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f34321a = g01Var;
-        this.f34322b = e6Var;
+    public hl0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.f1 f1Var) {
+        this.f33884b = passcodeActivity;
+        this.f33883a = f1Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        this.f34321a.c(getBounds().centerX() - (this.f34321a.f24146c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, this.f34322b), canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void b(int i10) {
+        PasscodeActivity passcodeActivity = this.f33884b;
+        if (i10 == -1) {
+            passcodeActivity.finishFragment();
+            return;
+        }
+        int i11 = 1;
+        if (i10 == 1) {
+            if (passcodeActivity.f30864y != 0) {
+                i11 = 0;
+            }
+            passcodeActivity.f30864y = i11;
+            AndroidUtilities.runOnUIThread(new gl0(0, this, this.f33883a), 150L);
+            passcodeActivity.h.setText("");
+            for (bs bsVar : passcodeActivity.f30859n.f40230f) {
+                bsVar.setText("");
+            }
+            passcodeActivity.l0();
+        }
     }
 }

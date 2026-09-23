@@ -1,8 +1,8 @@
 package ii;
 public final class q3 {
-    public final w3 f11572a;
+    public final x3 f11569a;
 
-    public q3(w3 w3Var) {
-        this.f11572a = w3Var;
+    public q3(x3 x3Var) {
+        this.f11569a = x3Var;
     }
 }

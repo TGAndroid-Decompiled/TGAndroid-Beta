@@ -1,22 +1,26 @@
 package xh;
 
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.m5;
-public final class d1 extends m5 {
-    public final e1 M;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.ActionBar.d6;
+public final class d1 extends i4 {
+    public final ViewTreeObserver N;
+    public final n0 O;
 
-    public d1(e1 e1Var, ViewGroup viewGroup, int i10) {
-        super(i10, viewGroup);
-        this.M = e1Var;
+    public d1(long j3, String str, long j10, d6 d6Var, ViewTreeObserver viewTreeObserver, n0 n0Var) {
+        super(j3, str, j10, d6Var);
+        this.N = viewTreeObserver;
+        this.O = n0Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        Drawable drawable = this.M;
-        if (drawable.getCallback() != null) {
-            drawable.getCallback().invalidateDrawable(drawable);
-        }
+    public final void onPause() {
+        super.onPause();
+        this.N.removeOnPreDrawListener(this.O);
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        this.N.addOnPreDrawListener(this.O);
     }
 }

@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
-import org.telegram.ui.Cells.ia;
+import org.telegram.ui.Cells.ja;
 public final class x implements l {
-    public final MediaCodec f42003a;
-    public final j f42004b;
+    public final MediaCodec f41959a;
+    public final j f41960b;
 
     public x(MediaCodec mediaCodec, j jVar) {
-        this.f42003a = mediaCodec;
-        this.f42004b = jVar;
+        this.f41959a = mediaCodec;
+        this.f41960b = jVar;
         if (Build.VERSION.SDK_INT >= 35 && jVar != null) {
             jVar.a(mediaCodec);
         }
@@ -22,87 +22,87 @@ public final class x implements l {
 
     @Override
     public final void a(long j3, int i10, int i11, int i12) {
-        this.f42003a.queueInputBuffer(i10, 0, i11, j3, i12);
+        this.f41959a.queueInputBuffer(i10, 0, i11, j3, i12);
     }
 
     @Override
     public final void b(int i10, h2.d dVar, long j3, int i11) {
-        this.f42003a.queueSecureInputBuffer(i10, 0, dVar.f10089i, j3, i11);
+        this.f41959a.queueSecureInputBuffer(i10, 0, dVar.f10075i, j3, i11);
     }
 
     @Override
     public final void c(int i10) {
-        this.f42003a.releaseOutputBuffer(i10, false);
+        this.f41959a.releaseOutputBuffer(i10, false);
     }
 
     @Override
-    public final boolean d(ia iaVar) {
+    public final boolean d(ja jaVar) {
         return false;
     }
 
     @Override
     public final void e(a3.m mVar, Handler handler) {
-        this.f42003a.setOnFrameRenderedListener(new a(this, mVar, 1), handler);
+        this.f41959a.setOnFrameRenderedListener(new a(this, mVar, 1), handler);
     }
 
     @Override
     public final void f() {
-        this.f42003a.detachOutputSurface();
+        this.f41959a.detachOutputSurface();
     }
 
     @Override
     public final void flush() {
-        this.f42003a.flush();
+        this.f41959a.flush();
     }
 
     @Override
     public final void g(int i10, long j3) {
-        this.f42003a.releaseOutputBuffer(i10, j3);
+        this.f41959a.releaseOutputBuffer(i10, j3);
     }
 
     @Override
     public final ByteBuffer getInputBuffer(int i10) {
-        return this.f42003a.getInputBuffer(i10);
+        return this.f41959a.getInputBuffer(i10);
     }
 
     @Override
     public final ByteBuffer getOutputBuffer(int i10) {
-        return this.f42003a.getOutputBuffer(i10);
+        return this.f41959a.getOutputBuffer(i10);
     }
 
     @Override
     public final MediaFormat getOutputFormat() {
-        return this.f42003a.getOutputFormat();
+        return this.f41959a.getOutputFormat();
     }
 
     @Override
     public final int h() {
-        return this.f42003a.dequeueInputBuffer(0L);
+        return this.f41959a.dequeueInputBuffer(0L);
     }
 
     @Override
     public final int i(MediaCodec.BufferInfo bufferInfo) {
         int dequeueOutputBuffer;
         do {
-            dequeueOutputBuffer = this.f42003a.dequeueOutputBuffer(bufferInfo, 0L);
+            dequeueOutputBuffer = this.f41959a.dequeueOutputBuffer(bufferInfo, 0L);
         } while (dequeueOutputBuffer == -3);
         return dequeueOutputBuffer;
     }
 
     @Override
     public final void j(int i10) {
-        this.f42003a.setVideoScalingMode(i10);
+        this.f41959a.setVideoScalingMode(i10);
     }
 
     @Override
     public final void k(Surface surface) {
-        this.f42003a.setOutputSurface(surface);
+        this.f41959a.setOutputSurface(surface);
     }
 
     @Override
     public final void release() {
-        j jVar = this.f42004b;
-        MediaCodec mediaCodec = this.f42003a;
+        j jVar = this.f41960b;
+        MediaCodec mediaCodec = this.f41959a;
         try {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 30 && i10 < 33) {
@@ -123,6 +123,6 @@ public final class x implements l {
 
     @Override
     public final void setParameters(Bundle bundle) {
-        this.f42003a.setParameters(bundle);
+        this.f41959a.setParameters(bundle);
     }
 }

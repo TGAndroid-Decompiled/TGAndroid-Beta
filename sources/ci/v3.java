@@ -1,44 +1,109 @@
 package ci;
 
-import android.content.Context;
-import android.view.View;
-public final class v3 extends org.telegram.ui.Components.u9 {
-    public final int G;
+import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.ll0;
+public abstract class v3 extends ll0 {
+    public boolean d;
+    public String f5663f;
+    public String h;
+    public TLRPC.User f5664n;
+    public boolean f5665r;
+    public final w3 f5667w;
+    public final ArrayList f5662c = new ArrayList();
+    public int e = -1;
+    public final ColorDrawable f5666s = new ColorDrawable(285212671);
+    public final androidx.fragment.app.a0 v = new androidx.fragment.app.a0(this, 17);
 
-    public v3(Context context, int i10) {
-        super(context);
-        this.G = i10;
+    public v3(w3 w3Var) {
+        this.f5667w = w3Var;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.G) {
-            case 0:
-                int size = View.MeasureSpec.getSize(i10);
-                setMeasuredDimension(size, size);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
+    public final boolean D(s4.c1 c1Var) {
+        return true;
     }
 
-    @Override
-    public void setAlpha(float f7) {
-        int i10;
-        switch (this.G) {
-            case 1:
-                super.setAlpha(f7);
-                if (f7 > 0.0f) {
-                    i10 = 0;
-                } else {
-                    i10 = 4;
+    public final void E() {
+        int i10 = this.f5667w.f5704a;
+        if (!this.d) {
+            this.d = true;
+            F(true);
+            MessagesController messagesController = MessagesController.getInstance(i10);
+            String str = messagesController.imageSearchBot;
+            if (this.f5664n == null) {
+                TLObject userOrChat = messagesController.getUserOrChat(str);
+                if (userOrChat instanceof TLRPC.User) {
+                    this.f5664n = (TLRPC.User) userOrChat;
                 }
-                setVisibility(i10);
-                return;
-            default:
-                super.setAlpha(f7);
-                return;
+            }
+            TLRPC.User user = this.f5664n;
+            if (user == null && !this.f5665r) {
+                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                tL_contacts_resolveUsername.username = str;
+                this.e = ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ai.v1(6, this, messagesController));
+            } else if (user == null) {
+            } else {
+                TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f5664n);
+                String str2 = this.f5663f;
+                String str3 = "";
+                if (str2 == null) {
+                    str2 = "";
+                }
+                tL_messages_getInlineBotResults.query = str2;
+                tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+                String str4 = this.h;
+                if (str4 != null) {
+                    str3 = str4;
+                }
+                tL_messages_getInlineBotResults.offset = str3;
+                this.e = ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, new t3(0, this, TextUtils.isEmpty(str3)));
+            }
         }
+    }
+
+    public abstract void F(boolean z10);
+
+    @Override
+    public final int h() {
+        return this.f5662c.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) c1Var.f42627a;
+        TLObject tLObject = (TLObject) this.f5662c.get(i10);
+        boolean z10 = tLObject instanceof TLRPC.Document;
+        ColorDrawable colorDrawable = this.f5666s;
+        if (z10) {
+            w9Var.h(ImageLocation.getForDocument((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
+        } else if (tLObject instanceof TLRPC.Photo) {
+            TLRPC.Photo photo = (TLRPC.Photo) tLObject;
+            w9Var.h(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 320), photo), "200_200", colorDrawable, null);
+        } else if (tLObject instanceof TLRPC.BotInlineResult) {
+            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) tLObject;
+            TLRPC.WebDocument webDocument = botInlineResult.thumb;
+            if (webDocument != null) {
+                w9Var.h(ImageLocation.getForPath(webDocument.url), "200_200", colorDrawable, botInlineResult);
+            } else {
+                w9Var.b();
+            }
+        } else {
+            w9Var.b();
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new u3(this.f5667w.getContext(), 0));
     }
 }

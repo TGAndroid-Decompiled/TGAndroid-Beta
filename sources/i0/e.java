@@ -9,31 +9,31 @@ import java.lang.reflect.Method;
 import v7.h8;
 import w7.z7;
 public abstract class e {
-    public static final h8 f10596a;
-    public static final k f10597b;
+    public static final h8 f10582a;
+    public static final k f10583b;
 
     static {
         z7.a("TypefaceCompat static init");
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 29) {
-            f10596a = new h8();
+            f10582a = new h8();
         } else if (i10 >= 28) {
-            f10596a = new h();
+            f10582a = new h();
         } else if (i10 >= 26) {
-            f10596a = new h();
+            f10582a = new h();
         } else {
             if (i10 >= 24) {
-                Method method = g.f10603c;
+                Method method = g.f10589c;
                 if (method == null) {
                     Log.w("TypefaceCompatApi24Impl", "Unable to collect necessary private methods.Fallback to legacy implementation.");
                 }
                 if (method != null) {
-                    f10596a = new h8();
+                    f10582a = new h8();
                 }
             }
-            f10596a = new h8();
+            f10582a = new h8();
         }
-        f10597b = new k(16);
+        f10583b = new k(16);
         Trace.endSection();
     }
 

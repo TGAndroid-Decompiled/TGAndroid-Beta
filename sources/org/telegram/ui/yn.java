@@ -1,17 +1,20 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class yn extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.cc0 f39912a;
+import android.os.Bundle;
+public final class yn extends xn {
+    public final zn Pc;
 
-    public yn(org.telegram.ui.Components.cc0 cc0Var) {
-        this.f39912a = cc0Var;
+    public yn(zn znVar, Bundle bundle) {
+        super(bundle);
+        this.Pc = znVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        this.f39912a.s(1.0f);
+    public final void V9(boolean z10) {
+        this.Pc.b(z10);
+    }
+
+    @Override
+    public final void setNavigationBarColor(int i10) {
     }
 }

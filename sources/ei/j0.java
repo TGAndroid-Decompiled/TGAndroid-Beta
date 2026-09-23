@@ -11,37 +11,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.kb;
-import org.telegram.ui.Components.lb;
-import org.telegram.ui.Components.mc;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.mb;
+import org.telegram.ui.Components.nb;
 import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.yi0;
 import org.telegram.ui.LaunchActivity;
 import w7.x5;
-public final class j0 extends lb {
-    public final e6 f8398a;
-    public final h0 f8399b;
-    public final i0 f8400c;
+public final class j0 extends nb {
+    public final d6 f8384a;
+    public final h0 f8385b;
+    public final i0 f8386c;
     public final TextView d;
     public final TextView e;
-    public k0 f8401f;
+    public k0 f8387f;
     public int h;
 
-    public j0(Context context, e6 e6Var) {
-        super(context, e6Var);
+    public j0(Context context, d6 d6Var) {
+        super(context, d6Var);
         this.h = 0;
-        this.f8398a = e6Var;
+        this.f8384a = d6Var;
         h0 h0Var = new h0(AndroidUtilities.dp(10.0f));
-        h0Var.f8366a.setColor(i6.v0(i6.Fi, e6Var));
-        this.f8399b = h0Var;
+        h0Var.f8352a.setColor(h6.v0(h6.Fi, d6Var));
+        this.f8385b = h0Var;
         setBackground(h0Var);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         i0 i0Var = new i0(context, imageView);
-        this.f8400c = i0Var;
+        this.f8386c = i0Var;
         imageView.setImageDrawable(i0Var);
         addView(imageView, x5.d(40, 40.0f, 23, 7.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -50,13 +50,13 @@ public final class j0 extends lb {
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 14.0f);
-        int i10 = i6.Hi;
-        textView.setTextColor(i6.v0(i10, e6Var));
+        int i10 = h6.Hi;
+        textView.setTextColor(h6.v0(i10, d6Var));
         textView.setTypeface(AndroidUtilities.bold());
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, x5.t(-1, -2, 55, 0, 0, 0, 2), context);
         this.e = h;
         h.setTextSize(1, 13.0f);
-        h.setTextColor(i6.v0(i10, e6Var));
+        h.setTextColor(h6.v0(i10, d6Var));
         linearLayout.addView(h, x5.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
@@ -64,18 +64,18 @@ public final class j0 extends lb {
         if (this.h != i10) {
             this.h = i10;
             if (i10 == 0) {
-                setButton((kb) null);
+                setButton((mb) null);
                 return;
             }
-            e6 e6Var = this.f8398a;
+            d6 d6Var = this.f8384a;
             if (i10 == 1) {
-                mc mcVar = new mc(getContext(), e6Var, true);
-                mcVar.e(LocaleController.getString(R.string.BotFileDownloadCancel));
-                mcVar.f26136a = new Runnable(this) {
-                    public final j0 f8353b;
+                oc ocVar = new oc(getContext(), d6Var, true);
+                ocVar.e(LocaleController.getString(R.string.BotFileDownloadCancel));
+                ocVar.f26716a = new Runnable(this) {
+                    public final j0 f8339b;
 
                     {
-                        this.f8353b = this;
+                        this.f8339b = this;
                     }
 
                     @Override
@@ -83,25 +83,25 @@ public final class j0 extends lb {
                         File file;
                         switch (r2) {
                             case 0:
-                                j0 j0Var = this.f8353b;
-                                oc bulletin = j0Var.getBulletin();
+                                j0 j0Var = this.f8339b;
+                                qc bulletin = j0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f26751j = 2750;
+                                    bulletin.f27306j = 2750;
                                     bulletin.i(true);
                                 }
-                                k0 k0Var = j0Var.f8401f;
+                                k0 k0Var = j0Var.f8387f;
                                 if (k0Var != null) {
                                     k0Var.a();
                                     return;
                                 }
                                 return;
                             default:
-                                j0 j0Var2 = this.f8353b;
-                                oc bulletin2 = j0Var2.getBulletin();
+                                j0 j0Var2 = this.f8339b;
+                                qc bulletin2 = j0Var2.getBulletin();
                                 if (bulletin2 != null) {
                                     bulletin2.b();
                                 }
-                                k0 k0Var2 = j0Var2.f8401f;
+                                k0 k0Var2 = j0Var2.f8387f;
                                 if (k0Var2 != null && (file = k0Var2.d) != null && file.exists()) {
                                     File file2 = k0Var2.d;
                                     AndroidUtilities.openForView(file2, file2.getName(), null, LaunchActivity.G1, null, true);
@@ -112,17 +112,17 @@ public final class j0 extends lb {
                     }
                 };
                 if (getBulletin() != null) {
-                    mcVar.f26138c = getBulletin();
+                    ocVar.f26718c = getBulletin();
                 }
-                setButton(mcVar);
+                setButton(ocVar);
             } else if (i10 == 2) {
-                mc mcVar2 = new mc(getContext(), e6Var, true);
-                mcVar2.e(LocaleController.getString(R.string.BotFileDownloadOpen));
-                mcVar2.f26136a = new Runnable(this) {
-                    public final j0 f8353b;
+                oc ocVar2 = new oc(getContext(), d6Var, true);
+                ocVar2.e(LocaleController.getString(R.string.BotFileDownloadOpen));
+                ocVar2.f26716a = new Runnable(this) {
+                    public final j0 f8339b;
 
                     {
-                        this.f8353b = this;
+                        this.f8339b = this;
                     }
 
                     @Override
@@ -130,25 +130,25 @@ public final class j0 extends lb {
                         File file;
                         switch (r2) {
                             case 0:
-                                j0 j0Var = this.f8353b;
-                                oc bulletin = j0Var.getBulletin();
+                                j0 j0Var = this.f8339b;
+                                qc bulletin = j0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f26751j = 2750;
+                                    bulletin.f27306j = 2750;
                                     bulletin.i(true);
                                 }
-                                k0 k0Var = j0Var.f8401f;
+                                k0 k0Var = j0Var.f8387f;
                                 if (k0Var != null) {
                                     k0Var.a();
                                     return;
                                 }
                                 return;
                             default:
-                                j0 j0Var2 = this.f8353b;
-                                oc bulletin2 = j0Var2.getBulletin();
+                                j0 j0Var2 = this.f8339b;
+                                qc bulletin2 = j0Var2.getBulletin();
                                 if (bulletin2 != null) {
                                     bulletin2.b();
                                 }
-                                k0 k0Var2 = j0Var2.f8401f;
+                                k0 k0Var2 = j0Var2.f8387f;
                                 if (k0Var2 != null && (file = k0Var2.d) != null && file.exists()) {
                                     File file2 = k0Var2.d;
                                     AndroidUtilities.openForView(file2, file2.getName(), null, LaunchActivity.G1, null, true);
@@ -159,34 +159,34 @@ public final class j0 extends lb {
                     }
                 };
                 if (getBulletin() != null) {
-                    mcVar2.f26138c = getBulletin();
+                    ocVar2.f26718c = getBulletin();
                 }
-                setButton(mcVar2);
+                setButton(ocVar2);
             }
         }
     }
 
     public final boolean c(k0 k0Var) {
         boolean z10;
-        k0 k0Var2 = this.f8401f;
-        i0 i0Var = this.f8400c;
+        k0 k0Var2 = this.f8387f;
+        i0 i0Var = this.f8386c;
         if (k0Var2 != k0Var) {
-            c6 c6Var = i0Var.f8389k;
+            e6 e6Var = i0Var.f8375k;
             i0Var.h = false;
-            c6Var.getClass();
-            c6Var.d(0.0f, true);
-            xi0 xi0Var = i0Var.f8390l;
-            if (xi0Var != null) {
-                xi0Var.C(true);
-                i0Var.f8390l = null;
+            e6Var.getClass();
+            e6Var.d(0.0f, true);
+            yi0 yi0Var = i0Var.f8376l;
+            if (yi0Var != null) {
+                yi0Var.C(true);
+                i0Var.f8376l = null;
             }
-            c6 c6Var2 = i0Var.f8387i;
-            i0Var.f8385f = false;
-            c6Var2.getClass();
-            c6Var2.d(0.0f, true);
+            e6 e6Var2 = i0Var.f8373i;
+            i0Var.f8371f = false;
+            e6Var2.getClass();
+            e6Var2.d(0.0f, true);
         }
-        this.f8401f = k0Var;
-        this.d.setText(k0Var.f8413c);
+        this.f8387f = k0Var;
+        this.d.setText(k0Var.f8399c);
         boolean c10 = k0Var.c();
         TextView textView = this.e;
         if (c10) {
@@ -197,9 +197,9 @@ public final class j0 extends lb {
             } else {
                 z10 = false;
             }
-            i0Var.f8385f = z10;
+            i0Var.f8371f = z10;
             if (z10) {
-                i0Var.f8386g = Utilities.clamp(((float) ((Long) b10.first).longValue()) / ((float) ((Long) b10.second).longValue()), 1.0f, 0.0f);
+                i0Var.f8372g = Utilities.clamp(((float) ((Long) b10.first).longValue()) / ((float) ((Long) b10.second).longValue()), 1.0f, 0.0f);
             }
             i0Var.invalidateSelf();
             if (((Long) b10.first).longValue() <= 0) {
@@ -211,8 +211,8 @@ public final class j0 extends lb {
             }
             setButton(1);
             return false;
-        } else if (k0Var.f8416i) {
-            oc bulletin = getBulletin();
+        } else if (k0Var.f8402i) {
+            qc bulletin = getBulletin();
             if (bulletin != null) {
                 bulletin.b();
             }
@@ -223,17 +223,17 @@ public final class j0 extends lb {
                 setButton(2);
                 if (!i0Var.h) {
                     i0Var.h = true;
-                    xi0 xi0Var2 = new xi0(R.raw.contact_check, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-                    i0Var.f8390l = xi0Var2;
-                    xi0Var2.R(i0Var.f8382a);
-                    i0Var.f8390l.J(true);
-                    i0Var.f8390l.start();
-                    i0Var.f8386g = 1.0f;
+                    yi0 yi0Var2 = new yi0(R.raw.contact_check, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+                    i0Var.f8376l = yi0Var2;
+                    yi0Var2.R(i0Var.f8368a);
+                    i0Var.f8376l.J(true);
+                    i0Var.f8376l.start();
+                    i0Var.f8372g = 1.0f;
                 }
-                oc bulletin2 = getBulletin();
+                qc bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.i(false);
-                    bulletin2.f26751j = 5000;
+                    bulletin2.f27306j = 5000;
                     bulletin2.i(true);
                 }
             }
@@ -248,7 +248,7 @@ public final class j0 extends lb {
 
     public void setArrow(int i10) {
         boolean z10;
-        h0 h0Var = this.f8399b;
+        h0 h0Var = this.f8385b;
         h0Var.getClass();
         if (i10 >= 0) {
             z10 = true;
@@ -257,7 +257,7 @@ public final class j0 extends lb {
         }
         h0Var.e = z10;
         if (z10) {
-            h0Var.f8369f = i10;
+            h0Var.f8355f = i10;
         }
         h0Var.invalidateSelf();
     }

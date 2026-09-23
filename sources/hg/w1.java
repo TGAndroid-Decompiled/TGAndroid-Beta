@@ -11,43 +11,43 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.vl;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.np;
+import org.telegram.messenger.ul;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.op;
 import w7.x5;
 public final class w1 extends FrameLayout {
-    public final f9 f10455a;
-    public final ImageReceiver f10456b;
-    public final TextView f10457c;
+    public final h9 f10441a;
+    public final ImageReceiver f10442b;
+    public final TextView f10443c;
     public final TextView d;
-    public final np e;
-    public final Path f10458f;
+    public final op e;
+    public final Path f10444f;
     public final Paint h;
-    public final e6 f10459n;
-    public final int[] f10460r;
-    public boolean f10461s;
+    public final d6 f10445n;
+    public final int[] f10446r;
+    public boolean f10447s;
 
-    public w1(Context context, e6 e6Var) {
+    public w1(Context context, d6 d6Var) {
         super(context);
         float f7;
         float f10;
         float f11;
         float f12;
-        this.f10455a = new f9((e6) null);
-        this.f10456b = new ImageReceiver(this);
-        this.f10458f = new Path();
+        this.f10441a = new h9((d6) null);
+        this.f10442b = new ImageReceiver(this);
+        this.f10444f = new Path();
         this.h = new Paint(1);
-        this.f10460r = new int[1];
-        this.f10459n = e6Var;
+        this.f10446r = new int[1];
+        this.f10445n = d6Var;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f10457c = textView;
+        this.f10443c = textView;
         textView.setSingleLine();
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        textView.setTextColor(i6.v0(i6.G6, e6Var));
+        textView.setTextColor(h6.v0(h6.G6, d6Var));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 16.0f);
         boolean z10 = LocaleController.isRTL;
@@ -66,7 +66,7 @@ public final class w1 extends FrameLayout {
         this.d = textView2;
         textView2.setLines(2);
         textView2.setEllipsize(truncateAt);
-        vl.o(i6.f19234z6, e6Var, textView2, 1, 15.0f);
+        ul.o(h6.f19189z6, d6Var, textView2, 1, 15.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             f11 = 40.0f;
@@ -79,12 +79,12 @@ public final class w1 extends FrameLayout {
             f12 = 40.0f;
         }
         addView(textView2, x5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
-        np npVar = new np(getContext(), 21, e6Var);
-        this.e = npVar;
-        npVar.b(-1, i6.f18834d6, i6.f18962k7);
-        npVar.setDrawUnchecked(false);
-        npVar.setDrawBackgroundAsArc(3);
-        addView(npVar, x5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        op opVar = new op(getContext(), 21, d6Var);
+        this.e = opVar;
+        opVar.b(-1, h6.f18789d6, h6.f18917k7);
+        opVar.setDrawUnchecked(false);
+        opVar.setDrawBackgroundAsArc(3);
+        addView(opVar, x5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     @Override
@@ -97,15 +97,15 @@ public final class w1 extends FrameLayout {
             dp = AndroidUtilities.dp(9.0f);
         }
         float f10 = dp;
-        ImageReceiver imageReceiver = this.f10456b;
+        ImageReceiver imageReceiver = this.f10442b;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        canvas.drawPath(this.f10458f, this.h);
-        if (this.f10461s) {
-            Paint T0 = i6.T0("paintDivider", this.f10459n);
+        canvas.drawPath(this.f10444f, this.h);
+        if (this.f10447s) {
+            Paint T0 = h6.T0("paintDivider", this.f10445n);
             if (T0 == null) {
-                T0 = i6.f18955k0;
+                T0 = h6.f18910k0;
             }
             Paint paint = T0;
             float f11 = 78.0f;
@@ -128,15 +128,15 @@ public final class w1 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         float measuredWidth;
         int i12;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f10461s ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f10447s ? 1 : 0), 1073741824));
         Paint.Style style = Paint.Style.STROKE;
         Paint paint = this.h;
         paint.setStyle(style);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(i6.l1(0.85f, i6.v0(i6.f19234z6, this.f10459n)));
-        Path path = this.f10458f;
+        paint.setColor(h6.l1(0.85f, h6.v0(h6.f19189z6, this.f10445n)));
+        Path path = this.f10444f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;
         if (LocaleController.isRTL) {

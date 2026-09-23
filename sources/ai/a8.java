@@ -1,54 +1,101 @@
 package ai;
 
+import java.util.Collections;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.BotForumHelper;
 import org.telegram.messenger.LocationController;
-import org.telegram.messenger.SavedMessagesController;
-import org.telegram.messenger.SecretChatHelper;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.id0;
-public final class a8 implements RequestDelegate {
-    public final int f522a;
-    public final long f523b;
-    public final Object f524c;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.yu0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.w90;
+import org.telegram.ui.xn;
+public final class a8 implements Runnable {
+    public final int f529a;
+    public final int f530b;
+    public final long f531c;
+    public final Object d;
 
-    public a8(Object obj, long j3, int i10) {
-        this.f522a = i10;
-        this.f524c = obj;
-        this.f523b = j3;
+    public a8(Object obj, int i10, long j3, int i11) {
+        this.f529a = i11;
+        this.d = obj;
+        this.f530b = i10;
+        this.f531c = j3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f522a) {
+    public final void run() {
+        switch (this.f529a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new a3.h0((l9) this.f524c, this.f523b, tLObject, 2));
+                l9 l9Var = (l9) this.d;
+                LongSparseIntArray longSparseIntArray = l9Var.f1195f;
+                long j3 = this.f531c;
+                int i10 = longSparseIntArray.get(j3, 0);
+                int i11 = this.f530b;
+                int max = Math.max(i10, i11);
+                l9Var.f1195f.put(j3, max);
+                l9Var.f1199k.i(max, j3);
+                TL_stories.PeerStories y3 = l9Var.y(j3);
+                if (y3 != null && i11 > y3.max_read_id) {
+                    y3.max_read_id = i11;
+                    Collections.sort(l9Var.f1196g, l9Var.J);
+                    NotificationCenter.getInstance(l9Var.f1192a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                    return;
+                }
                 return;
             case 1:
-                ((ContactsController) this.f524c).lambda$loadContacts$28(this.f523b, tLObject, tL_error);
+                ((LocationController) this.d).lambda$setProximityLocation$12(this.f530b, this.f531c);
                 return;
             case 2:
-                ((LocationController) this.f524c).lambda$loadLiveLocations$26(this.f523b, tLObject, tL_error);
+                ((MediaController) this.d).lambda$prepareResumedRecording$23(this.f530b, this.f531c);
                 return;
             case 3:
-                ((SavedMessagesController) this.f524c).lambda$hasSavedMessages$15(this.f523b, tLObject, tL_error);
+                ((MediaDataController) this.d).lambda$deletePeer$159(this.f531c, this.f530b);
                 return;
             case 4:
-                ((SecretChatHelper) this.f524c).lambda$declineSecretChat$20(this.f523b, tLObject, tL_error);
+                ((MessagesController) this.d).lambda$processUpdateArray$420(this.f531c, this.f530b);
                 return;
             case 5:
-                ((SendMessagesHelper) this.f524c).lambda$sendGame$47(this.f523b, tLObject, tL_error);
+                SendMessagesHelper.lambda$finishGroup$117((AccountInstance) this.d, this.f531c, this.f530b);
+                return;
+            case 6:
+                BotForumHelper.BotDraftAnimationsPool botDraftAnimationsPool = ((org.telegram.ui.Cells.t1) this.d).Pd;
+                if (botDraftAnimationsPool != null) {
+                    botDraftAnimationsPool.removeAnimator(this.f531c, this.f530b);
+                    return;
+                }
+                return;
+            case 7:
+                yu0.n((yu0) this.d, this.f531c, this.f530b);
                 return;
             default:
-                id0 id0Var = (id0) this.f524c;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new a3.h0(id0Var, tLObject, this.f523b, 28));
+                Long l4 = (Long) this.d;
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    xn R9 = xn.R9(l4.longValue());
+                    U.presentFragment(R9);
+                    TLRPC.Chat chat = MessagesController.getInstance(this.f530b).getChat(Long.valueOf(-l4.longValue()));
+                    if (chat != null) {
+                        AndroidUtilities.runOnUIThread(new w90(R9, this.f531c, chat, 1), 250L);
+                        return;
+                    }
                     return;
                 }
                 return;
         }
+    }
+
+    public a8(Object obj, long j3, int i10, int i11) {
+        this.f529a = i11;
+        this.d = obj;
+        this.f531c = j3;
+        this.f530b = i10;
     }
 }

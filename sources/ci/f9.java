@@ -1,72 +1,131 @@
 package ci;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.qr;
-public final class f9 extends FrameLayout {
-    public final Paint f4663a;
-    public final org.telegram.ui.Components.c6 f4664b;
-    public final org.telegram.ui.ActionBar.e6 f4665c;
-    public final i9 d;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ul;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.al0;
+import org.telegram.ui.Components.ml0;
+public final class f9 extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f4691b;
+    public ArrayList f4692c;
+    public final TLRPC.InputPeer d;
+    public final Utilities.Callback e;
+    public final ml0 f4693f;
+    public final e9 h;
+    public final TextView f4694n;
 
-    public f9(i9 i9Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.d = i9Var;
-        this.f4665c = e6Var;
-        this.f4663a = new Paint(1);
-        this.f4664b = new org.telegram.ui.Components.c6(this, 0L, 350L, qr.h);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10;
-        int i10;
+    public f9(Context context, final int i10, boolean z10, TLRPC.InputPeer inputPeer, final Utilities.Callback callback, final org.telegram.ui.ActionBar.d6 d6Var) {
+        super(1, context, d6Var, false);
         int i11;
-        int i12;
-        int i13;
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18904h5, this.f4665c);
-        Paint paint = this.f4663a;
-        paint.setColor(v02);
-        i9 i9Var = this.d;
-        float max = Math.max(0.0f, i9Var.s());
-        if (max < AndroidUtilities.statusBarHeight) {
-            z10 = true;
+        fixNavigationBar();
+        MessagesController.getInstance(i10).getStoriesController().R();
+        this.f4691b = i10;
+        this.f4692c = MessagesController.getInstance(i10).getStoriesController().T;
+        this.d = inputPeer;
+        this.e = callback;
+        this.containerView = new c9(this, context, d6Var);
+        ml0 ml0Var = new ml0(context, d6Var);
+        this.f4693f = ml0Var;
+        int i12 = this.backgroundPaddingLeft;
+        ml0Var.setPadding(i12, 0, i12, 0);
+        e9 e9Var = new e9(this);
+        this.h = e9Var;
+        ml0Var.setAdapter(e9Var);
+        ml0Var.setLayoutManager(new s4.c0());
+        this.containerView.addView(ml0Var, w7.x5.e(-1, -1, 119));
+        ml0Var.setOnItemClickListener(new al0() {
+            @Override
+            public final void d(int i13, View view) {
+                if (i13 <= 1) {
+                    return;
+                }
+                f9 f9Var = f9.this;
+                TLRPC.InputPeer inputPeer2 = (TLRPC.InputPeer) f9Var.f4692c.get(i13 - 2);
+                long j3 = inputPeer2.channel_id;
+                Utilities.Callback callback2 = callback;
+                if (j3 == 0 && inputPeer2.chat_id == 0) {
+                    callback2.run(inputPeer2);
+                    f9Var.dismiss();
+                    return;
+                }
+                Context context2 = f9Var.getContext();
+                org.telegram.ui.ActionBar.d6 d6Var2 = d6Var;
+                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(context2, 3, d6Var2);
+                b2Var.q(200L);
+                MessagesController.getInstance(i10).getStoriesController().k(DialogObject.getPeerDialogId(inputPeer2), new ai.c5(b2Var, callback2, inputPeer2, 4), true, d6Var2);
+                f9Var.dismiss();
+            }
+        });
+        ml0Var.setOnScrollListener(new d9(this));
+        TextView textView = new TextView(getContext());
+        this.f4694n = textView;
+        ul.o(org.telegram.ui.ActionBar.h6.G6, d6Var, textView, 1, 20.0f);
+        textView.setPadding(AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f));
+        textView.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18859h5, d6Var));
+        textView.setTypeface(AndroidUtilities.bold());
+        if (z10) {
+            i11 = R.string.StoryPrivacyPublishLiveAs;
         } else {
-            z10 = false;
+            i11 = R.string.StoryPrivacyPublishAs;
         }
-        org.telegram.ui.Components.c6 c6Var = this.f4664b;
-        float lerp = AndroidUtilities.lerp(max, 0.0f, c6Var.e(z10));
-        RectF rectF = AndroidUtilities.rectTmp;
-        i10 = ((org.telegram.ui.ActionBar.f3) i9Var).backgroundPaddingLeft;
-        int width = getWidth();
-        i11 = ((org.telegram.ui.ActionBar.f3) i9Var).backgroundPaddingLeft;
-        rectF.set(i10, lerp, width - i11, AndroidUtilities.dp(14.0f) + getHeight());
-        float dp = (1.0f - c6Var.f22951c) * AndroidUtilities.dp(14.0f);
-        canvas.drawRoundRect(rectF, dp, dp, paint);
-        i9Var.f4800n.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, AndroidUtilities.dp(14.0f) + lerp));
-        canvas.save();
-        i12 = ((org.telegram.ui.ActionBar.f3) i9Var).backgroundPaddingLeft;
-        int dp2 = AndroidUtilities.dp(14.0f) + AndroidUtilities.statusBarHeight;
-        int width2 = getWidth();
-        i13 = ((org.telegram.ui.ActionBar.f3) i9Var).backgroundPaddingLeft;
-        canvas.clipRect(i12, dp2, width2 - i13, getHeight());
-        super.dispatchDraw(canvas);
-        canvas.restore();
+        textView.setText(LocaleController.getString(i11));
+        this.containerView.addView(textView, w7.x5.c(-2.0f, -1));
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        float y3 = motionEvent.getY();
-        i9 i9Var = this.d;
-        if (y3 < i9Var.s()) {
-            i9Var.dismiss();
+    public final boolean canDismissWithSwipe() {
+        if (s() > ((int) (AndroidUtilities.displaySize.y * 0.5f))) {
             return true;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        return false;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.storiesSendAsUpdate) {
+            this.f4692c = MessagesController.getInstance(this.f4691b).getStoriesController().T;
+            this.h.l();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.f4691b).addObserver(this, NotificationCenter.storiesSendAsUpdate);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.f4691b).removeObserver(this, NotificationCenter.storiesSendAsUpdate);
+    }
+
+    public final float s() {
+        int R;
+        float measuredHeight = this.containerView.getMeasuredHeight();
+        int i10 = 0;
+        while (true) {
+            ml0 ml0Var = this.f4693f;
+            if (i10 < ml0Var.getChildCount()) {
+                View childAt = ml0Var.getChildAt(i10);
+                if (childAt != null && (R = RecyclerView.R(childAt)) != -1 && R > 0) {
+                    measuredHeight = Math.min(AndroidUtilities.lerp(measuredHeight, childAt.getY(), childAt.getAlpha()), measuredHeight);
+                }
+                i10++;
+            } else {
+                return measuredHeight;
+            }
+        }
     }
 }

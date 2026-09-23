@@ -1,85 +1,87 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.os.Bundle;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class hc1 extends FrameLayout {
-    public final org.telegram.ui.Cells.ja f34219a;
-    public final org.telegram.ui.Components.fo0 f34220b;
-    public final int f34221c;
-    public final int d;
-    public final TextPaint e;
-    public int f34222f;
-    public final ThemeActivity h;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class hc1 implements RequestDelegate {
+    public final int f33816a;
+    public final od1 f33817b;
 
-    public hc1(ThemeActivity themeActivity, Context context) {
-        super(context);
-        org.telegram.ui.ActionBar.d5 d5Var;
-        this.h = themeActivity;
-        this.f34221c = 12;
-        this.d = 30;
-        setWillNotDraw(false);
-        TextPaint textPaint = new TextPaint(1);
-        this.e = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.fo0 fo0Var = new org.telegram.ui.Components.fo0(context);
-        this.f34220b = fo0Var;
-        fo0Var.setReportChanges(true);
-        fo0Var.setSeparatorsCount(19);
-        fo0Var.setDelegate(new jw0(this, 4));
-        fo0Var.setImportantForAccessibility(2);
-        addView(fo0Var, w7.x5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
-        d5Var = ((org.telegram.ui.ActionBar.n2) themeActivity).parentLayout;
-        org.telegram.ui.Cells.ja jaVar = new org.telegram.ui.Cells.ja(context, d5Var, 0);
-        this.f34219a = jaVar;
-        jaVar.setImportantForAccessibility(4);
-        addView(jaVar, w7.x5.d(-1, -2.0f, 51, 0.0f, 53.0f, 0.0f, 0.0f));
+    public hc1(od1 od1Var, int i10) {
+        this.f33816a = i10;
+        this.f33817b = od1Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f34219a.invalidate();
-        this.f34220b.invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.I6, false);
-        TextPaint textPaint = this.e;
-        textPaint.setColor(w02);
-        canvas.drawText("" + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f34220b.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int size = View.MeasureSpec.getSize(i10);
-        if (this.f34222f != size) {
-            int i12 = SharedConfig.fontSize;
-            int i13 = this.f34221c;
-            this.f34220b.setProgress((i12 - i13) / (this.d - i13));
-            this.f34222f = size;
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f33816a) {
+            case 0:
+                final od1 od1Var = this.f33817b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                od1.W(od1Var, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        od1 od1Var2 = od1Var;
+                                        od1Var2.W0 = tL_wallPaper;
+                                        od1Var2.b1(false);
+                                        od1Var2.j1();
+                                        od1Var2.U0.add(0, od1Var2.W0);
+                                        md1 md1Var = od1Var2.Q0;
+                                        if (md1Var != null) {
+                                            md1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final od1 od1Var2 = this.f33817b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                od1.W(od1Var2, tLObject);
+                                return;
+                            default:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
+                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
+                                    if (tL_wallPaper.pattern) {
+                                        od1 od1Var22 = od1Var2;
+                                        od1Var22.W0 = tL_wallPaper;
+                                        od1Var22.b1(false);
+                                        od1Var22.j1();
+                                        od1Var22.U0.add(0, od1Var22.W0);
+                                        md1 md1Var = od1Var22.Q0;
+                                        if (md1Var != null) {
+                                            md1Var.l();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f34220b.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
-            return false;
-        }
-        return true;
     }
 }

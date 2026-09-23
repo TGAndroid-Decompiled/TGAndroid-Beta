@@ -7,39 +7,39 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import ci.g4;
+import ci.f4;
 import com.google.android.gms.internal.vision.e2;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import w7.x5;
 public class c extends FrameLayout {
-    public final TextView f13599a;
-    public final TextView f13600b;
-    public final TextView f13601c;
+    public final TextView f13587a;
+    public final TextView f13588b;
+    public final TextView f13589c;
     public final TextView d;
     public boolean e;
-    public boolean f13602f;
+    public boolean f13590f;
     public final Drawable h;
-    public final int f13603n;
-    public final e6 f13604r;
+    public final int f13591n;
+    public final d6 f13592r;
 
-    public c(Context context, e6 e6Var) {
+    public c(Context context, d6 d6Var) {
         super(context);
         this.e = true;
         new SimpleDateFormat("d MMM yyyy");
-        this.f13604r = e6Var;
+        this.f13592r = d6Var;
         TextPaint textPaint = new TextPaint();
         textPaint.setTextSize(14.0f);
         textPaint.setTypeface(AndroidUtilities.bold());
         int measureText = (int) textPaint.measureText("00 MMM 0000 - 00 MMM 000");
-        this.f13603n = measureText;
+        this.f13591n = measureText;
         TextView textView = new TextView(context);
-        this.f13599a = textView;
+        this.f13587a = textView;
         e2.l(15.0f, 1, textView);
         addView(textView, x5.d(-2, -2.0f, 8388627, 16.0f, 0.0f, measureText, 0.0f));
         TextView textView2 = new TextView(context);
@@ -49,13 +49,13 @@ public class c extends FrameLayout {
         textView2.setGravity(8388627);
         addView(textView2, x5.d(-2, -2.0f, 8388627, 8.0f, 0.0f, 8.0f, 0.0f));
         TextView textView3 = new TextView(context);
-        this.f13600b = textView3;
+        this.f13588b = textView3;
         textView3.setTextSize(1, 13.0f);
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setGravity(8388629);
         addView(textView3, x5.d(-2, -2.0f, 8388629, 16.0f, 0.0f, 16.0f, 0.0f));
         TextView textView4 = new TextView(context);
-        this.f13601c = textView4;
+        this.f13589c = textView4;
         textView4.setTextSize(1, 13.0f);
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setGravity(8388629);
@@ -68,32 +68,32 @@ public class c extends FrameLayout {
         textView2.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
         textView2.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         textView2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f));
-        textView2.setBackground(i6.G0(AndroidUtilities.dp(3.0f), i6.v0(i6.Rh, e6Var)));
-        textView4.addOnLayoutChangeListener(new g4(this, 1));
+        textView2.setBackground(h6.G0(AndroidUtilities.dp(3.0f), h6.v0(h6.Rh, d6Var)));
+        textView4.addOnLayoutChangeListener(new f4(this, 1));
         a();
     }
 
     public final void a() {
-        int i10 = i6.f18940j5;
-        e6 e6Var = this.f13604r;
-        this.f13599a.setTextColor(i6.v0(i10, e6Var));
-        this.f13600b.setTextColor(i6.v0(i10, e6Var));
-        this.f13601c.setTextColor(i6.v0(i10, e6Var));
-        int i11 = i6.fj;
-        this.d.setTextColor(i6.v0(i11, e6Var));
-        this.h.setColorFilter(i6.v0(i11, e6Var), PorterDuff.Mode.SRC_IN);
+        int i10 = h6.f18895j5;
+        d6 d6Var = this.f13592r;
+        this.f13587a.setTextColor(h6.v0(i10, d6Var));
+        this.f13588b.setTextColor(h6.v0(i10, d6Var));
+        this.f13589c.setTextColor(h6.v0(i10, d6Var));
+        int i11 = h6.fj;
+        this.d.setTextColor(h6.v0(i11, d6Var));
+        this.h.setColorFilter(h6.v0(i11, d6Var), PorterDuff.Mode.SRC_IN);
     }
 
     public final void b(long j3, long j10) {
         String format;
         boolean z10 = this.e;
-        TextView textView = this.f13600b;
+        TextView textView = this.f13588b;
         if (!z10) {
             textView.setVisibility(8);
-            this.f13601c.setVisibility(8);
+            this.f13589c.setVisibility(8);
             return;
         }
-        if (this.f13602f) {
+        if (this.f13590f) {
             j10 += 604800000;
         }
         if (j10 - j3 >= 86400000) {
@@ -107,22 +107,22 @@ public class c extends FrameLayout {
 
     public final void c(boolean z10) {
         this.e = z10;
-        TextView textView = this.f13599a;
+        TextView textView = this.f13587a;
         if (!z10) {
-            this.f13601c.setVisibility(8);
-            this.f13600b.setVisibility(8);
+            this.f13589c.setVisibility(8);
+            this.f13588b.setVisibility(8);
             textView.setLayoutParams(x5.d(-2, -2.0f, 8388627, 16.0f, 0.0f, 16.0f, 0.0f));
             textView.requestLayout();
             return;
         }
-        textView.setLayoutParams(x5.d(-2, -2.0f, 8388627, 16.0f, 0.0f, this.f13603n, 0.0f));
+        textView.setLayoutParams(x5.d(-2, -2.0f, 8388627, 16.0f, 0.0f, this.f13591n, 0.0f));
     }
 
     public final void d(long j3, boolean z10) {
         b(j3, j3);
         TextView textView = this.d;
         textView.setVisibility(0);
-        TextView textView2 = this.f13599a;
+        TextView textView2 = this.f13587a;
         if (z10) {
             textView.setAlpha(0.0f);
             textView.setScaleX(0.3f);
@@ -149,10 +149,10 @@ public class c extends FrameLayout {
     }
 
     public void setTitle(String str) {
-        this.f13599a.setText(str);
+        this.f13587a.setText(str);
     }
 
     public void setUseWeekInterval(boolean z10) {
-        this.f13602f = z10;
+        this.f13590f = z10;
     }
 }

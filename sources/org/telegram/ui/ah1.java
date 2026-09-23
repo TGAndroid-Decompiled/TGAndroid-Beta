@@ -1,62 +1,33 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ah1 implements RequestDelegate {
-    public final int f31829a;
-    public final hh1 f31830b;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ah1 extends FrameLayout {
+    public final rg.p0 f31794a;
 
-    public ah1(hh1 hh1Var, int i10) {
-        this.f31829a = i10;
-        this.f31830b = hh1Var;
-    }
-
-    @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f31829a) {
-            case 0:
-                final hh1 hh1Var = this.f31830b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                hh1.b0(hh1Var, tL_error, tLObject);
-                                return;
-                            default:
-                                hh1.h0(hh1Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new dh1(this.f31830b, tL_error, 0));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new dh1(this.f31830b, tL_error, 1));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new dh1(this.f31830b, tL_error, 2));
-                return;
-            default:
-                final hh1 hh1Var2 = this.f31830b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                hh1.b0(hh1Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                hh1.h0(hh1Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-        }
+    public ah1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        LinearLayout linearLayout = new LinearLayout(context);
+        addView(linearLayout, w7.x5.e(-1, -2, 80));
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(context);
+        textView.setTextColor(i0.a.k(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var), 100));
+        textView.setTextSize(1, 13.0f);
+        textView.setGravity(17);
+        textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
+        linearLayout.addView(textView, w7.x5.t(-1, -2, 0, 16, 17, 17, 16));
+        rg.p0 p0Var = new rg.p0(context, d6Var, false);
+        this.f31794a = p0Var;
+        String string = LocaleController.getString(R.string.UnlockPremiumStickers);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.pq(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) string);
+        p0Var.d.setText(spannableStringBuilder);
+        linearLayout.addView(p0Var, w7.x5.t(-1, 48, 0, 16, 0, 16, 16));
     }
 }

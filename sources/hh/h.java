@@ -4,15 +4,15 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import b2.q0;
 import e6.n;
-import k2.c0;
+import k2.b0;
 import s4.c1;
 import s4.f1;
 import s4.o0;
 public final class h {
-    public final RecyclerView f10531a;
+    public final RecyclerView f10517a;
 
     public h(RecyclerView recyclerView) {
-        this.f10531a = recyclerView;
+        this.f10517a = recyclerView;
     }
 
     public void a(c1 c1Var, q0 q0Var, q0 q0Var2) {
@@ -21,25 +21,25 @@ public final class h {
         boolean z10;
         c1 T;
         int i12;
-        RecyclerView recyclerView = this.f10531a;
-        recyclerView.f2837b.k(c1Var);
+        RecyclerView recyclerView = this.f10517a;
+        recyclerView.f2832b.k(c1Var);
         recyclerView.h(c1Var);
         c1Var.q(false);
-        f1 f1Var = (f1) recyclerView.f2840c0;
+        f1 f1Var = (f1) recyclerView.f2835c0;
         f1Var.getClass();
-        int i13 = q0Var.f3200a;
-        int i14 = q0Var.f3201b;
-        View view = c1Var.f42671a;
+        int i13 = q0Var.f3195a;
+        int i14 = q0Var.f3196b;
+        View view = c1Var.f42627a;
         if (q0Var2 == null) {
             i10 = view.getLeft();
         } else {
-            i10 = q0Var2.f3200a;
+            i10 = q0Var2.f3195a;
         }
         int i15 = i10;
         if (q0Var2 == null) {
             i11 = view.getTop();
         } else {
-            i11 = q0Var2.f3201b;
+            i11 = q0Var2.f3196b;
         }
         int i16 = i11;
         if (!c1Var.j() && (i13 != i15 || i14 != i16)) {
@@ -56,7 +56,7 @@ public final class h {
                     }
                 }
             }
-            c1Var.f42676i = (c1Var.h - i18) + (i18 * 1000);
+            c1Var.f42632i = (c1Var.h - i18) + (i18 * 1000);
             f1Var.s(c1Var, q0Var);
             z10 = true;
         }
@@ -66,18 +66,18 @@ public final class h {
     }
 
     public void b(c1 c1Var) {
-        RecyclerView recyclerView = this.f10531a;
-        o0 o0Var = recyclerView.f2865x;
-        View view = c1Var.f42671a;
-        of.e eVar = recyclerView.f2837b;
-        lf.i iVar = o0Var.f42763a;
-        c0 c0Var = (c0) iVar.f14021b;
-        int indexOfChild = ((RecyclerView) c0Var.f13236b).indexOfChild(view);
+        RecyclerView recyclerView = this.f10517a;
+        o0 o0Var = recyclerView.f2860x;
+        View view = c1Var.f42627a;
+        of.e eVar = recyclerView.f2832b;
+        lf.i iVar = o0Var.f42719a;
+        b0 b0Var = (b0) iVar.f14011b;
+        int indexOfChild = ((RecyclerView) b0Var.f13222b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((n) iVar.f14022c).B(indexOfChild)) {
+            if (((n) iVar.f14012c).B(indexOfChild)) {
                 iVar.Y(view);
             }
-            c0Var.r(indexOfChild);
+            b0Var.r(indexOfChild);
         }
         eVar.g(view);
     }

@@ -11,52 +11,52 @@ import android.widget.FrameLayout;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.fk0;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.gk0;
 public final class b0 extends FrameLayout {
-    public final Drawable f48959a;
-    public final Rect f48960b;
-    public final Paint f48961c;
+    public final Drawable f48910a;
+    public final Rect f48911b;
+    public final Paint f48912c;
     public final int[] d;
     public final HashMap e;
-    public float f48962f;
+    public float f48913f;
     public float h;
-    public float f48963n;
-    public float f48964r;
-    public float f48965s;
+    public float f48914n;
+    public float f48915r;
+    public float f48916s;
     public final Path v;
-    public final c0 f48966w;
+    public final c0 f48917w;
 
     public b0(c0 c0Var, Context context) {
         super(context);
-        this.f48966w = c0Var;
+        this.f48917w = c0Var;
         Rect rect = new Rect();
-        this.f48960b = rect;
+        this.f48911b = rect;
         Paint paint = new Paint(1);
-        this.f48961c = paint;
+        this.f48912c = paint;
         this.d = new int[4];
         this.e = new HashMap();
-        this.f48962f = 0.0f;
+        this.f48913f = 0.0f;
         this.h = 0.0f;
-        this.f48963n = 1.0f;
-        this.f48964r = 0.0f;
-        this.f48965s = 0.0f;
+        this.f48914n = 1.0f;
+        this.f48915r = 0.0f;
+        this.f48916s = 0.0f;
         this.v = new Path();
         Drawable mutate = context.getDrawable(R.drawable.reactions_bubble_shadow).mutate();
-        this.f48959a = mutate;
+        this.f48910a = mutate;
         int dp = AndroidUtilities.dp(7.0f);
         rect.bottom = dp;
         rect.right = dp;
         rect.top = dp;
         rect.left = dp;
-        int i10 = i6.Td;
-        e6 e6Var = c0Var.f48991s;
-        mutate.setColorFilter(new PorterDuffColorFilter(i6.v0(i10, e6Var), PorterDuff.Mode.MULTIPLY));
-        if (c0Var.f48996y == 2) {
+        int i10 = h6.Td;
+        d6 d6Var = c0Var.f48942s;
+        mutate.setColorFilter(new PorterDuffColorFilter(h6.v0(i10, d6Var), PorterDuff.Mode.MULTIPLY));
+        if (c0Var.f48947y == 2) {
             paint.setColor(i0.a.d(0.13f, -16777216, -1));
         } else {
-            paint.setColor(i6.v0(i6.G8, e6Var));
+            paint.setColor(h6.v0(h6.G8, d6Var));
         }
     }
 
@@ -68,12 +68,12 @@ public final class b0 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        c0 c0Var = this.f48966w;
-        fk0 fk0Var = c0Var.f48986n;
-        if (c0Var.f48996y != 1 && (fk0Var == null || fk0Var.getDelegate() == null || !fk0Var.getDelegate().q())) {
+        c0 c0Var = this.f48917w;
+        gk0 gk0Var = c0Var.f48937n;
+        if (c0Var.f48947y != 1 && (gk0Var == null || gk0Var.getDelegate() == null || !gk0Var.getDelegate().q())) {
             return;
         }
-        c0Var.f48985m.f34128f0.invalidate();
+        c0Var.f48936m.f40017f0.invalidate();
     }
 
     @Override

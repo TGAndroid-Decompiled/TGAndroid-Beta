@@ -14,27 +14,27 @@ import zd.f1;
 import zd.g2;
 import zd.w0;
 public abstract class a {
-    public static final v f8168a = new v("NO_DECISION", 0);
-    public static final v f8169b = new v("CLOSED", 0);
-    public static final v f8170c = new v("UNDEFINED", 0);
+    public static final v f8154a = new v("NO_DECISION", 0);
+    public static final v f8155b = new v("CLOSED", 0);
+    public static final v f8156c = new v("UNDEFINED", 0);
     public static final v d = new v("REUSABLE_CLAIMED", 0);
     public static final v e = new v("CONDITION_FALSE", 0);
-    public static final v f8171f = new v("NO_THREAD_ELEMENTS", 0);
+    public static final v f8157f = new v("NO_THREAD_ELEMENTS", 0);
 
     public static final Object a(t tVar, long j3, rd.p pVar) {
         while (true) {
-            if (tVar.f8196c >= j3 && !tVar.d()) {
+            if (tVar.f8182c >= j3 && !tVar.d()) {
                 return tVar;
             }
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f8174a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f8160a;
             Object obj = atomicReferenceFieldUpdater.get(tVar);
-            v vVar = f8169b;
+            v vVar = f8155b;
             if (obj == vVar) {
                 return vVar;
             }
             t tVar2 = (t) ((d) obj);
             if (tVar2 == null) {
-                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f8196c + 1), tVar);
+                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f8182c + 1), tVar);
                 while (!atomicReferenceFieldUpdater.compareAndSet(tVar, null, tVar2)) {
                     if (atomicReferenceFieldUpdater.get(tVar) != null) {
                         break;
@@ -49,7 +49,7 @@ public abstract class a {
     }
 
     public static final t b(Object obj) {
-        if (obj != f8169b) {
+        if (obj != f8155b) {
             return (t) obj;
         }
         throw new IllegalStateException("Does not contain segment");
@@ -57,7 +57,7 @@ public abstract class a {
 
     public static final void c(id.h hVar, Throwable th2) {
         Throwable runtimeException;
-        for (ae.b bVar : f.f8177a) {
+        for (ae.b bVar : f.f8163a) {
             try {
                 bVar.c(th2);
             } catch (Throwable th3) {
@@ -80,7 +80,7 @@ public abstract class a {
     }
 
     public static final boolean d(Object obj) {
-        if (obj == f8169b) {
+        if (obj == f8155b) {
             return true;
         }
         return false;
@@ -101,17 +101,17 @@ public abstract class a {
     }
 
     public static final void f(id.h hVar, Object obj) {
-        if (obj != f8171f) {
+        if (obj != f8157f) {
             if (obj instanceof z) {
                 z zVar = (z) obj;
-                b2[] b2VarArr = zVar.f8206b;
+                b2[] b2VarArr = zVar.f8192b;
                 int length = b2VarArr.length - 1;
                 if (length < 0) {
                     return;
                 }
                 b2 b2Var = b2VarArr[length];
                 kotlin.jvm.internal.i.b(null);
-                Object obj2 = zVar.f8205a[length];
+                Object obj2 = zVar.f8191a[length];
                 throw null;
             }
             Object fold = hVar.fold(null, x.d);
@@ -136,15 +136,15 @@ public abstract class a {
             }
             cVar2.getContext();
             if (a0Var.e()) {
-                hVar.f8180f = vVar;
-                hVar.f48897c = 1;
+                hVar.f8166f = vVar;
+                hVar.f48848c = 1;
                 a0Var.c(cVar2.getContext(), hVar);
                 return;
             }
             w0 a10 = c2.a();
-            if (a10.f48935c >= 4294967296L) {
-                hVar.f8180f = vVar;
-                hVar.f48897c = 1;
+            if (a10.f48886c >= 4294967296L) {
+                hVar.f8166f = vVar;
+                hVar.f48848c = 1;
                 hd.e eVar = a10.e;
                 if (eVar == null) {
                     eVar = new hd.e();
@@ -155,7 +155,7 @@ public abstract class a {
             }
             a10.h(true);
             try {
-                f1 f1Var = (f1) cVar2.getContext().get(b0.f48862b);
+                f1 f1Var = (f1) cVar2.getContext().get(b0.f48813b);
                 if (f1Var != null && !f1Var.isActive()) {
                     CancellationException cancellationException = f1Var.getCancellationException();
                     hVar.c(vVar, cancellationException);
@@ -164,7 +164,7 @@ public abstract class a {
                     Object obj2 = hVar.h;
                     id.h context = cVar2.getContext();
                     Object k10 = k(context, obj2);
-                    if (k10 != f8171f) {
+                    if (k10 != f8157f) {
                         g2Var = e0.v(cVar2, context, k10);
                     } else {
                         g2Var = null;
@@ -203,11 +203,11 @@ public abstract class a {
 
     public static final Object k(id.h hVar, Object obj) {
         if (obj == null) {
-            obj = hVar.fold(0, x.f8201c);
+            obj = hVar.fold(0, x.f8187c);
             kotlin.jvm.internal.i.b(obj);
         }
         if (obj == 0) {
-            return f8171f;
+            return f8157f;
         }
         if (obj instanceof Integer) {
             return hVar.fold(new z(((Number) obj).intValue(), hVar), x.e);

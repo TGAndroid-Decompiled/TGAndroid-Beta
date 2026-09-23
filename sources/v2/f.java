@@ -2,28 +2,28 @@ package v2;
 
 import n4.y;
 import u2.a1;
-import u2.b1;
-public final class f implements b1 {
-    public final h f43844a;
-    public final a1 f43845b;
-    public final int f43846c;
+import u2.z0;
+public final class f implements a1 {
+    public final h f43797a;
+    public final z0 f43798b;
+    public final int f43799c;
     public boolean d;
     public final h e;
 
-    public f(h hVar, h hVar2, a1 a1Var, int i10) {
+    public f(h hVar, h hVar2, z0 z0Var, int i10) {
         this.e = hVar;
-        this.f43844a = hVar2;
-        this.f43845b = a1Var;
-        this.f43846c = i10;
+        this.f43797a = hVar2;
+        this.f43798b = z0Var;
+        this.f43799c = i10;
     }
 
     public final void b() {
         if (!this.d) {
             h hVar = this.e;
             a5.a aVar = hVar.h;
-            int[] iArr = hVar.f43848b;
-            int i10 = this.f43846c;
-            aVar.k(iArr[i10], hVar.f43849c[i10], 0, null, hVar.J);
+            int[] iArr = hVar.f43801b;
+            int i10 = this.f43799c;
+            aVar.k(iArr[i10], hVar.f43802c[i10], 0, null, hVar.J);
             this.d = true;
         }
     }
@@ -31,7 +31,7 @@ public final class f implements b1 {
     @Override
     public final boolean e() {
         h hVar = this.e;
-        if (!hVar.y() && this.f43845b.x(hVar.O)) {
+        if (!hVar.y() && this.f43798b.x(hVar.O)) {
             return true;
         }
         return false;
@@ -42,12 +42,12 @@ public final class f implements b1 {
         h hVar2 = this.e;
         if (!hVar2.y()) {
             a aVar = hVar2.L;
-            a1 a1Var = this.f43845b;
-            if (aVar != null && aVar.d(this.f43846c + 1) <= a1Var.t()) {
+            z0 z0Var = this.f43798b;
+            if (aVar != null && aVar.d(this.f43799c + 1) <= z0Var.t()) {
                 return -3;
             }
             b();
-            return a1Var.C(yVar, hVar, i10, hVar2.O);
+            return z0Var.C(yVar, hVar, i10, hVar2.O);
         }
         return -3;
     }
@@ -59,13 +59,13 @@ public final class f implements b1 {
             return 0;
         }
         boolean z10 = hVar.O;
-        a1 a1Var = this.f43845b;
-        int v = a1Var.v(j3, z10);
+        z0 z0Var = this.f43798b;
+        int v = z0Var.v(j3, z10);
         a aVar = hVar.L;
         if (aVar != null) {
-            v = Math.min(v, aVar.d(this.f43846c + 1) - a1Var.t());
+            v = Math.min(v, aVar.d(this.f43799c + 1) - z0Var.t());
         }
-        a1Var.H(v);
+        z0Var.H(v);
         if (v > 0) {
             b();
         }

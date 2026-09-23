@@ -1,220 +1,147 @@
 package ci;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.am0;
-import org.telegram.ui.Components.t40;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.bo;
-import org.telegram.ui.dv0;
-import org.telegram.ui.i01;
-import org.telegram.ui.i60;
-import org.telegram.ui.uy;
-public final class z6 implements m8, org.telegram.ui.Components.b5, org.telegram.ui.ActionBar.a2, t5.b, r9.g, t40 {
-    public final int f5866a;
-    public final long f5867b;
-    public final Object f5868c;
-    public final Object d;
-    public final Object e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.f71;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.tz;
+import org.telegram.ui.Components.wz;
+public final class z6 implements Runnable {
+    public final int f5912a;
+    public final b7 f5913b;
 
-    public z6(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f5866a = i10;
-        this.f5868c = obj;
-        this.d = obj2;
-        this.f5867b = j3;
-        this.e = obj3;
+    public z6(b7 b7Var, int i10) {
+        this.f5912a = i10;
+        this.f5913b = b7Var;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z10) {
-        bo.r0((bo) this.f5868c, (ArrayList) this.d, this.f5867b, (am0) this.e, z10, i10);
-    }
-
-    @Override
-    public void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        bo boVar = (bo) this.f5868c;
-        TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
-        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.e;
-        if (inputFile == null && inputFile2 == null && videoSize == null) {
-            fileLocationArr[0] = photoSize2.location;
-            fileLocationArr2[0] = photoSize.location;
-            return;
-        }
-        TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
-        if (inputFile != null) {
-            tL_photos_uploadProfilePhoto.file = inputFile;
-            tL_photos_uploadProfilePhoto.flags |= 1;
-        }
-        if (inputFile2 != null) {
-            tL_photos_uploadProfilePhoto.video = inputFile2;
-            int i10 = tL_photos_uploadProfilePhoto.flags;
-            tL_photos_uploadProfilePhoto.video_start_ts = d;
-            tL_photos_uploadProfilePhoto.flags = i10 | 6;
-        }
-        if (videoSize != null) {
-            tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
-            tL_photos_uploadProfilePhoto.flags |= 16;
-        }
-        boVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ai.fa(boVar, fileLocationArr, str, fileLocationArr2, this.f5867b));
-    }
-
-    @Override
-    public ScheduledFuture a(final k2.u uVar) {
-        switch (this.f5866a) {
-            case 5:
-                r9.f fVar = (r9.f) this.f5868c;
-                return fVar.f42162b.schedule(new r9.d(fVar, (Runnable) this.d, uVar, 1), this.f5867b, (TimeUnit) this.e);
-            default:
-                final r9.f fVar2 = (r9.f) this.f5868c;
-                final Callable callable = (Callable) this.d;
-                return fVar2.f42162b.schedule(new Callable() {
-                    @Override
-                    public final Object call() {
-                        return f.this.f42161a.submit(new p2.b(11, callable, uVar));
-                    }
-                }, this.f5867b, (TimeUnit) this.e);
-        }
-    }
-
-    @Override
-    public Bitmap c(BitmapFactory.Options options) {
-        d7 d7Var = (d7) this.f5868c;
-        o8 o8Var = (o8) this.d;
-        long j3 = this.f5867b;
-        String str = (String) this.e;
-        if (o8Var.K) {
-            String str2 = o8Var.N;
-            if (str2 != null) {
-                return BitmapFactory.decodeFile(str2, options);
-            }
-            try {
-                return MediaStore.Video.Thumbnails.getThumbnail(d7Var.getContext().getContentResolver(), j3, 1, options);
-            } catch (Throwable unused) {
-                d7Var.invalidate();
-                return null;
-            }
-        }
-        return BitmapFactory.decodeFile(str, options);
-    }
-
-    @Override
-    public boolean e() {
-        return true;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f5866a) {
+    public final void run() {
+        boolean z10;
+        switch (this.f5912a) {
+            case 0:
+                this.f5913b.r();
+                return;
+            case 1:
+                this.f5913b.r();
+                return;
             case 2:
-                ChatObject.Call call = (ChatObject.Call) this.f5868c;
-                Runnable runnable = (Runnable) this.e;
-                boolean z10 = false;
-                org.telegram.ui.Cells.z1 z1Var = ((org.telegram.ui.Cells.z1[]) this.d)[0];
-                if (z1Var != null && z1Var.b()) {
-                    z10 = true;
+                this.f5913b.m(0L);
+                return;
+            case 3:
+                b7 b7Var = this.f5913b;
+                z6 z6Var = b7Var.K;
+                f71 f71Var = b7Var.e;
+                if (f71Var != null && b7Var.F != null) {
+                    long n10 = f71Var.n();
+                    if (b7Var.getDuration() > 1) {
+                        float duration = ((float) n10) / ((float) b7Var.getDuration());
+                        boolean z11 = false;
+                        if (!b7Var.F.f5770m1) {
+                            l8 l8Var = b7Var.d;
+                            if ((duration < l8Var.Z || duration > l8Var.f4965a0) && System.currentTimeMillis() - b7Var.J > 500) {
+                                b7Var.J = System.currentTimeMillis();
+                                f71 f71Var2 = b7Var.e;
+                                long duration2 = b7Var.d.Z * ((float) b7Var.getDuration());
+                                f71Var2.L(duration2, false);
+                                b7Var.w(true);
+                                b7Var.y(true);
+                                n10 = duration2;
+                                b7Var.F.setProgress(b7Var.e.n());
+                            }
+                        }
+                        if (n10 < b7Var.I) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        b7Var.w(z10);
+                        if (n10 < b7Var.I) {
+                            z11 = true;
+                        }
+                        b7Var.y(z11);
+                        b7Var.F.setProgress(b7Var.e.n());
+                    } else {
+                        b7Var.F.setProgress(b7Var.e.n());
+                    }
+                    if (b7Var.e.y()) {
+                        AndroidUtilities.cancelRunOnUIThread(z6Var);
+                        AndroidUtilities.runOnUIThread(z6Var, 1000.0f / AndroidUtilities.screenRefreshRate);
+                    }
+                    b7Var.I = n10;
+                    return;
                 }
-                i60.w1(call, z10, this.f5867b, runnable);
+                return;
+            case 4:
+                b7 b7Var2 = this.f5913b;
+                z6 z6Var2 = b7Var2.L;
+                if (b7Var2.f4409y != null && b7Var2.e == null && b7Var2.f4407x == null && b7Var2.F != null && !b7Var2.j()) {
+                    long n11 = b7Var2.f4409y.n();
+                    l8 l8Var2 = b7Var2.d;
+                    if (l8Var2 != null) {
+                        float f7 = (float) n11;
+                        float f10 = l8Var2.E;
+                        float f11 = (float) l8Var2.C;
+                        if ((f7 < f10 * f11 || f7 > l8Var2.F * f11) && System.currentTimeMillis() - b7Var2.J > 500) {
+                            b7Var2.J = System.currentTimeMillis();
+                            f71 f71Var3 = b7Var2.f4409y;
+                            l8 l8Var3 = b7Var2.d;
+                            long j3 = l8Var3.E * ((float) l8Var3.C);
+                            f71Var3.L(j3, false);
+                            n11 = j3;
+                        }
+                    }
+                    b7Var2.F.setProgress(n11);
+                    if (b7Var2.f4409y.y()) {
+                        AndroidUtilities.cancelRunOnUIThread(z6Var2);
+                        AndroidUtilities.runOnUIThread(z6Var2, 1000.0f / AndroidUtilities.screenRefreshRate);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                b7 b7Var3 = this.f5913b;
+                z6 z6Var3 = b7Var3.M;
+                if (b7Var3.f4407x != null && b7Var3.e == null && !b7Var3.j() && b7Var3.F != null) {
+                    long n12 = b7Var3.f4407x.n();
+                    l8 l8Var4 = b7Var3.d;
+                    if (l8Var4 != null) {
+                        float f12 = (float) n12;
+                        float f13 = l8Var4.f5002s0;
+                        float f14 = (float) l8Var4.f4998q0;
+                        if ((f12 < f13 * f14 || f12 > l8Var4.f5004t0 * f14) && System.currentTimeMillis() - b7Var3.J > 500) {
+                            b7Var3.J = System.currentTimeMillis();
+                            f71 f71Var4 = b7Var3.f4407x;
+                            l8 l8Var5 = b7Var3.d;
+                            long j10 = l8Var5.f5002s0 * ((float) l8Var5.f4998q0);
+                            f71Var4.L(j10, false);
+                            b7Var3.w(true);
+                            n12 = j10;
+                        }
+                    }
+                    b7Var3.F.setProgress(n12);
+                    if (b7Var3.f4407x.y()) {
+                        AndroidUtilities.cancelRunOnUIThread(z6Var3);
+                        AndroidUtilities.runOnUIThread(z6Var3, 1000.0f / AndroidUtilities.screenRefreshRate);
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) this.e;
-                ProfileActivity profileActivity = ((i01) this.f5868c).f34387b;
-                profileActivity.N1 = true;
-                Bundle i11 = a4.a.i("scrollToTopOnResume", true);
-                long j3 = -this.f5867b;
-                i11.putLong("chat_id", j3);
-                if (profileActivity.getMessagesController().checkCanOpenChat(i11, (uy) this.d)) {
-                    bo boVar = new bo(i11);
-                    NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
-                    int i12 = NotificationCenter.closeChats;
-                    notificationCenter.removeObserver(profileActivity, i12);
-                    profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i12, new Object[0]);
-                    profileActivity.getMessagesController().addUserToChat(j3, user, 0, null, boVar, true, null, null);
-                    profileActivity.presentFragment(boVar, true);
+                b7 b7Var4 = this.f5913b;
+                t61 t61Var = b7Var4.f4393n;
+                if (t61Var != null) {
+                    wz wzVar = t61Var.f28102b;
+                    if (wzVar != null) {
+                        wzVar.postRunnable(new tz(wzVar, 0));
+                    }
+                    t61Var.f28101a = null;
+                    b7Var4.removeView(b7Var4.f4393n);
+                    b7Var4.f4393n = null;
                     return;
                 }
                 return;
         }
-    }
-
-    @Override
-    public dv0 getCloseIntoObject() {
-        return null;
-    }
-
-    @Override
-    public String getInitialSearchString() {
-        return null;
-    }
-
-    @Override
-    public Object i() {
-        da.b bVar = (da.b) this.f5868c;
-        Iterable iterable = (Iterable) this.d;
-        l5.i iVar = (l5.i) this.e;
-        s5.g gVar = (s5.g) ((s5.d) bVar.f7580c);
-        gVar.getClass();
-        if (iterable.iterator().hasNext()) {
-            String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + s5.g.g(iterable);
-            SQLiteDatabase a2 = gVar.a();
-            a2.beginTransaction();
-            try {
-                a2.compileStatement(str).execute();
-                Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE num_attempts >= 16 GROUP BY transport_name", null);
-                while (rawQuery.moveToNext()) {
-                    gVar.e(rawQuery.getInt(0), o5.c.MAX_RETRIES_REACHED, rawQuery.getString(1));
-                }
-                rawQuery.close();
-                a2.compileStatement("DELETE FROM events WHERE num_attempts >= 16").execute();
-                a2.setTransactionSuccessful();
-            } finally {
-                a2.endTransaction();
-            }
-        }
-        gVar.c(new ai.z1(((u5.a) bVar.f7582g).q() + this.f5867b, iVar));
-        return null;
-    }
-
-    @Override
-    public boolean t() {
-        return false;
-    }
-
-    public z6(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f5866a = i10;
-        this.f5868c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f5867b = j3;
-    }
-
-    public z6(i01 i01Var, long j3, uy uyVar, TLRPC.User user) {
-        this.f5866a = 3;
-        this.f5868c = i01Var;
-        this.f5867b = j3;
-        this.d = uyVar;
-        this.e = user;
-    }
-
-    @Override
-    public void B(float f7) {
-    }
-
-    @Override
-    public void P() {
-    }
-
-    @Override
-    public void L(boolean z10, boolean z11) {
     }
 }

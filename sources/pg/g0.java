@@ -1,8 +1,6 @@
 package pg;
 
-import android.graphics.fonts.Font;
+import java.util.ArrayList;
 public final class g0 {
-    public Font f40867a;
-    public String f40868b;
-    public String f40869c;
+    public ArrayList f40815a;
 }

@@ -1,55 +1,36 @@
 package xh;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ConnectionsManager;
-import yh.m5;
-public final class f4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f45863a;
-    public final m5 f45864b;
-    public final u3 f45865c;
-    public y3 d;
-    public boolean e;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.v51;
+public final class f4 extends v51 {
+    public final h4 N;
 
-    public f4(int i10, long j3) {
-        this.f45863a = i10;
-        m5 m5Var = new m5(i10, 0L, false);
-        this.f45864b = m5Var;
-        m5Var.f47410p = j3;
-        u3 u3Var = new u3(j3, i10, new org.telegram.ui.web.b1(this, 19));
-        u3Var.f46154s = true;
-        this.f45865c = u3Var;
-    }
-
-    public final void a() {
-        if (this.e) {
-            return;
-        }
-        NotificationCenter.getInstance(this.f45863a).addObserver(this, NotificationCenter.starUserGiftsLoaded);
-        this.f45864b.a();
-        this.f45865c.g(false);
-        this.e = true;
-    }
-
-    public final void b() {
-        if (!this.e) {
-            return;
-        }
-        NotificationCenter.getInstance(this.f45863a).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-        m5 m5Var = this.f45864b;
-        if (m5Var.f47407m != -1) {
-            ConnectionsManager.getInstance(m5Var.f47398a).cancelRequest(m5Var.f47407m, true);
-            m5Var.f47407m = -1;
-        }
-        m5Var.f47403i = false;
-        this.f45865c.f();
-        this.e = false;
+    public f4(h4 h4Var, ml0 ml0Var, Context context, int i10, hi.a aVar, d6 d6Var) {
+        super(ml0Var, context, i10, 0, false, aVar, d6Var);
+        this.N = h4Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        y3 y3Var;
-        if (i10 == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.f45864b && (y3Var = this.d) != null) {
-            y3Var.run();
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        d6 d6Var;
+        d6 d6Var2;
+        h4 h4Var = this.N;
+        if (i10 == 0) {
+            Context context = h4Var.getContext();
+            int i11 = h6.L6;
+            d6Var2 = ((org.telegram.ui.ActionBar.f3) h4Var).resourcesProvider;
+            return new s4.c1(new org.telegram.ui.Cells.m4(context, i11, 13, 12, 4, false, false, d6Var2));
+        } else if (i10 == 42) {
+            Context context2 = h4Var.getContext();
+            int i12 = h6.L6;
+            d6Var = ((org.telegram.ui.ActionBar.f3) h4Var).resourcesProvider;
+            return new s4.c1(new org.telegram.ui.Cells.m4(context2, i12, 13, 12, 4, false, true, d6Var));
+        } else {
+            return super.x(viewGroup, i10);
         }
     }
 }

@@ -22,12 +22,12 @@ public final class y0 extends n6.g {
     public final v8.s X;
     public final v8.s Y;
     public final v8.s Z;
-    public final v8.s f46434a0;
-    public final v8.s f46435b0;
-    public final v8.s f46436c0;
-    public final v8.s f46437d0;
-    public final v8.s f46438e0;
-    public final z0 f46439f0;
+    public final v8.s f46392a0;
+    public final v8.s f46393b0;
+    public final v8.s f46394c0;
+    public final v8.s f46395d0;
+    public final v8.s f46396e0;
+    public final z0 f46397f0;
 
     public y0(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, p3 p3Var) {
         super(context, looper, 14, p3Var, kVar, lVar, 0);
@@ -38,14 +38,14 @@ public final class y0 extends n6.g {
         this.X = new v8.s(4);
         this.Y = new v8.s(4);
         this.Z = new v8.s(4);
-        this.f46434a0 = new v8.s(4);
-        this.f46435b0 = new v8.s(4);
-        this.f46436c0 = new v8.s(4);
-        this.f46437d0 = new v8.s(4);
-        this.f46438e0 = new v8.s(4);
+        this.f46392a0 = new v8.s(4);
+        this.f46393b0 = new v8.s(4);
+        this.f46394c0 = new v8.s(4);
+        this.f46395d0 = new v8.s(4);
+        this.f46396e0 = new v8.s(4);
         n6.l.h(unconfigurableExecutorService);
         this.U = unconfigurableExecutorService;
-        this.f46439f0 = a2;
+        this.f46397f0 = a2;
         File file = new File(new File(context.getFilesDir(), "wearos_assets"), "streamtmp");
         file.mkdirs();
         File[] listFiles = file.listFiles();
@@ -66,11 +66,11 @@ public final class y0 extends n6.g {
             this.W.a(iBinder);
             this.X.a(iBinder);
             this.Z.a(iBinder);
-            this.f46434a0.a(iBinder);
-            this.f46435b0.a(iBinder);
-            this.f46436c0.a(iBinder);
-            this.f46437d0.a(iBinder);
-            this.f46438e0.a(iBinder);
+            this.f46392a0.a(iBinder);
+            this.f46393b0.a(iBinder);
+            this.f46394c0.a(iBinder);
+            this.f46395d0.a(iBinder);
+            this.f46396e0.a(iBinder);
             this.Y.a(iBinder);
             i10 = 0;
         }
@@ -87,7 +87,7 @@ public final class y0 extends n6.g {
         int i10;
         n6.a0 a0Var = this.v;
         AtomicInteger atomicInteger = this.R;
-        Context context = this.f15032n;
+        Context context = this.f15009n;
         if (!k()) {
             try {
                 Bundle bundle = context.getPackageManager().getApplicationInfo("com.google.android.wearable.app.cn", 128).metaData;
@@ -102,7 +102,7 @@ public final class y0 extends n6.g {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f9010a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f8996a);
                     n6.l.i(bVar, "Connection progress callbacks cannot be null.");
                     this.E = bVar;
                     a0Var.sendMessage(a0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
@@ -120,7 +120,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final boolean k() {
-        if (!this.f46439f0.b()) {
+        if (!this.f46397f0.b()) {
             return true;
         }
         return false;
@@ -145,7 +145,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final k6.c[] r() {
-        return x8.j.f45689b;
+        return x8.j.f45643b;
     }
 
     @Override
@@ -160,7 +160,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final String x() {
-        if (this.f46439f0.b()) {
+        if (this.f46397f0.b()) {
             return "com.google.android.wearable.app.cn";
         }
         return "com.google.android.gms";

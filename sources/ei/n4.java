@@ -4,32 +4,32 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.ug0;
-import org.telegram.ui.Components.ur;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vg0;
+import org.telegram.ui.Components.vr;
 public final class n4 extends GestureDetector.SimpleOnGestureListener {
-    public final int f8507a;
-    public final int f8508b;
-    public final ViewGroup f8509c;
+    public final int f8493a;
+    public final int f8494b;
+    public final ViewGroup f8495c;
 
     public n4(ViewGroup viewGroup, int i10, int i11) {
-        this.f8507a = i11;
-        this.f8509c = viewGroup;
-        this.f8508b = i10;
+        this.f8493a = i11;
+        this.f8495c = viewGroup;
+        this.f8494b = i10;
     }
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
-        switch (this.f8507a) {
+        switch (this.f8493a) {
             case 1:
-                ur urVar = (ur) this.f8509c;
-                rr rrVar = urVar.f28494r;
-                if (urVar.f28493n) {
-                    urVar.removeCallbacks(rrVar);
+                vr vrVar = (vr) this.f8495c;
+                sr srVar = vrVar.f29382r;
+                if (vrVar.f29381n) {
+                    vrVar.removeCallbacks(srVar);
                 }
-                urVar.f28493n = true;
-                urVar.postDelayed(rrVar, 200L);
-                urVar.h.run();
+                vrVar.f29381n = true;
+                vrVar.postDelayed(srVar, 200L);
+                vrVar.h.run();
                 return true;
             case 2:
                 return true;
@@ -40,10 +40,10 @@ public final class n4 extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        org.telegram.ui.web.z0 z0Var;
-        switch (this.f8507a) {
+        org.telegram.ui.web.y0 y0Var;
+        switch (this.f8493a) {
             case 0:
-                p4 p4Var = (p4) this.f8509c;
+                p4 p4Var = (p4) this.f8495c;
                 if (p4Var.d || !p4Var.M) {
                     return false;
                 }
@@ -55,14 +55,14 @@ public final class n4 extends GestureDetector.SimpleOnGestureListener {
                 }
                 float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), motionEvent2.getX(), motionEvent2.getY());
                 float eventTime = (float) (motionEvent2.getEventTime() - motionEvent.getEventTime());
-                if (f10 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && ((z0Var = p4Var.f8553x) == null || z0Var.getScrollY() == 0))) {
-                    p4Var.f8552w = true;
-                    float f11 = p4Var.f8550r;
+                if (f10 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && ((y0Var = p4Var.f8539x) == null || y0Var.getScrollY() == 0))) {
+                    p4Var.f8538w = true;
+                    float f11 = p4Var.f8536r;
                     int i10 = p4Var.H;
                     if (f11 < i10 && !p4Var.J) {
                         p4Var.e(0.0f);
-                    } else if (p4Var.J && p4Var.L && (p4Var.Q == (-p4Var.f8548f) + p4Var.e || (f11 <= (-i10) && f10 < AndroidUtilities.dp(1200.0f)))) {
-                        p4Var.e((-p4Var.f8548f) + p4Var.e);
+                    } else if (p4Var.J && p4Var.L && (p4Var.Q == (-p4Var.f8534f) + p4Var.e || (f11 <= (-i10) && f10 < AndroidUtilities.dp(1200.0f)))) {
+                        p4Var.e((-p4Var.f8534f) + p4Var.e);
                     } else {
                         o4 o4Var = p4Var.F;
                         if (o4Var != null) {
@@ -72,12 +72,12 @@ public final class n4 extends GestureDetector.SimpleOnGestureListener {
                 } else if (f10 > -700.0f) {
                     return false;
                 } else {
-                    float f12 = p4Var.f8550r;
-                    float f13 = (-p4Var.f8548f) + p4Var.e;
+                    float f12 = p4Var.f8536r;
+                    float f13 = (-p4Var.f8534f) + p4Var.e;
                     if (f12 <= f13) {
                         return false;
                     }
-                    p4Var.f8552w = true;
+                    p4Var.f8538w = true;
                     p4Var.e(f13);
                 }
                 return true;
@@ -85,11 +85,11 @@ public final class n4 extends GestureDetector.SimpleOnGestureListener {
             default:
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
-                ug0 ug0Var = (ug0) this.f8509c;
-                if (!ug0Var.f28397f && !ug0Var.h && f7 >= 600.0f) {
-                    ug0Var.e = false;
-                    ug0Var.h = false;
-                    ug0Var.a(0.0f, f7 / 6000.0f);
+                vg0 vg0Var = (vg0) this.f8495c;
+                if (!vg0Var.f28742f && !vg0Var.h && f7 >= 600.0f) {
+                    vg0Var.e = false;
+                    vg0Var.h = false;
+                    vg0Var.a(0.0f, f7 / 6000.0f);
                 }
                 return false;
         }

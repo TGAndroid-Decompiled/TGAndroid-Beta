@@ -2,160 +2,87 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ux extends AnimatorListenerAdapter {
-    public final int f38191a;
-    public final boolean f38192b;
-    public final uy f38193c;
+    public final int f38230a;
+    public final float f38231b;
+    public final ry f38232c;
 
-    public ux(uy uyVar, boolean z10, int i10) {
-        this.f38191a = i10;
-        this.f38193c = uyVar;
-        this.f38192b = z10;
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f38191a) {
-            case 0:
-                uy uyVar = this.f38193c;
-                uyVar.f38273o3.unlock();
-                if (uyVar.f38314w1 == animator) {
-                    if (this.f38192b) {
-                        uyVar.f38222e0[0].f37752a.c1();
-                    } else {
-                        qy qyVar = uyVar.f38222e0[0].f37752a;
-                        if (qyVar.f25955i1) {
-                            qyVar.f25955i1 = false;
-                            qyVar.K0(false);
-                        }
-                    }
-                    uyVar.f38314w1 = null;
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public ux(ry ryVar, float f7, int i10) {
+        this.f38230a = i10;
+        this.f38232c = ryVar;
+        this.f38231b = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        float f7;
         int i10;
-        org.telegram.ui.ActionBar.v0 v0Var;
-        switch (this.f38191a) {
+        int i11;
+        switch (this.f38230a) {
             case 0:
-                uy uyVar = this.f38193c;
-                uyVar.f38273o3.unlock();
-                if (uyVar.f38314w1 == animator) {
-                    uyVar.A4(false, true);
-                    boolean z10 = this.f38192b;
-                    if (z10) {
-                        uyVar.f38222e0[0].f37752a.c1();
-                        lx lxVar = uyVar.E0;
-                        if (lxVar != null) {
-                            lxVar.setVisibility(8);
-                        }
-                        uyVar.f38283q3 = true;
-                        Activity parentActivity = uyVar.getParentActivity();
-                        i10 = ((org.telegram.ui.ActionBar.n2) uyVar).classGuid;
-                        AndroidUtilities.requestAdjustResize(parentActivity, i10);
-                        uyVar.f38248j0.setVisibility(8);
-                        ox oxVar = uyVar.F3;
-                        if (oxVar != null) {
-                            oxVar.setVisibility(8);
-                        }
-                    } else {
-                        uyVar.f38289r3 = false;
-                        ey eyVar = uyVar.C0;
-                        if (eyVar != null) {
-                            eyVar.setVisibility(8);
-                        }
-                        ky kyVar = uyVar.X;
-                        if (kyVar != null) {
-                            kyVar.c();
-                        }
-                        ey eyVar2 = uyVar.C0;
-                        if (eyVar2 != null) {
-                            eyVar2.A0.clear();
-                            eyVar2.J();
-                        }
-                        qy qyVar = uyVar.f38222e0[0].f37752a;
-                        if (qyVar.f25955i1) {
-                            qyVar.f25955i1 = false;
-                            qyVar.K0(false);
-                        }
-                        uyVar.f38283q3 = false;
-                        ox oxVar2 = uyVar.F3;
-                        if (oxVar2 != null) {
-                            oxVar2.setVisibility(0);
-                        }
-                    }
-                    View view = uyVar.fragmentView;
-                    if (view != null) {
-                        view.requestLayout();
-                    }
-                    if (z10) {
-                        f7 = 1.0f;
-                    } else {
-                        f7 = 0.0f;
-                    }
-                    uyVar.D4(f7);
-                    uyVar.f38222e0[0].f37752a.setVerticalScrollBarEnabled(true);
-                    ey eyVar3 = uyVar.C0;
-                    if (eyVar3 != null) {
-                        eyVar3.setBackground(null);
-                    }
-                    uyVar.f38314w1 = null;
-                    return;
-                }
-                return;
-            case 1:
-                uy uyVar2 = this.f38193c;
-                uyVar2.O3 = null;
-                if (!this.f38192b && (v0Var = uyVar2.m0) != null) {
-                    v0Var.setVisibility(8);
-                    return;
-                }
-                return;
-            default:
-                uy uyVar3 = this.f38193c;
-                uyVar3.I = null;
-                boolean z11 = this.f38192b;
-                uyVar3.K = z11;
-                if (!z11 && !uyVar3.L) {
-                    uyVar3.E0.setVisibility(8);
-                }
-                if (!z11) {
-                    uyVar3.C4(0.0f);
-                    uyVar3.f38321x3 = AndroidUtilities.dp(81.0f);
+                super.onAnimationEnd(animator);
+                ry ryVar = this.f38232c;
+                ryVar.f37061u3 = null;
+                int i12 = 0;
+                ryVar.O = false;
+                ryVar.Q = true;
+                ryVar.R = true;
+                ryVar.fragmentView.invalidate();
+                if (ryVar.K) {
+                    i10 = 81;
                 } else {
-                    uyVar3.f38321x3 = -AndroidUtilities.dp(81.0f);
-                    uyVar3.C4(-uyVar3.U3());
+                    i10 = 0;
                 }
-                int i11 = 0;
+                ryVar.f37077x3 = -(AndroidUtilities.dp(i10 + 48) - this.f38231b);
+                ryVar.f36978e0[0].setTranslationY(0.0f);
                 while (true) {
-                    ty[] tyVarArr = uyVar3.f38222e0;
-                    if (i11 < tyVarArr.length) {
-                        ty tyVar = tyVarArr[i11];
-                        if (tyVar != null) {
-                            tyVar.f37752a.requestLayout();
+                    qy[] qyVarArr = ryVar.f36978e0;
+                    if (i12 < qyVarArr.length) {
+                        qy qyVar = qyVarArr[i12];
+                        if (qyVar != null) {
+                            qyVar.f36629a.requestLayout();
                         }
-                        i11++;
+                        i12++;
                     } else {
-                        View view2 = uyVar3.fragmentView;
-                        if (view2 != null) {
-                            view2.requestLayout();
+                        ryVar.fragmentView.requestLayout();
+                        hy hyVar = ryVar.X;
+                        if (hyVar != null && ryVar.f36961b.f13963f) {
+                            hyVar.f22890r.requestFocus();
+                            AndroidUtilities.showKeyboard(ryVar.X.f22890r);
                             return;
                         }
                         return;
                     }
                 }
                 break;
+            default:
+                super.onAnimationEnd(animator);
+                ry ryVar2 = this.f38232c;
+                ryVar2.f37061u3 = null;
+                ryVar2.P = 0;
+                ryVar2.O = true;
+                if (ryVar2.K) {
+                    i11 = 81;
+                } else {
+                    i11 = 0;
+                }
+                ryVar2.f37077x3 = AndroidUtilities.dp(i11 + 48) - this.f38231b;
+                ryVar2.f36978e0[0].setTranslationY(0.0f);
+                int i13 = 0;
+                while (true) {
+                    qy[] qyVarArr2 = ryVar2.f36978e0;
+                    if (i13 < qyVarArr2.length) {
+                        qy qyVar2 = qyVarArr2[i13];
+                        if (qyVar2 != null) {
+                            qyVar2.f36629a.requestLayout();
+                        }
+                        i13++;
+                    } else {
+                        ryVar2.E0.l(1.0f, false);
+                        ryVar2.fragmentView.requestLayout();
+                        return;
+                    }
+                }
         }
     }
 }

@@ -1,71 +1,47 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class no extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
-    public final int T;
-    public Object U;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class no implements View.OnClickListener {
+    public final int f26451a;
+    public final Context f26452b;
+    public final int f26453c;
+    public final Object d;
+    public final Object e;
+    public final Object f26454f;
 
-    public no(Context context, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var, int i12) {
-        super(i10, i11, context, e6Var);
-        this.T = i12;
+    public no(Object obj, Context context, Object obj2, int i10, Object obj3, int i11) {
+        this.f26451a = i11;
+        this.d = obj;
+        this.f26452b = context;
+        this.e = obj2;
+        this.f26453c = i10;
+        this.f26454f = obj3;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.T) {
+    public final void onClick(View view) {
+        switch (this.f26451a) {
             case 0:
-                canvas.save();
-                Path path = (Path) this.U;
-                path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(path);
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild;
-            case 1:
-                canvas.save();
-                Path path2 = (Path) this.U;
-                path2.rewind();
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path2.addRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(path2);
-                boolean drawChild2 = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild2;
+                ((qo) this.d).a();
+                i2.s sVar = new i2.s(this.f26453c, (po) this.f26454f, 7);
+                e5.G(this.f26452b, (org.telegram.ui.ActionBar.d6) this.e, sVar);
+                return;
             default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        int i12;
-        switch (this.T) {
-            case 2:
-                n70 n70Var = (n70) this.U;
-                if (this == n70Var.A && (i12 = n70Var.X) > 0) {
-                    i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
+                op opVar = (op) this.e;
+                TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = (TLRPC.TL_inputGroupCallSlug) this.f26454f;
+                ((org.telegram.ui.ActionBar.f3) this.d).dismiss();
+                Activity findActivity = AndroidUtilities.findActivity(this.f26452b);
+                if (findActivity != null) {
+                    MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", opVar.f26827a.f21943q).apply();
+                    org.telegram.ui.Components.voip.f2.g(findActivity, this.f26453c, tL_inputGroupCallSlug, false, null, null);
+                    return;
                 }
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
                 return;
         }
-    }
-
-    public no(n70 n70Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(i10, i11, context, e6Var);
-        this.T = 2;
-        this.U = n70Var;
     }
 }

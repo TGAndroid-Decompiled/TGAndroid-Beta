@@ -3,19 +3,19 @@ package x2;
 import b2.l1;
 public final class f extends n implements Comparable {
     public final int e;
-    public final int f45164f;
+    public final int f45118f;
 
     public f(int i10, l1 l1Var, int i11, i iVar, int i12) {
         super(i10, l1Var, i11);
         int i13;
-        this.e = hg.c.d(i12, iVar.f45175t0) ? 1 : 0;
+        this.e = hg.c.d(i12, iVar.f45129t0) ? 1 : 0;
         b2.s sVar = this.d;
-        int i14 = sVar.f3312y;
+        int i14 = sVar.f3307y;
         int i15 = -1;
-        if (i14 != -1 && (i13 = sVar.f3313z) != -1) {
+        if (i14 != -1 && (i13 = sVar.f3308z) != -1) {
             i15 = i14 * i13;
         }
-        this.f45164f = i15;
+        this.f45118f = i15;
     }
 
     @Override
@@ -31,6 +31,6 @@ public final class f extends n implements Comparable {
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f45164f, ((f) obj).f45164f);
+        return Integer.compare(this.f45118f, ((f) obj).f45118f);
     }
 }

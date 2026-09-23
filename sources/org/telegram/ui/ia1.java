@@ -1,47 +1,25 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ia1 {
-    public final org.telegram.ui.Components.s00 f34587a;
-    public kg.f f34588b;
-    public final int f34589c;
-    public final ja1 d;
+import org.telegram.tgnet.TLRPC;
+public final class ia1 extends lq {
+    public final boolean[] f34086d1;
+    public final ra1 f34087e1;
+    public final ka1 f34088f1;
 
-    public ia1(ja1 ja1Var, int i10) {
-        this.d = ja1Var;
-        this.f34589c = i10;
-        ?? view = new View(ja1Var.getContext());
-        view.f27723c = true;
-        TextPaint textPaint = new TextPaint(1);
-        view.e = textPaint;
-        view.f27724f = new Paint(1);
-        Paint paint = new Paint(1);
-        view.h = paint;
-        Paint paint2 = new Paint(1);
-        view.f27725n = paint2;
-        view.f27728w = AndroidUtilities.dp(35.0f);
-        view.f27729x = AndroidUtilities.dp(22.0f);
-        view.f27730y = AndroidUtilities.dp(8.0f);
-        view.E = AndroidUtilities.dp(3.5f);
-        view.F = new RectF();
-        view.G = 0.0f;
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.f34587a = view;
-        view.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-        ja1Var.h.addView(view);
-        ja1Var.f34833n.add(this);
+    public ia1(ka1 ka1Var, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10, boolean[] zArr, ra1 ra1Var) {
+        super(j3, j10, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z10, null);
+        this.f34088f1 = ka1Var;
+        this.f34086d1 = zArr;
+        this.f34087e1 = ra1Var;
+    }
+
+    @Override
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f34086d1[0]) {
+            ra1 ra1Var = this.f34087e1;
+            if (org.telegram.ui.Components.xc.a(ra1Var)) {
+                org.telegram.ui.Components.xc.C(ra1Var, this.f34088f1.f34663a.first_name).j();
+            }
+        }
     }
 }

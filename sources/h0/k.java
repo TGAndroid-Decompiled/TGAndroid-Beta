@@ -5,20 +5,20 @@ import android.content.res.Resources;
 import android.util.SparseArray;
 import java.util.WeakHashMap;
 public abstract class k {
-    public static final ThreadLocal f10064a = new ThreadLocal();
-    public static final WeakHashMap f10065b = new WeakHashMap(0);
-    public static final Object f10066c = new Object();
+    public static final ThreadLocal f10050a = new ThreadLocal();
+    public static final WeakHashMap f10051b = new WeakHashMap(0);
+    public static final Object f10052c = new Object();
 
     public static void a(j jVar, int i10, ColorStateList colorStateList, Resources.Theme theme) {
-        synchronized (f10066c) {
+        synchronized (f10052c) {
             try {
-                WeakHashMap weakHashMap = f10065b;
+                WeakHashMap weakHashMap = f10051b;
                 SparseArray sparseArray = (SparseArray) weakHashMap.get(jVar);
                 if (sparseArray == null) {
                     sparseArray = new SparseArray();
                     weakHashMap.put(jVar, sparseArray);
                 }
-                sparseArray.append(i10, new i(colorStateList, jVar.f10062a.getConfiguration(), theme));
+                sparseArray.append(i10, new i(colorStateList, jVar.f10048a.getConfiguration(), theme));
             } catch (Throwable th2) {
                 throw th2;
             }

@@ -1,41 +1,84 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-public final class jd0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34864a;
-    public final wg0 f34865b;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class jd0 implements RequestDelegate {
+    public final int f34411a;
+    public final rg0 f34412b;
+    public final TLRPC.auth_SentCode f34413c;
+    public final Bundle d;
+    public final boolean e;
 
-    public jd0(wg0 wg0Var, int i10) {
-        this.f34864a = i10;
-        this.f34865b = wg0Var;
+    public jd0(int i10, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, rg0 rg0Var, boolean z10) {
+        this.f34411a = i10;
+        this.f34412b = rg0Var;
+        this.f34413c = auth_sentcode;
+        this.d = bundle;
+        this.e = z10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34864a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f34411a) {
             case 0:
-                wg0 wg0Var = this.f34865b;
-                wg0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wg0Var.f39201c.setAlpha(floatValue);
-                wg0Var.f39201c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
-                return;
-            case 1:
-                wg0 wg0Var2 = this.f34865b;
-                wg0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wg0Var2.f39201c.setAlpha(floatValue2);
-                wg0Var2.f39201c.setTranslationY((1.0f - floatValue2) * AndroidUtilities.dp(230.0f));
+                boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
+                final rg0 rg0Var = this.f34412b;
+                final TLRPC.auth_SentCode auth_sentcode = this.f34413c;
+                final Bundle bundle = this.d;
+                if (z10) {
+                    rg0Var.k1(false, true);
+                    rg0Var.f36836o0 = false;
+                    auth_sentcode.type.verifiedFirebase = true;
+                    final boolean z11 = this.e;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r1) {
+                                case 0:
+                                    rg0Var.g1(bundle, auth_sentcode, z11);
+                                    return;
+                                default:
+                                    rg0Var.g1(bundle, auth_sentcode, z11);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                FileLog.d("{PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE} Resend firebase sms because auth.requestFirebaseSms = false");
+                rg0Var.s1(bundle, auth_sentcode, "PLAYINTEGRITY_REQUESTFIREBASESMS_FALSE");
                 return;
             default:
-                wg0 wg0Var3 = this.f34865b;
-                wg0Var3.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f7 = (0.9f * floatValue3) + 0.1f;
-                wg0Var3.V.setScaleX(f7);
-                wg0Var3.V.setScaleY(f7);
-                wg0Var3.V.setAlpha(floatValue3);
+                boolean z12 = tLObject instanceof TLRPC.TL_boolTrue;
+                final rg0 rg0Var2 = this.f34412b;
+                final TLRPC.auth_SentCode auth_sentcode2 = this.f34413c;
+                final Bundle bundle2 = this.d;
+                if (z12) {
+                    rg0Var2.k1(false, true);
+                    rg0Var2.f36836o0 = false;
+                    auth_sentcode2.type.verifiedFirebase = true;
+                    final boolean z13 = this.e;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r1) {
+                                case 0:
+                                    rg0Var2.g1(bundle2, auth_sentcode2, z13);
+                                    return;
+                                default:
+                                    rg0Var2.g1(bundle2, auth_sentcode2, z13);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                FileLog.d("{SAFETYNET_REQUESTFIREBASESMS_FALSE} Resend firebase sms because auth.requestFirebaseSms = false");
+                rg0Var2.s1(bundle2, auth_sentcode2, "SAFETYNET_REQUESTFIREBASESMS_FALSE");
                 return;
         }
     }

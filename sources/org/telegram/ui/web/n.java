@@ -1,103 +1,66 @@
 package org.telegram.ui.web;
 
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
+import android.text.TextUtils;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.rv0;
-public final class n extends org.telegram.ui.ActionBar.j {
-    public final p f39040a;
+import org.telegram.ui.ActionBar.f5;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.x51;
+public final class n extends f5 {
+    public final i2.h0 f38782f = new i2.h0(this, 28);
+    public final o h;
 
-    public n(p pVar) {
-        this.f39040a = pVar;
+    public n(o oVar) {
+        this.h = oVar;
     }
 
     @Override
-    public final void b(int i10) {
-        String str;
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        p pVar = this.f39040a;
-        HashSet hashSet = pVar.f39058w;
-        if (i10 == -1) {
-            kVar = ((org.telegram.ui.ActionBar.n2) pVar).actionBar;
-            if (kVar.s()) {
-                kVar2 = ((org.telegram.ui.ActionBar.n2) pVar).actionBar;
-                kVar2.r();
-                hashSet.clear();
-                AndroidUtilities.forEachViews((RecyclerView) pVar.f30482a, (e2.h) new m(0));
-                return;
-            }
-            pVar.finishFragment();
-        } else if (i10 == R.id.menu_delete) {
-            HashSet hashSet2 = new HashSet();
-            ArrayList arrayList = new ArrayList();
-            HashSet hashSet3 = new HashSet();
-            Iterator it = hashSet.iterator();
-            while (true) {
-                MessageObject messageObject = null;
-                int i11 = 0;
-                if (!it.hasNext()) {
-                    break;
-                }
-                int intValue = ((Integer) it.next()).intValue();
-                ArrayList arrayList2 = pVar.d.f38981a;
-                int size = arrayList2.size();
-                int i12 = 0;
-                while (true) {
-                    if (i12 >= size) {
-                        break;
-                    }
-                    Object obj = arrayList2.get(i12);
-                    i12++;
-                    MessageObject messageObject2 = (MessageObject) obj;
-                    if (messageObject2 != null && messageObject2.getId() == intValue) {
-                        messageObject = messageObject2;
-                        break;
-                    }
-                }
-                i iVar = pVar.e;
-                if (iVar != null && messageObject == null) {
-                    ArrayList arrayList3 = iVar.f38981a;
-                    int size2 = arrayList3.size();
-                    while (true) {
-                        if (i11 >= size2) {
-                            break;
-                        }
-                        Object obj2 = arrayList3.get(i11);
-                        i11++;
-                        MessageObject messageObject3 = (MessageObject) obj2;
-                        if (messageObject3 != null && messageObject3.getId() == intValue) {
-                            messageObject = messageObject3;
-                            break;
-                        }
-                    }
-                }
-                if (messageObject != null) {
-                    arrayList.add(messageObject);
-                    hashSet3.add(Integer.valueOf(messageObject.getId()));
-                    hashSet2.add(k.a(messageObject));
-                }
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pVar.getParentActivity(), 0, pVar.getResourceProvider());
-            alertDialog$Builder.f18435a.R = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
-            if (hashSet3.size() == 1) {
-                str = "AreYouSureUnsaveSingleMessage";
-            } else {
-                str = "AreYouSureUnsaveFewMessages";
-            }
-            alertDialog$Builder.f18435a.T = LocaleController.getString(str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new rv0(21, pVar, hashSet3));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            alertDialog$Builder.d(-1);
-            alertDialog$Builder.o();
-        } else if (i10 == R.id.menu_link) {
-            pVar.d0();
+    public final void m() {
+        o oVar = this.h;
+        oVar.f38792s = null;
+        AndroidUtilities.cancelRunOnUIThread(this.f38782f);
+        i iVar = oVar.e;
+        if (iVar != null) {
+            iVar.c();
+            oVar.e = null;
         }
+        x51 x51Var = oVar.f30163a;
+        if (x51Var != null) {
+            x51Var.Y2.N(true);
+            oVar.f30163a.X2.h1(0, 0);
+        }
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        int i10;
+        o oVar = this.h;
+        boolean z10 = !TextUtils.isEmpty(oVar.f38792s);
+        String obj = editText.getText().toString();
+        if (!TextUtils.equals(oVar.f38792s, obj)) {
+            oVar.f38792s = obj;
+            i iVar = oVar.e;
+            if (iVar != null) {
+                iVar.c();
+            }
+            i10 = ((n2) oVar).currentAccount;
+            i iVar2 = new i(obj, i10, new l(oVar, 1));
+            oVar.e = iVar2;
+            iVar2.a();
+            i2.h0 h0Var = this.f38782f;
+            AndroidUtilities.cancelRunOnUIThread(h0Var);
+            AndroidUtilities.runOnUIThread(h0Var, 500L);
+        }
+        x51 x51Var = oVar.f30163a;
+        if (x51Var != null) {
+            x51Var.Y2.N(true);
+            if (z10 != (!TextUtils.isEmpty(obj))) {
+                oVar.f30163a.X2.h1(0, 0);
+            }
+        }
+    }
+
+    @Override
+    public final void n() {
     }
 }

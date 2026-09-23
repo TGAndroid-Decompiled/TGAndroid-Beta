@@ -1,26 +1,26 @@
 package n7;
 public final class l extends n {
-    public final transient n f15143c;
+    public final transient n f15120c;
 
     public l(n nVar) {
-        this.f15143c = nVar;
+        this.f15120c = nVar;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f15143c.contains(obj);
+        return this.f15120c.contains(obj);
     }
 
     @Override
     public final Object get(int i10) {
-        n nVar = this.f15143c;
+        n nVar = this.f15120c;
         a.e(i10, nVar.size());
         return nVar.get((nVar.size() - 1) - i10);
     }
 
     @Override
     public final int indexOf(Object obj) {
-        n nVar = this.f15143c;
+        n nVar = this.f15120c;
         int lastIndexOf = nVar.lastIndexOf(obj);
         if (lastIndexOf < 0) {
             return -1;
@@ -30,7 +30,7 @@ public final class l extends n {
 
     @Override
     public final int lastIndexOf(Object obj) {
-        n nVar = this.f15143c;
+        n nVar = this.f15120c;
         int indexOf = nVar.indexOf(obj);
         if (indexOf < 0) {
             return -1;
@@ -40,18 +40,18 @@ public final class l extends n {
 
     @Override
     public final n r() {
-        return this.f15143c;
+        return this.f15120c;
     }
 
     @Override
     public final n subList(int i10, int i11) {
-        n nVar = this.f15143c;
+        n nVar = this.f15120c;
         a.m(i10, i11, nVar.size());
         return nVar.subList(nVar.size() - i11, nVar.size() - i10).r();
     }
 
     @Override
     public final int size() {
-        return this.f15143c.size();
+        return this.f15120c.size();
     }
 }

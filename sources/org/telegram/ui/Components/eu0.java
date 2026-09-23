@@ -39,7 +39,7 @@ public final class eu0 extends org.telegram.ui.Cells.t1 {
         }
     }
 
-    public eu0(Context context, int i10, boolean z10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i10, z10, chatMessageSharedResources, e6Var);
+    public eu0(Context context, int i10, boolean z10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, z10, chatMessageSharedResources, d6Var);
     }
 }

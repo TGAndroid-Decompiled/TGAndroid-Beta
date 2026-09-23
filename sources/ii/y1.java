@@ -1,114 +1,72 @@
 package ii;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.hq0;
-import org.telegram.ui.Components.tg;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.uy;
-public final class y1 extends tg {
-    public final int f11775l0;
-    public final Object m0;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.HorizontalScrollView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.rr;
+import org.telegram.ui.i20;
+public final class y1 extends HorizontalScrollView {
+    public final i20 f11765a;
+    public final org.telegram.ui.Components.e6 f11766b;
+    public final org.telegram.ui.Components.e6 f11767c;
+    public final e2 d;
 
-    public y1(Object obj, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(i10, context, e6Var, true);
-        this.f11775l0 = i11;
-        this.m0 = obj;
+    public y1(e2 e2Var, Context context) {
+        super(context);
+        this.d = e2Var;
+        this.f11765a = new i20();
+        rr rrVar = rr.h;
+        this.f11766b = new org.telegram.ui.Components.e6(this, 300L, rrVar);
+        this.f11767c = new org.telegram.ui.Components.e6(this, 300L, rrVar);
     }
 
     @Override
-    public boolean d() {
-        switch (this.f11775l0) {
-            case 0:
-                return ((d2) this.m0).l0();
-            case 1:
-            case 2:
-            default:
-                return super.d();
-            case 3:
-                return false;
-            case 4:
-                return false;
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.f11766b.e(canScrollHorizontally(-1));
+        float e7 = this.f11767c.e(canScrollHorizontally(1));
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        if (i10 <= 0 && e7 <= 0.0f) {
+            canvas2 = canvas;
+        } else {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(getScrollX(), 0.0f, getWidth() + getScrollX(), getHeight(), 255, 31);
         }
+        super.dispatchDraw(canvas2);
+        if (i10 <= 0 && e7 <= 0.0f) {
+            return;
+        }
+        canvas2.save();
+        i20 i20Var = this.f11765a;
+        if (i10 > 0) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(getScrollX(), 0.0f, AndroidUtilities.dp(48.0f) + getScrollX(), getHeight());
+            i20Var.b(canvas2, rectF, 0, e);
+        }
+        if (e7 > 0.0f) {
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set((getWidth() + getScrollX()) - AndroidUtilities.dp(48.0f), 0.0f, getWidth() + getScrollX(), getHeight());
+            i20Var.b(canvas2, rectF2, 2, e7);
+        }
+        canvas2.restore();
     }
 
     @Override
-    public final boolean f() {
-        switch (this.f11775l0) {
-            case 0:
-                if (!((d2) this.m0).L0 && this.f28123r <= 0) {
-                    return false;
-                }
-                return true;
-            case 1:
-                if (!((b4) this.m0).W && this.f28123r <= 0) {
-                    return false;
-                }
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            default:
-                return true;
+    public final void onMeasure(int i10, int i11) {
+        int mode = View.MeasureSpec.getMode(i10);
+        if (mode == 1073741824) {
+            super.onMeasure(i10, i11);
+            return;
         }
-    }
-
-    @Override
-    public int getFillColor() {
-        int i10 = this.f11775l0;
-        Object obj = this.m0;
-        switch (i10) {
-            case 2:
-                return ((hq0) obj).getThemedColor(i6.S5);
-            case 3:
-            default:
-                return super.getFillColor();
-            case 4:
-                int i11 = i6.f19243zf;
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return ((PhotoViewer) obj).z1(i11);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0), i11);
+        int measuredWidth = getMeasuredWidth();
+        int i12 = this.d.f11321k0;
+        if (mode == Integer.MIN_VALUE) {
+            i12 = Math.min(i12, View.MeasureSpec.getSize(i10));
         }
-    }
-
-    @Override
-    public boolean j() {
-        switch (this.f11775l0) {
-            case 2:
-                return true;
-            case 3:
-                return true;
-            case 4:
-                return true;
-            default:
-                return super.j();
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f11775l0) {
-            case 3:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((uy) this.m0).I2.size(), new Object[0]));
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    public y1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(i10, context, e6Var, false);
-        this.f11775l0 = i11;
-        this.m0 = notificationCenterDelegate;
+        setMeasuredDimension(Math.min(measuredWidth, i12), getMeasuredHeight());
     }
 }

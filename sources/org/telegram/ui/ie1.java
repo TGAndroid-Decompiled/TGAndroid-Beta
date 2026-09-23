@@ -1,149 +1,188 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.text.TextPaint;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class ie1 extends FrameLayout {
-    public final int f34648a;
-    public final le1 f34649b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class ie1 extends org.telegram.ui.Components.ll0 {
+    public int f34123c;
+    public int d;
+    public int e;
+    public int f34124f;
+    public int h;
+    public int f34125n;
+    public final le1 f34126r;
 
-    public ie1(le1 le1Var, Context context, int i10) {
-        super(context);
-        this.f34648a = i10;
-        this.f34649b = le1Var;
+    public ie1(le1 le1Var) {
+        this.f34126r = le1Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        org.telegram.ui.Cells.t1 t1Var;
-        switch (this.f34648a) {
-            case 0:
-                le1 le1Var = this.f34649b;
-                if (le1Var.f35461x > 0.0f && le1Var.v != null) {
-                    le1Var.f35460w.reset();
-                    float width = getWidth() / le1Var.f35458r.getWidth();
-                    le1Var.f35460w.postScale(width, width);
-                    le1Var.f35459s.setLocalMatrix(le1Var.f35460w);
-                    le1Var.v.setAlpha((int) (le1Var.f35461x * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), le1Var.v);
-                } else {
-                    canvas2 = canvas;
-                }
-                if (le1Var.N && (t1Var = le1Var.K) != null) {
-                    t1Var.K7 = le1Var.O;
-                    t1Var.invalidate();
-                    le1Var.N = false;
-                }
-                super.dispatchDraw(canvas2);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.b() >= this.f34124f && c1Var.b() < this.h) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void E() {
+        this.e = -1;
+        this.f34124f = -1;
+        this.h = -1;
+        this.f34125n = -1;
+        this.f34123c = 2;
+        this.d = 1;
+        ArrayList arrayList = this.f34126r.f34959f;
+        if (!arrayList.isEmpty()) {
+            int i10 = this.f34123c;
+            int i11 = i10 + 1;
+            this.e = i10;
+            int i12 = i10 + 2;
+            this.f34123c = i12;
+            this.f34124f = i11;
+            int size = (arrayList.size() - 1) + i12;
+            this.h = size;
+            this.f34123c = size + 1;
+            this.f34125n = size;
         }
     }
 
     @Override
-    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f34648a) {
-            case 0:
-                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f34649b.c(true);
-                    return true;
-                }
-                return super.dispatchKeyEventPreIme(keyEvent);
-            default:
-                return super.dispatchKeyEventPreIme(keyEvent);
+    public final int h() {
+        return this.f34123c;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        if (i10 == this.d) {
+            return 2;
+        }
+        if (i10 == this.e) {
+            return 3;
+        }
+        if (i10 == this.f34125n) {
+            return 5;
+        }
+        return 4;
+    }
+
+    @Override
+    public final void l() {
+        E();
+        super.l();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        View view = c1Var.f42627a;
+        int i11 = this.e;
+        le1 le1Var = this.f34126r;
+        if (i10 >= i11 && i11 > 0) {
+            view.setAlpha(le1Var.E);
+        } else {
+            view.setAlpha(1.0f);
+        }
+        if (j(i10) == 4) {
+            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
+            TLRPC.Chat chat = (TLRPC.Chat) le1Var.f34959f.get(i10 - this.f34124f);
+            String str = (String) le1Var.h.get(i10 - this.f34124f);
+            String str2 = chat.title;
+            boolean z10 = true;
+            if (i10 == this.h - 1) {
+                z10 = false;
+            }
+            g4Var.e(chat, str2, str, z10);
+            g4Var.c(le1Var.f34963w.contains(Long.valueOf(chat.f18083id)), false);
         }
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f34648a) {
-            case 1:
-                le1 le1Var = this.f34649b;
-                if (view != le1Var.J && view != le1Var.I) {
-                    return super.drawChild(canvas, view, j3);
-                }
-                canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(le1Var.L, 0.0f, le1Var.f35461x), getWidth(), AndroidUtilities.lerp(le1Var.M, getHeight(), le1Var.f35461x));
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f34648a) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                this.f34649b.d();
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f34648a) {
-            case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                int size2 = View.MeasureSpec.getSize(i11);
-                le1 le1Var = this.f34649b;
-                le1Var.e();
-                for (int i12 = 0; i12 < getChildCount(); i12++) {
-                    View childAt = getChildAt(i12);
-                    ViewGroup viewGroup = le1Var.S;
-                    if (childAt == viewGroup) {
-                        float f7 = le1Var.T;
-                        if (f7 > 0.0f) {
-                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f7), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    ViewGroup viewGroup2 = le1Var.Q;
-                    if (childAt == viewGroup2) {
-                        float f10 = le1Var.R;
-                        if (f10 > 0.0f) {
-                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    org.telegram.ui.Components.fk0 fk0Var = le1Var.P;
-                    if (childAt == fk0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(fk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        String string;
+        org.telegram.ui.Cells.m4 m4Var;
+        org.telegram.ui.Cells.g4 g4Var;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 != 5) {
+                        g4Var = new org.telegram.ui.Cells.g4(viewGroup.getContext(), 1, 0, false);
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                        g4Var = new org.telegram.ui.Cells.k3(viewGroup.getContext(), AndroidUtilities.dp(12.0f));
                     }
+                } else {
+                    org.telegram.ui.Cells.m4 m4Var2 = new org.telegram.ui.Cells.m4(viewGroup.getContext(), org.telegram.ui.ActionBar.h6.L6, 21, 8, false, null);
+                    m4Var2.setHeight(54);
+                    m4Var2.setText(LocaleController.getString(R.string.InactiveChats));
+                    m4Var = m4Var2;
                 }
-                setMeasuredDimension(size, size2);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+            } else {
+                View a7Var = new org.telegram.ui.Cells.a7(viewGroup.getContext(), (org.telegram.ui.Cells.q3) null);
+                org.telegram.ui.Components.qq qqVar = new org.telegram.ui.Components.qq(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18733a7, false)), org.telegram.ui.ActionBar.h6.V0(viewGroup.getContext(), R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f18753b7));
+                qqVar.f27431w = true;
+                a7Var.setBackground(qqVar);
+                g4Var = a7Var;
+            }
+            m4Var = g4Var;
+        } else {
+            Context context = viewGroup.getContext();
+            ?? frameLayout = new FrameLayout(context);
+            ImageView imageView = new ImageView(context);
+            int i11 = org.telegram.ui.ActionBar.h6.f18956m9;
+            imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i11, false), PorterDuff.Mode.MULTIPLY));
+            TextView textView = new TextView(context);
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
+            textView.setTextSize(1, 20.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setGravity(17);
+            frameLayout.addView(textView, w7.x5.d(-1, -2.0f, 51, 52.0f, 75.0f, 52.0f, 0.0f));
+            TextView textView2 = new TextView(context);
+            frameLayout.f20942a = textView2;
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18846g9, false));
+            textView2.setTextSize(1, 14.0f);
+            textView2.setGravity(17);
+            frameLayout.addView(textView2, w7.x5.d(-1, -2.0f, 51, 36.0f, 110.0f, 36.0f, 0.0f));
+            TextPaint textPaint = new TextPaint(1);
+            textPaint.setColor(-1);
+            textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            ai.w7 w7Var = new ai.w7(context, new Paint(1), textPaint);
+            w7Var.setWillNotDraw(false);
+            w7Var.addView(imageView, w7.x5.e(-2, -2, 1));
+            frameLayout.addView(w7Var, w7.x5.d(-2, -2.0f, 49, 0.0f, 12.0f, 0.0f, 6.0f));
+            textView.setText(LocaleController.getString(R.string.TooManyCommunities));
+            imageView.setImageResource(R.drawable.groups_limit1);
+            le1 le1Var = this.f34126r;
+            le1Var.f34964x = frameLayout;
+            int i12 = le1Var.G;
+            if (i12 == 0) {
+                string = LocaleController.getString(R.string.TooManyCommunitiesHintJoin);
+            } else if (i12 == 1) {
+                string = LocaleController.getString(R.string.TooManyCommunitiesHintEdit);
+            } else {
+                string = LocaleController.getString(R.string.TooManyCommunitiesHintCreate);
+            }
+            le1Var.f34964x.setMessageText(string);
+            s4.p0 p0Var = new s4.p0(-1, -2);
+            ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin = AndroidUtilities.dp(16.0f);
+            ((ViewGroup.MarginLayoutParams) p0Var).topMargin = AndroidUtilities.dp(23.0f);
+            le1Var.f34964x.setLayoutParams(p0Var);
+            m4Var = frameLayout;
         }
-    }
-
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f34648a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                le1 le1Var = this.f34649b;
-                gh.d.c(le1Var.E, le1Var.f35450b);
-                le1Var.F.d();
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
+        return new s4.c1(m4Var);
     }
 }

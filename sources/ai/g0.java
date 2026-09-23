@@ -4,7 +4,7 @@ import j$.util.DesugarArrays;
 import j$.util.stream.Collectors;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.nd;
+import org.telegram.messenger.md;
 public abstract class g0 {
     public static int[] a() {
         return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
@@ -49,6 +49,6 @@ public abstract class g0 {
     }
 
     public static String f(int[] iArr) {
-        return (String) DesugarArrays.stream(iArr).mapToObj(new nd(0)).collect(Collectors.joining(","));
+        return (String) DesugarArrays.stream(iArr).mapToObj(new md(0)).collect(Collectors.joining(","));
     }
 }

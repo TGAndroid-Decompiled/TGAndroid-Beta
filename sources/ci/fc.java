@@ -1,6 +1,39 @@
 package ci;
-public interface fc {
-    jc a(long j3);
 
-    void d(long j3, ai.j jVar);
+import android.graphics.Canvas;
+import org.telegram.ui.LaunchActivity;
+public final class fc extends gc {
+    public final ai.a0 f4711g;
+    public final float h;
+
+    public fc(ai.a0 a0Var, float f7) {
+        this.f4711g = a0Var;
+        this.h = f7;
+    }
+
+    @Override
+    public final void a(Canvas canvas, float f7) {
+        float pow = (float) Math.pow(f7, 16.0d);
+        ai.a0 a0Var = this.f4711g;
+        float f10 = this.h;
+        a0Var.c(canvas, f10, f10, pow);
+    }
+
+    @Override
+    public final void e() {
+        ai.a0 a0Var = this.f4711g;
+        a0Var.post(new ai.y(a0Var, 1));
+    }
+
+    @Override
+    public final void f(boolean z10) {
+        ai.a0 a0Var = this.f4711g;
+        a0Var.f501w = true;
+        a0Var.invalidate();
+        if (z10) {
+            int[] iArr = new int[2];
+            a0Var.getLocationInWindow(iArr);
+            LaunchActivity.b0((a0Var.getWidth() / 2.0f) + iArr[0], (a0Var.getHeight() / 2.0f) + iArr[1], 1.0f);
+        }
+    }
 }

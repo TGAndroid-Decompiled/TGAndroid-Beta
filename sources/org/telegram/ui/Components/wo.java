@@ -1,28 +1,58 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.tgnet.tl.TL_stories;
-public final class wo implements e2.h {
-    public final int f29756a;
-    public final mp f29757b;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.WallpapersListActivity;
+public final class wo implements View.OnClickListener {
+    public final int f29763a;
+    public final np f29764b;
 
-    public wo(mp mpVar, int i10) {
-        this.f29756a = i10;
-        this.f29757b = mpVar;
+    public wo(np npVar, int i10) {
+        this.f29763a = i10;
+        this.f29764b = npVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f29756a) {
+    public final void onClick(View view) {
+        switch (this.f29763a) {
             case 0:
-                mp mpVar = this.f29757b;
-                mpVar.f26200f0 = (TL_stories.TL_premium_boostsStatus) obj;
-                mpVar.f26198e0 = true;
-                mpVar.F(true);
-                mpVar.f26197d0 = false;
+                np npVar = this.f29764b;
+                wi wiVar = npVar.Y;
+                if (wiVar.f29726y0 == wiVar.f29677j0) {
+                    npVar.f26459a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
+                    npVar.Y.C1();
+                    kj kjVar = npVar.Y.f29701r0;
+                    boolean z10 = npVar.N;
+                    za zaVar = kjVar.v;
+                    ((ArrayList) zaVar.e).clear();
+                    WallpapersListActivity.z0((ArrayList) zaVar.e, z10);
+                    zaVar.l();
+                    return;
+                }
+                npVar.f26459a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
+                wi wiVar2 = npVar.Y;
+                wiVar2.Q1(wiVar2.f29677j0);
+                return;
+            case 1:
+                np npVar2 = this.f29764b;
+                if (npVar2.v()) {
+                    npVar2.z(true);
+                    npVar2.F(true);
+                    return;
+                }
+                npVar2.dismiss();
+                return;
+            case 2:
+                np npVar3 = this.f29764b;
+                if (npVar3.T == null) {
+                    npVar3.B(!npVar3.N);
+                    return;
+                }
                 return;
             default:
-                mp.m(this.f29757b, (ChannelBoostsController.CanApplyBoost) obj);
+                this.f29764b.s(false);
                 return;
         }
     }

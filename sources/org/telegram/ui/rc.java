@@ -2,32 +2,34 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
 public final class rc extends FrameLayout {
-    public final org.telegram.ui.ActionBar.e6 f37099a;
-    public final ec1 f37100b;
-    public final s4.c0 f37101c;
+    public final org.telegram.ui.ActionBar.d6 f36791a;
+    public final wb1 f36792b;
+    public final s4.c0 f36793c;
     public final int d;
     public int e;
 
-    public rc(int i10, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
+    public rc(int i10, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
         this.d = i10;
-        this.f37099a = e6Var;
-        ec1 ec1Var = new ec1(activity, 3, e6Var);
-        this.f37100b = ec1Var;
-        ec1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
-        ec1Var.setClipToPadding(false);
-        ec1Var.setAdapter(new pc(this, activity, e6Var, i10));
+        this.f36791a = d6Var;
+        wb1 wb1Var = new wb1(activity, 3, d6Var);
+        this.f36792b = wb1Var;
+        wb1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
+        wb1Var.setClipToPadding(false);
+        wb1Var.setAdapter(new pc(this, activity, d6Var, i10));
         s4.c0 c0Var = new s4.c0();
-        this.f37101c = c0Var;
+        this.f36793c = c0Var;
         c0Var.j1(0);
-        ec1Var.setLayoutManager(c0Var);
-        addView(ec1Var, w7.x5.c(-1.0f, -1));
+        wb1Var.setLayoutManager(c0Var);
+        addView(wb1Var, w7.x5.c(-1.0f, -1));
     }
 
     public final void a(int i10, boolean z10) {
@@ -38,7 +40,7 @@ public final class rc extends FrameLayout {
             while (true) {
                 if (i12 >= peerColors.colors.size()) {
                     break;
-                } else if (peerColors.colors.get(i12).f15603id == i10) {
+                } else if (peerColors.colors.get(i12).f15579id == i10) {
                     i11 = i12;
                     break;
                 } else {
@@ -49,9 +51,9 @@ public final class rc extends FrameLayout {
         if (i11 != this.e) {
             this.e = i11;
             if (!z10) {
-                this.f37101c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
+                this.f36793c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
             }
-            AndroidUtilities.forEachViews((RecyclerView) this.f37100b, (e2.h) new m4.t0(1, this, z10));
+            AndroidUtilities.forEachViews((RecyclerView) this.f36792b, (Utilities.Callback<View>) new ai.i3(3, this, z10));
         }
     }
 

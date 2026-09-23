@@ -4,28 +4,28 @@ import android.content.Context;
 import b2.i0;
 import java.util.UUID;
 public final class k {
-    public static final q9.a f41246b;
-    public final Context f41247a;
+    public static final q9.a f41202b;
+    public final Context f41203a;
 
     static {
         i0 a2 = q9.a.a(k.class);
         a2.a(q9.j.a(g.class));
         a2.a(q9.j.a(Context.class));
-        a2.f3020f = new na.d(20);
-        f41246b = a2.b();
+        a2.f3015f = new na.d(20);
+        f41202b = a2.b();
     }
 
     public k(Context context) {
-        this.f41247a = context;
+        this.f41203a = context;
     }
 
     public final synchronized String a() {
-        String string = this.f41247a.getSharedPreferences("com.google.mlkit.internal", 0).getString("ml_sdk_instance_id", null);
+        String string = this.f41203a.getSharedPreferences("com.google.mlkit.internal", 0).getString("ml_sdk_instance_id", null);
         if (string != null) {
             return string;
         }
         String uuid = UUID.randomUUID().toString();
-        this.f41247a.getSharedPreferences("com.google.mlkit.internal", 0).edit().putString("ml_sdk_instance_id", uuid).apply();
+        this.f41203a.getSharedPreferences("com.google.mlkit.internal", 0).edit().putString("ml_sdk_instance_id", uuid).apply();
         return uuid;
     }
 }

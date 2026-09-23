@@ -8,21 +8,21 @@ import java.util.ArrayList;
 import w7.e0;
 public final class i extends o6.a implements q {
     public static final Parcelable.Creator<i> CREATOR = new j(0);
-    public Status f40702a;
-    public ArrayList f40703b;
-    public String[] f40704c;
+    public Status f40657a;
+    public ArrayList f40658b;
+    public String[] f40659c;
 
     @Override
     public final Status i() {
-        return this.f40702a;
+        return this.f40657a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        e0.k(parcel, 1, this.f40702a, i10);
-        e0.p(parcel, 2, this.f40703b);
-        e0.m(parcel, 3, this.f40704c);
+        e0.k(parcel, 1, this.f40657a, i10);
+        e0.p(parcel, 2, this.f40658b);
+        e0.m(parcel, 3, this.f40659c);
         e0.r(parcel, q6);
     }
 }

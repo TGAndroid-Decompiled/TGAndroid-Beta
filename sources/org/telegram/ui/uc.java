@@ -1,35 +1,36 @@
 package org.telegram.ui;
 
 import android.view.View;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class uc implements e2.h {
-    public final int f37944a;
-    public final yc f37945b;
+public final class uc implements Utilities.Callback {
+    public final int f38048a;
+    public final yc f38049b;
 
     public uc(yc ycVar, int i10) {
-        this.f37944a = i10;
-        this.f37945b = ycVar;
+        this.f38048a = i10;
+        this.f38049b = ycVar;
     }
 
     @Override
-    public final void accept(Object obj) {
+    public final void run(Object obj) {
         TLRPC.WallPaper wallPaper;
         View view = (View) obj;
-        switch (this.f37944a) {
+        switch (this.f38048a) {
             case 0:
-                yc ycVar = this.f37945b;
+                yc ycVar = this.f38049b;
                 ycVar.getClass();
-                ((org.telegram.ui.Components.u11) view).setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18922i5, ycVar.f39805b));
+                ((org.telegram.ui.Components.t11) view).setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18877i5, ycVar.f39786b));
                 return;
             default:
-                if (view instanceof org.telegram.ui.Components.u11) {
-                    org.telegram.ui.Components.u11 u11Var = (org.telegram.ui.Components.u11) view;
-                    if (u11Var.G.f25997a.f18588b) {
+                if (view instanceof org.telegram.ui.Components.t11) {
+                    org.telegram.ui.Components.t11 t11Var = (org.telegram.ui.Components.t11) view;
+                    if (t11Var.G.f26253a.f18534b) {
                         wallPaper = null;
                     } else {
-                        wallPaper = this.f37945b.v;
+                        wallPaper = this.f38049b.v;
                     }
-                    u11Var.setFallbackWallpaper(wallPaper);
+                    t11Var.setFallbackWallpaper(wallPaper);
                     return;
                 }
                 return;

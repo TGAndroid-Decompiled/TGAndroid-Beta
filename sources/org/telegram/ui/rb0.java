@@ -1,67 +1,11 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Emoji;
-public final class rb0 implements TextWatcher {
-    public final int f37092a;
-    public final xb0 f37093b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public interface rb0 {
+    void a(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 
-    public rb0(xb0 xb0Var, int i10) {
-        this.f37092a = i10;
-        this.f37093b = xb0Var;
-    }
+    void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f37092a) {
-            case 0:
-                Emoji.replaceEmoji(editable, this.f37093b.K.getPaint().getFontMetricsInt(), false);
-                return;
-            default:
-                xb0 xb0Var = this.f37093b;
-                if (!xb0Var.O) {
-                    if (editable.toString().equals("0")) {
-                        xb0Var.F.setText("");
-                        return;
-                    }
-                    try {
-                        int parseInt = Integer.parseInt(editable.toString());
-                        if (parseInt > 100000) {
-                            xb0Var.X();
-                            return;
-                        } else {
-                            xb0Var.W(parseInt);
-                            return;
-                        }
-                    } catch (NumberFormatException unused) {
-                        xb0Var.X();
-                        return;
-                    }
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f37092a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f37092a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
+    void c(TLObject tLObject);
 }

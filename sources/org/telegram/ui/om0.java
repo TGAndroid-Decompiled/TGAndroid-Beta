@@ -1,8 +1,55 @@
 package org.telegram.ui;
 
+import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
-public final class om0 {
-    public TLRPC.TL_secureValue f36248a;
-    public boolean f36249b;
-    public boolean f36250c;
+public final class om0 implements Comparator {
+    public final in0 f35910a;
+
+    public om0(in0 in0Var) {
+        this.f35910a = in0Var;
+    }
+
+    public final int a(TLRPC.SecureValueError secureValueError) {
+        if (secureValueError instanceof TLRPC.TL_secureValueError) {
+            return 0;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
+            return 1;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
+            return 2;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
+            return 3;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
+            return 4;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
+            return 5;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
+            return 6;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
+            return 7;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
+            return in0.C0(this.f35910a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
+        }
+        return 100;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        int a2 = a((TLRPC.SecureValueError) obj);
+        int a10 = a((TLRPC.SecureValueError) obj2);
+        if (a2 < a10) {
+            return -1;
+        }
+        if (a2 > a10) {
+            return 1;
+        }
+        return 0;
+    }
 }

@@ -1,17 +1,23 @@
 package ci;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class j3 extends s4.s0 {
-    public final x3 f4836a;
+import org.telegram.messenger.MediaController;
+public final class j3 extends org.telegram.ui.ActionBar.j {
+    public final w3 f4816a;
 
-    public j3(x3 x3Var) {
-        this.f4836a = x3Var;
+    public j3(w3 w3Var) {
+        this.f4816a = w3Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        x3 x3Var = this.f4836a;
-        x3Var.getClass();
-        x3Var.invalidate();
+    public final void b(int i10) {
+        w3 w3Var = this.f4816a;
+        if (i10 == -1) {
+            Runnable runnable = w3Var.V;
+            if (runnable != null) {
+                runnable.run();
+            }
+        } else if (i10 >= 10) {
+            w3Var.e((MediaController.AlbumEntry) w3Var.f5714g0.get(i10 - 10), false);
+        }
     }
 }

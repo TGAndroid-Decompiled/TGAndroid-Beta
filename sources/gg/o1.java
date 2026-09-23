@@ -4,7 +4,7 @@ import ai.v8;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import ci.uc;
+import ci.rc;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.ChatObject;
@@ -15,37 +15,37 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.t00;
-import org.telegram.ui.bo;
-public final class o1 extends kl0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Context f9873c;
-    public final bo f9874f;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.u00;
+import org.telegram.ui.xn;
+public final class o1 extends ll0 implements NotificationCenter.NotificationCenterDelegate {
+    public final Context f9859c;
+    public final xn f9860f;
     public int h;
-    public int f9875n;
-    public final e6 f9877s;
+    public int f9861n;
+    public final d6 f9863s;
     public final int v;
-    public final boolean f9878w;
-    public String f9879x;
-    public v8 f9880y;
+    public final boolean f9864w;
+    public String f9865x;
+    public v8 f9866y;
     public final HashSet d = new HashSet();
     public final ArrayList e = new ArrayList();
-    public final int f9876r = UserConfig.selectedAccount;
-    public final uc E = new uc(this, 16);
+    public final int f9862r = UserConfig.selectedAccount;
+    public final rc E = new rc(this, 16);
 
-    public o1(Context context, bo boVar, e6 e6Var, int i10, boolean z10) {
-        this.f9877s = e6Var;
-        this.f9873c = context;
-        this.f9874f = boVar;
+    public o1(Context context, xn xnVar, d6 d6Var, int i10, boolean z10) {
+        this.f9863s = d6Var;
+        this.f9859c = context;
+        this.f9860f = xnVar;
         this.v = i10;
-        this.f9878w = z10;
+        this.f9864w = z10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42674f;
+        int i10 = c1Var.f42630f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -65,14 +65,14 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storiesListUpdated && objArr[0] == this.f9880y) {
+        if (i10 == NotificationCenter.storiesListUpdated && objArr[0] == this.f9866y) {
             l();
         }
     }
 
     @Override
     public final int h() {
-        return this.e.size() + this.f9875n;
+        return this.e.size() + this.f9861n;
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
         arrayList.clear();
         HashSet hashSet = this.d;
         hashSet.clear();
-        int i10 = this.f9876r;
+        int i10 = this.f9862r;
         int i11 = this.v;
         if (i11 == 0) {
             messages = MediaDataController.getInstance(i10).getFoundMessageObjects();
@@ -106,18 +106,18 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
                 hashSet.add(Integer.valueOf(messageObject.getId()));
             }
         }
-        int i14 = this.f9875n;
+        int i14 = this.f9861n;
         this.h = arrayList.size();
         if (i11 != 0) {
             if (!HashtagSearchController.getInstance(i10).isEndReached(i11) && this.h != 0) {
                 i12 = Utilities.clamp(HashtagSearchController.getInstance(i10).getCount(i11) - this.h, 3, 0);
             }
-            this.f9875n = i12;
+            this.f9861n = i12;
         } else {
             if (!MediaDataController.getInstance(i10).searchEndReached() && this.h != 0) {
                 i12 = Utilities.clamp(MediaDataController.getInstance(i10).getSearchCount() - this.h, 3, 0);
             }
-            this.f9875n = i12;
+            this.f9861n = i12;
         }
         int h10 = h();
         if (h < h10) {
@@ -135,16 +135,16 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
         int i11;
         boolean z10;
         int i12;
-        int i13 = c1Var.f42674f;
-        View view = c1Var.f42671a;
+        int i13 = c1Var.f42630f;
+        View view = c1Var.f42627a;
         if (i13 == 0) {
             r2 r2Var = (r2) view;
-            r2Var.f20748s2 = true;
+            r2Var.f20724s2 = true;
             MessageObject messageObject = (MessageObject) E(i10);
             long dialogId = messageObject.getDialogId();
             int i14 = messageObject.messageOwner.date;
-            if (this.f9878w) {
-                r2Var.f20740r0 = true;
+            if (this.f9864w) {
+                r2Var.f20716r0 = true;
                 long savedDialogId = messageObject.getSavedDialogId();
                 TLRPC.Message message = messageObject.messageOwner;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
@@ -162,7 +162,7 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
                 i11 = i12;
                 z10 = false;
             } else {
-                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.f9876r, dialogId)) {
+                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.f9862r, dialogId)) {
                     dialogId = messageObject.getFromChatId();
                 }
                 i11 = i14;
@@ -171,32 +171,32 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
             r2Var.W(dialogId, messageObject, i11, z10, false);
             r2Var.setDialogCellDelegate(new l1(this));
         } else if (i13 == 2) {
-            ((n1) view).a(this.f9880y);
+            ((n1) view).a(this.f9866y);
         }
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View r2Var;
-        t00 t00Var;
+        u00 u00Var;
         if (i10 != 0) {
-            e6 e6Var = this.f9877s;
-            Context context = this.f9873c;
+            d6 d6Var = this.f9863s;
+            Context context = this.f9859c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     r2Var = null;
                 } else {
-                    t00Var = new n1(context, e6Var);
+                    u00Var = new n1(context, d6Var);
                 }
             } else {
-                t00 t00Var2 = new t00(context, e6Var);
-                t00Var2.setIsSingleCell(true);
-                t00Var2.setViewType(7);
-                t00Var = t00Var2;
+                u00 u00Var2 = new u00(context, d6Var);
+                u00Var2.setIsSingleCell(true);
+                u00Var2.setViewType(7);
+                u00Var = u00Var2;
             }
-            r2Var = t00Var;
+            r2Var = u00Var;
         } else {
-            r2Var = new r2(null, this.f9873c, true, this.f9876r, this.f9877s);
+            r2Var = new r2(null, this.f9859c, true, this.f9862r, this.f9863s);
         }
         return com.google.android.gms.internal.vision.e2.k(r2Var, r2Var, -1, -2);
     }

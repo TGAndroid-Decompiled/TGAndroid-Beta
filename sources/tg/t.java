@@ -1,9 +1,9 @@
 package tg;
 
-import ai.t5;
+import ai.s5;
 import android.text.TextUtils;
 import android.util.Pair;
-import ci.kd;
+import ci.hd;
 import ei.k3;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.n2;
 public abstract class t {
-    public static HashMap f43217a;
+    public static HashMap f43172a;
 
     public static void a(long j3, List list, Utilities.Callback callback, Utilities.Callback callback2) {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
@@ -34,7 +34,7 @@ public abstract class t {
         tL_premium_applyBoost.peer = messagesController.getInputPeer(-j3);
         tL_premium_applyBoost.flags |= 1;
         tL_premium_applyBoost.slots.addAll(list);
-        connectionsManager.sendRequest(tL_premium_applyBoost, new t5(callback2, messagesController, callback), 66);
+        connectionsManager.sendRequest(tL_premium_applyBoost, new s5(callback2, messagesController, callback), 66);
     }
 
     public static ArrayList b(int i10, List list) {
@@ -92,8 +92,8 @@ public abstract class t {
         ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
-            if (DialogObject.isChatDialog(dialog.f18113id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-dialog.f18113id)))) {
-                long j10 = dialog.f18113id;
+            if (DialogObject.isChatDialog(dialog.f18087id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-dialog.f18087id)))) {
+                long j10 = dialog.f18087id;
                 if ((-j10) != j3) {
                     arrayList.add(messagesController.getInputPeer(j10));
                 }
@@ -127,7 +127,7 @@ public abstract class t {
     public static int j(int i10, TLRPC.Chat chat, Utilities.Callback callback) {
         Pair pair;
         if (chat == null) {
-            HashMap hashMap = f43217a;
+            HashMap hashMap = f43172a;
             List list = null;
             if (hashMap != null && (pair = (Pair) hashMap.get(Integer.valueOf(i10))) != null && System.currentTimeMillis() - ((Long) pair.first).longValue() < 1800000) {
                 list = (List) pair.second;
@@ -142,14 +142,14 @@ public abstract class t {
         TLRPC.TL_payments_getPremiumGiftCodeOptions tL_payments_getPremiumGiftCodeOptions = new TLRPC.TL_payments_getPremiumGiftCodeOptions();
         if (chat != null) {
             tL_payments_getPremiumGiftCodeOptions.flags = 1;
-            tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.f18109id);
+            tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.f18083id);
         }
         return connectionsManager.sendRequest(tL_payments_getPremiumGiftCodeOptions, new gg.u(chat, i10, callback, 9));
     }
 
     public static void k(ArrayList arrayList, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, n2 n2Var, Utilities.Callback callback, Utilities.Callback callback2) {
         int i10 = UserConfig.selectedAccount;
-        HashMap hashMap = f43217a;
+        HashMap hashMap = f43172a;
         if (hashMap != null) {
             hashMap.remove(Integer.valueOf(i10));
         }
@@ -176,7 +176,7 @@ public abstract class t {
             }
             if (chat != null) {
                 tL_inputStorePaymentPremiumGiftCode.flags |= 1;
-                tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.f18109id);
+                tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.f18083id);
             }
             tL_inputStorePaymentPremiumGiftCode.currency = tL_premiumGiftCodeOption.currency;
             tL_inputStorePaymentPremiumGiftCode.amount = tL_premiumGiftCodeOption.amount;
@@ -190,7 +190,7 @@ public abstract class t {
                 tL_payments_getPaymentForm.flags |= 1;
             }
             tL_payments_getPaymentForm.invoice = tL_inputInvoicePremiumGiftCode;
-            connectionsManager.sendRequest(tL_payments_getPaymentForm, new kd(callback2, messagesController, tL_inputInvoicePremiumGiftCode, n2Var, callback, 13));
+            connectionsManager.sendRequest(tL_payments_getPaymentForm, new hd(callback2, messagesController, tL_inputInvoicePremiumGiftCode, n2Var, callback, 13));
             return;
         }
         MessagesController messagesController2 = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -209,15 +209,15 @@ public abstract class t {
         }
         if (chat != null) {
             tL_inputStorePaymentPremiumGiftCode2.flags = 1;
-            tL_inputStorePaymentPremiumGiftCode2.boost_peer = messagesController2.getInputPeer(-chat.f18109id);
+            tL_inputStorePaymentPremiumGiftCode2.boost_peer = messagesController2.getInputPeer(-chat.f18083id);
         }
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             tL_inputStorePaymentPremiumGiftCode2.flags |= 2;
             tL_inputStorePaymentPremiumGiftCode2.message = tL_textWithEntities;
         }
         ?? obj3 = new Object();
-        obj3.f3839b = "inapp";
-        obj3.f3838a = tL_premiumGiftCodeOption.store_product;
+        obj3.f3834b = "inapp";
+        obj3.f3833a = tL_premiumGiftCodeOption.store_product;
         BillingController.getInstance().queryProductDetails(Arrays.asList(obj3.a()), new org.telegram.ui.Components.d1(tL_inputStorePaymentPremiumGiftCode2, tL_premiumGiftCodeOption, connectionsManager2, callback2, callback, n2Var, 2));
     }
 
@@ -229,9 +229,9 @@ public abstract class t {
     }
 
     public static void m(int i10, ArrayList arrayList) {
-        if (f43217a == null) {
-            f43217a = new HashMap();
+        if (f43172a == null) {
+            f43172a = new HashMap();
         }
-        f43217a.put(Integer.valueOf(i10), new Pair(Long.valueOf(System.currentTimeMillis()), arrayList));
+        f43172a.put(Integer.valueOf(i10), new Pair(Long.valueOf(System.currentTimeMillis()), arrayList));
     }
 }

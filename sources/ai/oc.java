@@ -5,31 +5,31 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
 public final class oc extends ImageReceiver.Decorator {
-    public final ArrayList f1373a;
-    public float f1374b;
-    public float f1375c;
+    public final ArrayList f1374a;
+    public float f1375b;
+    public float f1376c;
     public float d;
     public float e;
 
     public oc(TL_stories.StoryItem storyItem) {
         for (int i10 = 0; i10 < storyItem.media_areas.size(); i10++) {
             if (storyItem.media_areas.get(i10) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
-                if (this.f1373a == null) {
-                    this.f1373a = new ArrayList();
+                if (this.f1374a == null) {
+                    this.f1374a = new ArrayList();
                 }
-                this.f1373a.add(new lc(this, (TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i10)));
+                this.f1374a.add(new lc(this, (TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i10)));
             } else if (storyItem.media_areas.get(i10) instanceof TL_stories.TL_mediaAreaWeather) {
-                if (this.f1373a == null) {
-                    this.f1373a = new ArrayList();
+                if (this.f1374a == null) {
+                    this.f1374a = new ArrayList();
                 }
-                this.f1373a.add(new nc(this, (TL_stories.TL_mediaAreaWeather) storyItem.media_areas.get(i10)));
+                this.f1374a.add(new nc(this, (TL_stories.TL_mediaAreaWeather) storyItem.media_areas.get(i10)));
             }
         }
     }
 
     @Override
     public final void onAttachedToWindow(ImageReceiver imageReceiver) {
-        ArrayList arrayList = this.f1373a;
+        ArrayList arrayList = this.f1374a;
         if (arrayList != null) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 ((kc) arrayList.get(i10)).c(imageReceiver.getParentView());
@@ -40,7 +40,7 @@ public final class oc extends ImageReceiver.Decorator {
 
     @Override
     public final void onDetachedFromWidnow() {
-        ArrayList arrayList = this.f1373a;
+        ArrayList arrayList = this.f1374a;
         if (arrayList != null) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 ((kc) arrayList.get(i10)).b(false);
@@ -50,7 +50,7 @@ public final class oc extends ImageReceiver.Decorator {
 
     @Override
     public final void onDraw(Canvas canvas, ImageReceiver imageReceiver) {
-        ArrayList arrayList = this.f1373a;
+        ArrayList arrayList = this.f1374a;
         if (arrayList == null) {
             return;
         }
@@ -61,8 +61,8 @@ public final class oc extends ImageReceiver.Decorator {
         this.d = imageWidth;
         float f7 = (16.0f * imageWidth) / 9.0f;
         this.e = f7;
-        this.f1374b = centerX - (imageWidth / 2.0f);
-        this.f1375c = centerY - (f7 / 2.0f);
+        this.f1375b = centerX - (imageWidth / 2.0f);
+        this.f1376c = centerY - (f7 / 2.0f);
         canvas.save();
         canvas.clipRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
         for (int i10 = 0; i10 < arrayList.size(); i10++) {

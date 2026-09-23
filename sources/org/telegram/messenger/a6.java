@@ -1,32 +1,32 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.o70;
 public final class a6 implements Runnable {
-    public final int f15645a;
-    public final float f15646b;
-    public final NotificationCenter.NotificationCenterDelegate f15647c;
+    public final int f15622a;
+    public final float f15623b;
+    public final NotificationCenter.NotificationCenterDelegate f15624c;
     public final Object d;
 
     public a6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, float f7, int i10) {
-        this.f15645a = i10;
-        this.f15647c = notificationCenterDelegate;
+        this.f15622a = i10;
+        this.f15624c = notificationCenterDelegate;
         this.d = obj;
-        this.f15646b = f7;
+        this.f15623b = f7;
     }
 
     @Override
     public final void run() {
-        switch (this.f15645a) {
+        switch (this.f15622a) {
             case 0:
-                ((MediaController) this.f15647c).lambda$setPlaybackSpeed$16((MessageObject) this.d, this.f15646b);
+                ((MediaController) this.f15624c).lambda$setPlaybackSpeed$16((MessageObject) this.d, this.f15623b);
                 return;
             default:
-                org.telegram.ui.h4 h4Var = (org.telegram.ui.h4) this.f15647c;
-                n70 n70Var = (n70) this.d;
-                h4Var.f34078h0.M.c(0.0f, true);
-                n70Var.f26362p = new org.telegram.ui.b0(h4Var, this.f15646b, 0);
-                n70Var.Z();
+                org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f15624c;
+                o70 o70Var = (o70) this.d;
+                i4Var.f34009h0.M.c(0.0f, true);
+                o70Var.f26664p = new org.telegram.ui.c0(i4Var, this.f15623b, 0);
+                o70Var.Z();
                 return;
         }
     }

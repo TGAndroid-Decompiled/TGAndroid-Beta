@@ -1,7 +1,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-public final class a4 extends org.telegram.ui.ActionBar.j5 {
+public final class a4 extends org.telegram.ui.ActionBar.i5 {
     public float M0;
     public final int N0;
     public final e4 O0;
@@ -24,7 +24,7 @@ public final class a4 extends org.telegram.ui.ActionBar.j5 {
         if (this.N0 == 4) {
             float fullAlpha = e4Var.d[4].getFullAlpha();
             if (e4Var.c()) {
-                float f10 = e4Var.f20011e0;
+                float f10 = e4Var.f19950e0;
                 if (f10 > 0.0f) {
                     super.setAlpha(1.0f - f10);
                     return;
@@ -46,10 +46,10 @@ public final class a4 extends org.telegram.ui.ActionBar.j5 {
         super.setFullAlpha(f7);
         int i10 = 0;
         while (true) {
-            org.telegram.ui.ActionBar.j5[] j5VarArr = this.O0.d;
-            if (i10 < j5VarArr.length) {
-                org.telegram.ui.ActionBar.j5 j5Var = j5VarArr[i10];
-                j5Var.setAlpha(j5Var.getAlpha());
+            org.telegram.ui.ActionBar.i5[] i5VarArr = this.O0.d;
+            if (i10 < i5VarArr.length) {
+                org.telegram.ui.ActionBar.i5 i5Var = i5VarArr[i10];
+                i5Var.setAlpha(i5Var.getAlpha());
                 i10++;
             } else {
                 return;

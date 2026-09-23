@@ -394,10 +394,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f15604id;
+        private int f15580id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f15604id = i10;
+            this.f15580id = i10;
             this.args = objArr;
         }
     }
@@ -939,7 +939,7 @@ public class NotificationCenter {
                 }
             }
             if (j3 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new xg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j3)));
+                AndroidUtilities.runOnUIThread(new wg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j3)));
             }
         }
     }
@@ -1031,7 +1031,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new xg(this, 1);
+        this.checkForExpiredNotifications = new wg(this, 1);
     }
 
     public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
@@ -1051,7 +1051,7 @@ public class NotificationCenter {
     }
 
     public static void listenEmojiLoading(View view) {
-        getGlobalInstance().listen(view, emojiLoaded, new a1(view, 2));
+        getGlobalInstance().listen(view, emojiLoaded, new b1(view, 2));
     }
 
     private void postNotificationDebounced(int i10, Object[] objArr) {
@@ -1216,7 +1216,7 @@ public class NotificationCenter {
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
             return new ei.l3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
         }
-        return new v1(18);
+        return new w1(18);
     }
 
     public void onAnimationFinish(int i10) {
@@ -1391,7 +1391,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f15604id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f15580id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }
@@ -1513,9 +1513,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            xg xgVar = new xg(this, 1);
-            this.checkForExpiredNotifications = xgVar;
-            AndroidUtilities.runOnUIThread(xgVar, 5017L);
+            wg wgVar = new wg(this, 1);
+            this.checkForExpiredNotifications = wgVar;
+            AndroidUtilities.runOnUIThread(wgVar, 5017L);
         }
         return this.animationInProgressPointer;
     }

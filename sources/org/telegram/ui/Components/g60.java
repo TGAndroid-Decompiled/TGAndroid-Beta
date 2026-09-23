@@ -1,31 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class g60 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.f3[] f24203a;
-    public final TLRPC.TL_chatInviteImporter f24204b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class g60 extends s4.s0 {
+    public final s4.c0 f24175a;
+    public final s60 f24176b;
 
-    public g60(org.telegram.ui.ActionBar.f3[] f3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f24203a = f3VarArr;
-        this.f24204b = tL_chatInviteImporter;
+    public g60(s60 s60Var, s4.c0 c0Var) {
+        this.f24176b = s60Var;
+        this.f24175a = c0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f24203a[0].dismiss();
-        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-        if (U != null) {
-            U.presentFragment(ProfileActivity.m4(this.f24204b.user_id));
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        s60 s60Var = this.f24176b;
+        s60.O(s60Var);
+        if (s60Var.R && !s60Var.Q) {
+            if (s60Var.S - this.f24175a.N0() < 10) {
+                s60Var.X();
+            }
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
     }
 }

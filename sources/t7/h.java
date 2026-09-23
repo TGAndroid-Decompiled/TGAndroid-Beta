@@ -4,15 +4,15 @@ import j$.util.Objects;
 import java.util.AbstractMap;
 import w7.i7;
 public final class h extends d {
-    public final i f43018c;
+    public final i f42973c;
 
     public h(i iVar) {
-        this.f43018c = iVar;
+        this.f42973c = iVar;
     }
 
     @Override
     public final Object get(int i10) {
-        i iVar = this.f43018c;
+        i iVar = this.f42973c;
         i7.a(i10, iVar.e);
         Object[] objArr = iVar.d;
         int i11 = i10 + i10;
@@ -25,6 +25,6 @@ public final class h extends d {
 
     @Override
     public final int size() {
-        return this.f43018c.e;
+        return this.f42973c.e;
     }
 }

@@ -1,72 +1,57 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class d01 extends AnimatorListenerAdapter {
-    public final int f32901a;
-    public final boolean f32902b;
-    public final ProfileActivity f32903c;
+import org.telegram.messenger.ChatObject;
+public final class d01 implements ci.cc {
+    public final ProfileActivity f32465a;
 
-    public d01(ProfileActivity profileActivity, boolean z10, int i10) {
-        this.f32901a = i10;
-        this.f32903c = profileActivity;
-        this.f32902b = z10;
+    public d01(ProfileActivity profileActivity) {
+        this.f32465a = profileActivity;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f32901a) {
-            case 1:
-                this.f32903c.f31273f0 = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final ci.gc a(long j3) {
+        float f7;
+        ProfileActivity profileActivity = this.f32465a;
+        if (j3 == profileActivity.a()) {
+            profileActivity.f31239e0.setRoundRadiusForExpand((int) AndroidUtilities.lerp(profileActivity.c4(), 0.0f, profileActivity.f31283k2));
+            hz0 hz0Var = profileActivity.f31239e0;
+            boolean isForum = ChatObject.isForum(profileActivity.E2);
+            if (hz0Var != null && hz0Var.getRootView() != null) {
+                float scaleX = ((View) hz0Var.getParent()).getScaleX();
+                float imageWidth = hz0Var.getImageReceiver().getImageWidth() * scaleX;
+                if (isForum) {
+                    f7 = 0.32f * imageWidth;
+                } else {
+                    f7 = imageWidth;
+                }
+                ci.ec ecVar = new ci.ec(hz0Var, 0);
+                int[] iArr = new int[2];
+                float[] fArr = new float[2];
+                hz0Var.getRootView().getLocationOnScreen(iArr);
+                AndroidUtilities.getViewPositionInParent(hz0Var, (ViewGroup) hz0Var.getRootView(), fArr);
+                float imageX = (hz0Var.getImageReceiver().getImageX() * scaleX) + iArr[0] + fArr[0];
+                float imageY = (hz0Var.getImageReceiver().getImageY() * scaleX) + iArr[1] + fArr[1];
+                ecVar.f4737c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
+                ecVar.e = hz0Var.getImageReceiver();
+                ecVar.f4736b = f7;
+                return ecVar;
+            }
+            return null;
         }
+        return null;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        org.telegram.ui.Cells.z3 z3Var;
-        switch (this.f32901a) {
-            case 0:
-                ProfileActivity profileActivity = this.f32903c;
-                boolean z10 = this.f32902b;
-                ProfileActivity.n1(profileActivity, z10);
-                profileActivity.Y.setClickable(true);
-                if (z10) {
-                    org.telegram.ui.ActionBar.v0 v0Var = profileActivity.U0;
-                    if (v0Var.F.getWidth() != 0 && !v0Var.e.isFocused()) {
-                        v0Var.e.requestFocus();
-                        AndroidUtilities.showKeyboard(v0Var.e);
-                    }
-                }
-                profileActivity.k4(true);
-                profileActivity.V1 = null;
-                profileActivity.fragmentView.invalidate();
-                if (z10) {
-                    profileActivity.U4 = true;
-                    profileActivity.F4();
-                    Activity parentActivity = profileActivity.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) profileActivity).classGuid;
-                    AndroidUtilities.requestAdjustResize(parentActivity, i10);
-                    profileActivity.P.setPreventMoving(false);
-                    return;
-                }
-                return;
-            default:
-                ProfileActivity profileActivity2 = this.f32903c;
-                if (profileActivity2.f31273f0 != null && (z3Var = profileActivity2.f31280g0) != null) {
-                    if (!this.f32902b) {
-                        z3Var.setVisibility(4);
-                    }
-                    profileActivity2.f31273f0 = null;
-                    return;
-                }
-                return;
+    public final void d(long j3, ai.j jVar) {
+        ProfileActivity profileActivity = this.f32465a;
+        profileActivity.f31239e0.setHasStories(profileActivity.j4());
+        if (j3 == profileActivity.a() && profileActivity.f31309o2 && profileActivity.f31283k2 > 0.0f) {
+            profileActivity.f31224c.h1(0, profileActivity.T3() - profileActivity.f31209a.getPaddingTop());
+            profileActivity.f31209a.post(new tb0(profileActivity, 14));
         }
+        AndroidUtilities.runOnUIThread(jVar, 30L);
     }
 }

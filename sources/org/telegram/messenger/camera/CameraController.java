@@ -1,6 +1,6 @@
 package org.telegram.messenger.camera;
 
-import ai.i5;
+import ai.h5;
 import ai.m3;
 import ai.s4;
 import android.content.SharedPreferences;
@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import android.util.Base64;
 import ci.u1;
 import ci.y0;
-import i2.b1;
+import i2.c1;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -822,7 +822,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
 
     public void openRound(CameraSession cameraSession, SurfaceTexture surfaceTexture, Runnable runnable, Runnable runnable2) {
         if (cameraSession != null && surfaceTexture != null) {
-            this.threadPool.execute(new i5(cameraSession, runnable2, surfaceTexture, runnable, 26));
+            this.threadPool.execute(new h5(cameraSession, runnable2, surfaceTexture, runnable, 26));
         } else if (BuildVars.LOGS_ENABLED) {
             FileLog.d("failed to open round " + cameraSession + " tex = " + surfaceTexture);
         }
@@ -896,7 +896,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
 
     public void close(CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable, Runnable runnable2) {
         cameraSession.destroy();
-        this.threadPool.execute(new i5(runnable, cameraSession, countDownLatch, runnable2, 27));
+        this.threadPool.execute(new h5(runnable, cameraSession, countDownLatch, runnable2, 27));
         if (countDownLatch != null) {
             try {
                 countDownLatch.await();
@@ -914,7 +914,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             this.recordingCurrentCameraView = iCameraView;
             this.onVideoTakeCallback = videoTakeCallback;
             this.recordedFile = file.getAbsolutePath();
-            this.threadPool.execute(new b1(this, obj, iCameraView, file, z11, runnable, 5));
+            this.threadPool.execute(new c1(this, obj, iCameraView, file, z11, runnable, 5));
         } else if (obj instanceof CameraSession) {
             CameraSession cameraSession = (CameraSession) obj;
             CameraInfo cameraInfo = cameraSession.cameraInfo;

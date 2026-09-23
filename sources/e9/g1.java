@@ -1,31 +1,31 @@
 package e9;
 public final class g1 extends m0 {
-    public static final Object[] f8074r;
-    public static final g1 f8075s;
+    public static final Object[] f8060r;
+    public static final g1 f8061s;
     public final transient Object[] d;
     public final transient int e;
-    public final transient Object[] f8076f;
+    public final transient Object[] f8062f;
     public final transient int h;
-    public final transient int f8077n;
+    public final transient int f8063n;
 
     static {
         Object[] objArr = new Object[0];
-        f8074r = objArr;
-        f8075s = new g1(0, 0, 0, objArr, objArr);
+        f8060r = objArr;
+        f8061s = new g1(0, 0, 0, objArr, objArr);
     }
 
     public g1(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
         this.e = i10;
-        this.f8076f = objArr2;
+        this.f8062f = objArr2;
         this.h = i11;
-        this.f8077n = i12;
+        this.f8063n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f8076f;
+            Object[] objArr = this.f8062f;
             if (objArr.length != 0) {
                 int t10 = q.t(obj);
                 while (true) {
@@ -52,7 +52,7 @@ public final class g1 extends m0 {
     @Override
     public final int n(int i10, Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i11 = this.f8077n;
+        int i11 = this.f8063n;
         System.arraycopy(objArr2, 0, objArr, i10, i11);
         return i10 + i11;
     }
@@ -64,7 +64,7 @@ public final class g1 extends m0 {
 
     @Override
     public final int p() {
-        return this.f8077n;
+        return this.f8063n;
     }
 
     @Override
@@ -84,11 +84,11 @@ public final class g1 extends m0 {
 
     @Override
     public final int size() {
-        return this.f8077n;
+        return this.f8063n;
     }
 
     @Override
     public final i0 w() {
-        return i0.t(this.f8077n, this.d);
+        return i0.t(this.f8063n, this.d);
     }
 }

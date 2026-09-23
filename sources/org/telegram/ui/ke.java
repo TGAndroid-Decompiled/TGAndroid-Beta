@@ -5,67 +5,67 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.support.LongSparseIntArray;
 public final class ke implements Runnable {
-    public final int f35130a;
-    public final bo f35131b;
-    public final long f35132c;
+    public final int f34685a;
+    public final xn f34686b;
+    public final long f34687c;
 
-    public ke(long j3, bo boVar) {
-        this.f35130a = 7;
-        this.f35132c = j3;
-        this.f35131b = boVar;
+    public ke(long j3, xn xnVar) {
+        this.f34685a = 7;
+        this.f34687c = j3;
+        this.f34686b = xnVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f35130a) {
+        switch (this.f34685a) {
             case 0:
-                r0.getMediaDataController().loadBotInfo(this.f35132c, r1, true, this.f35131b.classGuid);
+                r0.getMediaDataController().loadBotInfo(this.f34687c, r1, true, this.f34686b.classGuid);
                 return;
             case 1:
-                this.f35131b.getMessagesController().loadFullChat(this.f35132c, 0, true);
+                this.f34686b.getMessagesController().loadFullChat(this.f34687c, 0, true);
                 return;
             case 2:
-                bo boVar = this.f35131b;
-                LongSparseIntArray longSparseIntArray = boVar.M5;
-                long j3 = this.f35132c;
+                xn xnVar = this.f34686b;
+                LongSparseIntArray longSparseIntArray = xnVar.M5;
+                long j3 = this.f34687c;
                 longSparseIntArray.put(j3, 0);
-                org.telegram.ui.Components.x21 x21Var = boVar.R1;
-                if (x21Var != null) {
-                    x21Var.setAllTopicsHidden(false);
+                org.telegram.ui.Components.w21 w21Var = xnVar.R1;
+                if (w21Var != null) {
+                    w21Var.setAllTopicsHidden(false);
                 }
-                if (j3 == boVar.f32275d4) {
-                    boVar.A0.O(false);
+                if (j3 == xnVar.f39352d4) {
+                    xnVar.A0.O(false);
                     return;
                 }
                 return;
             case 3:
-                bo boVar2 = this.f35131b;
-                boVar2.getClass();
-                boVar2.presentFragment(bo.R9(this.f35132c));
+                xn xnVar2 = this.f34686b;
+                xnVar2.getClass();
+                xnVar2.presentFragment(xn.R9(this.f34687c));
                 return;
             case 4:
-                bo boVar3 = this.f35131b;
-                boVar3.getClass();
-                boVar3.presentFragment(ProfileActivity.m4(this.f35132c));
+                xn xnVar3 = this.f34686b;
+                xnVar3.getClass();
+                xnVar3.presentFragment(ProfileActivity.m4(this.f34687c));
                 return;
             case 5:
-                bo boVar4 = this.f35131b;
-                org.telegram.ui.Components.oc v = org.telegram.ui.Components.vc.v(boVar4.getParentActivity(), boVar4, null, 1, this.f35132c, 1, boVar4.getThemedColor(org.telegram.ui.ActionBar.i6.Fi), boVar4.getThemedColor(org.telegram.ui.ActionBar.i6.Hi), 5000, true, null);
-                v.f26752k = true;
+                xn xnVar4 = this.f34686b;
+                org.telegram.ui.Components.qc v = org.telegram.ui.Components.xc.v(xnVar4.getParentActivity(), xnVar4, null, 1, this.f34687c, 1, xnVar4.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), xnVar4.getThemedColor(org.telegram.ui.ActionBar.h6.Hi), 5000, true, null);
+                v.f27307k = true;
                 v.k(true);
                 return;
             case 6:
-                org.telegram.ui.Components.vc.a0(this.f35131b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) this.f35132c)), R.raw.stars_topup).k(true);
+                org.telegram.ui.Components.xc.a0(this.f34686b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) this.f34687c)), R.raw.stars_topup).k(true);
                 return;
             default:
-                this.f35131b.presentFragment(new ProfileActivity(w.c.e(this.f35132c, "user_id"), null));
+                this.f34686b.presentFragment(new ProfileActivity(w.c.e(this.f34687c, "user_id"), null));
                 return;
         }
     }
 
-    public ke(bo boVar, long j3, int i10) {
-        this.f35130a = i10;
-        this.f35131b = boVar;
-        this.f35132c = j3;
+    public ke(xn xnVar, long j3, int i10) {
+        this.f34685a = i10;
+        this.f34686b = xnVar;
+        this.f34687c = j3;
     }
 }

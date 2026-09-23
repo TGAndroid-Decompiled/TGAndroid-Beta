@@ -1,33 +1,76 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class zw0 extends h71 {
-    public final ai.m0 f40319d2;
-    public final y61[] f40320e2;
-    public final PremiumPreviewFragment f40321f2;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class zw0 extends org.telegram.ui.Components.ml0 {
+    public final Paint X2;
+    public final Path Y2;
+    public final cx0 Z2;
 
-    public zw0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, ai.m0 m0Var, y61[] y61VarArr) {
-        super(premiumPreviewFragment2, activity, true, num, i10, true, e6Var, i11);
-        this.f40321f2 = premiumPreviewFragment;
-        this.f40319d2 = m0Var;
-        this.f40320e2 = y61VarArr;
+    public zw0(cx0 cx0Var, Context context) {
+        super(context, null);
+        this.Z2 = cx0Var;
+        Paint paint = new Paint(1);
+        this.X2 = paint;
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18859h5, false));
+        this.Y2 = new Path();
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
+    public final void dispatchDraw(Canvas canvas) {
+        Path path = this.Y2;
+        path.rewind();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+        canvas.drawPath(path, this.X2);
+        canvas.save();
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        this.f40319d2.run(l4, num);
-        y61 y61Var = this.f40320e2[0];
-        if (y61Var != null) {
-            this.f40321f2.f31176s0 = null;
-            y61Var.dismiss();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.Z2.f32435n.f31146q0 >= 1.0f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.Z2.f32435n.f31146q0 >= 1.0f) {
+            return false;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        PremiumPreviewFragment premiumPreviewFragment = this.Z2.f32435n;
+        int i14 = 0;
+        int i15 = 0;
+        while (true) {
+            ArrayList arrayList = premiumPreviewFragment.d;
+            if (i14 < arrayList.size()) {
+                premiumPreviewFragment.M.a((ex0) arrayList.get(i14), false);
+                premiumPreviewFragment.M.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
+                ((ex0) arrayList.get(i14)).h = i15;
+                i15 += premiumPreviewFragment.M.getMeasuredHeight();
+                i14++;
+            } else {
+                premiumPreviewFragment.O = i15;
+                return;
+            }
         }
     }
 }

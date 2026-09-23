@@ -1,46 +1,22 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.os.Build;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.voip.VoIPService;
-public final class si1 implements org.telegram.ui.Components.voip.d {
-    public final ui1 f37409a;
+import android.graphics.Bitmap;
+import java.io.File;
+public final class si1 implements org.telegram.ui.Components.n81 {
+    public final WallpapersListActivity f37311a;
 
-    public si1(ui1 ui1Var) {
-        this.f37409a = ui1Var;
+    public si1(WallpapersListActivity wallpapersListActivity) {
+        this.f37311a = wallpapersListActivity;
     }
 
+    @Override
+    public final void b(File file, Bitmap bitmap, boolean z10) {
+        od1 od1Var = new od1(new zi1(file, file, ""), bitmap, false);
+        od1Var.c1(0L);
+        this.f37311a.presentFragment(od1Var, z10);
+    }
+
+    @Override
     public final void a() {
-        ui1 ui1Var = this.f37409a;
-        if (ui1Var.f38013p0 == 17) {
-            Intent intent = new Intent(ui1Var.f37985b, VoIPService.class);
-            intent.putExtra("user_id", ui1Var.d.f18256id);
-            intent.putExtra("is_outgoing", true);
-            intent.putExtra("start_incall_activity", false);
-            intent.putExtra("video_call", ui1Var.U0);
-            intent.putExtra("can_video_call", ui1Var.U0);
-            intent.putExtra("account", ui1Var.f37982a);
-            try {
-                ui1Var.f37985b.startService(intent);
-            } catch (Throwable th2) {
-                FileLog.e(th2);
-            }
-        } else if (Build.VERSION.SDK_INT >= 23 && ui1Var.f37985b.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-            ui1Var.f37985b.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 101);
-        } else if (VoIPService.getSharedState() != null) {
-            ui1Var.r(new f01(this, 24));
-        }
-    }
-
-    public final void b() {
-        ui1 ui1Var = this.f37409a;
-        if (ui1Var.f38013p0 == 17) {
-            ui1Var.f38020u0.b();
-        } else if (VoIPService.getSharedState() != null) {
-            VoIPService.getSharedState().declineIncomingCall();
-        } else {
-            ui1Var.f38020u0.b();
-        }
     }
 }

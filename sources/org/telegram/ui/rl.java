@@ -1,52 +1,28 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.TextPaint;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class rl extends org.telegram.ui.Components.n01 {
-    public final bo K;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.VideoEditedInfo;
+public final class rl extends mu0 {
+    public final Bitmap f36889a;
+    public final ArrayList f36890b;
+    public final xn f36891c;
 
-    public rl(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, bo boVar) {
-        super(activity);
-        this.K = boVar;
-        TextPaint textPaint = new TextPaint(1);
-        this.f26282b = textPaint;
-        Paint paint = new Paint(1);
-        this.f26283c = paint;
-        this.d = AndroidUtilities.dp(24.0f);
-        this.e = new OvershootInterpolator();
-        this.H = new org.telegram.ui.Components.jq0(this, 14);
-        this.J = new Path();
-        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Hi, e6Var);
-        int alpha = Color.alpha(v02);
-        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
-        textPaint.setColor(v02);
-        paint.setColor(v02);
-        paint.setAlpha((int) (alpha * 0.14d));
-        setBackground(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Fi, e6Var)));
-    }
-
-    public final void d() {
-        int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
-        bo boVar = this.K;
-        int top = boVar.Y.getTop() - boVar.X0.getMeasuredHeight();
-        setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
+    public rl(xn xnVar, Bitmap bitmap, ArrayList arrayList) {
+        this.f36891c = xnVar;
+        this.f36889a = bitmap;
+        this.f36890b = arrayList;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        d();
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return new ImageReceiver.BitmapHolder(this.f36889a, (String) null, 0);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        d();
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        this.f36891c.q((MediaController.PhotoEntry) this.f36890b.get(0), videoEditedInfo, z10, i11, 0, z11, 0L);
     }
 }

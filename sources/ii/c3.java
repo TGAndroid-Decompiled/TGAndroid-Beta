@@ -1,17 +1,8 @@
 package ii;
-public final class c3 {
-    public final w3 f11285a;
+public final class c3 implements f5 {
+    public final x3 f11269a;
 
-    public c3(w3 w3Var) {
-        this.f11285a = w3Var;
-    }
-
-    public final void a() {
-        w3 w3Var = this.f11285a;
-        h2 h2Var = w3Var.J3;
-        if (h2Var != null) {
-            h2Var.g();
-        }
-        w3Var.f11713h3.onContentChanged();
+    public c3(x3 x3Var) {
+        this.f11269a = x3Var;
     }
 }

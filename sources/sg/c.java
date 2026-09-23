@@ -3,20 +3,20 @@ package sg;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 public final class c implements Runnable {
-    public final int f42927a;
-    public final e f42928b;
+    public final int f42883a;
+    public final e f42884b;
 
     public c(e eVar, int i10) {
-        this.f42927a = i10;
-        this.f42928b = eVar;
+        this.f42883a = i10;
+        this.f42884b = eVar;
     }
 
     @Override
     public final void run() {
         ValueAnimator valueAnimator;
-        switch (this.f42927a) {
+        switch (this.f42883a) {
             case 0:
-                e eVar = this.f42928b;
+                e eVar = this.f42884b;
                 AnimatorSet animatorSet = eVar.T;
                 if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = eVar.S) != null && valueAnimator.isRunning())) {
                     eVar.h(eVar.I);
@@ -26,7 +26,7 @@ public final class c implements Runnable {
                     return;
                 }
             default:
-                this.f42928b.i();
+                this.f42884b.i();
                 return;
         }
     }

@@ -1,87 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class uh implements org.telegram.ui.zq0 {
-    public boolean f28404a;
-    public final HashMap f28405b;
-    public final ArrayList f28406c;
-    public final vi d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+public final class uh extends AnimatorListenerAdapter {
+    public final int f28502a;
+    public final boolean f28503b;
+    public final ci f28504c;
 
-    public uh(vi viVar, HashMap hashMap, ArrayList arrayList) {
-        this.d = viVar;
-        this.f28405b = hashMap;
-        this.f28406c = arrayList;
+    public uh(ci ciVar, boolean z10, int i10) {
+        this.f28502a = i10;
+        this.f28504c = ciVar;
+        this.f28503b = z10;
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void i(int i10, boolean z10, boolean z11) {
-        String str;
-        if (!z10) {
-            HashMap hashMap = this.f28405b;
-            if (!hashMap.isEmpty() && !this.f28404a) {
-                this.f28404a = true;
-                ArrayList arrayList = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f28406c;
-                    if (i11 < arrayList2.size()) {
-                        Object obj = hashMap.get(arrayList2.get(i11));
-                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                        arrayList.add(sendingMediaInfo);
-                        MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                        String str2 = searchImage.imagePath;
-                        if (str2 != null) {
-                            sendingMediaInfo.path = str2;
-                        } else {
-                            sendingMediaInfo.searchImage = searchImage;
-                        }
-                        sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                        sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                        CharSequence charSequence = searchImage.caption;
-                        if (charSequence != null) {
-                            str = charSequence.toString();
-                        } else {
-                            str = null;
-                        }
-                        sendingMediaInfo.caption = str;
-                        sendingMediaInfo.entities = searchImage.entities;
-                        sendingMediaInfo.masks = searchImage.stickers;
-                        sendingMediaInfo.ttl = searchImage.ttl;
-                        TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                        if (botInlineResult != null && searchImage.type == 1) {
-                            sendingMediaInfo.inlineResult = botInlineResult;
-                            sendingMediaInfo.params = searchImage.params;
-                        }
-                        searchImage.date = (int) (System.currentTimeMillis() / 1000);
-                        i11++;
-                    } else {
-                        ((org.telegram.ui.bo) this.d.f28747f0).d8(i10, arrayList, z11);
-                        return;
-                    }
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        switch (this.f28502a) {
+            case 0:
+                ci ciVar = this.f28504c;
+                wi wiVar = ciVar.e;
+                boolean z10 = this.f28503b;
+                if (!z10) {
+                    wiVar.E1.setVisibility(8);
+                } else {
+                    wiVar.f29723x1.setVisibility(8);
                 }
-            }
+                if (z10) {
+                    i10 = AndroidUtilities.dp(36.0f);
+                } else {
+                    i10 = 0;
+                }
+                for (int i11 = 0; i11 < wiVar.f29722x0.size(); i11++) {
+                    ((ei.q4) wiVar.f29722x0.valueAt(i11)).setMeasureOffsetY(i10);
+                }
+                if (ciVar.f23039a == animator) {
+                    ciVar.f23039a = null;
+                    return;
+                }
+                return;
+            default:
+                wi wiVar2 = this.f28504c.e;
+                boolean z11 = this.f28503b;
+                wiVar2.B1 = z11;
+                if (!z11) {
+                    wiVar2.C1.setVisibility(8);
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void b(Editable editable) {
-    }
-
-    @Override
-    public final void g() {
+    public void onAnimationStart(Animator animator) {
+        switch (this.f28502a) {
+            case 0:
+                wi wiVar = this.f28504c.e;
+                if (this.f28503b) {
+                    wiVar.E1.setAlpha(0.0f);
+                    wiVar.E1.setVisibility(0);
+                    int dp = AndroidUtilities.dp(36.0f);
+                    for (int i10 = 0; i10 < wiVar.f29722x0.size(); i10++) {
+                        ((ei.q4) wiVar.f29722x0.valueAt(i10)).setMeasureOffsetY(dp);
+                    }
+                    return;
+                }
+                wiVar.f29723x1.setAlpha(0.0f);
+                wiVar.f29723x1.setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

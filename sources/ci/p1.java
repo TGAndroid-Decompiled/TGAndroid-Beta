@@ -10,30 +10,30 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.ok0;
-public final class p1 extends ll0 {
-    public ok0 X2;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.pk0;
+public final class p1 extends ml0 {
+    public pk0 X2;
     public boolean Y2;
     public float Z2;
-    public float f5291a3;
-    public boolean f5292b3;
-    public final SparseArray f5293c3;
-    public final ArrayList f5294d3;
-    public final ArrayList f5295e3;
-    public final ArrayList f5296f3;
-    public final ArrayList f5297g3;
-    public final PorterDuffColorFilter f5298h3;
+    public float f5276a3;
+    public boolean f5277b3;
+    public final SparseArray f5278c3;
+    public final ArrayList f5279d3;
+    public final ArrayList f5280e3;
+    public final ArrayList f5281f3;
+    public final ArrayList f5282g3;
+    public final PorterDuffColorFilter f5283h3;
 
     public p1(Context context) {
         super(context, null);
-        this.f5292b3 = false;
-        this.f5293c3 = new SparseArray();
-        this.f5294d3 = new ArrayList();
-        this.f5295e3 = new ArrayList();
-        this.f5296f3 = new ArrayList();
-        this.f5297g3 = new ArrayList();
-        this.f5298h3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f5277b3 = false;
+        this.f5278c3 = new SparseArray();
+        this.f5279d3 = new ArrayList();
+        this.f5280e3 = new ArrayList();
+        this.f5281f3 = new ArrayList();
+        this.f5282g3 = new ArrayList();
+        this.f5283h3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static void w1(p1 p1Var, int i10, int i11) {
@@ -43,19 +43,19 @@ public final class p1 extends ll0 {
             View m10 = sVar.m(i10);
             int L0 = sVar.L0();
             if ((m10 == null && Math.abs(i10 - L0) > sVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
-                ok0 ok0Var = p1Var.X2;
+                pk0 pk0Var = p1Var.X2;
                 if (sVar.L0() < i10) {
                     i12 = 0;
                 } else {
                     i12 = 1;
                 }
-                ok0Var.f26827b = i12;
+                pk0Var.f27074b = i12;
                 p1Var.X2.c(i10, i11, false, false);
                 return;
             }
             m1 m1Var = new m1(p1Var, p1Var.getContext(), 0);
-            m1Var.f42821a = i10;
-            m1Var.f13104p = i11;
+            m1Var.f42777a = i10;
+            m1Var.f13094p = i11;
             sVar.w0(m1Var);
         }
     }
@@ -72,7 +72,7 @@ public final class p1 extends ll0 {
         }
         int saveCount = canvas.getSaveCount();
         canvas.save();
-        canvas.clipRect(0.0f, this.Z2, getWidth(), this.f5291a3);
+        canvas.clipRect(0.0f, this.Z2, getWidth(), this.f5276a3);
         if (!this.Y2) {
             super.dispatchDraw(canvas);
             canvas.restore();
@@ -82,7 +82,7 @@ public final class p1 extends ll0 {
         if (!rect.isEmpty()) {
             this.D1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f25967o2;
+            q0.a aVar = this.f26220o2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -92,9 +92,9 @@ public final class p1 extends ll0 {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            sparseArray = this.f5293c3;
+            sparseArray = this.f5278c3;
             int size = sparseArray.size();
-            arrayList = this.f5294d3;
+            arrayList = this.f5279d3;
             if (i11 >= size) {
                 break;
             }
@@ -108,8 +108,8 @@ public final class p1 extends ll0 {
             View childAt = getChildAt(i12);
             if (childAt instanceof o1) {
                 o1 o1Var = (o1) childAt;
-                if (o1Var.getY() < this.f5291a3 && o1Var.getY() + o1Var.getHeight() > this.Z2) {
-                    if (this.f5292b3) {
+                if (o1Var.getY() < this.f5276a3 && o1Var.getY() + o1Var.getHeight() > this.Z2) {
+                    if (this.f5277b3) {
                         top = (int) o1Var.getY();
                     } else {
                         top = o1Var.getTop();
@@ -127,9 +127,9 @@ public final class p1 extends ll0 {
                 }
             }
         }
-        ArrayList arrayList5 = this.f5297g3;
+        ArrayList arrayList5 = this.f5282g3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f5296f3;
+        ArrayList arrayList6 = this.f5281f3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         canvas.save();
@@ -138,7 +138,7 @@ public final class p1 extends ll0 {
         int i13 = 0;
         while (true) {
             int size2 = sparseArray.size();
-            arrayList2 = this.f5295e3;
+            arrayList2 = this.f5280e3;
             if (i13 >= size2) {
                 break;
             }
@@ -210,10 +210,10 @@ public final class p1 extends ll0 {
         super.setLayoutManager(o0Var);
         this.X2 = null;
         if (o0Var instanceof s4.c0) {
-            ok0 ok0Var = new ok0(this, (s4.c0) o0Var);
-            this.X2 = ok0Var;
-            ok0Var.f26831i = new l1(this, 0);
-            ok0Var.h = new a1.c(this, 15);
+            pk0 pk0Var = new pk0(this, (s4.c0) o0Var);
+            this.X2 = pk0Var;
+            pk0Var.f27078i = new l1(this, 0);
+            pk0Var.h = new a1.c(this, 15);
         }
     }
 }

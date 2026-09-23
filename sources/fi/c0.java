@@ -1,12 +1,12 @@
 package fi;
 
 import android.view.View;
-import org.telegram.ui.Components.a81;
-public final class c0 extends a81 {
-    public final k0 f9088a;
+import org.telegram.ui.Components.z71;
+public final class c0 extends z71 {
+    public final k0 f9074a;
 
     public c0(k0 k0Var) {
-        this.f9088a = k0Var;
+        this.f9074a = k0Var;
     }
 
     @Override
@@ -16,19 +16,19 @@ public final class c0 extends a81 {
 
     @Override
     public final View d(int i10) {
-        k0 k0Var = this.f9088a;
+        k0 k0Var = this.f9074a;
         if (i10 == 2) {
-            return k0Var.f9129x;
+            return k0Var.f9115x;
         }
         if (i10 == 0) {
             return k0Var.v;
         }
-        return k0Var.f9128w;
+        return k0Var.f9114w;
     }
 
     @Override
     public final int e() {
-        if (this.f9088a.N) {
+        if (this.f9074a.N) {
             return 1;
         }
         return 3;
@@ -36,7 +36,7 @@ public final class c0 extends a81 {
 
     @Override
     public final int h(int i10) {
-        if (this.f9088a.N || i10 == 2) {
+        if (this.f9074a.N || i10 == 2) {
             return 2;
         }
         if (i10 == 0) {

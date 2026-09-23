@@ -1,31 +1,26 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import java.util.List;
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class a1 implements Utilities.Callback {
-    public final int f15631a;
-    public final Object f15632b;
+public final class a1 implements Runnable {
+    public final int f15607a;
+    public final ResultCallback f15608b;
+    public final TLRPC.TL_error f15609c;
 
-    public a1(Object obj, int i10) {
-        this.f15631a = i10;
-        this.f15632b = obj;
+    public a1(ResultCallback resultCallback, TLRPC.TL_error tL_error, int i10) {
+        this.f15607a = i10;
+        this.f15608b = resultCallback;
+        this.f15609c = tL_error;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f15631a) {
+    public final void run() {
+        switch (this.f15607a) {
             case 0:
-                ChatThemeController.q((ChatThemeController) this.f15632b, (List) obj);
-                return;
-            case 1:
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                ((Runnable) this.f15632b).run();
+                this.f15608b.onError(this.f15609c);
                 return;
             default:
-                Object[] objArr = (Object[]) obj;
-                ((View) this.f15632b).invalidate();
+                this.f15608b.onError(this.f15609c);
                 return;
         }
     }

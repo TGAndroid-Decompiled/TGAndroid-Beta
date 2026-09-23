@@ -1,47 +1,28 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class gk0 implements Runnable {
-    public final int f33878a;
-    public final NotificationsCustomSettingsActivity f33879b;
-    public final tk0 f33880c;
-    public final View d;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class gk0 extends org.telegram.ui.Cells.s8 {
+    public ImageView Q;
 
-    public gk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, tk0 tk0Var, View view, int i10, int i11) {
-        this.f33878a = i11;
-        this.f33879b = notificationsCustomSettingsActivity;
-        this.f33880c = tk0Var;
-        this.d = view;
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int dp;
+        super.onLayout(z10, i10, i11, i12, i13);
+        int i14 = i12 - i10;
+        if (LocaleController.isRTL) {
+            dp = AndroidUtilities.dp(17.0f);
+        } else {
+            dp = i14 - AndroidUtilities.dp(41.0f);
+        }
+        int y3 = org.telegram.messenger.ul.y(24.0f, i13 - i11, 2);
+        this.Q.layout(dp, y3, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + y3);
     }
 
     @Override
-    public final void run() {
-        switch (this.f33878a) {
-            case 0:
-                this.f33879b.k0(this.f33880c, this.d, false);
-                return;
-            case 1:
-                this.f33879b.e0(this.f33880c, this.d);
-                return;
-            case 2:
-                NotificationsCustomSettingsActivity.X(this.f33879b, this.f33880c, this.d);
-                return;
-            case 3:
-                NotificationsCustomSettingsActivity.V(this.f33879b, this.f33880c, this.d);
-                return;
-            case 4:
-                this.f33879b.e0(this.f33880c, this.d);
-                return;
-            default:
-                this.f33879b.k0(this.f33880c, this.d, true);
-                return;
-        }
-    }
-
-    public gk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, tk0 tk0Var, View view, boolean z10, int i10) {
-        this.f33878a = i10;
-        this.f33879b = notificationsCustomSettingsActivity;
-        this.f33880c = tk0Var;
-        this.d = view;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.Q.measure(i10, i11);
     }
 }

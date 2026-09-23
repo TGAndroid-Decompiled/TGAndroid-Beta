@@ -1,8 +1,12 @@
 package org.telegram.ui.Cells;
+public interface z9 {
+    int getBottom();
 
-import android.text.Layout;
-public interface z9 extends y9 {
-    Layout getStaticTextLayout();
+    int getTop();
 
-    CharSequence getText();
+    float getX();
+
+    float getY();
+
+    void invalidate();
 }

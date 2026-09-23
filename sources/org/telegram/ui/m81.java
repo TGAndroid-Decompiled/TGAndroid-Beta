@@ -1,28 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.UndoView;
-public final class m81 extends UndoView {
-    public final SessionsActivity f35628f0;
+public final class m81 implements RequestDelegate {
+    public final int f35181a;
+    public final x81 f35182b;
 
-    public m81(SessionsActivity sessionsActivity, Context context) {
-        super(context);
-        this.f35628f0 = sessionsActivity;
+    public m81(x81 x81Var, int i10) {
+        this.f35181a = i10;
+        this.f35182b = x81Var;
     }
 
     @Override
-    public final void e(int i10, boolean z10) {
-        int i11;
-        if (!z10 && getCurrentInfoObject() != null) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) getCurrentInfoObject();
-            TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-            resetauthorization.hash = tL_authorization.hash;
-            i11 = ((org.telegram.ui.ActionBar.n2) this.f35628f0).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(resetauthorization, new bc0(19, this, tL_authorization));
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35181a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                x81 x81Var = this.f35182b;
+                x81Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new m81(x81Var, 1));
+                return;
+            default:
+                this.f35182b.getMessagesController().loadAppConfig();
+                return;
         }
-        super.e(i10, z10);
     }
 }

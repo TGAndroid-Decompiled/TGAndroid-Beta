@@ -3,16 +3,16 @@ package c1;
 import kotlin.jvm.internal.h;
 import rd.p;
 public final class c extends h implements p {
-    public final int f3647a;
+    public final int f3642a;
 
     public c(int i10, Object obj, Class cls, String str, String str2, int i11, int i12) {
         super(i10, obj, cls, str, str2, i11);
-        this.f3647a = i12;
+        this.f3642a = i12;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f3647a) {
+        switch (this.f3642a) {
             case 0:
                 ((b1.a) this.receiver).getClass();
                 return b1.a.b((String) obj, (String) obj2);

@@ -1,35 +1,27 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class qv implements DialogInterface.OnDismissListener {
-    public final int f36945a;
-    public final uy f36946b;
+import org.telegram.tgnet.TLRPC;
+public final class qv implements Runnable {
+    public final int f36618a;
+    public final ry f36619b;
+    public final TLRPC.TL_attachMenuBot f36620c;
+    public final LaunchActivity d;
 
-    public qv(uy uyVar, int i10) {
-        this.f36945a = i10;
-        this.f36946b = uyVar;
+    public qv(ry ryVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
+        this.f36618a = i10;
+        this.f36619b = ryVar;
+        this.f36620c = tL_attachMenuBot;
+        this.d = launchActivity;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f36945a) {
+    public final void run() {
+        switch (this.f36618a) {
             case 0:
-                uy.j0(this.f36946b);
-                return;
-            case 1:
-                uy uyVar = this.f36946b;
-                if (uyVar.R3 != null) {
-                    uyVar.getMessagesController().removeSuggestion(0L, uyVar.R3);
-                    uyVar.R3 = null;
-                    uyVar.L4();
-                    return;
-                }
-                return;
-            case 2:
-                this.f36946b.b4(true);
+                ry.w0(this.f36619b, this.f36620c, this.d);
                 return;
             default:
-                this.f36946b.b4(true);
+                ry.x0(this.f36619b, this.f36620c, this.d);
                 return;
         }
     }

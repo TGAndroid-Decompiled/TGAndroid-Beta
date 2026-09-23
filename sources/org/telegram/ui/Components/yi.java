@@ -1,157 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
+import android.util.SparseIntArray;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class yi implements Utilities.Callback2 {
-    public final int f30260a;
-    public final gj f30261b;
-    public final MessagesController f30262c;
-    public final int d;
+import org.telegram.messenger.WebFile;
+public final class yi implements Utilities.CallbackReturn {
+    public final int f30255a;
+    public final Object f30256b;
 
-    public yi(gj gjVar, MessagesController messagesController, int i10, int i11) {
-        this.f30260a = i11;
-        this.f30261b = gjVar;
-        this.f30262c = messagesController;
-        this.d = i10;
+    public yi(Object obj, int i10) {
+        this.f30255a = i10;
+        this.f30256b = obj;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        String str;
-        TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
-        TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2;
-        switch (this.f30260a) {
+    public final Object run(Object obj) {
+        int i10;
+        switch (this.f30255a) {
             case 0:
-                TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                gj gjVar = this.f30261b;
-                gjVar.f24355e0 = -1;
-                gjVar.f24364n0 = false;
-                if (messages_botresults != null) {
-                    this.f30262c.putUsers(messages_botresults.users, false);
-                    ArrayList<TLRPC.BotInlineResult> arrayList = messages_botresults.results;
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        TLRPC.BotInlineResult botInlineResult = arrayList.get(i10);
-                        i10++;
-                        TLRPC.BotInlineResult botInlineResult2 = botInlineResult;
-                        if (botInlineResult2 instanceof TLRPC.TL_botInlineMediaResult) {
-                            TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult2;
-                            if (tL_botInlineMediaResult.document != null) {
-                                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                                tL_message.out = true;
-                                int i11 = gjVar.m0;
-                                gjVar.m0 = i11 - 1;
-                                tL_message.f18130id = i11;
-                                tL_message.peer_id = new TLRPC.TL_peerUser();
-                                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                                tL_message.from_id = tL_peerUser;
-                                TLRPC.Peer peer = tL_message.peer_id;
-                                int i12 = this.d;
-                                long clientUserId = UserConfig.getInstance(i12).getClientUserId();
-                                tL_peerUser.user_id = clientUserId;
-                                peer.user_id = clientUserId;
-                                tL_message.date = (int) (System.currentTimeMillis() / 1000);
-                                tL_message.message = "";
-                                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                                tL_message.media = tL_messageMediaDocument;
-                                tL_messageMediaDocument.flags |= 3;
-                                tL_messageMediaDocument.document = tL_botInlineMediaResult.document;
-                                tL_message.flags |= 768;
-                                MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                                MessageObject messageObject = new MessageObject(i12, tL_message, false, true);
-                                audioEntry.messageObject = messageObject;
-                                TLRPC.Document document = messageObject.getDocument();
-                                if (document != null) {
-                                    int i13 = 0;
-                                    while (true) {
-                                        if (i13 < document.attributes.size()) {
-                                            if (document.attributes.get(i13) instanceof TLRPC.TL_documentAttributeAudio) {
-                                                tL_documentAttributeAudio = (TLRPC.TL_documentAttributeAudio) document.attributes.get(i13);
-                                            } else {
-                                                i13++;
-                                            }
-                                        } else {
-                                            tL_documentAttributeAudio = null;
-                                        }
-                                    }
-                                    if (tL_documentAttributeAudio != null) {
-                                        audioEntry.author = tL_documentAttributeAudio.performer;
-                                        audioEntry.title = tL_documentAttributeAudio.title;
-                                        audioEntry.duration = (int) tL_documentAttributeAudio.duration;
-                                        gjVar.N.add(audioEntry);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    gjVar.f24362l0 = messages_botresults.next_offset;
-                    gjVar.f24358h0 = !TextUtils.isEmpty(str);
-                    gjVar.P();
-                    return;
+                return Boolean.valueOf(hj.K((hj) this.f30256b, (MessageObject) obj));
+            case 1:
+                rh.f fVar = (rh.f) this.f30256b;
+                View view = (View) obj;
+                ImageReceiver imageReceiver = new ImageReceiver(view);
+                int i11 = R.raw.map_placeholder;
+                int i12 = org.telegram.ui.ActionBar.h6.Pb;
+                if (org.telegram.ui.ActionBar.h6.I.q()) {
+                    i10 = 3;
+                } else {
+                    i10 = 6;
                 }
-                return;
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(i11, i12, i10 * 0.12f);
+                svgThumb.setAspectCenter(true);
+                svgThumb.setColorKey(org.telegram.ui.ActionBar.h6.f19033qe);
+                imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(fVar.f42550b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (ImageLocation) null, (String) null, new fq(svgThumb), (Object) null, 0);
+                view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.r8(imageReceiver, 1));
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(14.0f));
+                return new ed(imageReceiver, view.getContext().getResources().getDrawable(R.drawable.map_pin).mutate());
+            case 2:
+                int i13 = ((SparseIntArray) this.f30256b).get(((Integer) obj).intValue(), -1);
+                if (i13 == -1) {
+                    return Boolean.TRUE;
+                }
+                boolean z10 = true;
+                if (i13 != 1) {
+                    z10 = false;
+                }
+                return Boolean.valueOf(z10);
             default:
-                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                gj gjVar2 = this.f30261b;
-                ArrayList arrayList2 = gjVar2.M;
-                gjVar2.V = -1;
-                boolean z10 = false;
-                gjVar2.f24351a0 = false;
-                if (messages_messages != null) {
-                    ArrayList<TLRPC.User> arrayList3 = messages_messages.users;
-                    MessagesController messagesController = this.f30262c;
-                    messagesController.putUsers(arrayList3, false);
-                    messagesController.putChats(messages_messages.chats, false);
-                    ArrayList<TLRPC.Message> arrayList4 = messages_messages.messages;
-                    int size2 = arrayList4.size();
-                    int i14 = 0;
-                    while (i14 < size2) {
-                        TLRPC.Message message = arrayList4.get(i14);
-                        i14++;
-                        MediaController.AudioEntry audioEntry2 = new MediaController.AudioEntry();
-                        MessageObject messageObject2 = new MessageObject(this.d, message, false, true);
-                        audioEntry2.messageObject = messageObject2;
-                        TLRPC.Document document2 = messageObject2.getDocument();
-                        if (document2 != null) {
-                            int i15 = 0;
-                            while (true) {
-                                if (i15 < document2.attributes.size()) {
-                                    if (document2.attributes.get(i15) instanceof TLRPC.TL_documentAttributeAudio) {
-                                        tL_documentAttributeAudio2 = (TLRPC.TL_documentAttributeAudio) document2.attributes.get(i15);
-                                    } else {
-                                        i15++;
-                                    }
-                                } else {
-                                    tL_documentAttributeAudio2 = null;
-                                }
-                            }
-                            if (tL_documentAttributeAudio2 != null) {
-                                audioEntry2.author = tL_documentAttributeAudio2.performer;
-                                audioEntry2.title = tL_documentAttributeAudio2.title;
-                                audioEntry2.duration = (int) tL_documentAttributeAudio2.duration;
-                                arrayList2.add(audioEntry2);
-                            }
-                        }
-                    }
-                    int i16 = messages_messages.next_rate;
-                    gjVar2.f24353c0 = i16;
-                    if (i16 != 0 || (messages_messages.count > 0 && arrayList2.size() < messages_messages.count)) {
-                        z10 = true;
-                    }
-                    gjVar2.f24354d0 = z10;
-                    gjVar2.P();
-                    return;
+                d61 d61Var = (d61) this.f30256b;
+                View view2 = (View) obj;
+                d61Var.getClass();
+                if (view2.getParent() != d61Var) {
+                    return Boolean.FALSE;
                 }
-                return;
+                return Boolean.valueOf(!v51.K(d61Var.T(view2).f42630f));
         }
     }
 }

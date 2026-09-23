@@ -9,13 +9,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 public final class b extends u {
-    public static final a f12944b = new a();
-    public final SimpleDateFormat f12945a;
+    public static final a f12934b = new a();
+    public final SimpleDateFormat f12935a;
 
     public class a implements v {
         @Override
         public final u create(g gVar, kb.a aVar) {
-            if (aVar.f13577a == Time.class) {
+            if (aVar.f13565a == Time.class) {
                 return new b(0);
             }
             return null;
@@ -35,10 +35,10 @@ public final class b extends u {
         }
         String v = aVar.v();
         synchronized (this) {
-            TimeZone timeZone = this.f12945a.getTimeZone();
+            TimeZone timeZone = this.f12935a.getTimeZone();
             try {
-                time = new Time(this.f12945a.parse(v).getTime());
-                this.f12945a.setTimeZone(timeZone);
+                time = new Time(this.f12935a.parse(v).getTime());
+                this.f12935a.setTimeZone(timeZone);
             } catch (ParseException e) {
                 throw new RuntimeException("Failed parsing '" + v + "' as SQL Time; at path " + aVar.j(), e);
             }
@@ -55,12 +55,12 @@ public final class b extends u {
             return;
         }
         synchronized (this) {
-            format = this.f12945a.format((Date) time);
+            format = this.f12935a.format((Date) time);
         }
         bVar.r(format);
     }
 
     private b() {
-        this.f12945a = new SimpleDateFormat("hh:mm:ss a");
+        this.f12935a = new SimpleDateFormat("hh:mm:ss a");
     }
 }

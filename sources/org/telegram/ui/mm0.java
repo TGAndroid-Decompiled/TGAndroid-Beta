@@ -1,54 +1,70 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class mm0 implements TextWatcher {
-    public final EditTextBoldCursor f35775a;
-    public final String f35776b;
-    public final on0 f35777c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class mm0 extends AnimatorListenerAdapter {
+    public final int f35356a;
+    public final boolean f35357b;
+    public final in0 f35358c;
 
-    public mm0(on0 on0Var, EditTextBoldCursor editTextBoldCursor, String str) {
-        this.f35777c = on0Var;
-        this.f35775a = editTextBoldCursor;
-        this.f35776b = str;
+    public mm0(in0 in0Var, boolean z10, int i10) {
+        this.f35356a = i10;
+        this.f35358c = in0Var;
+        this.f35357b = z10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        EditTextBoldCursor editTextBoldCursor = this.f35775a;
-        int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-        int i10 = 0;
-        while (true) {
-            if (i10 < editable.length()) {
-                char charAt = editable.charAt(i10);
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != ' ' && charAt != '\'' && charAt != ',' && charAt != '.' && charAt != '&' && charAt != '-' && charAt != '/'))) {
-                    z10 = true;
-                    break;
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f35356a) {
+            case 0:
+                in0 in0Var = this.f35358c;
+                AnimatorSet animatorSet = in0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    in0Var.M = null;
+                    return;
                 }
-                i10++;
-            } else {
-                z10 = false;
-                break;
-            }
+                return;
+            default:
+                in0 in0Var2 = this.f35358c;
+                AnimatorSet animatorSet2 = in0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    in0Var2.M = null;
+                    return;
+                }
+                return;
         }
-        on0 on0Var = this.f35777c;
-        if (z10 && !on0Var.f36301u0) {
-            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
-            return;
-        }
-        on0Var.f36299t0[intValue] = z10;
-        on0.J0(on0Var, editTextBoldCursor, this.f35776b, editable, false);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f35356a) {
+            case 0:
+                in0 in0Var = this.f35358c;
+                AnimatorSet animatorSet = in0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f35357b) {
+                        in0Var.N.setVisibility(4);
+                        return;
+                    } else {
+                        in0Var.L.getContentView().setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            default:
+                in0 in0Var2 = this.f35358c;
+                AnimatorSet animatorSet2 = in0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f35357b) {
+                        in0Var2.P.setVisibility(4);
+                        return;
+                    } else {
+                        in0Var2.O.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+        }
     }
 }

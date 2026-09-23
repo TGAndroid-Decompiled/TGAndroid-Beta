@@ -2,16 +2,16 @@ package ci;
 
 import android.content.Context;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.Components.sw0;
-import org.telegram.ui.Components.ww0;
-public final class k2 extends ww0 {
+import org.telegram.ui.Components.rw0;
+import org.telegram.ui.Components.vw0;
+public final class k2 extends vw0 {
     public final l2 A3;
-    public final boolean f4875z3;
+    public final boolean f4884z3;
 
-    public k2(l2 l2Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(context, i10, e6Var);
+    public k2(l2 l2Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        super(context, i10, d6Var);
         this.A3 = l2Var;
-        this.f4875z3 = z10;
+        this.f4884z3 = z10;
     }
 
     @Override
@@ -20,13 +20,13 @@ public final class k2 extends ww0 {
     }
 
     @Override
-    public final sw0[] B1(sw0[] sw0VarArr) {
-        if (sw0VarArr != null && this.f4875z3) {
+    public final rw0[] B1(rw0[] rw0VarArr) {
+        if (rw0VarArr != null && this.f4884z3) {
             int i10 = 0;
             while (true) {
-                if (i10 < sw0VarArr.length) {
-                    sw0 sw0Var = sw0VarArr[i10];
-                    if (sw0Var != null && sw0Var.f27981b) {
+                if (i10 < rw0VarArr.length) {
+                    rw0 rw0Var = rw0VarArr[i10];
+                    if (rw0Var != null && rw0Var.f27738b) {
                         break;
                     }
                     i10++;
@@ -36,16 +36,16 @@ public final class k2 extends ww0 {
                 }
             }
             if (i10 >= 0) {
-                int length = sw0VarArr.length;
-                sw0[] sw0VarArr2 = new sw0[length];
-                sw0VarArr2[0] = sw0VarArr[i10];
+                int length = rw0VarArr.length;
+                rw0[] rw0VarArr2 = new rw0[length];
+                rw0VarArr2[0] = rw0VarArr[i10];
                 for (int i11 = 1; i11 < length; i11++) {
-                    sw0VarArr2[i11] = sw0VarArr[i11 <= i10 ? i11 - 1 : i11];
+                    rw0VarArr2[i11] = rw0VarArr[i11 <= i10 ? i11 - 1 : i11];
                 }
-                return sw0VarArr2;
+                return rw0VarArr2;
             }
         }
-        return sw0VarArr;
+        return rw0VarArr;
     }
 
     @Override

@@ -1,29 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public final class h01 implements mq {
-    public final uy f34009a;
-    public final i01 f34010b;
+public final class h01 implements View.OnClickListener {
+    public final int f33698a;
+    public final s01 f33699b;
 
-    public h01(i01 i01Var, uy uyVar) {
-        this.f34010b = i01Var;
-        this.f34009a = uyVar;
+    public h01(s01 s01Var, int i10) {
+        this.f33698a = i10;
+        this.f33699b = s01Var;
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        i01 i01Var = this.f34010b;
-        i01Var.f34387b.N1 = true;
-        this.f34009a.removeSelfFromStack();
-        NotificationCenter notificationCenter = i01Var.f34387b.getNotificationCenter();
-        ProfileActivity profileActivity = i01Var.f34387b;
-        int i11 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(profileActivity, i11);
-        i01Var.f34387b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
+    public final void onClick(View view) {
+        switch (this.f33698a) {
+            case 0:
+                s01 s01Var = this.f33699b;
+                ProfileActivity profileActivity = s01Var.e;
+                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f31240e1));
+                MessagesController messagesController = profileActivity.getMessagesController();
+                ProfileActivity profileActivity2 = s01Var.e;
+                messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
+                return;
+            default:
+                ProfileActivity profileActivity3 = this.f33699b.e;
+                profileActivity3.O4 = !profileActivity3.O4;
+                if (!profileActivity3.N4) {
+                    profileActivity3.N4 = true;
+                }
+                profileActivity3.F4();
+                view.requestLayout();
+                profileActivity3.d.m(profileActivity3.O3);
+                int i10 = profileActivity3.U5;
+                if (i10 >= 0) {
+                    profileActivity3.f31224c.h1(i10, profileActivity3.V5 - profileActivity3.f31209a.getPaddingTop());
+                    return;
+                }
+                return;
+        }
     }
 }

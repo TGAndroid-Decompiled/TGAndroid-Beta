@@ -3,35 +3,35 @@ package c2;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public abstract class i implements h {
-    public f f3670b;
-    public f f3671c;
+    public f f3665b;
+    public f f3666c;
     public f d;
     public f e;
-    public ByteBuffer f3672f;
-    public ByteBuffer f3673g;
+    public ByteBuffer f3667f;
+    public ByteBuffer f3668g;
     public boolean h;
 
     public i() {
-        ByteBuffer byteBuffer = h.f3669a;
-        this.f3672f = byteBuffer;
-        this.f3673g = byteBuffer;
+        ByteBuffer byteBuffer = h.f3664a;
+        this.f3667f = byteBuffer;
+        this.f3668g = byteBuffer;
         f fVar = f.e;
         this.d = fVar;
         this.e = fVar;
-        this.f3670b = fVar;
-        this.f3671c = fVar;
+        this.f3665b = fVar;
+        this.f3666c = fVar;
     }
 
     @Override
     public ByteBuffer a() {
-        ByteBuffer byteBuffer = this.f3673g;
-        this.f3673g = h.f3669a;
+        ByteBuffer byteBuffer = this.f3668g;
+        this.f3668g = h.f3664a;
         return byteBuffer;
     }
 
     @Override
     public boolean b() {
-        if (this.h && this.f3673g == h.f3669a) {
+        if (this.h && this.f3668g == h.f3664a) {
             return true;
         }
         return false;
@@ -57,10 +57,10 @@ public abstract class i implements h {
 
     @Override
     public final void flush() {
-        this.f3673g = h.f3669a;
+        this.f3668g = h.f3664a;
         this.h = false;
-        this.f3670b = this.d;
-        this.f3671c = this.e;
+        this.f3665b = this.d;
+        this.f3666c = this.e;
         g();
     }
 
@@ -73,27 +73,27 @@ public abstract class i implements h {
     }
 
     public final ByteBuffer j(int i10) {
-        if (this.f3672f.capacity() < i10) {
-            this.f3672f = ByteBuffer.allocateDirect(i10).order(ByteOrder.nativeOrder());
+        if (this.f3667f.capacity() < i10) {
+            this.f3667f = ByteBuffer.allocateDirect(i10).order(ByteOrder.nativeOrder());
         } else {
-            this.f3672f.clear();
+            this.f3667f.clear();
         }
-        ByteBuffer byteBuffer = this.f3672f;
-        this.f3673g = byteBuffer;
+        ByteBuffer byteBuffer = this.f3667f;
+        this.f3668g = byteBuffer;
         return byteBuffer;
     }
 
     @Override
     public final void reset() {
-        ByteBuffer byteBuffer = h.f3669a;
-        this.f3673g = byteBuffer;
+        ByteBuffer byteBuffer = h.f3664a;
+        this.f3668g = byteBuffer;
         this.h = false;
-        this.f3672f = byteBuffer;
+        this.f3667f = byteBuffer;
         f fVar = f.e;
         this.d = fVar;
         this.e = fVar;
-        this.f3670b = fVar;
-        this.f3671c = fVar;
+        this.f3665b = fVar;
+        this.f3666c = fVar;
         i();
     }
 

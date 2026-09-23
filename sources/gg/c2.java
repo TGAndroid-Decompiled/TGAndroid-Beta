@@ -10,28 +10,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.vp0;
 public class c2 {
-    public b2 f9686a;
-    public ArrayList f9693k;
-    public ArrayList f9694l;
-    public String f9696n;
-    public final boolean f9697o;
-    public ArrayList f9699q;
-    public HashMap f9700r;
-    public final ArrayList f9687b = new ArrayList();
-    public String f9688c = null;
+    public b2 f9672a;
+    public ArrayList f9679k;
+    public ArrayList f9680l;
+    public String f9682n;
+    public final boolean f9683o;
+    public ArrayList f9685q;
+    public HashMap f9686r;
+    public final ArrayList f9673b = new ArrayList();
+    public String f9674c = null;
     public final ArrayList d = new ArrayList();
     public final ArrayList e = new ArrayList();
-    public final a0.i f9689f = new a0.i();
-    public final ArrayList f9690g = new ArrayList();
+    public final a0.i f9675f = new a0.i();
+    public final ArrayList f9676g = new ArrayList();
     public final a0.i h = new a0.i();
-    public final a0.i f9691i = new a0.i();
-    public final ArrayList f9692j = new ArrayList();
-    public final int f9695m = UserConfig.selectedAccount;
-    public boolean f9698p = true;
-    public boolean f9701s = false;
+    public final a0.i f9677i = new a0.i();
+    public final ArrayList f9678j = new ArrayList();
+    public final int f9681m = UserConfig.selectedAccount;
+    public boolean f9684p = true;
+    public boolean f9687s = false;
 
     public c2(boolean z10) {
-        this.f9697o = z10;
+        this.f9683o = z10;
     }
 
     public final void a(CharSequence charSequence) {
@@ -45,38 +45,38 @@ public class c2 {
                     start++;
                 }
                 String charSequence2 = charSequence.subSequence(start, end).toString();
-                if (this.f9700r == null) {
-                    this.f9700r = new HashMap();
-                    this.f9699q = new ArrayList();
+                if (this.f9686r == null) {
+                    this.f9686r = new HashMap();
+                    this.f9685q = new ArrayList();
                 }
-                a2 a2Var = (a2) this.f9700r.get(charSequence2);
+                a2 a2Var = (a2) this.f9686r.get(charSequence2);
                 if (a2Var == 0) {
                     a2Var = new Object();
-                    a2Var.f9670a = charSequence2;
-                    this.f9700r.put(charSequence2, a2Var);
+                    a2Var.f9656a = charSequence2;
+                    this.f9686r.put(charSequence2, a2Var);
                 } else {
-                    this.f9699q.remove((Object) a2Var);
+                    this.f9685q.remove((Object) a2Var);
                 }
-                a2Var.f9671b = (int) (System.currentTimeMillis() / 1000);
-                this.f9699q.add(0, a2Var);
+                a2Var.f9657b = (int) (System.currentTimeMillis() / 1000);
+                this.f9685q.add(0, a2Var);
                 z10 = true;
             }
             if (z10) {
-                MessagesStorage.getInstance(this.f9695m).getStorageQueue().postRunnable(new x1(0, this, this.f9699q));
+                MessagesStorage.getInstance(this.f9681m).getStorageQueue().postRunnable(new x1(0, this, this.f9685q));
             }
         }
     }
 
     public final void b() {
         this.e.clear();
-        this.f9689f.b();
+        this.f9675f.b();
         this.d.clear();
     }
 
     public final void c() {
-        this.f9699q = new ArrayList();
-        this.f9700r = new HashMap();
-        MessagesStorage.getInstance(this.f9695m).getStorageQueue().postRunnable(new z1(this, 0));
+        this.f9685q = new ArrayList();
+        this.f9686r = new HashMap();
+        MessagesStorage.getInstance(this.f9681m).getStorageQueue().postRunnable(new z1(this, 0));
     }
 
     public boolean d(TLObject tLObject) {
@@ -84,7 +84,7 @@ public class c2 {
     }
 
     public final boolean e() {
-        if (this.f9687b.size() > 0) {
+        if (this.f9673b.size() > 0) {
             return true;
         }
         return false;
@@ -95,9 +95,9 @@ public class c2 {
         int size2;
         Object obj;
         TLRPC.Chat chat;
-        this.f9693k = arrayList;
-        this.f9694l = arrayList2;
-        a0.i iVar = this.f9689f;
+        this.f9679k = arrayList;
+        this.f9680l = arrayList2;
+        a0.i iVar = this.f9675f;
         if (iVar.m() != 0) {
             if (arrayList != null || arrayList2 != null) {
                 if (arrayList == null) {
@@ -118,40 +118,40 @@ public class c2 {
                         obj = arrayList2.get(i11 - size);
                     }
                     if (obj instanceof h0) {
-                        obj = ((h0) obj).f9750a;
+                        obj = ((h0) obj).f9736a;
                     }
                     if (obj instanceof vp0) {
-                        obj = ((vp0) obj).f29388b;
+                        obj = ((vp0) obj).f29364b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;
                     ArrayList arrayList4 = this.e;
                     if (z10) {
                         TLRPC.User user = (TLRPC.User) obj;
-                        TLRPC.User user2 = (TLRPC.User) iVar.f(user.f18256id);
+                        TLRPC.User user2 = (TLRPC.User) iVar.f(user.f18230id);
                         if (user2 != null) {
                             arrayList4.remove(user2);
                             arrayList3.remove(user2);
-                            iVar.l(user2.f18256id);
+                            iVar.l(user2.f18230id);
                         }
-                        long j3 = user.f18256id;
+                        long j3 = user.f18230id;
                         a0.i iVar2 = this.h;
                         TLObject tLObject = (TLObject) iVar2.f(j3);
                         if (tLObject != null) {
-                            this.f9690g.remove(tLObject);
-                            iVar2.l(user.f18256id);
+                            this.f9676g.remove(tLObject);
+                            iVar2.l(user.f18230id);
                         }
-                        long j10 = user.f18256id;
-                        a0.i iVar3 = this.f9691i;
+                        long j10 = user.f18230id;
+                        a0.i iVar3 = this.f9677i;
                         Object f7 = iVar3.f(j10);
                         if (f7 != null) {
-                            this.f9692j.remove(f7);
-                            iVar3.l(user.f18256id);
+                            this.f9678j.remove(f7);
+                            iVar3.l(user.f18230id);
                         }
-                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) iVar.f(-((TLRPC.Chat) obj).f18109id)) != null) {
+                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) iVar.f(-((TLRPC.Chat) obj).f18083id)) != null) {
                         arrayList4.remove(chat);
                         arrayList3.remove(chat);
-                        iVar.l(-chat.f18109id);
+                        iVar.l(-chat.f18083id);
                     }
                 }
             }
@@ -162,12 +162,12 @@ public class c2 {
         h(str, z10, z11, z12, z13, false, j3, z14, i10, i11, 0L, null);
     }
 
-    public final void h(final java.lang.String r22, boolean r23, final boolean r24, final boolean r25, boolean r26, final boolean r27, long r28, boolean r30, int r31, final int r32, final long r33, final org.telegram.ui.ActionBar.n5 r35) {
-        throw new UnsupportedOperationException("Method not decompiled: gg.c2.h(java.lang.String, boolean, boolean, boolean, boolean, boolean, long, boolean, int, int, long, org.telegram.ui.ActionBar.n5):void");
+    public final void h(final java.lang.String r22, boolean r23, final boolean r24, final boolean r25, boolean r26, final boolean r27, long r28, boolean r30, int r31, final int r32, final long r33, final org.telegram.ui.ActionBar.m5 r35) {
+        throw new UnsupportedOperationException("Method not decompiled: gg.c2.h(java.lang.String, boolean, boolean, boolean, boolean, boolean, long, boolean, int, int, long, org.telegram.ui.ActionBar.m5):void");
     }
 
     public final void i() {
-        a0.i iVar = this.f9689f;
+        a0.i iVar = this.f9675f;
         if (iVar.m() != 0) {
             a0.i iVar2 = this.h;
             int m10 = iVar2.m();
@@ -176,7 +176,7 @@ public class c2 {
                 if (user != null) {
                     this.e.remove(user);
                     this.d.remove(user);
-                    iVar.l(user.f18256id);
+                    iVar.l(user.f18230id);
                 }
             }
         }

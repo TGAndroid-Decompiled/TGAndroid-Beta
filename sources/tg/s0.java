@@ -14,25 +14,25 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.c90;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.qr;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.rr;
 import w7.x5;
 public final class s0 extends LinearLayout {
-    public final ArrayList f43214a;
-    public final p0 f43215b;
-    public final FrameLayout f43216c;
+    public final ArrayList f43169a;
+    public final p0 f43170b;
+    public final FrameLayout f43171c;
     public final FrameLayout d;
-    public final c90 e;
+    public final d90 e;
 
     public s0(Context context) {
         super(context);
-        this.f43214a = new ArrayList();
+        this.f43169a = new ArrayList();
         setOrientation(1);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f43216c = frameLayout;
+        this.f43171c = frameLayout;
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         this.d = frameLayout2;
@@ -41,11 +41,11 @@ public final class s0 extends LinearLayout {
         FrameLayout frameLayout3 = new FrameLayout(context);
         ImageView imageView = new ImageView(frameLayout3.getContext());
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(i6.w0(null, i6.E6, false));
+        imageView.setColorFilter(h6.w0(null, h6.E6, false));
         frameLayout3.addView(imageView);
         frameLayout.addView(frameLayout3, x5.e(24, 24, 17));
         p0 p0Var = new p0(context);
-        this.f43215b = p0Var;
+        this.f43170b = p0Var;
         p0Var.setLayerType(2, null);
         frameLayout.addView(p0Var, x5.e(70, 70, 17));
         addView(frameLayout, x5.k(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
@@ -53,15 +53,15 @@ public final class s0 extends LinearLayout {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.BoostingReassignBoost));
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(i6.w0(null, i6.G6, false));
+        textView.setTextColor(h6.w0(null, h6.G6, false));
         addView(textView, x5.t(-2, -2, 1, 0, 15, 0, 7));
-        c90 c90Var = new c90(getContext(), null);
-        this.e = c90Var;
-        c90Var.setTextSize(1, 14.0f);
-        c90Var.setGravity(1);
-        c90Var.setTextColor(i6.w0(null, i6.f18940j5, false));
-        c90Var.setLineSpacing(c90Var.getLineSpacingExtra(), c90Var.getLineSpacingMultiplier() * 1.1f);
-        addView(c90Var, x5.t(-2, -2, 1, 28, 0, 28, 18));
+        d90 d90Var = new d90(getContext(), null);
+        this.e = d90Var;
+        d90Var.setTextSize(1, 14.0f);
+        d90Var.setGravity(1);
+        d90Var.setTextColor(h6.w0(null, h6.f18895j5, false));
+        d90Var.setLineSpacing(d90Var.getLineSpacingExtra(), d90Var.getLineSpacingMultiplier() * 1.1f);
+        addView(d90Var, x5.t(-2, -2, 1, 28, 0, 28, 18));
     }
 
     public final void a(ArrayList arrayList, TLRPC.Chat chat) {
@@ -81,11 +81,11 @@ public final class s0 extends LinearLayout {
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        qr qrVar = qr.f27420f;
+        rr rrVar = rr.f27701f;
         int size2 = arrayList3.size();
         int i14 = 0;
         while (true) {
-            arrayList2 = this.f43214a;
+            arrayList2 = this.f43169a;
             if (i14 >= size2) {
                 break;
             }
@@ -128,9 +128,9 @@ public final class s0 extends LinearLayout {
             p0 p0Var3 = new p0(getContext());
             p0Var3.setLayerType(2, null);
             p0Var3.d = chat4;
-            f9 f9Var = p0Var3.e;
-            f9Var.q(chat4);
-            p0Var3.f43200a.e(chat4, f9Var);
+            h9 h9Var = p0Var3.e;
+            h9Var.q(chat4);
+            p0Var3.f43155a.e(chat4, h9Var);
             int size5 = arrayList6.size();
             frameLayout.addView(p0Var3, i12, x5.e(70, 70, 17));
             p0Var3.setTranslationX(AndroidUtilities.dp(23.0f) * (-size5));
@@ -138,9 +138,9 @@ public final class s0 extends LinearLayout {
             p0Var3.setScaleX(0.1f);
             p0Var3.setScaleY(0.1f);
             ArrayList arrayList7 = arrayList5;
-            p0Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(qrVar).setDuration(200).start();
+            p0Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(rrVar).setDuration(200).start();
             if (size5 == 0) {
-                q0 q0Var = p0Var3.f43201b;
+                q0 q0Var = p0Var3.f43156b;
                 q0Var.setScaleY(1.0f);
                 q0Var.setScaleX(1.0f);
                 q0Var.setAlpha(1.0f);
@@ -173,7 +173,7 @@ public final class s0 extends LinearLayout {
             if (p0Var != null) {
                 p0Var.setTag("REMOVED");
                 long j3 = 200;
-                p0Var.animate().alpha(0.0f).translationXBy(AndroidUtilities.dp(23.0f)).scaleX(0.1f).scaleY(0.1f).setInterpolator(qrVar).setDuration(j3).setListener(new r0(this, p0Var)).start();
+                p0Var.animate().alpha(0.0f).translationXBy(AndroidUtilities.dp(23.0f)).scaleX(0.1f).scaleY(0.1f).setInterpolator(rrVar).setDuration(j3).setListener(new r0(this, p0Var)).start();
                 int size8 = arrayList6.size();
                 int i20 = 0;
                 int i21 = 0;
@@ -185,7 +185,7 @@ public final class s0 extends LinearLayout {
                     if (p0Var4 != p0Var) {
                         i21++;
                         i11 = size6;
-                        p0Var4.animate().translationX((-(size9 - i21)) * AndroidUtilities.dp(23.0f)).setInterpolator(qrVar).setDuration(j3).start();
+                        p0Var4.animate().translationX((-(size9 - i21)) * AndroidUtilities.dp(23.0f)).setInterpolator(rrVar).setDuration(j3).start();
                     } else {
                         i11 = size6;
                     }
@@ -193,9 +193,9 @@ public final class s0 extends LinearLayout {
                 }
                 i10 = size6;
                 if (hg.c.h(1, arrayList6) == p0Var && arrayList6.size() > 1) {
-                    ((p0) hg.c.h(2, arrayList6)).f43201b.setScaleY(0.1f);
-                    ((p0) arrayList6.get(arrayList6.size() - 2)).f43201b.setScaleX(0.1f);
-                    ((p0) arrayList6.get(arrayList6.size() - 2)).f43201b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(qrVar).start();
+                    ((p0) hg.c.h(2, arrayList6)).f43156b.setScaleY(0.1f);
+                    ((p0) arrayList6.get(arrayList6.size() - 2)).f43156b.setScaleX(0.1f);
+                    ((p0) arrayList6.get(arrayList6.size() - 2)).f43156b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(rrVar).start();
                     size6 = i10;
                 }
             } else {
@@ -203,32 +203,32 @@ public final class s0 extends LinearLayout {
             }
             size6 = i10;
         }
-        p0 p0Var5 = this.f43215b;
+        p0 p0Var5 = this.f43170b;
         if (p0Var5.d == null) {
             p0Var5.d = chat;
-            f9 f9Var2 = p0Var5.e;
-            f9Var2.q(chat);
-            p0Var5.f43200a.e(chat, f9Var2);
+            h9 h9Var2 = p0Var5.e;
+            h9Var2.q(chat);
+            p0Var5.f43155a.e(chat, h9Var2);
         }
         arrayList2.removeAll(arrayList4);
         arrayList2.addAll(arrayList8);
-        FrameLayout frameLayout2 = this.f43216c;
+        FrameLayout frameLayout2 = this.f43171c;
         frameLayout2.animate().cancel();
         if (!arrayList2.isEmpty() && arrayList2.size() != 1) {
-            frameLayout2.animate().setInterpolator(qrVar).translationX(AndroidUtilities.dp(11.5f) * (arrayList2.size() - 1)).setDuration(200).start();
+            frameLayout2.animate().setInterpolator(rrVar).translationX(AndroidUtilities.dp(11.5f) * (arrayList2.size() - 1)).setDuration(200).start();
         } else {
-            frameLayout2.animate().setInterpolator(qrVar).translationX(0.0f).setDuration(200).start();
+            frameLayout2.animate().setInterpolator(rrVar).translationX(0.0f).setDuration(200).start();
         }
         p0Var5.animate().cancel();
         frameLayout.animate().cancel();
         if (arrayList2.isEmpty()) {
             long j10 = 200;
-            frameLayout.animate().setInterpolator(qrVar).translationX(0.0f).setDuration(j10).start();
-            p0Var5.animate().setInterpolator(qrVar).translationX(0.0f).setDuration(j10).start();
+            frameLayout.animate().setInterpolator(rrVar).translationX(0.0f).setDuration(j10).start();
+            p0Var5.animate().setInterpolator(rrVar).translationX(0.0f).setDuration(j10).start();
             return;
         }
         long j11 = 200;
-        frameLayout.animate().setInterpolator(qrVar).translationX(-AndroidUtilities.dp(48.0f)).setDuration(j11).start();
-        p0Var5.animate().setInterpolator(qrVar).translationX(AndroidUtilities.dp(48.0f)).setDuration(j11).start();
+        frameLayout.animate().setInterpolator(rrVar).translationX(-AndroidUtilities.dp(48.0f)).setDuration(j11).start();
+        p0Var5.animate().setInterpolator(rrVar).translationX(AndroidUtilities.dp(48.0f)).setDuration(j11).start();
     }
 }

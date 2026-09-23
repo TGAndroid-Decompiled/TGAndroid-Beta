@@ -1,97 +1,85 @@
 package org.telegram.ui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SecureDocument;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
-public final class nm0 extends tu0 {
-    public final on0 f36016a;
+public final class nm0 implements org.telegram.ui.Components.ui {
+    public final in0 f35556a;
 
-    public nm0(on0 on0Var) {
-        this.f36016a = on0Var;
+    public nm0(in0 in0Var) {
+        this.f35556a = in0Var;
     }
 
     @Override
-    public final void B(int i10) {
-        SecureDocument secureDocument;
-        on0 on0Var = this.f36016a;
-        int i11 = on0Var.S0;
-        if (i11 == 1) {
-            secureDocument = on0Var.f36279j1;
-        } else if (i11 == 4) {
-            secureDocument = (SecureDocument) on0Var.f36281k1.get(i10);
-        } else if (i11 == 2) {
-            secureDocument = on0Var.l1;
-        } else if (i11 == 3) {
-            secureDocument = on0Var.f36283m1;
-        } else {
-            secureDocument = (SecureDocument) on0Var.f36277i1.get(i10);
-        }
-        mn0 mn0Var = (mn0) on0Var.f36286n1.remove(secureDocument);
-        if (mn0Var == null) {
-            return;
-        }
-        String n12 = on0.n1(secureDocument);
-        int i12 = on0Var.S0;
-        String str = null;
-        if (i12 == 1) {
-            on0Var.f36279j1 = null;
-            str = org.telegram.ui.Cells.q3.i("selfie", n12);
-        } else if (i12 == 4) {
-            str = org.telegram.ui.Cells.q3.i("translation", n12);
-        } else if (i12 == 2) {
-            on0Var.l1 = null;
-            str = org.telegram.ui.Cells.q3.i("front", n12);
-        } else if (i12 == 3) {
-            on0Var.f36283m1 = null;
-            str = org.telegram.ui.Cells.q3.i("reverse", n12);
-        } else if (i12 == 0) {
-            str = org.telegram.ui.Cells.q3.i("files", n12);
-        }
-        if (str != null) {
-            HashMap hashMap = on0Var.f36310x1;
-            if (hashMap != null) {
-                hashMap.remove(str);
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        org.telegram.ui.Components.wi wiVar;
+        in0 in0Var = this.f35556a;
+        if (in0Var.getParentActivity() != null && (wiVar = in0Var.R0) != null) {
+            if (i10 != 8 && i10 != 7) {
+                wiVar.dismissWithButtonClick(i10);
+                in0Var.F1(i10);
+                return;
             }
-            HashMap hashMap2 = on0Var.f36313y1;
-            if (hashMap2 != null) {
-                hashMap2.remove(str);
+            if (i10 != 8) {
+                wiVar.dismiss(true);
+            }
+            HashMap<Object, Object> selectedPhotos = in0Var.R0.f29677j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = in0Var.R0.f29677j0.getSelectedPhotosOrder();
+            if (!selectedPhotos.isEmpty()) {
+                ArrayList arrayList = new ArrayList();
+                for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i13));
+                    SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                    String str = photoEntry.imagePath;
+                    if (str != null) {
+                        sendingMediaInfo.path = str;
+                    } else {
+                        sendingMediaInfo.path = photoEntry.path;
+                    }
+                    arrayList.add(sendingMediaInfo);
+                    photoEntry.reset();
+                }
+                in0Var.G1(arrayList);
             }
         }
-        on0Var.S1(on0Var.S0);
-        on0Var.f36276i0.removeView(mn0Var);
     }
 
     @Override
-    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        if (i10 >= 0) {
-            on0 on0Var = this.f36016a;
-            if (i10 < on0Var.f36276i0.getChildCount()) {
-                mn0 mn0Var = (mn0) on0Var.f36276i0.getChildAt(i10);
-                int[] iArr = new int[2];
-                mn0Var.f35780c.getLocationInWindow(iArr);
-                dv0 dv0Var = new dv0();
-                dv0Var.f33097b = iArr[0];
-                dv0Var.f33098c = iArr[1];
-                dv0Var.d = on0Var.f36276i0;
-                ImageReceiver imageReceiver = mn0Var.f35780c.getImageReceiver();
-                dv0Var.f33096a = imageReceiver;
-                dv0Var.e = imageReceiver.getBitmapSafe();
-                return dv0Var;
-            }
-            return null;
-        }
-        return null;
+    public final void K0() {
+        AndroidUtilities.hideKeyboard(this.f35556a.fragmentView.findFocus());
     }
 
     @Override
-    public final String a0() {
-        if (this.f36016a.S0 == 1) {
-            return LocaleController.formatString("PassportDeleteSelfieAlert", R.string.PassportDeleteSelfieAlert, new Object[0]);
-        }
-        return LocaleController.formatString("PassportDeleteScanAlert", R.string.PassportDeleteScanAlert, new Object[0]);
+    public final boolean S1() {
+        return false;
+    }
+
+    @Override
+    public final boolean c0() {
+        return false;
+    }
+
+    @Override
+    public final void x0(org.telegram.ui.Components.gh ghVar) {
+        ghVar.run();
+    }
+
+    @Override
+    public final void U0(Object obj) {
+    }
+
+    @Override
+    public final void j1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void u0() {
+    }
+
+    @Override
+    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

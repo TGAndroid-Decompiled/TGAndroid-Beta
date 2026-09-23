@@ -1,43 +1,42 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class z41 implements tx0 {
-    public final TLRPC.InputStickerSet f30473a;
-    public final e51 f30474b;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class z41 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f30528a;
+    public int f30529b;
+    public final int f30530c;
+    public final Object d;
 
-    public z41(e51 e51Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f30474b = e51Var;
-        this.f30473a = inputStickerSet;
+    public z41(org.telegram.ui.av avVar, int i10, int i11) {
+        this.f30528a = 1;
+        this.d = avVar;
+        this.f30529b = i10;
+        this.f30530c = i11;
     }
 
     @Override
-    public final void a() {
-        e51 e51Var = this.f30474b;
-        s4.h0 adapter = e51Var.f23543n.getAdapter();
-        d51 d51Var = e51Var.f23545s;
-        TLRPC.InputStickerSet inputStickerSet = this.f30473a;
-        int i10 = 0;
-        if (adapter == d51Var) {
-            while (i10 < d51Var.e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) d51Var.e.get(i10);
-                if (stickerSetCovered.set.f18136id == inputStickerSet.f18129id) {
-                    d51Var.F(stickerSetCovered, null);
-                    return;
-                }
-                i10++;
-            }
-            return;
-        }
-        gg.g2 g2Var = e51Var.v;
-        ArrayList arrayList = g2Var.E;
-        while (i10 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
-            if (stickerSetCovered2.set.f18136id == inputStickerSet.f18129id) {
-                g2Var.F(stickerSetCovered2, null);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f30528a) {
+            case 0:
+                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f30530c);
+                d51 d51Var = (d51) this.d;
+                d51Var.N = true;
+                d51Var.f23244n.scrollBy(0, floatValue - this.f30529b);
+                d51Var.N = false;
+                this.f30529b = floatValue;
                 return;
-            }
-            i10++;
+            default:
+                ((org.telegram.ui.av) this.d).f31890c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f30529b, this.f30530c), PorterDuff.Mode.SRC_IN));
+                return;
         }
+    }
+
+    public z41(d51 d51Var, int i10) {
+        this.f30528a = 0;
+        this.d = d51Var;
+        this.f30530c = i10;
+        this.f30529b = 0;
     }
 }

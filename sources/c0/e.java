@@ -3,16 +3,16 @@ package c0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import v7.d5;
 public final class e extends d5 {
-    public final AtomicReferenceFieldUpdater f3626a;
-    public final AtomicReferenceFieldUpdater f3627b;
-    public final AtomicReferenceFieldUpdater f3628c;
+    public final AtomicReferenceFieldUpdater f3621a;
+    public final AtomicReferenceFieldUpdater f3622b;
+    public final AtomicReferenceFieldUpdater f3623c;
     public final AtomicReferenceFieldUpdater d;
     public final AtomicReferenceFieldUpdater e;
 
     public e(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater4, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater5) {
-        this.f3626a = atomicReferenceFieldUpdater;
-        this.f3627b = atomicReferenceFieldUpdater2;
-        this.f3628c = atomicReferenceFieldUpdater3;
+        this.f3621a = atomicReferenceFieldUpdater;
+        this.f3622b = atomicReferenceFieldUpdater2;
+        this.f3623c = atomicReferenceFieldUpdater3;
         this.d = atomicReferenceFieldUpdater4;
         this.e = atomicReferenceFieldUpdater5;
     }
@@ -45,7 +45,7 @@ public final class e extends d5 {
     public final boolean c(h hVar, g gVar, g gVar2) {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         do {
-            atomicReferenceFieldUpdater = this.f3628c;
+            atomicReferenceFieldUpdater = this.f3623c;
             if (atomicReferenceFieldUpdater.compareAndSet(hVar, gVar, gVar2)) {
                 return true;
             }
@@ -55,11 +55,11 @@ public final class e extends d5 {
 
     @Override
     public final void d(g gVar, g gVar2) {
-        this.f3627b.lazySet(gVar, gVar2);
+        this.f3622b.lazySet(gVar, gVar2);
     }
 
     @Override
     public final void e(g gVar, Thread thread) {
-        this.f3626a.lazySet(gVar, thread);
+        this.f3621a.lazySet(gVar, thread);
     }
 }

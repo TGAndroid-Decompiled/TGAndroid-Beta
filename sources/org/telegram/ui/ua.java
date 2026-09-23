@@ -3,27 +3,27 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 public final class ua implements MessagesStorage.IntCallback {
-    public final int f37876a;
-    public final Object f37877b;
+    public final int f38001a;
+    public final Object f38002b;
 
     public ua(Object obj, int i10) {
-        this.f37876a = i10;
-        this.f37877b = obj;
+        this.f38001a = i10;
+        this.f38002b = obj;
     }
 
     @Override
     public final void run(int i10) {
-        vu0 vu0Var;
-        int i11 = this.f37876a;
-        Object obj = this.f37877b;
+        ou0 ou0Var;
+        int i11 = this.f38001a;
+        Object obj = this.f38002b;
         switch (i11) {
             case 0:
                 ((ub) obj).U0(true);
                 return;
             case 1:
-                bo boVar = ((nn) obj).f36017a;
-                if (i10 > 0 && boVar.getParentActivity() != null && boVar.fragmentView != null) {
-                    org.telegram.ui.Components.vc.a0(boVar).m(org.telegram.ui.Components.uc.I, i10, 0, 0, boVar.f32293ea).j();
+                xn xnVar = ((jn) obj).f34487a;
+                if (i10 > 0 && xnVar.getParentActivity() != null && xnVar.fragmentView != null) {
+                    org.telegram.ui.Components.xc.a0(xnVar).m(org.telegram.ui.Components.wc.I, i10, 0, 0, xnVar.f39370ea).j();
                     return;
                 }
                 return;
@@ -32,8 +32,8 @@ public final class ua implements MessagesStorage.IntCallback {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.f31112y != null && (vu0Var = photoViewer.f30934e0) != null && i10 > 0) {
-                    org.telegram.ui.Components.vc.F(vu0Var, true).j();
+                if (photoViewer.f31086y != null && (ou0Var = photoViewer.f30908e0) != null && i10 > 0) {
+                    org.telegram.ui.Components.xc.F(ou0Var, true).j();
                     return;
                 }
                 return;
@@ -48,15 +48,15 @@ public final class ua implements MessagesStorage.IntCallback {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f31266e1));
+                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f31240e1));
                 return;
             default:
-                eg1 eg1Var = ((jf1) obj).f34903a;
+                wf1 wf1Var = ((bf1) obj).f32103a;
                 if (i10 == 0) {
-                    eg1Var.O0(false);
+                    wf1Var.O0(false);
                     return;
                 } else {
-                    eg1Var.finishFragment();
+                    wf1Var.finishFragment();
                     return;
                 }
         }

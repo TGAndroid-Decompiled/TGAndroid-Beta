@@ -1,88 +1,100 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class jh1 extends ViewGroup {
-    public final Paint f34914a;
-    public View f34915b;
-    public boolean f34916c;
+public final class jh1 extends org.telegram.ui.Components.g51 {
+    public static final int f34461a = 0;
 
-    public jh1(Context context) {
-        super(context);
-        this.f34914a = new Paint(1);
-        setClipToPadding(false);
+    static {
+        org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int paddingBottom = getPaddingBottom();
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false);
-        int h = i0.a.h(org.telegram.ui.ActionBar.i6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18834d6, false)), w02);
-        Paint paint = this.f34914a;
-        paint.setColor(w02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
-        paint.setColor(h);
-        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
+    public final void bindView(View view, org.telegram.ui.Components.h51 h51Var, boolean z10, org.telegram.ui.Components.v51 v51Var, org.telegram.ui.Components.d61 d61Var) {
+        float f7;
+        int i10;
+        int i11;
         int i12;
-        View view = this.f34915b;
-        if (view != null && view.getVisibility() == 0) {
-            z10 = true;
+        int i13;
+        kh1 kh1Var = (kh1) view;
+        int i14 = h51Var.f24506k;
+        CharSequence charSequence = h51Var.f24507l;
+        CharSequence charSequence2 = h51Var.f24508m;
+        boolean z11 = h51Var.f24512q;
+        boolean z12 = h51Var.f24513r;
+        int i15 = h51Var.f24520z;
+        TextView textView = kh1Var.d;
+        TextView textView2 = kh1Var.e;
+        ImageView imageView = kh1Var.f34730f;
+        kh1Var.h = z11;
+        kh1Var.f34731n = z12;
+        ImageView imageView2 = kh1Var.f34728b;
+        imageView2.setImageResource(i14);
+        int i16 = 8;
+        if (i15 != 0) {
+            imageView.setVisibility(0);
+            imageView.setImageResource(i15);
         } else {
-            z10 = false;
+            imageView.setVisibility(8);
         }
-        int size = View.MeasureSpec.getSize(i10);
-        if (z10) {
-            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
+        textView.setText(charSequence);
+        textView2.setText(charSequence2);
+        if (!TextUtils.isEmpty(charSequence2)) {
+            i16 = 0;
+        }
+        textView2.setVisibility(i16);
+        if (TextUtils.isEmpty(charSequence2)) {
+            f7 = 15.0f;
         } else {
-            i12 = 0;
+            f7 = 10.0f;
         }
-        setMeasuredDimension(size, i12);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
+        int dp = AndroidUtilities.dp(f7);
+        kh1Var.f34729c.setPadding(0, dp, 0, dp);
+        org.telegram.ui.ActionBar.d6 d6Var = kh1Var.f34727a;
+        if (kh1Var.f34731n) {
+            i10 = org.telegram.ui.ActionBar.h6.f19026q7;
+        } else if (kh1Var.h) {
+            i10 = org.telegram.ui.ActionBar.h6.f18973n6;
+        } else {
+            i10 = org.telegram.ui.ActionBar.h6.G6;
         }
-        if (this.f34916c != z10) {
-            this.f34916c = z10;
-            WeakHashMap weakHashMap = r0.i0.f41839a;
-            r0.y.c(this);
+        int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView2.setColorFilter(new PorterDuffColorFilter(v02, mode));
+        if (kh1Var.f34731n) {
+            i11 = org.telegram.ui.ActionBar.h6.f19026q7;
+        } else if (kh1Var.h) {
+            i11 = org.telegram.ui.ActionBar.h6.f18973n6;
+        } else {
+            i11 = org.telegram.ui.ActionBar.h6.G6;
         }
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), mode));
+        if (kh1Var.f34731n) {
+            i12 = org.telegram.ui.ActionBar.h6.f19008p7;
+        } else if (kh1Var.h) {
+            i12 = org.telegram.ui.ActionBar.h6.f18973n6;
+        } else {
+            i12 = org.telegram.ui.ActionBar.h6.G6;
+        }
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
+        if (kh1Var.f34731n) {
+            i13 = org.telegram.ui.ActionBar.h6.f19008p7;
+        } else if (kh1Var.h) {
+            i13 = org.telegram.ui.ActionBar.h6.f18973n6;
+        } else {
+            i13 = org.telegram.ui.ActionBar.h6.f19170y6;
+        }
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.v0(i13, d6Var));
     }
 
     @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        this.f34915b = view;
-    }
-
-    @Override
-    public final void setPadding(int i10, int i11, int i12, int i13) {
-        super.setPadding(i10, i11, i12, i13);
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            getChildAt(i14).setPadding(i10, i11, i12, i13);
-        }
+    public final View createView(Context context, org.telegram.ui.Components.ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new kh1(context, d6Var);
     }
 }

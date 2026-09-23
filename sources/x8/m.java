@@ -16,13 +16,13 @@ import y8.l0;
 import y8.v0;
 import y8.z0;
 public final class m extends b8.b {
-    public volatile int f45690b;
-    public final k f45691c;
+    public volatile int f45644b;
+    public final k f45645c;
 
     public m(k kVar) {
         super("com.google.android.gms.wearable.internal.IWearableListener", 4);
-        this.f45691c = kVar;
-        this.f45690b = -1;
+        this.f45645c = kVar;
+        this.f45644b = -1;
     }
 
     public static final void M0(e0 e0Var, boolean z10, byte[] bArr) {
@@ -30,7 +30,7 @@ public final class m extends b8.b {
             e0Var.getClass();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken(e0Var.f316c);
-            int i10 = f8.a.f9009a;
+            int i10 = f8.a.f8995a;
             obtain.writeInt(z10 ? 1 : 0);
             obtain.writeByteArray(bArr);
             e0Var.f315b.transact(1, obtain, null, 1);
@@ -52,7 +52,7 @@ public final class m extends b8.b {
                         Runnable eVar = new u4.e(7, this, dataHolder);
                         try {
                             String valueOf = String.valueOf(dataHolder);
-                            int i11 = dataHolder.f6222n;
+                            int i11 = dataHolder.f6208n;
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append(valueOf);
                             sb2.append(", rows=");
@@ -132,24 +132,24 @@ public final class m extends b8.b {
         p pVar;
         ComponentName componentName;
         if (Log.isLoggable("WearableLS", 3)) {
-            componentName = this.f45691c.zza;
+            componentName = this.f45645c.zza;
             Log.d("WearableLS", String.format("%s: %s %s", str, componentName.toString(), obj));
         }
         int callingUid = Binder.getCallingUid();
-        if (callingUid != this.f45690b) {
-            if (z0.a(this.f45691c).b() && u6.b.g(this.f45691c, "com.google.android.wearable.app.cn", callingUid)) {
-                this.f45690b = callingUid;
-            } else if (u6.b.e(this.f45691c, callingUid)) {
-                this.f45690b = callingUid;
+        if (callingUid != this.f45644b) {
+            if (z0.a(this.f45645c).b() && u6.b.g(this.f45645c, "com.google.android.wearable.app.cn", callingUid)) {
+                this.f45644b = callingUid;
+            } else if (u6.b.e(this.f45645c, callingUid)) {
+                this.f45644b = callingUid;
             } else {
                 Log.e("WearableLS", "Caller is not GooglePlayServices; caller UID: " + callingUid);
                 return false;
             }
         }
-        obj2 = this.f45691c.zzf;
+        obj2 = this.f45645c.zzf;
         synchronized (obj2) {
             try {
-                k kVar = this.f45691c;
+                k kVar = this.f45645c;
                 z10 = kVar.zzg;
                 if (!z10) {
                     pVar = kVar.zzb;

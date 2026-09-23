@@ -7,17 +7,17 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.mg;
-import org.telegram.ui.Components.n6;
-import org.telegram.ui.rn;
-public final class h0 implements mg {
-    public final TL_stars.TL_starGiftUnique f45885a;
-    public final j0 f45886b;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.ng;
+import org.telegram.ui.Components.p6;
+import org.telegram.ui.nn;
+public final class h0 implements ng {
+    public final TL_stars.TL_starGiftUnique f45832a;
+    public final j0 f45833b;
 
     public h0(j0 j0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f45886b = j0Var;
-        this.f45885a = tL_starGiftUnique;
+        this.f45833b = j0Var;
+        this.f45832a = tL_starGiftUnique;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class h0 implements mg {
         int i10;
         int i11;
         boolean z10;
-        j0 j0Var = this.f45886b;
-        n6 n6Var = j0Var.f45934w;
-        z4 z4Var = j0Var.f45928b;
+        j0 j0Var = this.f45833b;
+        p6 p6Var = j0Var.f45871w;
+        a5 a5Var = j0Var.f45865b;
         i10 = ((org.telegram.ui.ActionBar.f3) j0Var).currentAccount;
-        z4Var.a(this.f45885a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f45931n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        a5Var.a(this.f45832a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f45868n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         j0Var.F = codePointCount;
         int i12 = j0Var.E;
@@ -47,29 +47,29 @@ public final class h0 implements mg {
                 i11 = -9999;
             }
             String formatNumber = LocaleController.formatNumber(i11, ',');
-            if (n6Var.getVisibility() == 0) {
+            if (p6Var.getVisibility() == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            n6Var.c(formatNumber, z10, true);
-            if (n6Var.getVisibility() != 0) {
-                n6Var.setVisibility(0);
-                n6Var.setAlpha(0.0f);
-                n6Var.setScaleX(0.5f);
-                n6Var.setScaleY(0.5f);
+            p6Var.c(formatNumber, z10, true);
+            if (p6Var.getVisibility() != 0) {
+                p6Var.setVisibility(0);
+                p6Var.setAlpha(0.0f);
+                p6Var.setScaleX(0.5f);
+                p6Var.setScaleY(0.5f);
             }
-            n6Var.animate().setListener(null).cancel();
-            n6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            p6Var.animate().setListener(null).cancel();
+            p6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                n6Var.setTextColor(j0Var.getThemedColor(i6.f19053p7));
+                p6Var.setTextColor(j0Var.getThemedColor(h6.f19008p7));
                 return;
             } else {
-                n6Var.setTextColor(j0Var.getThemedColor(i6.f19215y6));
+                p6Var.setTextColor(j0Var.getThemedColor(h6.f19170y6));
                 return;
             }
         }
-        n6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new qg.n0(this, 8));
+        p6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new qg.n0(this, 8));
     }
 
     @Override
@@ -108,7 +108,7 @@ public final class h0 implements mg {
     }
 
     @Override
-    public final rn p0() {
+    public final nn p0() {
         return null;
     }
 

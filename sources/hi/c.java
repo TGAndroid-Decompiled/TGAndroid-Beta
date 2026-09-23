@@ -13,28 +13,28 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.u9;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.Components.za;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.w9;
 import w7.x5;
-public final class c extends za {
+public final class c extends bb {
     public final d1 X;
-    public w51 Y;
+    public v51 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
-        super(context, (e6) null, false);
+        super(context, (d6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        ll0 ll0Var = this.d;
+        ml0 ml0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        ll0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        ml0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -53,16 +53,16 @@ public final class c extends za {
         dVar2.setOnClickListener(new f2(12, this, runnable));
         d1 d1Var = new d1(context, 2);
         TextView textView = (TextView) d1Var.d;
-        TextView textView2 = (TextView) d1Var.f684c;
+        TextView textView2 = (TextView) d1Var.f693c;
         this.X = d1Var;
         d1Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((u9) d1Var.f683b).e(chat, new f9(chat));
+        ((w9) d1Var.f692b).e(chat, new h9(chat));
         textView2.setText(DialogObject.getName(chat));
-        int i13 = i6.G6;
+        int i13 = h6.G6;
         textView2.setTextColor(getThemedColor(i13));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
-        spannableStringBuilder.setSpan(new oq(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
+        spannableStringBuilder.setSpan(new pq(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
         if (isChannelAndNotMegaGroup) {
             i11 = R.string.CommunityInviteOnlyChannelInfo;
         } else {
@@ -77,11 +77,11 @@ public final class c extends za {
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
-        w51 w51Var = new w51(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = w51Var;
-        w51Var.f29610r = false;
-        return w51Var;
+    public final ll0 v(ml0 ml0Var) {
+        v51 v51Var = new v51(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = v51Var;
+        v51Var.f28662r = false;
+        return v51Var;
     }
 
     @Override

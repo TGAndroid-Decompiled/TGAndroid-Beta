@@ -2,36 +2,36 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class za implements Runnable {
-    public final int f18051a;
-    public final MessagesController f18052b;
-    public final TLRPC.Chat f18053c;
+    public final int f18040a;
+    public final MessagesController f18041b;
+    public final TLRPC.Chat f18042c;
 
     public za(MessagesController messagesController, TLRPC.Chat chat, int i10) {
-        this.f18051a = i10;
-        this.f18052b = messagesController;
-        this.f18053c = chat;
+        this.f18040a = i10;
+        this.f18041b = messagesController;
+        this.f18042c = chat;
     }
 
     @Override
     public final void run() {
-        switch (this.f18051a) {
+        switch (this.f18040a) {
             case 0:
-                this.f18052b.lambda$addOrRemoveActiveVoiceChat$61(this.f18053c);
+                this.f18041b.lambda$addOrRemoveActiveVoiceChat$61(this.f18042c);
                 return;
             case 1:
-                this.f18052b.lambda$processLoadedDialogs$218(this.f18053c);
+                this.f18041b.lambda$processLoadedDialogs$218(this.f18042c);
                 return;
             case 2:
-                this.f18052b.lambda$processUpdateArray$413(this.f18053c);
+                this.f18041b.lambda$processUpdateArray$413(this.f18042c);
                 return;
             case 3:
-                this.f18052b.lambda$putChat$58(this.f18053c);
+                this.f18041b.lambda$putChat$58(this.f18042c);
                 return;
             case 4:
-                this.f18052b.lambda$putChat$59(this.f18053c);
+                this.f18041b.lambda$putChat$59(this.f18042c);
                 return;
             default:
-                this.f18052b.lambda$putChat$60(this.f18053c);
+                this.f18041b.lambda$putChat$60(this.f18042c);
                 return;
         }
     }

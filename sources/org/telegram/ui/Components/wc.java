@@ -1,83 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-public class wc {
-    public View f29685a;
-    public final float f29686b;
-    public final float f29687c;
-    public final float d;
-    public long e;
-    public Runnable f29688f;
-    public ValueAnimator f29689g;
-    public boolean h;
-    public float f29690i;
+import org.telegram.messenger.R;
+public final class wc {
+    public static final wc E;
+    public static final wc F;
+    public static final wc G;
+    public static final wc H;
+    public static final wc I;
+    public static final wc[] J;
+    public static final wc e;
+    public static final wc f29598f;
+    public static final wc h;
+    public static final wc f29599n;
+    public static final wc f29600r;
+    public static final wc f29601s;
+    public static final wc v;
+    public static final wc f29602w;
+    public static final wc f29603x;
+    public static final wc f29604y;
+    public final String f29605a;
+    public final int f29606b;
+    public final boolean f29607c;
+    public final vc d;
 
-    public wc(View view) {
-        this(view, 1.0f, 5.0f);
+    static {
+        int i10 = R.string.PhotoSavedHint;
+        vc vcVar = vc.SAVED_TO_GALLERY;
+        wc wcVar = new wc("PHOTO", 0, "PhotoSavedHint", i10, vcVar);
+        e = wcVar;
+        wc wcVar2 = new wc("PHOTOS", 1, "PhotosSavedHint", vcVar);
+        f29598f = wcVar2;
+        wc wcVar3 = new wc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, vcVar);
+        h = wcVar3;
+        wc wcVar4 = new wc("VIDEOS", 3, "VideosSavedHint", vcVar);
+        f29599n = wcVar4;
+        wc wcVar5 = new wc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, vcVar);
+        f29600r = wcVar5;
+        wc wcVar6 = new wc("LIVEPHOTOS", 5, "LivePhotosSavedHint", vcVar);
+        f29601s = wcVar6;
+        wc wcVar7 = new wc("MEDIA", 6, "MediaSavedHint", vcVar);
+        v = wcVar7;
+        int i11 = R.string.PhotoSavedToDownloadsHintLinked;
+        vc vcVar2 = vc.SAVED_TO_DOWNLOADS;
+        wc wcVar8 = new wc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, vcVar2);
+        f29602w = wcVar8;
+        wc wcVar9 = new wc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, vcVar2);
+        f29603x = wcVar9;
+        wc wcVar10 = new wc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, vc.SAVED_TO_GIFS);
+        f29604y = wcVar10;
+        wc wcVar11 = new wc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, vcVar2);
+        E = wcVar11;
+        int i12 = R.string.AudioSavedHint;
+        vc vcVar3 = vc.SAVED_TO_MUSIC;
+        wc wcVar12 = new wc("AUDIO", 11, "AudioSavedHint", i12, vcVar3);
+        F = wcVar12;
+        wc wcVar13 = new wc("AUDIOS", 12, "AudiosSavedHint", vcVar3);
+        G = wcVar13;
+        wc wcVar14 = new wc("UNKNOWN", 13, "FileSavedHintLinked", R.string.FileSavedHintLinked, vcVar2);
+        H = wcVar14;
+        wc wcVar15 = new wc("UNKNOWNS", 14, "FilesSavedHintLinked", vcVar2);
+        I = wcVar15;
+        J = new wc[]{wcVar, wcVar2, wcVar3, wcVar4, wcVar5, wcVar6, wcVar7, wcVar8, wcVar9, wcVar10, wcVar11, wcVar12, wcVar13, wcVar14, wcVar15};
     }
 
-    public final float a(float f7) {
-        return com.google.android.gms.internal.vision.e2.z(1.0f, this.f29690i, f7, 1.0f - f7);
+    public wc(String str, int i10, String str2, int i11, vc vcVar) {
+        this.f29605a = str2;
+        this.f29606b = i11;
+        this.d = vcVar;
+        this.f29607c = false;
     }
 
-    public void b() {
-        View view = this.f29685a;
-        if (view != null) {
-            view.invalidate();
-        }
-        Runnable runnable = this.f29688f;
-        if (runnable != null) {
-            runnable.run();
-        }
+    public static wc valueOf(String str) {
+        return (wc) Enum.valueOf(wc.class, str);
     }
 
-    public final void c(boolean z10) {
-        float f7;
-        if (this.h != z10) {
-            this.h = z10;
-            ValueAnimator valueAnimator = this.f29689g;
-            this.f29689g = null;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f10 = this.f29690i;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f29689g = ofFloat;
-            ofFloat.addUpdateListener(new i6(this, 7));
-            this.f29689g.addListener(new aa(1, this, z10));
-            if (this.h) {
-                this.f29689g.setInterpolator(qr.f27420f);
-                this.f29689g.setDuration(this.f29686b * 60.0f);
-                this.f29689g.setStartDelay(0L);
-            } else {
-                this.f29689g.setInterpolator(new OvershootInterpolator(this.d));
-                this.f29689g.setDuration(this.f29687c * 350.0f);
-                this.f29689g.setStartDelay(this.e);
-            }
-            this.f29689g.start();
-        }
+    public static wc[] values() {
+        return (wc[]) J.clone();
     }
 
-    public wc(View view, float f7, float f10) {
-        this.e = 0L;
-        this.f29685a = view;
-        this.f29687c = f7;
-        this.f29686b = f7;
-        this.d = f10;
-    }
-
-    public wc(ci.p6 p6Var) {
-        this.e = 0L;
-        this.f29685a = p6Var;
-        this.f29686b = 1.5f;
-        this.f29687c = 1.0f;
-        this.d = 2.0f;
+    public wc(String str, int i10, String str2, vc vcVar) {
+        this.f29605a = str2;
+        this.d = vcVar;
+        this.f29606b = 0;
+        this.f29607c = true;
     }
 }

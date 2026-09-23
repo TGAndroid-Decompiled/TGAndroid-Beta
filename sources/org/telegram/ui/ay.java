@@ -1,229 +1,104 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class ay extends tu0 {
-    public final boolean[] f31987a;
-    public final uy f31988b;
+public final class ay extends org.telegram.ui.Components.yn0 {
+    public final yf.y Z0;
+    public final yf.y f31896a1;
+    public final ry f31897b1;
 
-    public ay(uy uyVar, boolean[] zArr) {
-        this.f31988b = uyVar;
-        this.f31987a = zArr;
+    public ay(ry ryVar, Activity activity, ry ryVar2, int i10, int i11, int i12, long j3, wx wxVar) {
+        super(activity, ryVar2, i10, i11, i12, j3, wxVar);
+        this.f31897b1 = ryVar;
+        this.Z0 = new yf.y(2);
+        this.f31896a1 = new yf.y(8);
     }
 
-    @Override
-    public final CharSequence C(int i10) {
-        uy uyVar = this.f31988b;
-        if (i10 >= 0 && i10 < uyVar.D2.size() && ((MediaController.PhotoEntry) uyVar.D2.get(i10)).isVideo) {
-            return null;
+    public final void S(int i10, int i11) {
+        ry ryVar;
+        ah.h hVar;
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = (ryVar = this.f31897b1).f37012k4) != null) {
+            hVar.f(i10, i11);
+            ryVar.m3();
         }
-        return uy.s2(uyVar);
     }
 
     @Override
-    public final void D() {
+    public final void dispatchDraw(Canvas canvas) {
+        org.telegram.ui.ActionBar.k kVar;
         int i10;
-        uy uyVar = this.f31988b;
-        org.telegram.ui.Components.mq0 mq0Var = uyVar.G2;
-        if (mq0Var != null) {
-            i10 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
-            mq0Var.i(i10, uyVar.D2);
-        }
-    }
-
-    @Override
-    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Components.u9 u9Var;
-        uy uyVar = this.f31988b;
-        org.telegram.ui.Components.mq0 mq0Var = uyVar.G2;
-        if (mq0Var != null) {
-            u9Var = mq0Var.f(i10);
-        } else {
-            u9Var = null;
-        }
-        if (u9Var == null) {
-            return null;
-        }
-        int[] iArr = new int[2];
-        u9Var.getLocationInWindow(iArr);
-        dv0 dv0Var = new dv0();
-        dv0Var.f33097b = iArr[0];
-        dv0Var.f33098c = iArr[1];
-        dv0Var.d = uyVar.G2;
-        ImageReceiver imageReceiver = u9Var.getImageReceiver();
-        dv0Var.f33096a = imageReceiver;
-        dv0Var.e = imageReceiver.getBitmapSafe();
-        dv0Var.f33103k = u9Var.getScaleX();
-        dv0Var.h = new int[]{AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f)};
-        return dv0Var;
-    }
-
-    @Override
-    public final long a() {
-        uy uyVar = this.f31988b;
-        if (uyVar.I2.isEmpty()) {
-            return 0L;
-        }
-        return ((Long) uyVar.I2.get(0)).longValue();
-    }
-
-    @Override
-    public final boolean b() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ay.b():boolean");
-    }
-
-    @Override
-    public final CharSequence b0(int i10) {
         int i11;
-        uy uyVar = this.f31988b;
-        ArrayList arrayList = uyVar.D2;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            int size = uyVar.D2.size();
-            if (size == 1) {
-                if (((MediaController.PhotoEntry) uyVar.D2.get(0)).isVideo) {
-                    i11 = R.string.AttachVideo;
-                } else {
-                    i11 = R.string.AttachPhoto;
-                }
-                return LocaleController.getString(i11);
+        super.dispatchDraw(canvas);
+        ry ryVar = this.f31897b1;
+        if (ryVar.f36957a0 != null || ryVar.X2 != 0) {
+            int dp = AndroidUtilities.dp(54.0f);
+            kVar = ((org.telegram.ui.ActionBar.n2) ryVar).actionBar;
+            int dp2 = (AndroidUtilities.dp(ryVar.f36956a) + kVar.getMeasuredHeight()) - AndroidUtilities.dp(2.0f);
+            if (ryVar.X2 != 0) {
+                i10 = dp;
+            } else {
+                i10 = 0;
             }
-            ArrayList arrayList2 = uyVar.D2;
-            int size2 = arrayList2.size();
-            int i12 = 0;
-            int i13 = 0;
-            int i14 = 0;
-            while (i14 < size2) {
-                Object obj = arrayList2.get(i14);
-                i14++;
-                if (((MediaController.PhotoEntry) obj).isVideo) {
-                    i12++;
-                } else {
-                    i13++;
-                }
+            int i12 = dp2 - i10;
+            org.telegram.ui.Components.ls lsVar = ryVar.J1;
+            if (lsVar != null) {
+                i11 = (int) lsVar.c(AndroidUtilities.dp(7.0f));
+            } else {
+                i11 = 0;
             }
-            if (i12 == 0) {
-                return LocaleController.formatPluralString("ShareSendPhotos", size, new Object[0]);
-            }
-            if (i13 == 0) {
-                return LocaleController.formatPluralString("ShareSendVideos", size, new Object[0]);
-            }
-            return LocaleController.formatPluralString("ShareSendItems", size, new Object[0]);
+            int i13 = i12 + i11;
+            int l1 = org.telegram.ui.ActionBar.h6.l1(0.7f, ryVar.getThemedColor(org.telegram.ui.ActionBar.h6.f18789d6));
+            yf.y yVar = this.Z0;
+            yVar.b(l1);
+            yVar.c(i13, 0);
+            yVar.setBounds(0, 0, getMeasuredWidth(), i13 + dp);
+            yVar.draw(canvas);
         }
-        return null;
-    }
-
-    @Override
-    public final void e(CharSequence charSequence) {
-        uy uyVar = this.f31988b;
-        ex exVar = uyVar.B1;
-        if (exVar != null) {
-            exVar.setFieldText(charSequence);
-        }
-        ArrayList arrayList = uyVar.D2;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((MediaController.PhotoEntry) obj).caption = charSequence;
-            }
+        if (ryVar.f36988f4 > AndroidUtilities.dp(32.0f)) {
+            int l12 = org.telegram.ui.ActionBar.h6.l1(0.9f, ryVar.getThemedColor(org.telegram.ui.ActionBar.h6.f18789d6));
+            yf.y yVar2 = this.f31896a1;
+            yVar2.b(l12);
+            yVar2.setBounds(0, getMeasuredHeight() - ryVar.f36988f4, getMeasuredWidth(), getMeasuredHeight());
+            yVar2.draw(canvas);
         }
     }
 
     @Override
-    public final boolean h() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ay.h():boolean");
+    public final void setAlpha(float f7) {
+        super.setAlpha(f7);
+        this.f31897b1.m3();
     }
 
     @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        org.telegram.ui.Components.u9 u9Var;
-        org.telegram.ui.Components.mq0 mq0Var = this.f31988b.G2;
-        if (mq0Var != null) {
-            u9Var = mq0Var.f(i10);
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        l41 l41Var = this.f31897b1.Z;
+        if (l41Var != null) {
+            l41Var.setTranslationY(f7);
+        }
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            ry ryVar = this.f31897b1;
+            if (ryVar.f37012k4 != null) {
+                ryVar.m3();
+            }
+        }
+    }
+
+    @Override
+    public final void x(int i10) {
+        boolean z10;
+        org.telegram.ui.Components.xn0 xn0Var = this.T;
+        if (xn0Var != null && xn0Var.h(i10) == 2) {
+            z10 = true;
         } else {
-            u9Var = null;
+            z10 = false;
         }
-        if (u9Var == null) {
-            return null;
-        }
-        return u9Var.getImageReceiver().getBitmapSafe();
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        int i13;
-        ArrayList arrayList;
-        uy uyVar = this.f31988b;
-        ArrayList arrayList2 = uyVar.I2;
-        if (uyVar.B1 != null && (arrayList = uyVar.D2) != null && !arrayList.isEmpty()) {
-            ex exVar = uyVar.B1;
-            CharSequence charSequence = ((MediaController.PhotoEntry) uyVar.D2.get(0)).caption;
-            if (charSequence == null) {
-                charSequence = "";
-            }
-            exVar.setFieldText(charSequence);
-        }
-        org.telegram.ui.Components.mq0 mq0Var = uyVar.G2;
-        if (mq0Var != null) {
-            i13 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
-            mq0Var.i(i13, uyVar.D2);
-        }
-        if ((!z10 || i11 != 0) && uyVar.C2 != null && !arrayList2.isEmpty()) {
-            uyVar.J2 = z10;
-            uyVar.K2 = i11;
-            ArrayList arrayList3 = new ArrayList();
-            for (int i14 = 0; i14 < arrayList2.size(); i14++) {
-                arrayList3.add(MessagesStorage.TopicKey.of(((Long) arrayList2.get(i14)).longValue(), 0L));
-            }
-            PhotoViewer.t1().G0(true, false);
-            uyVar.C2.u(uyVar, arrayList3, uyVar.B1.getFieldText(), false, z10, i11, i12, null);
-            return;
-        }
-        PhotoViewer.t1().G0(true, false);
-    }
-
-    @Override
-    public final void s() {
-        ex exVar;
-        org.telegram.ui.Components.jd f12;
-        PhotoViewer t12 = PhotoViewer.t1();
-        CharSequence charSequence = null;
-        if (t12.Q1() && (f12 = t12.f1()) != null) {
-            charSequence = f12.getText();
-        }
-        uy uyVar = this.f31988b;
-        if (charSequence != null && (exVar = uyVar.B1) != null) {
-            exVar.setFieldText(charSequence);
-        }
-        ArrayList arrayList = uyVar.D2;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((MediaController.PhotoEntry) obj).caption = charSequence;
-            }
-        }
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        return this.f31987a[i10];
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return i10;
+        this.f31897b1.c5(z10);
     }
 }

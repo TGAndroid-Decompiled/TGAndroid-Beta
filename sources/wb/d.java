@@ -4,7 +4,7 @@ import com.google.mlkit.vision.common.internal.MobileVisionBase;
 import java.util.concurrent.Callable;
 import lf.g;
 public final class d implements Callable {
-    public static final d f45009a = new Object();
+    public static final d f44963a = new Object();
 
     @Override
     public final Object call() {

@@ -106,24 +106,24 @@ public final class d extends l {
     }
 
     @Override
-    public final z3.k c() {
-        z3.k kVar;
-        z3.k c10 = super.c();
+    public final z3.j c() {
+        z3.j jVar;
+        z3.j c10 = super.c();
         if (c10 != null) {
             return c10;
         }
         long j3 = this.f216l;
         if (j3 != -9223372036854775807L) {
             long j10 = this.f228y;
-            if (j10 != -9223372036854775807L && this.e - j10 >= j3 && (kVar = (z3.k) this.f270b.pollFirst()) != null) {
+            if (j10 != -9223372036854775807L && this.e - j10 >= j3 && (jVar = (z3.j) this.f270b.pollFirst()) != null) {
                 this.f219o = Collections.EMPTY_LIST;
                 this.f228y = -9223372036854775807L;
                 m f7 = f();
                 long j11 = this.e;
-                kVar.timeUs = j11;
-                kVar.f48090a = f7;
-                kVar.f48091b = j11;
-                return kVar;
+                jVar.timeUs = j11;
+                jVar.f48043a = f7;
+                jVar.f48044b = j11;
+                return jVar;
             }
             return null;
         }
@@ -147,14 +147,14 @@ public final class d extends l {
             d2.b c10 = ((c) arrayList.get(i11)).c(Integer.MIN_VALUE);
             arrayList2.add(c10);
             if (c10 != null) {
-                i10 = Math.min(i10, c10.f7437i);
+                i10 = Math.min(i10, c10.f7423i);
             }
         }
         ArrayList arrayList3 = new ArrayList(size);
         for (int i12 = 0; i12 < size; i12++) {
             d2.b bVar = (d2.b) arrayList2.get(i12);
             if (bVar != null) {
-                if (bVar.f7437i != i10) {
+                if (bVar.f7423i != i10) {
                     bVar = ((c) arrayList.get(i12)).c(i10);
                     bVar.getClass();
                 }

@@ -1,192 +1,385 @@
 package ci;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.qr;
-public abstract class a9 extends FrameLayout implements x2 {
-    public final z8 f4353a;
-    public final FrameLayout f4354b;
-    public final TextView f4355c;
-    public final FrameLayout d;
-    public final TextView e;
-    public final FrameLayout f4356f;
-    public final TextView h;
-    public float f4357n;
-    public float f4358r;
-    public int f4359s;
-    public ValueAnimator v;
-    public Utilities.Callback f4360w;
-    public Utilities.Callback f4361x;
+public final class a9 implements org.telegram.ui.Components.ob {
+    public final int f4351a;
 
-    public a9(Context context) {
-        super(context);
-        z8 z8Var = new z8(this, context);
-        this.f4353a = z8Var;
-        z8Var.setOrientation(0);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f4354b = frameLayout;
-        TextView textView = new TextView(context);
-        this.f4355c = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextColor(-1);
-        textView.setText(LocaleController.getString(R.string.StoryLive));
-        frameLayout.addView(textView, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        z8Var.addView(frameLayout, w7.x5.r(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
-        frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final a9 f5835b;
-
-            {
-                this.f5835b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f5835b.b(-1);
-                        return;
-                    case 1:
-                        this.f5835b.b(0);
-                        return;
-                    default:
-                        this.f5835b.b(1);
-                        return;
-                }
-            }
-        });
-        w7.z5.a(frameLayout);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.d = frameLayout2;
-        TextView textView2 = new TextView(context);
-        this.e = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setTextColor(-1);
-        textView2.setText(LocaleController.getString(R.string.StoryPhoto));
-        frameLayout2.addView(textView2, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        z8Var.addView(frameLayout2, w7.x5.r(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
-        frameLayout2.setOnClickListener(new View.OnClickListener(this) {
-            public final a9 f5835b;
-
-            {
-                this.f5835b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f5835b.b(-1);
-                        return;
-                    case 1:
-                        this.f5835b.b(0);
-                        return;
-                    default:
-                        this.f5835b.b(1);
-                        return;
-                }
-            }
-        });
-        w7.z5.a(frameLayout2);
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f4356f = frameLayout3;
-        TextView textView3 = new TextView(context);
-        this.h = textView3;
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setTextColor(-1);
-        textView3.setText(LocaleController.getString(R.string.StoryVideo));
-        frameLayout3.addView(textView3, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        z8Var.addView(frameLayout3, w7.x5.t(-2, -1, 112, 0, 0, 0, 0));
-        frameLayout3.setOnClickListener(new View.OnClickListener(this) {
-            public final a9 f5835b;
-
-            {
-                this.f5835b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f5835b.b(-1);
-                        return;
-                    case 1:
-                        this.f5835b.b(0);
-                        return;
-                    default:
-                        this.f5835b.b(1);
-                        return;
-                }
-            }
-        });
-        w7.z5.a(frameLayout3);
-        addView(z8Var, w7.x5.e(-2, -1, 113));
+    public a9(int i10) {
+        this.f4351a = i10;
     }
 
-    public final void a(int i10) {
-        if (this.f4359s == i10) {
-            return;
-        }
-        this.f4359s = i10;
-        ValueAnimator valueAnimator = this.v;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f4358r, i10);
-        this.v = ofFloat;
-        ofFloat.addUpdateListener(new ai.a(this, 24));
-        this.v.setDuration(320L);
-        this.v.setInterpolator(qr.h);
-        this.v.start();
-    }
-
-    public final void b(int i10) {
-        if (this.f4359s != i10) {
-            a(i10);
-            Utilities.Callback callback = this.f4360w;
-            if (callback != null) {
-                callback.run(Integer.valueOf(i10));
-            }
+    @Override
+    public final boolean a() {
+        switch (this.f4351a) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            case 5:
+                return true;
+            case 6:
+                return true;
+            case 7:
+                return true;
+            case 8:
+                return true;
+            case 9:
+                return true;
+            case 10:
+                return true;
+            case 11:
+                return true;
+            case 12:
+                return true;
+            case 13:
+                return true;
+            case 14:
+                return true;
+            case 15:
+                return true;
+            default:
+                return true;
         }
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((gb) this).f4726y.I()) {
-            return false;
+    public final void b(org.telegram.ui.Components.qc qcVar) {
+        int i10 = this.f4351a;
+    }
+
+    @Override
+    public final void c(float f7) {
+        int i10 = this.f4351a;
+    }
+
+    @Override
+    public final void d(org.telegram.ui.Components.qc qcVar) {
+        int i10 = this.f4351a;
+    }
+
+    @Override
+    public final boolean e() {
+        switch (this.f4351a) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            case 5:
+                return true;
+            case 6:
+                return true;
+            case 7:
+                return true;
+            case 8:
+                return true;
+            case 9:
+                return true;
+            case 10:
+                return true;
+            case 11:
+                return true;
+            case 12:
+                return true;
+            case 13:
+                return true;
+            case 14:
+                return true;
+            case 15:
+                return true;
+            default:
+                return true;
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f4353a.invalidate();
+    public final int f(int i10) {
+        int i11;
+        int dp;
+        switch (this.f4351a) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            case 3:
+                return 0;
+            case 4:
+                i11 = AndroidUtilities.navigationBarHeight;
+                dp = AndroidUtilities.dp(64.0f);
+                break;
+            case 5:
+                return 0;
+            case 6:
+                return AndroidUtilities.dp(51.0f);
+            case 7:
+                return AndroidUtilities.dp(64.0f);
+            case 8:
+                return AndroidUtilities.dp(74.0f);
+            case 9:
+                return AndroidUtilities.dp(80.0f);
+            case 10:
+                i11 = AndroidUtilities.navigationBarHeight;
+                dp = AndroidUtilities.dp(16.0f);
+                break;
+            case 11:
+                return AndroidUtilities.dp(62.0f);
+            case 12:
+                return AndroidUtilities.dp(64.0f);
+            case 13:
+                return 0;
+            case 14:
+                return 0;
+            case 15:
+                return AndroidUtilities.dp(68.0f);
+            default:
+                return AndroidUtilities.dp(64.0f);
+        }
+        return dp + i11;
     }
 
     @Override
-    public void setInvert(float f7) {
-        this.f4357n = f7;
-        this.f4355c.setTextColor(i0.a.d(f7, -1, -16777216));
-        this.e.setTextColor(i0.a.d(f7, -1, -16777216));
-        this.h.setTextColor(i0.a.d(f7, -1, -16777216));
+    public final boolean g(int i10) {
+        switch (this.f4351a) {
+            case 0:
+                return false;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return false;
+            case 4:
+                return false;
+            case 5:
+                return false;
+            case 6:
+                return false;
+            case 7:
+                return false;
+            case 8:
+                return false;
+            case 9:
+                return false;
+            case 10:
+                return false;
+            case 11:
+                return true;
+            case 12:
+                return false;
+            case 13:
+                return false;
+            case 14:
+                return false;
+            case 15:
+                return false;
+            default:
+                return false;
+        }
     }
 
-    public void setOnSwitchModeListener(Utilities.Callback<Integer> callback) {
-        this.f4360w = callback;
+    @Override
+    public final int h(int i10) {
+        switch (this.f4351a) {
+            case 0:
+                return AndroidUtilities.statusBarHeight;
+            case 1:
+                return 0;
+            case 2:
+                return AndroidUtilities.dp(56.0f);
+            case 3:
+                return AndroidUtilities.statusBarHeight;
+            case 4:
+                return 0;
+            case 5:
+                return AndroidUtilities.statusBarHeight;
+            case 6:
+                return 0;
+            case 7:
+                return 0;
+            case 8:
+                return 0;
+            case 9:
+                return 0;
+            case 10:
+                return 0;
+            case 11:
+                return 0;
+            case 12:
+                return 0;
+            case 13:
+                return AndroidUtilities.statusBarHeight;
+            case 14:
+                return AndroidUtilities.statusBarHeight;
+            case 15:
+                return 0;
+            default:
+                return 0;
+        }
     }
 
-    public void setOnSwitchingModeListener(Utilities.Callback<Float> callback) {
-        this.f4361x = callback;
+    private final void A(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void B(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void C(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void D(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void E(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void F(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void G(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void H(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void I(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void J(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void K(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void L(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void M(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void N(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void O(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void P(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void Q(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void R(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void S(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void T(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void U(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void V(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void W(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void X(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void Y(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void Z(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void a0(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void b0(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void c0(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void d0(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void e0(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void f0(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void g0(org.telegram.ui.Components.qc qcVar) {
+    }
+
+    private final void i(float f7) {
+    }
+
+    private final void j(float f7) {
+    }
+
+    private final void k(float f7) {
+    }
+
+    private final void l(float f7) {
+    }
+
+    private final void m(float f7) {
+    }
+
+    private final void n(float f7) {
+    }
+
+    private final void o(float f7) {
+    }
+
+    private final void p(float f7) {
+    }
+
+    private final void q(float f7) {
+    }
+
+    private final void r(float f7) {
+    }
+
+    private final void s(float f7) {
+    }
+
+    private final void t(float f7) {
+    }
+
+    private final void u(float f7) {
+    }
+
+    private final void v(float f7) {
+    }
+
+    private final void w(float f7) {
+    }
+
+    private final void x(float f7) {
+    }
+
+    private final void y(float f7) {
+    }
+
+    private final void z(org.telegram.ui.Components.qc qcVar) {
     }
 }

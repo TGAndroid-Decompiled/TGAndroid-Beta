@@ -1,44 +1,40 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class n51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35891a;
-    public final h71 f35892b;
-    public final boolean f35893c;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class n51 extends s4.s {
+    public final int Q;
+    public final z61 R;
 
-    public n51(h71 h71Var, boolean z10, int i10) {
-        this.f35891a = i10;
-        this.f35892b = h71Var;
-        this.f35893c = z10;
+    public n51(z61 z61Var, int i10) {
+        super(40);
+        this.Q = i10;
+        this.R = z61Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35891a) {
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        switch (this.Q) {
             case 0:
-                h71 h71Var = this.f35892b;
-                e61 e61Var = h71Var.f34132h0;
-                u51 u51Var = h71Var.f34134i0;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f35893c) {
-                    floatValue = 1.0f - floatValue;
+                try {
+                    ci.m1 m1Var = new ci.m1(this, recyclerView.getContext(), 3);
+                    m1Var.f42777a = i10;
+                    w0(m1Var);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
                 }
-                float f7 = 1.0f - floatValue;
-                e61Var.setAlpha(f7);
-                e61Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
-                u51Var.setAlpha(floatValue);
-                u51Var.setTranslationY(AndroidUtilities.dp(8.0f) * f7);
-                h71Var.f34136j0.setAlpha(u51Var.getAlpha() * floatValue);
-                return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f35893c) {
-                    floatValue2 = 1.0f - floatValue2;
+                try {
+                    ci.m1 m1Var2 = new ci.m1(this, recyclerView.getContext(), 5);
+                    m1Var2.f42777a = i10;
+                    w0(m1Var2);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
                 }
-                h71 h71Var2 = this.f35892b;
-                h71Var2.f34136j0.setAlpha(h71Var2.f34134i0.getAlpha() * floatValue2);
-                return;
         }
     }
 }

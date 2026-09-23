@@ -6,14 +6,14 @@ import android.os.Parcelable;
 import w7.e0;
 public final class u extends o6.a {
     public static final Parcelable.Creator<u> CREATOR = new r(5);
-    public String f44265a;
-    public Bundle f44266b;
+    public String f44219a;
+    public Bundle f44220b;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        e0.l(parcel, 2, this.f44265a);
-        e0.b(parcel, 3, this.f44266b);
+        e0.l(parcel, 2, this.f44219a);
+        e0.b(parcel, 3, this.f44220b);
         e0.r(parcel, q6);
     }
 }

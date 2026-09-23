@@ -9,59 +9,59 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.o5;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.Components.x5;
-import org.telegram.ui.h71;
-public final class p extends h71 {
-    public boolean f49115d2;
-    public final q f49116e2;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Components.q5;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.z5;
+import org.telegram.ui.z61;
+public final class p extends z61 {
+    public boolean f49066d2;
+    public final q f49067e2;
 
-    public p(q qVar, q qVar2, Activity activity, e6 e6Var, int i10) {
-        super(qVar2, activity, false, null, 6, false, e6Var, 16, i10);
-        this.f49116e2 = qVar;
-        this.f49115d2 = true;
+    public p(q qVar, q qVar2, Activity activity, d6 d6Var, int i10) {
+        super(qVar2, activity, false, null, 6, false, d6Var, 16, i10);
+        this.f49067e2 = qVar;
+        this.f49066d2 = true;
         setDrawBackground(false);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f49115d2) {
-            this.f49115d2 = false;
-            this.f49116e2.f49123b.s(null);
+        if (this.f49066d2) {
+            this.f49066d2 = false;
+            this.f49067e2.f49074b.s(null);
         }
     }
 
     @Override
     public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        q qVar = this.f49116e2;
+        q qVar = this.f49067e2;
         int i10 = qVar.J;
         ArrayList arrayList = qVar.F;
         LinkedHashMap linkedHashMap = qVar.E;
         if (linkedHashMap.containsKey(l4)) {
             arrayList.remove(l4);
-            x5 x5Var = (x5) linkedHashMap.remove(l4);
-            x5Var.setRemoved(new uh.i(29, this, x5Var));
-            qVar.W(x5Var);
-            qVar.f49123b.x(l4, true);
+            z5 z5Var = (z5) linkedHashMap.remove(l4);
+            z5Var.setRemoved(new uh.i(29, this, z5Var));
+            qVar.W(z5Var);
+            qVar.f49074b.x(l4, true);
             qVar.Y(false);
         } else if (linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0) >= i10) {
-            vc.a0(qVar).t(LocaleController.formatPluralString("ReactionMaxCountError", i10, new Object[0]), null).j();
+            xc.a0(qVar).t(LocaleController.formatPluralString("ReactionMaxCountError", i10, new Object[0]), null).j();
         } else {
             try {
-                int editTextSelectionEnd = qVar.f49126n.getEditTextSelectionEnd();
+                int editTextSelectionEnd = qVar.f49077n.getEditTextSelectionEnd();
                 SpannableString spannableString = new SpannableString("b");
-                x5 e = r0.e(document, l4, qVar.f49126n.getFontMetricsInt());
-                e.cacheType = o5.g();
+                z5 e = r0.e(document, l4, qVar.f49077n.getFontMetricsInt());
+                e.cacheType = q5.g();
                 e.setAdded();
                 arrayList.add(w7.p.b(editTextSelectionEnd, 0, arrayList.size()), l4);
                 linkedHashMap.put(l4, e);
                 spannableString.setSpan(e, 0, spannableString.length(), 33);
-                qVar.f49126n.getText().insert(editTextSelectionEnd, spannableString);
-                qVar.f49126n.setSelection(editTextSelectionEnd + spannableString.length());
-                qVar.f49123b.x(l4, true);
+                qVar.f49077n.getText().insert(editTextSelectionEnd, spannableString);
+                qVar.f49077n.setSelection(editTextSelectionEnd + spannableString.length());
+                qVar.f49074b.x(l4, true);
                 qVar.Y(true);
                 qVar.W(e);
             } catch (Exception e7) {

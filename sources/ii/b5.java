@@ -1,186 +1,261 @@
 package ii;
 
+import ai.n8;
+import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-public abstract class b5 {
-    public static ArrayList a(int i10, ArrayList arrayList) {
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        int size = arrayList.size();
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            b((TL_iv.PageBlock) obj, linkedHashSet);
-        }
-        ArrayList arrayList2 = new ArrayList(linkedHashSet.size());
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        Iterator it = linkedHashSet.iterator();
-        while (it.hasNext()) {
-            Long l4 = (Long) it.next();
-            l4.getClass();
-            TLRPC.User user = messagesController.getUser(l4);
-            if (user != null) {
-                TLRPC.InputUser inputUser = messagesController.getInputUser(user);
-                if (!(inputUser instanceof TLRPC.TL_inputUserEmpty)) {
-                    arrayList2.add(inputUser);
-                }
-            }
-        }
-        return arrayList2;
+public final class b5 implements NotificationCenter.NotificationCenterDelegate {
+    public volatile String E;
+    public String F;
+    public TLRPC.InputFile G;
+    public boolean H;
+    public final int f11244a;
+    public final String f11245b;
+    public final boolean f11246c;
+    public final boolean d;
+    public final boolean e;
+    public final int f11247f;
+    public final int h;
+    public final int f11248n;
+    public final TLRPC.Document f11249r;
+    public final a5 f11250s;
+    public boolean v;
+    public boolean f11251w;
+    public boolean f11252x;
+    public int f11253y;
+
+    public b5(int i10, String str, boolean z10, int i11, int i12, int i13, j3 j3Var) {
+        this.f11244a = i10;
+        this.f11245b = str;
+        this.f11246c = z10;
+        this.d = false;
+        this.e = false;
+        this.f11247f = i11;
+        this.h = i12;
+        this.f11248n = i13;
+        this.f11249r = null;
+        this.f11250s = j3Var;
     }
 
-    public static void b(TL_iv.PageBlock pageBlock, LinkedHashSet linkedHashSet) {
-        ArrayList<TL_iv.pageTableCell> arrayList;
-        if (pageBlock != null) {
-            d(pageBlock.text, linkedHashSet);
-            TL_iv.PageCaption pageCaption = pageBlock.caption;
-            if (pageCaption != null) {
-                d(pageCaption.text, linkedHashSet);
-                d(pageCaption.credit, linkedHashSet);
+    public final void a(String str) {
+        int i10;
+        boolean z10;
+        if (!this.f11251w && !this.f11252x) {
+            this.E = str;
+            NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f11244a);
+            notificationCenter.addObserver(this, NotificationCenter.fileUploaded);
+            notificationCenter.addObserver(this, NotificationCenter.fileUploadFailed);
+            notificationCenter.addObserver(this, NotificationCenter.fileUploadProgressChanged);
+            if (this.f11246c) {
+                i10 = 33554432;
+            } else if (this.d) {
+                i10 = 50331648;
+            } else if (this.e) {
+                i10 = 67108864;
+            } else {
+                i10 = 16777216;
             }
-            int i10 = 0;
-            if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
-                ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
-                if (arrayList2 != null) {
-                    int size = arrayList2.size();
-                    while (i10 < size) {
-                        TL_keyboard.PageButton pageButton = arrayList2.get(i10);
-                        i10++;
-                        TL_keyboard.PageButton pageButton2 = pageButton;
-                        if (pageButton2 != null) {
-                            TL_keyboard.InlineButtonType inlineButtonType = pageButton2.type;
-                            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                                long j3 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
-                                if (j3 != 0) {
-                                    linkedHashSet.add(Long.valueOf(j3));
-                                }
+            FileLoader fileLoader = FileLoader.getInstance(this.f11244a);
+            String str2 = this.E;
+            if (!this.f11246c && !this.d && !this.e) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            fileLoader.uploadFile(str2, false, z10, i10);
+        }
+    }
+
+    public final void b() {
+        if (!this.f11252x && !this.f11251w) {
+            this.f11251w = true;
+            try {
+                if (this.E != null) {
+                    FileLoader.getInstance(this.f11244a).cancelFileUpload(this.E, false);
+                }
+            } catch (Throwable unused) {
+            }
+            if (this.f11253y != 0) {
+                ConnectionsManager.getInstance(this.f11244a).cancelRequest(this.f11253y, true);
+                this.f11253y = 0;
+            }
+            e();
+        }
+    }
+
+    public final void c(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2) {
+        String str;
+        TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
+        tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
+        if (this.f11246c) {
+            TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
+            tL_inputMediaUploadedDocument.file = inputFile;
+            tL_inputMediaUploadedDocument.mime_type = "video/mp4";
+            TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
+            tL_documentAttributeVideo.supports_streaming = true;
+            tL_documentAttributeVideo.duration = this.f11248n;
+            tL_documentAttributeVideo.f18090w = this.f11247f;
+            tL_documentAttributeVideo.h = this.h;
+            tL_inputMediaUploadedDocument.attributes.add(tL_documentAttributeVideo);
+            tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
+        } else {
+            boolean z10 = this.d;
+            boolean z11 = this.e;
+            if (!z10 && !z11) {
+                TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto = new TLRPC.TL_inputMediaUploadedPhoto();
+                tL_inputMediaUploadedPhoto.file = inputFile;
+                tL_messages_uploadMedia.media = tL_inputMediaUploadedPhoto;
+            } else {
+                TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument2 = new TLRPC.TL_inputMediaUploadedDocument();
+                tL_inputMediaUploadedDocument2.file = inputFile;
+                TLRPC.Document document = this.f11249r;
+                if (z11) {
+                    str = "application/octet-stream";
+                } else if (document == null || (str = document.mime_type) == null) {
+                    str = "audio/mpeg";
+                }
+                tL_inputMediaUploadedDocument2.mime_type = str;
+                if (document != null) {
+                    if (z11) {
+                        ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
+                        int size = arrayList.size();
+                        int i10 = 0;
+                        while (i10 < size) {
+                            TLRPC.DocumentAttribute documentAttribute = arrayList.get(i10);
+                            i10++;
+                            TLRPC.DocumentAttribute documentAttribute2 = documentAttribute;
+                            if (documentAttribute2 instanceof TLRPC.TL_documentAttributeFilename) {
+                                tL_inputMediaUploadedDocument2.attributes.add(documentAttribute2);
                             }
-                            d(pageButton2.text, linkedHashSet);
                         }
+                    } else {
+                        tL_inputMediaUploadedDocument2.attributes.addAll(document.attributes);
                     }
                 }
-            } else if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
-                d(((TL_iv.pageBlockBlockquote) pageBlock).caption, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockPullquote) {
-                d(((TL_iv.pageBlockPullquote) pageBlock).caption, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
-                TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
-                d(pageblockblockquoteblocks.caption, linkedHashSet);
-                c(pageblockblockquoteblocks.blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockDetails) {
-                TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
-                d(pageblockdetails.title, linkedHashSet);
-                c(pageblockdetails.blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockList) {
-                ArrayList<TL_iv.PageListItem> arrayList3 = ((TL_iv.pageBlockList) pageBlock).items;
-                if (arrayList3 != null) {
-                    int size2 = arrayList3.size();
-                    while (i10 < size2) {
-                        TL_iv.PageListItem pageListItem = arrayList3.get(i10);
-                        i10++;
-                        TL_iv.PageListItem pageListItem2 = pageListItem;
-                        if (pageListItem2 instanceof TL_iv.TL_pageListItemText) {
-                            d(((TL_iv.TL_pageListItemText) pageListItem2).text, linkedHashSet);
-                        } else if (pageListItem2 instanceof TL_iv.TL_pageListItemBlocks) {
-                            c(((TL_iv.TL_pageListItemBlocks) pageListItem2).blocks, linkedHashSet);
-                        }
+                if (z11) {
+                    tL_inputMediaUploadedDocument2.force_file = true;
+                    if (inputFile2 != null) {
+                        tL_inputMediaUploadedDocument2.thumb = inputFile2;
+                        tL_inputMediaUploadedDocument2.flags |= 4;
                     }
                 }
-            } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
-                ArrayList<TL_iv.PageListOrderedItem> arrayList4 = ((TL_iv.pageBlockOrderedList) pageBlock).items;
-                if (arrayList4 != null) {
-                    int size3 = arrayList4.size();
-                    while (i10 < size3) {
-                        TL_iv.PageListOrderedItem pageListOrderedItem = arrayList4.get(i10);
-                        i10++;
-                        TL_iv.PageListOrderedItem pageListOrderedItem2 = pageListOrderedItem;
-                        if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemText) {
-                            d(((TL_iv.TL_pageListOrderedItemText) pageListOrderedItem2).text, linkedHashSet);
-                        } else if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemBlocks) {
-                            c(((TL_iv.TL_pageListOrderedItemBlocks) pageListOrderedItem2).blocks, linkedHashSet);
-                        }
-                    }
+                tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument2;
+            }
+        }
+        this.f11253y = ConnectionsManager.getInstance(this.f11244a).sendRequest(tL_messages_uploadMedia, new n8(this, 17));
+    }
+
+    public final void d() {
+        int i10;
+        int i11;
+        if (!this.v && !this.f11251w && !this.f11252x) {
+            this.v = true;
+            if (this.f11246c) {
+                a5 a5Var = this.f11250s;
+                int i12 = this.f11247f;
+                if (i12 > 0 && (i11 = this.h) > 0) {
+                    a5Var.a(i12, i11);
                 }
-            } else if (pageBlock instanceof TL_iv.pageBlockTable) {
-                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
-                d(pageblocktable.title, linkedHashSet);
-                ArrayList<TL_iv.pageTableRow> arrayList5 = pageblocktable.rows;
-                if (arrayList5 != null) {
-                    int size4 = arrayList5.size();
-                    int i11 = 0;
-                    while (i11 < size4) {
-                        TL_iv.pageTableRow pagetablerow = arrayList5.get(i11);
-                        i11++;
-                        TL_iv.pageTableRow pagetablerow2 = pagetablerow;
-                        if (pagetablerow2 != null && (arrayList = pagetablerow2.cells) != null) {
-                            int size5 = arrayList.size();
-                            int i12 = 0;
-                            while (i12 < size5) {
-                                TL_iv.pageTableCell pagetablecell = arrayList.get(i12);
-                                i12++;
-                                TL_iv.pageTableCell pagetablecell2 = pagetablecell;
-                                if (pagetablecell2 != null) {
-                                    d(pagetablecell2.text, linkedHashSet);
-                                }
-                            }
-                        }
+                a(this.f11245b);
+            } else if (this.e) {
+                Utilities.globalQueue.postRunnable(new z4(this, 0));
+            } else if (this.d) {
+                a(this.f11245b);
+            } else {
+                try {
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(this.f11245b, options);
+                    int i13 = options.outWidth;
+                    if (i13 > 0 && (i10 = options.outHeight) > 0) {
+                        this.f11250s.a(i13, i10);
                     }
+                } catch (Exception unused) {
                 }
-            } else if (pageBlock instanceof TL_iv.pageBlockCollage) {
-                c(((TL_iv.pageBlockCollage) pageBlock).items, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
-                c(((TL_iv.pageBlockSlideshow) pageBlock).items, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockEmbedPost) {
-                c(((TL_iv.pageBlockEmbedPost) pageBlock).blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockCover) {
-                b(((TL_iv.pageBlockCover) pageBlock).cover, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockRelatedArticles) {
-                d(((TL_iv.pageBlockRelatedArticles) pageBlock).title, linkedHashSet);
+                Utilities.globalQueue.postRunnable(new z4(this, 1));
             }
         }
     }
 
-    public static void c(ArrayList arrayList, LinkedHashSet linkedHashSet) {
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                b((TL_iv.PageBlock) obj, linkedHashSet);
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        float f7;
+        TLRPC.InputFile inputFile;
+        if (i11 == this.f11244a && !this.f11251w && !this.f11252x) {
+            String str = (String) objArr[0];
+            if (this.E != null && this.E.equals(str)) {
+                if (i10 == NotificationCenter.fileUploaded) {
+                    TLRPC.InputFile inputFile2 = (TLRPC.InputFile) objArr[1];
+                    if (this.e && !this.H && !TextUtils.isEmpty(this.F)) {
+                        this.G = inputFile2;
+                        this.H = true;
+                        this.E = this.F;
+                        FileLoader.getInstance(this.f11244a).uploadFile(this.E, false, true, 16777216);
+                    } else if (this.e && this.H) {
+                        c(this.G, inputFile2);
+                    } else {
+                        c(inputFile2, null);
+                    }
+                } else if (i10 == NotificationCenter.fileUploadFailed) {
+                    if (this.e && this.H && (inputFile = this.G) != null) {
+                        c(inputFile, null);
+                        return;
+                    }
+                    this.f11252x = true;
+                    e();
+                    this.f11250s.onError();
+                } else if (i10 == NotificationCenter.fileUploadProgressChanged) {
+                    long longValue = ((Long) objArr[1]).longValue();
+                    long longValue2 = ((Long) objArr[2]).longValue();
+                    a5 a5Var = this.f11250s;
+                    if (!this.H) {
+                        if (longValue2 > 0) {
+                            f7 = ((float) longValue) / ((float) longValue2);
+                        } else {
+                            f7 = 0.0f;
+                        }
+                        a5Var.f(f7);
+                    }
+                }
             }
         }
     }
 
-    public static void d(TL_iv.RichText richText, LinkedHashSet linkedHashSet) {
-        if (richText != null) {
-            if (richText instanceof TL_iv.textButton) {
-                TL_keyboard.InlineButtonType inlineButtonType = ((TL_iv.textButton) richText).type;
-                if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                    long j3 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
-                    if (j3 != 0) {
-                        linkedHashSet.add(Long.valueOf(j3));
-                    }
-                }
-            } else if (richText instanceof TL_iv.textDiff) {
-                d(((TL_iv.textDiff) richText).old_text, linkedHashSet);
-            }
-            d(richText.text, linkedHashSet);
-            ArrayList<TL_iv.RichText> arrayList = richText.texts;
-            if (arrayList != null) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    TL_iv.RichText richText2 = arrayList.get(i10);
-                    i10++;
-                    d(richText2, linkedHashSet);
-                }
-            }
-        }
+    public final void e() {
+        NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f11244a);
+        notificationCenter.removeObserver(this, NotificationCenter.fileUploaded);
+        notificationCenter.removeObserver(this, NotificationCenter.fileUploadFailed);
+        notificationCenter.removeObserver(this, NotificationCenter.fileUploadProgressChanged);
+    }
+
+    public b5(int i10, String str, TLRPC.Document document, h3 h3Var) {
+        this.f11244a = i10;
+        this.f11245b = str;
+        this.f11246c = false;
+        this.d = true;
+        this.e = false;
+        this.f11247f = 0;
+        this.h = 0;
+        this.f11248n = 0;
+        this.f11249r = document;
+        this.f11250s = h3Var;
+    }
+
+    public b5(int i10, String str, TLRPC.Document document, g3 g3Var) {
+        this.f11244a = i10;
+        this.f11245b = str;
+        this.f11246c = false;
+        this.d = false;
+        this.e = true;
+        this.f11247f = 0;
+        this.h = 0;
+        this.f11248n = 0;
+        this.f11249r = document;
+        this.f11250s = g3Var;
     }
 }

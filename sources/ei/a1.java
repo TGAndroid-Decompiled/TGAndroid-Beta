@@ -3,32 +3,32 @@ package ei;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
-import ci.uc;
+import ci.rc;
 import org.telegram.messenger.AndroidUtilities;
 public final class a1 {
-    public final SensorManager f8214a;
-    public Sensor f8215b;
-    public long f8216c;
+    public final SensorManager f8200a;
+    public Sensor f8201b;
+    public long f8202c;
     public Sensor d;
     public long e;
-    public Sensor f8217f;
-    public Sensor f8218g;
+    public Sensor f8203f;
+    public Sensor f8204g;
     public long h;
-    public Sensor f8219i;
-    public long f8220j;
-    public org.telegram.ui.web.z0 f8221k;
-    public boolean f8222l;
-    public uc f8223m;
-    public uc f8225o;
-    public uc f8227q;
-    public uc f8229s;
-    public final x0 f8224n = new x0(this, 0);
-    public final x0 f8226p = new x0(this, 1);
-    public final y0 f8228r = new y0(this);
-    public final z0 f8230t = new z0(this);
+    public Sensor f8205i;
+    public long f8206j;
+    public org.telegram.ui.web.y0 f8207k;
+    public boolean f8208l;
+    public rc f8209m;
+    public rc f8211o;
+    public rc f8213q;
+    public rc f8215s;
+    public final x0 f8210n = new x0(this, 0);
+    public final x0 f8212p = new x0(this, 1);
+    public final y0 f8214r = new y0(this);
+    public final z0 f8216t = new z0(this);
 
     public a1(Context context) {
-        this.f8214a = (SensorManager) context.getSystemService("sensor");
+        this.f8200a = (SensorManager) context.getSystemService("sensor");
     }
 
     public static int a(long j3) {
@@ -42,67 +42,67 @@ public final class a1 {
     }
 
     public final void b() {
-        if (!this.f8222l) {
-            this.f8222l = true;
-            SensorManager sensorManager = this.f8214a;
+        if (!this.f8208l) {
+            this.f8208l = true;
+            SensorManager sensorManager = this.f8200a;
             if (sensorManager != null) {
-                Sensor sensor = this.f8215b;
+                Sensor sensor = this.f8201b;
                 if (sensor != null) {
-                    sensorManager.unregisterListener(this.f8224n, sensor);
+                    sensorManager.unregisterListener(this.f8210n, sensor);
                 }
-                uc ucVar = this.f8223m;
-                if (ucVar != null) {
-                    AndroidUtilities.cancelRunOnUIThread(ucVar);
-                    this.f8223m = null;
+                rc rcVar = this.f8209m;
+                if (rcVar != null) {
+                    AndroidUtilities.cancelRunOnUIThread(rcVar);
+                    this.f8209m = null;
                 }
                 Sensor sensor2 = this.d;
                 if (sensor2 != null) {
-                    sensorManager.unregisterListener(this.f8226p, sensor2);
+                    sensorManager.unregisterListener(this.f8212p, sensor2);
                 }
-                uc ucVar2 = this.f8225o;
-                if (ucVar2 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(ucVar2);
-                    this.f8225o = null;
+                rc rcVar2 = this.f8211o;
+                if (rcVar2 != null) {
+                    AndroidUtilities.cancelRunOnUIThread(rcVar2);
+                    this.f8211o = null;
                 }
-                Sensor sensor3 = this.f8218g;
-                y0 y0Var = this.f8228r;
+                Sensor sensor3 = this.f8204g;
+                y0 y0Var = this.f8214r;
                 if (sensor3 != null) {
                     sensorManager.unregisterListener(y0Var, sensor3);
                 }
-                Sensor sensor4 = this.f8217f;
+                Sensor sensor4 = this.f8203f;
                 if (sensor4 != null) {
                     sensorManager.unregisterListener(y0Var, sensor4);
                 }
-                uc ucVar3 = this.f8227q;
-                if (ucVar3 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(ucVar3);
-                    this.f8227q = null;
+                rc rcVar3 = this.f8213q;
+                if (rcVar3 != null) {
+                    AndroidUtilities.cancelRunOnUIThread(rcVar3);
+                    this.f8213q = null;
                 }
-                Sensor sensor5 = this.f8219i;
+                Sensor sensor5 = this.f8205i;
                 if (sensor5 != null) {
-                    sensorManager.unregisterListener(this.f8230t, sensor5);
+                    sensorManager.unregisterListener(this.f8216t, sensor5);
                 }
-                uc ucVar4 = this.f8229s;
-                if (ucVar4 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(ucVar4);
-                    this.f8229s = null;
+                rc rcVar4 = this.f8215s;
+                if (rcVar4 != null) {
+                    AndroidUtilities.cancelRunOnUIThread(rcVar4);
+                    this.f8215s = null;
                 }
             }
         }
     }
 
     public final boolean c(long j3) {
-        SensorManager sensorManager = this.f8214a;
+        SensorManager sensorManager = this.f8200a;
         if (sensorManager != null) {
-            if (this.f8215b == null) {
+            if (this.f8201b == null) {
                 Sensor defaultSensor = sensorManager.getDefaultSensor(1);
-                this.f8215b = defaultSensor;
+                this.f8201b = defaultSensor;
                 if (defaultSensor == null) {
                     return false;
                 }
-                this.f8216c = j3;
-                if (!this.f8222l) {
-                    sensorManager.registerListener(this.f8224n, defaultSensor, a(j3));
+                this.f8202c = j3;
+                if (!this.f8208l) {
+                    sensorManager.registerListener(this.f8210n, defaultSensor, a(j3));
                 }
             }
             return true;
@@ -111,7 +111,7 @@ public final class a1 {
     }
 
     public final boolean d(long j3) {
-        SensorManager sensorManager = this.f8214a;
+        SensorManager sensorManager = this.f8200a;
         if (sensorManager != null) {
             if (this.d == null) {
                 Sensor defaultSensor = sensorManager.getDefaultSensor(4);
@@ -120,8 +120,8 @@ public final class a1 {
                     return false;
                 }
                 this.e = j3;
-                if (!this.f8222l) {
-                    sensorManager.registerListener(this.f8226p, defaultSensor, a(j3));
+                if (!this.f8208l) {
+                    sensorManager.registerListener(this.f8212p, defaultSensor, a(j3));
                 }
             }
             return true;
@@ -131,32 +131,32 @@ public final class a1 {
 
     public final boolean e(long j3, boolean z10) {
         Sensor sensor;
-        SensorManager sensorManager = this.f8214a;
+        SensorManager sensorManager = this.f8200a;
         if (sensorManager != null) {
-            z0 z0Var = this.f8230t;
-            y0 y0Var = this.f8228r;
+            z0 z0Var = this.f8216t;
+            y0 y0Var = this.f8214r;
             if (z10) {
-                if (this.f8219i != null) {
-                    uc ucVar = this.f8229s;
-                    if (ucVar != null) {
-                        AndroidUtilities.cancelRunOnUIThread(ucVar);
-                        this.f8229s = null;
+                if (this.f8205i != null) {
+                    rc rcVar = this.f8215s;
+                    if (rcVar != null) {
+                        AndroidUtilities.cancelRunOnUIThread(rcVar);
+                        this.f8215s = null;
                     }
-                    if (!this.f8222l && (sensor = this.f8219i) != null) {
+                    if (!this.f8208l && (sensor = this.f8205i) != null) {
                         sensorManager.unregisterListener(z0Var, sensor);
                     }
-                    this.f8219i = null;
+                    this.f8205i = null;
                 }
-                if (this.f8217f == null || this.f8218g == null) {
-                    this.f8218g = sensorManager.getDefaultSensor(1);
+                if (this.f8203f == null || this.f8204g == null) {
+                    this.f8204g = sensorManager.getDefaultSensor(1);
                     Sensor defaultSensor = sensorManager.getDefaultSensor(2);
-                    this.f8217f = defaultSensor;
-                    Sensor sensor2 = this.f8218g;
+                    this.f8203f = defaultSensor;
+                    Sensor sensor2 = this.f8204g;
                     if (sensor2 != null && defaultSensor != null) {
                         this.h = j3;
-                        if (!this.f8222l) {
+                        if (!this.f8208l) {
                             sensorManager.registerListener(y0Var, sensor2, a(j3));
-                            sensorManager.registerListener(y0Var, this.f8217f, a(j3));
+                            sensorManager.registerListener(y0Var, this.f8203f, a(j3));
                             return true;
                         }
                     } else {
@@ -164,33 +164,33 @@ public final class a1 {
                     }
                 }
             } else {
-                if (this.f8217f != null || this.f8218g != null) {
-                    uc ucVar2 = this.f8227q;
-                    if (ucVar2 != null) {
-                        AndroidUtilities.cancelRunOnUIThread(ucVar2);
-                        this.f8227q = null;
+                if (this.f8203f != null || this.f8204g != null) {
+                    rc rcVar2 = this.f8213q;
+                    if (rcVar2 != null) {
+                        AndroidUtilities.cancelRunOnUIThread(rcVar2);
+                        this.f8213q = null;
                     }
-                    if (!this.f8222l) {
-                        Sensor sensor3 = this.f8218g;
+                    if (!this.f8208l) {
+                        Sensor sensor3 = this.f8204g;
                         if (sensor3 != null) {
                             sensorManager.unregisterListener(y0Var, sensor3);
                         }
-                        Sensor sensor4 = this.f8217f;
+                        Sensor sensor4 = this.f8203f;
                         if (sensor4 != null) {
                             sensorManager.unregisterListener(y0Var, sensor4);
                         }
                     }
-                    this.f8218g = null;
-                    this.f8217f = null;
+                    this.f8204g = null;
+                    this.f8203f = null;
                 }
-                if (this.f8219i == null) {
+                if (this.f8205i == null) {
                     Sensor defaultSensor2 = sensorManager.getDefaultSensor(15);
-                    this.f8219i = defaultSensor2;
+                    this.f8205i = defaultSensor2;
                     if (defaultSensor2 == null) {
                         return false;
                     }
-                    this.f8220j = j3;
-                    if (!this.f8222l) {
+                    this.f8206j = j3;
+                    if (!this.f8208l) {
                         sensorManager.registerListener(z0Var, defaultSensor2, a(j3));
                     }
                 }
@@ -201,28 +201,28 @@ public final class a1 {
     }
 
     public final boolean f() {
-        SensorManager sensorManager = this.f8214a;
+        SensorManager sensorManager = this.f8200a;
         if (sensorManager == null) {
             return false;
         }
-        Sensor sensor = this.f8215b;
+        Sensor sensor = this.f8201b;
         if (sensor == null) {
             return true;
         }
-        if (!this.f8222l) {
-            sensorManager.unregisterListener(this.f8224n, sensor);
+        if (!this.f8208l) {
+            sensorManager.unregisterListener(this.f8210n, sensor);
         }
-        uc ucVar = this.f8223m;
-        if (ucVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(ucVar);
-            this.f8223m = null;
+        rc rcVar = this.f8209m;
+        if (rcVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(rcVar);
+            this.f8209m = null;
         }
-        this.f8215b = null;
+        this.f8201b = null;
         return true;
     }
 
     public final boolean g() {
-        SensorManager sensorManager = this.f8214a;
+        SensorManager sensorManager = this.f8200a;
         if (sensorManager == null) {
             return false;
         }
@@ -230,54 +230,54 @@ public final class a1 {
         if (sensor == null) {
             return true;
         }
-        if (!this.f8222l) {
-            sensorManager.unregisterListener(this.f8226p, sensor);
+        if (!this.f8208l) {
+            sensorManager.unregisterListener(this.f8212p, sensor);
         }
-        uc ucVar = this.f8225o;
-        if (ucVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(ucVar);
-            this.f8225o = null;
+        rc rcVar = this.f8211o;
+        if (rcVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(rcVar);
+            this.f8211o = null;
         }
         this.d = null;
         return true;
     }
 
     public final boolean h() {
-        SensorManager sensorManager = this.f8214a;
+        SensorManager sensorManager = this.f8200a;
         if (sensorManager == null) {
             return false;
         }
-        Sensor sensor = this.f8218g;
-        if (sensor == null && this.f8217f == null && this.f8219i == null) {
+        Sensor sensor = this.f8204g;
+        if (sensor == null && this.f8203f == null && this.f8205i == null) {
             return true;
         }
-        if (!this.f8222l) {
-            y0 y0Var = this.f8228r;
+        if (!this.f8208l) {
+            y0 y0Var = this.f8214r;
             if (sensor != null) {
                 sensorManager.unregisterListener(y0Var, sensor);
             }
-            Sensor sensor2 = this.f8217f;
+            Sensor sensor2 = this.f8203f;
             if (sensor2 != null) {
                 sensorManager.unregisterListener(y0Var, sensor2);
             }
-            Sensor sensor3 = this.f8219i;
+            Sensor sensor3 = this.f8205i;
             if (sensor3 != null) {
-                sensorManager.unregisterListener(this.f8230t, sensor3);
+                sensorManager.unregisterListener(this.f8216t, sensor3);
             }
         }
-        uc ucVar = this.f8227q;
-        if (ucVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(ucVar);
-            this.f8227q = null;
+        rc rcVar = this.f8213q;
+        if (rcVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(rcVar);
+            this.f8213q = null;
         }
-        uc ucVar2 = this.f8229s;
-        if (ucVar2 != null) {
-            AndroidUtilities.cancelRunOnUIThread(ucVar2);
-            this.f8229s = null;
+        rc rcVar2 = this.f8215s;
+        if (rcVar2 != null) {
+            AndroidUtilities.cancelRunOnUIThread(rcVar2);
+            this.f8215s = null;
         }
-        this.f8218g = null;
-        this.f8217f = null;
-        this.f8219i = null;
+        this.f8204g = null;
+        this.f8203f = null;
+        this.f8205i = null;
         return true;
     }
 }

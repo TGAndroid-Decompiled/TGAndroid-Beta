@@ -1,34 +1,49 @@
 package org.telegram.ui;
 
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class q91 implements TextWatcher {
-    public boolean f36802a;
-    public final int f36803b;
-    public final EditTextBoldCursor f36804c;
-    public final org.telegram.ui.Components.yc0 d;
-    public final int[] e;
-    public final TextView f36805f;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class q91 extends s4.s0 {
+    public final int f36333a;
+    public final ra1 f36334b;
 
-    public q91(int i10, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.yc0 yc0Var, int[] iArr, TextView textView) {
-        this.f36803b = i10;
-        this.f36804c = editTextBoldCursor;
-        this.d = yc0Var;
-        this.e = iArr;
-        this.f36805f = textView;
+    public q91(ra1 ra1Var, int i10) {
+        this.f36333a = i10;
+        this.f36334b = ra1Var;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.q91.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ah.h hVar;
+        ra1 ra1Var;
+        ah.h hVar2;
+        ra1 ra1Var2;
+        ah.h hVar3;
+        switch (this.f36333a) {
+            case 0:
+                ra1 ra1Var3 = this.f36334b;
+                if (ra1Var3.f36774r0.size() != ra1Var3.f36776s0.size() && !ra1Var3.f36781w0 && ra1Var3.U.N0() > ra1Var3.X.f38570c0 - 20) {
+                    ra1Var3.h0();
+                }
+                if (Build.VERSION.SDK_INT >= 31 && (hVar = ra1Var3.C0) != null) {
+                    hVar.f(i10, i11);
+                    ra1.W(ra1Var3);
+                    return;
+                }
+                return;
+            case 1:
+                if (Build.VERSION.SDK_INT >= 31 && (hVar2 = (ra1Var = this.f36334b).C0) != null) {
+                    hVar2.f(i10, i11);
+                    ra1.W(ra1Var);
+                    return;
+                }
+                return;
+            default:
+                if (Build.VERSION.SDK_INT >= 31 && (hVar3 = (ra1Var2 = this.f36334b).C0) != null) {
+                    hVar3.f(i10, i11);
+                    ra1.W(ra1Var2);
+                    return;
+                }
+                return;
+        }
     }
 }

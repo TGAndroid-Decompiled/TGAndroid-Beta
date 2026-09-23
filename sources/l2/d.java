@@ -5,19 +5,23 @@ import java.io.IOException;
 import u2.t;
 import y2.p;
 public final class d implements y2.h {
-    public final g f13814a;
+    public final g f13802a;
+
+    public d(g gVar) {
+        this.f13802a = gVar;
+    }
 
     @Override
     public void V(y2.j jVar, long j3, long j10, boolean z10) {
-        this.f13814a.w((p) jVar, j10);
+        this.f13802a.w((p) jVar, j10);
     }
 
     public void a() {
         long j3;
-        g gVar = this.f13814a;
-        synchronized (z2.b.f48070b) {
+        g gVar = this.f13802a;
+        synchronized (z2.b.f48024b) {
             try {
-                if (z2.b.f48071c) {
+                if (z2.b.f48025c) {
                     j3 = z2.b.d;
                 } else {
                     j3 = -9223372036854775807L;
@@ -33,12 +37,12 @@ public final class d implements y2.h {
     @Override
     public k4.d n(y2.j jVar, long j3, long j10, IOException iOException, int i10) {
         p pVar = (p) jVar;
-        g gVar = this.f13814a;
-        a5.a aVar = gVar.f13832q;
-        long j11 = pVar.f46294a;
-        Uri uri = pVar.d.f9349c;
-        aVar.r(new t(j10), pVar.f46296c, iOException, true);
-        gVar.f13828m.getClass();
+        g gVar = this.f13802a;
+        a5.a aVar = gVar.f13820q;
+        long j11 = pVar.f46252a;
+        Uri uri = pVar.d.f9335c;
+        aVar.r(new t(j10), pVar.f46254c, iOException, true);
+        gVar.f13816m.getClass();
         gVar.x(iOException);
         return y2.m.e;
     }
@@ -46,13 +50,13 @@ public final class d implements y2.h {
     @Override
     public void q(y2.j jVar, long j3, long j10) {
         p pVar = (p) jVar;
-        g gVar = this.f13814a;
-        long j11 = pVar.f46294a;
-        Uri uri = pVar.d.f9349c;
+        g gVar = this.f13802a;
+        long j11 = pVar.f46252a;
+        Uri uri = pVar.d.f9335c;
         t tVar = new t(j10);
-        gVar.f13828m.getClass();
-        gVar.f13832q.p(tVar, pVar.f46296c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        gVar.L = ((Long) pVar.f46297f).longValue() - j3;
+        gVar.f13816m.getClass();
+        gVar.f13820q.p(tVar, pVar.f46254c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        gVar.L = ((Long) pVar.f46255f).longValue() - j3;
         gVar.y(true);
     }
 

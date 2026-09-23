@@ -1,38 +1,41 @@
 package org.telegram.ui;
+public final class e30 extends g.p {
+    public final f60 f32783c;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class e30 implements Utilities.Callback2 {
-    public final int f33154a;
-    public final i60 f33155b;
-
-    public e30(i60 i60Var, int i10) {
-        this.f33154a = i10;
-        this.f33155b = i60Var;
+    public e30(f60 f60Var) {
+        this.f32783c = f60Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        TLRPC.Updates updates = (TLRPC.Updates) obj;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        switch (this.f33154a) {
-            case 0:
-                i60 i60Var = this.f33155b;
-                if (updates != null) {
-                    i60Var.d.getMessagesController().processUpdates(updates, false);
-                }
-                AndroidUtilities.runOnUIThread(new v20(i60Var, 10));
-                return;
-            default:
-                i60 i60Var2 = this.f33155b;
-                if (updates != null) {
-                    i60Var2.d.getMessagesController().processUpdates(updates, false);
-                    return;
-                } else {
-                    i60Var2.getClass();
-                    return;
-                }
+    public final int i(int i10) {
+        int i11;
+        z50 z50Var;
+        int i12;
+        int i13;
+        int i14;
+        if (f60.F3) {
+            i11 = 6;
+        } else {
+            i11 = 2;
         }
+        if (!f60.G3 && i10 >= (i12 = (z50Var = this.f32783c.P).G) && i10 < (i13 = z50Var.H)) {
+            int i15 = i13 - i12;
+            if (i10 == i13 - 1 && (f60.F3 || i15 % 2 != 0)) {
+                i14 = 2;
+            } else {
+                i14 = 1;
+            }
+            if (f60.F3) {
+                if (i15 == 1) {
+                    return 6;
+                }
+                if (i15 != 2) {
+                    return 2;
+                }
+                return 3;
+            }
+            return i14;
+        }
+        return i11;
     }
 }

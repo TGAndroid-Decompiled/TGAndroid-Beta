@@ -1,6 +1,6 @@
 package fb;
 public abstract class g {
-    public static final int f9025a;
+    public static final int f9011a;
 
     static {
         int i10;
@@ -32,6 +32,6 @@ public abstract class g {
         if (i10 == -1) {
             i10 = 6;
         }
-        f9025a = i10;
+        f9011a = i10;
     }
 }

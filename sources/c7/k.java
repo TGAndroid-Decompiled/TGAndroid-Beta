@@ -5,15 +5,15 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class k extends l {
     public static final Parcelable.Creator<k> CREATOR = new r0(17);
-    public final r f4110a;
-    public final String f4111b;
-    public final int f4112c;
+    public final r f4105a;
+    public final String f4106b;
+    public final int f4107c;
 
     public k(int i10, int i11, String str) {
         try {
-            this.f4110a = r.a(i10);
-            this.f4111b = str;
-            this.f4112c = i11;
+            this.f4105a = r.a(i10);
+            this.f4106b = str;
+            this.f4107c = i11;
         } catch (q e) {
             throw new IllegalArgumentException(e);
         }
@@ -24,25 +24,25 @@ public final class k extends l {
             return false;
         }
         k kVar = (k) obj;
-        if (!n6.l.l(this.f4110a, kVar.f4110a) || !n6.l.l(this.f4111b, kVar.f4111b) || !n6.l.l(Integer.valueOf(this.f4112c), Integer.valueOf(kVar.f4112c))) {
+        if (!n6.l.l(this.f4105a, kVar.f4105a) || !n6.l.l(this.f4106b, kVar.f4106b) || !n6.l.l(Integer.valueOf(this.f4107c), Integer.valueOf(kVar.f4107c))) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4110a, this.f4111b, Integer.valueOf(this.f4112c)});
+        return Arrays.hashCode(new Object[]{this.f4105a, this.f4106b, Integer.valueOf(this.f4107c)});
     }
 
     public final String toString() {
         lf.i iVar = new lf.i(getClass().getSimpleName());
-        String valueOf = String.valueOf(this.f4110a.f4140a);
+        String valueOf = String.valueOf(this.f4105a.f4135a);
         lf.i iVar2 = new lf.i(7, false);
         ((lf.i) iVar.d).d = iVar2;
         iVar.d = iVar2;
-        iVar2.f14022c = valueOf;
-        iVar2.f14021b = "errorCode";
-        String str = this.f4111b;
+        iVar2.f14012c = valueOf;
+        iVar2.f14011b = "errorCode";
+        String str = this.f4106b;
         if (str != null) {
             iVar.Z(str, "errorMessage");
         }
@@ -52,12 +52,12 @@ public final class k extends l {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.e0.q(parcel, 20293);
-        int i11 = this.f4110a.f4140a;
+        int i11 = this.f4105a.f4135a;
         w7.e0.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        w7.e0.l(parcel, 3, this.f4111b);
+        w7.e0.l(parcel, 3, this.f4106b);
         w7.e0.s(parcel, 4, 4);
-        parcel.writeInt(this.f4112c);
+        parcel.writeInt(this.f4107c);
         w7.e0.r(parcel, q6);
     }
 }

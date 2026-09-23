@@ -6,14 +6,14 @@ import org.telegram.messenger.R;
 public final class xp0 extends org.telegram.ui.Cells.f7 {
     public final zp0 N;
 
-    public xp0(zp0 zp0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 0, e6Var);
+    public xp0(zp0 zp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 0, d6Var);
         this.N = zp0Var;
     }
 
     @Override
     public final String a() {
-        if (this.N.f30632f.f24754a0) {
+        if (this.N.f30638f.f24773a0) {
             return LocaleController.getString(R.string.RepostToStory);
         }
         return LocaleController.getString(R.string.FwdMyStory);

@@ -4,12 +4,12 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.h81;
 import org.telegram.ui.Components.mr0;
 import org.telegram.ui.Components.rr0;
 import org.telegram.ui.Components.tr0;
 import org.telegram.ui.Components.yu0;
-public final class a extends i81 {
+public final class a extends h81 {
     public final int T = 0;
     public Object U;
     public final FrameLayout V;
@@ -43,7 +43,7 @@ public final class a extends i81 {
                 }
                 return;
             default:
-                ((rr0) this.U).d.J0(((tr0) this.V).f32636n.getAnimatingIndicatorProgress());
+                ((rr0) this.U).d.J0(((tr0) this.V).f37871n.getAnimatingIndicatorProgress());
                 return;
         }
     }
@@ -69,13 +69,13 @@ public final class a extends i81 {
     public void y(int i10, boolean z10) {
         switch (this.T) {
             case 1:
-                int i11 = ((tr0) this.V).f32636n.f24594b0.get(i10, -1);
+                int i11 = ((tr0) this.V).f37871n.f24211b0.get(i10, -1);
                 yu0 yu0Var = ((rr0) this.U).d;
                 if (i11 <= 0) {
                     yu0.t(yu0Var, 8, z10);
                     return;
                 } else {
-                    yu0.t(yu0Var, yu0Var.i1(i11).f30063a, z10);
+                    yu0.t(yu0Var, yu0Var.i1(i11).f30064a, z10);
                     return;
                 }
             default:
@@ -97,7 +97,7 @@ public final class a extends i81 {
                 }
                 return;
             default:
-                ((tr0) this.V).f32636n.f24594b0.get(i10, -1);
+                ((tr0) this.V).f37871n.f24211b0.get(i10, -1);
                 ((rr0) this.U).d.J0(1.0f);
                 return;
         }

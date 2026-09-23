@@ -1,65 +1,44 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.NotificationCenter;
-public final class k51 implements Runnable {
-    public final int f35053a;
-    public final h71 f35054b;
+public final class k51 extends g.p {
+    public final int f34573c;
+    public final z61 d;
 
-    public k51(h71 h71Var, int i10) {
-        this.f35053a = i10;
-        this.f35054b = h71Var;
+    public k51(z61 z61Var, int i10) {
+        this.f34573c = i10;
+        this.d = z61Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35053a) {
+    public final int i(int i10) {
+        int i11;
+        ArrayList arrayList;
+        int i12;
+        switch (this.f34573c) {
             case 0:
-                h71 h71Var = this.f35054b;
-                h71Var.getClass();
-                HashSet hashSet = zg.f0.f49015a;
-                ff.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-                if (cacheOutQueue.f9062b == null) {
-                    cacheOutQueue.f9062b = new CountDownLatch(1);
+                z61 z61Var = this.d;
+                if (z61Var.f40053w0.indexOfKey(i10) < 0 && z61Var.f40061z0.indexOfKey(i10) < 0 && i10 != z61Var.f40016f && i10 != z61Var.f40058y && i10 != z61Var.f40031n && i10 != z61Var.h && i10 != z61Var.v && i10 != z61Var.f40003a && i10 != z61Var.f40055x) {
+                    if ((i10 >= z61Var.E && i10 < z61Var.F) || z61Var.Q) {
+                        return 8;
+                    }
+                    return 5;
                 }
-                zg.f0.f49016b = true;
-                zg.f0.e = false;
-                zg.f0.f49019g = false;
-                AndroidUtilities.runOnUIThread(new k51(h71Var, 2), 0L);
-                return;
-            case 1:
-                h71 h71Var2 = this.f35054b;
-                ArrayList arrayList = h71Var2.A1;
-                if (arrayList != null) {
-                    arrayList.clear();
-                }
-                ArrayList arrayList2 = h71Var2.B1;
-                if (arrayList2 != null) {
-                    arrayList2.clear();
-                }
-                ArrayList arrayList3 = h71Var2.D1;
-                if (arrayList3 != null) {
-                    arrayList3.clear();
-                }
-                h71Var2.f34149q0.E(true);
-                return;
-            case 2:
-                this.f35054b.U1.start();
-                return;
-            case 3:
-                this.f35054b.B(true, true, true);
-                return;
+                return z61Var.f40041r0.J;
             default:
-                h71 h71Var3 = this.f35054b;
-                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-                k51 k51Var = h71Var3.R1;
-                globalInstance.removeDelayed(k51Var);
-                NotificationCenter.getGlobalInstance().doOnIdle(k51Var);
-                return;
+                z61 z61Var2 = this.d;
+                j61 j61Var = z61Var2.f40038q0;
+                int j3 = j61Var.j(i10);
+                if (j3 == 6) {
+                    return z61Var2.f40041r0.J;
+                }
+                if (j3 != 5) {
+                    z61 z61Var3 = j61Var.f34344s;
+                    if (z61Var3.W != 14 ? i10 <= (i11 = j61Var.f34340c) || (i10 - i11) - 1 >= z61Var3.C1.size() : (arrayList = z61Var3.B1) == null || i10 < (i12 = j61Var.f34340c) || i10 - i12 >= arrayList.size()) {
+                        return 5;
+                    }
+                }
+                return 8;
         }
     }
 }

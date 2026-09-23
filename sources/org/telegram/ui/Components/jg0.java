@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-public final class jg0 extends ll0 {
+public final class jg0 extends ml0 {
     public final yf.y X2;
     public long Y2;
-    public final pg0 Z2;
+    public final qg0 Z2;
 
-    public jg0(pg0 pg0Var, Context context) {
+    public jg0(qg0 qg0Var, Context context) {
         super(context, null);
-        this.Z2 = pg0Var;
+        this.Z2 = qg0Var;
         this.X2 = new yf.y(8);
     }
 
@@ -26,25 +26,25 @@ public final class jg0 extends ll0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        pg0 pg0Var = this.Z2;
-        if (pg0Var.L) {
+        qg0 qg0Var = this.Z2;
+        if (qg0Var.L) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             long abs = Math.abs(this.Y2 - elapsedRealtime);
             if (abs > 17) {
                 abs = 16;
             }
             this.Y2 = elapsedRealtime;
-            pg0Var.J += (((float) abs) * pg0Var.K) / 1800.0f;
+            qg0Var.J += (((float) abs) * qg0Var.K) / 1800.0f;
             while (true) {
-                f7 = pg0Var.J;
-                float f10 = pg0Var.K * 2.0f;
+                f7 = qg0Var.J;
+                float f10 = qg0Var.K * 2.0f;
                 if (f7 < f10) {
                     break;
                 }
-                pg0Var.J = f7 - f10;
+                qg0Var.J = f7 - f10;
             }
-            pg0Var.I.setTranslate(f7, 0.0f);
-            pg0Var.H.setLocalMatrix(pg0Var.I);
+            qg0Var.I.setTranslate(f7, 0.0f);
+            qg0Var.H.setLocalMatrix(qg0Var.I);
             f1();
             invalidate();
         }
@@ -54,7 +54,7 @@ public final class jg0 extends ll0 {
         int measuredHeight2 = getMeasuredHeight();
         yf.y yVar = this.X2;
         yVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        yVar.b(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18922i5, this.f25969p2));
+        yVar.b(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18877i5, this.f26222p2));
         yVar.draw(canvas);
     }
 }

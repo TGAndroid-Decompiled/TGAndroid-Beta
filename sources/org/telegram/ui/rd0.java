@@ -1,38 +1,28 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class rd0 implements org.telegram.ui.Components.ov0 {
-    public final int f37108a;
-    public final org.telegram.ui.ActionBar.n2 f37109b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rd0 implements RequestDelegate {
+    public final int f36799a;
+    public final be0 f36800b;
+    public final String f36801c;
 
-    public rd0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f37108a = i10;
-        this.f37109b = n2Var;
+    public rd0(be0 be0Var, String str, int i10) {
+        this.f36799a = i10;
+        this.f36800b = be0Var;
+        this.f36801c = str;
     }
 
     @Override
-    public final void H(int i10, boolean z10) {
-        lg0 lg0Var;
-        kl0 kl0Var;
-        switch (this.f37108a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f36799a) {
             case 0:
-                wg0 wg0Var = (wg0) this.f37109b;
-                if (i10 > AndroidUtilities.dp(20.0f) && wg0Var.h1()) {
-                    AndroidUtilities.hideKeyboard(wg0Var.fragmentView);
-                }
-                if (i10 <= AndroidUtilities.dp(20.0f) && (lg0Var = wg0Var.T) != null) {
-                    lg0Var.run();
-                    wg0Var.T = null;
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new td0(this.f36800b, tL_error, this.f36801c, tLObject));
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f37109b;
-                if (i10 >= AndroidUtilities.dp(20.0f) && (kl0Var = passcodeActivity.P) != null) {
-                    kl0Var.run();
-                    passcodeActivity.P = null;
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new td0(this.f36800b, tL_error, tLObject, this.f36801c));
                 return;
         }
     }

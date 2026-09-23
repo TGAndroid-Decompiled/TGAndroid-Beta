@@ -2,14 +2,14 @@ package ai;
 
 import org.telegram.messenger.MessagesStorage;
 public final class a9 implements Runnable {
-    public final int f525a;
-    public final d9 f526b;
-    public final MessagesStorage f527c;
+    public final int f532a;
+    public final d9 f533b;
+    public final MessagesStorage f534c;
 
     public a9(d9 d9Var, MessagesStorage messagesStorage, int i10) {
-        this.f525a = i10;
-        this.f526b = d9Var;
-        this.f527c = messagesStorage;
+        this.f532a = i10;
+        this.f533b = d9Var;
+        this.f534c = messagesStorage;
     }
 
     @Override

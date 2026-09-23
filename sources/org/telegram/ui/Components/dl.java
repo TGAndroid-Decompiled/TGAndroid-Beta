@@ -1,33 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Point;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
-import java.util.HashMap;
-import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class dl extends FrameLayout {
-    public final HashMap f23354a;
-    public final gl f23355b;
+public final class dl implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f23420a;
+    public final float[] f23421b = {0.0f, 1.0f};
+    public final FrameLayout f23422c;
+    public final el d;
 
-    public dl(gl glVar, Context context) {
-        super(context);
-        this.f23355b = glVar;
-        this.f23354a = new HashMap();
+    public dl(el elVar, FrameLayout frameLayout) {
+        this.d = elVar;
+        this.f23422c = frameLayout;
     }
 
-    public final void a() {
-        IMapsProvider.IMap iMap = this.f23355b.H;
-        if (iMap != null) {
-            IMapsProvider.IProjection projection = iMap.getProjection();
-            for (Map.Entry entry : this.f23354a.entrySet()) {
-                View view = (View) entry.getValue();
-                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
-                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
-                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float interpolation;
+        float lerp = AndroidUtilities.lerp(this.f23421b, valueAnimator.getAnimatedFraction());
+        if (lerp >= 0.7f && !this.f23420a) {
+            el elVar = this.d;
+            hl hlVar = elVar.f23717b;
+            hl hlVar2 = elVar.f23717b;
+            if (hlVar.f24725i0 != null) {
+                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet.playTogether(ObjectAnimator.ofFloat(hlVar2.f24725i0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(hlVar2.f24725i0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(hlVar2.f24725i0, View.ALPHA, 0.0f, 1.0f));
+                animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
+                animatorSet.setDuration(250L);
+                animatorSet.start();
+                this.f23420a = true;
             }
         }
+        if (lerp <= 0.5f) {
+            interpolation = rr.f27702g.getInterpolation(lerp / 0.5f) * 1.1f;
+        } else if (lerp <= 0.75f) {
+            interpolation = 1.1f - (rr.f27702g.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
+        } else {
+            interpolation = (rr.f27702g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
+        }
+        FrameLayout frameLayout = this.f23422c;
+        frameLayout.setScaleX(interpolation);
+        frameLayout.setScaleY(interpolation);
     }
 }

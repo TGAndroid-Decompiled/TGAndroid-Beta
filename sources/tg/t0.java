@@ -1,7 +1,7 @@
 package tg;
 
-import ai.c5;
-import ai.o6;
+import ai.e4;
+import ai.n6;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
@@ -14,23 +14,23 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.Components.za;
-import org.telegram.ui.o20;
-import org.telegram.ui.wy0;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.l20;
+import org.telegram.ui.py0;
 import w7.x5;
-public final class t0 extends za {
+public final class t0 extends bb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final e0 f43218a0;
-    public s0 f43219b0;
-    public m0 f43220c0;
+    public final e0 f43173a0;
+    public s0 f43174b0;
+    public m0 f43175c0;
 
     public t0(n2 n2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(n2Var, false);
@@ -46,32 +46,32 @@ public final class t0 extends za {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f18109id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f18083id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
-        o20 o20Var = new o20(getContext(), this.resourcesProvider, this.d);
-        o20Var.setClickable(true);
-        o20Var.setOrientation(1);
-        o20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        o20Var.setBackgroundColor(i6.v0(i6.f18904h5, this.resourcesProvider));
+        l20 l20Var = new l20(getContext(), this.resourcesProvider, this.d);
+        l20Var.setClickable(true);
+        l20Var.setOrientation(1);
+        l20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        l20Var.setBackgroundColor(h6.v0(h6.f18859h5, this.resourcesProvider));
         e0 e0Var = new e0(getContext(), this.resourcesProvider);
-        this.f43218a0 = e0Var;
+        this.f43173a0 = e0Var;
         e0Var.k();
         e0Var.setCounterColor(-6785796);
-        e0Var.setOnClickListener(new wy0(17, this, chat));
-        o20Var.addView(e0Var, x5.q(-1, 48, 87));
+        e0Var.setOnClickListener(new py0(17, this, chat));
+        l20Var.addView(e0Var, x5.q(-1, 48, 87));
         ViewGroup viewGroup = this.containerView;
         int i11 = this.backgroundPaddingLeft;
-        viewGroup.addView(o20Var, x5.f(-2.0f, 87, i11, 0, i11, 0));
-        ll0 ll0Var = this.d;
+        viewGroup.addView(l20Var, x5.f(-2.0f, 87, i11, 0, i11, 0));
+        ml0 ml0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        ll0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
-        this.d.setOnItemClickListener(new o6(24, this, chat));
+        ml0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
+        this.d.setOnItemClickListener(new n6(24, this, chat));
         fixNavigationBar();
         N();
         S(false);
-        oc.a(this.container, new Object());
+        qc.a(this.container, new Object());
     }
 
     public static void P(t0 t0Var, TLRPC.Chat chat, View view) {
@@ -79,7 +79,7 @@ public final class t0 extends za {
         if (view instanceof xg.l) {
             xg.l lVar = (xg.l) view;
             if (lVar.getBoost().cooldown_until_date > 0) {
-                new vc(t0Var.container, t0Var.resourcesProvider).G(R.raw.chats_infotip, 5, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, new Object[0]))).k(true);
+                new xc(t0Var.container, t0Var.resourcesProvider).G(R.raw.chats_infotip, 5, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, new Object[0]))).k(true);
                 return;
             }
             if (arrayList.contains(lVar.getBoost())) {
@@ -89,16 +89,16 @@ public final class t0 extends za {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             t0Var.S(true);
-            t0Var.f43219b0.a(arrayList, chat);
+            t0Var.f43174b0.a(arrayList, chat);
         }
     }
 
     public static void Q(t0 t0Var, TLRPC.Chat chat, ArrayList arrayList, HashSet hashSet, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
-        MessagesController.getInstance(t0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f18109id, new c5(t0Var, tL_premium_myBoosts, arrayList, hashSet, 1));
+        MessagesController.getInstance(t0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f18083id, new e4(t0Var, tL_premium_myBoosts, arrayList, hashSet, 18));
     }
 
     public final void S(boolean z10) {
-        e0 e0Var = this.f43218a0;
+        e0 e0Var = this.f43173a0;
         boolean z11 = false;
         e0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -117,22 +117,22 @@ public final class t0 extends za {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f43220c0 = new m0(this);
+        this.f43175c0 = new m0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f43220c0.cancel();
+        this.f43175c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f43220c0.start();
+        this.f43175c0.start();
     }
 
     @Override
-    public final kl0 v(ll0 ll0Var) {
+    public final ll0 v(ml0 ml0Var) {
         return new n0(this);
     }
 

@@ -26,7 +26,7 @@ public final class o extends HandlerThread implements Handler.Callback {
         boolean z13;
         this.f174a.getClass();
         e2.j jVar = this.f174a;
-        int[] iArr = jVar.f7906b;
+        int[] iArr = jVar.f7892b;
         boolean z14 = false;
         EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
         if (eglGetDisplay != null) {
@@ -37,7 +37,7 @@ public final class o extends HandlerThread implements Handler.Callback {
         e2.a.c("eglGetDisplay failed", z10);
         int[] iArr2 = new int[2];
         e2.a.c("eglInitialize failed", EGL14.eglInitialize(eglGetDisplay, iArr2, 0, iArr2, 1));
-        jVar.f7907c = eglGetDisplay;
+        jVar.f7893c = eglGetDisplay;
         EGLConfig[] eGLConfigArr = new EGLConfig[1];
         int[] iArr3 = new int[1];
         boolean eglChooseConfig = EGL14.eglChooseConfig(eglGetDisplay, e2.j.h, 0, eGLConfigArr, 0, 1, iArr3, 0);
@@ -47,10 +47,10 @@ public final class o extends HandlerThread implements Handler.Callback {
             z11 = false;
         }
         Object[] objArr = {Boolean.valueOf(eglChooseConfig), Integer.valueOf(iArr3[0]), eGLConfigArr[0]};
-        String str = e2.d0.f7885a;
+        String str = e2.d0.f7871a;
         e2.a.c(String.format(Locale.US, "eglChooseConfig failed: success=%b, numConfigs[0]=%d, configs[0]=%s", objArr), z11);
         EGLConfig eGLConfig = eGLConfigArr[0];
-        EGLContext eglCreateContext = EGL14.eglCreateContext(jVar.f7907c, eGLConfig, EGL14.EGL_NO_CONTEXT, i10 == 0 ? new int[]{12440, 2, 12344} : new int[]{12440, 2, 12992, 1, 12344}, 0);
+        EGLContext eglCreateContext = EGL14.eglCreateContext(jVar.f7893c, eGLConfig, EGL14.EGL_NO_CONTEXT, i10 == 0 ? new int[]{12440, 2, 12344} : new int[]{12440, 2, 12992, 1, 12344}, 0);
         if (eglCreateContext != null) {
             z12 = true;
         } else {
@@ -58,7 +58,7 @@ public final class o extends HandlerThread implements Handler.Callback {
         }
         e2.a.c("eglCreateContext failed", z12);
         jVar.d = eglCreateContext;
-        EGLDisplay eGLDisplay = jVar.f7907c;
+        EGLDisplay eGLDisplay = jVar.f7893c;
         if (i10 == 1) {
             eglCreatePbufferSurface = EGL14.EGL_NO_SURFACE;
         } else {
@@ -75,9 +75,9 @@ public final class o extends HandlerThread implements Handler.Callback {
         GLES20.glGenTextures(1, iArr, 0);
         e2.a.b();
         SurfaceTexture surfaceTexture = new SurfaceTexture(iArr[0]);
-        jVar.f7908f = surfaceTexture;
+        jVar.f7894f = surfaceTexture;
         surfaceTexture.setOnFrameAvailableListener(jVar);
-        SurfaceTexture surfaceTexture2 = this.f174a.f7908f;
+        SurfaceTexture surfaceTexture2 = this.f174a.f7894f;
         surfaceTexture2.getClass();
         if (i10 != 0) {
             z14 = true;
@@ -88,37 +88,37 @@ public final class o extends HandlerThread implements Handler.Callback {
     public final void b() {
         this.f174a.getClass();
         e2.j jVar = this.f174a;
-        jVar.f7905a.removeCallbacks(jVar);
+        jVar.f7891a.removeCallbacks(jVar);
         try {
-            SurfaceTexture surfaceTexture = jVar.f7908f;
+            SurfaceTexture surfaceTexture = jVar.f7894f;
             if (surfaceTexture != null) {
                 surfaceTexture.release();
-                GLES20.glDeleteTextures(1, jVar.f7906b, 0);
+                GLES20.glDeleteTextures(1, jVar.f7892b, 0);
             }
         } finally {
-            EGLDisplay eGLDisplay = jVar.f7907c;
+            EGLDisplay eGLDisplay = jVar.f7893c;
             if (eGLDisplay != null && !eGLDisplay.equals(EGL14.EGL_NO_DISPLAY)) {
-                EGLDisplay eGLDisplay2 = jVar.f7907c;
+                EGLDisplay eGLDisplay2 = jVar.f7893c;
                 EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
                 EGL14.eglMakeCurrent(eGLDisplay2, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
             }
             EGLSurface eGLSurface2 = jVar.e;
             if (eGLSurface2 != null && !eGLSurface2.equals(EGL14.EGL_NO_SURFACE)) {
-                EGL14.eglDestroySurface(jVar.f7907c, jVar.e);
+                EGL14.eglDestroySurface(jVar.f7893c, jVar.e);
             }
             EGLContext eGLContext = jVar.d;
             if (eGLContext != null) {
-                EGL14.eglDestroyContext(jVar.f7907c, eGLContext);
+                EGL14.eglDestroyContext(jVar.f7893c, eGLContext);
             }
             EGL14.eglReleaseThread();
-            EGLDisplay eGLDisplay3 = jVar.f7907c;
+            EGLDisplay eGLDisplay3 = jVar.f7893c;
             if (eGLDisplay3 != null && !eGLDisplay3.equals(EGL14.EGL_NO_DISPLAY)) {
-                EGL14.eglTerminate(jVar.f7907c);
+                EGL14.eglTerminate(jVar.f7893c);
             }
-            jVar.f7907c = null;
+            jVar.f7893c = null;
             jVar.d = null;
             jVar.e = null;
-            jVar.f7908f = null;
+            jVar.f7894f = null;
         }
     }
 

@@ -1,18 +1,19 @@
 package org.telegram.ui.Components;
+public final class df implements t71, d5 {
+    public final ChatActivityEnterView f23400a;
 
-import android.view.ViewTreeObserver;
-public final class df implements ViewTreeObserver.OnDrawListener {
-    public final fv0 f23314a;
-    public final uo0 f23315b;
-
-    public df(fv0 fv0Var, uo0 uo0Var) {
-        this.f23314a = fv0Var;
-        this.f23315b = uo0Var;
+    public df(ChatActivityEnterView chatActivityEnterView) {
+        this.f23400a = chatActivityEnterView;
     }
 
     @Override
-    public final void onDraw() {
-        fv0 fv0Var = this.f23314a;
-        fv0Var.post(new org.telegram.ui.ActionBar.p(this, fv0Var, this.f23315b, 8));
+    public void J(int i10, int i11, boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = this.f23400a;
+        boolean U0 = chatActivityEnterView.U0(i10, z10, i11, true, 0L);
+        mf mfVar = chatActivityEnterView.L0;
+        if (mfVar != null) {
+            mfVar.h(!U0);
+            chatActivityEnterView.L0 = null;
+        }
     }
 }

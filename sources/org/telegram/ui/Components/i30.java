@@ -1,53 +1,24 @@
 package org.telegram.ui.Components;
+public final class i30 implements z4.e {
+    public final m30 f24870a;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class i30 extends TextView {
-    public final Paint[] f24876a;
-    public final l30 f24877b;
-
-    public i30(l30 l30Var, Context context) {
-        super(context);
-        this.f24877b = l30Var;
-        this.f24876a = new Paint[l30Var.e.length];
-        int i10 = 0;
-        while (true) {
-            Paint[] paintArr = this.f24876a;
-            if (i10 < paintArr.length) {
-                paintArr[i10] = new Paint(1);
-                i10++;
-            } else {
-                return;
-            }
-        }
+    public i30(m30 m30Var) {
+        this.f24870a = m30Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        l30 l30Var = this.f24877b;
-        int i10 = l30Var.h;
-        Paint[] paintArr = this.f24876a;
-        paintArr[i10].setAlpha(255);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[l30Var.h]);
-        float f7 = l30Var.f25821f;
-        if (f7 > 0.0f) {
-            int i11 = l30Var.h;
-            if (i11 + 1 < paintArr.length) {
-                paintArr[i11 + 1].setAlpha((int) (f7 * 255.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[l30Var.h + 1]);
-            }
-        }
-        super.onDraw(canvas);
+    public final void b(float f7, int i10, int i11) {
+        m30 m30Var = this.f24870a;
+        m30Var.h = i10;
+        m30Var.f26083f = f7;
+        m30.m(m30Var);
     }
 
     @Override
-    public final void onSizeChanged(int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i30.onSizeChanged(int, int, int, int):void");
+    public final void a(int i10) {
+    }
+
+    @Override
+    public final void c(int i10) {
     }
 }

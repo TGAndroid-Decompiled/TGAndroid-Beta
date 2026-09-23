@@ -2,32 +2,32 @@ package org.webrtc;
 
 import org.webrtc.Camera2Session;
 public final class a implements VideoSink {
-    public final int f40342a;
-    public final Object f40343b;
+    public final int f40297a;
+    public final Object f40298b;
 
     public a(Object obj, int i10) {
-        this.f40342a = i10;
-        this.f40343b = obj;
+        this.f40297a = i10;
+        this.f40298b = obj;
     }
 
     @Override
     public final void onFrame(VideoFrame videoFrame) {
-        switch (this.f40342a) {
+        switch (this.f40297a) {
             case 0:
-                ((Camera1Session) this.f40343b).lambda$listenForTextureFrames$0(videoFrame);
+                ((Camera1Session) this.f40298b).lambda$listenForTextureFrames$0(videoFrame);
                 return;
             case 1:
-                Camera2Session.CaptureSessionCallback.a((Camera2Session.CaptureSessionCallback) this.f40343b, videoFrame);
+                Camera2Session.CaptureSessionCallback.a((Camera2Session.CaptureSessionCallback) this.f40298b, videoFrame);
                 return;
             default:
-                VideoSource.c((VideoSource) this.f40343b, videoFrame);
+                VideoSource.c((VideoSource) this.f40298b, videoFrame);
                 return;
         }
     }
 
     @Override
     public final void setParentSink(VideoSink videoSink) {
-        int i10 = this.f40342a;
+        int i10 = this.f40297a;
         e0.a(this, videoSink);
     }
 }

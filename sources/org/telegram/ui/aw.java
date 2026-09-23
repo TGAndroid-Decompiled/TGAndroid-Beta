@@ -1,59 +1,58 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class aw implements org.telegram.ui.Components.zk0 {
-    public final int f31948a;
-    public final uy f31949b;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class aw implements View.OnLongClickListener {
+    public final int f31892a;
+    public final ry f31893b;
 
-    public aw(uy uyVar, int i10) {
-        this.f31948a = i10;
-        this.f31949b = uyVar;
+    public aw(ry ryVar, int i10) {
+        this.f31892a = i10;
+        this.f31893b = ryVar;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        gg.q0 q0Var;
-        switch (this.f31948a) {
+    public final boolean onLongClick(View view) {
+        switch (this.f31892a) {
             case 0:
-                uy uyVar = this.f31949b;
-                Object obj = uyVar.C0.f30303v0.G(i10).G;
-                if (obj instanceof MessageObject) {
-                    MessageObject messageObject = (MessageObject) obj;
-                    Bundle bundle = new Bundle();
-                    if (messageObject.getDialogId() >= 0) {
-                        bundle.putLong("user_id", messageObject.getDialogId());
-                    } else {
-                        bundle.putLong("chat_id", -messageObject.getDialogId());
+                ry ryVar = this.f31893b;
+                ryVar.r4(ryVar.I2, 104, true, true, null);
+                return true;
+            case 1:
+                ry ryVar2 = this.f31893b;
+                ArrayList arrayList = ryVar2.I2;
+                if (ryVar2.getParentActivity() == null) {
+                    return false;
+                }
+                boolean z10 = true;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    long longValue = ((Long) arrayList.get(i10)).longValue();
+                    if (DialogObject.isEncryptedDialog(longValue)) {
+                        z10 = false;
                     }
-                    bundle.putInt("message_id", messageObject.getId());
-                    bo boVar = new bo(bundle);
-                    uy.d4(boVar, messageObject);
-                    uyVar.presentFragment(boVar);
-                    return;
-                } else if (obj instanceof ai.v8) {
-                    ai.v8 v8Var = (ai.v8) obj;
-                    Bundle e = org.telegram.ui.Cells.q3.e(3, "type");
-                    e.putString("hashtag", v8Var.C);
-                    e.putInt("storiesCount", v8Var.J);
-                    uyVar.presentFragment(new org.telegram.ui.Components.ba0(e, null));
-                    return;
-                } else {
-                    return;
+                    TLRPC.Chat chat = ryVar2.getMessagesController().getChat(Long.valueOf(-longValue));
+                    if (chat != null && !ChatObject.canWriteToChat(chat)) {
+                        z10 = false;
+                    }
                 }
+                org.telegram.ui.Components.o70 H = org.telegram.ui.Components.o70.H(ryVar2, view);
+                H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new mv(ryVar2, 19), false);
+                H.l(R.drawable.msg_calendar2, LocaleController.getString(R.string.ScheduleMessage), new mv(ryVar2, 20), z10);
+                H.Z();
+                return true;
+            case 2:
+                this.f31893b.p4(view);
+                return true;
             default:
-                uy uyVar2 = this.f31949b;
-                uyVar2.f38206b0.I0(true);
-                ArrayList arrayList = uyVar2.f38206b0.X2;
-                if (arrayList.isEmpty()) {
-                    q0Var = gg.s0.f9911c3[i10];
-                } else {
-                    q0Var = (gg.q0) arrayList.get(i10);
-                }
-                uyVar2.j3(q0Var);
-                return;
+                ry ryVar3 = this.f31893b;
+                ryVar3.getContactsController().loadGlobalPrivacySetting();
+                ryVar3.K4();
+                return true;
         }
     }
 }

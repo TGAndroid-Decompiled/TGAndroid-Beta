@@ -1,26 +1,29 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class d50 extends org.telegram.ui.Components.hq0 {
-    public final i60 f32940b1;
+import android.content.DialogInterface;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class d50 implements DialogInterface.OnShowListener {
+    public final int f32516a;
+    public final org.telegram.ui.ActionBar.b2 f32517b;
+    public final EditTextBoldCursor f32518c;
+    public final Object d;
 
-    public d50(i60 i60Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.f32940b1 = i60Var;
+    public d50(Object obj, org.telegram.ui.ActionBar.b2 b2Var, EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f32516a = i10;
+        this.d = obj;
+        this.f32517b = b2Var;
+        this.f32518c = editTextBoldCursor;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        int m10 = iVar.m();
-        i60 i60Var = this.f32940b1;
-        if (m10 == 1) {
-            i60Var.k1().m(((TLRPC.Dialog) iVar.n(0)).f18113id, Integer.valueOf(i10), 41);
-        } else {
-            i60Var.k1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f32516a) {
+            case 0:
+                ((i50) this.d).f34029b.s1(null, this.f32517b, this.f32518c, true);
+                return;
+            default:
+                ((e50) this.d).f32811n.f34029b.s1(null, this.f32517b, this.f32518c, true);
+                return;
         }
     }
 }

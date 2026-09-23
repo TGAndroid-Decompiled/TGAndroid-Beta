@@ -1,18 +1,15 @@
 package ii;
+public final class z4 implements Runnable {
+    public final int f11793a;
+    public final b5 f11794b;
 
-import org.telegram.tgnet.TLRPC;
-public interface z4 {
-    void a(int i10, int i11);
+    public z4(b5 b5Var, int i10) {
+        this.f11793a = i10;
+        this.f11794b = b5Var;
+    }
 
-    void b(TLRPC.Photo photo);
-
-    void c(TLRPC.Document document);
-
-    void d(TLRPC.Document document);
-
-    void e(TLRPC.Document document);
-
-    void f(float f7);
-
-    void onError();
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ii.z4.run():void");
+    }
 }

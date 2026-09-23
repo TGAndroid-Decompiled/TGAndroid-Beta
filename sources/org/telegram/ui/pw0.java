@@ -1,40 +1,26 @@
 package org.telegram.ui;
+public final class pw0 implements Runnable {
+    public final int f36214a;
+    public final PremiumPreviewFragment f36215b;
 
-import android.view.View;
-import android.widget.RelativeLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class pw0 extends RelativeLayout {
-    public final PopupNotificationActivity f36710a;
-
-    public pw0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
-        super(popupNotificationActivity2);
-        this.f36710a = popupNotificationActivity;
+    public pw0(PremiumPreviewFragment premiumPreviewFragment, int i10) {
+        this.f36214a = i10;
+        this.f36215b = premiumPreviewFragment;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        for (int i14 = 0; i14 < getChildCount(); i14++) {
-            View childAt = getChildAt(i14);
-            if (childAt.getTag() instanceof String) {
-                int left = childAt.getLeft();
-                PopupNotificationActivity popupNotificationActivity = this.f36710a;
-                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f31143b.getTop(), childAt.getRight(), popupNotificationActivity.f31143b.getBottom());
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        PopupNotificationActivity popupNotificationActivity = this.f36710a;
-        int measuredWidth = popupNotificationActivity.f31143b.getMeasuredWidth();
-        int measuredHeight = popupNotificationActivity.f31143b.getMeasuredHeight();
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt.getTag() instanceof String) {
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight - AndroidUtilities.dp(3.0f), 1073741824));
-            }
+    public final void run() {
+        switch (this.f36214a) {
+            case 0:
+                this.f36215b.j0();
+                return;
+            case 1:
+                PremiumPreviewFragment premiumPreviewFragment = this.f36215b;
+                premiumPreviewFragment.f31126a.postOnAnimation(new pw0(premiumPreviewFragment, 0));
+                return;
+            default:
+                this.f36215b.getMediaDataController().loadPremiumPromo(false);
+                return;
         }
     }
 }

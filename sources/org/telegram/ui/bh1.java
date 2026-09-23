@@ -1,31 +1,88 @@
 package org.telegram.ui;
-public final class bh1 implements Runnable {
-    public final int f32160a;
-    public final hh1 f32161b;
-    public final byte[] f32162c;
 
-    public bh1(hh1 hh1Var, byte[] bArr, int i10) {
-        this.f32160a = i10;
-        this.f32161b = hh1Var;
-        this.f32162c = bArr;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+public final class bh1 extends ViewGroup {
+    public final Paint f32119a;
+    public View f32120b;
+    public boolean f32121c;
+
+    public bh1(Context context) {
+        super(context);
+        this.f32119a = new Paint(1);
+        setClipToPadding(false);
     }
 
     @Override
-    public final void run() {
-        switch (this.f32160a) {
-            case 0:
-                hh1.Y(this.f32161b, this.f32162c);
-                return;
-            default:
-                hh1 hh1Var = this.f32161b;
-                hh1Var.w0();
-                hh1Var.V = this.f32162c;
-                hh1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                hh1 hh1Var2 = new hh1(9, hh1Var.U);
-                hh1Var2.H = hh1Var.H;
-                hh1Var2.G = hh1Var.G;
-                hh1Var.presentFragment(hh1Var2, true);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int paddingBottom = getPaddingBottom();
+        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
+        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
+        int h = i0.a.h(org.telegram.ui.ActionBar.h6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18789d6, false)), w02);
+        Paint paint = this.f32119a;
+        paint.setColor(w02);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
+        paint.setColor(h);
+        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        int i12;
+        View view = this.f32120b;
+        if (view != null && view.getVisibility() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int size = View.MeasureSpec.getSize(i10);
+        if (z10) {
+            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
+        } else {
+            i12 = 0;
+        }
+        setMeasuredDimension(size, i12);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f32121c != z10) {
+            this.f32121c = z10;
+            WeakHashMap weakHashMap = r0.i0.f41795a;
+            r0.y.c(this);
+        }
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        this.f32120b = view;
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        super.setPadding(i10, i11, i12, i13);
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            getChildAt(i14).setPadding(i10, i11, i12, i13);
         }
     }
 }

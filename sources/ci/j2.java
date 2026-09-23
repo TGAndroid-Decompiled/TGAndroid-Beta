@@ -2,53 +2,53 @@ package ci;
 
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fq;
-import org.telegram.ui.Components.wm0;
-import org.telegram.ui.Components.xy;
-import org.telegram.ui.y51;
-public final class j2 extends fq {
+import org.telegram.ui.Components.gq;
+import org.telegram.ui.Components.xm0;
+import org.telegram.ui.Components.yy;
+import org.telegram.ui.q51;
+public final class j2 extends gq {
     public final int h;
-    public final Object f4835i;
+    public final Object f4815i;
 
     public j2(int i10, FrameLayout frameLayout) {
         this.h = i10;
-        this.f4835i = frameLayout;
+        this.f4815i = frameLayout;
     }
 
     @Override
     public final int a() {
         switch (this.h) {
             case 0:
-                return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Je, (org.telegram.ui.ActionBar.e6) this.f4835i);
+                return org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Je, (org.telegram.ui.ActionBar.d6) this.f4815i);
             case 1:
-                return ((org.telegram.ui.ActionBar.v0) this.f4835i).f19576c.f19732b.f19322r0;
+                return ((org.telegram.ui.ActionBar.v0) this.f4815i).f19563c.f19701b.f19305r0;
             case 2:
-                return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Je, ((xy) this.f4835i).G.Z1);
+                return org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Je, ((yy) this.f4815i).G.Z1);
             case 3:
-                return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Q5, ((wm0) this.f4835i).f29751f);
+                return org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Q5, ((xm0) this.f4815i).f30023f);
             default:
-                return org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Je, ((y51) this.f4835i).f38711y.Z0);
+                return org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Je, ((q51) this.f4815i).f35698y.Z0);
         }
     }
 
-    public j2(xy xyVar) {
+    public j2(yy yyVar) {
         super(1.25f);
         this.h = 2;
-        this.f4835i = xyVar;
-        this.f24053f = AndroidUtilities.dp(7.0f);
+        this.f4815i = yyVar;
+        this.f24390f = AndroidUtilities.dp(7.0f);
     }
 
-    public j2(org.telegram.ui.ActionBar.e6 e6Var) {
+    public j2(org.telegram.ui.ActionBar.d6 d6Var) {
         super(1.25f);
         this.h = 0;
-        this.f4835i = e6Var;
-        this.f24053f = AndroidUtilities.dp(7.0f);
+        this.f4815i = d6Var;
+        this.f24390f = AndroidUtilities.dp(7.0f);
     }
 
-    public j2(y51 y51Var) {
+    public j2(q51 q51Var) {
         super(1.25f);
         this.h = 4;
-        this.f4835i = y51Var;
-        this.f24053f = AndroidUtilities.dp(7.0f);
+        this.f4815i = q51Var;
+        this.f24390f = AndroidUtilities.dp(7.0f);
     }
 }

@@ -1,22 +1,22 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class id extends org.telegram.ui.Components.aj0 {
-    public final int f34604r;
-    public final Object f34605s;
+public final class id extends org.telegram.ui.Components.bj0 {
+    public final int f34112r;
+    public final Object f34113s;
 
     public id(Object obj, Context context, int i10) {
         super(context);
-        this.f34604r = i10;
-        this.f34605s = obj;
+        this.f34112r = i10;
+        this.f34113s = obj;
     }
 
     @Override
     public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f34604r) {
+        switch (this.f34112r) {
             case 0:
                 super.invalidate(i10, i11, i12, i13);
-                ((ld) this.f34605s).f35415f.invalidate();
+                ((ld) this.f34113s).f34923f.invalidate();
                 return;
             case 1:
             default:
@@ -24,33 +24,33 @@ public final class id extends org.telegram.ui.Components.aj0 {
                 return;
             case 2:
                 super.invalidate(i10, i11, i12, i13);
-                ((l70) this.f34605s).e.invalidate();
+                ((i70) this.f34113s).e.invalidate();
                 return;
             case 3:
                 super.invalidate(i10, i11, i12, i13);
-                ((hf0) this.f34605s).h.invalidate();
+                ((cf0) this.f34113s).h.invalidate();
                 return;
         }
     }
 
     @Override
     public final void invalidate() {
-        switch (this.f34604r) {
+        switch (this.f34112r) {
             case 0:
                 super.invalidate();
-                ((ld) this.f34605s).f35415f.invalidate();
+                ((ld) this.f34113s).f34923f.invalidate();
                 return;
             case 1:
                 super.invalidate();
-                ((org.telegram.ui.Components.r20) this.f34605s).invalidate();
+                ((org.telegram.ui.Components.s20) this.f34113s).invalidate();
                 return;
             case 2:
                 super.invalidate();
-                ((l70) this.f34605s).e.invalidate();
+                ((i70) this.f34113s).e.invalidate();
                 return;
             default:
                 super.invalidate();
-                ((hf0) this.f34605s).h.invalidate();
+                ((cf0) this.f34113s).h.invalidate();
                 return;
         }
     }

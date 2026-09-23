@@ -1,52 +1,72 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class vq0 implements org.telegram.ui.Components.ml0 {
-    public final ar0 f38610a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class vq0 implements org.telegram.ui.Components.mm0 {
+    public final ar0 f38470a;
 
     public vq0(ar0 ar0Var) {
-        this.f38610a = ar0Var;
+        this.f38470a = ar0Var;
     }
 
     @Override
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.d5 d5Var;
-        ar0 ar0Var = this.f38610a;
-        ar0Var.W = z10 ? 1 : 0;
-        if (z10) {
-            d5Var = ((org.telegram.ui.ActionBar.n2) ar0Var).parentLayout;
-            d5Var.getView().requestDisallowInterceptTouchEvent(true);
+    public final void C0(float f7) {
+        ar0 ar0Var = this.f38470a;
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        if (i10 != 0 || ar0Var.f31871n[1].getVisibility() == 0) {
+            if (ar0Var.v) {
+                yq0 yq0Var = ar0Var.f31871n[0];
+                yq0Var.setTranslationX((-f7) * yq0Var.getMeasuredWidth());
+                yq0[] yq0VarArr = ar0Var.f31871n;
+                yq0VarArr[1].setTranslationX(yq0VarArr[0].getMeasuredWidth() - (f7 * ar0Var.f31871n[0].getMeasuredWidth()));
+            } else {
+                yq0 yq0Var2 = ar0Var.f31871n[0];
+                yq0Var2.setTranslationX(yq0Var2.getMeasuredWidth() * f7);
+                yq0[] yq0VarArr2 = ar0Var.f31871n;
+                yq0VarArr2[1].setTranslationX((f7 * yq0VarArr2[0].getMeasuredWidth()) - ar0Var.f31871n[0].getMeasuredWidth());
+            }
+            if (i10 == 0) {
+                yq0[] yq0VarArr3 = ar0Var.f31871n;
+                yq0 yq0Var3 = yq0VarArr3[0];
+                yq0VarArr3[0] = yq0VarArr3[1];
+                yq0VarArr3[1] = yq0Var3;
+                yq0Var3.setVisibility(8);
+            }
         }
-        ar0Var.K.d1(true);
     }
 
     @Override
-    public final boolean b(int i10) {
-        if (this.f38610a.L.j(i10) == 0) {
-            return true;
+    public final void d(int i10, boolean z10) {
+        boolean z11;
+        ar0 ar0Var = this.f38470a;
+        if (ar0Var.f31871n[0].e == i10) {
+            return;
         }
+        if (i10 == ar0Var.h.getFirstTabId()) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        ar0Var.e = z11;
+        yq0 yq0Var = ar0Var.f31871n[1];
+        yq0Var.e = i10;
+        yq0Var.setVisibility(0);
+        ar0Var.j0(true);
+        ar0Var.v = z10;
+        if (i10 == 0) {
+            ar0Var.f31869c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
+        } else {
+            ar0Var.f31869c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
+        }
+    }
+
+    @Override
+    public final boolean n1(int i10, View view) {
         return false;
     }
 
     @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f38610a.X && (view instanceof org.telegram.ui.Cells.t5)) {
-            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-            t5Var.f21344w.b(t5Var);
-        }
-    }
-
-    @Override
-    public final boolean d(int i10) {
-        Object obj;
-        ar0 ar0Var = this.f38610a;
-        MediaController.AlbumEntry albumEntry = ar0Var.J;
-        if (albumEntry != null) {
-            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
-        } else {
-            obj = ((MediaController.SearchImage) ar0Var.f31901f.get(i10)).f15595id;
-        }
-        return ar0Var.f31895b.containsKey(obj);
+    public final void C() {
     }
 }

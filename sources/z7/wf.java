@@ -7,34 +7,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 public final class wf {
-    public static m f48666k;
-    public static final r f48667l;
-    public final String f48668a;
-    public final String f48669b;
-    public final uf f48670c;
+    public static m f48616k;
+    public static final r f48617l;
+    public final String f48618a;
+    public final String f48619b;
+    public final uf f48620c;
     public final qb.k d;
     public final Task e;
-    public final Task f48671f;
-    public final String f48672g;
+    public final Task f48621f;
+    public final String f48622g;
     public final int h;
-    public final HashMap f48673i = new HashMap();
-    public final HashMap f48674j = new HashMap();
+    public final HashMap f48623i = new HashMap();
+    public final HashMap f48624j = new HashMap();
 
     static {
         Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
         objArr[0].getClass();
         objArr[1].getClass();
-        f48667l = new r(objArr);
+        f48617l = new r(objArr);
     }
 
     public wf(Context context, qb.k kVar, uf ufVar) {
         int i10;
-        this.f48668a = context.getPackageName();
-        this.f48669b = qb.c.a(context);
+        this.f48618a = context.getPackageName();
+        this.f48619b = qb.c.a(context);
         this.d = kVar;
-        this.f48670c = ufVar;
+        this.f48620c = ufVar;
         zf.b();
-        this.f48672g = "subject-segmentation";
+        this.f48622g = "subject-segmentation";
         qb.f a2 = qb.f.a();
         c5.x xVar = new c5.x(this, 10);
         a2.getClass();
@@ -43,8 +43,8 @@ public final class wf {
         kVar.getClass();
         t7.p pVar = new t7.p(kVar, 4);
         a10.getClass();
-        this.f48671f = qb.f.b(pVar);
-        r rVar = f48667l;
+        this.f48621f = qb.f.b(pVar);
+        r rVar = f48617l;
         if (rVar.containsKey("subject-segmentation")) {
             i10 = y6.e.d(context, (String) rVar.get("subject-segmentation"), false);
         } else {
@@ -62,8 +62,8 @@ public final class wf {
         if (!d(hbVar, elapsedRealtime)) {
             return;
         }
-        this.f48673i.put(hbVar, Long.valueOf(elapsedRealtime));
-        qb.m.f41250a.execute(new com.google.android.gms.internal.cast.p(this, vfVar.zza(), hbVar, c(), 8));
+        this.f48623i.put(hbVar, Long.valueOf(elapsedRealtime));
+        qb.m.f41206a.execute(new com.google.android.gms.internal.cast.p(this, vfVar.zza(), hbVar, c(), 8));
     }
 
     public final String c() {
@@ -71,11 +71,11 @@ public final class wf {
         if (task.isSuccessful()) {
             return (String) task.getResult();
         }
-        return n6.i.f15046c.a(this.f48672g);
+        return n6.i.f15023c.a(this.f48622g);
     }
 
     public final boolean d(hb hbVar, long j3) {
-        HashMap hashMap = this.f48673i;
+        HashMap hashMap = this.f48623i;
         if (hashMap.get(hbVar) == null || j3 - ((Long) hashMap.get(hbVar)).longValue() > TimeUnit.SECONDS.toMillis(30L)) {
             return true;
         }

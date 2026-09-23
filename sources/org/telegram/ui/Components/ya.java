@@ -1,25 +1,41 @@
 package org.telegram.ui.Components;
-public final class ya {
-    public boolean f30195a;
-    public int f30196b;
-    public boolean f30197c;
-    public boolean d;
-    public boolean e;
-    public int f30198f;
-    public org.telegram.ui.ActionBar.e6 f30199g;
+public final class ya extends s4.j0 {
+    public final s4.j0 f30187a;
+    public final za f30188b;
 
-    public ya(ya yaVar) {
-        this.f30195a = yaVar.f30195a;
-        this.f30196b = yaVar.f30196b;
-        this.f30197c = yaVar.f30197c;
-        this.d = yaVar.d;
-        this.e = yaVar.e;
-        this.f30198f = yaVar.f30198f;
-        this.f30199g = yaVar.f30199g;
+    public ya(za zaVar, s4.j0 j0Var) {
+        this.f30188b = zaVar;
+        this.f30187a = j0Var;
     }
 
-    public ya() {
-        this.f30196b = 1;
-        this.f30198f = 1;
+    @Override
+    public final void a() {
+        this.f30187a.a();
+    }
+
+    @Override
+    public final void b(int i10, int i11) {
+        this.f30187a.b(i10 + (!((bb) this.f30188b.f30551f).P ? 1 : 0), i11);
+    }
+
+    @Override
+    public final void c(int i10, int i11, Object obj) {
+        this.f30187a.c(i10 + (!((bb) this.f30188b.f30551f).P ? 1 : 0), i11, obj);
+    }
+
+    @Override
+    public final void d(int i10, int i11) {
+        this.f30187a.d(i10 + (!((bb) this.f30188b.f30551f).P ? 1 : 0), i11);
+    }
+
+    @Override
+    public final void e(int i10, int i11) {
+        int i12 = !((bb) this.f30188b.f30551f).P ? 1 : 0;
+        this.f30187a.e(i10 + i12, i11 + i12);
+    }
+
+    @Override
+    public final void f(int i10, int i11) {
+        this.f30187a.f(i10 + (!((bb) this.f30188b.f30551f).P ? 1 : 0), i11);
     }
 }

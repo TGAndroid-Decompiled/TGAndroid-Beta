@@ -40,8 +40,8 @@ public final class r {
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
         n4.a0 a0Var = this.f14665a;
-        sb2.append(a0Var.f14927a.f14928a);
+        sb2.append(a0Var.f14904a.f14905a);
         sb2.append(", uid=");
-        return a4.a.o(a0Var.f14927a.f14930c, "}", sb2);
+        return a4.a.o(a0Var.f14904a.f14907c, "}", sb2);
     }
 }

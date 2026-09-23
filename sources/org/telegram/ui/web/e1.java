@@ -1,33 +1,32 @@
 package org.telegram.ui.web;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
-public final class e1 extends TLObject {
-    public long f38942a;
-    public long f38943b;
-    public String f38944c;
-    public m2 d;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.n2;
+public final class e1 extends org.telegram.ui.ActionBar.j {
+    public final g1 f38683a;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.f38942a = inputSerializedData.readInt64(z10);
-        this.f38943b = inputSerializedData.readInt64(z10);
-        this.f38944c = inputSerializedData.readString(z10);
-        m2 m2Var = new m2();
-        this.d = m2Var;
-        m2Var.readParams(inputSerializedData, z10);
+    public e1(g1 g1Var) {
+        this.f38683a = g1Var;
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeInt64(this.f38942a);
-        outputSerializedData.writeInt64(this.f38943b);
-        String str = this.f38944c;
-        if (str == null) {
-            str = "";
+    public final void b(int i10) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        if (i10 == -1) {
+            g1 g1Var = this.f38683a;
+            kVar = ((n2) g1Var).actionBar;
+            if (kVar.s()) {
+                kVar2 = ((n2) g1Var).actionBar;
+                kVar2.r();
+                g1Var.f38704s.clear();
+                AndroidUtilities.forEachViews((RecyclerView) g1Var.f30163a, (Utilities.Callback<View>) new ai.i(23));
+                return;
+            }
+            g1Var.finishFragment();
         }
-        outputSerializedData.writeString(str);
-        this.d.serializeToStream(outputSerializedData);
     }
 }

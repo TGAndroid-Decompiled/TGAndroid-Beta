@@ -1,147 +1,89 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.content.Intent;
-import android.text.TextUtils;
-import android.util.Base64;
-import android.widget.TextView;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class f21 extends org.telegram.ui.ActionBar.j {
-    public final Context f33466a;
-    public final ProxyListActivity f33467b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class f21 implements TextWatcher {
+    public final int f33081a;
+    public final h21 f33082b;
 
-    public f21(ProxyListActivity proxyListActivity, Context context) {
-        this.f33467b = proxyListActivity;
-        this.f33466a = context;
+    public f21(h21 h21Var, int i10) {
+        this.f33081a = i10;
+        this.f33082b = h21Var;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        int i12;
-        StringBuilder sb2;
-        boolean z10;
-        ProxyListActivity proxyListActivity = this.f33467b;
-        ArrayList arrayList = proxyListActivity.F;
-        if (i10 != -1) {
-            int i13 = 1;
-            if (i10 != 0) {
-                if (i10 == 1) {
-                    StringBuilder sb3 = new StringBuilder();
-                    int size = arrayList.size();
-                    int i14 = 0;
-                    while (i14 < size) {
-                        Object obj = arrayList.get(i14);
-                        i14++;
-                        SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) obj;
-                        if (sb3.length() > 0) {
-                            sb3.append("\n\n");
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f33081a) {
+            case 0:
+                this.f33082b.U(true);
+                return;
+            case 1:
+                h21 h21Var = this.f33082b;
+                if (!h21Var.K) {
+                    EditTextBoldCursor editTextBoldCursor = h21Var.f33711a[1];
+                    int selectionStart = editTextBoldCursor.getSelectionStart();
+                    String obj = editTextBoldCursor.getText().toString();
+                    StringBuilder sb2 = new StringBuilder(obj.length());
+                    int i10 = 0;
+                    while (i10 < obj.length()) {
+                        int i11 = i10 + 1;
+                        String substring = obj.substring(i10, i11);
+                        if ("0123456789".contains(substring)) {
+                            sb2.append(substring);
                         }
-                        ni.b bVar = proxyInfo.settings;
-                        String str = bVar.e;
-                        String str2 = bVar.d;
-                        String str3 = bVar.f15244b;
-                        String str4 = bVar.f15246f;
-                        int i15 = bVar.f15243a;
-                        int c10 = m1.j.c(i15);
-                        if (c10 != i13) {
-                            if (c10 != 2) {
-                                sb2 = new StringBuilder("https://t.me/socks?");
-                            } else {
-                                sb2 = new StringBuilder("https://t.me/webproxy?");
-                            }
-                        } else {
-                            sb2 = new StringBuilder("https://t.me/proxy?");
-                        }
-                        try {
-                            sb2.append("server=");
-                            sb2.append(URLEncoder.encode(str3, "UTF-8"));
-                            if (i15 != 3) {
-                                sb2.append("&port=");
-                                sb2.append(bVar.f15245c);
-                            }
-                            if (!TextUtils.isEmpty(str2)) {
-                                sb2.append("&user=");
-                                sb2.append(URLEncoder.encode(str2, "UTF-8"));
-                            }
-                            if (!TextUtils.isEmpty(str)) {
-                                sb2.append("&pass=");
-                                sb2.append(URLEncoder.encode(str, "UTF-8"));
-                            }
-                            if (!TextUtils.isEmpty(str4)) {
-                                if (i15 == 3) {
-                                    if (str3 != null && str3.indexOf(47) >= 0) {
-                                        z10 = true;
-                                    } else {
-                                        z10 = false;
-                                    }
-                                    if (z10 && ni.b.g(str4)) {
-                                        int length = str4.length() / 2;
-                                        byte[] bArr = new byte[length];
-                                        for (int i16 = 0; i16 < length; i16++) {
-                                            int i17 = i16 * 2;
-                                            bArr[i16] = (byte) (Character.digit(str4.charAt(i17 + 1), 16) | (Character.digit(str4.charAt(i17), 16) << 4));
-                                        }
-                                        byte[] bArr2 = new byte[length + 1];
-                                        bArr2[0] = 112;
-                                        System.arraycopy(bArr, 0, bArr2, 1, length);
-                                        str4 = Base64.encodeToString(bArr2, 11);
-                                    }
-                                }
-                                sb2.append("&secret=");
-                                sb2.append(URLEncoder.encode(str4, "UTF-8"));
-                            }
-                        } catch (UnsupportedEncodingException unused) {
-                        }
-                        sb3.append(sb2.toString());
-                        i13 = 1;
+                        i10 = i11;
                     }
-                    Intent intent = new Intent("android.intent.action.SEND");
-                    intent.setType("text/plain");
-                    intent.putExtra("android.intent.extra.TEXT", sb3.toString());
-                    if (arrayList.size() > 1) {
-                        i12 = R.string.ShareLinks;
+                    h21Var.K = true;
+                    int intValue = Utilities.parseInt((CharSequence) sb2.toString()).intValue();
+                    if (intValue >= 0 && intValue <= 65535 && obj.equals(sb2.toString())) {
+                        if (selectionStart >= 0) {
+                            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+                        }
+                    } else if (intValue < 0) {
+                        editTextBoldCursor.setText("0");
+                    } else if (intValue > 65535) {
+                        editTextBoldCursor.setText("65535");
                     } else {
-                        i12 = R.string.ShareLink;
+                        editTextBoldCursor.setText(sb2.toString());
                     }
-                    Intent createChooser = Intent.createChooser(intent, LocaleController.getString(i12));
-                    createChooser.setFlags(268435456);
-                    this.f33466a.startActivity(createChooser);
-                    g21 g21Var = proxyListActivity.f31415a;
-                    if (g21Var != null) {
-                        g21Var.F();
-                        return;
-                    }
+                    h21Var.K = false;
+                    h21Var.U(true);
                     return;
                 }
                 return;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(proxyListActivity.getParentActivity());
-            if (arrayList.size() > 1) {
-                i11 = R.string.DeleteProxyMultiConfirm;
-            } else {
-                i11 = R.string.DeleteProxyConfirm;
-            }
-            alertDialog$Builder.f18435a.T = LocaleController.getString(i11);
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.DeleteProxyTitle);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new tl0(this, 14));
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18435a;
-            proxyListActivity.showDialog(b2Var);
-            TextView textView = (TextView) b2Var.d(-1);
-            if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19071q7, false));
-            }
-        } else if (arrayList.isEmpty()) {
-            proxyListActivity.finishFragment();
-        } else {
-            proxyListActivity.f31415a.F();
+            default:
+                this.f33082b.U(true);
+                return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f33081a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f33081a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

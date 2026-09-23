@@ -1,16 +1,49 @@
 package org.telegram.ui.Components;
-public final class hn extends s4.j {
-    public final un F;
 
-    public hn(un unVar) {
-        this.F = unVar;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+public final class hn implements gk {
+    public final Utilities.Callback f24750a;
+    public final dn f24751b;
+    public final org.telegram.ui.ActionBar.n2 f24752c;
+
+    public hn(Utilities.Callback callback, org.telegram.ui.ActionBar.n2 n2Var, dn dnVar) {
+        this.f24750a = callback;
+        this.f24751b = dnVar;
+        this.f24752c = n2Var;
     }
 
     @Override
-    public final void P(s4.c1 c1Var) {
-        if (c1Var.b() == 0) {
-            un unVar = this.F;
-            unVar.f26461b.X1(unVar, 0);
+    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
+        if (!arrayList.isEmpty()) {
+            this.f24750a.run(new rh.c((String) arrayList.get(0)));
         }
+        this.f24751b.dismiss(true);
+    }
+
+    @Override
+    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
+        if (!arrayList.isEmpty()) {
+            this.f24750a.run(new rh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
+        }
+        this.f24751b.dismiss(true);
+    }
+
+    @Override
+    public final void w() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.f24752c.getParentActivity().startActivityForResult(intent, 28);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void O() {
     }
 }

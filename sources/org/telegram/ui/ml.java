@@ -1,122 +1,240 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class ml extends org.telegram.ui.Components.u9 {
-    public final int G = 0;
-    public Object H;
-    public Object I;
-    public Object J;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class ml implements org.telegram.ui.Components.ui {
+    public final xn f35351a;
 
-    public ml(Context context) {
-        super(context);
+    public ml(xn xnVar) {
+        this.f35351a = xnVar;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.G) {
-            case 1:
-                vh.h hVar = (vh.h) this.I;
-                Path path = (Path) this.H;
-                super.draw(canvas);
-                if (((org.telegram.ui.Components.qo) this.J).h) {
-                    path.rewind();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(this.f28311a.getImageX(), this.f28311a.getImageY(), this.f28311a.getImageX2(), this.f28311a.getImageY2());
-                    path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
-                    canvas.save();
-                    canvas.clipPath(path);
-                    hVar.h(i0.a.k(-1, (int) (Color.alpha(-1) * 0.325f)));
-                    hVar.setBounds((int) this.f28311a.getImageX(), (int) this.f28311a.getImageY(), (int) this.f28311a.getImageX2(), (int) this.f28311a.getImageY2());
-                    hVar.draw(canvas);
-                    invalidate();
-                    canvas.restore();
-                    return;
+    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        ai.g4 g4Var;
+        HashMap<Object, Object> hashMap;
+        boolean z14;
+        int i13;
+        int i14;
+        boolean z15;
+        ArrayList arrayList;
+        boolean z16;
+        HashMap<Object, Object> hashMap2;
+        boolean z17;
+        String str;
+        boolean z18;
+        String str2;
+        TLRPC.Message message;
+        xn xnVar = this.f35351a;
+        if (xnVar.getParentActivity() != null && (g4Var = xnVar.J1) != null) {
+            boolean z19 = g4Var.G;
+            MessageObject messageObject = g4Var.H1;
+            xnVar.p5 = messageObject;
+            if (messageObject != null && (message = messageObject.messageOwner) != null) {
+                message.invert_media = z12;
+            }
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || g4Var.f29677j0.getSelectedPhotos().isEmpty())) {
+                ai.g4 g4Var2 = xnVar.J1;
+                if (g4Var2 != null) {
+                    g4Var2.dismissWithButtonClick(i10);
                 }
+                xnVar.Aa(i10);
                 return;
-            default:
-                super.draw(canvas);
-                return;
+            }
+            ai.g4 g4Var3 = xnVar.J1;
+            if (g4Var3 != null && i10 != 8) {
+                g4Var3.dismiss(true);
+            }
+            HashMap<Object, Object> selectedPhotos = xnVar.J1.f29677j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = xnVar.J1.f29677j0.getSelectedPhotosOrder();
+            if (!selectedPhotos.isEmpty()) {
+                int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
+                int i15 = 0;
+                while (i15 < ceil) {
+                    int i16 = i15 * 10;
+                    int min = Math.min(10, selectedPhotos.size() - i16);
+                    ArrayList arrayList2 = new ArrayList();
+                    int i17 = 0;
+                    while (i17 < min) {
+                        int i18 = i16 + i17;
+                        if (i18 >= selectedPhotosOrder.size()) {
+                            hashMap2 = selectedPhotos;
+                            z17 = z19;
+                        } else {
+                            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i18));
+                            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                            sendingMediaInfo.imagePath = photoEntry.imagePath;
+                            boolean isLivePhoto = photoEntry.isLivePhoto();
+                            sendingMediaInfo.isLivePhoto = isLivePhoto;
+                            boolean z20 = photoEntry.isVideo;
+                            if (z19 && isLivePhoto) {
+                                sendingMediaInfo.isLivePhoto = false;
+                                z20 = false;
+                            }
+                            if (!z20 && (str2 = photoEntry.imagePath) != null) {
+                                sendingMediaInfo.path = str2;
+                                if (!z19 && photoEntry.isHighQuality()) {
+                                    sendingMediaInfo.originalPhotoEntry = photoEntry.clone();
+                                }
+                            } else {
+                                String str3 = photoEntry.path;
+                                if (str3 != null) {
+                                    sendingMediaInfo.path = str3;
+                                }
+                            }
+                            sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                            sendingMediaInfo.coverPath = photoEntry.coverPath;
+                            sendingMediaInfo.coverPhoto = photoEntry.coverPhoto;
+                            sendingMediaInfo.isVideo = z20;
+                            sendingMediaInfo.discardLivePhoto = photoEntry.isUnalivePhoto();
+                            hashMap2 = selectedPhotos;
+                            z17 = z19;
+                            sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+                            sendingMediaInfo.livePhotoTimestampUs = photoEntry.livePhotoTimestampUs;
+                            CharSequence charSequence = photoEntry.caption;
+                            if (charSequence != null) {
+                                str = charSequence.toString();
+                            } else {
+                                str = null;
+                            }
+                            sendingMediaInfo.caption = str;
+                            sendingMediaInfo.entities = photoEntry.entities;
+                            sendingMediaInfo.masks = photoEntry.stickers;
+                            sendingMediaInfo.ttl = photoEntry.ttl;
+                            sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                            sendingMediaInfo.canDeleteAfter = photoEntry.canDeleteAfter;
+                            sendingMediaInfo.updateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(photoEntry.caption);
+                            sendingMediaInfo.hasMediaSpoilers = photoEntry.hasSpoiler;
+                            sendingMediaInfo.stars = photoEntry.starsAmount;
+                            if (!z17 && photoEntry.isHighQuality()) {
+                                z18 = true;
+                            } else {
+                                z18 = false;
+                            }
+                            sendingMediaInfo.highQuality = z18;
+                            arrayList2.add(sendingMediaInfo);
+                            photoEntry.reset();
+                        }
+                        i17++;
+                        z19 = z17;
+                        selectedPhotos = hashMap2;
+                    }
+                    HashMap<Object, Object> hashMap3 = selectedPhotos;
+                    boolean z21 = z19;
+                    if (i15 == 0) {
+                        xnVar.l8(((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).caption, ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).entities);
+                        z14 = ((SendMessagesHelper.SendingMediaInfo) arrayList2.get(0)).updateStickersOrder;
+                    } else {
+                        z14 = false;
+                    }
+                    MessageObject messageObject2 = xnVar.p5;
+                    if (messageObject2 != null && messageObject2.needResendWhenEdit()) {
+                        MessageSuggestionParams messageSuggestionParams = xnVar.f39390g5;
+                        if (messageSuggestionParams == null) {
+                            messageSuggestionParams = MessageSuggestionParams.of(xnVar.p5.messageOwner.suggested_post);
+                        }
+                        MessageSuggestionParams messageSuggestionParams2 = messageSuggestionParams;
+                        AccountInstance accountInstance = xnVar.getAccountInstance();
+                        int i19 = ceil;
+                        long j11 = xnVar.T5;
+                        MessageObject messageObject3 = xnVar.p5;
+                        int i20 = i15;
+                        MessageObject messageObject4 = xnVar.X3;
+                        nn nnVar = xnVar.f39449l5;
+                        if (i10 != 4 && !z13) {
+                            arrayList = arrayList2;
+                            z16 = false;
+                        } else {
+                            arrayList = arrayList2;
+                            z16 = true;
+                        }
+                        i14 = i20;
+                        i13 = i19;
+                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, messageObject3, messageObject4, null, nnVar, z16, z10, null, z11, i11, i12, xnVar.R3, z14, null, xnVar.C8(), j3, z12, j10, xnVar.N8(), messageSuggestionParams2);
+                    } else {
+                        i13 = ceil;
+                        i14 = i15;
+                        AccountInstance accountInstance2 = xnVar.getAccountInstance();
+                        long j12 = xnVar.T5;
+                        MessageObject messageObject5 = xnVar.f39475n5;
+                        MessageObject messageObject6 = xnVar.X3;
+                        nn nnVar2 = xnVar.f39449l5;
+                        if (i10 != 4 && !z13) {
+                            z15 = false;
+                        } else {
+                            z15 = true;
+                        }
+                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j12, messageObject5, messageObject6, null, nnVar2, z15, z10, xnVar.p5, z11, i11, i12, xnVar.R3, z14, null, xnVar.C8(), j3, z12, j10, xnVar.N8(), xnVar.f39390g5);
+                    }
+                    i15 = i14 + 1;
+                    ceil = i13;
+                    selectedPhotos = hashMap3;
+                    z19 = z21;
+                }
+                hashMap = selectedPhotos;
+                xnVar.y6();
+                xnVar.Y.setFieldText("");
+            } else {
+                hashMap = selectedPhotos;
+            }
+            if (i11 != 0) {
+                if (xnVar.S3 == -1) {
+                    xnVar.S3 = 0;
+                }
+                xnVar.S3 += hashMap.size();
+                xnVar.Ec(true);
+            }
         }
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.G) {
-            case 0:
-                float[] fArr = (float[]) this.J;
-                vh.h hVar = (vh.h) this.I;
-                Path path = (Path) this.H;
-                super.onDraw(canvas);
-                if (this.f28316r) {
-                    canvas.save();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                    int[] roundRadius = this.f28311a.getRoundRadius();
-                    float f7 = roundRadius[0];
-                    fArr[1] = f7;
-                    fArr[0] = f7;
-                    float f10 = roundRadius[1];
-                    fArr[3] = f10;
-                    fArr[2] = f10;
-                    float f11 = roundRadius[2];
-                    fArr[5] = f11;
-                    fArr[4] = f11;
-                    float f12 = roundRadius[3];
-                    fArr[7] = f12;
-                    fArr[6] = f12;
-                    path.rewind();
-                    path.addRoundRect(rectF, fArr, Path.Direction.CW);
-                    canvas.clipPath(path);
-                    hVar.h(i0.a.k(-1, (int) (Color.alpha(-1) * 0.325f)));
-                    hVar.setBounds(0, 0, getWidth(), getHeight());
-                    hVar.draw(canvas);
-                    canvas.restore();
-                    invalidate();
-                    return;
-                }
-                return;
-            case 1:
-            default:
-                super.onDraw(canvas);
-                return;
-            case 2:
-                org.telegram.ui.Components.voip.h hVar2 = (org.telegram.ui.Components.voip.h) this.I;
-                super.onDraw(canvas);
-                org.telegram.ui.Components.w50 w50Var = (org.telegram.ui.Components.w50) this.J;
-                if (w50Var.f29597s0) {
-                    int i10 = w50Var.N0;
-                    hVar2.f28962f = i10;
-                    RectF rectF2 = AndroidUtilities.rectTmp;
-                    float f13 = i10;
-                    rectF2.set(0.0f, 0.0f, f13, f13);
-                    float width = rectF2.width() / 2.0f;
-                    canvas.drawRoundRect(rectF2, width, width, (Paint) this.H);
-                    rectF2.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-                    hVar2.a(width, canvas, rectF2, null);
-                    invalidate();
-                    return;
-                }
-                return;
+    public final void K0() {
+        this.f35351a.Y.Q();
+    }
+
+    @Override
+    public final boolean S1() {
+        return false;
+    }
+
+    @Override
+    public final boolean c0() {
+        return this.f35351a.P9();
+    }
+
+    @Override
+    public final void j1(TLRPC.User user) {
+        String publicUsername = UserObject.getPublicUsername(user);
+        xn xnVar = this.f35351a;
+        if (xnVar.Y != null && user != null && !TextUtils.isEmpty(publicUsername)) {
+            jk jkVar = xnVar.Y;
+            jkVar.setFieldText("@" + publicUsername + " ");
+            xnVar.Y.I0();
         }
     }
 
-    public ml(org.telegram.ui.Components.qo qoVar, Context context, vh.h hVar) {
-        super(context);
-        this.J = qoVar;
-        this.I = hVar;
-        this.H = new Path();
+    @Override
+    public final void x0(org.telegram.ui.Components.gh ghVar) {
+        this.f35351a.h8(ghVar);
     }
 
-    public ml(org.telegram.ui.Components.w50 w50Var, Context context, Paint paint) {
-        super(context);
-        this.J = w50Var;
-        this.H = paint;
-        this.I = new org.telegram.ui.Components.voip.h();
+    @Override
+    public final void U0(Object obj) {
+    }
+
+    @Override
+    public final void u0() {
+    }
+
+    @Override
+    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

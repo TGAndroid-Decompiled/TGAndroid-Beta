@@ -1,74 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-public final class dt0 extends s4.y0 {
-    public final float f33088k;
-    public final LinearInterpolator f33086i = new LinearInterpolator();
-    public final DecelerateInterpolator f33087j = new DecelerateInterpolator(1.5f);
-    public int f33089l = 0;
-    public int f33090m = 0;
+import android.view.MotionEvent;
+import org.telegram.messenger.video.VideoFramesRewinder;
+import org.telegram.messenger.video.VideoPlayerRewinder;
+public final class dt0 extends VideoPlayerRewinder {
+    public final PhotoViewer f32717a;
 
-    public dt0(Context context) {
-        this.f33088k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+    public dt0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
+        super(videoFramesRewinder);
+        this.f32717a = photoViewer;
     }
 
     @Override
-    public final PointF a(int i10) {
-        s4.o0 o0Var = this.f42823c;
-        if (o0Var instanceof s4.c0) {
-            return ((s4.c0) o0Var).E0(i10);
-        }
-        return null;
+    public final void onRewindCanceled() {
+        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+        PhotoViewer photoViewer = this.f32717a;
+        PhotoViewer.k(photoViewer, obtain);
+        photoViewer.f31096z1.f(false);
+        org.telegram.ui.Components.eg0.f23661p0.Q.f(false);
     }
 
     @Override
-    public final void d(int i10, int i11, s4.x0 x0Var) {
-        if (this.f42822b.f2865x.r() == 0) {
-            h();
-            return;
+    public final void onRewindStart(boolean z10) {
+        PhotoViewer photoViewer = this.f32717a;
+        photoViewer.f31096z1.e(false);
+        photoViewer.f31096z1.d(!z10);
+        photoViewer.f31096z1.f(true);
+        photoViewer.f30908e0.invalidate();
+        org.telegram.ui.Components.eg0.v(z10);
+    }
+
+    @Override
+    public final void updateRewindProgressUi(long j3, float f7, boolean z10) {
+        PhotoViewer photoViewer = this.f32717a;
+        photoViewer.f31096z1.g(Math.abs(j3));
+        if (z10) {
+            photoViewer.f31014q3.h(f7, false);
+            photoViewer.f31023r3.invalidate();
         }
-        int i12 = this.f33089l;
-        int i13 = i12 - i10;
-        int i14 = 0;
-        if (i12 * i13 <= 0) {
-            i13 = 0;
-        }
-        this.f33089l = i13;
-        int i15 = this.f33090m;
-        int i16 = i15 - i11;
-        if (i15 * i16 > 0) {
-            i14 = i16;
-        }
-        this.f33090m = i14;
-        if (i13 == 0 && i14 == 0) {
-            PointF a2 = a(this.f42821a);
-            if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
-                s4.y0.b(a2);
-                this.f33089l = (int) (a2.x * 10000.0f);
-                this.f33090m = (int) (a2.y * 10000.0f);
-                x0Var.b((int) (this.f33089l * 1.2f), (int) (this.f33090m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f33088k)) * 1.2f), this.f33086i);
-                return;
+        org.telegram.ui.Components.eg0 eg0Var = org.telegram.ui.Components.eg0.f23661p0;
+        eg0Var.Q.g(0L);
+        if (z10) {
+            eg0Var.Z = f7;
+            ai.n4 n4Var = eg0Var.f23665b0;
+            if (n4Var != null) {
+                n4Var.invalidate();
             }
-            x0Var.d = this.f42821a;
-            h();
+            org.telegram.ui.Components.dg0 dg0Var = eg0Var.h;
+            if (dg0Var != null) {
+                dg0Var.invalidate();
+            }
         }
-    }
-
-    @Override
-    public final void f() {
-        this.f33090m = 0;
-        this.f33089l = 0;
-    }
-
-    @Override
-    public final void g(android.view.View r8, s4.x0 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dt0.g(android.view.View, s4.x0):void");
-    }
-
-    @Override
-    public final void e() {
     }
 }

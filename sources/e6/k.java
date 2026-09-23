@@ -7,25 +7,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class k extends p {
-    public final int f8021r;
-    public final h f8022s;
-    public final Object f8023t;
+    public final int f8007r;
+    public final h f8008s;
+    public final Object f8009t;
 
     public k(h hVar, Object obj, int i10) {
         super(hVar, false);
-        this.f8021r = i10;
-        this.f8022s = hVar;
-        this.f8023t = obj;
+        this.f8007r = i10;
+        this.f8008s = hVar;
+        this.f8009t = obj;
     }
 
     @Override
     public final void n() {
-        int i10 = this.f8021r;
-        Object obj = this.f8023t;
-        h hVar = this.f8022s;
+        int i10 = this.f8007r;
+        Object obj = this.f8009t;
+        h hVar = this.f8008s;
         switch (i10) {
             case 0:
-                g6.m mVar = hVar.f8013c;
+                g6.m mVar = hVar.f7999c;
                 g6.n o9 = o();
                 int[] iArr = (int[]) obj;
                 mVar.getClass();
@@ -43,39 +43,39 @@ public final class k extends p {
                 } catch (JSONException unused) {
                 }
                 mVar.c(b10, jSONObject.toString());
-                mVar.f9448s.a(b10, o9);
+                mVar.f9434s.a(b10, o9);
                 return;
             case 1:
-                g6.m mVar2 = hVar.f8013c;
+                g6.m mVar2 = hVar.f7999c;
                 g6.n o10 = o();
                 c6.k kVar = (c6.k) obj;
                 mVar2.getClass();
-                MediaInfo mediaInfo = kVar.f4002a;
-                c6.n nVar = kVar.f4003b;
+                MediaInfo mediaInfo = kVar.f3997a;
+                c6.n nVar = kVar.f3998b;
                 if (mediaInfo == null && nVar == null) {
                     throw new IllegalArgumentException("MediaInfo and MediaQueueData should not be both null");
                 }
-                long[] jArr = kVar.f4005f;
+                long[] jArr = kVar.f4000f;
                 JSONObject jSONObject2 = new JSONObject();
                 try {
-                    MediaInfo mediaInfo2 = kVar.f4002a;
+                    MediaInfo mediaInfo2 = kVar.f3997a;
                     if (mediaInfo2 != null) {
                         jSONObject2.put("media", mediaInfo2.b());
                     }
                     if (nVar != null) {
                         jSONObject2.put("queueData", nVar.b());
                     }
-                    jSONObject2.putOpt("autoplay", kVar.f4004c);
+                    jSONObject2.putOpt("autoplay", kVar.f3999c);
                     long j3 = kVar.d;
                     if (j3 != -1) {
-                        Pattern pattern = g6.a.f9425a;
+                        Pattern pattern = g6.a.f9411a;
                         jSONObject2.put("currentTime", j3 / 1000.0d);
                     }
                     jSONObject2.put("playbackRate", kVar.e);
-                    jSONObject2.putOpt("credentials", kVar.f4007r);
-                    jSONObject2.putOpt("credentialsType", kVar.f4008s);
+                    jSONObject2.putOpt("credentials", kVar.f4002r);
+                    jSONObject2.putOpt("credentialsType", kVar.f4003s);
                     jSONObject2.putOpt("atvCredentials", kVar.v);
-                    jSONObject2.putOpt("atvCredentialsType", kVar.f4009w);
+                    jSONObject2.putOpt("atvCredentialsType", kVar.f4004w);
                     if (jArr != null) {
                         JSONArray jSONArray2 = new JSONArray();
                         for (int i12 = 0; i12 < jArr.length; i12++) {
@@ -83,11 +83,11 @@ public final class k extends p {
                         }
                         jSONObject2.put("activeTrackIds", jSONArray2);
                     }
-                    jSONObject2.putOpt("customData", kVar.f4006n);
-                    jSONObject2.put("requestId", kVar.f4010x);
+                    jSONObject2.putOpt("customData", kVar.f4001n);
+                    jSONObject2.put("requestId", kVar.f4005x);
                 } catch (JSONException e) {
-                    g6.b bVar = c6.k.f4001y;
-                    Log.e(bVar.f9427a, bVar.d("Error transforming MediaLoadRequestData into JSONObject", e));
+                    g6.b bVar = c6.k.f3996y;
+                    Log.e(bVar.f9413a, bVar.d("Error transforming MediaLoadRequestData into JSONObject", e));
                     jSONObject2 = new JSONObject();
                 }
                 long b11 = mVar2.b();
@@ -97,34 +97,34 @@ public final class k extends p {
                 } catch (JSONException unused2) {
                 }
                 mVar2.c(b11, jSONObject2.toString());
-                mVar2.f9439j.a(b11, o10);
+                mVar2.f9425j.a(b11, o10);
                 return;
             default:
-                g6.m mVar3 = hVar.f8013c;
+                g6.m mVar3 = hVar.f7999c;
                 g6.n o11 = o();
                 mVar3.getClass();
                 JSONObject jSONObject3 = new JSONObject();
                 long b12 = mVar3.b();
-                long j10 = ((c6.p) obj).f4030a;
+                long j10 = ((c6.p) obj).f4025a;
                 try {
                     jSONObject3.put("requestId", b12);
                     jSONObject3.put("type", "SEEK");
                     jSONObject3.put("mediaSessionId", mVar3.p());
-                    Pattern pattern2 = g6.a.f9425a;
+                    Pattern pattern2 = g6.a.f9411a;
                     jSONObject3.put("currentTime", j10 / 1000.0d);
                 } catch (JSONException unused3) {
                 }
                 mVar3.c(b12, jSONObject3.toString());
-                mVar3.f9437g = Long.valueOf(j10);
-                mVar3.f9442m.a(b12, new of.b(19, mVar3, o11));
+                mVar3.f9423g = Long.valueOf(j10);
+                mVar3.f9428m.a(b12, new of.b(19, mVar3, o11));
                 return;
         }
     }
 
     public k(h hVar, int[] iArr) {
         super(hVar, true);
-        this.f8021r = 0;
-        this.f8022s = hVar;
-        this.f8023t = iArr;
+        this.f8007r = 0;
+        this.f8008s = hVar;
+        this.f8009t = iArr;
     }
 }

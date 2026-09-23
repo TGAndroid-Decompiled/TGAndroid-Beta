@@ -1,24 +1,25 @@
 package org.telegram.ui;
-public final class s71 extends g.p {
-    public final u71 f37291c;
 
-    public s71(u71 u71Var) {
-        this.f37291c = u71Var;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.Switch;
+public final class s71 implements View.OnClickListener {
+    public final v71 f37146a;
+    public final TLRPC.TL_authorization f37147b;
+    public final w71 f37148c;
+
+    public s71(w71 w71Var, v71 v71Var, TLRPC.TL_authorization tL_authorization) {
+        this.f37148c = w71Var;
+        this.f37146a = v71Var;
+        this.f37147b = tL_authorization;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        u71 u71Var = this.f37291c;
-        org.telegram.ui.Components.nz nzVar = u71Var.X;
-        org.telegram.ui.Components.w51 w51Var = u71Var.f37838d0;
-        if (w51Var == null) {
-            return nzVar.J;
-        }
-        org.telegram.ui.Components.i51 G = w51Var.G(i10 - 1);
-        if (G != null && (i11 = G.f24909u) != -1) {
-            return i11;
-        }
-        return nzVar.J;
+    public final void onClick(View view) {
+        v71 v71Var = this.f37146a;
+        Switch r02 = v71Var.d;
+        r02.c(!r02.h, true);
+        this.f37147b.encrypted_requests_disabled = !v71Var.d.h;
+        w71.n(this.f37148c);
     }
 }

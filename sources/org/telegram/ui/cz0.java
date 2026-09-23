@@ -1,30 +1,37 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class cz0 implements Utilities.Callback {
-    public final int f32893a;
-    public final ProfileActivity f32894b;
+import android.content.DialogInterface;
+import org.telegram.messenger.SharedConfig;
+public final class cz0 implements DialogInterface.OnClickListener {
+    public final int f32456a;
+    public final int f32457b;
 
-    public cz0(ProfileActivity profileActivity, int i10) {
-        this.f32893a = i10;
-        this.f32894b = profileActivity;
+    public cz0(int i10, int i11) {
+        this.f32456a = i11;
+        this.f32457b = i10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f32893a) {
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        switch (this.f32456a) {
             case 0:
-                ProfileActivity profileActivity = this.f32894b;
-                profileActivity.getClass();
-                ArrayList arrayList = new ArrayList(1);
-                arrayList.add((TLRPC.InputStickerSet) obj);
-                profileActivity.showDialog(new org.telegram.ui.Components.sv(profileActivity, profileActivity.getParentActivity(), profileActivity.f31409z0, arrayList));
-                return;
+                int i11 = 2 - i10;
+                if (i11 == this.f32457b) {
+                    SharedConfig.overrideDevicePerformanceClass(-1);
+                    return;
+                } else {
+                    SharedConfig.overrideDevicePerformanceClass(i11);
+                    return;
+                }
             default:
-                ProfileActivity.e0(this.f32894b, (Boolean) obj);
-                return;
+                int i12 = 2 - i10;
+                if (i12 == this.f32457b) {
+                    SharedConfig.overrideDevicePerformanceClass(-1);
+                    return;
+                } else {
+                    SharedConfig.overrideDevicePerformanceClass(i12);
+                    return;
+                }
         }
     }
 }

@@ -1,964 +1,146 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class uj extends xm {
-    public int Y2;
-    public final ArrayList Z2;
-    public final ArrayList f38029a3;
-    public final ArrayList f38030b3;
-    public final ArrayList f38031c3;
-    public final ArrayList f38032d3;
-    public int f38033e3;
-    public int f38034f3;
-    public int f38035g3;
-    public long f38036h3;
-    public float f38037i3;
-    public float j3;
-    public boolean f38038k3;
-    public final float f38039l3;
-    public final Paint f38040m3;
-    public final Paint f38041n3;
-    public final o1.j f38042o3;
-    public final o1.k f38043p3;
-    public final o1.j f38044q3;
-    public final o1.k f38045r3;
-    public final o1.j f38046s3;
-    public final o1.k f38047t3;
-    public boolean f38048u3;
-    public final Path f38049v3;
-    public boolean f38050w3;
-    public int f38051x3;
-    public final bo y3;
+public final class uj extends s4.t {
+    public boolean S;
+    public final xn T;
 
-    public uj(bo boVar, Context context, zn znVar) {
-        super(boVar, context, znVar);
-        this.y3 = boVar;
-        this.Z2 = new ArrayList();
-        this.f38029a3 = new ArrayList();
-        this.f38030b3 = new ArrayList();
-        this.f38031c3 = new ArrayList();
-        this.f38032d3 = new ArrayList(10);
-        this.f38039l3 = 2000.0f;
-        Paint paint = new Paint(1);
-        this.f38040m3 = paint;
-        Paint paint2 = new Paint(1);
-        this.f38041n3 = paint2;
-        o1.j jVar = new o1.j(0.0f);
-        this.f38042o3 = jVar;
-        o1.k kVar = new o1.k(jVar);
-        kVar.h = 0.0f;
-        kVar.f15343g = 2000.0f;
-        kVar.f15349u = org.telegram.ui.Cells.q3.l(0.0f, 1500.0f, 1.0f);
-        kVar.b(new o1.g(this) {
-            public final uj f37411b;
-
-            {
-                this.f37411b = this;
-            }
-
-            @Override
-            public final void a(o1.h hVar, float f7, float f10) {
-                switch (r2) {
-                    case 0:
-                        this.f37411b.invalidate();
-                        return;
-                    case 1:
-                        this.f37411b.invalidate();
-                        return;
-                    default:
-                        this.f37411b.invalidate();
-                        return;
-                }
-            }
-        });
-        this.f38043p3 = kVar;
-        o1.j jVar2 = new o1.j(0.0f);
-        this.f38044q3 = jVar2;
-        o1.k kVar2 = new o1.k(jVar2);
-        kVar2.h = 0.0f;
-        kVar2.f15349u = org.telegram.ui.Cells.q3.l(0.0f, 400.0f, 0.5f);
-        kVar2.b(new o1.g(this) {
-            public final uj f37411b;
-
-            {
-                this.f37411b = this;
-            }
-
-            @Override
-            public final void a(o1.h hVar, float f7, float f10) {
-                switch (r2) {
-                    case 0:
-                        this.f37411b.invalidate();
-                        return;
-                    case 1:
-                        this.f37411b.invalidate();
-                        return;
-                    default:
-                        this.f37411b.invalidate();
-                        return;
-                }
-            }
-        });
-        this.f38045r3 = kVar2;
-        o1.j jVar3 = new o1.j(0.0f);
-        this.f38046s3 = jVar3;
-        o1.k kVar3 = new o1.k(jVar3);
-        kVar3.h = 0.0f;
-        kVar3.f15349u = org.telegram.ui.Cells.q3.l(0.0f, 200.0f, 1.0f);
-        kVar3.b(new o1.g(this) {
-            public final uj f37411b;
-
-            {
-                this.f37411b = this;
-            }
-
-            @Override
-            public final void a(o1.h hVar, float f7, float f10) {
-                switch (r2) {
-                    case 0:
-                        this.f37411b.invalidate();
-                        return;
-                    case 1:
-                        this.f37411b.invalidate();
-                        return;
-                    default:
-                        this.f37411b.invalidate();
-                        return;
-                }
-            }
-        });
-        this.f38047t3 = kVar3;
-        this.f38049v3 = new Path();
-        this.f38051x3 = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeCap(cap);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    public uj(xn xnVar, boolean z10) {
+        super(z10);
+        this.T = xnVar;
     }
 
     @Override
-    public final boolean F0(View view) {
-        if (view.getVisibility() != 4 && view.getVisibility() != 8) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final AccessibilityNodeInfo createAccessibilityNodeInfo() {
-        if (this.y3.h != null) {
-            return null;
-        }
-        return super.createAccessibilityNodeInfo();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        bo boVar = this.y3;
-        boVar.f32488u8 = null;
-        canvas.save();
-        if (boVar.V9 != null && boVar.R9) {
-            boolean z10 = boVar.S9;
-        }
-        this.G1.setEmpty();
-        if (boVar.N9 != 0.0f) {
-            int save = canvas.save();
-            if (boVar.U9 != 0.0f) {
-                f7 = (boVar.f32519x0.getMeasuredHeight() - boVar.N9) * boVar.U9;
-            } else {
-                f7 = 0.0f;
-            }
-            float f10 = (-boVar.N9) - f7;
-            boVar.f32541ya = f10;
-            canvas.translate(0.0f, f10);
-            w1(canvas, null);
-            super.dispatchDraw(canvas);
-            x1(canvas, null);
-            canvas.restoreToCount(save);
-        } else {
-            w1(canvas, null);
-            super.dispatchDraw(canvas);
-            x1(canvas, null);
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r44) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uj.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(android.graphics.Canvas r22, android.view.View r23, long r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uj.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
-    }
-
-    @Override
-    public final void h1(View view, float f7, float f10, boolean z10) {
-        MessageObject.GroupedMessages currentMessagesGroup;
-        super.h1(view, f7, f10, z10);
-        if (view instanceof org.telegram.ui.Cells.t1) {
-            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
-            MessageObject messageObject = t1Var.getMessageObject();
-            if (!messageObject.isMusic() && !messageObject.isDocument() && (currentMessagesGroup = t1Var.getCurrentMessagesGroup()) != null) {
-                int childCount = getChildCount();
-                for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = getChildAt(i10);
-                    if (childAt != view && (childAt instanceof org.telegram.ui.Cells.t1)) {
-                        org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) childAt;
-                        if (t1Var2.getCurrentMessagesGroup() == currentMessagesGroup) {
-                            t1Var2.setPressed(z10);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uj.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        if (this.y3.h == null) {
-            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-            AccessibilityNodeInfo.CollectionInfo collectionInfo = accessibilityNodeInfo.getCollectionInfo();
-            if (collectionInfo != null) {
-                accessibilityNodeInfo.setCollectionInfo(AccessibilityNodeInfo.CollectionInfo.obtain(collectionInfo.getRowCount(), 1, false));
-            }
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        uh.j jVar;
-        org.telegram.ui.ActionBar.k kVar;
-        bo boVar = this.y3;
-        um umVar = boVar.f32268c9;
-        umVar.getClass();
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            AndroidUtilities.cancelRunOnUIThread(umVar.f19929g0);
-            umVar.f19958z = false;
-        }
-        if (this.X1 || ((jVar = boVar.X9) != null && jVar.a())) {
-            return false;
-        }
-        boolean onInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
-        kVar = ((org.telegram.ui.ActionBar.n2) boVar).actionBar;
-        if (!kVar.s() && !boVar.A9()) {
-            y1(motionEvent);
-        }
-        return onInterceptTouchEvent;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        int i14 = this.Y2;
-        int i15 = i12 - i10;
-        bo boVar = this.y3;
-        if (i14 != i15) {
-            if (i14 != 0) {
-                boVar.h9(false);
-            }
-            this.Y2 = i15;
-        }
-        int measuredHeight = getMeasuredHeight();
-        if (this.f38051x3 != measuredHeight) {
-            this.f38050w3 = true;
-            wj wjVar = boVar.f32532y0;
-            if (wjVar != null) {
-                wjVar.g();
-            }
-            boVar.W8.a();
-            this.f38050w3 = false;
-            this.f38051x3 = measuredHeight;
-        }
-        boVar.R5 = false;
-        um umVar = boVar.f32268c9;
-        if (umVar != null && umVar.y()) {
-            boVar.f32268c9.x();
-        }
-        boVar.p9();
-        boVar.D9();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        zp zpVar;
-        bo boVar = this.y3;
-        le.b bVar = boVar.f32479tc;
-        um umVar = boVar.f32268c9;
-        umVar.getClass();
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            AndroidUtilities.cancelRunOnUIThread(umVar.f19929g0);
-            umVar.f19958z = false;
-        }
-        if (motionEvent.getAction() == 0) {
-            boVar.f32465sa = true;
-        }
-        if (boVar.N9 != 0.0f && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            float min = Math.min(1.0f, boVar.N9 / AndroidUtilities.dp(110.0f));
-            if (motionEvent.getAction() == 1 && min == 1.0f && (zpVar = boVar.P9) != null && !zpVar.R) {
-                if (zpVar.K != 1.0f) {
-                    float f7 = boVar.N9;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, AndroidUtilities.dp(8.0f) + f7);
-                    boVar.Q9 = ofFloat;
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final uj f37690b;
-
-                        {
-                            this.f37690b = this;
-                        }
-
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            switch (r2) {
-                                case 0:
-                                    bo boVar2 = this.f37690b.y3;
-                                    boVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    boVar2.f32519x0.invalidate();
-                                    return;
-                                case 1:
-                                    bo boVar3 = this.f37690b.y3;
-                                    boVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    boVar3.f32519x0.invalidate();
-                                    return;
-                                case 2:
-                                    bo boVar4 = this.f37690b.y3;
-                                    boVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    boVar4.f32519x0.invalidate();
-                                    return;
-                                default:
-                                    bo boVar5 = this.f37690b.y3;
-                                    boVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    boVar5.f32519x0.invalidate();
-                                    return;
-                            }
-                        }
-                    });
-                    ofFloat.setDuration(200L);
-                    org.telegram.ui.Components.qr qrVar = org.telegram.ui.Components.qr.f27420f;
-                    ofFloat.setInterpolator(qrVar);
-                    ofFloat.start();
-                    final zp zpVar2 = boVar.P9;
-                    dj djVar = new dj(this, 1);
-                    AnimatorSet animatorSet = zpVar2.J;
-                    if (animatorSet != null) {
-                        animatorSet.removeAllListeners();
-                        zpVar2.J.cancel();
-                    }
-                    zpVar2.Y = djVar;
-                    zpVar2.J = new AnimatorSet();
-                    ValueAnimator ofFloat2 = ValueAnimator.ofFloat(zpVar2.K, 1.0f);
-                    ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            switch (r2) {
-                                case 0:
-                                    zp zpVar3 = zpVar2;
-                                    zpVar3.getClass();
-                                    zpVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    zpVar3.T.invalidate();
-                                    View view = zpVar3.f40252a0;
-                                    if (view != null) {
-                                        view.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    zp zpVar4 = zpVar2;
-                                    zpVar4.getClass();
-                                    zpVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = zpVar4.f40252a0;
-                                    if (view2 != null) {
-                                        view2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(zpVar2.L, 0.0f);
-                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            switch (r2) {
-                                case 0:
-                                    zp zpVar3 = zpVar2;
-                                    zpVar3.getClass();
-                                    zpVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    zpVar3.T.invalidate();
-                                    View view = zpVar3.f40252a0;
-                                    if (view != null) {
-                                        view.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    zp zpVar4 = zpVar2;
-                                    zpVar4.getClass();
-                                    zpVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = zpVar4.f40252a0;
-                                    if (view2 != null) {
-                                        view2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                    zpVar2.J.addListener(new t4(zpVar2, 23));
-                    zpVar2.J.playTogether(ofFloat2, ofFloat3);
-                    zpVar2.J.setDuration(120L);
-                    zpVar2.J.setInterpolator(qrVar);
-                    zpVar2.J.start();
-                } else {
-                    bo.X1(boVar);
-                }
-            } else {
-                zp zpVar3 = boVar.P9;
-                if (zpVar3 != null && zpVar3.R) {
-                    long currentTimeMillis = System.currentTimeMillis();
-                    zp zpVar4 = boVar.P9;
-                    if (currentTimeMillis - zpVar4.U < 500 && zpVar4.M) {
-                        AnimatorSet animatorSet2 = new AnimatorSet();
-                        boVar.Q9 = animatorSet2;
-                        if (boVar.P9 != null) {
-                            bVar.a(false, true);
-                        }
-                        ValueAnimator ofFloat4 = ValueAnimator.ofFloat(boVar.N9, AndroidUtilities.dp(111.0f));
-                        ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final uj f37690b;
-
-                            {
-                                this.f37690b = this;
-                            }
-
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                switch (r2) {
-                                    case 0:
-                                        bo boVar2 = this.f37690b.y3;
-                                        boVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        boVar2.f32519x0.invalidate();
-                                        return;
-                                    case 1:
-                                        bo boVar3 = this.f37690b.y3;
-                                        boVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        boVar3.f32519x0.invalidate();
-                                        return;
-                                    case 2:
-                                        bo boVar4 = this.f37690b.y3;
-                                        boVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        boVar4.f32519x0.invalidate();
-                                        return;
-                                    default:
-                                        bo boVar5 = this.f37690b.y3;
-                                        boVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        boVar5.f32519x0.invalidate();
-                                        return;
-                                }
-                            }
-                        });
-                        ofFloat4.setDuration(400L);
-                        ofFloat4.setInterpolator(org.telegram.ui.Components.qr.f27420f);
-                        ValueAnimator ofFloat5 = ValueAnimator.ofFloat(AndroidUtilities.dp(111.0f), 0.0f);
-                        ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final uj f37690b;
-
-                            {
-                                this.f37690b = this;
-                            }
-
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                switch (r2) {
-                                    case 0:
-                                        bo boVar2 = this.f37690b.y3;
-                                        boVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        boVar2.f32519x0.invalidate();
-                                        return;
-                                    case 1:
-                                        bo boVar3 = this.f37690b.y3;
-                                        boVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        boVar3.f32519x0.invalidate();
-                                        return;
-                                    case 2:
-                                        bo boVar4 = this.f37690b.y3;
-                                        boVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        boVar4.f32519x0.invalidate();
-                                        return;
-                                    default:
-                                        bo boVar5 = this.f37690b.y3;
-                                        boVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        boVar5.f32519x0.invalidate();
-                                        return;
-                                }
-                            }
-                        });
-                        ofFloat5.setStartDelay(600L);
-                        ofFloat5.setDuration(250L);
-                        ofFloat5.setInterpolator(ji.n.V);
-                        animatorSet2.playSequentially(ofFloat4, ofFloat5);
-                        animatorSet2.start();
-                    }
-                }
-                ValueAnimator ofFloat6 = ValueAnimator.ofFloat(boVar.N9, 0.0f);
-                boVar.Q9 = ofFloat6;
-                if (boVar.P9 != null) {
-                    bVar.a(false, true);
-                }
-                ofFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final uj f37690b;
-
-                    {
-                        this.f37690b = this;
-                    }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        switch (r2) {
-                            case 0:
-                                bo boVar2 = this.f37690b.y3;
-                                boVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                boVar2.f32519x0.invalidate();
-                                return;
-                            case 1:
-                                bo boVar3 = this.f37690b.y3;
-                                boVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                boVar3.f32519x0.invalidate();
-                                return;
-                            case 2:
-                                bo boVar4 = this.f37690b.y3;
-                                boVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                boVar4.f32519x0.invalidate();
-                                return;
-                            default:
-                                bo boVar5 = this.f37690b.y3;
-                                boVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                boVar5.f32519x0.invalidate();
-                                return;
-                        }
-                    }
-                });
-                ofFloat6.setDuration(250L);
-                ofFloat6.setInterpolator(ji.n.V);
-                ofFloat6.start();
-            }
-        }
-        if (!this.X1) {
-            boolean onTouchEvent = super.onTouchEvent(motionEvent);
-            kVar = ((org.telegram.ui.ActionBar.n2) boVar).actionBar;
-            if (!kVar.s() && !boVar.A9()) {
-                y1(motionEvent);
-                if (boVar.f32304f9 || onTouchEvent) {
-                    return true;
-                }
-            } else {
-                return onTouchEvent;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        if (this.y3.Q8 != null) {
-            return false;
-        }
-        return super.requestChildRectangleOnScreen(view, rect, z10);
-    }
-
-    @Override
-    public final void requestDisallowInterceptTouchEvent(boolean z10) {
-        super.requestDisallowInterceptTouchEvent(z10);
-        if (this.y3.f32280d9 != null) {
-            y1(null);
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f38050w3) {
-            return;
-        }
-        hh.a aVar = this.y3.Pb;
-        if (aVar.f10495b != 0) {
-            int childCount = aVar.f10494a.getChildCount();
-            for (int i10 = 0; i10 < childCount; i10++) {
-                aVar.f10494a.getChildAt(i10).forceLayout();
-            }
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void setItemAnimator(s4.m0 m0Var) {
-        if (this.X1) {
-            return;
-        }
-        super.setItemAnimator(m0Var);
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        if (f7 != getTranslationY()) {
-            super.setTranslationY(f7);
-            bo boVar = this.y3;
-            boVar.o9();
-            boVar.r9();
-        }
-    }
-
-    public final void w1(android.graphics.Canvas r30, android.graphics.RectF r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uj.w1(android.graphics.Canvas, android.graphics.RectF):void");
-    }
-
-    public final void x1(Canvas canvas, RectF rectF) {
-        float f7;
-        boolean z10;
-        float f10;
-        boolean z11;
-        float f11;
-        ArrayList arrayList;
-        float f12;
-        float f13;
-        ArrayList arrayList2 = this.Z2;
-        int size = arrayList2.size();
-        bo boVar = this.y3;
-        boolean z12 = 1;
-        boolean z13 = false;
-        if (size > 0) {
-            for (int i10 = 0; i10 < size; i10++) {
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) arrayList2.get(i10);
-                if (!bo.d2(boVar, t1Var, rectF)) {
-                    canvas.save();
-                    canvas.translate(t1Var.E2(false) + t1Var.getLeft(), t1Var.getY() + t1Var.getPaddingTop());
-                    if (t1Var.a()) {
-                        f13 = t1Var.getAlpha();
-                    } else {
-                        f13 = 1.0f;
-                    }
-                    t1Var.m2(f13, canvas, true);
-                    canvas.restore();
-                }
-            }
-            arrayList2.clear();
-        }
-        ArrayList arrayList3 = this.f38029a3;
-        int size2 = arrayList3.size();
-        if (size2 > 0) {
-            for (int i11 = 0; i11 < size2; i11++) {
-                org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) arrayList3.get(i11);
-                if (!bo.d2(boVar, t1Var2, rectF)) {
-                    float E2 = t1Var2.E2(false) + t1Var2.getLeft();
-                    float y3 = t1Var2.getY() + t1Var2.getPaddingTop();
-                    if (t1Var2.a()) {
-                        f12 = t1Var2.getAlpha();
-                    } else {
-                        f12 = 1.0f;
-                    }
-                    canvas.save();
-                    canvas.translate(E2, y3);
-                    t1Var2.setInvalidatesParent(true);
-                    t1Var2.W1(canvas, f12);
-                    t1Var2.setInvalidatesParent(false);
-                    canvas.restore();
-                }
-            }
-            arrayList3.clear();
-        }
-        ArrayList arrayList4 = this.f38030b3;
-        int size3 = arrayList4.size();
-        if (size3 > 0) {
-            int i12 = 0;
-            while (i12 < size3) {
-                org.telegram.ui.Cells.t1 t1Var3 = (org.telegram.ui.Cells.t1) arrayList4.get(i12);
-                if (bo.d2(boVar, t1Var3, rectF)) {
-                    arrayList = arrayList4;
-                } else {
-                    if (t1Var3.getCurrentPosition() != null && (t1Var3.getCurrentPosition().flags & z12) == 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    if (t1Var3.a()) {
-                        f11 = t1Var3.getAlpha();
-                    } else {
-                        f11 = 1.0f;
-                    }
-                    float E22 = t1Var3.E2(z13) + t1Var3.getLeft();
-                    float y10 = t1Var3.getY() + t1Var3.getPaddingTop();
-                    canvas.save();
-                    MessageObject.GroupedMessages currentMessagesGroup = t1Var3.getCurrentMessagesGroup();
-                    if (currentMessagesGroup != null) {
-                        if (currentMessagesGroup.transitionParams.backgroundChangeBounds) {
-                            float E23 = t1Var3.E2(z12);
-                            MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
-                            float f14 = transitionParams.left + E23 + transitionParams.offsetLeft;
-                            arrayList = arrayList4;
-                            float f15 = transitionParams.top + transitionParams.offsetTop;
-                            float f16 = transitionParams.right + E23 + transitionParams.offsetRight;
-                            float f17 = transitionParams.bottom + transitionParams.offsetBottom;
-                            if (!transitionParams.backgroundChangeBounds) {
-                                f15 += t1Var3.getTranslationY();
-                                f17 += t1Var3.getTranslationY();
-                            }
-                            canvas.clipRect(f14 + AndroidUtilities.dp(8.0f), f15 + AndroidUtilities.dp(8.0f), f16 - AndroidUtilities.dp(8.0f), f17 - AndroidUtilities.dp(8.0f));
-                        } else {
-                            arrayList = arrayList4;
-                        }
-                    } else {
-                        arrayList = arrayList4;
-                    }
-                    if (t1Var3.getTransitionParams().f20906v0) {
-                        canvas.translate(E22, y10);
-                        t1Var3.setInvalidatesParent(true);
-                        t1Var3.I1(f11, canvas, z11);
-                        t1Var3.setInvalidatesParent(false);
-                    }
-                    canvas.restore();
-                }
-                i12++;
-                arrayList4 = arrayList;
-                z12 = 1;
-                z13 = false;
-            }
-            f7 = 8.0f;
-            arrayList4.clear();
-        } else {
-            f7 = 8.0f;
-        }
-        ArrayList arrayList5 = this.f38031c3;
-        int size4 = arrayList5.size();
-        if (size4 > 0) {
-            for (int i13 = 0; i13 < size4; i13++) {
-                org.telegram.ui.Cells.t1 t1Var4 = (org.telegram.ui.Cells.t1) arrayList5.get(i13);
-                if (!bo.d2(boVar, t1Var4, rectF)) {
-                    if (t1Var4.getCurrentPosition() != null && (t1Var4.getCurrentPosition().flags & 1) == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (t1Var4.a()) {
-                        f10 = t1Var4.getAlpha();
-                    } else {
-                        f10 = 1.0f;
-                    }
-                    float E24 = t1Var4.E2(false) + t1Var4.getLeft();
-                    float y11 = t1Var4.getY() + t1Var4.getPaddingTop();
-                    canvas.save();
-                    MessageObject.GroupedMessages currentMessagesGroup2 = t1Var4.getCurrentMessagesGroup();
-                    if (currentMessagesGroup2 != null && currentMessagesGroup2.transitionParams.backgroundChangeBounds) {
-                        float E25 = t1Var4.E2(true);
-                        MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup2.transitionParams;
-                        float f18 = transitionParams2.left + E25 + transitionParams2.offsetLeft;
-                        float f19 = transitionParams2.top + transitionParams2.offsetTop;
-                        float f20 = transitionParams2.right + E25 + transitionParams2.offsetRight;
-                        float f21 = transitionParams2.bottom + transitionParams2.offsetBottom;
-                        if (!transitionParams2.backgroundChangeBounds) {
-                            f19 += t1Var4.getTranslationY();
-                            f21 += t1Var4.getTranslationY();
-                        }
-                        canvas.clipRect(f18 + AndroidUtilities.dp(f7), f19 + AndroidUtilities.dp(f7), f20 - AndroidUtilities.dp(f7), f21 - AndroidUtilities.dp(f7));
-                    }
-                    if (!z10 && t1Var4.getTransitionParams().f20906v0) {
-                        canvas.translate(E24, y11);
-                        t1Var4.setInvalidatesParent(true);
-                        t1Var4.d2(canvas, f10, null);
-                        t1Var4.N1(canvas, f10);
-                        t1Var4.setInvalidatesParent(false);
-                    }
-                    canvas.restore();
-                }
-            }
-            arrayList5.clear();
-        }
-    }
-
-    public final void y1(MotionEvent motionEvent) {
-        float f7;
-        float f10;
-        TLRPC.Chat chat;
-        MessageObject.GroupedMessages y82;
+    public final boolean B1(int i10) {
+        int i11;
         MessageObject messageObject;
-        boolean z10;
-        ArrayList arrayList;
-        TLRPC.Chat chat2;
-        bo boVar = this.y3;
-        if (motionEvent != null) {
-            boVar.D4 = true;
-        }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !boVar.f32304f9 && !boVar.f32292e9 && boVar.f32280d9 == null) {
-            z10 = ((org.telegram.ui.ActionBar.n2) boVar).inPreviewMode;
-            if (!z10) {
-                View pressedChildView = getPressedChildView();
-                if (pressedChildView instanceof org.telegram.ui.Cells.t1) {
-                    if (boVar.f32280d9 != null) {
-                        bo.V1(boVar, 0.0f);
+        MessageObject.GroupedMessages X8;
+        byte b10;
+        xn xnVar = this.T;
+        km kmVar = xnVar.A0;
+        int i12 = kmVar.J;
+        if (i10 >= i12 && i10 < kmVar.K && (i11 = i10 - i12) >= 0 && i11 < kmVar.L().size() && (X8 = xnVar.X8((messageObject = (MessageObject) xnVar.A0.L().get(i11)))) != null) {
+            MessageObject.GroupedMessagePosition position = X8.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = X8.posArray.size();
+                for (int i13 = 0; i13 < size; i13++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = X8.posArray.get(i13);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
                     }
-                    boVar.f32280d9 = (org.telegram.ui.Cells.t1) pressedChildView;
-                    MessageObject T1 = bo.T1(boVar);
-                    boolean F6 = boVar.F6(T1);
-                    int i10 = boVar.R3;
-                    if ((i10 == 0 || i10 == 5 || i10 == 8 || (i10 == 3 && boVar.f32275d4 == boVar.getUserConfig().getClientUserId())) && (((arrayList = boVar.f32235a4) == null || !arrayList.contains(T1)) && ((boVar.E8(T1) != 1 || (T1.getDialogId() != boVar.L6 && !T1.needDrawBluredPreview())) && ((boVar.h != null || T1.getId() >= 0) && (((chat2 = boVar.e) == null || !ChatObject.isForum(chat2) || F6) && !boVar.b9() && (!T1.isEphemeral() || !T1.isOut())))))) {
-                        this.f38035g3 = motionEvent.getPointerId(0);
-                        boVar.f32292e9 = true;
-                        this.f38033e3 = (int) motionEvent.getX();
-                        this.f38034f3 = (int) motionEvent.getY();
-                        return;
-                    }
-                    bo.V1(boVar, 0.0f);
-                    boVar.f32280d9 = null;
-                    return;
                 }
-                return;
             }
         }
-        if (boVar.f32280d9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f38035g3) {
-            int max = Math.max(AndroidUtilities.dp(-80.0f), Math.min(0, (int) (motionEvent.getX() - this.f38033e3)));
-            int abs = Math.abs(((int) motionEvent.getY()) - this.f38034f3);
-            if (getScrollState() == 0 && boVar.f32292e9 && !boVar.f32304f9 && max <= (-AndroidUtilities.getPixelsInCM(0.4f, true)) && Math.abs(max) / 3 > abs) {
-                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                boVar.f32280d9.onTouchEvent(obtain);
-                super.onInterceptTouchEvent(obtain);
-                obtain.recycle();
-                boVar.f32544z0.R = false;
-                boVar.f32292e9 = false;
-                boVar.f32304f9 = true;
-                this.f38033e3 = (int) motionEvent.getX();
-                if (getParent() != null) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                }
-            } else if (boVar.f32304f9) {
-                if (Math.abs(max) >= AndroidUtilities.dp(50.0f)) {
-                    if (!this.f38038k3) {
-                        try {
-                            performHapticFeedback(3, 2);
-                        } catch (Exception unused) {
-                        }
-                        this.f38038k3 = true;
-                    }
-                } else {
-                    this.f38038k3 = false;
-                }
-                float f11 = max;
-                bo.V1(boVar, f11);
-                MessageObject T12 = bo.T1(boVar);
-                if (T12 != null && (T12.isRoundVideo() || T12.isVideo())) {
-                    boVar.Mc(false, false);
-                }
-                org.telegram.ui.Cells.t1 t1Var = boVar.f32280d9;
-                if (com.google.android.gms.internal.vision.e2.u(t1Var)) {
-                    z1(t1Var, f11);
-                }
-                invalidate();
-            }
-        } else if (boVar.f32280d9 != null) {
-            if (motionEvent != null) {
-                if (motionEvent.getPointerId(0) == this.f38035g3) {
-                    if (motionEvent.getAction() != 3 && motionEvent.getAction() != 1 && motionEvent.getAction() != 6) {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-            if (motionEvent != null && motionEvent.getAction() != 3) {
-                org.telegram.ui.Cells.t1 t1Var2 = boVar.f32280d9;
-                if (com.google.android.gms.internal.vision.e2.u(t1Var2)) {
-                    f10 = t1Var2.E2(false);
-                } else {
-                    f10 = 0.0f;
-                }
-                if (Math.abs(f10) >= AndroidUtilities.dp(50.0f)) {
-                    MessageObject T13 = bo.T1(boVar);
-                    boolean F62 = boVar.F6(T13);
-                    rk rkVar = boVar.O0;
-                    if ((rkVar != null && rkVar.getVisibility() == 0 && ((!boVar.I0 || !F62) && !T13.wasJustSent)) || ((chat = boVar.e) != null && ((ChatObject.isNotInChat(chat) && !boVar.F9()) || ((ChatObject.isChannel(boVar.e) && !ChatObject.canPost(boVar.e) && !boVar.e.megagroup) || !ChatObject.canSendMessages(boVar.e))))) {
-                        if (T13.getGroupId() != 0 && (y82 = boVar.y8(T13.getGroupId())) != null && (messageObject = y82.captionMessage) != null) {
-                            T13 = messageObject;
-                        }
-                        boVar.f32398n5 = T13;
-                        Bundle e = org.telegram.messenger.y0.e(3, "onlySelect", "dialogsType", true);
-                        e.putBoolean("quote", true);
-                        e.putBoolean("reply_to", true);
-                        long peerDialogId = DialogObject.getPeerDialogId(T13.getFromPeer());
-                        int i11 = (peerDialogId > 0L ? 1 : (peerDialogId == 0L ? 0 : -1));
-                        if (i11 != 0 && peerDialogId != boVar.a() && peerDialogId != boVar.getUserConfig().getClientUserId() && i11 > 0) {
-                            e.putLong("reply_to_author", peerDialogId);
-                        }
-                        e.putInt("messagesCount", 1);
-                        e.putBoolean("canSelectTopics", true);
-                        uy uyVar = new uy(e);
-                        uyVar.C2 = boVar;
-                        boVar.presentFragment(uyVar);
-                    } else {
-                        boVar.Bb(bo.T1(boVar));
-                    }
-                }
-            }
-            org.telegram.ui.Cells.t1 t1Var3 = boVar.f32280d9;
-            if (com.google.android.gms.internal.vision.e2.u(t1Var3)) {
-                f7 = t1Var3.getSlidingOffsetX();
-            } else {
-                f7 = 0.0f;
-            }
-            this.j3 = f7;
-            if (f7 == 0.0f) {
-                boVar.f32280d9 = null;
-            }
-            this.f38036h3 = System.currentTimeMillis();
-            this.f38037i3 = 0.0f;
-            invalidate();
-            boVar.f32292e9 = false;
-            boVar.f32304f9 = false;
-            boVar.f32544z0.R = true;
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.t1) {
+            return !((org.telegram.ui.Cells.t1) view).getMessageObject().isOutOwner();
+        }
+        return false;
+    }
+
+    @Override
+    public final int G() {
+        if (this.S) {
+            return (int) this.T.f39541s9;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int J() {
+        if (this.S) {
+            return (int) this.T.f39541s9;
+        }
+        return F();
+    }
+
+    @Override
+    public final int K() {
+        if (this.S) {
+            return (int) ((this.f42729n - this.T.f39541s9) - C());
+        }
+        return super.K();
+    }
+
+    @Override
+    public final int X0() {
+        return (int) this.T.f39541s9;
+    }
+
+    @Override
+    public final void b0(of.e eVar, s4.z0 z0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            super.b0(eVar, z0Var);
+            return;
+        }
+        try {
+            super.b0(eVar, z0Var);
+        } catch (Exception e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new aj(this, 2));
         }
     }
 
-    public final void z1(org.telegram.ui.Cells.t1 t1Var, float f7) {
-        MessageObject.GroupedMessages currentMessagesGroup = t1Var.getCurrentMessagesGroup();
-        if (currentMessagesGroup == null) {
-            return;
+    @Override
+    public final void i1(int i10, int i11, boolean z10) {
+        if (!z10) {
+            i11 = (int) ((i11 - F()) + this.T.f39541s9);
         }
-        int childCount = getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = getChildAt(i10);
-            if (childAt != t1Var && (childAt instanceof org.telegram.ui.Cells.t1)) {
-                org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) childAt;
-                if (t1Var2.getCurrentMessagesGroup() == currentMessagesGroup) {
-                    t1Var2.setSlidingOffset(f7);
-                    t1Var2.invalidate();
-                }
-            }
-        }
-        invalidate();
+        super.i1(i10, i11, z10);
+    }
+
+    @Override
+    public final int j(s4.z0 z0Var) {
+        this.S = true;
+        int B0 = B0(z0Var);
+        this.S = false;
+        return B0;
+    }
+
+    @Override
+    public final int k(s4.z0 z0Var) {
+        this.S = true;
+        int C0 = C0(z0Var);
+        this.S = false;
+        return C0;
+    }
+
+    @Override
+    public final int l(s4.z0 z0Var) {
+        this.S = true;
+        int D0 = D0(z0Var);
+        this.S = false;
+        return D0;
+    }
+
+    @Override
+    public final int o0(int r11, of.e r12, s4.z0 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uj.o0(int, of.e, s4.z0):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        this.T.f39542sa = false;
+        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
+        oVar.f42777a = i10;
+        w0(oVar);
+    }
+
+    @Override
+    public final boolean y0() {
+        return true;
     }
 }

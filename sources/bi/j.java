@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ou0;
 import org.telegram.ui.Components.qt0;
-import org.telegram.ui.Components.tk0;
+import org.telegram.ui.Components.uk0;
 public final class j extends ou0 {
-    public final u f3570q3;
+    public final u f3565q3;
 
     public j(u uVar, Context context) {
         super(context);
-        this.f3570q3 = uVar;
+        this.f3565q3 = uVar;
     }
 
     @Override
@@ -31,10 +31,10 @@ public final class j extends ou0 {
             }
         }
         float f7 = i11;
-        u uVar = this.f3570q3;
+        u uVar = this.f3565q3;
         r rVar = uVar.J;
-        if (uVar.f3589b) {
-            qt0 qt0Var = uVar.f3593r;
+        if (uVar.f3584b) {
+            qt0 qt0Var = uVar.f3588r;
             int i13 = 0;
             for (int i14 = 0; i14 < qt0Var.getChildCount(); i14++) {
                 int bottom2 = qt0Var.getChildAt(i14).getBottom() - qt0Var.getPaddingTop();
@@ -42,7 +42,7 @@ public final class j extends ou0 {
                     i13 = bottom2;
                 }
             }
-            f7 = AndroidUtilities.lerp(f7, i13, uVar.f3590c);
+            f7 = AndroidUtilities.lerp(f7, i13, uVar.f3585c);
         }
         if (uVar.v.h() <= 0) {
             i10 = 8;
@@ -53,40 +53,40 @@ public final class j extends ou0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f3570q3.e;
+        return this.f3565q3.e;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f3570q3.f3590c;
+        return this.f3565q3.f3585c;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.f3570q3.d;
+        return this.f3565q3.d;
     }
 
     @Override
-    public final tk0 getMovingAdapter() {
-        u uVar = this.f3570q3;
-        if (uVar.G.f42820y == 0 && !uVar.W.G.C1) {
+    public final uk0 getMovingAdapter() {
+        u uVar = this.f3565q3;
+        if (uVar.G.f42776y == 0 && !uVar.W.G.C1) {
             return uVar.v;
         }
         return null;
     }
 
     @Override
-    public final tk0 getSupportingAdapter() {
-        return this.f3570q3.f3595w;
+    public final uk0 getSupportingAdapter() {
+        return this.f3565q3.f3590w;
     }
 
     @Override
     public final qt0 getSupportingListView() {
-        return this.f3570q3.f3593r;
+        return this.f3565q3.f3588r;
     }
 
     @Override
     public final boolean z1() {
-        return this.f3570q3.f3589b;
+        return this.f3565q3.f3584b;
     }
 }

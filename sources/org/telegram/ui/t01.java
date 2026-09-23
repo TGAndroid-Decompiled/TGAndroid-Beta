@@ -1,51 +1,121 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_fragment;
-public final class t01 extends ClickableSpan {
-    public final TLRPC.TL_username f37523a;
-    public final String f37524b;
-    public final a11 f37525c;
+public final class t01 extends View implements org.telegram.ui.Components.kh0 {
+    public boolean E;
+    public float F;
+    public float G;
+    public float[] H;
+    public long I;
+    public float J;
+    public int K;
+    public float L;
+    public int M;
+    public float N;
+    public int O;
+    public final ProfileActivity P;
+    public final int f37485a;
+    public final Rect f37486b;
+    public final Rect f37487c;
+    public final RectF d;
+    public final GradientDrawable e;
+    public final GradientDrawable f37488f;
+    public final ValueAnimator h;
+    public final float[] f37489n;
+    public final Paint f37490r;
+    public final Paint f37491s;
+    public final Paint v;
+    public final GradientDrawable[] f37492w;
+    public final boolean[] f37493x;
+    public final float[] f37494y;
 
-    public t01(a11 a11Var, TLRPC.TL_username tL_username, String str) {
-        this.f37525c = a11Var;
-        this.f37523a = tL_username;
-        this.f37524b = str;
+    public t01(org.telegram.ui.ProfileActivity r7, android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t01.<init>(org.telegram.ui.ProfileActivity, android.content.Context):void");
     }
 
     @Override
-    public final void onClick(View view) {
-        ProfileActivity profileActivity = this.f37525c.e;
-        TLRPC.TL_username tL_username = this.f37523a;
-        if (!tL_username.editable) {
-            if (profileActivity.f31299i5 != this) {
-                profileActivity.M4(this);
-                TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
-                TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
-                tL_inputCollectibleUsername.username = tL_username.username;
-                tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
-                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new bc0(18, this, tL_username)), profileActivity.getClassGuid());
-                return;
+    public final void a() {
+        Arrays.fill(this.f37493x, false);
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void b(boolean z10) {
+        this.f37493x[!z10 ? 1 : 0] = true;
+        postInvalidateOnAnimation();
+    }
+
+    @Override
+    public final void c() {
+        this.P.i5(false);
+    }
+
+    @Override
+    public final void d() {
+        invalidate();
+    }
+
+    public final void e(float f7, boolean z10) {
+        int i10 = (int) (255.0f * f7);
+        this.e.setAlpha(i10);
+        this.f37488f.setAlpha(i10);
+        this.f37490r.setAlpha((int) (66.0f * f7));
+        this.f37491s.setAlpha((int) (85.0f * f7));
+        this.v.setAlpha(i10);
+        this.G = f7;
+        if (!z10) {
+            this.F = f7;
+        }
+        invalidate();
+    }
+
+    public final void f(float f7, boolean z10) {
+        if (z10 != this.E) {
+            this.E = z10;
+            ValueAnimator valueAnimator = this.h;
+            valueAnimator.cancel();
+            float f10 = this.F;
+            float[] fArr = this.f37489n;
+            float lerp = AndroidUtilities.lerp(fArr, f10);
+            float f11 = 1.0f;
+            if (z10) {
+                valueAnimator.setDuration(((1.0f - lerp) * 250.0f) / f7);
+            } else {
+                valueAnimator.setDuration((250.0f * lerp) / f7);
             }
-            return;
+            fArr[0] = lerp;
+            if (!z10) {
+                f11 = 0.0f;
+            }
+            fArr[1] = f11;
+            valueAnimator.start();
         }
-        profileActivity.M4(null);
-        String str = profileActivity.getMessagesController().linkPrefix + "/" + this.f37524b;
-        TLRPC.Chat chat = profileActivity.E2;
-        if (chat != null && chat.noforwards) {
-            return;
-        }
-        AndroidUtilities.addToClipboard(str);
-        profileActivity.M.j(56, 0L, null);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
-        textPaint.setColor(textPaint.linkColor);
+    public final void onDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t01.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f37485a;
+        Rect rect = this.f37486b;
+        rect.set(0, 0, i10, (int) (currentActionBarHeight * 0.5f));
+        Rect rect2 = this.f37487c;
+        rect2.set(0, (int) (i11 - (AndroidUtilities.dp(72.0f) * 0.5f)), i10, i11);
+        this.e.setBounds(0, rect.bottom, i10, AndroidUtilities.dp(16.0f) + currentActionBarHeight);
+        this.f37488f.setBounds(0, ((i11 - this.P.O3()) - AndroidUtilities.dp(72.0f)) - AndroidUtilities.dp(24.0f), i10, rect2.top);
+        GradientDrawable[] gradientDrawableArr = this.f37492w;
+        int i14 = i10 / 5;
+        gradientDrawableArr[0].setBounds(0, 0, i14, i11);
+        gradientDrawableArr[1].setBounds(i10 - i14, 0, i10, i11);
     }
 }

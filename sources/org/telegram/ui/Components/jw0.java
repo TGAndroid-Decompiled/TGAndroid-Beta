@@ -9,10 +9,10 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public abstract class jw0 {
-    public static final Layout.Alignment[] f25443a = Layout.Alignment.values();
+    public static final Layout.Alignment[] f25435a = Layout.Alignment.values();
 
     public static Layout.Alignment a() {
-        Layout.Alignment[] alignmentArr = f25443a;
+        Layout.Alignment[] alignmentArr = f25435a;
         if (alignmentArr.length >= 5) {
             return alignmentArr[4];
         }
@@ -73,7 +73,7 @@ public abstract class jw0 {
             spannableStringBuilder2.append((CharSequence) "…");
             if (Build.VERSION.SDK_INT >= 23) {
                 StaticLayout.Builder includePad = StaticLayout.Builder.obtain(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i10).setAlignment(alignment).setLineSpacing(f7, 1.0f).setIncludePad(z10);
-                if (((x5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), x5.class)).length > 0) {
+                if (((z5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), z5.class)).length > 0) {
                     truncateAt2 = null;
                 } else {
                     truncateAt2 = truncateAt;

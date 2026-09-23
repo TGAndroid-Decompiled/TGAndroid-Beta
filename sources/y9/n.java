@@ -1,20 +1,20 @@
 package y9;
 public final class n implements ia.d {
-    public static final n f46582a = new Object();
-    public static final ia.c f46583b = ia.c.c("type");
-    public static final ia.c f46584c = ia.c.c("reason");
+    public static final n f46540a = new Object();
+    public static final ia.c f46541b = ia.c.c("type");
+    public static final ia.c f46542c = ia.c.c("reason");
     public static final ia.c d = ia.c.c("frames");
     public static final ia.c e = ia.c.c("causedBy");
-    public static final ia.c f46585f = ia.c.c("overflowCount");
+    public static final ia.c f46543f = ia.c.c("overflowCount");
 
     @Override
     public final void a(Object obj, Object obj2) {
         ia.e eVar = (ia.e) obj2;
         p0 p0Var = (p0) ((o1) obj);
-        eVar.a(f46583b, p0Var.f46598a);
-        eVar.a(f46584c, p0Var.f46599b);
-        eVar.a(d, p0Var.f46600c);
+        eVar.a(f46541b, p0Var.f46556a);
+        eVar.a(f46542c, p0Var.f46557b);
+        eVar.a(d, p0Var.f46558c);
         eVar.a(e, p0Var.d);
-        eVar.e(f46585f, p0Var.e);
+        eVar.e(f46543f, p0Var.e);
     }
 }

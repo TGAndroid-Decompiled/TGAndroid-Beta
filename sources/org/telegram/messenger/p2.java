@@ -1,29 +1,29 @@
 package org.telegram.messenger;
 public final class p2 implements Runnable {
-    public final int f17000a;
-    public final FileLoadOperation f17001b;
-    public final boolean f17002c;
+    public final int f16997a;
+    public final FileLoadOperation f16998b;
+    public final boolean f16999c;
 
     public p2(FileLoadOperation fileLoadOperation, boolean z10, int i10) {
-        this.f17000a = i10;
-        this.f17001b = fileLoadOperation;
-        this.f17002c = z10;
+        this.f16997a = i10;
+        this.f16998b = fileLoadOperation;
+        this.f16999c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17000a) {
+        switch (this.f16997a) {
             case 0:
-                this.f17001b.lambda$setIsPreloadVideoOperation$12(this.f17002c);
+                FileLoadOperation.d(this.f16998b, this.f16999c);
                 return;
             case 1:
-                this.f17001b.lambda$cancel$13(this.f17002c);
+                FileLoadOperation.g(this.f16998b, this.f16999c);
                 return;
             case 2:
-                this.f17001b.lambda$onFinishLoadingFile$17(this.f17002c);
+                FileLoadOperation.n(this.f16998b, this.f16999c);
                 return;
             default:
-                this.f17001b.lambda$onFinishLoadingFile$19(this.f17002c);
+                FileLoadOperation.b(this.f16998b, this.f16999c);
                 return;
         }
     }

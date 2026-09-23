@@ -1,61 +1,61 @@
 package ei;
 
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.o70;
 import org.telegram.ui.PhotoViewer;
 public final class m2 implements Runnable {
-    public final int f8482a;
-    public final n70 f8483b;
-    public final n70 f8484c;
+    public final int f8468a;
+    public final o70 f8469b;
+    public final o70 f8470c;
 
-    public m2(n70 n70Var, n70 n70Var2, int i10) {
-        this.f8482a = i10;
-        this.f8483b = n70Var;
-        this.f8484c = n70Var2;
+    public m2(o70 o70Var, o70 o70Var2, int i10) {
+        this.f8468a = i10;
+        this.f8469b = o70Var;
+        this.f8470c = o70Var2;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f8482a;
-        n70 n70Var = this.f8484c;
-        n70 n70Var2 = this.f8483b;
+        int i10 = this.f8468a;
+        o70 o70Var = this.f8470c;
+        o70 o70Var2 = this.f8469b;
         switch (i10) {
             case 0:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 1:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 2:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 3:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 4:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 5:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 6:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 7:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 8:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 9:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             case 10:
                 Drawable[] drawableArr = PhotoViewer.U8;
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
             default:
-                n70Var2.K(n70Var);
+                o70Var2.K(o70Var);
                 return;
         }
     }

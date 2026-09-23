@@ -1,111 +1,120 @@
 package ci;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.RecordingCanvas;
-import android.graphics.Rect;
-import android.graphics.RenderNode;
-import android.os.Build;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import java.util.Arrays;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.af0;
-import org.telegram.ui.Components.hk0;
-import org.telegram.ui.Components.jv0;
-import org.telegram.ui.Components.ye0;
-public final class ac extends FrameLayout {
-    public final Rect f4364a;
-    public final Rect f4365b;
-    public RenderNode f4366c;
-    public final oc d;
+import android.content.Context;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.cf0;
+import org.telegram.ui.e40;
+public final class ac extends ClickableSpan {
+    public final int f4357a;
+    public final Object f4358b;
 
-    public ac(oc ocVar, Activity activity) {
-        super(activity);
-        this.d = ocVar;
-        this.f4364a = new Rect();
-        this.f4365b = new Rect();
+    public ac(Object obj, int i10) {
+        this.f4357a = i10;
+        this.f4358b = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        RecordingCanvas recordingCanvas;
-        boolean z10;
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 31 && canvas.isHardwareAccelerated() && !AndroidUtilities.makingGlobalBlurBitmap) {
-            if (this.f4366c == null) {
-                this.f4366c = new RenderNode("StoryRecorder.PreviewView");
-            }
-            this.f4366c.setPosition(0, 0, getWidth(), getHeight());
-            recordingCanvas = this.f4366c.beginRecording();
-            z10 = true;
-        } else {
-            recordingCanvas = canvas;
-            z10 = false;
-        }
-        super.dispatchDraw(recordingCanvas);
-        if (z10 && i10 >= 31) {
-            this.f4366c.endRecording();
-            org.telegram.ui.Components.ha haVar = this.d.f5255r0;
-            if (haVar != null) {
-                haVar.g(this, this.f4366c);
-            }
-            canvas.drawRenderNode(this.f4366c);
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        ValueAnimator valueAnimator = this.d.E;
-        if (valueAnimator != null && valueAnimator.isRunning()) {
-            return;
-        }
-        super.invalidate();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (Build.VERSION.SDK_INT >= 29) {
-            int i14 = i12 - i10;
-            int i15 = i13 - i11;
-            int dp = AndroidUtilities.dp(40.0f);
-            Rect rect = this.f4364a;
-            rect.set(0, i15 - AndroidUtilities.dp(120.0f), dp, i15);
-            Rect rect2 = this.f4365b;
-            rect2.set(i14 - AndroidUtilities.dp(40.0f), i15 - AndroidUtilities.dp(120.0f), i14, i15);
-            setSystemGestureExclusionRects(Arrays.asList(rect, rect2));
+    public final void onClick(View view) {
+        GroupCallMessage groupCallMessage;
+        switch (this.f4357a) {
+            case 0:
+                ((bc) this.f4358b).S1.T();
+                return;
+            case 1:
+                lh.c cVar = (lh.c) this.f4358b;
+                lh.a aVar = cVar.I;
+                if (aVar != null && (groupCallMessage = cVar.H) != null) {
+                    ((e40) aVar).a(groupCallMessage);
+                    return;
+                }
+                return;
+            case 2:
+                org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f4358b;
+                Context context = x1Var.getContext();
+                nf.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.pa) x1Var.M).e.f36340r);
+                return;
+            case 3:
+                ((org.telegram.ui.ub) this.f4358b).finishFragment();
+                return;
+            case 4:
+                ((org.telegram.ui.r1) this.f4358b).run();
+                return;
+            case 5:
+                ((org.telegram.ui.Components.xc) this.f4358b).f29979a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                return;
+            case 6:
+                ((ActionBarLayout) ((LaunchActivity) this.f4358b).O()).P(new PremiumPreviewFragment(0, "gift"));
+                return;
+            case 7:
+                ((cf0) this.f4358b).q(false);
+                return;
+            case 8:
+                rg.j0 j0Var = ((rg.c0) this.f4358b).f42217c;
+                tg.o.m(j0Var.f22661n, rg.j0.i1(j0Var), j0Var.f42261a0, null);
+                return;
+            default:
+                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        oc ocVar = this.d;
-        af0 af0Var = ocVar.F1;
-        if (af0Var != null) {
-            hk0 hk0Var = af0Var.e;
-            hk0Var.f24712a = 0.0f;
-            hk0Var.f24713b = 0.0f;
-            hk0Var.f24714c = af0Var.getMeasuredWidth();
-            hk0Var.d = ocVar.F1.getMeasuredHeight();
-        }
-        ye0 ye0Var = ocVar.E1;
-        if (ye0Var != null) {
-            jv0 jv0Var = ye0Var.d;
-            jv0Var.f25440a = ye0Var.getMeasuredWidth();
-            jv0Var.f25441b = ocVar.E1.getMeasuredHeight();
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f4357a) {
+            case 0:
+                textPaint.setUnderlineText(false);
+                return;
+            case 1:
+                return;
+            case 2:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 3:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 4:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 5:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 6:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 7:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 8:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, rg.j0.R0(((rg.c0) this.f4358b).f42217c)));
+                return;
+            default:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                Integer num = ((rg.k1) this.f4358b).f42314u0;
+                if (num != null) {
+                    textPaint.setColor(num.intValue());
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ?? r02 = this.d.f5270v2;
-        if (r02 != 0) {
-            r02.m(motionEvent);
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
+    private final void a(View view) {
+    }
+
+    private final void b(TextPaint textPaint) {
     }
 }

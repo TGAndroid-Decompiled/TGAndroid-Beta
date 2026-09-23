@@ -1,82 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.util.LongSparseArray;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
-public final class dz implements yy {
-    public String f23425a;
-    public int f23426b;
-    public final ArrayList f23427c = new ArrayList();
-    public final HashMap d = new HashMap();
-    public final HashMap e = new HashMap();
-    public final HashMap f23428f = new HashMap();
-    public final ArrayList h = new ArrayList();
-    public final ArrayList f23429n = new ArrayList();
-    public final ArrayList f23430r = new ArrayList(0);
-    public final ArrayList f23431s = new ArrayList(0);
-    public final LongSparseArray v = new LongSparseArray(0);
-    public final fz f23432w;
+public final class dz implements Utilities.Callback {
+    public final int f23489a;
+    public final ez f23490b;
 
-    public dz(fz fzVar) {
-        this.f23432w = fzVar;
-    }
-
-    public final void a(Runnable runnable, boolean z10) {
-        String str;
-        String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
-        if (currentKeyboardLanguage != null && currentKeyboardLanguage.length != 0) {
-            str = currentKeyboardLanguage[0];
-        } else {
-            str = "";
-        }
-        MediaDataController.getInstance(this.f23432w.Q.f25700c1).searchStickers(false, str, this.f23425a, new ci.hd(this, z10, runnable, 2), z10);
+    public dz(ez ezVar, int i10) {
+        this.f23489a = i10;
+        this.f23490b = ezVar;
     }
 
     @Override
-    public final void d() {
-        vw vwVar = this.f23432w.Q.G0;
-        if (vwVar.F) {
-            return;
-        }
-        vwVar.e(true);
-        Utilities.raceCallbacks(new xp(this, 16), new cz(this, 0));
-    }
-
-    @Override
-    public final void run() {
-        fz fzVar = this.f23432w;
-        kz kzVar = fzVar.Q;
-        if (TextUtils.isEmpty(fzVar.N)) {
-            s4.h0 adapter = kzVar.D0.getAdapter();
-            bz bzVar = kzVar.f25770y0;
-            if (adapter != bzVar) {
-                kzVar.D0.setAdapter(bzVar);
-            }
-            fzVar.l();
-            return;
-        }
-        int i10 = fzVar.M + 1;
-        fzVar.M = i10;
-        this.f23426b = i10;
-        this.f23425a = fzVar.N;
-        fzVar.f24126y = false;
-        this.f23427c.clear();
-        this.d.clear();
-        this.e.clear();
-        this.f23428f.clear();
-        this.h.clear();
-        this.f23430r.clear();
-        this.f23431s.clear();
-        this.v.clear();
-        kzVar.G0.e(true);
-        if ("premium".equalsIgnoreCase(this.f23425a)) {
-            Utilities.raceCallbacks(new xp(this, 16), new cz(this, 1));
-        } else {
-            Utilities.raceCallbacks(new xp(this, 16), new cz(this, 2), new cz(this, 3), new cz(this, 4), new cz(this, 5), new cz(this, 6), new cz(this, 7));
-        }
+    public final void run(java.lang.Object r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dz.run(java.lang.Object):void");
     }
 }

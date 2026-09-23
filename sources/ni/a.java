@@ -4,18 +4,18 @@ import android.text.TextUtils;
 import java.net.IDN;
 import java.util.Locale;
 public final class a {
-    public int f15237a;
-    public String f15238b;
-    public int f15239c;
+    public int f15214a;
+    public String f15215b;
+    public int f15216c;
     public String d;
     public String e;
-    public String f15240f;
+    public String f15217f;
 
     public final b a() {
         String str;
         String str2;
-        if (this.f15237a == 3) {
-            String str3 = this.f15238b;
+        if (this.f15214a == 3) {
+            String str3 = this.f15215b;
             if (TextUtils.isEmpty(str3)) {
                 str3 = "";
             } else {
@@ -30,7 +30,7 @@ public final class a {
                 } else {
                     str2 = null;
                 }
-                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && b.f15241g.matcher(str2).matches()))) {
+                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && b.f15218g.matcher(str2).matches()))) {
                     try {
                         String lowerCase = IDN.toASCII(str, 3).toLowerCase(Locale.US);
                         if (str2 == null) {
@@ -42,15 +42,15 @@ public final class a {
                     }
                 }
             }
-            this.f15238b = str3;
+            this.f15215b = str3;
             if (str3 != null && str3.indexOf(47) >= 0) {
-                String b10 = b.b(this.f15240f);
+                String b10 = b.b(this.f15217f);
                 if (b10 == null) {
-                    b10 = this.f15240f.toLowerCase(Locale.US);
+                    b10 = this.f15217f.toLowerCase(Locale.US);
                 }
-                this.f15240f = b10;
+                this.f15217f = b10;
             } else {
-                this.f15240f = this.f15240f.toLowerCase(Locale.US);
+                this.f15217f = this.f15217f.toLowerCase(Locale.US);
             }
         }
         return new b(this);

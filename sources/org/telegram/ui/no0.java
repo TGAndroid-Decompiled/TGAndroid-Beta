@@ -1,70 +1,24 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class no0 extends AnimatorListenerAdapter {
-    public final int f36023a;
-    public final boolean f36024b;
-    public final wo0 f36025c;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class no0 extends ClickableSpan {
+    public final qo0 f35571a;
 
-    public no0(wo0 wo0Var, boolean z10, int i10) {
-        this.f36023a = i10;
-        this.f36025c = wo0Var;
-        this.f36024b = z10;
+    public no0(qo0 qo0Var) {
+        this.f35571a = qo0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f36023a) {
-            case 0:
-                wo0 wo0Var = this.f36025c;
-                AnimatorSet animatorSet = wo0Var.v;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    wo0Var.v = null;
-                    return;
-                }
-                return;
-            default:
-                wo0 wo0Var2 = this.f36025c;
-                AnimatorSet animatorSet2 = wo0Var2.v;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    wo0Var2.v = null;
-                    return;
-                }
-                return;
-        }
+    public final void onClick(View view) {
+        qo0 qo0Var = this.f35571a;
+        qo0Var.presentFragment(new zg1(6, qo0Var.f36484a0));
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36023a) {
-            case 0:
-                wo0 wo0Var = this.f36025c;
-                AnimatorSet animatorSet = wo0Var.v;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f36024b) {
-                        wo0Var.f39329r.setVisibility(4);
-                        return;
-                    } else {
-                        wo0Var.f39324n.getContentView().setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-            default:
-                wo0 wo0Var2 = this.f36025c;
-                AnimatorSet animatorSet2 = wo0Var2.v;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f36024b) {
-                        wo0Var2.f39331s.setVisibility(4);
-                        return;
-                    } else {
-                        wo0Var2.U.setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-        }
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(false);
     }
 }

@@ -1,22 +1,22 @@
 package xh;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.vc;
-public final class b1 extends yh.z3 {
-    public final q1 f45802r1;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Components.xc;
+public final class b1 extends z4 {
+    public final r1 f45755x0;
 
-    public b1(q1 q1Var, Context context, int i10, long j3, e6 e6Var) {
-        super(context, i10, j3, e6Var, null);
-        this.f45802r1 = q1Var;
+    public b1(r1 r1Var, Context context, int i10, rg.k kVar, long j3, m0 m0Var) {
+        super(context, i10, null, kVar, j3, m0Var, false, false);
+        this.f45755x0 = r1Var;
     }
 
     @Override
-    public final vc getBulletinFactory() {
-        e6 e6Var;
-        q1 q1Var = this.f45802r1;
-        org.telegram.ui.ActionBar.d3 d3Var = q1Var.container;
-        e6Var = q1Var.resourcesProvider;
-        return new vc(d3Var, e6Var);
+    public final xc X() {
+        d6 d6Var;
+        r1 r1Var = this.f45755x0;
+        org.telegram.ui.ActionBar.d3 d3Var = r1Var.container;
+        d6Var = r1Var.resourcesProvider;
+        return new xc(d3Var, d6Var);
     }
 }

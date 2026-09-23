@@ -1,36 +1,28 @@
 package za;
 
-import java.util.Locale;
-import java.util.UUID;
-public final class i0 {
-    public final p0 f48788a;
-    public final rd.a f48789b;
-    public final String f48790c;
-    public int d;
-    public z e;
+import org.telegram.ui.Cells.ja;
+public final class i0 implements e0 {
+    public static final double f48739f = Math.random();
+    public static final int f48740g = 0;
+    public final k9.h f48741a;
+    public final qa.d f48742b;
+    public final bb.h f48743c;
+    public final ja d;
+    public final id.h e;
 
-    public i0() {
-        h0 h0Var = h0.f48784a;
-        this.f48788a = p0.f48817a;
-        this.f48789b = h0Var;
-        this.f48790c = a();
-        this.d = -1;
+    public i0(k9.h hVar, qa.d dVar, bb.h hVar2, ja jaVar, id.h hVar3) {
+        this.f48741a = hVar;
+        this.f48742b = dVar;
+        this.f48743c = hVar2;
+        this.d = jaVar;
+        this.e = hVar3;
     }
 
-    public final String a() {
-        String uuid = ((UUID) this.f48789b.invoke()).toString();
-        kotlin.jvm.internal.i.d(uuid, "uuidGenerator().toString()");
-        String lowerCase = xd.j.g(uuid, "-", "").toLowerCase(Locale.ROOT);
-        kotlin.jvm.internal.i.d(lowerCase, "this as java.lang.String).toLowerCase(Locale.ROOT)");
-        return lowerCase;
+    public static final java.lang.Object a(za.i0 r4, kd.c r5) {
+        throw new UnsupportedOperationException("Method not decompiled: za.i0.a(za.i0, kd.c):java.lang.Object");
     }
 
-    public final z b() {
-        z zVar = this.e;
-        if (zVar != null) {
-            return zVar;
-        }
-        kotlin.jvm.internal.i.h("currentSession");
-        throw null;
+    public static final java.lang.Object b(za.i0 r5, kd.c r6) {
+        throw new UnsupportedOperationException("Method not decompiled: za.i0.b(za.i0, kd.c):java.lang.Object");
     }
 }

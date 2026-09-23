@@ -17,61 +17,61 @@ import org.telegram.messenger.camera.CameraSession;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.ia0;
+import org.telegram.ui.Components.ja0;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.bo;
+import org.telegram.ui.xn;
 public final class y0 implements Runnable {
-    public final int f9983a;
-    public final boolean f9984b;
-    public final Object f9985c;
+    public final int f9969a;
+    public final boolean f9970b;
+    public final Object f9971c;
     public final Object d;
     public final Object e;
-    public final Object f9986f;
+    public final Object f9972f;
     public final Object h;
-    public final Object f9987n;
-    public final Object f9988r;
+    public final Object f9973n;
+    public final Object f9974r;
 
     public y0(k1 k1Var, String str, boolean z10, TLObject tLObject, TLRPC.User user, String str2, MessagesStorage messagesStorage, String str3) {
-        this.f9983a = 0;
-        this.f9985c = k1Var;
+        this.f9969a = 0;
+        this.f9971c = k1Var;
         this.d = str;
-        this.f9984b = z10;
+        this.f9970b = z10;
         this.h = tLObject;
-        this.f9987n = user;
+        this.f9973n = user;
         this.e = str2;
-        this.f9988r = messagesStorage;
-        this.f9986f = str3;
+        this.f9974r = messagesStorage;
+        this.f9972f = str3;
     }
 
     @Override
     public final void run() {
         boolean z10;
         boolean z11;
-        switch (this.f9983a) {
+        switch (this.f9969a) {
             case 0:
-                k1 k1Var = (k1) this.f9985c;
+                k1 k1Var = (k1) this.f9971c;
                 String str = (String) this.d;
                 TLObject tLObject = (TLObject) this.h;
-                TLRPC.User user = (TLRPC.User) this.f9987n;
+                TLRPC.User user = (TLRPC.User) this.f9973n;
                 String str2 = (String) this.e;
-                MessagesStorage messagesStorage = (MessagesStorage) this.f9988r;
-                String str3 = (String) this.f9986f;
-                ia0 ia0Var = k1Var.V;
-                if (str.equals(k1Var.f9831r0)) {
+                MessagesStorage messagesStorage = (MessagesStorage) this.f9974r;
+                String str3 = (String) this.f9972f;
+                ja0 ja0Var = k1Var.V;
+                if (str.equals(k1Var.f9817r0)) {
                     int i10 = 0;
-                    k1Var.f9835u0 = 0;
-                    boolean z12 = this.f9984b;
+                    k1Var.f9821u0 = 0;
+                    boolean z12 = this.f9970b;
                     if (z12 && tLObject == null) {
                         k1Var.T(false, user, str, str2);
-                    } else if (ia0Var != null) {
-                        ia0Var.b(false);
+                    } else if (ja0Var != null) {
+                        ja0Var.b(false);
                     }
                     if (tLObject instanceof TLRPC.TL_messages_botResults) {
                         TLRPC.TL_messages_botResults tL_messages_botResults = (TLRPC.TL_messages_botResults) tLObject;
                         if (!z12 && tL_messages_botResults.cache_time != 0) {
                             messagesStorage.saveBotCache(str3, tL_messages_botResults);
                         }
-                        k1Var.f9833s0 = tL_messages_botResults.next_offset;
+                        k1Var.f9819s0 = tL_messages_botResults.next_offset;
                         if (k1Var.T == null) {
                             k1Var.T = tL_messages_botResults.switch_pm;
                         }
@@ -89,36 +89,36 @@ public final class y0 implements Runnable {
                         if (k1Var.R != null && str2.length() != 0) {
                             k1Var.R.addAll(tL_messages_botResults.results);
                             if (tL_messages_botResults.results.isEmpty()) {
-                                k1Var.f9833s0 = "";
+                                k1Var.f9819s0 = "";
                             }
                             z10 = true;
                         } else {
                             k1Var.R = tL_messages_botResults.results;
-                            k1Var.f9840x0 = tL_messages_botResults.gallery;
+                            k1Var.f9826x0 = tL_messages_botResults.gallery;
                             z10 = false;
                         }
-                        t tVar = k1Var.f9828p0;
+                        t tVar = k1Var.f9814p0;
                         if (tVar != null) {
                             AndroidUtilities.cancelRunOnUIThread(tVar);
-                            k1Var.f9828p0 = null;
+                            k1Var.f9814p0 = null;
                         }
                         k1Var.I = null;
                         k1Var.A0 = null;
-                        k1Var.f9839x = null;
-                        k1Var.f9841y = null;
+                        k1Var.f9825x = null;
+                        k1Var.f9827y = null;
                         k1Var.J = null;
                         k1Var.Q = null;
                         k1Var.M = null;
                         k1Var.N = null;
                         k1Var.K = null;
                         k1Var.P = null;
-                        k1Var.f9827o0 = false;
+                        k1Var.f9813o0 = false;
                         if (k1Var.R.isEmpty() && k1Var.T == null && k1Var.U == null) {
                             z11 = false;
                         } else {
                             z11 = true;
                         }
-                        ia0Var.a(z11);
+                        ja0Var.a(z11);
                         if (z10) {
                             i10 = (k1Var.T == null && k1Var.U == null) ? 1 : 1;
                             k1Var.m(((k1Var.R.size() - tL_messages_botResults.results.size()) + i10) - 1);
@@ -132,53 +132,53 @@ public final class y0 implements Runnable {
                 }
                 return;
             case 1:
-                ((ContactsController) this.f9985c).lambda$performSyncPhoneBook$19((HashMap) this.d, (HashMap) this.e, this.f9984b, (HashMap) this.f9986f, (ArrayList) this.h, (HashMap) this.f9987n, (boolean[]) this.f9988r);
+                ((ContactsController) this.f9971c).lambda$performSyncPhoneBook$19((HashMap) this.d, (HashMap) this.e, this.f9970b, (HashMap) this.f9972f, (ArrayList) this.h, (HashMap) this.f9973n, (boolean[]) this.f9974r);
                 return;
             case 2:
-                ((MediaDataController) this.f9985c).lambda$broadcastPinnedMessage$169((ArrayList) this.d, this.f9984b, (ArrayList) this.e, (ArrayList) this.f9986f, (ArrayList) this.h, (a0.i) this.f9987n, (a0.i) this.f9988r);
+                ((MediaDataController) this.f9971c).lambda$broadcastPinnedMessage$169((ArrayList) this.d, this.f9970b, (ArrayList) this.e, (ArrayList) this.f9972f, (ArrayList) this.h, (a0.i) this.f9973n, (a0.i) this.f9974r);
                 return;
             case 3:
-                ((SendMessagesHelper) this.f9985c).lambda$sendCallback$43((TLRPC.TL_error) this.d, (TLObject) this.h, (TwoStepVerificationActivity) this.e, this.f9984b, (MessageObject) this.f9986f, (TL_keyboard.KeyboardButtonProto) this.f9987n, (bo) this.f9988r);
+                ((SendMessagesHelper) this.f9971c).lambda$sendCallback$43((TLRPC.TL_error) this.d, (TLObject) this.h, (TwoStepVerificationActivity) this.e, this.f9970b, (MessageObject) this.f9972f, (TL_keyboard.KeyboardButtonProto) this.f9973n, (xn) this.f9974r);
                 return;
             default:
-                ((CameraController) this.f9985c).lambda$recordVideo$14((Camera) this.d, (CameraSession) this.e, this.f9984b, (File) this.f9986f, (CameraInfo) this.h, (CameraController.VideoTakeCallback) this.f9987n, (Runnable) this.f9988r);
+                ((CameraController) this.f9971c).lambda$recordVideo$14((Camera) this.d, (CameraSession) this.e, this.f9970b, (File) this.f9972f, (CameraInfo) this.h, (CameraController.VideoTakeCallback) this.f9973n, (Runnable) this.f9974r);
                 return;
         }
     }
 
     public y0(Object obj, Object obj2, Object obj3, boolean z10, Serializable serializable, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f9983a = i10;
-        this.f9985c = obj;
+        this.f9969a = i10;
+        this.f9971c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f9984b = z10;
-        this.f9986f = serializable;
+        this.f9970b = z10;
+        this.f9972f = serializable;
         this.h = obj4;
-        this.f9987n = obj5;
-        this.f9988r = obj6;
+        this.f9973n = obj5;
+        this.f9974r = obj6;
     }
 
     public y0(MediaDataController mediaDataController, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, a0.i iVar, a0.i iVar2) {
-        this.f9983a = 2;
-        this.f9985c = mediaDataController;
+        this.f9969a = 2;
+        this.f9971c = mediaDataController;
         this.d = arrayList;
-        this.f9984b = z10;
+        this.f9970b = z10;
         this.e = arrayList2;
-        this.f9986f = arrayList3;
+        this.f9972f = arrayList3;
         this.h = arrayList4;
-        this.f9987n = iVar;
-        this.f9988r = iVar2;
+        this.f9973n = iVar;
+        this.f9974r = iVar2;
     }
 
-    public y0(MessageObject messageObject, SendMessagesHelper sendMessagesHelper, TLObject tLObject, TLRPC.TL_error tL_error, TL_keyboard.KeyboardButtonProto keyboardButtonProto, bo boVar, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10) {
-        this.f9983a = 3;
-        this.f9985c = sendMessagesHelper;
+    public y0(MessageObject messageObject, SendMessagesHelper sendMessagesHelper, TLObject tLObject, TLRPC.TL_error tL_error, TL_keyboard.KeyboardButtonProto keyboardButtonProto, xn xnVar, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10) {
+        this.f9969a = 3;
+        this.f9971c = sendMessagesHelper;
         this.d = tL_error;
         this.h = tLObject;
         this.e = twoStepVerificationActivity;
-        this.f9984b = z10;
-        this.f9986f = messageObject;
-        this.f9987n = keyboardButtonProto;
-        this.f9988r = boVar;
+        this.f9970b = z10;
+        this.f9972f = messageObject;
+        this.f9973n = keyboardButtonProto;
+        this.f9974r = xnVar;
     }
 }

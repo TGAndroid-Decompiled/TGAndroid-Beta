@@ -1,19 +1,16 @@
 package ci;
-public final class g3 extends s4.s {
-    public final x3 Q;
+public final class g3 extends g.p {
+    public final w3 f4719c;
 
-    public g3(x3 x3Var) {
-        super(3);
-        this.Q = x3Var;
+    public g3(w3 w3Var) {
+        this.f4719c = w3Var;
     }
 
     @Override
-    public final void b0(of.e eVar, s4.z0 z0Var) {
-        super.b0(eVar, z0Var);
-        x3 x3Var = this.Q;
-        if (x3Var.U) {
-            x3Var.U = false;
-            x3Var.a();
+    public final int i(int i10) {
+        if (i10 != 0 && i10 != 1 && i10 != this.f4719c.f5712f.h() - 1) {
+            return 1;
         }
+        return 3;
     }
 }

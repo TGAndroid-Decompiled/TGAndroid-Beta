@@ -1,143 +1,82 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.webkit.CookieManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class bu0 extends ou0 {
-    public final int f32579p0;
-    public final NotificationCenter.NotificationCenterDelegate f32580q0;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.RadialProgressView;
+public final class bu0 extends org.telegram.ui.Components.qf0 {
+    public final Rect M;
+    public final PhotoViewer N;
 
-    public bu0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, ru0 ru0Var, FrameLayout frameLayout, int i10) {
-        super(context, ru0Var, frameLayout);
-        this.f32579p0 = i10;
-        this.f32580q0 = notificationCenterDelegate;
+    public bu0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.f1 f1Var) {
+        super(context);
+        this.N = photoViewer;
+        this.f27329a = UserConfig.selectedAccount;
+        this.v = new ArrayList();
+        this.L = new org.telegram.ui.Components.ac0(this, 10);
+        this.f27330b = photoViewer2;
+        this.f27334r = f1Var;
+        org.telegram.ui.Components.qu quVar = new org.telegram.ui.Components.qu(this, context, context, 1);
+        this.f27332f = quVar;
+        quVar.getSettings().setJavaScriptEnabled(true);
+        quVar.getSettings().setDomStorageEnabled(true);
+        quVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        quVar.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(quVar, true);
+        quVar.setWebViewClient(new ni.i(this, 1));
+        addView(quVar, w7.x5.e(-1, -1, 51));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f27331c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(17);
+        linearLayout.setVisibility(8);
+        addView(linearLayout, w7.x5.e(-2, -2, 17));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f19170y6, null, false, textView, 17);
+        linearLayout.addView(textView, w7.x5.q(-2, -2, 1));
+        TextView textView2 = new TextView(context);
+        this.e = textView2;
+        textView2.setTextSize(1, 16.0f);
+        int i10 = org.telegram.ui.ActionBar.h6.f18973n6;
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+        textView2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
+        int i11 = org.telegram.ui.ActionBar.x5.f19674a;
+        textView2.setBackground(org.telegram.ui.ActionBar.x5.d(new float[]{12.0f}, 0, org.telegram.ui.ActionBar.x5.b(org.telegram.ui.ActionBar.h6.w0(null, i10, false))));
+        textView2.setVisibility(8);
+        linearLayout.addView(textView2, w7.x5.t(-2, -2, 1, 0, 8, 0, 0));
+        ci.bb bbVar = new ci.bb(this, context, 20);
+        this.h = bbVar;
+        bbVar.setBackgroundColor(-16777216);
+        bbVar.setVisibility(4);
+        addView(bbVar, w7.x5.c(-1.0f, -1));
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        this.f27333n = radialProgressView;
+        radialProgressView.setVisibility(4);
+        addView(radialProgressView, w7.x5.e(-2, -2, 17));
+        this.M = new Rect();
     }
 
-    @Override
-    public boolean C() {
-        switch (this.f32579p0) {
-            case 0:
-                return !((PhotoViewer) this.f32580q0).f31055s;
-            default:
-                return super.C();
-        }
-    }
-
-    @Override
-    public void D() {
-        switch (this.f32579p0) {
-            case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f32580q0;
-                if (secretMediaViewer.J && getScrollY() <= 0) {
-                    AndroidUtilities.runOnUIThread(secretMediaViewer.f31472r1, 3000L);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void F() {
-        switch (this.f32579p0) {
-            case 1:
-                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f32580q0).f31472r1);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void G() {
-        boolean z10;
-        switch (this.f32579p0) {
-            case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f32580q0;
-                if (secretMediaViewer.K0 == null) {
-                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f31457k0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    secretMediaViewer.k(z10, true);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate() {
-        boolean z10;
-        boolean z11;
-        int i10;
-        boolean z12;
-        switch (this.f32579p0) {
-            case 0:
-                super.invalidate();
-                PhotoViewer photoViewer = (PhotoViewer) this.f32580q0;
-                zu0[] zu0VarArr = photoViewer.W0;
-                ImageView[] imageViewArr = photoViewer.y3;
-                if (photoViewer.J) {
-                    int scrollY = getScrollY();
-                    float translationY = photoViewer.Q1.getTranslationY();
-                    float f7 = 0.0f;
-                    if (scrollY == 0 && translationY == 0.0f) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (scrollY == 0 && translationY == 0.0f) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    if (!z10) {
-                        int b10 = zu0VarArr[0].b() + zu0VarArr[0].f40304j;
-                        if (C()) {
-                            i10 = AndroidUtilities.statusBarHeight;
-                        } else {
-                            i10 = 0;
-                        }
-                        int top = (((photoViewer.Z1.getTop() + ((int) translationY)) - scrollY) + (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10)) - AndroidUtilities.dp(12.0f);
-                        if (top > AndroidUtilities.dp(32.0f) + ((int) imageViewArr[0].getY())) {
-                            z12 = true;
-                        } else {
-                            z12 = false;
-                        }
-                        if (top > b10) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        z11 = z12;
-                    }
-                    if (photoViewer.f31124z3) {
-                        if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z11) {
-                            imageViewArr[0].setTag(2);
-                            imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new cr0(this, 4)).start();
-                        } else if (imageViewArr[0].getTag() == null && !z11) {
-                            imageViewArr[0].setTag(3);
-                            imageViewArr[0].animate().alpha(0.0f).setListener(null).setDuration(150L).start();
-                        }
-                    }
-                    zu0 zu0Var = zu0VarArr[0];
-                    if (z10) {
-                        f7 = 1.0f;
-                    }
-                    zu0Var.e(2, f7, true);
-                    return;
-                }
-                return;
-            default:
-                super.invalidate();
-                return;
+    public final void j(Canvas canvas, int i10, int i11) {
+        Bitmap bitmap = this.N.C4.getBitmap();
+        if (bitmap != null) {
+            float min = Math.min(i10 / bitmap.getWidth(), i11 / bitmap.getHeight());
+            int width = (int) (bitmap.getWidth() * min);
+            int height = (int) (bitmap.getHeight() * min);
+            int i12 = (i11 - height) / 2;
+            int i13 = (i10 - width) / 2;
+            Rect rect = this.M;
+            rect.set(i13, i12, width + i13, height + i12);
+            canvas.drawBitmap(bitmap, (Rect) null, rect, (Paint) null);
         }
     }
 }

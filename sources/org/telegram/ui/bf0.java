@@ -1,51 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bf0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f32140a;
-    public final hf0 f32141b;
+import android.view.View;
+public final class bf0 implements View.OnAttachStateChangeListener {
+    public boolean f32101b;
+    public final cf0 d;
+    public long f32100a = System.currentTimeMillis();
+    public final af0 f32102c = new af0(this, 0);
 
-    public bf0(hf0 hf0Var, int i10) {
-        this.f32140a = i10;
-        this.f32141b = hf0Var;
+    public bf0(cf0 cf0Var) {
+        this.d = cf0Var;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f32140a) {
-            case 0:
-                hf0 hf0Var = this.f32141b;
-                hf0Var.c(true);
-                hf0Var.O.u1(0, true, null, true);
-                hf0Var.o();
-                return;
-            case 1:
-                hf0 hf0Var2 = this.f32141b;
-                hf0Var2.O.f39216p0.popup = false;
-                hf0Var2.h(null);
-                return;
-            case 2:
-                hf0 hf0Var3 = this.f32141b;
-                wg0 wg0Var = hf0Var3.O;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wg0Var.getParentActivity());
-                alertDialog$Builder.f18435a.R = LocaleController.getString("TermsOfService", R.string.TermsOfService);
-                alertDialog$Builder.f18435a.T = LocaleController.getString("TosDecline", R.string.TosDecline);
-                alertDialog$Builder.k(LocaleController.getString("SignUp", R.string.SignUp), new bf0(hf0Var3, 3));
-                alertDialog$Builder.h(LocaleController.getString("Decline", R.string.Decline), new bf0(hf0Var3, 4));
-                wg0Var.showDialog(alertDialog$Builder.f18435a);
-                return;
-            case 3:
-                hf0 hf0Var4 = this.f32141b;
-                hf0Var4.O.f39216p0.popup = false;
-                hf0Var4.h(null);
-                return;
-            default:
-                hf0 hf0Var5 = this.f32141b;
-                hf0Var5.c(true);
-                hf0Var5.O.u1(0, true, null, true);
-                return;
-        }
+    public final void onViewAttachedToWindow(View view) {
+        this.f32101b = true;
+        view.post(this.f32102c);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        this.f32101b = false;
+        view.removeCallbacks(this.f32102c);
     }
 }

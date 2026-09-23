@@ -7,7 +7,7 @@ public final class t extends u1 implements s {
     @Override
     public final Object await(id.c cVar) {
         Object h = h(cVar);
-        jd.a aVar = jd.a.f12969a;
+        jd.a aVar = jd.a.f12959a;
         return h;
     }
 }

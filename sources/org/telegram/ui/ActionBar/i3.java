@@ -9,31 +9,31 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
-import ci.eb;
+import ci.bb;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class i3 extends Dialog {
-    public final u3 f18752a;
-    public final h3 f18753b;
-    public final eb f18754c;
+    public final t3 f19206a;
+    public final h3 f19207b;
+    public final bb f19208c;
     public final Paint d;
     public boolean e;
 
-    public i3(u3 u3Var) {
-        super(u3Var.mo37getWindowView().getContext(), R.style.TransparentDialog);
+    public i3(t3 t3Var) {
+        super(t3Var.mo37getWindowView().getContext(), R.style.TransparentDialog);
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f18752a = u3Var;
-        v3 mo37getWindowView = u3Var.mo37getWindowView();
-        eb ebVar = new eb(this, getContext(), 8);
-        this.f18754c = ebVar;
-        paint.setColor(i6.w0(null, i6.f18778a7, false));
+        this.f19206a = t3Var;
+        u3 mo37getWindowView = t3Var.mo37getWindowView();
+        bb bbVar = new bb(this, getContext(), 8);
+        this.f19208c = bbVar;
+        paint.setColor(h6.w0(null, h6.f18733a7, false));
         h3 h3Var = new h3(mo37getWindowView);
-        this.f18753b = h3Var;
+        this.f19207b = h3Var;
         setContentView(h3Var, new ViewGroup.LayoutParams(-1, -1));
-        h3Var.addView(ebVar, w7.x5.e(-1, -2, 80));
+        h3Var.addView(bbVar, w7.x5.e(-1, -2, 80));
         h3Var.setClipToPadding(false);
     }
 
@@ -45,14 +45,14 @@ public final class i3 extends Dialog {
         return windowInsets.consumeSystemWindowInsets();
     }
 
-    public static void b(u3 u3Var) {
+    public static void b(t3 t3Var) {
         n2 U = LaunchActivity.U();
         if (U != null) {
-            if (AndroidUtilities.isTablet() || u3Var.b() || AndroidUtilities.hasDialogOnTop(U)) {
-                i3 i3Var = new i3(u3Var);
-                if (u3Var.c(i3Var)) {
-                    h3 h3Var = i3Var.f18753b;
-                    View view = (View) h3Var.f18719a;
+            if (AndroidUtilities.isTablet() || t3Var.b() || AndroidUtilities.hasDialogOnTop(U)) {
+                i3 i3Var = new i3(t3Var);
+                if (t3Var.c(i3Var)) {
+                    h3 h3Var = i3Var.f19207b;
+                    View view = (View) h3Var.f18709a;
                     AndroidUtilities.removeFromParent(view);
                     h3Var.addView(view, w7.x5.e(-1, -1, 119));
                 }
@@ -61,7 +61,7 @@ public final class i3 extends Dialog {
     }
 
     public final void c() {
-        this.f18752a.c(null);
+        this.f19206a.c(null);
         if (!this.e) {
             return;
         }
@@ -75,7 +75,7 @@ public final class i3 extends Dialog {
 
     @Override
     public final void dismiss() {
-        this.f18752a.dismiss(false);
+        this.f19206a.dismiss(false);
     }
 
     @Override
@@ -103,7 +103,7 @@ public final class i3 extends Dialog {
         if (i10 >= 23) {
             window.setStatusBarColor(0);
         }
-        h3 h3Var = this.f18753b;
+        h3 h3Var = this.f19207b;
         h3Var.setFitsSystemWindows(true);
         h3Var.setSystemUiVisibility(1792);
         h3Var.setPadding(0, 0, 0, 0);

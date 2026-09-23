@@ -1,69 +1,85 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.content.Intent;
+import android.net.Uri;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-public final class ul0 extends org.telegram.ui.Components.h51 {
-    public static final int f38068a = 0;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ul0 implements org.telegram.ui.ActionBar.a2, wt, wm0 {
+    public final int f38129a;
+    public final in0 f38130b;
 
-    static {
-        org.telegram.ui.Components.h51.setup(new org.telegram.ui.Components.h51());
+    public ul0(in0 in0Var, int i10) {
+        this.f38129a = i10;
+        this.f38130b = in0Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.i51 i51Var, boolean z10, org.telegram.ui.Components.w51 w51Var, org.telegram.ui.Components.e61 e61Var) {
-        vl0 vl0Var = (vl0) view;
-        TL_account.Passkey passkey = (TL_account.Passkey) i51Var.G;
-        View.OnClickListener onClickListener = i51Var.D;
-        TextView textView = vl0Var.f38583f;
-        TextView textView2 = vl0Var.e;
-        org.telegram.ui.ActionBar.e6 e6Var = vl0Var.f38581b;
-        FrameLayout frameLayout = vl0Var.f38582c;
-        org.telegram.ui.Components.u9 u9Var = vl0Var.d;
-        vl0Var.f38585r = passkey.f18312id;
-        long j3 = passkey.software_emoji_id;
-        if (j3 != 0) {
-            u9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.o5.n(vl0Var.f38580a, j3, null, 3));
-            frameLayout.setBackground(null);
-            u9Var.setColorFilter(null);
-            u9Var.setScaleX(1.0f);
-            u9Var.setScaleY(1.0f);
-        } else {
-            int dp = AndroidUtilities.dp(4.0f);
-            int i10 = org.telegram.ui.ActionBar.i6.G6;
-            frameLayout.setBackground(org.telegram.ui.ActionBar.i6.b0(dp, org.telegram.ui.ActionBar.i6.l1(0.04f, org.telegram.ui.ActionBar.i6.v0(i10, e6Var))));
-            u9Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.l1(0.3f, org.telegram.ui.ActionBar.i6.v0(i10, e6Var)), PorterDuff.Mode.SRC_IN));
-            u9Var.setImageResource(R.drawable.msg2_permissions);
-            u9Var.setScaleX(0.666f);
-            u9Var.setScaleY(0.666f);
-            u9Var.setAnimatedEmojiDrawable(null);
+    public void a1(st stVar) {
+        String str;
+        switch (this.f38129a) {
+            case 2:
+                in0 in0Var = this.f38130b;
+                in0Var.Y[5].setText(stVar.f37415a);
+                in0Var.f34202s = stVar.d;
+                return;
+            default:
+                in0 in0Var2 = this.f38130b;
+                in0Var2.Y[0].setText(stVar.f37415a);
+                if (in0Var2.U0.indexOf(stVar.f37415a) != -1) {
+                    in0Var2.Z0 = true;
+                    String str2 = (String) in0Var2.V0.get(stVar.f37415a);
+                    in0Var2.Y[1].setText(str2);
+                    String str3 = (String) in0Var2.X0.get(str2);
+                    EditTextBoldCursor editTextBoldCursor = in0Var2.Y[2];
+                    if (str3 != null) {
+                        str = str3.replace('X', (char) 8211);
+                    } else {
+                        str = null;
+                    }
+                    editTextBoldCursor.setHintText(str);
+                    in0Var2.Z0 = false;
+                }
+                AndroidUtilities.runOnUIThread(new rl0(in0Var2, 3), 300L);
+                in0Var2.Y[2].requestFocus();
+                EditTextBoldCursor editTextBoldCursor2 = in0Var2.Y[2];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                return;
         }
-        if (TextUtils.isEmpty(passkey.name)) {
-            textView2.setText(LocaleController.getString(R.string.PasskeyUnknown));
-        } else {
-            textView2.setText(passkey.name);
-        }
-        int i11 = passkey.last_usage_date;
-        if (i11 != 0) {
-            textView.setText(LocaleController.formatString(R.string.PasskeyLastUsedOn, LocaleController.formatDateTime(i11, false)));
-        } else {
-            textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
-        }
-        vl0Var.h.setOnClickListener(onClickListener);
-        vl0Var.f38584n = z10;
-        vl0Var.setWillNotDraw(!z10);
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new vl0(context, i10, e6Var);
+    public void b(String str, String str2) {
+        this.f38130b.x1();
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f38129a) {
+            case 0:
+                in0 in0Var = this.f38130b;
+                in0Var.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    in0Var.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 1:
+                this.f38130b.finishFragment();
+                return;
+            case 2:
+            case 3:
+            default:
+                in0.a0(this.f38130b);
+                return;
+            case 4:
+                in0.d0(this.f38130b);
+                return;
+        }
     }
 }

@@ -3,20 +3,20 @@ package e6;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class j extends p {
-    public final int f8019r;
-    public final h f8020s;
+    public final int f8005r;
+    public final h f8006s;
 
     public j(h hVar, int i10) {
         super(hVar, false);
-        this.f8019r = i10;
-        this.f8020s = hVar;
+        this.f8005r = i10;
+        this.f8006s = hVar;
     }
 
     @Override
     public final void n() {
-        switch (this.f8019r) {
+        switch (this.f8005r) {
             case 0:
-                g6.m mVar = this.f8020s.f8013c;
+                g6.m mVar = this.f8006s.f7999c;
                 g6.n o9 = o();
                 mVar.getClass();
                 JSONObject jSONObject = new JSONObject();
@@ -24,26 +24,26 @@ public final class j extends p {
                 try {
                     jSONObject.put("requestId", b10);
                     jSONObject.put("type", "GET_STATUS");
-                    c6.q qVar = mVar.f9436f;
+                    c6.q qVar = mVar.f9422f;
                     if (qVar != null) {
-                        jSONObject.put("mediaSessionId", qVar.f4032b);
+                        jSONObject.put("mediaSessionId", qVar.f4027b);
                     }
                 } catch (JSONException unused) {
                 }
                 mVar.c(b10, jSONObject.toString());
-                mVar.f9445p.a(b10, o9);
+                mVar.f9431p.a(b10, o9);
                 return;
             case 1:
-                this.f8020s.f8013c.d(o(), -1, null);
+                this.f8006s.f7999c.d(o(), -1, null);
                 return;
             case 2:
-                this.f8020s.f8013c.d(o(), 1, null);
+                this.f8006s.f7999c.d(o(), 1, null);
                 return;
             case 3:
-                this.f8020s.f8013c.d(o(), 0, 2);
+                this.f8006s.f7999c.d(o(), 0, 2);
                 return;
             case 4:
-                g6.m mVar2 = this.f8020s.f8013c;
+                g6.m mVar2 = this.f8006s.f7999c;
                 g6.n o10 = o();
                 mVar2.getClass();
                 JSONObject jSONObject2 = new JSONObject();
@@ -55,10 +55,10 @@ public final class j extends p {
                 } catch (JSONException unused2) {
                 }
                 mVar2.c(b11, jSONObject2.toString());
-                mVar2.f9447r.a(b11, o10);
+                mVar2.f9433r.a(b11, o10);
                 return;
             case 5:
-                g6.m mVar3 = this.f8020s.f8013c;
+                g6.m mVar3 = this.f8006s.f7999c;
                 g6.n o11 = o();
                 mVar3.getClass();
                 JSONObject jSONObject3 = new JSONObject();
@@ -70,10 +70,10 @@ public final class j extends p {
                 } catch (JSONException unused3) {
                 }
                 mVar3.c(b12, jSONObject3.toString());
-                mVar3.f9440k.a(b12, o11);
+                mVar3.f9426k.a(b12, o11);
                 return;
             default:
-                g6.m mVar4 = this.f8020s.f8013c;
+                g6.m mVar4 = this.f8006s.f7999c;
                 g6.n o12 = o();
                 mVar4.getClass();
                 JSONObject jSONObject4 = new JSONObject();
@@ -85,14 +85,14 @@ public final class j extends p {
                 } catch (JSONException unused4) {
                 }
                 mVar4.c(b13, jSONObject4.toString());
-                mVar4.f9441l.a(b13, o12);
+                mVar4.f9427l.a(b13, o12);
                 return;
         }
     }
 
     public j(h hVar) {
         super(hVar, true);
-        this.f8019r = 4;
-        this.f8020s = hVar;
+        this.f8005r = 4;
+        this.f8006s = hVar;
     }
 }

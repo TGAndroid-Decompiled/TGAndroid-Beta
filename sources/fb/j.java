@@ -4,17 +4,17 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class j implements Iterator {
-    public l f9028a;
-    public l f9029b = null;
-    public int f9030c;
+    public l f9014a;
+    public l f9015b = null;
+    public int f9016c;
     public final m d;
     public final int e;
 
     public j(m mVar, int i10) {
         this.e = i10;
         this.d = mVar;
-        this.f9028a = mVar.f9043f.d;
-        this.f9030c = mVar.e;
+        this.f9014a = mVar.f9029f.d;
+        this.f9016c = mVar.e;
     }
 
     public final Object a() {
@@ -22,12 +22,12 @@ public final class j implements Iterator {
     }
 
     public final l b() {
-        l lVar = this.f9028a;
+        l lVar = this.f9014a;
         m mVar = this.d;
-        if (lVar != mVar.f9043f) {
-            if (mVar.e == this.f9030c) {
-                this.f9028a = lVar.d;
-                this.f9029b = lVar;
+        if (lVar != mVar.f9029f) {
+            if (mVar.e == this.f9016c) {
+                this.f9014a = lVar.d;
+                this.f9015b = lVar;
                 return lVar;
             }
             throw new ConcurrentModificationException();
@@ -37,7 +37,7 @@ public final class j implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f9028a != this.d.f9043f) {
+        if (this.f9014a != this.d.f9029f) {
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ public final class j implements Iterator {
     public Object next() {
         switch (this.e) {
             case 1:
-                return b().f9036f;
+                return b().f9022f;
             default:
                 return a();
         }
@@ -55,12 +55,12 @@ public final class j implements Iterator {
 
     @Override
     public final void remove() {
-        l lVar = this.f9029b;
+        l lVar = this.f9015b;
         if (lVar != null) {
             m mVar = this.d;
             mVar.c(lVar, true);
-            this.f9029b = null;
-            this.f9030c = mVar.e;
+            this.f9015b = null;
+            this.f9016c = mVar.e;
             return;
         }
         throw new IllegalStateException();

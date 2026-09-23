@@ -1,46 +1,30 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.MessageObject;
-public final class he1 implements org.telegram.ui.Components.ek0 {
-    public final bo f34237a;
-    public final MessageObject f34238b;
-    public final org.telegram.ui.Components.fk0 f34239c;
-    public final le1 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class he1 extends AnimatorListenerAdapter {
+    public final int f33838a;
+    public final le1 f33839b;
 
-    public he1(le1 le1Var, bo boVar, MessageObject messageObject, org.telegram.ui.Components.fk0 fk0Var) {
-        this.d = le1Var;
-        this.f34237a = boVar;
-        this.f34238b = messageObject;
-        this.f34239c = fk0Var;
+    public he1(le1 le1Var, int i10) {
+        this.f33838a = i10;
+        this.f33839b = le1Var;
     }
 
     @Override
-    public final void h(android.view.View r13, zg.p0 r14, boolean r15, boolean r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.he1.h(android.view.View, zg.p0, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean j() {
-        return true;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return false;
-    }
-
-    @Override
-    public final void o() {
-    }
-
-    @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f33838a) {
+            case 0:
+                le1 le1Var = this.f33839b;
+                le1Var.v = 0;
+                le1Var.f34960n.setVisibility(8);
+                return;
+            case 1:
+                this.f33839b.v = 0;
+                return;
+            default:
+                this.f33839b.F.setVisibility(8);
+                return;
+        }
     }
 }

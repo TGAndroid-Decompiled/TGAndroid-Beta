@@ -4,31 +4,31 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class x2 extends AnimatorListenerAdapter {
-    public final boolean f8726a;
-    public final float f8727b;
-    public final float f8728c;
+    public final boolean f8712a;
+    public final float f8713b;
+    public final float f8714c;
     public final k3 d;
 
     public x2(k3 k3Var, boolean z10, float f7, float f10) {
         this.d = k3Var;
-        this.f8726a = z10;
-        this.f8727b = f7;
-        this.f8728c = f10;
+        this.f8712a = z10;
+        this.f8713b = f7;
+        this.f8714c = f10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         k3 k3Var = this.d;
-        b3 b3Var = k3Var.f8453x;
+        b3 b3Var = k3Var.f8439x;
         h3 h3Var = k3Var.W;
         a3 a3Var = k3Var.v;
-        k3Var.f8434h0 = false;
-        boolean z10 = this.f8726a;
+        k3Var.f8420h0 = false;
+        boolean z10 = this.f8712a;
         if (!z10) {
             k3Var.D();
             k3Var.G();
-            float f10 = this.f8727b;
+            float f10 = this.f8713b;
             a3Var.setForceOffsetY(f10 - AndroidUtilities.dp(24.0f));
             a3Var.setTopActionBarOffsetY(f10 - AndroidUtilities.dp(24.0f));
             a3Var.setSwipeOffsetY(0.0f);
@@ -38,20 +38,20 @@ public final class x2 extends AnimatorListenerAdapter {
             a3Var.setSwipeOffsetY(0.0f);
         }
         if (z10) {
-            f7 = k3Var.f8433g0;
+            f7 = k3Var.f8419g0;
         } else {
-            f7 = 1.0f - k3Var.f8433g0;
+            f7 = 1.0f - k3Var.f8419g0;
         }
-        k3Var.f8432f0 = f7;
+        k3Var.f8418f0 = f7;
         h3Var.setAlpha(1.0f - f7);
-        h3Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * k3Var.f8432f0);
-        k3Var.m0.setAlpha(k3Var.f8432f0);
+        h3Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * k3Var.f8418f0);
+        k3Var.m0.setAlpha(k3Var.f8418f0);
         if (z10) {
             h3Var.setVisibility(8);
         }
         a3Var.setSwipeOffsetAnimationDisallowed(false);
-        a3Var.setTranslationX(AndroidUtilities.lerp(this.f8728c, 0.0f, k3Var.f8433g0));
-        k3Var.f8438l0.setTranslationX(0.0f);
+        a3Var.setTranslationX(AndroidUtilities.lerp(this.f8714c, 0.0f, k3Var.f8419g0));
+        k3Var.f8424l0.setTranslationX(0.0f);
         k3Var.e.invalidate();
         b3Var.setViewPortHeightOffset(0.0f);
         b3Var.o(true, true);

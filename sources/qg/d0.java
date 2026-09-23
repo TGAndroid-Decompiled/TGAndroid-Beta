@@ -12,14 +12,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.ky;
-import org.telegram.ui.Components.x5;
-public final class d0 implements ky {
-    public final p0 f41324a;
+import org.telegram.ui.Components.d51;
+import org.telegram.ui.Components.ly;
+import org.telegram.ui.Components.z5;
+public final class d0 implements ly {
+    public final p0 f41280a;
 
     public d0(p0 p0Var) {
-        this.f41324a = p0Var;
+        this.f41280a = p0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class d0 implements ky {
 
     @Override
     public final boolean k() {
-        b editText = ((x2) this.f41324a.S0).getEditText();
+        b editText = ((x2) this.f41280a.S0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -72,7 +72,7 @@ public final class d0 implements ky {
         x2 x2Var;
         b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        j jVar = this.f41324a.S0;
+        j jVar = this.f41280a.S0;
         if ((jVar instanceof x2) && (editText = (x2Var = (x2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -98,11 +98,11 @@ public final class d0 implements ky {
 
     @Override
     public final void n() {
-        p0 p0Var = this.f41324a;
+        p0 p0Var = this.f41280a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(p0Var.getContext(), 0, p0Var.Q1);
-        alertDialog$Builder.f18435a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18435a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new k2.v(this, 20));
+        alertDialog$Builder.f18409a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18409a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new le.b(this, 21));
         hg.c.r(R.string.Cancel, alertDialog$Builder, null);
     }
 
@@ -113,8 +113,8 @@ public final class d0 implements ky {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        x5 x5Var;
-        b editText = ((x2) this.f41324a.S0).getEditText();
+        z5 z5Var;
+        b editText = ((x2) this.f41280a.S0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -123,11 +123,11 @@ public final class d0 implements ky {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    x5Var = new x5(document, editText.getPaint().getFontMetricsInt());
+                    z5Var = new z5(document, editText.getPaint().getFontMetricsInt());
                 } else {
-                    x5Var = new x5(j3, editText.getPaint().getFontMetricsInt());
+                    z5Var = new z5(j3, editText.getPaint().getFontMetricsInt());
                 }
-                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
+                spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
                 editText.setText(editText.getText().insert(selectionEnd, spannableString));
                 int length = selectionEnd + spannableString.length();
                 editText.setSelection(length, length);
@@ -153,7 +153,7 @@ public final class d0 implements ky {
     }
 
     @Override
-    public final void o(e51 e51Var) {
+    public final void o(d51 d51Var) {
     }
 
     @Override

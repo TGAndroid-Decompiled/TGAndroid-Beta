@@ -7,49 +7,49 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.rr;
 public abstract class n1 extends Drawable {
-    public final int f20452a;
-    public final Path f20453b;
-    public final Paint f20454c;
+    public final int f20431a;
+    public final Path f20432b;
+    public final Paint f20433c;
     public final Object d;
 
     public n1(int i10) {
-        this.f20452a = i10;
+        this.f20431a = i10;
         switch (i10) {
             case 1:
-                this.f20453b = new Path();
+                this.f20432b = new Path();
                 Paint paint = new Paint(1);
-                this.f20454c = paint;
+                this.f20433c = paint;
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 paint.setStrokeCap(Paint.Cap.ROUND);
-                this.d = new org.telegram.ui.Components.c6(new org.telegram.ui.web.u0(this, 3), 350L, qr.h, 0);
+                this.d = new org.telegram.ui.Components.e6(new org.telegram.ui.web.t0(this, 3), 350L, rr.h, 0);
                 return;
             default:
                 Paint paint2 = new Paint(1);
-                this.f20454c = paint2;
+                this.f20433c = paint2;
                 paint2.setColor(-1);
                 this.d = new RectF();
-                this.f20453b = new Path();
+                this.f20432b = new Path();
                 return;
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f20452a) {
+        switch (this.f20431a) {
             case 0:
                 e();
-                canvas.drawPath(this.f20453b, this.f20454c);
+                canvas.drawPath(this.f20432b, this.f20433c);
                 return;
             default:
-                float e = ((org.telegram.ui.Components.c6) this.d).e(true);
+                float e = ((org.telegram.ui.Components.e6) this.d).e(true);
                 float centerX = getBounds().centerX();
                 float centerY = getBounds().centerY();
                 float width = getBounds().width();
                 float f7 = 0.57f * width;
-                Path path = this.f20453b;
+                Path path = this.f20432b;
                 path.rewind();
                 float f10 = f7 / 2.0f;
                 path.moveTo(centerX - AndroidUtilities.lerp(f10, (-f7) / 2.0f, e), centerY);
@@ -61,7 +61,7 @@ public abstract class n1 extends Drawable {
                 path.lineTo(f11, centerY);
                 path.lineTo(f12, f13 + centerY);
                 canvas.save();
-                Paint paint = this.f20454c;
+                Paint paint = this.f20433c;
                 paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
                 canvas.translate(0.0f, (-width) * 0.1f * e);
                 canvas.rotate(e * 90.0f, centerX, centerY);
@@ -75,7 +75,7 @@ public abstract class n1 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f20452a) {
+        switch (this.f20431a) {
             case 1:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -85,7 +85,7 @@ public abstract class n1 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f20452a) {
+        switch (this.f20431a) {
             case 1:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -95,7 +95,7 @@ public abstract class n1 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f20452a) {
+        switch (this.f20431a) {
             case 0:
                 return -2;
             default:
@@ -105,12 +105,12 @@ public abstract class n1 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f20452a;
+        int i11 = this.f20431a;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f20452a;
+        int i10 = this.f20431a;
     }
 
     private final void a(int i10) {

@@ -1,49 +1,42 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class ed0 implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f33267a;
-    public final float[] f33268b = {0.0f, 1.0f};
-    public final FrameLayout f33269c;
-    public final fd0 d;
+    public final int f32893a;
+    public final rg0 f32894b;
 
-    public ed0(fd0 fd0Var, FrameLayout frameLayout) {
-        this.d = fd0Var;
-        this.f33269c = frameLayout;
+    public ed0(rg0 rg0Var, int i10) {
+        this.f32893a = i10;
+        this.f32894b = rg0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float interpolation;
-        float lerp = AndroidUtilities.lerp(this.f33268b, valueAnimator.getAnimatedFraction());
-        if (lerp >= 0.7f && !this.f33267a) {
-            fd0 fd0Var = this.d;
-            id0 id0Var = fd0Var.f33571b;
-            id0 id0Var2 = fd0Var.f33571b;
-            if (id0Var.f34624o0 != null) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                animatorSet.playTogether(ObjectAnimator.ofFloat(id0Var2.f34624o0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(id0Var2.f34624o0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(id0Var2.f34624o0, View.ALPHA, 0.0f, 1.0f));
-                animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
-                animatorSet.setDuration(250L);
-                animatorSet.start();
-                this.f33267a = true;
-            }
+        switch (this.f32893a) {
+            case 0:
+                rg0 rg0Var = this.f32894b;
+                rg0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rg0Var.f36822c.setAlpha(floatValue);
+                rg0Var.f36822c.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(230.0f));
+                return;
+            case 1:
+                rg0 rg0Var2 = this.f32894b;
+                rg0Var2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rg0Var2.f36822c.setAlpha(floatValue2);
+                rg0Var2.f36822c.setTranslationY((1.0f - floatValue2) * AndroidUtilities.dp(230.0f));
+                return;
+            default:
+                rg0 rg0Var3 = this.f32894b;
+                rg0Var3.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f7 = (0.9f * floatValue3) + 0.1f;
+                rg0Var3.V.setScaleX(f7);
+                rg0Var3.V.setScaleY(f7);
+                rg0Var3.V.setAlpha(floatValue3);
+                return;
         }
-        if (lerp <= 0.5f) {
-            interpolation = org.telegram.ui.Components.qr.f27421g.getInterpolation(lerp / 0.5f) * 1.1f;
-        } else if (lerp <= 0.75f) {
-            interpolation = 1.1f - (org.telegram.ui.Components.qr.f27421g.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
-        } else {
-            interpolation = (org.telegram.ui.Components.qr.f27421g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
-        }
-        FrameLayout frameLayout = this.f33269c;
-        frameLayout.setScaleX(interpolation);
-        frameLayout.setScaleY(interpolation);
     }
 }

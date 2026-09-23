@@ -1,30 +1,23 @@
 package org.telegram.ui;
+public final class jf0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f34451a;
+    public final uf0 f34452b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class jf0 implements Runnable {
-    public final int f34901a;
-    public final lf0 f34902b;
-
-    public jf0(lf0 lf0Var, int i10) {
-        this.f34901a = i10;
-        this.f34902b = lf0Var;
+    public jf0(uf0 uf0Var, int i10) {
+        this.f34451a = i10;
+        this.f34452b = uf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34901a) {
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f34451a) {
             case 0:
-                lf0 lf0Var = this.f34902b;
-                org.telegram.ui.Components.aj0 aj0Var = lf0Var.h;
-                aj0Var.getAnimatedDrawable().N(0, false, false);
-                aj0Var.d();
-                EditTextBoldCursor editTextBoldCursor = lf0Var.f35466b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                uf0 uf0Var = this.f34452b;
+                uf0Var.c(true);
+                uf0Var.f38093s0.u1(0, true, null, true);
                 return;
             default:
-                this.f34902b.f35466b.requestFocus();
+                this.f34452b.f38093s0.u1(0, true, null, true);
                 return;
         }
     }

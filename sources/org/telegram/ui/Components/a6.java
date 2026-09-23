@@ -1,37 +1,18 @@
 package org.telegram.ui.Components;
-public final class a6 implements yf.g {
-    public final int f22314a;
-    public final Object f22315b;
 
-    public a6(Object obj, int i10) {
-        this.f22314a = i10;
-        this.f22315b = obj;
-    }
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+public final class a6 {
+    public final BitmapShader[] f22367a = new BitmapShader[3];
+    public final Bitmap f22368b;
+    public final int f22369c;
+    public final int d;
+    public int e;
+    public boolean f22370f;
 
-    @Override
-    public final void doFrame(long j3) {
-        switch (this.f22314a) {
-            case 0:
-                b6 b6Var = (b6) this.f22315b;
-                int i10 = b6Var.Q0 + 1;
-                b6Var.Q0 = i10;
-                if (i10 > 10) {
-                    b6Var.R0 = true;
-                }
-                b6Var.i();
-                if (b6Var.U0) {
-                    b6Var.T0 = true;
-                    b6Var.t();
-                    return;
-                }
-                return;
-            case 1:
-                int i11 = EditTextBoldCursor.f22029a;
-                ((EditTextBoldCursor) this.f22315b).invalidate();
-                return;
-            default:
-                xi0.g((xi0) this.f22315b);
-                return;
-        }
+    public a6(Bitmap bitmap) {
+        this.f22368b = bitmap;
+        this.f22369c = bitmap.getWidth();
+        this.d = bitmap.getHeight();
     }
 }

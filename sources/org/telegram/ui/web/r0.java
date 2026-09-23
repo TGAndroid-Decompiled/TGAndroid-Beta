@@ -1,41 +1,34 @@
 package org.telegram.ui.web;
 
+import android.content.DialogInterface;
 import android.webkit.JsResult;
-public final class r0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f39077a;
-    public final boolean[] f39078b;
-    public final JsResult f39079c;
+public final class r0 implements DialogInterface.OnDismissListener {
+    public final int f38820a;
+    public final boolean[] f38821b;
+    public final JsResult f38822c;
 
     public r0(boolean[] zArr, JsResult jsResult, int i10) {
-        this.f39077a = i10;
-        this.f39078b = zArr;
-        this.f39079c = jsResult;
+        this.f38820a = i10;
+        this.f38821b = zArr;
+        this.f38822c = jsResult;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39077a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f38820a) {
             case 0:
-                boolean[] zArr = this.f39078b;
+                boolean[] zArr = this.f38821b;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    this.f39079c.cancel();
-                    return;
-                }
-                return;
-            case 1:
-                boolean[] zArr2 = this.f39078b;
-                if (!zArr2[0]) {
-                    zArr2[0] = true;
-                    this.f39079c.confirm();
+                    this.f38822c.cancel();
                     return;
                 }
                 return;
             default:
-                boolean[] zArr3 = this.f39078b;
-                if (!zArr3[0]) {
-                    zArr3[0] = true;
-                    this.f39079c.confirm();
+                boolean[] zArr2 = this.f38821b;
+                if (!zArr2[0]) {
+                    zArr2[0] = true;
+                    this.f38822c.cancel();
                     return;
                 }
                 return;

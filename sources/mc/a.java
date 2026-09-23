@@ -28,27 +28,27 @@ public final class a extends b {
     public boolean T;
     public byte[] d;
     public int e;
-    public int f14751f;
-    public int f14752g;
+    public int f14728f;
+    public int f14729g;
     public int h;
-    public int f14753i;
-    public boolean f14754j;
-    public boolean f14755k;
-    public int f14756l;
-    public int f14757m;
-    public int f14758n;
-    public int f14759o;
-    public int f14760p;
-    public int f14761q;
-    public int f14762r;
-    public int f14763s;
-    public int f14764t;
-    public int f14765u;
+    public int f14730i;
+    public boolean f14731j;
+    public boolean f14732k;
+    public int f14733l;
+    public int f14734m;
+    public int f14735n;
+    public int f14736o;
+    public int f14737p;
+    public int f14738q;
+    public int f14739r;
+    public int f14740s;
+    public int f14741t;
+    public int f14742u;
     public int v;
-    public int f14766w;
-    public int f14767x;
-    public int f14768y;
-    public int f14769z;
+    public int f14743w;
+    public int f14744x;
+    public int f14745y;
+    public int f14746z;
 
     static {
         HashMap hashMap = new HashMap();
@@ -109,39 +109,39 @@ public final class a extends b {
         int i10;
         int i11;
         ByteBuffer slice = byteBuffer.slice();
-        slice.limit(this.f14771b);
-        byteBuffer.position(byteBuffer.position() + this.f14771b);
-        byte[] bArr = new byte[this.f14771b];
+        slice.limit(this.f14748b);
+        byteBuffer.position(byteBuffer.position() + this.f14748b);
+        byte[] bArr = new byte[this.f14748b];
         this.d = bArr;
         slice.get(bArr);
         slice.rewind();
         c cVar = new c(0, slice);
         this.e = c(cVar);
         int a2 = cVar.a(4);
-        this.f14751f = a2;
+        this.f14728f = a2;
         int i12 = 15;
         if (a2 == 15) {
-            this.f14752g = cVar.a(24);
+            this.f14729g = cVar.a(24);
         }
         this.h = cVar.a(4);
         int i13 = this.e;
         if (i13 != 5 && i13 != 29) {
-            this.f14753i = 0;
+            this.f14730i = 0;
         } else {
-            this.f14753i = 5;
-            this.f14754j = true;
+            this.f14730i = 5;
+            this.f14731j = true;
             if (i13 == 29) {
-                this.f14755k = true;
+                this.f14732k = true;
             }
             int a10 = cVar.a(4);
-            this.f14756l = a10;
+            this.f14733l = a10;
             if (a10 == 15) {
-                this.f14757m = cVar.a(24);
+                this.f14734m = cVar.a(24);
             }
             int c10 = c(cVar);
             this.e = c10;
             if (c10 == 22) {
-                this.f14758n = cVar.a(4);
+                this.f14735n = cVar.a(4);
             }
         }
         int i14 = this.e;
@@ -159,21 +159,21 @@ public final class a extends b {
             case 22:
             case 23:
                 int i15 = this.h;
-                this.f14764t = cVar.a(1);
+                this.f14741t = cVar.a(1);
                 int a11 = cVar.a(1);
-                this.f14765u = a11;
+                this.f14742u = a11;
                 if (a11 == 1) {
                     this.v = cVar.a(14);
                 }
-                this.f14766w = cVar.a(1);
+                this.f14743w = cVar.a(1);
                 if (i15 != 0) {
                     if (i14 == 6 || i14 == 20) {
-                        this.f14767x = cVar.a(3);
+                        this.f14744x = cVar.a(3);
                     }
-                    if (this.f14766w == 1) {
+                    if (this.f14743w == 1) {
                         if (i14 == 22) {
-                            this.f14768y = cVar.a(5);
-                            this.f14769z = cVar.a(11);
+                            this.f14745y = cVar.a(5);
+                            this.f14746z = cVar.a(11);
                         }
                         if (i14 == 17 || i14 == 19 || i14 == 20 || i14 == 23) {
                             this.A = cVar.b();
@@ -241,7 +241,7 @@ public final class a extends b {
             case 28:
                 throw new UnsupportedOperationException("can't parse SSCSpecificConfig yet");
             case 30:
-                this.f14759o = cVar.a(1);
+                this.f14736o = cVar.a(1);
                 throw new UnsupportedOperationException("can't parse SpatialSpecificConfig yet");
             case 32:
             case 33:
@@ -250,7 +250,7 @@ public final class a extends b {
             case 35:
                 throw new UnsupportedOperationException("can't parse DSTSpecificConfig yet");
             case 36:
-                this.f14760p = cVar.a(5);
+                this.f14737p = cVar.a(5);
                 throw new UnsupportedOperationException("can't parse ALSSpecificConfig yet");
             case 37:
             case 38:
@@ -340,41 +340,41 @@ public final class a extends b {
                 case 27:
                     break;
                 default:
-                    if (this.f14753i == 5 && (cVar.f14773a.limit() * 8) - cVar.f14775c >= 16) {
+                    if (this.f14730i == 5 && (cVar.f14750a.limit() * 8) - cVar.f14752c >= 16) {
                         int a17 = cVar.a(11);
-                        this.f14763s = a17;
+                        this.f14740s = a17;
                         if (a17 == 695) {
                             int c11 = c(cVar);
-                            this.f14753i = c11;
+                            this.f14730i = c11;
                             if (c11 == 5) {
                                 boolean b12 = cVar.b();
-                                this.f14754j = b12;
+                                this.f14731j = b12;
                                 if (b12) {
                                     int a18 = cVar.a(4);
-                                    this.f14756l = a18;
+                                    this.f14733l = a18;
                                     if (a18 == 15) {
-                                        this.f14757m = cVar.a(24);
+                                        this.f14734m = cVar.a(24);
                                     }
-                                    if ((cVar.f14773a.limit() * 8) - cVar.f14775c >= 12) {
+                                    if ((cVar.f14750a.limit() * 8) - cVar.f14752c >= 12) {
                                         int a19 = cVar.a(11);
-                                        this.f14763s = a19;
+                                        this.f14740s = a19;
                                         if (a19 == 1352) {
-                                            this.f14755k = cVar.b();
+                                            this.f14732k = cVar.b();
                                         }
                                     }
                                 }
                             }
-                            if (this.f14753i == 22) {
+                            if (this.f14730i == 22) {
                                 boolean b13 = cVar.b();
-                                this.f14754j = b13;
+                                this.f14731j = b13;
                                 if (b13) {
                                     int a20 = cVar.a(4);
-                                    this.f14756l = a20;
+                                    this.f14733l = a20;
                                     if (a20 == 15) {
-                                        this.f14757m = cVar.a(24);
+                                        this.f14734m = cVar.a(24);
                                     }
                                 }
-                                this.f14758n = cVar.a(4);
+                                this.f14735n = cVar.a(4);
                                 return;
                             }
                             return;
@@ -385,16 +385,16 @@ public final class a extends b {
             }
         }
         int a21 = cVar.a(2);
-        this.f14761q = a21;
+        this.f14738q = a21;
         if (a21 != 2 && a21 != 3) {
             if (a21 == 3) {
                 int a22 = cVar.a(1);
-                this.f14762r = a22;
+                this.f14739r = a22;
                 if (a22 == 0) {
                     throw new RuntimeException("not implemented");
                 }
             }
-            if (this.f14753i == 5) {
+            if (this.f14730i == 5) {
                 return;
             }
             return;
@@ -406,7 +406,7 @@ public final class a extends b {
         if (this != obj) {
             if (obj != null && a.class == obj.getClass()) {
                 a aVar = (a) obj;
-                if (this.B == aVar.B && this.A == aVar.A && this.C == aVar.C && this.e == aVar.e && this.h == aVar.h && this.v == aVar.v && this.f14765u == aVar.f14765u && this.f14762r == aVar.f14762r && this.f14761q == aVar.f14761q && this.K == aVar.K && this.f14753i == aVar.f14753i && this.f14758n == aVar.f14758n && this.f14766w == aVar.f14766w && this.D == aVar.D && this.f14757m == aVar.f14757m && this.f14756l == aVar.f14756l && this.f14760p == aVar.f14760p && this.f14764t == aVar.f14764t && this.E == aVar.E && this.Q == aVar.Q && this.R == aVar.R && this.S == aVar.S && this.P == aVar.P && this.N == aVar.N && this.M == aVar.M && this.O == aVar.O && this.J == aVar.J && this.I == aVar.I && this.F == aVar.F && this.f14767x == aVar.f14767x && this.f14769z == aVar.f14769z && this.f14768y == aVar.f14768y && this.H == aVar.H && this.G == aVar.G && this.T == aVar.T && this.f14755k == aVar.f14755k && this.f14759o == aVar.f14759o && this.f14752g == aVar.f14752g && this.f14751f == aVar.f14751f && this.f14754j == aVar.f14754j && this.f14763s == aVar.f14763s && this.L == aVar.L && Arrays.equals(this.d, aVar.d)) {
+                if (this.B == aVar.B && this.A == aVar.A && this.C == aVar.C && this.e == aVar.e && this.h == aVar.h && this.v == aVar.v && this.f14742u == aVar.f14742u && this.f14739r == aVar.f14739r && this.f14738q == aVar.f14738q && this.K == aVar.K && this.f14730i == aVar.f14730i && this.f14735n == aVar.f14735n && this.f14743w == aVar.f14743w && this.D == aVar.D && this.f14734m == aVar.f14734m && this.f14733l == aVar.f14733l && this.f14737p == aVar.f14737p && this.f14741t == aVar.f14741t && this.E == aVar.E && this.Q == aVar.Q && this.R == aVar.R && this.S == aVar.S && this.P == aVar.P && this.N == aVar.N && this.M == aVar.M && this.O == aVar.O && this.J == aVar.J && this.I == aVar.I && this.F == aVar.F && this.f14744x == aVar.f14744x && this.f14746z == aVar.f14746z && this.f14745y == aVar.f14745y && this.H == aVar.H && this.G == aVar.G && this.T == aVar.T && this.f14732k == aVar.f14732k && this.f14736o == aVar.f14736o && this.f14729g == aVar.f14729g && this.f14728f == aVar.f14728f && this.f14731j == aVar.f14731j && this.f14740s == aVar.f14740s && this.L == aVar.L && Arrays.equals(this.d, aVar.d)) {
                     return true;
                 }
                 return false;
@@ -424,7 +424,7 @@ public final class a extends b {
         } else {
             i10 = 0;
         }
-        return (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((i10 * 31) + this.e) * 31) + this.f14751f) * 31) + this.f14752g) * 31) + this.h) * 31) + this.f14753i) * 31) + (this.f14754j ? 1 : 0)) * 31) + (this.f14755k ? 1 : 0)) * 31) + this.f14756l) * 31) + this.f14757m) * 31) + this.f14758n) * 31) + this.f14759o) * 31) + this.f14760p) * 31) + this.f14761q) * 31) + this.f14762r) * 31) + this.f14763s) * 31) + this.f14764t) * 31) + this.f14765u) * 31) + this.v) * 31) + this.f14766w) * 31) + this.f14767x) * 31) + this.f14768y) * 31) + this.f14769z) * 31) + (this.A ? 1 : 0)) * 31) + (this.B ? 1 : 0)) * 31) + (this.C ? 1 : 0)) * 31) + this.D) * 31) + (this.E ? 1 : 0)) * 31) + this.F) * 31) + this.G) * 31) + this.H) * 31) + this.I) * 31) + this.J) * 31) + this.K) * 31) + this.L) * 31) + this.M) * 31) + this.N) * 31) + this.O) * 31) + this.P) * 31) + this.Q) * 31) + this.R) * 31) + this.S) * 31) + (this.T ? 1 : 0);
+        return (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((i10 * 31) + this.e) * 31) + this.f14728f) * 31) + this.f14729g) * 31) + this.h) * 31) + this.f14730i) * 31) + (this.f14731j ? 1 : 0)) * 31) + (this.f14732k ? 1 : 0)) * 31) + this.f14733l) * 31) + this.f14734m) * 31) + this.f14735n) * 31) + this.f14736o) * 31) + this.f14737p) * 31) + this.f14738q) * 31) + this.f14739r) * 31) + this.f14740s) * 31) + this.f14741t) * 31) + this.f14742u) * 31) + this.v) * 31) + this.f14743w) * 31) + this.f14744x) * 31) + this.f14745y) * 31) + this.f14746z) * 31) + (this.A ? 1 : 0)) * 31) + (this.B ? 1 : 0)) * 31) + (this.C ? 1 : 0)) * 31) + this.D) * 31) + (this.E ? 1 : 0)) * 31) + this.F) * 31) + this.G) * 31) + this.H) * 31) + this.I) * 31) + this.J) * 31) + this.K) * 31) + this.L) * 31) + this.M) * 31) + this.N) * 31) + this.O) * 31) + this.P) * 31) + this.Q) * 31) + this.R) * 31) + this.S) * 31) + (this.T ? 1 : 0);
     }
 
     public final String toString() {
@@ -437,50 +437,50 @@ public final class a extends b {
         HashMap hashMap = V;
         sb2.append((String) hashMap.get(valueOf));
         sb2.append("), samplingFrequencyIndex=");
-        sb2.append(this.f14751f);
+        sb2.append(this.f14728f);
         sb2.append(" (");
-        Integer valueOf2 = Integer.valueOf(this.f14751f);
+        Integer valueOf2 = Integer.valueOf(this.f14728f);
         HashMap hashMap2 = U;
         sb2.append(hashMap2.get(valueOf2));
         sb2.append("), samplingFrequency=");
-        sb2.append(this.f14752g);
+        sb2.append(this.f14729g);
         sb2.append(", channelConfiguration=");
         sb2.append(this.h);
-        if (this.f14753i > 0) {
+        if (this.f14730i > 0) {
             sb2.append(", extensionAudioObjectType=");
-            sb2.append(this.f14753i);
+            sb2.append(this.f14730i);
             sb2.append(" (");
-            sb2.append((String) hashMap.get(Integer.valueOf(this.f14753i)));
+            sb2.append((String) hashMap.get(Integer.valueOf(this.f14730i)));
             sb2.append("), sbrPresentFlag=");
-            sb2.append(this.f14754j);
+            sb2.append(this.f14731j);
             sb2.append(", psPresentFlag=");
-            sb2.append(this.f14755k);
+            sb2.append(this.f14732k);
             sb2.append(", extensionSamplingFrequencyIndex=");
-            sb2.append(this.f14756l);
+            sb2.append(this.f14733l);
             sb2.append(" (");
-            sb2.append(hashMap2.get(Integer.valueOf(this.f14756l)));
+            sb2.append(hashMap2.get(Integer.valueOf(this.f14733l)));
             sb2.append("), extensionSamplingFrequency=");
-            sb2.append(this.f14757m);
+            sb2.append(this.f14734m);
             sb2.append(", extensionChannelConfiguration=");
-            sb2.append(this.f14758n);
+            sb2.append(this.f14735n);
         }
         sb2.append(", syncExtensionType=");
-        sb2.append(this.f14763s);
+        sb2.append(this.f14740s);
         if (this.E) {
             sb2.append(", frameLengthFlag=");
-            sb2.append(this.f14764t);
+            sb2.append(this.f14741t);
             sb2.append(", dependsOnCoreCoder=");
-            sb2.append(this.f14765u);
+            sb2.append(this.f14742u);
             sb2.append(", coreCoderDelay=");
             sb2.append(this.v);
             sb2.append(", extensionFlag=");
-            sb2.append(this.f14766w);
+            sb2.append(this.f14743w);
             sb2.append(", layerNr=");
-            sb2.append(this.f14767x);
+            sb2.append(this.f14744x);
             sb2.append(", numOfSubFrame=");
-            sb2.append(this.f14768y);
+            sb2.append(this.f14745y);
             sb2.append(", layer_length=");
-            sb2.append(this.f14769z);
+            sb2.append(this.f14746z);
             sb2.append(", aacSectionDataResilienceFlag=");
             sb2.append(this.A);
             sb2.append(", aacScalefactorDataResilienceFlag=");

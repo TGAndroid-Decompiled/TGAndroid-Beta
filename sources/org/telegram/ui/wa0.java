@@ -1,91 +1,55 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
+import android.os.Bundle;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class wa0 extends RelativeLayout {
-    public i0.b f38760a;
-    public boolean f38761b;
-    public final LaunchActivity f38762c;
+public final class wa0 implements MessagesController.MessagesLoadedCallback {
+    public final ia0 f38581a;
+    public final boolean[] f38582b;
+    public final Bundle f38583c;
+    public final TLRPC.ChatInvite d;
+    public final LaunchActivity e;
 
-    public wa0(LaunchActivity launchActivity, LaunchActivity launchActivity2) {
-        super(launchActivity2);
-        this.f38762c = launchActivity;
-        this.f38760a = i0.b.e;
-        hu huVar = new hu(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f41839a;
-        r0.a0.j(this, huVar);
+    public wa0(LaunchActivity launchActivity, ia0 ia0Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
+        this.e = launchActivity;
+        this.f38581a = ia0Var;
+        this.f38582b = zArr;
+        this.f38583c = bundle;
+        this.d = chatInvite;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ActionBarLayout actionBarLayout = this.f38762c.f30843r0;
-        if (actionBarLayout != null) {
-            actionBarLayout.N(canvas, this);
+    public final void onError() {
+        LaunchActivity launchActivity = this.e;
+        if (!launchActivity.isFinishing()) {
+            org.telegram.ui.Components.e5.u0((org.telegram.ui.ActionBar.n2) hg.c.h(1, launchActivity.f30791d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
         }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int measuredWidth = getMeasuredWidth();
-        getMeasuredHeight();
-        boolean z11 = AndroidUtilities.isInMultiwindow;
-        LaunchActivity launchActivity = this.f38762c;
-        if (!z11 && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
-            i0.b bVar = this.f38760a;
-            int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(measuredWidth, bVar.f10590a, bVar.f10592c);
-            launchActivity.f30841q0.getView().layout(0, 0, launchActivity.f30841q0.getView().getMeasuredWidth(), launchActivity.f30841q0.getView().getMeasuredHeight());
-            launchActivity.f30845s0.getView().layout(tabletLeftFragmentSize, 0, launchActivity.f30845s0.getView().getMeasuredWidth() + tabletLeftFragmentSize, launchActivity.f30845s0.getView().getMeasuredHeight());
-        } else {
-            launchActivity.f30841q0.getView().layout(0, 0, launchActivity.f30841q0.getView().getMeasuredWidth(), launchActivity.f30841q0.getView().getMeasuredHeight());
+        try {
+            this.f38581a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        int measuredWidth2 = (measuredWidth - launchActivity.f30843r0.getView().getMeasuredWidth()) / 2;
-        int dp = AndroidUtilities.dp(8.0f) + this.f38760a.f10591b;
-        launchActivity.f30843r0.getView().layout(measuredWidth2, dp, launchActivity.f30843r0.getView().getMeasuredWidth() + measuredWidth2, launchActivity.f30843r0.getView().getMeasuredHeight() + dp);
-        hg.r1 r1Var = launchActivity.f30851v0;
-        r1Var.layout(0, 0, r1Var.getMeasuredWidth(), launchActivity.f30851v0.getMeasuredHeight());
-        FrameLayout frameLayout = launchActivity.f30849u0;
-        frameLayout.layout(0, 0, frameLayout.getMeasuredWidth(), launchActivity.f30849u0.getMeasuredHeight());
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f38761b = true;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        boolean z10 = AndroidUtilities.isInMultiwindow;
-        LaunchActivity launchActivity = this.f38762c;
-        if (!z10 && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
-            launchActivity.O0 = false;
-            i0.b bVar = this.f38760a;
-            int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(size, bVar.f10590a, bVar.f10592c);
-            launchActivity.f30841q0.getView().measure(View.MeasureSpec.makeMeasureSpec(tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            launchActivity.f30845s0.getView().measure(View.MeasureSpec.makeMeasureSpec(size - tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        } else {
-            launchActivity.O0 = true;
-            launchActivity.f30841q0.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+    public final void onMessagesLoaded(boolean z10) {
+        try {
+            this.f38581a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        launchActivity.f30851v0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        launchActivity.f30849u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        ViewGroup view = launchActivity.f30843r0.getView();
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(500.0f), size - AndroidUtilities.dp(16.0f)), 1073741824);
-        i0.b bVar2 = this.f38760a;
-        view.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(((size2 - bVar2.f10591b) - bVar2.d) - AndroidUtilities.dp(16.0f), 1073741824));
-        this.f38761b = false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f38761b) {
+        if (this.f38582b[0]) {
             return;
         }
-        super.requestLayout();
+        xn xnVar = new xn(this.f38583c);
+        TLRPC.ChatInvite chatInvite = this.d;
+        if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
+            xnVar.K5 = chatInvite;
+        }
+        ((ActionBarLayout) this.e.O()).P(xnVar);
     }
 }

@@ -1,10 +1,13 @@
 package org.telegram.ui;
+public final class e71 extends s4.j {
+    public final j71 F;
 
-import org.telegram.tgnet.TLRPC;
-public final class e71 extends TLRPC.Document {
-    public final CharSequence f33214a;
+    public e71(j71 j71Var) {
+        this.F = j71Var;
+    }
 
-    public e71(CharSequence charSequence) {
-        this.f33214a = charSequence;
+    @Override
+    public final void P(s4.c1 c1Var) {
+        j71.S(this.F);
     }
 }

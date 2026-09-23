@@ -1,49 +1,10 @@
 package u2;
-public final class x0 implements x3.g {
-    public long f43527a;
-    public long f43528b;
-    public Object f43529c;
-    public Object d;
+public final class x0 {
+    public final b2.s f43460a;
+    public final n2.l f43461b;
 
-    public x0(long j3, int i10) {
-        e2.d.g(((y2.a) this.f43529c) == null);
-        this.f43527a = j3;
-        this.f43528b = j3 + i10;
-    }
-
-    @Override
-    public void B(long j3) {
-        long[] jArr = (long[]) ((of.b) this.d).f15509b;
-        this.f43528b = jArr[e2.d0.e(jArr, j3, true)];
-    }
-
-    @Override
-    public long b(c3.p pVar) {
-        long j3 = this.f43528b;
-        if (j3 < 0) {
-            return -1L;
-        }
-        long j10 = -(j3 + 2);
-        this.f43528b = -1L;
-        return j10;
-    }
-
-    @Override
-    public c3.b0 g() {
-        boolean z10;
-        if (this.f43527a != -1) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        e2.d.g(z10);
-        return new c3.t((c3.u) this.f43529c, this.f43527a, 0);
-    }
-
-    public x0(String str, byte[] bArr, long j3, long j10) {
-        this.f43529c = str;
-        this.d = bArr;
-        this.f43527a = j3;
-        this.f43528b = j10;
+    public x0(b2.s sVar, n2.l lVar) {
+        this.f43460a = sVar;
+        this.f43461b = lVar;
     }
 }

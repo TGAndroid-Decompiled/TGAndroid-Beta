@@ -7,7 +7,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.text.TextUtils;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import ci.ab;
+import ci.xa;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,46 +21,45 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.d80;
+import org.telegram.ui.Components.e80;
 import org.telegram.ui.UserInfoActivity;
 public final class k implements Runnable {
-    public final int f11461a;
-    public final Object f11462b;
-    public final Object f11463c;
+    public final int f11458a;
+    public final Object f11459b;
+    public final Object f11460c;
     public final Object d;
     public final Object e;
-    public final Object f11464f;
+    public final Object f11461f;
     public final Object h;
-    public final Object f11465n;
-    public final Object f11466r;
+    public final Object f11462n;
+    public final Object f11463r;
 
     public k(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, int i10) {
-        this.f11461a = i10;
-        this.f11462b = obj;
-        this.f11463c = obj2;
+        this.f11458a = i10;
+        this.f11459b = obj;
+        this.f11460c = obj2;
         this.d = obj3;
         this.e = obj4;
-        this.f11464f = obj5;
+        this.f11461f = obj5;
         this.h = obj6;
-        this.f11465n = obj7;
-        this.f11466r = obj8;
+        this.f11462n = obj7;
+        this.f11463r = obj8;
     }
 
     @Override
     public final void run() {
         String str;
         String str2;
-        switch (this.f11461a) {
+        switch (this.f11458a) {
             case 0:
-                final String[] strArr = (String[]) this.f11462b;
-                final HorizontalScrollView horizontalScrollView = (HorizontalScrollView) this.f11463c;
+                final String[] strArr = (String[]) this.f11459b;
+                final HorizontalScrollView horizontalScrollView = (HorizontalScrollView) this.f11460c;
                 final ci.d dVar = (ci.d) this.d;
                 final boolean[] zArr = (boolean[]) this.e;
-                hi.a aVar = (hi.a) this.f11464f;
+                hi.a aVar = (hi.a) this.f11461f;
                 final ImageView imageView = (ImageView) this.h;
-                final org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f11465n;
-                final int[] iArr = (int[]) this.f11466r;
+                final org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f11462n;
+                final int[] iArr = (int[]) this.f11463r;
                 if (TextUtils.isEmpty(strArr[0].trim())) {
                     horizontalScrollView.setVisibility(8);
                     dVar.setEnabled(false);
@@ -79,9 +78,9 @@ public final class k implements Runnable {
                         }
                         boolean booleanValue = bool.booleanValue();
                         ImageView imageView2 = imageView;
-                        org.telegram.ui.ActionBar.e6 e6Var2 = e6Var;
+                        org.telegram.ui.ActionBar.d6 d6Var2 = d6Var;
                         if (booleanValue) {
-                            imageView2.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.f19071q7, e6Var2), PorterDuff.Mode.SRC_IN));
+                            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19026q7, d6Var2), PorterDuff.Mode.SRC_IN));
                             if (!z10) {
                                 int[] iArr2 = iArr;
                                 int i11 = -iArr2[0];
@@ -89,7 +88,7 @@ public final class k implements Runnable {
                                 AndroidUtilities.shakeViewSpring(imageView2, i11);
                             }
                         } else {
-                            imageView2.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.G6, e6Var2), PorterDuff.Mode.SRC_IN));
+                            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var2), PorterDuff.Mode.SRC_IN));
                         }
                         if (bitmap != null) {
                             imageView2.setImageBitmap(bitmap);
@@ -106,25 +105,25 @@ public final class k implements Runnable {
                 });
                 return;
             case 1:
-                ((MessagesStorage) this.f11462b).lambda$loadUnreadMessages$76((a0.i) this.f11463c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f11464f, (ArrayList) this.h, (ArrayList) this.f11465n, (HashMap) this.f11466r);
+                ((MessagesStorage) this.f11459b).lambda$loadUnreadMessages$76((a0.i) this.f11460c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f11461f, (ArrayList) this.h, (ArrayList) this.f11462n, (HashMap) this.f11463r);
                 return;
             case 2:
-                UserInfoActivity.Y((UserInfoActivity) this.f11462b, (TLRPC.TL_error) this.f11463c, (TLObject) this.d, (TL_account.TL_birthday) this.e, (TLRPC.UserFull) this.f11464f, (TLObject) this.h, (int[]) this.f11466r, (ArrayList) this.f11465n);
+                UserInfoActivity.Y((UserInfoActivity) this.f11459b, (TLRPC.TL_error) this.f11460c, (TLObject) this.d, (TL_account.TL_birthday) this.e, (TLRPC.UserFull) this.f11461f, (TLObject) this.h, (int[]) this.f11463r, (ArrayList) this.f11462n);
                 return;
             case 3:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f11462b;
-                tg.w wVar = (tg.w) this.f11463c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f11459b;
+                tg.w wVar = (tg.w) this.f11460c;
                 TLObject tLObject = (TLObject) this.d;
                 List list = (List) this.e;
-                c5.h hVar = (c5.h) this.f11464f;
+                c5.h hVar = (c5.h) this.f11461f;
                 tg.w wVar2 = (tg.w) this.h;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f11465n;
-                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f11466r;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f11462n;
+                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f11463r;
                 if (tL_error != null) {
                     wVar.run(tL_error);
                     return;
                 } else if (tLObject != null) {
-                    BillingController.getInstance().addResultListener(((c5.o) list.get(0)).f3914c, new ci.l5(3, hVar, wVar2));
+                    BillingController.getInstance().addResultListener(((c5.o) list.get(0)).f3909c, new ci.k5(3, hVar, wVar2));
                     BillingController.getInstance().setOnCanceled(new tg.s(wVar, 0));
                     BillingController billingController = BillingController.getInstance();
                     Activity parentActivity = n2Var.getParentActivity();
@@ -137,20 +136,20 @@ public final class k implements Runnable {
                     return;
                 }
             case 4:
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f11462b;
-                Utilities.Callback callback = (Utilities.Callback) this.f11463c;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f11459b;
+                Utilities.Callback callback = (Utilities.Callback) this.f11460c;
                 TLObject tLObject2 = (TLObject) this.d;
                 List list2 = (List) this.e;
-                c5.h hVar2 = (c5.h) this.f11464f;
+                c5.h hVar2 = (c5.h) this.f11461f;
                 Utilities.Callback callback2 = (Utilities.Callback) this.h;
-                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f11465n;
-                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f11466r;
+                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f11462n;
+                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f11463r;
                 if (tL_error2 != null) {
                     callback.run(tL_error2);
                     return;
                 } else if (tLObject2 != null) {
-                    BillingController.getInstance().addResultListener(((c5.o) list2.get(0)).f3914c, new ci.l5(2, hVar2, callback2));
-                    BillingController.getInstance().setOnCanceled(new ab(1, callback));
+                    BillingController.getInstance().addResultListener(((c5.o) list2.get(0)).f3909c, new ci.k5(2, hVar2, callback2));
+                    BillingController.getInstance().setOnCanceled(new xa(1, callback));
                     BillingController billingController2 = BillingController.getInstance();
                     Activity parentActivity2 = n2Var2.getParentActivity();
                     AccountInstance accountInstance2 = AccountInstance.getInstance(UserConfig.selectedAccount);
@@ -162,17 +161,17 @@ public final class k implements Runnable {
                     return;
                 }
             case 5:
-                TLObject tLObject3 = (TLObject) this.f11462b;
-                c5.o oVar = (c5.o) this.f11463c;
+                TLObject tLObject3 = (TLObject) this.f11459b;
+                c5.o oVar = (c5.o) this.f11460c;
                 c5.h hVar3 = (c5.h) this.d;
                 ai.m0 m0Var = (ai.m0) this.e;
-                Activity activity = (Activity) this.f11464f;
+                Activity activity = (Activity) this.f11461f;
                 TLRPC.TL_inputStorePaymentStarsGiveaway tL_inputStorePaymentStarsGiveaway = (TLRPC.TL_inputStorePaymentStarsGiveaway) this.h;
-                List list3 = (List) this.f11465n;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f11466r;
+                List list3 = (List) this.f11462n;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f11463r;
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(oVar.f3914c, new ci.l5(5, hVar3, m0Var));
-                    BillingController.getInstance().setOnCanceled(new yh.l4(m0Var, 2));
+                    BillingController.getInstance().addResultListener(oVar.f3909c, new ci.k5(5, hVar3, m0Var));
+                    BillingController.getInstance().setOnCanceled(new yh.k4(m0Var, 2));
                     BillingController billingController3 = BillingController.getInstance();
                     AccountInstance accountInstance3 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar3 = new of.b(7, false);
@@ -193,17 +192,17 @@ public final class k implements Runnable {
                     return;
                 }
             default:
-                TLObject tLObject4 = (TLObject) this.f11462b;
-                c5.o oVar2 = (c5.o) this.f11463c;
+                TLObject tLObject4 = (TLObject) this.f11459b;
+                c5.o oVar2 = (c5.o) this.f11460c;
                 c5.h hVar4 = (c5.h) this.d;
-                d80 d80Var = (d80) this.e;
-                Activity activity2 = (Activity) this.f11464f;
+                e80 e80Var = (e80) this.e;
+                Activity activity2 = (Activity) this.f11461f;
                 TLRPC.TL_inputStorePaymentStarsGift tL_inputStorePaymentStarsGift = (TLRPC.TL_inputStorePaymentStarsGift) this.h;
-                List list4 = (List) this.f11465n;
-                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f11466r;
+                List list4 = (List) this.f11462n;
+                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f11463r;
                 if (tLObject4 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(oVar2.f3914c, new ci.l5(4, hVar4, d80Var));
-                    BillingController.getInstance().setOnCanceled(new yh.n4(d80Var, 0));
+                    BillingController.getInstance().addResultListener(oVar2.f3909c, new ci.k5(4, hVar4, e80Var));
+                    BillingController.getInstance().setOnCanceled(new yh.m4(e80Var, 0));
                     BillingController billingController4 = BillingController.getInstance();
                     AccountInstance accountInstance4 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar4 = new of.b(7, false);
@@ -211,7 +210,7 @@ public final class k implements Runnable {
                     billingController4.launchBillingFlow(activity2, accountInstance4, tL_inputStorePaymentStarsGift, Collections.singletonList(bVar4.C()));
                     return;
                 } else if (tLObject4 instanceof TLRPC.TL_boolFalse) {
-                    d80Var.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
+                    e80Var.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
                     return;
                 } else {
                     Boolean bool2 = Boolean.FALSE;
@@ -220,21 +219,21 @@ public final class k implements Runnable {
                     } else {
                         str2 = "SERVER_ERROR";
                     }
-                    d80Var.run(bool2, str2);
+                    e80Var.run(bool2, str2);
                     return;
                 }
         }
     }
 
     public k(UserInfoActivity userInfoActivity, TLRPC.TL_error tL_error, TLObject tLObject, TL_account.TL_birthday tL_birthday, TLRPC.UserFull userFull, TLObject tLObject2, int[] iArr, ArrayList arrayList) {
-        this.f11461a = 2;
-        this.f11462b = userInfoActivity;
-        this.f11463c = tL_error;
+        this.f11458a = 2;
+        this.f11459b = userInfoActivity;
+        this.f11460c = tL_error;
         this.d = tLObject;
         this.e = tL_birthday;
-        this.f11464f = userFull;
+        this.f11461f = userFull;
         this.h = tLObject2;
-        this.f11466r = iArr;
-        this.f11465n = arrayList;
+        this.f11463r = iArr;
+        this.f11462n = arrayList;
     }
 }

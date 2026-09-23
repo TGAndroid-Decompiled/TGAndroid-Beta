@@ -1,30 +1,29 @@
 package org.telegram.messenger;
 
-import java.text.Collator;
-import java.util.Comparator;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class k1 implements Comparator {
+public final class k1 implements RequestDelegate {
     public final int f16526a;
-    public final Collator f16527b;
-    public final Object f16528c;
+    public final ContactsController f16527b;
 
-    public k1(Object obj, Collator collator, int i10) {
+    public k1(ContactsController contactsController, int i10) {
         this.f16526a = i10;
-        this.f16528c = obj;
-        this.f16527b = collator;
+        this.f16527b = contactsController;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$buildContactsSectionsArrays$43;
-        int lambda$processLoadedContacts$30;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.f16526a) {
             case 0:
-                lambda$buildContactsSectionsArrays$43 = ((ContactsController) this.f16528c).lambda$buildContactsSectionsArrays$43(this.f16527b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
-                return lambda$buildContactsSectionsArrays$43;
+                this.f16527b.lambda$checkInviteText$3(tLObject, tL_error);
+                return;
+            case 1:
+                this.f16527b.lambda$loadGlobalPrivacySetting$61(tLObject, tL_error);
+                return;
             default:
-                lambda$processLoadedContacts$30 = ContactsController.lambda$processLoadedContacts$30((a0.i) this.f16528c, this.f16527b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
-                return lambda$processLoadedContacts$30;
+                this.f16527b.lambda$loadPrivacySettings$63(tLObject, tL_error);
+                return;
         }
     }
 }

@@ -14,14 +14,14 @@ public final class gu0 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        c1Var.f42671a.setPressed(false);
+        c1Var.f42627a.setPressed(false);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
         SavedMessagesController.SavedDialog r10;
         int l4 = s4.v.l(0, 0);
-        yu0 yu0Var = this.d.f25140x;
+        yu0 yu0Var = this.d.f25067x;
         if (yu0Var.C1 && recyclerView.getAdapter() != yu0Var.S && (r10 = r(c1Var)) != null && r10.pinned) {
             return s4.v.l(3, 0);
         }
@@ -31,8 +31,8 @@ public final class gu0 extends s4.v {
     @Override
     public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
         iu0 iu0Var = this.d;
-        ArrayList arrayList = iu0Var.f25135f;
-        yu0 yu0Var = iu0Var.f25140x;
+        ArrayList arrayList = iu0Var.f25062f;
+        yu0 yu0Var = iu0Var.f25067x;
         if (yu0Var.C1 && recyclerView.getAdapter() != yu0Var.S) {
             SavedMessagesController.SavedDialog r10 = r(c1Var);
             SavedMessagesController.SavedDialog r11 = r(c1Var2);
@@ -54,8 +54,8 @@ public final class gu0 extends s4.v {
     public final void p(s4.c1 c1Var, int i10) {
         qt0 qt0Var;
         iu0 iu0Var = this.d;
-        jq0 jq0Var = iu0Var.f25136n;
-        if (c1Var != null && (qt0Var = iu0Var.f25138s) != null) {
+        jq0 jq0Var = iu0Var.f25063n;
+        if (c1Var != null && (qt0Var = iu0Var.f25065s) != null) {
             qt0Var.d1(false);
         }
         if (i10 == 0) {
@@ -68,8 +68,8 @@ public final class gu0 extends s4.v {
         int b10;
         if (c1Var != null && (b10 = c1Var.b()) >= 0) {
             iu0 iu0Var = this.d;
-            if (b10 < iu0Var.f25135f.size()) {
-                return (SavedMessagesController.SavedDialog) iu0Var.f25135f.get(b10);
+            if (b10 < iu0Var.f25062f.size()) {
+                return (SavedMessagesController.SavedDialog) iu0Var.f25062f.get(b10);
             }
         }
         return null;

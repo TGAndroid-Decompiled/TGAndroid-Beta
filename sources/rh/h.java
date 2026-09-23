@@ -7,25 +7,25 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 public final class h extends qh.e {
-    public final TLRPC.Document f42598b;
-    public final Object f42599c;
+    public final TLRPC.Document f42553b;
+    public final Object f42554c;
 
     public h(TLRPC.Document document, Object obj) {
         boolean z10;
         String str;
-        this.f42598b = document;
-        this.f42599c = obj;
+        this.f42553b = document;
+        this.f42554c = obj;
         MessageObject.isAnimatedEmoji(document);
-        ImageReceiver imageReceiver = this.f41761a;
+        ImageReceiver imageReceiver = this.f41717a;
         if (!MessageObject.isStickerDocument(document) && !MessageObject.isVideoSticker(document)) {
             z10 = false;
         } else {
             z10 = true;
         }
         MessageObject.isAnimatedStickerDocument(document, true);
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, i6.f18985lc, 1.0f);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, h6.f18940lc, 1.0f);
         boolean z11 = z10;
         ImageLocation forDocument = ImageLocation.getForDocument(document);
         long j3 = document.size;
@@ -39,7 +39,7 @@ public final class h extends qh.e {
 
     @Override
     public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f41761a;
+        ImageReceiver imageReceiver = this.f41717a;
         imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
         imageReceiver.draw(canvas);
     }

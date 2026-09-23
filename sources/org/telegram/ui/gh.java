@@ -1,27 +1,54 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.regex.Pattern;
-public final class gh implements DialogInterface.OnCancelListener {
-    public final int f33853a;
-    public final boolean[] f33854b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+public final class gh implements Runnable {
+    public final int f33566a;
+    public final View f33567b;
 
-    public gh(int i10, boolean[] zArr) {
-        this.f33853a = i10;
-        this.f33854b = zArr;
+    public gh(int i10, View view) {
+        this.f33566a = i10;
+        this.f33567b = view;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f33853a;
-        boolean[] zArr = this.f33854b;
+    public final void run() {
+        int i10 = this.f33566a;
+        View view = this.f33567b;
         switch (i10) {
             case 0:
-                zArr[0] = true;
+                try {
+                    view.performHapticFeedback(3, 2);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            case 1:
+                view.setBackgroundDrawable(null);
+                return;
+            case 2:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                AndroidUtilities.removeFromParent(view);
+                return;
+            case 3:
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                view.setVisibility(8);
+                return;
+            case 4:
+                SharedConfig.setSuggestStickers(0);
+                ((org.telegram.ui.Cells.fa) view).f20061c.c(LocaleController.getString(R.string.SuggestStickersAll), true, true);
+                return;
+            case 5:
+                SharedConfig.setSuggestStickers(1);
+                ((org.telegram.ui.Cells.fa) view).f20061c.c(LocaleController.getString(R.string.SuggestStickersInstalled), true, true);
                 return;
             default:
-                Pattern pattern = LaunchActivity.B1;
-                zArr[0] = true;
+                SharedConfig.setSuggestStickers(2);
+                ((org.telegram.ui.Cells.fa) view).f20061c.c(LocaleController.getString(R.string.SuggestStickersNone), true, true);
                 return;
         }
     }

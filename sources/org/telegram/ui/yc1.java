@@ -1,82 +1,28 @@
 package org.telegram.ui;
+public final class yc1 implements fd1 {
+    public boolean f39794a;
+    public final xn f39795b;
 
-import android.view.MotionEvent;
-import android.widget.Scroller;
-import org.telegram.messenger.Utilities;
-public final class yc1 implements org.telegram.ui.Components.eo0, org.telegram.ui.Components.i20 {
-    public final wd1 f39814a;
-
-    public yc1(wd1 wd1Var) {
-        this.f39814a = wd1Var;
+    public yc1(xn xnVar, boolean z10) {
+        this.f39795b = xnVar;
+        this.f39794a = z10;
     }
 
     @Override
-    public void X(float f7, boolean z10) {
-        wd1 wd1Var = this.f39814a;
-        wd1Var.l1 = f7;
-        wd1Var.k1();
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public int m0() {
-        return 0;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        Scroller scroller = this.f39814a.f38793c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            return true;
-        }
+    public final boolean Y0() {
         return true;
     }
 
     @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        wd1 wd1Var = this.f39814a;
-        Scroller scroller = wd1Var.f38793c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            wd1Var.f38793c.fling((int) wd1Var.X1, 0, Math.round(-f7), Math.round(f10), 0, (int) wd1Var.W1, 0, Integer.MAX_VALUE);
-            wd1Var.f38848x0.postInvalidate();
-            return true;
-        }
-        return true;
+    public final boolean a() {
+        return this.f39794a;
     }
 
     @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        wd1 wd1Var = this.f39814a;
-        Scroller scroller = wd1Var.f38793c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-        }
-        wd1Var.X1 = Utilities.clamp(wd1Var.X1 + f7, wd1Var.W1, 0.0f);
-        wd1Var.V0();
-        wd1Var.f38848x0.invalidate();
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public void B() {
-    }
-
-    @Override
-    public void b1() {
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
+    public final void o1(boolean z10) {
+        boolean z11 = !this.f39794a;
+        this.f39794a = z11;
+        vn vnVar = this.f39795b.f39370ea;
+        vnVar.i(vnVar.f38428f, vnVar.h, z10, Boolean.valueOf(z11), false);
     }
 }

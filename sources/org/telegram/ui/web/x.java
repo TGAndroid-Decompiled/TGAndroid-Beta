@@ -1,57 +1,40 @@
 package org.telegram.ui.web;
-
-import ai.da;
-import org.json.JSONObject;
-import org.telegram.messenger.FileLog;
 public final class x implements Runnable {
-    public final int f39154a;
-    public final String[] f39155b;
-    public final int f39156c;
-    public final z0 d;
-    public final da e;
+    public final int f38894a;
+    public final b1 f38895b;
+    public final String f38896c;
 
-    public x(String[] strArr, int i10, z0 z0Var, da daVar, int i11) {
-        this.f39154a = i11;
-        this.f39155b = strArr;
-        this.f39156c = i10;
-        this.d = z0Var;
-        this.e = daVar;
+    public x(b1 b1Var, String str, int i10) {
+        this.f38894a = i10;
+        this.f38895b = b1Var;
+        this.f38896c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f39154a) {
+        switch (this.f38894a) {
             case 0:
-                int i10 = this.f39156c;
-                z0 z0Var = this.d;
-                da daVar = this.e;
-                String[] strArr = this.f39155b;
-                if (strArr[0] != null) {
-                    try {
-                        JSONObject jSONObject = new JSONObject();
-                        jSONObject.put("status", strArr[0]);
-                        d1.x(i10, z0Var, daVar, "phone_requested", jSONObject);
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
+                y0 y0Var = this.f38895b.f38629a;
+                if (y0Var != null) {
+                    y0Var.d(this.f38896c);
+                    return;
                 }
                 return;
             default:
-                String[] strArr2 = this.f39155b;
-                int i11 = this.f39156c;
-                z0 z0Var2 = this.d;
-                da daVar2 = this.e;
-                try {
-                    JSONObject jSONObject2 = new JSONObject();
-                    jSONObject2.put("status", strArr2[0]);
-                    d1.x(i11, z0Var2, daVar2, "write_access_requested", jSONObject2);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                b1 b1Var = this.f38895b;
+                b1Var.N = false;
+                b1Var.P = 0L;
+                b1Var.T = false;
+                String str = this.f38896c;
+                b1Var.f38631b = str;
+                b1Var.c();
+                y0 y0Var2 = b1Var.f38629a;
+                if (y0Var2 != null) {
+                    y0Var2.onResume();
+                    b1Var.f38629a.loadUrl(str);
                     return;
                 }
+                return;
         }
     }
 }

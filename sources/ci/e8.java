@@ -1,73 +1,107 @@
 package ci;
 
-import android.text.Editable;
+import android.app.Activity;
 import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-public final class e8 implements TextWatcher {
-    public final g8 f4600a;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.rr;
+public final class e8 extends FrameLayout {
+    public final int f4646a;
+    public final org.telegram.ui.Components.h9 f4647b;
+    public final org.telegram.ui.Components.w9 f4648c;
+    public final TextView d;
+    public ViewPropertyAnimator e;
 
-    public e8(g8 g8Var) {
-        this.f4600a = g8Var;
+    public e8(Activity activity, int i10) {
+        super(activity);
+        this.f4646a = i10;
+        this.f4647b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
+        this.f4648c = w9Var;
+        w9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
+        addView(w9Var, w7.x5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(activity);
+        this.d = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTextColor(-1);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setSingleLine();
+        textView.setLines(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, w7.x5.d(-1, -2.0f, 51, 53.0f, 11.33f, 12.0f, 0.0f));
+        TextView textView2 = new TextView(activity);
+        textView2.setTextSize(1, 12.0f);
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.l1(0.85f, -1));
+        addView(textView2, w7.x5.d(-1, -2.0f, 51, 53.0f, 29.33f, 12.0f, 0.0f));
+        textView2.setText(AndroidUtilities.replaceArrows(LocaleController.getString(R.string.LiveStoryPeerChange), false, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.33f), 1.0f));
+        set(null);
     }
 
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        boolean z10;
-        String obj = editable.toString();
-        g8 g8Var = this.f4600a;
-        g8Var.f4713s0 = obj;
-        if (!g8Var.Z) {
-            String str = g8Var.f4718x0;
-            String str2 = "";
-            if (obj == null) {
-                obj = "";
-            }
-            boolean equals = TextUtils.equals(str, obj);
-            boolean z11 = false;
-            if (!equals) {
-                g8Var.Z();
-                String str3 = g8Var.f4713s0;
-                if (str3 != null && str3.length() > 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                g8Var.f4717w0 = z10;
-            }
-            String str4 = g8Var.I0;
-            String str5 = g8Var.f4713s0;
-            if (str5 != null) {
-                str2 = str5;
-            }
-            if (!TextUtils.equals(str4, str2)) {
-                g8Var.Y();
-                String str6 = g8Var.f4713s0;
-                if (str6 != null && str6.length() > 3) {
-                    i10 = ((org.telegram.ui.ActionBar.f3) g8Var).currentAccount;
-                    if (!TextUtils.isEmpty(MessagesController.getInstance(i10).config.musicSearchUsername.get())) {
-                        z11 = true;
-                    }
-                }
-                g8Var.D0 = z11;
-            }
-            y7 y7Var = g8Var.f4720z0;
-            AndroidUtilities.cancelRunOnUIThread(y7Var);
-            AndroidUtilities.runOnUIThread(y7Var, 400L);
-            y7 y7Var2 = g8Var.K0;
-            AndroidUtilities.cancelRunOnUIThread(y7Var2);
-            AndroidUtilities.runOnUIThread(y7Var2, 400L);
+    public final void a(boolean z10, boolean z11) {
+        ViewPropertyAnimator viewPropertyAnimator = this.e;
+        if (viewPropertyAnimator != null) {
+            viewPropertyAnimator.cancel();
+            this.e = null;
         }
-        g8Var.f4711q0.N(true);
+        float f7 = 0.0f;
+        int i10 = 0;
+        if (z11) {
+            setVisibility(0);
+            ViewPropertyAnimator animate = animate();
+            if (z10) {
+                f7 = 1.0f;
+            }
+            ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(rr.h).withEndAction(new bi.f(4, this, z10)).setDuration(320L);
+            this.e = duration;
+            duration.start();
+            return;
+        }
+        if (!z10) {
+            i10 = 8;
+        }
+        setVisibility(i10);
+        if (z10) {
+            f7 = 1.0f;
+        }
+        setAlpha(f7);
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public void set(TLRPC.InputPeer inputPeer) {
+        long peerDialogId;
+        String str;
+        int i10 = this.f4646a;
+        if (inputPeer == null) {
+            peerDialogId = UserConfig.getInstance(i10).getClientUserId();
+        } else {
+            peerDialogId = DialogObject.getPeerDialogId(inputPeer);
+        }
+        TextView textView = this.d;
+        org.telegram.ui.Components.w9 w9Var = this.f4648c;
+        org.telegram.ui.Components.h9 h9Var = this.f4647b;
+        if (peerDialogId >= 0) {
+            TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
+            h9Var.r(user);
+            w9Var.e(user, h9Var);
+            textView.setText(UserObject.getUserName(user));
+            return;
+        }
+        TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-peerDialogId));
+        h9Var.q(chat);
+        w9Var.e(chat, h9Var);
+        if (chat == null) {
+            str = "";
+        } else {
+            str = chat.title;
+        }
+        textView.setText(str);
     }
 }

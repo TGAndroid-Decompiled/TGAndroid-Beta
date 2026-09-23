@@ -7,19 +7,19 @@ import java.util.concurrent.Executor;
 import q9.r;
 import zd.y0;
 public final class i implements q9.d, t {
-    public static final i f13555b = new i(0);
-    public static final i f13556c = new i(1);
+    public static final i f13543b = new i(0);
+    public static final i f13544c = new i(1);
     public static final i d = new i(2);
     public static final i e = new i(3);
-    public final int f13557a;
+    public final int f13545a;
 
     public i(int i10) {
-        this.f13557a = i10;
+        this.f13545a = i10;
     }
 
     @Override
     public Object G(cf.c cVar) {
-        switch (this.f13557a) {
+        switch (this.f13545a) {
             case 0:
                 Object i10 = cVar.i(new r(m9.a.class, Executor.class));
                 kotlin.jvm.internal.i.d(i10, "c.get(Qualified.qualifie…a, Executor::class.java))");
@@ -41,9 +41,9 @@ public final class i implements q9.d, t {
 
     @Override
     public Exception a(Status status) {
-        int i10 = status.f6019a;
-        int i11 = status.f6019a;
-        String str = status.f6020b;
+        int i10 = status.f6005a;
+        int i11 = status.f6005a;
+        String str = status.f6006b;
         if (i10 == 8) {
             if (str == null) {
                 str = x8.j.a(i11);

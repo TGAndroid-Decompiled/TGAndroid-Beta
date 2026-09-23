@@ -1,36 +1,19 @@
 package k2;
 
 import android.media.AudioTrack;
-public final class e0 extends AudioTrack.StreamEventCallback {
-    public final f0 f13245a;
+import android.os.Handler;
+import android.os.Looper;
+public final class e0 {
+    public final Handler f13233a = new Handler(Looper.myLooper());
+    public final d0 f13234b = new d0(this);
+    public final f0 f13235c;
 
     public e0(f0 f0Var) {
-        this.f13245a = f0Var;
+        this.f13235c = f0Var;
     }
 
-    @Override
-    public final void onDataRequest(AudioTrack audioTrack, int i10) {
-        g0 g0Var;
-        n nVar;
-        if (audioTrack.equals(this.f13245a.f13251c.f13290x) && (nVar = (g0Var = this.f13245a.f13251c).f13287t) != null && g0Var.X) {
-            nVar.h0();
-        }
-    }
-
-    @Override
-    public final void onPresentationEnded(AudioTrack audioTrack) {
-        if (!audioTrack.equals(this.f13245a.f13251c.f13290x)) {
-            return;
-        }
-        this.f13245a.f13251c.W = true;
-    }
-
-    @Override
-    public final void onTearDown(AudioTrack audioTrack) {
-        g0 g0Var;
-        n nVar;
-        if (audioTrack.equals(this.f13245a.f13251c.f13290x) && (nVar = (g0Var = this.f13245a.f13251c).f13287t) != null && g0Var.X) {
-            nVar.h0();
-        }
+    public final void a(AudioTrack audioTrack) {
+        audioTrack.unregisterStreamEventCallback(this.f13234b);
+        this.f13233a.removeCallbacksAndMessages(null);
     }
 }

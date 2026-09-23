@@ -1,28 +1,28 @@
 package ng;
 
-import org.telegram.ui.bo;
-import org.telegram.ui.eg1;
+import org.telegram.ui.wf1;
+import org.telegram.ui.xn;
 public final class b implements Runnable {
-    public final int f15223a;
-    public final bo f15224b;
+    public final int f15200a;
+    public final xn f15201b;
 
-    public b(bo boVar, int i10) {
-        this.f15223a = i10;
-        this.f15224b = boVar;
+    public b(xn xnVar, int i10) {
+        this.f15200a = i10;
+        this.f15201b = xnVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f15223a) {
+        switch (this.f15200a) {
             case 0:
-                bo boVar = this.f15224b;
-                if (boVar.getParentLayout() != null) {
-                    eg1.I0(boVar);
+                xn xnVar = this.f15201b;
+                if (xnVar.getParentLayout() != null) {
+                    wf1.I0(xnVar);
                     return;
                 }
                 return;
             default:
-                this.f15224b.Yb();
+                this.f15201b.Yb();
                 return;
         }
     }

@@ -1,701 +1,217 @@
 package m4;
 
-import android.os.Looper;
-import android.os.SystemClock;
-import android.view.Surface;
-import b2.x1;
-import java.util.List;
-public final class k1 implements b2.b1 {
-    public final b2.b1 f14586a;
+import android.os.Bundle;
+import j$.util.Objects;
+public final class k1 {
+    public static final b2.a1 f14582k;
+    public static final k1 f14583l;
+    public static final String f14584m;
+    public static final String f14585n;
+    public static final String f14586o;
+    public static final String f14587p;
+    public static final String f14588q;
+    public static final String f14589r;
+    public static final String f14590s;
+    public static final String f14591t;
+    public static final String f14592u;
+    public static final String v;
+    public final b2.a1 f14593a;
+    public final boolean f14594b;
+    public final long f14595c;
+    public final long d;
+    public final long e;
+    public final int f14596f;
+    public final long f14597g;
+    public final long h;
+    public final long f14598i;
+    public final long f14599j;
 
-    public k1(b2.b1 b1Var) {
-        this.f14586a = b1Var;
+    static {
+        b2.a1 a1Var = new b2.a1(null, 0, null, null, 0, 0L, 0L, -1, -1);
+        f14582k = a1Var;
+        f14583l = new k1(a1Var, false, -9223372036854775807L, -9223372036854775807L, 0L, 0, 0L, -9223372036854775807L, -9223372036854775807L, 0L);
+        String str = e2.d0.f7871a;
+        f14584m = Integer.toString(0, 36);
+        f14585n = Integer.toString(1, 36);
+        f14586o = Integer.toString(2, 36);
+        f14587p = Integer.toString(3, 36);
+        f14588q = Integer.toString(4, 36);
+        f14589r = Integer.toString(5, 36);
+        f14590s = Integer.toString(6, 36);
+        f14591t = Integer.toString(7, 36);
+        f14592u = Integer.toString(8, 36);
+        v = Integer.toString(9, 36);
     }
 
-    @Override
-    public final long A() {
-        S0();
-        return this.f14586a.A();
-    }
-
-    @Override
-    public final boolean A0() {
-        S0();
-        return this.f14586a.A0();
-    }
-
-    @Override
-    public final int B() {
-        S0();
-        return this.f14586a.B();
-    }
-
-    @Override
-    public final b2.q1 B0() {
-        S0();
-        return this.f14586a.B0();
-    }
-
-    @Override
-    public final void C(b2.n0 n0Var) {
-        S0();
-        this.f14586a.C(n0Var);
-    }
-
-    @Override
-    public final long C0() {
-        S0();
-        return this.f14586a.C0();
-    }
-
-    @Override
-    public final void D(b2.z0 z0Var) {
-        S0();
-        this.f14586a.D(new b2.t(this, z0Var));
-    }
-
-    @Override
-    public final void D0(int i10) {
-        S0();
-        this.f14586a.D0(i10);
-    }
-
-    @Override
-    public final x1 E() {
-        S0();
-        return this.f14586a.E();
-    }
-
-    @Override
-    public final void E0() {
-        S0();
-        this.f14586a.E0();
-    }
-
-    @Override
-    public final void F() {
-        S0();
-        this.f14586a.F();
-    }
-
-    @Override
-    public final void F0() {
-        S0();
-        this.f14586a.F0();
-    }
-
-    @Override
-    public final float G() {
-        S0();
-        return this.f14586a.G();
-    }
-
-    @Override
-    public final void G0() {
-        S0();
-        this.f14586a.G0();
-    }
-
-    @Override
-    public final void H() {
-        S0();
-        this.f14586a.H();
-    }
-
-    @Override
-    public final b2.n0 H0() {
-        S0();
-        return this.f14586a.H0();
-    }
-
-    @Override
-    public final b2.e I() {
-        S0();
-        return this.f14586a.I();
-    }
-
-    @Override
-    public final void I0(List list) {
-        S0();
-        this.f14586a.I0(list);
-    }
-
-    @Override
-    public final void J(int i10, boolean z10) {
-        S0();
-        this.f14586a.J(i10, z10);
-    }
-
-    @Override
-    public final long J0() {
-        S0();
-        return this.f14586a.J0();
-    }
-
-    @Override
-    public final b2.l K() {
-        S0();
-        return this.f14586a.K();
-    }
-
-    @Override
-    public final void K0(b2.e eVar, boolean z10) {
-        this.f14586a.K0(eVar, z10);
-    }
-
-    @Override
-    public final void L() {
-        S0();
-        this.f14586a.L();
-    }
-
-    @Override
-    public final long L0() {
-        S0();
-        return this.f14586a.L0();
-    }
-
-    @Override
-    public final void M(int i10, int i11) {
-        S0();
-        this.f14586a.M(i10, i11);
-    }
-
-    @Override
-    public final boolean M0() {
-        S0();
-        return this.f14586a.M0();
-    }
-
-    @Override
-    public final void N(int i10) {
-        S0();
-        this.f14586a.N(i10);
-    }
-
-    public final b2.a1 N0() {
-        int i10;
-        b2.k0 k0Var;
-        int i11;
-        long j3;
-        int i12;
-        int i13;
-        boolean m0 = m0(16);
-        boolean m02 = m0(17);
-        if (m02) {
-            i10 = l0();
+    public k1(b2.a1 a1Var, boolean z10, long j3, long j10, long j11, int i10, long j12, long j13, long j14, long j15) {
+        boolean z11;
+        if (a1Var.h != -1) {
+            z11 = true;
         } else {
-            i10 = 0;
+            z11 = false;
         }
-        if (m0) {
-            k0Var = w();
-        } else {
-            k0Var = null;
-        }
-        if (m02) {
-            i11 = B();
-        } else {
-            i11 = 0;
-        }
-        long j10 = 0;
-        if (m0) {
-            j3 = J0();
-        } else {
-            j3 = 0;
-        }
-        if (m0) {
-            j10 = a0();
-        }
-        if (m0) {
-            i12 = k0();
-        } else {
-            i12 = -1;
-        }
-        if (m0) {
-            i13 = O();
-        } else {
-            i13 = -1;
-        }
-        return new b2.a1(null, i10, k0Var, null, i11, j3, j10, i12, i13);
+        e2.d.b(z10 == z11);
+        this.f14593a = a1Var;
+        this.f14594b = z10;
+        this.f14595c = j3;
+        this.d = j10;
+        this.e = j11;
+        this.f14596f = i10;
+        this.f14597g = j12;
+        this.h = j13;
+        this.f14598i = j14;
+        this.f14599j = j15;
     }
 
-    @Override
-    public final int O() {
-        S0();
-        return this.f14586a.O();
-    }
-
-    public final p1 O0() {
-        boolean z10;
+    public final k1 a(boolean z10, boolean z11) {
+        boolean z12;
         long j3;
         long j10;
         long j11;
         long j12;
-        boolean m0 = m0(16);
-        b2.a1 N0 = N0();
-        int i10 = 0;
-        if (m0 && o()) {
-            z10 = true;
-        } else {
-            z10 = false;
+        long j13;
+        long j14;
+        if (z10 && z11) {
+            return this;
         }
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j13 = -9223372036854775807L;
-        if (m0) {
-            j3 = getDuration();
+        b2.a1 b10 = this.f14593a.b(z10, z11);
+        int i10 = 0;
+        if (z10 && this.f14594b) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        if (z10) {
+            j3 = this.d;
         } else {
             j3 = -9223372036854775807L;
         }
-        long j14 = 0;
-        if (m0) {
-            j10 = c0();
+        if (z10) {
+            j10 = this.e;
         } else {
             j10 = 0;
         }
-        if (m0) {
-            i10 = y();
+        if (z10) {
+            i10 = this.f14596f;
         }
-        if (m0) {
-            j11 = r();
+        if (z10) {
+            j11 = this.f14597g;
         } else {
             j11 = 0;
         }
-        if (m0) {
-            j12 = p();
+        if (z10) {
+            j12 = this.h;
         } else {
             j12 = -9223372036854775807L;
         }
-        if (m0) {
-            j13 = A();
-        }
-        if (m0) {
-            j14 = C0();
-        }
-        return new p1(N0, z10, elapsedRealtime, j3, j10, i10, j11, j12, j13, j14);
-    }
-
-    @Override
-    public final void P(int i10, int i11, List list) {
-        S0();
-        this.f14586a.P(i10, i11, list);
-    }
-
-    public final b2.k0 P0() {
-        if (m0(16)) {
-            return w();
-        }
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return this.f14586a.Q();
-    }
-
-    public final b2.k1 Q0() {
-        if (m0(17)) {
-            return w0();
-        }
-        if (m0(16)) {
-            if (w0().p()) {
-                return b2.k1.f3078a;
-            }
-            return new j1(this);
-        }
-        return b2.k1.f3078a;
-    }
-
-    @Override
-    public final void R(int i10) {
-        S0();
-        this.f14586a.R(i10);
-    }
-
-    public final b2.n0 R0() {
-        if (m0(18)) {
-            return H0();
-        }
-        return b2.n0.K;
-    }
-
-    @Override
-    public final void S(int i10, int i11) {
-        S0();
-        this.f14586a.S(i10, i11);
-    }
-
-    public final void S0() {
-        boolean z10;
-        if (Looper.myLooper() == this.f14586a.y0()) {
-            z10 = true;
+        if (z10) {
+            j13 = this.f14598i;
         } else {
-            z10 = false;
+            j13 = -9223372036854775807L;
         }
-        e2.d.g(z10);
+        if (z10) {
+            j14 = this.f14599j;
+        } else {
+            j14 = 0;
+        }
+        long j15 = j12;
+        return new k1(b10, z12, this.f14595c, j3, j10, i10, j11, j15, j13, j14);
     }
 
-    @Override
-    public final void T(long j3, int i10, List list) {
-        S0();
-        this.f14586a.T(j3, i10, list);
+    public final Bundle b(int i10) {
+        Bundle bundle = new Bundle();
+        b2.a1 a1Var = this.f14593a;
+        if (i10 < 3 || !f14582k.a(a1Var)) {
+            bundle.putBundle(f14584m, a1Var.c(i10));
+        }
+        boolean z10 = this.f14594b;
+        if (z10) {
+            bundle.putBoolean(f14585n, z10);
+        }
+        long j3 = this.f14595c;
+        if (j3 != -9223372036854775807L) {
+            bundle.putLong(f14586o, j3);
+        }
+        long j10 = this.d;
+        if (j10 != -9223372036854775807L) {
+            bundle.putLong(f14587p, j10);
+        }
+        long j11 = this.e;
+        if (i10 < 3 || j11 != 0) {
+            bundle.putLong(f14588q, j11);
+        }
+        int i11 = this.f14596f;
+        if (i11 != 0) {
+            bundle.putInt(f14589r, i11);
+        }
+        long j12 = this.f14597g;
+        if (j12 != 0) {
+            bundle.putLong(f14590s, j12);
+        }
+        long j13 = this.h;
+        if (j13 != -9223372036854775807L) {
+            bundle.putLong(f14591t, j13);
+        }
+        long j14 = this.f14598i;
+        if (j14 != -9223372036854775807L) {
+            bundle.putLong(f14592u, j14);
+        }
+        long j15 = this.f14599j;
+        if (i10 >= 3 && j15 == 0) {
+            return bundle;
+        }
+        bundle.putLong(v, j15);
+        return bundle;
     }
 
-    @Override
-    public final void U(float f7) {
-        S0();
-        this.f14586a.U(f7);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && k1.class == obj.getClass()) {
+            k1 k1Var = (k1) obj;
+            if (this.f14595c == k1Var.f14595c && this.f14593a.equals(k1Var.f14593a) && this.f14594b == k1Var.f14594b && this.d == k1Var.d && this.e == k1Var.e && this.f14596f == k1Var.f14596f && this.f14597g == k1Var.f14597g && this.h == k1Var.h && this.f14598i == k1Var.f14598i && this.f14599j == k1Var.f14599j) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Override
-    public final void V() {
-        S0();
-        this.f14586a.V();
+    public final int hashCode() {
+        return Objects.hash(this.f14593a, Boolean.valueOf(this.f14594b));
     }
 
-    @Override
-    public final b2.u0 W() {
-        S0();
-        return this.f14586a.W();
-    }
-
-    @Override
-    public final void X(boolean z10) {
-        S0();
-        this.f14586a.X(z10);
-    }
-
-    @Override
-    public final void Y(int i10) {
-        S0();
-        this.f14586a.Y(i10);
-    }
-
-    @Override
-    public final long Z() {
-        S0();
-        return this.f14586a.Z();
-    }
-
-    @Override
-    public final void a(float f7) {
-        S0();
-        this.f14586a.a(f7);
-    }
-
-    @Override
-    public final long a0() {
-        S0();
-        return this.f14586a.a0();
-    }
-
-    @Override
-    public final void b() {
-        S0();
-        this.f14586a.b();
-    }
-
-    @Override
-    public final void b0(int i10, List list) {
-        S0();
-        this.f14586a.b0(i10, list);
-    }
-
-    @Override
-    public final boolean c() {
-        S0();
-        return this.f14586a.c();
-    }
-
-    @Override
-    public final long c0() {
-        S0();
-        return this.f14586a.c0();
-    }
-
-    @Override
-    public final int d() {
-        S0();
-        return this.f14586a.d();
-    }
-
-    @Override
-    public final boolean d0() {
-        S0();
-        return this.f14586a.d0();
-    }
-
-    @Override
-    public final void e() {
-        S0();
-        this.f14586a.e();
-    }
-
-    @Override
-    public final void e0() {
-        S0();
-        this.f14586a.e0();
-    }
-
-    @Override
-    public final void f(b2.v0 v0Var) {
-        S0();
-        this.f14586a.f(v0Var);
-    }
-
-    @Override
-    public final void f0(int i10) {
-        S0();
-        this.f14586a.f0(i10);
-    }
-
-    @Override
-    public final void g(long j3) {
-        S0();
-        this.f14586a.g(j3);
-    }
-
-    @Override
-    public final b2.s1 g0() {
-        S0();
-        return this.f14586a.g0();
-    }
-
-    @Override
-    public final long getDuration() {
-        S0();
-        return this.f14586a.getDuration();
-    }
-
-    @Override
-    public final b2.v0 h() {
-        S0();
-        return this.f14586a.h();
-    }
-
-    @Override
-    public final b2.n0 h0() {
-        S0();
-        return this.f14586a.h0();
-    }
-
-    @Override
-    public final void i() {
-        S0();
-        this.f14586a.i();
-    }
-
-    @Override
-    public final boolean i0() {
-        S0();
-        return this.f14586a.i0();
-    }
-
-    @Override
-    public final void j(int i10) {
-        S0();
-        this.f14586a.j(i10);
-    }
-
-    @Override
-    public final d2.d j0() {
-        S0();
-        return this.f14586a.j0();
-    }
-
-    @Override
-    public final void k(b2.k0 k0Var, long j3) {
-        S0();
-        this.f14586a.k(k0Var, j3);
-    }
-
-    @Override
-    public final int k0() {
-        S0();
-        return this.f14586a.k0();
-    }
-
-    @Override
-    public final int l() {
-        S0();
-        return this.f14586a.l();
-    }
-
-    @Override
-    public final int l0() {
-        S0();
-        return this.f14586a.l0();
-    }
-
-    @Override
-    public final int m() {
-        S0();
-        return this.f14586a.m();
-    }
-
-    @Override
-    public final boolean m0(int i10) {
-        S0();
-        return this.f14586a.m0(i10);
-    }
-
-    @Override
-    public final void n(Surface surface) {
-        S0();
-        this.f14586a.n(surface);
-    }
-
-    @Override
-    public final void n0(b2.z0 z0Var) {
-        S0();
-        this.f14586a.n0(new b2.t(this, z0Var));
-    }
-
-    @Override
-    public final boolean o() {
-        S0();
-        return this.f14586a.o();
-    }
-
-    @Override
-    public final void o0(boolean z10) {
-        S0();
-        this.f14586a.o0(z10);
-    }
-
-    @Override
-    public final long p() {
-        S0();
-        return this.f14586a.p();
-    }
-
-    @Override
-    public final void p0(b2.k0 k0Var) {
-        S0();
-        this.f14586a.p0(k0Var);
-    }
-
-    @Override
-    public final void q(b2.q1 q1Var) {
-        S0();
-        this.f14586a.q(q1Var);
-    }
-
-    @Override
-    public final void q0(int i10, int i11) {
-        S0();
-        this.f14586a.q0(i10, i11);
-    }
-
-    @Override
-    public final long r() {
-        S0();
-        return this.f14586a.r();
-    }
-
-    @Override
-    public final void r0(int i10, int i11, int i12) {
-        S0();
-        this.f14586a.r0(i10, i11, i12);
-    }
-
-    @Override
-    public final void s(int i10, long j3) {
-        S0();
-        this.f14586a.s(i10, j3);
-    }
-
-    @Override
-    public final void s0(b2.k0 k0Var, int i10) {
-        S0();
-        this.f14586a.s0(k0Var, i10);
-    }
-
-    @Override
-    public final void stop() {
-        S0();
-        this.f14586a.stop();
-    }
-
-    @Override
-    public final b2.x0 t() {
-        S0();
-        return this.f14586a.t();
-    }
-
-    @Override
-    public final boolean t0() {
-        S0();
-        return this.f14586a.t0();
-    }
-
-    @Override
-    public final boolean u() {
-        S0();
-        return this.f14586a.u();
-    }
-
-    @Override
-    public final int u0() {
-        S0();
-        return this.f14586a.u0();
-    }
-
-    @Override
-    public final void v() {
-        S0();
-        this.f14586a.v();
-    }
-
-    @Override
-    public final void v0(List list) {
-        S0();
-        this.f14586a.v0(list);
-    }
-
-    @Override
-    public final b2.k0 w() {
-        S0();
-        return this.f14586a.w();
-    }
-
-    @Override
-    public final b2.k1 w0() {
-        S0();
-        return this.f14586a.w0();
-    }
-
-    @Override
-    public final void x(boolean z10) {
-        S0();
-        this.f14586a.x(z10);
-    }
-
-    @Override
-    public final boolean x0() {
-        S0();
-        return this.f14586a.x0();
-    }
-
-    @Override
-    public final int y() {
-        S0();
-        return this.f14586a.y();
-    }
-
-    @Override
-    public final Looper y0() {
-        return this.f14586a.y0();
-    }
-
-    @Override
-    public final long z() {
-        S0();
-        return this.f14586a.z();
-    }
-
-    @Override
-    public final void z0() {
-        S0();
-        this.f14586a.z0();
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("SessionPositionInfo {PositionInfo {mediaItemIndex=");
+        b2.a1 a1Var = this.f14593a;
+        sb2.append(a1Var.f2922b);
+        sb2.append(", periodIndex=");
+        sb2.append(a1Var.e);
+        sb2.append(", positionMs=");
+        sb2.append(a1Var.f2924f);
+        sb2.append(", contentPositionMs=");
+        sb2.append(a1Var.f2925g);
+        sb2.append(", adGroupIndex=");
+        sb2.append(a1Var.h);
+        sb2.append(", adIndexInAdGroup=");
+        sb2.append(a1Var.f2926i);
+        sb2.append("}, isPlayingAd=");
+        sb2.append(this.f14594b);
+        sb2.append(", eventTimeMs=");
+        sb2.append(this.f14595c);
+        sb2.append(", durationMs=");
+        sb2.append(this.d);
+        sb2.append(", bufferedPositionMs=");
+        sb2.append(this.e);
+        sb2.append(", bufferedPercentage=");
+        sb2.append(this.f14596f);
+        sb2.append(", totalBufferedDurationMs=");
+        sb2.append(this.f14597g);
+        sb2.append(", currentLiveOffsetMs=");
+        sb2.append(this.h);
+        sb2.append(", contentDurationMs=");
+        sb2.append(this.f14598i);
+        sb2.append(", contentBufferedPositionMs=");
+        return a4.a.s(sb2, this.f14599j, "}");
     }
 }

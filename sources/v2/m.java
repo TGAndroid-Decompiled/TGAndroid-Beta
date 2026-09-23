@@ -3,7 +3,7 @@ package v2;
 import b2.s;
 import c3.h0;
 import g2.b0;
-import u2.a1;
+import u2.z0;
 import v7.m7;
 public final class m extends a {
     public final int E;
@@ -19,24 +19,24 @@ public final class m extends a {
 
     @Override
     public final void a() {
-        a1[] a1VarArr;
-        b0 b0Var = this.f43843r;
-        o0.a aVar = this.f43822x;
+        z0[] z0VarArr;
+        b0 b0Var = this.f43796r;
+        o0.a aVar = this.f43775x;
         e2.d.h(aVar);
-        for (a1 a1Var : (a1[]) aVar.f15299c) {
-            if (a1Var.F != 0) {
-                a1Var.F = 0L;
-                a1Var.f43329z = true;
+        for (z0 z0Var : (z0[]) aVar.f15276c) {
+            if (z0Var.F != 0) {
+                z0Var.F = 0L;
+                z0Var.f43485z = true;
             }
         }
         h0 U = aVar.U(this.E);
         U.b(this.F);
         try {
-            long open = b0Var.open(this.f43839b.b(this.G));
+            long open = b0Var.open(this.f43792b.b(this.G));
             if (open != -1) {
                 open += this.G;
             }
-            c3.l lVar = new c3.l(this.f43843r, this.G, open);
+            c3.l lVar = new c3.l(this.f43796r, this.G, open);
             for (int i10 = 0; i10 != -1; i10 = U.a(lVar, Integer.MAX_VALUE, true)) {
                 this.G += i10;
             }

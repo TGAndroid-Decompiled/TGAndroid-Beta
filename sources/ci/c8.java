@@ -1,27 +1,34 @@
 package ci;
 
-import android.graphics.Canvas;
-import org.telegram.messenger.SharedConfig;
-public final class c8 implements ah.j {
-    public final g8 f4432a;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class c8 extends s4.s0 {
+    public final d8 f4443a;
 
-    public c8(g8 g8Var) {
-        this.f4432a = g8Var;
+    public c8(d8 d8Var) {
+        this.f4443a = d8Var;
     }
 
     @Override
-    public final void b(Canvas canvas) {
-        int i10 = org.telegram.ui.ActionBar.i6.f18834d6;
-        g8 g8Var = this.f4432a;
-        canvas.drawColor(g8Var.getThemedColor(i10));
-        if (SharedConfig.chatBlurEnabled()) {
-            g8Var.f4707l0.b(canvas, -3);
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 0) {
+            d8 d8Var = this.f4443a;
+            if (d8Var.f4528i0) {
+                d8Var.f4528i0 = false;
+            }
         }
     }
 
     @Override
-    public final void m(ah.a aVar) {
-        aVar.a(this.f4432a.getThemedColor(org.telegram.ui.ActionBar.i6.f18834d6));
-        aVar.b(SharedConfig.chatBlurEnabled());
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ViewGroup viewGroup;
+        d8 d8Var = this.f4443a;
+        d8Var.d0();
+        d8Var.X();
+        if (d8Var.d.K1 && !d8Var.f4528i0) {
+            viewGroup = ((org.telegram.ui.ActionBar.f3) d8Var).containerView;
+            AndroidUtilities.hideKeyboard(viewGroup);
+        }
     }
 }

@@ -1,57 +1,70 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import org.telegram.messenger.AndroidUtilities;
-public final class nu0 extends qg.f2 {
-    public final Path f36047o0;
-    public boolean f36048p0;
-    public final org.telegram.ui.Components.c6 f36049q0;
-    public final PhotoViewer f36050r0;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.widget.ImageView;
+public final class nu0 extends ImageView {
+    public int f35602a;
+    public boolean f35603b;
+    public boolean f35604c;
+    public boolean d;
+    public org.telegram.ui.Components.f71 e;
+    public final org.telegram.ui.Components.rr f35605f;
+    public ValueAnimator h;
+    public final PhotoViewer f35606n;
 
-    public nu0(PhotoViewer photoViewer) {
-        super(photoViewer.p5, photoViewer.E, photoViewer.f31085v2, photoViewer.f30906b0);
-        this.f36050r0 = photoViewer;
-        this.f36047o0 = new Path();
-        this.f36049q0 = new org.telegram.ui.Components.c6(this, 0L, 420L, org.telegram.ui.Components.qr.h);
+    public nu0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f35606n = photoViewer;
+        this.f35602a = 0;
+        this.f35603b = false;
+        this.f35604c = false;
+        this.d = false;
+        this.f35605f = org.telegram.ui.Components.rr.f27703i;
+        setAlpha(0.0f);
     }
 
-    public final void m(boolean z10, boolean z11) {
-        this.f36048p0 = z10;
-        if (!z11) {
-            this.f36049q0.f(z10, true);
+    public static void a(nu0 nu0Var) {
+        PhotoViewer photoViewer = nu0Var.f35606n;
+        org.telegram.ui.Components.f71 f71Var = photoViewer.F2;
+        if (f71Var != null && f71Var.p() != -9223372036854775807L) {
+            long max = Math.max(0L, photoViewer.F2.p() - photoViewer.F2.n());
+            float max2 = 1.0f - Math.max(Math.min(((float) max) / 250.0f, 1.0f), 0.0f);
+            if (max2 <= 0.0f) {
+                ValueAnimator valueAnimator = nu0Var.h;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    nu0Var.h = null;
+                }
+                nu0Var.setAlpha(0.0f);
+                return;
+            } else if (photoViewer.F2.y()) {
+                if (nu0Var.h == null) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 1.0f);
+                    nu0Var.h = ofFloat;
+                    ofFloat.addUpdateListener(new c3(nu0Var, 24));
+                    nu0Var.h.setDuration(max);
+                    nu0Var.h.setInterpolator(nu0Var.f35605f);
+                    nu0Var.h.start();
+                    nu0Var.setAlpha(max2);
+                    return;
+                }
+                return;
+            } else {
+                ValueAnimator valueAnimator2 = nu0Var.h;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.cancel();
+                    nu0Var.h = null;
+                }
+                nu0Var.setAlpha(max2);
+                return;
+            }
         }
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        Path path = this.f36047o0;
-        path.rewind();
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(this.f41355i0, AndroidUtilities.dp(this.m0), AndroidUtilities.dp(this.m0), direction);
-        canvas.clipPath(path);
-        canvas.translate(-getX(), -getY());
-        PhotoViewer photoViewer = this.f36050r0;
-        if (this == photoViewer.f31088v5 || this == photoViewer.f31098w5) {
-            canvas.translate(-photoViewer.f31079u5.getX(), -photoViewer.f31079u5.getY());
+        ValueAnimator valueAnimator3 = nu0Var.h;
+        if (valueAnimator3 != null) {
+            valueAnimator3.cancel();
+            nu0Var.h = null;
         }
-        photoViewer.T0(canvas, this.f41354h0, -13948117, 855638016, false, true, false);
-        float e = this.f36049q0.e(this.f36048p0);
-        if (e > 0.0f) {
-            canvas.drawColor(org.telegram.ui.ActionBar.i6.l1(e, -1));
-        }
-        setTextColor(i0.a.d(e, -1, -16777216));
-        canvas.restore();
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onDrawForeground(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f36047o0);
-        super.onDrawForeground(canvas);
-        canvas.restore();
+        nu0Var.setAlpha(0.0f);
     }
 }

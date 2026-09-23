@@ -7,23 +7,23 @@ import com.google.android.gms.common.data.DataHolder;
 import w7.e0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new h(2);
-    public String f14738a;
-    public DataHolder f14739b;
-    public ParcelFileDescriptor f14740c;
+    public String f14715a;
+    public DataHolder f14716b;
+    public ParcelFileDescriptor f14717c;
     public long d;
     public byte[] e;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        e0.l(parcel, 2, this.f14738a);
-        e0.k(parcel, 3, this.f14739b, i10);
-        e0.k(parcel, 4, this.f14740c, i10);
+        e0.l(parcel, 2, this.f14715a);
+        e0.k(parcel, 3, this.f14716b, i10);
+        e0.k(parcel, 4, this.f14717c, i10);
         long j3 = this.d;
         e0.s(parcel, 5, 8);
         parcel.writeLong(j3);
         e0.c(parcel, 6, this.e);
         e0.r(parcel, q6);
-        this.f14740c = null;
+        this.f14717c = null;
     }
 }
