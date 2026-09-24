@@ -1,0 +1,301 @@
+"Code" = "Код";
+"DidNotGetTheCodeEditNumberButton" = "Змінити номер";
+"PleaseEnterCurrentPassword" = "Введіть пароль";
+"English" = "Англійська";
+"Abort" = "Перервати";
+"CancelReset" = "Скасувати скидання";
+"TurnPasswordOffQuestionTitle" = "Вимкнути пароль";
+"CheckPassword" = "Перевірити пароль";
+"#res_137925983" = "LLLL yyyy";
+"ResendCode" = "Надіслати код ще раз";
+"#res_151783012" = "Щоб підтвердити свою е-пошту %1$s, введіть код, який ми щойно на неї надіслали.";
+"WrongNumberFormat" = "Неправильний формат";
+"YourEmailCode" = "Код з листа";
+"YourEmailInfo" = "Додайте свою дійсну адресу е-пошти. Це єдиний спосіб відновити забутий пароль.";
+"YourEmailSkip" = "Пропустити";
+"LastNameSmall" = "Прізвище";
+"SyncContacts" = "Синхронізувати контакти";
+"EditWidgetContactsInfo" = "Цей віджет показує ярлики для швидкого доступу до вибраних чатів.
+
+Якщо нічого не вибрано, відображаються останні активні контакти.";
+"SendTodayAt" = "'Надіслати сьогодні,' HH:mm";
+"PasswordHintTextLogin" = "Створіть підказку для свого пароля.";
+"CancelLinkSuccessTitle" = "Успіх!";
+"ChangeRecoveryEmail" = "Змінити е-пошту для відновлення";
+"LoginPasswordTextShort" = "У вас увімкнено двоетапну перевірку. Ваш акаунт захищений додатковим паролем.";
+"SyncContactsInfoOn" = "Контакти з цього пристрою будуть додані до вашого акаунта.";
+"CancelPasswordResetNo" = "НІ";
+"RestoreEmailTroubleText2" = "Якщо ви не маєте доступу до е-пошти для відновлення, ви можете спробувати пригадати пароль або ж зачекати 7 днів, після чого ваш пароль буде скинуто.";
+"StartDayAt" = "'Почнеться' d MMM',' HH:mm";
+"RestorePasswordResetIn" = "Ви зможете скинути пароль через %1$s.";
+"Page1Message" = "**Найшвидший** месенджер у світі.
+**Безплатний** і **захищений**.";
+"RestoreEmailTroubleText" = "Якщо ви не можете відновити доступ до своєї е-пошти, вам залишилось або згадати пароль, або скинути акаунт.";
+"PhoneNumber" = "Номер телефону";
+"WidgetPasscode2" = "Увага: код блокування застосунку **не впливає** на віджети.";
+"Page6Message" = "**Telegram** надає вам доступ до
+повідомлень з безлічі пристроїв.";
+"CheckPasswordBackToSettings" = "Назад до Налаштувань";
+"SendDayYearAt" = "'Надіслати' d MMM yyyy',' HH:mm";
+"ConfirmCorrectNumber" = "Це ваш номер телефону?";
+"TapToEditWidgetShort" = "редагувати";
+"WrongNumber" = "Помилковий номер?";
+"CancelRegistration" = "Скасувати реєстрацію";
+"CallAvailableIn" = "Ви зможете зробити запит на виклик за %1$d:%2$02d";
+"ResetMyAccount" = "СКИНУТИ МІЙ АКАУНТ";
+"PasswordHintPlaceholder" = "Підказка";
+"RestoreEmailSentInfo" = "Перевірте електронну пошту та введіть 6-значний код, який ми надіслали вам.";
+"StartsDayAt" = "'Почнеться' d MMM',' HH:mm";
+"RequestMissedCall" = "Отримати код у виклику";
+"CheckYourEmailSubtitle" = "Введіть код, який ми щойно надіслали на вашу е-пошту %1$s.";
+"formatDateSchedule" = "d MMM";
+"PleaseReEnterPassword" = "Введіть свій пароль ще раз";
+"WidgetChats" = "Чати";
+"PasswordCode" = "Код";
+"PasswordHint" = "Підказка пароля";
+"EnabledPasswordText" = "Увімкнено двоетапну перевірку.
+Для входу в акаунт Telegram вам знадобиться встановлений тут пароль.";
+"AbortEmail" = "Перервати додавання е-пошти для відновлення";
+"ResetPassword" = "Скинути пароль";
+"formatterStats12H" = "dd MMM yyyy, h:mm a";
+"formatterStats24H" = "dd MMM yyyy, HH:mm";
+"StartShortTodayAt" = "'Сьогодні,' HH:mm";
+"SentFragmentCode" = "Отримайте код для %1$s у розділі «Anonymous Numbers» на Fragment.";
+"LoginPasswordText" = "Ви вмикали двоетапну перевірку. Ваш акаунт захищений додатковим паролем.";
+"AppName" = "Telegram";
+"YourPassword" = "Ваш пароль";
+"CancelPasswordReset" = "Скасувати скидання пароля? Якщо в майбутньому вам треба буде його скинути, це триватиме ще 7 днів.";
+"RemindDayAt" = "'Нагадати' d MMM',' HH:mm";
+"RestoreEmailSent" = "Ми надіслали код відновлення на вказану вами е-пошту:
+
+%1$s";
+"ChooseCountry" = "Виберіть країну";
+"OpenFragment" = "Відкрити Fragment";
+"YourNewEmail" = "Ваша нова е-пошта";
+"PasswordDoNotMatch" = "Паролі не збігаються";
+"EditWidgetChatsInfo" = "Цей віджет показує останні повідомлення з вибраних чатів.
+
+Якщо нічого не вибрано, відображаються останні активні чати.";
+"TwoStepVerificationTitle" = "Двоетапна перевірка";
+"AccountAlreadyLoggedIn" = "Цей акаунт уже додано до застосунку.";
+"LoginPassword" = "Пароль";
+"SyncContactsAdded" = "Контакти з цього пристрою додані до вашого акаунта.";
+"EnterCode" = "Введіть код";
+"CheckYourEmail" = "Перевірте вашу е-пошту";
+"YourEmailSuccessText" = "Адреса е-пошти для скидання пароля двоетапної перевірки тепер активна.";
+"RegistrationProfileInfo" = "Інформація про профіль";
+"PasswordReset" = "Пароль деактивовано";
+"formatterGiveawayMonthDayYear" = "dd MMMM yyyy";
+"StartShortDayYearAt" = "d MMM yyyy',' HH:mm";
+"PleaseEnterCurrentPasswordTransfer" = "Введіть свій пароль, щоб завершити передачу прав власності.";
+"TurnPasswordOffQuestion" = "Ви дійсно хочете вимкнути пароль?";
+"TwoStepVerificationPasswordSet" = "Пароль встановлено!";
+"Page4Message" = "**Telegram** оберігає ваші повідомлення
+від хакерських атак.";
+"AbortPassword" = "Скасувати встановлення двоетапної перевірки";
+"RestoreEmailTrouble" = "Не маєте доступу до е-пошти %1$s?";
+"chatDate" = "d MMMM";
+"SentSmsCode" = "Ми надіслали SMS із кодом активації на ваш телефон **%1$s**.";
+"RestorePasswordResetPasswordText" = "Ви дійсно хочете скинути пароль двоетапної перевірки?";
+"YourPasswordRemember" = "Ваш акаунт захищений двоетапною перевіркою. Ви памʼятаєте свій пароль?";
+"WrongCode" = "Неправильний код, спробуйте ще раз.";
+"FirstNameSmall" = "Імʼя";
+"ResetAccountInfo" = "\"Акаунт **%1$s** активний та захищений паролем, тому з міркувань безпеки ми видалимо його лише через тиждень.
+
+Ви можете скасувати цей процес будь-коли. \"";
+"ResendCodeInfo" = "На вашу е-пошту надіслано код підтвердження.";
+"SyncContactsOn" = "Контакти з цього пристрою будуть додані до цього акаунта.";
+"StartMessaging" = "Почати спілкування";
+"CancelPasswordQuestion" = "Ви дійсно хочете скасувати встановлення двоетапної перевірки?";
+"YourPasswordSuccessText" = "Ваш пароль для двоетапної перевірки тепер активовано.";
+"CancelLinkSuccess" = "Процес видалення вашого акаунта %1$s було скасовано. Зараз ви можете закрити це вікно.";
+"SentCallCode" = "Ми телефонуємо на ваш номер **%1$s**.
+
+Відповідати на виклик не потрібно, Telegram автоматично зробить усе сам.";
+"SentCallOnly" = "Ми телефонуємо на номер **%1$s**, щоб продиктувати код.";
+"RemindDayYearAt" = "'Нагадати' d MMM yyyy',' HH:mm";
+"SearchForChats" = "Пошук чатів...";
+"RestorePasswordNoEmailText" = "Оскільки ви не встановили адресу е-пошти для відновлення пароля, вам залишилося або згадати пароль, або скинути акаунт.";
+"PleaseEnterNewFirstPassword" = "Введіть новий пароль";
+"RecoveryEmailSubtitle" = "Ви можете встановити е-пошту, за допомогою якої ви зможете скинути пароль і відновити доступ до Telegram-акаунта.";
+"DidNotGetTheCodeInfo" = "Якщо ви не одержали коду в SMS або виклику, перевірте **налаштування мобільної мережі** та номер телефону:
+
+**%1$s**
+
+Якщо це не допоможе, вам залишиться спробувати інший номер телефону або звʼязатися з підтримкою Telegram. Натисніть **Допомога**, щоб надіслати нам технічну інформацію і ми могли зʼясувати проблему.";
+"DidNotGetTheCodeFragment" = "Отримати код на платформі Fragment";
+"CancelEmailQuestion" = "Ви дійсно хочете скасувати додавання е-пошти для відновлення?";
+"CheckPasswordInfo" = "Ви ще памʼятаєте свій пароль?";
+"SignInWithGoogle" = "Увійти через Google";
+"SmsAvailableIn" = "Ви зможете зробити запит на SMS за %1$d:%2$02d";
+"YourLoginEmailChangedSuccess" = "Вашу адресу е-пошти змінено.";
+"WidgetPasscodeEnable2" = "Код блокування застосунку **не впливає** на віджети, додані на головний екран.";
+"ResetMyAccountWarning" = "Попередження";
+"CheckYourNewEmailSubtitle" = "Введіть код, який ми щойно надіслали на вашу нову е-пошту %1$s.";
+"CheckPasswordPerfect" = "Чудово!";
+"RemindTodayAt" = "'Нагадати сьогодні,' HH:mm";
+"DidNotGetTheCodeSms" = "Отримати код в SMS";
+"TapToEditWidget" = "редагувати віджет";
+"PleaseEnterNewFirstPasswordHint" = "Введіть новий пароль";
+"ResetMyAccountWarningReset" = "Скинути акаунт";
+"LoginOrSingInWithGoogle" = "або";
+"YourEmailSkipWarning" = "Попередження";
+"SendDayAt" = "'Надіслати' d MMM',' HH:mm";
+"RequestCallButton" = "Продиктувати код у виклику";
+"EmailPasswordConfirmText2" = "Щоб активувати двоетапну перевірку, введіть код з листа, який ми вам надіслали. Не забудьте перевірити теку зі спамом.";
+"EmailPasswordConfirmText3" = "Щоб завершити встановлення е-пошти для відновлення, перевірте %1$s і введіть код, який ми вам надіслали. Не забудьте перевірити теку зі спамом.";
+"CheckYourNewEmail" = "Перевірте свою нову е-пошту";
+"formatterGiveawayCard" = "dd MMM yyyy";
+"formatterBannedUntilThisYear12H" = "dd MMM, h:mm a";
+"formatterBannedUntilThisYear24H" = "dd MMM, HH:mm";
+"YourEmailSuccessChangedText" = "Е-пошту для відновлення пароля двоетапної перевірки змінено.";
+"SyncContactsInfoOff" = "Увімкніть для постійної синхронізації контактів цього пристрою з вашим акаунтом.";
+"CancelLinkExpired" = "Посилання недійсне або застаріле.";
+"AddEmailTitle" = "Вкажіть е-пошту для входу";
+"OtherLoginCode" = "Ваш код для входу – **%1$s**. Введіть його у програмі Telegram, через яку ви хочете увійти.
+
+Не повідомляйте цей код нікому.";
+"TwoStepVerificationPasswordSetInfo" = "Цей пароль запитуватиметься при вході з нового пристрою додатково до SMS-коду.";
+"FirstName" = "Імʼя (обовʼязково)";
+"Page2Message" = "**Telegram** доставляє повідомлення
+швидше за всі інші застосунки.";
+"Calling" = "Телефонуємо вам...";
+"formatDateScheduleYear" = "d MMM yyyy";
+"Page1Title" = "Telegram";
+"ResetMyAccountWarningText" = "Це незворотна дія. Ви втратите всі чати, повідомлення, фото, відео й файли в Telegram, якщо продовжите скидання акаунта.";
+"formatterDay12H" = "h:mm a";
+"formatterDay24H" = "HH:mm";
+"chatFullDate" = "d MMMM yyyy";
+"TwoStepVerificationShowPassword" = "Показати пароль";
+"Page2Title" = "Швидкий";
+"YourEmail" = "Ваша е-пошта";
+"WidgetPreview" = "Попередній перегляд";
+"YourPhone" = "Ваш номер";
+"CancelPasswordResetYes" = "ТАК";
+"SentSmsCodeTitle" = "Введіть код";
+"Page3Title" = "Безплатний";
+"Page4Title" = "Захищений";
+"LanguageCode" = "uk";
+"LanguageName" = "Українська";
+"RequestSmsButton" = "Отримати код в SMS-повідомленні";
+"ResetPasswordWait" = "Ви нещодавно запитували скидання пароля, але запит був скасований. Будь ласка, зачекайте %1$s, перш ніж зробити новий запит.";
+"Page5Title" = "Потужний";
+"Page6Title" = "Хмарний";
+"StartShortDayAt" = "d MMM',' HH:mm";
+"SetRecoveryEmail" = "Додати е-пошту для відновлення";
+"ShortNumberInfo" = "Вказаний номер є занадто коротким для **%1$s**:
+
+**%2$s**
+
+Введіть номер телефону повністю, разом із кодом країни.";
+"StartDayYearAt" = "'Почнеться' d MMM yyyy',' HH:mm";
+"formatterWeek" = "EEE";
+"formatterYear" = "dd.MM.yy";
+"PasswordHintDescription" = "За бажанням ви можете додати підказку до пароля.";
+"PasswordAsHintError" = "Підказка має відрізнятися від вашого пароля";
+"YourEmailSkipWarningText" = "Ні, серйозно.
+
+Якщо ви забудете пароль, ви втратите доступ до акаунта Telegram. Його буде неможливо відновити.";
+"Country" = "Країна";
+"AbortPasswordMenu" = "Скасувати встановлення";
+"ResetAccount" = "Скинути акаунт";
+"SentAppCodeWithPhone" = "Ми надіслали код до **Telegram** для %1$s на іншому вашому пристрої.";
+"SentAppCode" = "Ми надіслали код до **Telegram** на іншому вашому пристрої.";
+"RecoveryEmail" = "Е-пошта для відновлення";
+"CheckPasswordWrong" = "Ви ввели неправильний пароль.";
+"RestoreEmailTroubleNoEmail" = "Не маєте доступу до е-пошти?";
+"YourPasswordRememberYes" = "Так, памʼятаю";
+"PasswordHintText" = "Створіть підказку для свого пароля";
+"ReEnterPassword" = "Введіть пароль ще раз";
+"LastName" = "Прізвище (за бажанням)";
+"YourEmailAlmostThereText" = "Щоб активувати двоетапну перевірку, введіть код з листа, який ми вам надіслали. Не забудьте перевірити теку зі спамом.";
+"CancelAccountResetInfo2" = "Хтось з доступом до **%1$s ** запросив видалення вашого акаунта Telegram і скидання хмарного пароля.
+
+Якщо це були не ви, введіть код з SMS, надісланого на ваш номер. Ви також можете скасувати видалення, *змінивши номер телефону*.";
+"formatterMonth" = "dd MMM";
+"CancelAccountReset" = "Скасувати скидання акаунта";
+"TwoStepVerificationPasswordReturnPassport" = "Повернутися до Passport";
+"PasswordOff" = "Вимкнено";
+"DidNotGetTheCodeHelpButton" = "Допомога";
+"Page5Message" = "**Telegram** не обмежує вас
+у розмірі чатів і медіа.";
+"SendingSms" = "Надсилаємо SMS...";
+"PleaseEnterNewSecondPasswordHint" = "Введіть новий пароль ще раз";
+"TwoStepVerificationSetPassword" = "Встановити пароль";
+"formatterWeekLong" = "EEEE";
+"PleaseEnterPassword" = "Введіть новий пароль";
+"StartTodayAt" = "'Почнеться сьогодні,' HH:mm";
+"LoginAccessibilityCountryCode" = "Код країни";
+"VerificationCodeSubtitle" = "\"Перевірте свою е-пошту %1$s і введіть код, який ми вам щойно надіслали. Не забудьте перевірити теку зі спамом. \"";
+"RestorePasswordResetAccount" = "СКИНУТИ АКАУНТ";
+"SyncContactsOff" = "Контакти з цього пристрою не будуть додані до вашого акаунта.";
+"TwoStepVerificationPasswordReturnSettings" = "Повернутися в Налаштування";
+"SetAdditionalPasswordInfo" = "Ви можете встановити пароль, який потрібно буде вводити при вході з нового пристрою на додачу до SMS-коду.";
+"EnterPassword" = "Введіть пароль";
+"RecoveryEmailTitle" = "Е-пошта для відновлення";
+"PasswordOn" = "Увімкнено";
+"YourEmailAlmostThere" = "Майже готово!";
+"formatterBoostExpired" = "dd MMM yyyy";
+"CancelEmailQuestionTitle" = "Перервати увімкнення";
+"Disable" = "Вимкнути";
+"YourPasswordChangedSuccessText" = "Пароль двоетапної перевірки змінено.";
+"PleaseEnterCurrentPasswordWithdraw" = "Для отримання необхідно ввести пароль.";
+"ResetAccountButton" = "СКИНУТИ АКАУНТ";
+"EnterNewEmail" = "Вкажіть нову е-пошту";
+"YourNumber" = "Ваш номер телефону";
+"RestorePasswordNoEmailText2" = "Оскільки при встановленні пароля ви не вказали е-пошту для відновлення, вам залишається або згадати пароль, або зачекати 7 днів, після чого ваш пароль буде скинуто.";
+"RestorePasswordNoEmailTitle" = "На жаль";
+"RestorePasswordResetPasswordOk" = "Пароль двоетапної перевірки скинуто.";
+"RestoreEmailSentTitle" = "Код для відновлення";
+"PasswordRecovery" = "Відновлення пароля";
+"formatDateAtTime" = "%1$s, %2$s";
+"TwoStepVerification" = "Двоетапна перевірка";
+"formatterMonthName" = "LLLL";
+"formatterMonthYear" = "MMMM yyyy";
+"StartsDayYearAt" = "'Почнеться' d MMM yyyy',' HH:mm";
+"PleaseEnterNewFirstPasswordLogin" = "Тепер ви можете встановити новий пароль для входу в акаунт.";
+"YourCode" = "Підтвердження номера";
+"YourName" = "Ваше імʼя";
+"ContinueOnThisLanguage" = "Продовжити українською";
+"TurnPasswordOffPassport" = "Усі дані, збережені в Telegram Passport, буде втрачено.";
+"LanguageNameInEnglish" = "Ukrainian";
+"RegisterText2" = "Вкажіть своє імʼя та додайте фото для профілю.";
+"AddEmailSubtitle" = "Ви отримуватимете коди для входу в Telegram на е-пошту, а не через SMS. Будь ласка, додайте адресу, до якої ви маєте доступ.";
+"DidNotGetTheCode" = "Не одержали коду?";
+"WidgetShortcuts" = "Ярлики";
+"PleaseEnterFirstPassword" = "Введіть пароль";
+"ResetMyAccountText" = "Ви втратите всі чати, повідомлення, фото, відео й файли в Telegram, якщо ви продовжите скидання акаунта.";
+"EditNumber" = "Змінити номер";
+"formatterBannedUntil12H" = "dd MMM yyyy, h:mm a";
+"formatterBannedUntil24H" = "dd MMM yyyy, HH:mm";
+"SentAppCodeTitle" = "Перевірте повідомлення в Telegram";
+"formatterYearMax" = "dd.MM.yyyy";
+"RestoreEmailNoAccess" = "Не маєте доступу до %1$s?";
+"ResetAccountStatus" = "Ви зможете скинути акаунт через:";
+"SmsText" = "Ми надішлемо вам SMS за %1$d:%2$02d";
+"ResetAccountCancelledAlert" = "Ваші недавні спроби скинути акаунт скасовано активним користувачем. Спробуйте через 7 днів.";
+"ResendSmsAvailableIn" = "Ви зможете зробити запит на SMS за %1$d:%2$02d";
+"Page3Message" = "У **Telegram** можна безплатно зберігати
+скільки завгодно повідомлень і медіафайлів.";
+"ForgotPassword" = "Забули пароль?";
+"WidgetLoggedOff" = "Акаунт не авторизований.";
+"PasswordEmailInvalid" = "Недопустима адреса е-пошти, спробуйте ще раз.";
+"EditWidget" = "Редагувати віджет";
+"TurnPasswordOff" = "Вимкнути пароль";
+"SetAdditionalPassword" = "Встановити додатковий пароль";
+"VerificationCode" = "Код підтвердження";
+"WrongCountry" = "Некоректний код країни";
+"YourPasswordRememberNo" = "Не впевнений(-на)";
+"NewPassword" = "Новий пароль";
+"StartText" = "Перевірте код країни і введіть
+свій номер телефону.";
+"CheckPasswordPerfectInfo" = "Ви памʼятаєте свій пароль.";
+"CallText" = "Telegram зателефонує вам за %1$d:%2$02d";
+"RestorePasswordResetPassword" = "СКИНУТИ ПАРОЛЬ";
+"ChangePassword" = "Змінити пароль";
+"AccountSwitch" = "Перемкнутися";
+"StartsTodayAt" = "'Почнеться сьогодні,' HH:mm";
+"formatterGiveawayMonthDay" = "dd MMMM";
+"YourPasswordHeader" = "Ваш пароль";
+"AppNameBeta" = "Telegram Beta";
+"YourPasswordSuccess" = "Успіх!";
