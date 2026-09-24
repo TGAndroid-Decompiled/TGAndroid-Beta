@@ -1,15 +1,57 @@
 package org.telegram.ui;
-public final class fu0 implements Runnable {
-    public final int f33367a;
-    public final Object f33368b;
 
-    public fu0(Object obj, int i10) {
-        this.f33367a = i10;
-        this.f33368b = obj;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import org.telegram.messenger.AndroidUtilities;
+public final class fu0 extends qg.d2 {
+    public final Path f33745o0;
+    public boolean f33746p0;
+    public final org.telegram.ui.Components.e6 f33747q0;
+    public final PhotoViewer f33748r0;
+
+    public fu0(PhotoViewer photoViewer) {
+        super(photoViewer.p5, photoViewer.E, photoViewer.f31360v2, photoViewer.f31181b0);
+        this.f33748r0 = photoViewer;
+        this.f33745o0 = new Path();
+        this.f33747q0 = new org.telegram.ui.Components.e6(this, 0L, 420L, org.telegram.ui.Components.rr.h);
+    }
+
+    public final void m(boolean z10, boolean z11) {
+        this.f33746p0 = z10;
+        if (!z11) {
+            this.f33747q0.f(z10, true);
+        }
+        invalidate();
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fu0.run():void");
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.f33745o0;
+        path.rewind();
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(this.f41601i0, AndroidUtilities.dp(this.m0), AndroidUtilities.dp(this.m0), direction);
+        canvas.clipPath(path);
+        canvas.translate(-getX(), -getY());
+        PhotoViewer photoViewer = this.f33748r0;
+        if (this == photoViewer.f31363v5 || this == photoViewer.f31373w5) {
+            canvas.translate(-photoViewer.f31354u5.getX(), -photoViewer.f31354u5.getY());
+        }
+        photoViewer.T0(canvas, this.f41600h0, -13948117, 855638016, false, true, false);
+        float e = this.f33747q0.e(this.f33746p0);
+        if (e > 0.0f) {
+            canvas.drawColor(org.telegram.ui.ActionBar.h6.l1(e, -1));
+        }
+        setTextColor(i0.a.d(e, -1, -16777216));
+        canvas.restore();
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onDrawForeground(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f33745o0);
+        super.onDrawForeground(canvas);
+        canvas.restore();
     }
 }

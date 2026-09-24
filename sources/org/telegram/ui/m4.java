@@ -1,17 +1,23 @@
 package org.telegram.ui;
-public final class m4 implements Runnable {
-    public final int f35144a;
-    public final Object f35145b;
-    public final Object f35146c;
 
-    public m4(int i10, Object obj, Object obj2) {
-        this.f35144a = i10;
-        this.f35145b = obj;
-        this.f35146c = obj2;
+import java.util.ArrayList;
+public final class m4 implements Runnable {
+    public final p4 f35460a;
+
+    public m4(p4 p4Var) {
+        this.f35460a = p4Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.m4.run():void");
+        ?? m2Var = new org.telegram.ui.ActionBar.m2(null);
+        m2Var.N = new a0.i();
+        m2Var.O = new ArrayList();
+        m2Var.f31888x = 1;
+        m2Var.G = false;
+        p4 p4Var = this.f35460a;
+        m2Var.R = p4Var.U();
+        m2Var.f31884n = new z0(this, 2);
+        p4Var.presentFragment((org.telegram.ui.ActionBar.m2) m2Var);
     }
 }

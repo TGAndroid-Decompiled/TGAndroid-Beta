@@ -47,7 +47,7 @@ public final class x2 extends View {
         this.F = new int[2];
         this.G = 1.0f;
         this.f1681a = w2Var;
-        w7.z5.a(this);
+        w7.a6.a(this);
         this.f1687s = context.getResources().getDrawable(R.drawable.star).mutate();
         ah.l lVar = new ah.l();
         this.v = lVar;

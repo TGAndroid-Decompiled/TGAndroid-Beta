@@ -17,13 +17,13 @@ public final class bl extends gg.u0 {
     public final void l() {
         hl hlVar = this.N;
         bl blVar = hlVar.R;
-        org.telegram.ui.ActionBar.v0 v0Var = hlVar.E;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(blVar.J);
+        org.telegram.ui.ActionBar.u0 u0Var = hlVar.E;
+        if (u0Var != null) {
+            u0Var.setShowSearchProgress(blVar.J);
         }
-        TextView textView = hlVar.f24745y;
+        TextView textView = hlVar.f24799y;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, blVar.f9666x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, blVar.f9665x)));
         }
         super.l();
     }

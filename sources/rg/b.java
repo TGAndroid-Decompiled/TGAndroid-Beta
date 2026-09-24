@@ -6,25 +6,25 @@ import android.graphics.Paint;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.ml0;
-import w7.x5;
+import org.telegram.ui.Components.wl0;
+import w7.y5;
 public abstract class b extends FrameLayout implements l0 {
-    public final d6 f42203a;
-    public final ml0 f42204b;
-    public final s4.c0 f42205c;
+    public final d6 f42522a;
+    public final wl0 f42523b;
+    public final s4.c0 f42524c;
 
     public b(Context context, d6 d6Var) {
         super(context);
-        this.f42203a = d6Var;
-        ml0 ml0Var = new ml0(context, d6Var);
-        this.f42204b = ml0Var;
-        ml0Var.setNestedScrollingEnabled(true);
-        ml0Var.setAdapter(a());
+        this.f42522a = d6Var;
+        wl0 wl0Var = new wl0(context, d6Var);
+        this.f42523b = wl0Var;
+        wl0Var.setNestedScrollingEnabled(true);
+        wl0Var.setAdapter(a());
         s4.c0 c0Var = new s4.c0(1, false);
-        this.f42205c = c0Var;
-        ml0Var.setLayoutManager(c0Var);
-        ml0Var.setClipToPadding(false);
-        addView(ml0Var, x5.c(-1.0f, -1));
+        this.f42524c = c0Var;
+        wl0Var.setLayoutManager(c0Var);
+        wl0Var.setClipToPadding(false);
+        addView(wl0Var, y5.c(-1.0f, -1));
     }
 
     public abstract s4.h0 a();
@@ -32,9 +32,9 @@ public abstract class b extends FrameLayout implements l0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        Paint T0 = h6.T0("paintDivider", this.f42203a);
+        Paint T0 = h6.T0("paintDivider", this.f42522a);
         if (T0 == null) {
-            T0 = h6.f18910k0;
+            T0 = h6.f19166k0;
         }
         canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, T0);
     }
@@ -42,14 +42,14 @@ public abstract class b extends FrameLayout implements l0 {
     @Override
     public void setOffset(float f7) {
         if (Math.abs(f7 / getMeasuredWidth()) == 1.0f) {
-            ml0 ml0Var = this.f42204b;
-            if (ml0Var.K(0) == null || ml0Var.K(0).f42627a.getTop() != ml0Var.getPaddingTop()) {
-                ml0Var.u0(0);
+            wl0 wl0Var = this.f42523b;
+            if (wl0Var.K(0) == null || wl0Var.K(0).f42946a.getTop() != wl0Var.getPaddingTop()) {
+                wl0Var.u0(0);
             }
         }
     }
 
     public void setTopOffset(int i10) {
-        this.f42204b.setPadding(0, i10, 0, 0);
+        this.f42523b.setPadding(0, i10, 0, 0);
     }
 }

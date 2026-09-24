@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 public final class r extends db.u {
-    public static final p f9566c = new p(db.t.f7595a, 1);
-    public final db.g f9567a;
-    public final db.t f9568b;
+    public static final p f9565c = new p(db.t.f7594a, 1);
+    public final db.g f9566a;
+    public final db.t f9567b;
 
     public r(db.g gVar, db.t tVar) {
-        this.f9567a = gVar;
-        this.f9568b = tVar;
+        this.f9566a = gVar;
+        this.f9567b = tVar;
     }
 
     public final Serializable a(lb.a aVar, int i10) {
@@ -24,11 +24,11 @@ public final class r extends db.u {
                         aVar.t();
                         return null;
                     }
-                    throw new IllegalStateException("Unexpected token: ".concat(hg.c.E(i10)));
+                    throw new IllegalStateException("Unexpected token: ".concat(hg.c.D(i10)));
                 }
                 return Boolean.valueOf(aVar.n());
             }
-            return this.f9568b.a(aVar);
+            return this.f9567b.a(aVar);
         }
         return aVar.v();
     }
@@ -114,7 +114,7 @@ public final class r extends db.u {
             return;
         }
         Class<?> cls = obj.getClass();
-        db.g gVar = this.f9567a;
+        db.g gVar = this.f9566a;
         gVar.getClass();
         db.u b10 = gVar.b(new kb.a(cls));
         if (b10 instanceof r) {

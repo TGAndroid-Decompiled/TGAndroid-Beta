@@ -1,169 +1,478 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class s11 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f37099a;
-    public final Object f37100b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public abstract class s11 extends org.telegram.ui.Components.ga implements NotificationCenter.NotificationCenterDelegate {
+    public boolean E;
+    public final Rect F;
+    public final vz0 G;
+    public final bi.a h;
+    public final org.telegram.ui.Components.v81 f37551n;
+    public final ai.x8 f37552r;
+    public final r11 f37553s;
+    public int v;
+    public boolean f37554w;
+    public ValueAnimator f37555x;
+    public float f37556y;
 
-    public s11(Object obj, int i10) {
-        this.f37099a = i10;
-        this.f37100b = obj;
+    public s11(Context context, org.telegram.ui.Components.aw0 aw0Var, ai.x8 x8Var, final org.telegram.ui.Components.ds0 ds0Var) {
+        super(context, aw0Var);
+        this.F = new Rect();
+        this.f37552r = x8Var;
+        Objects.requireNonNull(x8Var);
+        this.G = new vz0(x8Var, 6);
+        final org.telegram.ui.Components.es0 es0Var = (org.telegram.ui.Components.es0) this;
+        bi.a aVar = new bi.a(es0Var, context, ds0Var);
+        this.h = aVar;
+        aVar.setAllowDisallowInterceptTouch(true);
+        r11 r11Var = new r11(es0Var);
+        this.f37553s = r11Var;
+        r11Var.f37154a = x8Var.a();
+        aVar.setAdapter(r11Var);
+        aVar.setTranslationY(AndroidUtilities.dp(42.0f));
+        org.telegram.ui.Components.v81 n10 = aVar.n(10, true);
+        this.f37551n = n10;
+        int i10 = org.telegram.ui.ActionBar.h6.Gh;
+        int i11 = org.telegram.ui.ActionBar.h6.G6;
+        int i12 = org.telegram.ui.ActionBar.h6.Eh;
+        int i13 = org.telegram.ui.ActionBar.h6.Hh;
+        int i14 = org.telegram.ui.ActionBar.h6.f19323s8;
+        n10.P = i10;
+        n10.Q = i11;
+        n10.R = i12;
+        n10.S = i13;
+        n10.T = i14;
+        n10.O.setColor(org.telegram.ui.ActionBar.h6.v0(i10, n10.f29087j0));
+        n10.f29095r = 12;
+        n10.setPreTabClick(new Utilities.Callback2Return() {
+            @Override
+            public final Object run(Object obj, Object obj2) {
+                ai.l9 storiesController;
+                Integer num = (Integer) obj;
+                switch (r3) {
+                    case 0:
+                        Integer num2 = (Integer) obj2;
+                        if (es0Var.f37554w) {
+                            return Boolean.TRUE;
+                        }
+                        if (num.intValue() == -1) {
+                            org.telegram.ui.Components.ds0 ds0Var2 = ds0Var;
+                            org.telegram.ui.Components.e5.S(ds0Var2.f23704a, ds0Var2.f23705b, ds0Var2.f23706c, new org.telegram.ui.Components.nv(ds0Var2, 20));
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                    default:
+                        View view = (View) obj2;
+                        if (num.intValue() != -1 && num.intValue() != 0 && !es0Var.f37554w) {
+                            final int intValue = num.intValue();
+                            final org.telegram.ui.Components.ds0 ds0Var3 = ds0Var;
+                            org.telegram.ui.Components.jv0 jv0Var = ds0Var3.d;
+                            org.telegram.ui.ActionBar.m2 m2Var = jv0Var.f25543v1;
+                            storiesController = jv0Var.getStoriesController();
+                            if (storiesController.i(jv0Var.f25518j1)) {
+                                org.telegram.ui.Components.y70 H = org.telegram.ui.Components.y70.H(m2Var, view);
+                                H.W(new org.telegram.ui.Components.cs0(ds0Var3));
+                                H.c(R.drawable.menu_add_stories, LocaleController.getString(R.string.StoriesAlbumMenuAddStories), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                jv0 jv0Var2 = ds0Var3.d;
+                                                jv0Var2.O0(jv0Var2.f25543v1, jv0Var2.f25518j1, intValue);
+                                                return;
+                                            case 1:
+                                                jv0 jv0Var3 = ds0Var3.d;
+                                                jv0Var3.Q0(jv0Var3.f25543v1, jv0Var3.f25518j1, intValue);
+                                                return;
+                                            case 2:
+                                                ds0Var3.d.d1(intValue);
+                                                return;
+                                            default:
+                                                jv0 jv0Var4 = ds0Var3.d;
+                                                jv0Var4.P0(jv0Var4.f25543v1, jv0Var4.f25518j1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                jv0Var.x(H, m2Var, jv0Var.f25518j1, intValue);
+                                H.c(R.drawable.msg_edit, LocaleController.getString(R.string.StoriesAlbumMenuEditName), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                jv0 jv0Var2 = ds0Var3.d;
+                                                jv0Var2.O0(jv0Var2.f25543v1, jv0Var2.f25518j1, intValue);
+                                                return;
+                                            case 1:
+                                                jv0 jv0Var3 = ds0Var3.d;
+                                                jv0Var3.Q0(jv0Var3.f25543v1, jv0Var3.f25518j1, intValue);
+                                                return;
+                                            case 2:
+                                                ds0Var3.d.d1(intValue);
+                                                return;
+                                            default:
+                                                jv0 jv0Var4 = ds0Var3.d;
+                                                jv0Var4.P0(jv0Var4.f25543v1, jv0Var4.f25518j1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                H.c(R.drawable.tabs_reorder, LocaleController.getString(R.string.StoriesAlbumMenuReorder), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                jv0 jv0Var2 = ds0Var3.d;
+                                                jv0Var2.O0(jv0Var2.f25543v1, jv0Var2.f25518j1, intValue);
+                                                return;
+                                            case 1:
+                                                jv0 jv0Var3 = ds0Var3.d;
+                                                jv0Var3.Q0(jv0Var3.f25543v1, jv0Var3.f25518j1, intValue);
+                                                return;
+                                            case 2:
+                                                ds0Var3.d.d1(intValue);
+                                                return;
+                                            default:
+                                                jv0 jv0Var4 = ds0Var3.d;
+                                                jv0Var4.P0(jv0Var4.f25543v1, jv0Var4.f25518j1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoriesAlbumMenuDeleteAlbum), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                jv0 jv0Var2 = ds0Var3.d;
+                                                jv0Var2.O0(jv0Var2.f25543v1, jv0Var2.f25518j1, intValue);
+                                                return;
+                                            case 1:
+                                                jv0 jv0Var3 = ds0Var3.d;
+                                                jv0Var3.Q0(jv0Var3.f25543v1, jv0Var3.f25518j1, intValue);
+                                                return;
+                                            case 2:
+                                                ds0Var3.d.d1(intValue);
+                                                return;
+                                            default:
+                                                jv0 jv0Var4 = ds0Var3.d;
+                                                jv0Var4.P0(jv0Var4.f25543v1, jv0Var4.f25518j1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, true);
+                                H.Z();
+                            }
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                }
+            }
+        });
+        n10.setOnTabLongClick(new Utilities.Callback2Return() {
+            @Override
+            public final Object run(Object obj, Object obj2) {
+                ai.l9 storiesController;
+                Integer num = (Integer) obj;
+                switch (r3) {
+                    case 0:
+                        Integer num2 = (Integer) obj2;
+                        if (es0Var.f37554w) {
+                            return Boolean.TRUE;
+                        }
+                        if (num.intValue() == -1) {
+                            org.telegram.ui.Components.ds0 ds0Var2 = ds0Var;
+                            org.telegram.ui.Components.e5.S(ds0Var2.f23704a, ds0Var2.f23705b, ds0Var2.f23706c, new org.telegram.ui.Components.nv(ds0Var2, 20));
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                    default:
+                        View view = (View) obj2;
+                        if (num.intValue() != -1 && num.intValue() != 0 && !es0Var.f37554w) {
+                            final int intValue = num.intValue();
+                            final org.telegram.ui.Components.ds0 ds0Var3 = ds0Var;
+                            org.telegram.ui.Components.jv0 jv0Var = ds0Var3.d;
+                            org.telegram.ui.ActionBar.m2 m2Var = jv0Var.f25543v1;
+                            storiesController = jv0Var.getStoriesController();
+                            if (storiesController.i(jv0Var.f25518j1)) {
+                                org.telegram.ui.Components.y70 H = org.telegram.ui.Components.y70.H(m2Var, view);
+                                H.W(new org.telegram.ui.Components.cs0(ds0Var3));
+                                H.c(R.drawable.menu_add_stories, LocaleController.getString(R.string.StoriesAlbumMenuAddStories), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                jv0 jv0Var2 = ds0Var3.d;
+                                                jv0Var2.O0(jv0Var2.f25543v1, jv0Var2.f25518j1, intValue);
+                                                return;
+                                            case 1:
+                                                jv0 jv0Var3 = ds0Var3.d;
+                                                jv0Var3.Q0(jv0Var3.f25543v1, jv0Var3.f25518j1, intValue);
+                                                return;
+                                            case 2:
+                                                ds0Var3.d.d1(intValue);
+                                                return;
+                                            default:
+                                                jv0 jv0Var4 = ds0Var3.d;
+                                                jv0Var4.P0(jv0Var4.f25543v1, jv0Var4.f25518j1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                jv0Var.x(H, m2Var, jv0Var.f25518j1, intValue);
+                                H.c(R.drawable.msg_edit, LocaleController.getString(R.string.StoriesAlbumMenuEditName), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                jv0 jv0Var2 = ds0Var3.d;
+                                                jv0Var2.O0(jv0Var2.f25543v1, jv0Var2.f25518j1, intValue);
+                                                return;
+                                            case 1:
+                                                jv0 jv0Var3 = ds0Var3.d;
+                                                jv0Var3.Q0(jv0Var3.f25543v1, jv0Var3.f25518j1, intValue);
+                                                return;
+                                            case 2:
+                                                ds0Var3.d.d1(intValue);
+                                                return;
+                                            default:
+                                                jv0 jv0Var4 = ds0Var3.d;
+                                                jv0Var4.P0(jv0Var4.f25543v1, jv0Var4.f25518j1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                H.c(R.drawable.tabs_reorder, LocaleController.getString(R.string.StoriesAlbumMenuReorder), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                jv0 jv0Var2 = ds0Var3.d;
+                                                jv0Var2.O0(jv0Var2.f25543v1, jv0Var2.f25518j1, intValue);
+                                                return;
+                                            case 1:
+                                                jv0 jv0Var3 = ds0Var3.d;
+                                                jv0Var3.Q0(jv0Var3.f25543v1, jv0Var3.f25518j1, intValue);
+                                                return;
+                                            case 2:
+                                                ds0Var3.d.d1(intValue);
+                                                return;
+                                            default:
+                                                jv0 jv0Var4 = ds0Var3.d;
+                                                jv0Var4.P0(jv0Var4.f25543v1, jv0Var4.f25518j1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoriesAlbumMenuDeleteAlbum), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                jv0 jv0Var2 = ds0Var3.d;
+                                                jv0Var2.O0(jv0Var2.f25543v1, jv0Var2.f25518j1, intValue);
+                                                return;
+                                            case 1:
+                                                jv0 jv0Var3 = ds0Var3.d;
+                                                jv0Var3.Q0(jv0Var3.f25543v1, jv0Var3.f25518j1, intValue);
+                                                return;
+                                            case 2:
+                                                ds0Var3.d.d1(intValue);
+                                                return;
+                                            default:
+                                                jv0 jv0Var4 = ds0Var3.d;
+                                                jv0Var4.P0(jv0Var4.f25543v1, jv0Var4.f25518j1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, true);
+                                H.Z();
+                            }
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                }
+            }
+        });
+        addView(n10, w7.y5.e(-1, 42, 48));
+        b(!x8Var.h.isEmpty(), false, true);
+    }
+
+    public abstract void a();
+
+    public final void b(boolean z10, boolean z11, boolean z12) {
+        if (this.E == z10 && !z12) {
+            return;
+        }
+        this.E = z10;
+        setEnabled(z10);
+        ValueAnimator valueAnimator = this.f37555x;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f37555x = null;
+        }
+        float f7 = 0.0f;
+        if (!z11) {
+            if (z10) {
+                f7 = 1.0f;
+            }
+            this.f37556y = f7;
+            a();
+            return;
+        }
+        float f10 = this.f37556y;
+        if (z10) {
+            f7 = 1.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+        this.f37555x = ofFloat;
+        ofFloat.setDuration(480L);
+        this.f37555x.setInterpolator(org.telegram.ui.Components.rr.h);
+        this.f37555x.addUpdateListener(new q11(this, 0));
+        this.f37555x.start();
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f37099a) {
-            case 0:
-                u11 u11Var = (u11) this.f37100b;
-                u11Var.f37876y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u11Var.a();
-                return;
-            case 1:
-                h21 h21Var = (h21) this.f37100b;
-                h21Var.f33720y = AndroidUtilities.lerp(h21Var.E, valueAnimator.getAnimatedFraction());
-                h21Var.h.setTextColor(i0.a.d(h21Var.f33720y, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19189z6, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.q6, false)));
-                h21Var.f33716r.setAlpha((h21Var.f33720y / 2.0f) + 0.5f);
-                return;
-            case 2:
-                ((x21) this.f37100b).h.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 3:
-                w21 w21Var = (w21) this.f37100b;
-                w21Var.P = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                w21Var.O.invalidate();
-                return;
-            case 4:
-                SecretMediaViewer secretMediaViewer = ((p41) this.f37100b).d;
-                secretMediaViewer.f31408a0.f33928k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                secretMediaViewer.f31408a0.invalidate();
-                return;
-            case 5:
-                SecretMediaViewer secretMediaViewer2 = ((p41) this.f37100b).d;
-                secretMediaViewer2.f31408a0.f33928k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                secretMediaViewer2.f31408a0.invalidate();
-                return;
-            case 6:
-                ((SecretMediaViewer) ((org.telegram.ui.Components.fm0) this.f37100b).f24009b).f31408a0.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
-                return;
-            case 7:
-                a51 a51Var = (a51) this.f37100b;
-                a51Var.v = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (a51Var.S) {
-                    a51Var.N.invalidate();
-                    return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12;
+        if (i10 == NotificationCenter.storyAlbumsCollectionsUpdate) {
+            long longValue = ((Long) objArr[0]).longValue();
+            ai.x8 x8Var = this.f37552r;
+            if (longValue == x8Var.f1699b) {
+                org.telegram.ui.Components.v81 v81Var = this.f37551n;
+                if (v81Var != null) {
+                    i12 = v81Var.getCurrentTabId();
+                } else {
+                    i12 = 0;
                 }
-                return;
-            case 8:
-                ((p51) this.f37100b).e.U0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 9:
-                o61 o61Var = (o61) this.f37100b;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o61Var.f35694r = floatValue;
-                View view = o61Var.e;
-                if (view != null) {
-                    view.setAlpha(floatValue);
-                    return;
-                }
-                org.telegram.ui.Components.ig0 ig0Var = o61Var.d;
-                if (ig0Var != null) {
-                    ig0Var.invalidate();
-                    return;
-                }
-                return;
-            case 10:
-                v61 v61Var = (v61) this.f37100b;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                v61Var.L = floatValue2;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = v61Var.v;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(floatValue2);
-                org.telegram.ui.ActionBar.j1 j1Var = actionBarPopupWindow$ActionBarPopupWindowLayout.L;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.rr.f27702g.getInterpolation(v61Var.L));
-                int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
-                for (int i10 = 0; i10 < itemsCount; i10++) {
-                    float cascade = AndroidUtilities.cascade(v61Var.L, i10, itemsCount, 4.0f);
-                    j1Var.getChildAt(i10).setTranslationY((1.0f - cascade) * AndroidUtilities.dp(-12.0f));
-                    j1Var.getChildAt(i10).setAlpha(cascade);
-                }
-                return;
-            case 11:
-                x81.a0((x81) this.f37100b, valueAnimator);
-                return;
-            case 12:
-                ba1 ba1Var = (ba1) this.f37100b;
-                ba1Var.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ba1Var.e.setAlpha(1.0f - floatValue3);
-                ig.g gVar = ba1Var.f32035b;
-                gVar.f11161z0.f13627f = floatValue3;
-                ba1Var.f32036c.invalidate();
-                gVar.invalidate();
-                return;
-            case 13:
-                od1 od1Var = (od1) this.f37100b;
-                od1Var.getClass();
-                od1Var.f35821o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                od1Var.f35842x0.invalidate();
-                od1Var.C0.invalidate();
-                od1Var.R1.setAlpha(od1Var.f35821o1);
-                od1Var.Q1.invalidate();
-                od1Var.V0();
-                return;
-            case 14:
-                od1 od1Var2 = ((cd1) this.f37100b).f32316a;
-                od1Var2.f35821o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                od1Var2.f35842x0.invalidate();
-                od1Var2.C0.invalidate();
-                od1Var2.R1.setAlpha(od1Var2.f35821o1);
-                od1Var2.Q1.invalidate();
-                od1Var2.V0();
-                return;
-            case 15:
-                le1 le1Var = (le1) this.f37100b;
-                le1Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int childCount = le1Var.f34956a.getChildCount();
-                for (int i11 = 0; i11 < childCount; i11++) {
-                    int R = RecyclerView.R(le1Var.f34956a.getChildAt(i11));
-                    int i12 = le1Var.d.e;
-                    if (R >= i12 && i12 > 0) {
-                        le1Var.f34956a.getChildAt(i11).setAlpha(le1Var.E);
-                    } else {
-                        le1Var.f34956a.getChildAt(i11).setAlpha(1.0f);
+                boolean a2 = x8Var.a();
+                r11 r11Var = this.f37553s;
+                r11Var.f37154a = a2;
+                this.h.o(true);
+                b(!x8Var.h.isEmpty(), true, false);
+                int i13 = this.v;
+                if (i13 > 0) {
+                    if (r11Var.i(i13) != -1) {
+                        AndroidUtilities.runOnUIThread(new o11(this, this.v, 1), 500L);
+                        this.v = 0;
                     }
+                } else if (v81Var != null && i12 > 0 && x8Var.b(i12) == null) {
+                    v81Var.d(0, 0);
                 }
-                return;
-            case 16:
-                qe1 qe1Var = (qe1) this.f37100b;
-                qe1Var.getClass();
-                qe1Var.f36412c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qe1Var.invalidate();
-                return;
-            case 17:
-                wf1 wf1Var = (wf1) this.f37100b;
-                wf1Var.getClass();
-                wf1Var.S0(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 18:
-                tf1 tf1Var = (tf1) this.f37100b;
-                tf1Var.getClass();
-                tf1Var.f37637f5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                tf1Var.f0();
-                return;
-            case 19:
-                uf1 uf1Var = (uf1) this.f37100b;
-                uf1Var.getClass();
-                uf1Var.setViewsOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                mi1 mi1Var = (mi1) this.f37100b;
-                mi1Var.getClass();
-                mi1Var.f35346y0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mi1Var.G();
-                return;
+            }
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.E && super.dispatchTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getCurrentAlbumId() {
+        return this.f37553s.f(this.f37551n.getCurrentPosition());
+    }
+
+    public float getVisibilityFactor() {
+        return this.f37556y;
+    }
+
+    public float getVisualHeight() {
+        return getMeasuredHeight() * this.f37556y;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.f37552r.f1698a).addObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.f37552r.f1698a).removeObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        Rect rect = this.F;
+        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
+        setClipBounds(rect);
+    }
+
+    public void setInitialTabId(int i10) {
+        if (this.f37553s.i(i10) != -1) {
+            AndroidUtilities.runOnUIThread(new o11(this, i10, 0), 500L);
+        } else {
+            this.v = i10;
+        }
+    }
+
+    public void setReorderingAlbums(boolean z10) {
+        float f7;
+        float f10;
+        if (this.f37554w != z10) {
+            this.f37554w = z10;
+            org.telegram.ui.Components.v81 v81Var = this.f37551n;
+            v81Var.setReordering(z10);
+            boolean z11 = this.f37554w;
+            org.telegram.ui.Components.es0 es0Var = (org.telegram.ui.Components.es0) this;
+            org.telegram.ui.Components.jv0 jv0Var = es0Var.H;
+            TextView textView = jv0Var.f25530q0;
+            textView.setVisibility(0);
+            ViewPropertyAnimator animate = textView.animate();
+            float f11 = 1.0f;
+            if (z11) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            ViewPropertyAnimator alpha = animate.alpha(f7);
+            if (z11) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.4f;
+            }
+            ViewPropertyAnimator scaleX = alpha.scaleX(f10);
+            if (!z11) {
+                f11 = 0.4f;
+            }
+            scaleX.scaleY(f11).withEndAction(new org.telegram.ui.Components.yr0(1, es0Var, z11)).start();
+            jv0Var.q1(true);
+            if (z10) {
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+                if (U instanceof ProfileActivity) {
+                    ProfileActivity profileActivity = (ProfileActivity) U;
+                    profileActivity.G4(false);
+                    AndroidUtilities.runOnUIThread(new sb0(profileActivity, 27));
+                }
+            }
+            if (!z10) {
+                AndroidUtilities.cancelRunOnUIThread(this.G);
+                ai.x8 x8Var = this.f37552r;
+                x8Var.e();
+                x8Var.f(false);
+                int currentPosition = v81Var.getCurrentPosition();
+                r11 r11Var = this.f37553s;
+                int f12 = r11Var.f(currentPosition);
+                this.h.o(true);
+                int i10 = r11Var.i(f12);
+                v81Var.e(0.0f, i10, i10);
+            }
         }
     }
 }

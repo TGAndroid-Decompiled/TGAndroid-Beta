@@ -1,23 +1,17 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-public final class dn0 extends TimerTask {
-    public final en0 f32688a;
-
-    public dn0(en0 en0Var) {
-        this.f32688a = en0Var;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+public final class dn0 extends View {
+    public Paint f33136a;
+    public Paint f33137b;
+    public float f33138c;
 
     @Override
-    public final void run() {
-        en0 en0Var = this.f32688a;
-        if (en0Var.v == null) {
-            return;
-        }
-        double currentTimeMillis = System.currentTimeMillis();
-        en0Var.f32989y = (int) (en0Var.f32989y - (currentTimeMillis - en0Var.F));
-        en0Var.F = currentTimeMillis;
-        AndroidUtilities.runOnUIThread(new jl0(this, 6));
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = (int) (getMeasuredWidth() * this.f33138c);
+        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f33137b);
+        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f33136a);
     }
 }

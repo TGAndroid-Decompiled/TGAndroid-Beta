@@ -7,38 +7,38 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import java.util.HashMap;
 public final class j0 {
-    public static final Object f15032g = new Object();
+    public static final Object f15270g = new Object();
     public static j0 h;
-    public static HandlerThread f15033i;
-    public final HashMap f15034a = new HashMap();
-    public final Context f15035b;
-    public volatile com.google.android.gms.internal.cast.c0 f15036c;
+    public static HandlerThread f15271i;
+    public final HashMap f15272a = new HashMap();
+    public final Context f15273b;
+    public volatile com.google.android.gms.internal.cast.c0 f15274c;
     public final t6.a d;
     public final long e;
-    public final long f15037f;
+    public final long f15275f;
 
     public j0(Context context, Looper looper) {
         i0 i0Var = new i0(this);
-        this.f15035b = context.getApplicationContext();
+        this.f15273b = context.getApplicationContext();
         ?? handler = new Handler(looper, i0Var);
         Looper.getMainLooper();
-        this.f15036c = handler;
+        this.f15274c = handler;
         this.d = t6.a.a();
         this.e = 5000L;
-        this.f15037f = 300000L;
+        this.f15275f = 300000L;
     }
 
     public static HandlerThread a() {
-        synchronized (f15032g) {
+        synchronized (f15270g) {
             try {
-                HandlerThread handlerThread = f15033i;
+                HandlerThread handlerThread = f15271i;
                 if (handlerThread != null) {
                     return handlerThread;
                 }
                 HandlerThread handlerThread2 = new HandlerThread("GoogleApiHandler", 9);
-                f15033i = handlerThread2;
+                f15271i = handlerThread2;
                 handlerThread2.start();
-                return f15033i;
+                return f15271i;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -46,32 +46,32 @@ public final class j0 {
     }
 
     public final k6.a b(g0 g0Var, c0 c0Var, String str) {
-        synchronized (this.f15034a) {
+        synchronized (this.f15272a) {
             try {
-                h0 h0Var = (h0) this.f15034a.get(g0Var);
+                h0 h0Var = (h0) this.f15272a.get(g0Var);
                 k6.a aVar = null;
                 if (h0Var == null) {
                     h0Var = new h0(this, g0Var);
-                    h0Var.f15018a.put(c0Var, c0Var);
+                    h0Var.f15256a.put(c0Var, c0Var);
                     aVar = h0.a(h0Var, str, null);
-                    this.f15034a.put(g0Var, h0Var);
+                    this.f15272a.put(g0Var, h0Var);
                 } else {
-                    this.f15036c.removeMessages(0, g0Var);
-                    if (!h0Var.f15018a.containsKey(c0Var)) {
-                        h0Var.f15018a.put(c0Var, c0Var);
-                        int i10 = h0Var.f15019b;
+                    this.f15274c.removeMessages(0, g0Var);
+                    if (!h0Var.f15256a.containsKey(c0Var)) {
+                        h0Var.f15256a.put(c0Var, c0Var);
+                        int i10 = h0Var.f15257b;
                         if (i10 != 1) {
                             if (i10 == 2) {
                                 aVar = h0.a(h0Var, str, null);
                             }
                         } else {
-                            c0Var.onServiceConnected(h0Var.f15021f, h0Var.d);
+                            c0Var.onServiceConnected(h0Var.f15259f, h0Var.d);
                         }
                     } else {
                         throw new IllegalStateException("Trying to bind a GmsServiceConnection that was already connected before.  config=".concat(g0Var.toString()));
                     }
                 }
-                if (h0Var.f15020c) {
+                if (h0Var.f15258c) {
                     return k6.a.e;
                 }
                 if (aVar == null) {
@@ -87,14 +87,14 @@ public final class j0 {
     public final void c(String str, String str2, ServiceConnection serviceConnection, boolean z10) {
         g0 g0Var = new g0(str, str2, z10);
         l.i(serviceConnection, "ServiceConnection must not be null");
-        synchronized (this.f15034a) {
+        synchronized (this.f15272a) {
             try {
-                h0 h0Var = (h0) this.f15034a.get(g0Var);
+                h0 h0Var = (h0) this.f15272a.get(g0Var);
                 if (h0Var != null) {
-                    if (h0Var.f15018a.containsKey(serviceConnection)) {
-                        h0Var.f15018a.remove(serviceConnection);
-                        if (h0Var.f15018a.isEmpty()) {
-                            this.f15036c.sendMessageDelayed(this.f15036c.obtainMessage(0, g0Var), this.e);
+                    if (h0Var.f15256a.containsKey(serviceConnection)) {
+                        h0Var.f15256a.remove(serviceConnection);
+                        if (h0Var.f15256a.isEmpty()) {
+                            this.f15274c.sendMessageDelayed(this.f15274c.obtainMessage(0, g0Var), this.e);
                         }
                     } else {
                         throw new IllegalStateException("Trying to unbind a GmsServiceConnection  that was not bound before.  config=".concat(g0Var.toString()));

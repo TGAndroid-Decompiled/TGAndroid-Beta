@@ -13,11 +13,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.c60;
 import org.telegram.ui.Components.j40;
-import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.x50;
-import org.telegram.ui.nn;
-public final class b4 implements ng {
+import org.telegram.ui.Components.og;
+import org.telegram.ui.mn;
+public final class b4 implements og {
     public final e6 f582a;
 
     public b4(e6 e6Var) {
@@ -75,9 +75,9 @@ public final class b4 implements ng {
 
     @Override
     public final void K(float f7, int i10) {
-        x50 x50Var = this.f582a.J2;
-        if (x50Var != null) {
-            x50Var.e(f7, i10);
+        c60 c60Var = this.f582a.J2;
+        if (c60Var != null) {
+            c60Var.b(f7, i10);
         }
     }
 
@@ -118,8 +118,8 @@ public final class b4 implements ng {
                 }
             }
             e6Var.r0(true);
-            e6Var.f773b2.Q1(true);
-            e6Var.f773b2.L(true);
+            e6Var.f773b2.P1(true);
+            e6Var.f773b2.K(true);
             e6Var.f1(false);
         }
         return true;
@@ -127,8 +127,8 @@ public final class b4 implements ng {
 
     @Override
     public final boolean i1() {
-        x50 x50Var = this.f582a.J2;
-        if (x50Var != null && !x50Var.f29897e0) {
+        c60 c60Var = this.f582a.J2;
+        if (c60Var != null && !c60Var.f23199j0) {
             return true;
         }
         return false;
@@ -147,7 +147,7 @@ public final class b4 implements ng {
             j40 j40Var = new j40(9, e6Var.getContext(), e6Var.B0, false);
             e6Var.W2 = j40Var;
             j40Var.setVisibility(8);
-            e6Var.addView(e6Var.W2, w7.x5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+            e6Var.addView(e6Var.W2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
         }
         if (e6Var.B1 >= 0) {
             str = UserObject.getFirstName(MessagesController.getInstance(e6Var.C2).getUser(Long.valueOf(e6Var.B1)));
@@ -160,7 +160,7 @@ public final class b4 implements ng {
             }
         }
         j40 j40Var2 = e6Var.W2;
-        if (e6Var.f773b2.f21717c1) {
+        if (e6Var.f773b2.f21954c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
@@ -174,22 +174,22 @@ public final class b4 implements ng {
         e6 e6Var = this.f582a;
         boolean z11 = false;
         if (e6Var.J2 == null && CameraView.isCameraAllowed()) {
-            e6Var.J2 = new x50(e6Var.getContext(), new r4(e6Var), e6Var.B0, false);
-            e6Var.addView(e6Var.J2, Math.min(e6Var.indexOfChild(e6Var.f773b2.getRecordCircle()), e6Var.indexOfChild(e6Var.f773b2.N1)), w7.x5.e(-1, -1, 51));
+            e6Var.J2 = new c60(e6Var.getContext(), new r4(e6Var), e6Var.B0, false);
+            e6Var.addView(e6Var.J2, Math.min(e6Var.indexOfChild(e6Var.f773b2.getRecordCircle()), e6Var.indexOfChild(e6Var.f773b2.O1)), w7.y5.e(-1, -1, 51));
         }
-        x50 x50Var = e6Var.J2;
-        if (x50Var != null) {
+        c60 c60Var = e6Var.J2;
+        if (c60Var != null) {
             if (i10 == 0) {
-                x50Var.l(false);
+                c60Var.h(false);
             } else if (i10 != 1 && i10 != 3 && i10 != 4) {
                 if (i10 == 2 || i10 == 5) {
                     if (i10 == 2) {
                         z11 = true;
                     }
-                    x50Var.d(z11);
+                    c60Var.a(z11);
                 }
             } else {
-                x50Var.k(i10, i11, i12, j3, j10, z10);
+                c60Var.f(i10, i11, i12, j3, j10, z10);
             }
         }
     }
@@ -201,14 +201,14 @@ public final class b4 implements ng {
             c4 c4Var = new c4(e6Var, e6Var.getContext(), e6Var.B1, e6Var.J0.f1071f, e6Var.B0);
             e6Var.f782d3 = c4Var;
             c4Var.p(new f4(e6Var));
-            e6Var.addView(e6Var.f782d3, w7.x5.e(-1, -1, 83));
+            e6Var.addView(e6Var.f782d3, w7.y5.e(-1, -1, 83));
         }
         if (e6Var.f782d3.getAdapter() != null) {
             e6Var.f782d3.setDialogId(e6Var.B1);
             if (e6Var.O1.f645f) {
                 gg.k1 adapter = e6Var.f782d3.getAdapter();
-                if (adapter.f9808j0 == 0 && adapter.f9821u0 == 0 && adapter.f9820t0 == 0 && adapter.E0 == 0) {
-                    adapter.f9824w0 = null;
+                if (adapter.f9807j0 == 0 && adapter.f9820u0 == 0 && adapter.f9819t0 == 0 && adapter.E0 == 0) {
+                    adapter.f9823w0 = null;
                     adapter.F = null;
                     ArrayList arrayList = adapter.A0;
                     if (arrayList != null) {
@@ -220,7 +220,7 @@ public final class b4 implements ng {
                     }
                     adapter.T = null;
                     adapter.U = null;
-                    ArrayList arrayList3 = adapter.f9825x;
+                    ArrayList arrayList3 = adapter.f9824x;
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
@@ -247,7 +247,7 @@ public final class b4 implements ng {
                 MessagesController.getInstance(e6Var.C2).getUser(Long.valueOf(e6Var.B1));
                 TLRPC.Chat chat = MessagesController.getInstance(e6Var.C2).getChat(Long.valueOf(-e6Var.B1));
                 adapter2.getClass();
-                adapter2.f9810l0 = chat;
+                adapter2.f9809l0 = chat;
                 e6Var.f782d3.getAdapter().U(charSequence, e6Var.f773b2.getCursorPosition(), null, false, false);
             }
         }
@@ -261,9 +261,9 @@ public final class b4 implements ng {
 
     @Override
     public final void n1() {
-        x50 x50Var = this.f582a.J2;
-        if (x50Var != null) {
-            x50Var.q();
+        c60 c60Var = this.f582a.J2;
+        if (c60Var != null) {
+            c60Var.i();
         }
     }
 
@@ -278,7 +278,7 @@ public final class b4 implements ng {
     }
 
     @Override
-    public final nn p0() {
+    public final mn p0() {
         return null;
     }
 
@@ -327,6 +327,30 @@ public final class b4 implements ng {
     }
 
     @Override
+    public final void X(boolean z10) {
+    }
+
+    @Override
+    public final void a1(int i10) {
+    }
+
+    @Override
+    public final void f2(int i10) {
+    }
+
+    @Override
+    public final void j2(boolean z10) {
+    }
+
+    @Override
+    public final void v1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void y(float f7) {
+    }
+
+    @Override
     public final void D() {
     }
 
@@ -351,27 +375,11 @@ public final class b4 implements ng {
     }
 
     @Override
-    public final void X(boolean z10) {
-    }
-
-    @Override
-    public final void a1(int i10) {
-    }
-
-    @Override
     public final void d2() {
     }
 
     @Override
-    public final void f2(int i10) {
-    }
-
-    @Override
     public final void g() {
-    }
-
-    @Override
-    public final void j2(boolean z10) {
     }
 
     @Override
@@ -395,19 +403,11 @@ public final class b4 implements ng {
     }
 
     @Override
-    public final void v1(CharSequence charSequence) {
-    }
-
-    @Override
     public final void w2() {
     }
 
     @Override
     public final void x() {
-    }
-
-    @Override
-    public final void y(float f7) {
     }
 
     @Override

@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public abstract class xp extends z4.g {
-    public wp f30033w0;
+    public wp f30376w0;
 
     public xp(Context context) {
         super(context);
-        b(new vp((ph0) this));
+        b(new vp((zh0) this));
     }
 
     @Override
@@ -20,7 +20,7 @@ public abstract class xp extends z4.g {
     }
 
     public void setAdapter(wp wpVar) {
-        this.f30033w0 = wpVar;
+        this.f30376w0 = wpVar;
         super.setAdapter((z4.a) wpVar);
         if (wpVar != null) {
             x(wpVar.j(), false);

@@ -10,7 +10,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.r9;
+import org.telegram.ui.Cells.q9;
 public final class l0 {
     public final i1 f11476a;
     public final org.telegram.ui.ActionBar.d6 f11477b;
@@ -59,10 +59,10 @@ public final class l0 {
 
     public final void b() {
         TL_iv.PageBlock pageBlock;
-        a N = this.f11478c.N();
-        if (N != null && (pageBlock = N.f11191b) != null) {
+        a M = this.f11478c.M();
+        if (M != null && (pageBlock = M.f11191b) != null) {
             d(pageBlock);
-            TL_iv.RichText richText = N.f11191b.caption.text;
+            TL_iv.RichText richText = M.f11191b.caption.text;
             String l4 = g6.l(richText);
             i1 i1Var = this.f11476a;
             if (!String.valueOf(i1Var.getText()).equals(l4)) {
@@ -74,13 +74,13 @@ public final class l0 {
 
     public final void c(Canvas canvas) {
         k0 k0Var = this.f11478c;
-        r9 E = k0Var.E();
-        if (E != null) {
+        q9 C = k0Var.C();
+        if (C != null) {
             i1 i1Var = this.f11476a;
             if (i1Var.getLayout() != null) {
                 canvas.save();
                 canvas.translate(i1Var.getPaddingLeft() + i1Var.getLeft(), i1Var.getPaddingTop() + i1Var.getTop());
-                E.a0(canvas, k0Var.K(), 0);
+                C.a0(canvas, k0Var.I(), 0);
                 canvas.restore();
             }
         }
@@ -130,10 +130,10 @@ public final class l0 {
 
     public final void i() {
         TL_iv.PageBlock pageBlock;
-        a N = this.f11478c.N();
-        if (N != null && (pageBlock = N.f11191b) != null) {
+        a M = this.f11478c.M();
+        if (M != null && (pageBlock = M.f11191b) != null) {
             d(pageBlock);
-            N.f11191b.caption.text = g6.f(this.f11476a.getText());
+            M.f11191b.caption.text = g6.f(this.f11476a.getText());
         }
     }
 }

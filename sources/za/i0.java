@@ -1,20 +1,18 @@
 package za;
-
-import org.telegram.ui.Cells.ja;
 public final class i0 implements e0 {
-    public static final double f48739f = Math.random();
-    public static final int f48740g = 0;
-    public final k9.h f48741a;
-    public final qa.d f48742b;
-    public final bb.h f48743c;
-    public final ja d;
+    public static final double f49056f = Math.random();
+    public static final int f49057g = 0;
+    public final k9.h f49058a;
+    public final qa.d f49059b;
+    public final bb.h f49060c;
+    public final w3.b d;
     public final id.h e;
 
-    public i0(k9.h hVar, qa.d dVar, bb.h hVar2, ja jaVar, id.h hVar3) {
-        this.f48741a = hVar;
-        this.f48742b = dVar;
-        this.f48743c = hVar2;
-        this.d = jaVar;
+    public i0(k9.h hVar, qa.d dVar, bb.h hVar2, w3.b bVar, id.h hVar3) {
+        this.f49058a = hVar;
+        this.f49059b = dVar;
+        this.f49060c = hVar2;
+        this.d = bVar;
         this.e = hVar3;
     }
 

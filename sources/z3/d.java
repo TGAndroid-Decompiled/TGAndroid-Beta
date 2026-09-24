@@ -2,11 +2,11 @@ package z3;
 
 import java.util.List;
 public interface d {
-    int A();
-
     int d(long j3);
 
     long g(int i10);
 
-    List l(long j3);
+    List s(long j3);
+
+    int v();
 }

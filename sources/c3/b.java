@@ -88,7 +88,7 @@ public abstract class b {
                         break;
                     }
                 }
-                int i14 = vVar.f7918b + i13;
+                int i14 = vVar.f7917b + i13;
                 if (i13 != -1 && i13 <= vVar.a()) {
                     if (i10 == 4 && i13 >= 8) {
                         int x12 = vVar.x();
@@ -119,7 +119,7 @@ public abstract class b {
                     }
                 } else {
                     e2.a.n("CeaUtil", "Skipping remainder of malformed SEI NAL unit.");
-                    i14 = vVar.f7919c;
+                    i14 = vVar.f7918c;
                 }
                 vVar.J(i14);
             } else {
@@ -134,7 +134,7 @@ public abstract class b {
         if ((x10 & 64) != 0) {
             vVar.K(1);
             int i10 = (x10 & 31) * 3;
-            int i11 = vVar.f7918b;
+            int i11 = vVar.f7917b;
             for (h0 h0Var : h0VarArr) {
                 vVar.J(i11);
                 h0Var.d(i10, vVar);
@@ -167,7 +167,7 @@ public abstract class b {
 
     public static void g(int i10, e2.v vVar) {
         vVar.G(7);
-        byte[] bArr = vVar.f7917a;
+        byte[] bArr = vVar.f7916a;
         bArr[0] = -84;
         bArr[1] = 64;
         bArr[2] = -1;
@@ -364,14 +364,14 @@ public abstract class b {
         }
         int l4 = l(hVar);
         int i11 = hVar.i(4);
-        String i12 = hg.c.i(i10, "mp4a.40.");
+        String h10 = hg.c.h(i10, "mp4a.40.");
         if (i10 == 5 || i10 == 29) {
             l4 = l(hVar);
-            int i13 = hVar.i(5);
-            if (i13 == 31) {
-                i13 = hVar.i(6) + 32;
+            int i12 = hVar.i(5);
+            if (i12 == 31) {
+                i12 = hVar.i(6) + 32;
             }
-            i10 = i13;
+            i10 = i12;
             if (i10 == 22) {
                 i11 = hVar.i(4);
             }
@@ -395,12 +395,12 @@ public abstract class b {
             if (hVar.h()) {
                 hVar.t(14);
             }
-            boolean h10 = hVar.h();
+            boolean h11 = hVar.h();
             if (i11 != 0) {
                 if (i10 == 6 || i10 == 20) {
                     hVar.t(3);
                 }
-                if (h10) {
+                if (h11) {
                     if (i10 == 22) {
                         hVar.t(16);
                     }
@@ -416,21 +416,21 @@ public abstract class b {
                     case 21:
                     case 22:
                     case 23:
-                        int i14 = hVar.i(2);
-                        if (i14 == 2 || i14 == 3) {
-                            throw s0.c("Unsupported epConfig: " + i14);
+                        int i13 = hVar.i(2);
+                        if (i13 == 2 || i13 == 3) {
+                            throw s0.c("Unsupported epConfig: " + i13);
                         }
                 }
             } else {
                 throw new UnsupportedOperationException();
             }
         }
-        int i15 = f3706b[i11];
-        if (i15 != -1) {
+        int i14 = f3706b[i11];
+        if (i14 != -1) {
             ?? obj = new Object();
             obj.f3701b = l4;
-            obj.f3702c = i15;
-            obj.f3700a = i12;
+            obj.f3702c = i14;
+            obj.f3700a = h10;
             return obj;
         }
         throw s0.a(null, null);
@@ -501,7 +501,7 @@ public abstract class b {
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < list.size(); i10++) {
             String str = (String) list.get(i10);
-            String str2 = e2.d0.f7871a;
+            String str2 = e2.d0.f7870a;
             String[] split = str.split("=", 2);
             if (split.length != 2) {
                 e2.a.n("VorbisUtil", "Failed to parse Vorbis comment: ".concat(str));
@@ -522,18 +522,18 @@ public abstract class b {
     }
 
     public static p0 s(p pVar, boolean z10) {
-        pg.e0 e0Var;
+        org.webrtc.audio.b bVar;
         if (z10) {
-            e0Var = null;
+            bVar = null;
         } else {
-            e0Var = q3.i.f41076b;
+            bVar = q3.i.f41399b;
         }
         e2.v vVar = new e2.v(10);
         p0 p0Var = null;
         int i10 = 0;
         while (true) {
             try {
-                pVar.a(0, 10, vVar.f7917a);
+                pVar.a(0, 10, vVar.f7916a);
                 vVar.J(0);
                 if (vVar.A() != 4801587) {
                     break;
@@ -543,18 +543,18 @@ public abstract class b {
                 int i11 = w10 + 10;
                 if (p0Var == null) {
                     byte[] bArr = new byte[i11];
-                    System.arraycopy(vVar.f7917a, 0, bArr, 0, 10);
+                    System.arraycopy(vVar.f7916a, 0, bArr, 0, 10);
                     pVar.a(10, w10, bArr);
-                    p0Var = new q3.i(e0Var).c(i11, bArr);
+                    p0Var = new q3.i(bVar).c(i11, bArr);
                 } else {
-                    pVar.k(w10);
+                    pVar.l(w10);
                 }
                 i10 += i11;
             } catch (EOFException unused) {
             }
         }
         pVar.p();
-        pVar.k(i10);
+        pVar.l(i10);
         if (p0Var == null || p0Var.f3170a.length == 0) {
             return null;
         }
@@ -591,7 +591,7 @@ public abstract class b {
     public static of.b u(e2.v vVar) {
         vVar.K(1);
         int A = vVar.A();
-        long j3 = vVar.f7918b + A;
+        long j3 = vVar.f7917b + A;
         int i10 = A / 18;
         long[] jArr = new long[i10];
         long[] jArr2 = new long[i10];
@@ -611,7 +611,7 @@ public abstract class b {
             vVar.K(2);
             i11++;
         }
-        vVar.K((int) (j3 - vVar.f7918b));
+        vVar.K((int) (j3 - vVar.f7917b));
         return new of.b(jArr, jArr2, false, 6);
     }
 

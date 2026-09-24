@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class nm extends AnimatorListenerAdapter {
-    public final om f26441a;
+    public final om f26735a;
 
     public nm(om omVar) {
-        this.f26441a = omVar;
+        this.f26735a = omVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        om omVar = this.f26441a;
-        omVar.f26780b.isChatPreviewSpoilerRevealed = true;
-        omVar.O.f27105z.invalidate();
+        om omVar = this.f26735a;
+        omVar.f27115b.isChatPreviewSpoilerRevealed = true;
+        omVar.O.f27390z.invalidate();
     }
 }

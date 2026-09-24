@@ -1,20 +1,81 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class wr {
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f39076a;
-    public org.telegram.ui.ActionBar.b1 f39077b;
-    public org.telegram.ui.ActionBar.f1[] f39078c;
+import android.content.Context;
+import android.view.KeyEvent;
+public final class wr extends as {
+    public final int M;
+    public final int N;
+    public final yr O;
 
-    public final void a(float f7, boolean z10) {
-        org.telegram.ui.ActionBar.f1[] f1VarArr = this.f39078c;
-        for (int i10 = 0; i10 < f1VarArr.length; i10++) {
-            if (z10 && ((i10 == 0 && Math.abs(f7 - 0.2f) < 0.01f) || ((i10 == 1 && Math.abs(f7 - 0.5f) < 0.1f) || ((i10 == 2 && Math.abs(f7 - 1.0f) < 0.1f) || ((i10 == 3 && Math.abs(f7 - 1.5f) < 0.1f) || (i10 == 4 && Math.abs(f7 - 2.0f) < 0.1f)))))) {
-                f1VarArr[i10].c(-9718023, -9718023);
+    public wr(yr yrVar, Context context, int i10, int i11) {
+        super(context);
+        this.O = yrVar;
+        this.M = i10;
+        this.N = i11;
+        this.e = 1.0f;
+        this.f32208f = new o1.k(this, as.I);
+        this.h = new o1.k(this, as.J);
+        this.f32209n = new o1.k(this, as.K);
+        this.f32210r = new o1.k(this, as.L);
+        this.f32211s = true;
+        this.v = 1.0f;
+        this.f32212w = 1.0f;
+        this.H = false;
+        setBackground(null);
+        setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        setMovementMethod(null);
+        addTextChangedListener(new m0(this, 5));
+    }
+
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4) {
+            return false;
+        }
+        int keyCode = keyEvent.getKeyCode();
+        yr yrVar = this.O;
+        int length = yrVar.f40221f.length;
+        int i10 = this.M;
+        if (i10 >= length) {
+            return false;
+        }
+        if (keyEvent.getAction() == 1) {
+            if (keyCode == 67 && yrVar.f40221f[i10].length() == 1) {
+                yrVar.f40221f[i10].m();
+                yrVar.f40221f[i10].setText("");
+                return true;
+            } else if (keyCode == 67 && yrVar.f40221f[i10].length() == 0 && i10 > 0) {
+                as[] asVarArr = yrVar.f40221f;
+                asVarArr[i10 - 1].setSelection(asVarArr[i10 - 1].length());
+                for (int i11 = 0; i11 < i10; i11++) {
+                    if (i11 == i10 - 1) {
+                        yrVar.f40221f[i10 - 1].requestFocus();
+                    } else {
+                        yrVar.f40221f[i11].clearFocus();
+                    }
+                }
+                yrVar.f40221f[i10 - 1].m();
+                yrVar.f40221f[i10 - 1].setText("");
+                return true;
             } else {
-                f1VarArr[i10].c(-328966, -328966);
+                if (keyCode >= 7 && keyCode <= 16) {
+                    String num = Integer.toString(keyCode - 7);
+                    if (yrVar.f40221f[i10].getText() != null && num.equals(yrVar.f40221f[i10].getText().toString())) {
+                        if (i10 >= this.N - 1) {
+                            yrVar.a();
+                        } else {
+                            yrVar.f40221f[i10 + 1].requestFocus();
+                        }
+                        return true;
+                    }
+                    if (yrVar.f40221f[i10].length() > 0) {
+                        yrVar.f40221f[i10].m();
+                    }
+                    yrVar.f40221f[i10].setText(num);
+                }
+                return true;
             }
         }
-        this.f39077b.d(f7, true);
+        return isFocused();
     }
 }

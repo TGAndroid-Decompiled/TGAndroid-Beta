@@ -11,16 +11,16 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.gk0;
+import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.lz;
-import org.telegram.ui.Components.pv0;
-public final class kc extends pv0 {
+import org.telegram.ui.Components.qk0;
+public final class kc extends aw0 {
     public boolean A0;
     public float B0;
     public float C0;
     public float D0;
     public final lc E0;
-    public final org.telegram.ui.Cells.ja f4923w0;
+    public final ka.c f4923w0;
     public final ScaleGestureDetector f4924x0;
     public boolean f4925y0;
     public boolean f4926z0;
@@ -29,7 +29,7 @@ public final class kc extends pv0 {
         super(activity, null);
         this.E0 = lcVar;
         this.A0 = false;
-        this.f4923w0 = new org.telegram.ui.Cells.ja(activity, new ic(this));
+        this.f4923w0 = new ka.c(activity, new ic(this));
         this.f4924x0 = new ScaleGestureDetector(activity, new jc(this));
     }
 
@@ -119,7 +119,7 @@ public final class kc extends pv0 {
             this.f4926z0 = false;
         }
         this.f4924x0.onTouchEvent(motionEvent);
-        this.f4923w0.y(motionEvent);
+        this.f4923w0.g0(motionEvent);
         if (motionEvent.getAction() == 1 && !this.f4925y0) {
             if (lcVar.f5079r.getTranslationY() > 0.0f) {
                 if (lcVar.K > 0.4f) {
@@ -165,7 +165,7 @@ public final class kc extends pv0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
-        yh.u3 u3Var;
+        yh.t3 t3Var;
         lz emojiView;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
@@ -176,7 +176,7 @@ public final class kc extends pv0 {
             i15 = 0;
         }
         int i16 = lcVar.S;
-        int b10 = w7.p.b((measuredWidth - i16) / 2, lcVar.Y, (measuredWidth - lcVar.f5027a0) - i16);
+        int b10 = w7.q.b((measuredWidth - i16) / 2, lcVar.Y, (measuredWidth - lcVar.f5027a0) - i16);
         int i17 = lcVar.S + b10;
         if (lcVar.V) {
             i14 = lcVar.T;
@@ -216,18 +216,18 @@ public final class kc extends pv0 {
             if (lzVar != null) {
                 lzVar.layout(lcVar.Y, (measuredHeight - lcVar.f5030b0) - lzVar.getMeasuredHeight(), measuredWidth - lcVar.f5027a0, measuredHeight - lcVar.f5030b0);
             }
-            gk0 gk0Var = lcVar.f5094v1.Z1;
-            if (gk0Var != null) {
+            qk0 qk0Var = lcVar.f5094v1.Z1;
+            if (qk0Var != null) {
                 int i21 = lcVar.Y;
-                gk0Var.layout(i21, lcVar.Z, gk0Var.getMeasuredWidth() + i21, lcVar.f5094v1.Z1.getMeasuredHeight() + lcVar.Z);
+                qk0Var.layout(i21, lcVar.Z, qk0Var.getMeasuredWidth() + i21, lcVar.f5094v1.Z1.getMeasuredHeight() + lcVar.Z);
                 if (lcVar.f5094v1.Z1.getReactionsWindow() != null) {
-                    u3Var = lcVar.f5094v1.Z1.getReactionsWindow().f48929c;
+                    t3Var = lcVar.f5094v1.Z1.getReactionsWindow().f49236c;
                 } else {
-                    u3Var = null;
+                    t3Var = null;
                 }
-                if (u3Var != null) {
+                if (t3Var != null) {
                     int i22 = lcVar.Y;
-                    u3Var.layout(i22, lcVar.Z, u3Var.getMeasuredWidth() + i22, u3Var.getMeasuredHeight() + lcVar.Z);
+                    t3Var.layout(i22, lcVar.Z, t3Var.getMeasuredWidth() + i22, t3Var.getMeasuredHeight() + lcVar.Z);
                 }
             }
         }
@@ -324,11 +324,11 @@ public final class kc extends pv0 {
             if (lzVar != null) {
                 lzVar.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(lcVar.f5094v1.f5360p2.getLayoutParams().height, 1073741824));
             }
-            gk0 gk0Var = lcVar.f5094v1.Z1;
-            if (gk0Var != null) {
-                measureChild(gk0Var, i10, i11);
+            qk0 qk0Var = lcVar.f5094v1.Z1;
+            if (qk0Var != null) {
+                measureChild(qk0Var, i10, i11);
                 if (lcVar.f5094v1.Z1.getReactionsWindow() != null) {
-                    measureChild(lcVar.f5094v1.Z1.getReactionsWindow().f48929c, i10, i11);
+                    measureChild(lcVar.f5094v1.Z1.getReactionsWindow().f49236c, i10, i11);
                 }
             }
         }

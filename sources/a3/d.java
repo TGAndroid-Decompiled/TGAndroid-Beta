@@ -40,12 +40,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.a90;
+import org.telegram.ui.Components.k90;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.ix;
-import org.telegram.ui.ry;
-import v7.h8;
+import org.telegram.ui.hx;
+import org.telegram.ui.qy;
 import v7.i8;
+import v7.j8;
+import w7.a8;
 public final class d implements Runnable {
     public final int f76a;
     public final Object f77b;
@@ -60,18 +61,18 @@ public final class d implements Runnable {
         boolean z10 = false;
         switch (this.f76a) {
             case 0:
-                ((f) this.f77b).f101g.C();
+                ((f) this.f77b).f101g.D();
                 return;
             case 1:
                 ((w) this.f77b).f198k--;
                 return;
             case 2:
-                ry ryVar = ((ix) this.f77b).O0;
-                if (ryVar.L && ryVar.X3().G()) {
-                    ryVar.E0.h();
+                qy qyVar = ((hx) this.f77b).O0;
+                if (qyVar.L && qyVar.X3().G()) {
+                    qyVar.E0.h();
                     return;
                 } else {
-                    ryVar.x4(true, true);
+                    qyVar.x4(true, true);
                     return;
                 }
             case 3:
@@ -119,7 +120,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f77b;
-                int i10 = ProfileStoriesView.f31489s0;
+                int i10 = ProfileStoriesView.f31790s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -181,7 +182,7 @@ public final class d implements Runnable {
                 }
                 return;
             case 18:
-                ((a90) this.f77b).d(true);
+                ((k90) this.f77b).d(true);
                 return;
             case 19:
                 ((db) this.f77b).requestLayout();
@@ -258,33 +259,33 @@ public final class d implements Runnable {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f14828a;
+                                    int i12 = n0.g.f15064a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                                     t7.u uVar = pVar.f2346c;
                                     Context context = pVar.f2344a;
                                     uVar.getClass();
                                     o0.i[] iVarArr = {d};
-                                    h8 h8Var = i0.e.f10582a;
-                                    w7.z7.a("TypefaceCompat.createFromFontInfo");
+                                    i8 i8Var = i0.e.f10582a;
+                                    a8.a("TypefaceCompat.createFromFontInfo");
                                     try {
                                         Typeface b10 = i0.e.f10582a.b(context, iVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e = i8.e(pVar.f2344a, d.f15293a);
+                                        MappedByteBuffer e = j8.e(pVar.f2344a, d.f15485a);
                                         if (e != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
-                                                com.google.firebase.messaging.t tVar = new com.google.firebase.messaging.t(b10, v7.x.a(e));
+                                                com.google.firebase.messaging.t tVar = new com.google.firebase.messaging.t(b10, v7.z.a(e));
                                                 Trace.endSection();
                                                 synchronized (pVar.d) {
-                                                    v7.w wVar = pVar.h;
-                                                    if (wVar != null) {
-                                                        wVar.b(tVar);
+                                                    v7.y yVar = pVar.h;
+                                                    if (yVar != null) {
+                                                        yVar.b(tVar);
                                                     }
                                                 }
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f14828a;
+                                                int i13 = n0.g.f15064a;
                                                 throw th2;
                                             }
                                         }
@@ -297,9 +298,9 @@ public final class d implements Runnable {
                             } catch (Throwable th3) {
                                 synchronized (pVar.d) {
                                     try {
-                                        v7.w wVar2 = pVar.h;
-                                        if (wVar2 != null) {
-                                            wVar2.a(th3);
+                                        v7.y yVar2 = pVar.h;
+                                        if (yVar2 != null) {
+                                            yVar2.a(th3);
                                         }
                                         pVar.b();
                                         return;

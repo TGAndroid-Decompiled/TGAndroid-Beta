@@ -1,194 +1,284 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public final class rl0 extends Drawable implements Animator.AnimatorListener {
-    public final Context f27664a;
-    public ColorFilter f27665b;
-    public Drawable d;
-    public Drawable e;
-    public ValueAnimator f27667f;
-    public boolean f27669r;
-    public int f27666c = 0;
-    public float h = 1.0f;
-    public final ArrayList f27668n = new ArrayList();
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class rl0 implements s4.r0 {
+    public final int f27989a = 0;
+    public final Object f27990b;
 
-    public rl0(Context context) {
-        this.f27664a = context;
-    }
-
-    public final void a(int i10, boolean z10) {
-        if (this.f27666c == i10) {
-            return;
-        }
-        b(this.f27664a.getDrawable(i10).mutate(), z10);
-        this.f27666c = i10;
-    }
-
-    public final void b(Drawable drawable, boolean z10) {
-        if (drawable == null) {
-            this.d = null;
-            this.e = null;
-            invalidateSelf();
-            return;
-        }
-        z10 = (getBounds() == null || getBounds().isEmpty()) ? false : false;
-        Drawable drawable2 = this.d;
-        if (drawable == drawable2) {
-            drawable2.setColorFilter(this.f27665b);
-            return;
-        }
-        this.f27666c = 0;
-        this.e = drawable2;
-        this.d = drawable;
-        drawable.setColorFilter(this.f27665b);
-        c(this.d, getBounds());
-        c(this.e, getBounds());
-        ValueAnimator valueAnimator = this.f27667f;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f27667f.cancel();
-        }
-        if (!z10) {
-            this.h = 1.0f;
-            this.e = null;
-            return;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f27667f = ofFloat;
-        ofFloat.addUpdateListener(new i70(this, 10));
-        this.f27667f.addListener(this);
-        this.f27667f.setDuration(150L);
-        this.f27667f.start();
-    }
-
-    public final void c(Drawable drawable, Rect rect) {
-        int height;
-        int intrinsicHeight;
-        int width;
-        int intrinsicWidth;
-        if (drawable == null) {
-            return;
-        }
-        if (this.f27669r) {
-            drawable.setBounds(rect);
-            return;
-        }
-        if (drawable.getIntrinsicHeight() < 0) {
-            height = rect.top;
-            intrinsicHeight = rect.bottom;
-        } else {
-            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
-            intrinsicHeight = drawable.getIntrinsicHeight() + height;
-        }
-        if (drawable.getIntrinsicWidth() < 0) {
-            width = rect.left;
-            intrinsicWidth = rect.right;
-        } else {
-            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
-            intrinsicWidth = drawable.getIntrinsicWidth() + width;
-        }
-        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
+    public rl0(s4.y yVar) {
+        this.f27990b = yVar;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        if (this.h != 1.0f && this.d != null) {
-            canvas.save();
-            float f7 = this.h;
-            canvas.scale(f7, f7, centerX, centerY);
-            this.d.setAlpha((int) (this.h * 255.0f));
-            this.d.draw(canvas);
-            canvas.restore();
-        } else {
-            Drawable drawable = this.d;
-            if (drawable != null) {
-                drawable.setAlpha(255);
-                this.d.draw(canvas);
-            }
-        }
-        float f10 = this.h;
-        if (f10 != 1.0f && this.e != null) {
-            float f11 = 1.0f - f10;
-            canvas.save();
-            canvas.scale(f11, f11, centerX, centerY);
-            this.e.setAlpha((int) (f11 * 255.0f));
-            this.e.draw(canvas);
-            canvas.restore();
-            return;
-        }
-        Drawable drawable2 = this.e;
-        if (drawable2 != null) {
-            drawable2.setAlpha(255);
-            this.e.draw(canvas);
+    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
+        switch (this.f27989a) {
+            case 0:
+                return;
+            default:
+                s4.y yVar = (s4.y) this.f27990b;
+                pg.c1 c1Var = yVar.I;
+                ((GestureDetector) yVar.N.f15101b).onTouchEvent(motionEvent);
+                VelocityTracker velocityTracker = yVar.J;
+                if (velocityTracker != null) {
+                    velocityTracker.addMovement(motionEvent);
+                }
+                if (yVar.f43093w != -1) {
+                    int actionMasked = motionEvent.getActionMasked();
+                    int findPointerIndex = motionEvent.findPointerIndex(yVar.f43093w);
+                    if (findPointerIndex >= 0) {
+                        yVar.h(actionMasked, findPointerIndex, motionEvent);
+                    }
+                    s4.c1 c1Var2 = yVar.f43088c;
+                    if (c1Var2 != null) {
+                        int i10 = 0;
+                        if (actionMasked != 1) {
+                            if (actionMasked != 2) {
+                                if (actionMasked != 3) {
+                                    if (actionMasked == 6) {
+                                        int actionIndex = motionEvent.getActionIndex();
+                                        if (motionEvent.getPointerId(actionIndex) == yVar.f43093w) {
+                                            if (actionIndex == 0) {
+                                                i10 = 1;
+                                            }
+                                            yVar.f43093w = motionEvent.getPointerId(i10);
+                                            yVar.s(yVar.E, actionIndex, motionEvent);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                VelocityTracker velocityTracker2 = yVar.J;
+                                if (velocityTracker2 != null) {
+                                    velocityTracker2.clear();
+                                }
+                            } else if (findPointerIndex >= 0) {
+                                yVar.s(yVar.E, findPointerIndex, motionEvent);
+                                yVar.n(c1Var2);
+                                yVar.H.removeCallbacks(c1Var);
+                                c1Var.run();
+                                yVar.H.invalidate();
+                                return;
+                            } else {
+                                return;
+                            }
+                        }
+                        yVar.p(null, 0);
+                        yVar.f43093w = -1;
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        ArrayList arrayList = this.f27668n;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                ((View) arrayList.get(i10)).invalidate();
-            }
+    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
+        boolean z10;
+        View E;
+        nl0 nl0Var;
+        int findPointerIndex;
+        switch (this.f27989a) {
+            case 0:
+                int actionMasked = motionEvent.getActionMasked();
+                wl0 wl0Var = (wl0) this.f27990b;
+                Rect rect = wl0Var.G1;
+                if (wl0Var.getScrollState() == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if ((actionMasked == 0 || actionMasked == 5) && wl0Var.N1 == null && z10) {
+                    float x10 = motionEvent.getX();
+                    float y3 = motionEvent.getY();
+                    wl0Var.Z0 = false;
+                    s4.m0 itemAnimator = wl0Var.getItemAnimator();
+                    if ((wl0Var.f30084k1 || itemAnimator == null || !itemAnimator.k()) && wl0Var.E0(y3) && (E = wl0Var.E(x10, y3)) != null && wl0Var.F0(E)) {
+                        wl0Var.N1 = E;
+                    }
+                    if (wl0Var.N1 instanceof ViewGroup) {
+                        float x11 = motionEvent.getX() - wl0Var.N1.getLeft();
+                        float y10 = motionEvent.getY() - wl0Var.N1.getTop();
+                        ViewGroup viewGroup = (ViewGroup) wl0Var.N1;
+                        int childCount = viewGroup.getChildCount() - 1;
+                        while (true) {
+                            if (childCount >= 0) {
+                                View childAt = viewGroup.getChildAt(childCount);
+                                if (x11 >= childAt.getLeft() && x11 <= childAt.getRight() && y10 >= childAt.getTop() && y10 <= childAt.getBottom() && childAt.isClickable()) {
+                                    wl0Var.N1 = null;
+                                } else {
+                                    childCount--;
+                                }
+                            }
+                        }
+                    }
+                    wl0Var.O1 = -1;
+                    View view = wl0Var.N1;
+                    if (view != null) {
+                        if (wl0Var.f30078h1) {
+                            wl0Var.O1 = RecyclerView.S(view);
+                        } else {
+                            wl0Var.O1 = RecyclerView.R(view);
+                        }
+                        MotionEvent obtain = MotionEvent.obtain(0L, 0L, motionEvent.getActionMasked(), motionEvent.getX() - wl0Var.N1.getLeft(), motionEvent.getY() - wl0Var.N1.getTop(), 0);
+                        if (wl0Var.N1.onTouchEvent(obtain)) {
+                            wl0Var.P1 = true;
+                        }
+                        obtain.recycle();
+                    }
+                }
+                if (wl0Var.N1 != null && !wl0Var.P1) {
+                    try {
+                        wl0Var.M1.g0(motionEvent);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                }
+                if (actionMasked != 0 && actionMasked != 5) {
+                    if ((actionMasked == 1 || actionMasked == 6 || actionMasked == 3 || !z10) && wl0Var.N1 != null) {
+                        ol0 ol0Var = wl0Var.f30072e1;
+                        if (ol0Var != null) {
+                            AndroidUtilities.cancelRunOnUIThread(ol0Var);
+                            wl0Var.f30072e1 = null;
+                        }
+                        View view2 = wl0Var.N1;
+                        wl0Var.h1(view2, 0.0f, 0.0f, false);
+                        wl0Var.N1 = null;
+                        wl0Var.P1 = false;
+                        wl0Var.k1(motionEvent, view2);
+                        if ((actionMasked == 1 || actionMasked == 6 || actionMasked == 3) && (nl0Var = wl0Var.Y0) != null && wl0Var.Z0) {
+                            nl0Var.g();
+                            wl0Var.Z0 = false;
+                        }
+                    }
+                } else if (!wl0Var.P1 && wl0Var.N1 != null) {
+                    float x12 = motionEvent.getX();
+                    float y11 = motionEvent.getY();
+                    ol0 ol0Var2 = new ol0(this, x12, y11, 0);
+                    wl0Var.f30072e1 = ol0Var2;
+                    AndroidUtilities.runOnUIThread(ol0Var2, ViewConfiguration.getTapTimeout());
+                    if (wl0Var.N1.isEnabled()) {
+                        View view3 = wl0Var.N1;
+                        if (wl0Var.H0(view3, x12 - view3.getX(), y11 - wl0Var.N1.getY())) {
+                            wl0Var.i1(wl0Var.O1, wl0Var.N1);
+                            org.telegram.ui.Cells.z zVar = wl0Var.D1;
+                            if (zVar != null) {
+                                Drawable current = zVar.getCurrent();
+                                if (current instanceof TransitionDrawable) {
+                                    if (wl0Var.X0 == null && wl0Var.W0 == null) {
+                                        ((TransitionDrawable) current).resetTransition();
+                                    } else {
+                                        ((TransitionDrawable) current).startTransition(ViewConfiguration.getLongPressTimeout());
+                                    }
+                                }
+                                wl0Var.D1.setHotspot(motionEvent.getX(), motionEvent.getY());
+                            }
+                            wl0Var.v1();
+                        }
+                    }
+                    rect.setEmpty();
+                } else {
+                    rect.setEmpty();
+                }
+                return false;
+            default:
+                s4.y yVar = (s4.y) this.f27990b;
+                ((GestureDetector) yVar.N.f15101b).onTouchEvent(motionEvent);
+                int actionMasked2 = motionEvent.getActionMasked();
+                s4.u uVar = null;
+                if (actionMasked2 == 0) {
+                    yVar.f43093w = motionEvent.getPointerId(0);
+                    yVar.d = motionEvent.getX();
+                    yVar.e = motionEvent.getY();
+                    VelocityTracker velocityTracker = yVar.J;
+                    if (velocityTracker != null) {
+                        velocityTracker.recycle();
+                    }
+                    yVar.J = VelocityTracker.obtain();
+                    if (yVar.f43088c == null) {
+                        ArrayList arrayList = yVar.F;
+                        if (!arrayList.isEmpty()) {
+                            View k10 = yVar.k(motionEvent);
+                            int size = arrayList.size() - 1;
+                            while (true) {
+                                if (size >= 0) {
+                                    s4.u uVar2 = (s4.u) arrayList.get(size);
+                                    if (uVar2.e.f42946a == k10) {
+                                        uVar = uVar2;
+                                    } else {
+                                        size--;
+                                    }
+                                }
+                            }
+                        }
+                        if (uVar != null) {
+                            s4.c1 c1Var = uVar.e;
+                            yVar.d -= uVar.f43068r;
+                            yVar.e -= uVar.f43069s;
+                            yVar.j(c1Var, true);
+                            if (yVar.f43086a.remove(c1Var.f42946a)) {
+                                yVar.f43094x.a(yVar.H, c1Var);
+                            }
+                            yVar.p(c1Var, uVar.f43066f);
+                            yVar.s(yVar.E, 0, motionEvent);
+                        }
+                    }
+                } else if (actionMasked2 != 3 && actionMasked2 != 1) {
+                    int i10 = yVar.f43093w;
+                    if (i10 != -1 && (findPointerIndex = motionEvent.findPointerIndex(i10)) >= 0) {
+                        yVar.h(actionMasked2, findPointerIndex, motionEvent);
+                    }
+                } else {
+                    yVar.f43093w = -1;
+                    yVar.p(null, 0);
+                }
+                VelocityTracker velocityTracker2 = yVar.J;
+                if (velocityTracker2 != null) {
+                    velocityTracker2.addMovement(motionEvent);
+                }
+                if (yVar.f43088c != null) {
+                    return true;
+                }
+                return false;
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.e = null;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        c(this.d, rect);
-        c(this.e, rect);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27665b = colorFilter;
-        Drawable drawable = this.d;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
+    public final void c(boolean z10) {
+        switch (this.f27989a) {
+            case 0:
+                ((wl0) this.f27990b).I0(true);
+                return;
+            default:
+                if (z10) {
+                    ((s4.y) this.f27990b).p(null, 0);
+                    return;
+                }
+                return;
         }
-        Drawable drawable2 = this.e;
-        if (drawable2 != null) {
-            drawable2.setColorFilter(colorFilter);
-        }
-        invalidateSelf();
     }
 
-    @Override
-    public final void onAnimationCancel(Animator animator) {
+    public rl0(wl0 wl0Var, Context context) {
+        this.f27990b = wl0Var;
+        ka.c cVar = new ka.c(context, new ql0(this));
+        wl0Var.M1 = cVar;
+        ((l20) cVar.f13552b).f26002t = false;
     }
 
-    @Override
-    public final void onAnimationRepeat(Animator animator) {
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
+    private final void d(RecyclerView recyclerView, MotionEvent motionEvent) {
     }
 }

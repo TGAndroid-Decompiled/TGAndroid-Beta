@@ -1,34 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.widget.ImageView;
-public final class pl0 extends ic {
-    public final ql0 f27083c;
+import android.view.View;
+public final class pl0 implements Runnable {
+    public final View f27366a;
+    public final int f27367b;
+    public final float f27368c;
+    public final float d;
+    public final ql0 e;
 
-    public pl0(Activity activity, String str) {
-        super(activity, null);
-        this.f24940b.setText(str);
-        this.f24940b.setTranslationY(-1.0f);
-        ImageView imageView = this.f24939a;
-        ql0 ql0Var = new ql0();
-        this.f27083c = ql0Var;
-        imageView.setImageDrawable(ql0Var);
+    public pl0(ql0 ql0Var, View view, int i10, float f7, float f10) {
+        this.e = ql0Var;
+        this.f27366a = view;
+        this.f27367b = i10;
+        this.f27368c = f7;
+        this.d = f10;
     }
 
     @Override
-    public final void onEnterTransitionEnd() {
-        super.onEnterTransitionEnd();
-        ql0 ql0Var = this.f27083c;
-        ql0Var.getClass();
-        ql0Var.f27388g = System.currentTimeMillis();
-        ql0Var.invalidateSelf();
-    }
-
-    @Override
-    public final void onExitTransitionEnd() {
-        super.onExitTransitionEnd();
-        ql0 ql0Var = this.f27083c;
-        ql0Var.f27388g = -1L;
-        ql0Var.invalidateSelf();
+    public final void run() {
+        rl0 rl0Var = this.e.f27695b;
+        wl0 wl0Var = (wl0) rl0Var.f27990b;
+        if (this == wl0Var.S1) {
+            wl0Var.S1 = null;
+        }
+        View view = this.f27366a;
+        if (view != null) {
+            wl0Var.h1(view, 0.0f, 0.0f, false);
+            if (!((wl0) rl0Var.f27990b).R1) {
+                try {
+                    view.playSoundEffect(0);
+                } catch (Exception unused) {
+                }
+                view.sendAccessibilityEvent(1);
+                int i10 = this.f27367b;
+                if (i10 != -1) {
+                    wl0 wl0Var2 = (wl0) rl0Var.f27990b;
+                    kl0 kl0Var = wl0Var2.V0;
+                    if (kl0Var != null) {
+                        kl0Var.d(i10, view);
+                        return;
+                    }
+                    ll0 ll0Var = wl0Var2.W0;
+                    if (ll0Var != null) {
+                        ll0Var.c(this.f27368c - view.getX(), this.d - view.getY(), i10, view);
+                    }
+                }
+            }
+        }
     }
 }

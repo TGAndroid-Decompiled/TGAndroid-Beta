@@ -21,7 +21,7 @@ public abstract class a {
         if (dataAvail <= 0) {
             return;
         }
-        throw new BadParcelableException(hg.c.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(hg.c.h(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
     public static void c(Parcel parcel, Parcelable parcelable) {

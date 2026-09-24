@@ -9,7 +9,7 @@ import e9.i0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import v7.t8;
+import v7.u8;
 public final class d0 implements c3.o {
     public final int f12630a;
     public final int f12631b;
@@ -130,7 +130,7 @@ public final class d0 implements c3.o {
 
     @Override
     public final List i() {
-        e9.g0 g0Var = i0.f8067b;
+        e9.g0 g0Var = i0.f8066b;
         return a1.e;
     }
 
@@ -175,15 +175,15 @@ public final class d0 implements c3.o {
                     }
                     vVar.G(min);
                     pVar.p();
-                    pVar.a(0, min, vVar.f7917a);
-                    int i18 = vVar.f7918b;
-                    int i19 = vVar.f7919c;
+                    pVar.a(0, min, vVar.f7916a);
+                    int i18 = vVar.f7917b;
+                    int i19 = vVar.f7918c;
                     int i20 = i19 - 188;
                     while (true) {
                         if (i20 < i18) {
                             break;
                         }
-                        byte[] bArr = vVar.f7917a;
+                        byte[] bArr = vVar.f7916a;
                         int i21 = -4;
                         int i22 = 0;
                         while (true) {
@@ -194,7 +194,7 @@ public final class d0 implements c3.o {
                             if (i23 >= i18 && i23 < i19 && bArr[i23] == 71) {
                                 i22++;
                                 if (i22 == 5) {
-                                    long a2 = t8.a(vVar, i20, i17);
+                                    long a2 = u8.a(vVar, i20, i17);
                                     if (a2 != -9223372036854775807L) {
                                         j3 = a2;
                                         break;
@@ -222,15 +222,15 @@ public final class d0 implements c3.o {
                     }
                     vVar.G(min2);
                     pVar.p();
-                    pVar.a(0, min2, vVar.f7917a);
-                    int i24 = vVar.f7918b;
-                    int i25 = vVar.f7919c;
+                    pVar.a(0, min2, vVar.f7916a);
+                    int i24 = vVar.f7917b;
+                    int i25 = vVar.f7918c;
                     while (true) {
                         if (i24 >= i25) {
                             break;
                         }
-                        if (vVar.f7917a[i24] == 71) {
-                            long a10 = t8.a(vVar, i24, i17);
+                        if (vVar.f7916a[i24] == 71) {
+                            long a10 = u8.a(vVar, i24, i17);
                             if (a10 != -9223372036854775807L) {
                                 j3 = a10;
                                 break;
@@ -261,7 +261,7 @@ public final class d0 implements c3.o {
                     i15 = 1;
                     h3.a aVar = new h3.a(new Object(), new a5.a(this.f12646t, xVar.f12848b), j13, j13 + 1, 0L, length, 188L, 940);
                     this.f12638l = aVar;
-                    this.f12639m.X1(aVar.f10095a);
+                    this.f12639m.X1(aVar.f10094a);
                 } else {
                     i10 = i16;
                     z13 = false;
@@ -282,7 +282,7 @@ public final class d0 implements c3.o {
                 }
             }
             h3.a aVar2 = this.f12638l;
-            if (aVar2 != null && aVar2.f10097c != null) {
+            if (aVar2 != null && aVar2.f10096c != null) {
                 return aVar2.b(pVar, sVar);
             }
             pVar2 = pVar;
@@ -293,11 +293,11 @@ public final class d0 implements c3.o {
             r12 = 0;
         }
         e2.v vVar2 = this.d;
-        byte[] bArr2 = vVar2.f7917a;
-        if (9400 - vVar2.f7918b < 188) {
+        byte[] bArr2 = vVar2.f7916a;
+        if (9400 - vVar2.f7917b < 188) {
             int a11 = vVar2.a();
             if (a11 > 0) {
-                System.arraycopy(bArr2, vVar2.f7918b, bArr2, r12, a11);
+                System.arraycopy(bArr2, vVar2.f7917b, bArr2, r12, a11);
             }
             vVar2.H(a11, bArr2);
         }
@@ -305,7 +305,7 @@ public final class d0 implements c3.o {
             int a12 = vVar2.a();
             SparseArray sparseArray = this.h;
             if (a12 < 188) {
-                int i26 = vVar2.f7919c;
+                int i26 = vVar2.f7918c;
                 int read = pVar2.read(bArr2, i26, 9400 - i26);
                 if (read == -1) {
                     for (int i27 = 0; i27 < sparseArray.size(); i27++) {
@@ -326,9 +326,9 @@ public final class d0 implements c3.o {
                 }
                 vVar2.I(i26 + read);
             } else {
-                int i28 = vVar2.f7918b;
-                int i29 = vVar2.f7919c;
-                byte[] bArr3 = vVar2.f7917a;
+                int i28 = vVar2.f7917b;
+                int i29 = vVar2.f7918c;
+                byte[] bArr3 = vVar2.f7916a;
                 int i30 = i28;
                 while (i30 < i29 && bArr3[i30] != 71) {
                     i30++;
@@ -349,7 +349,7 @@ public final class d0 implements c3.o {
                     i12 = 2;
                     this.f12645s = r12;
                 }
-                int i33 = vVar2.f7919c;
+                int i33 = vVar2.f7918c;
                 if (i31 > i33) {
                     return r12;
                 }

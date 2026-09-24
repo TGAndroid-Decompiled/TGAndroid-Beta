@@ -1,31 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class kb0 implements al0 {
-    public final ob0 f25576a;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class kb0 implements Runnable {
+    public final int f25724a;
+    public final zb0 f25725b;
+    public final Context f25726c;
 
-    public kb0(ob0 ob0Var) {
-        this.f25576a = ob0Var;
+    public kb0(zb0 zb0Var, Context context, int i10) {
+        this.f25724a = i10;
+        this.f25725b = zb0Var;
+        this.f25726c = context;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        ob0 ob0Var = this.f25576a;
-        if (ob0Var.f26703a == 1 && ob0Var.f26711r.previewMessages.size() > 1) {
-            int id2 = ob0Var.f26711r.previewMessages.get(i10).getId();
-            boolean z10 = ob0Var.f26711r.selectedIds.get(id2, false);
-            boolean z11 = !z10;
-            if (ob0Var.f26711r.selectedIds.size() != 1 || !z10) {
-                if (z10) {
-                    ob0Var.f26711r.selectedIds.delete(id2);
-                } else {
-                    ob0Var.f26711r.selectedIds.put(id2, z11);
+    public final void run() {
+        switch (this.f25724a) {
+            case 0:
+                zb0 zb0Var = this.f25725b;
+                zb0Var.f30829c0.a(false);
+                AndroidUtilities.runOnUIThread(new kb0(zb0Var, this.f25726c, 1));
+                return;
+            default:
+                Context context = this.f25726c;
+                if (AndroidUtilities.isContextSafe(context)) {
+                    new rg.x0(context, 43, this.f25725b.f30829c0.F).show();
+                    return;
                 }
-                if (view instanceof org.telegram.ui.Cells.t1) {
-                    ((org.telegram.ui.Cells.t1) view).L3(z11, z11, true);
-                }
-                ob0Var.k(true);
-            }
+                return;
         }
     }
 }

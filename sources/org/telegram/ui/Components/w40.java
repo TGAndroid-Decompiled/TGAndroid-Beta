@@ -6,9 +6,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class w40 extends FrameLayout {
-    public View f29512a;
-    public TextView f29513b;
-    public bj0 f29514c;
+    public View f29877a;
+    public TextView f29878b;
+    public lj0 f29879c;
     public LinearLayout d;
 
     @Override
@@ -17,14 +17,14 @@ public final class w40 extends FrameLayout {
     }
 
     public void setGravity(int i10) {
-        this.f29513b.setGravity(i10);
+        this.f29878b.setGravity(i10);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f29513b.setText(charSequence);
+        this.f29878b.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
-        this.f29513b.setTextColor(i10);
+        this.f29878b.setTextColor(i10);
     }
 }

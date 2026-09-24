@@ -1,38 +1,41 @@
 package yh;
 
-import android.text.Spanned;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class q3 implements View.OnClickListener {
-    public final int f47591a;
-    public final v3 f47592b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class q3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f47891a;
+    public final u3 f47892b;
 
-    public q3(v3 v3Var, int i10) {
-        this.f47591a = i10;
-        this.f47592b = v3Var;
+    public q3(u3 u3Var, int i10) {
+        this.f47891a = i10;
+        this.f47892b = u3Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        View.OnClickListener onClickListener;
-        switch (this.f47591a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f47891a) {
             case 0:
-                CharSequence text = this.f47592b.v.getText();
-                if (text instanceof Spanned) {
-                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
-                    if (clickableSpanArr.length > 0) {
-                        clickableSpanArr[0].onClick(view);
-                        return;
-                    }
-                    return;
-                }
+                u3 u3Var = this.f47892b;
+                u3Var.getClass();
+                u3Var.f48092s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u3Var.d(u3Var.U);
+                return;
+            case 1:
+                u3 u3Var2 = this.f47892b;
+                u3Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float x10 = com.google.android.gms.internal.vision.e2.x((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
+                u3Var2.f48093t0 = x10;
+                FrameLayout frameLayout = u3Var2.f48070b;
+                frameLayout.setScaleX(x10);
+                frameLayout.setScaleY(u3Var2.f48093t0);
+                u3Var2.invalidate();
                 return;
             default:
-                v3 v3Var = this.f47592b;
-                if (v3Var.N.getVisibility() == 0 && (onClickListener = v3Var.T) != null) {
-                    onClickListener.onClick(view);
-                    return;
-                }
+                u3 u3Var3 = this.f47892b;
+                u3Var3.getClass();
+                u3Var3.f48092s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u3Var3.d(u3Var3.U);
                 return;
         }
     }

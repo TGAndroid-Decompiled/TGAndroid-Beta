@@ -1,41 +1,104 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import android.view.KeyEvent;
-public final class sa0 extends ReplacementSpan {
-    public final int f27892a;
-    public final KeyEvent.Callback f27893b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.tgnet.TLRPC;
+public final class sa0 extends oz {
+    public final uv0 X;
+    public final za0 Y;
 
-    public sa0(KeyEvent.Callback callback, int i10) {
-        this.f27892a = i10;
-        this.f27893b = callback;
+    public sa0(za0 za0Var) {
+        super(100, false);
+        this.Y = za0Var;
+        this.X = new Object();
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f27892a;
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f27892a) {
-            case 0:
-                return ((ua0) this.f27893b).f28446x;
-            case 1:
-                return (int) ((org.telegram.ui.lj0) this.f27893b).f35013n0;
-            default:
-                return (int) ((tg.n1) this.f27893b).f43143t0;
+    public final int A() {
+        za0 za0Var = this.Y;
+        if (za0Var.f30816f.I() == null && za0Var.f30816f.U == null) {
+            return B();
         }
+        return B() - 1;
     }
 
-    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    @Override
+    public final uv0 D1(int i10) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        float f7;
+        uv0 uv0Var = this.X;
+        int i11 = 0;
+        uv0Var.f28928c = false;
+        za0 za0Var = this.Y;
+        if (i10 == 0) {
+            uv0Var.f28926a = this.f43047m;
+            uv0Var.f28927b = za0Var.e.h;
+            uv0Var.f28928c = true;
+            return uv0Var;
+        }
+        int i12 = i10 - 1;
+        if (za0Var.f30816f.I() == null && za0Var.f30816f.U == null) {
+            i10 = i12;
+        }
+        uv0Var.f28926a = 0.0f;
+        uv0Var.f28927b = 0.0f;
+        Object J = za0Var.f30816f.J(i10);
+        if (J instanceof TLRPC.BotInlineResult) {
+            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
+            TLRPC.Document document = botInlineResult.document;
+            if (document != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+                float f10 = 100.0f;
+                if (closestPhotoSizeWithSize2 != null) {
+                    f7 = closestPhotoSizeWithSize2.f18346w;
+                } else {
+                    f7 = 100.0f;
+                }
+                uv0Var.f28926a = f7;
+                if (closestPhotoSizeWithSize2 != null) {
+                    f10 = closestPhotoSizeWithSize2.h;
+                }
+                uv0Var.f28927b = f10;
+                while (i11 < botInlineResult.document.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i11);
+                    if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i11++;
+                    } else {
+                        uv0Var.f28926a = documentAttribute.f18328w;
+                        uv0Var.f28927b = documentAttribute.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.content != null) {
+                while (i11 < botInlineResult.content.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute2 = botInlineResult.content.attributes.get(i11);
+                    if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i11++;
+                    } else {
+                        uv0Var.f28926a = documentAttribute2.f18328w;
+                        uv0Var.f28927b = documentAttribute2.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.thumb != null) {
+                while (i11 < botInlineResult.thumb.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute3 = botInlineResult.thumb.attributes.get(i11);
+                    if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i11++;
+                    } else {
+                        uv0Var.f28926a = documentAttribute3.f18328w;
+                        uv0Var.f28927b = documentAttribute3.h;
+                        break;
+                    }
+                }
+            } else {
+                TLRPC.Photo photo = botInlineResult.photo;
+                if (photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize())) != null) {
+                    uv0Var.f28926a = closestPhotoSizeWithSize.f18346w;
+                    uv0Var.f28927b = closestPhotoSizeWithSize.h;
+                }
+            }
+        }
+        return uv0Var;
     }
 }

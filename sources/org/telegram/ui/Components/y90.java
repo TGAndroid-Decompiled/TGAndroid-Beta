@@ -1,45 +1,202 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class y90 implements kt0 {
-    public final ca0 f30186a;
+import org.telegram.tgnet.tl.TL_iv;
+public final class y90 extends v7.k0 {
+    public int f30567a;
+    public final TL_iv.PageBlock f30568b;
+    public TL_iv.textConcat f30569c = new TL_iv.textConcat();
 
-    public y90(ca0 ca0Var) {
-        this.f30186a = ca0Var;
+    public y90(TL_iv.PageBlock pageBlock) {
+        this.f30568b = pageBlock;
+    }
+
+    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
+        if (textconcat.texts.isEmpty()) {
+            return new TL_iv.textEmpty();
+        }
+        if (textconcat.texts.size() == 1) {
+            return textconcat.texts.get(0);
+        }
+        return textconcat;
     }
 
     @Override
-    public final void R() {
-        this.f30186a.a0();
+    public final void a(bf.b bVar) {
+        int i10 = this.f30567a;
+        if (i10 >= 64) {
+            return;
+        }
+        this.f30567a = i10 + 1;
+        try {
+            v(bVar);
+        } finally {
+            this.f30567a--;
+        }
     }
 
     @Override
-    public final boolean T() {
-        return false;
+    public final void b(bf.c cVar) {
+        int i10 = this.f30567a;
+        if (i10 >= 64) {
+            return;
+        }
+        this.f30567a = i10 + 1;
+        try {
+            v(cVar);
+        } finally {
+            this.f30567a--;
+        }
     }
 
     @Override
-    public final ml0 f() {
-        return null;
+    public final void c(bf.d dVar) {
+        TL_iv.textFixed textfixed = new TL_iv.textFixed();
+        textfixed.text = ba0.j(dVar.h);
+        w(textfixed);
     }
 
     @Override
-    public final TLRPC.Chat g() {
-        return null;
+    public final void d(bf.e eVar) {
+        if (eVar instanceof ue.a) {
+            TL_iv.textStrike textstrike = new TL_iv.textStrike();
+            textstrike.text = y(eVar);
+            w(textstrike);
+        } else if (eVar instanceof zc.d) {
+            w(ba0.c(((zc.d) eVar).f49126g));
+        } else {
+            v(eVar);
+        }
     }
 
     @Override
-    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
-        return false;
+    public final void e(bf.g gVar) {
+        TL_iv.textItalic textitalic = new TL_iv.textItalic();
+        textitalic.text = y(gVar);
+        w(textitalic);
     }
 
     @Override
-    public final boolean p() {
-        return true;
+    public final void i(bf.k kVar) {
+        w(y(kVar));
     }
 
     @Override
-    public final void E() {
+    public final void k(bf.n nVar) {
+        if (nVar instanceof zc.a) {
+            if (!this.f30569c.texts.isEmpty()) {
+                w(ba0.j("\n"));
+            }
+            w(ba0.c(((zc.a) nVar).f49122g));
+            w(ba0.j("\n"));
+            return;
+        }
+        v(nVar);
+    }
+
+    @Override
+    public final void l(bf.o oVar) {
+        int i10 = this.f30567a;
+        if (i10 >= 64) {
+            return;
+        }
+        this.f30567a = i10 + 1;
+        try {
+            v(oVar);
+        } finally {
+            this.f30567a--;
+        }
+    }
+
+    @Override
+    public final void m(bf.q qVar) {
+        int i10 = this.f30567a;
+        if (i10 >= 64) {
+            return;
+        }
+        this.f30567a = i10 + 1;
+        try {
+            v(qVar);
+        } finally {
+            this.f30567a--;
+        }
+    }
+
+    @Override
+    public final void n(bf.r rVar) {
+        if (!this.f30569c.texts.isEmpty()) {
+            w(ba0.j("\n\n"));
+        }
+        v(rVar);
+    }
+
+    @Override
+    public final void o(bf.s sVar) {
+        w(ba0.j(sVar.f3548g));
+    }
+
+    @Override
+    public final void q(bf.d dVar) {
+        w(ba0.j(dVar.h));
+    }
+
+    @Override
+    public final void r(bf.g gVar) {
+        w(ba0.j("\n"));
+    }
+
+    @Override
+    public final void s(bf.k kVar) {
+        String str = kVar.h;
+        if (str == null) {
+            str = "";
+        }
+        String trim = str.trim();
+        if (trim.startsWith("mailto:")) {
+            TL_iv.RichText textemail = new TL_iv.textEmail();
+            textemail.text = y(kVar);
+            textemail.email = trim.substring(7);
+            w(textemail);
+        } else if (trim.startsWith("tel:")) {
+            TL_iv.textPhone textphone = new TL_iv.textPhone();
+            textphone.text = y(kVar);
+            textphone.phone = trim.substring(4);
+            w(textphone);
+        } else {
+            TL_iv.RichText texturl = new TL_iv.textUrl();
+            texturl.text = y(kVar);
+            texturl.url = trim;
+            w(texturl);
+        }
+    }
+
+    @Override
+    public final void t(bf.g gVar) {
+        String str;
+        if (this.f30568b instanceof TL_iv.pageBlockBlockquote) {
+            str = "\n";
+        } else {
+            str = " ";
+        }
+        w(ba0.j(str));
+    }
+
+    @Override
+    public final void u(bf.g gVar) {
+        TL_iv.textBold textbold = new TL_iv.textBold();
+        textbold.text = y(gVar);
+        w(textbold);
+    }
+
+    public final void w(TL_iv.RichText richText) {
+        this.f30569c.texts.add(richText);
+    }
+
+    public final TL_iv.RichText y(bf.p pVar) {
+        TL_iv.textConcat textconcat = this.f30569c;
+        this.f30569c = new TL_iv.textConcat();
+        v(pVar);
+        TL_iv.RichText x10 = x(this.f30569c);
+        this.f30569c = textconcat;
+        return x10;
     }
 }

@@ -6,7 +6,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.ui;
 import org.telegram.ui.Components.wi;
 public final class t1 implements ui {
@@ -21,7 +21,7 @@ public final class t1 implements ui {
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         wi wiVar = this.f11623a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29677j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29997j0;
         e2 e2Var = this.f11624b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
@@ -61,12 +61,8 @@ public final class t1 implements ui {
     }
 
     @Override
-    public final void x0(gh ghVar) {
-        NotificationCenter.getInstance(this.f11624b.getCurrentAccount()).doOnIdle(ghVar);
-    }
-
-    @Override
-    public final void K0() {
+    public final void x0(hh hhVar) {
+        NotificationCenter.getInstance(this.f11624b.getCurrentAccount()).doOnIdle(hhVar);
     }
 
     @Override
@@ -75,6 +71,10 @@ public final class t1 implements ui {
 
     @Override
     public final void j1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void K0() {
     }
 
     @Override

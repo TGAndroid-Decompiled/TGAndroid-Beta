@@ -26,9 +26,9 @@ public final class s0 implements View.OnClickListener {
         throw new UnsupportedOperationException("Method not decompiled: ai.s0.onClick(android.view.View):void");
     }
 
-    public s0(org.telegram.ui.ActionBar.f3 f3Var, FrameLayout frameLayout, ArrayList arrayList, int[] iArr, zk0 zk0Var) {
+    public s0(org.telegram.ui.ActionBar.e3 e3Var, FrameLayout frameLayout, ArrayList arrayList, int[] iArr, zk0 zk0Var) {
         this.f1479a = 15;
-        this.f1482f = f3Var;
+        this.f1482f = e3Var;
         this.f1480b = frameLayout;
         this.f1481c = arrayList;
         this.d = iArr;

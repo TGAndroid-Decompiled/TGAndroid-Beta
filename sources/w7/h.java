@@ -16,7 +16,7 @@ public abstract class h {
         }
         zd.m mVar = new zd.m(1, g.b(cVar));
         mVar.s();
-        task.addOnCompleteListener(je.a.f12967a, new a6.i(mVar, 29));
+        task.addOnCompleteListener(je.a.f12967a, new a6.i(mVar, 28));
         Object r10 = mVar.r();
         jd.a aVar = jd.a.f12959a;
         return r10;

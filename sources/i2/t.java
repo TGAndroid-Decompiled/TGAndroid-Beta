@@ -8,7 +8,7 @@ public final class t implements e2.m, e2.h {
 
     @Override
     public void accept(Object obj) {
-        ((m4.f1) obj).C(this.f10866a);
+        ((m4.e1) obj).C(this.f10866a);
     }
 
     @Override

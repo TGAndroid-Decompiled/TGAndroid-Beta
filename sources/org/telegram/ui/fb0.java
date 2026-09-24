@@ -1,99 +1,47 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.Window;
-import java.lang.ref.WeakReference;
-public final class fb0 implements yf.j0 {
-    public final int f33273a = 0;
-    public boolean f33274b;
-    public boolean f33275c;
-    public final Object d;
+import android.content.ComponentName;
+import android.content.Context;
+import org.telegram.messenger.R;
+public final class fb0 {
+    public static final fb0 h;
+    public static final fb0[] f33599n;
+    public final String f33600a;
+    public final int f33601b;
+    public final int f33602c;
+    public final int d;
+    public final boolean e;
+    public ComponentName f33603f;
 
-    public fb0(yf.k0 k0Var) {
-        this.d = k0Var;
+    static {
+        int i10 = R.drawable.icon_background_sa;
+        int i11 = R.mipmap.icon_foreground_sa;
+        fb0 fb0Var = new fb0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
+        h = fb0Var;
+        f33599n = new fb0[]{fb0Var, new fb0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new fb0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new fb0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new fb0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new fb0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
     }
 
-    @Override
-    public final void a(boolean z10) {
-        int i10;
-        int i11;
-        switch (this.f33273a) {
-            case 0:
-                if (this.f33274b != z10 && !this.f33275c) {
-                    this.f33274b = z10;
-                    LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) this.d).get();
-                    if (launchActivity != null) {
-                        int i12 = launchActivity.A1;
-                        if (z10) {
-                            i10 = 1;
-                        } else {
-                            i10 = -1;
-                        }
-                        int i13 = i12 + i10;
-                        launchActivity.A1 = i13;
-                        k0 k0Var = launchActivity.f30827w0;
-                        if (k0Var != null) {
-                            if (i13 > 0) {
-                                i11 = 8;
-                            } else {
-                                i11 = 0;
-                            }
-                            k0Var.setVisibility(i11);
-                        }
-                        launchActivity.getWindow();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                yf.k0 k0Var2 = (yf.k0) this.d;
-                if (this.f33274b != z10 && !this.f33275c) {
-                    this.f33274b = z10;
-                    boolean z11 = true;
-                    if (z10) {
-                        k0Var2.f46794a++;
-                    } else {
-                        k0Var2.f46794a--;
-                    }
-                    int i14 = 0;
-                    if (k0Var2.f46794a <= 0) {
-                        z11 = false;
-                    }
-                    if (k0Var2.f46795b != z11) {
-                        k0Var2.f46795b = z11;
-                        Window window = (Window) ((WeakReference) k0Var2.f46796c.f42001b).get();
-                        if (window != null) {
-                            View decorView = window.getDecorView();
-                            if (z11) {
-                                i14 = 8;
-                            }
-                            decorView.setVisibility(i14);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public fb0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
+        this.f33600a = str2;
+        this.f33601b = i11;
+        this.f33602c = i12;
+        this.d = i13;
+        this.e = z10;
+    }
+
+    public static fb0 valueOf(String str) {
+        return (fb0) Enum.valueOf(fb0.class, str);
+    }
+
+    public static fb0[] values() {
+        return (fb0[]) f33599n.clone();
+    }
+
+    public final ComponentName a(Context context) {
+        if (this.f33603f == null) {
+            String packageName = context.getPackageName();
+            this.f33603f = new ComponentName(packageName, "org.telegram.messenger." + this.f33600a);
         }
-    }
-
-    @Override
-    public final void destroy() {
-        switch (this.f33273a) {
-            case 0:
-                a(false);
-                this.f33275c = true;
-                return;
-            default:
-                a(false);
-                this.f33275c = true;
-                return;
-        }
-    }
-
-    public fb0(LaunchActivity launchActivity, boolean z10) {
-        this.d = new WeakReference(launchActivity);
+        return this.f33603f;
     }
 }

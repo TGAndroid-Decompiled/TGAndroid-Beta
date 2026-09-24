@@ -1,7 +1,7 @@
 package b2;
 
 import java.util.HashSet;
-import w7.r6;
+import w7.s6;
 public final class i0 {
     public int f3012a;
     public int f3013b;
@@ -20,13 +20,13 @@ public final class i0 {
         this.f3016g = new HashSet();
         hashSet.add(q9.r.a(cls));
         for (Class cls2 : clsArr) {
-            r6.a(cls2, "Null interface");
+            s6.a(cls2, "Null interface");
             ((HashSet) this.f3014c).add(q9.r.a(cls2));
         }
     }
 
     public void a(q9.j jVar) {
-        if (!((HashSet) this.f3014c).contains(jVar.f41144a)) {
+        if (!((HashSet) this.f3014c).contains(jVar.f41467a)) {
             ((HashSet) this.e).add(jVar);
             return;
         }

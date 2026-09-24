@@ -43,9 +43,9 @@ public final class r extends o6.a {
             jSONObject = jSONObject2.toString();
         }
         this.f4037b = jSONObject;
-        int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.k(parcel, 2, this.f4036a, i10);
-        w7.e0.l(parcel, 3, this.f4037b);
-        w7.e0.r(parcel, q6);
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.k(parcel, 2, this.f4036a, i10);
+        w7.f0.l(parcel, 3, this.f4037b);
+        w7.f0.r(parcel, q6);
     }
 }

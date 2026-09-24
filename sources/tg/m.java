@@ -1,152 +1,112 @@
 package tg;
 
+import ai.y3;
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
+import android.content.res.Configuration;
+import ci.a9;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.h81;
-public final class m extends h81 {
-    public final Path T;
-    public final Paint U;
-    public boolean V;
-    public boolean W;
-    public final boolean f43114a0;
-    public final a1 f43115b0;
-    public final d6 f43116c0;
-    public final b0 f43117d0;
-    public final o f43118e0;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.zv0;
+public final class m extends e3 {
+    public static m e;
+    public final k f43419b;
+    public final z0 f43420c;
+    public boolean d;
 
-    public m(o oVar, Context context, a1 a1Var, d6 d6Var, b0 b0Var) {
-        super(context, null);
-        this.f43118e0 = oVar;
-        this.f43115b0 = a1Var;
-        this.f43116c0 = d6Var;
-        this.f43117d0 = b0Var;
-        this.T = new Path();
-        this.U = new Paint(1);
-        this.f43114a0 = AndroidUtilities.isTablet();
+    public m(Activity activity, a0 a0Var, z0 z0Var, d6 d6Var, boolean z10) {
+        super(1, (Context) activity, d6Var, true);
+        boolean z11;
+        this.f43420c = z0Var;
+        setApplyBottomPadding(false);
+        setApplyTopPadding(false);
+        this.useBackgroundTopPadding = false;
+        setBackgroundColor(0);
+        fixNavigationBar();
+        if (i0.a.f(h6.v0(h6.f19115h5, this.resourcesProvider)) > 0.699999988079071d) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        AndroidUtilities.setLightStatusBar(this, z11);
+        this.d = getContext().getResources().getConfiguration().orientation == 2;
+        k kVar = new k(this, getContext(), z0Var, d6Var, a0Var);
+        this.f43419b = kVar;
+        kVar.setOverScrollMode(2);
+        kVar.setClipToPadding(false);
+        kVar.setAdapter(new zv0(a0Var, z0Var));
+        kVar.setPosition(0);
+        setCustomView(kVar);
+        a0Var.f43355t0 = new j(this, 0);
+        a0Var.f43353r0 = new o0.a(this, z0Var, false, 17);
+        z0Var.f43516u0 = new l(this, a0Var, d6Var);
+        z0Var.f43514s0 = new j(this, 1);
+        if (!z10) {
+            MessagesController.getInstance(this.currentAccount).getStoriesController().R();
+        }
+        qc.a(this.container, new a9(13));
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        int i11;
-        float f7;
-        o oVar = this.f43118e0;
-        m mVar = oVar.f43150b;
-        int v02 = h6.v0(h6.f18859h5, this.f43116c0);
-        Paint paint = this.U;
-        paint.setColor(v02);
-        if (this.V) {
-            int i12 = -AndroidUtilities.dp(16.0f);
-            b0 b0Var = this.f43117d0;
-            int i13 = b0Var.f43056s0;
-            if (b0Var.e.getVisibility() == 0) {
-                i10 = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
-            } else {
-                i10 = 0;
-            }
-            int dp = AndroidUtilities.dp(10.0f) + Math.max(i12, i13 - i10);
-            a1 a1Var = this.f43115b0;
-            int i14 = a1Var.f43033t0;
-            if (a1Var.m0.f23575c == 1.0f) {
-                i11 = AndroidUtilities.statusBarHeight;
-            } else {
-                i11 = 0;
-            }
-            int max = Math.max(0, i14 - i11);
-            int abs = Math.abs(dp - max);
-            if (mVar.getCurrentPosition() == 0) {
-                float positionAnimated = mVar.getPositionAnimated() * abs;
-                if (dp < max) {
-                    f7 = dp + positionAnimated;
-                } else {
-                    f7 = dp - positionAnimated;
-                }
-            } else {
-                float positionAnimated2 = (1.0f - mVar.getPositionAnimated()) * abs;
-                if (max < dp) {
-                    f7 = max + positionAnimated2;
-                } else {
-                    f7 = max - positionAnimated2;
-                }
-            }
-            int i15 = (int) f7;
-            float dp2 = AndroidUtilities.dp(14.0f);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, i15, getWidth(), AndroidUtilities.dp(8.0f) + getHeight());
-            canvas.drawRoundRect(rectF, dp2, dp2, paint);
-            canvas.save();
-            Path path = this.T;
-            path.rewind();
-            path.addRoundRect(rectF, dp2, dp2, Path.Direction.CW);
-            canvas.clipPath(path);
-            super.dispatchDraw(canvas);
-            canvas.restore();
+    public static void m(m2 m2Var, d6 d6Var, long j3, TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        m2 m2Var2;
+        if (e != null) {
             return;
         }
-        if (this.f43114a0 || oVar.d) {
-            canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        boolean z10 = d6Var instanceof ai.d;
+        if (z10) {
+            m2Var2 = new y3(m2Var);
+        } else {
+            m2Var2 = m2Var;
         }
-        super.dispatchDraw(canvas);
+        m mVar = new m(m2Var.getParentActivity(), new a0(m2Var2, j3, prepaidGiveaway), new z0(m2Var2, j3), m2Var2.getResourceProvider(), z10);
+        mVar.show();
+        e = mVar;
     }
 
     @Override
-    public final float getAvailableTranslationX() {
-        if (!this.f43114a0 && !this.f43118e0.d) {
-            return super.getAvailableTranslationX();
-        }
-        return getMeasuredWidth();
-    }
-
-    @Override
-    public final boolean i(MotionEvent motionEvent) {
-        if (this.f43118e0.f43150b.getCurrentPosition() == 1) {
-            return true;
-        }
+    public final boolean canDismissWithSwipe() {
         return false;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        boolean z11 = this.W;
-        o oVar = this.f43118e0;
-        if (z11 != oVar.isKeyboardVisible()) {
-            boolean isKeyboardVisible = oVar.isKeyboardVisible();
-            this.W = isKeyboardVisible;
-            if (isKeyboardVisible) {
-                this.f43115b0.X(true);
+    public final void dismissInternal() {
+        super.dismissInternal();
+        e = null;
+    }
+
+    @Override
+    public final void onBackPressed() {
+        k kVar = this.f43419b;
+        if (kVar.getCurrentPosition() > 0) {
+            z0 z0Var = this.f43420c;
+            if (z0Var.S()) {
+                return;
             }
+            if (isKeyboardVisible()) {
+                AndroidUtilities.hideKeyboard(z0Var.getContainerView());
+            }
+            kVar.D(0);
+            return;
         }
+        super.onBackPressed();
     }
 
     @Override
-    public final void u() {
-        this.V = false;
-        this.f43118e0.f43150b.invalidate();
-    }
-
-    @Override
-    public final void w(boolean z10) {
-        o oVar = this.f43118e0;
-        m mVar = oVar.f43150b;
-        float positionAnimated = mVar.getPositionAnimated();
-        if (positionAnimated > 0.0f && positionAnimated < 1.0f) {
-            if (!this.V) {
-                this.V = true;
-                if (oVar.isKeyboardVisible()) {
-                    AndroidUtilities.hideKeyboard(oVar.f43151c.getContainerView());
-                }
-            }
+    public final void onConfigurationChanged(Configuration configuration) {
+        boolean z10;
+        this.f43420c.onConfigurationChanged(configuration);
+        if (getContext().getResources().getConfiguration().orientation == 2) {
+            z10 = true;
         } else {
-            this.V = false;
+            z10 = false;
         }
-        mVar.invalidate();
+        this.d = z10;
+        super.onConfigurationChanged(configuration);
     }
 }

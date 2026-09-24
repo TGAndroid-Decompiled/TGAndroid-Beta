@@ -2,26 +2,26 @@ package qg;
 
 import android.animation.ValueAnimator;
 public final class o implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41450a;
-    public final p0 f41451b;
+    public final int f41821a;
+    public final n0 f41822b;
 
-    public o(p0 p0Var, int i10) {
-        this.f41450a = i10;
-        this.f41451b = p0Var;
+    public o(n0 n0Var, int i10) {
+        this.f41821a = i10;
+        this.f41822b = n0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f41450a) {
+        switch (this.f41821a) {
             case 0:
-                p0 p0Var = this.f41451b;
-                p0Var.getClass();
-                p0Var.f41477f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                n0 n0Var = this.f41822b;
+                n0Var.getClass();
+                n0Var.f41766f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                p0 p0Var2 = this.f41451b;
-                p0Var2.getClass();
-                p0Var2.f41477f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                n0 n0Var2 = this.f41822b;
+                n0Var2.getClass();
+                n0Var2.f41766f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

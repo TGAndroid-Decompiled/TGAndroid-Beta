@@ -28,7 +28,7 @@ public final class d extends pb.a {
 
     public static Map a(i iVar) {
         boolean z10;
-        cd.c cVar = iVar.f7675k;
+        cd.c cVar = iVar.f7674k;
         int i10 = cVar.f4215a;
         if (i10 > 0) {
             HashMap hashMap = new HashMap(i10);

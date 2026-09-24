@@ -2,7 +2,7 @@ package i0;
 
 import android.graphics.Path;
 import android.util.Log;
-import v7.g8;
+import v7.h8;
 public final class d {
     public char f10580a;
     public final float[] f10581b;
@@ -543,6 +543,6 @@ public final class d {
     public d(d dVar) {
         this.f10580a = dVar.f10580a;
         float[] fArr = dVar.f10581b;
-        this.f10581b = g8.b(fArr, fArr.length);
+        this.f10581b = h8.b(fArr, fArr.length);
     }
 }

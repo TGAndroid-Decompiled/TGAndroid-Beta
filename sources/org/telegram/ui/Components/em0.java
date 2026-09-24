@@ -1,15 +1,19 @@
 package org.telegram.ui.Components;
-public final class em0 implements Runnable {
-    public final int f23724a;
-    public final jm0 f23725b;
 
-    public em0(jm0 jm0Var, int i10) {
-        this.f23724a = i10;
-        this.f23725b = jm0Var;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class em0 extends FrameLayout {
+    public View f23958a;
+    public TextView f23959b;
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.em0.run():void");
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f23959b.setText(charSequence);
     }
 }

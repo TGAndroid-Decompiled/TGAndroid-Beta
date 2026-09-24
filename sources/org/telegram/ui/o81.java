@@ -1,128 +1,44 @@
 package org.telegram.ui;
-public final class o81 extends org.telegram.ui.ActionBar.j {
-    public final int f35711a;
-    public final Object f35712b;
 
-    public o81(Object obj, int i10) {
-        this.f35711a = i10;
-        this.f35712b = obj;
+import android.view.View;
+public final class o81 implements View.OnClickListener {
+    public final int f36057a;
+    public final z81 f36058b;
+
+    public o81(z81 z81Var, int i10) {
+        this.f36057a = i10;
+        this.f36058b = z81Var;
     }
 
     @Override
-    public final void b(int i10) {
-        switch (this.f35711a) {
+    public final void onClick(View view) {
+        switch (this.f36057a) {
             case 0:
-                x81 x81Var = (x81) this.f35712b;
-                if (i10 == -1) {
-                    x81Var.finishFragment();
-                    return;
-                } else if (i10 == 2) {
-                    x81Var.l0(new org.telegram.ui.ActionBar.n2(null));
-                    return;
-                } else {
-                    return;
-                }
+                z81 z81Var = this.f36058b;
+                nf.f.s(z81Var.getParentActivity(), z81Var.getMessagesController().premiumManageSubscriptionUrl);
+                z81Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
+                return;
             case 1:
-                if (i10 == -1) {
-                    ((ra1) this.f35712b).finishFragment();
-                    return;
-                }
+                z81 z81Var2 = this.f36058b;
+                z81Var2.getClass();
+                z81Var2.presentFragment(new h(3));
                 return;
             case 2:
-                StickersActivity stickersActivity = (StickersActivity) this.f35712b;
-                if (i10 == -1) {
-                    if (stickersActivity.onBackPressed(true)) {
-                        stickersActivity.finishFragment();
-                        return;
-                    }
-                    return;
-                }
-                StickersActivity.d0(stickersActivity, i10);
+                this.f36058b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
                 return;
             case 3:
-                td1 td1Var = (td1) this.f35712b;
-                if (i10 == -1) {
-                    td1Var.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    td1.Y(td1Var);
-                    return;
-                } else {
-                    return;
-                }
+                z81 z81Var3 = this.f36058b;
+                z81Var3.getClass();
+                z81Var3.presentFragment(new zg1(8, null));
+                return;
             case 4:
-                if (i10 == -1) {
-                    ((le1) this.f35712b).finishFragment();
-                    return;
-                }
+                this.f36058b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
                 return;
             case 5:
-                if (i10 == -1) {
-                    ((cg1) this.f35712b).finishFragment();
-                    return;
-                }
-                return;
-            case 6:
-                if (i10 == -1) {
-                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f35712b;
-                    if (twoStepVerificationActivity.X >= 0) {
-                        twoStepVerificationActivity.x0();
-                        return;
-                    } else {
-                        twoStepVerificationActivity.finishFragment();
-                        return;
-                    }
-                }
-                return;
-            case 7:
-                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f35712b;
-                if (i10 == -1) {
-                    if (userInfoActivity.onBackPressed(true)) {
-                        userInfoActivity.finishFragment();
-                        return;
-                    }
-                    return;
-                } else if (i10 == 1) {
-                    userInfoActivity.c0(true);
-                    return;
-                } else {
-                    return;
-                }
-            case 8:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f35712b;
-                if (i10 == -1) {
-                    usersSelectActivity.finishFragment();
-                    return;
-                } else if (i10 == 1) {
-                    usersSelectActivity.X();
-                    return;
-                } else {
-                    return;
-                }
-            case 9:
-                if (i10 == -1) {
-                    ((rg.x0) this.f35712b).dismiss();
-                    return;
-                }
-                return;
-            case 10:
-                if (i10 == -1) {
-                    ((xh.i4) this.f35712b).finishFragment();
-                    return;
-                }
-                return;
-            case 11:
-                if (i10 == -1) {
-                    ((yh.g) this.f35712b).finishFragment();
-                    return;
-                }
+                z81.V(this.f36058b);
                 return;
             default:
-                zg.q qVar = (zg.q) this.f35712b;
-                if (i10 == -1 && !qVar.X(true)) {
-                    qVar.finishFragment();
-                    return;
-                }
+                z81.Z(this.f36058b);
                 return;
         }
     }

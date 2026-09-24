@@ -1,54 +1,99 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class q51 extends o61 {
-    public final z61 E;
+import android.view.View;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class q51 implements org.telegram.ui.Components.nl0 {
+    public final int f36784a;
+    public final Context f36785b;
+    public final org.telegram.ui.ActionBar.d6 f36786c;
+    public final Integer d;
+    public final a71 e;
 
-    public q51(z61 z61Var, Context context, boolean z10) {
-        super(z61Var, context, z10);
-        this.E = z61Var;
+    public q51(a71 a71Var, int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, Integer num) {
+        this.e = a71Var;
+        this.f36784a = i10;
+        this.f36785b = context;
+        this.f36786c = d6Var;
+        this.d = num;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float y3;
-        z61 z61Var = this.E;
-        l51 l51Var = z61Var.f40019g0;
-        q51 q51Var = z61Var.f40017f0;
-        z51 z51Var = z61Var.U;
-        if (z51Var != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            float x10 = l51Var.getX() + q51Var.getX();
-            float y10 = l51Var.getY() + q51Var.getY();
-            tg.d dVar = (tg.d) z51Var;
-            zg.c0 c0Var = (zg.c0) dVar.f43072b;
-            zg.b0 b0Var = c0Var.f48927a;
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f7 = 0;
-            rectF.set(f7, f7, measuredWidth, measuredHeight);
-            org.telegram.ui.Components.fk0 delegate = ((org.telegram.ui.Components.gk0) dVar.f43073c).getDelegate();
-            float x11 = b0Var.getX() + x10;
-            if (c0Var.f48947y == 1) {
-                y3 = b0Var.getY() - AndroidUtilities.statusBarHeight;
-            } else {
-                y3 = b0Var.getY() + c0Var.f48929c.getY();
+    public final boolean mo18c(float f7, float f10, int i10, View view) {
+        a71 a71Var = this.e;
+        int i11 = a71Var.V;
+        int i12 = this.f36784a;
+        if (i12 != 11 && i12 != 13 && a71Var.f32014h1) {
+            boolean z10 = view instanceof j61;
+            if (z10 && (i12 == 1 || i12 == 8)) {
+                a71Var.l();
+                try {
+                    a71Var.performHapticFeedback(0);
+                } catch (Exception unused) {
+                }
+                j61 j61Var = (j61) view;
+                if (!j61Var.f34654s && !UserConfig.getInstance(i11).isPremium()) {
+                    org.telegram.ui.Components.z5 z5Var = j61Var.e;
+                    TLRPC.Document document = z5Var.document;
+                    if (document == null) {
+                        document = org.telegram.ui.Components.q5.f(i11, z5Var.documentId);
+                    }
+                    a71Var.p(j61Var, Long.valueOf(j61Var.e.documentId), document, j61Var.v, null);
+                    return true;
+                }
+                a71Var.S0 = j61Var;
+                a71Var.U0 = 0.0f;
+                a71Var.T0 = false;
+                if (j61Var.f34654s) {
+                    a71Var.setBigReactionAnimatedEmoji(null);
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i11).getReactionsMap().get(a71Var.S0.f34656x.f49385f);
+                    if (tL_availableReaction != null) {
+                        a71Var.V0.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_pcache", null, null, null, 0L, "tgs", a71Var.S0.f34656x, 0);
+                    }
+                } else {
+                    a71Var.setBigReactionAnimatedEmoji(new org.telegram.ui.Components.q5(4, i11, a71Var.S0.e.documentId));
+                }
+                a71Var.f32013h0.invalidate();
+                a71Var.m();
+                return true;
+            } else if (z10) {
+                j61 j61Var2 = (j61) view;
+                if (j61Var2.e != null && (i12 == 0 || i12 == 12 || i12 == 9 || i12 == 10)) {
+                    TL_stars.TL_starGiftUnique tL_starGiftUnique = j61Var2.v;
+                    p51 p51Var = new p51(this, this.f36785b, a71Var.T1, a71Var, j61Var2, this.f36786c, view, tL_starGiftUnique);
+                    a71Var.X0 = p51Var;
+                    p51Var.show();
+                    try {
+                        view.performHapticFeedback(0, 1);
+                    } catch (Exception unused2) {
+                    }
+                    return true;
+                }
             }
-            delegate.n(canvas, rectF, 0.0f, x11, y3 + y10, 255, true);
         }
-        super.dispatchDraw(canvas);
+        return false;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (f7 != getTranslationY()) {
-            super.setTranslationY(f7);
-            if (this.E.U != null) {
-                invalidate();
-            }
+    public final void g() {
+        a71 a71Var = this.e;
+        if (a71Var.S0 != null) {
+            a71Var.T0 = true;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(a71Var.U0, 0.0f);
+            ofFloat.addUpdateListener(new q11(this, 8));
+            ofFloat.addListener(new xo0(this, 20));
+            ofFloat.setDuration(150L);
+            ofFloat.setInterpolator(org.telegram.ui.Components.rr.f28022f);
+            ofFloat.start();
         }
+    }
+
+    @Override
+    public final void q(float f7) {
     }
 }

@@ -21,7 +21,7 @@ public final class d implements c3.o {
         this.f12621a = i10;
         e2.v vVar = new e2.v(10);
         this.d = vVar;
-        byte[] bArr = vVar.f7917a;
+        byte[] bArr = vVar.f7916a;
         this.e = new a4.h(bArr, bArr.length);
     }
 
@@ -34,29 +34,29 @@ public final class d implements c3.o {
         do {
             e2.v vVar = this.d;
             c3.l lVar = (c3.l) pVar;
-            lVar.h(vVar.f7917a, 0, 2, false);
+            lVar.h(vVar.f7916a, 0, 2, false);
             vVar.J(0);
             if ((vVar.D() & 65526) == 65520) {
                 i11++;
                 if (i11 >= 4 && i12 > 188) {
                     return true;
                 }
-                lVar.h(vVar.f7917a, 0, 4, false);
+                lVar.h(vVar.f7916a, 0, 4, false);
                 a4.h hVar = this.e;
                 hVar.q(14);
                 int i13 = hVar.i(13);
                 if (i13 <= 6) {
                     i10++;
                     lVar.f3783f = 0;
-                    lVar.s(i10, false);
+                    lVar.t(i10, false);
                 } else {
-                    lVar.s(i13 - 6, false);
+                    lVar.t(i13 - 6, false);
                     i12 += i13;
                 }
             } else {
                 i10++;
                 lVar.f3783f = 0;
-                lVar.s(i10, false);
+                lVar.t(i10, false);
             }
             i11 = 0;
             i12 = 0;
@@ -68,7 +68,7 @@ public final class d implements c3.o {
         int i10 = 0;
         while (true) {
             e2.v vVar = this.d;
-            pVar.a(0, 10, vVar.f7917a);
+            pVar.a(0, 10, vVar.f7916a);
             vVar.J(0);
             if (vVar.A() != 4801587) {
                 break;
@@ -76,10 +76,10 @@ public final class d implements c3.o {
             vVar.K(3);
             int w10 = vVar.w();
             i10 += w10 + 10;
-            pVar.k(w10);
+            pVar.l(w10);
         }
         pVar.p();
-        pVar.k(i10);
+        pVar.l(i10);
         if (this.h == -1) {
             this.h = i10;
         }
@@ -102,7 +102,7 @@ public final class d implements c3.o {
 
     @Override
     public final List i() {
-        e9.g0 g0Var = i0.f8067b;
+        e9.g0 g0Var = i0.f8066b;
         return a1.e;
     }
 

@@ -74,7 +74,7 @@ public interface EglBase {
                 this.openGlesVersion = i10;
                 return this;
             }
-            throw new IllegalArgumentException(hg.c.j(i10, "OpenGL ES version ", " not supported"));
+            throw new IllegalArgumentException(hg.c.i(i10, "OpenGL ES version ", " not supported"));
         }
 
         public ConfigBuilder setSupportsPixelBuffer(boolean z10) {

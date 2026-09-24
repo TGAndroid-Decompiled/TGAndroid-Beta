@@ -1,20 +1,20 @@
 package kotlin.jvm.internal;
 public final class k implements c {
-    public final Class f13668a;
+    public final Class f13888a;
 
     public k(Class jClass) {
         i.e(jClass, "jClass");
-        this.f13668a = jClass;
+        this.f13888a = jClass;
     }
 
     @Override
     public final Class a() {
-        return this.f13668a;
+        return this.f13888a;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof k) {
-            if (i.a(this.f13668a, ((k) obj).f13668a)) {
+            if (i.a(this.f13888a, ((k) obj).f13888a)) {
                 return true;
             }
             return false;
@@ -23,10 +23,10 @@ public final class k implements c {
     }
 
     public final int hashCode() {
-        return this.f13668a.hashCode();
+        return this.f13888a.hashCode();
     }
 
     public final String toString() {
-        return this.f13668a + " (Kotlin reflection is not available)";
+        return this.f13888a + " (Kotlin reflection is not available)";
     }
 }

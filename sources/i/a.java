@@ -1,8 +1,8 @@
 package i;
 
 import android.graphics.drawable.Animatable;
-import v7.f8;
-public final class a extends f8 {
+import v7.g8;
+public final class a extends g8 {
     public final int f10534a;
     public final Animatable f10535b;
 

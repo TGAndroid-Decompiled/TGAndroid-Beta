@@ -12,12 +12,12 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class m0 implements TextWatcher {
-    public final int f35115a;
-    public final Object f35116b;
+    public final int f35424a;
+    public final Object f35425b;
 
     public m0(Object obj, int i10) {
-        this.f35115a = i10;
-        this.f35116b = obj;
+        this.f35424a = i10;
+        this.f35425b = obj;
     }
 
     @Override
@@ -28,18 +28,18 @@ public final class m0 implements TextWatcher {
         boolean z10;
         String str2;
         int i10;
-        st stVar;
+        qt qtVar;
         String str3;
         Object obj2;
         String str4;
         String str5;
         boolean z11;
-        st stVar2;
+        qt qtVar2;
         String str6;
-        switch (this.f35115a) {
+        switch (this.f35424a) {
             case 0:
-                i4 i4Var = (i4) this.f35116b;
-                if (i4Var.f34009h0.W && (kVar = i4Var.f34010i0) != null) {
+                i4 i4Var = (i4) this.f35425b;
+                if (i4Var.f34382h0.W && (kVar = i4Var.f34383i0) != null) {
                     if (editable == null) {
                         obj = null;
                     } else {
@@ -52,25 +52,25 @@ public final class m0 implements TextWatcher {
             case 1:
                 return;
             case 2:
-                so soVar = (so) this.f35116b;
-                soVar.f37364r.n(5L, soVar.v.getText().toString(), null);
-                ai.y5 y5Var = soVar.e;
+                ro roVar = (ro) this.f35425b;
+                roVar.f37397r.n(5L, roVar.v.getText().toString(), null);
+                ai.y5 y5Var = roVar.e;
                 if (y5Var != null) {
                     y5Var.invalidate();
                     return;
                 }
                 return;
             case 3:
-                ((gp) this.f35116b).V();
+                ((fp) this.f35425b).V();
                 return;
             case 4:
-                kq kqVar = (kq) this.f35116b;
-                lq lqVar = kqVar.e;
-                if (!kqVar.d) {
-                    lqVar.S = editable.toString();
-                    s4.c1 K = lqVar.f35043b.K(lqVar.f35069u0);
+                jq jqVar = (jq) this.f35425b;
+                kq kqVar = jqVar.e;
+                if (!jqVar.d) {
+                    kqVar.S = editable.toString();
+                    s4.c1 K = kqVar.f35092b.K(kqVar.f35118u0);
                     if (K != null) {
-                        lq.f0(lqVar, K.f42627a);
+                        kq.f0(kqVar, K.f42946a);
                         return;
                     }
                     return;
@@ -79,57 +79,57 @@ public final class m0 implements TextWatcher {
             case 5:
                 return;
             case 6:
-                b70 b70Var = (b70) this.f35116b;
-                if (b70Var.f31991f.f22890r.length() != 0) {
-                    z60 z60Var = b70Var.v;
-                    boolean z12 = z60Var.f39995n;
+                z60 z60Var = (z60) this.f35425b;
+                if (z60Var.f40358f.f23131r.length() != 0) {
+                    x60 x60Var = z60Var.v;
+                    boolean z12 = x60Var.f39827n;
                     if (!z12) {
-                        b70Var.T = true;
-                        b70Var.S = true;
+                        z60Var.T = true;
+                        z60Var.S = true;
                         if (!z12) {
-                            z60Var.f39995n = true;
-                            z60Var.l();
+                            x60Var.f39827n = true;
+                            x60Var.l();
                         }
-                        b70Var.f31999n.setFastScrollVisible(false);
-                        b70Var.f31999n.setVerticalScrollBarEnabled(true);
+                        z60Var.f40366n.setFastScrollVisible(false);
+                        z60Var.f40366n.setVerticalScrollBarEnabled(true);
                     }
-                    b70Var.v.L(b70Var.f31991f.f22890r.getText().toString());
-                    b70Var.f32006s.e(true, false);
+                    z60Var.v.L(z60Var.f40358f.f23131r.getText().toString());
+                    z60Var.f40373s.e(true, false);
                     return;
                 }
-                b70Var.T = false;
-                b70Var.S = false;
-                z60 z60Var2 = b70Var.v;
-                if (z60Var2.f39995n) {
-                    z60Var2.f39995n = false;
-                    z60Var2.l();
+                z60Var.T = false;
+                z60Var.S = false;
+                x60 x60Var2 = z60Var.v;
+                if (x60Var2.f39827n) {
+                    x60Var2.f39827n = false;
+                    x60Var2.l();
                 }
-                b70Var.v.L(null);
-                b70Var.f31999n.setFastScrollVisible(true);
-                b70Var.f31999n.setVerticalScrollBarEnabled(false);
-                b70Var.q0(0);
+                z60Var.v.L(null);
+                z60Var.f40366n.setFastScrollVisible(true);
+                z60Var.f40366n.setVerticalScrollBarEnabled(false);
+                z60Var.q0(0);
                 return;
             case 7:
             case 8:
             case 9:
                 return;
             case 10:
-                qg0 qg0Var = (qg0) this.f35116b;
-                HashMap hashMap = qg0Var.F;
-                ArrayList arrayList = qg0Var.E;
-                uj0 uj0Var = qg0Var.f36422a;
-                ng0 ng0Var = qg0Var.f36423b;
-                if (!qg0Var.I) {
+                pg0 pg0Var = (pg0) this.f35425b;
+                HashMap hashMap = pg0Var.F;
+                ArrayList arrayList = pg0Var.E;
+                uj0 uj0Var = pg0Var.f36509a;
+                mg0 mg0Var = pg0Var.f36510b;
+                if (!pg0Var.I) {
                     int i11 = 1;
-                    qg0Var.I = true;
+                    pg0Var.I = true;
                     int i12 = 0;
                     String d = gf.b.d(uj0Var.getText().toString(), false);
                     uj0Var.setText(d);
                     String str7 = null;
                     if (d.length() == 0) {
-                        qg0Var.setCountryButtonText(null);
-                        ng0Var.setHintText((String) null);
-                        qg0Var.f36430x = 1;
+                        pg0Var.setCountryButtonText(null);
+                        mg0Var.setHintText((String) null);
+                        pg0Var.f36517x = 1;
                     } else {
                         int i13 = 4;
                         if (d.length() > 4) {
@@ -141,7 +141,7 @@ public final class m0 implements TextWatcher {
                                         obj2 = str7;
                                     } else if (list.size() > i11) {
                                         String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, str7);
-                                        Object obj3 = (st) org.telegram.ui.Cells.q3.g(i11, list);
+                                        Object obj3 = (qt) org.telegram.ui.Cells.c1.i(i11, list);
                                         if (string != null) {
                                             int size = arrayList.size();
                                             int i14 = 0;
@@ -149,19 +149,19 @@ public final class m0 implements TextWatcher {
                                                 if (i14 < size) {
                                                     Object obj4 = arrayList.get(i14);
                                                     i14++;
-                                                    st stVar3 = (st) obj4;
-                                                    if (Objects.equals(stVar3.d, string)) {
-                                                        obj3 = stVar3;
+                                                    qt qtVar3 = (qt) obj4;
+                                                    if (Objects.equals(qtVar3.d, string)) {
+                                                        obj3 = qtVar3;
                                                     }
                                                 }
                                             }
                                         }
                                         obj2 = obj3;
                                     } else {
-                                        obj2 = (st) list.get(0);
+                                        obj2 = (qt) list.get(0);
                                     }
                                     if (obj2 != null) {
-                                        str = d.substring(i13) + ng0Var.getText().toString();
+                                        str = d.substring(i13) + mg0Var.getText().toString();
                                         uj0Var.setText(substring);
                                         d = substring;
                                         z10 = true;
@@ -177,7 +177,7 @@ public final class m0 implements TextWatcher {
                                 }
                             }
                             if (!z10) {
-                                str = d.substring(1) + ng0Var.getText().toString();
+                                str = d.substring(1) + mg0Var.getText().toString();
                                 d = d.substring(0, 1);
                                 uj0Var.setText(d);
                             }
@@ -186,21 +186,21 @@ public final class m0 implements TextWatcher {
                             z10 = false;
                         }
                         int size2 = arrayList.size();
-                        st stVar4 = null;
+                        qt qtVar4 = null;
                         int i15 = 0;
                         int i16 = 0;
                         while (i16 < size2) {
                             Object obj5 = arrayList.get(i16);
                             i16++;
-                            st stVar5 = (st) obj5;
-                            if (stVar5.f37417c.startsWith(d)) {
+                            qt qtVar5 = (qt) obj5;
+                            if (qtVar5.f36971c.startsWith(d)) {
                                 int i17 = i15 + 1;
                                 str3 = str;
-                                if (stVar5.f37417c.equals(d)) {
-                                    if (stVar4 == null || !stVar4.f37417c.equals(stVar5.f37417c)) {
+                                if (qtVar5.f36971c.equals(d)) {
+                                    if (qtVar4 == null || !qtVar4.f36971c.equals(qtVar5.f36971c)) {
                                         i15 = i17;
                                     }
-                                    stVar4 = stVar5;
+                                    qtVar4 = qtVar5;
                                 } else {
                                     i15 = i17;
                                 }
@@ -210,9 +210,9 @@ public final class m0 implements TextWatcher {
                             str = str3;
                         }
                         String str8 = str;
-                        if (i15 == 1 && stVar4 != null && str8 == null) {
-                            str2 = d.substring(stVar4.f37417c.length()) + ng0Var.getText().toString();
-                            d = stVar4.f37417c;
+                        if (i15 == 1 && qtVar4 != null && str8 == null) {
+                            str2 = d.substring(qtVar4.f36971c.length()) + mg0Var.getText().toString();
+                            d = qtVar4.f36971c;
                             uj0Var.setText(d);
                         } else {
                             str2 = str8;
@@ -220,55 +220,55 @@ public final class m0 implements TextWatcher {
                         List list2 = (List) hashMap.get(d);
                         if (list2 == null) {
                             i10 = 0;
-                            stVar = null;
+                            qtVar = null;
                         } else if (list2.size() > 1) {
                             String string2 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + d, null);
-                            st stVar6 = (st) org.telegram.ui.Cells.q3.g(1, list2);
+                            qt qtVar6 = (qt) org.telegram.ui.Cells.c1.i(1, list2);
                             if (string2 != null) {
                                 int size3 = arrayList.size();
                                 int i18 = 0;
                                 while (i18 < size3) {
                                     Object obj6 = arrayList.get(i18);
                                     i18++;
-                                    stVar = (st) obj6;
-                                    if (Objects.equals(stVar.d, string2)) {
+                                    qtVar = (qt) obj6;
+                                    if (Objects.equals(qtVar.d, string2)) {
                                         i10 = 0;
                                     }
                                 }
                             }
-                            stVar = stVar6;
+                            qtVar = qtVar6;
                             i10 = 0;
                         } else {
                             i10 = 0;
-                            stVar = (st) list2.get(0);
+                            qtVar = (qt) list2.get(0);
                         }
-                        if (stVar == null) {
-                            qg0Var.setCountryButtonText(null);
-                            ng0Var.setHintText((String) null);
-                            qg0Var.f36430x = 2;
+                        if (qtVar == null) {
+                            pg0Var.setCountryButtonText(null);
+                            mg0Var.setHintText((String) null);
+                            pg0Var.f36517x = 2;
                         } else {
-                            qg0Var.H = true;
-                            qg0Var.f36431y = stVar;
-                            qg0Var.v(d, stVar);
-                            qg0Var.f36430x = i10;
+                            pg0Var.H = true;
+                            pg0Var.f36518y = qtVar;
+                            pg0Var.v(d, qtVar);
+                            pg0Var.f36517x = i10;
                         }
                         if (!z10) {
                             uj0Var.setSelection(uj0Var.getText().length());
                         }
                         if (str2 != null) {
-                            ng0Var.requestFocus();
-                            ng0Var.setText(str2);
-                            ng0Var.setSelection(ng0Var.length());
+                            mg0Var.requestFocus();
+                            mg0Var.setText(str2);
+                            mg0Var.setSelection(mg0Var.length());
                         }
                     }
-                    qg0Var.I = false;
+                    pg0Var.I = false;
                     return;
                 }
                 return;
             case 11:
-                wj0 wj0Var = (wj0) this.f35116b;
-                HashMap hashMap2 = wj0Var.f39043x;
-                ArrayList arrayList2 = wj0Var.f39042w;
+                wj0 wj0Var = (wj0) this.f35425b;
+                HashMap hashMap2 = wj0Var.f39373x;
+                ArrayList arrayList2 = wj0Var.f39372w;
                 if (!wj0Var.E) {
                     wj0Var.E = true;
                     String d10 = gf.b.d(wj0Var.O.getText().toString(), false);
@@ -288,7 +288,7 @@ public final class m0 implements TextWatcher {
                                     if (list3 != null) {
                                         if (list3.size() > 1) {
                                             String string3 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + str4, str9);
-                                            Object obj8 = (st) org.telegram.ui.Cells.q3.g(1, list3);
+                                            Object obj8 = (qt) org.telegram.ui.Cells.c1.i(1, list3);
                                             if (string3 != null) {
                                                 int size4 = arrayList2.size();
                                                 int i20 = 0;
@@ -296,16 +296,16 @@ public final class m0 implements TextWatcher {
                                                     if (i20 < size4) {
                                                         Object obj9 = arrayList2.get(i20);
                                                         i20++;
-                                                        st stVar7 = (st) obj9;
-                                                        if (Objects.equals(stVar7.d, string3)) {
-                                                            obj8 = stVar7;
+                                                        qt qtVar7 = (qt) obj9;
+                                                        if (Objects.equals(qtVar7.d, string3)) {
+                                                            obj8 = qtVar7;
                                                         }
                                                     }
                                                 }
                                             }
                                             obj7 = obj8;
                                         } else {
-                                            obj7 = (st) list3.get(0);
+                                            obj7 = (qt) list3.get(0);
                                         }
                                     }
                                     if (obj7 != null) {
@@ -334,52 +334,52 @@ public final class m0 implements TextWatcher {
                             z11 = false;
                         }
                         int size5 = arrayList2.size();
-                        st stVar8 = null;
+                        qt qtVar8 = null;
                         int i21 = 0;
                         int i22 = 0;
                         while (i22 < size5) {
                             Object obj10 = arrayList2.get(i22);
                             i22++;
-                            st stVar9 = (st) obj10;
-                            if (stVar9.f37417c.startsWith(str4)) {
+                            qt qtVar9 = (qt) obj10;
+                            if (qtVar9.f36971c.startsWith(str4)) {
                                 i21++;
-                                if (stVar9.f37417c.equals(str4)) {
-                                    stVar8 = stVar9;
+                                if (qtVar9.f36971c.equals(str4)) {
+                                    qtVar8 = qtVar9;
                                 }
                             }
                         }
-                        if (i21 == 1 && stVar8 != null && str5 == null) {
-                            str5 = str4.substring(stVar8.f37417c.length()) + wj0Var.Q.getText().toString();
+                        if (i21 == 1 && qtVar8 != null && str5 == null) {
+                            str5 = str4.substring(qtVar8.f36971c.length()) + wj0Var.Q.getText().toString();
                             uj0 uj0Var3 = wj0Var.O;
-                            String str10 = stVar8.f37417c;
+                            String str10 = qtVar8.f36971c;
                             uj0Var3.setText(str10);
                             str4 = str10;
                         }
                         List list4 = (List) hashMap2.get(str4);
                         if (list4 == null) {
-                            stVar2 = null;
+                            qtVar2 = null;
                         } else if (list4.size() > 1) {
                             String string4 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + str4, null);
-                            st stVar10 = (st) org.telegram.ui.Cells.q3.g(1, list4);
+                            qt qtVar10 = (qt) org.telegram.ui.Cells.c1.i(1, list4);
                             if (string4 != null) {
                                 int size6 = arrayList2.size();
                                 int i23 = 0;
                                 while (i23 < size6) {
                                     Object obj11 = arrayList2.get(i23);
                                     i23++;
-                                    st stVar11 = (st) obj11;
-                                    if (Objects.equals(stVar11.d, string4)) {
-                                        stVar2 = stVar11;
+                                    qt qtVar11 = (qt) obj11;
+                                    if (Objects.equals(qtVar11.d, string4)) {
+                                        qtVar2 = qtVar11;
                                     }
                                 }
                             }
-                            stVar2 = stVar10;
+                            qtVar2 = qtVar10;
                         } else {
-                            stVar2 = (st) list4.get(0);
+                            qtVar2 = (qt) list4.get(0);
                         }
-                        if (stVar2 != null) {
+                        if (qtVar2 != null) {
                             wj0Var.G = true;
-                            wj0Var.u(str4, stVar2);
+                            wj0Var.u(str4, qtVar2);
                         } else {
                             wj0Var.t(null);
                             wj0Var.Q.setHintText((String) null);
@@ -401,68 +401,68 @@ public final class m0 implements TextWatcher {
                 }
                 return;
             case 12:
-                in0 in0Var = (in0) this.f35116b;
-                if (!in0Var.Z0 && in0Var.T0 != 0 && in0Var.Y[0].length() == in0Var.T0) {
-                    in0Var.L.callOnClick();
+                gn0 gn0Var = (gn0) this.f35425b;
+                if (!gn0Var.Z0 && gn0Var.T0 != 0 && gn0Var.Y[0].length() == gn0Var.T0) {
+                    gn0Var.L.callOnClick();
                     return;
                 }
                 return;
             case 13:
-                qo0 qo0Var = (qo0) this.f35116b;
-                if (qo0Var.f36490c0 != 0 && editable.length() == qo0Var.f36490c0) {
-                    qo0Var.A0(false);
+                oo0 oo0Var = (oo0) this.f35425b;
+                if (oo0Var.f36268c0 != 0 && editable.length() == oo0Var.f36268c0) {
+                    oo0Var.A0(false);
                     return;
                 }
                 return;
             case 14:
-                tq0 tq0Var = ((uq0) this.f35116b).f38191s0;
-                if (tq0Var != null) {
-                    tq0Var.b(editable);
+                sq0 sq0Var = ((tq0) this.f35425b).f38195s0;
+                if (sq0Var != null) {
+                    sq0Var.b(editable);
                     return;
                 }
                 return;
             case 15:
-                q51 q51Var = (q51) this.f35116b;
-                org.telegram.ui.Cells.c6 c6Var = q51Var.h;
+                r51 r51Var = (r51) this.f35425b;
+                org.telegram.ui.Cells.c6 c6Var = r51Var.h;
                 if (c6Var.getText() != null && AndroidUtilities.trim(c6Var.getText(), null).length() != 0) {
                     str6 = c6Var.getText().toString();
                 } else {
                     str6 = null;
                 }
-                q51Var.f35698y.v(str6, true, true);
-                n61 n61Var = q51Var.f35693n;
-                if (n61Var != null) {
-                    n61Var.F1(null);
-                    q51Var.f35693n.G1(TextUtils.isEmpty(str6), true);
+                r51Var.f36407y.v(str6, true, true);
+                o61 o61Var = r51Var.f36402n;
+                if (o61Var != null) {
+                    o61Var.F1(null);
+                    r51Var.f36402n.G1(TextUtils.isEmpty(str6), true);
                 }
                 if (c6Var != null) {
                     c6Var.clearAnimation();
                     c6Var.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.rr.h).start();
                 }
-                q51Var.c(false);
+                r51Var.c(false);
                 return;
             case 16:
                 String trim = editable.toString().trim();
-                se1 se1Var = (se1) this.f35116b;
-                String str11 = se1Var.f37267n;
+                se1 se1Var = (se1) this.f35425b;
+                String str11 = se1Var.f37711n;
                 if (trim.length() > 0) {
-                    se1Var.f37267n = trim.substring(0, 1).toUpperCase();
+                    se1Var.f37711n = trim.substring(0, 1).toUpperCase();
                 } else {
-                    se1Var.f37267n = "";
+                    se1Var.f37711n = "";
                 }
-                if (!str11.equals(se1Var.f37267n)) {
-                    org.telegram.ui.Components.m80 m80Var = new org.telegram.ui.Components.m80(1, null);
-                    m80Var.a(se1Var.f37267n);
-                    org.telegram.ui.Components.rl0 rl0Var = se1Var.v;
-                    if (rl0Var != null) {
-                        rl0Var.b(m80Var, true);
+                if (!str11.equals(se1Var.f37711n)) {
+                    org.telegram.ui.Components.w80 w80Var = new org.telegram.ui.Components.w80(1, null);
+                    w80Var.a(se1Var.f37711n);
+                    org.telegram.ui.Components.bm0 bm0Var = se1Var.v;
+                    if (bm0Var != null) {
+                        bm0Var.b(w80Var, true);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f35116b;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f35425b;
                 fg1 fg1Var = twoStepVerificationActivity.V;
                 if (twoStepVerificationActivity.U) {
                     AndroidUtilities.cancelRunOnUIThread(fg1Var);
@@ -476,8 +476,8 @@ public final class m0 implements TextWatcher {
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         boolean z10;
-        int i13 = this.f35115a;
-        Object obj = this.f35116b;
+        int i13 = this.f35424a;
+        Object obj = this.f35425b;
         switch (i13) {
             case 0:
             case 1:
@@ -486,52 +486,52 @@ public final class m0 implements TextWatcher {
             case 4:
                 return;
             case 5:
-                xr xrVar = (xr) obj;
+                wr wrVar = (wr) obj;
                 if (charSequence.length() != 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                xrVar.f32173x = z10;
-                xrVar.v = 0.0f;
+                wrVar.f32213x = z10;
+                wrVar.v = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                xrVar.F = ofFloat;
-                ofFloat.addUpdateListener(new c3(xrVar, 9));
-                if (!xrVar.f32173x) {
-                    xrVar.F.setInterpolator(new OvershootInterpolator(1.5f));
-                    xrVar.F.setDuration(350L);
+                wrVar.F = ofFloat;
+                ofFloat.addUpdateListener(new c3(wrVar, 9));
+                if (!wrVar.f32213x) {
+                    wrVar.F.setInterpolator(new OvershootInterpolator(1.5f));
+                    wrVar.F.setDuration(350L);
                 } else {
-                    xrVar.F.setDuration(220L);
+                    wrVar.F.setDuration(220L);
                 }
-                xrVar.F.start();
-                xrVar.hideActionMode();
+                wrVar.F.start();
+                wrVar.hideActionMode();
                 return;
             case 6:
                 return;
             case 7:
-                be0 be0Var = (be0) obj;
-                ud0 ud0Var = be0Var.S;
-                if (be0Var.R) {
-                    be0Var.removeCallbacks(ud0Var);
-                    ud0Var.run();
+                ae0 ae0Var = (ae0) obj;
+                td0 td0Var = ae0Var.S;
+                if (ae0Var.R) {
+                    ae0Var.removeCallbacks(td0Var);
+                    td0Var.run();
                     return;
                 }
                 return;
             case 8:
-                ve0 ve0Var = (ve0) obj;
-                te0 te0Var = ve0Var.f38375x;
-                if (ve0Var.f38374w) {
-                    ve0Var.removeCallbacks(te0Var);
-                    te0Var.run();
+                ue0 ue0Var = (ue0) obj;
+                se0 se0Var = ue0Var.f38432x;
+                if (ue0Var.f38431w) {
+                    ue0Var.removeCallbacks(se0Var);
+                    se0Var.run();
                     return;
                 }
                 return;
             case 9:
-                uf0 uf0Var = (uf0) obj;
-                hf0 hf0Var = uf0Var.f38091r0;
-                if (uf0Var.f38089q0) {
-                    uf0Var.removeCallbacks(hf0Var);
-                    hf0Var.run();
+                tf0 tf0Var = (tf0) obj;
+                gf0 gf0Var = tf0Var.f38079r0;
+                if (tf0Var.f38077q0) {
+                    tf0Var.removeCallbacks(gf0Var);
+                    gf0Var.run();
                     return;
                 }
                 return;
@@ -549,24 +549,24 @@ public final class m0 implements TextWatcher {
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f35115a) {
+        switch (this.f35424a) {
             case 0:
                 return;
             case 1:
-                ld ldVar = (ld) this.f35116b;
-                ldVar.d0(ldVar.f34943w.getText().toString());
+                ld ldVar = (ld) this.f35425b;
+                ldVar.d0(ldVar.f35295w.getText().toString());
                 return;
             case 2:
                 return;
             case 3:
-                gp gpVar = (gp) this.f35116b;
-                if (!gpVar.m0) {
-                    String obj = gpVar.f33603a.getText().toString();
-                    na naVar = gpVar.O;
+                fp fpVar = (fp) this.f35425b;
+                if (!fpVar.m0) {
+                    String obj = fpVar.f33694a.getText().toString();
+                    na naVar = fpVar.O;
                     if (naVar != null) {
                         naVar.b(obj);
                     }
-                    gpVar.W(obj);
+                    fpVar.W(obj);
                     return;
                 }
                 return;

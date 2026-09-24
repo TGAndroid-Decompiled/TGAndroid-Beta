@@ -1,15 +1,18 @@
 package v7;
 public final class s3 implements ia.d {
-    public static final s3 f44041a = new Object();
-    public static final ia.c f44042b = new ia.c("confidence", hg.c.o(org.telegram.ui.Cells.q3.k(h.class, new e(1))));
-    public static final ia.c f44043c = new ia.c("languageCode", hg.c.o(org.telegram.ui.Cells.q3.k(h.class, new e(2))));
+    public static final s3 f44356a = new Object();
+    public static final ia.c f44357b = new ia.c("inferenceCommonLogEvent", hg.c.m(j.j(h.class, new e(1))));
+    public static final ia.c f44358c = new ia.c("options", hg.c.m(j.j(h.class, new e(2))));
+    public static final ia.c d = new ia.c("identifyLanguageResult", hg.c.m(j.j(h.class, new e(3))));
+    public static final ia.c e = new ia.c("identifyPossibleLanguagesResult", hg.c.m(j.j(h.class, new e(4))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        c7 c7Var = (c7) obj;
+        h7 h7Var = (h7) obj;
         ia.e eVar = (ia.e) obj2;
-        c7Var.getClass();
-        eVar.a(f44042b, null);
-        eVar.a(f44043c, c7Var.f43887a);
+        eVar.a(f44357b, h7Var.f44259a);
+        eVar.a(f44358c, h7Var.f44260b);
+        eVar.a(d, h7Var.f44261c);
+        eVar.a(e, null);
     }
 }

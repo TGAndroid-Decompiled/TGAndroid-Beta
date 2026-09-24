@@ -4,17 +4,17 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.messenger.Utilities;
 public final class f implements TextWatcher {
-    public final i f45715a;
+    public final i f46029a;
 
     public f(i iVar) {
-        this.f45715a = iVar;
+        this.f46029a = iVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         Utilities.Callback callback;
-        i iVar = this.f45715a;
-        if (!iVar.h && (callback = iVar.f45726n) != null && editable != null) {
+        i iVar = this.f46029a;
+        if (!iVar.h && (callback = iVar.f46040n) != null && editable != null) {
             callback.run(editable.toString());
         }
     }

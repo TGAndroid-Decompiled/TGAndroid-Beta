@@ -31,7 +31,7 @@ public final class e7 {
         this.f4641c = d5Var;
         this.f4645j = eVar;
         this.f4644i = mVar;
-        String str = e2.d0.f7871a;
+        String str = e2.d0.f7870a;
         Looper myLooper = Looper.myLooper();
         Handler handler = new Handler(myLooper == null ? Looper.getMainLooper() : myLooper, null);
         this.d = handler;
@@ -48,9 +48,9 @@ public final class e7 {
         String name;
         if (this.f4639a && !bVar.equals((k2.b) this.h)) {
             this.h = bVar;
-            k2.f0 f0Var = (k2.f0) ((ei.d5) this.f4641c).f8287b;
+            k2.e0 e0Var = (k2.e0) ((ei.d5) this.f4641c).f8286b;
             Looper myLooper = Looper.myLooper();
-            if (f0Var.f13256i0 == myLooper) {
+            if (e0Var.f13251i0 == myLooper) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -64,19 +64,19 @@ public final class e7 {
             }
             sb2.append(name);
             sb2.append(") is not the playback looper (");
-            Looper looper = f0Var.f13256i0;
+            Looper looper = e0Var.f13251i0;
             if (looper != null) {
                 str = looper.getThread().getName();
             }
             sb2.append(str);
             sb2.append(")");
             e2.d.f(sb2.toString(), z10);
-            k2.b bVar2 = f0Var.f13275y;
+            k2.b bVar2 = e0Var.f13270y;
             if (bVar2 != null && !bVar.equals(bVar2)) {
-                f0Var.f13275y = bVar;
-                k2.n nVar = f0Var.f13271t;
+                e0Var.f13270y = bVar;
+                k2.n nVar = e0Var.f13266t;
                 if (nVar != null) {
-                    nVar.J();
+                    nVar.G();
                 }
             }
         }
@@ -137,7 +137,7 @@ public final class e7 {
         paint.setShadowLayer(1.0804527E9f, 0.0f, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
         this.f4645j = new Path();
         this.f4640b = a0Var;
-        rr rrVar = rr.f27702g;
+        rr rrVar = rr.f28023g;
         this.d = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 320L, rrVar);
         this.e = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, rrVar);
         this.f4642f = new org.telegram.ui.Components.e6(0.0f, a0Var, 0L, 160L, rrVar);

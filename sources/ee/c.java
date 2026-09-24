@@ -3,7 +3,7 @@ package ee;
 import java.lang.reflect.Method;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 public abstract class c {
-    public static final Method f8159a;
+    public static final Method f8158a;
 
     static {
         Method method;
@@ -12,6 +12,6 @@ public abstract class c {
         } catch (Throwable unused) {
             method = null;
         }
-        f8159a = method;
+        f8158a = method;
     }
 }

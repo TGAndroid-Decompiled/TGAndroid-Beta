@@ -7,7 +7,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.xn;
+import org.telegram.ui.wn;
 public final class o9 implements Runnable {
     public final int f5255a;
     public final long f5256b;
@@ -38,22 +38,22 @@ public final class o9 implements Runnable {
                 }
             case 1:
                 fi.t0 t0Var = (fi.t0) this.d;
-                t0Var.f9167i = null;
-                a0.i iVar = t0Var.f9166g;
+                t0Var.f9166i = null;
+                a0.i iVar = t0Var.f9165g;
                 long j10 = this.f5256b;
                 iVar.l(j10);
-                ArrayList arrayList = t0Var.f9168j;
+                ArrayList arrayList = t0Var.f9167j;
                 if (arrayList != null) {
                     for (int size = arrayList.size() - 1; size >= 0; size--) {
-                        if (DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) t0Var.f9168j.get(size)).peer) == j10) {
-                            t0Var.f9168j.remove(size);
+                        if (DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) t0Var.f9167j.get(size)).peer) == j10) {
+                            t0Var.f9167j.remove(size);
                         }
                     }
                 }
                 t0Var.a();
                 fi.s0 s0Var = t0Var.h;
                 if (s0Var != null) {
-                    s0Var.e();
+                    s0Var.f();
                 }
                 MessagesController.getInstance(t0Var.d).resolveCommunityJoinPendingRequest(t0Var.e, j10, !this.f5257c, new fi.r0(t0Var, 2));
                 return;
@@ -67,7 +67,7 @@ public final class o9 implements Runnable {
                 ((TopicsController) this.d).lambda$reloadTopics$24(this.f5256b, this.f5257c);
                 return;
             case 5:
-                xn.b0((xn) this.d, this.f5256b, this.f5257c);
+                wn.o0((wn) this.d, this.f5256b, this.f5257c);
                 return;
             default:
                 yh.o8 o8Var = (yh.o8) this.d;
@@ -81,7 +81,7 @@ public final class o9 implements Runnable {
                 }
                 o8Var.r();
                 o8Var.I.a(true, true);
-                yh.n8 n8Var = o8Var.f47524y;
+                yh.n8 n8Var = o8Var.f47842y;
                 if (n8Var != null) {
                     n8Var.setMyPrivacy(o8Var.E);
                     return;

@@ -31,37 +31,37 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.m80;
 import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.w80;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.wf1;
-import org.telegram.ui.xn;
+import org.telegram.ui.wn;
 public abstract class d {
-    public static final int f15205a = 0;
+    public static final int f15442a = 0;
 
     static {
         new SparseArray();
     }
 
-    public static void a(xn xnVar, MessagesStorage.TopicKey topicKey) {
+    public static void a(wn wnVar, MessagesStorage.TopicKey topicKey) {
         TLRPC.TL_forumTopic findTopic;
-        if (topicKey.topicId != 0 && (findTopic = xnVar.getMessagesController().getTopicsController().findTopic(-topicKey.dialogId, topicKey.topicId)) != null) {
+        if (topicKey.topicId != 0 && (findTopic = wnVar.getMessagesController().getTopicsController().findTopic(-topicKey.dialogId, topicKey.topicId)) != null) {
             if (topicKey.dialogId > 0) {
-                if (UserObject.isBotForum(xnVar.getMessagesController().getUser(Long.valueOf(topicKey.dialogId)))) {
+                if (UserObject.isBotForum(wnVar.getMessagesController().getUser(Long.valueOf(topicKey.dialogId)))) {
                     ArrayList arrayList = new ArrayList();
-                    arrayList.add(new MessageObject(xnVar.getCurrentAccount(), findTopic.topicStartMessage, false, false));
-                    xnVar.pb(arrayList, null, findTopic.f18135id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
-                    xnVar.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
+                    arrayList.add(new MessageObject(wnVar.getCurrentAccount(), findTopic.topicStartMessage, false, false));
+                    wnVar.pb(arrayList, null, findTopic.f18373id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
+                    wnVar.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
                     return;
                 }
                 return;
             }
-            TLRPC.Chat chat = xnVar.getMessagesController().getChat(Long.valueOf(-topicKey.dialogId));
+            TLRPC.Chat chat = wnVar.getMessagesController().getChat(Long.valueOf(-topicKey.dialogId));
             if (chat == null) {
                 return;
             }
@@ -69,20 +69,20 @@ public abstract class d {
                 if (ChatObject.canManageMonoForum(UserConfig.selectedAccount, chat)) {
                     int i10 = findTopic.read_inbox_max_id;
                     int i11 = findTopic.read_outbox_max_id;
-                    xnVar.f39437k4 = i10;
-                    xnVar.l4 = i11;
-                    xnVar.f39460m4 = Math.max(1, i10);
-                    xnVar.f39352d4 = DialogObject.getPeerDialogId(findTopic.from_id);
-                    xnVar.zc();
-                    xnVar.Qc(false);
-                    xnVar.hc(false);
+                    wnVar.f39521k4 = i10;
+                    wnVar.l4 = i11;
+                    wnVar.f39544m4 = Math.max(1, i10);
+                    wnVar.f39436d4 = DialogObject.getPeerDialogId(findTopic.from_id);
+                    wnVar.zc();
+                    wnVar.Qc(false);
+                    wnVar.hc(false);
                 }
             } else {
                 ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(new MessageObject(xnVar.getCurrentAccount(), findTopic.topicStartMessage, false, false));
-                xnVar.pb(arrayList2, chat, findTopic.f18135id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
+                arrayList2.add(new MessageObject(wnVar.getCurrentAccount(), findTopic.topicStartMessage, false, false));
+                wnVar.pb(arrayList2, chat, findTopic.f18373id, findTopic.read_inbox_max_id, findTopic.read_outbox_max_id, findTopic);
             }
-            xnVar.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
+            wnVar.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
         }
     }
 
@@ -108,8 +108,8 @@ public abstract class d {
         } else {
             i11 = R.drawable.msg_filled_general;
         }
-        drawable.f15202a = resources.getDrawable(i11).mutate();
-        drawable.f15203b = f7;
+        drawable.f15439a = resources.getDrawable(i11).mutate();
+        drawable.f15440b = f7;
         drawable.a(i10);
         return drawable;
     }
@@ -117,16 +117,16 @@ public abstract class d {
     public static qq d(int i10, String str) {
         String str2;
         a aVar = new a(i10);
-        m80 m80Var = new m80(1, null);
+        w80 w80Var = new w80(1, null);
         String trim = str.trim();
         if (trim.length() >= 1) {
             str2 = trim.substring(0, 1).toUpperCase();
         } else {
             str2 = "";
         }
-        m80Var.a(str2);
-        qq qqVar = new qq(aVar, m80Var, 0, 0);
-        qqVar.f27431w = true;
+        w80Var.a(str2);
+        qq qqVar = new qq(aVar, w80Var, 0, 0);
+        qqVar.f27733w = true;
         return qqVar;
     }
 
@@ -150,22 +150,22 @@ public abstract class d {
         }
     }
 
-    public static xn g(n2 n2Var, long j3, TLRPC.TL_forumTopic tL_forumTopic, int i10, Bundle bundle) {
+    public static wn g(m2 m2Var, long j3, TLRPC.TL_forumTopic tL_forumTopic, int i10, Bundle bundle) {
         TLRPC.TL_forumTopic tL_forumTopic2;
         TLRPC.TL_forumTopic findTopic;
-        if (n2Var != null && tL_forumTopic != null) {
-            TLRPC.Chat chat = n2Var.getMessagesController().getChat(Long.valueOf(j3));
+        if (m2Var != null && tL_forumTopic != null) {
+            TLRPC.Chat chat = m2Var.getMessagesController().getChat(Long.valueOf(j3));
             bundle.putLong("chat_id", j3);
             if (i10 != 0) {
                 bundle.putInt("message_id", i10);
             } else if (tL_forumTopic.read_inbox_max_id == 0) {
-                bundle.putInt("message_id", tL_forumTopic.f18135id);
+                bundle.putInt("message_id", tL_forumTopic.f18373id);
             }
             bundle.putInt("unread_count", tL_forumTopic.unread_count);
             bundle.putBoolean("historyPreloaded", false);
-            xn xnVar = new xn(bundle);
+            wn wnVar = new wn(bundle);
             TLRPC.Message message = tL_forumTopic.topicStartMessage;
-            if (message == null && (findTopic = n2Var.getMessagesController().getTopicsController().findTopic(j3, tL_forumTopic.f18135id)) != null) {
+            if (message == null && (findTopic = m2Var.getMessagesController().getTopicsController().findTopic(j3, tL_forumTopic.f18373id)) != null) {
                 message = findTopic.topicStartMessage;
                 tL_forumTopic2 = findTopic;
             } else {
@@ -173,12 +173,12 @@ public abstract class d {
             }
             if (message != null) {
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(new MessageObject(n2Var.getCurrentAccount(), message, false, false));
-                xnVar.pb(arrayList, chat, tL_forumTopic2.f18135id, tL_forumTopic2.read_inbox_max_id, tL_forumTopic2.read_outbox_max_id, tL_forumTopic2);
+                arrayList.add(new MessageObject(m2Var.getCurrentAccount(), message, false, false));
+                wnVar.pb(arrayList, chat, tL_forumTopic2.f18373id, tL_forumTopic2.read_inbox_max_id, tL_forumTopic2.read_outbox_max_id, tL_forumTopic2);
                 if (i10 != 0) {
-                    xnVar.L7 = i10;
+                    wnVar.L7 = i10;
                 }
-                return xnVar;
+                return wnVar;
             }
             return null;
         }
@@ -218,7 +218,7 @@ public abstract class d {
         if (forumTopic instanceof TLRPC.TL_forumTopic) {
             TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) forumTopic;
             Paint.FontMetricsInt fontMetricsInt = null;
-            if (tL_forumTopic.f18135id == 1) {
+            if (tL_forumTopic.f18373id == 1) {
                 try {
                     Context context = ApplicationLoader.applicationContext;
                     if (paint == null) {
@@ -259,12 +259,12 @@ public abstract class d {
                 spannableStringBuilder.append((CharSequence) " ");
                 qq e = e(tL_forumTopic);
                 if (drawableArr != null) {
-                    drawableArr[0] = e.f27424a;
+                    drawableArr[0] = e.f27726a;
                 }
                 e.setBounds(0, 0, (int) (e.getIntrinsicWidth() * 0.65f), (int) (e.getIntrinsicHeight() * 0.65f));
-                Drawable drawable = e.f27425b;
-                if (drawable instanceof m80) {
-                    ((m80) drawable).f26140i = 0.7f;
+                Drawable drawable = e.f27727b;
+                if (drawable instanceof w80) {
+                    ((w80) drawable).f29916i = 0.7f;
                 }
                 if (paint != null) {
                     pq pqVar = new pq(0, e);
@@ -302,7 +302,7 @@ public abstract class d {
                 TLRPC.TL_monoForumDialog tL_monoForumDialog = (TLRPC.TL_monoForumDialog) saveddialog;
                 long peerDialogId = DialogObject.getPeerDialogId(tL_monoForumDialog.peer);
                 TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
-                tL_forumTopic.f18135id = (int) ((peerDialogId >>> 32) ^ peerDialogId);
+                tL_forumTopic.f18373id = (int) ((peerDialogId >>> 32) ^ peerDialogId);
                 tL_forumTopic.title = Long.toString(peerDialogId);
                 tL_forumTopic.top_message = tL_monoForumDialog.top_message;
                 tL_forumTopic.read_inbox_max_id = tL_monoForumDialog.read_inbox_max_id;
@@ -319,10 +319,10 @@ public abstract class d {
         return arrayList2;
     }
 
-    public static void m(n2 n2Var, long j3, TLRPC.TL_forumTopic tL_forumTopic, int i10) {
-        xn g10 = g(n2Var, j3, tL_forumTopic, i10, new Bundle());
+    public static void m(m2 m2Var, long j3, TLRPC.TL_forumTopic tL_forumTopic, int i10) {
+        wn g10 = g(m2Var, j3, tL_forumTopic, i10, new Bundle());
         if (g10 != null) {
-            n2Var.presentFragment(g10);
+            m2Var.presentFragment(g10);
         }
     }
 
@@ -358,9 +358,9 @@ public abstract class d {
         int i10;
         ColorFilter n02;
         if (tL_forumTopic != null && w9Var != null) {
-            if (tL_forumTopic.f18135id == 1) {
+            if (tL_forumTopic.f18373id == 1) {
                 w9Var.setAnimatedEmojiDrawable(null);
-                w9Var.setImageDrawable(c(w9Var.getContext(), 0.75f, h6.v0(h6.f19120v8, d6Var), z11));
+                w9Var.setImageDrawable(c(w9Var.getContext(), 0.75f, h6.v0(h6.f19378v8, d6Var), z11));
             } else if (tL_forumTopic.icon_emoji_id != 0) {
                 w9Var.setImageDrawable(null);
                 q5 q5Var = w9Var.e;
@@ -387,31 +387,31 @@ public abstract class d {
     }
 
     public static void q(long j3, ActionBarLayout actionBarLayout) {
-        n2 lastFragment = actionBarLayout.getLastFragment();
-        if (lastFragment instanceof xn) {
-            xn xnVar = (xn) lastFragment;
-            if ((-xnVar.a()) == j3 && xnVar.getMessagesController().getChat(Long.valueOf(j3)).forum && xnVar.getParentLayout() != null) {
-                if (((ActionBarLayout) xnVar.getParentLayout()).j()) {
-                    AndroidUtilities.runOnUIThread(new b(xnVar, 0), 500L);
+        m2 lastFragment = actionBarLayout.getLastFragment();
+        if (lastFragment instanceof wn) {
+            wn wnVar = (wn) lastFragment;
+            if ((-wnVar.a()) == j3 && wnVar.getMessagesController().getChat(Long.valueOf(j3)).forum && wnVar.getParentLayout() != null) {
+                if (((ActionBarLayout) wnVar.getParentLayout()).j()) {
+                    AndroidUtilities.runOnUIThread(new b(wnVar, 0), 500L);
                 } else {
-                    wf1.I0(xnVar);
+                    wf1.I0(wnVar);
                 }
             }
         }
         if (lastFragment instanceof wf1) {
             wf1 wf1Var = (wf1) lastFragment;
-            long j10 = wf1Var.f38936a;
+            long j10 = wf1Var.f39293a;
             if ((-(-j10)) == j3 && !wf1Var.getMessagesController().getChat(Long.valueOf(j3)).forum) {
                 if (wf1Var.getParentLayout() != null && ((ActionBarLayout) wf1Var.getParentLayout()).j()) {
-                    AndroidUtilities.runOnUIThread(new h0(wf1Var, 14), 500L);
+                    AndroidUtilities.runOnUIThread(new h0(wf1Var, 15), 500L);
                     return;
                 }
                 wf1Var.H = true;
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", j10);
-                xn xnVar2 = new xn(bundle);
-                xnVar2.f39430ja = true;
-                wf1Var.presentFragment(xnVar2);
+                wn wnVar2 = new wn(bundle);
+                wnVar2.f39514ja = true;
+                wf1Var.presentFragment(wnVar2);
             }
         }
     }

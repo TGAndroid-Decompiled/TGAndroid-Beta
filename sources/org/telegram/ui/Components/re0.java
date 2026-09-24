@@ -1,45 +1,34 @@
 package org.telegram.ui.Components;
-public final class re0 extends r6 {
-    public final int f27610b;
-    public final ue0 f27611c;
 
-    public re0(ue0 ue0Var, int i10) {
-        super("thumbAnimationProgress", 0);
-        this.f27610b = i10;
-        switch (i10) {
-            case 1:
-                this.f27611c = ue0Var;
-                super("thumbImageVisibleProgress", 0);
-                return;
-            default:
-                this.f27611c = ue0Var;
-                return;
-        }
+import android.app.Activity;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.core.widget.NestedScrollView;
+public final class re0 extends NestedScrollView {
+    public View W;
+    public final ze0 f27948a0;
+
+    public re0(ze0 ze0Var, Activity activity) {
+        super(activity);
+        this.f27948a0 = ze0Var;
     }
 
     @Override
-    public final void b(Object obj, float f7) {
-        switch (this.f27610b) {
-            case 0:
-                this.f27611c.f28472r = f7;
-                ((ue0) obj).invalidate();
-                return;
-            default:
-                this.f27611c.f28471n = f7;
-                ((ue0) obj).invalidate();
-                return;
+    public final int f(Rect rect) {
+        if (this.W != null && this.f27948a0.d.getTop() == getPaddingTop()) {
+            int f7 = super.f(rect);
+            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - (((this.W.getTop() - getScrollY()) + rect.top) + f7);
+            if (currentActionBarHeight > 0) {
+                return org.telegram.messenger.ok.y(10.0f, currentActionBarHeight, f7);
+            }
+            return f7;
         }
+        return 0;
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f27610b) {
-            case 0:
-                ue0 ue0Var = (ue0) obj;
-                return Float.valueOf(this.f27611c.f28472r);
-            default:
-                ue0 ue0Var2 = (ue0) obj;
-                return Float.valueOf(this.f27611c.f28471n);
-        }
+    public final void requestChildFocus(View view, View view2) {
+        this.W = view2;
+        super.requestChildFocus(view, view2);
     }
 }

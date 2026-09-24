@@ -1,76 +1,49 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class zw0 extends org.telegram.ui.Components.ml0 {
-    public final Paint X2;
-    public final Path Y2;
-    public final cx0 Z2;
+import android.view.ViewGroup;
+public final class zw0 extends org.telegram.ui.Components.vl0 {
+    public final Context f40574c;
+    public final ax0 d;
 
-    public zw0(cx0 cx0Var, Context context) {
-        super(context, null);
-        this.Z2 = cx0Var;
-        Paint paint = new Paint(1);
-        this.X2 = paint;
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18859h5, false));
-        this.Y2 = new Path();
+    public zw0(ax0 ax0Var, Context context) {
+        this.d = ax0Var;
+        this.f40574c = context;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Path path = this.Y2;
-        path.rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-        canvas.drawPath(path, this.X2);
-        canvas.save();
-        canvas.clipPath(path);
-        super.dispatchDraw(canvas);
-        canvas.restore();
+    public final boolean D(s4.c1 c1Var) {
+        return !((cx0) this.d.f32240n.d.get(c1Var.b())).f32796a.current;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.Z2.f32435n.f31146q0 >= 1.0f) {
-            return false;
+    public final int h() {
+        return this.d.f32240n.d.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        rg.p1 p1Var = (rg.p1) c1Var.f42946a;
+        PremiumPreviewFragment premiumPreviewFragment = this.d.f32240n;
+        cx0 cx0Var = (cx0) premiumPreviewFragment.d.get(i10);
+        boolean z11 = true;
+        if (i10 != h() - 1) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        p1Var.a(cx0Var, z10);
+        if (premiumPreviewFragment.e != i10) {
+            z11 = false;
+        }
+        p1Var.c(z11, false);
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.Z2.f32435n.f31146q0 >= 1.0f) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        PremiumPreviewFragment premiumPreviewFragment = this.Z2.f32435n;
-        int i14 = 0;
-        int i15 = 0;
-        while (true) {
-            ArrayList arrayList = premiumPreviewFragment.d;
-            if (i14 < arrayList.size()) {
-                premiumPreviewFragment.M.a((ex0) arrayList.get(i14), false);
-                premiumPreviewFragment.M.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-                ((ex0) arrayList.get(i14)).h = i15;
-                i15 += premiumPreviewFragment.M.getMeasuredHeight();
-                i14++;
-            } else {
-                premiumPreviewFragment.O = i15;
-                return;
-            }
-        }
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        yw0 yw0Var = new yw0(this, this.f40574c);
+        yw0Var.setCirclePaintProvider(new ds0(3, this, yw0Var));
+        return new s4.c1(yw0Var);
     }
 }

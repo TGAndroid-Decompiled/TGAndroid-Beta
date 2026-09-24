@@ -4,7 +4,7 @@ import android.app.Notification;
 import java.util.ArrayList;
 public final class o extends b0 {
     public final int e;
-    public Object f7804f;
+    public Object f7803f;
 
     public o(boolean z10) {
         this.e = 0;
@@ -14,18 +14,18 @@ public final class o extends b0 {
     public final void b(i0 i0Var) {
         switch (this.e) {
             case 0:
-                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) i0Var.f7774c).setBigContentTitle(this.f7754b).bigText((CharSequence) this.f7804f);
+                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) i0Var.f7773c).setBigContentTitle(this.f7753b).bigText((CharSequence) this.f7803f);
                 if (this.d) {
-                    bigText.setSummaryText(this.f7755c);
+                    bigText.setSummaryText(this.f7754c);
                     return;
                 }
                 return;
             default:
-                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) i0Var.f7774c).setBigContentTitle(this.f7754b);
+                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) i0Var.f7773c).setBigContentTitle(this.f7753b);
                 if (this.d) {
-                    bigContentTitle.setSummaryText(this.f7755c);
+                    bigContentTitle.setSummaryText(this.f7754c);
                 }
-                ArrayList arrayList = (ArrayList) this.f7804f;
+                ArrayList arrayList = (ArrayList) this.f7803f;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -49,20 +49,20 @@ public final class o extends b0 {
 
     public void d(String str) {
         if (str != null) {
-            ((ArrayList) this.f7804f).add(t.d(str));
+            ((ArrayList) this.f7803f).add(t.d(str));
         }
     }
 
     public void e(String str) {
-        this.f7804f = t.d(str);
+        this.f7803f = t.d(str);
     }
 
     public void f(String str) {
-        this.f7754b = t.d(str);
+        this.f7753b = t.d(str);
     }
 
     public void g(String str) {
-        this.f7755c = t.d(str);
+        this.f7754c = t.d(str);
         this.d = true;
     }
 
@@ -70,7 +70,7 @@ public final class o extends b0 {
         this.e = i10;
         switch (i10) {
             case 1:
-                this.f7804f = new ArrayList();
+                this.f7803f = new ArrayList();
                 return;
             default:
                 return;

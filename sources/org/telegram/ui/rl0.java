@@ -1,72 +1,102 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class rl0 implements Runnable {
-    public final int f36892a;
-    public final in0 f36893b;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class rl0 implements View.OnClickListener {
+    public final int f37364a;
+    public final gn0 f37365b;
 
-    public rl0(in0 in0Var, int i10) {
-        this.f36892a = i10;
-        this.f36893b = in0Var;
+    public rl0(gn0 gn0Var, int i10) {
+        this.f37364a = i10;
+        this.f37365b = gn0Var;
     }
 
     @Override
-    public final void run() {
-        ViewGroup viewGroup;
-        switch (this.f36892a) {
+    public final void onClick(View view) {
+        switch (this.f37364a) {
             case 0:
-                in0 in0Var = this.f36893b;
-                ViewGroup[] viewGroupArr = in0Var.Z;
-                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
-                    in0Var.Y[0].requestFocus();
-                    AndroidUtilities.showKeyboard(in0Var.Y[0]);
-                    return;
-                }
+                gn0 gn0Var = this.f37365b;
+                gn0Var.S0 = 2;
+                gn0Var.D1();
                 return;
             case 1:
-                in0 in0Var2 = this.f36893b;
-                in0Var2.presentFragment(in0Var2.f34181h1, true);
-                in0Var2.f34181h1 = null;
+                this.f37365b.d1();
                 return;
             case 2:
-                in0 in0Var3 = this.f36893b;
-                EditTextBoldCursor[] editTextBoldCursorArr = in0Var3.f34163a0;
-                if (editTextBoldCursorArr != null) {
-                    in0Var3.I1(editTextBoldCursorArr[0]);
+                gn0 gn0Var2 = this.f37365b;
+                gn0Var2.S0 = 3;
+                gn0Var2.D1();
+                return;
+            case 3:
+                gn0 gn0Var3 = this.f37365b;
+                gn0Var3.S0 = 1;
+                gn0Var3.D1();
+                return;
+            case 4:
+                gn0 gn0Var4 = this.f37365b;
+                gn0Var4.S0 = 4;
+                gn0Var4.D1();
+                return;
+            case 5:
+                gn0.e0(this.f37365b);
+                return;
+            case 6:
+                gn0 gn0Var5 = this.f37365b;
+                gn0Var5.f33969f = true;
+                gn0Var5.L.callOnClick();
+                gn0Var5.f33969f = false;
+                return;
+            case 7:
+                gn0 gn0Var6 = this.f37365b;
+                gn0Var6.S0 = 0;
+                gn0Var6.D1();
+                return;
+            case 8:
+                gn0 gn0Var7 = this.f37365b;
+                gn0Var7.S0 = 4;
+                gn0Var7.D1();
+                return;
+            case 9:
+                this.f37365b.d1();
+                return;
+            case 10:
+                gn0.b0(this.f37365b);
+                return;
+            case 11:
+                gn0.c0(this.f37365b);
+                return;
+            case 12:
+                this.f37365b.C1();
+                return;
+            case 13:
+                gn0 gn0Var8 = this.f37365b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(gn0Var8.getParentActivity());
+                alertDialog$Builder.f18647a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
+                alertDialog$Builder.f18647a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new tl0(gn0Var8, 5));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+                gn0Var8.showDialog(a2Var);
+                TextView textView = (TextView) a2Var.d(-1);
+                if (textView != null) {
+                    textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19284q7, false));
                     return;
                 }
                 return;
-            case 3:
-                AndroidUtilities.showKeyboard(this.f36893b.Y[2]);
+            case 14:
+                this.f37365b.C1();
                 return;
-            case 4:
-                this.f36893b.x1();
+            case 15:
+                gn0.V(this.f37365b);
                 return;
-            case 5:
-                int i10 = 0;
-                while (true) {
-                    in0 in0Var4 = this.f36893b;
-                    if (i10 < in0Var4.f34169c0.getChildCount()) {
-                        View childAt = in0Var4.f34169c0.getChildAt(i10);
-                        if (childAt instanceof hn0) {
-                            in0Var4.f34169c0.removeView(childAt);
-                            i10--;
-                        }
-                        i10++;
-                    } else {
-                        in0Var4.x1();
-                        in0Var4.f34198q1.clear();
-                        in0Var4.f34196p1.clear();
-                        in0Var4.f34217y.values.clear();
-                        in0Var4.Q1();
-                        return;
-                    }
-                }
             default:
-                this.f36893b.finishFragment();
+                gn0 gn0Var9 = this.f37365b;
+                gn0Var9.f33969f = true;
+                gn0Var9.L.callOnClick();
+                gn0Var9.f33969f = false;
                 return;
         }
     }

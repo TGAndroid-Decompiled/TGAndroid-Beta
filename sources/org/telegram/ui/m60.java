@@ -1,23 +1,22 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-public final class m60 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final FrameLayout f35161a;
-    public final p60 f35162b;
+import android.app.Activity;
+public final class m60 extends rg.j0 {
+    public final n60 W0;
 
-    public m60(p60 p60Var, FrameLayout frameLayout) {
-        this.f35162b = p60Var;
-        this.f35161a = frameLayout;
+    public m60(n60 n60Var, n60 n60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(i10, i11, activity, n60Var2, d6Var);
+        this.W0 = n60Var;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        this.f35161a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        p60 p60Var = this.f35162b;
-        if (p60Var.f36030z0 == null) {
-            p60Var.f36030z0 = (tc) p60Var.y0(p60Var.Z);
-        }
-        p60Var.f36030z0.f37604f.setOnClickListener(new h60(this, 1));
+    public final void dismiss() {
+        super.dismiss();
+        this.W0.B0 = false;
+    }
+
+    @Override
+    public final void onOpenAnimationEnd() {
+        this.W0.B0 = false;
     }
 }

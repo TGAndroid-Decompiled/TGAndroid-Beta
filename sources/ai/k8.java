@@ -9,7 +9,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ai0;
+import org.telegram.ui.zh0;
 public final class k8 implements RequestDelegate {
     public final int f1138a;
     public final int f1139b;
@@ -17,11 +17,11 @@ public final class k8 implements RequestDelegate {
     public final Object d;
     public final Object e;
 
-    public k8(int i10, ci.d dVar, org.telegram.ui.ActionBar.f3 f3Var, long j3) {
+    public k8(int i10, ci.d dVar, org.telegram.ui.ActionBar.e3 e3Var, long j3) {
         this.f1138a = 4;
         this.f1139b = i10;
         this.d = dVar;
-        this.e = f3Var;
+        this.e = e3Var;
         this.f1140c = j3;
     }
 
@@ -44,16 +44,16 @@ public final class k8 implements RequestDelegate {
                 ((MessagesController) this.d).lambda$checkPromoInfoInternal$167(this.f1139b, (TLRPC.TL_help_promoData) this.e, j11, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new ei.p3(tLObject, this.f1139b, (ci.d) this.d, (org.telegram.ui.ActionBar.f3) this.e, this.f1140c, tL_error));
+                AndroidUtilities.runOnUIThread(new ei.p3(tLObject, this.f1139b, (ci.d) this.d, (org.telegram.ui.ActionBar.e3) this.e, this.f1140c, tL_error));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new ei.p3((ai0) this.d, tL_error, tLObject, this.f1140c, this.f1139b, (TLRPC.Chat) this.e, 4));
+                AndroidUtilities.runOnUIThread(new ei.p3((zh0) this.d, tL_error, tLObject, this.f1140c, this.f1139b, (TLRPC.Chat) this.e, 4));
                 return;
             case 6:
                 AndroidUtilities.runOnUIThread(new m8((yh.o) this.d, (yh.n) this.e, this.f1139b, tLObject, this.f1140c));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.j7((ci.d) this.d, (org.telegram.ui.ActionBar.f3[]) this.e, this.f1139b, this.f1140c, 15));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.j7((ci.d) this.d, (org.telegram.ui.ActionBar.e3[]) this.e, this.f1139b, this.f1140c, 15));
                 return;
         }
     }
@@ -74,9 +74,9 @@ public final class k8 implements RequestDelegate {
         this.f1140c = j3;
     }
 
-    public k8(ai0 ai0Var, long j3, int i10, TLRPC.Chat chat) {
+    public k8(zh0 zh0Var, long j3, int i10, TLRPC.Chat chat) {
         this.f1138a = 5;
-        this.d = ai0Var;
+        this.d = zh0Var;
         this.f1140c = j3;
         this.f1139b = i10;
         this.e = chat;

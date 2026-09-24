@@ -1,25 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class se0 extends AnimatorListenerAdapter {
-    public final int f27925a;
-    public final ue0 f27926b;
+import android.app.Activity;
+import android.view.ViewGroup;
+public final class se0 extends org.telegram.ui.ActionBar.k {
+    public final ze0 f28228t1;
 
-    public se0(ue0 ue0Var, int i10) {
-        this.f27925a = i10;
-        this.f27926b = ue0Var;
+    public se0(ze0 ze0Var, Activity activity) {
+        super(activity, null);
+        this.f28228t1 = ze0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27925a) {
-            case 0:
-                this.f27926b.f28473s = null;
-                return;
-            default:
-                this.f27926b.v = null;
-                return;
-        }
+    public final void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        super.setAlpha(f7);
+        viewGroup = ((org.telegram.ui.ActionBar.e3) this.f28228t1).containerView;
+        viewGroup.invalidate();
     }
 }

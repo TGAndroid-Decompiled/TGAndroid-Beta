@@ -1,7 +1,14 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.ui.Components.h90;
+import android.graphics.RectF;
+import android.text.StaticLayout;
+import org.telegram.ui.Components.zc;
 public final class m1 {
-    public h90 f20393a;
-    public int f20394b;
+    public int f20612a;
+    public float f20613b;
+    public float f20614c;
+    public StaticLayout d;
+    public final RectF e = new RectF();
+    public zc f20615f;
+    public z f20616g;
 }

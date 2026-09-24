@@ -8,17 +8,17 @@ import k2.u;
 import rd.l;
 import zd.c0;
 public final class c {
-    public final String f14369a;
-    public final l f14370b;
-    public final c0 f14371c;
+    public final String f14607a;
+    public final l f14608b;
+    public final c0 f14609c;
     public final Object d;
     public volatile u e;
 
     public c(String name, l lVar, c0 c0Var) {
         kotlin.jvm.internal.i.e(name, "name");
-        this.f14369a = name;
-        this.f14370b = lVar;
-        this.f14371c = c0Var;
+        this.f14607a = name;
+        this.f14608b = lVar;
+        this.f14609c = c0Var;
         this.d = new Object();
     }
 
@@ -33,10 +33,10 @@ public final class c {
                 try {
                     if (this.e == null) {
                         Context applicationContext = thisRef.getApplicationContext();
-                        l lVar = this.f14370b;
+                        l lVar = this.f14608b;
                         kotlin.jvm.internal.i.d(applicationContext, "applicationContext");
                         List migrations = (List) lVar.invoke(applicationContext);
-                        c0 c0Var = this.f14371c;
+                        c0 c0Var = this.f14609c;
                         b bVar = new b(applicationContext, this);
                         kotlin.jvm.internal.i.e(migrations, "migrations");
                         this.e = new u(new a0(new k0(bVar, 2), hd.h.b(new bb.i(migrations, null, 1)), new na.d(12), c0Var), 6);

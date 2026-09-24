@@ -1,17 +1,40 @@
 package w7;
 
-import android.os.Parcel;
-import android.os.RemoteException;
+import android.util.SparseBooleanArray;
 public abstract class u {
-    public static void a(m4.i iVar) {
-        try {
-            m4.h hVar = (m4.h) iVar;
-            Parcel obtain = Parcel.obtain();
-            obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
-            obtain.writeInt(0);
-            hVar.f14563a.transact(3006, obtain, null, 1);
-            obtain.recycle();
-        } catch (RemoteException unused) {
+    public static b2.x0 a(b2.x0 x0Var, b2.x0 x0Var2) {
+        if (x0Var != null) {
+            b2.q qVar = x0Var.f3341a;
+            if (x0Var2 != null) {
+                SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
+                for (int i10 = 0; i10 < qVar.f3194a.size(); i10++) {
+                    if (x0Var2.a(qVar.a(i10))) {
+                        int a2 = qVar.a(i10);
+                        e2.d.g(!false);
+                        sparseBooleanArray.append(a2, true);
+                    }
+                }
+                e2.d.g(!false);
+                return new b2.x0(new b2.q(sparseBooleanArray));
+            }
+        }
+        return b2.x0.f3339b;
+    }
+
+    public static void b(b2.b1 b1Var, m4.s sVar) {
+        int i10 = sVar.f14907b;
+        long j3 = sVar.f14908c;
+        e9.i0 i0Var = sVar.f14906a;
+        if (i10 == -1) {
+            if (b1Var.m0(20)) {
+                b1Var.I0(i0Var);
+            } else if (!i0Var.isEmpty()) {
+                b1Var.p0((b2.k0) i0Var.get(0));
+            }
+        } else if (b1Var.m0(20)) {
+            b1Var.T(j3, sVar.f14907b, i0Var);
+        } else if (!i0Var.isEmpty()) {
+            b1Var.k((b2.k0) i0Var.get(0), j3);
         }
     }
 }

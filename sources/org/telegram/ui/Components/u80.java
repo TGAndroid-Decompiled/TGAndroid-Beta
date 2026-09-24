@@ -1,25 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class u80 extends k9 {
-    public final ai.w7 e;
+public final class u80 implements Runnable {
+    public final int f28745a;
+    public final v80 f28746b;
+    public final boolean f28747c;
+    public final boolean d;
 
-    public u80(ai.w7 w7Var, Context context) {
-        super(context, false);
-        this.e = w7Var;
+    public u80(v80 v80Var, boolean z10, boolean z11, int i10) {
+        this.f28745a = i10;
+        this.f28746b = v80Var;
+        this.f28747c = z10;
+        this.d = z11;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int g10;
-        int min = Math.min(3, ((w80) this.e.d).f29574w);
-        if (min == 0) {
-            g10 = 0;
-        } else {
-            g10 = hg.c.g(min, 1, 20, 32);
+    public final void run() {
+        switch (this.f28745a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new u80(this.f28746b, this.f28747c, this.d, 1));
+                return;
+            default:
+                v80 v80Var = this.f28746b;
+                v80Var.setJoinRequest(this.f28747c);
+                v80Var.setJoinToSend(this.d);
+                return;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(g10), 1073741824), i11);
     }
 }

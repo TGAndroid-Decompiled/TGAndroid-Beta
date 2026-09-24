@@ -2,27 +2,27 @@ package ph;
 
 import ii.q1;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.web.t0;
+import org.telegram.ui.web.q0;
 public final class c {
-    public final q1 f41009a;
-    public b f41011c = b.f41006a;
-    public final t0 d = new t0(this, 13);
-    public final long f41010b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
+    public final q1 f41317a;
+    public b f41319c = b.f41314a;
+    public final q0 d = new q0(this, 14);
+    public final long f41318b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
 
     public c(q1 q1Var) {
-        this.f41009a = q1Var;
+        this.f41317a = q1Var;
     }
 
     public final void a(b bVar, boolean z10) {
-        if (this.f41011c != bVar) {
-            t0 t0Var = this.d;
-            AndroidUtilities.cancelRunOnUIThread(t0Var);
-            this.f41011c = bVar;
+        if (this.f41319c != bVar) {
+            q0 q0Var = this.d;
+            AndroidUtilities.cancelRunOnUIThread(q0Var);
+            this.f41319c = bVar;
             if (z10) {
-                this.f41009a.run(bVar);
+                this.f41317a.run(bVar);
             }
-            if (bVar == b.f41007b || bVar == b.f41008c) {
-                AndroidUtilities.runOnUIThread(t0Var, this.f41010b);
+            if (bVar == b.f41315b || bVar == b.f41316c) {
+                AndroidUtilities.runOnUIThread(q0Var, this.f41318b);
             }
         }
     }

@@ -1,73 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class wb0 implements View.OnClickListener {
-    public final int f29595a = 1;
-    public final boolean f29596b;
-    public final Object f29597c;
-    public final Object d;
+import android.content.Context;
+import org.telegram.messenger.ChatMessageSharedResources;
+import org.telegram.messenger.MessageObject;
+public final class wb0 extends org.telegram.ui.Cells.u1 {
+    public final yb0 Ge;
 
-    public wb0(org.telegram.ui.lt ltVar, ArrayList arrayList, boolean z10) {
-        this.f29597c = ltVar;
-        this.d = arrayList;
-        this.f29596b = z10;
+    public wb0(yb0 yb0Var, Context context, int i10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, false, chatMessageSharedResources, d6Var);
+        this.Ge = yb0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        String str;
-        switch (this.f29595a) {
-            case 0:
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f29597c;
-                Runnable runnable = (Runnable) this.d;
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                if (R != null) {
-                    if (this.f29596b) {
-                        str = "lastseen";
-                    } else {
-                        str = "readtime";
-                    }
-                    R.presentFragment(new PremiumPreviewFragment(0, str));
-                    f3Var.dismiss();
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) this.d;
-                org.telegram.ui.pt ptVar = ((org.telegram.ui.lt) this.f29597c).f35086a;
-                if (ptVar.f36203w != null && ptVar.f36193l != null) {
-                    int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
-                    if (intValue == 0) {
-                        ptVar.f36193l.C(ptVar.W);
-                    } else if (intValue == 1) {
-                        ptVar.f36193l.v(ptVar.W);
-                    } else if (intValue == 2) {
-                        ptVar.f36193l.v(null);
-                    } else if (intValue == 3) {
-                        ptVar.f36193l.H(ptVar.W);
-                    } else if (intValue == 4) {
-                        ptVar.f36193l.r(ptVar.W);
-                    } else if (intValue == 5) {
-                        MediaDataController.getInstance(ptVar.f36199r).addRecentSticker(2, ptVar.f36183b0, ptVar.W, (int) (System.currentTimeMillis() / 1000), this.f29596b);
-                    }
-                    ptVar.p();
-                    return;
-                }
-                return;
-        }
+    public final void X3(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z10, boolean z11, boolean z12, boolean z13) {
+        super.X3(messageObject, groupedMessages, z10, z11, z12, z13);
+        zb0.b(this.Ge.f30577c, this);
     }
 
-    public wb0(boolean z10, org.telegram.ui.ActionBar.f3 f3Var, Runnable runnable) {
-        this.f29596b = z10;
-        this.f29597c = f3Var;
-        this.d = runnable;
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.Ge.f30577c.f30830f.invalidate();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        zb0.b(this.Ge.f30577c, this);
+    }
+
+    @Override
+    public final void invalidate(int i10, int i11, int i12, int i13) {
+        super.invalidate(i10, i11, i12, i13);
+        this.Ge.f30577c.f30830f.invalidate();
     }
 }

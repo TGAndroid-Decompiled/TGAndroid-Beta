@@ -16,13 +16,13 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.py0;
-import w7.x5;
+import org.telegram.ui.ny0;
+import w7.y5;
 public final class g extends c {
-    public final ImageView f44274r;
-    public f f44275s;
+    public final ImageView f44591r;
+    public f f44592s;
     public TLRPC.Chat v;
-    public boolean f44276w;
+    public boolean f44593w;
 
     public g(Context context, d6 d6Var) {
         super(context, d6Var);
@@ -32,12 +32,12 @@ public final class g extends c {
         float f11;
         this.d.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
-        this.f44274r = imageView;
+        this.f44591r = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setBackground(h6.f0(h6.w0(null, h6.Vh, false), 1, -1));
         imageView.setImageResource(R.drawable.poll_remove);
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(null, h6.f18953m6, false), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(null, h6.f19209m6, false), PorterDuff.Mode.MULTIPLY));
         imageView.setContentDescription(LocaleController.getString(R.string.Delete));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -56,7 +56,7 @@ public final class g extends c {
         } else {
             f10 = 3.0f;
         }
-        addView(imageView, x5.d(48, 50.0f, i11, f7, 0.0f, f10, 0.0f));
+        addView(imageView, y5.d(48, 50.0f, i11, f7, 0.0f, f10, 0.0f));
         z5 z5Var = this.d;
         if (LocaleController.isRTL) {
             f11 = 24.0f;
@@ -76,12 +76,12 @@ public final class g extends c {
         int i12;
         String string;
         String str2;
-        this.f44276w = z10;
+        this.f44593w = z10;
         this.v = chat;
-        h9 h9Var = this.f44258b;
+        h9 h9Var = this.f44575b;
         h9Var.q(chat);
         int dp = AndroidUtilities.dp(20.0f);
-        w9 w9Var = this.f44259c;
+        w9 w9Var = this.f44576c;
         w9Var.setRoundRadius(dp);
         w9Var.e(chat, h9Var);
         String str3 = chat.title;
@@ -113,15 +113,15 @@ public final class g extends c {
             }
             setSubtitle(LocaleController.formatPluralString(str, i10, new Object[0]));
         }
-        this.e.setTextColor(h6.v0(h6.f19043r5, this.f44257a));
+        this.e.setTextColor(h6.v0(h6.f19301r5, this.f44574a));
         setDivider(true);
-        ImageView imageView = this.f44274r;
+        ImageView imageView = this.f44591r;
         if (z10) {
             imageView.setVisibility(0);
         } else {
             imageView.setVisibility(4);
         }
-        imageView.setOnClickListener(new py0(21, this, chat));
+        imageView.setOnClickListener(new ny0(21, this, chat));
     }
 
     public TLRPC.Chat getChat() {
@@ -131,10 +131,10 @@ public final class g extends c {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f44274r.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        this.f44591r.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
     public void setChatDeleteListener(f fVar) {
-        this.f44275s = fVar;
+        this.f44592s = fVar;
     }
 }

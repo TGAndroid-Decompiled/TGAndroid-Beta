@@ -3,15 +3,15 @@ package g7;
 import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import w7.e0;
+import w7.f0;
 public final class e extends o6.a {
     public static final Parcelable.Creator<e> CREATOR = new e6.i(16);
-    public final PendingIntent f9475a;
-    public final g f9476b;
+    public final PendingIntent f9474a;
+    public final g f9475b;
 
     public e(PendingIntent pendingIntent, g gVar) {
-        this.f9475a = pendingIntent;
-        this.f9476b = gVar;
+        this.f9474a = pendingIntent;
+        this.f9475b = gVar;
         if (pendingIntent == null && gVar == null) {
             throw new IllegalArgumentException("pendingIntent or createCredentialResponse must be specified.");
         }
@@ -20,9 +20,9 @@ public final class e extends o6.a {
     @Override
     public final void writeToParcel(Parcel dest, int i10) {
         kotlin.jvm.internal.i.e(dest, "dest");
-        int q6 = e0.q(dest, 20293);
-        e0.k(dest, 1, this.f9475a, i10);
-        e0.k(dest, 2, this.f9476b, i10);
-        e0.r(dest, q6);
+        int q6 = f0.q(dest, 20293);
+        f0.k(dest, 1, this.f9474a, i10);
+        f0.k(dest, 2, this.f9475b, i10);
+        f0.r(dest, q6);
     }
 }

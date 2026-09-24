@@ -1,24 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class le0 extends AnimatorListenerAdapter {
-    public final int f25886a;
-    public final pe0 f25887b;
+import android.app.Activity;
+import org.telegram.messenger.Utilities;
+public final class le0 implements Utilities.Callback {
+    public final int f26075a;
+    public final String[] f26076b;
+    public final Activity f26077c;
+    public final Utilities.Callback d;
 
-    public le0(pe0 pe0Var, int i10) {
-        this.f25886a = i10;
-        this.f25887b = pe0Var;
+    public le0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
+        this.f26075a = i10;
+        this.f26076b = strArr;
+        this.f26077c = activity;
+        this.d = callback;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25886a) {
+    public final void run(Object obj) {
+        int i10 = this.f26075a;
+        int[] iArr = (int[]) obj;
+        String[] strArr = this.f26076b;
+        switch (i10) {
             case 0:
-                this.f25887b.f27015x = null;
+                ne0.a(strArr, this.f26077c, this.d);
                 return;
             default:
-                this.f25887b.f27016y = null;
+                ne0.b(strArr, this.f26077c, this.d);
                 return;
         }
     }

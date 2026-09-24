@@ -1,38 +1,46 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-public final class vp0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.l1 {
-    public final int f38463a;
-    public final dq0 f38464b;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class vp0 implements sq0 {
+    public final HashMap f38773a;
+    public final ArrayList f38774b;
+    public final cq0 f38775c;
 
-    public vp0(dq0 dq0Var, int i10) {
-        this.f38463a = i10;
-        this.f38464b = dq0Var;
+    public vp0(cq0 cq0Var, HashMap hashMap, ArrayList arrayList) {
+        this.f38775c = cq0Var;
+        this.f38773a = hashMap;
+        this.f38774b = arrayList;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z10) {
-        switch (this.f38463a) {
-            case 0:
-                dq0 dq0Var = this.f38464b;
-                dq0Var.V(dq0Var.f32696b, dq0Var.f32697c, z10, i10);
-                dq0Var.finishFragment();
-                return;
-            default:
-                dq0 dq0Var2 = this.f38464b;
-                dq0Var2.V(dq0Var2.f32696b, dq0Var2.f32697c, z10, i10);
-                dq0Var2.finishFragment();
-                return;
+    public final void b(Editable editable) {
+        cq0 cq0Var = this.f38775c;
+        org.telegram.ui.Components.ku kuVar = cq0Var.M;
+        cq0Var.f32755a = editable;
+        kuVar.setText(editable);
+    }
+
+    @Override
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final void i(int i10, boolean z10, boolean z11) {
+        cq0 cq0Var = this.f38775c;
+        cq0Var.removeSelfFromStack();
+        if (!z10) {
+            cq0Var.V(this.f38773a, this.f38774b, z11, i10);
         }
     }
 
     @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        dq0 dq0Var = this.f38464b;
-        dq0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = dq0Var.I) != null && n1Var.isShowing()) {
-            dq0Var.I.d(true);
-        }
+    public final void a() {
+    }
+
+    @Override
+    public final void g() {
     }
 }

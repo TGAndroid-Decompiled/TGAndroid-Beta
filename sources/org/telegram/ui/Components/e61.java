@@ -1,43 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class e61 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f23584a;
-    public final View f23585b;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class e61 extends LinkMovementMethod {
+    public final UndoView f23823a;
 
-    public e61(int i10, View view) {
-        this.f23584a = i10;
-        this.f23585b = view;
+    public e61(UndoView undoView) {
+        this.f23823a = undoView;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f23584a) {
-            case 0:
-                f61 f61Var = (f61) this.f23585b;
-                f61Var.getClass();
-                f61Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f61Var.invalidate();
-                return;
-            case 1:
-                l61 l61Var = (l61) this.f23585b;
-                l61Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l61Var.f25829b = floatValue;
-                l61Var.setTranslationY(floatValue);
-                return;
-            default:
-                g81 g81Var = (g81) this.f23585b;
-                g81Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g81Var.setAnimationIdicatorProgress(floatValue2);
-                f81 f81Var = g81Var.f24234y;
-                if (f81Var != null) {
-                    ((ka.c) f81Var).h(floatValue2);
-                    return;
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                if (motionEvent.getAction() == 1) {
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        this.f23823a.b(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
                 }
-                return;
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            }
+            return false;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
         }
     }
 }

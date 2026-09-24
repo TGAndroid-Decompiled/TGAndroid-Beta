@@ -1,59 +1,18 @@
 package org.telegram.ui.Components;
-
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.tgnet.TLRPC;
 public final class kw0 {
-    public final o5 f25712a;
-    public Drawable f25713b;
+    public float f25888a;
+    public float f25889b;
+    public float f25890c;
+    public float d;
+    public float e;
+    public float f25891f;
+    public float f25892g;
+    public float h;
+    public float f25893i;
+    public int f25894j;
+    public final lw0 f25895k;
 
-    public kw0(FrameLayout frameLayout) {
-        this(18, frameLayout);
-    }
-
-    public final o5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
-        o5 o5Var = this.f25712a;
-        if (chat != null && chat.verified) {
-            Drawable drawable = this.f25713b;
-            if (drawable == null) {
-                drawable = new qq(org.telegram.ui.ActionBar.h6.f18820f1, org.telegram.ui.ActionBar.h6.f18873i1);
-            }
-            this.f25713b = drawable;
-            o5Var.g(drawable, z10);
-            o5Var.k(null);
-            return o5Var;
-        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
-            o5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f25713b;
-            if (drawable2 == null) {
-                drawable2 = new qq(org.telegram.ui.ActionBar.h6.f18820f1, org.telegram.ui.ActionBar.h6.f18873i1);
-            }
-            this.f25713b = drawable2;
-            o5Var.g(drawable2, z10);
-            o5Var.k(null);
-            return o5Var;
-        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
-            o5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else if (user != null && user.premium) {
-            o5Var.g(rg.a1.d().e, z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else {
-            o5Var.g(null, z10);
-            o5Var.k(null);
-            return o5Var;
-        }
-    }
-
-    public kw0(int i10, View view) {
-        this.f25712a = new o5(AndroidUtilities.dp(i10), view);
+    public kw0(lw0 lw0Var) {
+        this.f25895k = lw0Var;
     }
 }

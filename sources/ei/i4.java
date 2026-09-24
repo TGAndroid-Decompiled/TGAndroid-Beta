@@ -2,21 +2,21 @@ package ei;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
-public final class i4 implements org.telegram.ui.ActionBar.a2, o4, GenericProvider {
-    public final q4 f8383a;
+public final class i4 implements org.telegram.ui.ActionBar.z1, o4, GenericProvider {
+    public final q4 f8382a;
 
     public i4(q4 q4Var) {
-        this.f8383a = q4Var;
+        this.f8382a = q4Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f8383a.f26744b.dismiss();
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        this.f8382a.f27083b.dismiss();
     }
 
     @Override
     public void j(boolean z10) {
-        q4 q4Var = this.f8383a;
+        q4 q4Var = this.f8382a;
         if (!q4Var.K()) {
             q4Var.J.e(0.0f);
         }
@@ -26,7 +26,7 @@ public final class i4 implements org.telegram.ui.ActionBar.a2, o4, GenericProvid
     public Object provide(Object obj) {
         boolean z10;
         Void r22 = (Void) obj;
-        if (this.f8383a.f26744b.f29702r1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
+        if (this.f8382a.f27083b.f30022r1.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
             z10 = true;
         } else {
             z10 = false;

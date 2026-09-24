@@ -5,39 +5,39 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.mu0;
-import org.telegram.ui.wu0;
-public final class d7 extends mu0 {
-    public final w9 f46993a;
-    public final LinearLayout f46994b;
-    public final long f46995c;
+import org.telegram.ui.lu0;
+import org.telegram.ui.vu0;
+public final class d7 extends lu0 {
+    public final w9 f47295a;
+    public final LinearLayout f47296b;
+    public final long f47297c;
 
     public d7(w9 w9Var, LinearLayout linearLayout, long j3) {
-        this.f46993a = w9Var;
-        this.f46994b = linearLayout;
-        this.f46995c = j3;
+        this.f47295a = w9Var;
+        this.f47296b = linearLayout;
+        this.f47297c = j3;
     }
 
     @Override
-    public final wu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        w9 w9Var = this.f46993a;
+    public final vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        w9 w9Var = this.f47295a;
         ImageReceiver imageReceiver = w9Var.getImageReceiver();
         int[] iArr = new int[2];
         w9Var.getLocationInWindow(iArr);
-        wu0 wu0Var = new wu0();
-        wu0Var.f39095b = iArr[0];
-        wu0Var.f39096c = iArr[1];
-        wu0Var.d = this.f46994b;
-        wu0Var.f39103m = null;
-        wu0Var.f39094a = imageReceiver;
+        vu0 vu0Var = new vu0();
+        vu0Var.f38805b = iArr[0];
+        vu0Var.f38806c = iArr[1];
+        vu0Var.d = this.f47296b;
+        vu0Var.f38813m = null;
+        vu0Var.f38804a = imageReceiver;
         if (z10) {
-            wu0Var.e = imageReceiver.getBitmapSafe();
+            vu0Var.e = imageReceiver.getBitmapSafe();
         }
-        wu0Var.h = imageReceiver.getRoundRadius(true);
-        wu0Var.f39097f = this.f46995c;
-        wu0Var.f39100j = 0;
-        wu0Var.f39099i = 0;
-        return wu0Var;
+        vu0Var.h = imageReceiver.getRoundRadius(true);
+        vu0Var.f38807f = this.f47297c;
+        vu0Var.f38810j = 0;
+        vu0Var.f38809i = 0;
+        return vu0Var;
     }
 
     @Override

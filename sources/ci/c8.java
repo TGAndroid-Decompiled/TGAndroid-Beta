@@ -27,7 +27,7 @@ public final class c8 extends s4.s0 {
         d8Var.d0();
         d8Var.X();
         if (d8Var.d.K1 && !d8Var.f4528i0) {
-            viewGroup = ((org.telegram.ui.ActionBar.f3) d8Var).containerView;
+            viewGroup = ((org.telegram.ui.ActionBar.e3) d8Var).containerView;
             AndroidUtilities.hideKeyboard(viewGroup);
         }
     }

@@ -28,34 +28,34 @@ import com.google.android.gms.fido.common.Transport;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Executor;
-import n7.t0;
+import n7.s0;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import v0.i;
-import v7.o6;
+import v7.p6;
 public final class e extends b1.d {
     public final Context e;
-    public i f7393f;
-    public Executor f7394g;
+    public i f7392f;
+    public Executor f7393g;
     public CancellationSignal h;
-    public final c1.d f7395i;
+    public final c1.d f7394i;
 
     public e(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
         this.e = context;
-        this.f7395i = new c1.d(this, new Handler(Looper.getMainLooper()), 1);
+        this.f7394i = new c1.d(this, new Handler(Looper.getMainLooper()), 1);
     }
 
     public static v0.f e(u uVar) {
         JSONObject jSONObject;
         try {
             k kVar = uVar.f4143f;
-            t0 t0Var = uVar.f4142c;
+            s0 s0Var = uVar.f4142c;
             try {
                 JSONObject jSONObject2 = new JSONObject();
-                if (t0Var != null && t0Var.u().length > 0) {
-                    jSONObject2.put("rawId", u6.b.c(t0Var.u()));
+                if (s0Var != null && s0Var.u().length > 0) {
+                    jSONObject2.put("rawId", u6.b.c(s0Var.u()));
                 }
                 String str = uVar.f4144n;
                 if (str != null) {
@@ -137,11 +137,11 @@ public final class e extends b1.d {
         ArrayList arrayList;
         long j3;
         kotlin.jvm.internal.i.e(request, "request");
-        LinkedHashMap linkedHashMap = f.f7396a;
+        LinkedHashMap linkedHashMap = f.f7395a;
         String str4 = request.d;
         Context context = this.e;
         kotlin.jvm.internal.i.e(context, "context");
-        if (k6.d.d.d(context, k6.e.f13498a) == 0) {
+        if (k6.d.d.d(context, k6.e.f13496a) == 0) {
             PackageManager packageManager = context.getPackageManager();
             kotlin.jvm.internal.i.d(packageManager, "getPackageManager(...)");
             if (Build.VERSION.SDK_INT >= 28) {
@@ -156,7 +156,7 @@ public final class e extends b1.d {
             }
         }
         JSONObject jSONObject = new JSONObject(str4);
-        byte[] a2 = o6.a(jSONObject);
+        byte[] a2 = p6.a(jSONObject);
         JSONObject jSONObject2 = jSONObject.getJSONObject("user");
         String str5 = "id";
         String string = jSONObject2.getString("id");
@@ -191,7 +191,7 @@ public final class e extends b1.d {
                             int i10 = 0;
                             while (i10 < length) {
                                 JSONObject jSONObject4 = jSONArray2.getJSONObject(i10);
-                                LinkedHashMap linkedHashMap2 = f.f7396a;
+                                LinkedHashMap linkedHashMap2 = f.f7395a;
                                 byte[] bArr = a2;
                                 int i11 = (int) jSONObject4.getLong("alg");
                                 String optString4 = jSONObject4.optString("type", "");
@@ -211,14 +211,14 @@ public final class e extends b1.d {
                             byte[] bArr2 = a2;
                             y yVar2 = yVar;
                             ArrayList arrayList3 = new ArrayList();
-                            LinkedHashMap linkedHashMap3 = f.f7396a;
+                            LinkedHashMap linkedHashMap3 = f.f7395a;
                             if (jSONObject.has("excludeCredentials")) {
                                 JSONArray jSONArray3 = jSONObject.getJSONArray("excludeCredentials");
                                 int length2 = jSONArray3.length();
                                 int i12 = 0;
                                 while (i12 < length2) {
                                     JSONObject jSONObject5 = jSONArray3.getJSONObject(i12);
-                                    LinkedHashMap linkedHashMap4 = f.f7396a;
+                                    LinkedHashMap linkedHashMap4 = f.f7395a;
                                     String string5 = jSONObject5.getString(str5);
                                     kotlin.jvm.internal.i.d(string5, "getString(...)");
                                     y yVar3 = yVar2;
@@ -265,7 +265,7 @@ public final class e extends b1.d {
                                 }
                             }
                             y yVar4 = yVar2;
-                            LinkedHashMap linkedHashMap5 = f.f7396a;
+                            LinkedHashMap linkedHashMap5 = f.f7395a;
                             String str6 = "none";
                             String optString5 = jSONObject.optString("attestation", "none");
                             kotlin.jvm.internal.i.b(optString5);

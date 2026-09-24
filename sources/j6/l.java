@@ -14,7 +14,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
-import c5.d0;
 import c5.g0;
 import c5.w;
 import com.google.android.gms.internal.play_billing.u;
@@ -33,12 +32,13 @@ import m.c3;
 import m.l1;
 import m.q;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.p2;
+import org.telegram.ui.Cells.q2;
 import org.telegram.ui.Components.o6;
-import org.telegram.ui.sg;
+import org.telegram.ui.rg;
 import r0.i0;
-import v7.v7;
-import w7.c0;
+import v7.o;
+import v7.w7;
+import w7.d0;
 public final class l implements OnSuccessListener, le.l {
     public static l e;
     public int f12899a;
@@ -92,21 +92,21 @@ public final class l implements OnSuccessListener, le.l {
                     this.d = new Object();
                 }
                 c3 c3Var = (c3) this.d;
-                c3Var.f14136c = null;
-                c3Var.f14135b = false;
+                c3Var.f14374c = null;
+                c3Var.f14373b = false;
                 c3Var.d = null;
-                c3Var.f14134a = false;
+                c3Var.f14372a = false;
                 ColorStateList imageTintList = imageView.getImageTintList();
                 if (imageTintList != null) {
-                    c3Var.f14135b = true;
-                    c3Var.f14136c = imageTintList;
+                    c3Var.f14373b = true;
+                    c3Var.f14374c = imageTintList;
                 }
                 PorterDuff.Mode imageTintMode = imageView.getImageTintMode();
                 if (imageTintMode != null) {
-                    c3Var.f14134a = true;
+                    c3Var.f14372a = true;
                     c3Var.d = imageTintMode;
                 }
-                if (c3Var.f14135b || c3Var.f14134a) {
+                if (c3Var.f14373b || c3Var.f14372a) {
                     q.d(drawable, c3Var, imageView.getDrawableState());
                     return;
                 }
@@ -127,7 +127,7 @@ public final class l implements OnSuccessListener, le.l {
         boolean z10;
         String str;
         if (!TextUtils.isEmpty((String) this.f12900b)) {
-            if (!v7.m.b(this.f12899a)) {
+            if (!o.b(this.f12899a)) {
                 StringBuilder sb2 = new StringBuilder("Authenticator combination is unsupported on API ");
                 sb2.append(Build.VERSION.SDK_INT);
                 sb2.append(": ");
@@ -158,7 +158,7 @@ public final class l implements OnSuccessListener, le.l {
             }
             int i11 = this.f12899a;
             if (i11 != 0) {
-                z10 = v7.m.a(i11);
+                z10 = o.a(i11);
             } else {
                 z10 = false;
             }
@@ -168,13 +168,7 @@ public final class l implements OnSuccessListener, le.l {
             if (!TextUtils.isEmpty((String) this.d) && z10) {
                 throw new IllegalArgumentException("Negative text must not be set if device credential authentication is allowed.");
             }
-            int i12 = this.f12899a;
-            ?? obj = new Object();
-            obj.f12900b = (String) this.f12900b;
-            obj.f12901c = (String) this.f12901c;
-            obj.d = (String) this.d;
-            obj.f12899a = i12;
-            return obj;
+            return new l((String) this.f12900b, (String) this.f12901c, (String) this.d, this.f12899a);
         }
         throw new IllegalArgumentException("Title must be set and non-empty.");
     }
@@ -196,13 +190,13 @@ public final class l implements OnSuccessListener, le.l {
         int resourceId;
         ImageView imageView = (ImageView) this.f12900b;
         Context context = imageView.getContext();
-        int[] iArr = f.a.f8752f;
-        lf.i Q = lf.i.Q(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) Q.f14012c;
-        i0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) Q.f14012c, i10);
+        int[] iArr = f.a.f8751f;
+        la.h Q = la.h.Q(context, attributeSet, iArr, i10);
+        TypedArray typedArray = (TypedArray) Q.f14152c;
+        i0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) Q.f14152c, i10);
         try {
             Drawable drawable3 = imageView.getDrawable();
-            if (drawable3 == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable3 = v7.b(imageView.getContext(), resourceId)) != null) {
+            if (drawable3 == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable3 = w7.b(imageView.getContext(), resourceId)) != null) {
                 imageView.setImageDrawable(drawable3);
             }
             if (drawable3 != null) {
@@ -269,9 +263,9 @@ public final class l implements OnSuccessListener, le.l {
         Iterator it = ((le.m) this.d).iterator();
         while (it.hasNext()) {
             le.h hVar = (le.h) it.next();
-            fArr[((Integer) hVar.f13972a).intValue()] = hVar.c();
+            fArr[((Integer) hVar.f14195a).intValue()] = hVar.c();
         }
-        ((sg) this.f12901c).run();
+        ((rg) this.f12901c).run();
     }
 
     public void i() {
@@ -300,7 +294,7 @@ public final class l implements OnSuccessListener, le.l {
 
     public void j(int i10, boolean z10, boolean z11) {
         int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f12899a);
-        int b10 = c0.b(this.f12899a, 1 << i10, z10);
+        int b10 = d0.b(this.f12899a, 1 << i10, z10);
         this.f12899a = b10;
         int numberOfLeadingZeros2 = 31 - Integer.numberOfLeadingZeros(b10);
         if (numberOfLeadingZeros != numberOfLeadingZeros2) {
@@ -309,7 +303,7 @@ public final class l implements OnSuccessListener, le.l {
     }
 
     public void k(Throwable th2) {
-        d0 d0Var = (d0) this.d;
+        c5.d0 d0Var = (c5.d0) this.d;
         if (th2 instanceof TimeoutException) {
             d0Var.F(102, 28, g0.f3885p);
             u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", th2);
@@ -341,6 +335,13 @@ public final class l implements OnSuccessListener, le.l {
         throw new UnsupportedOperationException("Method not decompiled: j6.l.onSuccess(java.lang.Object):void");
     }
 
+    public l(Object obj, Object obj2, Object obj3, int i10) {
+        this.f12900b = obj;
+        this.f12901c = obj2;
+        this.d = obj3;
+        this.f12899a = i10;
+    }
+
     public l(int i10) {
         switch (i10) {
             case 2:
@@ -365,10 +366,10 @@ public final class l implements OnSuccessListener, le.l {
                 paint.setColor(i0.a.k(-16777216, 58));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 this.f12900b = spannableStringBuilder;
-                spannableStringBuilder.append((CharSequence) " ").setSpan(new p2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
+                spannableStringBuilder.append((CharSequence) " ").setSpan(new q2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
                 this.f12901c = spannableStringBuilder2;
-                spannableStringBuilder2.append((CharSequence) " ").setSpan(new p2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
+                spannableStringBuilder2.append((CharSequence) " ").setSpan(new q2(AndroidUtilities.dp(1.0f)), 0, 1, 0);
                 return;
         }
     }

@@ -1,6 +1,6 @@
 package ii;
 
-import org.telegram.ui.wi0;
+import org.telegram.ui.vi0;
 public final class j1 implements Runnable {
     public final int f11448a;
     public final e2 f11449b;
@@ -43,9 +43,9 @@ public final class j1 implements Runnable {
             case 5:
                 e2 e2Var4 = this.f11449b;
                 e2Var4.s0(2147483646, 0, true);
-                wi0 wi0Var = e2Var4.O0;
-                if (wi0Var != null) {
-                    wi0Var.h(false);
+                vi0 vi0Var = e2Var4.O0;
+                if (vi0Var != null) {
+                    vi0Var.h(false);
                     e2Var4.O0 = null;
                     return;
                 }
@@ -53,9 +53,9 @@ public final class j1 implements Runnable {
             default:
                 e2 e2Var5 = this.f11449b;
                 e2Var5.s0(0, 0, false);
-                wi0 wi0Var2 = e2Var5.O0;
-                if (wi0Var2 != null) {
-                    wi0Var2.h(true);
+                vi0 vi0Var2 = e2Var5.O0;
+                if (vi0Var2 != null) {
+                    vi0Var2.h(true);
                     e2Var5.O0 = null;
                     return;
                 }

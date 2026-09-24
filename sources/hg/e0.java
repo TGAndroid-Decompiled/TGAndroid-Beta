@@ -52,7 +52,7 @@ public final class e0 implements TextWatcher {
                 b2 b2Var = (b2) arrayList2.get(i10);
                 if (!c2.g(b2Var.f10206b)) {
                     String translitSafe2 = AndroidUtilities.translitSafe(b2Var.f10206b);
-                    if (translitSafe2.startsWith(translitSafe) || org.telegram.messenger.z0.w(" ", translitSafe, translitSafe2)) {
+                    if (translitSafe2.startsWith(translitSafe) || org.telegram.messenger.f0.w(" ", translitSafe, translitSafe2)) {
                         arrayList.add(b2Var);
                     }
                 }

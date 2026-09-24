@@ -4,9 +4,9 @@ import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class uo extends FrameLayout {
-    public g81 f28524a;
-    public float f28525b;
-    public boolean f28526c;
+    public v81 f28838a;
+    public float f28839b;
+    public boolean f28840c;
     public float d;
     public ValueAnimator e;
 
@@ -14,7 +14,7 @@ public abstract class uo extends FrameLayout {
 
     public final void b(boolean z10) {
         float f7;
-        this.f28526c = z10;
+        this.f28840c = z10;
         ValueAnimator valueAnimator = this.e;
         if (valueAnimator != null) {
             this.e = null;
@@ -39,29 +39,29 @@ public abstract class uo extends FrameLayout {
     }
 
     public int getCurrentHeight() {
-        return (int) (getMeasuredHeight() * this.f28525b);
+        return (int) (getMeasuredHeight() * this.f28839b);
     }
 
     @Override
     public final boolean isShown() {
-        return this.f28526c;
+        return this.f28840c;
     }
 
     public void setShown(float f7) {
-        this.f28525b = f7;
-        g81 g81Var = this.f28524a;
-        if (g81Var != null) {
-            g81Var.setPivotX(g81Var.getWidth() / 2.0f);
-            this.f28524a.setPivotY(0.0f);
-            this.f28524a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
-            this.f28524a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+        this.f28839b = f7;
+        v81 v81Var = this.f28838a;
+        if (v81Var != null) {
+            v81Var.setPivotX(v81Var.getWidth() / 2.0f);
+            this.f28838a.setPivotY(0.0f);
+            this.f28838a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+            this.f28838a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
         }
         setAlpha(f7);
         invalidate();
     }
 
-    public void setTabs(g81 g81Var) {
-        this.f28524a = g81Var;
-        addView(g81Var, w7.x5.c(-1.0f, -1));
+    public void setTabs(v81 v81Var) {
+        this.f28838a = v81Var;
+        addView(v81Var, w7.y5.c(-1.0f, -1));
     }
 }

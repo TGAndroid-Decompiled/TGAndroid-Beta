@@ -1,6 +1,6 @@
 package bf;
 
-import v7.i0;
+import v7.k0;
 public final class s extends p {
     public String f3548g;
 
@@ -9,8 +9,8 @@ public final class s extends p {
     }
 
     @Override
-    public final void a(i0 i0Var) {
-        i0Var.o(this);
+    public final void a(k0 k0Var) {
+        k0Var.o(this);
     }
 
     @Override

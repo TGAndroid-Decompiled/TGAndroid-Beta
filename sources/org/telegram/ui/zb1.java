@@ -10,43 +10,43 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class zb1 extends FrameLayout {
-    public final org.telegram.ui.Cells.ka f40098a;
-    public final org.telegram.ui.Components.fo0 f40099b;
-    public final int f40100c;
+    public final org.telegram.ui.Cells.ia f40423a;
+    public final org.telegram.ui.Components.so0 f40424b;
+    public final int f40425c;
     public final int d;
     public final TextPaint e;
-    public int f40101f;
+    public int f40426f;
     public final ThemeActivity h;
 
     public zb1(ThemeActivity themeActivity, Context context) {
         super(context);
-        org.telegram.ui.ActionBar.c5 c5Var;
+        org.telegram.ui.ActionBar.b5 b5Var;
         this.h = themeActivity;
-        this.f40100c = 12;
+        this.f40425c = 12;
         this.d = 30;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
         this.e = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.fo0 fo0Var = new org.telegram.ui.Components.fo0(context);
-        this.f40099b = fo0Var;
-        fo0Var.setReportChanges(true);
-        fo0Var.setSeparatorsCount(19);
-        fo0Var.setDelegate(new cw0(this, 4));
-        fo0Var.setImportantForAccessibility(2);
-        addView(fo0Var, w7.x5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
-        c5Var = ((org.telegram.ui.ActionBar.n2) themeActivity).parentLayout;
-        org.telegram.ui.Cells.ka kaVar = new org.telegram.ui.Cells.ka(context, c5Var, 0);
-        this.f40098a = kaVar;
-        kaVar.setImportantForAccessibility(4);
-        addView(kaVar, w7.x5.d(-1, -2.0f, 51, 0.0f, 53.0f, 0.0f, 0.0f));
+        org.telegram.ui.Components.so0 so0Var = new org.telegram.ui.Components.so0(context);
+        this.f40424b = so0Var;
+        so0Var.setReportChanges(true);
+        so0Var.setSeparatorsCount(19);
+        so0Var.setDelegate(new aw0(this, 4));
+        so0Var.setImportantForAccessibility(2);
+        addView(so0Var, w7.y5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
+        b5Var = ((org.telegram.ui.ActionBar.m2) themeActivity).parentLayout;
+        org.telegram.ui.Cells.ia iaVar = new org.telegram.ui.Cells.ia(context, b5Var, 0);
+        this.f40423a = iaVar;
+        iaVar.setImportantForAccessibility(4);
+        addView(iaVar, w7.y5.d(-1, -2.0f, 51, 0.0f, 53.0f, 0.0f, 0.0f));
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f40098a.invalidate();
-        this.f40099b.invalidate();
+        this.f40423a.invalidate();
+        this.f40424b.invalidate();
     }
 
     @Override
@@ -60,24 +60,24 @@ public final class zb1 extends FrameLayout {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f40099b.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+        this.f40424b.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int size = View.MeasureSpec.getSize(i10);
-        if (this.f40101f != size) {
+        if (this.f40426f != size) {
             int i12 = SharedConfig.fontSize;
-            int i13 = this.f40100c;
-            this.f40099b.setProgress((i12 - i13) / (this.d - i13));
-            this.f40101f = size;
+            int i13 = this.f40425c;
+            this.f40424b.setProgress((i12 - i13) / (this.d - i13));
+            this.f40426f = size;
         }
     }
 
     @Override
     public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f40099b.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f40424b.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
             return false;
         }
         return true;

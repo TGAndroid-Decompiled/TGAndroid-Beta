@@ -1,67 +1,40 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class us extends org.telegram.ui.ActionBar.j {
-    public final ContactsActivity f38212a;
+import android.content.Context;
+public final class us extends gg.e {
+    public final ContactsActivity L;
 
-    public us(ContactsActivity contactsActivity) {
-        this.f38212a = contactsActivity;
+    public us(ContactsActivity contactsActivity, Context context, int i10, boolean z10, a0.i iVar, int i11) {
+        super(context, i10, z10, iVar, i11);
+        this.L = contactsActivity;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        org.telegram.ui.ActionBar.k kVar;
-        ContactsActivity contactsActivity = this.f38212a;
-        if (i10 == -1) {
-            kVar = ((org.telegram.ui.ActionBar.n2) contactsActivity).actionBar;
-            if (kVar.s()) {
-                contactsActivity.o0();
+    public final int R() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.us.R():int");
+    }
+
+    @Override
+    public final void l() {
+        boolean z10 = false;
+        X(false);
+        ContactsActivity contactsActivity = this.L;
+        org.telegram.ui.Components.wl0 wl0Var = contactsActivity.f31014f;
+        if (wl0Var != null && wl0Var.getAdapter() == this) {
+            int h = h();
+            if (contactsActivity.H) {
+                org.telegram.ui.Components.wl0 wl0Var2 = contactsActivity.f31014f;
+                if (h != 2) {
+                    z10 = true;
+                }
+                wl0Var2.setFastScrollVisible(z10);
                 return;
-            } else {
-                contactsActivity.finishFragment();
-                return;
             }
-        }
-        int i12 = 1;
-        if (i10 == 100) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(contactsActivity.getParentActivity(), 0, contactsActivity.getResourceProvider());
-            a0.i iVar = contactsActivity.f30711d0;
-            if (iVar.m() == 1) {
-                alertDialog$Builder.f18409a.R = LocaleController.getString(R.string.DeleteContactTitle);
-                alertDialog$Builder.f18409a.T = LocaleController.getString(R.string.DeleteContactSubtitle);
-            } else {
-                alertDialog$Builder.f18409a.R = LocaleController.formatPluralString("DeleteContactsTitle", iVar.m(), new Object[0]);
-                alertDialog$Builder.f18409a.T = LocaleController.getString(R.string.DeleteContactsSubtitle);
+            org.telegram.ui.Components.wl0 wl0Var3 = contactsActivity.f31014f;
+            if (h != 0) {
+                z10 = true;
             }
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new qs(contactsActivity));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new rs(0));
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
-            b2Var.show();
-            b2Var.h();
-        } else if (i10 == 1) {
-            SharedConfig.toggleSortContactsByName();
-            boolean z10 = SharedConfig.sortContactsByName;
-            contactsActivity.v = z10;
-            ws wsVar = contactsActivity.d;
-            if (!z10) {
-                i12 = 2;
-            }
-            wsVar.Y(i12, false);
-            org.telegram.ui.ActionBar.v0 v0Var = contactsActivity.f30728s;
-            if (contactsActivity.v) {
-                i11 = R.drawable.msg_contacts_time;
-            } else {
-                i11 = R.drawable.msg_contacts_name;
-            }
-            v0Var.setIcon(i11);
-        } else if (i10 == 0) {
-            contactsActivity.f30713f.x0(0);
-            AndroidUtilities.doOnPreDraw(contactsActivity.Z.f22890r, new aj(this, 14));
+            wl0Var3.setFastScrollVisible(z10);
         }
     }
 }

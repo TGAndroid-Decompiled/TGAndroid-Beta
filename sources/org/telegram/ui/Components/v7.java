@@ -13,14 +13,14 @@ public final class v7 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        View view = c1Var.f42627a;
+        View view = c1Var.f42946a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (c1Var.f42630f != 0) {
+        if (c1Var.f42949f != 0) {
             return 0;
         }
         return s4.v.l(3, 0);
@@ -31,36 +31,36 @@ public final class v7 extends s4.v {
         int b10 = c1Var.b();
         int b11 = c1Var2.b();
         j8 j8Var = this.d;
-        if (j8Var.f25188v0) {
+        if (j8Var.f25302v0) {
             if (b10 > 0 && b11 > 0) {
-                j8Var.f25190w0.move(b10 - 1, b11 - 1);
+                j8Var.f25304w0.move(b10 - 1, b11 - 1);
             } else {
                 return false;
             }
         } else {
-            j8Var.f25190w0.move(b10, b11);
+            j8Var.f25304w0.move(b10, b11);
         }
-        j8Var.f25192x0.clear();
-        j8Var.f25192x0.addAll(j8Var.f25190w0.list);
-        j8Var.f25184s.p(b10, b11);
+        j8Var.f25306x0.clear();
+        j8Var.f25306x0.addAll(j8Var.f25304w0.list);
+        j8Var.f25298s.p(b10, b11);
         return true;
     }
 
     @Override
     public final void p(s4.c1 c1Var, int i10) {
         Boolean bool;
-        u7 u7Var = this.d.f25177n;
+        u7 u7Var = this.d.f25291n;
         if (c1Var != null) {
             u7Var.d1(false);
         }
         if (i10 != 0) {
             u7Var.I0(false);
             if (c1Var != null) {
-                c1Var.f42627a.setPressed(true);
+                c1Var.f42946a.setPressed(true);
             }
         }
         if (c1Var != null) {
-            View view = c1Var.f42627a;
+            View view = c1Var.f42946a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

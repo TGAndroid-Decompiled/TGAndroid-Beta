@@ -1,40 +1,39 @@
 package org.telegram.ui.ActionBar;
 
 import android.view.View;
-public final class f4 implements Runnable {
-    public final int f18631a;
-    public final h4 f18632b;
+public final class f4 {
+    public final v4 f18864a;
+    public boolean f18865b;
+    public boolean f18866c;
+    public boolean d;
+    public boolean e = true;
+    public boolean f18867f;
+    public long f18868g;
 
-    public f4(h4 h4Var, int i10) {
-        this.f18631a = i10;
-        this.f18632b = h4Var;
+    public f4(v4 v4Var) {
+        this.f18864a = v4Var;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f18631a) {
-            case 0:
-                h4 h4Var = this.f18632b;
-                View view = h4Var.f18719m;
-                if (view.getWindowVisibility() == 0 && view.isShown()) {
-                    g4 g4Var = h4Var.f18725s;
-                    g4Var.getClass();
-                    System.currentTimeMillis();
-                    g4Var.f18677c = false;
-                    h4Var.f18725s.a();
-                    return;
-                }
+    public final void a() {
+        if (this.f18867f) {
+            boolean z10 = this.f18865b;
+            v4 v4Var = this.f18864a;
+            if (!z10 && !this.f18866c && !this.d && this.e) {
+                View view = v4Var.f19862a;
+                i4 i4Var = v4Var.f19870l;
+                view.removeOnLayoutChangeListener(i4Var);
+                v4Var.f19862a.addOnLayoutChangeListener(i4Var);
+                v4Var.c();
+                this.f18868g = System.currentTimeMillis();
                 return;
-            default:
-                h4 h4Var2 = this.f18632b;
-                View view2 = h4Var2.f18719m;
-                if (view2.getWindowVisibility() == 0 && view2.isShown()) {
-                    g4 g4Var2 = h4Var2.f18725s;
-                    g4Var2.f18676b = false;
-                    g4Var2.a();
-                    return;
-                }
+            }
+            t4 t4Var = v4Var.f19863b;
+            if (!t4Var.f()) {
                 return;
+            }
+            t4Var.G = true;
+            t4Var.f19763x.start();
+            t4Var.D.setEmpty();
         }
     }
 }

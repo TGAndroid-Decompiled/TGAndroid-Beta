@@ -6,24 +6,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.WallpapersListActivity;
 public final class wo implements View.OnClickListener {
-    public final int f29763a;
-    public final np f29764b;
+    public final int f30126a;
+    public final np f30127b;
 
     public wo(np npVar, int i10) {
-        this.f29763a = i10;
-        this.f29764b = npVar;
+        this.f30126a = i10;
+        this.f30127b = npVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f29763a) {
+        switch (this.f30126a) {
             case 0:
-                np npVar = this.f29764b;
+                np npVar = this.f30127b;
                 wi wiVar = npVar.Y;
-                if (wiVar.f29726y0 == wiVar.f29677j0) {
-                    npVar.f26459a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
+                if (wiVar.f30046y0 == wiVar.f29997j0) {
+                    npVar.f26745a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
                     npVar.Y.C1();
-                    kj kjVar = npVar.Y.f29701r0;
+                    kj kjVar = npVar.Y.f30021r0;
                     boolean z10 = npVar.N;
                     za zaVar = kjVar.v;
                     ((ArrayList) zaVar.e).clear();
@@ -31,12 +31,12 @@ public final class wo implements View.OnClickListener {
                     zaVar.l();
                     return;
                 }
-                npVar.f26459a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
+                npVar.f26745a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
                 wi wiVar2 = npVar.Y;
-                wiVar2.Q1(wiVar2.f29677j0);
+                wiVar2.Q1(wiVar2.f29997j0);
                 return;
             case 1:
-                np npVar2 = this.f29764b;
+                np npVar2 = this.f30127b;
                 if (npVar2.v()) {
                     npVar2.z(true);
                     npVar2.F(true);
@@ -45,14 +45,14 @@ public final class wo implements View.OnClickListener {
                 npVar2.dismiss();
                 return;
             case 2:
-                np npVar3 = this.f29764b;
+                np npVar3 = this.f30127b;
                 if (npVar3.T == null) {
                     npVar3.B(!npVar3.N);
                     return;
                 }
                 return;
             default:
-                this.f29764b.s(false);
+                this.f30127b.s(false);
                 return;
         }
     }

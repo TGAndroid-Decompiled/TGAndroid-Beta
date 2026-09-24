@@ -22,7 +22,7 @@ public final class e0 extends View {
         super(context);
         this.f11305f = h0Var;
         this.f11303b = i10;
-        RichMessageLayout.RichButton createEditorPageButton = RichMessageLayout.createEditorPageButton(h0Var.f11391n, hg.c.f(32.0f, AndroidUtilities.displaySize.x, AndroidUtilities.dp(240.0f)), h0Var.f11392r, pageButton, new i2.h0(this, 3));
+        RichMessageLayout.RichButton createEditorPageButton = RichMessageLayout.createEditorPageButton(h0Var.f11391n, org.telegram.messenger.f0.b(32.0f, AndroidUtilities.displaySize.x, AndroidUtilities.dp(240.0f)), h0Var.f11392r, pageButton, new i2.h0(this, 3));
         this.f11302a = createEditorPageButton;
         this.e = new o8(this, i10, 10);
         createEditorPageButton.width = createEditorPageButton.getPreferredWidth();

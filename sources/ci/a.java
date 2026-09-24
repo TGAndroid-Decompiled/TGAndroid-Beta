@@ -53,16 +53,16 @@ public final class a extends View {
         String str3 = "";
         String str4 = "" + ((Object) str);
         this.f4297b = str4;
-        this.f4298c = hg.c.i(i10, "");
+        this.f4298c = hg.c.h(i10, "");
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
         qq qqVar = new qq(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(6.0f), -13750737), mutate);
-        qqVar.f27431w = false;
+        qqVar.f27733w = false;
         int dp = AndroidUtilities.dp(18.0f);
         int dp2 = AndroidUtilities.dp(18.0f);
         qqVar.e = dp;
-        qqVar.f27427f = dp2;
+        qqVar.f27729f = dp2;
         if (photoEntry != null && (str2 = photoEntry.thumbPath) != null) {
             imageReceiver.setImage(ImageLocation.getForPath(str2), "30.0_30.0", (ImageLocation) null, (String) null, qqVar, (Object) null, 0);
         } else if (photoEntry != null && photoEntry.path != null) {

@@ -1,4 +1,10 @@
 package v7;
-public final class e7 {
-    public final c7 f43911a;
+
+import java.util.logging.Logger;
+public abstract class e7 {
+    public static final int f44220a = 0;
+
+    static {
+        Logger.getLogger(e7.class.getName());
+    }
 }

@@ -2,7 +2,7 @@ package ii;
 
 import android.text.Editable;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.r9;
+import org.telegram.ui.Cells.q9;
 public final class j5 implements h1 {
     public final s5 f11456a;
     public final p5 f11457b;
@@ -13,9 +13,9 @@ public final class j5 implements h1 {
     }
 
     @Override
-    public final void D(final i1 i1Var, final int i10, final int i11) {
+    public final void B(final i1 i1Var, final int i10, final int i11) {
         d3 d3Var;
-        final r9 textSelectionHelper;
+        final q9 textSelectionHelper;
         final int k10;
         p5 p5Var = this.f11457b;
         if (!p5Var.G && i10 != i11 && (d3Var = p5Var.E) != null && (textSelectionHelper = d3Var.f11293a.getTextSelectionHelper()) != null) {
@@ -39,7 +39,7 @@ public final class j5 implements h1 {
     }
 
     @Override
-    public final void M(CharSequence charSequence) {
+    public final void K(CharSequence charSequence) {
         d3 d3Var = this.f11457b.E;
         if (d3Var != null && charSequence != null && charSequence.length() > 0) {
             d3Var.f11293a.t4(charSequence.toString());
@@ -47,7 +47,7 @@ public final class j5 implements h1 {
     }
 
     @Override
-    public final void W(Editable editable) {
+    public final void U(Editable editable) {
         TL_iv.pageTableCell pagetablecell = this.f11456a.f11617b;
         if (pagetablecell != null) {
             i6.d(pagetablecell, editable);
@@ -61,7 +61,7 @@ public final class j5 implements h1 {
     }
 
     @Override
-    public final boolean b0(boolean z10) {
+    public final boolean X(boolean z10) {
         return this.f11457b.s(this.f11456a, z10);
     }
 
@@ -96,7 +96,7 @@ public final class j5 implements h1 {
     }
 
     @Override
-    public final boolean q(i1 i1Var) {
+    public final boolean p(i1 i1Var) {
         return false;
     }
 

@@ -1,24 +1,29 @@
 package org.telegram.ui;
-public final class jf0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f34451a;
-    public final uf0 f34452b;
 
-    public jf0(uf0 uf0Var, int i10) {
-        this.f34451a = i10;
-        this.f34452b = uf0Var;
+import android.view.KeyEvent;
+import org.telegram.tgnet.TLObject;
+public final class jf0 implements Runnable {
+    public final int f34780a;
+    public final Object f34781b;
+    public final Object f34782c;
+    public final Object d;
+
+    public jf0(KeyEvent.Callback callback, TLObject tLObject, Object obj, int i10) {
+        this.f34780a = i10;
+        this.f34781b = callback;
+        this.f34782c = tLObject;
+        this.d = obj;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f34451a) {
-            case 0:
-                uf0 uf0Var = this.f34452b;
-                uf0Var.c(true);
-                uf0Var.f38093s0.u1(0, true, null, true);
-                return;
-            default:
-                this.f34452b.f38093s0.u1(0, true, null, true);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.jf0.run():void");
+    }
+
+    public jf0(Object obj, Object obj2, Object obj3, int i10) {
+        this.f34780a = i10;
+        this.f34781b = obj;
+        this.d = obj2;
+        this.f34782c = obj3;
     }
 }

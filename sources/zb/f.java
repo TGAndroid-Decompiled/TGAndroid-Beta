@@ -10,9 +10,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import n6.j;
 import n6.l;
-import n7.a1;
-import v7.r1;
-import w7.j8;
+import n7.z0;
+import w7.k8;
 import x7.d7;
 import x7.da;
 import x7.e7;
@@ -31,44 +30,44 @@ import x7.s;
 public final class f extends qb.e {
     public boolean d = true;
     public final h8 e;
-    public final b f48799f;
-    public final fa f48800g;
+    public final b f49117f;
+    public final fa f49118g;
     public final o0.a h;
 
     public f(yb.a aVar, b bVar, fa faVar) {
         l.i(aVar, "ImageLabelerOptions can not be null");
-        this.f48799f = bVar;
-        this.f48800g = faVar;
-        ?? obj = new Object();
-        obj.f44215a = Float.valueOf(aVar.f45691a);
-        this.e = new h8(obj);
+        this.f49117f = bVar;
+        this.f49118g = faVar;
+        ka.c cVar = new ka.c(29, false);
+        cVar.f13552b = Float.valueOf(aVar.f46005a);
+        this.e = new h8(cVar);
         this.h = new o0.a(qb.g.c().b());
     }
 
     @Override
     public final synchronized void b() {
-        this.f48799f.zzb();
-        fa faVar = this.f48800g;
+        this.f49117f.zzb();
+        fa faVar = this.f49118g;
         ?? obj = new Object();
-        obj.f7321c = m7.TYPE_THIN;
-        a1 a1Var = new a1(26);
-        a1Var.f15083b = this.e;
-        m mVar = o.f45482b;
+        obj.f7314c = m7.TYPE_THIN;
+        z0 z0Var = new z0(26);
+        z0Var.f15395b = this.e;
+        m mVar = o.f45796b;
         Object[] objArr = {n7.NO_ERROR};
-        j8.a(1, objArr);
-        a1Var.f15084c = new s(1, objArr);
-        obj.d = new g8(a1Var);
-        qb.m.f41206a.execute(new p(faVar, new a5.a((n) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_LOAD, faVar.b(), 7));
+        k8.a(1, objArr);
+        z0Var.f15396c = new s(1, objArr);
+        obj.d = new g8(z0Var);
+        qb.m.f41529a.execute(new p(faVar, new a5.a((n) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_LOAD, faVar.b(), 7));
     }
 
     @Override
     public final synchronized void c() {
-        this.f48799f.zzc();
+        this.f49117f.zzc();
         this.d = true;
-        fa faVar = this.f48800g;
+        fa faVar = this.f49118g;
         ?? obj = new Object();
-        obj.f7321c = m7.TYPE_THIN;
-        qb.m.f41206a.execute(new p(faVar, new a5.a((n) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_CLOSE, faVar.b(), 7));
+        obj.f7314c = m7.TYPE_THIN;
+        qb.m.f41529a.execute(new p(faVar, new a5.a((n) obj, 0), o7.ON_DEVICE_IMAGE_LABEL_CLOSE, faVar.b(), 7));
     }
 
     @Override
@@ -78,11 +77,11 @@ public final class f extends qb.e {
         synchronized (this) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             try {
-                a2 = this.f48799f.a(aVar);
+                a2 = this.f49117f.a(aVar);
                 f(n7.NO_ERROR, aVar, elapsedRealtime);
                 this.d = false;
             } catch (mb.a e) {
-                if (e.f14727a == 14) {
+                if (e.f14962a == 14) {
                     n7Var = n7.MODEL_NOT_DOWNLOADED;
                 } else {
                     n7Var = n7.UNKNOWN_ERROR;
@@ -98,15 +97,15 @@ public final class f extends qb.e {
         int i10;
         d7 d7Var;
         long elapsedRealtime = SystemClock.elapsedRealtime() - j3;
-        fa faVar = this.f48800g;
+        fa faVar = this.f49118g;
         o7 o7Var = o7.ON_DEVICE_IMAGE_LABEL_DETECT;
         faVar.getClass();
         long elapsedRealtime2 = SystemClock.elapsedRealtime();
         if (faVar.c(o7Var, elapsedRealtime2)) {
-            faVar.f45377i.put(o7Var, Long.valueOf(elapsedRealtime2));
+            faVar.f45691i.put(o7Var, Long.valueOf(elapsedRealtime2));
             ?? obj = new Object();
-            obj.f7321c = m7.TYPE_THIN;
-            r1 r1Var = new r1(9, false);
+            obj.f7314c = m7.TYPE_THIN;
+            v7.l lVar = new v7.l(10, false);
             ?? obj2 = new Object();
             obj2.f4252a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime);
             obj2.f4253b = n7Var;
@@ -114,10 +113,10 @@ public final class f extends qb.e {
             Boolean bool = Boolean.TRUE;
             obj2.d = bool;
             obj2.e = bool;
-            r1Var.f44028b = new g7(obj2);
+            lVar.f44299b = new g7(obj2);
             int i11 = aVar.e;
             if (i11 == -1) {
-                Bitmap bitmap = aVar.f44231a;
+                Bitmap bitmap = aVar.f44548a;
                 l.h(bitmap);
                 i10 = bitmap.getAllocationByteCount();
             } else if (i11 != 17 && i11 != 842094169) {
@@ -153,28 +152,28 @@ public final class f extends qb.e {
             } else {
                 d7Var = d7.BITMAP;
             }
-            aVar2.f15275b = d7Var;
-            aVar2.f15276c = Integer.valueOf(i10 & Integer.MAX_VALUE);
-            r1Var.f44029c = new e7(aVar2);
-            r1Var.d = this.e;
-            obj.e = new f8(r1Var);
-            qb.m.f41206a.execute(new p(faVar, new a5.a((n) obj, 0), o7Var, faVar.b(), 7));
+            aVar2.f15467b = d7Var;
+            aVar2.f15468c = Integer.valueOf(i10 & Integer.MAX_VALUE);
+            lVar.d = new e7(aVar2);
+            lVar.f44300c = this.e;
+            obj.e = new f8(lVar);
+            qb.m.f41529a.execute(new p(faVar, new a5.a((n) obj, 0), o7Var, faVar.b(), 7));
         }
-        r1 r1Var2 = new r1(8, false);
-        r1Var2.f44029c = this.e;
-        r1Var2.f44028b = n7Var;
-        r1Var2.d = Boolean.valueOf(this.d);
-        qb.m.f41206a.execute(new da(this.f48800g, new r0(r1Var2), elapsedRealtime));
+        v7.l lVar2 = new v7.l(9, false);
+        lVar2.d = this.e;
+        lVar2.f44299b = n7Var;
+        lVar2.f44300c = Boolean.valueOf(this.d);
+        qb.m.f41529a.execute(new da(this.f49118g, new r0(lVar2), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         o0.a aVar3 = this.h;
-        int i12 = n7Var.f45478a;
+        int i12 = n7Var.f45792a;
         long j10 = currentTimeMillis - elapsedRealtime;
         synchronized (aVar3) {
             long elapsedRealtime3 = SystemClock.elapsedRealtime();
-            if (((AtomicLong) aVar3.f15276c).get() != -1 && elapsedRealtime3 - ((AtomicLong) aVar3.f15276c).get() <= TimeUnit.MINUTES.toMillis(30L)) {
+            if (((AtomicLong) aVar3.f15468c).get() != -1 && elapsedRealtime3 - ((AtomicLong) aVar3.f15468c).get() <= TimeUnit.MINUTES.toMillis(30L)) {
                 return;
             }
-            ((p6.b) aVar3.f15275b).f(new n6.o(0, Arrays.asList(new j(24305, i12, 0, j10, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new e6.n(aVar3, elapsedRealtime3, 8));
+            ((p6.b) aVar3.f15467b).f(new n6.o(0, Arrays.asList(new j(24305, i12, 0, j10, currentTimeMillis, null, null, 0, -1)))).addOnFailureListener(new e6.n(aVar3, elapsedRealtime3, 8));
         }
     }
 }

@@ -5,13 +5,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.xn;
-public final class y extends xn {
-    public final p0 Pc;
+import org.telegram.ui.wn;
+public final class y extends wn {
+    public final n0 Pc;
 
-    public y(p0 p0Var) {
+    public y(n0 n0Var) {
         super(null);
-        this.Pc = p0Var;
+        this.Pc = n0Var;
     }
 
     @Override

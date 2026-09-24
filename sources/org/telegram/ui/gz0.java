@@ -1,51 +1,18 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class gz0 implements iq {
-    public final TLRPC.Chat f33681a;
-    public final lq f33682b;
-    public final ProfileActivity f33683c;
+import android.content.Context;
+public final class gz0 extends org.telegram.ui.Components.zh0 {
+    public final ProfileActivity f34069s1;
 
-    public gz0(ProfileActivity profileActivity, TLRPC.Chat chat, lq lqVar) {
-        this.f33683c = profileActivity;
-        this.f33681a = chat;
-        this.f33682b = lqVar;
+    public gz0(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.ActionBar.k kVar, wy0 wy0Var, fz0 fz0Var, org.telegram.ui.Components.uh0 uh0Var, org.telegram.ui.Components.qh0 qh0Var) {
+        super(context, j3, kVar, wy0Var, fz0Var, uh0Var, qh0Var);
+        this.f34069s1 = profileActivity;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i10;
-        ProfileActivity profileActivity = this.f33683c;
-        UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f31248f1;
-        if (profileActivity.E2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
-        }
-        undoView.m(j3, user, i10);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f33683c;
-        profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f31240e1));
-        if (user != null && (chat = this.f33681a) != null && profileActivity.f31240e1 != 0) {
-            lq lqVar = this.f33682b;
-            if (lqVar.Q && lqVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.n2 n2Var : lqVar.getParentLayout().getFragmentStack()) {
-                    if (n2Var instanceof ub) {
-                        ub ubVar = (ub) n2Var;
-                        ubVar.V0();
-                        AndroidUtilities.runOnUIThread(new kf0(ubVar, user, chat, 25));
-                        return;
-                    }
-                }
-            }
-        }
+    public final void setCustomAvatarProgress(float f7) {
+        ProfileActivity profileActivity = this.f34069s1;
+        profileActivity.f31606n5 = f7;
+        profileActivity.B3();
     }
 }

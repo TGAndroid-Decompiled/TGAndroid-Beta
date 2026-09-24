@@ -2,8 +2,8 @@ package y0;
 
 import w0.i;
 public final class b extends i {
-    public static final int f46202b = 0;
-    public static final int f46203c = 0;
+    public static final int f46516b = 0;
+    public static final int f46517c = 0;
 
     public b(x0.a r2, java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: y0.b.<init>(x0.a, java.lang.String):void");

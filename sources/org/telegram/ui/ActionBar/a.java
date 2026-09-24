@@ -2,63 +2,63 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.xz0;
+import org.telegram.ui.vz0;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
-    public final int f18411a;
-    public final k f18412b;
+    public final int f18649a;
+    public final k f18650b;
 
     public a(k kVar, int i10) {
-        this.f18411a = i10;
-        this.f18412b = kVar;
+        this.f18649a = i10;
+        this.f18650b = kVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        z zVar;
-        switch (this.f18411a) {
+        y yVar;
+        switch (this.f18649a) {
             case 0:
-                xz0 xz0Var = this.f18412b.U0;
-                if (xz0Var != null) {
-                    xz0Var.run();
-                    return;
-                }
+                k kVar = this.f18650b;
+                kVar.getClass();
+                kVar.f19551r1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar.b();
                 return;
             case 1:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k kVar = this.f18412b;
-                kVar.f19298o0 = floatValue;
-                if (kVar.f19267a != null && kVar.Q0) {
-                    float dp = AndroidUtilities.dp(23.0f);
-                    float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(18.33f), AndroidUtilities.dp(23.0f), kVar.f19298o0);
-                    kVar.f19267a.r(lerp, dp, dp, lerp);
-                    kVar.invalidate();
-                }
-                if (kVar.O0 && (zVar = kVar.E) != null) {
-                    zVar.setTranslationX(-AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), kVar.f19298o0));
-                }
-                xz0 xz0Var2 = kVar.U0;
-                if (xz0Var2 != null) {
-                    xz0Var2.run();
+                vz0 vz0Var = this.f18650b.U0;
+                if (vz0Var != null) {
+                    vz0Var.run();
                     return;
                 }
                 return;
             case 2:
-                xz0 xz0Var3 = this.f18412b.U0;
-                if (xz0Var3 != null) {
-                    xz0Var3.run();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k kVar2 = this.f18650b;
+                kVar2.f19543o0 = floatValue;
+                if (kVar2.f19512a != null && kVar2.Q0) {
+                    float dp = AndroidUtilities.dp(23.0f);
+                    float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(18.33f), AndroidUtilities.dp(23.0f), kVar2.f19543o0);
+                    kVar2.f19512a.r(lerp, dp, dp, lerp);
+                    kVar2.invalidate();
+                }
+                if (kVar2.O0 && (yVar = kVar2.E) != null) {
+                    yVar.setTranslationX(-AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), kVar2.f19543o0));
+                }
+                vz0 vz0Var2 = kVar2.U0;
+                if (vz0Var2 != null) {
+                    vz0Var2.run();
                     return;
                 }
                 return;
             case 3:
-                k kVar2 = this.f18412b;
-                kVar2.getClass();
-                kVar2.f19306r1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kVar2.b();
+                vz0 vz0Var3 = this.f18650b.U0;
+                if (vz0Var3 != null) {
+                    vz0Var3.run();
+                    return;
+                }
                 return;
             default:
-                k kVar3 = this.f18412b;
+                k kVar3 = this.f18650b;
                 kVar3.getClass();
-                kVar3.f19306r1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar3.f19551r1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 kVar3.b();
                 return;
         }

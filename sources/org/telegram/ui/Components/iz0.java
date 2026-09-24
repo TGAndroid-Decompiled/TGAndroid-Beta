@@ -1,15 +1,11 @@
 package org.telegram.ui.Components;
+public final class iz0 {
+    public final oz0 f25175a;
+    public final qz0 f25176b;
+    public boolean f25177c = true;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.tl.TL_iv;
-public interface iz0 {
-    bz0 createTextLayout(TL_iv.pageTableCell pagetablecell, int i10);
-
-    Paint getHeaderPaint();
-
-    Paint getLinePaint();
-
-    Paint getStripPaint();
-
-    void onLayoutChild(bz0 bz0Var, int i10, int i11);
+    public iz0(oz0 oz0Var, qz0 qz0Var) {
+        this.f25175a = oz0Var;
+        this.f25176b = qz0Var;
+    }
 }

@@ -99,7 +99,7 @@ public abstract class l implements z3.e {
                 break;
             }
             j jVar = (j) arrayDeque2.poll();
-            String str = d0.f7871a;
+            String str = d0.f7870a;
             jVar.clear();
             arrayDeque.add(jVar);
         }
@@ -122,7 +122,7 @@ public abstract class l implements z3.e {
         while (true) {
             ArrayDeque arrayDeque2 = this.f271c;
             if (!arrayDeque2.isEmpty()) {
-                String str = d0.f7871a;
+                String str = d0.f7870a;
                 if (((j) arrayDeque2.peek()).e <= this.e) {
                     j jVar = (j) arrayDeque2.poll();
                     boolean isEndOfStream = jVar.isEndOfStream();
@@ -140,8 +140,8 @@ public abstract class l implements z3.e {
                         z3.j jVar3 = (z3.j) arrayDeque.pollFirst();
                         long j3 = jVar.e;
                         jVar3.timeUs = j3;
-                        jVar3.f48043a = f7;
-                        jVar3.f48044b = j3;
+                        jVar3.f48360a = f7;
+                        jVar3.f48361b = j3;
                         jVar.clear();
                         arrayDeque3.add(jVar);
                         return jVar3;

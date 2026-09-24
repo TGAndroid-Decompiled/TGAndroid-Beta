@@ -9,9 +9,9 @@ public final class c extends b {
 
     @Override
     public final s4.h0 a() {
-        d dVar = new d(UserConfig.selectedAccount, this.f42203a);
+        d dVar = new d(UserConfig.selectedAccount, this.f42522a);
         this.d = dVar;
-        dVar.f42221r = this;
+        dVar.f42540r = this;
         return dVar;
     }
 
@@ -22,8 +22,8 @@ public final class c extends b {
         Context context = getContext();
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        ArrayList arrayList = dVar.f42219f;
-        f fVar = new f(context, dVar.f42218c);
+        ArrayList arrayList = dVar.f42538f;
+        f fVar = new f(context, dVar.f42537c);
         int i12 = 0;
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
             fVar.a((e) arrayList.get(i13));
@@ -31,6 +31,6 @@ public final class c extends b {
             ((e) arrayList.get(i13)).e = i12;
             i12 += fVar.getMeasuredHeight();
         }
-        dVar.f42220n = i12;
+        dVar.f42539n = i12;
     }
 }

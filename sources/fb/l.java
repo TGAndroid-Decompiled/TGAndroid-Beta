@@ -2,18 +2,18 @@ package fb;
 
 import java.util.Map;
 public final class l implements Map.Entry {
-    public l f9019a;
-    public l f9020b;
-    public l f9021c;
+    public l f9018a;
+    public l f9019b;
+    public l f9020c;
     public l d;
     public l e;
-    public final Object f9022f;
+    public final Object f9021f;
     public final boolean h;
-    public Object f9023n;
-    public int f9024r;
+    public Object f9022n;
+    public int f9023r;
 
     public l(boolean z10) {
-        this.f9022f = null;
+        this.f9021f = null;
         this.h = z10;
         this.e = this;
         this.d = this;
@@ -23,9 +23,9 @@ public final class l implements Map.Entry {
     public final boolean equals(Object obj) {
         if (obj instanceof Map.Entry) {
             Map.Entry entry = (Map.Entry) obj;
-            Object obj2 = this.f9022f;
+            Object obj2 = this.f9021f;
             if (obj2 != null ? obj2.equals(entry.getKey()) : entry.getKey() == null) {
-                Object obj3 = this.f9023n;
+                Object obj3 = this.f9022n;
                 if (obj3 == null) {
                     if (entry.getValue() == null) {
                         return true;
@@ -40,25 +40,25 @@ public final class l implements Map.Entry {
 
     @Override
     public final Object getKey() {
-        return this.f9022f;
+        return this.f9021f;
     }
 
     @Override
     public final Object getValue() {
-        return this.f9023n;
+        return this.f9022n;
     }
 
     @Override
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        Object obj = this.f9022f;
+        Object obj = this.f9021f;
         if (obj == null) {
             hashCode = 0;
         } else {
             hashCode = obj.hashCode();
         }
-        Object obj2 = this.f9023n;
+        Object obj2 = this.f9022n;
         if (obj2 != null) {
             i10 = obj2.hashCode();
         }
@@ -70,20 +70,20 @@ public final class l implements Map.Entry {
         if (obj == null && !this.h) {
             throw new NullPointerException("value == null");
         }
-        Object obj2 = this.f9023n;
-        this.f9023n = obj;
+        Object obj2 = this.f9022n;
+        this.f9022n = obj;
         return obj2;
     }
 
     public final String toString() {
-        return this.f9022f + "=" + this.f9023n;
+        return this.f9021f + "=" + this.f9022n;
     }
 
     public l(boolean z10, l lVar, Object obj, l lVar2, l lVar3) {
-        this.f9019a = lVar;
-        this.f9022f = obj;
+        this.f9018a = lVar;
+        this.f9021f = obj;
         this.h = z10;
-        this.f9024r = 1;
+        this.f9023r = 1;
         this.d = lVar2;
         this.e = lVar3;
         lVar3.d = this;

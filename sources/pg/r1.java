@@ -1,16 +1,25 @@
 package pg;
-public final class r1 {
-    public int f40927a;
-    public float f40928b;
-    public float f40929c;
+public abstract class r1 {
+    public final boolean f41199a;
+    public boolean f41200b;
+    public boolean f41201c;
+    public float d;
+    public float e;
 
-    public r1(float f7, float f10, int i10) {
-        this.f40927a = i10;
-        this.f40928b = f7;
-        this.f40929c = f10;
+    public r1() {
+        this.f41200b = true;
+        this.f41201c = true;
+        a();
     }
 
-    public final Object clone() {
-        return new r1(this.f40928b, this.f40929c, this.f40927a);
+    public abstract void a();
+
+    public abstract void b(float f7, float f10);
+
+    public r1(int i10) {
+        this.f41200b = true;
+        this.f41201c = true;
+        this.f41199a = true;
+        a();
     }
 }

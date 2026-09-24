@@ -14,7 +14,7 @@ import org.telegram.messenger.video.VideoAds;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o70;
+import org.telegram.ui.Components.y70;
 public final class h5 implements Runnable {
     public final int f942a;
     public final Object f943b;
@@ -41,13 +41,13 @@ public final class h5 implements Runnable {
             if (nVar != null && handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.x1(26, nVar, kVar));
             }
-            synchronized (k2.f0.f13239o0) {
+            synchronized (k2.e0.f13234o0) {
                 try {
-                    int i10 = k2.f0.f13241q0 - 1;
-                    k2.f0.f13241q0 = i10;
+                    int i10 = k2.e0.f13236q0 - 1;
+                    k2.e0.f13236q0 = i10;
                     if (i10 == 0) {
-                        k2.f0.f13240p0.shutdown();
-                        k2.f0.f13240p0 = null;
+                        k2.e0.f13235p0.shutdown();
+                        k2.e0.f13235p0 = null;
                     }
                 } finally {
                 }
@@ -56,13 +56,13 @@ public final class h5 implements Runnable {
             if (nVar != null && handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.x1(26, nVar, kVar));
             }
-            synchronized (k2.f0.f13239o0) {
+            synchronized (k2.e0.f13234o0) {
                 try {
-                    int i11 = k2.f0.f13241q0 - 1;
-                    k2.f0.f13241q0 = i11;
+                    int i11 = k2.e0.f13236q0 - 1;
+                    k2.e0.f13236q0 = i11;
                     if (i11 == 0) {
-                        k2.f0.f13240p0.shutdown();
-                        k2.f0.f13240p0 = null;
+                        k2.e0.f13235p0.shutdown();
+                        k2.e0.f13235p0 = null;
                     }
                     throw th2;
                 } finally {
@@ -80,8 +80,8 @@ public final class h5 implements Runnable {
     }
 
     private final void e() {
-        ni.f fVar = (ni.f) this.f943b;
-        ((ArrayDeque) fVar.f15232a).addLast(new ni.e((le.b) this.f944c, (ni.b) this.d, (RequestTimeDelegate) this.e));
+        oi.f fVar = (oi.f) this.f943b;
+        ((ArrayDeque) fVar.f15744a).addLast(new oi.e((le.b) this.f944c, (oi.b) this.d, (RequestTimeDelegate) this.e));
         fVar.K();
     }
 
@@ -94,7 +94,7 @@ public final class h5 implements Runnable {
     }
 
     private final void h() {
-        ((VideoAds) this.f943b).lambda$show$14((Context) this.f944c, (TLRPC.TL_sponsoredMessage) this.d, (o70) this.e);
+        ((VideoAds) this.f943b).lambda$show$14((Context) this.f944c, (TLRPC.TL_sponsoredMessage) this.d, (y70) this.e);
     }
 
     @Override

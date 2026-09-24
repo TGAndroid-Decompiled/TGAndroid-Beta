@@ -6,37 +6,37 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class f1 implements RequestDelegate {
-    public final int f47049a = 1;
-    public final y3 f47050b;
-    public final long f47051c;
+    public final int f47350a = 1;
+    public final x3 f47351b;
+    public final long f47352c;
     public final long d;
     public final long e;
-    public final Object f47052f;
+    public final Object f47353f;
 
-    public f1(y3 y3Var, long j3, long j10, Utilities.Callback callback, long j11) {
-        this.f47050b = y3Var;
-        this.f47051c = j3;
+    public f1(x3 x3Var, long j3, long j10, Utilities.Callback callback, long j11) {
+        this.f47351b = x3Var;
+        this.f47352c = j3;
         this.d = j10;
-        this.f47052f = callback;
+        this.f47353f = callback;
         this.e = j11;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f47049a) {
+        switch (this.f47350a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new p1(this.f47050b, (org.telegram.ui.ActionBar.b2) this.f47052f, tLObject, this.f47051c, this.d, this.e, tL_error));
+                AndroidUtilities.runOnUIThread(new p1(this.f47351b, (org.telegram.ui.ActionBar.a2) this.f47353f, tLObject, this.f47352c, this.d, this.e, tL_error));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new p1(this.f47050b, tLObject, this.f47051c, this.d, (Utilities.Callback) this.f47052f, tL_error, this.e));
+                AndroidUtilities.runOnUIThread(new p1(this.f47351b, tLObject, this.f47352c, this.d, (Utilities.Callback) this.f47353f, tL_error, this.e));
                 return;
         }
     }
 
-    public f1(y3 y3Var, org.telegram.ui.ActionBar.b2 b2Var, long j3, long j10, long j11) {
-        this.f47050b = y3Var;
-        this.f47052f = b2Var;
-        this.f47051c = j3;
+    public f1(x3 x3Var, org.telegram.ui.ActionBar.a2 a2Var, long j3, long j10, long j11) {
+        this.f47351b = x3Var;
+        this.f47353f = a2Var;
+        this.f47352c = j3;
         this.d = j10;
         this.e = j11;
     }

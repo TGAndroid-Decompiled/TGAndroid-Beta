@@ -2,14 +2,14 @@ package x7;
 
 import java.util.Arrays;
 public final class r0 {
-    public final n7 f45516a;
-    public final Boolean f45517b;
-    public final h8 f45518c;
+    public final n7 f45830a;
+    public final Boolean f45831b;
+    public final h8 f45832c;
 
-    public r0(v7.r1 r1Var) {
-        this.f45516a = (n7) r1Var.f44028b;
-        this.f45517b = (Boolean) r1Var.d;
-        this.f45518c = (h8) r1Var.f44029c;
+    public r0(v7.l lVar) {
+        this.f45830a = (n7) lVar.f44299b;
+        this.f45831b = (Boolean) lVar.f44300c;
+        this.f45832c = (h8) lVar.d;
     }
 
     public final boolean equals(Object obj) {
@@ -20,13 +20,13 @@ public final class r0 {
             return false;
         }
         r0 r0Var = (r0) obj;
-        if (n6.l.l(this.f45516a, r0Var.f45516a) && n6.l.l(this.f45517b, r0Var.f45517b) && n6.l.l(null, null) && n6.l.l(this.f45518c, r0Var.f45518c)) {
+        if (n6.l.l(this.f45830a, r0Var.f45830a) && n6.l.l(this.f45831b, r0Var.f45831b) && n6.l.l(null, null) && n6.l.l(this.f45832c, r0Var.f45832c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f45516a, this.f45517b, null, this.f45518c});
+        return Arrays.hashCode(new Object[]{this.f45830a, this.f45831b, null, this.f45832c});
     }
 }

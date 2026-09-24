@@ -4,16 +4,16 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.json.TLJsonParser;
 public final class r implements Utilities.CallbackReturn {
-    public final int f18283a;
+    public final int f18521a;
 
     public r(int i10) {
-        this.f18283a = i10;
+        this.f18521a = i10;
     }
 
     @Override
     public final Object run(Object obj) {
         TLJsonParser tLJsonParser = (TLJsonParser) obj;
-        switch (this.f18283a) {
+        switch (this.f18521a) {
             case 0:
                 return TLRPC.TL_textWithEntities.TLJsonDeserialize(tLJsonParser);
             default:

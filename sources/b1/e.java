@@ -4,7 +4,7 @@ import android.os.CancellationSignal;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import gd.i;
 import rd.p;
-import v7.f0;
+import v7.h0;
 public final class e implements p {
     public final int f2888a;
 
@@ -16,13 +16,13 @@ public final class e implements p {
     public final Object invoke(Object obj, Object obj2) {
         id.b bVar;
         int i10 = this.f2888a;
-        i iVar = i.f9603a;
+        i iVar = i.f9602a;
         switch (i10) {
             case 0:
                 rd.a f7 = (rd.a) obj2;
                 kotlin.jvm.internal.i.e(f7, "f");
                 int i11 = d.d;
-                f0.a((CancellationSignal) obj, f7);
+                h0.a((CancellationSignal) obj, f7);
                 return iVar;
             case 1:
                 rd.a f10 = (rd.a) obj2;

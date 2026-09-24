@@ -4,17 +4,16 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.WeakHashMap;
-import k2.b0;
-import w7.s6;
+import w7.t6;
 public final class w extends com.googlecode.mp4parser.c {
-    public static final b0 f8935f;
-    public static final b0 h;
+    public static final ka.c f8934f;
+    public static final ka.c h;
     public List e;
 
     static {
         re.a aVar = new re.a(w.class, "TimeToSampleBox.java");
         aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "", "", "java.util.List"));
-        f8935f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "java.util.List", "entries", "void"));
+        f8934f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "java.util.List", "entries", "void"));
         h = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.TimeToSampleBox", "", "", "java.lang.String"));
         new WeakHashMap();
     }
@@ -22,7 +21,7 @@ public final class w extends com.googlecode.mp4parser.c {
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int a2 = s6.a(e5.b.i(byteBuffer));
+        int a2 = t6.a(e5.b.i(byteBuffer));
         this.e = new ArrayList(a2);
         for (int i10 = 0; i10 < a2; i10++) {
             this.e.add(new v(e5.b.i(byteBuffer), e5.b.i(byteBuffer)));
@@ -34,8 +33,8 @@ public final class w extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         byteBuffer.putInt(this.e.size());
         for (v vVar : this.e) {
-            byteBuffer.putInt((int) vVar.f8933a);
-            byteBuffer.putInt((int) vVar.f8934b);
+            byteBuffer.putInt((int) vVar.f8932a);
+            byteBuffer.putInt((int) vVar.f8933b);
         }
     }
 

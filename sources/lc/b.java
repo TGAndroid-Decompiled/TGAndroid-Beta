@@ -2,21 +2,21 @@ package lc;
 
 import com.google.android.gms.internal.vision.e2;
 import java.nio.ByteBuffer;
-import k2.b0;
+import ka.c;
 public final class b extends a {
-    public static final b0 f13954n;
-    public static final b0 f13955r;
+    public static final c f14177n;
+    public static final c f14178r;
 
     static {
         re.a aVar = new re.a(b.class, "ESDescriptorBox.java");
         aVar.e(aVar.d("getEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor"));
         aVar.e(aVar.d("setEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor", "esDescriptor", "void"));
-        f13954n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
-        f13955r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
+        f14177n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
+        f14178r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
     }
 
     public final boolean equals(Object obj) {
-        e2.q(re.a.c(f13954n, this, this, obj));
+        e2.q(re.a.c(f14177n, this, this, obj));
         if (this != obj) {
             if (obj != null && b.class == obj.getClass()) {
                 ByteBuffer byteBuffer = this.e;
@@ -38,7 +38,7 @@ public final class b extends a {
     }
 
     public final int hashCode() {
-        e2.q(re.a.b(f13955r, this, this));
+        e2.q(re.a.b(f14178r, this, this));
         ByteBuffer byteBuffer = this.e;
         if (byteBuffer != null) {
             return byteBuffer.hashCode();

@@ -1,13 +1,11 @@
 package org.telegram.ui;
-public final class e71 extends s4.j {
-    public final j71 F;
 
-    public e71(j71 j71Var) {
-        this.F = j71Var;
-    }
-
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class e71 extends FrameLayout {
     @Override
-    public final void P(s4.c1 c1Var) {
-        j71.S(this.F);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(240.0f), 1073741824));
     }
 }

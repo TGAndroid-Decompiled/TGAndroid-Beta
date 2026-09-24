@@ -29,8 +29,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.e51;
-public final class fa extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
+import org.telegram.ui.Components.s51;
+public final class fa extends org.telegram.ui.ActionBar.e3 implements NotificationCenter.NotificationCenterDelegate {
     public static final int f4695d0 = 0;
     public boolean E;
     public boolean F;
@@ -278,10 +278,6 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
         return faVar.resourcesProvider;
     }
 
-    public static org.telegram.ui.ActionBar.d6 Y(fa faVar) {
-        return faVar.resourcesProvider;
-    }
-
     public static ArrayList Y0(fa faVar) {
         TLRPC.Chat chat;
         ArrayList arrayList = new ArrayList();
@@ -290,12 +286,12 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (messagesController.canAddToForward(dialog)) {
-                if (DialogObject.isUserDialog(dialog.f18087id)) {
-                    TLRPC.User user = messagesController.getUser(Long.valueOf(dialog.f18087id));
-                    if (user != null && !user.bot && user.f18230id != 777000 && !UserObject.isUserSelf(user)) {
+                if (DialogObject.isUserDialog(dialog.f18325id)) {
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(dialog.f18325id));
+                    if (user != null && !user.bot && user.f18468id != 777000 && !UserObject.isUserSelf(user)) {
                         arrayList.add(user);
                     }
-                } else if (DialogObject.isChatDialog(dialog.f18087id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f18087id))) != null && !ChatObject.isForum(chat)) {
+                } else if (DialogObject.isChatDialog(dialog.f18325id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f18325id))) != null && !ChatObject.isForum(chat)) {
                     arrayList.add(chat);
                 }
             }
@@ -323,14 +319,14 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
         }
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
-            if (DialogObject.isUserDialog(dialog.f18087id)) {
-                TLRPC.User user2 = messagesController.getUser(Long.valueOf(dialog.f18087id));
-                if (user2 != null && !user2.bot && user2.f18230id != 777000 && !UserObject.isUserSelf(user2) && !user2.deleted && (!z10 || (concurrentHashMap != null && concurrentHashMap.get(Long.valueOf(user2.f18230id)) != null))) {
-                    hashMap.put(Long.valueOf(user2.f18230id), Boolean.TRUE);
+            if (DialogObject.isUserDialog(dialog.f18325id)) {
+                TLRPC.User user2 = messagesController.getUser(Long.valueOf(dialog.f18325id));
+                if (user2 != null && !user2.bot && user2.f18468id != 777000 && !UserObject.isUserSelf(user2) && !user2.deleted && (!z10 || (concurrentHashMap != null && concurrentHashMap.get(Long.valueOf(user2.f18468id)) != null))) {
+                    hashMap.put(Long.valueOf(user2.f18468id), Boolean.TRUE);
                     arrayList.add(user2);
                 }
-            } else if (z11 && DialogObject.isChatDialog(dialog.f18087id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f18087id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
-                hashMap.put(Long.valueOf(-chat.f18083id), Boolean.TRUE);
+            } else if (z11 && DialogObject.isChatDialog(dialog.f18325id) && (chat = messagesController.getChat(Long.valueOf(-dialog.f18325id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
+                hashMap.put(Long.valueOf(-chat.f18321id), Boolean.TRUE);
                 arrayList.add(chat);
             }
         }
@@ -338,9 +334,9 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
             for (Map.Entry<Long, TLRPC.TL_contact> entry : concurrentHashMap.entrySet()) {
                 Long key = entry.getKey();
                 key.getClass();
-                if (!hashMap.containsKey(key) && (user = messagesController.getUser(key)) != null && !user.bot && user.f18230id != 777000 && !UserObject.isUserSelf(user)) {
+                if (!hashMap.containsKey(key) && (user = messagesController.getUser(key)) != null && !user.bot && user.f18468id != 777000 && !UserObject.isUserSelf(user)) {
                     arrayList.add(user);
-                    hashMap.put(Long.valueOf(user.f18230id), Boolean.TRUE);
+                    hashMap.put(Long.valueOf(user.f18468id), Boolean.TRUE);
                 }
             }
         }
@@ -366,12 +362,12 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
     public static int d1(fa faVar, TLRPC.Chat chat) {
         Integer num;
         int i10;
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(faVar.currentAccount).getChatFull(chat.f18083id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(faVar.currentAccount).getChatFull(chat.f18321id);
         if (chatFull != null && (i10 = chatFull.participants_count) > 0) {
             return i10;
         }
         HashMap hashMap = faVar.P;
-        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f18083id))) != null) {
+        if (hashMap != null && (num = (Integer) hashMap.get(Long.valueOf(chat.f18321id))) != null) {
             return num.intValue();
         }
         return chat.participants_count;
@@ -552,7 +548,7 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
                 TLObject userOrChat = messagesController.getUserOrChat(str);
                 if (userOrChat instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) userOrChat;
-                    TLRPC.User user2 = messagesController.getUser(Long.valueOf(user.f18230id));
+                    TLRPC.User user2 = messagesController.getUser(Long.valueOf(user.f18468id));
                     if (user2 != null) {
                         user = user2;
                     }
@@ -570,14 +566,14 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
                     spannableStringBuilder.append((CharSequence) ", ");
                 }
                 SpannableString spannableString = new SpannableString("@" + ((String) arrayList.get(i11)));
-                spannableString.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                spannableString.setSpan(new s51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                 spannableStringBuilder.append((CharSequence) spannableString);
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
-            alertDialog$Builder.f18409a.R = LocaleController.getString(R.string.StoryRestrictions);
-            alertDialog$Builder.f18409a.T = AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder);
+            alertDialog$Builder.f18647a.R = LocaleController.getString(R.string.StoryRestrictions);
+            alertDialog$Builder.f18647a.T = AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder);
             alertDialog$Builder.k(LocaleController.getString(R.string.Proceed), new ai.q5(this, daVar, runnable, 5));
-            hg.c.r(R.string.Cancel, alertDialog$Builder, null);
+            hg.c.p(R.string.Cancel, alertDialog$Builder, null);
             return;
         }
         View view = this.f4697b.getViewPages()[0];
@@ -606,7 +602,7 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
         if (arrayList2 != null) {
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 TLRPC.TL_contact tL_contact = arrayList2.get(i10);
-                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.f18230id != 777000) {
+                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && !UserObject.isUserSelf(user) && !user.bot && user.f18468id != 777000) {
                     arrayList.add(user);
                 }
             }
@@ -623,7 +619,7 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesBlocklistUpdate);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesSendAsUpdate);
-        int i10 = org.telegram.ui.ActionBar.h6.f18859h5;
+        int i10 = org.telegram.ui.ActionBar.h6.f19115h5;
         this.R.setColor(org.telegram.ui.ActionBar.h6.v0(i10, this.resourcesProvider));
         fixNavigationBar(org.telegram.ui.ActionBar.h6.v0(i10, this.resourcesProvider));
         this.containerView = new g9(this, context);
@@ -631,7 +627,7 @@ public final class fa extends org.telegram.ui.ActionBar.f3 implements Notificati
         this.f4697b = i1Var;
         int i11 = this.backgroundPaddingLeft;
         i1Var.setPadding(i11, 0, i11, 0);
-        this.containerView.addView(this.f4697b, w7.x5.e(-1, -1, 119));
+        this.containerView.addView(this.f4697b, w7.y5.e(-1, -1, 119));
     }
 
     public final void k1(boolean z10) {

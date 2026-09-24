@@ -1,12 +1,15 @@
 package org.telegram.ui.Components;
+public final class hs0 extends g.p {
+    public final fs0 f24838c;
+    public final jv0 d;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class hs0 extends ViewOutlineProvider {
+    public hs0(jv0 jv0Var, fs0 fs0Var) {
+        this.d = jv0Var;
+        this.f24838c = fs0Var;
+    }
+
     @Override
-    public final void getOutline(View view, Outline outline) {
-        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(16.0f));
+    public final int i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hs0.i(int):int");
     }
 }

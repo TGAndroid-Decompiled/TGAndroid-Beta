@@ -1,31 +1,41 @@
 package yh;
 
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stars;
-public final class h3 extends f3 {
-    public final Paint f47151c;
-    public final Matrix d;
-    public final RadialGradient e;
-    public final int f47152f;
-    public final int f47153g;
-    public final int h;
+import org.telegram.ui.Components.w9;
+public final class h3 extends e3 {
+    public final boolean f47459c;
+    public final ImageReceiver d;
 
-    public h3(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f47055a = stargiftattributebackdrop.name;
-        this.f47056b = stargiftattributebackdrop.getRarityPermille();
-        Paint paint = new Paint(1);
-        this.f47151c = paint;
-        this.d = new Matrix();
-        RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(200.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.e = radialGradient;
-        paint.setShader(radialGradient);
-        this.f47153g = stargiftattributebackdrop.text_color | (-16777216);
-        int i10 = stargiftattributebackdrop.pattern_color;
-        this.h = i10 | (-16777216);
-        this.f47152f = i0.a.d(0.25f, stargiftattributebackdrop.edge_color | (-16777216), i10 | (-16777216));
+    public h3(View view, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+        this.f47318a = stargiftattributemodel.name;
+        this.f47319b = stargiftattributemodel.getRarityPermille();
+        this.f47459c = true;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.d = imageReceiver;
+        w7.Z0(imageReceiver, stargiftattributemodel.document, 160);
+    }
+
+    @Override
+    public final void a() {
+        if (this.f47459c) {
+            this.d.onDetachedFromWindow();
+        }
+    }
+
+    @Override
+    public final boolean b() {
+        if (this.d.getLottieAnimation() != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public h3(w9 w9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+        this.f47318a = stargiftattributemodel.name;
+        this.f47319b = stargiftattributemodel.getRarityPermille();
+        this.f47459c = false;
+        this.d = w9Var.getImageReceiver();
     }
 }

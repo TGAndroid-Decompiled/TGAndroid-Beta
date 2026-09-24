@@ -8,9 +8,9 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.x60;
+import org.telegram.ui.v60;
 import yf.e0;
-public final class a implements gh.f, x60 {
+public final class a implements gh.f, v60 {
     public final int f4257a;
     public final boolean f4258b;
     public final Object f4259c;
@@ -117,7 +117,7 @@ public final class a implements gh.f, x60 {
                 i12++;
             }
         } else {
-            boolean[] zArr2 = privacyControlActivity.f31193y;
+            boolean[] zArr2 = privacyControlActivity.f31494y;
             int i13 = privacyControlActivity.I;
             if (i13 == 2) {
                 c10 = 0;
@@ -133,6 +133,6 @@ public final class a implements gh.f, x60 {
             }
         }
         privacyControlActivity.E0();
-        privacyControlActivity.f31161a.l();
+        privacyControlActivity.f31462a.l();
     }
 }

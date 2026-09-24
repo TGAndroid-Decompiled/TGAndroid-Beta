@@ -1,62 +1,109 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.view.WindowManager;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.dc1;
-public final class k81 implements SensorEventListener {
-    public final float[] f25553a = new float[3];
-    public final float[] f25554b = new float[3];
-    public int f25555c;
-    public final WindowManager d;
-    public final SensorManager e;
-    public final Sensor f25556f;
-    public boolean h;
-    public j81 f25557n;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class k81 extends AnimatorListenerAdapter {
+    public final int f25690a;
+    public final w81 f25691b;
 
-    public k81(Context context) {
-        this.d = (WindowManager) context.getSystemService("window");
-        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.e = sensorManager;
-        this.f25556f = sensorManager.getDefaultSensor(1);
+    public k81(w81 w81Var, int i10) {
+        this.f25690a = i10;
+        this.f25691b = w81Var;
     }
 
-    public static float a(int i10, int i11) {
-        float f7 = i10;
-        float dp = AndroidUtilities.dp(16.0f) * 2;
-        float f10 = (f7 + dp) / f7;
-        float f11 = i11;
-        return Math.max(f10, (dp + f11) / f11);
-    }
-
-    public final void b(dc1 dc1Var) {
-        this.f25557n = dc1Var;
-    }
-
-    public final void c(boolean z10) {
-        if (this.h != z10) {
-            this.h = z10;
-            Sensor sensor = this.f25556f;
-            if (sensor != null) {
-                SensorManager sensorManager = this.e;
-                if (z10) {
-                    sensorManager.registerListener(this, sensor, 1);
-                } else {
-                    sensorManager.unregisterListener(this);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25690a) {
+            case 0:
+                w81 w81Var = this.f25691b;
+                View[] viewArr = w81Var.e;
+                View[] viewArr2 = w81Var.e;
+                if (viewArr[1] != null) {
+                    w81Var.F();
+                    w81Var.h.put(w81Var.f29920f[1], viewArr2[1]);
+                    w81Var.removeView(viewArr2[1]);
+                    w81Var.E(viewArr2[0], 0.0f);
+                    viewArr2[1] = null;
                 }
-            }
+                w81Var.Q = null;
+                w81Var.w(true);
+                l81 l81Var = w81Var.M;
+                if (l81Var != null) {
+                    l81Var.v.invalidate();
+                    w81Var.M.v.f1();
+                    w81Var.M.invalidate();
+                }
+                w81Var.u();
+                w81Var.J.unlock();
+                return;
+            case 1:
+                w81 w81Var2 = this.f25691b;
+                w81Var2.f29924w = null;
+                View[] viewArr3 = w81Var2.e;
+                if (viewArr3[1] != null) {
+                    if (!w81Var2.F) {
+                        w81Var2.F();
+                    }
+                    w81Var2.h.put(w81Var2.f29920f[1], viewArr3[1]);
+                    w81Var2.removeView(viewArr3[1]);
+                    viewArr3[1].setVisibility(8);
+                    viewArr3[1] = null;
+                }
+                w81Var2.f29925x = false;
+                w81Var2.I = false;
+                l81 l81Var2 = w81Var2.M;
+                if (l81Var2 != null) {
+                    l81Var2.setEnabled(true);
+                }
+                w81Var2.w(false);
+                w81Var2.u();
+                w81Var2.J.unlock();
+                return;
+            case 2:
+                w81 w81Var3 = this.f25691b;
+                w81Var3.f29924w = null;
+                View[] viewArr4 = w81Var3.e;
+                View view = viewArr4[1];
+                if (view != null) {
+                    w81Var3.removeView(view);
+                    viewArr4[1] = null;
+                }
+                w81Var3.f29925x = false;
+                l81 l81Var3 = w81Var3.M;
+                if (l81Var3 != null) {
+                    l81Var3.setEnabled(true);
+                    l81 l81Var4 = w81Var3.M;
+                    l81Var4.J = false;
+                    l81Var4.f29074a = 1.0f;
+                    l81Var4.v.f1();
+                    w81Var3.M.invalidate();
+                    return;
+                }
+                return;
+            default:
+                w81 w81Var4 = this.f25691b;
+                w81Var4.f29924w = null;
+                View[] viewArr5 = w81Var4.e;
+                if (viewArr5[1] != null) {
+                    if (!w81Var4.F) {
+                        w81Var4.F();
+                    }
+                    w81Var4.h.put(w81Var4.f29920f[1], viewArr5[1]);
+                    w81Var4.removeView(viewArr5[1]);
+                    viewArr5[1].setVisibility(8);
+                    viewArr5[1] = null;
+                }
+                w81Var4.f29925x = false;
+                w81Var4.I = false;
+                l81 l81Var5 = w81Var4.M;
+                if (l81Var5 != null) {
+                    l81Var5.setEnabled(true);
+                }
+                w81Var4.w(false);
+                w81Var4.u();
+                w81Var4.J.unlock();
+                return;
         }
-    }
-
-    @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k81.onSensorChanged(android.hardware.SensorEvent):void");
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

@@ -2,29 +2,29 @@ package org.telegram.messenger;
 
 import java.util.concurrent.atomic.AtomicInteger;
 public final class x implements Runnable {
-    public final int f17813a;
-    public final AtomicInteger f17814b;
-    public final AtomicInteger f17815c;
+    public final int f18060a;
+    public final AtomicInteger f18061b;
+    public final AtomicInteger f18062c;
     public final Runnable d;
 
     public x(AtomicInteger atomicInteger, AtomicInteger atomicInteger2, Runnable runnable, int i10) {
-        this.f17813a = i10;
-        this.f17814b = atomicInteger;
-        this.f17815c = atomicInteger2;
+        this.f18060a = i10;
+        this.f18061b = atomicInteger;
+        this.f18062c = atomicInteger2;
         this.d = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f17813a) {
+        switch (this.f18060a) {
             case 0:
-                BillingController.c(this.f17814b, this.f17815c, this.d);
+                BillingController.c(this.f18061b, this.f18062c, this.d);
                 return;
             case 1:
-                BillingController.g(this.f17814b, this.f17815c, this.d);
+                BillingController.g(this.f18061b, this.f18062c, this.d);
                 return;
             default:
-                BillingController.d(this.f17814b, this.f17815c, this.d);
+                BillingController.d(this.f18061b, this.f18062c, this.d);
                 return;
         }
     }

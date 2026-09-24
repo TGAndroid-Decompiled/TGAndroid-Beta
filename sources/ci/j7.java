@@ -46,11 +46,11 @@ public final class j7 extends View implements w2 {
     public float H0;
     public final RadialGradient I;
     public final org.telegram.ui.Components.e6 I0;
-    public final org.telegram.ui.Components.yc J;
+    public final org.telegram.ui.Components.zc J;
     public final org.telegram.ui.Components.e6 J0;
-    public final org.telegram.ui.Components.yc K;
+    public final org.telegram.ui.Components.zc K;
     public final org.telegram.ui.Components.e6 K0;
-    public final org.telegram.ui.Components.yc L;
+    public final org.telegram.ui.Components.zc L;
     public final g7 L0;
     public float M;
     public final g7 M0;
@@ -139,9 +139,9 @@ public final class j7 extends View implements w2 {
         this.G = paint8;
         Matrix matrix = new Matrix();
         this.H = matrix;
-        this.J = new org.telegram.ui.Components.yc(this);
-        this.K = new org.telegram.ui.Components.yc(this);
-        this.L = new org.telegram.ui.Components.yc(this);
+        this.J = new org.telegram.ui.Components.zc(this);
+        this.K = new org.telegram.ui.Components.zc(this);
+        this.L = new org.telegram.ui.Components.zc(this);
         rr rrVar = rr.h;
         this.N = new org.telegram.ui.Components.e6(this, 0L, 310L, rrVar);
         this.P = new org.telegram.ui.Components.e6(this, 0L, 330L, rrVar);
@@ -149,7 +149,7 @@ public final class j7 extends View implements w2 {
         this.T = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
         this.U = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
         this.V = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
-        this.f4839h0 = new org.telegram.ui.Components.e6(this, 0L, 200L, rr.f27701f);
+        this.f4839h0 = new org.telegram.ui.Components.e6(this, 0L, 200L, rr.f28022f);
         this.m0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
         this.f4845n0 = -1.0f;
         this.f4846o0 = true;
@@ -159,7 +159,7 @@ public final class j7 extends View implements w2 {
         this.f4853t0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
         this.B0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
         this.C0 = new org.telegram.ui.Components.e6(this, 0L, 650L, rrVar);
-        this.D0 = new org.telegram.ui.Components.e6(this, 0L, 160L, rr.f27703i);
+        this.D0 = new org.telegram.ui.Components.e6(this, 0L, 160L, rr.f28024i);
         this.E0 = new org.telegram.ui.Components.e6(this, 0L, 750L, rrVar);
         this.F0 = new org.telegram.ui.Components.e6(this, 0L, 650L, rrVar);
         this.G0 = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
@@ -218,11 +218,11 @@ public final class j7 extends View implements w2 {
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         qq qqVar = new qq(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(6.0f), -13750737), mutate);
         this.f4832c = qqVar;
-        qqVar.f27431w = false;
+        qqVar.f27733w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
         qqVar.e = dp;
-        qqVar.f27427f = dp2;
+        qqVar.f27729f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -265,7 +265,7 @@ public final class j7 extends View implements w2 {
                 return true;
             }
             return false;
-        } else if (v7.z6.a(f7, f10, f11, f12) <= f13) {
+        } else if (v7.a7.a(f7, f10, f11, f12) <= f13) {
             return true;
         } else {
             return false;
@@ -279,7 +279,7 @@ public final class j7 extends View implements w2 {
         } else {
             j3 = 310;
         }
-        this.N.f23577g = j3;
+        this.N.f23819g = j3;
         this.M += f7;
         invalidate();
     }
@@ -412,7 +412,7 @@ public final class j7 extends View implements w2 {
         float f37;
         float f38;
         org.telegram.ui.Components.e6 e6Var;
-        org.telegram.ui.Components.yc ycVar;
+        org.telegram.ui.Components.zc zcVar;
         float f39;
         int i10;
         float f40;
@@ -451,8 +451,8 @@ public final class j7 extends View implements w2 {
             f11 = 0.0f;
         }
         float d14 = this.B0.d(f11, false);
-        org.telegram.ui.Components.yc ycVar2 = this.J;
-        if (Math.abs(this.f4861y0 - this.f4840i0) < AndroidUtilities.dp(64.0f) && (this.f4850r0 || ycVar2.h)) {
+        org.telegram.ui.Components.zc zcVar2 = this.J;
+        if (Math.abs(this.f4861y0 - this.f4840i0) < AndroidUtilities.dp(64.0f) && (this.f4850r0 || zcVar2.h)) {
             f12 = 1.0f;
         } else {
             f12 = 0.0f;
@@ -527,7 +527,7 @@ public final class j7 extends View implements w2 {
         } else {
             f23 = 0.2f;
         }
-        float lerp4 = AndroidUtilities.lerp(ycVar2.a(f23), (this.f4839h0.d(this.f4838g0, false) * 0.2f) + f21, d12);
+        float lerp4 = AndroidUtilities.lerp(zcVar2.a(f23), (this.f4839h0.d(this.f4838g0, false) * 0.2f) + f21, d12);
         RectF rectF4 = AndroidUtilities.rectTmp;
         float f49 = lerp - lerp2;
         float f50 = this.f4841j0;
@@ -679,9 +679,9 @@ public final class j7 extends View implements w2 {
         }
         canvas3.restore();
         boolean z13 = this.A0;
-        org.telegram.ui.Components.yc ycVar3 = this.L;
+        org.telegram.ui.Components.zc zcVar3 = this.L;
         if (z13) {
-            float a2 = ycVar3.a(0.2f) * f26;
+            float a2 = zcVar3.a(0.2f) * f26;
             if (a2 > 0.0f) {
                 canvas3.save();
                 canvas3.scale(a2, a2, this.f4842k0, this.f4841j0);
@@ -691,7 +691,7 @@ public final class j7 extends View implements w2 {
                 canvas3.restore();
             }
         }
-        float a10 = ycVar3.a(0.2f) * f46 * f24;
+        float a10 = zcVar3.a(0.2f) * f46 * f24;
         if (a10 > 0.0f) {
             canvas3.save();
             canvas3.scale(a10, a10, this.f4842k0, this.f4841j0);
@@ -707,10 +707,10 @@ public final class j7 extends View implements w2 {
         float d20 = this.P.d(f34, false);
         Paint paint8 = this.f4858x;
         org.telegram.ui.Components.e6 e6Var2 = this.N;
-        org.telegram.ui.Components.yc ycVar4 = this.K;
+        org.telegram.ui.Components.zc zcVar4 = this.K;
         if (d20 > 0.0f) {
             canvas3.save();
-            float a11 = ycVar4.a(0.2f) * d20 * f24;
+            float a11 = zcVar4.a(0.2f) * d20 * f24;
             canvas3.scale(a11, a11, this.f4843l0, this.f4841j0);
             canvas3.rotate(e6Var2.d(this.M, false) - getRotation(), this.f4843l0, this.f4841j0);
             canvas3.drawCircle(this.f4843l0, this.f4841j0, AndroidUtilities.dp(22.0f), paint8);
@@ -720,8 +720,8 @@ public final class j7 extends View implements w2 {
         if (d20 < 1.0f) {
             canvas3.save();
             f35 = f24;
-            float A = org.telegram.messenger.z0.A(1.0f, d20, ycVar4.a(0.2f), f35);
-            canvas3.scale(A, A, this.f4843l0, this.f4841j0);
+            float z14 = org.telegram.messenger.f0.z(1.0f, d20, zcVar4.a(0.2f), f35);
+            canvas3.scale(z14, z14, this.f4843l0, this.f4841j0);
             canvas3.rotate(e6Var2.d(this.M, false) - getRotation(), this.f4843l0, this.f4841j0);
             canvas3.drawCircle(this.f4843l0, this.f4841j0, AndroidUtilities.dp(22.0f), this.f4856w);
             this.d.draw(canvas3);
@@ -800,8 +800,8 @@ public final class j7 extends View implements w2 {
                 f38 = f74;
                 f40 = f35;
                 e6Var = e6Var2;
-                ycVar = ycVar4;
-                float min2 = Math.min(1.0f, (abs2 * 2.0f) / f67) * Math.min(clamp3 * 2.4f, v7.z6.a(pointF4.x, pointF4.y, pointF6.x, pointF6.y) / f67);
+                zcVar = zcVar4;
+                float min2 = Math.min(1.0f, (abs2 * 2.0f) / f67) * Math.min(clamp3 * 2.4f, v7.a7.a(pointF4.x, pointF4.y, pointF6.x, pointF6.y) / f67);
                 float f76 = lerp2 * min2;
                 float f77 = f38 * min2;
                 a(pointF4.x, pointF4.y, d26 - 1.5707963705062866d, f76, this.T0);
@@ -839,7 +839,7 @@ public final class j7 extends View implements w2 {
             } else {
                 f38 = f36;
                 e6Var = e6Var2;
-                ycVar = ycVar4;
+                zcVar = zcVar4;
                 f39 = d21;
                 i10 = i12;
                 f40 = f35;
@@ -847,14 +847,14 @@ public final class j7 extends View implements w2 {
         } else {
             f38 = f36;
             e6Var = e6Var2;
-            ycVar = ycVar4;
+            zcVar = zcVar4;
             f39 = d21;
             i10 = i12;
             f40 = f35;
             f41 = 22.0f;
         }
         if (i10 > 0 || f39 > 0.0f) {
-            float a12 = ycVar3.a(0.2f) * f26 * f40;
+            float a12 = zcVar3.a(0.2f) * f26 * f40;
             canvas3.save();
             Path path3 = this.O0;
             path3.rewind();
@@ -873,7 +873,7 @@ public final class j7 extends View implements w2 {
                 this.h.draw(canvas3);
                 canvas3.restore();
             }
-            float a13 = ycVar.a(0.2f) * f40;
+            float a13 = zcVar.a(0.2f) * f40;
             canvas3.save();
             canvas3.scale(a13, a13, this.f4843l0, this.f4841j0);
             canvas3.rotate(e6Var.d(this.M, false) - getRotation(), this.f4843l0, this.f4841j0);
@@ -885,12 +885,12 @@ public final class j7 extends View implements w2 {
         i7 i7Var = this.W;
         if (i7Var != null) {
             boolean b10 = b();
-            boolean z14 = this.f4829a0;
-            boolean z15 = this.f4850r0;
-            if (z14 == z15 && this.f4831b0 == b10 && this.f4833c0 == this.O && this.f4834d0 == this.f4846o0 && this.f4835e0 == this.f4854u0 && this.f4837f0 == this.A0) {
+            boolean z15 = this.f4829a0;
+            boolean z16 = this.f4850r0;
+            if (z15 == z16 && this.f4831b0 == b10 && this.f4833c0 == this.O && this.f4834d0 == this.f4846o0 && this.f4835e0 == this.f4854u0 && this.f4837f0 == this.A0) {
                 return;
             }
-            this.f4829a0 = z15;
+            this.f4829a0 = z16;
             this.f4831b0 = b10;
             this.f4833c0 = this.O;
             this.f4834d0 = this.f4846o0;
@@ -943,41 +943,41 @@ public final class j7 extends View implements w2 {
         float y3 = motionEvent.getY() + 0.0f;
         boolean c10 = c(clamp, y3, this.f4843l0, this.f4841j0, AndroidUtilities.dp(7.0f), true);
         boolean z12 = this.f4854u0;
-        org.telegram.ui.Components.yc ycVar = this.L;
-        org.telegram.ui.Components.yc ycVar2 = this.J;
-        org.telegram.ui.Components.yc ycVar3 = this.K;
+        org.telegram.ui.Components.zc zcVar = this.L;
+        org.telegram.ui.Components.zc zcVar2 = this.J;
+        org.telegram.ui.Components.zc zcVar3 = this.K;
         boolean z13 = true;
         boolean z14 = false;
         if (z12) {
-            ycVar2.c(false);
-            ycVar3.c(false);
-            ycVar.c(false);
+            zcVar2.c(false);
+            zcVar3.c(false);
+            zcVar.c(false);
         } else if (action == 0 || this.f4857w0) {
-            ycVar2.c(c(clamp, y3, this.f4840i0, this.f4841j0, AndroidUtilities.dp(60.0f), false));
+            zcVar2.c(c(clamp, y3, this.f4840i0, this.f4841j0, AndroidUtilities.dp(60.0f), false));
             if (c(clamp, y3, this.f4843l0, this.f4841j0, AndroidUtilities.dp(30.0f), true) && !b()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ycVar3.c(z10);
+            zcVar3.c(z10);
             if (c(clamp, y3, this.f4842k0, this.f4841j0, AndroidUtilities.dp(30.0f), false) && !b()) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            ycVar.c(z11);
+            zcVar.c(z11);
         }
         g7 g7Var = this.M0;
         g7 g7Var2 = this.L0;
         if (action == 0) {
             this.f4857w0 = true;
-            this.f4859x0 = (ycVar2.h || ycVar3.h) ? true : true;
+            this.f4859x0 = (zcVar2.h || zcVar3.h) ? true : true;
             System.currentTimeMillis();
             this.f4861y0 = clamp;
             if (Math.abs(clamp - this.f4840i0) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(g7Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (ycVar3.h) {
+            if (zcVar3.h) {
                 AndroidUtilities.runOnUIThread(g7Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
@@ -1005,13 +1005,13 @@ public final class j7 extends View implements w2 {
                 AndroidUtilities.cancelRunOnUIThread(g7Var2);
                 AndroidUtilities.cancelRunOnUIThread(g7Var);
                 boolean z15 = this.f4850r0;
-                if (!z15 && ycVar.h) {
+                if (!z15 && zcVar.h) {
                     lc lcVar2 = ((gb) this.f4828a).f4734a;
                     if (lcVar2.f5044f0 == 0 && !lcVar2.P1 && !lcVar2.Q1 && lc.b(lcVar2)) {
                         lcVar2.f(true);
                     }
                 } else if (z15 && this.f4862z0) {
-                    if (ycVar.h) {
+                    if (zcVar.h) {
                         this.f4862z0 = false;
                         this.G0.d(1.0f, true);
                         b4 b4Var = ((gb) this.f4828a).f4734a.T0;
@@ -1023,7 +1023,7 @@ public final class j7 extends View implements w2 {
                         this.f4854u0 = true;
                         ((gb) this.f4828a).d(false);
                     }
-                } else if (ycVar2.h) {
+                } else if (zcVar2.h) {
                     if (b()) {
                         ((gb) this.f4828a).a();
                     } else if (!this.f4846o0 && !this.f4850r0 && !this.f4862z0) {
@@ -1043,13 +1043,13 @@ public final class j7 extends View implements w2 {
                     }
                 }
                 this.f4862z0 = false;
-                if (ycVar3.h) {
+                if (zcVar3.h) {
                     d(180.0f);
                     ((gb) this.f4828a).b();
                 }
-                ycVar2.c(false);
-                ycVar3.c(false);
-                ycVar.c(false);
+                zcVar2.c(false);
+                zcVar3.c(false);
+                zcVar.c(false);
                 invalidate();
             }
             return false;

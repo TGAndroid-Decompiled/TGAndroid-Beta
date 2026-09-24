@@ -5,44 +5,44 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class hg extends o6.a {
     public static final Parcelable.Creator<hg> CREATOR = new cg(1);
-    public final float[] f48423a;
-    public final Bitmap f48424b;
-    public final int f48425c;
+    public final float[] f48740a;
+    public final Bitmap f48741b;
+    public final int f48742c;
     public final int d;
     public final int e;
-    public final int f48426f;
+    public final int f48743f;
     public final int h;
 
     public hg(float[] fArr, Bitmap bitmap, int i10, int i11, int i12, int i13, int i14) {
-        this.f48423a = fArr;
-        this.f48424b = bitmap;
-        this.f48425c = i10;
+        this.f48740a = fArr;
+        this.f48741b = bitmap;
+        this.f48742c = i10;
         this.d = i11;
         this.e = i12;
-        this.f48426f = i13;
+        this.f48743f = i13;
         this.h = i14;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
-        float[] fArr = this.f48423a;
+        int q6 = w7.f0.q(parcel, 20293);
+        float[] fArr = this.f48740a;
         if (fArr != null) {
-            int q10 = w7.e0.q(parcel, 1);
+            int q10 = w7.f0.q(parcel, 1);
             parcel.writeFloatArray(fArr);
-            w7.e0.r(parcel, q10);
+            w7.f0.r(parcel, q10);
         }
-        w7.e0.k(parcel, 2, this.f48424b, i10);
-        w7.e0.s(parcel, 3, 4);
-        parcel.writeInt(this.f48425c);
-        w7.e0.s(parcel, 4, 4);
+        w7.f0.k(parcel, 2, this.f48741b, i10);
+        w7.f0.s(parcel, 3, 4);
+        parcel.writeInt(this.f48742c);
+        w7.f0.s(parcel, 4, 4);
         parcel.writeInt(this.d);
-        w7.e0.s(parcel, 5, 4);
+        w7.f0.s(parcel, 5, 4);
         parcel.writeInt(this.e);
-        w7.e0.s(parcel, 6, 4);
-        parcel.writeInt(this.f48426f);
-        w7.e0.s(parcel, 7, 4);
+        w7.f0.s(parcel, 6, 4);
+        parcel.writeInt(this.f48743f);
+        w7.f0.s(parcel, 7, 4);
         parcel.writeInt(this.h);
-        w7.e0.r(parcel, q6);
+        w7.f0.r(parcel, q6);
     }
 }

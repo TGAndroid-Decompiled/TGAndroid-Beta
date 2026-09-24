@@ -1,8 +1,8 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.f71;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.s71;
 import org.telegram.ui.Components.tz;
 import org.telegram.ui.Components.wz;
 public final class z6 implements Runnable {
@@ -30,9 +30,9 @@ public final class z6 implements Runnable {
             case 3:
                 b7 b7Var = this.f5913b;
                 z6 z6Var = b7Var.K;
-                f71 f71Var = b7Var.e;
-                if (f71Var != null && b7Var.F != null) {
-                    long n10 = f71Var.n();
+                s71 s71Var = b7Var.e;
+                if (s71Var != null && b7Var.F != null) {
+                    long n10 = s71Var.n();
                     if (b7Var.getDuration() > 1) {
                         float duration = ((float) n10) / ((float) b7Var.getDuration());
                         boolean z11 = false;
@@ -40,9 +40,9 @@ public final class z6 implements Runnable {
                             l8 l8Var = b7Var.d;
                             if ((duration < l8Var.Z || duration > l8Var.f4965a0) && System.currentTimeMillis() - b7Var.J > 500) {
                                 b7Var.J = System.currentTimeMillis();
-                                f71 f71Var2 = b7Var.e;
+                                s71 s71Var2 = b7Var.e;
                                 long duration2 = b7Var.d.Z * ((float) b7Var.getDuration());
-                                f71Var2.L(duration2, false);
+                                s71Var2.L(duration2, false);
                                 b7Var.w(true);
                                 b7Var.y(true);
                                 n10 = duration2;
@@ -83,10 +83,10 @@ public final class z6 implements Runnable {
                         float f11 = (float) l8Var2.C;
                         if ((f7 < f10 * f11 || f7 > l8Var2.F * f11) && System.currentTimeMillis() - b7Var2.J > 500) {
                             b7Var2.J = System.currentTimeMillis();
-                            f71 f71Var3 = b7Var2.f4409y;
+                            s71 s71Var3 = b7Var2.f4409y;
                             l8 l8Var3 = b7Var2.d;
                             long j3 = l8Var3.E * ((float) l8Var3.C);
-                            f71Var3.L(j3, false);
+                            s71Var3.L(j3, false);
                             n11 = j3;
                         }
                     }
@@ -111,10 +111,10 @@ public final class z6 implements Runnable {
                         float f14 = (float) l8Var4.f4998q0;
                         if ((f12 < f13 * f14 || f12 > l8Var4.f5004t0 * f14) && System.currentTimeMillis() - b7Var3.J > 500) {
                             b7Var3.J = System.currentTimeMillis();
-                            f71 f71Var4 = b7Var3.f4407x;
+                            s71 s71Var4 = b7Var3.f4407x;
                             l8 l8Var5 = b7Var3.d;
                             long j10 = l8Var5.f5002s0 * ((float) l8Var5.f4998q0);
-                            f71Var4.L(j10, false);
+                            s71Var4.L(j10, false);
                             b7Var3.w(true);
                             n12 = j10;
                         }
@@ -130,13 +130,13 @@ public final class z6 implements Runnable {
                 return;
             default:
                 b7 b7Var4 = this.f5913b;
-                t61 t61Var = b7Var4.f4393n;
-                if (t61Var != null) {
-                    wz wzVar = t61Var.f28102b;
+                i71 i71Var = b7Var4.f4393n;
+                if (i71Var != null) {
+                    wz wzVar = i71Var.f24936b;
                     if (wzVar != null) {
                         wzVar.postRunnable(new tz(wzVar, 0));
                     }
-                    t61Var.f28101a = null;
+                    i71Var.f24935a = null;
                     b7Var4.removeView(b7Var4.f4393n);
                     b7Var4.f4393n = null;
                     return;

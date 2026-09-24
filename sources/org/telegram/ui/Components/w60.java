@@ -1,177 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class w60 extends ll0 {
-    public final c70 f29555c;
+public final class w60 implements f90 {
+    public final x60 f29889a;
 
-    public w60(c70 c70Var) {
-        this.f29555c = c70Var;
+    public w60(x60 x60Var) {
+        this.f29889a = x60Var;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42630f;
-        if (i10 == 3 || i10 == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final TLObject E(int i10) {
-        int i11;
-        int i12;
-        c70 c70Var = this.f29555c;
-        if (c70Var.m0 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) c70Var.f22963n0.get(i10 - c70Var.Y);
-            if (DialogObject.isUserDialog(dialog.f18087id)) {
-                i12 = ((org.telegram.ui.ActionBar.f3) c70Var).currentAccount;
-                return MessagesController.getInstance(i12).getUser(Long.valueOf(dialog.f18087id));
-            }
-            i11 = ((org.telegram.ui.ActionBar.f3) c70Var).currentAccount;
-            return MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f18087id));
-        }
-        return (TLObject) c70Var.f22955e0.get(i10 - c70Var.Y);
-    }
-
-    @Override
-    public final int h() {
-        return this.f29555c.f22953c0;
-    }
-
-    @Override
-    public final int j(int i10) {
-        c70 c70Var = this.f29555c;
-        if (i10 == c70Var.X) {
-            return 1;
-        }
-        c70Var.getClass();
-        if (i10 == 0) {
-            return 2;
-        }
-        if (i10 >= c70Var.Y && i10 < c70Var.Z) {
-            return 3;
-        }
-        if (i10 == c70Var.f22952b0) {
-            return 4;
-        }
-        if (i10 == c70Var.f22951a0) {
-            return 5;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        long j3;
-        boolean z10;
-        long j10;
-        boolean z11;
-        int i11 = c1Var.f42630f;
-        View view = c1Var.f42627a;
-        if (i11 != 2) {
-            if (i11 == 3) {
-                org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
-                TLObject E = E(i10);
-                Object object = g4Var.getObject();
-                if (object instanceof TLRPC.User) {
-                    j3 = ((TLRPC.User) object).f18230id;
-                } else if (object instanceof TLRPC.Chat) {
-                    j3 = -((TLRPC.Chat) object).f18083id;
-                } else {
-                    j3 = 0;
-                }
-                c70 c70Var = this.f29555c;
-                boolean z12 = false;
-                if (i10 != c70Var.Z) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                g4Var.e(E, null, null, z10);
-                if (E instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) E).f18230id;
-                } else if (E instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) E).f18083id;
-                } else {
-                    j10 = 0;
-                }
-                if (j10 != 0) {
-                    a0.i iVar = c70Var.T;
-                    if (iVar != null && iVar.h(j10) >= 0) {
-                        g4Var.c(true, false);
-                        g4Var.setCheckBoxEnabled(false);
-                        return;
-                    }
-                    if (c70Var.f22956f0.h(j10) >= 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    if (j3 == j10) {
-                        z12 = true;
-                    }
-                    g4Var.c(z11, z12);
-                    g4Var.setCheckBoxEnabled(true);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        view.requestLayout();
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.y4 y4Var;
-        boolean z10;
-        Context context = viewGroup.getContext();
-        if (i10 != 2) {
-            c70 c70Var = this.f29555c;
-            if (i10 != 3) {
-                if (i10 != 4) {
-                    if (i10 != 5) {
-                        org.telegram.ui.Cells.y4 y4Var2 = new org.telegram.ui.Cells.y4(context);
-                        y4Var2.b(LocaleController.getString(R.string.VoipGroupCopyInviteLink), R.drawable.msg_link, 7, true);
-                        int i11 = org.telegram.ui.ActionBar.h6.f18972n5;
-                        y4Var2.a(i11, i11);
-                        y4Var = y4Var2;
-                    } else {
-                        v60 v60Var = new v60(context, null, 0, null, 0);
-                        v60Var.setLayoutParams(new s4.p0(-1, -1));
-                        v60Var.e.setVisibility(8);
-                        org.telegram.ui.eu euVar = c70Var.m0;
-                        vh.o oVar = v60Var.d;
-                        if (euVar != null) {
-                            oVar.setText(LocaleController.getString(R.string.FilterNoChats));
-                        } else {
-                            oVar.setText(LocaleController.getString(R.string.NoContacts));
-                        }
-                        v60Var.setAnimateLayoutChange(true);
-                        y4Var = v60Var;
-                    }
-                } else {
-                    y4Var = new View(context);
-                }
-            } else {
-                if (c70Var.m0 != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                y4Var = new org.telegram.ui.Cells.g4(context, 1, 0, z10);
-            }
+    public final void c() {
+        c70 c70Var = this.f29889a.f30257c;
+        org.telegram.ui.ActionBar.m2 m2Var = c70Var.U;
+        if (m2Var instanceof org.telegram.ui.sh0) {
+            org.telegram.ui.sh0 sh0Var = (org.telegram.ui.sh0) m2Var;
+            TLRPC.TL_chatInviteExported tL_chatInviteExported = c70Var.f23226b;
+            org.telegram.ui.rb0 rb0Var = new org.telegram.ui.rb0(1, sh0Var.f37769n);
+            rb0Var.T = sh0Var.f37777s0;
+            rb0Var.Y(tL_chatInviteExported);
+            sh0Var.presentFragment(rb0Var);
         } else {
-            y4Var = new ci.bb(this, context, 18);
+            org.telegram.ui.rb0 rb0Var2 = new org.telegram.ui.rb0(1, c70Var.f23234g0);
+            rb0Var2.Y(c70Var.f23226b);
+            rb0Var2.T = new v60(this);
+            c70Var.U.presentFragment(rb0Var2);
         }
-        return new s4.c1(y4Var);
+        c70Var.dismiss();
+    }
+
+    @Override
+    public final void e() {
+        int i10;
+        int i11;
+        c70 c70Var = this.f29889a.f30257c;
+        org.telegram.ui.ActionBar.m2 m2Var = c70Var.U;
+        if (m2Var instanceof org.telegram.ui.sh0) {
+            ((org.telegram.ui.sh0) m2Var).e0(c70Var.f23226b);
+        } else {
+            TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
+            tL_messages_editExportedChatInvite.link = c70Var.f23226b.link;
+            tL_messages_editExportedChatInvite.revoked = true;
+            i10 = ((org.telegram.ui.ActionBar.e3) c70Var).currentAccount;
+            tL_messages_editExportedChatInvite.peer = MessagesController.getInstance(i10).getInputPeer(-c70Var.f23234g0);
+            i11 = ((org.telegram.ui.ActionBar.e3) c70Var).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(tL_messages_editExportedChatInvite, new u60(this, 0));
+        }
+        c70Var.dismiss();
+    }
+
+    @Override
+    public final void k() {
+        int i10;
+        int i11;
+        c70 c70Var = this.f29889a.f30257c;
+        org.telegram.ui.ActionBar.m2 m2Var = c70Var.U;
+        if (m2Var instanceof org.telegram.ui.sh0) {
+            ((org.telegram.ui.sh0) m2Var).b0(c70Var.f23226b);
+        } else {
+            TLRPC.TL_messages_deleteExportedChatInvite tL_messages_deleteExportedChatInvite = new TLRPC.TL_messages_deleteExportedChatInvite();
+            tL_messages_deleteExportedChatInvite.link = c70Var.f23226b.link;
+            i10 = ((org.telegram.ui.ActionBar.e3) c70Var).currentAccount;
+            tL_messages_deleteExportedChatInvite.peer = MessagesController.getInstance(i10).getInputPeer(-c70Var.f23234g0);
+            i11 = ((org.telegram.ui.ActionBar.e3) c70Var).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteExportedChatInvite, new u60(this, 1));
+        }
+        c70Var.dismiss();
+    }
+
+    @Override
+    public final void j() {
     }
 }

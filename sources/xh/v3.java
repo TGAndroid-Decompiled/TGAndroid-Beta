@@ -7,35 +7,35 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ui1;
-import yh.m5;
-public final class v3 implements m5 {
-    public final int f46122a;
-    public final long f46123b;
-    public final Utilities.Callback f46124c;
+import yh.l5;
+public final class v3 implements l5 {
+    public final int f46436a;
+    public final long f46437b;
+    public final Utilities.Callback f46438c;
     public int e;
-    public long f46127i;
-    public String f46135q;
-    public boolean f46136r;
-    public boolean f46137s;
-    public boolean f46138t;
+    public long f46441i;
+    public String f46449q;
+    public boolean f46450r;
+    public boolean f46451s;
+    public boolean f46452t;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f46125f = new ArrayList();
-    public final ArrayList f46126g = new ArrayList();
+    public final ArrayList f46439f = new ArrayList();
+    public final ArrayList f46440g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final HashSet f46128j = new HashSet();
-    public final HashSet f46129k = new HashSet();
-    public final HashSet f46130l = new HashSet();
-    public final HashMap f46131m = new HashMap();
-    public final HashMap f46132n = new HashMap();
-    public final HashMap f46133o = new HashMap();
-    public u3 f46134p = u3.BY_PRICE;
-    public boolean f46139u = false;
+    public final HashSet f46442j = new HashSet();
+    public final HashSet f46443k = new HashSet();
+    public final HashSet f46444l = new HashSet();
+    public final HashMap f46445m = new HashMap();
+    public final HashMap f46446n = new HashMap();
+    public final HashMap f46447o = new HashMap();
+    public u3 f46448p = u3.BY_PRICE;
+    public boolean f46453u = false;
     public int v = -1;
 
     public v3(long j3, int i10, Utilities.Callback callback) {
-        this.f46122a = i10;
-        this.f46123b = j3;
-        this.f46124c = callback;
+        this.f46436a = i10;
+        this.f46437b = j3;
+        this.f46438c = callback;
     }
 
     @Override
@@ -60,27 +60,27 @@ public final class v3 implements m5 {
 
     public final void f() {
         if (this.v >= 0) {
-            ConnectionsManager.getInstance(this.f46122a).cancelRequest(this.v, true);
+            ConnectionsManager.getInstance(this.f46436a).cancelRequest(this.v, true);
             this.v = -1;
         }
-        this.f46138t = false;
+        this.f46452t = false;
     }
 
     public final void g(boolean z10) {
-        if (!this.f46138t) {
-            if (z10 || !this.f46139u) {
-                this.f46138t = true;
+        if (!this.f46452t) {
+            if (z10 || !this.f46453u) {
+                this.f46452t = true;
                 TL_stars.getResaleStarGifts getresalestargifts = new TL_stars.getResaleStarGifts();
-                getresalestargifts.gift_id = this.f46123b;
-                String str = this.f46135q;
+                getresalestargifts.gift_id = this.f46437b;
+                String str = this.f46449q;
                 if (str == null) {
                     str = "";
                 }
                 getresalestargifts.offset = str;
                 getresalestargifts.limit = 15;
-                getresalestargifts.for_craft = this.f46137s;
-                getresalestargifts.stars_only = this.f46136r;
-                u3 u3Var = this.f46134p;
+                getresalestargifts.for_craft = this.f46451s;
+                getresalestargifts.stars_only = this.f46450r;
+                u3 u3Var = this.f46448p;
                 int i10 = 0;
                 if (u3Var == u3.BY_NUMBER) {
                     getresalestargifts.sort_by_num = true;
@@ -92,10 +92,10 @@ public final class v3 implements m5 {
                     getresalestargifts.sort_by_num = false;
                     getresalestargifts.sort_by_price = true;
                 }
-                long j3 = this.f46127i;
+                long j3 = this.f46441i;
                 ArrayList arrayList = this.h;
-                ArrayList arrayList2 = this.f46126g;
-                ArrayList arrayList3 = this.f46125f;
+                ArrayList arrayList2 = this.f46440g;
+                ArrayList arrayList3 = this.f46439f;
                 if (j3 != 0) {
                     getresalestargifts.flags = 1 | getresalestargifts.flags;
                     getresalestargifts.attributes_hash = j3;
@@ -103,10 +103,10 @@ public final class v3 implements m5 {
                     getresalestargifts.flags = 1 | getresalestargifts.flags;
                     getresalestargifts.attributes_hash = 0L;
                 }
-                HashSet hashSet = this.f46128j;
+                HashSet hashSet = this.f46442j;
                 boolean isEmpty = hashSet.isEmpty();
-                HashSet hashSet2 = this.f46130l;
-                HashSet hashSet3 = this.f46129k;
+                HashSet hashSet2 = this.f46444l;
+                HashSet hashSet3 = this.f46443k;
                 if (!isEmpty || !hashSet3.isEmpty() || !hashSet2.isEmpty()) {
                     getresalestargifts.flags |= 8;
                     if (!hashSet.isEmpty()) {
@@ -116,9 +116,9 @@ public final class v3 implements m5 {
                             Object obj = arrayList3.get(i11);
                             i11++;
                             TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
-                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f18089id))) {
+                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f18327id))) {
                                 TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
-                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f18089id;
+                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f18327id;
                                 getresalestargifts.attributes.add(stargiftattributeidmodel);
                             }
                         }
@@ -143,15 +143,15 @@ public final class v3 implements m5 {
                             Object obj3 = arrayList.get(i10);
                             i10++;
                             TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
-                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f18089id))) {
+                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f18327id))) {
                                 TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
-                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f18089id;
+                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f18327id;
                                 getresalestargifts.attributes.add(stargiftattributeidpattern);
                             }
                         }
                     }
                 }
-                this.v = ConnectionsManager.getInstance(this.f46122a).sendRequest(getresalestargifts, new ui1(5, this, getresalestargifts));
+                this.v = ConnectionsManager.getInstance(this.f46436a).sendRequest(getresalestargifts, new ui1(5, this, getresalestargifts));
             }
         }
     }
@@ -163,18 +163,18 @@ public final class v3 implements m5 {
 
     public final void h() {
         f();
-        this.f46135q = null;
+        this.f46449q = null;
         this.d.clear();
         g(true);
-        Utilities.Callback callback = this.f46124c;
+        Utilities.Callback callback = this.f46438c;
         if (callback != null) {
             callback.run(Boolean.TRUE);
         }
     }
 
     public final void i(u3 u3Var) {
-        if (this.f46134p != u3Var) {
-            this.f46134p = u3Var;
+        if (this.f46448p != u3Var) {
+            this.f46448p = u3Var;
             h();
         }
     }

@@ -7,20 +7,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.RandomAccess;
 import java.util.Set;
-import v7.t6;
+import v7.u6;
 public class j1 extends AbstractCollection implements Set {
-    public final Set f8073a;
-    public final d9.f f8074b;
+    public final Set f8072a;
+    public final d9.f f8073b;
 
     public j1(Set set, d9.f fVar) {
-        this.f8073a = set;
-        this.f8074b = fVar;
+        this.f8072a = set;
+        this.f8073b = fVar;
     }
 
     @Override
     public final boolean add(Object obj) {
-        if (this.f8074b.apply(obj)) {
-            return this.f8073a.add(obj);
+        if (this.f8073b.apply(obj)) {
+            return this.f8072a.add(obj);
         }
         throw new IllegalArgumentException();
     }
@@ -28,18 +28,18 @@ public class j1 extends AbstractCollection implements Set {
     @Override
     public final boolean addAll(Collection collection) {
         for (Object obj : collection) {
-            if (!this.f8074b.apply(obj)) {
+            if (!this.f8073b.apply(obj)) {
                 throw new IllegalArgumentException();
             }
         }
-        return this.f8073a.addAll(collection);
+        return this.f8072a.addAll(collection);
     }
 
     @Override
     public final void clear() {
-        Set set = this.f8073a;
+        Set set = this.f8072a;
         boolean z10 = set instanceof RandomAccess;
-        d9.f fVar = this.f8074b;
+        d9.f fVar = this.f8073b;
         if (z10 && (set instanceof List)) {
             List list = (List) set;
             fVar.getClass();
@@ -76,7 +76,7 @@ public class j1 extends AbstractCollection implements Set {
     @Override
     public final boolean contains(Object obj) {
         boolean z10;
-        Set set = this.f8073a;
+        Set set = this.f8072a;
         set.getClass();
         try {
             z10 = set.contains(obj);
@@ -86,7 +86,7 @@ public class j1 extends AbstractCollection implements Set {
         if (!z10) {
             return false;
         }
-        return this.f8074b.apply(obj);
+        return this.f8073b.apply(obj);
     }
 
     @Override
@@ -111,9 +111,9 @@ public class j1 extends AbstractCollection implements Set {
 
     @Override
     public final boolean isEmpty() {
-        Iterator it = this.f8073a.iterator();
-        d9.f fVar = this.f8074b;
-        t6.d(fVar, "predicate");
+        Iterator it = this.f8072a.iterator();
+        d9.f fVar = this.f8073b;
+        u6.d(fVar, "predicate");
         boolean z10 = false;
         int i10 = 0;
         while (true) {
@@ -135,16 +135,16 @@ public class j1 extends AbstractCollection implements Set {
 
     @Override
     public final Iterator iterator() {
-        Iterator it = this.f8073a.iterator();
+        Iterator it = this.f8072a.iterator();
         it.getClass();
-        d9.f fVar = this.f8074b;
+        d9.f fVar = this.f8073b;
         fVar.getClass();
         return new n0(it, fVar);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        if (contains(obj) && this.f8073a.remove(obj)) {
+        if (contains(obj) && this.f8072a.remove(obj)) {
             return true;
         }
         return false;
@@ -152,11 +152,11 @@ public class j1 extends AbstractCollection implements Set {
 
     @Override
     public final boolean removeAll(Collection collection) {
-        Iterator it = this.f8073a.iterator();
+        Iterator it = this.f8072a.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f8074b.apply(next) && collection.contains(next)) {
+            if (this.f8073b.apply(next) && collection.contains(next)) {
                 it.remove();
                 z10 = true;
             }
@@ -166,11 +166,11 @@ public class j1 extends AbstractCollection implements Set {
 
     @Override
     public final boolean retainAll(Collection collection) {
-        Iterator it = this.f8073a.iterator();
+        Iterator it = this.f8072a.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f8074b.apply(next) && !collection.contains(next)) {
+            if (this.f8073b.apply(next) && !collection.contains(next)) {
                 it.remove();
                 z10 = true;
             }
@@ -181,8 +181,8 @@ public class j1 extends AbstractCollection implements Set {
     @Override
     public final int size() {
         int i10 = 0;
-        for (Object obj : this.f8073a) {
-            if (this.f8074b.apply(obj)) {
+        for (Object obj : this.f8072a) {
+            if (this.f8073b.apply(obj)) {
                 i10++;
             }
         }

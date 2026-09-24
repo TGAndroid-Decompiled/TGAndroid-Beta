@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
+public interface q90 {
+    boolean c();
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class q90 extends TL_iv.RichText {
-    public int f27276a;
+    void setLoading(boolean z10);
 }

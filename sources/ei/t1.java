@@ -27,16 +27,16 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.UserConfig;
 public final class t1 {
-    public final int f8604a;
-    public final long f8605b;
-    public final long f8606c;
+    public final int f8603a;
+    public final long f8604b;
+    public final long f8605c;
     public final boolean d;
     public String e;
 
     public t1(long j3, long j10, int i10, boolean z10) {
-        this.f8604a = i10;
-        this.f8605b = j10;
-        this.f8606c = j3;
+        this.f8603a = i10;
+        this.f8604b = j10;
+        this.f8605c = j3;
         this.d = z10;
     }
 
@@ -86,9 +86,9 @@ public final class t1 {
                     String next = keys.next();
                     JSONObject jSONObject2 = jSONObject.getJSONObject(next);
                     ?? obj = new Object();
-                    obj.f8587a = next;
-                    obj.f8588b = jSONObject2.getLong("user_id");
-                    obj.f8589c = jSONObject2.getString("user_name");
+                    obj.f8586a = next;
+                    obj.f8587b = jSONObject2.getLong("user_id");
+                    obj.f8588c = jSONObject2.getString("user_name");
                     obj.d = jSONObject2.getLong("created_at");
                     obj.e = jSONObject2.getLong("edited_at");
                     hashMap.put(next, obj);
@@ -109,8 +109,8 @@ public final class t1 {
             JSONObject jSONObject = new JSONObject();
             for (Map.Entry entry : hashMap.entrySet()) {
                 JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.put("user_id", ((s1) entry.getValue()).f8588b);
-                jSONObject2.put("user_name", ((s1) entry.getValue()).f8589c);
+                jSONObject2.put("user_id", ((s1) entry.getValue()).f8587b);
+                jSONObject2.put("user_name", ((s1) entry.getValue()).f8588c);
                 jSONObject2.put("created_at", ((s1) entry.getValue()).d);
                 jSONObject2.put("edited_at", ((s1) entry.getValue()).e);
                 jSONObject.put((String) entry.getKey(), jSONObject2);
@@ -167,12 +167,12 @@ public final class t1 {
             Iterator it = i10.entrySet().iterator();
             while (true) {
                 boolean hasNext = it.hasNext();
-                j3 = this.f8606c;
+                j3 = this.f8605c;
                 if (!hasNext) {
                     break;
                 }
                 Map.Entry entry = (Map.Entry) it.next();
-                if (((s1) entry.getValue()).f8588b == j3) {
+                if (((s1) entry.getValue()).f8587b == j3) {
                     this.e = (String) entry.getKey();
                     break;
                 }
@@ -181,9 +181,9 @@ public final class t1 {
                 String uuid = UUID.randomUUID().toString();
                 this.e = uuid;
                 ?? obj = new Object();
-                obj.f8587a = uuid;
-                obj.f8588b = j3;
-                obj.f8589c = DialogObject.getName(UserConfig.getInstance(this.f8604a).getCurrentUser());
+                obj.f8586a = uuid;
+                obj.f8587b = j3;
+                obj.f8588c = DialogObject.getName(UserConfig.getInstance(this.f8603a).getCurrentUser());
                 long currentTimeMillis = System.currentTimeMillis();
                 obj.e = currentTimeMillis;
                 obj.d = currentTimeMillis;
@@ -198,7 +198,7 @@ public final class t1 {
         String str2;
         File b10 = b();
         StringBuilder sb2 = new StringBuilder();
-        long j3 = this.f8606c;
+        long j3 = this.f8605c;
         boolean z10 = this.d;
         Object obj = str;
         if (!z10) {
@@ -206,7 +206,7 @@ public final class t1 {
         }
         sb2.append(obj);
         sb2.append("_");
-        long j10 = this.f8605b;
+        long j10 = this.f8604b;
         sb2.append(j10);
         String str3 = "";
         if (!z10) {
@@ -272,7 +272,7 @@ public final class t1 {
                     break;
                 }
                 try {
-                    File d = d(((s1) it.next()).f8587a);
+                    File d = d(((s1) it.next()).f8586a);
                     if (d.exists() && e(d).has(str)) {
                         z11 = true;
                         break;
@@ -300,7 +300,7 @@ public final class t1 {
             }
             for (s1 s1Var : (Set) Collection.EL.stream(i().values()).filter(new q1(hashSet, 1)).collect(Collectors.toSet())) {
                 try {
-                    File d = d(s1Var.f8587a);
+                    File d = d(s1Var.f8586a);
                     if (d.exists() && e(d).has(str)) {
                         arrayList.add(s1Var);
                     }
@@ -328,11 +328,11 @@ public final class t1 {
             HashMap i11 = i();
             s1 s1Var = (s1) i11.get(str);
             if (s1Var != null) {
-                s1Var.f8588b = this.f8606c;
-                s1Var.f8589c = DialogObject.getName(UserConfig.getInstance(this.f8604a).getCurrentUser());
+                s1Var.f8587b = this.f8605c;
+                s1Var.f8588c = DialogObject.getName(UserConfig.getInstance(this.f8603a).getCurrentUser());
                 s1Var.e = System.currentTimeMillis();
                 k(i11);
-                this.e = s1Var.f8587a;
+                this.e = s1Var.f8586a;
                 return;
             }
             throw new RuntimeException("STORAGE_NOT_FOUND");

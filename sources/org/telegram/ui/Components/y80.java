@@ -1,78 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import org.telegram.messenger.AndroidUtilities;
-public class y80 extends org.telegram.ui.ActionBar.i5 {
-    public final a90 M0;
-    public final Paint N0;
-    public e90 O0;
+import android.view.KeyEvent;
+public final class y80 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.ActionBar.k1 {
+    public final int f30559a;
+    public final g90 f30560b;
 
-    public y80(Context context) {
-        super(context);
-        this.M0 = new a90(this);
-        this.N0 = new Paint(1);
-    }
-
-    private int getLinkColor() {
-        return i0.a.k(getTextColor(), (int) (Color.alpha(getTextColor()) * 0.1175f));
+    public y80(g90 g90Var, int i10) {
+        this.f30559a = i10;
+        this.f30560b = g90Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (isClickable()) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight());
-            int linkColor = getLinkColor();
-            Paint paint = this.N0;
-            paint.setColor(linkColor);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-        }
-        super.onDraw(canvas);
-        if (isClickable() && this.M0.f(canvas)) {
-            invalidate();
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!isClickable()) {
-            return super.onTouchEvent(motionEvent);
-        }
-        a90 a90Var = this.M0;
-        if (a90Var != null) {
-            if (motionEvent.getAction() == 0) {
-                e90 e90Var = new e90(null, null, motionEvent.getX(), motionEvent.getY(), 0);
-                e90Var.d(getLinkColor());
-                this.O0 = e90Var;
-                a90Var.a(e90Var, null);
-                x80 b10 = this.O0.b();
-                b10.e(null, 0, 0.0f, 0.0f);
-                b10.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
-                AndroidUtilities.runOnUIThread(new oy(13, this, e90Var), ViewConfiguration.getLongPressTimeout());
-                return true;
-            } else if (motionEvent.getAction() == 1) {
-                a90Var.d(true);
-                if (this.O0 != null) {
-                    performClick();
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f30559a) {
+            case 0:
+                f90 f90Var = this.f30560b.f24393r;
+                if (f90Var != null) {
+                    f90Var.k();
+                    return;
                 }
-                this.O0 = null;
-                return true;
-            } else if (motionEvent.getAction() == 3) {
-                a90Var.d(true);
-                this.O0 = null;
-                return true;
-            }
+                return;
+            default:
+                f90 f90Var2 = this.f30560b.f24393r;
+                if (f90Var2 != null) {
+                    f90Var2.e();
+                    return;
+                }
+                return;
         }
-        if (this.O0 == null && !super.onTouchEvent(motionEvent)) {
-            return false;
+    }
+
+    @Override
+    public void p(KeyEvent keyEvent) {
+        g90 g90Var = this.f30560b;
+        g90Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && g90Var.f24394s.isShowing()) {
+            g90Var.f24394s.d(true);
         }
-        return true;
     }
 }

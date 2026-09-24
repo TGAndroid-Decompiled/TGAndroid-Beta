@@ -1,36 +1,21 @@
 package v7;
 
-import w7.pa;
-import x7.ia;
-import z7.zf;
-public final class a9 implements pa.b {
-    public final int f43863a;
-    public final l5.r f43864b;
+import android.content.Context;
+import java.util.concurrent.atomic.AtomicLong;
+public final class a9 {
+    public final p6.b f44181a;
+    public final AtomicLong f44182b;
 
-    public a9(l5.r rVar, int i10) {
-        this.f43863a = i10;
-        this.f43864b = rVar;
-    }
-
-    @Override
-    public final Object get() {
-        switch (this.f43863a) {
-            case 0:
-                return this.f43864b.a("FIREBASE_ML_SDK", new i5.c("json"), d9.e);
+    public a9(Context context, int i10) {
+        switch (i10) {
             case 1:
-                return this.f43864b.a("FIREBASE_ML_SDK", new i5.c("proto"), d9.d);
-            case 2:
-                return this.f43864b.a("FIREBASE_ML_SDK", new i5.c("json"), pa.e);
-            case 3:
-                return this.f43864b.a("FIREBASE_ML_SDK", new i5.c("proto"), pa.d);
-            case 4:
-                return this.f43864b.a("FIREBASE_ML_SDK", new i5.c("json"), ia.e);
-            case 5:
-                return this.f43864b.a("FIREBASE_ML_SDK", new i5.c("proto"), ia.d);
-            case 6:
-                return this.f43864b.a("FIREBASE_ML_SDK", new i5.c("json"), zf.e);
+                this.f44182b = new AtomicLong(-1L);
+                this.f44181a = new com.google.android.gms.common.api.j(context, p6.b.f40944k, new n6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6017c);
+                return;
             default:
-                return this.f43864b.a("FIREBASE_ML_SDK", new i5.c("proto"), zf.d);
+                this.f44182b = new AtomicLong(-1L);
+                this.f44181a = new com.google.android.gms.common.api.j(context, p6.b.f40944k, new n6.p("mlkit:natural_language"), com.google.android.gms.common.api.i.f6017c);
+                return;
         }
     }
 }

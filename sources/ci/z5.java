@@ -6,8 +6,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.xn;
-public final class z5 extends xn {
+import org.telegram.ui.wn;
+public final class z5 extends wn {
     public final Utilities.Callback2 Pc;
     public final q6 Qc;
 

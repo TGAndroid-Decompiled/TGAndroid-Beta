@@ -7,39 +7,39 @@ import java.util.ArrayList;
 import java.util.List;
 public final class ig extends o6.a {
     public static final Parcelable.Creator<ig> CREATOR = new cg(2);
-    public final List f48443a;
-    public final float[] f48444b;
-    public final Bitmap f48445c;
+    public final List f48760a;
+    public final float[] f48761b;
+    public final Bitmap f48762c;
     public final List d;
 
     public ig(ArrayList arrayList, float[] fArr, Bitmap bitmap, ArrayList arrayList2) {
-        this.f48443a = arrayList;
-        this.f48444b = fArr;
-        this.f48445c = bitmap;
+        this.f48760a = arrayList;
+        this.f48761b = fArr;
+        this.f48762c = bitmap;
         this.d = arrayList2;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.p(parcel, 1, this.f48443a);
-        float[] fArr = this.f48444b;
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.p(parcel, 1, this.f48760a);
+        float[] fArr = this.f48761b;
         if (fArr != null) {
-            int q10 = w7.e0.q(parcel, 2);
+            int q10 = w7.f0.q(parcel, 2);
             parcel.writeFloatArray(fArr);
-            w7.e0.r(parcel, q10);
+            w7.f0.r(parcel, q10);
         }
-        w7.e0.k(parcel, 3, this.f48445c, i10);
+        w7.f0.k(parcel, 3, this.f48762c, i10);
         List list = this.d;
         if (list != null) {
-            int q11 = w7.e0.q(parcel, 4);
+            int q11 = w7.f0.q(parcel, 4);
             int size = list.size();
             parcel.writeInt(size);
             for (int i11 = 0; i11 < size; i11++) {
                 parcel.writeFloat(((Float) list.get(i11)).floatValue());
             }
-            w7.e0.r(parcel, q11);
+            w7.f0.r(parcel, q11);
         }
-        w7.e0.r(parcel, q6);
+        w7.f0.r(parcel, q6);
     }
 }

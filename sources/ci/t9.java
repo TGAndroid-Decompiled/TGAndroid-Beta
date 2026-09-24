@@ -12,7 +12,7 @@ public final class t9 extends s4.j {
     public final void M() {
         ViewGroup viewGroup;
         y9 y9Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y9Var.W).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
         y9Var.e.invalidate();
     }
@@ -21,7 +21,7 @@ public final class t9 extends s4.j {
     public final void O() {
         ViewGroup viewGroup;
         y9 y9Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y9Var.W).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
         y9Var.e.invalidate();
     }
@@ -30,7 +30,7 @@ public final class t9 extends s4.j {
     public final void P(s4.c1 c1Var) {
         ViewGroup viewGroup;
         y9 y9Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y9Var.W).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
         y9Var.e.invalidate();
         y9Var.f5883f.invalidate();
@@ -40,7 +40,7 @@ public final class t9 extends s4.j {
     public final void Q() {
         ViewGroup viewGroup;
         y9 y9Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y9Var.W).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
         y9Var.e.invalidate();
     }

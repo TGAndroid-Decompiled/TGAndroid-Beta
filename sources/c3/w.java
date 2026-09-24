@@ -14,7 +14,7 @@ public final class w {
         if (matcher.find()) {
             try {
                 String group = matcher.group(1);
-                String str2 = e2.d0.f7871a;
+                String str2 = e2.d0.f7870a;
                 int parseInt = Integer.parseInt(group, 16);
                 int parseInt2 = Integer.parseInt(matcher.group(2), 16);
                 if (parseInt > 0 || parseInt2 > 0) {
@@ -38,12 +38,12 @@ public final class w {
                 o0 o0Var = o0VarArr[i10];
                 if (o0Var instanceof q3.e) {
                     q3.e eVar = (q3.e) o0Var;
-                    if ("iTunSMPB".equals(eVar.f41070c) && a(eVar.d)) {
+                    if ("iTunSMPB".equals(eVar.f41393c) && a(eVar.d)) {
                         return;
                     }
                 } else if (o0Var instanceof q3.l) {
                     q3.l lVar = (q3.l) o0Var;
-                    if ("com.apple.iTunes".equals(lVar.f41080b) && "iTunSMPB".equals(lVar.f41081c) && a(lVar.d)) {
+                    if ("com.apple.iTunes".equals(lVar.f41403b) && "iTunSMPB".equals(lVar.f41404c) && a(lVar.d)) {
                         return;
                     }
                 } else {

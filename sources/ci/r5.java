@@ -6,12 +6,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 public final class r5 implements pg.u {
     public boolean f5453a;
-    public final pg.t0 f5454b;
+    public final pg.u0 f5454b;
     public final nb f5455c;
 
-    public r5(nb nbVar, pg.t0 t0Var) {
+    public r5(nb nbVar, pg.u0 u0Var) {
         this.f5455c = nbVar;
-        this.f5454b = t0Var;
+        this.f5454b = u0Var;
     }
 
     @Override
@@ -59,12 +59,12 @@ public final class r5 implements pg.u {
     public final void h(int i10) {
         nb nbVar = this.f5455c;
         nbVar.I0(false);
-        pg.t0 t0Var = this.f5454b;
-        t0Var.h(i10, true);
-        t0Var.g();
+        pg.u0 u0Var = this.f5454b;
+        u0Var.h(i10, true);
+        u0Var.g();
         nbVar.setNewColor(i10);
         q5 q5Var = nbVar.f5373w1;
-        q5Var.setSelectedColorIndex(t0Var.d());
+        q5Var.setSelectedColorIndex(u0Var.d());
         q5Var.getAdapter().l();
     }
 }

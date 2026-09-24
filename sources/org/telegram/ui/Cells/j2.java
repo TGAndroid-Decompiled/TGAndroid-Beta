@@ -1,69 +1,27 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ry;
-public final class j2 extends ai.ca {
-    public final r2 S;
+import android.view.ViewGroup;
+import org.telegram.messenger.Utilities;
+public final class j2 implements Utilities.Callback {
+    public final int f20474a;
+    public final ViewGroup f20475b;
 
-    public j2(r2 r2Var) {
-        super(null, false);
-        this.S = r2Var;
+    public j2(ViewGroup viewGroup, int i10) {
+        this.f20474a = i10;
+        this.f20475b = viewGroup;
     }
 
     @Override
-    public final boolean c(TLRPC.Chat chat, TLRPC.User user) {
-        if (((chat != null && chat.linked_community_id != 0) || (user != null && user.linked_community_id != 0)) && !this.S.O0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean d(long j3) {
-        r2 r2Var = this.S;
-        int i10 = r2Var.F0;
-        ry ryVar = r2Var.f20763z4;
-        if (ryVar != null && !r2Var.O0) {
-            if (j3 > 0) {
-                TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
-                if (user != null && user.linked_community_id != 0) {
-                    ryVar.showDialog(new fi.k0(ryVar, user.linked_community_id));
-                    return true;
-                }
-                return false;
-            }
-            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
-            if (chat != null && chat.linked_community_id != 0) {
-                ryVar.showDialog(new fi.k0(ryVar, chat.linked_community_id));
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void e() {
-        r2 r2Var = this.S;
-        n2 n2Var = r2Var.f20647d0;
-        if (n2Var == null) {
-            return;
-        }
-        n2Var.f(r2Var);
-    }
-
-    @Override
-    public final void f(long j3) {
-        r2 r2Var = this.S;
-        n2 n2Var = r2Var.f20647d0;
-        if (n2Var == null) {
-            return;
-        }
-        if (r2Var.J0 != 0) {
-            n2Var.c();
-        } else {
-            n2Var.e(r2Var);
+    public final void run(Object obj) {
+        switch (this.f20474a) {
+            case 0:
+                Object[] objArr = (Object[]) obj;
+                ((s2) this.f20475b).d0(true);
+                return;
+            default:
+                Object[] objArr2 = (Object[]) obj;
+                ((n4) this.f20475b).c(true);
+                return;
         }
     }
 }

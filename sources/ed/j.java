@@ -12,7 +12,7 @@ public final class j extends h {
     public final p b() {
         int i10;
         this.d++;
-        p pVar = (p) this.f8138b.d;
+        p pVar = (p) this.f8137b.d;
         if (pVar instanceof s) {
             s sVar = (s) pVar;
             if (sVar.f3548g.endsWith(" ")) {

@@ -1,167 +1,54 @@
 package yh;
 
-import android.content.Context;
-import java.util.ArrayList;
-import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.jc;
-import org.telegram.ui.Components.kc;
-import org.telegram.ui.Components.oc;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xc;
-public final class p5 {
-    public final org.telegram.ui.ActionBar.n2 f47550a;
-    public final long f47551b;
-    public final qc f47552c;
-    public final kc d;
-    public final oc e;
-    public final jc f47553f;
-    public int f47554g;
-    public long h;
-    public ai.i3 f47555i;
-    public final ArrayList f47556j = new ArrayList();
-    public final HashSet f47557k = new HashSet();
-    public final long f47558l = System.currentTimeMillis();
-    public boolean f47559m = true;
-    public boolean f47560n;
-    public boolean f47561o;
-    public final o5 f47562p;
+public final class p5 implements Runnable {
+    public final int f47869a;
+    public final s5 f47870b;
 
-    public p5(org.telegram.ui.ActionBar.n2 n2Var, long j3) {
-        ?? r22 = new Runnable(this) {
-            public final p5 f47503b;
-
-            {
-                this.f47503b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        this.f47503b.a();
-                        return;
-                    default:
-                        p5 p5Var = this.f47503b;
-                        if (!p5Var.f47560n && !p5Var.f47561o && p5Var.f47559m) {
-                            p5Var.f47560n = true;
-                            ai.i3 i3Var = p5Var.f47555i;
-                            if (i3Var != null) {
-                                i3Var.run(p5Var.f47557k);
-                            }
-                            if (p5Var.e != null) {
-                                p5Var.f47552c.b();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                }
-            }
-        };
-        this.f47562p = r22;
-        this.f47550a = n2Var;
-        this.f47551b = j3;
-        Context t10 = t5.t(n2Var);
-        kc kcVar = new kc(t10, n2Var.getResourceProvider());
-        this.d = kcVar;
-        kcVar.c(R.raw.stars_topup, new String[0]);
-        jc jcVar = new jc(t10, n2Var.getResourceProvider());
-        this.f47553f = jcVar;
-        jcVar.f25246b = 3000L;
-        jcVar.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Gi, n2Var.getResourceProvider()));
-        oc ocVar = new oc(t10, n2Var.getResourceProvider(), true, false);
-        this.e = ocVar;
-        ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        ocVar.f26716a = new Runnable(this) {
-            public final p5 f47503b;
-
-            {
-                this.f47503b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        this.f47503b.a();
-                        return;
-                    default:
-                        p5 p5Var = this.f47503b;
-                        if (!p5Var.f47560n && !p5Var.f47561o && p5Var.f47559m) {
-                            p5Var.f47560n = true;
-                            ai.i3 i3Var = p5Var.f47555i;
-                            if (i3Var != null) {
-                                i3Var.run(p5Var.f47557k);
-                            }
-                            if (p5Var.e != null) {
-                                p5Var.f47552c.b();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                }
-            }
-        };
-        ocVar.addView(jcVar, w7.x5.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-        ocVar.d.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
-        kcVar.setButton(ocVar);
-        qc b10 = xc.a0(n2Var).b(kcVar, -1);
-        this.f47552c = b10;
-        b10.f27314r = false;
-        b10.k(true);
-        b10.v = new Runnable(this) {
-            public final p5 f47503b;
-
-            {
-                this.f47503b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        this.f47503b.a();
-                        return;
-                    default:
-                        p5 p5Var = this.f47503b;
-                        if (!p5Var.f47560n && !p5Var.f47561o && p5Var.f47559m) {
-                            p5Var.f47560n = true;
-                            ai.i3 i3Var = p5Var.f47555i;
-                            if (i3Var != null) {
-                                i3Var.run(p5Var.f47557k);
-                            }
-                            if (p5Var.e != null) {
-                                p5Var.f47552c.b();
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                }
-            }
-        };
-        AndroidUtilities.cancelRunOnUIThread(r22);
-        AndroidUtilities.runOnUIThread(r22, 3000L);
+    public p5(s5 s5Var, int i10) {
+        this.f47869a = i10;
+        this.f47870b = s5Var;
     }
 
-    public final void a() {
-        if (!this.f47560n && !this.f47561o) {
-            this.f47561o = true;
-            ArrayList arrayList = this.f47556j;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((Runnable) obj).run();
-            }
-            if (this.e != null) {
-                this.f47552c.b();
-            }
+    @Override
+    public final void run() {
+        int i10 = this.f47869a;
+        s5 s5Var = this.f47870b;
+        switch (i10) {
+            case 0:
+                s5Var.b();
+                return;
+            case 1:
+                s5Var.a();
+                return;
+            default:
+                qc qcVar = s5Var.d;
+                t5 t5Var = s5Var.f48002q;
+                p5 p5Var = s5Var.f48001p;
+                MessageObject messageObject = s5Var.f47990b;
+                if (!s5Var.f47997l) {
+                    s5Var.f47997l = true;
+                    messageObject.addPaidReactions((int) s5Var.f47996k, true, s5Var.c());
+                    long j3 = t5Var.f48032g;
+                    int i11 = t5Var.f48028a;
+                    t5Var.f48032g = j3 + s5Var.f47996k;
+                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
+                    s5Var.f47996k = 0L;
+                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()), messageObject.messageOwner.reactions);
+                }
+                if (!s5Var.f47998m) {
+                    s5Var.f47998m = true;
+                    s5Var.f47992f.f25359b = 5000L;
+                    AndroidUtilities.cancelRunOnUIThread(p5Var);
+                    AndroidUtilities.runOnUIThread(p5Var, 5000L);
+                    qcVar.k(true);
+                    qcVar.v = p5Var;
+                }
+                s5Var.e.f25728b.setText(s5Var.d());
+                return;
         }
     }
 }

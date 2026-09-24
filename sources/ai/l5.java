@@ -3,7 +3,7 @@ package ai;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.in0;
+import org.telegram.ui.gn0;
 public final class l5 implements View.OnClickListener {
     public final int f1181a;
     public final boolean f1182b;
@@ -24,9 +24,9 @@ public final class l5 implements View.OnClickListener {
         throw new UnsupportedOperationException("Method not decompiled: ai.l5.onClick(android.view.View):void");
     }
 
-    public l5(ArrayList arrayList, TLRPC.TL_secureRequiredType tL_secureRequiredType, in0 in0Var, boolean z10) {
+    public l5(ArrayList arrayList, TLRPC.TL_secureRequiredType tL_secureRequiredType, gn0 gn0Var, boolean z10) {
         this.f1181a = 2;
-        this.f1183c = in0Var;
+        this.f1183c = gn0Var;
         this.d = arrayList;
         this.e = tL_secureRequiredType;
         this.f1182b = z10;

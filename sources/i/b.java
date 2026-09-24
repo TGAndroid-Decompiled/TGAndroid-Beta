@@ -12,7 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.SparseArray;
 import android.util.StateSet;
-import v7.r8;
+import v7.s8;
 public final class b extends Drawable.ConstantState {
     public boolean A;
     public ColorFilter B;
@@ -222,7 +222,7 @@ public final class b extends Drawable.ConstantState {
                 Drawable[] drawableArr = this.f10540g;
                 Drawable newDrawable = ((Drawable.ConstantState) this.f10539f.valueAt(i10)).newDrawable(this.f10537b);
                 if (Build.VERSION.SDK_INT >= 23) {
-                    r8.b(this.f10555x, newDrawable);
+                    s8.b(this.f10555x, newDrawable);
                 }
                 Drawable mutate = newDrawable.mutate();
                 mutate.setCallback(this.f10536a);
@@ -264,7 +264,7 @@ public final class b extends Drawable.ConstantState {
         }
         Drawable newDrawable = ((Drawable.ConstantState) this.f10539f.valueAt(indexOfKey)).newDrawable(this.f10537b);
         if (Build.VERSION.SDK_INT >= 23) {
-            r8.b(this.f10555x, newDrawable);
+            s8.b(this.f10555x, newDrawable);
         }
         Drawable mutate = newDrawable.mutate();
         mutate.setCallback(this.f10536a);

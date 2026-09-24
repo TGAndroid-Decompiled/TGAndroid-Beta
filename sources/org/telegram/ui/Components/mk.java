@@ -4,30 +4,30 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class mk extends AnimatorListenerAdapter {
-    public final int f26186a = 0;
-    public final org.telegram.ui.xq f26187b;
+    public final int f26527a = 0;
+    public final org.telegram.ui.wq f26528b;
 
-    public mk(org.telegram.ui.xq xqVar) {
-        this.f26187b = xqVar;
+    public mk(org.telegram.ui.wq wqVar) {
+        this.f26528b = wqVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f26186a) {
+        switch (this.f26527a) {
             case 0:
-                ((ok) this.f26187b.d).U.unlock();
+                ((ok) this.f26528b.d).U.unlock();
                 return;
             default:
-                org.telegram.ui.xq xqVar = this.f26187b;
-                View view = xqVar.f39641b;
+                org.telegram.ui.wq wqVar = this.f26528b;
+                View view = wqVar.f39726b;
                 view.setAlpha(1.0f);
                 s4.o0.x0(view);
-                ((ok) xqVar.d).X.f27068r.removeView(view);
+                ((ok) wqVar.d).X.f27359r.removeView(view);
                 return;
         }
     }
 
-    public mk(org.telegram.ui.xq xqVar, s4.o0 o0Var) {
-        this.f26187b = xqVar;
+    public mk(org.telegram.ui.wq wqVar, s4.o0 o0Var) {
+        this.f26528b = wqVar;
     }
 }

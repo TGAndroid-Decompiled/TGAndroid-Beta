@@ -15,7 +15,7 @@ public final class r8 extends up {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28531b * 2.0f) + this.f28530a);
+                return (int) ((this.f28847b * 2.0f) + this.f28846a);
         }
     }
 
@@ -25,7 +25,7 @@ public final class r8 extends up {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28531b * 2.0f) + this.f28530a);
+                return (int) ((this.f28847b * 2.0f) + this.f28846a);
         }
     }
 

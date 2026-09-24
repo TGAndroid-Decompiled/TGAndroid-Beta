@@ -38,13 +38,13 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
         w0Var.setOnTouchListener(new q1(0, this, gVar));
         w0Var.setOnItemClickListener(gVar);
         w0Var.setOnScrollListener(new ai.r(this, 1));
-        addView(w0Var, w7.x5.d(-1, -1.0f, 119, 0.0f, 58.0f, 0.0f, 40.0f));
-        d6Var = ((org.telegram.ui.ActionBar.f3) s2Var).resourcesProvider;
+        addView(w0Var, w7.y5.d(-1, -1.0f, 119, 0.0f, 58.0f, 0.0f, 40.0f));
+        d6Var = ((org.telegram.ui.ActionBar.e3) s2Var).resourcesProvider;
         l2 l2Var = new l2(context, d6Var);
         this.d = l2Var;
         l2Var.v = new bi.v(this, 2);
         l2Var.a(2, false);
-        addView(l2Var, w7.x5.e(-1, -2, 48));
+        addView(l2Var, w7.y5.e(-1, -2, 48));
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final void onAttachedToWindow() {
         int i10;
         super.onAttachedToWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f5906r).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.e3) this.f5906r).currentAccount;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
     }
 
@@ -99,7 +99,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final void onDetachedFromWindow() {
         int i10;
         super.onDetachedFromWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f5906r).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.e3) this.f5906r).currentAccount;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
     }
 
@@ -108,8 +108,8 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
         int i12;
         int i13;
         s2 s2Var = this.f5906r;
-        i12 = ((org.telegram.ui.ActionBar.f3) s2Var).backgroundPaddingLeft;
-        i13 = ((org.telegram.ui.ActionBar.f3) s2Var).backgroundPaddingLeft;
+        i12 = ((org.telegram.ui.ActionBar.e3) s2Var).backgroundPaddingLeft;
+        i13 = ((org.telegram.ui.ActionBar.e3) s2Var).backgroundPaddingLeft;
         setPadding(i12, 0, i13, AndroidUtilities.navigationBarHeight);
         super.onMeasure(i10, i11);
     }

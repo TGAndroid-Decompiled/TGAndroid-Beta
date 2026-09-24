@@ -1,69 +1,68 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class a7 extends View {
-    public int f19760a;
-    public final int f19761b;
-    public boolean f19762c;
-    public boolean d;
-
-    public a7(Context context) {
-        this(context, (q3) null);
-    }
-
-    private int getBackgroundResId() {
-        boolean z10 = this.f19762c;
-        if (z10 && this.d) {
-            return R.drawable.greydivider;
-        }
-        if (z10) {
-            return R.drawable.greydivider_bottom;
-        }
-        if (this.d) {
-            return R.drawable.greydivider_top;
-        }
-        return R.drawable.transparent;
-    }
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.ok;
+import org.telegram.ui.Components.b11;
+import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.z51;
+public abstract class a7 extends LinearLayout {
+    public TextView f20011a;
+    public n90 f20012b;
+    public TextView f20013c;
+    public TextView d;
+    public int e;
+    public int f20014f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f19760a), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 
-    public void setSize(int i10) {
-        this.f19760a = i10;
-    }
-
-    public a7(Context context, Object obj) {
-        this(context, (q3) null);
-    }
-
-    public a7(Context context, q3 q3Var) {
-        super(context);
-        this.f19762c = true;
-        this.d = true;
-        this.f19760a = 12;
-        int i10 = this.f19761b;
+    public void setType(int i10) {
+        int i11 = this.f20014f;
+        TextView textView = this.f20013c;
+        n90 n90Var = this.f20012b;
+        TextView textView2 = this.f20011a;
+        TextView textView3 = this.d;
+        this.e = i10;
         if (i10 == 0) {
-            setBackground(null);
-        } else {
-            setBackgroundColor(i10);
-        }
-    }
-
-    public a7(Context context, int i10, int i11) {
-        super(context);
-        this.f19762c = true;
-        this.d = true;
-        this.f19761b = i10;
-        this.f19760a = 12;
-        if (i10 == 0) {
-            setBackground(null);
-        } else {
-            setBackgroundColor(i10);
+            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, ok.h(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, gf.b.c())));
+            String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+            int indexOf = string.indexOf("**");
+            int lastIndexOf = string.lastIndexOf("**");
+            if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
+                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
+                spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
+                try {
+                    spannableStringBuilder.setSpan(new z51(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (b11) null), indexOf, lastIndexOf - 2, 33);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            n90Var.setText(spannableStringBuilder);
+            textView.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
+            textView3.setVisibility(0);
+            textView3.setText(LocaleController.getString(R.string.CheckPhoneNumberNo));
+        } else if (i10 == 1) {
+            textView2.setText(LocaleController.getString(R.string.YourPasswordHeader));
+            n90Var.setText(LocaleController.getString(R.string.YourPasswordRemember));
+            textView.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
+            textView3.setVisibility(0);
+            textView3.setText(LocaleController.getString(R.string.YourPasswordRememberNo));
+        } else if (i10 == 2) {
+            textView2.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
+            n90Var.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
+            textView.setText(LocaleController.getString(R.string.GraceSuggestionButton));
+            textView3.setVisibility(8);
         }
     }
 }

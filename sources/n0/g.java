@@ -4,7 +4,7 @@ import android.os.Build;
 import android.os.Trace;
 import android.util.Log;
 public abstract class g {
-    public static final int f14828a = 0;
+    public static final int f15064a = 0;
 
     static {
         if (Build.VERSION.SDK_INT < 29) {

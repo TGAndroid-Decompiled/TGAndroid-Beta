@@ -1,72 +1,119 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.app.Activity;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class wz implements TextWatcher {
-    public final int f39130a;
-    public boolean f39131b;
-    public final EditTextBoldCursor f39132c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class wz extends rz {
+    public final xz E;
 
-    public wz(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f39130a = i10;
-        this.f39132c = editTextBoldCursor;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f39130a) {
-            case 0:
-                if (!this.f39131b && editable.length() > 32) {
-                    this.f39131b = true;
-                    editable.delete(32, editable.length());
-                    EditTextBoldCursor editTextBoldCursor = this.f39132c;
-                    AndroidUtilities.shakeView(editTextBoldCursor);
-                    try {
-                        editTextBoldCursor.performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
-                    }
-                    this.f39131b = false;
-                    return;
-                }
-                return;
-            default:
-                if (!this.f39131b && editable.length() > 40) {
-                    this.f39131b = true;
-                    editable.delete(40, editable.length());
-                    EditTextBoldCursor editTextBoldCursor2 = this.f39132c;
-                    AndroidUtilities.shakeView(editTextBoldCursor2);
-                    try {
-                        editTextBoldCursor2.performHapticFeedback(3, 2);
-                    } catch (Exception unused2) {
-                    }
-                    this.f39131b = false;
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f39130a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f39130a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public wz(xz xzVar, Activity activity, org.telegram.ui.ActionBar.m2 m2Var) {
+        super(activity);
+        this.E = xzVar;
+        this.f37535y = new float[2];
+        this.f37531r = m2Var;
+        FrameLayout frameLayout = new FrameLayout(activity);
+        this.f37526a = frameLayout;
+        int dp = AndroidUtilities.dp(8.0f);
+        int i10 = org.telegram.ui.ActionBar.h6.e7;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(null, i10, false);
+        int v = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.w0(null, i10, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19134i6, false));
+        frameLayout.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, w02, v, v));
+        frameLayout.setOnClickListener(new qz(this, 0));
+        addView(frameLayout, w7.y5.d(-1, 48.0f, 55, 22.0f, 9.0f, 22.0f, 0.0f));
+        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(activity);
+        this.f37527b = h5Var;
+        h5Var.setTextSize(16);
+        int i11 = org.telegram.ui.ActionBar.h6.G6;
+        h5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
+        SpannableString spannableString = new SpannableString("t.me/folder/N3k/dImA/bIo");
+        ?? obj = new Object();
+        obj.f22840a |= 256;
+        spannableString.setSpan(new org.telegram.ui.Components.c11(obj, 0), 0, spannableString.length(), 33);
+        h5Var.l(spannableString, false);
+        h5Var.setAlpha(1.0f);
+        frameLayout.addView(h5Var, w7.y5.d(-1, -2.0f, 23, 20.0f, 0.0f, 40.0f, 0.0f));
+        org.telegram.ui.ActionBar.h5 h5Var2 = new org.telegram.ui.ActionBar.h5(activity);
+        this.f37528c = h5Var2;
+        h5Var2.setTextSize(16);
+        h5Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
+        h5Var2.l(spannableString, false);
+        h5Var2.setAlpha(0.0f);
+        frameLayout.addView(h5Var2, w7.y5.d(-1, -2.0f, 23, 20.0f, 0.0f, 40.0f, 0.0f));
+        ImageView imageView = new ImageView(activity);
+        this.d = imageView;
+        imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_ab_other));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19301r5, false), PorterDuff.Mode.SRC_IN));
+        imageView.setAlpha(0.0f);
+        imageView.setVisibility(8);
+        imageView.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
+        imageView.setOnClickListener(new qz(this, 1));
+        frameLayout.addView(imageView, w7.y5.d(40, 40.0f, 21, 4.0f, 4.0f, 4.0f, 4.0f));
+        ci.g9 g9Var = new ci.g9(activity);
+        Paint paint = new Paint();
+        g9Var.f4731b = paint;
+        g9Var.e = new float[8];
+        g9Var.d = new Path();
+        g9Var.setWillNotDraw(false);
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false));
+        this.e = g9Var;
+        addView(g9Var, w7.y5.d(-1, 42.0f, 55, 22.0f, 69.0f, 22.0f, 0.0f));
+        ai.p4 p4Var = new ai.p4(activity, 25);
+        this.f37529f = p4Var;
+        p4Var.setGravity(17);
+        int i12 = org.telegram.ui.ActionBar.h6.Sh;
+        p4Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i12, false));
+        p4Var.setBackground(org.telegram.ui.ActionBar.h6.Y(822083583, 8, 8));
+        p4Var.setTypeface(AndroidUtilities.bold());
+        p4Var.setTextSize(14.0f);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "..").setSpan(new org.telegram.ui.Components.pq(0, activity.getDrawable(R.drawable.msg_copy_filled)), 0, 1, 0);
+        spannableStringBuilder.setSpan(new org.telegram.ui.Cells.q2(AndroidUtilities.dp(8.0f)), 1, 2, 0);
+        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.LinkActionCopy));
+        spannableStringBuilder.append((CharSequence) ".").setSpan(new org.telegram.ui.Cells.q2(AndroidUtilities.dp(5.0f)), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+        p4Var.setText(spannableStringBuilder);
+        p4Var.setOnClickListener(new qz(this, 2));
+        p4Var.setAlpha(0.0f);
+        p4Var.setVisibility(8);
+        g9Var.addView(p4Var, w7.y5.e(-1, -1, 3));
+        ai.p4 p4Var2 = new ai.p4(activity, 26);
+        this.h = p4Var2;
+        p4Var2.setGravity(17);
+        p4Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i12, false));
+        p4Var2.setBackground(org.telegram.ui.ActionBar.h6.Y(822083583, 8, 8));
+        p4Var2.setTypeface(AndroidUtilities.bold());
+        p4Var2.setTextSize(14.0f);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+        spannableStringBuilder2.append((CharSequence) "..").setSpan(new org.telegram.ui.Components.pq(0, activity.getDrawable(R.drawable.msg_share_filled)), 0, 1, 0);
+        spannableStringBuilder2.setSpan(new org.telegram.ui.Cells.q2(AndroidUtilities.dp(8.0f)), 1, 2, 0);
+        spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.LinkActionShare));
+        spannableStringBuilder2.append((CharSequence) ".").setSpan(new org.telegram.ui.Cells.q2(AndroidUtilities.dp(5.0f)), spannableStringBuilder2.length() - 1, spannableStringBuilder2.length(), 0);
+        p4Var2.setText(spannableStringBuilder2);
+        p4Var2.setOnClickListener(new qz(this, 3));
+        p4Var2.setAlpha(0.0f);
+        p4Var2.setVisibility(8);
+        g9Var.addView(p4Var2, w7.y5.e(-1, -1, 5));
+        TextView textView = new TextView(activity);
+        this.f37530n = textView;
+        textView.setGravity(17);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i12, false));
+        textView.setBackground(org.telegram.ui.ActionBar.h6.Y(822083583, 8, 8));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(14.0f);
+        textView.setText("Generate Invite Link");
+        textView.setOnClickListener(new ai.e2(this, 18));
+        textView.setAlpha(1.0f);
+        textView.setVisibility(0);
+        g9Var.addView(textView, w7.y5.c(-1.0f, -1));
     }
 }

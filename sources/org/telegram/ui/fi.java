@@ -6,58 +6,58 @@ import android.widget.LinearLayout;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class fi implements z4.e {
-    public final AtomicBoolean f33333a;
-    public final LinearLayout f33334b;
-    public final int f33335c;
+    public final AtomicBoolean f33670a;
+    public final LinearLayout f33671b;
+    public final int f33672c;
     public final HorizontalScrollView d;
     public final SparseIntArray e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f33336f;
-    public final int[] f33337g;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f33673f;
+    public final int[] f33674g;
 
     public fi(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f33333a = atomicBoolean;
-        this.f33334b = linearLayout;
-        this.f33335c = i10;
+        this.f33670a = atomicBoolean;
+        this.f33671b = linearLayout;
+        this.f33672c = i10;
         this.d = horizontalScrollView;
         this.e = sparseIntArray;
-        this.f33336f = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f33337g = iArr;
+        this.f33673f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f33674g = iArr;
     }
 
     @Override
     public final void a(int i10) {
-        this.f33336f.getSwipeBack().f(this.f33337g[0], this.e.get(i10), true);
+        this.f33673f.getSwipeBack().f(this.f33674g[0], this.e.get(i10), true);
     }
 
     @Override
     public final void b(float f7, int i10, int i11) {
         HorizontalScrollView horizontalScrollView;
         float f10;
-        if (!this.f33333a.get()) {
+        if (!this.f33670a.get()) {
             int i12 = 0;
             float f11 = -1.0f;
             float f12 = -1.0f;
             while (true) {
-                LinearLayout linearLayout = this.f33334b;
+                LinearLayout linearLayout = this.f33671b;
                 int childCount = linearLayout.getChildCount();
                 horizontalScrollView = this.d;
                 if (i12 >= childCount) {
                     break;
                 }
-                org.telegram.ui.Components.rj0 rj0Var = (org.telegram.ui.Components.rj0) linearLayout.getChildAt(i12);
+                org.telegram.ui.Components.bk0 bk0Var = (org.telegram.ui.Components.bk0) linearLayout.getChildAt(i12);
                 if (i12 == i10) {
                     f10 = 1.0f - f7;
-                } else if (i12 == (i10 + 1) % this.f33335c) {
+                } else if (i12 == (i10 + 1) % this.f33672c) {
                     f10 = f7;
                 } else {
                     f10 = 0.0f;
                 }
-                rj0Var.setOutlineProgress(f10);
+                bk0Var.setOutlineProgress(f10);
                 if (i12 == i10) {
-                    f11 = rj0Var.getX() - ((horizontalScrollView.getWidth() - rj0Var.getWidth()) / 2.0f);
+                    f11 = bk0Var.getX() - ((horizontalScrollView.getWidth() - bk0Var.getWidth()) / 2.0f);
                 }
                 if (i12 == i10 + 1) {
-                    f12 = rj0Var.getX() - ((horizontalScrollView.getWidth() - rj0Var.getWidth()) / 2.0f);
+                    f12 = bk0Var.getX() - ((horizontalScrollView.getWidth() - bk0Var.getWidth()) / 2.0f);
                 }
                 i12++;
             }
@@ -67,14 +67,14 @@ public final class fi implements z4.e {
             SparseIntArray sparseIntArray = this.e;
             int i13 = sparseIntArray.get(i10, 0);
             float f13 = sparseIntArray.get(i10 + 1, 0) * f7;
-            this.f33336f.getSwipeBack().f(this.f33337g[0], (int) (f13 + ((1.0f - f7) * i13)), false);
+            this.f33673f.getSwipeBack().f(this.f33674g[0], (int) (f13 + ((1.0f - f7) * i13)), false);
         }
     }
 
     @Override
     public final void c(int i10) {
         if (i10 == 0) {
-            this.f33333a.set(false);
+            this.f33670a.set(false);
         }
     }
 }

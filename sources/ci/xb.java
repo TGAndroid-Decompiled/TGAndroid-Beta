@@ -11,10 +11,10 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.af0;
-import org.telegram.ui.Components.ik0;
-import org.telegram.ui.Components.jv0;
-import org.telegram.ui.Components.ye0;
+import org.telegram.ui.Components.if0;
+import org.telegram.ui.Components.kf0;
+import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.uv0;
 public final class xb extends FrameLayout {
     public final Rect f5849a;
     public final Rect f5850b;
@@ -83,19 +83,19 @@ public final class xb extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         lc lcVar = this.d;
-        af0 af0Var = lcVar.F1;
-        if (af0Var != null) {
-            ik0 ik0Var = af0Var.e;
-            ik0Var.f24988a = 0.0f;
-            ik0Var.f24989b = 0.0f;
-            ik0Var.f24990c = af0Var.getMeasuredWidth();
-            ik0Var.d = lcVar.F1.getMeasuredHeight();
+        kf0 kf0Var = lcVar.F1;
+        if (kf0Var != null) {
+            sk0 sk0Var = kf0Var.e;
+            sk0Var.f28258a = 0.0f;
+            sk0Var.f28259b = 0.0f;
+            sk0Var.f28260c = kf0Var.getMeasuredWidth();
+            sk0Var.d = lcVar.F1.getMeasuredHeight();
         }
-        ye0 ye0Var = lcVar.E1;
-        if (ye0Var != null) {
-            jv0 jv0Var = ye0Var.d;
-            jv0Var.f25428a = ye0Var.getMeasuredWidth();
-            jv0Var.f25429b = lcVar.E1.getMeasuredHeight();
+        if0 if0Var = lcVar.E1;
+        if (if0Var != null) {
+            uv0 uv0Var = if0Var.d;
+            uv0Var.f28926a = if0Var.getMeasuredWidth();
+            uv0Var.f28927b = lcVar.E1.getMeasuredHeight();
         }
     }
 

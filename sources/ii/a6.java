@@ -4,8 +4,8 @@ import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ti0;
-import org.telegram.ui.Components.ua0;
+import org.telegram.ui.Components.dj0;
+import org.telegram.ui.Components.fb0;
 public final class a6 extends CharacterStyle {
     public final int f11230a;
     public final Object f11231b;
@@ -24,19 +24,19 @@ public final class a6 extends CharacterStyle {
             case 1:
                 textPaint.setTypeface(AndroidUtilities.bold());
                 int alpha = textPaint.getAlpha();
-                int i10 = org.telegram.ui.ActionBar.h6.f18973n6;
-                ((ua0) this.f11231b).getClass();
+                int i10 = org.telegram.ui.ActionBar.h6.f19229n6;
+                ((fb0) this.f11231b).getClass();
                 textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
                 textPaint.setAlpha(alpha);
                 return;
             default:
-                textPaint.setColor(org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.l1(0.55f, textPaint.getColor()), org.telegram.ui.ActionBar.h6.l1(0.4f, ((ti0) this.f11231b).I)));
+                textPaint.setColor(org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.l1(0.55f, textPaint.getColor()), org.telegram.ui.ActionBar.h6.l1(0.4f, ((dj0) this.f11231b).I)));
                 return;
         }
     }
 
-    public a6(ti0 ti0Var) {
+    public a6(dj0 dj0Var) {
         this.f11230a = 2;
-        this.f11231b = ti0Var;
+        this.f11231b = dj0Var;
     }
 }

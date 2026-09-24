@@ -5,9 +5,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.bj0;
-import org.telegram.ui.Components.fm0;
-import org.telegram.ui.Components.ux0;
+import org.telegram.ui.Components.fy0;
+import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.qm0;
 public final class c5 implements ValueAnimator.AnimatorUpdateListener {
     public final int f4437a;
     public final int f4438b;
@@ -31,16 +31,16 @@ public final class c5 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 q6 q6Var = (q6) obj;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q6Var.A1.f40927a = i0.a.d(floatValue, i12, i11);
+                q6Var.A1.f41251a = i0.a.d(floatValue, i12, i11);
                 q6Var.T0.invalidate();
                 return;
             case 1:
                 org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) obj;
                 e4Var.getClass();
                 int offsetColor = AndroidUtilities.getOffsetColor(i12, i11, valueAnimator.getAnimatedFraction(), 1.0f);
-                bj0 bj0Var = e4Var.f19951f;
-                bj0Var.setColorFilter(new PorterDuffColorFilter(offsetColor, PorterDuff.Mode.SRC_IN));
-                org.telegram.ui.ActionBar.h6.B1(bj0Var.getDrawable(), offsetColor & 620756991, true);
+                lj0 lj0Var = e4Var.f20219f;
+                lj0Var.setColorFilter(new PorterDuffColorFilter(offsetColor, PorterDuff.Mode.SRC_IN));
+                org.telegram.ui.ActionBar.h6.B1(lj0Var.getDrawable(), offsetColor & 620756991, true);
                 return;
             case 2:
                 org.telegram.ui.Components.o6 o6Var = (org.telegram.ui.Components.o6) obj;
@@ -50,30 +50,30 @@ public final class c5 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) obj;
-                int i13 = ScrollSlidingTextTabStrip.f22136o0;
+                int i13 = ScrollSlidingTextTabStrip.f22373o0;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 scrollSlidingTextTabStrip.W = i12 * floatValue2;
-                scrollSlidingTextTabStrip.f22138a0 = i11 * floatValue2;
-                scrollSlidingTextTabStrip.f22137a.invalidate();
+                scrollSlidingTextTabStrip.f22375a0 = i11 * floatValue2;
+                scrollSlidingTextTabStrip.f22374a.invalidate();
                 scrollSlidingTextTabStrip.invalidate();
                 return;
             case 4:
                 float animatedFraction = valueAnimator.getAnimatedFraction();
-                ux0 ux0Var = (ux0) ((fm0) obj).f24009b;
-                ux0Var.f28569c.setAlpha(animatedFraction);
-                ux0Var.h.setAlpha(animatedFraction);
+                fy0 fy0Var = (fy0) ((qm0) obj).f27707b;
+                fy0Var.f24271c.setAlpha(animatedFraction);
+                fy0Var.h.setAlpha(animatedFraction);
                 if (i12 != 0) {
                     int i14 = (int) ((1.0f - animatedFraction) * i12);
-                    ux0Var.y0(i11 + i14);
-                    ux0Var.f28569c.setTranslationY(i14);
+                    fy0Var.y0(i11 + i14);
+                    fy0Var.f24271c.setTranslationY(i14);
                     return;
                 }
                 return;
             default:
-                qg.p0 p0Var = (qg.p0) obj;
+                qg.n0 n0Var = (qg.n0) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p0Var.K1.f40927a = i0.a.d(floatValue3, i12, i11);
-                p0Var.f41470c1.invalidate();
+                n0Var.K1.f41251a = i0.a.d(floatValue3, i12, i11);
+                n0Var.f41759c1.invalidate();
                 return;
         }
     }

@@ -2,97 +2,40 @@ package yh;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.h81;
-import org.telegram.ui.Components.sr0;
-public final class h2 extends h81 {
-    public final y3 T;
+import android.widget.LinearLayout;
+public final class h2 extends LinearLayout {
+    public final int f47457a;
+    public final x3 f47458b;
 
-    public h2(y3 y3Var, Context context) {
-        super(context, null);
-        this.T = y3Var;
+    public h2(x3 x3Var, Context context, int i10) {
+        super(context);
+        this.f47457a = i10;
+        this.f47458b = x3Var;
     }
 
     @Override
-    public final void E(View view, float f7) {
-        int i10;
-        View view2;
-        xh.n2 n2Var;
-        xh.n2 n2Var2;
-        j2 j2Var;
-        j2 j2Var2;
-        j2 j2Var3;
-        if (getMeasuredWidth() <= 0) {
-            view.setTranslationX(f7);
-            return;
-        }
-        float clamp = Utilities.clamp(f7 / getMeasuredWidth(), 1.0f, -1.0f);
-        y3 y3Var = this.T;
-        i10 = ((org.telegram.ui.ActionBar.f3) y3Var).backgroundPaddingLeft;
-        view.setTranslationX(((-clamp) * 2.0f * i10) + f7);
-        float f10 = 0.0f;
-        if (clamp <= 0.0f) {
-            f10 = view.getMeasuredWidth();
-        }
-        view.setPivotX(f10);
-        view.setCameraDistance(view.getMeasuredHeight() * 3.4f);
-        view.setScaleX(1.0f - Math.abs(0.25f * clamp));
-        view.setRotationY(clamp * 10.0f);
-        if (view instanceof FrameLayout) {
-            FrameLayout frameLayout = (FrameLayout) view;
-            if (frameLayout.getChildCount() > 0) {
-                view2 = frameLayout.getChildAt(0);
-                n2Var = y3Var.f47948b0;
-                if (n2Var != null && view2 == n2Var.Y && (j2Var3 = n2Var.f47952d0) != null) {
-                    j2Var3.invalidate();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f47457a) {
+            case 0:
+                if (!this.f47458b.Y0.c(0)) {
+                    return false;
                 }
-                if (view2 == y3Var.Y && (j2Var2 = y3Var.f47952d0) != null) {
-                    j2Var2.invalidate();
+                return super.dispatchTouchEvent(motionEvent);
+            case 1:
+                if (!this.f47458b.Y0.c(1)) {
+                    return false;
                 }
-                n2Var2 = y3Var.f47950c0;
-                if (n2Var2 == null && view2 == n2Var2.Y && (j2Var = n2Var2.f47952d0) != null) {
-                    j2Var.invalidate();
-                    return;
+                return super.dispatchTouchEvent(motionEvent);
+            case 2:
+                if (!this.f47458b.Y0.c(2)) {
+                    return false;
                 }
-                return;
-            }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                if (!this.f47458b.Y0.c(3)) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
         }
-        view2 = null;
-        n2Var = y3Var.f47948b0;
-        if (n2Var != null) {
-            j2Var3.invalidate();
-        }
-        if (view2 == y3Var.Y) {
-            j2Var2.invalidate();
-        }
-        n2Var2 = y3Var.f47950c0;
-        if (n2Var2 == null) {
-        }
-    }
-
-    @Override
-    public final void F() {
-        super.F();
-        int i10 = this.f24569b;
-        y3 y3Var = this.T;
-        boolean z10 = false;
-        if (i10 != y3Var.L1(false)) {
-            if (this.f24569b > y3Var.L1(false)) {
-                z10 = true;
-            }
-            AndroidUtilities.runOnUIThread(new sr0(15, this, z10));
-        }
-    }
-
-    @Override
-    public final boolean i(MotionEvent motionEvent) {
-        f4.d dVar = this.T.Y0;
-        if (dVar != null && !dVar.c(0)) {
-            return false;
-        }
-        return true;
     }
 }

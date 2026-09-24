@@ -14,11 +14,11 @@ public final class j implements c {
     public final Object a(Object obj, kd.c cVar) {
         switch (this.f4239a) {
             case 0:
-                ((kotlin.jvm.internal.p) this.f4240b).f13672a = obj;
+                ((kotlin.jvm.internal.p) this.f4240b).f13892a = obj;
                 throw new de.a(this);
             default:
-                ((a0) this.f4240b).f48689c.set((za.n) obj);
-                return gd.i.f9603a;
+                ((a0) this.f4240b).f49006c.set((za.o) obj);
+                return gd.i.f9602a;
         }
     }
 }

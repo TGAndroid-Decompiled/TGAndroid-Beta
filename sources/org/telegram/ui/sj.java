@@ -3,24 +3,24 @@ package org.telegram.ui;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class sj implements Runnable {
-    public final int f37312a;
-    public final tj f37313b;
+    public final int f37789a;
+    public final tj f37790b;
 
     public sj(tj tjVar, int i10) {
-        this.f37312a = i10;
-        this.f37313b = tjVar;
+        this.f37789a = i10;
+        this.f37790b = tjVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f37312a) {
+        switch (this.f37789a) {
             case 0:
-                tj tjVar = this.f37313b;
+                tj tjVar = this.f37790b;
                 tjVar.W = null;
-                xn xnVar = tjVar.X;
-                if (xnVar.H9 != -1) {
-                    xnVar.getNotificationCenter().onAnimationFinish(xnVar.H9);
-                    xnVar.H9 = -1;
+                wn wnVar = tjVar.X;
+                if (wnVar.H9 != -1) {
+                    wnVar.getNotificationCenter().onAnimationFinish(wnVar.H9);
+                    wnVar.H9 = -1;
                 }
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("chatItemAnimator enable notifications");
@@ -28,12 +28,12 @@ public final class sj implements Runnable {
                 }
                 return;
             default:
-                tj tjVar2 = this.f37313b;
+                tj tjVar2 = this.f37790b;
                 tjVar2.W = null;
-                xn xnVar2 = tjVar2.X;
-                if (xnVar2.H9 != -1) {
-                    xnVar2.getNotificationCenter().onAnimationFinish(xnVar2.H9);
-                    xnVar2.H9 = -1;
+                wn wnVar2 = tjVar2.X;
+                if (wnVar2.H9 != -1) {
+                    wnVar2.getNotificationCenter().onAnimationFinish(wnVar2.H9);
+                    wnVar2.H9 = -1;
                 }
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("chatItemAnimator enable notifications");

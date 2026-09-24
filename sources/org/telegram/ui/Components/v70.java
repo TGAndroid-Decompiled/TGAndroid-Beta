@@ -1,6 +1,11 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public interface v70 {
-    void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12);
+import android.view.View;
+import android.widget.ScrollView;
+import org.telegram.messenger.AndroidUtilities;
+public final class v70 extends ScrollView {
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
+    }
 }

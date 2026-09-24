@@ -24,7 +24,7 @@ public final class y extends FrameLayout {
         vVar.setVisibility(8);
         vVar.setWillNotDraw(false);
         vVar.setOnItemClickListener(new ai.g(this, 2));
-        addView(vVar, w7.x5.c(56.0f, -1));
+        addView(vVar, w7.y5.c(56.0f, -1));
     }
 
     public final void a(boolean z10, boolean z11) {

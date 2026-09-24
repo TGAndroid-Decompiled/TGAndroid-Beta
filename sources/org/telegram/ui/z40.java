@@ -1,42 +1,39 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Paint;
-public final class z40 extends AnimatorListenerAdapter {
-    public final int f39958a;
-    public final f60 f39959b;
+import android.graphics.Canvas;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class z40 extends org.telegram.ui.ActionBar.k {
+    public final org.telegram.ui.Components.sp f40319t1;
+    public final d60 f40320u1;
 
-    public z40(f60 f60Var, int i10) {
-        this.f39958a = i10;
-        this.f39959b = f60Var;
+    public z40(d60 d60Var, LaunchActivity launchActivity, org.telegram.ui.Components.sp spVar) {
+        super(launchActivity, null);
+        this.f40320u1 = d60Var;
+        this.f40319t1 = spVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        switch (this.f39958a) {
-            case 0:
-                f60 f60Var = this.f39959b;
-                f60Var.V.setVisibility(4);
-                f60Var.W.setVisibility(4);
-                f60Var.U.setVisibility(4);
-                return;
-            case 1:
-                this.f39959b.f33128h0 = null;
-                return;
-            default:
-                f60 f60Var2 = this.f39959b;
-                f60Var2.f33129h1 = null;
-                Paint paint = f60Var2.f33125g1;
-                if (f60Var2.T1 == 3) {
-                    i10 = -1163700;
-                } else {
-                    i10 = -12761513;
-                }
-                paint.setColor(i10);
-                f60Var2.f33121f1.invalidate();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
+            canvas.save();
+            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
+            org.telegram.ui.Components.sp spVar = this.f40319t1;
+            spVar.f28296f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            spVar.draw(canvas);
+            canvas.restore();
+            invalidate();
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        if (getAlpha() != f7) {
+            super.setAlpha(f7);
+            viewGroup = ((org.telegram.ui.ActionBar.e3) this.f40320u1).containerView;
+            viewGroup.invalidate();
         }
     }
 }

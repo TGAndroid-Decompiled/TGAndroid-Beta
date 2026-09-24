@@ -8,9 +8,8 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import n6.i;
 import n6.l;
-import n7.a1;
+import n7.z0;
 import qb.m;
-import v7.r1;
 import w7.d7;
 import w7.e7;
 import w7.j7;
@@ -18,17 +17,17 @@ import w7.la;
 import w7.na;
 import w7.y6;
 public final class a {
-    public volatile Bitmap f44231a;
-    public final int f44232b;
-    public final int f44233c;
+    public volatile Bitmap f44548a;
+    public final int f44549b;
+    public final int f44550c;
     public final int d;
     public final int e;
 
     public a(Bitmap bitmap, int i10) {
         l.h(bitmap);
-        this.f44231a = bitmap;
-        this.f44232b = bitmap.getWidth();
-        this.f44233c = bitmap.getHeight();
+        this.f44548a = bitmap;
+        this.f44549b = bitmap.getWidth();
+        this.f44550c = bitmap.getHeight();
         boolean z10 = true;
         if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
             z10 = false;
@@ -67,7 +66,7 @@ public final class a {
         j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
         Task task2 = a2.e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f44711i;
+        HashMap hashMap = a2.f45029i;
         if (hashMap.get(j7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -80,23 +79,23 @@ public final class a {
         }
         hashMap.put(j7Var, Long.valueOf(elapsedRealtime3));
         ?? obj = new Object();
-        obj.f14272c = y6.BITMAP;
-        obj.f14271b = d7.BITMAP;
+        obj.f14510c = y6.BITMAP;
+        obj.f14509b = d7.BITMAP;
         obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f14273f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.f14511f = Integer.valueOf(height & Integer.MAX_VALUE);
         obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f14270a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.f14508a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
         obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
         e7 e7Var = new e7(obj);
-        r1 r1Var = new r1(5, false);
-        r1Var.f44029c = e7Var;
-        a1 a1Var = new a1(r1Var);
+        v7.l lVar = new v7.l(6, false);
+        lVar.d = e7Var;
+        z0 z0Var = new z0(lVar);
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = i.f15023c.a(a2.f44710g);
+            a10 = i.f15261c.a(a2.f45028g);
         }
-        m.f41206a.execute(new v(a2, a1Var, a10));
+        m.f41529a.execute(new v(a2, z0Var, a10));
         return aVar;
     }
 }

@@ -1,15 +1,32 @@
 package org.telegram.ui.Components;
-public final class wr0 extends g.p {
-    public final ur0 f29799c;
-    public final yu0 d;
 
-    public wr0(yu0 yu0Var, ur0 ur0Var) {
-        this.d = yu0Var;
-        this.f29799c = ur0Var;
+import android.content.Context;
+public final class wr0 extends gv0 {
+    public final jv0 G;
+
+    public wr0(jv0 jv0Var, Context context) {
+        super(jv0Var, context, 0, true);
+        this.G = jv0Var;
     }
 
     @Override
-    public final int i(int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wr0.i(int):int");
+    public final void l() {
+        boolean z10;
+        super.l();
+        jv0 jv0Var = this.G;
+        cu0 W = jv0Var.W(9);
+        if (W != null && W.f23389r.getVisibility() == 0) {
+            jv0Var.f25509f0.l();
+        }
+        if (W != null) {
+            ts0 ts0Var = W.f23391w;
+            ai.d9 d9Var = this.f24530s;
+            if (d9Var != null && (d9Var.k() || (jv0Var.i0() && this.f24530s.g() > 0))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            ts0Var.e(z10, true);
+        }
     }
 }

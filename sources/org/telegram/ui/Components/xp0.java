@@ -1,21 +1,32 @@
 package org.telegram.ui.Components;
+public final class xp0 extends g.p {
+    public final int f30377c;
+    public final uq0 d;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class xp0 extends org.telegram.ui.Cells.f7 {
-    public final zp0 N;
-
-    public xp0(zp0 zp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 0, d6Var);
-        this.N = zp0Var;
+    public xp0(uq0 uq0Var, int i10) {
+        this.f30377c = i10;
+        this.d = uq0Var;
     }
 
     @Override
-    public final String a() {
-        if (this.N.f30638f.f24773a0) {
-            return LocaleController.getString(R.string.RepostToStory);
+    public final int i(int i10) {
+        switch (this.f30377c) {
+            case 0:
+                if (i10 == 0) {
+                    return this.d.H.J;
+                }
+                return 1;
+            case 1:
+                qq0 qq0Var = this.d.M;
+                if (i10 != qq0Var.f27740w && i10 != qq0Var.f27741x && i10 != qq0Var.f27742y && i10 != qq0Var.F && qq0Var.j(i10) != 0) {
+                    return 1;
+                }
+                return 4;
+            default:
+                if (i10 == 0) {
+                    return this.d.I.J;
+                }
+                return 1;
         }
-        return LocaleController.getString(R.string.FwdMyStory);
     }
 }

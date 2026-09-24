@@ -1,7 +1,7 @@
 package bb;
 
 import rd.p;
-import v7.t7;
+import v7.u7;
 public final class k extends kd.j implements p {
     public Object f3474a;
     public final Object f3475b;
@@ -24,7 +24,7 @@ public final class k extends kd.j implements p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        gd.i iVar = gd.i.f9603a;
+        gd.i iVar = gd.i.f9602a;
         ((k) create((n1.b) obj, (id.c) obj2)).invokeSuspend(iVar);
         return iVar;
     }
@@ -32,7 +32,7 @@ public final class k extends kd.j implements p {
     @Override
     public final Object invokeSuspend(Object obj) {
         jd.a aVar = jd.a.f12959a;
-        t7.b(obj);
+        u7.b(obj);
         n1.b bVar = (n1.b) this.f3474a;
         n1.d key = this.f3476c;
         Object obj2 = this.f3475b;
@@ -43,13 +43,13 @@ public final class k extends kd.j implements p {
         } else {
             bVar.getClass();
             kotlin.jvm.internal.i.e(key, "key");
-            if (!bVar.f14831b.get()) {
-                bVar.f14830a.remove(key);
+            if (!bVar.f15067b.get()) {
+                bVar.f15066a.remove(key);
             } else {
                 throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
             }
         }
         l.a(this.d, bVar);
-        return gd.i.f9603a;
+        return gd.i.f9602a;
     }
 }

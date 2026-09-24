@@ -5,18 +5,18 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class tj extends ji.n {
     public Runnable W;
-    public final xn X;
+    public final wn X;
 
-    public tj(xn xnVar, xn xnVar2, rj rjVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(xnVar2, rjVar, d6Var);
-        this.X = xnVar;
+    public tj(wn wnVar, wn wnVar2, rj rjVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(wnVar2, rjVar, d6Var);
+        this.X = wnVar;
     }
 
     @Override
     public final void F() {
-        xn xnVar = this.X;
-        if (xnVar.H9 == -1) {
-            xnVar.H9 = xnVar.getNotificationCenter().setAnimationInProgress(xnVar.H9, xn.Mc, false);
+        wn wnVar = this.X;
+        if (wnVar.H9 == -1) {
+            wnVar.H9 = wnVar.getNotificationCenter().setAnimationInProgress(wnVar.H9, wn.Mc, false);
         }
     }
 
@@ -35,8 +35,8 @@ public final class tj extends ji.n {
 
     @Override
     public final void W() {
-        xn xnVar = this.X;
-        xnVar.H9 = xnVar.getNotificationCenter().setAnimationInProgress(xnVar.H9, xn.Mc, false);
+        wn wnVar = this.X;
+        wnVar.H9 = wnVar.getNotificationCenter().setAnimationInProgress(wnVar.H9, wn.Mc, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -45,12 +45,12 @@ public final class tj extends ji.n {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("chatItemAnimator disable notifications");
         }
-        org.telegram.ui.ActionBar.v2 v2Var = xnVar.Y.getAdjustPanLayoutHelper().h;
-        AndroidUtilities.cancelRunOnUIThread(v2Var);
-        v2Var.run();
-        org.telegram.ui.Components.af afVar = xnVar.Y.X3;
-        AndroidUtilities.cancelRunOnUIThread(afVar);
-        afVar.run();
+        org.telegram.ui.ActionBar.u2 u2Var = wnVar.Y.getAdjustPanLayoutHelper().h;
+        AndroidUtilities.cancelRunOnUIThread(u2Var);
+        u2Var.run();
+        org.telegram.ui.Components.bf bfVar = wnVar.Y.Y3;
+        AndroidUtilities.cancelRunOnUIThread(bfVar);
+        bfVar.run();
     }
 
     @Override

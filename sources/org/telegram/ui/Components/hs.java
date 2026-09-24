@@ -9,31 +9,31 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 public final class hs {
-    public int f24816a;
-    public int f24817b;
-    public f01 f24818c;
+    public int f24835a;
+    public int f24836b;
+    public t01 f24837c;
     public int d;
     public int e;
 
-    public static hs b(org.telegram.ui.Cells.r2 r2Var, MessagesController.DialogFilter dialogFilter) {
+    public static hs b(org.telegram.ui.Cells.s2 s2Var, MessagesController.DialogFilter dialogFilter) {
         ?? obj = new Object();
-        obj.f24816a = dialogFilter.f15577id;
-        obj.f24817b = dialogFilter.color;
+        obj.f24835a = dialogFilter.f15817id;
+        obj.f24836b = dialogFilter.color;
         String str = dialogFilter.name;
         if (str == null) {
             str = "";
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
-        f01 f01Var = new f01(spannableStringBuilder, 10.0f, AndroidUtilities.bold());
-        f01Var.s(r2Var);
-        obj.f24818c = f01Var;
-        obj.f24818c.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, f01Var.f23783a.getFontMetricsInt(), false), dialogFilter.entities, obj.f24818c.f23783a.getFontMetricsInt()));
-        obj.f24818c.p(26);
+        t01 t01Var = new t01(spannableStringBuilder, 10.0f, AndroidUtilities.bold());
+        t01Var.s(s2Var);
+        obj.f24837c = t01Var;
+        obj.f24837c.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, t01Var.f28355a.getFontMetricsInt(), false), dialogFilter.entities, obj.f24837c.f28355a.getFontMetricsInt()));
+        obj.f24837c.p(26);
         int dp = AndroidUtilities.dp(9.32f);
-        f01 f01Var2 = obj.f24818c;
-        obj.e = dp + ((int) f01Var2.f23785c);
-        f01Var2.j();
-        int[] iArr = org.telegram.ui.ActionBar.h6.f19046r8;
+        t01 t01Var2 = obj.f24837c;
+        obj.e = dp + ((int) t01Var2.f28357c);
+        t01Var2.j();
+        int[] iArr = org.telegram.ui.ActionBar.h6.f19304r8;
         obj.d = org.telegram.ui.ActionBar.h6.w0(null, iArr[dialogFilter.color % iArr.length], false);
         return obj;
     }
@@ -51,6 +51,6 @@ public final class hs {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, this.e, AndroidUtilities.dp(14.66f));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.h6.A0);
-        this.f24818c.c(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(14.66f) / 2.0f, 1.0f, this.d, canvas);
+        this.f24837c.c(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(14.66f) / 2.0f, 1.0f, this.d, canvas);
     }
 }

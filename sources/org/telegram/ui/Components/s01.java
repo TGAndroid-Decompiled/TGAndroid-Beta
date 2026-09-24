@@ -1,32 +1,39 @@
 package org.telegram.ui.Components;
 
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class s01 implements Runnable {
-    public final int f27775a;
-    public final Runnable f27776b;
-    public final Runnable f27777c;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class s01 extends FrameLayout {
+    public static final int e = 0;
+    public TextView f28087a;
+    public r01 f28088b;
+    public TLRPC.TL_help_termsOfService f28089c;
+    public int d;
 
-    public s01(Runnable runnable, Runnable runnable2, int i10) {
-        this.f27775a = i10;
-        this.f27776b = runnable;
-        this.f27777c = runnable2;
+    public final void a() {
+        r01 r01Var = this.f28088b;
+        int i10 = this.d;
+        org.telegram.ui.ra0 ra0Var = (org.telegram.ui.ra0) r01Var;
+        ra0Var.getClass();
+        UserConfig.getInstance(i10).unacceptedTermsOfService = null;
+        UserConfig.getInstance(i10).saveConfig(false);
+        LaunchActivity launchActivity = ra0Var.f37265a;
+        ArrayList arrayList = launchActivity.f31092d0;
+        if (!arrayList.isEmpty()) {
+            ((org.telegram.ui.ActionBar.m2) hg.c.g(1, arrayList)).onResume();
+        }
+        launchActivity.C0.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new org.telegram.ui.c10(ra0Var, 15)).start();
+        TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
+        tL_help_acceptTermsOfService.f18376id = this.f28089c.f18378id;
+        ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new ai.u7(16));
     }
 
-    @Override
-    public final void run() {
-        switch (this.f27775a) {
-            case 0:
-                w01.b(this.f27776b);
-                Runnable runnable = this.f27777c;
-                if (runnable != null) {
-                    AndroidUtilities.runOnUIThread(runnable);
-                    return;
-                }
-                return;
-            default:
-                this.f27776b.run();
-                this.f27777c.run();
-                return;
-        }
+    public void setDelegate(r01 r01Var) {
+        this.f28088b = r01Var;
     }
 }

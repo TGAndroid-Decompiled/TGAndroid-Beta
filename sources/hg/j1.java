@@ -8,10 +8,10 @@ import ei.d5;
 import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.d61;
-import w7.x5;
-public final class j1 extends n2 {
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.r61;
+import w7.y5;
+public final class j1 extends m2 {
     public final CharSequence f10301a;
     public final ArrayList f10302b;
     public final int f10303c;
@@ -19,7 +19,7 @@ public final class j1 extends n2 {
     public final int e;
     public rc f10304f;
     public gg.x1 h;
-    public d61 f10305n;
+    public r61 f10305n;
     public boolean f10306r;
 
     public j1(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
@@ -45,7 +45,7 @@ public final class j1 extends n2 {
         if (arrayList.size() >= this.e) {
             return false;
         }
-        if (!arrayList.isEmpty() && !U() && ((g1) c.h(1, arrayList)).f10278b >= Math.min(1438, this.d - 2)) {
+        if (!arrayList.isEmpty() && !U() && ((g1) c.g(1, arrayList)).f10278b >= Math.min(1438, this.d - 2)) {
             return false;
         }
         return true;
@@ -58,12 +58,12 @@ public final class j1 extends n2 {
         this.actionBar.setTitle(this.f10301a);
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 15));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.w0(null, h6.f18733a7, false));
-        d61 d61Var = new d61(this, new bi.v(this, 28), new d5(this, 4), null);
-        this.f10305n = d61Var;
-        d61Var.p1();
+        frameLayout.setBackgroundColor(h6.w0(null, h6.f18989a7, false));
+        r61 r61Var = new r61(this, new bi.v(this, 28), new d5(this, 4), null);
+        this.f10305n = r61Var;
+        r61Var.p1();
         this.actionBar.setAdaptiveBackground(this.f10305n);
-        frameLayout.addView(this.f10305n, x5.c(-1.0f, -1));
+        frameLayout.addView(this.f10305n, y5.c(-1.0f, -1));
         this.fragmentView = frameLayout;
         return frameLayout;
     }

@@ -1,72 +1,69 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.app.Activity;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.Crop.CropAreaView;
-public final class ab1 extends View {
-    public ImageReceiver f31724a;
-    public ImageReceiver f31725b;
-    public View f31726c;
-    public org.telegram.ui.Components.ue0 d;
-    public Path e;
-    public Drawable f31727f;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class ab1 extends org.telegram.ui.ActionBar.e3 {
+    public static ab1 f32079b;
 
-    @Override
-    public final void draw(Canvas canvas) {
-        int measuredWidth = getMeasuredWidth() >> 1;
-        int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(30.0f);
-        int dp = AndroidUtilities.dp(46.0f) + measuredWidth;
-        ImageReceiver imageReceiver = this.f31724a;
-        imageReceiver.setImageCoords((measuredWidth - AndroidUtilities.dp(46.0f)) - AndroidUtilities.dp(30.0f), measuredHeight - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
-        this.f31725b.setImageCoords(dp - AndroidUtilities.dp(30.0f), measuredHeight - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
-        Drawable drawable = this.f31727f;
-        drawable.setBounds(org.telegram.messenger.ul.x(2, measuredWidth, drawable), org.telegram.messenger.ul.e(2, measuredHeight, drawable), org.telegram.messenger.ul.B(2, measuredWidth, drawable), org.telegram.messenger.ul.z(2, measuredHeight, drawable));
-        drawable.draw(canvas);
-        Path path = this.e;
-        path.reset();
-        path.addCircle(dp, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
-        imageReceiver.draw(canvas);
-        if (this.f31726c != null) {
-            CropAreaView cropAreaView = this.d.f28468b.f14088a;
-            float dp2 = AndroidUtilities.dp(60.0f) / cropAreaView.f21974a;
-            float left = (0.0f - this.d.getLeft()) - cropAreaView.f21976b;
-            canvas.save();
-            canvas.clipPath(path);
-            canvas.scale(dp2, dp2, 0.0f, 0.0f);
-            canvas.translate(left, (0.0f - this.d.getTop()) - cropAreaView.f21978c);
-            canvas.translate((dp - AndroidUtilities.dp(30.0f)) / dp2, (measuredHeight - AndroidUtilities.dp(30.0f)) / dp2);
-            PhotoViewer.t1().f30929g4 = true;
-            this.f31726c.draw(canvas);
-            PhotoViewer.t1().f30929g4 = false;
-            canvas.restore();
+    public static void m(ab1 ab1Var, qy qyVar) {
+        if (qyVar.getParentActivity() == null) {
+            return;
         }
-        super.draw(canvas);
-        this.f31726c.invalidate();
-        invalidate();
+        MessagesController.getInstance(ab1Var.currentAccount).clearQueryTime();
+        qyVar.getMessagesStorage().clearLocalDatabase();
+    }
+
+    public static void n(qy qyVar) {
+        if (f32079b == null) {
+            ?? e3Var = new org.telegram.ui.ActionBar.e3(qyVar.getParentActivity(), false);
+            Activity parentActivity = qyVar.getParentActivity();
+            LinearLayout e = org.telegram.messenger.f0.e(parentActivity, 1);
+            org.telegram.ui.Components.jx0 jx0Var = new org.telegram.ui.Components.jx0(parentActivity, e3Var.currentAccount);
+            jx0Var.setStickerNum(7);
+            jx0Var.getImageReceiver().setAutoRepeat(1);
+            e.addView(jx0Var, w7.y5.t(144, 144, 1, 0, 16, 0, 0));
+            TextView textView = new TextView(parentActivity);
+            textView.setGravity(8388611);
+            int i10 = org.telegram.ui.ActionBar.h6.f19151j5;
+            org.telegram.messenger.f0.q(textView, org.telegram.ui.ActionBar.h6.w0(null, i10, false), 1, 20.0f);
+            textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
+            e.addView(textView, w7.y5.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+            TextView textView2 = new TextView(parentActivity);
+            textView2.setGravity(8388611);
+            textView2.setTextSize(1, 15.0f);
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(qyVar.getMessagesStorage().getDatabaseSize()))));
+            e.addView(textView2, w7.y5.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+            TextView textView3 = new TextView(parentActivity);
+            textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+            textView3.setGravity(17);
+            textView3.setTextSize(1, 14.0f);
+            textView3.setTypeface(AndroidUtilities.bold());
+            textView3.setText(LocaleController.getString(R.string.ClearLocalDatabase));
+            textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
+            int dp = AndroidUtilities.dp(6.0f);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
+            int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19045d6, false), 120);
+            textView3.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, w02, k10, k10));
+            e.addView(textView3, w7.y5.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+            textView3.setOnClickListener(new ny0(8, e3Var, qyVar));
+            ScrollView scrollView = new ScrollView(parentActivity);
+            scrollView.addView(e);
+            e3Var.setCustomView(scrollView);
+            f32079b = e3Var;
+            e3Var.show();
+        }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f31724a.onAttachedToWindow();
-        this.f31725b.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f31724a.onDetachedFromWindow();
-        this.f31725b.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f31724a.setRoundRadius(AndroidUtilities.dp(30.0f));
-        this.f31725b.setRoundRadius(AndroidUtilities.dp(30.0f));
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
+    public final void dismiss() {
+        super.dismiss();
+        f32079b = null;
     }
 }

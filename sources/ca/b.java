@@ -25,18 +25,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.yx0;
+import org.telegram.ui.Components.jy0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.xn;
+import org.telegram.ui.wn;
 import x2.d;
 import x2.e;
 import x2.i;
 import x2.m;
 import x2.p;
-public final class b implements g, MessagesStorage.LongCallback, a2, MessagesController.ErrorDelegate, m {
+public final class b implements g, MessagesStorage.LongCallback, z1, MessagesController.ErrorDelegate, m {
     public final int f4177a;
     public final boolean f4178b;
     public final Object f4179c;
@@ -71,7 +71,7 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
+    public void f(a2 a2Var, int i10) {
         TL_keyboard.PageButton pageButton;
         TL_keyboard.InlineButtonType inlineButtonType;
         long j3;
@@ -130,12 +130,12 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
                 }
                 return;
             case 3:
-                xn xnVar = (xn) this.f4179c;
+                wn wnVar = (wn) this.f4179c;
                 boolean z11 = this.f4178b;
                 ((MessagesController) this.d).secretWebpagePreview = 1;
-                MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", xnVar.getMessagesController().secretWebpagePreview).commit();
-                xnVar.H5 = null;
-                xnVar.Ya((CharSequence) this.e, z11);
+                MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", wnVar.getMessagesController().secretWebpagePreview).commit();
+                wnVar.H5 = null;
+                wnVar.Ya((CharSequence) this.e, z11);
                 return;
             case 4:
                 boolean z12 = this.f4178b;
@@ -157,34 +157,34 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
                 aVar.accept(Boolean.TRUE);
                 return;
             default:
-                yx0 yx0Var = (yx0) this.f4179c;
+                jy0 jy0Var = (jy0) this.f4179c;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.d;
                 Context context2 = (Context) this.e;
                 boolean z13 = this.f4178b;
-                String trim2 = yx0Var.getText().toString().trim();
+                String trim2 = jy0Var.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim2) && !TextUtils.isEmpty(AndroidUtilities.translitSafe(trim2.toString()))) {
-                    AndroidUtilities.hideKeyboard(yx0Var);
+                    AndroidUtilities.hideKeyboard(jy0Var);
                     if (z13) {
                         dVar = null;
                     } else {
                         dVar = new ai.d();
                     }
-                    b2 b2Var2 = new b2(context2, 3, dVar);
-                    b2Var2.q(250L);
-                    callback2.run(trim2, new c5(b2Var2, b2Var, yx0Var, 8));
+                    a2 a2Var2 = new a2(context2, 3, dVar);
+                    a2Var2.q(250L);
+                    callback2.run(trim2, new c5(a2Var2, a2Var, jy0Var, 8));
                     return;
                 }
-                yx0Var.setErrorText(".");
-                AndroidUtilities.shakeViewSpring(yx0Var, -6.0f);
+                jy0Var.setErrorText(".");
+                AndroidUtilities.shakeViewSpring(jy0Var, -6.0f);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.showKeyboard(yx0Var);
+                AndroidUtilities.showKeyboard(jy0Var);
                 return;
         }
     }
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        return ProfileActivity.Z((ProfileActivity) this.f4179c, (boolean[]) this.d, this.f4178b, (n2) this.e, tL_error);
+        return ProfileActivity.Z((ProfileActivity) this.f4179c, (boolean[]) this.d, this.f4178b, (m2) this.e, tL_error);
     }
 
     public b(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
@@ -200,12 +200,12 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
         f fVar = (f) this.f4179c;
         String str = (String) this.e;
         fVar.getClass();
-        ((b2) this.d).dismiss();
+        ((a2) this.d).dismiss();
         if (j3 == 0) {
             return;
         }
-        fVar.f9081a = -j3;
-        fVar.f9082b = fVar.getMessagesController().getChat(Long.valueOf(j3));
+        fVar.f9080a = -j3;
+        fVar.f9081b = fVar.getMessagesController().getChat(Long.valueOf(j3));
         fVar.V(str, this.f4178b);
     }
 

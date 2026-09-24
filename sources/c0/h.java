@@ -12,11 +12,11 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import v7.d5;
+import v7.e5;
 public abstract class h implements w {
     public static final boolean d = Boolean.parseBoolean(System.getProperty("guava.concurrent.generate_cancellation_cause", "false"));
     public static final Logger e = Logger.getLogger(h.class.getName());
-    public static final d5 f3627f;
+    public static final e5 f3627f;
     public static final Object h;
     public volatile Object f3628a;
     public volatile d f3629b;
@@ -210,9 +210,9 @@ public abstract class h implements w {
                 if (gVar2 != gVar) {
                     g gVar3 = new g();
                     do {
-                        d5 d5Var = f3627f;
-                        d5Var.d(gVar3, gVar2);
-                        if (d5Var.c(this, gVar2, gVar3)) {
+                        e5 e5Var = f3627f;
+                        e5Var.d(gVar3, gVar2);
+                        if (e5Var.c(this, gVar2, gVar3)) {
                             while (true) {
                                 LockSupport.parkNanos(this, nanos);
                                 if (!Thread.interrupted()) {
@@ -259,26 +259,26 @@ public abstract class h implements w {
             u10.append(timeUnit.toString().toLowerCase(locale));
             String sb2 = u10.toString();
             if (nanos + 1000 < 0) {
-                String g10 = w.c.g(sb2, " (plus ");
+                String t10 = v7.j.t(sb2, " (plus ");
                 long j10 = -nanos;
                 long convert = timeUnit.convert(j10, TimeUnit.NANOSECONDS);
                 long nanos2 = j10 - timeUnit.toNanos(convert);
                 int i10 = (convert > 0L ? 1 : (convert == 0L ? 0 : -1));
                 boolean z10 = i10 == 0 || nanos2 > 1000;
                 if (i10 > 0) {
-                    String str = g10 + convert + " " + lowerCase;
+                    String str = t10 + convert + " " + lowerCase;
                     if (z10) {
-                        str = w.c.g(str, ",");
+                        str = v7.j.t(str, ",");
                     }
-                    g10 = w.c.g(str, " ");
+                    t10 = v7.j.t(str, " ");
                 }
                 if (z10) {
-                    g10 = g10 + nanos2 + " nanoseconds ";
+                    t10 = t10 + nanos2 + " nanoseconds ";
                 }
-                sb2 = w.c.g(g10, "delay)");
+                sb2 = v7.j.t(t10, "delay)");
             }
             if (isDone()) {
-                throw new TimeoutException(w.c.g(sb2, " but future completed as timeout expired"));
+                throw new TimeoutException(v7.j.t(sb2, " but future completed as timeout expired"));
             }
             throw new TimeoutException(a4.a.D(sb2, " for ", hVar));
         }
@@ -395,9 +395,9 @@ public abstract class h implements w {
             if (gVar2 != gVar) {
                 g gVar3 = new g();
                 do {
-                    d5 d5Var = f3627f;
-                    d5Var.d(gVar3, gVar2);
-                    if (d5Var.c(this, gVar2, gVar3)) {
+                    e5 e5Var = f3627f;
+                    e5Var.d(gVar3, gVar2);
+                    if (e5Var.c(this, gVar2, gVar3)) {
                         do {
                             LockSupport.park(this);
                             if (!Thread.interrupted()) {

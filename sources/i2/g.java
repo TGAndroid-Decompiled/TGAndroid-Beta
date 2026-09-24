@@ -28,17 +28,17 @@ public final class g {
         int i19 = this.f10691j;
         long j3 = this.f10692k;
         int i20 = this.f10693l;
-        String str = e2.d0.f7871a;
+        String str = e2.d0.f7870a;
         Locale locale = Locale.US;
-        StringBuilder m10 = hg.c.m("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
-        hg.c.v(m10, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
-        hg.c.v(m10, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
-        hg.c.v(m10, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
-        hg.c.v(m10, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
-        m10.append(j3);
-        m10.append("\n videoFrameProcessingOffsetCount=");
-        m10.append(i20);
-        m10.append("\n}");
-        return m10.toString();
+        StringBuilder k10 = hg.c.k("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
+        hg.c.t(k10, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
+        hg.c.t(k10, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
+        hg.c.t(k10, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
+        hg.c.t(k10, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
+        k10.append(j3);
+        k10.append("\n videoFrameProcessingOffsetCount=");
+        k10.append(i20);
+        k10.append("\n}");
+        return k10.toString();
     }
 }

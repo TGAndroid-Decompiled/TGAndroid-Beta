@@ -1,96 +1,81 @@
 package v7;
+
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.util.Log;
+import java.lang.reflect.Method;
 public abstract class s8 {
-    public static int a(a4.h hVar, int i10, int i11, int i12) {
-        boolean z10;
-        if (Math.max(Math.max(i10, i11), i12) <= 31) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public static Method f44360a;
+    public static boolean f44361b;
+    public static Method f44362c;
+    public static boolean d;
+
+    public static int a(Drawable drawable) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            return e0.b.i(drawable);
         }
-        e2.d.b(z10);
-        int i13 = (1 << i10) - 1;
-        int i14 = (1 << i11) - 1;
-        o7.a(o7.a(i13, i14), 1 << i12);
-        if (hVar.b() >= i10) {
-            int i15 = hVar.i(i10);
-            if (i15 == i13) {
-                if (hVar.b() >= i11) {
-                    int i16 = hVar.i(i11);
-                    i15 += i16;
-                    if (i16 == i14) {
-                        if (hVar.b() < i12) {
-                            return -1;
-                        }
-                        return hVar.i(i12) + i15;
-                    }
-                } else {
-                    return -1;
-                }
+        if (!d) {
+            try {
+                Method declaredMethod = Drawable.class.getDeclaredMethod("getLayoutDirection", null);
+                f44362c = declaredMethod;
+                declaredMethod.setAccessible(true);
+            } catch (NoSuchMethodException e) {
+                Log.i("DrawableCompat", "Failed to retrieve getLayoutDirection() method", e);
             }
-            return i15;
+            d = true;
         }
-        return -1;
+        Method method = f44362c;
+        if (method != null) {
+            try {
+                return ((Integer) method.invoke(drawable, null)).intValue();
+            } catch (Exception e7) {
+                Log.i("DrawableCompat", "Failed to invoke getLayoutDirection() via reflection", e7);
+                f44362c = null;
+                return 0;
+            }
+        }
+        return 0;
     }
 
-    public static void b(a4.h hVar) {
-        hVar.t(3);
-        hVar.t(8);
-        boolean h = hVar.h();
-        boolean h10 = hVar.h();
-        if (h) {
-            hVar.t(5);
+    public static boolean b(int i10, Drawable drawable) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            return e0.b.D(i10, drawable);
         }
-        if (h10) {
-            hVar.t(6);
+        if (!f44361b) {
+            try {
+                Method declaredMethod = Drawable.class.getDeclaredMethod("setLayoutDirection", Integer.TYPE);
+                f44360a = declaredMethod;
+                declaredMethod.setAccessible(true);
+            } catch (NoSuchMethodException e) {
+                Log.i("DrawableCompat", "Failed to retrieve setLayoutDirection(int) method", e);
+            }
+            f44361b = true;
         }
+        Method method = f44360a;
+        if (method != null) {
+            try {
+                method.invoke(drawable, Integer.valueOf(i10));
+                return true;
+            } catch (Exception e7) {
+                Log.i("DrawableCompat", "Failed to invoke setLayoutDirection(int) via reflection", e7);
+                f44360a = null;
+            }
+        }
+        return false;
     }
 
-    public static void c(a4.h hVar) {
-        int i10;
-        int i11;
-        int i12 = hVar.i(2);
-        int i13 = 6;
-        if (i12 == 0) {
-            hVar.t(6);
-            return;
+    public static void c(int i10, Drawable drawable) {
+        drawable.setTint(i10);
+    }
+
+    public static Drawable d(Drawable drawable) {
+        if (Build.VERSION.SDK_INT < 23 && !(drawable instanceof j0.b)) {
+            ?? drawable2 = new Drawable();
+            drawable2.d = drawable2.c();
+            drawable2.h(drawable);
+            j0.d.a();
+            return drawable2;
         }
-        int i14 = 5;
-        int a2 = a(hVar, 5, 8, 16) + 1;
-        if (i12 == 1) {
-            hVar.t(a2 * 7);
-        } else if (i12 == 2) {
-            boolean h = hVar.h();
-            if (h) {
-                i10 = 1;
-            } else {
-                i10 = 5;
-            }
-            if (h) {
-                i14 = 7;
-            }
-            if (h) {
-                i13 = 8;
-            }
-            int i15 = 0;
-            while (i15 < a2) {
-                if (hVar.h()) {
-                    hVar.t(7);
-                    i11 = 0;
-                } else {
-                    if (hVar.i(2) == 3 && hVar.i(i14) * i10 != 0) {
-                        hVar.s();
-                    }
-                    i11 = hVar.i(i13) * i10;
-                    if (i11 != 0 && i11 != 180) {
-                        hVar.s();
-                    }
-                    hVar.s();
-                }
-                if (i11 != 0 && i11 != 180 && hVar.h()) {
-                    i15++;
-                }
-                i15++;
-            }
-        }
+        return drawable;
     }
 }

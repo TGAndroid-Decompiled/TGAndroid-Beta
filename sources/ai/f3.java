@@ -36,8 +36,8 @@ public final class f3 implements Utilities.Callback {
                 e6Var2.L3 = longValue;
                 a4 a4Var = e6Var2.f773b2;
                 if (a4Var != null) {
-                    a4Var.L(true);
-                    e6Var2.f773b2.S1();
+                    a4Var.K(true);
+                    e6Var2.f773b2.R1();
                 }
                 e6Var2.r0(true);
                 return;

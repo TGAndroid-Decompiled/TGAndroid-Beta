@@ -1,28 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ww0 extends AnimatorListenerAdapter {
-    public final int f29823a;
-    public final xw0 f29824b;
-
-    public ww0(xw0 xw0Var, int i10) {
-        this.f29823a = i10;
-        this.f29824b = xw0Var;
+import android.graphics.drawable.Drawable;
+public abstract class ww0 extends Drawable {
+    public final void a() {
+        yf.h d = yf.h.d();
+        d.getClass();
+        yf.h.c();
+        d.e.add(this);
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29823a) {
-            case 0:
-                this.f29824b.f30083s.setVisibility(8);
-                return;
-            case 1:
-                this.f29824b.f30083s.setVisibility(8);
-                return;
-            default:
-                this.f29824b.f30083s.setVisibility(8);
-                return;
-        }
-    }
+    public abstract void b(int i10);
+
+    public abstract void c(boolean z10);
+
+    public abstract void d();
+
+    public abstract void e();
 }

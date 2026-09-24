@@ -8,7 +8,7 @@ import android.os.Parcel;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import kotlin.jvm.internal.i;
-import v7.g5;
+import v7.h5;
 public final class e extends Binder implements b, IInterface {
     public final int f311a;
     public final TaskCompletionSource f312b;
@@ -24,7 +24,7 @@ public final class e extends Binder implements b, IInterface {
         switch (this.f311a) {
             case 0:
                 i.e(status, "status");
-                g5.a(status, bVar, this.f312b);
+                h5.a(status, bVar, this.f312b);
                 return;
             default:
                 return;
@@ -51,7 +51,7 @@ public final class e extends Binder implements b, IInterface {
                 S(status, bVar);
                 return true;
             }
-            throw new BadParcelableException(hg.c.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+            throw new BadParcelableException(hg.c.h(dataAvail, "Parcel data not fully consumed, unread size: "));
         }
         Status status2 = (Status) a.a(parcel, Status.CREATOR);
         l8.d dVar = (l8.d) a.a(parcel, l8.d.CREATOR);
@@ -60,7 +60,7 @@ public final class e extends Binder implements b, IInterface {
             s(status2, dVar);
             return true;
         }
-        throw new BadParcelableException(hg.c.i(dataAvail2, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(hg.c.h(dataAvail2, "Parcel data not fully consumed, unread size: "));
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class e extends Binder implements b, IInterface {
                 return;
             default:
                 i.e(status, "status");
-                g5.a(status, dVar, this.f312b);
+                h5.a(status, dVar, this.f312b);
                 return;
         }
     }

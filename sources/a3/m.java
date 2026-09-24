@@ -13,14 +13,14 @@ public final class m implements Handler.Callback {
         this.f146b = nVar;
         Handler o9 = e2.d0.o(this);
         this.f145a = o9;
-        lVar.e(this, o9);
+        lVar.d(this, o9);
     }
 
     public final void a(long j3) {
         boolean z10;
         Surface surface;
         n nVar = this.f146b;
-        if (this == nVar.H1 && nVar.f41931b0 != null) {
+        if (this == nVar.H1 && nVar.f42250b0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 nVar.M0 = true;
                 return;
@@ -61,7 +61,7 @@ public final class m implements Handler.Callback {
         }
         int i10 = message.arg1;
         int i11 = message.arg2;
-        String str = e2.d0.f7871a;
+        String str = e2.d0.f7870a;
         a(((i10 & 4294967295L) << 32) | (4294967295L & i11));
         return true;
     }

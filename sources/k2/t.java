@@ -4,8 +4,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
 public final class t extends c2.i {
-    public int[] f13368i;
-    public int[] f13369j;
+    public int[] f13366i;
+    public int[] f13367j;
 
     @Override
     public final void c(ByteBuffer byteBuffer) {
@@ -13,7 +13,7 @@ public final class t extends c2.i {
         boolean z10;
         int i11;
         int i12;
-        int[] iArr = this.f13369j;
+        int[] iArr = this.f13367j;
         iArr.getClass();
         int position = byteBuffer.position();
         int limit = byteBuffer.limit();
@@ -94,7 +94,7 @@ public final class t extends c2.i {
         boolean z10;
         boolean z11;
         int i10 = fVar.f3663c;
-        int[] iArr = this.f13368i;
+        int[] iArr = this.f13366i;
         if (iArr == null) {
             return c2.f.e;
         }
@@ -128,12 +128,12 @@ public final class t extends c2.i {
 
     @Override
     public final void g() {
-        this.f13369j = this.f13368i;
+        this.f13367j = this.f13366i;
     }
 
     @Override
     public final void i() {
-        this.f13369j = null;
-        this.f13368i = null;
+        this.f13367j = null;
+        this.f13366i = null;
     }
 }

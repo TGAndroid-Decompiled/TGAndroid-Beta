@@ -2,7 +2,7 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-public final class mc extends qg.v0 {
+public final class mc extends qg.t0 {
     public final nc Q;
 
     public mc(nc ncVar, Context context, float f7) {

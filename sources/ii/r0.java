@@ -3,7 +3,7 @@ package ii;
 import android.text.Editable;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.r9;
+import org.telegram.ui.Cells.q9;
 public final class r0 implements h1 {
     public final u0 f11577a;
 
@@ -12,9 +12,9 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void D(i1 i1Var, int i10, int i11) {
+    public final void B(i1 i1Var, int i10, int i11) {
         e3 e3Var;
-        r9 textSelectionHelper;
+        q9 textSelectionHelper;
         u0 u0Var = this.f11577a;
         if (!u0Var.f11648n && i10 != i11 && (e3Var = u0Var.h) != null && (textSelectionHelper = e3Var.f11342a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.y() || textSelectionHelper.W != u0Var) {
@@ -24,7 +24,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void M(CharSequence charSequence) {
+    public final void K(CharSequence charSequence) {
         e3 e3Var = this.f11577a.h;
         if (e3Var != null && charSequence != null && charSequence.length() > 0) {
             e3Var.f11342a.t4(charSequence.toString());
@@ -32,7 +32,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final void W(Editable editable) {
+    public final void U(Editable editable) {
         u0 u0Var = this.f11577a;
         a aVar = u0Var.f11647f;
         if (aVar != null) {
@@ -57,7 +57,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final boolean b0(boolean z10) {
+    public final boolean X(boolean z10) {
         return false;
     }
 
@@ -103,7 +103,7 @@ public final class r0 implements h1 {
     }
 
     @Override
-    public final boolean q(i1 i1Var) {
+    public final boolean p(i1 i1Var) {
         return false;
     }
 

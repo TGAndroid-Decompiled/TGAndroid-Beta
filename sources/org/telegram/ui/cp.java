@@ -1,98 +1,58 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.view.View;
+import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class cp extends org.telegram.ui.Components.l80 {
-    public final Context f32381w;
-    public final gp f32382x;
+public final class cp implements org.telegram.ui.Components.kl0 {
+    public final ep f32749a;
 
-    public cp(gp gpVar, Context context, TLRPC.Chat chat, Context context2) {
-        super(context, chat);
-        this.f32382x = gpVar;
-        this.f32381w = context2;
+    public cp(ep epVar) {
+        this.f32749a = epVar;
     }
 
     @Override
-    public final boolean a(final boolean z10, org.telegram.ui.Components.j80 j80Var) {
-        TLRPC.ChatFull chatFull;
-        int i10;
-        String str;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        gp gpVar = this.f32382x;
-        if (gpVar.V && (chatFull = gpVar.Y) != null && (i10 = chatFull.invitesCount) != 0) {
-            if (gpVar.f33604a0) {
-                if (z10) {
-                    str = "ApproveNewMembersEnableForLinksChannel";
-                } else {
-                    str = "ApproveNewMembersDisableForLinksChannel";
+    public final void d(int i10, View view) {
+        TLRPC.TL_username tL_username;
+        int i11;
+        int i12;
+        int i13;
+        ep epVar = this.f32749a;
+        fp fpVar = epVar.f33440a3;
+        if ((view instanceof na) && (tL_username = ((na) view).v) != null) {
+            if (tL_username.editable) {
+                View view2 = fpVar.fragmentView;
+                if (view2 instanceof ScrollView) {
+                    ((ScrollView) view2).smoothScrollTo(0, fpVar.f33722y.getTop() - AndroidUtilities.dp(128.0f));
                 }
-            } else if (z10) {
-                str = "ApproveNewMembersEnableForLinks";
-            } else {
-                str = "ApproveNewMembersDisableForLinks";
+                fpVar.f33694a.requestFocus();
+                AndroidUtilities.showKeyboard(fpVar.f33694a);
+                return;
             }
-            Context context = this.f32381w;
-            d6Var = ((org.telegram.ui.ActionBar.n2) gpVar).resourceProvider;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
-            alertDialog$Builder.f18409a.R = LocaleController.getString(R.string.ApproveNewMembersApplyToLinksTitle);
-            alertDialog$Builder.f18409a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString(str, i10, new Object[0]));
-            alertDialog$Builder.k(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksApply), new org.telegram.ui.ActionBar.a2(this) {
-                public final cp f32155b;
-
-                {
-                    this.f32155b = this;
-                }
-
-                @Override
-                public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
-                    switch (r3) {
-                        case 0:
-                            boolean z11 = z10;
-                            cp cpVar = this.f32155b;
-                            cpVar.setJoinRequest(z11);
-                            cpVar.f32382x.W = true;
-                            return;
-                        default:
-                            boolean z12 = z10;
-                            cp cpVar2 = this.f32155b;
-                            cpVar2.setJoinRequest(z12);
-                            cpVar2.f32382x.W = false;
-                            return;
-                    }
-                }
-            });
-            alertDialog$Builder.h(LocaleController.getString(R.string.ApproveNewMembersApplyToLinksDontApply), new org.telegram.ui.ActionBar.a2(this) {
-                public final cp f32155b;
-
-                {
-                    this.f32155b = this;
-                }
-
-                @Override
-                public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i11) {
-                    switch (r3) {
-                        case 0:
-                            boolean z11 = z10;
-                            cp cpVar = this.f32155b;
-                            cpVar.setJoinRequest(z11);
-                            cpVar.f32382x.W = true;
-                            return;
-                        default:
-                            boolean z12 = z10;
-                            cp cpVar2 = this.f32155b;
-                            cpVar2.setJoinRequest(z12);
-                            cpVar2.f32382x.W = false;
-                            return;
-                    }
-                }
-            });
-            gpVar.showDialog(alertDialog$Builder.f18409a);
-            return false;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(epVar.getContext(), 0, fpVar.getResourceProvider());
+            if (tL_username.active) {
+                i11 = R.string.UsernameDeactivateLink;
+            } else {
+                i11 = R.string.UsernameActivateLink;
+            }
+            alertDialog$Builder.f18647a.R = LocaleController.getString(i11);
+            if (tL_username.active) {
+                i12 = R.string.UsernameDeactivateLinkChannelMessage;
+            } else {
+                i12 = R.string.UsernameActivateLinkChannelMessage;
+            }
+            alertDialog$Builder.f18647a.T = LocaleController.getString(i12);
+            if (tL_username.active) {
+                i13 = R.string.Hide;
+            } else {
+                i13 = R.string.Show;
+            }
+            alertDialog$Builder.k(LocaleController.getString(i13), new b7(this, tL_username, view, 8));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new u6(7));
+            alertDialog$Builder.o();
         }
-        return true;
     }
 }

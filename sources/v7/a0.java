@@ -1,8 +1,10 @@
 package v7;
-
-import android.view.View;
 public abstract class a0 {
-    public abstract View b(int i10);
+    public a0(androidx.fragment.app.v0 operation) {
+        kotlin.jvm.internal.i.e(operation, "operation");
+    }
 
-    public abstract boolean c();
+    public boolean a() {
+        throw null;
+    }
 }

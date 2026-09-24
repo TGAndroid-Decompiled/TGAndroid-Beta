@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-public final class bl implements org.telegram.ui.Components.fk0 {
-    public final xn f32140a;
+public final class bl implements org.telegram.ui.Components.pk0 {
+    public final wn f32433a;
 
-    public bl(xn xnVar) {
-        this.f32140a = xnVar;
+    public bl(wn wnVar) {
+        this.f32433a = wnVar;
     }
 
     @Override
-    public final void h(android.view.View r24, zg.p0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bl.h(android.view.View, zg.p0, boolean, boolean):void");
+    public final void h(android.view.View r24, zg.o0 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bl.h(android.view.View, zg.o0, boolean, boolean):void");
     }
 
     @Override
@@ -25,15 +25,15 @@ public final class bl implements org.telegram.ui.Components.fk0 {
     }
 
     @Override
-    public final boolean q() {
+    public final boolean p() {
         return false;
     }
 
     @Override
-    public final void o() {
+    public final void n() {
     }
 
     @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void m(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

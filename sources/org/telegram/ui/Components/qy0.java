@@ -1,23 +1,20 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.SharedConfig;
-public final class qy0 implements pc0, rc0 {
-    public final sy0 f27488a;
+import android.animation.ValueAnimator;
+import android.text.StaticLayout;
+public final class qy0 {
+    public final EditTextBoldCursor f27784a;
+    public StaticLayout f27785b;
+    public StaticLayout f27786c;
+    public StaticLayout d;
+    public boolean e;
+    public boolean f27787f;
+    public boolean f27788g;
+    public float h;
+    public float f27789i;
+    public ValueAnimator f27790j;
 
-    @Override
-    public String e(int i10) {
-        return this.f27488a.h[i10];
-    }
-
-    @Override
-    public void q(tc0 tc0Var, int i10) {
-        sy0 sy0Var = this.f27488a;
-        sy0Var.b();
-        SharedConfig.updateChatListSwipeSetting(i10);
-        sy0Var.invalidate();
-        try {
-            tc0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
+    public qy0(EditTextBoldCursor editTextBoldCursor) {
+        this.f27784a = editTextBoldCursor;
     }
 }

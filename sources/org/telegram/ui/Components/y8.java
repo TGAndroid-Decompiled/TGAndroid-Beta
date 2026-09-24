@@ -5,22 +5,22 @@ import android.view.View;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class y8 extends org.telegram.ui.z61 {
-    public boolean f30178d2;
-    public final e9 f30179e2;
+public final class y8 extends org.telegram.ui.a71 {
+    public boolean f30557d2;
+    public final e9 f30558e2;
 
     public y8(e9 e9Var, e9 e9Var2, Activity activity, int i10) {
         super(e9Var2, activity, false, null, 4, true, null, 16, i10);
-        this.f30179e2 = e9Var;
-        this.f30178d2 = true;
+        this.f30558e2 = e9Var;
+        this.f30557d2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f30178d2) {
-            this.f30178d2 = false;
-            this.f30179e2.f23609b.s(null);
+        if (this.f30557d2) {
+            this.f30557d2 = false;
+            this.f30558e2.f23853b.s(null);
         }
     }
 
@@ -32,18 +32,18 @@ public final class y8 extends org.telegram.ui.z61 {
         long j3;
         int i11;
         boolean z11 = this.R;
-        e9 e9Var = this.f30179e2;
+        e9 e9Var = this.f30558e2;
         if (z11) {
-            i11 = ((org.telegram.ui.ActionBar.n2) e9Var).currentAccount;
+            i11 = ((org.telegram.ui.ActionBar.m2) e9Var).currentAccount;
             tL_emojiList = MediaDataController.getInstance(i11).profileAvatarConstructorDefault;
         } else {
-            i10 = ((org.telegram.ui.ActionBar.n2) e9Var).currentAccount;
+            i10 = ((org.telegram.ui.ActionBar.m2) e9Var).currentAccount;
             tL_emojiList = MediaDataController.getInstance(i10).groupAvatarConstructorDefault;
         }
         long j10 = 0;
         if (tL_emojiList != null) {
             if (document != null) {
-                j3 = document.f18089id;
+                j3 = document.f18327id;
             } else if (l4 != null) {
                 j3 = l4.longValue();
             } else {

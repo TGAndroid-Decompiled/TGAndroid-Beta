@@ -1,8 +1,8 @@
 package fi;
 public interface s0 {
-    void a(long j3);
-
     void close();
 
-    void e();
+    void e(long j3);
+
+    void f();
 }

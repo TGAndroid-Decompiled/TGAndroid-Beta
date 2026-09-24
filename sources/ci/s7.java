@@ -12,7 +12,7 @@ public abstract class s7 {
 
     public abstract String b();
 
-    public abstract void c(org.telegram.ui.ActionBar.n2 n2Var);
+    public abstract void c(org.telegram.ui.ActionBar.m2 m2Var);
 
     public abstract void d(ImageReceiver imageReceiver);
 }

@@ -1,31 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-public final class vs extends gg.u1 {
-    public final ContactsActivity K;
+import android.os.Build;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class vs extends s4.s0 {
+    public boolean f38789a;
+    public boolean f38790b;
+    public final ContactsActivity f38791c;
 
-    public vs(ContactsActivity contactsActivity, Context context, a0.i iVar, boolean z10, boolean z11, boolean z12) {
-        this.K = contactsActivity;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.H = new ArrayList();
-        this.f9929c = context;
-        this.h = iVar;
-        this.f9932r = z10;
-        this.f9933s = z11;
-        this.f9935x = 0;
-        this.v = z12;
-        this.f9934w = true;
-        gg.c2 c2Var = new gg.c2(true);
-        this.f9930f = c2Var;
-        c2Var.f9672a = new gg.r1(this);
+    public vs(ContactsActivity contactsActivity) {
+        this.f38791c = contactsActivity;
     }
 
     @Override
-    public final void F() {
-        if (!this.f9936y && !this.f9930f.e() && h() == 0) {
-            this.K.e.e(false, true);
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            ContactsActivity contactsActivity = this.f38791c;
+            if ((contactsActivity.F && contactsActivity.E) || contactsActivity.Z.f23131r.isFocused()) {
+                AndroidUtilities.hideKeyboard(contactsActivity.getParentActivity().getCurrentFocus());
+            }
+            this.f38790b = true;
+            return;
         }
+        this.f38790b = false;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        ah.h hVar;
+        boolean z10;
+        ContactsActivity contactsActivity = this.f38791c;
+        int L0 = contactsActivity.f31022n.L0();
+        boolean z11 = false;
+        View childAt = recyclerView.getChildAt(0);
+        if (childAt != null) {
+            i12 = childAt.getTop();
+        } else {
+            i12 = 0;
+        }
+        if (contactsActivity.f31034w != null && !contactsActivity.F) {
+            if (i11 > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (i11 != 0 && this.f38789a && (z10 || this.f38790b)) {
+                contactsActivity.f31036x = !z10;
+                ContactsActivity.e0(contactsActivity);
+            }
+            this.f38789a = true;
+        }
+        contactsActivity.Y.b((L0 != 0 || i12 < contactsActivity.f31014f.getPaddingTop()) ? true : true, true);
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = contactsActivity.f31031t0) != null) {
+            hVar.f(i10, i11);
+            contactsActivity.g0();
+        }
+        ContactsActivity.d0(contactsActivity);
     }
 }

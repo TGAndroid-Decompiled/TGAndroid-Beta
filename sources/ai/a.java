@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.f01;
-import org.telegram.ui.xn;
+import org.telegram.ui.d01;
+import org.telegram.ui.wn;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
     public final int f490a;
     public final Object f491b;
@@ -87,11 +87,11 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f491b;
-                f01 f01Var = profileStoriesView.h;
+                d01 d01Var = profileStoriesView.h;
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 profileStoriesView.G = floatValue5;
-                f01Var.R = floatValue5;
-                f01Var.invalidate();
+                d01Var.R = floatValue5;
+                d01Var.invalidate();
                 profileStoriesView.invalidate();
                 return;
             case 10:
@@ -227,11 +227,11 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 ji.n nVar = (ji.n) this.f491b;
-                xn xnVar = nVar.F;
-                if (xnVar != null) {
-                    xnVar.r9();
-                    if (xnVar.J8 != null) {
-                        xnVar.fragmentView.invalidate();
+                wn wnVar = nVar.F;
+                if (wnVar != null) {
+                    wnVar.r9();
+                    if (wnVar.J8 != null) {
+                        wnVar.fragmentView.invalidate();
                         return;
                     }
                     return;

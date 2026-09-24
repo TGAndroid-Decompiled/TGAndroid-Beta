@@ -19,20 +19,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.i5;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.kd;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.ld;
 import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
-import w7.x5;
+import w7.y5;
 public final class m0 extends bb {
     public static final int f10335g0 = -1;
     public static final int f10336h0 = -2;
@@ -42,11 +42,11 @@ public final class m0 extends bb {
     public final LinearLayout f10337a0;
     public final ci.d f10338b0;
     public final ci.d f10339c0;
-    public v51 f10340d0;
+    public j61 f10340d0;
     public boolean f10341e0;
     public Boolean f10342f0;
 
-    public m0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, kd kdVar, d6 d6Var) {
+    public m0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, ld ldVar, d6 d6Var) {
         super(2, (Context) activity, d6Var, false);
         this.X = tL_connectedBot;
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_connectedBot.bot_id));
@@ -66,21 +66,21 @@ public final class m0 extends bb {
         w9Var.setRoundRadius(AndroidUtilities.dp(40.0f));
         h9Var.r(user);
         w9Var.e(user, h9Var);
-        linearLayout.addView(w9Var, x5.t(80, 80, 1, 0, 0, 0, 0));
+        linearLayout.addView(w9Var, y5.t(80, 80, 1, 0, 0, 0, 0));
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 20.0f);
         textView.setTextColor(getThemedColor(h6.G6));
         textView.setGravity(17);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(UserObject.getUserName(user));
-        linearLayout.addView(textView, x5.r(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
+        linearLayout.addView(textView, y5.r(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
         this.e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(h6.f19170y6));
+        textView2.setTextColor(getThemedColor(h6.f19428y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
-        linearLayout.addView(textView2, x5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
+        linearLayout.addView(textView2, y5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
         String publicUsername = UserObject.getPublicUsername(user);
         if (!TextUtils.isEmpty(publicUsername)) {
             TextView textView3 = new TextView(activity);
@@ -88,14 +88,14 @@ public final class m0 extends bb {
             textView3.setTextColor(getThemedColor(h6.gc));
             textView3.setText("@" + publicUsername);
             textView3.setGravity(17);
-            linearLayout.addView(textView3, x5.t(-1, -2, 1, 32, 0, 32, 18));
+            linearLayout.addView(textView3, y5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = h6.f18733a7;
+        int i10 = h6.f18989a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
-        ml0 ml0Var = this.d;
+        wl0 wl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        ml0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
+        wl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
         this.d.p1();
         this.d.setOnItemClickListener(new ai.g(this, 11));
         FrameLayout frameLayout = new FrameLayout(activity);
@@ -106,30 +106,30 @@ public final class m0 extends bb {
         this.f10338b0 = dVar;
         dVar.setColor(getThemedColor(h6.wj));
         dVar.setText(LocaleController.getString(R.string.TerminateSession));
-        dVar.setOnClickListener(new ai.d0(this, tL_connectedBot, kdVar, 8));
-        frameLayout.addView(dVar, x5.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
+        dVar.setOnClickListener(new ai.d0(this, tL_connectedBot, ldVar, 8));
+        frameLayout.addView(dVar, y5.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         ci.d dVar2 = new ci.d(activity, d6Var, true);
         dVar2.setRoundRadius(24);
         this.f10339c0 = dVar2;
         dVar2.setText(LocaleController.getString(R.string.BusinessBotUpdate));
         dVar2.setOnClickListener(new ai.f2(11, this, tL_connectedBot));
-        frameLayout.addView(dVar2, x5.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(dVar2, y5.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         T(false);
-        FrameLayout.LayoutParams e = x5.e(-1, -2, 80);
+        FrameLayout.LayoutParams e = y5.e(-1, -2, 80);
         int i12 = e.leftMargin;
         int i13 = this.backgroundPaddingLeft;
         e.leftMargin = i12 + i13;
         e.rightMargin += i13;
         this.containerView.addView(frameLayout, e);
         s4.j jVar = new s4.j();
-        jVar.f42662m = false;
+        jVar.f42981m = false;
         jVar.C = false;
         jVar.o(rr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        v51 v51Var = this.f10340d0;
-        if (v51Var != null) {
-            v51Var.N(false);
+        j61 j61Var = this.f10340d0;
+        if (j61Var != null) {
+            j61Var.N(false);
         }
     }
 
@@ -137,9 +137,9 @@ public final class m0 extends bb {
         g.a(m0Var.currentAccount).b();
         m0Var.dismiss();
         tL_connectedBot.recipients = tL_businessBotRecipients;
-        n2 U = LaunchActivity.U();
+        m2 U = LaunchActivity.U();
         if (U != null) {
-            c.s(R.string.BusinessBotUpdated, new Object[]{UserObject.getUserName(m0Var.Y)}, xc.a0(U), R.raw.contact_check, 36);
+            c.q(R.string.BusinessBotUpdated, new Object[]{UserObject.getUserName(m0Var.Y)}, yc.a0(U), R.raw.contact_check, 36);
         }
     }
 
@@ -156,13 +156,13 @@ public final class m0 extends bb {
         ConnectionsManager.getInstance(m0Var.currentAccount).sendRequest(updateconnectedbot, new s5(m0Var, tL_connectedBot, c0Var.c(), 5));
     }
 
-    public static void R(m0 m0Var, kd kdVar) {
+    public static void R(m0 m0Var, ld ldVar) {
         g.a(m0Var.currentAccount).b();
-        kdVar.run();
+        ldVar.run();
         m0Var.dismiss();
     }
 
-    public static void S(m0 m0Var, TL_account.TL_connectedBot tL_connectedBot, kd kdVar) {
+    public static void S(m0 m0Var, TL_account.TL_connectedBot tL_connectedBot, ld ldVar) {
         ci.d dVar = m0Var.f10338b0;
         if (dVar.N) {
             return;
@@ -172,12 +172,12 @@ public final class m0 extends bb {
         updateconnectedbot.deleted = true;
         updateconnectedbot.bot = MessagesController.getInstance(m0Var.currentAccount).getInputUser(tL_connectedBot.bot_id);
         updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-        ConnectionsManager.getInstance(m0Var.currentAccount).sendRequest(updateconnectedbot, new ai.v1(14, m0Var, kdVar));
+        ConnectionsManager.getInstance(m0Var.currentAccount).sendRequest(updateconnectedbot, new ai.v1(14, m0Var, ldVar));
     }
 
     @Override
     public final void A(float f7) {
-        i5 titleTextView = this.e.getTitleTextView();
+        h5 titleTextView = this.e.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f7);
         }
@@ -380,11 +380,11 @@ public final class m0 extends bb {
     }
 
     @Override
-    public final ll0 v(ml0 ml0Var) {
-        v51 v51Var = new v51(ml0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
-        this.f10340d0 = v51Var;
-        v51Var.f28662r = false;
-        return v51Var;
+    public final vl0 v(wl0 wl0Var) {
+        j61 j61Var = new j61(wl0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
+        this.f10340d0 = j61Var;
+        j61Var.f25265r = false;
+        return j61Var;
     }
 
     @Override

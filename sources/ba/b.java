@@ -103,9 +103,9 @@ public final class b {
     public final void d(a2 a2Var, String str, boolean z10) {
         String str2;
         c cVar = this.f3441b;
-        int i10 = this.f3442c.d().f7560a.f6228a;
+        int i10 = this.f3442c.d().f7559a.f6228a;
         f3438g.getClass();
-        String e7 = z9.a.f48682a.e(a2Var);
+        String J = z9.a.f48999a.J(a2Var);
         String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f3440a.getAndIncrement()));
         if (z10) {
             str2 = "_";
@@ -113,18 +113,18 @@ public final class b {
             str2 = "";
         }
         try {
-            f(cVar.b(str, a4.a.q("event", format, str2)), e7);
-        } catch (IOException e10) {
-            Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e10);
+            f(cVar.b(str, a4.a.q("event", format, str2)), J);
+        } catch (IOException e7) {
+            Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e7);
         }
         a aVar = new a(1);
         cVar.getClass();
         File file = new File(cVar.f3445c, str);
         file.mkdirs();
-        List<File> e11 = c.e(file.listFiles(aVar));
-        Collections.sort(e11, new e(9));
-        int size = e11.size();
-        for (File file2 : e11) {
+        List<File> e10 = c.e(file.listFiles(aVar));
+        Collections.sort(e10, new e(9));
+        int size = e10.size();
+        for (File file2 : e10) {
             if (size > i10) {
                 c.d(file2);
                 size--;

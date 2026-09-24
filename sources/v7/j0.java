@@ -1,17 +1,24 @@
 package v7;
-public final class j0 implements ia.d {
-    public static final j0 f43963a = new Object();
 
-    static {
-        org.telegram.ui.Cells.q3.t(org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(7, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(6, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(5, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(4, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(3, org.telegram.ui.Cells.q3.k(h.class, org.telegram.ui.Cells.q3.m(2, org.telegram.ui.Cells.q3.k(h.class, new e(1)))))))))))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ia.e eVar = (ia.e) obj2;
-            throw null;
+import android.os.Build;
+import android.webkit.WebView;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+public abstract class j0 {
+    public static InvocationHandler a() {
+        ClassLoader classLoader;
+        if (Build.VERSION.SDK_INT >= 28) {
+            classLoader = b5.d.t();
+        } else {
+            try {
+                Method declaredMethod = WebView.class.getDeclaredMethod("getFactory", null);
+                declaredMethod.setAccessible(true);
+                classLoader = declaredMethod.invoke(null, null).getClass().getClassLoader();
+            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
         }
-        throw new ClassCastException();
+        return (InvocationHandler) Class.forName("org.chromium.support_lib_glue.SupportLibReflectionUtil", false, classLoader).getDeclaredMethod("createWebViewProviderFactory", null).invoke(null, null);
     }
 }

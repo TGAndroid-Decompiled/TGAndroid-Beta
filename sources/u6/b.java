@@ -10,11 +10,10 @@ import android.util.Log;
 import java.io.Closeable;
 import java.io.IOException;
 import k6.h;
-import v0.k;
 public abstract class b {
-    public static final char[] f43573a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    public static Boolean f43574b;
-    public static Boolean f43575c;
+    public static final char[] f43896a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static Boolean f43897b;
+    public static Boolean f43898c;
     public static Boolean d;
     public static Boolean e;
 
@@ -52,12 +51,12 @@ public abstract class b {
         if (g(context, "com.google.android.gms", i10)) {
             try {
                 PackageInfo packageInfo = context.getPackageManager().getPackageInfo("com.google.android.gms", 64);
-                h c10 = h.c(context);
-                c10.getClass();
+                h d10 = h.d(context);
+                d10.getClass();
                 if (packageInfo != null) {
-                    if (!h.e(packageInfo, false)) {
-                        if (h.e(packageInfo, true)) {
-                            if (!k6.g.a(c10.f13505a)) {
+                    if (!h.h(packageInfo, false)) {
+                        if (h.h(packageInfo, true)) {
+                            if (!k6.g.a(d10.f13503a)) {
                                 Log.w("GoogleSignatureVerifier", "Test-keys aren't accepted on this build.");
                             }
                         }
@@ -76,14 +75,14 @@ public abstract class b {
 
     public static boolean f(Context context) {
         PackageManager packageManager = context.getPackageManager();
-        if (f43574b == null) {
-            f43574b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+        if (f43897b == null) {
+            f43897b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
         }
-        if (!f43574b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            if (f43575c == null) {
-                f43575c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
+        if (!f43897b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
+            if (f43898c == null) {
+                f43898c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
             }
-            if (f43575c.booleanValue()) {
+            if (f43898c.booleanValue()) {
                 if (!d() || Build.VERSION.SDK_INT >= 30) {
                     return true;
                 }
@@ -95,10 +94,10 @@ public abstract class b {
     }
 
     public static boolean g(Context context, String str, int i10) {
-        k a2 = w6.b.a(context);
+        h a2 = w6.b.a(context);
         a2.getClass();
         try {
-            AppOpsManager appOpsManager = (AppOpsManager) a2.f43762a.getSystemService("appops");
+            AppOpsManager appOpsManager = (AppOpsManager) a2.f13503a.getSystemService("appops");
             if (appOpsManager != null) {
                 appOpsManager.checkPackage(i10, str);
                 return true;

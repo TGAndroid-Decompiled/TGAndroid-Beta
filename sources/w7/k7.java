@@ -1,12 +1,12 @@
 package w7;
 public final class k7 {
-    public final l9 f44684a;
-    public final j7 f44685b;
-    public final e7 f44686c;
+    public final l9 f45003a;
+    public final j7 f45004b;
+    public final e7 f45005c;
 
-    public k7(v7.r1 r1Var) {
-        this.f44684a = (l9) r1Var.f44028b;
-        this.f44685b = (j7) r1Var.d;
-        this.f44686c = (e7) r1Var.f44029c;
+    public k7(v7.l lVar) {
+        this.f45003a = (l9) lVar.f44299b;
+        this.f45004b = (j7) lVar.f44300c;
+        this.f45005c = (e7) lVar.d;
     }
 }

@@ -18,8 +18,8 @@ import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.p6;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.xn;
-import w7.x5;
+import org.telegram.ui.wn;
+import w7.y5;
 public final class f extends FrameLayout {
     public final int f10246a;
     public final h9 f10247b;
@@ -36,43 +36,43 @@ public final class f extends FrameLayout {
     public String f10254x;
     public float f10255y;
 
-    public f(Activity activity, d6 d6Var, xn xnVar) {
+    public f(Activity activity, d6 d6Var, wn wnVar) {
         super(activity);
         int i10;
-        this.f10246a = xnVar.getCurrentAccount();
+        this.f10246a = wnVar.getCurrentAccount();
         this.f10251r = false;
         w9 w9Var = new w9(activity);
         this.f10248c = w9Var;
-        TLRPC.User user = xnVar.getMessagesController().getUser(Long.valueOf(this.v));
+        TLRPC.User user = wnVar.getMessagesController().getUser(Long.valueOf(this.v));
         h9 h9Var = new h9((d6) null);
         this.f10247b = h9Var;
         h9Var.r(user);
         w9Var.setRoundRadius(AndroidUtilities.dp(16.0f));
         w9Var.e(user, h9Var);
-        addView(w9Var, x5.d(32, 32.0f, 19, 10.0f, 0.0f, 10.0f, 0.0f));
+        addView(w9Var, y5.d(32, 32.0f, 19, 10.0f, 0.0f, 10.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(activity);
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         p6 p6Var = new p6(activity, false, false, false);
         this.e = p6Var;
-        p6Var.f26942n = false;
+        p6Var.f27262n = false;
         p6Var.getDrawable().o(true, false, false);
         p6Var.setTypeface(AndroidUtilities.bold());
         p6Var.setTextSize(AndroidUtilities.dp(14.0f));
         p6Var.setText(UserObject.getUserName(user));
         p6Var.setTextColor(h6.v0(h6.G6, d6Var));
         p6Var.setEllipsizeByGradient(true);
-        linearLayout.addView(p6Var, x5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
+        linearLayout.addView(p6Var, y5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         p6 p6Var2 = new p6(activity, false, false, false);
         this.f10249f = p6Var2;
-        p6Var2.f26942n = false;
+        p6Var2.f27262n = false;
         p6Var2.getDrawable().o(true, false, false);
         p6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         p6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));
-        p6Var2.setTextColor(h6.v0(h6.f18849ge, d6Var));
+        p6Var2.setTextColor(h6.v0(h6.f19105ge, d6Var));
         p6Var2.setEllipsizeByGradient(true);
-        linearLayout.addView(p6Var2, x5.n(-1, 17));
-        addView(linearLayout, x5.d(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
+        linearLayout.addView(p6Var2, y5.n(-1, 17));
+        addView(linearLayout, y5.d(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
         eq eqVar = new eq(activity);
         this.h = eqVar;
         eqVar.getDrawable().o(true, true, false);
@@ -96,15 +96,15 @@ public final class f extends FrameLayout {
             i10 = R.string.BizBotStop;
         }
         eqVar.setText(LocaleController.getString(i10));
-        addView(eqVar, x5.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
+        addView(eqVar, y5.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
         this.f10250n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_mini_customize);
-        imageView.setBackground(h6.M(h6.v0(h6.f18878i6, d6Var), 0, 0));
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f18797de, d6Var), PorterDuff.Mode.MULTIPLY));
-        imageView.setOnClickListener(new ai.d0(this, xnVar, d6Var, 7));
-        addView(imageView, x5.d(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
+        imageView.setBackground(h6.M(h6.v0(h6.f19134i6, d6Var), 0, 0));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19053de, d6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setOnClickListener(new ai.d0(this, wnVar, d6Var, 7));
+        addView(imageView, y5.d(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
     }
 
     public final void a() {

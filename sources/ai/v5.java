@@ -12,9 +12,9 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.vg0;
+import org.telegram.ui.Components.fh0;
 import org.telegram.ui.Components.yr;
-import org.telegram.ui.rr;
+import org.telegram.ui.qr;
 public final class v5 extends yr {
     public boolean f1606c;
     public final org.telegram.ui.ActionBar.d6 d;
@@ -61,16 +61,16 @@ public final class v5 extends yr {
         e6 e6Var = this.f1612l;
         if (z11 && ((c6Var = e6Var.O1) == null || c6Var.f643b == null)) {
             Context context = e6Var.getContext();
-            vg0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
+            fh0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
             final of.b bVar = new of.b(2, this, actionBarPopupWindow$ActionBarPopupWindowLayout);
             ?? obj = new Object();
-            org.telegram.ui.ActionBar.f1[] f1VarArr = new org.telegram.ui.ActionBar.f1[5];
-            obj.f39078c = f1VarArr;
+            org.telegram.ui.ActionBar.e1[] e1VarArr = new org.telegram.ui.ActionBar.e1[5];
+            obj.f38784c = e1VarArr;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, context, null);
-            obj.f39076a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            obj.f38782a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
             actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
-            org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
-            c10.setOnClickListener(new rr(swipeBack, 1));
+            org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
+            c10.setOnClickListener(new qr(swipeBack, 1));
             c10.c(-328966, -328966);
             c10.setSelectorColor(268435455);
             View w5Var = new w5(context, 12);
@@ -84,14 +84,14 @@ public final class v5 extends yr {
             layoutParams.width = -1;
             layoutParams.height = AndroidUtilities.dp(8.0f);
             w5Var.setLayoutParams(layoutParams);
-            org.telegram.ui.ActionBar.b1 b1Var = new org.telegram.ui.ActionBar.b1(context, null);
-            obj.f39077b = b1Var;
-            b1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
-            b1Var.setDrawShadow(false);
-            b1Var.setBackgroundColor(-14540254);
-            b1Var.setTextColor(-1);
-            b1Var.setOnValueChange(new org.telegram.ui.c5(bVar, 6));
-            actionBarPopupWindow$ActionBarPopupWindowLayout2.a(b1Var, w7.x5.n(-1, 44));
+            org.telegram.ui.ActionBar.a1 a1Var = new org.telegram.ui.ActionBar.a1(context, null);
+            obj.f38783b = a1Var;
+            a1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+            a1Var.setDrawShadow(false);
+            a1Var.setBackgroundColor(-14540254);
+            a1Var.setTextColor(-1);
+            a1Var.setOnValueChange(new org.telegram.ui.b5(bVar, 6));
+            actionBarPopupWindow$ActionBarPopupWindowLayout2.a(a1Var, w7.y5.n(-1, 44));
             View w5Var2 = new w5(context, 13);
             w5Var2.setMinimumWidth(AndroidUtilities.dp(196.0f));
             w5Var2.setBackgroundColor(-15198184);
@@ -103,7 +103,7 @@ public final class v5 extends yr {
             layoutParams2.width = -1;
             layoutParams2.height = AndroidUtilities.dp(8.0f);
             w5Var2.setLayoutParams(layoutParams2);
-            org.telegram.ui.ActionBar.f1 c11 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_0_2, LocaleController.getString(R.string.SpeedVerySlow), false, null);
+            org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_0_2, LocaleController.getString(R.string.SpeedVerySlow), false, null);
             c11.c(-328966, -328966);
             c11.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -128,8 +128,8 @@ public final class v5 extends yr {
                 }
             });
             c11.setSelectorColor(268435455);
-            f1VarArr[0] = c11;
-            org.telegram.ui.ActionBar.f1 c12 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_slow, LocaleController.getString(R.string.SpeedSlow), false, null);
+            e1VarArr[0] = c11;
+            org.telegram.ui.ActionBar.e1 c12 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_slow, LocaleController.getString(R.string.SpeedSlow), false, null);
             c12.c(-328966, -328966);
             c12.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -154,8 +154,8 @@ public final class v5 extends yr {
                 }
             });
             c12.setSelectorColor(268435455);
-            f1VarArr[1] = c12;
-            org.telegram.ui.ActionBar.f1 c13 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_normal, LocaleController.getString(R.string.SpeedNormal), false, null);
+            e1VarArr[1] = c12;
+            org.telegram.ui.ActionBar.e1 c13 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_normal, LocaleController.getString(R.string.SpeedNormal), false, null);
             c13.c(-328966, -328966);
             c13.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -180,8 +180,8 @@ public final class v5 extends yr {
                 }
             });
             c13.setSelectorColor(268435455);
-            f1VarArr[2] = c13;
-            org.telegram.ui.ActionBar.f1 c14 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_fast, LocaleController.getString(R.string.SpeedFast), false, null);
+            e1VarArr[2] = c13;
+            org.telegram.ui.ActionBar.e1 c14 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_fast, LocaleController.getString(R.string.SpeedFast), false, null);
             c14.c(-328966, -328966);
             c14.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -206,8 +206,8 @@ public final class v5 extends yr {
                 }
             });
             c14.setSelectorColor(268435455);
-            f1VarArr[3] = c14;
-            org.telegram.ui.ActionBar.f1 c15 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_superfast, LocaleController.getString(R.string.SpeedVeryFast), false, null);
+            e1VarArr[3] = c14;
+            org.telegram.ui.ActionBar.e1 c15 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_speed_superfast, LocaleController.getString(R.string.SpeedVeryFast), false, null);
             c15.c(-328966, -328966);
             c15.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -232,12 +232,12 @@ public final class v5 extends yr {
                 }
             });
             c15.setSelectorColor(268435455);
-            f1VarArr[4] = c15;
+            e1VarArr[4] = c15;
             e6Var.C3 = obj;
             obj.a(jc.B1, true);
-            org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(0, e6Var.getContext(), this.d, false, false);
-            e6Var.D3 = f1Var;
-            f1Var.g(LocaleController.getString(R.string.Speed), R.drawable.msg_speed, null);
+            org.telegram.ui.ActionBar.e1 e1Var = new org.telegram.ui.ActionBar.e1(0, e6Var.getContext(), this.d, false, false);
+            e6Var.D3 = e1Var;
+            e1Var.g(LocaleController.getString(R.string.Speed), R.drawable.msg_speed, null);
             e6.a0(e6Var, true);
             e6Var.D3.setMinimumWidth(AndroidUtilities.dp(196.0f));
             e6Var.D3.setRightIcon(R.drawable.msg_arrowright);
@@ -249,15 +249,15 @@ public final class v5 extends yr {
             layoutParams3.width = -1;
             layoutParams3.height = AndroidUtilities.dp(48.0f);
             e6Var.D3.setLayoutParams(layoutParams3);
-            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(e6Var.C3.f39076a);
-            org.telegram.ui.ActionBar.f1 f1Var2 = e6Var.D3;
-            f1Var2.G = new n5(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
-            f1Var2.setOnClickListener(new i5(this, 11));
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f18401c = true;
+            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(e6Var.C3.f38782a);
+            org.telegram.ui.ActionBar.e1 e1Var2 = e6Var.D3;
+            e1Var2.G = new n5(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
+            e1Var2.setOnClickListener(new i5(this, 11));
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f18639c = true;
             if (z10) {
-                org.telegram.ui.ActionBar.k1 k1Var = new org.telegram.ui.ActionBar.k1(e6Var.getContext(), org.telegram.ui.ActionBar.h6.H8, this.d);
-                k1Var.setTag(R.id.fit_width_tag, 1);
-                actionBarPopupWindow$ActionBarPopupWindowLayout.a(k1Var, w7.x5.n(-1, 8));
+                org.telegram.ui.ActionBar.j1 j1Var = new org.telegram.ui.ActionBar.j1(e6Var.getContext(), org.telegram.ui.ActionBar.h6.H8, this.d);
+                j1Var.setTag(R.id.fit_width_tag, 1);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.a(j1Var, w7.y5.n(-1, 8));
                 return;
             }
             return;
@@ -270,12 +270,12 @@ public final class v5 extends yr {
         TLRPC.Chat chat;
         e6 e6Var = this.f1612l;
         if (e6Var.D1 && storyItem != null && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && (chat = MessagesController.getInstance(e6Var.C2).getChat(Long.valueOf(-e6Var.B1))) != null) {
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(e6Var.C2).getChatFull(chat.f18083id);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(e6Var.C2).getChatFull(chat.f18321id);
             if (chatFull == null) {
-                chatFull = MessagesStorage.getInstance(e6Var.C2).loadChatInfo(chat.f18083id, true, new CountDownLatch(1), false, false);
+                chatFull = MessagesStorage.getInstance(e6Var.C2).loadChatInfo(chat.f18321id, true, new CountDownLatch(1), false, false);
             }
             if (chatFull != null && chatFull.can_view_stats) {
-                org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_stats, LocaleController.getString(R.string.ViewStatistics), false, this.d).setOnClickListener(new o5(this, storyItem, this.e, chat, 0));
+                org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_stats, LocaleController.getString(R.string.ViewStatistics), false, this.d).setOnClickListener(new o5(this, storyItem, this.e, chat, 0));
             }
         }
     }

@@ -1,79 +1,123 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class v1 extends FrameLayout {
-    public final TextView f21436a;
-    public final ImageView f21437b;
-    public final FrameLayout f21438c;
-    public final org.telegram.ui.ActionBar.d6 d;
+import org.telegram.ui.Components.u61;
+public final class v1 extends View implements org.telegram.ui.ActionBar.x5 {
+    public final u61 f21659a;
+    public final org.telegram.ui.ActionBar.d6 f21660b;
+    public int f21661c;
+    public int d;
+    public l1 e;
+    public float f21662f;
+    public int h;
 
     public v1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.d = d6Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f21438c = frameLayout;
-        frameLayout.setBackgroundResource(R.drawable.newmsg_divider);
-        Drawable background = frameLayout.getBackground();
-        int a2 = a(org.telegram.ui.ActionBar.h6.Fe);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        background.setColorFilter(new PorterDuffColorFilter(a2, mode));
-        addView(frameLayout, w7.x5.d(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f21437b = imageView;
-        imageView.setImageResource(R.drawable.ic_ab_new);
-        imageView.setColorFilter(new PorterDuffColorFilter(a(org.telegram.ui.ActionBar.h6.De), mode));
-        imageView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
-        frameLayout.addView(imageView, w7.x5.d(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f21436a = textView;
-        textView.setPadding(0, 0, 0, AndroidUtilities.dp(1.0f));
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(a(org.telegram.ui.ActionBar.h6.Ee));
-        textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, w7.x5.d(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
+        this.f21660b = d6Var;
+        u61 u61Var = new u61();
+        this.f21659a = u61Var;
+        u61Var.setCallback(this);
+        u61Var.f28709n = LocaleController.getString(R.string.UnsupportedMessageTitle);
+        u61Var.f28710o = LocaleController.getString(R.string.UnsupportedMessageMessage);
+        u61Var.f28711p = LocaleController.getString(R.string.UnsupportedUpdate);
+        u61Var.f28705j = new g(this, 1);
     }
 
-    public final int a(int i10) {
-        Integer num;
-        org.telegram.ui.ActionBar.d6 d6Var = this.d;
+    public final void a(Canvas canvas) {
+        Paint paint;
+        boolean a12;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f21660b;
         if (d6Var != null) {
-            num = Integer.valueOf(d6Var.G0(i10));
+            d6Var.m(0.0f, this.f21662f, getMeasuredWidth(), this.h);
         } else {
-            num = null;
+            org.telegram.ui.ActionBar.h6.q(0.0f, this.f21662f, getMeasuredWidth(), this.h);
         }
-        if (num != null) {
-            return num.intValue();
+        float dp = AndroidUtilities.dp(18.0f);
+        float dp2 = AndroidUtilities.dp(6.0f);
+        float dp3 = AndroidUtilities.dp(18.0f) + this.f21661c;
+        float dp4 = AndroidUtilities.dp(6.0f) + this.d;
+        float dp5 = AndroidUtilities.dp(18.0f);
+        float dp6 = AndroidUtilities.dp(18.0f);
+        if (d6Var != null) {
+            paint = d6Var.G("paintChatActionBackground");
+        } else {
+            paint = null;
         }
-        return org.telegram.ui.ActionBar.h6.w0(null, i10, false);
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.h6.S0("paintChatActionBackground");
+        }
+        canvas.drawRoundRect(dp, dp2, dp3, dp4, dp5, dp6, paint);
+        if (d6Var != null) {
+            a12 = d6Var.p0();
+        } else {
+            a12 = org.telegram.ui.ActionBar.h6.a1();
+        }
+        if (a12) {
+            canvas.drawRoundRect(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(18.0f) + this.f21661c, AndroidUtilities.dp(6.0f) + this.d, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.h6.f19112h2);
+        }
     }
 
-    public FrameLayout getBackgroundLayout() {
-        return this.f21438c;
+    public final void b(float f7, int i10) {
+        this.f21662f = f7;
+        this.h = i10;
     }
 
-    public ImageView getImageView() {
-        return this.f21437b;
+    @Override
+    public final void e() {
+        this.f21659a.b();
     }
 
-    public TextView getTextView() {
-        return this.f21436a;
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(18.0f);
+        int dp2 = AndroidUtilities.dp(6.0f);
+        int dp3 = AndroidUtilities.dp(18.0f) + this.f21661c;
+        int dp4 = AndroidUtilities.dp(6.0f) + this.d;
+        u61 u61Var = this.f21659a;
+        u61Var.setBounds(dp, dp2, dp3, dp4);
+        u61Var.draw(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+        int size = View.MeasureSpec.getSize(i10);
+        int dp = size - AndroidUtilities.dp(36.0f);
+        this.f21661c = dp;
+        int a2 = this.f21659a.a(dp);
+        this.d = a2;
+        setMeasuredDimension(size, AndroidUtilities.dp(12.0f) + a2);
     }
 
-    public void setText(String str) {
-        this.f21436a.setText(str);
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return this.f21659a.f28704i.a(motionEvent, this);
+    }
+
+    public void setDelegate(l1 l1Var) {
+        this.e = l1Var;
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f21659a) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
     }
 }

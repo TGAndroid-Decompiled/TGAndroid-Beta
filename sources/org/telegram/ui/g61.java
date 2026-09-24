@@ -1,34 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class g61 extends AnimatorListenerAdapter {
-    public final int f33473a;
-    public final i61 f33474b;
+import android.animation.ValueAnimator;
+public final class g61 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33817a;
+    public final j61 f33818b;
 
-    public g61(i61 i61Var, int i10) {
-        this.f33473a = i10;
-        this.f33474b = i61Var;
+    public g61(j61 j61Var, int i10) {
+        this.f33817a = i10;
+        this.f33818b = j61Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33473a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33817a) {
             case 0:
-                super.onAnimationEnd(animator);
-                this.f33474b.I = null;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j61 j61Var = this.f33818b;
+                j61Var.N = floatValue;
+                j61Var.V.f32013h0.invalidate();
                 return;
             case 1:
-                super.onAnimationEnd(animator);
-                this.f33474b.I = null;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j61 j61Var2 = this.f33818b;
+                j61Var2.N = floatValue2;
+                j61Var2.V.f32013h0.invalidate();
                 return;
             default:
-                super.onAnimationEnd(animator);
-                i61 i61Var = this.f33474b;
-                i61Var.N = 0.0f;
-                i61Var.I = null;
-                i61Var.M = false;
-                i61Var.d(true, false);
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j61 j61Var3 = this.f33818b;
+                j61Var3.N = floatValue3;
+                j61Var3.V.f32013h0.invalidate();
                 return;
         }
     }

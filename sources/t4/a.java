@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import m.p;
 public final class a implements d {
-    public final LinkedHashSet f42958a = new LinkedHashSet();
+    public final LinkedHashSet f43280a = new LinkedHashSet();
 
     public a(p pVar) {
         pVar.f("androidx.savedstate.Restarter", this);
@@ -14,7 +14,7 @@ public final class a implements d {
     @Override
     public final Bundle a() {
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("classes_to_restore", new ArrayList<>(this.f42958a));
+        bundle.putStringArrayList("classes_to_restore", new ArrayList<>(this.f43280a));
         return bundle;
     }
 }

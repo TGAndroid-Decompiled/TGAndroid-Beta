@@ -55,7 +55,7 @@ public final class e extends d {
             return;
         }
         if (!this.J.hasDisplayList()) {
-            aVar.d();
+            aVar.b();
             w();
         } else if (this.O) {
             w();
@@ -116,7 +116,7 @@ public final class e extends d {
 
     @Override
     public final void m() {
-        this.G.d();
+        this.G.b();
     }
 
     @Override
@@ -132,7 +132,7 @@ public final class e extends d {
         this.J.setAlpha(i10 / 255.0f);
         this.O = true;
         if (i11 == 0 && i10 > 0) {
-            this.G.d();
+            this.G.b();
         }
     }
 

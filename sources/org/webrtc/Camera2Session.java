@@ -66,7 +66,7 @@ public class Camera2Session implements CameraSession {
                     if (i10 != 3) {
                         if (i10 != 4) {
                             if (i10 != 5) {
-                                return hg.c.i(i10, "Unknown camera error: ");
+                                return hg.c.h(i10, "Unknown camera error: ");
                             }
                             return "Camera service has encountered a fatal error.";
                         }

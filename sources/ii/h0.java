@@ -15,7 +15,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SharedConfig;
-public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
+public final class h0 extends a0 implements org.telegram.ui.ActionBar.x5 {
     public f0 E;
     public final int f11391n;
     public final org.telegram.ui.ActionBar.d6 f11392r;
@@ -38,7 +38,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
         this.v = linearLayout;
         linearLayout.setOrientation(0);
         horizontalScrollView.addView(linearLayout, new FrameLayout.LayoutParams(-2, -1));
-        addView(horizontalScrollView, w7.x5.e(-1, -1, 23));
+        addView(horizontalScrollView, w7.y5.e(-1, -1, 23));
         a2 a2Var = new a2(context, R.drawable.msg_add, d6Var);
         a2Var.e = 19;
         a2Var.e();
@@ -63,7 +63,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         if (f0Var != null && (aVar = h0Var.f11207a) != null) {
                             x3 x3Var = ((p3) f0Var).f11548a;
                             x3Var.o3(false);
-                            x3Var.f11728h3.H(new u3(x3Var, aVar, -1), view);
+                            x3Var.f11728h3.J(new u3(x3Var, aVar, -1), view);
                             return;
                         }
                         return;
@@ -73,14 +73,14 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         if (f0Var2 != null && (aVar2 = h0Var2.f11207a) != null) {
                             x3 x3Var2 = ((p3) f0Var2).f11548a;
                             x3Var2.o3(false);
-                            x3Var2.f11728h3.H(new u3(x3Var2, aVar2, -1), view);
+                            x3Var2.f11728h3.J(new u3(x3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
                 }
             }
         });
-        addView(a2Var, w7.x5.e(38, 38, 21));
+        addView(a2Var, w7.y5.e(38, 38, 21));
         TextView textView = new TextView(context);
         this.f11395x = textView;
         textView.setText(LocaleController.getString(R.string.RichEditorAddButton));
@@ -107,7 +107,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         if (f0Var != null && (aVar = h0Var.f11207a) != null) {
                             x3 x3Var = ((p3) f0Var).f11548a;
                             x3Var.o3(false);
-                            x3Var.f11728h3.H(new u3(x3Var, aVar, -1), view);
+                            x3Var.f11728h3.J(new u3(x3Var, aVar, -1), view);
                             return;
                         }
                         return;
@@ -117,14 +117,14 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
                         if (f0Var2 != null && (aVar2 = h0Var2.f11207a) != null) {
                             x3 x3Var2 = ((p3) f0Var2).f11548a;
                             x3Var2.o3(false);
-                            x3Var2.f11728h3.H(new u3(x3Var2, aVar2, -1), view);
+                            x3Var2.f11728h3.J(new u3(x3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
                 }
             }
         });
-        addView(textView, w7.x5.e(-2, 38, 17));
+        addView(textView, w7.y5.e(-2, 38, 17));
         j();
     }
 
@@ -163,7 +163,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.y5 {
         int i10 = org.telegram.ui.ActionBar.h6.Oh;
         org.telegram.ui.ActionBar.d6 d6Var = this.f11392r;
         int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
-        int v = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18789d6, d6Var), org.telegram.ui.ActionBar.h6.l1(0.1f, v02));
+        int v = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19045d6, d6Var), org.telegram.ui.ActionBar.h6.l1(0.1f, v02));
         TextView textView = this.f11395x;
         textView.setTextColor(v02);
         textView.setBackground(org.telegram.ui.ActionBar.h6.Z(v, org.telegram.ui.ActionBar.h6.l1(0.16f, v02), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f)));

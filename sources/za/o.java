@@ -1,25 +1,30 @@
 package za;
+public final class o {
+    public final String f49082a;
 
-import com.google.firebase.sessions.FirebaseSessionsRegistrar;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-public final class o implements q9.d, i5.e {
-    @Override
-    public Object G(cf.c cVar) {
-        return FirebaseSessionsRegistrar.c(cVar);
+    public o(String str) {
+        this.f49082a = str;
     }
 
-    @Override
-    public Object apply(Object obj) {
-        wa.e eVar = (wa.e) obj;
-        eVar.getClass();
-        aa.a aVar = com.google.firebase.messaging.r.f7330a;
-        aVar.getClass();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        try {
-            aVar.j(eVar, byteArrayOutputStream);
-        } catch (IOException unused) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return byteArrayOutputStream.toByteArray();
+        if ((obj instanceof o) && kotlin.jvm.internal.i.a(this.f49082a, ((o) obj).f49082a)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        String str = this.f49082a;
+        if (str == null) {
+            return 0;
+        }
+        return str.hashCode();
+    }
+
+    public final String toString() {
+        return "FirebaseSessionsData(sessionId=" + this.f49082a + ')';
     }
 }

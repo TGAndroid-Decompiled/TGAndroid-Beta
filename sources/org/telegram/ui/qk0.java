@@ -8,17 +8,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
 public final class qk0 {
-    public boolean f36464a;
-    public boolean f36465b;
-    public int f36466c;
+    public boolean f36920a;
+    public boolean f36921b;
+    public int f36922c;
     public int d;
     public TLRPC.Document e;
-    public String f36467f;
-    public String f36468g;
+    public String f36923f;
+    public String f36924g;
 
     public final Uri a(int i10) {
-        if (!TextUtils.isEmpty(this.f36468g)) {
-            return Uri.fromFile(new File(this.f36468g));
+        if (!TextUtils.isEmpty(this.f36924g)) {
+            return Uri.fromFile(new File(this.f36924g));
         }
         TLRPC.Document document = this.e;
         if (document != null) {

@@ -15,17 +15,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.zi1;
 public final class ep implements ui {
-    public final np f23731a;
+    public final np f23965a;
 
     public ep(np npVar) {
-        this.f23731a = npVar;
+        this.f23965a = npVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        np npVar = this.f23731a;
+        np npVar = this.f23965a;
         try {
-            HashMap<Object, Object> selectedPhotos = npVar.Y.f29677j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = npVar.Y.f29997j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -39,10 +39,10 @@ public final class ep implements ui {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     bp bpVar = new bp(new zi1(file, file, ""), loadBitmap, false, 2);
-                    bpVar.V1 = npVar.f26467f0;
+                    bpVar.V1 = npVar.f26753f0;
                     bpVar.F1 = false;
                     bpVar.E1 = false;
-                    bpVar.f35819n1 = 0.2f;
+                    bpVar.f36167n1 = 0.2f;
                     bpVar.c1(npVar.v.a());
                     bpVar.I1 = new dp(this, 0);
                     np.q(npVar, bpVar);
@@ -62,8 +62,8 @@ public final class ep implements ui {
     @Override
     public final void U0(Object obj) {
         bp bpVar = new bp(obj, null, true, 3);
-        np npVar = this.f23731a;
-        bpVar.V1 = npVar.f26467f0;
+        np npVar = this.f23965a;
+        bpVar.V1 = npVar.f26753f0;
         bpVar.c1(npVar.v.a());
         bpVar.I1 = new dp(this, 1);
         np.q(npVar, bpVar);
@@ -75,8 +75,8 @@ public final class ep implements ui {
     }
 
     @Override
-    public final void x0(gh ghVar) {
-        ghVar.run();
+    public final void x0(hh hhVar) {
+        hhVar.run();
     }
 
     @Override

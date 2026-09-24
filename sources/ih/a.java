@@ -18,7 +18,7 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.up;
-import w7.x5;
+import w7.y5;
 public final class a extends FrameLayout implements e {
     public final c f11181a;
     public final c f11182b;
@@ -111,7 +111,7 @@ public final class a extends FrameLayout implements e {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.e.f28532c = -1L;
+                this.e.f28848c = -1L;
             }
         }
     }
@@ -140,7 +140,7 @@ public final class a extends FrameLayout implements e {
             ImageView imageView = new ImageView(getContext());
             this.f11183c = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.f11183c, x5.e(i11, i11, 17));
+            addView(this.f11183c, y5.e(i11, i11, 17));
             a();
         }
         this.f11183c.setImageResource(i10);

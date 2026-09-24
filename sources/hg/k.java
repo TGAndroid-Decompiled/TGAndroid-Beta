@@ -12,7 +12,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.i20;
+import org.telegram.ui.g20;
 public final class k extends FrameLayout {
     public final int f10307a = 0;
     public int f10308b;
@@ -32,7 +32,7 @@ public final class k extends FrameLayout {
     public void dispatchDraw(Canvas canvas) {
         switch (this.f10307a) {
             case 1:
-                i20 i20Var = (i20) this.d;
+                g20 g20Var = (g20) this.d;
                 Path path = (Path) this.f10309c;
                 wi wiVar = (wi) this.e;
                 ch.d dVar = wiVar.B0;
@@ -53,9 +53,9 @@ public final class k extends FrameLayout {
                 canvas.saveLayerAlpha(rectF, 255, 31);
                 super.dispatchDraw(canvas);
                 rectF.set(getPaddingLeft(), f7, getWidth() - getPaddingRight(), AndroidUtilities.dp(6.0f) + dp2);
-                i20Var.b(canvas, rectF, 1, 1.0f);
+                g20Var.b(canvas, rectF, 1, 1.0f);
                 rectF.set(getPaddingLeft(), (getHeight() - dp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - dp3);
-                i20Var.b(canvas, rectF, 3, 1.0f);
+                g20Var.b(canvas, rectF, 3, 1.0f);
                 canvas.restore();
                 canvas.restore();
                 return;
@@ -89,12 +89,12 @@ public final class k extends FrameLayout {
             case 1:
                 int i14 = this.f10308b;
                 wi wiVar = (wi) this.e;
-                int top = i14 - wiVar.f29717w.getTop();
+                int top = i14 - wiVar.f30037w.getTop();
                 super.onLayout(z10, i10, i11, i12, i13);
                 this.f10308b = getHeight();
-                if (wiVar.f29717w.getVisibility() == 0 && getHeight() - wiVar.f29717w.getTop() != top) {
-                    wiVar.f29717w.setTranslationY(wiVar.f29717w.getTranslationY() + ((getHeight() - wiVar.f29717w.getTop()) - top));
-                    wiVar.f29717w.animate().translationY(0.0f).setDuration(320L).setInterpolator(rr.h).start();
+                if (wiVar.f30037w.getVisibility() == 0 && getHeight() - wiVar.f30037w.getTop() != top) {
+                    wiVar.f30037w.setTranslationY(wiVar.f30037w.getTranslationY() + ((getHeight() - wiVar.f30037w.getTop()) - top));
+                    wiVar.f30037w.animate().translationY(0.0f).setDuration(320L).setInterpolator(rr.h).start();
                     return;
                 }
                 return;
@@ -127,6 +127,6 @@ public final class k extends FrameLayout {
         super(context);
         this.e = wiVar;
         this.f10309c = new Path();
-        this.d = new i20();
+        this.d = new g20();
     }
 }

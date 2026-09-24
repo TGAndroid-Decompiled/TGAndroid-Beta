@@ -1,47 +1,35 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ys implements TextWatcher {
-    public final EditTextBoldCursor f39881a;
+import android.graphics.Bitmap;
+public final class ys implements Runnable {
+    public final int f40225a;
+    public final nt f40226b;
 
-    public ys(EditTextBoldCursor editTextBoldCursor) {
-        this.f39881a = editTextBoldCursor;
+    public ys(nt ntVar, int i10) {
+        this.f40225a = i10;
+        this.f40226b = ntVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        try {
-            String obj = editable.toString();
-            if (!obj.isEmpty()) {
-                int intValue = Utilities.parseInt((CharSequence) obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.f39881a;
-                if (intValue < 0) {
-                    editTextBoldCursor.setText("0");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (intValue > 300) {
-                    editTextBoldCursor.setText("300");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else {
-                    if (!obj.equals("" + intValue)) {
-                        editTextBoldCursor.setText("" + intValue);
-                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    }
+    public final void run() {
+        switch (this.f40225a) {
+            case 0:
+                this.f40226b.f35953c0 = null;
+                return;
+            case 1:
+                nt ntVar = this.f40226b;
+                ntVar.A.setImageBitmap((Bitmap) null);
+                org.telegram.ui.Components.qd0 qd0Var = ntVar.C;
+                if (qd0Var != null) {
+                    qd0Var.a();
+                    ntVar.f35974z.removeView(ntVar.C);
+                    ntVar.C = null;
+                    return;
                 }
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
+                return;
+            default:
+                this.f40226b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.rr.h).start();
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

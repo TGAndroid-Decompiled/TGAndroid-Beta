@@ -2,98 +2,28 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class jc0 extends Drawable {
-    public final Drawable f25253a;
-    public final Paint f25254b;
-    public final Paint f25255c;
-    public final e6 d;
-    public boolean e;
+public final class jc0 extends org.telegram.ui.ActionBar.h5 {
+    public final Paint M0;
+    public final org.telegram.ui.ActionBar.d6 N0;
 
-    public jc0(Context context) {
-        Paint paint = new Paint(1);
-        this.f25254b = paint;
-        Paint paint2 = new Paint(1);
-        this.f25255c = paint2;
-        this.d = new e6(new ac0(this, 2), 200L, rr.f27702g, 0);
-        this.f25253a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.566f));
-        paint.setColor(-1);
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        Paint.Join join = Paint.Join.ROUND;
-        paint.setStrokeJoin(join);
-        paint2.setStyle(style);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(4.5f));
-        paint2.setColor(-65536);
-        paint2.setStrokeCap(cap);
-        paint2.setStrokeJoin(join);
+    public jc0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.N0 = d6Var;
+        this.M0 = new Paint(1);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.f25253a;
-        drawable.setBounds(bounds);
-        drawable.draw(canvas);
-        float e = this.d.e(this.e);
-        if (e > 0.0f) {
-            float dpf2 = AndroidUtilities.dpf2(0.783f);
-            float centerX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + dpf2;
-            float centerY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + dpf2;
-            float dp = (AndroidUtilities.dp(9.0f) + bounds.centerX()) - dpf2;
-            float dp2 = (AndroidUtilities.dp(9.0f) + bounds.centerY()) - dpf2;
-            if (this.e) {
-                centerX = AndroidUtilities.lerp(dp, centerX, e);
-                centerY = AndroidUtilities.lerp(dp2, centerY, e);
-            } else {
-                dp = AndroidUtilities.lerp(centerX, dp, e);
-                dp2 = AndroidUtilities.lerp(centerY, dp2, e);
-            }
-            float f7 = dp2;
-            float f10 = centerX;
-            float f11 = centerY;
-            float f12 = dp;
-            canvas.drawLine(f10, f11, f12, f7, this.f25255c);
-            Paint paint = this.f25254b;
-            paint.setAlpha((int) (Math.min(1.0f, e * 10.0f) * 255.0f));
-            canvas.drawLine(f10, f11, f12, f7, paint);
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f25253a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void dispatchDraw(Canvas canvas) {
+        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.K5, this.N0);
+        Paint paint = this.M0;
+        paint.setColor(v02);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1.0f);
+        float height = getHeight() / 2.0f;
+        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - (getTextWidth() / 2.0f)) - AndroidUtilities.dp(8.0f), height, paint);
+        canvas.drawLine((getTextWidth() / 2.0f) + (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
+        super.dispatchDraw(canvas);
     }
 }

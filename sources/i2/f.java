@@ -9,7 +9,7 @@ public abstract class f implements j1 {
     public j2.k f10641f;
     public e2.x h;
     public int f10642n;
-    public u2.a1 f10643r;
+    public u2.b1 f10643r;
     public b2.s[] f10644s;
     public long v;
     public long f10645w;
@@ -64,9 +64,9 @@ public abstract class f implements j1 {
         if (k()) {
             return this.f10647y;
         }
-        u2.a1 a1Var = this.f10643r;
-        a1Var.getClass();
-        return a1Var.e();
+        u2.b1 b1Var = this.f10643r;
+        b1Var.getClass();
+        return b1Var.e();
     }
 
     public abstract void o();
@@ -74,9 +74,9 @@ public abstract class f implements j1 {
     public abstract void q(long j3, boolean z10);
 
     public final int w(n4.y yVar, h2.h hVar, int i10) {
-        u2.a1 a1Var = this.f10643r;
-        a1Var.getClass();
-        int f7 = a1Var.f(yVar, hVar, i10);
+        u2.b1 b1Var = this.f10643r;
+        b1Var.getClass();
+        int f7 = b1Var.f(yVar, hVar, i10);
         if (f7 == -4) {
             if (hVar.isEndOfStream()) {
                 this.f10646x = Long.MIN_VALUE;
@@ -91,13 +91,13 @@ public abstract class f implements j1 {
             return f7;
         }
         if (f7 == -5) {
-            b2.s sVar = (b2.s) yVar.f14970c;
+            b2.s sVar = (b2.s) yVar.f15208c;
             sVar.getClass();
             long j10 = sVar.f3305w;
             if (j10 != Long.MAX_VALUE) {
                 b2.r a2 = sVar.a();
                 a2.v = j10 + this.v;
-                yVar.f14970c = new b2.s(a2);
+                yVar.f15208c = new b2.s(a2);
             }
         }
         return f7;
@@ -105,9 +105,9 @@ public abstract class f implements j1 {
 
     public abstract void x(long j3, long j10);
 
-    public final void y(b2.s[] sVarArr, u2.a1 a1Var, long j3, long j10, u2.f0 f0Var) {
+    public final void y(b2.s[] sVarArr, u2.b1 b1Var, long j3, long j10, u2.f0 f0Var) {
         e2.d.g(!this.f10647y);
-        this.f10643r = a1Var;
+        this.f10643r = b1Var;
         this.G = f0Var;
         if (this.f10646x == Long.MIN_VALUE) {
             this.f10646x = j3;

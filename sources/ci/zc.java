@@ -10,14 +10,14 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.Components.ij0;
 import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.yi0;
 public final class zc extends View {
-    public final yi0 f5922a;
+    public final ij0 f5922a;
     public final org.telegram.ui.Components.o6 f5923b;
     public final Paint f5924c;
     public final Paint d;
-    public final org.telegram.ui.Components.yc e;
+    public final org.telegram.ui.Components.zc e;
     public boolean f5925f;
     public final org.telegram.ui.Components.e6 h;
 
@@ -27,7 +27,7 @@ public final class zc extends View {
         this.f5924c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.e = new org.telegram.ui.Components.yc(this);
+        this.e = new org.telegram.ui.Components.zc(this);
         rr rrVar = rr.h;
         this.h = new org.telegram.ui.Components.e6(this, 0L, 240L, rrVar);
         paint.setColor(-1);
@@ -35,14 +35,14 @@ public final class zc extends View {
         paint.setStrokeWidth(AndroidUtilities.dpf2(2.66f));
         paint.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dp(1.66f), 805306368);
         paint2.setColor(855638016);
-        yi0 yi0Var = new yi0(R.raw.group_pip_delete_icon, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
-        this.f5922a = yi0Var;
-        yi0Var.R(this);
-        yi0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-        yi0Var.h = true;
-        yi0Var.P(0);
-        yi0Var.J(true);
-        yi0Var.start();
+        ij0 ij0Var = new ij0(R.raw.group_pip_delete_icon, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
+        this.f5922a = ij0Var;
+        ij0Var.R(this);
+        ij0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        ij0Var.h = true;
+        ij0Var.P(0);
+        ij0Var.J(true);
+        ij0Var.start();
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(true, true, false, false);
         this.f5923b = o6Var;
         o6Var.k(0.3f, 250L, rrVar);
@@ -51,7 +51,7 @@ public final class zc extends View {
         o6Var.r(-1);
         o6Var.p(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dp(1.0f), 1073741824);
         o6Var.q(LocaleController.getString(R.string.TrashHintDrag), true, true);
-        o6Var.f26614b = 17;
+        o6Var.f26925b = 17;
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -67,19 +67,19 @@ public final class zc extends View {
         int i11 = 0;
         z12 = (!z10 || z11) ? false : false;
         this.f5925f = z12;
-        yi0 yi0Var = this.f5922a;
+        ij0 ij0Var = this.f5922a;
         if (z12) {
-            if (yi0Var.f30258a0 > 34) {
-                yi0Var.N(0, false, false);
+            if (ij0Var.f25042a0 > 34) {
+                ij0Var.N(0, false, false);
             }
-            yi0Var.P(33);
-            yi0Var.start();
+            ij0Var.P(33);
+            ij0Var.start();
         } else {
             if (z11) {
                 i11 = 66;
             }
-            yi0Var.P(i11);
-            yi0Var.start();
+            ij0Var.P(i11);
+            ij0Var.start();
         }
         invalidate();
     }
@@ -93,9 +93,9 @@ public final class zc extends View {
         canvas.drawCircle(width, height, e, this.d);
         canvas.drawCircle(width, height, e, this.f5924c);
         float dp2 = AndroidUtilities.dp(48.0f) / 2.0f;
-        yi0 yi0Var = this.f5922a;
-        yi0Var.setBounds((int) (width - dp2), (int) (height - dp2), (int) (width + dp2), (int) (dp2 + height));
-        yi0Var.draw(canvas);
+        ij0 ij0Var = this.f5922a;
+        ij0Var.setBounds((int) (width - dp2), (int) (height - dp2), (int) (width + dp2), (int) (dp2 + height));
+        ij0Var.draw(canvas);
         int dp3 = (int) (height + dp + AndroidUtilities.dp(7.0f));
         int width2 = getWidth();
         int height2 = getHeight();

@@ -10,24 +10,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import yh.t5;
 public final class o0 implements Runnable {
-    public final int f45989a;
-    public final int f45990b;
-    public final KeyEvent.Callback f45991c;
+    public final int f46303a;
+    public final int f46304b;
+    public final KeyEvent.Callback f46305c;
     public final Object d;
     public final TLObject e;
-    public final Object f45992f;
+    public final Object f46306f;
 
     public o0(KeyEvent.Callback callback, Object obj, int i10, TLObject tLObject, Object obj2, int i11) {
-        this.f45989a = i11;
-        this.f45991c = callback;
+        this.f46303a = i11;
+        this.f46305c = callback;
         this.d = obj;
-        this.f45990b = i10;
+        this.f46304b = i10;
         this.e = tLObject;
-        this.f45992f = obj2;
+        this.f46306f = obj2;
     }
 
     @Override
@@ -36,42 +36,42 @@ public final class o0 implements Runnable {
         boolean z11;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
-        int i10 = this.f45989a;
-        Object obj = this.f45992f;
+        int i10 = this.f46303a;
+        Object obj = this.f46306f;
         TLObject tLObject = this.e;
         Object obj2 = this.d;
-        KeyEvent.Callback callback = this.f45991c;
+        KeyEvent.Callback callback = this.f46305c;
         switch (i10) {
             case 0:
                 r1 r1Var = (r1) callback;
                 Context context = (Context) obj2;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) tLObject;
-                long j3 = r1Var.f46041c0;
+                long j3 = r1Var.f46355c0;
                 m0 m0Var = new m0(r1Var, (Utilities.Callback) obj, 2);
                 boolean z12 = starGift.limited;
-                if (z12 && (disallowedGiftsSettings2 = r1Var.f46040b0) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
+                if (z12 && (disallowedGiftsSettings2 = r1Var.f46354b0) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (z12 && (disallowedGiftsSettings = r1Var.f46040b0) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
+                if (z12 && (disallowedGiftsSettings = r1Var.f46354b0) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                new t0(r1Var, context, this.f45990b, starGift, j3, m0Var, z10, z11).show();
+                new t0(r1Var, context, this.f46304b, starGift, j3, m0Var, z10, z11).show();
                 return;
             default:
                 String str = (String) obj;
                 ((ci.d) callback).setLoading(false);
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) obj2)[0];
-                if (f3Var != null) {
-                    f3Var.dismiss();
+                org.telegram.ui.ActionBar.e3 e3Var = ((org.telegram.ui.ActionBar.e3[]) obj2)[0];
+                if (e3Var != null) {
+                    e3Var.dismiss();
                 }
-                t5.y(this.f45990b, false).S();
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                t5.y(this.f46304b, false).S();
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != null) {
-                    xc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionRenewedToast), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsSubscriptionRenewedToastText, str)), null).k(false);
+                    yc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionRenewedToast), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsSubscriptionRenewedToastText, str)), null).k(false);
                     return;
                 }
                 return;

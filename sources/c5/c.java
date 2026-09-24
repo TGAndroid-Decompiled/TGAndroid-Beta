@@ -258,10 +258,10 @@ public class c extends b {
             of.b bVar = this.h;
             int i10 = this.f3848l;
             bVar.getClass();
-            o3 o3Var = (o3) ((p3) bVar.f15486b).g();
+            o3 o3Var = (o3) ((p3) bVar.f15678b).g();
             o3Var.c();
             p3.p((p3) o3Var.f6880b, i10);
-            bVar.f15486b = (p3) o3Var.a();
+            bVar.f15678b = (p3) o3Var.a();
             bVar.X(g3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);
@@ -273,11 +273,11 @@ public class c extends b {
             of.b bVar = this.h;
             int i10 = this.f3848l;
             bVar.getClass();
-            o3 o3Var = (o3) ((p3) bVar.f15486b).g();
+            o3 o3Var = (o3) ((p3) bVar.f15678b).g();
             o3Var.c();
             p3.p((p3) o3Var.f6880b, i10);
             p3 p3Var = (p3) o3Var.a();
-            bVar.f15486b = p3Var;
+            bVar.f15678b = p3Var;
             bVar.f0(i3Var, p3Var);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingClient", "Unable to log.", th2);

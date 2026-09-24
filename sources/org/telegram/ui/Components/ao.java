@@ -9,15 +9,15 @@ import org.telegram.messenger.R;
 import org.telegram.ui.wf1;
 public final class ao extends w9 {
     public final org.telegram.ui.Cells.m6 G;
-    public final org.telegram.ui.ActionBar.n2 H;
+    public final org.telegram.ui.ActionBar.m2 H;
     public final boolean I;
     public final org.telegram.ui.ActionBar.d6 J;
     public final fo K;
 
-    public ao(fo foVar, Context context, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
+    public ao(fo foVar, Context context, org.telegram.ui.ActionBar.m2 m2Var, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.K = foVar;
-        this.H = n2Var;
+        this.H = m2Var;
         this.I = z10;
         this.J = d6Var;
         this.G = new org.telegram.ui.Cells.m6(this);
@@ -27,28 +27,28 @@ public final class ao extends w9 {
     public final void onDraw(Canvas canvas) {
         long j3;
         fo foVar = this.K;
-        if (foVar.f24018b && this.e == null) {
+        if (foVar.f24206b && this.e == null) {
             org.telegram.ui.Cells.m6 m6Var = this.G;
             m6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             m6Var.f656a = true;
             m6Var.v = true;
             m6Var.J = this.J;
-            Integer num = foVar.f24020c;
+            Integer num = foVar.f24208c;
             if (num != null) {
                 m6Var.f677z = num.intValue();
             }
-            org.telegram.ui.xn xnVar = foVar.G;
-            if (xnVar != null) {
-                j3 = xnVar.a();
+            org.telegram.ui.wn wnVar = foVar.G;
+            if (wnVar != null) {
+                j3 = wnVar.a();
             } else {
-                org.telegram.ui.ActionBar.n2 n2Var = this.H;
-                if (n2Var instanceof wf1) {
-                    j3 = -((wf1) n2Var).f38936a;
+                org.telegram.ui.ActionBar.m2 m2Var = this.H;
+                if (m2Var instanceof wf1) {
+                    j3 = -((wf1) m2Var).f39293a;
                 } else {
                     j3 = 0;
                 }
             }
-            ai.ia.h(j3, canvas, this.f29579a, m6Var);
+            ai.ia.h(j3, canvas, this.f29927a, m6Var);
             return;
         }
         super.onDraw(canvas);
@@ -67,7 +67,7 @@ public final class ao extends w9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f24018b && this.G.a(motionEvent, this)) {
+        if (this.K.f24206b && this.G.a(motionEvent, this)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

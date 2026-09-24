@@ -38,7 +38,7 @@ public final class n9 implements Utilities.Callback {
                 return;
             case 1:
                 fa faVar2 = this.f5218b.W;
-                i10 = ((org.telegram.ui.ActionBar.f3) faVar2).currentAccount;
+                i10 = ((org.telegram.ui.ActionBar.e3) faVar2).currentAccount;
                 faVar2.g1(new da(5, i10, (ArrayList) obj), new ai.r5(faVar2, 1), false);
                 return;
             case 2:

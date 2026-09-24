@@ -40,7 +40,7 @@ public class b implements Iterator {
                 e eVar = (e) this.f4214c;
                 int i10 = this.f4213b;
                 eVar.o();
-                if (i10 < eVar.f45640c.size() - 1) {
+                if (i10 < eVar.f45954c.size() - 1) {
                     return true;
                 }
                 return false;
@@ -95,18 +95,18 @@ public class b implements Iterator {
                     int i13 = this.f4213b;
                     int i14 = i13 + 1;
                     this.f4213b = i14;
-                    DataHolder dataHolder = eVar.f45638a;
+                    DataHolder dataHolder = eVar.f45952a;
                     eVar.o();
                     int n10 = eVar.n(i14);
                     int i15 = 0;
-                    if (i14 >= 0 && i14 != eVar.f45640c.size()) {
-                        if (i14 == eVar.f45640c.size() - 1) {
+                    if (i14 >= 0 && i14 != eVar.f45954c.size()) {
+                        if (i14 == eVar.f45954c.size() - 1) {
                             l.h(dataHolder);
                             intValue = dataHolder.f6208n;
-                            intValue2 = ((Integer) eVar.f45640c.get(i14)).intValue();
+                            intValue2 = ((Integer) eVar.f45954c.get(i14)).intValue();
                         } else {
-                            intValue = ((Integer) eVar.f45640c.get(i13 + 2)).intValue();
-                            intValue2 = ((Integer) eVar.f45640c.get(i14)).intValue();
+                            intValue = ((Integer) eVar.f45954c.get(i13 + 2)).intValue();
+                            intValue2 = ((Integer) eVar.f45954c.get(i14)).intValue();
                         }
                         i15 = intValue - intValue2;
                         if (i15 == 1) {
@@ -118,7 +118,7 @@ public class b implements Iterator {
                     }
                     return new k(dataHolder, n10, i15, 0);
                 }
-                throw new NoSuchElementException(hg.c.i(this.f4213b, "Cannot advance the iterator beyond "));
+                throw new NoSuchElementException(hg.c.h(this.f4213b, "Cannot advance the iterator beyond "));
         }
     }
 

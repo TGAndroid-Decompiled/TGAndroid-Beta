@@ -27,25 +27,24 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c4;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.b4;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.c40;
-import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.c60;
 import org.telegram.ui.Components.d10;
-import org.telegram.ui.Components.dw;
+import org.telegram.ui.Components.ew;
+import org.telegram.ui.Components.in0;
+import org.telegram.ui.Components.jv0;
 import org.telegram.ui.Components.lp;
 import org.telegram.ui.Components.mp;
-import org.telegram.ui.Components.mr0;
-import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.na0;
 import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.nr0;
-import org.telegram.ui.Components.w50;
-import org.telegram.ui.Components.wm0;
-import org.telegram.ui.Components.x50;
-import org.telegram.ui.Components.yu0;
+import org.telegram.ui.Components.v50;
+import org.telegram.ui.Components.xr0;
+import org.telegram.ui.Components.xy0;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.om;
-import org.telegram.ui.so;
+import org.telegram.ui.nm;
+import org.telegram.ui.ro;
 public final class f implements Runnable {
     public final int f3561a;
     public final boolean f3562b;
@@ -70,12 +69,12 @@ public final class f implements Runnable {
         switch (i11) {
             case 0:
                 u uVar = (u) obj;
-                mr0 mr0Var = uVar.W;
+                xr0 xr0Var = uVar.W;
                 if (z10) {
-                    new y(mr0Var.f3599a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(mr0Var, 4)).show();
+                    new y(xr0Var.f3599a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(xr0Var, 4)).show();
                     return;
                 } else {
-                    mr0Var.b(uVar.f3583a.E);
+                    xr0Var.b(uVar.f3583a.E);
                     return;
                 }
             case 1:
@@ -125,8 +124,8 @@ public final class f implements Runnable {
                 ((t0) obj).f(z10, false);
                 return;
             case 7:
-                String str2 = d0.f7871a;
-                f0 f0Var = ((c0) ((k2.j) ((n4.y) obj).f14970c)).f10616a;
+                String str2 = d0.f7870a;
+                f0 f0Var = ((c0) ((k2.j) ((n4.y) obj).f15208c)).f10616a;
                 if (f0Var.f10648a0 != z10) {
                     f0Var.f10648a0 = z10;
                     f0Var.f10668m.e(23, new i2.y(1, z10));
@@ -134,36 +133,46 @@ public final class f implements Runnable {
                 }
                 return;
             case 8:
-                ((FileLoader) obj).lambda$onNetworkChanged$4(z10);
+                ki.h hVar = (ki.h) obj;
+                hVar.L = z10;
+                hVar.M = hVar.p();
+                hVar.N = 0;
+                hVar.O = 0;
+                ki.l lVar = hVar.f13707j;
+                lVar.b("torch requested: enabled=" + z10 + ", available=" + hVar.p() + ", cameraId=" + hVar.f13716o + ", facing=" + hVar.C);
+                hVar.a();
                 return;
             case 9:
-                ((FileUploadOperation) obj).lambda$onNetworkChanged$1(z10);
+                ((FileLoader) obj).lambda$onNetworkChanged$4(z10);
                 return;
             case 10:
-                ((LocationController) obj).lambda$startFusedLocationRequest$5(z10);
+                ((FileUploadOperation) obj).lambda$onNetworkChanged$1(z10);
                 return;
             case 11:
-                ((RichMessageLayout.RichBlock) obj).lambda$toggleCheckbox$1(z10);
+                ((LocationController) obj).lambda$startFusedLocationRequest$5(z10);
                 return;
             case 12:
-                ((UserConfig) obj).lambda$saveConfig$0(z10);
+                ((RichMessageLayout.RichBlock) obj).lambda$toggleCheckbox$1(z10);
                 return;
             case 13:
-                ((CameraController) obj).lambda$recordVideo$11(z10);
+                ((UserConfig) obj).lambda$saveConfig$0(z10);
                 return;
             case 14:
-                ((VideoCapturerDevice) obj).lambda$new$0(z10);
+                ((CameraController) obj).lambda$recordVideo$11(z10);
                 return;
             case 15:
-                ((VoIPService) obj).lambda$startGroupCall$27(z10);
+                ((VideoCapturerDevice) obj).lambda$new$0(z10);
                 return;
             case 16:
-                ((AudioManager) obj).setSpeakerphoneOn(z10);
+                ((VoIPService) obj).lambda$startGroupCall$27(z10);
                 return;
             case 17:
-                ((ConnectionsManager) obj).lambda$setIsUpdating$22(z10);
+                ((AudioManager) obj).setSpeakerphoneOn(z10);
                 return;
             case 18:
+                ((ConnectionsManager) obj).lambda$setIsUpdating$22(z10);
+                return;
+            case 19:
                 Context context = (Context) obj;
                 if (z10) {
                     i10 = R.string.BotMonetizationInfoTONLink;
@@ -172,19 +181,19 @@ public final class f implements Runnable {
                 }
                 nf.f.s(context, LocaleController.getString(i10));
                 return;
-            case 19:
-                my0 my0Var = ((om) obj).f35909c.f39349d1;
-                if (my0Var != null && z10) {
-                    my0Var.setVisibility(8);
+            case 20:
+                xy0 xy0Var = ((nm) obj).f35901c.f39433d1;
+                if (xy0Var != null && z10) {
+                    xy0Var.setVisibility(8);
                     return;
                 }
                 return;
-            case 20:
-                so soVar = (so) obj;
-                soVar.f37374x0.autotranslation = z10;
-                soVar.getMessagesController().putChat(soVar.f37374x0, false);
-                return;
             case 21:
+                ro roVar = (ro) obj;
+                roVar.f37407x0.autotranslation = z10;
+                roVar.getMessagesController().putChat(roVar.f37407x0, false);
+                return;
+            case 22:
                 np npVar = (np) obj;
                 lp lpVar = npVar.h;
                 if (lpVar != null && lpVar.d != null && !npVar.isDismissed()) {
@@ -194,19 +203,19 @@ public final class f implements Runnable {
                         if (npVar.v()) {
                             wallPaper = null;
                         } else {
-                            wallPaper = npVar.f26470n.h;
+                            wallPaper = npVar.f26756n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        c4 c4Var = npVar.M.f26253a;
-                        if (c4Var.f18533a) {
-                            npVar.f26470n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        b4 b4Var = npVar.M.f26557a;
+                        if (b4Var.f18742a) {
+                            npVar.f26756n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            npVar.f26470n.i(c4Var, wallPaper2, false, Boolean.valueOf(z10), false);
+                            npVar.f26756n.i(b4Var, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (lpVar.d != null) {
                         while (i12 < lpVar.d.size()) {
-                            ((mp) lpVar.d.get(i12)).f26255c = z10 ? 1 : 0;
+                            ((mp) lpVar.d.get(i12)).f26559c = z10 ? 1 : 0;
                             i12++;
                         }
                         lpVar.l();
@@ -215,82 +224,73 @@ public final class f implements Runnable {
                     return;
                 }
                 return;
-            case 22:
-                dw dwVar = (dw) obj;
+            case 23:
+                ew ewVar = (ew) obj;
                 if (!z10) {
-                    dwVar.E.setVisibility(8);
+                    ewVar.E.setVisibility(8);
                     return;
                 }
                 return;
-            case 23:
-                d10 d10Var = (d10) obj;
-                d10Var.R(d10Var.f23202y0, z10);
-                return;
             case 24:
+                d10 d10Var = (d10) obj;
+                d10Var.R(d10Var.f23445y0, z10);
+                return;
+            case 25:
                 c40 c40Var = (c40) obj;
                 if (!z10) {
-                    c40Var.f22917r.setVisibility(8);
+                    c40Var.f23157r.setVisibility(8);
                     return;
                 } else {
                     c40Var.getClass();
                     return;
                 }
-            case 25:
-                x50 x50Var = ((w50) obj).H0;
-                if (!x50Var.f29900g0) {
+            case 26:
+                c60 c60Var = ((v50) obj).H0;
+                if (!c60Var.f23201l0) {
                     try {
-                        x50Var.performHapticFeedback(3, 2);
+                        c60Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    AndroidUtilities.lockOrientation(x50Var.f29894c.getParentActivity());
+                    AndroidUtilities.lockOrientation(c60Var.f23202n.getParentActivity());
                     if (z10) {
-                        j3 = x50Var.f29899f0;
+                        j3 = c60Var.f23200k0;
                     } else {
                         j3 = 0;
                     }
-                    x50Var.f29896d0 = j3;
-                    x50Var.f29895c0 = System.currentTimeMillis();
-                    x50Var.f29897e0 = true;
-                    x50Var.r();
-                    x50Var.invalidate();
-                    NotificationCenter.getInstance(x50Var.f29888a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(x50Var.Q), Boolean.FALSE);
+                    c60Var.f23198i0 = j3;
+                    c60Var.f23197h0 = System.currentTimeMillis();
+                    c60Var.f23199j0 = true;
+                    c60Var.u();
+                    c60Var.invalidate();
+                    NotificationCenter.getInstance(c60Var.f23192f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(c60Var.V), Boolean.FALSE);
                     return;
                 }
                 return;
-            case 26:
-                ca0 ca0Var = (ca0) obj;
+            case 27:
+                na0 na0Var = (na0) obj;
                 if (z10) {
-                    ca0Var.G.setVisibility(8);
+                    na0Var.G.setVisibility(8);
                     return;
                 } else {
-                    ca0Var.getClass();
+                    na0Var.getClass();
                     return;
                 }
-            case 27:
-                n2 n2Var = ((wm0) obj).G;
+            case 28:
+                m2 m2Var = ((in0) obj).G;
                 if (z10) {
                     str = "upload_speed";
                 } else {
                     str = "download_speed";
                 }
-                n2Var.presentFragment(new PremiumPreviewFragment(0, str));
+                m2Var.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
-            case 28:
-                yu0 yu0Var = (yu0) obj;
-                if (!z10) {
-                    yu0Var.m0.setVisibility(8);
-                    return;
-                } else {
-                    yu0Var.getClass();
-                    return;
-                }
             default:
-                nr0 nr0Var = (nr0) obj;
+                jv0 jv0Var = (jv0) obj;
                 if (!z10) {
-                    nr0Var.U.f30437q0.setVisibility(0);
+                    jv0Var.m0.setVisibility(8);
                     return;
                 } else {
-                    nr0Var.getClass();
+                    jv0Var.getClass();
                     return;
                 }
         }

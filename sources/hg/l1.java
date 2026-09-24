@@ -16,11 +16,11 @@ import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.h90;
-import w7.x5;
+import org.telegram.ui.Components.r90;
+import w7.y5;
 public final class l1 extends LinearLayout {
     public final d6 f10330a;
-    public final h90 f10331b;
+    public final r90 f10331b;
     public final ImageReceiver f10332c;
     public final TextView d;
     public boolean e;
@@ -36,13 +36,13 @@ public final class l1 extends LinearLayout {
         this.f10332c = imageReceiver;
         this.f10330a = d6Var;
         setOrientation(1);
-        h90 h90Var = new h90();
-        this.f10331b = h90Var;
+        r90 r90Var = new r90();
+        this.f10331b = r90Var;
         int i15 = h6.G6;
         int v02 = h6.v0(i15, d6Var);
-        h90Var.f(h6.l1(0.05f, v02), h6.l1(0.15f, v02), h6.l1(0.1f, v02), h6.l1(0.3f, v02));
-        h90Var.j(4.0f);
-        h90Var.f24618w.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        r90Var.f(h6.l1(0.05f, v02), h6.l1(0.15f, v02), h6.l1(0.1f, v02), h6.l1(0.3f, v02));
+        r90Var.j(4.0f);
+        r90Var.f27921w.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -65,10 +65,10 @@ public final class l1 extends LinearLayout {
         } else {
             i12 = 70;
         }
-        addView(textView, x5.t(-1, -2, 55, i11, 10, i12, 4));
+        addView(textView, y5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(h6.v0(h6.f19189z6, d6Var));
+        textView2.setTextColor(h6.v0(h6.f19447z6, d6Var));
         textView2.setText(LocaleController.getString(R.string.BusinessProfileLocation));
         textView2.setTextSize(1, 13.0f);
         boolean z11 = LocaleController.isRTL;
@@ -82,7 +82,7 @@ public final class l1 extends LinearLayout {
         } else {
             i14 = 70;
         }
-        addView(textView2, x5.t(-1, -2, 55, i13, 0, i14, 8));
+        addView(textView2, y5.t(-1, -2, 55, i13, 0, i14, 8));
         setWillNotDraw(false);
     }
 
@@ -117,7 +117,7 @@ public final class l1 extends LinearLayout {
         if (this.e) {
             Paint T0 = h6.T0("paintDivider", this.f10330a);
             if (T0 == null) {
-                T0 = h6.f18910k0;
+                T0 = h6.f19166k0;
             }
             Paint paint = T0;
             float f11 = 21.33f;

@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
-import v7.s6;
 import v7.t6;
+import v7.u6;
 public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List {
-    public static final g0 f8067b = new g0(a1.e, 0);
+    public static final g0 f8066b = new g0(a1.e, 0);
 
     public static a1 A(Object obj, Object obj2) {
         Object[] objArr = {obj, obj2};
@@ -56,7 +56,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
         if (collection instanceof d0) {
             i0 i10 = ((d0) collection).i();
             if (i10.r()) {
-                Object[] array = i10.toArray(d0.f8049a);
+                Object[] array = i10.toArray(d0.f8048a);
                 return t(array.length, array);
             }
             return i10;
@@ -89,7 +89,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
 
     @Override
     public i0 subList(int i10, int i11) {
-        t6.f(i10, i11, size());
+        u6.f(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
@@ -127,14 +127,14 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i10 = 0; i10 < size; i10++) {
-                            if (s6.a(get(i10), list.get(i10))) {
+                            if (t6.a(get(i10), list.get(i10))) {
                             }
                         }
                     } else {
                         Iterator it = list.iterator();
                         for (Object obj2 : this) {
                             if (it.hasNext()) {
-                                if (!s6.a(obj2, it.next())) {
+                                if (!t6.a(obj2, it.next())) {
                                 }
                             }
                         }
@@ -225,9 +225,9 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
 
     @Override
     public final g0 listIterator(int i10) {
-        t6.e(i10, size());
+        u6.e(i10, size());
         if (isEmpty()) {
-            return f8067b;
+            return f8066b;
         }
         return new g0(this, i10);
     }

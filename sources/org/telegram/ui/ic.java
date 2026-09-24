@@ -4,21 +4,21 @@ import android.app.Activity;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class ic extends z61 {
-    public final dc f34099d2;
-    public final q61[] f34100e2;
-    public final ad f34101f2;
+public final class ic extends a71 {
+    public final dc f34471d2;
+    public final r61[] f34472e2;
+    public final ad f34473f2;
 
-    public ic(ad adVar, ad adVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, dc dcVar, q61[] q61VarArr) {
+    public ic(ad adVar, ad adVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, dc dcVar, r61[] r61VarArr) {
         super(adVar2, activity, true, num, i10, true, d6Var, i11, i12);
-        this.f34101f2 = adVar;
-        this.f34099d2 = dcVar;
-        this.f34100e2 = q61VarArr;
+        this.f34473f2 = adVar;
+        this.f34471d2 = dcVar;
+        this.f34472e2 = r61VarArr;
     }
 
     @Override
     public final long getDialogId() {
-        return this.f34101f2.f31738a;
+        return this.f34473f2.f32085a;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class ic extends z61 {
         } else {
             longValue = l4.longValue();
         }
-        this.f34099d2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
-        q61 q61Var = this.f34100e2[0];
-        if (q61Var != null) {
-            this.f34101f2.Q = null;
-            q61Var.dismiss();
+        this.f34471d2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
+        r61 r61Var = this.f34472e2[0];
+        if (r61Var != null) {
+            this.f34473f2.Q = null;
+            r61Var.dismiss();
         }
     }
 }

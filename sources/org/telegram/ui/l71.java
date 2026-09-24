@@ -1,15 +1,24 @@
 package org.telegram.ui;
+public final class l71 extends g.p {
+    public final n71 f35205c;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class l71 extends s4.s0 {
-    public final m71 f34879a;
-
-    public l71(m71 m71Var) {
-        this.f34879a = m71Var;
+    public l71(n71 n71Var) {
+        this.f35205c = n71Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        this.f34879a.P();
+    public final int i(int i10) {
+        int i11;
+        n71 n71Var = this.f35205c;
+        org.telegram.ui.Components.oz ozVar = n71Var.X;
+        org.telegram.ui.Components.j61 j61Var = n71Var.f35750d0;
+        if (j61Var == null) {
+            return ozVar.J;
+        }
+        org.telegram.ui.Components.v51 G = j61Var.G(i10 - 1);
+        if (G != null && (i11 = G.f29051u) != -1) {
+            return i11;
+        }
+        return ozVar.J;
     }
 }

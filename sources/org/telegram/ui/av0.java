@@ -1,8 +1,13 @@
 package org.telegram.ui;
-public final class av0 {
-    public final float f31891a;
+public final class av0 extends s4.j {
+    public final bv0 F;
 
-    public av0(float f7) {
-        this.f31891a = f7;
+    public av0(bv0 bv0Var) {
+        this.F = bv0Var;
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
     }
 }

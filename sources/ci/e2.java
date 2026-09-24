@@ -39,22 +39,22 @@ public final class e2 extends a2 {
         p1Var.setOnItemClickListener(new ai.g(this, 4));
         p1Var.setOnScrollListener(new ai.r(this, 2));
         s4.j jVar = new s4.j();
-        jVar.f42708c = 220L;
+        jVar.f43027c = 220L;
         jVar.e = 220L;
-        jVar.f42709f = 160L;
-        jVar.f42710g = 160L;
-        jVar.f42711i = rr.f27702g;
+        jVar.f43028f = 160L;
+        jVar.f43029g = 160L;
+        jVar.f43030i = rr.f28023g;
         p1Var.setItemAnimator(jVar);
-        addView(p1Var, w7.x5.c(-1.0f, -1));
-        d6Var = ((org.telegram.ui.ActionBar.f3) s2Var).resourcesProvider;
+        addView(p1Var, w7.y5.c(-1.0f, -1));
+        d6Var = ((org.telegram.ui.ActionBar.e3) s2Var).resourcesProvider;
         l2 l2Var = new l2(context, d6Var);
         this.f4596f = l2Var;
         l2Var.v = new bi.v(this, 3);
-        addView(l2Var, w7.x5.e(-1, -2, 48));
-        d6Var2 = ((org.telegram.ui.ActionBar.f3) s2Var).resourcesProvider;
+        addView(l2Var, w7.y5.e(-1, -2, 48));
+        d6Var2 = ((org.telegram.ui.ActionBar.e3) s2Var).resourcesProvider;
         c2 c2Var = new c2(this, context, d6Var2);
         this.e = c2Var;
-        addView(c2Var, w7.x5.c(36.0f, -1));
+        addView(c2Var, w7.y5.c(36.0f, -1));
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class e2 extends a2 {
                 k2Var.E1(s2Var.f5473c);
                 l2Var.f4950f.C1();
                 if (l2Var.f4950f.getSelectedCategory() != null) {
-                    d2Var.H = l2Var.f4950f.getSelectedCategory().f27737a;
+                    d2Var.H = l2Var.f4950f.getSelectedCategory().f23400a;
                     androidx.fragment.app.a0 a0Var = d2Var.M;
                     AndroidUtilities.cancelRunOnUIThread(a0Var);
                     AndroidUtilities.runOnUIThread(a0Var);
@@ -113,7 +113,7 @@ public final class e2 extends a2 {
             l2Var.b();
         }
         l2Var.a(i10, s2Var.f5477s);
-        i12 = ((org.telegram.ui.ActionBar.f3) s2Var).currentAccount;
+        i12 = ((org.telegram.ui.ActionBar.e3) s2Var).currentAccount;
         MediaDataController mediaDataController = MediaDataController.getInstance(i12);
         if (i10 == 0) {
             i13 = 5;
@@ -136,7 +136,7 @@ public final class e2 extends a2 {
             View childAt = p1Var.getChildAt(i10);
             Object tag = childAt.getTag();
             if ((tag instanceof Integer) && ((Integer) tag).intValue() == 34) {
-                return hg.c.f(102.0f, childAt.getBottom(), 0);
+                return org.telegram.messenger.f0.b(102.0f, childAt.getBottom(), 0);
             }
             i10++;
         }
@@ -158,8 +158,8 @@ public final class e2 extends a2 {
         int i13;
         float f7;
         s2 s2Var = this.f4599s;
-        i12 = ((org.telegram.ui.ActionBar.f3) s2Var).backgroundPaddingLeft;
-        i13 = ((org.telegram.ui.ActionBar.f3) s2Var).backgroundPaddingLeft;
+        i12 = ((org.telegram.ui.ActionBar.e3) s2Var).backgroundPaddingLeft;
+        i13 = ((org.telegram.ui.ActionBar.e3) s2Var).backgroundPaddingLeft;
         setPadding(i12, 0, i13, 0);
         this.e.setTranslationY(AndroidUtilities.dp(16.0f));
         this.f4596f.setTranslationY(AndroidUtilities.dp(52.0f));

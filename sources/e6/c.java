@@ -13,39 +13,39 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 public final class c {
-    public long f7974b;
-    public final h f7975c;
+    public long f7973b;
+    public final h f7974c;
     public ArrayList d;
     public final SparseIntArray e;
-    public final s f7976f;
-    public final ArrayList f7977g;
+    public final s f7975f;
+    public final ArrayList f7976g;
     public final ArrayDeque h;
-    public final c0 f7978i;
-    public final o2 f7979j;
-    public BasePendingResult f7980k;
-    public BasePendingResult f7981l;
-    public final Set f7982m = DesugarCollections.synchronizedSet(new HashSet());
-    public final g6.b f7973a = new g6.b("MediaQueue", null);
+    public final c0 f7977i;
+    public final o2 f7978j;
+    public BasePendingResult f7979k;
+    public BasePendingResult f7980l;
+    public final Set f7981m = DesugarCollections.synchronizedSet(new HashSet());
+    public final g6.b f7972a = new g6.b("MediaQueue", null);
 
     public c(h hVar) {
-        this.f7975c = hVar;
+        this.f7974c = hVar;
         Math.max(20, 1);
         this.d = new ArrayList();
         this.e = new SparseIntArray();
-        this.f7977g = new ArrayList();
+        this.f7976g = new ArrayList();
         this.h = new ArrayDeque(20);
-        this.f7978i = new c0(Looper.getMainLooper(), 0);
-        this.f7979j = new o2(this, 1);
+        this.f7977i = new c0(Looper.getMainLooper(), 0);
+        this.f7978j = new o2(this, 1);
         hVar.p(new d6.c0(this, 1));
-        this.f7976f = new s(this);
-        this.f7974b = e();
+        this.f7975f = new s(this);
+        this.f7973b = e();
         d();
     }
 
     public static void a(c cVar) {
-        synchronized (cVar.f7982m) {
+        synchronized (cVar.f7981m) {
             try {
-                Iterator it = cVar.f7982m.iterator();
+                Iterator it = cVar.f7981m.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;
@@ -70,19 +70,19 @@ public final class c {
         h();
         this.d.clear();
         this.e.clear();
-        this.f7976f.evictAll();
-        this.f7977g.clear();
-        this.f7978i.removeCallbacks(this.f7979j);
+        this.f7975f.evictAll();
+        this.f7976g.clear();
+        this.f7977i.removeCallbacks(this.f7978j);
         this.h.clear();
-        BasePendingResult basePendingResult = this.f7981l;
+        BasePendingResult basePendingResult = this.f7980l;
         if (basePendingResult != null) {
             basePendingResult.c();
-            this.f7981l = null;
+            this.f7980l = null;
         }
-        BasePendingResult basePendingResult2 = this.f7980k;
+        BasePendingResult basePendingResult2 = this.f7979k;
         if (basePendingResult2 != null) {
             basePendingResult2.c();
-            this.f7980k = null;
+            this.f7979k = null;
         }
         g();
         f();
@@ -92,17 +92,17 @@ public final class c {
         BasePendingResult basePendingResult;
         BasePendingResult basePendingResult2;
         n6.l.e("Must be called from the main thread.");
-        if (this.f7974b != 0 && (basePendingResult = this.f7981l) == null) {
+        if (this.f7973b != 0 && (basePendingResult = this.f7980l) == null) {
             if (basePendingResult != null) {
                 basePendingResult.c();
-                this.f7981l = null;
+                this.f7980l = null;
             }
-            BasePendingResult basePendingResult3 = this.f7980k;
+            BasePendingResult basePendingResult3 = this.f7979k;
             if (basePendingResult3 != null) {
                 basePendingResult3.c();
-                this.f7980k = null;
+                this.f7979k = null;
             }
-            h hVar = this.f7975c;
+            h hVar = this.f7974c;
             hVar.getClass();
             n6.l.e("Must be called from the main thread.");
             if (!hVar.w()) {
@@ -112,14 +112,14 @@ public final class c {
                 h.x(jVar);
                 basePendingResult2 = jVar;
             }
-            this.f7981l = basePendingResult2;
+            this.f7980l = basePendingResult2;
             basePendingResult2.i(new r(this, 0));
         }
     }
 
     public final long e() {
         int i10;
-        c6.q e = this.f7975c.e();
+        c6.q e = this.f7974c.e();
         if (e != null) {
             MediaInfo mediaInfo = e.f4026a;
             if (mediaInfo == null) {
@@ -150,9 +150,9 @@ public final class c {
     }
 
     public final void f() {
-        synchronized (this.f7982m) {
+        synchronized (this.f7981m) {
             try {
-                Iterator it = this.f7982m.iterator();
+                Iterator it = this.f7981m.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;
@@ -166,9 +166,9 @@ public final class c {
     }
 
     public final void g() {
-        synchronized (this.f7982m) {
+        synchronized (this.f7981m) {
             try {
-                Iterator it = this.f7982m.iterator();
+                Iterator it = this.f7981m.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;
@@ -182,9 +182,9 @@ public final class c {
     }
 
     public final void h() {
-        synchronized (this.f7982m) {
+        synchronized (this.f7981m) {
             try {
-                Iterator it = this.f7982m.iterator();
+                Iterator it = this.f7981m.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;

@@ -1,525 +1,267 @@
 package org.telegram.ui.Components;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.widget.TextView;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.tl.TL_iv;
-public final class n90 extends v7.i0 {
-    public final ArrayList f26382a;
-    public TL_iv.RichText f26383b;
-    public final ArrayList f26384c = new ArrayList();
-    public final StringBuilder d = new StringBuilder();
-    public final ad.d e = new ad.d(new qb.b(1), new rb.a(1));
-    public final ArrayDeque f26385f;
+public class n90 extends TextView {
+    public static Field I;
+    public static Class J;
+    public static Method K;
+    public boolean E;
+    public boolean F;
+    public PorterDuffColorFilter G;
+    public int H;
+    public final boolean f26667a;
+    public final k90 f26668b;
+    public final org.telegram.ui.ActionBar.d6 f26669c;
+    public v5 d;
+    public o90 e;
+    public m90 f26670f;
+    public m90 h;
+    public boolean f26671n;
+    public boolean f26672r;
+    public boolean f26673s;
+    public CharacterStyle v;
+    public int f26674w;
+    public boolean f26675x;
+    public Object f26676y;
 
-    public n90(ArrayList arrayList, ArrayDeque arrayDeque) {
-        this.f26382a = arrayList;
-        this.f26385f = arrayDeque;
+    public n90(Context context) {
+        this(context, null);
     }
 
-    public static void A(int i10, List list, List list2) {
-        for (Object obj : list) {
-            if (obj instanceof l90) {
-                list2.add(((l90) obj).f25849a);
-            } else if (obj instanceof m90) {
-                C((m90) obj, list2, i10);
+    public int a() {
+        return 0;
+    }
+
+    public final ClickableSpan b(int i10, int i11) {
+        Layout layout = getLayout();
+        if (layout == null) {
+            return null;
+        }
+        int paddingLeft = i10 - getPaddingLeft();
+        int textPaddingTop = i11 - getTextPaddingTop();
+        int lineForVertical = layout.getLineForVertical(textPaddingTop);
+        float f7 = paddingLeft;
+        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f7);
+        float lineLeft = layout.getLineLeft(lineForVertical);
+        if (lineLeft <= f7 && layout.getLineWidth(lineForVertical) + lineLeft >= f7 && textPaddingTop >= 0 && textPaddingTop <= layout.getHeight()) {
+            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+                return clickableSpanArr[0];
             }
         }
+        return null;
     }
 
-    public static int B(bf.p pVar) {
-        bf.s sVar;
-        String str;
-        bf.p pVar2 = (bf.p) pVar.f3545c;
-        if (pVar2 instanceof bf.r) {
-            bf.p pVar3 = (bf.p) pVar2.f3545c;
-            if ((pVar3 instanceof bf.s) && (str = (sVar = (bf.s) pVar3).f3548g) != null) {
-                int i10 = 3;
-                if (str.length() >= 3) {
-                    int i11 = 0;
-                    if (str.charAt(0) == '[' && str.charAt(2) == ']') {
-                        char charAt = str.charAt(1);
-                        if (charAt != ' ') {
-                            if (charAt == 'x' || charAt == 'X') {
-                                i11 = 1;
-                            } else {
-                                return -1;
-                            }
-                        }
-                        if (str.length() > 3 && str.charAt(3) == ' ') {
-                            i10 = 4;
-                        }
-                        sVar.f3548g = str.substring(i10);
-                        return i11;
-                    }
-                    return -1;
-                }
-                return -1;
-            }
-            return -1;
-        }
-        return -1;
+    public int c() {
+        return org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Ld, this.f26669c);
     }
 
-    public static void C(m90 m90Var, List list, int i10) {
-        String lowerCase;
-        String str;
-        boolean z10;
-        TL_iv.RichText j3;
-        ad.a aVar = m90Var.f26148a;
-        ArrayList arrayList = m90Var.f26150c;
-        String str2 = aVar.f389a;
-        if (str2 == null) {
-            lowerCase = "";
-        } else {
-            lowerCase = str2.toLowerCase();
+    public int getTextPaddingTop() {
+        int paddingTop = getPaddingTop();
+        if (getGravity() == 17 && getLayout() != null) {
+            return Math.max(0, (((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2) + paddingTop;
         }
-        if (i10 >= 64) {
-            A(i10 + 1, arrayList, list);
-            return;
-        }
-        switch (lowerCase.hashCode()) {
-            case -1857640538:
-                if (lowerCase.equals("summary")) {
-                    return;
-                }
-                break;
-            case -1268861541:
-                str = "footer";
-                lowerCase.equals(str);
-                break;
-            case -1221270899:
-                str = "header";
-                lowerCase.equals(str);
-                break;
-            case -732377866:
-                str = "article";
-                lowerCase.equals(str);
-                break;
-            case 112:
-                str = "p";
-                lowerCase.equals(str);
-                break;
-            case 99473:
-                str = "div";
-                lowerCase.equals(str);
-                break;
-            case 108835:
-                str = "nav";
-                lowerCase.equals(str);
-                break;
-            case 3343801:
-                str = "main";
-                lowerCase.equals(str);
-                break;
-            case 93111608:
-                str = "aside";
-                lowerCase.equals(str);
-                break;
-            case 1557721666:
-                if (lowerCase.equals("details")) {
-                    TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
-                    Map map = aVar.f391c;
-                    int i11 = 0;
-                    if (map != null && map.containsKey("open")) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    pageblockdetails.open = z10;
-                    pageblockdetails.title = new TL_iv.textEmpty();
-                    ArrayList arrayList2 = new ArrayList();
-                    int size = arrayList.size();
-                    while (i11 < size) {
-                        Object obj = arrayList.get(i11);
-                        i11++;
-                        boolean z11 = obj instanceof m90;
-                        if (z11) {
-                            m90 m90Var2 = (m90) obj;
-                            if ("summary".equalsIgnoreCase(m90Var2.f26148a.f389a)) {
-                                StringBuilder sb2 = new StringBuilder();
-                                w(m90Var2.f26150c, sb2);
-                                String trim = sb2.toString().trim();
-                                if (trim.isEmpty()) {
-                                    j3 = new TL_iv.textEmpty();
-                                } else {
-                                    j3 = r90.j(trim);
-                                }
-                                pageblockdetails.title = j3;
-                            }
-                        }
-                        if (obj instanceof l90) {
-                            arrayList2.add(((l90) obj).f25849a);
-                        } else if (z11) {
-                            C((m90) obj, arrayList2, i10 + 1);
-                        }
-                    }
-                    pageblockdetails.blocks.addAll(arrayList2);
-                    list.add(pageblockdetails);
-                    return;
-                }
-                break;
-            case 1970241253:
-                str = "section";
-                lowerCase.equals(str);
-                break;
-        }
-        A(i10 + 1, arrayList, list);
-    }
-
-    public static void w(List list, StringBuilder sb2) {
-        for (Object obj : list) {
-            if (obj instanceof l90) {
-                TL_iv.PageBlock pageBlock = ((l90) obj).f25849a;
-                if (pageBlock instanceof TL_iv.pageBlockParagraph) {
-                    if (sb2.length() > 0) {
-                        sb2.append('\n');
-                    }
-                    sb2.append(r90.l(((TL_iv.pageBlockParagraph) pageBlock).text));
-                } else if (pageBlock instanceof TL_iv.pageBlockHeader) {
-                    if (sb2.length() > 0) {
-                        sb2.append('\n');
-                    }
-                    sb2.append(r90.l(((TL_iv.pageBlockHeader) pageBlock).text));
-                } else if (pageBlock instanceof TL_iv.pageBlockSubheader) {
-                    if (sb2.length() > 0) {
-                        sb2.append('\n');
-                    }
-                    sb2.append(r90.l(((TL_iv.pageBlockSubheader) pageBlock).text));
-                }
-            } else if (obj instanceof m90) {
-                w(((m90) obj).f26150c, sb2);
-            }
-        }
-    }
-
-    public static void z(ArrayList arrayList, List list) {
-        List unmodifiableList;
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            ad.a aVar = (ad.a) it.next();
-            arrayList.add(aVar);
-            ArrayList arrayList2 = aVar.f388f;
-            if (arrayList2 == null) {
-                unmodifiableList = Collections.EMPTY_LIST;
-            } else {
-                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
-            }
-            z(arrayList, unmodifiableList);
-        }
+        return paddingTop;
     }
 
     @Override
-    public final void a(bf.b bVar) {
-        for (TL_iv.RichText richText : r90.b(r90.a(bVar, null))) {
-            TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
-            pageblockblockquote.text = richText;
-            pageblockblockquote.caption = new TL_iv.textEmpty();
-            x(pageblockblockquote);
-        }
-    }
-
-    @Override
-    public final void b(bf.c cVar) {
-        TL_iv.pageBlockList pageblocklist = new TL_iv.pageBlockList();
-        for (bf.p pVar = (bf.p) cVar.f3545c; pVar != null; pVar = (bf.p) pVar.f3546f) {
-            if (pVar instanceof bf.o) {
-                int B = B(pVar);
-                TL_iv.TL_pageListItemText tL_pageListItemText = new TL_iv.TL_pageListItemText();
-                if (B >= 0) {
-                    boolean z10 = true;
-                    tL_pageListItemText.checkbox = true;
-                    if (B != 1) {
-                        z10 = false;
-                    }
-                    tL_pageListItemText.checked = z10;
-                }
-                tL_pageListItemText.text = r90.d(r90.a(pVar, pageblocklist));
-                pageblocklist.items.add(tL_pageListItemText);
-            }
-        }
-        x(pageblocklist);
-    }
-
-    @Override
-    public final void f(bf.h hVar) {
-        TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
-        pageblockpreformatted.text = r90.d(r90.j(hVar.f3535k));
-        String str = hVar.f3534j;
-        if (str == null) {
-            str = "";
-        }
-        pageblockpreformatted.language = str;
-        x(pageblockpreformatted);
-    }
-
-    @Override
-    public final void g(bf.i iVar) {
-        TL_iv.RichText d = r90.d(r90.a(iVar, null));
-        if (this.f26384c.isEmpty()) {
-            this.f26383b = d;
-        }
-        switch (iVar.f3536g) {
-            case 1:
-                TL_iv.pageBlockHeading1 pageblockheading1 = new TL_iv.pageBlockHeading1();
-                pageblockheading1.text = d;
-                x(pageblockheading1);
-                return;
-            case 2:
-                TL_iv.pageBlockHeading2 pageblockheading2 = new TL_iv.pageBlockHeading2();
-                pageblockheading2.text = d;
-                x(pageblockheading2);
-                return;
-            case 3:
-                TL_iv.pageBlockHeading3 pageblockheading3 = new TL_iv.pageBlockHeading3();
-                pageblockheading3.text = d;
-                x(pageblockheading3);
-                return;
-            case 4:
-                TL_iv.pageBlockHeading4 pageblockheading4 = new TL_iv.pageBlockHeading4();
-                pageblockheading4.text = d;
-                x(pageblockheading4);
-                return;
-            case 5:
-                TL_iv.pageBlockHeading5 pageblockheading5 = new TL_iv.pageBlockHeading5();
-                pageblockheading5.text = d;
-                x(pageblockheading5);
-                return;
-            case 6:
-                TL_iv.pageBlockHeading6 pageblockheading6 = new TL_iv.pageBlockHeading6();
-                pageblockheading6.text = d;
-                x(pageblockheading6);
-                return;
-            default:
-                TL_iv.pageBlockHeader pageblockheader = new TL_iv.pageBlockHeader();
-                pageblockheader.text = d;
-                x(pageblockheader);
-                return;
-        }
-    }
-
-    @Override
-    public final void h(bf.j jVar) {
-        StringBuilder sb2 = this.d;
-        String str = jVar.f3537g;
-        if (str == null) {
-            return;
-        }
-        try {
-            this.e.b(sb2, str);
-        } catch (Throwable th2) {
-            FileLog.e(th2);
-            sb2.append(str);
-        }
-    }
-
-    @Override
-    public final void j(bf.l lVar) {
-        TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
-        pageblockpreformatted.text = r90.d(r90.j(lVar.f3540g));
-        pageblockpreformatted.language = "";
-        x(pageblockpreformatted);
-    }
-
-    @Override
-    public final void k(bf.n nVar) {
-        boolean z10;
-        if (nVar instanceof we.a) {
-            TL_iv.pageBlockTable pageblocktable = new TL_iv.pageBlockTable();
-            pageblocktable.bordered = true;
-            pageblocktable.title = new TL_iv.textEmpty();
-            for (bf.p pVar = (bf.p) ((we.a) nVar).f3545c; pVar != null; pVar = (bf.p) pVar.f3546f) {
-                boolean z11 = pVar instanceof we.e;
-                if (z11 || (pVar instanceof we.b)) {
-                    for (bf.p pVar2 = (bf.p) pVar.f3545c; pVar2 != null; pVar2 = (bf.p) pVar2.f3546f) {
-                        if (pVar2 instanceof we.f) {
-                            ArrayList<TL_iv.pageTableRow> arrayList = pageblocktable.rows;
-                            TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
-                            for (bf.p pVar3 = (bf.p) ((we.f) pVar2).f3545c; pVar3 != null; pVar3 = (bf.p) pVar3.f3546f) {
-                                if (pVar3 instanceof we.d) {
-                                    ArrayList<TL_iv.pageTableCell> arrayList2 = pagetablerow.cells;
-                                    we.d dVar = (we.d) pVar3;
-                                    TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
-                                    if (!z11 && !dVar.f44973g) {
-                                        z10 = false;
-                                    } else {
-                                        z10 = true;
-                                    }
-                                    pagetablecell.header = z10;
-                                    we.c cVar = dVar.h;
-                                    if (cVar == we.c.f44971b) {
-                                        pagetablecell.align_center = true;
-                                    } else if (cVar == we.c.f44972c) {
-                                        pagetablecell.align_right = true;
-                                    }
-                                    pagetablecell.text = r90.d(r90.a(dVar, null));
-                                    pagetablecell.flags |= 128;
-                                    arrayList2.add(pagetablecell);
-                                }
-                            }
-                            arrayList.add(pagetablerow);
-                        }
+    public final void invalidate() {
+        if (!this.f26675x) {
+            this.f26675x = true;
+            try {
+                if (J == null) {
+                    Field declaredField = TextView.class.getDeclaredField("mEditor");
+                    I = declaredField;
+                    declaredField.setAccessible(true);
+                    Class<?> cls = Class.forName("android.widget.Editor");
+                    J = cls;
+                    try {
+                        Method declaredMethod = cls.getDeclaredMethod("invalidateTextDisplayList", null);
+                        K = declaredMethod;
+                        declaredMethod.setAccessible(true);
+                    } catch (Exception unused) {
                     }
                 }
+            } catch (Throwable th2) {
+                FileLog.e(th2);
             }
-            x(pageblocktable);
-        } else if (nVar instanceof zc.a) {
-            TL_iv.PageBlock pageblockparagraph = new TL_iv.pageBlockParagraph();
-            pageblockparagraph.text = r90.c(((zc.a) nVar).f48804g);
-            x(pageblockparagraph);
-        } else {
-            v(nVar);
         }
-    }
-
-    @Override
-    public final void m(bf.q r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n90.m(bf.q):void");
-    }
-
-    @Override
-    public final void n(bf.r rVar) {
-        for (TL_iv.RichText richText : r90.b(r90.a(rVar, null))) {
-            TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-            pageblockparagraph.text = richText;
-            x(pageblockparagraph);
-        }
-    }
-
-    @Override
-    public final void p(bf.t tVar) {
-        x(new TL_iv.pageBlockDivider());
-    }
-
-    public final void x(TL_iv.PageBlock pageBlock) {
-        StringBuilder sb2 = this.d;
-        int length = sb2.length();
-        sb2.append((char) 1);
-        sb2.length();
-        this.f26384c.add(new l90(length, pageBlock));
-    }
-
-    public final void y() {
-        List unmodifiableList;
-        StringBuilder sb2 = this.d;
-        ArrayList arrayList = new ArrayList();
-        try {
-            ad.d dVar = this.e;
-            int length = sb2.length();
-            ad.a aVar = dVar.d;
-            while (true) {
-                ad.a aVar2 = aVar.e;
-                if (aVar2 == null) {
-                    break;
-                }
-                aVar = aVar2;
-            }
-            if (length > -1) {
-                aVar.b(length);
-            }
-            ArrayList arrayList2 = aVar.f388f;
-            if (arrayList2 == null) {
-                unmodifiableList = Collections.EMPTY_LIST;
-            } else {
-                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
-            }
-            if (unmodifiableList.size() > 0) {
-                arrayList.addAll(unmodifiableList);
-            } else {
-                arrayList.addAll(Collections.EMPTY_LIST);
-            }
-            dVar.d = new ad.a("", 0, Collections.EMPTY_MAP, null);
-        } catch (Throwable th2) {
-            FileLog.e(th2);
-        }
-        ArrayList arrayList3 = new ArrayList();
-        z(arrayList3, arrayList);
-        HashMap hashMap = new HashMap();
-        ArrayList arrayList4 = this.f26384c;
-        int size = arrayList4.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList4.get(i10);
-            i10++;
-            l90 l90Var = (l90) obj;
-            hashMap.put(Integer.valueOf(l90Var.f25850b), l90Var);
-        }
-        TreeSet treeSet = new TreeSet();
-        treeSet.add(0);
-        treeSet.add(Integer.valueOf(sb2.length()));
-        for (Integer num : hashMap.keySet()) {
-            treeSet.add(num);
-            treeSet.add(Integer.valueOf(num.intValue() + 1));
-        }
-        int size2 = arrayList3.size();
-        int i11 = 0;
-        while (i11 < size2) {
-            Object obj2 = arrayList3.get(i11);
-            i11++;
-            ad.a aVar3 = (ad.a) obj2;
-            treeSet.add(Integer.valueOf(aVar3.f390b));
-            treeSet.add(Integer.valueOf(aVar3.d));
-        }
-        ArrayList arrayList5 = new ArrayList();
-        Iterator it = treeSet.iterator();
-        Integer num2 = null;
-        while (it.hasNext()) {
-            Integer num3 = (Integer) it.next();
-            if (num2 != null && num3.intValue() > num2.intValue()) {
-                int intValue = num2.intValue();
-                int intValue2 = num3.intValue();
-                if (intValue2 - intValue == 1 && hashMap.containsKey(num2)) {
-                    arrayList5.add((l90) hashMap.get(num2));
-                } else {
-                    String trim = sb2.substring(intValue, intValue2).trim();
-                    if (!trim.isEmpty()) {
-                        TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-                        pageblockparagraph.text = r90.d(r90.j(trim));
-                        arrayList5.add(new l90(intValue, pageblockparagraph));
+        super.invalidate();
+        if (isHardwareAccelerated()) {
+            try {
+                if (K != null) {
+                    if (this.f26676y == null) {
+                        this.f26676y = I.get(this);
+                    }
+                    Object obj = this.f26676y;
+                    if (obj != null) {
+                        K.invoke(obj, null);
                     }
                 }
+            } catch (Exception unused2) {
             }
-            num2 = num3;
         }
-        Collections.sort(arrayList3, new org.telegram.ui.df(10));
-        m90 m90Var = new m90(null, Integer.MAX_VALUE);
-        ArrayDeque arrayDeque = new ArrayDeque();
-        arrayDeque.push(m90Var);
-        int size3 = arrayList5.size();
-        int i12 = 0;
-        int i13 = 0;
-        while (i13 < size3) {
-            Object obj3 = arrayList5.get(i13);
-            i13++;
-            l90 l90Var2 = (l90) obj3;
-            while (i12 < arrayList3.size() && ((ad.a) arrayList3.get(i12)).f390b <= l90Var2.f25850b) {
-                int i14 = i12 + 1;
-                ad.a aVar4 = (ad.a) arrayList3.get(i12);
-                int i15 = aVar4.d;
-                int i16 = aVar4.f390b;
-                if (i15 >= l90Var2.f25850b) {
-                    while (arrayDeque.peek() != m90Var && ((m90) arrayDeque.peek()).f26149b <= i16) {
-                        arrayDeque.pop();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.d = z5.update(a(), this, this.d, getLayout());
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        z5.release(this, this.d);
+    }
+
+    @Override
+    public void onDraw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n90.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        int i12 = this.f26674w;
+        if (i12 > 0) {
+            i10 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10));
+        }
+        super.onMeasure(i10, i11);
+        this.d = z5.update(a(), this, this.d, getLayout());
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        CharacterStyle characterStyle;
+        k90 k90Var = this.f26668b;
+        if (k90Var != null) {
+            Layout layout = getLayout();
+            ClickableSpan b10 = b((int) motionEvent.getX(), (int) motionEvent.getY());
+            if (b10 != null && motionEvent.getAction() == 0) {
+                o90 o90Var = new o90(b10, this.f26669c, motionEvent.getX(), motionEvent.getY(), 0);
+                o90Var.d(c());
+                this.e = o90Var;
+                k90Var.a(o90Var, null);
+                SpannableString spannableString = new SpannableString(layout.getText());
+                int spanStart = spannableString.getSpanStart(this.e.f26967i);
+                int spanEnd = spannableString.getSpanEnd(this.e.f26967i);
+                h90 b11 = this.e.b();
+                b11.d(layout, spanStart, getPaddingTop());
+                layout.getSelectionPath(spanStart, spanEnd, b11);
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o(this, o90Var, b10, 25), ViewConfiguration.getLongPressTimeout());
+                return true;
+            }
+            if (motionEvent.getAction() == 1) {
+                k90Var.d(true);
+                o90 o90Var2 = this.e;
+                if (o90Var2 != null && (characterStyle = o90Var2.f26967i) == b10) {
+                    m90 m90Var = this.f26670f;
+                    if (m90Var != null) {
+                        m90Var.a((ClickableSpan) characterStyle);
+                    } else if (characterStyle != null) {
+                        ((ClickableSpan) characterStyle).onClick(this);
                     }
-                    m90 m90Var2 = new m90(aVar4, aVar4.d);
-                    ((m90) arrayDeque.peek()).f26150c.add(m90Var2);
-                    arrayDeque.push(m90Var2);
+                    this.e = null;
+                    return true;
                 }
-                i12 = i14;
+                this.e = null;
             }
-            while (arrayDeque.peek() != m90Var && ((m90) arrayDeque.peek()).f26149b <= l90Var2.f25850b) {
-                arrayDeque.pop();
+            if (motionEvent.getAction() == 3) {
+                k90Var.d(true);
+                this.e = null;
             }
-            TL_iv.PageBlock pageBlock = l90Var2.f25849a;
-            ((m90) arrayDeque.peek()).f26150c.add(l90Var2);
         }
-        A(0, m90Var.f26150c, this.f26382a);
+        if (this.e != null || super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setDisablePaddingsOffset(boolean z10) {
+        this.f26671n = z10;
+    }
+
+    public void setDisablePaddingsOffsetX(boolean z10) {
+        this.f26672r = z10;
+    }
+
+    public void setDisablePaddingsOffsetY(boolean z10) {
+        this.f26673s = z10;
+    }
+
+    public void setEmojiColor(int i10) {
+        this.F = false;
+        this.G = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
+        invalidate();
+    }
+
+    public void setLoading(CharacterStyle characterStyle) {
+        if (this.v != characterStyle) {
+            k90 k90Var = this.f26668b;
+            k90Var.e();
+            this.v = characterStyle;
+            r90 i10 = k90.i(getLayout(), characterStyle, getPaddingTop());
+            if (i10 != null) {
+                int d = d(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Ld, this.f26669c));
+                i10.f(org.telegram.ui.ActionBar.h6.l1(0.8f, d), org.telegram.ui.ActionBar.h6.l1(1.3f, d), org.telegram.ui.ActionBar.h6.l1(1.0f, d), org.telegram.ui.ActionBar.h6.l1(4.0f, d));
+                i10.f27921w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                k90Var.b(i10, null);
+            }
+        }
+    }
+
+    @Override
+    public void setMaxWidth(int i10) {
+        this.f26674w = i10;
+    }
+
+    public void setOnLinkLongPressListener(m90 m90Var) {
+        this.h = m90Var;
+    }
+
+    public void setOnLinkPressListener(m90 m90Var) {
+        this.f26670f = m90Var;
+    }
+
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        this.d = z5.update(a(), this, this.d, getLayout());
+    }
+
+    public n90(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.E = false;
+        this.F = true;
+        this.f26667a = false;
+        this.f26668b = new k90(this);
+        this.f26669c = d6Var;
+    }
+
+    public n90(Context context, k90 k90Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.E = false;
+        this.F = true;
+        this.f26667a = true;
+        this.f26668b = k90Var;
+        this.f26669c = d6Var;
+    }
+
+    public int d(int i10) {
+        return i10;
     }
 }

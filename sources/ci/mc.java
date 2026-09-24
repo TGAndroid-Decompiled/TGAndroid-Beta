@@ -26,14 +26,14 @@ public final class mc implements Runnable {
             case 1:
                 pc pcVar = this.f5187b.f5743a;
                 if (pcVar != null) {
-                    pcVar.f0();
+                    pcVar.b0();
                     return;
                 }
                 return;
             default:
                 pc pcVar2 = this.f5187b.f5743a;
                 if (pcVar2 != null) {
-                    pcVar2.s();
+                    pcVar2.r();
                     return;
                 }
                 return;

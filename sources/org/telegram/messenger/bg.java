@@ -6,33 +6,33 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.tl.TL_stars;
 public final class bg implements Runnable {
-    public final int f15756a;
-    public final MessagesStorage f15757b;
-    public final int f15758c;
+    public final int f15996a;
+    public final MessagesStorage f15997b;
+    public final int f15998c;
     public final ArrayList d;
     public final long e;
 
     public bg(int i10, int i11, long j3, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f15756a = i11;
-        this.f15757b = messagesStorage;
-        this.f15758c = i10;
+        this.f15996a = i11;
+        this.f15997b = messagesStorage;
+        this.f15998c = i10;
         this.d = arrayList;
         this.e = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f15756a) {
+        switch (this.f15996a) {
             case 0:
-                this.f15757b.lambda$loadPendingTasks$27(this.f15758c, this.d, this.e);
+                this.f15997b.lambda$loadPendingTasks$27(this.f15998c, this.d, this.e);
                 return;
             case 1:
-                this.f15757b.lambda$loadPendingTasks$28(this.f15758c, this.d, this.e);
+                this.f15997b.lambda$loadPendingTasks$28(this.f15998c, this.d, this.e);
                 return;
             default:
-                int i10 = this.f15758c;
+                int i10 = this.f15998c;
                 long j3 = this.e;
-                SQLiteDatabase database = this.f15757b.getDatabase();
+                SQLiteDatabase database = this.f15997b.getDatabase();
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
@@ -43,7 +43,7 @@ public final class bg implements Runnable {
                             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                                 TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i11);
                                 sQLitePreparedStatement.requery();
-                                sQLitePreparedStatement.bindLong(1, starGift.f18308id);
+                                sQLitePreparedStatement.bindLong(1, starGift.f18546id);
                                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(starGift.getObjectSize());
                                 starGift.serializeToStream(nativeByteBuffer);
                                 sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
@@ -75,10 +75,10 @@ public final class bg implements Runnable {
     }
 
     public bg(MessagesStorage messagesStorage, long j3, ArrayList arrayList, int i10) {
-        this.f15756a = 2;
-        this.f15757b = messagesStorage;
+        this.f15996a = 2;
+        this.f15997b = messagesStorage;
         this.d = arrayList;
-        this.f15758c = i10;
+        this.f15998c = i10;
         this.e = j3;
     }
 }

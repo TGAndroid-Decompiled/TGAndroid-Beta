@@ -7,6 +7,7 @@ import i9.s;
 import id.h;
 import java.util.concurrent.CancellationException;
 import kotlin.jvm.internal.i;
+import v7.j;
 import zd.a0;
 import zd.e0;
 import zd.e2;
@@ -46,7 +47,7 @@ public final class e extends a0 implements j0 {
             };
         }
         f(hVar, e2Var);
-        return w1.f48887a;
+        return w1.f49205a;
     }
 
     @Override
@@ -90,7 +91,7 @@ public final class e extends a0 implements j0 {
 
     public final void f(h hVar, Runnable runnable) {
         e0.e(hVar, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        m0.f48853b.c(hVar, runnable);
+        m0.f49171b.c(hVar, runnable);
     }
 
     public final int hashCode() {
@@ -108,8 +109,8 @@ public final class e extends a0 implements j0 {
     public final String toString() {
         e eVar;
         String str;
-        ge.e eVar2 = m0.f48852a;
-        e eVar3 = o.f8180a;
+        ge.e eVar2 = m0.f49170a;
+        e eVar3 = o.f8179a;
         if (this == eVar3) {
             str = "Dispatchers.Main";
         } else {
@@ -127,7 +128,7 @@ public final class e extends a0 implements j0 {
         if (str == null) {
             String handler = this.f402c.toString();
             if (this.d) {
-                return w.c.g(handler, ".immediate");
+                return j.t(handler, ".immediate");
             }
             return handler;
         }

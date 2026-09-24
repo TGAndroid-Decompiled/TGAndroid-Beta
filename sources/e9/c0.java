@@ -9,11 +9,11 @@ public abstract class c0 extends k0 {
 
     @Override
     public final d0 e() {
-        z0 z0Var = ((z0) this).f8134n;
-        m0 m0Var = z0Var.f8076b;
+        z0 z0Var = ((z0) this).f8133n;
+        m0 m0Var = z0Var.f8075b;
         if (m0Var == null) {
             d1 c10 = z0Var.c();
-            z0Var.f8076b = c10;
+            z0Var.f8075b = c10;
             return c10;
         }
         return m0Var;
@@ -21,11 +21,11 @@ public abstract class c0 extends k0 {
 
     @Override
     public final Collection values() {
-        z0 z0Var = ((z0) this).f8134n;
-        m0 m0Var = z0Var.f8076b;
+        z0 z0Var = ((z0) this).f8133n;
+        m0 m0Var = z0Var.f8075b;
         if (m0Var == null) {
             d1 c10 = z0Var.c();
-            z0Var.f8076b = c10;
+            z0Var.f8075b = c10;
             return c10;
         }
         return m0Var;

@@ -6,14 +6,14 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.util.Rational;
 public final class b {
-    public final Rect f42856a = new Rect();
-    public final Point f42857b = new Point();
+    public final Rect f43178a = new Rect();
+    public final Point f43179b = new Point();
 
     public final PictureInPictureParams.Builder a() {
         int i10;
         Rational rational;
         PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
-        Point point = this.f42857b;
+        Point point = this.f43179b;
         int i11 = point.x;
         if (i11 > 0 && (i10 = point.y) > 0) {
             double d = i11 / i10;
@@ -34,7 +34,7 @@ public final class b {
                 builder.setExpandedAspectRatio(null);
             }
         }
-        Rect rect = this.f42856a;
+        Rect rect = this.f43178a;
         if (!rect.isEmpty()) {
             builder.setSourceRectHint(rect);
             return builder;
@@ -44,8 +44,8 @@ public final class b {
     }
 
     public final boolean b() {
-        if (!this.f42856a.isEmpty()) {
-            Point point = this.f42857b;
+        if (!this.f43178a.isEmpty()) {
+            Point point = this.f43179b;
             if (point.x > 0 && point.y > 0) {
                 return true;
             }
@@ -55,7 +55,7 @@ public final class b {
     }
 
     public final boolean c(int i10, int i11) {
-        Point point = this.f42857b;
+        Point point = this.f43179b;
         if (point.x == i10 && point.y == i11) {
             return false;
         }

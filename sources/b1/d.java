@@ -11,7 +11,7 @@ import java.util.concurrent.Executor;
 import kotlin.jvm.internal.i;
 import rd.l;
 import rd.p;
-import v7.f0;
+import v7.h0;
 public abstract class d {
     public static final a f2885a = new Object();
     public static final LinkedHashSet f2886b;
@@ -47,16 +47,16 @@ public abstract class d {
         if (!bundle.getBoolean("FAILURE_RESPONSE")) {
             return false;
         }
-        f0.a(cancellationSignal, new b(executor, callback, pVar.invoke(bundle.getString("EXCEPTION_TYPE"), bundle.getString("EXCEPTION_MESSAGE")), 0));
+        h0.a(cancellationSignal, new b(executor, callback, pVar.invoke(bundle.getString("EXCEPTION_TYPE"), bundle.getString("EXCEPTION_MESSAGE")), 0));
         return true;
     }
 
     public static final boolean c(int i10, p pVar, l lVar, CancellationSignal cancellationSignal) {
         if (i10 != -1) {
             ?? obj = new Object();
-            obj.f13672a = new w0.c(hg.c.j(i10, "activity with result code: ", " indicating not RESULT_OK"), 2);
+            obj.f13892a = new w0.c(hg.c.i(i10, "activity with result code: ", " indicating not RESULT_OK"), 2);
             if (i10 == 0) {
-                obj.f13672a = new w0.b("activity is cancelled by the user.");
+                obj.f13892a = new w0.b("activity is cancelled by the user.");
             }
             pVar.invoke(cancellationSignal, new c(lVar, obj, 0));
             return true;

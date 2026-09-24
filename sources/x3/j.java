@@ -12,84 +12,84 @@ import e0.i0;
 import e2.v;
 import java.util.ArrayList;
 import java.util.Arrays;
-import n7.a1;
+import n7.z0;
 public final class j extends i {
-    public i0 f45206n;
-    public int f45207o;
-    public boolean f45208p;
-    public z f45209q;
-    public j0 f45210r;
+    public i0 f45520n;
+    public int f45521o;
+    public boolean f45522p;
+    public z f45523q;
+    public j0 f45524r;
 
     @Override
     public final void a(long j3) {
         boolean z10;
-        this.f45200g = j3;
+        this.f45514g = j3;
         int i10 = 0;
         if (j3 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f45208p = z10;
-        z zVar = this.f45209q;
+        this.f45522p = z10;
+        z zVar = this.f45523q;
         if (zVar != null) {
             i10 = zVar.e;
         }
-        this.f45207o = i10;
+        this.f45521o = i10;
     }
 
     @Override
     public final long b(v vVar) {
         int i10;
         int i11 = 0;
-        byte b10 = vVar.f7917a[0];
+        byte b10 = vVar.f7916a[0];
         if ((b10 & 1) == 1) {
             return -1L;
         }
-        i0 i0Var = this.f45206n;
+        i0 i0Var = this.f45520n;
         e2.d.h(i0Var);
-        int i12 = i0Var.f7772a;
-        z zVar = (z) i0Var.f7773b;
+        int i12 = i0Var.f7771a;
+        z zVar = (z) i0Var.f7772b;
         if (!((k0[]) i0Var.e)[(b10 >> 1) & (255 >>> (8 - i12))].f3779b) {
             i10 = zVar.e;
         } else {
             i10 = zVar.f3825f;
         }
-        if (this.f45208p) {
-            i11 = (this.f45207o + i10) / 4;
+        if (this.f45522p) {
+            i11 = (this.f45521o + i10) / 4;
         }
         long j3 = i11;
-        byte[] bArr = vVar.f7917a;
+        byte[] bArr = vVar.f7916a;
         int length = bArr.length;
-        int i13 = vVar.f7919c + 4;
+        int i13 = vVar.f7918c + 4;
         if (length < i13) {
             byte[] copyOf = Arrays.copyOf(bArr, i13);
             vVar.H(copyOf.length, copyOf);
         } else {
             vVar.I(i13);
         }
-        byte[] bArr2 = vVar.f7917a;
-        int i14 = vVar.f7919c;
+        byte[] bArr2 = vVar.f7916a;
+        int i14 = vVar.f7918c;
         bArr2[i14 - 4] = (byte) (j3 & 255);
         bArr2[i14 - 3] = (byte) ((j3 >>> 8) & 255);
         bArr2[i14 - 2] = (byte) ((j3 >>> 16) & 255);
         bArr2[i14 - 1] = (byte) ((j3 >>> 24) & 255);
-        this.f45208p = true;
-        this.f45207o = i10;
+        this.f45522p = true;
+        this.f45521o = i10;
         return j3;
     }
 
     @Override
-    public final boolean c(v vVar, long j3, a1 a1Var) {
+    public final boolean c(v vVar, long j3, z0 z0Var) {
         i0 i0Var;
         int i10;
         int i11;
         long j10;
-        if (this.f45206n != null) {
-            ((s) a1Var.f15083b).getClass();
+        if (this.f45520n != null) {
+            ((s) z0Var.f15395b).getClass();
             return false;
         }
-        z zVar = this.f45209q;
+        z zVar = this.f45523q;
         int i12 = 4;
         int i13 = -1;
         if (zVar == null) {
@@ -109,7 +109,7 @@ public final class j extends i {
             int x11 = vVar.x();
             int pow = (int) Math.pow(2.0d, (x11 & 240) >> 4);
             vVar.x();
-            ?? copyOf = Arrays.copyOf(vVar.f7917a, vVar.f7919c);
+            ?? copyOf = Arrays.copyOf(vVar.f7916a, vVar.f7918c);
             ?? obj = new Object();
             obj.f3822a = x10;
             obj.f3823b = p5;
@@ -118,21 +118,21 @@ public final class j extends i {
             obj.e = (int) Math.pow(2.0d, x11 & 15);
             obj.f3825f = pow;
             obj.f3826g = copyOf;
-            this.f45209q = obj;
+            this.f45523q = obj;
         } else {
-            j0 j0Var = this.f45210r;
+            j0 j0Var = this.f45524r;
             if (j0Var == null) {
-                this.f45210r = c3.b.v(vVar, true, true);
+                this.f45524r = c3.b.v(vVar, true, true);
             } else {
-                int i14 = vVar.f7919c;
+                int i14 = vVar.f7918c;
                 byte[] bArr = new byte[i14];
-                System.arraycopy(vVar.f7917a, 0, bArr, 0, i14);
+                System.arraycopy(vVar.f7916a, 0, bArr, 0, i14);
                 int i15 = zVar.f3822a;
                 int i16 = 5;
                 c3.b.x(5, vVar, false);
                 int x12 = vVar.x() + 1;
-                a4.h hVar = new a4.h(vVar.f7917a);
-                hVar.t(vVar.f7918b * 8);
+                a4.h hVar = new a4.h(vVar.f7916a);
+                hVar.t(vVar.f7917b * 8);
                 int i17 = 0;
                 while (true) {
                     int i18 = 16;
@@ -382,15 +382,15 @@ public final class j extends i {
             }
         }
         i0Var = null;
-        this.f45206n = i0Var;
+        this.f45520n = i0Var;
         if (i0Var == null) {
             return true;
         }
-        z zVar2 = (z) i0Var.f7773b;
+        z zVar2 = (z) i0Var.f7772b;
         ArrayList arrayList = new ArrayList();
         arrayList.add((byte[]) zVar2.f3826g);
         arrayList.add((byte[]) i0Var.d);
-        p0 r10 = c3.b.r(e9.i0.w(((j0) i0Var.f7774c).f3772a));
+        p0 r10 = c3.b.r(e9.i0.w(((j0) i0Var.f7773c).f3772a));
         r rVar = new r();
         rVar.f3244p = r0.n("audio/ogg");
         rVar.f3245q = r0.n("audio/vorbis");
@@ -400,7 +400,7 @@ public final class j extends i {
         rVar.J = zVar2.f3823b;
         rVar.f3248t = arrayList;
         rVar.f3239k = r10;
-        a1Var.f15083b = new s(rVar);
+        z0Var.f15395b = new s(rVar);
         return true;
     }
 
@@ -408,11 +408,11 @@ public final class j extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f45206n = null;
-            this.f45209q = null;
-            this.f45210r = null;
+            this.f45520n = null;
+            this.f45523q = null;
+            this.f45524r = null;
         }
-        this.f45207o = 0;
-        this.f45208p = false;
+        this.f45521o = 0;
+        this.f45522p = false;
     }
 }

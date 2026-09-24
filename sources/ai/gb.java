@@ -25,7 +25,7 @@ public final class gb extends FrameLayout {
         this.f910a = paint;
         Paint paint2 = new Paint(1);
         this.f911b = paint2;
-        paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19026q7, d6Var));
+        paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19284q7, d6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
@@ -33,14 +33,14 @@ public final class gb extends FrameLayout {
         textView.setTextSize(1, 14.0f);
         textView.setText(LocaleController.getString(R.string.StoryError));
         textView.setTextColor(-1);
-        addView(textView, w7.x5.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
+        addView(textView, w7.y5.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 8.0f);
         textView2.setTextColor(org.telegram.ui.ActionBar.h6.l1(0.5f, -1));
         textView2.setVisibility(8);
         textView2.setTranslationY(AndroidUtilities.dp(9.0f));
-        addView(textView2, w7.x5.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
+        addView(textView2, w7.y5.d(-2, -2.0f, 19, 44.0f, 0.0f, 0.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.e = textView3;
         textView3.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
@@ -51,7 +51,7 @@ public final class gb extends FrameLayout {
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(-1);
         textView3.setGravity(17);
-        addView(textView3, w7.x5.d(-2, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        addView(textView3, w7.y5.d(-2, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
     }
 
     @Override

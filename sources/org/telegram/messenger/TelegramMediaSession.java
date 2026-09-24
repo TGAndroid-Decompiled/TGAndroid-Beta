@@ -127,9 +127,9 @@ public class TelegramMediaSession {
                 }
                 MessageObject messageObject = (MessageObject) arrayList.get(0);
                 a4.m mVar = new a4.m(1);
-                mVar.z0((long) (messageObject.getDuration() * 1000.0d));
-                mVar.A0("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
-                mVar.A0("android.media.metadata.TITLE", messageObject.getMusicTitle());
+                mVar.v0((long) (messageObject.getDuration() * 1000.0d));
+                mVar.w0("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
+                mVar.w0("android.media.metadata.TITLE", messageObject.getMusicTitle());
                 this.session.e(new MediaMetadataCompat((Bundle) mVar.f275b));
             }
         }
@@ -270,7 +270,7 @@ public class TelegramMediaSession {
                     TLRPC.User user = arrayList4.get(i12);
                     i12++;
                     TLRPC.User user2 = user;
-                    iVar.k(user2, user2.f18230id);
+                    iVar.k(user2, user2.f18468id);
                 }
             }
             if (!arrayList3.isEmpty()) {
@@ -281,7 +281,7 @@ public class TelegramMediaSession {
                     TLRPC.Chat chat = arrayList5.get(i11);
                     i11++;
                     TLRPC.Chat chat2 = chat;
-                    iVar2.k(chat2, chat2.f18083id);
+                    iVar2.k(chat2, chat2.f18321id);
                 }
             }
         } catch (Exception e) {
@@ -322,7 +322,7 @@ public class TelegramMediaSession {
                     TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(i10).clientUserId);
                     byteBufferValue.reuse();
                     if (MessageObject.isMusicMessage(TLdeserialize)) {
-                        TLdeserialize.f18104id = queryFinalized.intValue(1);
+                        TLdeserialize.f18342id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j3;
                         i11 = i10;
                         try {
@@ -411,7 +411,7 @@ public class TelegramMediaSession {
     }
 
     public Bundle buildRootHints() {
-        Bundle e = z0.e(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
+        Bundle e = ok.e(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
         e.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
         return e;
     }
@@ -465,7 +465,7 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f18087id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f18325id), Integer.valueOf(i10));
             }
         }
         Collections.sort(arrayList, new qk(hashMap, 0));
@@ -531,18 +531,18 @@ public class TelegramMediaSession {
             return;
         }
         a4.m mVar = new a4.m(1);
-        mVar.A0("android.media.metadata.ALBUM_ARTIST", messageObject.getMusicAuthor());
-        mVar.A0("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
-        mVar.z0((long) (messageObject.getDuration() * 1000.0d));
-        mVar.A0("android.media.metadata.TITLE", messageObject.getMusicTitle());
+        mVar.w0("android.media.metadata.ALBUM_ARTIST", messageObject.getMusicAuthor());
+        mVar.w0("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
+        mVar.v0((long) (messageObject.getDuration() * 1000.0d));
+        mVar.w0("android.media.metadata.TITLE", messageObject.getMusicTitle());
         if (aVar != null && messageObject.isMusic()) {
             str = aVar.f12971f;
         } else {
             str = null;
         }
-        mVar.A0("android.media.metadata.ALBUM", str);
+        mVar.w0("android.media.metadata.ALBUM", str);
         if (bitmap != null && !bitmap.isRecycled()) {
-            mVar.y0("android.media.metadata.ALBUM_ART", bitmap);
+            mVar.t0("android.media.metadata.ALBUM_ART", bitmap);
         }
         this.session.e(new MediaMetadataCompat((Bundle) mVar.f275b));
     }
@@ -636,7 +636,7 @@ public class TelegramMediaSession {
                         int parseInt = Integer.parseInt(split[1]);
                         ArrayList<MessageObject> arrayList = (ArrayList) TelegramMediaSession.this.musicObjects.f(parseLong);
                         if (arrayList == null) {
-                            TelegramMediaSession.this.loadMusicForDialog(parseLong, new f0(this, str, bundle, 5));
+                            TelegramMediaSession.this.loadMusicForDialog(parseLong, new g0(this, str, bundle, 5));
                             return;
                         }
                         ArrayList arrayList2 = (ArrayList) TelegramMediaSession.this.musicQueues.f(parseLong);

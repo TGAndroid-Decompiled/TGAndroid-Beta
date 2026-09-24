@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.R;
 public abstract class m {
-    public static final List f40862a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
+    public static final List f41155a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
 
     public float a() {
         return 0.85f;

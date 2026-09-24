@@ -14,7 +14,7 @@ import org.telegram.ui.Components.rr;
 public abstract class m0 extends FrameLayout {
     public boolean E;
     public final b7 f5148a;
-    public qg.a2 f5149b;
+    public qg.y1 f5149b;
     public final org.telegram.ui.Components.e6 f5150c;
     public final org.telegram.ui.Components.e6 d;
     public final l0 e;
@@ -47,20 +47,20 @@ public abstract class m0 extends FrameLayout {
         addView(g0Var);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f5151f = frameLayout;
-        addView(frameLayout, w7.x5.e(-1, -1, 119));
+        addView(frameLayout, w7.y5.e(-1, -1, 119));
         lg.f fVar = new lg.f(context);
         this.f5152n = fVar;
         fVar.setListener(new h0(1, this));
-        frameLayout.addView(fVar, w7.x5.d(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 52.0f));
+        frameLayout.addView(fVar, w7.y5.d(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 52.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.f5153r = frameLayout2;
-        frameLayout.addView(frameLayout2, w7.x5.d(-1, 52.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(frameLayout2, w7.y5.d(-1, 52.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
         textView.setBackground(org.telegram.ui.ActionBar.h6.f0(-12763843, 0, -1));
         textView.setTextColor(-1);
-        textView.setPadding(org.telegram.ui.Cells.q3.b(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView, w7.x5.e(-2, -1, 115));
+        textView.setPadding(org.telegram.ui.Cells.c1.c(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView, w7.y5.e(-2, -1, 115));
         textView.setOnClickListener(new View.OnClickListener(this) {
             public final m0 f4876b;
 
@@ -84,17 +84,17 @@ public abstract class m0 extends FrameLayout {
                         return;
                     default:
                         m0 m0Var2 = this.f4876b;
-                        qg.a2 a2Var = m0Var2.f5149b;
-                        if (a2Var != null) {
-                            a2Var.G0 = new MediaController.CropState();
+                        qg.y1 y1Var = m0Var2.f5149b;
+                        if (y1Var != null) {
+                            y1Var.G0 = new MediaController.CropState();
                             m0Var2.h.b(m0Var2.f5149b.G0);
-                            qg.a2 a2Var2 = m0Var2.f5149b;
-                            a2Var2.G0.orientation = a2Var2.getOrientation();
+                            qg.y1 y1Var2 = m0Var2.f5149b;
+                            y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f41248z0.requestLayout();
-                            m0Var2.f5149b.f41248z0.invalidate();
-                            m0Var2.f5149b.f41248z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42000z0.requestLayout();
+                            m0Var2.f5149b.f42000z0.invalidate();
+                            m0Var2.f5149b.f42000z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;
@@ -106,8 +106,8 @@ public abstract class m0 extends FrameLayout {
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setBackground(org.telegram.ui.ActionBar.h6.f0(-12763843, 0, -1));
         textView2.setTextColor(-1);
-        textView2.setPadding(org.telegram.ui.Cells.q3.b(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView2, w7.x5.e(-2, -1, 113));
+        textView2.setPadding(org.telegram.ui.Cells.c1.c(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView2, w7.y5.e(-2, -1, 113));
         textView2.setOnClickListener(new View.OnClickListener(this) {
             public final m0 f4876b;
 
@@ -131,17 +131,17 @@ public abstract class m0 extends FrameLayout {
                         return;
                     default:
                         m0 m0Var2 = this.f4876b;
-                        qg.a2 a2Var = m0Var2.f5149b;
-                        if (a2Var != null) {
-                            a2Var.G0 = new MediaController.CropState();
+                        qg.y1 y1Var = m0Var2.f5149b;
+                        if (y1Var != null) {
+                            y1Var.G0 = new MediaController.CropState();
                             m0Var2.h.b(m0Var2.f5149b.G0);
-                            qg.a2 a2Var2 = m0Var2.f5149b;
-                            a2Var2.G0.orientation = a2Var2.getOrientation();
+                            qg.y1 y1Var2 = m0Var2.f5149b;
+                            y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f41248z0.requestLayout();
-                            m0Var2.f5149b.f41248z0.invalidate();
-                            m0Var2.f5149b.f41248z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42000z0.requestLayout();
+                            m0Var2.f5149b.f42000z0.invalidate();
+                            m0Var2.f5149b.f42000z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;
@@ -153,8 +153,8 @@ public abstract class m0 extends FrameLayout {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setBackground(org.telegram.ui.ActionBar.h6.f0(-12763843, 0, -1));
         textView3.setTextColor(-15098625);
-        textView3.setPadding(org.telegram.ui.Cells.q3.b(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView3, w7.x5.e(-2, -1, 117));
+        textView3.setPadding(org.telegram.ui.Cells.c1.c(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView3, w7.y5.e(-2, -1, 117));
         textView3.setOnClickListener(new View.OnClickListener(this) {
             public final m0 f4876b;
 
@@ -178,17 +178,17 @@ public abstract class m0 extends FrameLayout {
                         return;
                     default:
                         m0 m0Var2 = this.f4876b;
-                        qg.a2 a2Var = m0Var2.f5149b;
-                        if (a2Var != null) {
-                            a2Var.G0 = new MediaController.CropState();
+                        qg.y1 y1Var = m0Var2.f5149b;
+                        if (y1Var != null) {
+                            y1Var.G0 = new MediaController.CropState();
                             m0Var2.h.b(m0Var2.f5149b.G0);
-                            qg.a2 a2Var2 = m0Var2.f5149b;
-                            a2Var2.G0.orientation = a2Var2.getOrientation();
+                            qg.y1 y1Var2 = m0Var2.f5149b;
+                            y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f41248z0.requestLayout();
-                            m0Var2.f5149b.f41248z0.invalidate();
-                            m0Var2.f5149b.f41248z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42000z0.requestLayout();
+                            m0Var2.f5149b.f42000z0.invalidate();
+                            m0Var2.f5149b.f42000z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;
@@ -199,22 +199,22 @@ public abstract class m0 extends FrameLayout {
     }
 
     public int getCurrentHeight() {
-        qg.a2 a2Var = this.f5149b;
-        if (a2Var == null) {
+        qg.y1 y1Var = this.f5149b;
+        if (y1Var == null) {
             return 1;
         }
-        if (a2Var.getOrientation() != 90 && this.f5149b.getOrientation() != 270) {
+        if (y1Var.getOrientation() != 90 && this.f5149b.getOrientation() != 270) {
             return this.f5149b.getContentHeight();
         }
         return this.f5149b.getContentWidth();
     }
 
     public int getCurrentWidth() {
-        qg.a2 a2Var = this.f5149b;
-        if (a2Var == null) {
+        qg.y1 y1Var = this.f5149b;
+        if (y1Var == null) {
             return 1;
         }
-        if (a2Var.getOrientation() != 90 && this.f5149b.getOrientation() != 270) {
+        if (y1Var.getOrientation() != 90 && this.f5149b.getOrientation() != 270) {
             return this.f5149b.getContentWidth();
         }
         return this.f5149b.getContentHeight();
@@ -237,11 +237,11 @@ public abstract class m0 extends FrameLayout {
         super.onLayout(z10, i10, i11, i12, i13);
     }
 
-    public void set(qg.a2 a2Var) {
-        if (a2Var == null) {
+    public void set(qg.y1 y1Var) {
+        if (y1Var == null) {
             return;
         }
-        this.f5149b = a2Var;
+        this.f5149b = y1Var;
         setVisibility(0);
         this.E = false;
         g0 g0Var = this.h;
@@ -249,12 +249,12 @@ public abstract class m0 extends FrameLayout {
         g0Var.J = true;
         getLocationOnScreen(this.v);
         this.f5148a.getLocationOnScreen(this.f5155w);
-        a2Var.getLocationOnScreen(this.f5156x);
-        MediaController.CropState cropState = a2Var.G0;
+        y1Var.getLocationOnScreen(this.f5156x);
+        MediaController.CropState cropState = y1Var.G0;
         if (cropState == null) {
             cropState = null;
         }
-        g0Var.p(a2Var.getOrientation(), this.f5157y, cropState);
+        g0Var.p(y1Var.getOrientation(), this.f5157y, cropState);
         float rotation = g0Var.getRotation();
         lg.f fVar = this.f5152n;
         fVar.setRotation(rotation);
@@ -287,8 +287,8 @@ public abstract class m0 extends FrameLayout {
         this.f5154s = f7;
         this.e.invalidate();
         g0 g0Var = this.h;
-        CropAreaView cropAreaView = g0Var.f14088a;
-        CropAreaView cropAreaView2 = g0Var.f14088a;
+        CropAreaView cropAreaView = g0Var.f14308a;
+        CropAreaView cropAreaView2 = g0Var.f14308a;
         cropAreaView.setDimAlpha(0.5f * f7);
         cropAreaView2.setFrameAlpha(f7);
         cropAreaView2.invalidate();

@@ -1,143 +1,43 @@
 package tg;
+public final class t0 implements Runnable {
+    public final int f43476a;
+    public final z0 f43477b;
 
-import ai.e4;
-import ai.n6;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.l20;
-import org.telegram.ui.py0;
-import w7.x5;
-public final class t0 extends bb {
-    public final ArrayList X;
-    public final ArrayList Y;
-    public final TLRPC.Chat Z;
-    public final e0 f43173a0;
-    public s0 f43174b0;
-    public m0 f43175c0;
-
-    public t0(n2 n2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
-        super(n2Var, false);
-        this.X = new ArrayList();
-        this.Y = new ArrayList();
-        this.v = 0.3f;
-        this.Z = chat;
-        ArrayList<TL_stories.TL_myBoost> arrayList = tL_premium_myBoosts.my_boosts;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            TL_stories.TL_myBoost tL_myBoost = arrayList.get(i10);
-            i10++;
-            TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
-            TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f18083id)) {
-                this.Y.add(tL_myBoost2);
-            }
-        }
-        l20 l20Var = new l20(getContext(), this.resourcesProvider, this.d);
-        l20Var.setClickable(true);
-        l20Var.setOrientation(1);
-        l20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        l20Var.setBackgroundColor(h6.v0(h6.f18859h5, this.resourcesProvider));
-        e0 e0Var = new e0(getContext(), this.resourcesProvider);
-        this.f43173a0 = e0Var;
-        e0Var.k();
-        e0Var.setCounterColor(-6785796);
-        e0Var.setOnClickListener(new py0(17, this, chat));
-        l20Var.addView(e0Var, x5.q(-1, 48, 87));
-        ViewGroup viewGroup = this.containerView;
-        int i11 = this.backgroundPaddingLeft;
-        viewGroup.addView(l20Var, x5.f(-2.0f, 87, i11, 0, i11, 0));
-        ml0 ml0Var = this.d;
-        int i12 = this.backgroundPaddingLeft;
-        ml0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
-        this.d.setOnItemClickListener(new n6(24, this, chat));
-        fixNavigationBar();
-        N();
-        S(false);
-        qc.a(this.container, new Object());
+    public t0(z0 z0Var, int i10) {
+        this.f43476a = i10;
+        this.f43477b = z0Var;
     }
 
-    public static void P(t0 t0Var, TLRPC.Chat chat, View view) {
-        ArrayList arrayList = t0Var.X;
-        if (view instanceof xg.l) {
-            xg.l lVar = (xg.l) view;
-            if (lVar.getBoost().cooldown_until_date > 0) {
-                new xc(t0Var.container, t0Var.resourcesProvider).G(R.raw.chats_infotip, 5, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, new Object[0]))).k(true);
+    @Override
+    public final void run() {
+        switch (this.f43476a) {
+            case 0:
+                this.f43477b.W(true);
                 return;
-            }
-            if (arrayList.contains(lVar.getBoost())) {
-                arrayList.remove(lVar.getBoost());
-            } else {
-                arrayList.add(lVar.getBoost());
-            }
-            lVar.c(arrayList.contains(lVar.getBoost()), true);
-            t0Var.S(true);
-            t0Var.f43174b0.a(arrayList, chat);
+            case 1:
+                this.f43477b.b0(true, false);
+                return;
+            case 2:
+                this.f43477b.R();
+                return;
+            case 3:
+                this.f43477b.b0(true, false);
+                return;
+            case 4:
+                this.f43477b.b0(true, false);
+                return;
+            case 5:
+                this.f43477b.b0(true, false);
+                return;
+            case 6:
+                z0 z0Var = this.f43477b;
+                z0Var.f43501e0.clear();
+                z0Var.f43502f0.clear();
+                z0Var.dismiss();
+                return;
+            default:
+                this.f43477b.dismiss();
+                return;
         }
-    }
-
-    public static void Q(t0 t0Var, TLRPC.Chat chat, ArrayList arrayList, HashSet hashSet, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
-        MessagesController.getInstance(t0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f18083id, new e4(t0Var, tL_premium_myBoosts, arrayList, hashSet, 18));
-    }
-
-    public final void S(boolean z10) {
-        e0 e0Var = this.f43173a0;
-        boolean z11 = false;
-        e0Var.setShowZero(false);
-        ArrayList arrayList = this.X;
-        if (arrayList.size() > 1) {
-            e0Var.g(LocaleController.getString(R.string.BoostingReassignBoosts), z10, true);
-        } else {
-            e0Var.g(LocaleController.getString(R.string.BoostingReassignBoost), z10, true);
-        }
-        e0Var.b(arrayList.size(), z10);
-        if (arrayList.size() > 0) {
-            z11 = true;
-        }
-        e0Var.setEnabled(z11);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f43175c0 = new m0(this);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f43175c0.cancel();
-    }
-
-    @Override
-    public final void onOpenAnimationEnd() {
-        this.f43175c0.start();
-    }
-
-    @Override
-    public final ll0 v(ml0 ml0Var) {
-        return new n0(this);
-    }
-
-    @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.BoostingReassignBoost);
     }
 }

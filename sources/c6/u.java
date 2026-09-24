@@ -36,13 +36,13 @@ public final class u extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.s(parcel, 2, 4);
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.s(parcel, 2, 4);
         parcel.writeInt(this.f4050a);
-        w7.e0.s(parcel, 3, 4);
+        w7.f0.s(parcel, 3, 4);
         parcel.writeInt(this.f4051b);
-        w7.e0.s(parcel, 4, 4);
+        w7.f0.s(parcel, 4, 4);
         parcel.writeInt(this.f4052c);
-        w7.e0.r(parcel, q6);
+        w7.f0.r(parcel, q6);
     }
 }

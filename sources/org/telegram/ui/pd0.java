@@ -1,45 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class pd0 implements Runnable {
-    public final int f36091a;
-    public final cf0 f36092b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class pd0 extends AnimatorListenerAdapter {
+    public final int f36491a;
+    public final qg0 f36492b;
 
-    public pd0(cf0 cf0Var, int i10) {
-        this.f36091a = i10;
-        this.f36092b = cf0Var;
+    public pd0(qg0 qg0Var, int i10) {
+        this.f36491a = i10;
+        this.f36492b = qg0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36091a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36491a) {
             case 0:
-                this.f36092b.L.n();
-                return;
-            case 1:
-                cf0 cf0Var = this.f36092b;
-                cf0Var.M = null;
-                cf0Var.N = null;
-                cf0Var.p(true);
-                cf0Var.e.h(null, null, cf0Var.f32332f, null);
-                id idVar = cf0Var.f32333n;
-                org.telegram.ui.Components.yi0 yi0Var = cf0Var.I;
-                idVar.setAnimation(yi0Var);
-                yi0Var.M(0);
-                cf0Var.K = true;
-                return;
-            case 2:
-                this.f36092b.K = true;
-                return;
-            default:
-                EditTextBoldCursor editTextBoldCursor = this.f36092b.f32331c;
-                if (editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    AndroidUtilities.showKeyboard(editTextBoldCursor);
+                qg0 qg0Var = this.f36492b;
+                if (qg0Var.d == animator) {
+                    qg0Var.d = null;
                     return;
                 }
+                return;
+            default:
+                qg0 qg0Var2 = this.f36492b;
+                qg0Var2.f36874c.setVisibility(8);
+                if (qg0Var2.d == animator) {
+                    qg0Var2.d = null;
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f36491a) {
+            case 0:
+                this.f36492b.f36874c.setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
                 return;
         }
     }

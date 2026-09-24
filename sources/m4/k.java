@@ -6,10 +6,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 public abstract class k {
-    public static final int f14581a = 0;
+    public static final int f14834a = 0;
 
     static {
-        int i10 = e9.m0.f8083c;
+        int i10 = e9.m0.f8082c;
         Object[] objArr = new Object[32];
         objArr[0] = "android.media.metadata.TITLE";
         objArr[1] = "android.media.metadata.ARTIST";
@@ -38,7 +38,7 @@ public abstract class k {
             case 6:
                 return 6L;
             default:
-                throw new IllegalArgumentException(hg.c.i(i10, "Unrecognized FolderType: "));
+                throw new IllegalArgumentException(hg.c.h(i10, "Unrecognized FolderType: "));
         }
     }
 
@@ -127,13 +127,13 @@ public abstract class k {
                 }
             }
         }
-        return new n4.m(qVar.f7329a);
+        return new n4.m(qVar.f7322a);
     }
 
     public static b2.c1 c(n4.i0 i0Var) {
         if (i0Var != null) {
-            float f7 = i0Var.f14930b;
-            int i10 = i0Var.f14929a;
+            float f7 = i0Var.f15168b;
+            int i10 = i0Var.f15167a;
             boolean z10 = true;
             switch (i10) {
                 case 1:
@@ -225,11 +225,11 @@ public abstract class k {
         } else {
             cVar = new ka.c(4);
         }
-        AudioAttributes.Builder builder = (AudioAttributes.Builder) cVar.f13554b;
+        AudioAttributes.Builder builder = (AudioAttributes.Builder) cVar.f13552b;
         builder.setContentType(eVar.f2960a);
         builder.setFlags(eVar.f2961b);
-        cVar.j(eVar.f2962c);
-        AudioAttributes audioAttributes = cVar.a().f14903a;
+        cVar.p0(eVar.f2962c);
+        AudioAttributes audioAttributes = cVar.G().f15141a;
         audioAttributes.getClass();
         int flags = audioAttributes.getFlags();
         int usage = audioAttributes.getUsage();

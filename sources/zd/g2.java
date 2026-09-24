@@ -28,7 +28,7 @@ public final class g2 extends ee.s {
         if (this.threadLocalIsSet) {
             gd.d dVar = (gd.d) this.e.get();
             if (dVar != null) {
-                ee.a.f((id.h) dVar.f9595a, dVar.f9596b);
+                ee.a.f((id.h) dVar.f9594a, dVar.f9595b);
             }
             this.e.remove();
         }
@@ -37,7 +37,7 @@ public final class g2 extends ee.s {
         id.h context = cVar.getContext();
         g2 g2Var = null;
         Object k10 = ee.a.k(context, null);
-        if (k10 != ee.a.f8157f) {
+        if (k10 != ee.a.f8156f) {
             g2Var = e0.v(cVar, context, k10);
         }
         try {

@@ -1,36 +1,36 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.d11;
-public final class l0 extends yc {
-    public final int f20357j;
-    public final Object f20358k;
+import org.telegram.ui.Components.zc;
+import org.telegram.ui.b11;
+public final class l0 extends zc {
+    public final int f20587j;
+    public final Object f20588k;
 
-    public l0(t1 t1Var, t1 t1Var2, int i10) {
-        super(t1Var);
-        this.f20357j = i10;
-        this.f20358k = t1Var2;
+    public l0(u1 u1Var, u1 u1Var2, int i10) {
+        super(u1Var);
+        this.f20587j = i10;
+        this.f20588k = u1Var2;
     }
 
     @Override
     public final void b() {
-        switch (this.f20357j) {
+        switch (this.f20587j) {
             case 0:
-                ((t1) this.f20358k).a3();
+                ((u1) this.f20588k).a3();
                 return;
             case 1:
-                ((t1) this.f20358k).a3();
+                ((u1) this.f20588k).a3();
                 return;
             default:
-                ((d11) this.f20358k).invalidateSelf();
+                ((b11) this.f20588k).invalidateSelf();
                 return;
         }
     }
 
-    public l0(d11 d11Var) {
+    public l0(b11 b11Var) {
         super((View) null);
-        this.f20357j = 2;
-        this.f20358k = d11Var;
+        this.f20587j = 2;
+        this.f20588k = b11Var;
     }
 }

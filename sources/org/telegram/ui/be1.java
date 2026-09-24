@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class be1 extends org.telegram.ui.Cells.t1 {
+public final class be1 extends org.telegram.ui.Cells.u1 {
     public final Path Ge;
     public final Paint He;
     public final int Ie;
@@ -26,8 +26,8 @@ public final class be1 extends org.telegram.ui.Cells.t1 {
 
     @Override
     public final void Y1(Canvas canvas) {
-        this.f21060i6 = 0;
-        this.f21074j6 = this.Y5.size() - 1;
+        this.f21361i6 = 0;
+        this.f21375j6 = this.Y5.size() - 1;
         super.Y1(canvas);
     }
 
@@ -44,7 +44,7 @@ public final class be1 extends org.telegram.ui.Cells.t1 {
         path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
         Paint paint = this.He;
         paint.setColor(0);
-        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.l1(this.Le.f32634x * 0.2f, -16777216));
+        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.l1(this.Le.f33086x * 0.2f, -16777216));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
         canvas.clipPath(path);
         S1(canvas);

@@ -6,58 +6,58 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.tt0;
+import org.telegram.ui.st0;
 public final class w implements pg.u {
-    public boolean f41646a;
-    public final Bitmap f41647b;
-    public final tt0 f41648c;
+    public boolean f41959a;
+    public final Bitmap f41960b;
+    public final st0 f41961c;
 
-    public w(tt0 tt0Var, Bitmap bitmap) {
-        this.f41648c = tt0Var;
-        this.f41647b = bitmap;
+    public w(st0 st0Var, Bitmap bitmap) {
+        this.f41961c = st0Var;
+        this.f41960b = bitmap;
     }
 
     @Override
     public final void a() {
-        this.f41646a = true;
+        this.f41959a = true;
     }
 
     @Override
     public final void b(Canvas canvas) {
-        e0 e0Var = this.f41648c.W0;
-        Matrix matrix = e0Var.getMatrix();
+        d0 d0Var = this.f41961c.W0;
+        Matrix matrix = d0Var.getMatrix();
         canvas.save();
-        canvas.translate(e0Var.getX(), e0Var.getY());
+        canvas.translate(d0Var.getX(), d0Var.getY());
         canvas.concat(matrix);
-        Bitmap bitmap = this.f41647b;
-        canvas.scale(e0Var.getWidth() / bitmap.getWidth(), e0Var.getHeight() / bitmap.getHeight(), 0.0f, 0.0f);
+        Bitmap bitmap = this.f41960b;
+        canvas.scale(d0Var.getWidth() / bitmap.getWidth(), d0Var.getHeight() / bitmap.getHeight(), 0.0f, 0.0f);
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
     }
 
     @Override
     public final boolean c() {
-        return this.f41646a;
+        return this.f41959a;
     }
 
     @Override
     public final void d() {
-        this.f41646a = false;
+        this.f41959a = false;
     }
 
     @Override
     public final View e() {
-        return this.f41648c;
+        return this.f41961c;
     }
 
     @Override
     public final FrameLayout f() {
-        return this.f41648c.f41474e1;
+        return this.f41961c.f41763e1;
     }
 
     @Override
     public final boolean g() {
-        if (this.f41647b != null) {
+        if (this.f41960b != null) {
             return true;
         }
         return false;
@@ -65,14 +65,14 @@ public final class w implements pg.u {
 
     @Override
     public final void h(int i10) {
-        tt0 tt0Var = this.f41648c;
-        tt0Var.x0(false);
-        pg.t0 t0Var = tt0Var.V1;
-        t0Var.h(i10, true);
-        t0Var.g();
-        tt0Var.setNewColor(i10);
-        l0 l0Var = tt0Var.G1;
-        l0Var.setSelectedColorIndex(t0Var.d());
-        l0Var.getAdapter().l();
+        st0 st0Var = this.f41961c;
+        st0Var.x0(false);
+        pg.u0 u0Var = st0Var.V1;
+        u0Var.h(i10, true);
+        u0Var.g();
+        st0Var.setNewColor(i10);
+        k0 k0Var = st0Var.G1;
+        k0Var.setSelectedColorIndex(u0Var.d());
+        k0Var.getAdapter().l();
     }
 }

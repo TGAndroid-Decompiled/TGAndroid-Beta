@@ -1,24 +1,27 @@
 package pg;
 public final class p0 implements Runnable {
-    public final int f40880a;
-    public final r0 f40881b;
-    public final a5.a f40882c;
+    public final int f41183a;
+    public final s0 f41184b;
 
-    public p0(r0 r0Var, a5.a aVar, int i10) {
-        this.f40880a = i10;
-        this.f40881b = r0Var;
-        this.f40882c = aVar;
+    public p0(s0 s0Var, int i10) {
+        this.f41183a = i10;
+        this.f41184b = s0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f40880a) {
+        switch (this.f41183a) {
             case 0:
-                this.f40881b.p(this.f40882c, true);
+                s0 s0Var = this.f41184b;
+                s0Var.f41209c = null;
+                n2.e eVar = s0Var.f41207a;
+                if (eVar != null) {
+                    eVar.t();
+                    return;
+                }
                 return;
             default:
-                r0 r0Var = this.f40881b;
-                r0Var.f40908f.f(new p0(r0Var, this.f40882c, 0));
+                this.f41184b.b();
                 return;
         }
     }

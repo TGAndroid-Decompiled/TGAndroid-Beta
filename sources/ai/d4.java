@@ -38,27 +38,27 @@ public final class d4 implements Utilities.Callback {
                 TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) this.e;
                 Long l4 = (Long) obj;
                 e6 e6Var = ((f4) this.d).f873a;
-                TLRPC.User user = e6Var.f782d3.getAdapter().f9824w0;
+                TLRPC.User user = e6Var.f782d3.getAdapter().f9823w0;
                 if (user != null) {
-                    j3 = user.f18230id;
+                    j3 = user.f18468id;
                 } else {
                     j3 = 0;
                 }
                 HashMap hashMap = new HashMap();
-                hashMap.put("id", botInlineResult.f18081id);
+                hashMap.put("id", botInlineResult.f18319id);
                 hashMap.put("query_id", "" + botInlineResult.query_id);
                 hashMap.put("bot", "" + j3);
-                TLRPC.User user2 = e6Var.f782d3.getAdapter().f9824w0;
+                TLRPC.User user2 = e6Var.f782d3.getAdapter().f9823w0;
                 if (user2 == null) {
                     str = "";
                 } else {
                     str = user2.username;
                 }
                 hashMap.put("bot_name", str);
-                org.telegram.ui.ActionBar.n2 n2Var = e6Var.J0.f1071f;
+                org.telegram.ui.ActionBar.m2 m2Var = e6Var.J0.f1071f;
                 long j10 = j3;
                 accountInstance = e6Var.getAccountInstance();
-                SendMessagesHelper.prepareSendingBotContextResult(n2Var, accountInstance, botInlineResult, hashMap, e6Var.B1, null, null, e6Var.O1.f642a, null, this.f707b, this.f708c, 0, null, 0L, l4.longValue());
+                SendMessagesHelper.prepareSendingBotContextResult(m2Var, accountInstance, botInlineResult, hashMap, e6Var.B1, null, null, e6Var.O1.f642a, null, this.f707b, this.f708c, 0, null, 0L, l4.longValue());
                 e6Var.f773b2.setFieldText("");
                 if (l4.longValue() <= 0) {
                     z10 = true;

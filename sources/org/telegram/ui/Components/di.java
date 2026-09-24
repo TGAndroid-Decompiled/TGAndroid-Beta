@@ -7,12 +7,12 @@ import android.text.style.ImageSpan;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 public final class di implements TextWatcher {
-    public boolean f23406a;
-    public boolean f23407b;
-    public final wi f23408c;
+    public boolean f23601a;
+    public boolean f23602b;
+    public final wi f23603c;
 
     public di(wi wiVar) {
-        this.f23408c = wiVar;
+        this.f23603c = wiVar;
     }
 
     @Override
@@ -21,24 +21,24 @@ public final class di implements TextWatcher {
         boolean z11;
         int i10;
         boolean z12;
-        wi wiVar = this.f23408c;
+        wi wiVar = this.f23603c;
         p6 p6Var = wiVar.v;
         bi biVar = wiVar.E0;
-        p6 p6Var2 = wiVar.f29704s;
-        if (this.f23407b != TextUtils.isEmpty(editable)) {
-            oi oiVar = wiVar.f29726y0;
+        p6 p6Var2 = wiVar.f30024s;
+        if (this.f23602b != TextUtils.isEmpty(editable)) {
+            oi oiVar = wiVar.f30046y0;
             if (oiVar != null) {
                 oiVar.A(oiVar.getSelectedItemsCount());
             }
-            this.f23407b = !this.f23407b;
+            this.f23602b = !this.f23602b;
         }
         boolean z13 = false;
-        if (this.f23406a) {
+        if (this.f23601a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, biVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f23406a = false;
+            this.f23601a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         wiVar.L = codePointCount;
@@ -71,10 +71,10 @@ public final class di implements TextWatcher {
             p6Var2.animate().setListener(null).cancel();
             p6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19008p7));
+                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19265p7));
                 z11 = false;
             } else {
-                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19170y6));
+                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19428y6));
                 z11 = true;
             }
             p6Var.c(LocaleController.formatNumber(j3, ','), false, true);
@@ -88,7 +88,7 @@ public final class di implements TextWatcher {
             wiVar.U0 = z11;
             wiVar.I0.invalidate();
         }
-        if (!wiVar.f29655c0) {
+        if (!wiVar.f29975c0) {
             if (biVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(biVar.getText().toString().trim())) {
                 z13 = true;
             }
@@ -100,9 +100,9 @@ public final class di implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f23406a = true;
+            this.f23601a = true;
         }
-        wi wiVar = this.f23408c;
+        wi wiVar = this.f23603c;
         if (wiVar.B2 == null) {
             wi.Q(wiVar);
         }

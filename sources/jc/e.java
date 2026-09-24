@@ -42,7 +42,7 @@ public final class e {
                         i14 += 13;
                     }
                 } else {
-                    i14 += ((String) mVar.f7317b).substring(i10, i12 + i10).getBytes(((dc.e) mVar.f7318c).f7613a[i11].charset()).length * 8;
+                    i14 += ((String) mVar.f7310b).substring(i10, i12 + i10).getBytes(((dc.e) mVar.f7311c).f7612a[i11].charset()).length * 8;
                     if (z10) {
                         i14 += 12;
                     }

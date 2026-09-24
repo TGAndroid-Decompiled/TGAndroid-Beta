@@ -15,6 +15,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ok;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -168,17 +169,17 @@ public final class ia implements Utilities.Callback {
                 lc lcVar4 = this.f4793b;
                 ai.d dVar = lcVar4.f5026a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.lb(lcVar4.f5029b, new a9(1)).f25854a;
+                org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.lb(lcVar4.f5029b, new a9(1)).f26048a;
                 WindowManager.LayoutParams layout = kbVar.getLayout();
                 if (layout != null) {
                     layout.height = -2;
                     layout.width = lcVar4.f5079r.getWidth();
                     layout.y = (int) (lcVar4.f5079r.getY() + AndroidUtilities.dp(56.0f));
-                    org.telegram.ui.Components.lb lbVar = kbVar.f25575a;
-                    lbVar.getWindow().setAttributes(lbVar.f25855b);
+                    org.telegram.ui.Components.lb lbVar = kbVar.f25723a;
+                    lbVar.getWindow().setAttributes(lbVar.f26049b);
                 }
                 kbVar.setTouchable(true);
-                new org.telegram.ui.Components.xc(kbVar, dVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.h6.gc, 0, new ha(lcVar4, 27), dVar)).k(true);
+                new org.telegram.ui.Components.yc(kbVar, dVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.h6.gc, 0, new ha(lcVar4, 27), dVar)).k(true);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
@@ -190,7 +191,7 @@ public final class ia implements Utilities.Callback {
                         wcVar.G = true;
                         pc pcVar = wcVar.f5743a;
                         if (pcVar != null) {
-                            pcVar.Q(true);
+                            pcVar.O(true);
                         }
                     }
                 }
@@ -202,9 +203,9 @@ public final class ia implements Utilities.Callback {
                 } else {
                     f7 = 1.0f;
                 }
-                animate.alpha(f7).setDuration(120L).start();
-                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27299w;
-                if (qcVar != null && qcVar.f27300a == 2) {
+                ok.r(animate, f7, 120L);
+                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27564w;
+                if (qcVar != null && qcVar.f27565a == 2) {
                     qcVar.l();
                     return;
                 }
@@ -413,8 +414,8 @@ public final class ia implements Utilities.Callback {
                     }
                     cbVar2.setTranslationY(i16 - contentHeight);
                 }
-                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f27299w;
-                if (qcVar2 != null && qcVar2.f27300a == 2) {
+                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f27564w;
+                if (qcVar2 != null && qcVar2.f27565a == 2) {
                     qcVar2.l();
                 }
                 if (lcVar12.f5035c1.f5132p0 && (cbVar = lcVar12.f5038d1) != null) {

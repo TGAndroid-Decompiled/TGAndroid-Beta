@@ -5,25 +5,25 @@ import android.util.SparseArray;
 import android.view.Choreographer;
 import java.util.LinkedHashSet;
 public final class h implements Choreographer.FrameCallback {
-    public static h f46777s;
-    public final Choreographer f46778a;
-    public final LinkedHashSet f46779b;
-    public final SparseArray f46780c;
+    public static h f47091s;
+    public final Choreographer f47092a;
+    public final LinkedHashSet f47093b;
+    public final SparseArray f47094c;
     public final pe.b d;
     public final pe.b e;
-    public final pe.b f46781f;
+    public final pe.b f47095f;
     public long h;
-    public long f46782n;
-    public int f46783r;
+    public long f47096n;
+    public int f47097r;
 
     public h() {
         Choreographer choreographer = Choreographer.getInstance();
-        this.f46778a = choreographer;
-        this.f46779b = new LinkedHashSet();
-        this.f46780c = new SparseArray();
+        this.f47092a = choreographer;
+        this.f47093b = new LinkedHashSet();
+        this.f47094c = new SparseArray();
         this.d = new pe.b(true);
         this.e = new pe.b(true);
-        this.f46781f = new pe.b(true);
+        this.f47095f = new pe.b(true);
         choreographer.postFrameCallback(this);
     }
 
@@ -36,10 +36,10 @@ public final class h implements Choreographer.FrameCallback {
 
     public static h d() {
         c();
-        if (f46777s == null) {
-            f46777s = new h();
+        if (f47091s == null) {
+            f47091s = new h();
         }
-        return f46777s;
+        return f47091s;
     }
 
     public final void a(int i10, Runnable runnable) {
@@ -66,7 +66,7 @@ public final class h implements Choreographer.FrameCallback {
 
     public final f e(int i10) {
         int i11;
-        SparseArray sparseArray = this.f46780c;
+        SparseArray sparseArray = this.f47094c;
         f fVar = (f) sparseArray.get(i10);
         if (fVar == null) {
             long j3 = 1000000000 / i10;
@@ -87,7 +87,7 @@ public final class h implements Choreographer.FrameCallback {
         if (runnable != null) {
             int i10 = 0;
             while (true) {
-                SparseArray sparseArray = this.f46780c;
+                SparseArray sparseArray = this.f47094c;
                 if (i10 < sparseArray.size() && !((f) sparseArray.valueAt(i10)).e.remove(runnable)) {
                     i10++;
                 } else {
@@ -102,7 +102,7 @@ public final class h implements Choreographer.FrameCallback {
         if (gVar != null) {
             int i10 = 0;
             while (true) {
-                SparseArray sparseArray = this.f46780c;
+                SparseArray sparseArray = this.f47094c;
                 if (i10 < sparseArray.size() && !((f) sparseArray.valueAt(i10)).d.remove(gVar)) {
                     i10++;
                 } else {
@@ -117,9 +117,9 @@ public final class h implements Choreographer.FrameCallback {
         if (runnable != null) {
             int i10 = 0;
             while (true) {
-                SparseArray sparseArray = this.f46780c;
+                SparseArray sparseArray = this.f47094c;
                 if (i10 < sparseArray.size()) {
-                    pe.b bVar = ((f) sparseArray.valueAt(i10)).f46772f;
+                    pe.b bVar = ((f) sparseArray.valueAt(i10)).f47086f;
                     if (bVar == null || !bVar.remove(runnable)) {
                         i10++;
                     } else {

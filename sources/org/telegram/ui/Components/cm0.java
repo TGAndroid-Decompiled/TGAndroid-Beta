@@ -1,34 +1,20 @@
 package org.telegram.ui.Components;
+public final class cm0 {
+    public final float f23348a;
+    public final float f23349b;
+    public final float f23350c;
+    public final float d;
+    public final boolean e;
 
-import android.view.View;
-import org.telegram.messenger.R;
-public final class cm0 implements View.OnClickListener {
-    public final int f23073a;
-    public final jm0 f23074b;
-
-    public cm0(jm0 jm0Var, int i10) {
-        this.f23073a = i10;
-        this.f23074b = jm0Var;
+    public cm0(float f7, float f10, float f11, float f12, int i10) {
+        this(f7, f10, f11, f12);
+        this.e = true;
     }
 
-    @Override
-    public final void onClick(View view) {
-        switch (this.f23073a) {
-            case 0:
-                this.f23074b.f25358f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            case 1:
-                this.f23074b.f25358f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            case 2:
-                this.f23074b.f25358f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            case 3:
-                this.f23074b.f25358f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-            default:
-                this.f23074b.f25358f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
-                return;
-        }
+    public cm0(float f7, float f10, float f11, float f12) {
+        this.f23348a = f7;
+        this.f23349b = f10;
+        this.f23350c = f11;
+        this.d = f12;
     }
 }

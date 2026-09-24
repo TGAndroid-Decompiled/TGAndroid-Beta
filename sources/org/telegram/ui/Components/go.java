@@ -13,9 +13,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class go extends LinearLayout {
-    public final org.telegram.ui.ActionBar.d6 f24375a;
-    public final TextView f24376b;
-    public final ArrayList f24377c;
+    public final org.telegram.ui.ActionBar.d6 f24481a;
+    public final TextView f24482b;
+    public final ArrayList f24483c;
     public final ArrayList d;
 
     public go(Activity activity, View view, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -26,9 +26,9 @@ public final class go extends LinearLayout {
         int i13;
         int i14;
         ArrayList arrayList = new ArrayList();
-        this.f24377c = arrayList;
+        this.f24483c = arrayList;
         this.d = new ArrayList();
-        this.f24375a = d6Var;
+        this.f24481a = d6Var;
         int dp = AndroidUtilities.dp(18.0f);
         if (d6Var != null) {
             paint = d6Var.G("paintChatActionBackground");
@@ -36,34 +36,34 @@ public final class go extends LinearLayout {
             paint = null;
         }
         paint = paint == null ? org.telegram.ui.ActionBar.h6.S0("paintChatActionBackground") : paint;
-        int i15 = org.telegram.ui.ActionBar.h6.f18726a;
-        setBackground(new org.telegram.ui.ActionBar.u5(this, view, dp, paint));
+        int i15 = org.telegram.ui.ActionBar.h6.f18982a;
+        setBackground(new org.telegram.ui.ActionBar.t5(this, view, dp, paint));
         setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f));
         setOrientation(1);
         if (i10 == 0) {
             TextView textView = new TextView(activity);
-            this.f24376b = textView;
+            this.f24482b = textView;
             textView.setTextSize(1, 15.0f);
-            textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18884ic, d6Var));
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19140ic, d6Var));
             textView.setGravity(1);
             textView.setMaxWidth(AndroidUtilities.dp(210.0f));
             arrayList.add(textView);
-            addView(textView, w7.x5.q(-2, -2, 49));
+            addView(textView, w7.y5.q(-2, -2, 49));
         } else if (i10 == 1) {
             TextView textView2 = new TextView(activity);
-            this.f24376b = textView2;
+            this.f24482b = textView2;
             textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18884ic, d6Var));
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19140ic, d6Var));
             textView2.setGravity(1);
             textView2.setMaxWidth(AndroidUtilities.dp(210.0f));
             arrayList.add(textView2);
-            addView(textView2, w7.x5.q(-2, -2, 49));
+            addView(textView2, w7.y5.q(-2, -2, 49));
         } else {
             ?? imageView = new ImageView(activity);
             imageView.setAutoRepeat(true);
             imageView.f(R.raw.utyan_saved_messages, 120, 120, null);
             imageView.d();
-            addView((View) imageView, w7.x5.t(-2, -2, 49, 0, 2, 0, 0));
+            addView((View) imageView, w7.y5.t(-2, -2, 49, 0, 2, 0, 0));
         }
         TextView textView3 = new TextView(activity);
         if (i10 == 0) {
@@ -78,7 +78,7 @@ public final class go extends LinearLayout {
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setGravity(1);
         }
-        textView3.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18884ic, d6Var));
+        textView3.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19140ic, d6Var));
         arrayList.add(textView3);
         textView3.setMaxWidth(AndroidUtilities.dp(260.0f));
         if (i10 != 2) {
@@ -96,18 +96,18 @@ public final class go extends LinearLayout {
         } else {
             i12 = 8;
         }
-        addView(textView3, w7.x5.t(-2, -2, i16, 0, 8, 0, i12));
+        addView(textView3, w7.y5.t(-2, -2, i16, 0, 8, 0, i12));
         for (int i17 = 0; i17 < 4; i17++) {
-            LinearLayout f7 = org.telegram.messenger.z0.f(activity, 0);
+            LinearLayout e = org.telegram.messenger.f0.e(activity, 0);
             if (LocaleController.isRTL) {
                 i13 = 5;
             } else {
                 i13 = 3;
             }
-            addView(f7, w7.x5.t(-2, -2, i13, 0, 8, 0, 0));
+            addView(e, w7.y5.t(-2, -2, i13, 0, 8, 0, 0));
             ImageView imageView2 = new ImageView(activity);
-            int i18 = org.telegram.ui.ActionBar.h6.f18884ic;
-            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i18, this.f24375a), PorterDuff.Mode.MULTIPLY));
+            int i18 = org.telegram.ui.ActionBar.h6.f19140ic;
+            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i18, this.f24481a), PorterDuff.Mode.MULTIPLY));
             if (i10 == 0) {
                 imageView2.setImageResource(R.drawable.ic_lock_white);
             } else if (i10 == 2) {
@@ -118,8 +118,8 @@ public final class go extends LinearLayout {
             this.d.add(imageView2);
             TextView textView4 = new TextView(activity);
             textView4.setTextSize(1, 15.0f);
-            textView4.setTextColor(org.telegram.ui.ActionBar.h6.v0(i18, this.f24375a));
-            this.f24377c.add(textView4);
+            textView4.setTextColor(org.telegram.ui.ActionBar.h6.v0(i18, this.f24481a));
+            this.f24483c.add(textView4);
             if (LocaleController.isRTL) {
                 i14 = 5;
             } else {
@@ -161,36 +161,36 @@ public final class go extends LinearLayout {
                 textView4.setText(LocaleController.getString(R.string.GroupDescription1));
             }
             if (LocaleController.isRTL) {
-                f7.addView(textView4, w7.x5.n(-2, -2));
+                e.addView(textView4, w7.y5.n(-2, -2));
                 if (i10 == 0) {
-                    f7.addView(imageView2, w7.x5.k(8.0f, 3.0f, 0.0f, 0.0f, -2, -2));
+                    e.addView(imageView2, w7.y5.k(8.0f, 3.0f, 0.0f, 0.0f, -2, -2));
                 } else if (i10 == 2) {
-                    f7.addView(imageView2, w7.x5.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
+                    e.addView(imageView2, w7.y5.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
                 } else {
-                    f7.addView(imageView2, w7.x5.k(8.0f, 3.0f, 0.0f, 0.0f, -2, -2));
+                    e.addView(imageView2, w7.y5.k(8.0f, 3.0f, 0.0f, 0.0f, -2, -2));
                 }
             } else {
                 if (i10 == 0) {
-                    f7.addView(imageView2, w7.x5.k(0.0f, 4.0f, 8.0f, 0.0f, -2, -2));
+                    e.addView(imageView2, w7.y5.k(0.0f, 4.0f, 8.0f, 0.0f, -2, -2));
                 } else if (i10 == 2) {
-                    f7.addView(imageView2, w7.x5.k(0.0f, 8.0f, 8.0f, 0.0f, -2, -2));
+                    e.addView(imageView2, w7.y5.k(0.0f, 8.0f, 8.0f, 0.0f, -2, -2));
                 } else {
-                    f7.addView(imageView2, w7.x5.k(0.0f, 4.0f, 8.0f, 0.0f, -2, -2));
+                    e.addView(imageView2, w7.y5.k(0.0f, 4.0f, 8.0f, 0.0f, -2, -2));
                 }
-                f7.addView(textView4, w7.x5.n(-2, -2));
+                e.addView(textView4, w7.y5.n(-2, -2));
             }
         }
     }
 
     public void setStatusText(CharSequence charSequence) {
-        this.f24376b.setText(charSequence);
+        this.f24482b.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
         int i11 = 0;
         int i12 = 0;
         while (true) {
-            ArrayList arrayList = this.f24377c;
+            ArrayList arrayList = this.f24483c;
             if (i12 >= arrayList.size()) {
                 break;
             }
@@ -200,7 +200,7 @@ public final class go extends LinearLayout {
         while (true) {
             ArrayList arrayList2 = this.d;
             if (i11 < arrayList2.size()) {
-                ((ImageView) arrayList2.get(i11)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18884ic, this.f24375a), PorterDuff.Mode.MULTIPLY));
+                ((ImageView) arrayList2.get(i11)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19140ic, this.f24481a), PorterDuff.Mode.MULTIPLY));
                 i11++;
             } else {
                 return;

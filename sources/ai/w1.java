@@ -7,6 +7,8 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingRegistrar;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -17,9 +19,9 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.gv0;
-import org.telegram.ui.Components.hv0;
-public final class w1 implements NativeInstance.AudioLevelsCallback, gv0, hv0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
+import org.telegram.ui.Components.rv0;
+import org.telegram.ui.Components.sv0;
+public final class w1 implements NativeInstance.AudioLevelsCallback, rv0, sv0, org.telegram.ui.ActionBar.z1, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
     public final int f1641a;
 
     public w1(int i10) {
@@ -33,22 +35,15 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, gv0, hv0, o
         return lambda$getComponents$0;
     }
 
-    @Override
-    public void a(Object obj, float f7) {
-        m2 m2Var = (m2) obj;
+    public Constructor a() {
         switch (this.f1641a) {
-            case 2:
-                WindowManager.LayoutParams layoutParams = m2Var.f1233c;
-                m2Var.N = f7;
-                layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(m2Var.f1232b, m2Var.d, layoutParams);
-                return;
+            case 18:
+                if (!Boolean.TRUE.equals(Class.forName("androidx.media3.decoder.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
+                    return null;
+                }
+                return Class.forName("androidx.media3.decoder.flac.FlacExtractor").asSubclass(c3.o.class).getConstructor(Integer.TYPE);
             default:
-                WindowManager.LayoutParams layoutParams2 = m2Var.f1233c;
-                m2Var.O = f7;
-                layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(m2Var.f1232b, m2Var.d, layoutParams2);
-                return;
+                return Class.forName("androidx.media3.decoder.midi.MidiExtractor").asSubclass(c3.o.class).getConstructor(null);
         }
     }
 
@@ -133,7 +128,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, gv0, hv0, o
                 b2.r rVar = new b2.r();
                 if (bundle4 != null) {
                     ClassLoader classLoader = e2.d.class.getClassLoader();
-                    String str5 = e2.d0.f7871a;
+                    String str5 = e2.d0.f7870a;
                     bundle4.setClassLoader(classLoader);
                 }
                 String string5 = bundle4.getString(b2.s.V);
@@ -235,7 +230,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, gv0, hv0, o
                 bundle8.getClass();
                 ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(b2.l1.f3081f);
                 if (parcelableArrayList2 == null) {
-                    e9.g0 g0Var = e9.i0.f8067b;
+                    e9.g0 g0Var = e9.i0.f8066b;
                     j3 = e9.a1.e;
                 } else {
                     j3 = e2.d.j(new w1(14), parcelableArrayList2);
@@ -243,7 +238,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, gv0, hv0, o
                 b2.l1 l1Var = new b2.l1(bundle8.getString(b2.l1.f3082g, ""), (b2.s[]) j3.toArray(new b2.s[0]));
                 int[] intArray = bundle7.getIntArray(b2.m1.d);
                 intArray.getClass();
-                return new b2.m1(l1Var, v7.y7.a(intArray));
+                return new b2.m1(l1Var, v7.z7.a(intArray));
             case 16:
                 b2.r1 r1Var = (b2.r1) obj;
                 r1Var.getClass();
@@ -253,32 +248,53 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, gv0, hv0, o
                 bundle9.putBooleanArray(b2.r1.h, r1Var.e);
                 bundle9.putBoolean(b2.r1.f3258i, r1Var.f3261c);
                 return bundle9;
-            default:
-                ca.a.f4174b.getClass();
-                return z9.a.f48682a.e((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
-        }
-    }
-
-    public Constructor b() {
-        switch (this.f1641a) {
+            case 17:
             case 18:
-                if (!Boolean.TRUE.equals(Class.forName("androidx.media3.decoder.flac.FlacLibrary").getMethod("isAvailable", null).invoke(null, null))) {
-                    return null;
-                }
-                return Class.forName("androidx.media3.decoder.flac.FlacExtractor").asSubclass(c3.o.class).getConstructor(Integer.TYPE);
+            case 19:
             default:
-                return Class.forName("androidx.media3.decoder.midi.MidiExtractor").asSubclass(c3.o.class).getConstructor(null);
+                wa.e eVar = (wa.e) obj;
+                eVar.getClass();
+                la.h hVar = com.google.firebase.messaging.r.f7323a;
+                hVar.getClass();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                try {
+                    hVar.y(eVar, byteArrayOutputStream);
+                } catch (IOException unused) {
+                }
+                return byteArrayOutputStream.toByteArray();
+            case 20:
+                ca.a.f4174b.getClass();
+                return z9.a.f48999a.J((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public void b(Object obj, float f7) {
+        m2 m2Var = (m2) obj;
         switch (this.f1641a) {
-            case 5:
-                b2Var.dismiss();
+            case 2:
+                WindowManager.LayoutParams layoutParams = m2Var.f1233c;
+                m2Var.N = f7;
+                layoutParams.x = (int) f7;
+                AndroidUtilities.updateViewLayout(m2Var.f1232b, m2Var.d, layoutParams);
                 return;
             default:
-                b2Var.dismiss();
+                WindowManager.LayoutParams layoutParams2 = m2Var.f1233c;
+                m2Var.O = f7;
+                layoutParams2.y = (int) f7;
+                AndroidUtilities.updateViewLayout(m2Var.f1232b, m2Var.d, layoutParams2);
+                return;
+        }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f1641a) {
+            case 5:
+                a2Var.dismiss();
+                return;
+            default:
+                a2Var.dismiss();
                 return;
         }
     }

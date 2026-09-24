@@ -11,7 +11,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jv0;
+import org.telegram.ui.Components.uv0;
 import org.telegram.ui.ProfileActivity;
 public final class za implements Utilities.Callback2 {
     public final int f5919a;
@@ -28,7 +28,7 @@ public final class za implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         boolean z10;
         float f7;
-        jv0 jv0Var;
+        uv0 uv0Var;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         switch (this.f5919a) {
             case 0:
@@ -50,22 +50,22 @@ public final class za implements Utilities.Callback2 {
                                 nbVar2.f5352l2 = true;
                                 j6 j6Var = nbVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f18108w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f18346w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
                                 if (f7 > 1.0f) {
                                     float floor = (float) Math.floor(Math.max(nbVar2.R1, j6Var.getMeasuredWidth()) * 0.5d);
-                                    jv0Var = new jv0(floor, floor / f7);
+                                    uv0Var = new uv0(floor, floor / f7);
                                 } else {
                                     float floor2 = (float) Math.floor(Math.max(nbVar2.S1, j6Var.getMeasuredHeight()) * 0.5d);
-                                    jv0Var = new jv0(f7 * floor2, floor2);
+                                    uv0Var = new uv0(f7 * floor2, floor2);
                                 }
-                                qg.a2 a2Var = new qg.a2(nbVar2.getContext(), nbVar2.e0(), jv0Var, tLObject);
-                                a2Var.setDelegate(nbVar2);
-                                j6Var.addView(a2Var);
+                                qg.y1 y1Var = new qg.y1(nbVar2.getContext(), nbVar2.e0(), uv0Var, tLObject);
+                                y1Var.setDelegate(nbVar2);
+                                j6Var.addView(y1Var);
                                 nbVar2.g0();
-                                nbVar2.d0(a2Var);
+                                nbVar2.d0(y1Var);
                             }
                             lcVar.f(false);
                         } else {
@@ -152,15 +152,15 @@ public final class za implements Utilities.Callback2 {
                 Integer num = (Integer) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (!profileActivity.M3()) {
-                    if (org.telegram.ui.Components.xc.a(profileActivity)) {
+                    if (org.telegram.ui.Components.yc.a(profileActivity)) {
                         int intValue = num.intValue();
                         boolean z12 = this.f5920b;
                         if (intValue == 1) {
-                            org.telegram.ui.Components.xc.l(null, profileActivity, z12).j();
+                            org.telegram.ui.Components.yc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            org.telegram.ui.Components.xc.l(DialogObject.getShortName(profileActivity.f31240e1), profileActivity, z12).j();
+                            org.telegram.ui.Components.yc.l(DialogObject.getShortName(profileActivity.f31541e1), profileActivity, z12).j();
                         } else if (tL_error != null) {
-                            org.telegram.ui.Components.xc.b0(tL_error);
+                            org.telegram.ui.Components.yc.b0(tL_error);
                         }
                     }
                     FlagSecureReason flagSecureReason = profileActivity.X1;

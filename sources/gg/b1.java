@@ -7,41 +7,41 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b1 implements Runnable {
-    public final String f9658a;
-    public final String f9659b;
-    public final MessagesController f9660c;
+    public final String f9657a;
+    public final String f9658b;
+    public final MessagesController f9659c;
     public final MessagesStorage d;
     public final k1 e;
 
     public b1(k1 k1Var, String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
         this.e = k1Var;
-        this.f9658a = str;
-        this.f9659b = str2;
-        this.f9660c = messagesController;
+        this.f9657a = str;
+        this.f9658b = str2;
+        this.f9659c = messagesController;
         this.d = messagesStorage;
     }
 
     @Override
     public final void run() {
         k1 k1Var = this.e;
-        if (k1Var.f9828y0 == this) {
-            k1Var.f9828y0 = null;
-            TLRPC.User user = k1Var.f9824w0;
-            if (user == null && !k1Var.f9822v0) {
-                String str = this.f9659b;
-                k1Var.f9815q0 = str;
-                MessagesController messagesController = this.f9660c;
+        if (k1Var.f9827y0 == this) {
+            k1Var.f9827y0 = null;
+            TLRPC.User user = k1Var.f9823w0;
+            if (user == null && !k1Var.f9821v0) {
+                String str = this.f9658b;
+                k1Var.f9814q0 = str;
+                MessagesController messagesController = this.f9659c;
                 TLObject userOrChat = messagesController.getUserOrChat(str);
                 if (userOrChat instanceof TLRPC.User) {
                     k1Var.R((TLRPC.User) userOrChat);
                     return;
                 }
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                tL_contacts_resolveUsername.username = k1Var.f9815q0;
-                k1Var.f9820t0 = ConnectionsManager.getInstance(k1Var.f9803f).sendRequest(tL_contacts_resolveUsername, new p3(this, str, messagesController, this.d, 2));
-            } else if (k1Var.f9822v0) {
+                tL_contacts_resolveUsername.username = k1Var.f9814q0;
+                k1Var.f9819t0 = ConnectionsManager.getInstance(k1Var.f9802f).sendRequest(tL_contacts_resolveUsername, new p3(this, str, messagesController, this.d, 2));
+            } else if (k1Var.f9821v0) {
             } else {
-                k1Var.T(true, user, this.f9658a, "");
+                k1Var.T(true, user, this.f9657a, "");
             }
         }
     }

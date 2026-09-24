@@ -1,8 +1,17 @@
 package org.telegram.ui;
-public final class sn {
-    public final vn f37337a;
 
-    public sn(vn vnVar) {
-        this.f37337a = vnVar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class sn extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.mc0 f37815a;
+
+    public sn(org.telegram.ui.Components.mc0 mc0Var) {
+        this.f37815a = mc0Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        super.onAnimationEnd(animator);
+        this.f37815a.s(1.0f);
     }
 }

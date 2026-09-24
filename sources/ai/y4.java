@@ -14,15 +14,15 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.bj0;
+import org.telegram.ui.Components.c60;
 import org.telegram.ui.Components.e50;
+import org.telegram.ui.Components.lj0;
 import org.telegram.ui.Components.lz;
-import org.telegram.ui.Components.m70;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.o70;
-import org.telegram.ui.Components.x50;
-import org.telegram.ui.d90;
-import org.telegram.ui.z61;
+import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.y70;
+import org.telegram.ui.a71;
+import org.telegram.ui.c90;
 public final class y4 extends AnimatorListenerAdapter {
     public final int f1745a;
     public final Object f1746b;
@@ -87,12 +87,12 @@ public final class y4 extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.d).f18407x.remove((AnimatorSet) this.f1746b);
+                ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.d).f18645x.remove((AnimatorSet) this.f1746b);
                 View view = (View) this.f1747c;
-                if (view instanceof org.telegram.ui.ActionBar.f1) {
-                    bj0 bj0Var = ((org.telegram.ui.ActionBar.f1) view).f18612c;
-                    if (bj0Var.getAnimatedDrawable() != null) {
-                        bj0Var.getAnimatedDrawable().start();
+                if (view instanceof org.telegram.ui.ActionBar.e1) {
+                    lj0 lj0Var = ((org.telegram.ui.ActionBar.e1) view).f18820c;
+                    if (lj0Var.getAnimatedDrawable() != null) {
+                        lj0Var.getAnimatedDrawable().start();
                         return;
                     }
                     return;
@@ -102,22 +102,22 @@ public final class y4 extends AnimatorListenerAdapter {
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
                 ViewGroup viewGroup = (ViewGroup) this.f1746b;
                 if (viewGroup != null) {
-                    chatActivityEnterView.l1.removeView(chatActivityEnterView.f21729e1);
-                    viewGroup.addView(chatActivityEnterView.f21729e1, (ViewGroup.LayoutParams) this.f1747c);
+                    chatActivityEnterView.f22011m1.removeView(chatActivityEnterView.f21966e1);
+                    viewGroup.addView(chatActivityEnterView.f21966e1, (ViewGroup.LayoutParams) this.f1747c);
                 }
-                chatActivityEnterView.f21729e1.setAlpha(1.0f);
-                chatActivityEnterView.f21748h1.setAlpha(1.0f);
+                chatActivityEnterView.f21966e1.setAlpha(1.0f);
+                chatActivityEnterView.f21985h1.setAlpha(1.0f);
                 chatActivityEnterView.h = 0.0f;
-                chatActivityEnterView.f21779n = 0.0f;
-                chatActivityEnterView.G1();
-                ei.c0 c0Var = chatActivityEnterView.f21770l0;
+                chatActivityEnterView.f22016n = 0.0f;
+                chatActivityEnterView.F1();
+                ei.c0 c0Var = chatActivityEnterView.f22007l0;
                 if (c0Var != null) {
                     c0Var.setAlpha(0.0f);
-                    chatActivityEnterView.f21770l0.setScaleX(0.0f);
-                    chatActivityEnterView.f21770l0.setScaleY(0.0f);
+                    chatActivityEnterView.f22007l0.setScaleX(0.0f);
+                    chatActivityEnterView.f22007l0.setScaleY(0.0f);
                 }
-                if (chatActivityEnterView.N1 != null && chatActivityEnterView.P && !chatActivityEnterView.O && MessagesController.getGlobalMainSettings().getInt("voiceoncehint", 0) < 3) {
-                    chatActivityEnterView.N1.b();
+                if (chatActivityEnterView.O1 != null && chatActivityEnterView.P && !chatActivityEnterView.O && MessagesController.getGlobalMainSettings().getInt("voiceoncehint", 0) < 3) {
+                    chatActivityEnterView.O1.b();
                     return;
                 }
                 return;
@@ -127,24 +127,24 @@ public final class y4 extends AnimatorListenerAdapter {
                 ((ImageView) this.f1747c).sendAccessibilityEvent(8);
                 return;
             case 4:
-                if (((com.google.firebase.messaging.m) this.d).f7316a) {
-                    ((View) this.f1747c).postDelayed((org.telegram.ui.Cells.l7) this.f1746b, 300L);
+                if (((com.google.firebase.messaging.m) this.d).f7309a) {
+                    ((View) this.f1747c).postDelayed((org.telegram.ui.Cells.t6) this.f1746b, 300L);
                     return;
                 }
                 return;
             case 5:
-                ml0 ml0Var = (ml0) this.f1747c;
+                wl0 wl0Var = (wl0) this.f1747c;
                 s4.s sVar = (s4.s) this.f1746b;
                 lz lzVar = (lz) this.d;
                 if (animator.equals(lzVar.M0)) {
                     int L0 = sVar.L0();
-                    ml0Var.setTranslationY(0.0f);
-                    if (ml0Var == lzVar.D0) {
-                        ml0Var.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f) + lzVar.f26008p2);
-                    } else if (ml0Var == lzVar.f25983h0) {
-                        ml0Var.setPadding(0, lzVar.f25964b1, 0, AndroidUtilities.dp(44.0f) + lzVar.f26008p2);
-                    } else if (ml0Var == lzVar.P) {
-                        ml0Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(44.0f) + lzVar.f26008p2);
+                    wl0Var.setTranslationY(0.0f);
+                    if (wl0Var == lzVar.D0) {
+                        wl0Var.setPadding(0, AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(44.0f) + lzVar.f26269p2);
+                    } else if (wl0Var == lzVar.f26244h0) {
+                        wl0Var.setPadding(0, lzVar.f26225b1, 0, AndroidUtilities.dp(44.0f) + lzVar.f26269p2);
+                    } else if (wl0Var == lzVar.P) {
+                        wl0Var.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(44.0f) + lzVar.f26269p2);
                     }
                     if (L0 != -1) {
                         sVar.h1(L0, 0);
@@ -154,28 +154,28 @@ public final class y4 extends AnimatorListenerAdapter {
                 }
                 return;
             case 6:
-                x50 x50Var = (x50) this.d;
+                c60 c60Var = (c60) this.d;
                 super.onAnimationEnd(animator);
                 boolean[] zArr2 = (boolean[]) this.f1746b;
                 if (!zArr2[0]) {
                     zArr2[0] = true;
                     ((e50) this.f1747c).run();
                 }
-                x50Var.f29891b.setRotationY(0.0f);
-                x50Var.m0.setRotationY(0.0f);
-                x50Var.E0 = false;
-                x50Var.invalidate();
+                c60Var.h.setRotationY(0.0f);
+                c60Var.f23208r0.setRotationY(0.0f);
+                c60Var.J0 = false;
+                c60Var.invalidate();
                 return;
             case 7:
-                m70 m70Var = (m70) this.f1746b;
-                m70Var.setProgress(0.0f);
-                m70Var.invalidate();
-                AndroidUtilities.removeFromParent(m70Var);
+                w70 w70Var = (w70) this.f1746b;
+                w70Var.setProgress(0.0f);
+                w70Var.invalidate();
+                AndroidUtilities.removeFromParent(w70Var);
                 ViewTreeObserver viewTreeObserver = ((ViewGroup) this.f1747c).getViewTreeObserver();
-                o70 o70Var = (o70) this.d;
-                View view2 = o70Var.f26646f;
-                viewTreeObserver.removeOnPreDrawListener(o70Var.f26674y);
-                if (o70Var.P) {
+                y70 y70Var = (y70) this.d;
+                View view2 = y70Var.f30524f;
+                viewTreeObserver.removeOnPreDrawListener(y70Var.f30552y);
+                if (y70Var.P) {
                     view2.setVisibility(0);
                     if (view2 instanceof xh.j1) {
                         xh.j1 j1Var = (xh.j1) view2;
@@ -188,13 +188,13 @@ public final class y4 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                z61 z61Var = (z61) this.d;
-                z61Var.f40042r1 = null;
-                z61Var.invalidate();
+                a71 a71Var = (a71) this.d;
+                a71Var.f32034r1 = null;
+                a71Var.invalidate();
                 boolean[] zArr3 = (boolean[]) this.f1746b;
                 if (!zArr3[0]) {
                     zArr3[0] = true;
-                    ((d90) this.f1747c).run();
+                    ((c90) this.f1747c).run();
                     return;
                 }
                 return;
@@ -205,6 +205,6 @@ public final class y4 extends AnimatorListenerAdapter {
         this.f1745a = 4;
         this.d = mVar;
         this.f1747c = view;
-        this.f1746b = new org.telegram.ui.Cells.l7(this, 10);
+        this.f1746b = new org.telegram.ui.Cells.t6(this, 11);
     }
 }

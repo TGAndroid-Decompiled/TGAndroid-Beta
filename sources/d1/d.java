@@ -2,19 +2,19 @@ package d1;
 
 import v0.i;
 public final class d implements Runnable {
-    public final int f7391a;
-    public final e f7392b;
+    public final int f7390a;
+    public final e f7391b;
 
     public d(e eVar, int i10) {
-        this.f7391a = i10;
-        this.f7392b = eVar;
+        this.f7390a = i10;
+        this.f7391b = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f7391a) {
+        switch (this.f7390a) {
             case 0:
-                i iVar = this.f7392b.f7393f;
+                i iVar = this.f7391b.f7392f;
                 if (iVar != null) {
                     iVar.onError(new w0.c("Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context.", 2));
                     return;
@@ -23,7 +23,7 @@ public final class d implements Runnable {
                     throw null;
                 }
             default:
-                i iVar2 = this.f7392b.f7393f;
+                i iVar2 = this.f7391b.f7392f;
                 if (iVar2 != null) {
                     iVar2.onError(new y0.a(new x0.a(26), "Upon handling create public key credential response, fido module giving null bytes indicating internal error"));
                     return;

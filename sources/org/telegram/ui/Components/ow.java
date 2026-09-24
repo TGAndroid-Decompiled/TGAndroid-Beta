@@ -1,39 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ow extends s4.n0 {
-    public final lz f26875a;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ow extends wl0 {
+    public boolean X2;
+    public boolean Y2;
+    public final lz Z2;
 
-    public ow(lz lzVar) {
-        this.f26875a = lzVar;
+    public ow(lz lzVar, Context context) {
+        super(context, null);
+        this.Z2 = lzVar;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
-        recyclerView.getClass();
-        int R = RecyclerView.R(view);
-        lz lzVar = this.f26875a;
-        s4.h0 adapter = lzVar.f25983h0.getAdapter();
-        qy qyVar = lzVar.f26000n0;
-        int i10 = 0;
-        if (adapter == qyVar && R == qyVar.I) {
-            rect.set(0, 0, 0, 0);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.nt q6 = org.telegram.ui.nt.q();
+        lz lzVar = this.Z2;
+        boolean r10 = q6.r(motionEvent, lzVar.f26244h0, lzVar.f26243g2, this.f30094p2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        lz lzVar = this.Z2;
+        if (lzVar.f26270q0 && lzVar.f26261n0.G > 1) {
+            this.X2 = true;
+            lzVar.f26247i0.h1(0, 0);
+            lzVar.f26264o0.setVisibility(0);
+            lzVar.f26267p0.k(0, 0);
+            lzVar.f26270q0 = false;
+            this.X2 = false;
+        }
+        super.onLayout(z10, i10, i11, i12, i13);
+        lz.f(lzVar, true);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        if (!this.Y2) {
+            this.Z2.f26261n0.l();
+            this.Y2 = true;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.X2) {
             return;
         }
-        if (R == 0) {
-            qyVar.getClass();
-        }
-        rect.left = 0;
-        rect.bottom = 0;
-        rect.top = AndroidUtilities.dp(2.0f);
-        ry ryVar = lzVar.f25986i0;
-        qyVar.getClass();
-        if (!ryVar.E1(R)) {
-            i10 = AndroidUtilities.dp(2.0f);
-        }
-        rect.right = i10;
+        super.requestLayout();
     }
 }

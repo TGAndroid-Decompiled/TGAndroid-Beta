@@ -6,8 +6,8 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class m0 extends d0 implements Set, j$.util.Set {
-    public static final int f8083c = 0;
-    public transient i0 f8084b;
+    public static final int f8082c = 0;
+    public transient i0 f8083b;
 
     public static int t(int i10) {
         int max = Math.max(i10, 2);
@@ -57,7 +57,7 @@ public abstract class m0 extends d0 implements Set, j$.util.Set {
                             }
                         }
                     } else {
-                        throw new NullPointerException(hg.c.i(i14, "at index "));
+                        throw new NullPointerException(hg.c.h(i14, "at index "));
                     }
                 }
                 Arrays.fill(objArr, i13, i10, (Object) null);
@@ -79,7 +79,7 @@ public abstract class m0 extends d0 implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new m1(obj4);
         }
-        return g1.f8061s;
+        return g1.f8060s;
     }
 
     public static m0 v(Collection collection) {
@@ -111,18 +111,18 @@ public abstract class m0 extends d0 implements Set, j$.util.Set {
 
     @Override
     public i0 i() {
-        i0 i0Var = this.f8084b;
+        i0 i0Var = this.f8083b;
         if (i0Var == null) {
             i0 w10 = w();
-            this.f8084b = w10;
+            this.f8083b = w10;
             return w10;
         }
         return i0Var;
     }
 
     public i0 w() {
-        Object[] array = toArray(d0.f8049a);
-        g0 g0Var = i0.f8067b;
+        Object[] array = toArray(d0.f8048a);
+        g0 g0Var = i0.f8066b;
         return i0.t(array.length, array);
     }
 }

@@ -3,7 +3,7 @@ package org.scilab.forge.jlatexmath;
 import a4.a;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.ui.Cells.q3;
+import org.telegram.ui.Cells.c1;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -45,7 +45,7 @@ public class TeXFormulaParser {
             if ("false".equals(str)) {
                 return Boolean.FALSE;
             }
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", q3.j("has an invalid '", str2, "'-value : '", str, "'!"));
+            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.k("has an invalid '", str2, "'-value : '", str, "'!"));
         }
     }
 
@@ -145,7 +145,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Float.parseFloat(str));
             } catch (NumberFormatException e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", q3.j("has an invalid '", str2, "'-value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.k("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }
@@ -160,7 +160,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Integer.parseInt(str));
             } catch (NumberFormatException e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", q3.j("has an invalid '", str2, "'-value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c1.k("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }

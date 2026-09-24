@@ -1,66 +1,65 @@
 package lf;
 
 import java.io.EOFException;
-import k2.b0;
 public final class f {
-    public final String f14000a;
-    public final int f14001b;
-    public final int f14002c;
+    public final String f14223a;
+    public final int f14224b;
+    public final int f14225c;
     public final boolean d;
     public final boolean e;
-    public final boolean f14003f;
-    public final int f14004g;
+    public final boolean f14226f;
+    public final int f14227g;
 
-    public f(i iVar) {
+    public f(la.h hVar) {
         byte b10;
         byte b11;
         boolean z10;
         boolean z11;
-        mf.a aVar = (mf.a) iVar.f14011b;
-        long j3 = aVar.f7290b;
-        b0 b0Var = (b0) iVar.d;
-        j jVar = (j) iVar.f14012c;
-        int i10 = jVar.f14013a;
-        int i11 = jVar.f14013a;
+        mf.a aVar = (mf.a) hVar.f14151b;
+        long j3 = aVar.f7286b;
+        a4.m mVar = (a4.m) hVar.d;
+        i iVar = (i) hVar.f14152c;
+        int i10 = iVar.f14233a;
+        int i11 = iVar.f14233a;
         byte b12 = 2;
         if (i10 == 2) {
-            b0Var.getClass();
+            mVar.getClass();
             byte[] bArr = new byte[3];
             int i12 = 0;
             while (i12 < 3) {
-                int read = ((com.google.firebase.messaging.d) b0Var.f13222b).read(bArr, i12, 3 - i12);
+                int read = ((com.google.firebase.messaging.d) mVar.f275b).read(bArr, i12, 3 - i12);
                 if (read > 0) {
                     i12 += read;
                 } else {
                     throw new EOFException();
                 }
             }
-            this.f14000a = new String(bArr, "ISO-8859-1");
+            this.f14223a = new String(bArr, "ISO-8859-1");
         } else {
-            b0Var.getClass();
+            mVar.getClass();
             byte[] bArr2 = new byte[4];
             int i13 = 0;
             while (i13 < 4) {
-                int read2 = ((com.google.firebase.messaging.d) b0Var.f13222b).read(bArr2, i13, 4 - i13);
+                int read2 = ((com.google.firebase.messaging.d) mVar.f275b).read(bArr2, i13, 4 - i13);
                 if (read2 > 0) {
                     i13 += read2;
                 } else {
                     throw new EOFException();
                 }
             }
-            this.f14000a = new String(bArr2, "ISO-8859-1");
+            this.f14223a = new String(bArr2, "ISO-8859-1");
         }
         byte b13 = 8;
         if (i11 == 2) {
-            this.f14002c = ((b0Var.o() & 255) << 16) | ((b0Var.o() & 255) << 8) | (b0Var.o() & 255);
+            this.f14225c = ((mVar.y0() & 255) << 16) | ((mVar.y0() & 255) << 8) | (mVar.y0() & 255);
         } else if (i11 == 3) {
-            this.f14002c = b0Var.p();
+            this.f14225c = mVar.A0();
         } else {
-            this.f14002c = b0Var.q();
+            this.f14225c = mVar.B0();
         }
         if (i11 > 2) {
-            b0Var.o();
-            byte o9 = b0Var.o();
+            mVar.y0();
+            byte y02 = mVar.y0();
             byte b14 = 64;
             if (i11 == 3) {
                 b13 = 128;
@@ -72,52 +71,52 @@ public final class f {
                 b10 = 64;
                 b11 = 1;
             }
-            if ((b13 & o9) != 0) {
+            if ((b13 & y02) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             this.e = z10;
-            if ((b12 & o9) != 0) {
+            if ((b12 & y02) != 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             this.d = z11;
-            boolean z12 = (o9 & b14) != 0;
-            this.f14003f = z12;
+            boolean z12 = (y02 & b14) != 0;
+            this.f14226f = z12;
             if (i11 == 3) {
                 if (z10) {
-                    this.f14004g = b0Var.p();
-                    this.f14002c -= 4;
+                    this.f14227g = mVar.A0();
+                    this.f14225c -= 4;
                 }
                 if (z12) {
-                    b0Var.o();
-                    this.f14002c--;
+                    mVar.y0();
+                    this.f14225c--;
                 }
-                if ((o9 & b10) != 0) {
-                    b0Var.o();
-                    this.f14002c--;
+                if ((y02 & b10) != 0) {
+                    mVar.y0();
+                    this.f14225c--;
                 }
             } else {
-                if ((o9 & b10) != 0) {
-                    b0Var.o();
-                    this.f14002c--;
+                if ((y02 & b10) != 0) {
+                    mVar.y0();
+                    this.f14225c--;
                 }
                 if (z12) {
-                    b0Var.o();
-                    this.f14002c--;
+                    mVar.y0();
+                    this.f14225c--;
                 }
-                if ((o9 & b11) != 0) {
-                    this.f14004g = b0Var.q();
-                    this.f14002c -= 4;
+                if ((y02 & b11) != 0) {
+                    this.f14227g = mVar.B0();
+                    this.f14225c -= 4;
                 }
             }
         }
-        this.f14001b = (int) (aVar.f7290b - j3);
+        this.f14224b = (int) (aVar.f7286b - j3);
     }
 
     public final String toString() {
-        return String.format("%s[id=%s, bodysize=%d]", f.class.getSimpleName(), this.f14000a, Integer.valueOf(this.f14002c));
+        return String.format("%s[id=%s, bodysize=%d]", f.class.getSimpleName(), this.f14223a, Integer.valueOf(this.f14225c));
     }
 }

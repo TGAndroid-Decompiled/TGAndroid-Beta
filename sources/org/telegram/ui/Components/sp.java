@@ -5,23 +5,23 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class sp extends lw0 {
-    public final int f27960a;
-    public boolean f27961b;
-    public long f27962c;
+public final class sp extends ww0 {
+    public final int f28293a;
+    public boolean f28294b;
+    public long f28295c;
     public boolean d;
     public float e;
-    public int f27963f;
-    public final Paint f27964g;
+    public int f28296f;
+    public final Paint f28297g;
     public final Object h;
 
     public sp() {
-        this.f27960a = 0;
-        this.f27962c = 0L;
-        this.f27961b = false;
+        this.f28293a = 0;
+        this.f28295c = 0L;
+        this.f28294b = false;
         this.d = true;
         Paint paint = new Paint(1);
-        this.f27964g = paint;
+        this.f28297g = paint;
         this.h = new Paint(1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.2f));
@@ -29,16 +29,16 @@ public final class sp extends lw0 {
 
     @Override
     public final void b(int i10) {
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
-                if (this.f27963f != i10) {
+                if (this.f28296f != i10) {
                     ((Paint) this.h).setColor(i10);
-                    this.f27964g.setColor(i10);
+                    this.f28297g.setColor(i10);
                 }
-                this.f27963f = i10;
+                this.f28296f = i10;
                 return;
             default:
-                Paint paint = this.f27964g;
+                Paint paint = this.f28297g;
                 if (paint != null) {
                     paint.setColor(i10);
                     return;
@@ -49,25 +49,25 @@ public final class sp extends lw0 {
 
     @Override
     public final void c(boolean z10) {
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
                 return;
             default:
-                this.f27961b = z10;
+                this.f28294b = z10;
                 return;
         }
     }
 
     @Override
     public final void d() {
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
-                this.f27962c = System.currentTimeMillis();
-                this.f27961b = true;
+                this.f28295c = System.currentTimeMillis();
+                this.f28294b = true;
                 invalidateSelf();
                 return;
             default:
-                this.f27962c = System.currentTimeMillis();
+                this.f28295c = System.currentTimeMillis();
                 this.d = true;
                 invalidateSelf();
                 return;
@@ -80,10 +80,10 @@ public final class sp extends lw0 {
         float f10;
         float dp;
         float dpf2;
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
                 float min = Math.min(this.e, 1.0f);
-                rr rrVar = rr.f27703i;
+                rr rrVar = rr.f28024i;
                 int i10 = (min > 0.3f ? 1 : (min == 0.3f ? 0 : -1));
                 if (i10 < 0) {
                     f7 = min / 0.3f;
@@ -91,7 +91,7 @@ public final class sp extends lw0 {
                     f7 = 1.0f;
                 }
                 float interpolation = rrVar.getInterpolation(f7);
-                rr rrVar2 = rr.f27702g;
+                rr rrVar2 = rr.f28023g;
                 if (i10 < 0) {
                     f10 = 0.0f;
                 } else {
@@ -108,13 +108,13 @@ public final class sp extends lw0 {
                 float dp2 = AndroidUtilities.dp(11.0f) / 2.0f;
                 float dpf22 = AndroidUtilities.dpf2(2.0f);
                 float dpf23 = (AndroidUtilities.dpf2(0.5f) * interpolation) - (AndroidUtilities.dpf2(0.5f) * interpolation2);
-                Paint paint = this.f27964g;
+                Paint paint = this.f28297g;
                 if (paint == null) {
-                    paint = org.telegram.ui.ActionBar.h6.f18785d2;
+                    paint = org.telegram.ui.ActionBar.h6.f19041d2;
                 }
                 Paint paint2 = (Paint) this.h;
                 if (paint2 == null) {
-                    paint2 = org.telegram.ui.ActionBar.h6.f18767c2;
+                    paint2 = org.telegram.ui.ActionBar.h6.f19023c2;
                 }
                 if (paint.getStrokeWidth() != AndroidUtilities.dp(0.8f)) {
                     paint.setStrokeWidth(AndroidUtilities.dp(0.8f));
@@ -128,10 +128,10 @@ public final class sp extends lw0 {
                     canvas.drawCircle(dp, dp2, dpf22, paint2);
                     canvas.restore();
                 }
-                if (this.f27961b) {
+                if (this.f28294b) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    long j3 = currentTimeMillis - this.f27962c;
-                    this.f27962c = currentTimeMillis;
+                    long j3 = currentTimeMillis - this.f28295c;
+                    this.f28295c = currentTimeMillis;
                     if (j3 > 50) {
                         j3 = 50;
                     }
@@ -147,9 +147,9 @@ public final class sp extends lw0 {
                 return;
             default:
                 RectF rectF2 = (RectF) this.h;
-                Paint paint3 = this.f27964g;
+                Paint paint3 = this.f28297g;
                 if (paint3 == null) {
-                    paint3 = org.telegram.ui.ActionBar.h6.f18785d2;
+                    paint3 = org.telegram.ui.ActionBar.h6.f19041d2;
                 }
                 Paint paint4 = paint3;
                 float f12 = 2.0f;
@@ -158,17 +158,17 @@ public final class sp extends lw0 {
                 }
                 canvas.save();
                 int dp3 = AndroidUtilities.dp(14.0f) / 2;
-                if (this.f27961b) {
+                if (this.f28294b) {
                     f12 = 1.0f;
                 }
                 canvas.translate(0.0f, AndroidUtilities.dp(f12) + dp3);
                 for (int i12 = 0; i12 < 4; i12++) {
                     if (i12 == 0) {
-                        paint4.setAlpha((int) (this.f27963f * this.e));
+                        paint4.setAlpha((int) (this.f28296f * this.e));
                     } else if (i12 == 3) {
-                        paint4.setAlpha((int) ((1.0f - this.e) * this.f27963f));
+                        paint4.setAlpha((int) ((1.0f - this.e) * this.f28296f));
                     } else {
-                        paint4.setAlpha(this.f27963f);
+                        paint4.setAlpha(this.f28296f);
                     }
                     float dp4 = (AndroidUtilities.dp(4.0f) * this.e) + (AndroidUtilities.dp(4.0f) * i12);
                     float f13 = -dp4;
@@ -178,8 +178,8 @@ public final class sp extends lw0 {
                 canvas.restore();
                 if (this.d) {
                     long currentTimeMillis2 = System.currentTimeMillis();
-                    long j10 = currentTimeMillis2 - this.f27962c;
-                    this.f27962c = currentTimeMillis2;
+                    long j10 = currentTimeMillis2 - this.f28295c;
+                    this.f28295c = currentTimeMillis2;
                     if (j10 > 50) {
                         j10 = 50;
                     }
@@ -201,9 +201,9 @@ public final class sp extends lw0 {
 
     @Override
     public final void e() {
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
-                this.f27961b = false;
+                this.f28294b = false;
                 return;
             default:
                 this.d = false;
@@ -213,7 +213,7 @@ public final class sp extends lw0 {
 
     @Override
     public final int getIntrinsicHeight() {
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
                 return AndroidUtilities.dp(18.0f);
             default:
@@ -223,7 +223,7 @@ public final class sp extends lw0 {
 
     @Override
     public final int getIntrinsicWidth() {
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
                 return AndroidUtilities.dp(20.0f);
             default:
@@ -233,7 +233,7 @@ public final class sp extends lw0 {
 
     @Override
     public final int getOpacity() {
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
                 return 0;
             default:
@@ -243,30 +243,30 @@ public final class sp extends lw0 {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f27960a) {
+        switch (this.f28293a) {
             case 0:
                 return;
             default:
-                this.f27963f = i10;
+                this.f28296f = i10;
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f27960a;
+        int i10 = this.f28293a;
     }
 
     public sp(boolean z10) {
-        this.f27960a = 1;
-        this.f27961b = false;
-        this.f27962c = 0L;
+        this.f28293a = 1;
+        this.f28294b = false;
+        this.f28295c = 0L;
         this.d = false;
         this.h = new RectF();
-        this.f27963f = 255;
+        this.f28296f = 255;
         if (z10) {
             Paint paint = new Paint(1);
-            this.f27964g = paint;
+            this.f28297g = paint;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeWidth(AndroidUtilities.dp(2.0f));

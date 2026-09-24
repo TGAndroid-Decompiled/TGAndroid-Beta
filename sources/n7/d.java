@@ -1,3 +1,8 @@
 package n7;
-public final class d extends lf.i {
+
+import java.io.Serializable;
+public abstract class d implements Serializable {
+    public abstract Object a();
+
+    public abstract boolean b();
 }

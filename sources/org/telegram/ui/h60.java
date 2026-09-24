@@ -1,17 +1,26 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class h60 implements View.OnClickListener {
-    public final int f33744a;
-    public final Object f33745b;
+import android.content.Context;
+public final class h60 extends org.telegram.ui.Components.voip.l {
+    public final j60 h;
 
-    public h60(Object obj, int i10) {
-        this.f33744a = i10;
-        this.f33745b = obj;
+    public h60(j60 j60Var, Context context) {
+        super(context, true);
+        this.h = j60Var;
     }
 
     @Override
-    public final void onClick(android.view.View r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.h60.onClick(android.view.View):void");
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        j60 j60Var = this.h;
+        if (j60Var.f34647r && getParticipant() != null) {
+            j60Var.E(this, true);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.h.E(this, false);
     }
 }

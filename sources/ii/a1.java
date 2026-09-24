@@ -20,10 +20,10 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Cells.r9;
 import org.telegram.ui.Components.RadialProgress2;
-public final class a1 extends a0 implements org.telegram.ui.ActionBar.y5, q9, m0, DownloadController.FileDownloadProgressListener {
+public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0, DownloadController.FileDownloadProgressListener {
     public final ImageReceiver E;
     public final l0 F;
     public final int G;
@@ -75,9 +75,9 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.y5, q9, m0
         this.E = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        l0 l0Var = new l0(context, d6Var, new a4.m(this, 20));
+        l0 l0Var = new l0(context, d6Var, new a4.m(this, 21));
         this.F = l0Var;
-        addView(l0Var.f11476a, w7.x5.e(-2, -2, 51));
+        addView(l0Var.f11476a, w7.y5.e(-2, -2, 51));
         e();
     }
 
@@ -99,7 +99,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.y5, q9, m0
 
     @Override
     public final void e() {
-        this.f11213s.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19109uf, this.f11212r));
+        this.f11213s.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19367uf, this.f11212r));
         l0 l0Var = this.F;
         if (l0Var != null) {
             l0Var.a();
@@ -343,7 +343,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.y5, q9, m0
         int i10;
         float f7;
         int height;
-        r9 textSelectionHelper;
+        q9 textSelectionHelper;
         int i11;
         float f10;
         if (i() != null) {
@@ -372,7 +372,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.y5, q9, m0
                 this.Q.draw(canvas);
                 canvas.restore();
             }
-            this.f11215x.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18978nd, d6Var));
+            this.f11215x.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19234nd, d6Var));
             StaticLayout staticLayout = this.Q;
             int i12 = 0;
             if (staticLayout == null) {
@@ -390,7 +390,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.y5, q9, m0
             if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f11613a.getTextSelectionHelper()) != null && textSelectionHelper.y()) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R > textSelectionHelper.f20771u0 && R <= textSelectionHelper.f20774x0) {
+                if (R > textSelectionHelper.f20836u0 && R <= textSelectionHelper.f20839x0) {
                     if (this.M) {
                         i11 = 0;
                     } else {

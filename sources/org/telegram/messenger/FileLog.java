@@ -93,7 +93,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.o("_", name == null ? db.k.f7592a : new db.m(name));
+            lVar.o("_", name == null ? db.k.f7591a : new db.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -111,7 +111,7 @@ public class FileLog {
                                     }
                                 }
                             }
-                            lVar.o(field.getName(), ((a6.i) nVar).R(obj));
+                            lVar.o(field.getName(), ((a6.i) nVar).S(obj));
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         }
@@ -168,8 +168,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(db.b bVar) {
                     HashSet hashSet4 = FileLog.privateFields;
-                    Field field = bVar.f7576a;
-                    Field field2 = bVar.f7576a;
+                    Field field = bVar.f7575a;
+                    Field field2 = bVar.f7575a;
                     if (!hashSet4.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -179,26 +179,26 @@ public class FileLog {
                     return true;
                 }
             };
-            fb.f fVar = fb.f.f9008c;
+            fb.f fVar = fb.f.f9007c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             db.c cVar = db.g.h;
-            db.p pVar = db.g.f7584i;
-            db.q qVar = db.g.f7585j;
+            db.p pVar = db.g.f7583i;
+            db.q qVar = db.g.f7584j;
             ArrayDeque arrayDeque = new ArrayDeque();
             db.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
             fb.f clone = fVar.clone();
-            ArrayList arrayList3 = new ArrayList(fVar.f9009a);
-            clone.f9009a = arrayList3;
+            ArrayList arrayList3 = new ArrayList(fVar.f9008a);
+            clone.f9008a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z11 = byteArrayHexAdapter instanceof db.o;
             if (!db.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
                     kb.a aVar2 = new kb.a(byte[].class);
-                    if (aVar2.f13566b == aVar2.f13565a) {
+                    if (aVar2.f13564b == aVar2.f13563a) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -206,7 +206,7 @@ public class FileLog {
                     arrayList.add(new gb.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
                 kb.a aVar3 = new kb.a(byte[].class);
-                gb.x0 x0Var = gb.h1.f9534a;
+                gb.x0 x0Var = gb.h1.f9533a;
                 arrayList.add(new gb.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);

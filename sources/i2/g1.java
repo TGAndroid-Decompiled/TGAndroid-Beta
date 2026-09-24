@@ -15,7 +15,7 @@ public final class g1 {
     public final e2.z f10702i;
     public boolean f10704k;
     public g2.c0 f10705l;
-    public u2.f1 f10703j = new u2.d1();
+    public u2.g1 f10703j = new u2.e1();
     public final IdentityHashMap f10699c = new IdentityHashMap();
     public final HashMap d = new HashMap();
     public final ArrayList f10698b = new ArrayList();
@@ -29,34 +29,34 @@ public final class g1 {
         this.f10702i = zVar;
     }
 
-    public final b2.k1 a(int i10, ArrayList arrayList, u2.f1 f1Var) {
+    public final b2.k1 a(int i10, ArrayList arrayList, u2.g1 g1Var) {
         if (!arrayList.isEmpty()) {
-            this.f10703j = f1Var;
+            this.f10703j = g1Var;
             for (int i11 = i10; i11 < arrayList.size() + i10; i11++) {
-                f1 f1Var2 = (f1) arrayList.get(i11 - i10);
+                f1 f1Var = (f1) arrayList.get(i11 - i10);
                 ArrayList arrayList2 = this.f10698b;
                 if (i11 > 0) {
-                    f1 f1Var3 = (f1) arrayList2.get(i11 - 1);
-                    f1Var2.d = f1Var3.f10682a.f43258o.e.o() + f1Var3.d;
-                    f1Var2.e = false;
-                    f1Var2.f10684c.clear();
+                    f1 f1Var2 = (f1) arrayList2.get(i11 - 1);
+                    f1Var.d = f1Var2.f10682a.f43577o.e.o() + f1Var2.d;
+                    f1Var.e = false;
+                    f1Var.f10684c.clear();
                 } else {
-                    f1Var2.d = 0;
-                    f1Var2.e = false;
-                    f1Var2.f10684c.clear();
+                    f1Var.d = 0;
+                    f1Var.e = false;
+                    f1Var.f10684c.clear();
                 }
-                int o9 = f1Var2.f10682a.f43258o.e.o();
+                int o9 = f1Var.f10682a.f43577o.e.o();
                 for (int i12 = i11; i12 < arrayList2.size(); i12++) {
                     ((f1) arrayList2.get(i12)).d += o9;
                 }
-                arrayList2.add(i11, f1Var2);
-                this.d.put(f1Var2.f10683b, f1Var2);
+                arrayList2.add(i11, f1Var);
+                this.d.put(f1Var.f10683b, f1Var);
                 if (this.f10704k) {
-                    e(f1Var2);
+                    e(f1Var);
                     if (this.f10699c.isEmpty()) {
-                        this.f10701g.add(f1Var2);
+                        this.f10701g.add(f1Var);
                     } else {
-                        e1 e1Var = (e1) this.f10700f.get(f1Var2);
+                        e1 e1Var = (e1) this.f10700f.get(f1Var);
                         if (e1Var != null) {
                             e1Var.f10635a.d(e1Var.f10636b);
                         }
@@ -76,7 +76,7 @@ public final class g1 {
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             f1 f1Var = (f1) arrayList.get(i11);
             f1Var.d = i10;
-            i10 += f1Var.f10682a.f43258o.e.o();
+            i10 += f1Var.f10682a.f43577o.e.o();
         }
         return new m1(arrayList, this.f10703j);
     }
@@ -120,30 +120,30 @@ public final class g1 {
         };
         d1 d1Var = new d1(this, f1Var);
         this.f10700f.put(f1Var, new e1(a0Var, r12, d1Var));
-        String str = e2.d0.f7871a;
+        String str = e2.d0.f7870a;
         Looper myLooper = Looper.myLooper();
         if (myLooper == null) {
             myLooper = Looper.getMainLooper();
         }
         Handler handler = new Handler(myLooper, null);
         a0Var.getClass();
-        a5.a aVar = a0Var.f43252c;
+        a5.a aVar = a0Var.f43571c;
         aVar.getClass();
         ?? obj = new Object();
-        obj.f43320a = handler;
-        obj.f43321b = d1Var;
+        obj.f43667a = handler;
+        obj.f43668b = d1Var;
         ((CopyOnWriteArrayList) aVar.d).add(obj);
         Looper myLooper2 = Looper.myLooper();
         if (myLooper2 == null) {
             myLooper2 = Looper.getMainLooper();
         }
         Handler handler2 = new Handler(myLooper2, null);
-        n2.j jVar = a0Var.d;
-        jVar.getClass();
-        CopyOnWriteArrayList copyOnWriteArrayList = jVar.f14882c;
+        n2.k kVar = a0Var.d;
+        kVar.getClass();
+        CopyOnWriteArrayList copyOnWriteArrayList = kVar.f15120c;
         ?? obj2 = new Object();
-        obj2.f14878a = handler2;
-        obj2.f14879b = d1Var;
+        obj2.f15116a = handler2;
+        obj2.f15117b = d1Var;
         copyOnWriteArrayList.add(obj2);
         a0Var.l(r12, this.f10705l, this.f10697a);
     }
@@ -153,7 +153,7 @@ public final class g1 {
         f1 f1Var = (f1) identityHashMap.remove(d0Var);
         f1Var.getClass();
         f1Var.f10682a.o(d0Var);
-        f1Var.f10684c.remove(((u2.x) d0Var).f43456a);
+        f1Var.f10684c.remove(((u2.x) d0Var).f43798a);
         if (!identityHashMap.isEmpty()) {
             c();
         }
@@ -165,7 +165,7 @@ public final class g1 {
             ArrayList arrayList = this.f10698b;
             f1 f1Var = (f1) arrayList.remove(i12);
             this.d.remove(f1Var.f10683b);
-            int i13 = -f1Var.f10682a.f43258o.e.o();
+            int i13 = -f1Var.f10682a.f43577o.e.o();
             for (int i14 = i12; i14 < arrayList.size(); i14++) {
                 ((f1) arrayList.get(i14)).d += i13;
             }

@@ -14,14 +14,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ik0;
-import org.telegram.ui.Components.pv0;
+import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.sk0;
 public final class bc extends r {
     public final Path R1;
     public final lc S1;
 
-    public bc(lc lcVar, Activity activity, FrameLayout frameLayout, pv0 pv0Var, FrameLayout frameLayout2, ai.d dVar, org.telegram.ui.Components.ja jaVar) {
-        super(activity, frameLayout, pv0Var, frameLayout2, dVar, jaVar);
+    public bc(lc lcVar, Activity activity, FrameLayout frameLayout, aw0 aw0Var, FrameLayout frameLayout2, ai.d dVar, org.telegram.ui.Components.ja jaVar) {
+        super(activity, frameLayout, aw0Var, frameLayout2, dVar, jaVar);
         this.S1 = lcVar;
         this.R1 = new Path();
     }
@@ -29,11 +29,11 @@ public final class bc extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f27299w) != null && qcVar.f27300a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f27564w) != null && qcVar.f27565a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", Math.round(i10 / MessagesController.getInstance(this.U).storyCaptionLengthLimitDefault), hg.c.i(i10, "")));
+        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", Math.round(i10 / MessagesController.getInstance(this.U).storyCaptionLengthLimitDefault), hg.c.h(i10, "")));
         int indexOf = replaceTags.toString().indexOf("__");
         if (indexOf >= 0) {
             replaceTags.replace(indexOf, indexOf + 2, (CharSequence) "");
@@ -44,9 +44,9 @@ public final class bc extends r {
                 replaceTags.setSpan(new ac(this, 0), indexOf, indexOf2, 33);
             }
         }
-        org.telegram.ui.Components.qc M = new org.telegram.ui.Components.xc(this.S1.f5062l0, this.f5113a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f27300a = 2;
-        M.f27306j = 5000;
+        org.telegram.ui.Components.qc M = new org.telegram.ui.Components.yc(this.S1.f5062l0, this.f5113a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
+        M.f27565a = 2;
+        M.f27571j = 5000;
         M.k(false);
         return true;
     }
@@ -103,11 +103,11 @@ public final class bc extends r {
                 for (int i10 = 0; i10 < lcVar.f5094v1.R0.getChildCount(); i10++) {
                     View childAt = lcVar.f5094v1.R0.getChildAt(i10);
                     if (childAt instanceof qg.j) {
-                        ik0 selectionBounds = ((qg.j) childAt).getSelectionBounds();
+                        sk0 selectionBounds = ((qg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f24988a;
-                        float f12 = selectionBounds.f24989b;
-                        rectF.set(f11, f12, selectionBounds.f24990c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f28258a;
+                        float f12 = selectionBounds.f28259b;
+                        rectF.set(f11, f12, selectionBounds.f28260c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }

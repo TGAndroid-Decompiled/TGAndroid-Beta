@@ -204,9 +204,9 @@ public abstract class d1 extends CameraView {
                 this.f4492a = false;
                 edit.putBoolean("dual_available", false).apply();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-                alertDialog$Builder.f18409a.R = LocaleController.getString(R.string.DualErrorTitle);
-                alertDialog$Builder.f18409a.T = LocaleController.getString(R.string.DualErrorMessage);
-                hg.c.A(R.string.OK, alertDialog$Builder, null);
+                alertDialog$Builder.f18647a.R = LocaleController.getString(R.string.DualErrorTitle);
+                alertDialog$Builder.f18647a.T = LocaleController.getString(R.string.DualErrorMessage);
+                org.telegram.messenger.f0.o(R.string.OK, alertDialog$Builder, null);
             }
             t(false);
             toggleDual();
@@ -268,11 +268,11 @@ public abstract class d1 extends CameraView {
         fArr[1] = 0.0f;
         matrix.mapPoints(fArr);
         this.R = (float) Math.toDegrees(Math.atan2(fArr[1] - this.Q, fArr[0] - this.P));
-        this.S = v7.z6.a(this.P, this.Q, fArr[0], fArr[1]) * 2.0f;
+        this.S = v7.a7.a(this.P, this.Q, fArr[0], fArr[1]) * 2.0f;
         fArr[0] = 0.0f;
         fArr[1] = 1.0f;
         matrix.mapPoints(fArr);
-        this.T = v7.z6.a(this.P, this.Q, fArr[0], fArr[1]) * 2.0f;
+        this.T = v7.a7.a(this.P, this.Q, fArr[0], fArr[1]) * 2.0f;
     }
 
     public final boolean s(float f7, float f10) {

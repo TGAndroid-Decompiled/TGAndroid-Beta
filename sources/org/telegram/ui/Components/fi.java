@@ -9,14 +9,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 public final class fi implements TextWatcher {
-    public boolean f23981a;
-    public boolean f23982b;
-    public final org.telegram.ui.ActionBar.n2 f23983c;
+    public boolean f24180a;
+    public boolean f24181b;
+    public final org.telegram.ui.ActionBar.m2 f24182c;
     public final wi d;
 
-    public fi(wi wiVar, org.telegram.ui.ActionBar.n2 n2Var) {
+    public fi(wi wiVar, org.telegram.ui.ActionBar.m2 m2Var) {
         this.d = wiVar;
-        this.f23983c = n2Var;
+        this.f24182c = m2Var;
     }
 
     @Override
@@ -26,24 +26,24 @@ public final class fi implements TextWatcher {
         int i10;
         boolean z12;
         wi wiVar = this.d;
-        p6 p6Var = wiVar.f29704s;
+        p6 p6Var = wiVar.f30024s;
         ei eiVar = wiVar.P0;
         int i11 = wiVar.J1;
         p6 p6Var2 = wiVar.v;
-        if (this.f23982b != TextUtils.isEmpty(editable)) {
-            oi oiVar = wiVar.f29726y0;
+        if (this.f24181b != TextUtils.isEmpty(editable)) {
+            oi oiVar = wiVar.f30046y0;
             if (oiVar != null) {
                 oiVar.A(oiVar.getSelectedItemsCount());
             }
-            this.f23982b = !this.f23982b;
+            this.f24181b = !this.f24181b;
         }
         boolean z13 = false;
-        if (this.f23981a) {
+        if (this.f24180a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, eiVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f23981a = false;
+            this.f24180a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         wiVar.L = codePointCount;
@@ -76,10 +76,10 @@ public final class fi implements TextWatcher {
             p6Var2.animate().setListener(null).cancel();
             p6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19008p7));
+                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19265p7));
                 z11 = false;
             } else {
-                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19170y6));
+                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19428y6));
                 z11 = true;
             }
             p6Var.c(LocaleController.formatNumber(j3, ','), false, true);
@@ -93,11 +93,11 @@ public final class fi implements TextWatcher {
             wiVar.U0 = z11;
             wiVar.I0.invalidate();
         }
-        if (!wiVar.f29676i2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && wiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && wiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
-            wiVar.f29676i2 = true;
-            wiVar.O1(this.f23983c);
+        if (!wiVar.f29996i2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && wiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && wiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            wiVar.f29996i2 = true;
+            wiVar.O1(this.f24182c);
         }
-        if (wiVar.f29655c0) {
+        if (wiVar.f29975c0) {
             if (eiVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(eiVar.getText().toString().trim())) {
                 z13 = true;
             }
@@ -109,7 +109,7 @@ public final class fi implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f23981a = true;
+            this.f24180a = true;
         }
         wi wiVar = this.d;
         if (wiVar.B2 == null) {

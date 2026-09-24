@@ -1,66 +1,139 @@
 package u2;
-public final class n1 {
-    public static final n1 d = new n1(new b2.l1[0]);
-    public static final String e;
-    public final int f43380a;
-    public final e9.a1 f43381b;
-    public int f43382c;
+public final class n1 implements d0, c0 {
+    public final d0 f43712a;
+    public final long f43713b;
+    public c0 f43714c;
 
-    static {
-        String str = e2.d0.f7871a;
-        e = Integer.toString(0, 36);
+    public n1(d0 d0Var, long j3) {
+        this.f43712a = d0Var;
+        this.f43713b = j3;
     }
 
-    public n1(b2.l1... l1VarArr) {
-        e9.a1 w10 = e9.i0.w(l1VarArr);
-        this.f43381b = w10;
-        this.f43380a = l1VarArr.length;
+    @Override
+    public final void b(d0 d0Var) {
+        c0 c0Var = this.f43714c;
+        c0Var.getClass();
+        c0Var.b(this);
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f43712a.c();
+    }
+
+    @Override
+    public final long d() {
+        long d = this.f43712a.d();
+        if (d == Long.MIN_VALUE) {
+            return Long.MIN_VALUE;
+        }
+        return d + this.f43713b;
+    }
+
+    @Override
+    public final void g() {
+        this.f43712a.g();
+    }
+
+    @Override
+    public final long h(long j3) {
+        long j10 = this.f43713b;
+        return this.f43712a.h(j3 - j10) + j10;
+    }
+
+    @Override
+    public final void i(long j3) {
+        this.f43712a.i(j3 - this.f43713b);
+    }
+
+    @Override
+    public final void k(c0 c0Var, long j3) {
+        this.f43714c = c0Var;
+        this.f43712a.k(this, j3 - this.f43713b);
+    }
+
+    @Override
+    public final long l() {
+        long l4 = this.f43712a.l();
+        if (l4 == -9223372036854775807L) {
+            return -9223372036854775807L;
+        }
+        return l4 + this.f43713b;
+    }
+
+    @Override
+    public final void m(d1 d1Var) {
+        d0 d0Var = (d0) d1Var;
+        c0 c0Var = this.f43714c;
+        c0Var.getClass();
+        c0Var.m(this);
+    }
+
+    @Override
+    public final boolean p(i2.s0 s0Var) {
+        ?? obj = new Object();
+        long j3 = s0Var.f10863a;
+        obj.f10855b = s0Var.f10864b;
+        obj.f10856c = s0Var.f10865c;
+        obj.f10854a = j3 - this.f43713b;
+        return this.f43712a.p(new i2.s0(obj));
+    }
+
+    @Override
+    public final long q(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
+        b1[] b1VarArr2 = new b1[b1VarArr.length];
         int i10 = 0;
-        while (i10 < w10.d) {
-            int i11 = i10 + 1;
-            for (int i12 = i11; i12 < w10.d; i12++) {
-                if (((b2.l1) w10.get(i10)).equals(w10.get(i12))) {
-                    e2.a.f("TrackGroupArray", "", new IllegalArgumentException("Multiple identical TrackGroups added to one TrackGroupArray."));
+        while (true) {
+            b1 b1Var = null;
+            if (i10 >= b1VarArr.length) {
+                break;
+            }
+            m1 m1Var = (m1) b1VarArr[i10];
+            if (m1Var != null) {
+                b1Var = m1Var.f43706a;
+            }
+            b1VarArr2[i10] = b1Var;
+            i10++;
+        }
+        d0 d0Var = this.f43712a;
+        long j10 = this.f43713b;
+        long q6 = d0Var.q(rVarArr, zArr, b1VarArr2, zArr2, j3 - j10);
+        for (int i11 = 0; i11 < b1VarArr.length; i11++) {
+            b1 b1Var2 = b1VarArr2[i11];
+            if (b1Var2 == null) {
+                b1VarArr[i11] = null;
+            } else {
+                b1 b1Var3 = b1VarArr[i11];
+                if (b1Var3 == null || ((m1) b1Var3).f43706a != b1Var2) {
+                    b1VarArr[i11] = new m1(b1Var2, j10);
                 }
             }
-            i10 = i11;
         }
+        return q6 + j10;
     }
 
-    public final b2.l1 a(int i10) {
-        return (b2.l1) this.f43381b.get(i10);
+    @Override
+    public final p1 r() {
+        return this.f43712a.r();
     }
 
-    public final int b(b2.l1 l1Var) {
-        int indexOf = this.f43381b.indexOf(l1Var);
-        if (indexOf >= 0) {
-            return indexOf;
+    @Override
+    public final long s() {
+        long s10 = this.f43712a.s();
+        if (s10 == Long.MIN_VALUE) {
+            return Long.MIN_VALUE;
         }
-        return -1;
+        return s10 + this.f43713b;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && n1.class == obj.getClass()) {
-                n1 n1Var = (n1) obj;
-                if (this.f43380a == n1Var.f43380a && this.f43381b.equals(n1Var.f43381b)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    @Override
+    public final long t(long j3, i2.q1 q1Var) {
+        long j10 = this.f43713b;
+        return this.f43712a.t(j3 - j10, q1Var) + j10;
     }
 
-    public final int hashCode() {
-        if (this.f43382c == 0) {
-            this.f43382c = this.f43381b.hashCode();
-        }
-        return this.f43382c;
-    }
-
-    public final String toString() {
-        return this.f43381b.toString();
+    @Override
+    public final void u(long j3) {
+        this.f43712a.u(j3 - this.f43713b);
     }
 }

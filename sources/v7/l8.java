@@ -1,36 +1,16 @@
 package v7;
-
-import java.util.concurrent.Future;
 public abstract class l8 {
-    public static Object a(Future future) {
-        Object obj;
-        boolean z10 = false;
-        if (future.isDone()) {
-            while (true) {
-                try {
-                    obj = future.get();
-                    break;
-                } catch (InterruptedException unused) {
-                    z10 = true;
-                } catch (Throwable th2) {
-                    if (z10) {
-                        Thread.currentThread().interrupt();
-                    }
-                    throw th2;
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-            return obj;
-        }
-        throw new IllegalStateException(u6.a("Future was expected to be done: %s", future));
-    }
+    public abstract boolean a(i9.o oVar, i9.c cVar, i9.c cVar2);
 
-    public static i9.u b(Object obj) {
-        if (obj == null) {
-            return i9.u.f11044b;
-        }
-        return new i9.u(obj);
-    }
+    public abstract boolean b(i9.o oVar, Object obj, Object obj2);
+
+    public abstract boolean c(i9.o oVar, i9.n nVar, i9.n nVar2);
+
+    public abstract i9.c d(i9.o oVar);
+
+    public abstract i9.n e(i9.o oVar);
+
+    public abstract void f(i9.n nVar, i9.n nVar2);
+
+    public abstract void g(i9.n nVar, Thread thread);
 }

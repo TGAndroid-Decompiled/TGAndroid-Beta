@@ -6,7 +6,7 @@ public final class x extends v {
     public final Map e;
 
     public x(int i10, j jVar, Map map) {
-        super(hg.c.i(i10, "Response code: "), jVar, 2004);
+        super(hg.c.h(i10, "Response code: "), jVar, 2004);
         this.d = i10;
         this.e = map;
     }

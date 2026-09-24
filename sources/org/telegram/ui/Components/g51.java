@@ -1,83 +1,41 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.util.LongSparseArray;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-public abstract class g51 {
-    private ArrayList<View> cache;
-    public final int viewType;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class g51 extends jn0 {
+    public final r51 h;
 
-    public g51() {
-        int i10 = h51.J;
-        h51.J = i10 + 1;
-        this.viewType = i10;
+    public g51(r51 r51Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 14.0f, d6Var);
+        this.h = r51Var;
     }
 
-    public static void setup(g51 g51Var) {
-        if (h51.L == null) {
-            h51.L = new HashMap();
+    @Override
+    public final void a(String str) {
+        gg.g2 g2Var = this.h.v;
+        gg.e2 e2Var = g2Var.S;
+        int i10 = g2Var.f9726c;
+        if (g2Var.N != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(g2Var.N, true);
+            g2Var.N = 0;
         }
-        if (h51.K == null) {
-            h51.K = new LongSparseArray();
+        if (g2Var.O != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(g2Var.O, true);
+            g2Var.O = 0;
         }
-        Class<?> cls = g51Var.getClass();
-        if (!h51.L.containsKey(cls)) {
-            h51.L.put(cls, g51Var);
-            h51.K.put(g51Var.viewType, g51Var);
+        if (TextUtils.isEmpty(str)) {
+            g2Var.R = null;
+            g2Var.F.clear();
+            g2Var.I.clear();
+            g2Var.E.clear();
+            g2Var.e.b(false);
+            g2Var.l();
+        } else {
+            g2Var.R = str.toLowerCase();
         }
-    }
-
-    public boolean contentsEquals(h51 h51Var, h51 h51Var2) {
-        return h51Var.H(h51Var2);
-    }
-
-    public abstract View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var);
-
-    public boolean equals(h51 h51Var, h51 h51Var2) {
-        return h51Var.I(h51Var2);
-    }
-
-    public View getCached() {
-        ArrayList<View> arrayList = this.cache;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return this.cache.remove(0);
-        }
-        return null;
-    }
-
-    public boolean isClickable() {
-        return !(this instanceof fj);
-    }
-
-    public boolean isShadow() {
-        return false;
-    }
-
-    public void precache(org.telegram.ui.ActionBar.n2 n2Var, int i10) {
-        precache(n2Var.getContext(), n2Var.getCurrentAccount(), n2Var.getClassGuid(), n2Var.getResourceProvider(), i10);
-    }
-
-    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var, int i12) {
-        if (context == null) {
-            return;
-        }
-        if (this.cache == null) {
-            this.cache = new ArrayList<>();
-        }
-        int i13 = 0;
-        while (i13 < this.cache.size() - i12) {
-            Context context2 = context;
-            this.cache.add(createView(context2, null, i10, i11, d6Var));
-            i13++;
-            context = context2;
-        }
-    }
-
-    public void attachedView(ml0 ml0Var, View view, h51 h51Var) {
-    }
-
-    public void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        AndroidUtilities.cancelRunOnUIThread(e2Var);
+        AndroidUtilities.runOnUIThread(e2Var, 300L);
     }
 }

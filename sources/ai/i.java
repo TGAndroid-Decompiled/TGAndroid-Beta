@@ -16,7 +16,7 @@ import org.telegram.ui.Components.th;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ad;
-import org.telegram.ui.x31;
+import org.telegram.ui.w31;
 public final class i implements Utilities.Callback {
     public final int f973a;
 
@@ -60,38 +60,38 @@ public final class i implements Utilities.Callback {
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
-                HashMap hashMap = org.telegram.ui.ActionBar.n3.K;
+                HashMap hashMap = org.telegram.ui.ActionBar.m3.K;
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = org.telegram.ui.ActionBar.l3.f19355r;
+                int i10 = org.telegram.ui.ActionBar.k3.f19570r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = org.telegram.ui.Cells.ya.f21647f;
+                int i11 = org.telegram.ui.Cells.wa.f21809f;
                 return;
             case 9:
                 ad.Y0((View) obj);
                 return;
             case 10:
                 View view4 = (View) obj;
-                if ((view4 instanceof org.telegram.ui.Cells.t1) && (messageObject = ((org.telegram.ui.Cells.t1) view4).getMessageObject()) != null) {
+                if ((view4 instanceof org.telegram.ui.Cells.u1) && (messageObject = ((org.telegram.ui.Cells.u1) view4).getMessageObject()) != null) {
                     messageObject.forceUpdate = true;
+                    messageObject.reactionsChanged = true;
                     return;
                 }
                 return;
             case 11:
                 View view5 = (View) obj;
-                if ((view5 instanceof org.telegram.ui.Cells.t1) && (messageObject2 = ((org.telegram.ui.Cells.t1) view5).getMessageObject()) != null) {
+                if ((view5 instanceof org.telegram.ui.Cells.u1) && (messageObject2 = ((org.telegram.ui.Cells.u1) view5).getMessageObject()) != null) {
                     messageObject2.forceUpdate = true;
-                    messageObject2.reactionsChanged = true;
                     return;
                 }
                 return;
             case 12:
                 View view6 = (View) obj;
-                if (view6 instanceof org.telegram.ui.ActionBar.y2) {
-                    ((org.telegram.ui.ActionBar.y2) view6).getTextView().invalidate();
+                if (view6 instanceof org.telegram.ui.ActionBar.x2) {
+                    ((org.telegram.ui.ActionBar.x2) view6).getTextView().invalidate();
                     return;
                 } else {
                     view6.invalidate();
@@ -101,8 +101,8 @@ public final class i implements Utilities.Callback {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.h5) {
                     org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
-                    h5Var.f20151b.invalidate();
-                    h5Var.f20152c.invalidate();
+                    h5Var.f20380b.invalidate();
+                    h5Var.f20381c.invalidate();
                     return;
                 } else if (view7 instanceof hg.y1) {
                     ((hg.y1) view7).f10467c.invalidate();
@@ -113,15 +113,15 @@ public final class i implements Utilities.Callback {
                 }
             case 14:
                 View view8 = (View) obj;
-                if (view8 instanceof org.telegram.ui.Cells.g8) {
-                    ((org.telegram.ui.Cells.g8) view8).a(true);
+                if (view8 instanceof org.telegram.ui.Cells.f8) {
+                    ((org.telegram.ui.Cells.f8) view8).a(true);
                     return;
                 }
                 return;
             case 15:
                 View view9 = (View) obj;
-                if (view9 instanceof org.telegram.ui.Cells.g8) {
-                    ((org.telegram.ui.Cells.g8) view9).c(true);
+                if (view9 instanceof org.telegram.ui.Cells.f8) {
+                    ((org.telegram.ui.Cells.f8) view9).c(true);
                     return;
                 }
                 return;
@@ -134,14 +134,14 @@ public final class i implements Utilities.Callback {
             case 18:
                 Long l4 = (Long) obj;
                 if (l4 != null && l4.longValue() != Long.MAX_VALUE) {
-                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                    org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                     if (U != null) {
                         U.presentFragment(ProfileActivity.m4(l4.longValue()));
                         return;
                     }
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new th(25));
+                AndroidUtilities.runOnUIThread(new th(27));
                 return;
             case 19:
                 Boolean bool3 = (Boolean) obj;
@@ -149,7 +149,7 @@ public final class i implements Utilities.Callback {
             case 20:
                 HashSet hashSet = (HashSet) obj;
                 String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
-                hashSet.addAll(x31.Y());
+                hashSet.addAll(w31.Y());
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
                     edit.remove("translate_button_restricted_languages");
@@ -157,7 +157,7 @@ public final class i implements Utilities.Callback {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                x31.f39179s = false;
+                w31.f38869s = false;
                 for (int i12 = 0; i12 < 4; i12++) {
                     try {
                         MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();

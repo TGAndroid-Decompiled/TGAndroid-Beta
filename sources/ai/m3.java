@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.f60;
+import org.telegram.ui.d60;
 public final class m3 implements Runnable {
     public final int f1241a;
     public final Object f1242b;
@@ -26,7 +26,7 @@ public final class m3 implements Runnable {
     }
 
     private final void a() {
-        f60.A((f60) this.f1243c, (org.telegram.ui.ActionBar.b2) this.d, (TLObject) this.e, (TL_phone.exportGroupCallInvite) this.f1244f, (TLRPC.TL_error) this.f1242b);
+        d60.A((d60) this.f1243c, (org.telegram.ui.ActionBar.a2) this.d, (TLObject) this.e, (TL_phone.exportGroupCallInvite) this.f1244f, (TLRPC.TL_error) this.f1242b);
     }
 
     @Override

@@ -10,17 +10,17 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 public final class q implements TextView.OnEditorActionListener {
     public final int f10374a;
     public final int f10375b;
-    public final org.telegram.ui.ActionBar.b2[] f10376c;
+    public final org.telegram.ui.ActionBar.a2[] f10376c;
     public final View d;
     public final EditTextBoldCursor e;
     public final Object f10377f;
 
-    public q(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.b2[] b2VarArr, View view, int i11) {
+    public q(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.a2[] a2VarArr, View view, int i11) {
         this.f10374a = i11;
         this.e = editTextBoldCursor;
         this.f10375b = i10;
         this.f10377f = obj;
-        this.f10376c = b2VarArr;
+        this.f10376c = a2VarArr;
         this.d = view;
     }
 
@@ -46,12 +46,12 @@ public final class q implements TextView.OnEditorActionListener {
                         tL_inputBusinessChatLink.title = obj;
                         d.b(c10, tL_inputBusinessChatLink, null);
                     }
-                    org.telegram.ui.ActionBar.b2[] b2VarArr = this.f10376c;
-                    org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-                    if (b2Var != null) {
-                        b2Var.dismiss();
+                    org.telegram.ui.ActionBar.a2[] a2VarArr = this.f10376c;
+                    org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
+                    if (a2Var != null) {
+                        a2Var.dismiss();
                     }
-                    if (b2VarArr[0] == x.d) {
+                    if (a2VarArr[0] == x.d) {
                         x.d = null;
                     }
                     View view = this.d;
@@ -71,9 +71,9 @@ public final class q implements TextView.OnEditorActionListener {
                     AndroidUtilities.shakeView(editTextBoldCursor);
                 } else {
                     stringCallback.run(obj2);
-                    org.telegram.ui.ActionBar.b2 b2Var2 = this.f10376c[0];
-                    if (b2Var2 != null) {
-                        b2Var2.dismiss();
+                    org.telegram.ui.ActionBar.a2 a2Var2 = this.f10376c[0];
+                    if (a2Var2 != null) {
+                        a2Var2.dismiss();
                     }
                     View view2 = this.d;
                     if (view2 != null) {

@@ -1,40 +1,35 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class yo extends org.telegram.ui.Components.zn0 {
-    public final gp f39862r;
+import org.telegram.messenger.ChatObject;
+public final class yo implements org.telegram.ui.Components.f90 {
+    public final Context f40182a;
+    public final fp f40183b;
 
-    public yo(gp gpVar, Context context, xd xdVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, xdVar, d6Var, false);
-        this.f39862r = gpVar;
+    public yo(fp fpVar, Context context) {
+        this.f40183b = fpVar;
+        this.f40182a = context;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.f39862r.L && super.onInterceptTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
+    public final void e() {
+        this.f40183b.X(true);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (!this.f39862r.L && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
+    public final void j() {
+        fp fpVar = this.f40183b;
+        org.telegram.ui.Components.c70 c70Var = new org.telegram.ui.Components.c70(this.f40182a, fpVar.f33709l0, fpVar.Y, fpVar.f33712o0, fpVar, fpVar.Z, true, ChatObject.isChannel(fpVar.X));
+        fp fpVar2 = this.f40183b;
+        fpVar2.f33713p0 = c70Var;
+        fpVar2.f33713p0.show();
     }
 
     @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-        return super.requestChildRectangleOnScreen(view, rect, z10);
+    public final void c() {
+    }
+
+    @Override
+    public final void k() {
     }
 }

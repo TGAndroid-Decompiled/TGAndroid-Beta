@@ -1,34 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-public final class o51 extends l51 {
-    public final int e;
-    public final n01 f26612f;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public abstract class o51 {
+    public String[] f26923a = new String[0];
 
-    public o51(String str, int i10, n01 n01Var) {
-        super(str, (n01) null);
-        this.e = i10;
-        this.f26612f = n01Var;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        int i10 = this.e;
-        if (i10 == 3) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.J6, false));
-        } else if (i10 == 2) {
-            textPaint.setColor(-1);
-        } else if (i10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18865hc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.gc, false));
-        }
-        n01 n01Var = this.f26612f;
-        if (n01Var != null) {
-            n01Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
-        }
+    public String[] b() {
+        return this.f26923a;
+    }
+
+    public boolean c() {
+        return false;
+    }
+
+    public boolean d(h51 h51Var, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean e(h51 h51Var, j jVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f26923a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
     }
 }

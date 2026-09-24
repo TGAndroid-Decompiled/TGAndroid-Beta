@@ -1,58 +1,86 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class p00 extends org.telegram.ui.Components.p6 {
-    public final int f35989s = 0;
-    public final Object v;
-    public final ViewGroup f35990w;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class p00 extends org.telegram.ui.Cells.m4 {
+    public final TextView f36362r;
+    public final o00 f36363s;
+    public int v;
+    public final org.telegram.ui.Components.h5 f36364w;
+    public boolean f36365x;
+    public final b10 f36366y;
 
-    public p00(yh.k7 k7Var, Context context, Drawable drawable) {
-        super(context, false, false, false);
-        this.f35990w = k7Var;
-        this.v = drawable;
+    public p00(org.telegram.ui.b10 r13, android.content.Context r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p00.<init>(org.telegram.ui.b10, android.content.Context):void");
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public final void d(int i10, boolean z10) {
+        int i11;
+        boolean z11;
         float f7;
-        switch (this.f35989s) {
-            case 0:
-                q00 q00Var = (q00) this.f35990w;
-                int a2 = q00Var.f36235w.a(q00Var.v, false);
-                setTextColor(a2);
-                Paint paint = (Paint) this.v;
-                if (org.telegram.ui.ActionBar.h6.I.q()) {
-                    f7 = 0.2f;
-                } else {
-                    f7 = 0.1f;
-                }
-                paint.setColor(org.telegram.ui.ActionBar.h6.l1(f7, a2));
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set((getWidth() - getDrawable().d()) - AndroidUtilities.dpf2(9.32f), (getHeight() - AndroidUtilities.dpf2(14.66f)) / 2.0f, getWidth(), (AndroidUtilities.dpf2(14.66f) + getHeight()) / 2.0f);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                Drawable drawable = (Drawable) this.v;
-                if (!((yh.k7) this.f35990w).d) {
-                    int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().d()) - AndroidUtilities.dp(20.0f));
-                    drawable.setBounds(measuredWidth, org.telegram.messenger.ul.y(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
-                    drawable.draw(canvas);
-                }
-                super.dispatchDraw(canvas);
-                return;
+        b10 b10Var = this.f36366y;
+        if (b10Var.getUserConfig().isPremium()) {
+            i11 = R.string.FolderTagNoColor;
+        } else {
+            i11 = R.string.FolderTagNoColorPremium;
+        }
+        String string = LocaleController.getString(i11);
+        TextView textView = this.f36362r;
+        textView.setText(string);
+        int i12 = 0;
+        if (i10 < 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (!z11) {
+            int[] iArr = org.telegram.ui.ActionBar.h6.f19304r8;
+            i12 = b10Var.getThemedColor(iArr[i10 % iArr.length]);
+        }
+        this.v = i12;
+        o00 o00Var = this.f36363s;
+        if (!z11) {
+            o00Var.setEmojiColor(i12);
+        }
+        if (!z10) {
+            this.f36364w.a(this.v, true);
+        }
+        if (z11 != this.f36365x) {
+            this.f36365x = z11;
+            ViewPropertyAnimator animate = textView.animate();
+            float f10 = 0.0f;
+            if (z11) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            ViewPropertyAnimator duration = animate.alpha(f7).setDuration(320L);
+            org.telegram.ui.Components.rr rrVar = org.telegram.ui.Components.rr.h;
+            duration.setInterpolator(rrVar).start();
+            ViewPropertyAnimator animate2 = o00Var.animate();
+            if (!z11) {
+                f10 = 1.0f;
+            }
+            animate2.alpha(f10).setDuration(320L).setInterpolator(rrVar).start();
         }
     }
 
-    public p00(q00 q00Var, Context context) {
-        super(context, false, true, true);
-        this.f35990w = q00Var;
-        this.v = new Paint(1);
+    public final void e(CharSequence charSequence, boolean z10) {
+        if (charSequence == null) {
+            charSequence = "";
+        }
+        boolean z11 = false;
+        if (charSequence.length() > 12) {
+            charSequence = charSequence.subSequence(0, 12);
+        }
+        o00 o00Var = this.f36363s;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, o00Var.getPaint().getFontMetricsInt(), false);
+        if (z10 && !LocaleController.isRTL) {
+            z11 = true;
+        }
+        o00Var.c(replaceEmoji, z11, true);
     }
 }

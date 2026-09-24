@@ -22,9 +22,9 @@ public final class f0 {
         this.f104b = a0Var;
         ?? obj = new Object();
         int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f7905a = 0;
-        obj.f7906b = -1;
-        obj.f7907c = 0;
+        obj.f7904a = 0;
+        obj.f7905b = -1;
+        obj.f7906c = 0;
         obj.e = new long[highestOneBit];
         obj.d = highestOneBit - 1;
         this.f106f = obj;
@@ -39,15 +39,15 @@ public final class f0 {
         long j11;
         b2.s sVar;
         n4.y yVar = this.f103a;
-        f fVar = (f) yVar.f14970c;
+        f fVar = (f) yVar.f15208c;
         while (true) {
             e2.q qVar = this.f106f;
-            int i10 = qVar.f7907c;
+            int i10 = qVar.f7906c;
             if (i10 == 0) {
                 return;
             }
             if (i10 != 0) {
-                long j12 = ((long[]) qVar.e)[qVar.f7905a];
+                long j12 = ((long[]) qVar.e)[qVar.f7904a];
                 Long l4 = (Long) this.e.g(j12);
                 a0 a0Var = this.f104b;
                 if (l4 != null && l4.longValue() != this.f110k) {
@@ -90,7 +90,7 @@ public final class f0 {
                         rVar.f3251x = x1Var.f3344a;
                         rVar.f3252y = x1Var.f3345b;
                         rVar.f3245q = r0.n("video/raw");
-                        yVar.f14969b = new b2.s(rVar);
+                        yVar.f15207b = new b2.s(rVar);
                         fVar.h.execute(new e(yVar, x1Var));
                     }
                     if (z10) {
@@ -108,13 +108,13 @@ public final class f0 {
                     if (z11 && fVar.d != null) {
                         fVar.h.execute(new e(0, yVar));
                     }
-                    b2.s sVar2 = (b2.s) yVar.f14969b;
+                    b2.s sVar2 = (b2.s) yVar.f15207b;
                     if (sVar2 == null) {
                         sVar = new b2.s(new b2.r());
                     } else {
                         sVar = sVar2;
                     }
-                    fVar.f102i.b(d, j14, sVar, null);
+                    fVar.f102i.a(d, j14, sVar, null);
                     j jVar2 = (j) fVar.f99c.remove();
                     jVar2.f130c.I0(jVar2.f128a, jVar2.f129b, j14);
                 }

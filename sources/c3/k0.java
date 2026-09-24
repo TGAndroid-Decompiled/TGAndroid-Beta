@@ -49,8 +49,8 @@ public final class k0 {
 
     public k0(f2.o oVar, f2.q qVar) {
         this.f3778a = 1;
-        int i10 = qVar.f8836a;
-        ByteBuffer byteBuffer = qVar.f8837b;
+        int i10 = qVar.f8835a;
+        ByteBuffer byteBuffer = qVar.f8836b;
         e2.d.b(i10 == 6 || i10 == 3);
         int min = Math.min(4, byteBuffer.remaining());
         byte[] bArr = new byte[min];

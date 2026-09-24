@@ -2,11 +2,11 @@ package i;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import v7.f8;
+import v7.g8;
 public final class e extends g implements j0.b {
     public boolean E;
     public b F;
-    public f8 G;
+    public g8 G;
     public int H;
     public int I;
     public boolean J;
@@ -67,9 +67,9 @@ public final class e extends g implements j0.b {
     @Override
     public final void jumpToCurrentState() {
         super.jumpToCurrentState();
-        f8 f8Var = this.G;
-        if (f8Var != null) {
-            f8Var.d();
+        g8 g8Var = this.G;
+        if (g8Var != null) {
+            g8Var.d();
             this.G = null;
             c(this.H);
             this.H = -1;
@@ -97,10 +97,10 @@ public final class e extends g implements j0.b {
     @Override
     public final boolean setVisible(boolean z10, boolean z11) {
         boolean visible = super.setVisible(z10, z11);
-        f8 f8Var = this.G;
-        if (f8Var != null && (visible || z11)) {
+        g8 g8Var = this.G;
+        if (g8Var != null && (visible || z11)) {
             if (z10) {
-                f8Var.c();
+                g8Var.c();
                 return visible;
             }
             jumpToCurrentState();

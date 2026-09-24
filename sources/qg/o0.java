@@ -1,124 +1,89 @@
 package qg;
 
-import ai.bb;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import ci.m6;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.rr;
-import w7.x5;
-public final class o0 extends LinearLayout {
-    public final TextView f41452a;
-    public final m6 f41453b;
-    public ImageView f41454c;
-    public ImageView d;
-    public float e;
-    public boolean f41455f;
-    public ValueAnimator h;
-    public final ImageView f41456n;
-    public final p0 f41457r;
-
-    public o0(p0 p0Var, Context context) {
-        super(context);
-        this.f41457r = p0Var;
-        setOrientation(0);
-        int i10 = h6.f18878i6;
-        eh.a aVar = p0Var.Q1;
-        setBackground(h6.f0(h6.v0(i10, aVar), 2, -1));
-        m6 m6Var = new m6(this, context);
-        this.f41453b = m6Var;
-        addView(m6Var, x5.t(-2, -2, 19, 16, 0, 16, 0));
-        ImageView imageView = new ImageView(context);
-        this.f41454c = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f41454c;
-        int i11 = h6.E8;
-        imageView2.setColorFilter(h6.v0(i11, aVar));
-        m6Var.addView(this.f41454c, x5.e(-2, -2, 17));
-        ImageView imageView3 = new ImageView(context);
-        this.d = imageView3;
-        imageView3.setScaleType(scaleType);
-        this.d.setColorFilter(h6.v0(i11, aVar));
-        this.d.setVisibility(8);
-        m6Var.addView(this.d, x5.e(-2, -2, 17));
-        TextView textView = new TextView(context);
-        this.f41452a = textView;
-        textView.setTextColor(h6.v0(i11, aVar));
-        textView.setTextSize(1, 16.0f);
-        addView(textView, x5.t(-2, -2, 19, 0, 0, 16, 0));
-        ImageView imageView4 = new ImageView(context);
-        this.f41456n = imageView4;
-        imageView4.setImageResource(R.drawable.msg_text_check);
-        imageView4.setScaleType(scaleType);
-        imageView4.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f18861h7, aVar), PorterDuff.Mode.MULTIPLY));
-        imageView4.setVisibility(8);
-        addView(imageView4, x5.n(50, -1));
-    }
-
-    public final void a(int i10, boolean z10, boolean z11) {
-        if (z11) {
-            ValueAnimator valueAnimator = this.h;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.h = null;
-                a(i10, false, false);
-                return;
-            }
-            this.f41455f = z10;
-            this.d.setImageResource(i10);
-            this.d.setVisibility(0);
-            this.d.setAlpha(1.0f);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.h = ofFloat;
-            ofFloat.addUpdateListener(new bb(11, this, z10));
-            this.h.addListener(new n0(this, 0));
-            this.h.setInterpolator(rr.h);
-            this.h.setDuration(420L);
-            this.h.start();
-            return;
-        }
-        this.f41454c.setImageResource(i10);
-    }
+import android.text.TextUtils;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o0 extends TLObject {
+    public static final int f41823j = 0;
+    public int f41824a;
+    public String f41825b;
+    public String f41826c;
+    public TLRPC.WebPage d;
+    public boolean e;
+    public boolean f41827f = true;
+    public int f41828i;
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public final boolean performClick() {
-        p0 p0Var = this.f41457r;
-        org.telegram.ui.ActionBar.n1 n1Var = p0Var.R1;
-        if (n1Var != null && n1Var.isShowing()) {
-            p0Var.R1.d(true);
-        }
-        return super.performClick();
-    }
-
-    public void setIcon(int i10) {
-        a(i10, true, false);
-    }
-
-    @Override
-    public void setSelected(boolean z10) {
-        int i10;
-        if (z10) {
-            i10 = 0;
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        boolean z11;
+        int readInt32 = inputSerializedData.readInt32(z10);
+        this.f41824a = readInt32;
+        boolean z12 = false;
+        if ((readInt32 & 8) != 0) {
+            z11 = true;
         } else {
-            i10 = 8;
+            z11 = false;
         }
-        this.f41456n.setVisibility(i10);
+        this.e = z11;
+        if ((readInt32 & 16) != 0) {
+            z12 = true;
+        }
+        this.f41827f = z12;
+        this.f41826c = inputSerializedData.readString(z10);
+        if ((this.f41824a & 1) != 0) {
+            this.d = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+        if ((this.f41824a & 2) != 0) {
+            this.f41825b = inputSerializedData.readString(z10);
+        }
+        if ((this.f41824a & 4) != 0) {
+            this.f41828i = inputSerializedData.readInt32(z10);
+        }
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f41452a.setText(charSequence);
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        outputSerializedData.writeInt32(-625858389);
+        if (this.d != null) {
+            i10 = this.f41824a | 1;
+        } else {
+            i10 = this.f41824a & (-2);
+        }
+        this.f41824a = i10;
+        if (!TextUtils.isEmpty(this.f41825b)) {
+            i11 = this.f41824a | 2;
+        } else {
+            i11 = this.f41824a & (-3);
+        }
+        this.f41824a = i11;
+        if (this.e) {
+            i12 = i11 | 8;
+        } else {
+            i12 = i11 & (-9);
+        }
+        this.f41824a = i12;
+        if (this.f41827f) {
+            i13 = i12 | 16;
+        } else {
+            i13 = i12 & (-17);
+        }
+        this.f41824a = i13;
+        outputSerializedData.writeInt32(i13);
+        outputSerializedData.writeString(this.f41826c);
+        if ((this.f41824a & 1) != 0) {
+            this.d.serializeToStream(outputSerializedData);
+        }
+        if ((this.f41824a & 2) != 0) {
+            outputSerializedData.writeString(this.f41825b);
+        }
+        if ((this.f41824a & 4) != 0) {
+            outputSerializedData.writeInt32(this.f41828i);
+        }
     }
 }

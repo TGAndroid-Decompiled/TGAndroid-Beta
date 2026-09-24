@@ -2,8 +2,8 @@ package ii;
 
 import android.graphics.Rect;
 import android.text.Layout;
-import org.telegram.ui.Cells.ca;
-public final class c0 implements ca {
+import org.telegram.ui.Cells.ba;
+public final class c0 implements ba {
     public final Layout f11260a;
     public final Rect f11261b;
 

@@ -13,10 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ul;
-import org.telegram.ui.Components.d90;
-import org.telegram.ui.a41;
-import org.telegram.ui.k41;
+import org.telegram.messenger.ok;
+import org.telegram.ui.Components.n90;
+import org.telegram.ui.l41;
+import org.telegram.ui.z31;
 public final class w5 extends FrameLayout {
     public final int f1653a;
 
@@ -51,22 +51,22 @@ public final class w5 extends FrameLayout {
     public void onDraw(Canvas canvas) {
         switch (this.f1653a) {
             case 6:
-                int intrinsicHeight = org.telegram.ui.ActionBar.h6.f18875i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.h6.f18875i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
-                org.telegram.ui.ActionBar.h6.f18875i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f18893j2);
+                int intrinsicHeight = org.telegram.ui.ActionBar.h6.f19131i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.h6.f19131i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                org.telegram.ui.ActionBar.h6.f19131i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f19149j2);
                 return;
             case 8:
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.h6.f18910k0);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.h6.f19166k0);
                 return;
             case 18:
-                canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), org.telegram.ui.ActionBar.h6.f18910k0);
+                canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), org.telegram.ui.ActionBar.h6.f19166k0);
                 return;
             case 26:
-                int intrinsicHeight2 = org.telegram.ui.ActionBar.h6.f18875i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.h6.f18875i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight2);
-                org.telegram.ui.ActionBar.h6.f18875i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight2, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f18893j2);
+                int intrinsicHeight2 = org.telegram.ui.ActionBar.h6.f19131i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.h6.f19131i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight2);
+                org.telegram.ui.ActionBar.h6.f19131i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight2, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f19149j2);
                 return;
             default:
                 super.onDraw(canvas);
@@ -114,11 +114,11 @@ public final class w5 extends FrameLayout {
                 for (int i16 = 0; i16 < childCount; i16++) {
                     if (getChildAt(i16).getVisibility() != 8) {
                         if (getChildAt(i16).getMeasuredWidth() + i14 > getMeasuredWidth()) {
-                            i15 = org.telegram.messenger.z0.C(8.0f, getChildAt(i16).getMeasuredHeight(), i15);
+                            i15 = org.telegram.messenger.f0.C(8.0f, getChildAt(i16).getMeasuredHeight(), i15);
                             i14 = 0;
                         }
                         getChildAt(i16).layout(i14, i15, getChildAt(i16).getMeasuredWidth() + i14, getChildAt(i16).getMeasuredHeight() + i15);
-                        i14 = org.telegram.messenger.z0.C(16.0f, getChildAt(i16).getMeasuredWidth(), i14);
+                        i14 = org.telegram.messenger.f0.C(16.0f, getChildAt(i16).getMeasuredWidth(), i14);
                     }
                 }
                 return;
@@ -174,7 +174,7 @@ public final class w5 extends FrameLayout {
                 super.onMeasure(i10, i11);
                 return;
             case 18:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), ul.C(48.0f, 1, 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), ok.C(48.0f, 1, 1073741824));
                 return;
             case 20:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
@@ -185,10 +185,10 @@ public final class w5 extends FrameLayout {
                 for (int i15 = 0; i15 < childCount; i15++) {
                     if (getChildAt(i15).getVisibility() != 8) {
                         if (getChildAt(i15).getMeasuredWidth() + i13 > View.MeasureSpec.getSize(i10)) {
-                            i14 = org.telegram.messenger.z0.C(8.0f, getChildAt(i15).getMeasuredHeight(), i14);
+                            i14 = org.telegram.messenger.f0.C(8.0f, getChildAt(i15).getMeasuredHeight(), i14);
                             i13 = 0;
                         }
-                        i13 = org.telegram.messenger.z0.C(16.0f, getChildAt(i15).getMeasuredWidth(), i13);
+                        i13 = org.telegram.messenger.f0.C(16.0f, getChildAt(i15).getMeasuredWidth(), i13);
                         i12 = getChildAt(i15).getMeasuredHeight() + i14;
                     }
                 }
@@ -226,63 +226,53 @@ public final class w5 extends FrameLayout {
         }
     }
 
-    public w5(k41 k41Var, Context context, int i10, String str, CharSequence charSequence) {
+    public w5(l41 l41Var, Context context, int i10, String str, CharSequence charSequence) {
         super(context);
         this.f1653a = 29;
         boolean z10 = LocaleController.isRTL;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
         int i11 = org.telegram.ui.ActionBar.h6.G6;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, k41.Q(k41Var)), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, l41.Q(l41Var)), PorterDuff.Mode.MULTIPLY));
         imageView.setImageDrawable(mutate);
-        addView(imageView, w7.x5.d(24, 24.0f, z10 ? 5 : 3, z10 ? 0.0f : 27.0f, 6.0f, z10 ? 27.0f : 0.0f, 0.0f));
+        addView(imageView, w7.y5.d(24, 24.0f, z10 ? 5 : 3, z10 ? 0.0f : 27.0f, 6.0f, z10 ? 27.0f : 0.0f, 0.0f));
         TextView textView = new TextView(getContext());
         textView.setText(str);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, k41.R(k41Var)));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, l41.R(l41Var)));
         com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
-        addView(textView, w7.x5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
-        d90 d90Var = new d90(getContext(), null);
-        d90Var.setText(charSequence);
-        d90Var.setTextSize(1, 14.0f);
-        d90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Pi, k41.S(k41Var)));
-        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, k41.T(k41Var)));
-        d90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        d90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        addView(d90Var, w7.x5.d(-2, -2.0f, z10 ? 5 : 3, (z10 ? 27 : 68) - 4, 18.0f, (z10 ? 68 : 27) - 4, 0.0f));
+        addView(textView, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
+        n90 n90Var = new n90(getContext(), null);
+        n90Var.setText(charSequence);
+        n90Var.setTextSize(1, 14.0f);
+        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Pi, l41.S(l41Var)));
+        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, l41.T(l41Var)));
+        n90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        n90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        addView(n90Var, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, (z10 ? 27 : 68) - 4, 18.0f, (z10 ? 68 : 27) - 4, 0.0f));
     }
 
-    public w5(a41 a41Var, Context context, int i10, String str, CharSequence charSequence) {
+    public w5(z31 z31Var, Context context, int i10, String str, CharSequence charSequence) {
         super(context);
-        org.telegram.ui.ActionBar.d6 d6Var;
-        org.telegram.ui.ActionBar.d6 d6Var2;
-        org.telegram.ui.ActionBar.d6 d6Var3;
-        org.telegram.ui.ActionBar.d6 d6Var4;
         this.f1653a = 28;
         boolean z10 = LocaleController.isRTL;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
         int i11 = org.telegram.ui.ActionBar.h6.G6;
-        d6Var = ((org.telegram.ui.ActionBar.f3) a41Var).resourcesProvider;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, z31.P(z31Var)), PorterDuff.Mode.MULTIPLY));
         imageView.setImageDrawable(mutate);
-        addView(imageView, w7.x5.d(24, 24.0f, z10 ? 5 : 3, z10 ? 0.0f : 27.0f, 6.0f, z10 ? 27.0f : 0.0f, 0.0f));
+        addView(imageView, w7.y5.d(24, 24.0f, z10 ? 5 : 3, z10 ? 0.0f : 27.0f, 6.0f, z10 ? 27.0f : 0.0f, 0.0f));
         TextView textView = new TextView(getContext());
         textView.setText(str);
-        d6Var2 = ((org.telegram.ui.ActionBar.f3) a41Var).resourcesProvider;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var2));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, z31.Q(z31Var)));
         com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
-        addView(textView, w7.x5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
-        d90 d90Var = new d90(getContext(), null);
-        d90Var.setText(charSequence);
-        d90Var.setTextSize(1, 14.0f);
-        int i12 = org.telegram.ui.ActionBar.h6.Pi;
-        d6Var3 = ((org.telegram.ui.ActionBar.f3) a41Var).resourcesProvider;
-        d90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var3));
-        int i13 = org.telegram.ui.ActionBar.h6.gc;
-        d6Var4 = ((org.telegram.ui.ActionBar.f3) a41Var).resourcesProvider;
-        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i13, d6Var4));
-        d90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(d90Var, w7.x5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 18.0f, z10 ? 68.0f : 27.0f, 0.0f));
+        addView(textView, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
+        n90 n90Var = new n90(getContext(), null);
+        n90Var.setText(charSequence);
+        n90Var.setTextSize(1, 14.0f);
+        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Pi, z31.R(z31Var)));
+        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, z31.S(z31Var)));
+        n90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        addView(n90Var, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 18.0f, z10 ? 68.0f : 27.0f, 0.0f));
     }
 
     public w5(Context context, String str, int i10) {
@@ -292,17 +282,17 @@ public final class w5 extends FrameLayout {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(i10);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i11 = org.telegram.ui.ActionBar.h6.f18895j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f19151j5;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i11, false), PorterDuff.Mode.MULTIPLY));
         boolean z10 = LocaleController.isRTL;
-        addView(imageView, w7.x5.d(24, 24.0f, (z10 ? 5 : 3) | 16, z10 ? 0.0f : 22.0f, 0.0f, z10 ? 22.0f : 0.0f, 0.0f));
+        addView(imageView, w7.y5.d(24, 24.0f, (z10 ? 5 : 3) | 16, z10 ? 0.0f : 22.0f, 0.0f, z10 ? 22.0f : 0.0f, 0.0f));
         TextView textView = new TextView(context);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
         textView.setTextSize(1, 14.0f);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
         textView.setText(str);
         boolean z11 = LocaleController.isRTL;
-        addView(textView, w7.x5.d(-1, -2.0f, 23, z11 ? 0.0f : 61.0f, 0.0f, z11 ? 61.0f : 0.0f, 0.0f));
+        addView(textView, w7.y5.d(-1, -2.0f, 23, z11 ? 0.0f : 61.0f, 0.0f, z11 ? 61.0f : 0.0f, 0.0f));
     }
 
     public w5(Context context, int i10, String str, CharSequence charSequence, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -313,24 +303,24 @@ public final class w5 extends FrameLayout {
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.SRC_IN));
         imageView.setImageResource(i10);
-        addView(imageView, w7.x5.d(24, 24.0f, 51, 0.0f, 5.0f, 18.0f, 0.0f));
+        addView(imageView, w7.y5.d(24, 24.0f, 51, 0.0f, 5.0f, 18.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        addView(linearLayout, w7.x5.d(-1, -2.0f, 55, 42.0f, 0.0f, 0.0f, 0.0f));
-        d90 d90Var = new d90(context, null);
-        d90Var.setTypeface(AndroidUtilities.bold());
-        d90Var.setTextSize(1, 14.0f);
-        d90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
+        addView(linearLayout, w7.y5.d(-1, -2.0f, 55, 42.0f, 0.0f, 0.0f, 0.0f));
+        n90 n90Var = new n90(context, null);
+        n90Var.setTypeface(AndroidUtilities.bold());
+        n90Var.setTextSize(1, 14.0f);
+        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         int i12 = org.telegram.ui.ActionBar.h6.gc;
-        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
-        d90Var.setText(str);
-        linearLayout.addView(d90Var, w7.x5.t(-1, -2, 55, 0, 0, 0, 2));
-        d90 d90Var2 = new d90(context, null);
-        d90Var2.setTextSize(1, 14.0f);
-        d90Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19170y6, d6Var));
-        d90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
-        d90Var2.setText(charSequence);
-        linearLayout.addView(d90Var2, w7.x5.t(-1, -2, 55, 0, 0, 0, 0));
+        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
+        n90Var.setText(str);
+        linearLayout.addView(n90Var, w7.y5.t(-1, -2, 55, 0, 0, 0, 2));
+        n90 n90Var2 = new n90(context, null);
+        n90Var2.setTextSize(1, 14.0f);
+        n90Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19428y6, d6Var));
+        n90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
+        n90Var2.setText(charSequence);
+        linearLayout.addView(n90Var2, w7.y5.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
     public w5(Context context) {

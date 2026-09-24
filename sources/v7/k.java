@@ -1,21 +1,223 @@
 package v7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class k {
-    public static Object a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() != 0) {
-            return creator.createFromParcel(parcel);
-        }
-        return null;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+public final class k implements ia.e {
+    public static final Charset f44282f = Charset.forName("UTF-8");
+    public static final ia.c f44283g = new ia.c("key", hg.c.m(j.j(h.class, new e(1))));
+    public static final ia.c h = new ia.c("value", hg.c.m(j.j(h.class, new e(2))));
+    public static final i f44284i = i.f44263b;
+    public OutputStream f44285a;
+    public final HashMap f44286b;
+    public final HashMap f44287c;
+    public final ia.d d;
+    public final la.i e = new la.i(this, 1);
+
+    public k(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, ia.d dVar) {
+        this.f44285a = byteArrayOutputStream;
+        this.f44286b = hashMap;
+        this.f44287c = hashMap2;
+        this.d = dVar;
     }
 
-    public static void b(Parcel parcel, Parcelable parcelable) {
-        if (parcelable != null) {
-            parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, 0);
+    public static int i(ia.c cVar) {
+        h hVar = (h) cVar.b(h.class);
+        if (hVar != null) {
+            return ((e) hVar).f44215a;
+        }
+        throw new RuntimeException("Field has no @Protobuf config");
+    }
+
+    @Override
+    public final ia.e a(ia.c cVar, Object obj) {
+        d(cVar, obj, true);
+        return this;
+    }
+
+    public final void b(ia.c cVar, double d, boolean z10) {
+        if (z10 && d == 0.0d) {
             return;
         }
-        parcel.writeInt(0);
+        k((i(cVar) << 3) | 1);
+        this.f44285a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+    }
+
+    @Override
+    public final ia.e c(ia.c cVar, boolean z10) {
+        h(cVar, z10 ? 1 : 0, true);
+        return this;
+    }
+
+    public final void d(ia.c cVar, Object obj, boolean z10) {
+        if (obj != null) {
+            if (obj instanceof CharSequence) {
+                CharSequence charSequence = (CharSequence) obj;
+                if (!z10 || charSequence.length() != 0) {
+                    k((i(cVar) << 3) | 2);
+                    byte[] bytes = charSequence.toString().getBytes(f44282f);
+                    k(bytes.length);
+                    this.f44285a.write(bytes);
+                }
+            } else if (obj instanceof Collection) {
+                for (Object obj2 : (Collection) obj) {
+                    d(cVar, obj2, false);
+                }
+            } else if (obj instanceof Map) {
+                for (Map.Entry entry : ((Map) obj).entrySet()) {
+                    j(f44284i, cVar, entry, false);
+                }
+            } else if (obj instanceof Double) {
+                b(cVar, ((Double) obj).doubleValue(), z10);
+            } else if (obj instanceof Float) {
+                float floatValue = ((Float) obj).floatValue();
+                if (!z10 || floatValue != 0.0f) {
+                    k((i(cVar) << 3) | 5);
+                    this.f44285a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                }
+            } else if (obj instanceof Number) {
+                long longValue = ((Number) obj).longValue();
+                if (!z10 || longValue != 0) {
+                    h hVar = (h) cVar.b(h.class);
+                    if (hVar != null) {
+                        k(((e) hVar).f44215a << 3);
+                        l(longValue);
+                        return;
+                    }
+                    throw new RuntimeException("Field has no @Protobuf config");
+                }
+            } else if (obj instanceof Boolean) {
+                h(cVar, ((Boolean) obj).booleanValue() ? 1 : 0, z10);
+            } else if (obj instanceof byte[]) {
+                byte[] bArr = (byte[]) obj;
+                if (z10 && bArr.length == 0) {
+                    return;
+                }
+                k((i(cVar) << 3) | 2);
+                k(bArr.length);
+                this.f44285a.write(bArr);
+            } else {
+                ia.d dVar = (ia.d) this.f44286b.get(obj.getClass());
+                if (dVar != null) {
+                    j(dVar, cVar, obj, z10);
+                    return;
+                }
+                ia.f fVar = (ia.f) this.f44287c.get(obj.getClass());
+                if (fVar != null) {
+                    la.i iVar = this.e;
+                    iVar.f14154b = false;
+                    iVar.d = cVar;
+                    iVar.f14155c = z10;
+                    fVar.a(obj, iVar);
+                } else if (obj instanceof f) {
+                    h(cVar, ((f) obj).zza(), true);
+                } else if (obj instanceof Enum) {
+                    h(cVar, ((Enum) obj).ordinal(), true);
+                } else {
+                    j(this.d, cVar, obj, z10);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final ia.e e(ia.c cVar, int i10) {
+        h(cVar, i10, true);
+        return this;
+    }
+
+    @Override
+    public final ia.e f(ia.c cVar, long j3) {
+        if (j3 != 0) {
+            h hVar = (h) cVar.b(h.class);
+            if (hVar != null) {
+                k(((e) hVar).f44215a << 3);
+                l(j3);
+                return this;
+            }
+            throw new RuntimeException("Field has no @Protobuf config");
+        }
+        return this;
+    }
+
+    @Override
+    public final ia.e g(ia.c cVar, double d) {
+        b(cVar, d, true);
+        return this;
+    }
+
+    public final void h(ia.c cVar, int i10, boolean z10) {
+        if (z10 && i10 == 0) {
+            return;
+        }
+        h hVar = (h) cVar.b(h.class);
+        if (hVar != null) {
+            k(((e) hVar).f44215a << 3);
+            k(i10);
+            return;
+        }
+        throw new RuntimeException("Field has no @Protobuf config");
+    }
+
+    public final void j(ia.d dVar, ia.c cVar, Object obj, boolean z10) {
+        la.b bVar = new la.b(1);
+        bVar.f14140b = 0L;
+        try {
+            OutputStream outputStream = this.f44285a;
+            this.f44285a = bVar;
+            dVar.a(obj, this);
+            this.f44285a = outputStream;
+            long j3 = bVar.f14140b;
+            bVar.close();
+            if (z10 && j3 == 0) {
+                return;
+            }
+            k((i(cVar) << 3) | 2);
+            l(j3);
+            dVar.a(obj, this);
+        } catch (Throwable th2) {
+            try {
+                bVar.close();
+            } catch (Throwable th3) {
+                try {
+                    Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th2, th3);
+                } catch (Exception unused) {
+                }
+            }
+            throw th2;
+        }
+    }
+
+    public final void k(int i10) {
+        while (true) {
+            int i11 = ((i10 & (-128)) > 0L ? 1 : ((i10 & (-128)) == 0L ? 0 : -1));
+            OutputStream outputStream = this.f44285a;
+            if (i11 != 0) {
+                outputStream.write((i10 & 127) | 128);
+                i10 >>>= 7;
+            } else {
+                outputStream.write(i10 & 127);
+                return;
+            }
+        }
+    }
+
+    public final void l(long j3) {
+        while (true) {
+            int i10 = (((-128) & j3) > 0L ? 1 : (((-128) & j3) == 0L ? 0 : -1));
+            OutputStream outputStream = this.f44285a;
+            if (i10 != 0) {
+                outputStream.write((((int) j3) & 127) | 128);
+                j3 >>>= 7;
+            } else {
+                outputStream.write(((int) j3) & 127);
+                return;
+            }
+        }
     }
 }

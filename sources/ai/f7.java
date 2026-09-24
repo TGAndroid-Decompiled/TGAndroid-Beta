@@ -3,9 +3,9 @@ package ai;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.xn;
-public abstract class f7 extends ml0 implements s9 {
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.wn;
+public abstract class f7 extends wl0 implements s9 {
     public final int X2;
     public final NotificationCenter.NotificationCenterDelegate Y2;
 
@@ -23,9 +23,9 @@ public abstract class f7 extends ml0 implements s9 {
                 iArr[1] = getMeasuredHeight();
                 return;
             default:
-                xn xnVar = (xn) this.Y2;
-                iArr[0] = ((int) xnVar.f39541s9) - AndroidUtilities.dp(4.0f);
-                iArr[1] = org.telegram.messenger.z0.z(3.0f, xnVar.f39596x0.getPaddingBottom(), xnVar.f39596x0.getMeasuredHeight());
+                wn wnVar = (wn) this.Y2;
+                iArr[0] = ((int) wnVar.f39625s9) - AndroidUtilities.dp(4.0f);
+                iArr[1] = org.telegram.messenger.f0.A(3.0f, wnVar.f39680x0.getPaddingBottom(), wnVar.f39680x0.getMeasuredHeight());
                 return;
         }
     }

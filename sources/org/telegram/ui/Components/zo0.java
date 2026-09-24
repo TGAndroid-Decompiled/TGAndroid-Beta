@@ -1,28 +1,27 @@
 package org.telegram.ui.Components;
-
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
 public final class zo0 implements o1.g {
-    public final int f30633a;
-    public final int[] f30634b;
-    public final NotificationCenter.NotificationCenterDelegate f30635c;
-    public final View d;
+    public final int f30949a;
+    public final ip0 f30950b;
 
-    public zo0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, View view, int[] iArr, int i10) {
-        this.f30633a = i10;
-        this.f30635c = notificationCenterDelegate;
-        this.d = view;
-        this.f30634b = iArr;
+    public zo0(ip0 ip0Var, int i10) {
+        this.f30949a = i10;
+        this.f30950b = ip0Var;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f30633a) {
+        switch (this.f30949a) {
             case 0:
-                ((hq0) this.f30635c).Q0((org.telegram.ui.Cells.f7) this.d, this.f30634b, f7 / 1000.0f);
+                this.f30950b.f25110o.setScaleX(1.0f / f7);
+                return;
+            case 1:
+                this.f30950b.f25110o.setScaleY(1.0f / f7);
+                return;
+            case 2:
+                this.f30950b.f25110o.setScaleX(1.0f / f7);
                 return;
             default:
-                ((op0) this.f30635c).d.Q0(this.d, this.f30634b, f7 / 1000.0f);
+                this.f30950b.f25110o.setScaleY(1.0f / f7);
                 return;
         }
     }

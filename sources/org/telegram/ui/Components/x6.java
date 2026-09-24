@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.ImageReceiver;
 public interface x6 {
-    void a(bj0 bj0Var);
+    void a(lj0 lj0Var);
 
     void b(ImageReceiver imageReceiver);
 

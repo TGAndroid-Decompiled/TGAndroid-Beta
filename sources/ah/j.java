@@ -2,7 +2,7 @@ package ah;
 
 import android.graphics.Canvas;
 public interface j {
-    void b(Canvas canvas);
+    void U(a aVar);
 
-    void m(a aVar);
+    void d(Canvas canvas);
 }

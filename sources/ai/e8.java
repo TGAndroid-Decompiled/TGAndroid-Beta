@@ -66,10 +66,10 @@ public final class e8 implements Comparator {
                                 if (peerStories.stories.isEmpty()) {
                                     i10 = 0;
                                 } else {
-                                    i10 = ((TL_stories.StoryItem) hg.c.h(1, peerStories.stories)).date;
+                                    i10 = ((TL_stories.StoryItem) hg.c.g(1, peerStories.stories)).date;
                                 }
                                 if (!peerStories2.stories.isEmpty()) {
-                                    i12 = ((TL_stories.StoryItem) hg.c.h(1, peerStories2.stories)).date;
+                                    i12 = ((TL_stories.StoryItem) hg.c.g(1, peerStories2.stories)).date;
                                 }
                                 return i12 - i10;
                             }
@@ -113,7 +113,7 @@ public final class e8 implements Comparator {
             case 5:
                 return ((Collator) this.f853b).compare((String) obj, (String) obj2);
             default:
-                float[] fArr = ((yh.q2) this.f853b).f47586r;
+                float[] fArr = ((yh.p2) this.f853b).f47853r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
         }
     }

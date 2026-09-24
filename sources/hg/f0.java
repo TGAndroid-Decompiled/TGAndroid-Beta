@@ -13,7 +13,7 @@ public final class f0 extends s4.d0 {
 
     @Override
     public final int k(int i10, View view) {
-        return org.telegram.messenger.z0.z(8.0f, ((k0) this.f10256r.V).f10312s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+        return org.telegram.messenger.f0.A(8.0f, ((k0) this.f10256r.V).f10312s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
     }
 
     @Override

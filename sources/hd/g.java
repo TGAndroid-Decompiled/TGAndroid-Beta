@@ -9,7 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import w7.t8;
+import w7.u8;
 public abstract class g extends m {
     public static ArrayList f(Iterable iterable) {
         ArrayList arrayList = new ArrayList();
@@ -30,7 +30,7 @@ public abstract class g extends m {
             if (i10 > 1) {
                 sb2.append(charSequence);
             }
-            t8.a(sb2, obj, lVar);
+            u8.a(sb2, obj, lVar);
         }
         sb2.append(charSequence3);
     }
@@ -65,7 +65,7 @@ public abstract class g extends m {
         Object next;
         kotlin.jvm.internal.i.e(iterable, "<this>");
         if (i10 >= 0) {
-            o oVar = o.f10177a;
+            o oVar = o.f10176a;
             if (i10 == 0) {
                 return oVar;
             }
@@ -110,7 +110,7 @@ public abstract class g extends m {
             }
             return oVar;
         }
-        throw new IllegalArgumentException(hg.c.j(i10, "Requested element count ", " is less than zero.").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Requested element count ", " is less than zero.").toString());
     }
 
     public static byte[] j(ArrayList arrayList) {
@@ -153,7 +153,7 @@ public abstract class g extends m {
         Object next;
         kotlin.jvm.internal.i.e(iterable, "<this>");
         boolean z10 = iterable instanceof Collection;
-        o oVar = o.f10177a;
+        o oVar = o.f10176a;
         if (z10) {
             Collection collection = (Collection) iterable;
             int size = collection.size();
@@ -238,6 +238,6 @@ public abstract class g extends m {
                 return singleton2;
             }
         }
-        return q.f10179a;
+        return q.f10178a;
     }
 }

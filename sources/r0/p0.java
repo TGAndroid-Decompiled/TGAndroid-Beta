@@ -7,15 +7,15 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.animation.Interpolator;
 import j$.util.Objects;
-import org.telegram.ui.Components.qk0;
+import org.telegram.ui.Components.al0;
 public final class p0 implements View.OnApplyWindowInsetsListener {
-    public final ph.e f41814a;
-    public l1 f41815b;
+    public final ph.e f42133a;
+    public l1 f42134b;
 
     public p0(ViewGroup viewGroup, ph.e eVar) {
         l1 l1Var;
         b1 x0Var;
-        this.f41814a = eVar;
+        this.f42133a = eVar;
         l1 f7 = i0.f(viewGroup);
         if (f7 != null) {
             int i10 = Build.VERSION.SDK_INT;
@@ -32,7 +32,7 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
         } else {
             l1Var = null;
         }
-        this.f41815b = l1Var;
+        this.f42134b = l1Var;
     }
 
     @Override
@@ -43,19 +43,19 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
         boolean z10;
         boolean z11;
         if (!view.isLaidOut()) {
-            this.f41815b = l1.h(view, windowInsets);
+            this.f42134b = l1.h(view, windowInsets);
             if (view.getTag(2131296687) != null) {
                 return windowInsets;
             }
             return view.onApplyWindowInsets(windowInsets);
         }
         l1 h = l1.h(view, windowInsets);
-        i1 i1Var = h.f41807a;
-        if (this.f41815b == null) {
-            this.f41815b = i0.f(view);
+        i1 i1Var = h.f42126a;
+        if (this.f42134b == null) {
+            this.f42134b = i0.f(view);
         }
-        if (this.f41815b == null) {
-            this.f41815b = h;
+        if (this.f42134b == null) {
+            this.f42134b = h;
             if (view.getTag(2131296687) == null) {
                 return view.onApplyWindowInsets(windowInsets);
             }
@@ -68,11 +68,11 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
             } else {
                 int[] iArr2 = new int[1];
                 int[] iArr3 = new int[1];
-                l1 l1Var = this.f41815b;
+                l1 l1Var = this.f42134b;
                 int i11 = 1;
                 while (i11 <= 512) {
                     i0.b f7 = i1Var.f(i11);
-                    i0.b f10 = l1Var.f41807a.f(i11);
+                    i0.b f10 = l1Var.f42126a.f(i11);
                     int i12 = f7.f10576a;
                     int i13 = f7.d;
                     int i14 = f7.f10578c;
@@ -107,18 +107,18 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
                 int i21 = iArr3[0];
                 int i22 = i20 | i21;
                 if (i22 == 0) {
-                    this.f41815b = h;
+                    this.f42134b = h;
                     if (view.getTag(2131296687) == null) {
                         return view.onApplyWindowInsets(windowInsets);
                     }
                 } else {
-                    l1 l1Var2 = this.f41815b;
+                    l1 l1Var2 = this.f42134b;
                     if ((i20 & 8) != 0) {
                         interpolator = q0.e;
                     } else if ((i21 & 8) != 0) {
-                        interpolator = q0.f41817f;
+                        interpolator = q0.f42136f;
                     } else if ((i20 & 519) != 0) {
-                        interpolator = q0.f41818g;
+                        interpolator = q0.f42137g;
                     } else if ((i21 & 519) != 0) {
                         interpolator = q0.h;
                     } else {
@@ -130,10 +130,10 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
                         j3 = 250;
                     }
                     v0 v0Var = new v0(i22, j3, interpolator);
-                    v0Var.f41830a.d(0.0f);
-                    ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(v0Var.f41830a.a());
+                    v0Var.f42149a.d(0.0f);
+                    ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(v0Var.f42149a.a());
                     i0.b f11 = i1Var.f(i22);
-                    i0.b f12 = l1Var2.f41807a.f(i22);
+                    i0.b f12 = l1Var2.f42126a.f(i22);
                     int min = Math.min(f11.f10576a, f12.f10576a);
                     int i23 = f11.f10577b;
                     int i24 = f12.f10577b;
@@ -146,9 +146,9 @@ public final class p0 implements View.OnApplyWindowInsetsListener {
                     o0.a aVar = new o0.a(13, i0.b.b(min, min2, min3, Math.min(i27, i28)), i0.b.b(Math.max(f11.f10576a, f12.f10576a), Math.max(i23, i24), Math.max(i25, i26), Math.max(i27, i28)));
                     q0.f(view, h, false);
                     duration.addUpdateListener(new o0(v0Var, h, l1Var2, i22, view));
-                    duration.addListener(new qk0(v0Var, view, 19));
+                    duration.addListener(new al0(v0Var, view, 19));
                     p.a(view, new com.google.android.gms.internal.cast.p(view, v0Var, aVar, duration, 4));
-                    this.f41815b = h;
+                    this.f42134b = h;
                     if (view.getTag(2131296687) == null) {
                         return view.onApplyWindowInsets(windowInsets);
                     }

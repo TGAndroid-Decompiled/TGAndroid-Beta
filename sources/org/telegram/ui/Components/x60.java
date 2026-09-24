@@ -1,147 +1,149 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class x60 implements Runnable {
-    public final int f29926a;
-    public final y60 f29927b;
-    public final String f29928c;
+import org.telegram.messenger.UserConfig;
+public final class x60 extends vl0 {
+    public final c70 f30257c;
 
-    public x60(y60 y60Var, String str, int i10) {
-        this.f29926a = i10;
-        this.f29927b = y60Var;
-        this.f29928c = str;
+    public x60(c70 c70Var) {
+        this.f30257c = c70Var;
     }
 
     @Override
-    public final void run() {
+    public final boolean D(s4.c1 c1Var) {
         int i10;
-        String str;
-        String publicUsername;
-        ArrayList arrayList;
-        char c10;
-        Object obj;
-        switch (this.f29926a) {
-            case 0:
-                y60 y60Var = this.f29927b;
-                String str2 = this.f29928c;
-                y60Var.getClass();
-                AndroidUtilities.runOnUIThread(new x60(y60Var, str2, 1));
-                return;
-            case 1:
-                y60 y60Var2 = this.f29927b;
-                String str3 = this.f29928c;
-                gg.c2 c2Var = y60Var2.e;
-                org.telegram.ui.eu euVar = y60Var2.f30170n.m0;
-                boolean z10 = false;
-                if (euVar != null) {
-                    z10 = true;
-                }
-                boolean z11 = false;
-                if (euVar != null) {
-                    z11 = true;
-                }
-                c2Var.g(str3, true, z10, true, z11, 0L, false, 0, 0);
-                DispatchQueue dispatchQueue = Utilities.searchQueue;
-                x60 x60Var = new x60(y60Var2, str3, 2);
-                y60Var2.h = x60Var;
-                dispatchQueue.postRunnable(x60Var);
-                return;
-            default:
-                y60 y60Var3 = this.f29927b;
-                String str4 = this.f29928c;
-                ArrayList arrayList2 = y60Var3.f30170n.f22955e0;
-                String lowerCase = str4.trim().toLowerCase();
-                if (lowerCase.length() == 0) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(y60Var3, new ArrayList(), new ArrayList(), 21));
-                    return;
-                }
-                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
-                int i11 = 0;
-                if (translitString != null) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
-                }
-                int i12 = i10 + 1;
-                String[] strArr = new String[i12];
-                strArr[0] = lowerCase;
-                if (translitString != null) {
-                    strArr[1] = translitString;
-                }
-                ArrayList arrayList3 = new ArrayList();
-                ArrayList arrayList4 = new ArrayList();
-                int i13 = 0;
-                while (i13 < arrayList2.size()) {
-                    TLObject tLObject = (TLObject) arrayList2.get(i13);
-                    boolean z12 = tLObject instanceof TLRPC.User;
-                    if (z12) {
-                        TLRPC.User user = (TLRPC.User) tLObject;
-                        str = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
-                        publicUsername = UserObject.getPublicUsername(user);
-                    } else {
-                        TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                        str = chat.title;
-                        publicUsername = ChatObject.getPublicUsername(chat);
-                    }
-                    String translitString2 = LocaleController.getInstance().getTranslitString(str);
-                    if (str.equals(translitString2)) {
-                        translitString2 = null;
-                    }
-                    char c11 = 0;
-                    while (true) {
-                        if (i11 < i12) {
-                            String str5 = strArr[i11];
-                            if (!str.startsWith(str5) && !org.telegram.messenger.z0.w(" ", str5, str) && (translitString2 == null || (!translitString2.startsWith(str5) && !org.telegram.messenger.z0.w(" ", str5, translitString2)))) {
-                                if (publicUsername != null && publicUsername.startsWith(str5)) {
-                                    c10 = 2;
-                                } else {
-                                    c10 = c11;
-                                }
-                            } else {
-                                c10 = 1;
-                            }
-                            if (c10 != 0) {
-                                arrayList = arrayList2;
-                                if (c10 == 1) {
-                                    if (z12) {
-                                        TLRPC.User user2 = (TLRPC.User) tLObject;
-                                        arrayList4.add(AndroidUtilities.generateSearchName(user2.first_name, user2.last_name, str5));
-                                        obj = null;
-                                    } else {
-                                        obj = null;
-                                        arrayList4.add(AndroidUtilities.generateSearchName(((TLRPC.Chat) tLObject).title, null, str5));
-                                    }
-                                } else {
-                                    obj = null;
-                                    String i14 = org.telegram.ui.Cells.q3.i("@", publicUsername);
-                                    arrayList4.add(AndroidUtilities.generateSearchName(i14, null, "@" + str5));
-                                }
-                                arrayList3.add(tLObject);
-                            } else {
-                                i11++;
-                                arrayList2 = arrayList2;
-                                c11 = c10;
-                            }
-                        } else {
-                            arrayList = arrayList2;
-                        }
-                    }
-                    i13++;
-                    arrayList2 = arrayList;
-                    i11 = 0;
-                }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(y60Var3, arrayList3, arrayList4, 21));
-                return;
+        int b10 = c1Var.b();
+        c70 c70Var = this.f30257c;
+        if (b10 == c70Var.f23240n) {
+            long j3 = c70Var.f23226b.admin_id;
+            i10 = ((org.telegram.ui.ActionBar.e3) c70Var).currentAccount;
+            if (j3 != UserConfig.getInstance(i10).clientUserId) {
+                return true;
+            }
+            return false;
+        } else if (b10 < c70Var.f23244x || b10 >= c70Var.f23245y) {
+            if (b10 >= c70Var.O && b10 < c70Var.P) {
+                return true;
+            }
+            return false;
+        } else {
+            return true;
         }
+    }
+
+    @Override
+    public final int h() {
+        return this.f30257c.S;
+    }
+
+    @Override
+    public final int j(int i10) {
+        c70 c70Var = this.f30257c;
+        if (i10 == c70Var.h || i10 == c70Var.N || i10 == c70Var.f23243w || i10 == c70Var.e) {
+            return 0;
+        }
+        if (i10 != c70Var.f23240n) {
+            if (i10 < c70Var.O || i10 >= c70Var.P) {
+                if (i10 < c70Var.f23244x || i10 >= c70Var.f23245y) {
+                    if (i10 != c70Var.f23241r && i10 != c70Var.f23242s) {
+                        if (i10 == c70Var.H) {
+                            return 3;
+                        }
+                        if (i10 == c70Var.I) {
+                            return 4;
+                        }
+                        if (i10 == c70Var.J) {
+                            return 5;
+                        }
+                        c70Var.getClass();
+                        if (i10 != 0 && i10 != c70Var.K && i10 != c70Var.L) {
+                            if (i10 == c70Var.v) {
+                                return 7;
+                            }
+                            if (i10 == c70Var.M) {
+                                return 8;
+                            }
+                            if (i10 != c70Var.f23232f) {
+                                return 0;
+                            }
+                            return 9;
+                        }
+                        return 6;
+                    }
+                    return 2;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.c1 r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.x60.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        u00 u00Var;
+        u00 u00Var2;
+        org.telegram.ui.ActionBar.d6 d6Var;
+        Context context = viewGroup.getContext();
+        c70 c70Var = this.f30257c;
+        switch (i10) {
+            case 1:
+                u00Var2 = new a70(context);
+                break;
+            case 2:
+                u00Var2 = new org.telegram.ui.Cells.b7(context, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18989a7, false), 0);
+                break;
+            case 3:
+                t60 t60Var = new t60(this, context, c70Var.U, c70Var, c70Var.f23235h0);
+                t60Var.setDelegate(new w60(this));
+                t60Var.setLayoutParams(new s4.p0(-1, -2));
+                u00Var2 = t60Var;
+                break;
+            case 4:
+                u00Var2 = new b70(c70Var, context);
+                break;
+            case 5:
+                u00 u00Var3 = new u00(context, null);
+                u00Var3.setIsSingleCell(true);
+                u00Var3.setViewType(10);
+                u00Var3.f28648w = false;
+                u00Var3.setPaddingLeft(AndroidUtilities.dp(10.0f));
+                u00Var = u00Var3;
+                u00Var2 = u00Var;
+                break;
+            case 6:
+                u00Var2 = new ln(context, 12);
+                break;
+            case 7:
+                u00Var2 = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
+                break;
+            case 8:
+                ?? frameLayout = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout.f30510a = textView;
+                textView.setTextSize(1, 14.0f);
+                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f19428y6, null, false, textView, 1);
+                frameLayout.addView(textView, w7.y5.d(-1, -2.0f, 16, 60.0f, 0.0f, 60.0f, 0.0f));
+                u00Var = frameLayout;
+                u00Var2 = u00Var;
+                break;
+            case 9:
+                u00Var2 = new z60(c70Var, context);
+                break;
+            default:
+                d6Var = ((org.telegram.ui.ActionBar.e3) c70Var).resourcesProvider;
+                u00Var2 = new org.telegram.ui.Cells.v3(context, d6Var);
+                break;
+        }
+        return com.google.android.gms.internal.vision.e2.k(u00Var2, u00Var2, -1, -2);
     }
 }

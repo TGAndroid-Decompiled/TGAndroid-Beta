@@ -8,36 +8,36 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class ae1 extends FrameLayout {
-    public final int f31776a;
-    public final de1 f31777b;
+    public final int f32133a;
+    public final de1 f32134b;
 
     public ae1(de1 de1Var, Context context, int i10) {
         super(context);
-        this.f31776a = i10;
-        this.f31777b = de1Var;
+        this.f32133a = i10;
+        this.f32134b = de1Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        org.telegram.ui.Cells.t1 t1Var;
-        switch (this.f31776a) {
+        org.telegram.ui.Cells.u1 u1Var;
+        switch (this.f32133a) {
             case 0:
-                de1 de1Var = this.f31777b;
-                if (de1Var.f32634x > 0.0f && de1Var.v != null) {
-                    de1Var.f32633w.reset();
-                    float width = getWidth() / de1Var.f32631r.getWidth();
-                    de1Var.f32633w.postScale(width, width);
-                    de1Var.f32632s.setLocalMatrix(de1Var.f32633w);
-                    de1Var.v.setAlpha((int) (de1Var.f32634x * 255.0f));
+                de1 de1Var = this.f32134b;
+                if (de1Var.f33086x > 0.0f && de1Var.v != null) {
+                    de1Var.f33085w.reset();
+                    float width = getWidth() / de1Var.f33083r.getWidth();
+                    de1Var.f33085w.postScale(width, width);
+                    de1Var.f33084s.setLocalMatrix(de1Var.f33085w);
+                    de1Var.v.setAlpha((int) (de1Var.f33086x * 255.0f));
                     canvas2 = canvas;
                     canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), de1Var.v);
                 } else {
                     canvas2 = canvas;
                 }
-                if (de1Var.N && (t1Var = de1Var.K) != null) {
-                    t1Var.K7 = de1Var.O;
-                    t1Var.invalidate();
+                if (de1Var.N && (u1Var = de1Var.K) != null) {
+                    u1Var.K7 = de1Var.O;
+                    u1Var.invalidate();
                     de1Var.N = false;
                 }
                 super.dispatchDraw(canvas2);
@@ -50,10 +50,10 @@ public final class ae1 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f31776a) {
+        switch (this.f32133a) {
             case 0:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f31777b.c(true);
+                    this.f32134b.c(true);
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -64,14 +64,14 @@ public final class ae1 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f31776a) {
+        switch (this.f32133a) {
             case 1:
-                de1 de1Var = this.f31777b;
+                de1 de1Var = this.f32134b;
                 if (view != de1Var.J && view != de1Var.I) {
                     return super.drawChild(canvas, view, j3);
                 }
                 canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(de1Var.L, 0.0f, de1Var.f32634x), getWidth(), AndroidUtilities.lerp(de1Var.M, getHeight(), de1Var.f32634x));
+                canvas.clipRect(0.0f, AndroidUtilities.lerp(de1Var.L, 0.0f, de1Var.f33086x), getWidth(), AndroidUtilities.lerp(de1Var.M, getHeight(), de1Var.f33086x));
                 boolean drawChild = super.drawChild(canvas, view, j3);
                 canvas.restore();
                 return drawChild;
@@ -82,10 +82,10 @@ public final class ae1 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f31776a) {
+        switch (this.f32133a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
-                this.f31777b.d();
+                this.f32134b.d();
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -95,11 +95,11 @@ public final class ae1 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f31776a) {
+        switch (this.f32133a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
-                de1 de1Var = this.f31777b;
+                de1 de1Var = this.f32134b;
                 de1Var.e();
                 for (int i12 = 0; i12 < getChildCount(); i12++) {
                     View childAt = getChildAt(i12);
@@ -117,9 +117,9 @@ public final class ae1 extends FrameLayout {
                             viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                         }
                     }
-                    org.telegram.ui.Components.gk0 gk0Var = de1Var.P;
-                    if (childAt == gk0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(gk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    org.telegram.ui.Components.qk0 qk0Var = de1Var.P;
+                    if (childAt == qk0Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(qk0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     } else {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     }
@@ -134,11 +134,11 @@ public final class ae1 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f31776a) {
+        switch (this.f32133a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
-                de1 de1Var = this.f31777b;
-                gh.d.c(de1Var.E, de1Var.f32623b);
+                de1 de1Var = this.f32134b;
+                gh.d.c(de1Var.E, de1Var.f33075b);
                 de1Var.F.d();
                 return;
             default:

@@ -9,83 +9,83 @@ import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.lt;
-import org.telegram.ui.Components.pi0;
-import w7.p;
+import org.telegram.ui.Components.zi0;
+import w7.q;
 public final class a extends Path {
-    public final View f44319a;
-    public final Layout f44320b;
-    public final Stack f44321c;
+    public final View f44636a;
+    public final Layout f44637b;
+    public final Stack f44638c;
     public final List d;
     public final int e;
-    public final int f44322f;
-    public final ArrayList f44323g;
+    public final int f44639f;
+    public final ArrayList f44640g;
 
     public a(View view, Layout layout, Stack stack, List list, int i10, int i11, ArrayList arrayList) {
-        this.f44319a = view;
-        this.f44320b = layout;
-        this.f44321c = stack;
+        this.f44636a = view;
+        this.f44637b = layout;
+        this.f44638c = stack;
         this.d = list;
         this.e = i10;
-        this.f44322f = i11;
-        this.f44323g = arrayList;
+        this.f44639f = i11;
+        this.f44640g = arrayList;
     }
 
     @Override
     public final void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
-        h hVar;
+        g gVar;
         float f13;
-        Stack stack = this.f44321c;
+        Stack stack = this.f44638c;
         int i10 = 0;
         if (stack != null && !stack.isEmpty()) {
-            hVar = (h) stack.remove(0);
+            gVar = (g) stack.remove(0);
         } else {
-            hVar = new h();
+            gVar = new g();
         }
-        hVar.f44374y = false;
-        ArrayList arrayList = this.f44323g;
+        gVar.f44690y = false;
+        ArrayList arrayList = this.f44640g;
         if (arrayList != null) {
             float f14 = (f10 + f12) / 2.0f;
             while (true) {
                 if (i10 >= arrayList.size()) {
                     break;
                 }
-                pi0 pi0Var = (pi0) arrayList.get(i10);
-                if (f14 >= pi0Var.f27054b && f14 <= pi0Var.f27055c) {
-                    hVar.f44374y = true;
+                zi0 zi0Var = (zi0) arrayList.get(i10);
+                if (f14 >= zi0Var.f30898b && f14 <= zi0Var.f30899c) {
+                    gVar.f44690y = true;
                     break;
                 }
                 i10++;
             }
         }
-        hVar.f44364n = -1.0f;
-        ValueAnimator valueAnimator = hVar.f44368r;
+        gVar.f44680n = -1.0f;
+        ValueAnimator valueAnimator = gVar.f44684r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        hVar.f44366p = true;
+        gVar.f44682p = true;
         int max = (int) Math.max(f7, this.e);
         int i11 = (int) f10;
-        int i12 = this.f44322f;
+        int i12 = this.f44639f;
         if (i12 <= 0) {
             f13 = 2.1474836E9f;
         } else {
             f13 = i12;
         }
-        hVar.setBounds(max, i11, (int) Math.min(f11, f13), (int) f12);
-        hVar.h(this.f44320b.getPaint().getColor());
-        hVar.f44370t = lt.f25942c;
-        int width = hVar.getBounds().width() / AndroidUtilities.dp(6.0f);
-        int i13 = h.B;
-        int b10 = p.b(width * i13, i13, h.A);
-        Stack stack2 = hVar.f44356c;
-        hVar.d = b10;
-        while (hVar.h.size() + stack2.size() < b10) {
+        gVar.setBounds(max, i11, (int) Math.min(f11, f13), (int) f12);
+        gVar.h(this.f44637b.getPaint().getColor());
+        gVar.f44686t = lt.f26188c;
+        int width = gVar.getBounds().width() / AndroidUtilities.dp(6.0f);
+        int i13 = g.B;
+        int b10 = q.b(width * i13, i13, g.A);
+        Stack stack2 = gVar.f44672c;
+        gVar.d = b10;
+        while (gVar.h.size() + stack2.size() < b10) {
             stack2.push(new Object());
         }
-        View view = this.f44319a;
+        View view = this.f44636a;
         if (view != null) {
-            hVar.f44359i = view;
+            gVar.f44675i = view;
         }
-        this.d.add(hVar);
+        this.d.add(gVar);
     }
 }

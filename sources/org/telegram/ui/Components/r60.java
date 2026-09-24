@@ -1,31 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class r60 extends org.telegram.ui.Cells.f9 {
-    public final org.telegram.ui.Cells.l7 v;
-    public boolean f27563w;
-    public final s60 f27564x;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class r60 extends ClickableSpan {
+    public final org.telegram.ui.ActionBar.e3[] f27874a;
+    public final TLRPC.TL_chatInviteImporter f27875b;
 
-    public r60(s60 s60Var, Context context) {
-        super(context);
-        this.f27564x = s60Var;
-        this.v = new org.telegram.ui.Cells.l7(this, 15);
+    public r60(org.telegram.ui.ActionBar.e3[] e3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
+        this.f27874a = e3VarArr;
+        this.f27875b = tL_chatInviteImporter;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        org.telegram.ui.Cells.l7 l7Var = this.v;
-        AndroidUtilities.cancelRunOnUIThread(l7Var);
-        if (this.f27563w) {
-            AndroidUtilities.runOnUIThread(l7Var, 500L);
+    public final void onClick(View view) {
+        this.f27874a[0].dismiss();
+        org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+        if (U != null) {
+            U.presentFragment(ProfileActivity.m4(this.f27875b.user_id));
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.v);
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
     }
 }

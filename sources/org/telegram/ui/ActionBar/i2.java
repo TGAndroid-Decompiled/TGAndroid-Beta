@@ -1,122 +1,34 @@
 package org.telegram.ui.ActionBar;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
-import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.LaunchActivity;
-public final class i2 extends f3 {
-    public final l2 f19204b;
-    public final c5[] f19205c;
-    public final n2 d;
-    public final f3[] e;
+import android.view.View;
+import org.telegram.ui.Components.yc;
+public interface i2 {
+    boolean attachedToParent();
 
-    public i2(Activity activity, d6 d6Var, l2 l2Var, c5[] c5VarArr, n2 n2Var, f3[] f3VarArr) {
-        super(1, (Context) activity, d6Var, true);
-        boolean z10;
-        this.f19204b = l2Var;
-        this.f19205c = c5VarArr;
-        this.d = n2Var;
-        this.e = f3VarArr;
-        if (l2Var != null && l2Var.e) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.occupyNavigationBar = z10;
-        this.drawNavigationBar = !z10;
-        c5VarArr[0].setFragmentStack(new ArrayList());
-        ((ActionBarLayout) c5VarArr[0]).c(-1, n2Var);
-        ((ActionBarLayout) c5VarArr[0]).c0();
-        ViewGroup view = c5VarArr[0].getView();
-        int i10 = this.backgroundPaddingLeft;
-        view.setPadding(i10, 0, i10, 0);
-        this.containerView = c5VarArr[0].getView();
-        setApplyBottomPadding(false);
-        setOnDismissListener(new ei.e0(4, n2Var, l2Var));
-    }
+    void dismiss();
 
-    @Override
-    public final boolean canDismissWithSwipe() {
-        return false;
-    }
+    void dismiss(boolean z10);
 
-    @Override
-    public final boolean canSwipeToBack(MotionEvent motionEvent) {
-        c5[] c5VarArr;
-        c5 c5Var;
-        l2 l2Var = this.f19204b;
-        if (l2Var == null || !l2Var.f19352a || (c5Var = (c5VarArr = this.f19205c)[0]) == null || c5Var.getFragmentStack().size() > 1 || (c5VarArr[0].getFragmentStack().size() == 1 && !((n2) c5VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
-            return false;
-        }
-        return true;
-    }
+    yc getBulletinFactory();
 
-    @Override
-    public final void dismiss() {
-        l2 l2Var;
-        Runnable runnable;
-        if (!isDismissed() && (l2Var = this.f19204b) != null && (runnable = l2Var.d) != null) {
-            runnable.run();
-        }
-        super.dismiss();
-        ArrayList arrayList = LaunchActivity.G1.P;
-        c5[] c5VarArr = this.f19205c;
-        arrayList.remove(c5VarArr[0]);
-        c5VarArr[0] = null;
-    }
+    int getNavigationBarColor(int i10);
 
-    @Override
-    public final void onBackPressed() {
-        c5[] c5VarArr = this.f19205c;
-        c5 c5Var = c5VarArr[0];
-        if (c5Var != null && c5Var.getFragmentStack().size() > 1) {
-            ((ActionBarLayout) c5VarArr[0]).G();
-        } else {
-            super.onBackPressed();
-        }
-    }
+    View getWindowView();
 
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        c5 c5Var = this.f19205c[0];
-        f3[] f3VarArr = this.e;
-        c5Var.setWindow(f3VarArr[0].getWindow());
-        n2 n2Var = this.d;
-        l2 l2Var = this.f19204b;
-        if (l2Var != null && l2Var.e) {
-            AndroidUtilities.setLightNavigationBar((Dialog) f3VarArr[0], true);
-        } else {
-            fixNavigationBar(h6.v0(h6.f18877i5, n2Var.getResourceProvider()));
-        }
-        AndroidUtilities.setLightStatusBar(this, n2Var.isLightStatusBar());
-        n2Var.onBottomSheetCreated();
-    }
+    boolean isAttachedLightStatusBar();
 
-    @Override
-    public final void onInsetsChanged() {
-        c5 c5Var = this.f19205c[0];
-        if (c5Var != null) {
-            for (n2 n2Var : c5Var.getFragmentStack()) {
-                if (n2Var.getFragmentView() != null) {
-                    n2Var.getFragmentView().requestLayout();
-                }
-            }
-        }
-    }
+    boolean isFullyVisible();
 
-    @Override
-    public final void onOpenAnimationEnd() {
-        Runnable runnable;
-        this.d.onTransitionAnimationEnd(true, false);
-        l2 l2Var = this.f19204b;
-        if (l2Var != null && (runnable = l2Var.f19354c) != null) {
-            runnable.run();
-        }
-    }
+    boolean isShown();
+
+    boolean onAttachedBackPressed();
+
+    void setKeyboardHeightFromParent(int i10);
+
+    void setLastVisible(boolean z10);
+
+    void setOnDismissListener(Runnable runnable);
+
+    boolean showDialog(Dialog dialog);
 }

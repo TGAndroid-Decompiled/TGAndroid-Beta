@@ -1,237 +1,248 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
-public final class jd0 extends AnimatorListenerAdapter {
-    public final int f25259a;
-    public final Object f25260b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Region;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public class jd0 extends FrameLayout {
+    public static final tv0 I;
+    public static final tv0 J;
+    public static final tv0 K;
+    public boolean E;
+    public boolean F;
+    public final org.telegram.ui.ActionBar.d6 G;
+    public float H;
+    public final RectF f25388a;
+    public String f25389b;
+    public final Paint f25390c;
+    public final TextPaint d;
+    public final o1.k e;
+    public float f25391f;
+    public final o1.k h;
+    public float f25392n;
+    public final o1.k f25393r;
+    public float f25394s;
+    public final float v;
+    public final float f25395w;
+    public EditText f25396x;
+    public boolean f25397y;
 
-    public jd0(Object obj, int i10) {
-        this.f25259a = i10;
-        this.f25260b = obj;
+    static {
+        tv0 tv0Var = new tv0(new fa0(2), new fa0(3));
+        tv0Var.f28619c = 100.0f;
+        I = tv0Var;
+        tv0 tv0Var2 = new tv0(new fa0(4), new fa0(5));
+        tv0Var2.f28619c = 100.0f;
+        J = tv0Var2;
+        tv0 tv0Var3 = new tv0(new fa0(6), new fa0(7));
+        tv0Var3.f28619c = 100.0f;
+        K = tv0Var3;
+    }
+
+    public jd0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f25388a = new RectF();
+        this.f25389b = "";
+        Paint paint = new Paint(1);
+        this.f25390c = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.d = textPaint;
+        this.e = new o1.k(this, I);
+        this.h = new o1.k(this, J);
+        this.f25393r = new o1.k(this, K);
+        float max = Math.max(2, AndroidUtilities.dp(0.5f));
+        this.v = max;
+        this.f25395w = AndroidUtilities.dp(1.6667f);
+        this.G = d6Var;
+        setWillNotDraw(false);
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(max);
+        f();
+        setPadding(0, AndroidUtilities.dp(6.0f), 0, 0);
+    }
+
+    public static void d(o1.k kVar, float f7) {
+        float f10 = f7 * 100.0f;
+        o1.l lVar = kVar.f15518u;
+        if (lVar != null && f10 == ((float) lVar.f15524i)) {
+            return;
+        }
+        kVar.c();
+        o1.l lVar2 = new o1.l(f10);
+        lVar2.b(500.0f);
+        lVar2.a(1.0f);
+        lVar2.f15524i = f10;
+        kVar.f15518u = lVar2;
+        kVar.f();
+    }
+
+    private void setColor(int i10) {
+        this.f25390c.setColor(i10);
+        invalidate();
+    }
+
+    public final void a(float f7) {
+        d(this.f25393r, f7);
+    }
+
+    public final void b(float f7, float f10, boolean z10) {
+        if (!z10) {
+            this.f25391f = f7;
+            this.f25392n = f10;
+            if (!this.f25397y) {
+                float f11 = this.f25395w;
+                float f12 = this.v;
+                this.f25390c.setStrokeWidth(((f11 - f12) * f7) + f12);
+            }
+            f();
+            return;
+        }
+        d(this.e, f7);
+        d(this.h, f10);
+    }
+
+    public final void c(boolean z10, boolean z11) {
+        float f7;
+        float f10 = 0.0f;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        if (z11) {
+            f10 = 1.0f;
+        }
+        b(f7, f10, true);
+    }
+
+    public final void e(EditTextBoldCursor editTextBoldCursor) {
+        this.f25396x = editTextBoldCursor;
+        invalidate();
+    }
+
+    public final void f() {
+        float f7;
+        int i10 = org.telegram.ui.ActionBar.h6.H6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.G;
+        int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
+        int v03 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.I6, d6Var);
+        float f10 = 0.0f;
+        if (this.f25397y && !this.F) {
+            f7 = 0.0f;
+        } else {
+            f7 = this.f25392n;
+        }
+        int d = i0.a.d(f7, v02, v03);
+        int i11 = org.telegram.ui.ActionBar.h6.f19284q7;
+        this.d.setColor(i0.a.d(this.f25394s, d, org.telegram.ui.ActionBar.h6.v0(i11, d6Var)));
+        int v04 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19172k6, d6Var);
+        int v05 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19190l6, d6Var);
+        if (!this.f25397y || this.F) {
+            f10 = this.f25391f;
+        }
+        setColor(i0.a.d(this.f25394s, i0.a.d(f10, v04, v05), org.telegram.ui.ActionBar.h6.v0(i11, d6Var)));
+    }
+
+    public EditText getAttachedEditText() {
+        return this.f25396x;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f25259a) {
-            case 3:
-                ((qg0) this.f25260b).h = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        super.onDraw(canvas);
+        TextPaint textPaint = this.d;
+        float paddingTop = getPaddingTop() + ((textPaint.getTextSize() / 2.0f) - AndroidUtilities.dp(1.75f));
+        float textSize = (textPaint.getTextSize() / 2.0f) + (getHeight() / 2.0f);
+        EditText editText = this.f25396x;
+        if ((editText == null || editText.length() != 0 || !TextUtils.isEmpty(this.f25396x.getHint())) && !this.f25397y && !this.E) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25259a) {
-            case 0:
-                sd0 sd0Var = (sd0) this.f25260b;
-                sd0Var.setVisibility(8);
-                sd0Var.h();
-                sd0Var.P = 0.0f;
-                sd0Var.f(0.0f);
-                sd0Var.setAlpha(0.0f);
-                return;
-            case 1:
-                AnimatorSet animatorSet = (AnimatorSet) this.f25260b;
-                if (animatorSet != null) {
-                    animatorSet.start();
-                    return;
-                }
-                return;
-            case 2:
-                hf hfVar = (hf) this.f25260b;
-                AnimatorSet animatorSet2 = (AnimatorSet) ((ci.j9) hfVar.f24660c).e;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ((ci.j9) hfVar.f24660c).e = null;
-                    return;
-                }
-                return;
-            case 3:
-                return;
-            case 4:
-                vg0 vg0Var = (vg0) this.f25260b;
-                vg0Var.f28742f = false;
-                vg0Var.F = null;
-                return;
-            case 5:
-                ((ji0) this.f25260b).b();
-                return;
-            case 6:
-                ((qj0) this.f25260b).h.setVisibility(8);
-                return;
-            case 7:
-                ml0 ml0Var = (ml0) this.f25260b;
-                View view = ml0Var.f26196c1;
-                if (view != null) {
-                    view.setVisibility(8);
-                }
-                if (ml0Var.b1()) {
-                    ml0Var.invalidate();
-                    return;
-                }
-                return;
-            case 8:
-                jm0 jm0Var = (jm0) this.f25260b;
-                if (jm0Var.f25373s != null) {
-                    jm0Var.j();
-                    jm0Var.f25373s.invalidate();
-                    jm0Var.e.invalidate();
-                    jm0Var.invalidate();
-                    jm0Var.f25373s = null;
-                    return;
-                }
-                return;
-            case 9:
-                ((nm0) this.f25260b).d = false;
-                return;
-            case 10:
-                ((yn0) this.f25260b).M0.setVisibility(8);
-                return;
-            case 11:
-                wo0 wo0Var = (wo0) this.f25260b;
-                if (animator == wo0Var.h) {
-                    wo0Var.h = null;
-                    return;
-                }
-                return;
-            case 12:
-                ((gq0) this.f25260b).e = null;
-                return;
-            case 13:
-                oq0 oq0Var = (oq0) this.f25260b;
-                if (oq0Var.getParent() != null) {
-                    ((ViewGroup) oq0Var.getParent()).removeView(oq0Var);
-                    return;
-                }
-                return;
-            case 14:
-                ts0 ts0Var = (ts0) this.f25260b;
-                View view2 = ts0Var.f28301c;
-                view2.setAlpha(1.0f);
-                s4.o0.x0(view2);
-                ts0Var.f28299a.removeView(view2);
-                return;
-            case 15:
-                fv0 fv0Var = (fv0) this.f25260b;
-                if (fv0Var.f24098f == animator) {
-                    fv0Var.f24098f = null;
-                    return;
-                }
-                return;
-            case 16:
-                vw0 vw0Var = (vw0) this.f25260b;
-                vw0.y1(vw0Var, ((Float) vw0Var.f29422p3.getAnimatedValue()).floatValue());
-                vw0Var.f29422p3 = null;
-                return;
-            case 17:
-                ux0 ux0Var = (ux0) this.f25260b;
-                ux0Var.f28592x.setVisibility(8);
-                ux0Var.F.setImageDrawable(null);
-                return;
-            case 18:
-                int i10 = 0;
-                while (true) {
-                    by0[] by0VarArr = (by0[]) this.f25260b;
-                    if (i10 < by0VarArr.length) {
-                        by0 by0Var = by0VarArr[i10];
-                        if (by0Var != null) {
-                            by0Var.d = false;
-                        }
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 19:
-                super.onAnimationEnd(animator);
-                ((cy0) this.f25260b).H = null;
-                return;
-            case 20:
-                ((fy0) this.f25260b).e = false;
-                return;
-            case 21:
-                ((m01) this.f25260b).setVisibility(4);
-                return;
-            case 22:
-                ((x11) this.f25260b).setVisibility(8);
-                return;
-            case 23:
-                ai.n4 n4Var = ((r21) this.f25260b).f27535f;
-                n4Var.setScaleX(1.0f);
-                n4Var.setScaleY(1.0f);
-                n4Var.invalidate();
-                return;
-            case 24:
-                v21 v21Var = (v21) this.f25260b;
-                v21Var.K = 1.0f;
-                v21Var.h.invalidate();
-                return;
-            case 25:
-                ((d51) this.f25260b).L = null;
-                return;
-            case 26:
-                UndoView undoView = (UndoView) this.f25260b;
-                undoView.setVisibility(4);
-                undoView.setScaleX(1.0f);
-                undoView.setScaleY(1.0f);
-                undoView.setAlpha(1.0f);
-                return;
-            case 27:
-                k61 k61Var = (k61) this.f25260b;
-                if (k61Var.f25525a.getTag() == null) {
-                    k61Var.f25525a.setVisibility(4);
-                    return;
-                }
-                return;
-            case 28:
-                super.onAnimationEnd(animator);
-                l61 l61Var = (l61) this.f25260b;
-                l61Var.f25829b = 0.0f;
-                l61Var.setTranslationY(0.0f);
-                l61Var.f25828a = null;
-                return;
-            default:
-                g81 g81Var = (g81) this.f25260b;
-                g81Var.J = false;
-                g81Var.setEnabled(true);
-                f81 f81Var = g81Var.f24234y;
-                if (f81Var != null) {
-                    ((ka.c) f81Var).h(1.0f);
-                }
-                g81Var.invalidate();
-                return;
+        if (z10) {
+            paddingTop = com.google.android.gms.internal.vision.e2.z(1.0f, this.f25392n, textSize - paddingTop, paddingTop);
         }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f25259a) {
-            case 9:
-                nm0 nm0Var = (nm0) this.f25260b;
-                nm0Var.d = true;
-                if (nm0Var.getParent() instanceof HorizontalScrollView) {
-                    ((HorizontalScrollView) nm0Var.getParent()).requestDisallowInterceptTouchEvent(false);
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+        float f13 = paddingTop;
+        if (z10) {
+            f7 = (1.0f - this.f25392n) * this.H;
+        } else {
+            f7 = 0.0f;
         }
+        Paint paint = this.f25390c;
+        float strokeWidth = paint.getStrokeWidth();
+        if (z10) {
+            f10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.f25392n, 0.25f, 0.75f);
+        } else {
+            f10 = 0.75f;
+        }
+        float measureText = textPaint.measureText(this.f25389b) * f10;
+        canvas.save();
+        RectF rectF = this.f25388a;
+        rectF.set(AndroidUtilities.dp(10.0f) + getPaddingLeft(), getPaddingTop(), (getWidth() - AndroidUtilities.dp(18.0f)) - getPaddingRight(), (strokeWidth * 2.0f) + getPaddingTop());
+        canvas.clipRect(rectF, Region.Op.DIFFERENCE);
+        rectF.set(getPaddingLeft() + strokeWidth, getPaddingTop() + strokeWidth, (getWidth() - strokeWidth) - getPaddingRight(), (getHeight() - strokeWidth) - getPaddingBottom());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        canvas.restore();
+        float dp = AndroidUtilities.dp(10.0f) + getPaddingLeft();
+        float paddingTop2 = getPaddingTop() + strokeWidth;
+        float width = ((getWidth() - strokeWidth) - getPaddingRight()) - AndroidUtilities.dp(6.0f);
+        float f14 = (measureText / 2.0f) + dp;
+        float dp2 = ((dp + measureText) + AndroidUtilities.dp(10.0f)) - f14;
+        if (z10) {
+            f11 = this.f25392n;
+        } else {
+            f11 = 1.0f;
+        }
+        canvas.drawLine((dp2 * f11) + f14, paddingTop2, width, paddingTop2, paint);
+        float dp3 = f14 + AndroidUtilities.dp(4.0f);
+        float f15 = dp - dp3;
+        if (z10) {
+            f12 = this.f25392n;
+        } else {
+            f12 = 1.0f;
+        }
+        canvas.drawLine(dp, paddingTop2, (f15 * f12) + dp3, paddingTop2, paint);
+        canvas.save();
+        canvas.scale(f10, f10, AndroidUtilities.dp(18.0f) + getPaddingLeft(), f13);
+        canvas.drawText(this.f25389b, AndroidUtilities.dp(14.0f) + getPaddingLeft() + f7, f13, textPaint);
+        canvas.restore();
     }
 
-    public jd0(ts0 ts0Var, s4.o0 o0Var) {
-        this.f25259a = 14;
-        this.f25260b = ts0Var;
+    public void setForceForceUseCenter(boolean z10) {
+        this.f25397y = z10;
+        this.F = z10;
+        invalidate();
     }
 
-    private final void a(Animator animator) {
+    public void setForceUseCenter(boolean z10) {
+        this.f25397y = z10;
+        invalidate();
+    }
+
+    public void setForceUseCenter2(boolean z10) {
+        this.E = z10;
+    }
+
+    public void setLeftPadding(float f7) {
+        this.H = f7;
+        invalidate();
+    }
+
+    public void setText(String str) {
+        this.f25389b = str;
+        invalidate();
     }
 }

@@ -1,61 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class o01 extends MetricAffectingSpan {
-    public final int f26560a;
-    public final n01 f26561b;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.NotificationCenter;
+public final class o01 implements ki.o0, NotificationCenter.NotificationCenterDelegate {
+    public final int f26861a;
+    public final boolean f26862b;
+    public final HashMap f26863c = new HashMap();
+    public boolean d;
 
-    public o01(n01 n01Var, int i10) {
-        this.f26561b = n01Var;
-        if (i10 > 0) {
-            this.f26560a = i10;
+    public o01(int i10, boolean z10) {
+        this.f26861a = i10;
+        this.f26862b = z10;
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
+    }
+
+    public final synchronized void a(long j3, File file, long j10, long j11) {
+        m01 m01Var = (m01) this.f26863c.get(Long.valueOf(j3));
+        if (!this.d && m01Var != null && !m01Var.e) {
+            e(m01Var);
+            m01Var.f26316b = Math.max(m01Var.f26316b, j10 + j11);
+            FileLoader.getInstance(this.f26861a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f26862b, m01Var.f26316b, 0L);
         }
     }
 
-    public final void a(TextPaint textPaint) {
-        n01 n01Var = this.f26561b;
-        if (w7.c0.a(n01Var.f26312a, 49152)) {
-            float textSize = textPaint.getTextSize();
-            textPaint.setTextSize(0.75f * textSize);
-            if (w7.c0.a(n01Var.f26312a, 32768)) {
-                textPaint.baselineShift -= (int) (textSize * 0.35f);
-            } else if (w7.c0.a(n01Var.f26312a, 16384)) {
-                textPaint.baselineShift += (int) (textSize * 0.12f);
+    public final synchronized void b(long j3, long j10, File file) {
+        m01 m01Var = (m01) this.f26863c.get(Long.valueOf(j3));
+        if (!this.d && m01Var != null && !m01Var.e) {
+            e(m01Var);
+            m01Var.f26316b = Math.max(m01Var.f26316b, j10);
+            m01Var.f26317c = j10;
+            FileLoader.getInstance(this.f26861a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f26862b, m01Var.f26316b, j10);
+        }
+    }
+
+    public final synchronized void c(long j3) {
+        m01 m01Var = (m01) this.f26863c.remove(Long.valueOf(j3));
+        if (m01Var == null) {
+            return;
+        }
+        m01Var.e = true;
+        if (m01Var.d) {
+            FileLoader.getInstance(this.f26861a).cancelFileUpload(m01Var.f26315a.getAbsolutePath(), this.f26862b);
+        }
+    }
+
+    public final synchronized void d(boolean z10) {
+        try {
+            if (this.d) {
+                return;
             }
+            this.d = true;
+            NotificationCenter.getInstance(this.f26861a).removeObserver(this, NotificationCenter.fileUploaded);
+            if (z10) {
+                Iterator it = this.f26863c.values().iterator();
+                while (it.hasNext()) {
+                    m01 m01Var = (m01) it.next();
+                    if (m01Var.d && !m01Var.e) {
+                        FileLoader.getInstance(this.f26861a).cancelFileUpload(m01Var.f26315a.getAbsolutePath(), this.f26862b);
+                    }
+                    it.remove();
+                }
+            }
+        } catch (Throwable th2) {
+            throw th2;
         }
-    }
-
-    public final n01 b() {
-        return this.f26561b;
-    }
-
-    public final boolean c() {
-        if ((this.f26561b.f26312a & 256) > 0) {
-            return true;
-        }
-        return false;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10 = this.f26560a;
-        if (i10 != 0) {
-            textPaint.setTextSize(i10);
-        }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.f26561b.a(textPaint);
+    public final synchronized void didReceivedNotification(int r4, int r5, java.lang.Object... r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o01.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        int i10 = this.f26560a;
-        if (i10 != 0) {
-            textPaint.setTextSize(i10);
+    public final void e(m01 m01Var) {
+        if (m01Var.d) {
+            return;
         }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.f26561b.a(textPaint);
+        m01Var.d = true;
+        FileLoader.getInstance(this.f26861a).uploadFile(m01Var.f26315a.getAbsolutePath(), this.f26862b, false, 1L, 33554432, false);
     }
 }

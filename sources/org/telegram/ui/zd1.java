@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
-public final class zd1 implements org.telegram.ui.Components.fk0 {
-    public final xn f40108a;
-    public final MessageObject f40109b;
-    public final org.telegram.ui.Components.gk0 f40110c;
+public final class zd1 implements org.telegram.ui.Components.pk0 {
+    public final wn f40432a;
+    public final MessageObject f40433b;
+    public final org.telegram.ui.Components.qk0 f40434c;
     public final de1 d;
 
-    public zd1(de1 de1Var, xn xnVar, MessageObject messageObject, org.telegram.ui.Components.gk0 gk0Var) {
+    public zd1(de1 de1Var, wn wnVar, MessageObject messageObject, org.telegram.ui.Components.qk0 qk0Var) {
         this.d = de1Var;
-        this.f40108a = xnVar;
-        this.f40109b = messageObject;
-        this.f40110c = gk0Var;
+        this.f40432a = wnVar;
+        this.f40433b = messageObject;
+        this.f40434c = qk0Var;
     }
 
     @Override
-    public final void h(android.view.View r13, zg.p0 r14, boolean r15, boolean r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zd1.h(android.view.View, zg.p0, boolean, boolean):void");
+    public final void h(android.view.View r13, zg.o0 r14, boolean r15, boolean r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zd1.h(android.view.View, zg.o0, boolean, boolean):void");
     }
 
     @Override
@@ -32,15 +32,15 @@ public final class zd1 implements org.telegram.ui.Components.fk0 {
     }
 
     @Override
-    public final boolean q() {
+    public final boolean p() {
         return false;
     }
 
     @Override
-    public final void o() {
+    public final void n() {
     }
 
     @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void m(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

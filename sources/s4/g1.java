@@ -1,8 +1,8 @@
 package s4;
 public final class g1 {
-    public int f42669a;
-    public int f42670b;
-    public int f42671c;
+    public int f42988a;
+    public int f42989b;
+    public int f42990c;
     public int d;
     public int e;
 
@@ -10,11 +10,11 @@ public final class g1 {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f42669a;
+        int i13 = this.f42988a;
         int i14 = 2;
         if ((i13 & 7) != 0) {
             int i15 = this.d;
-            int i16 = this.f42670b;
+            int i16 = this.f42989b;
             if (i15 > i16) {
                 i12 = 1;
             } else if (i15 == i16) {
@@ -28,7 +28,7 @@ public final class g1 {
         }
         if ((i13 & 112) != 0) {
             int i17 = this.d;
-            int i18 = this.f42671c;
+            int i18 = this.f42990c;
             if (i17 > i18) {
                 i11 = 1;
             } else if (i17 == i18) {
@@ -42,7 +42,7 @@ public final class g1 {
         }
         if ((i13 & 1792) != 0) {
             int i19 = this.e;
-            int i20 = this.f42670b;
+            int i20 = this.f42989b;
             if (i19 > i20) {
                 i10 = 1;
             } else if (i19 == i20) {
@@ -56,7 +56,7 @@ public final class g1 {
         }
         if ((i13 & 28672) != 0) {
             int i21 = this.e;
-            int i22 = this.f42671c;
+            int i22 = this.f42990c;
             if (i21 > i22) {
                 i14 = 1;
             } else if (i21 != i22) {

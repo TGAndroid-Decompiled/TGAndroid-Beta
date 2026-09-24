@@ -8,23 +8,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class ac implements fk0 {
-    public final bc f22410a;
+public final class ac implements pk0 {
+    public final bc f22638a;
 
     public ac(bc bcVar) {
-        this.f22410a = bcVar;
+        this.f22638a = bcVar;
     }
 
     @Override
-    public final void h(View view, zg.p0 p0Var, boolean z10, boolean z11) {
+    public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
         boolean z12;
-        bc bcVar = this.f22410a;
-        org.telegram.ui.ActionBar.n2 n2Var = bcVar.f22671f;
+        bc bcVar = this.f22638a;
+        org.telegram.ui.ActionBar.m2 m2Var = bcVar.f22965f;
         if (bcVar.e == null) {
             return;
         }
-        long clientUserId = UserConfig.getInstance(n2Var.getCurrentAccount()).getClientUserId();
-        if ((n2Var instanceof org.telegram.ui.xn) && ((org.telegram.ui.xn) n2Var).a() == clientUserId) {
+        long clientUserId = UserConfig.getInstance(m2Var.getCurrentAccount()).getClientUserId();
+        if ((m2Var instanceof org.telegram.ui.wn) && ((org.telegram.ui.wn) m2Var).a() == clientUserId) {
             z12 = true;
         } else {
             z12 = false;
@@ -33,17 +33,17 @@ public final class ac implements fk0 {
         for (int i11 = 0; i11 < bcVar.e.size(); i11++) {
             int keyAt = bcVar.e.keyAt(i11);
             TLRPC.Message message = new TLRPC.Message();
-            message.dialog_id = n2Var.getUserConfig().getClientUserId();
-            message.f18104id = keyAt;
-            MessageObject messageObject = new MessageObject(n2Var.getCurrentAccount(), message, false, false);
-            ArrayList<zg.p0> arrayList = new ArrayList<>();
-            arrayList.add(p0Var);
-            n2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, p0Var, false, false, bcVar.f22671f, null);
-            i10 = message.f18104id;
+            message.dialog_id = m2Var.getUserConfig().getClientUserId();
+            message.f18342id = keyAt;
+            MessageObject messageObject = new MessageObject(m2Var.getCurrentAccount(), message, false, false);
+            ArrayList<zg.o0> arrayList = new ArrayList<>();
+            arrayList.add(o0Var);
+            m2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, o0Var, false, false, bcVar.f22965f, null);
+            i10 = message.f18342id;
         }
         bcVar.f();
         qc.e();
-        AndroidUtilities.runOnUIThread(new org.telegram.messenger.rj(this, p0Var, !z12, n2Var.getCurrentAccount(), i10), 300L);
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.qj(this, o0Var, !z12, m2Var.getCurrentAccount(), i10), 300L);
     }
 
     @Override
@@ -57,15 +57,15 @@ public final class ac implements fk0 {
     }
 
     @Override
-    public final boolean q() {
+    public final boolean p() {
         return false;
     }
 
     @Override
-    public final void o() {
+    public final void n() {
     }
 
     @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void m(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

@@ -6,12 +6,12 @@ import java.util.HashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.TranslateController;
 public final class qk implements Comparator {
-    public final int f17167a;
-    public final Object f17168b;
+    public final int f17399a;
+    public final Object f17400b;
 
     public qk(Object obj, int i10) {
-        this.f17167a = i10;
-        this.f17168b = obj;
+        this.f17399a = i10;
+        this.f17400b = obj;
     }
 
     @Override
@@ -19,15 +19,15 @@ public final class qk implements Comparator {
         int lambda$getMusicDialogsSortedByVisibleOrder$1;
         int lambda$getLocales$3;
         int lambda$getLanguages$1;
-        switch (this.f17167a) {
+        switch (this.f17399a) {
             case 0:
-                lambda$getMusicDialogsSortedByVisibleOrder$1 = TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1((HashMap) this.f17168b, (Long) obj, (Long) obj2);
+                lambda$getMusicDialogsSortedByVisibleOrder$1 = TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1((HashMap) this.f17400b, (Long) obj, (Long) obj2);
                 return lambda$getMusicDialogsSortedByVisibleOrder$1;
             case 1:
-                lambda$getLocales$3 = TranslateController.lambda$getLocales$3((LocaleController.LocaleInfo) this.f17168b, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
+                lambda$getLocales$3 = TranslateController.lambda$getLocales$3((LocaleController.LocaleInfo) this.f17400b, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
                 return lambda$getLocales$3;
             default:
-                lambda$getLanguages$1 = TranslateController.lambda$getLanguages$1((Collator) this.f17168b, (TranslateController.Language) obj, (TranslateController.Language) obj2);
+                lambda$getLanguages$1 = TranslateController.lambda$getLanguages$1((Collator) this.f17400b, (TranslateController.Language) obj, (TranslateController.Language) obj2);
                 return lambda$getLanguages$1;
         }
     }

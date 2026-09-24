@@ -1,37 +1,35 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-public final class ib0 implements Runnable {
-    public final int f24937a;
-    public final jb0 f24938b;
+import android.content.Context;
+import android.view.View;
+public final class ib0 extends n81 {
+    public final Context f24980a;
+    public final fc0 f24981b;
 
-    public ib0(jb0 jb0Var, int i10) {
-        this.f24937a = i10;
-        this.f24938b = jb0Var;
+    public ib0(fc0 fc0Var, Context context) {
+        this.f24981b = fc0Var;
+        this.f24980a = context;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24937a) {
-            case 0:
-                jb0 jb0Var = this.f24938b;
-                if (jb0Var.W != -1) {
-                    NotificationCenter.getInstance(jb0Var.Y.f26708c0.f28455w).onAnimationFinish(jb0Var.W);
-                    jb0Var.W = -1;
-                    return;
-                }
-                return;
-            case 1:
-                this.f24938b.Y.h();
-                return;
-            default:
-                jb0 jb0Var2 = this.f24938b;
-                if (jb0Var2.W != -1) {
-                    NotificationCenter.getInstance(jb0Var2.Y.f26708c0.f28455w).onAnimationFinish(jb0Var2.W);
-                    jb0Var2.W = -1;
-                    return;
-                }
-                return;
-        }
+    public final void b(View view, int i10, int i11) {
+        zb0 zb0Var = (zb0) view;
+        zb0Var.h();
+        zb0Var.k(false);
+    }
+
+    @Override
+    public final View d(int i10) {
+        return new zb0(this.f24981b, this.f24980a, i10);
+    }
+
+    @Override
+    public final int e() {
+        return this.f24981b.e.f23577a.size();
+    }
+
+    @Override
+    public final int h(int i10) {
+        return ((cc0) this.f24981b.e.f23577a.get(i10)).f23279a;
     }
 }

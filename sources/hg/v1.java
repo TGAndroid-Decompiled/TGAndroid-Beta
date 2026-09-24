@@ -15,17 +15,17 @@ public final class v1 implements TextView.OnEditorActionListener {
     public final TextView d;
     public final e4 e;
     public final Utilities.Callback f10436f;
-    public final org.telegram.ui.ActionBar.b2[] f10437g;
+    public final org.telegram.ui.ActionBar.a2[] f10437g;
     public final View h;
 
-    public v1(s1 s1Var, int i10, b2 b2Var, TextView textView, e4 e4Var, Utilities.Callback callback, org.telegram.ui.ActionBar.b2[] b2VarArr, View view) {
+    public v1(s1 s1Var, int i10, b2 b2Var, TextView textView, e4 e4Var, Utilities.Callback callback, org.telegram.ui.ActionBar.a2[] a2VarArr, View view) {
         this.f10433a = s1Var;
         this.f10434b = i10;
         this.f10435c = b2Var;
         this.d = textView;
         this.e = e4Var;
         this.f10436f = callback;
-        this.f10437g = b2VarArr;
+        this.f10437g = a2VarArr;
         this.h = view;
     }
 
@@ -53,12 +53,12 @@ public final class v1 implements TextView.OnEditorActionListener {
                 return true;
             }
             this.f10436f.run(obj);
-            org.telegram.ui.ActionBar.b2[] b2VarArr = this.f10437g;
-            org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr[0];
-            if (b2Var2 != null) {
-                b2Var2.dismiss();
+            org.telegram.ui.ActionBar.a2[] a2VarArr = this.f10437g;
+            org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
+            if (a2Var != null) {
+                a2Var.dismiss();
             }
-            if (b2VarArr[0] == z1.h) {
+            if (a2VarArr[0] == z1.h) {
                 z1.h = null;
             }
             View view = this.h;

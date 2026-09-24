@@ -1,9 +1,9 @@
 package w7;
 public final class x0 implements ia.d {
-    public static final x0 f44812a = new Object();
+    public static final x0 f45131a = new Object();
 
     static {
-        org.telegram.ui.Cells.q3.t(w.c.j(d.class, w.c.m(3, w.c.j(d.class, w.c.m(2, w.c.j(d.class, new a(1)))))));
+        v7.j.r(v7.j.k(d.class, v7.j.o(3, v7.j.k(d.class, v7.j.o(2, v7.j.k(d.class, new a(1)))))));
     }
 
     @Override

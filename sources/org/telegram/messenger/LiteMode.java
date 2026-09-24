@@ -272,7 +272,7 @@ public class LiteMode {
     }
 
     public static void setPowerSaverLevel(int i10) {
-        powerSaverLevel = w7.p.b(i10, 0, 100);
+        powerSaverLevel = w7.q.b(i10, 0, 100);
         savePreference();
         getValue(false);
     }

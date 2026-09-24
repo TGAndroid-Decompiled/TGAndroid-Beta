@@ -23,7 +23,7 @@ public final class z implements c3.o {
         c3.l lVar = (c3.l) pVar;
         lVar.h(bArr, 0, 14, false);
         if (442 == (((bArr[0] & 255) << 24) | ((bArr[1] & 255) << 16) | ((bArr[2] & 255) << 8) | (bArr[3] & 255)) && (bArr[4] & 196) == 68 && (bArr[6] & 4) == 4 && (bArr[8] & 4) == 4 && (bArr[9] & 1) == 1 && (bArr[12] & 3) == 3) {
-            lVar.s(bArr[13] & 7, false);
+            lVar.t(bArr[13] & 7, false);
             lVar.h(bArr, 0, 3, false);
             if (1 == (((bArr[0] & 255) << 16) | ((bArr[1] & 255) << 8) | (bArr[2] & 255))) {
                 return true;
@@ -74,7 +74,7 @@ public final class z implements c3.o {
 
     @Override
     public final List i() {
-        e9.g0 g0Var = i0.f8067b;
+        e9.g0 g0Var = i0.f8066b;
         return a1.e;
     }
 
@@ -104,12 +104,12 @@ public final class z implements c3.o {
                 }
                 vVar.G(min);
                 pVar.p();
-                pVar.a(0, min, vVar.f7917a);
-                int i12 = vVar.f7918b;
-                int i13 = vVar.f7919c - 4;
+                pVar.a(0, min, vVar.f7916a);
+                int i12 = vVar.f7917b;
+                int i13 = vVar.f7918c - 4;
                 while (true) {
                     if (i13 >= i12) {
-                        if (x.b(i13, vVar.f7917a) == 442) {
+                        if (x.b(i13, vVar.f7916a) == 442) {
                             vVar.J(i13 + 4);
                             long c10 = x.c(vVar);
                             if (c10 != -9223372036854775807L) {
@@ -138,12 +138,12 @@ public final class z implements c3.o {
                 }
                 vVar.G(min2);
                 pVar.p();
-                pVar.a(0, min2, vVar.f7917a);
-                int i14 = vVar.f7918b;
-                int i15 = vVar.f7919c;
+                pVar.a(0, min2, vVar.f7916a);
+                int i14 = vVar.f7917b;
+                int i15 = vVar.f7918c;
                 while (true) {
                     if (i14 < i15 - 3) {
-                        if (x.b(i14, vVar.f7917a) == 442) {
+                        if (x.b(i14, vVar.f7916a) == 442) {
                             vVar.J(i14 + 4);
                             long c11 = x.c(vVar);
                             if (c11 != -9223372036854775807L) {
@@ -182,7 +182,7 @@ public final class z implements c3.o {
                 i10 = 4;
                 h3.a aVar = new h3.a(obj, yVar, j17, j18, 0L, length, 188L, 1000);
                 this.f12863i = aVar;
-                this.f12864j.X1(aVar.f10095a);
+                this.f12864j.X1(aVar.f10094a);
             } else {
                 i10 = 4;
                 this.f12864j.X1(new c3.t(j17));
@@ -191,7 +191,7 @@ public final class z implements c3.o {
             i10 = 4;
         }
         h3.a aVar2 = this.f12863i;
-        if (aVar2 != null && aVar2.f10097c != null) {
+        if (aVar2 != null && aVar2.f10096c != null) {
             return aVar2.b(pVar, sVar);
         }
         pVar.p();
@@ -202,19 +202,19 @@ public final class z implements c3.o {
         }
         if (j3 == -1 || j3 >= 4) {
             e2.v vVar2 = this.f12860c;
-            if (pVar.h(vVar2.f7917a, 0, i10, true)) {
+            if (pVar.h(vVar2.f7916a, 0, i10, true)) {
                 vVar2.J(0);
                 int j19 = vVar2.j();
                 if (j19 == 441) {
                     return -1;
                 }
                 if (j19 == 442) {
-                    pVar.a(0, 10, vVar2.f7917a);
+                    pVar.a(0, 10, vVar2.f7916a);
                     vVar2.J(9);
                     pVar.q((vVar2.x() & 7) + 14);
                     return 0;
                 } else if (j19 == 443) {
-                    pVar.a(0, 2, vVar2.f7917a);
+                    pVar.a(0, 2, vVar2.f7916a);
                     vVar2.J(0);
                     pVar.q(vVar2.D() + 6);
                     return 0;
@@ -258,7 +258,7 @@ public final class z implements c3.o {
                             this.f12864j.e1();
                         }
                     }
-                    pVar.a(0, 2, vVar2.f7917a);
+                    pVar.a(0, 2, vVar2.f7916a);
                     vVar2.J(0);
                     int D = vVar2.D() + 6;
                     if (yVar2 == null) {
@@ -266,7 +266,7 @@ public final class z implements c3.o {
                         return 0;
                     }
                     vVar2.G(D);
-                    pVar.readFully(vVar2.f7917a, 0, D);
+                    pVar.readFully(vVar2.f7916a, 0, D);
                     vVar2.J(6);
                     i iVar2 = yVar2.f12853a;
                     a4.h hVar = yVar2.f12855c;
@@ -303,7 +303,7 @@ public final class z implements c3.o {
                     iVar2.f(4, yVar2.f12857g);
                     iVar2.a(vVar2);
                     iVar2.e(false);
-                    vVar2.I(vVar2.f7917a.length);
+                    vVar2.I(vVar2.f7916a.length);
                     return 0;
                 }
             }

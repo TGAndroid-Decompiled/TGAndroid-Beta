@@ -1,28 +1,46 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class sf implements View.OnClickListener {
-    public final int f37273a;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f37274b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class sf implements View.OnLongClickListener {
+    public final int f37717a;
+    public final wn f37718b;
 
-    public sf(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i10) {
-        this.f37273a = i10;
-        this.f37274b = actionBarPopupWindow$ActionBarPopupWindowLayout;
+    public sf(wn wnVar, int i10) {
+        this.f37717a = i10;
+        this.f37718b = wnVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37273a) {
+    public final boolean onLongClick(View view) {
+        MessageObject messageObject;
+        MessageObject messageObject2;
+        switch (this.f37717a) {
             case 0:
-                this.f37274b.getSwipeBack().b(true);
-                return;
+                wn wnVar = this.f37718b;
+                MessageObject messageObject3 = wnVar.f39437d5;
+                if (messageObject3 == null) {
+                    return false;
+                }
+                if (AndroidUtilities.addToClipboard(messageObject3.sponsoredUrl)) {
+                    new org.telegram.ui.Components.yc(org.telegram.ui.Components.lb.a(wnVar.getParentActivity()), wnVar.f39454ea).k(false).j();
+                }
+                return true;
             case 1:
-                this.f37274b.getSwipeBack().b(true);
-                return;
+                return wn.s0(this.f37718b);
             default:
-                this.f37274b.getSwipeBack().b(true);
-                return;
+                wn wnVar2 = this.f37718b;
+                int i10 = wnVar2.nb;
+                if (i10 == 1 && (messageObject2 = wnVar2.p5) != null) {
+                    wnVar2.F(messageObject2.getId(), 0, 0, 0, true, true);
+                    return true;
+                } else if (wnVar2.f39462f5 != null && i10 == 2 && (messageObject = wnVar2.f39559n5) != null) {
+                    wnVar2.F(messageObject.getId(), 0, 0, 0, true, true);
+                    return true;
+                } else {
+                    return false;
+                }
         }
     }
 }

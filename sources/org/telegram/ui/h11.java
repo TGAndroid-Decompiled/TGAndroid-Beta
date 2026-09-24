@@ -1,40 +1,175 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class h11 implements ImageReceiver.ImageReceiverDelegate {
-    public final Runnable[] f33702a;
+import android.graphics.Canvas;
+import android.graphics.PointF;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class h11 extends View {
+    public static final String[] f34083s = {"🎉", "🎆", "🎈"};
+    public final ProfileActivity f34084a;
+    public e11 f34085b;
+    public e11 f34086c;
+    public final PointF d;
+    public boolean e;
+    public boolean f34087f;
+    public float h;
+    public long f34088n;
+    public boolean f34089r;
 
-    public h11(Runnable[] runnableArr) {
-        this.f33702a = runnableArr;
+    public h11(ProfileActivity profileActivity, e11 e11Var) {
+        super(profileActivity.getParentActivity());
+        this.d = new PointF();
+        this.h = 1.0f;
+        this.f34089r = false;
+        this.f34084a = profileActivity;
+        this.f34085b = e11Var;
     }
 
-    @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        if (imageReceiver.hasBitmapImage()) {
-            Runnable[] runnableArr = this.f33702a;
-            if (runnableArr[0] != null) {
-                org.telegram.ui.Components.yi0 lottieAnimation = imageReceiver.getLottieAnimation();
-                if (lottieAnimation == null) {
-                    runnableArr[0].run();
-                    runnableArr[0] = null;
-                } else if (lottieAnimation.y()) {
-                    lottieAnimation.A0 = new xz0(runnableArr, 5);
-                } else {
-                    runnableArr[0].run();
-                    runnableArr[0] = null;
+    public final boolean a() {
+        e11 e11Var = this.f34085b;
+        if (!e11Var.f33228b || this.h < 1.0f) {
+            return false;
+        }
+        if (e11Var.f33229c.getLottieAnimation() != null) {
+            this.f34085b.f33229c.getLottieAnimation().N(0, false, false);
+            this.f34085b.f33229c.getLottieAnimation().H(true);
+        }
+        this.f34089r = true;
+        this.h = 0.0f;
+        invalidate();
+        return true;
+    }
+
+    public final void b(e11 e11Var) {
+        if (this.f34085b != e11Var && e11Var != null) {
+            ArrayList arrayList = e11Var.e;
+            if (this.f34089r) {
+                this.f34086c = e11Var;
+                return;
+            }
+            if (this.f34087f) {
+                for (int i10 = 0; i10 < this.f34085b.e.size(); i10++) {
+                    ((g11) this.f34085b.e.get(i10)).setParentView(null);
                 }
+                this.f34087f = false;
+            }
+            e11 e11Var2 = this.f34085b;
+            ArrayList arrayList2 = e11Var2.f33233j;
+            arrayList2.remove(this);
+            if (arrayList2.isEmpty() && e11Var2.f33232i) {
+                e11Var2.b(true);
+                e11Var2.f33232i = false;
+            }
+            this.f34085b = e11Var;
+            if (!this.f34087f) {
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    ((g11) arrayList.get(i11)).setParentView(this);
+                }
+                this.f34087f = true;
             }
         }
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.h5.a(this, i10, str, drawable);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f34085b.f33233j.add(this);
     }
 
     @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.h5.b(this, imageReceiver);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f34087f) {
+            for (int i10 = 0; i10 < this.f34085b.e.size(); i10++) {
+                ((g11) this.f34085b.e.get(i10)).setParentView(null);
+            }
+            this.f34087f = false;
+        }
+        e11 e11Var = this.f34085b;
+        ArrayList arrayList = e11Var.f33233j;
+        arrayList.remove(this);
+        if (arrayList.isEmpty() && e11Var.f33232i) {
+            e11Var.b(true);
+            e11Var.f33232i = false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f34085b.f33228b) {
+            if (!this.f34087f) {
+                for (int i10 = 0; i10 < this.f34085b.e.size(); i10++) {
+                    ((g11) this.f34085b.e.get(i10)).setParentView(this);
+                }
+                this.f34087f = true;
+                if (!this.e) {
+                    this.e = true;
+                    post(new vz0(this, 3));
+                }
+            }
+            if (!this.f34089r) {
+                return;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            this.h = Utilities.clamp(this.h + (((float) Utilities.clamp(currentTimeMillis - this.f34088n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
+            this.f34088n = currentTimeMillis;
+            ProfileActivity profileActivity = this.f34084a;
+            wy0 wy0Var = profileActivity.f31510a;
+            int i11 = profileActivity.U2;
+            PointF pointF = this.d;
+            float f7 = 2.0f;
+            if (i11 >= 0) {
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= wy0Var.getChildCount()) {
+                        break;
+                    }
+                    View childAt = wy0Var.getChildAt(i12);
+                    if (i11 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.c9)) {
+                        vh.n nVar = ((org.telegram.ui.Cells.c9) childAt).f20092a;
+                        pointF.set(nVar.getX() + childAt.getX() + wy0Var.getX() + AndroidUtilities.dp(12.0f), (nVar.getMeasuredHeight() / 2.0f) + nVar.getY() + childAt.getY() + wy0Var.getY());
+                        break;
+                    }
+                    i12++;
+                }
+            }
+            float f10 = cz.f();
+            this.f34085b.f33229c.setImageCoords((getWidth() - AndroidUtilities.dp(f10)) / 2.0f, Math.max(0.0f, pointF.y - (AndroidUtilities.dp(f10) * 0.5f)), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10));
+            canvas.save();
+            canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
+            this.f34085b.f33229c.draw(canvas);
+            this.f34085b.f33229c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            canvas.restore();
+            int dp = AndroidUtilities.dp(110.0f);
+            int size = this.f34085b.d.size() - 1;
+            while (size >= 0) {
+                g11 g11Var = (g11) this.f34085b.d.get(size);
+                float f11 = size;
+                float cascade = AndroidUtilities.cascade(this.h, f11, this.f34085b.d.size(), 1.8f);
+                float f12 = dp;
+                float f13 = 0.88f * f12;
+                float v = com.google.android.gms.internal.vision.e2.v(f13, this.f34085b.d.size() - 1, getWidth(), f7);
+                float f14 = pointF.x;
+                float f15 = pointF.y;
+                float f16 = ((v - f14) * cascade) + (f13 * f11) + f14;
+                float interpolation = org.telegram.ui.Components.rr.h.getInterpolation(Utilities.clamp(cascade / 0.4f, 1.0f, 0.0f));
+                float f17 = (f12 / 2.0f) * interpolation;
+                float f18 = f12 * interpolation;
+                g11Var.setImageCoords(f16 - f17, (f15 - ((f15 + f12) * ((float) Math.pow(this.h, 2.0d)))) - f17, f18, f18);
+                g11Var.draw(canvas);
+                size--;
+                f7 = 2.0f;
+            }
+            if (this.h >= 1.0f) {
+                this.f34089r = false;
+                b(this.f34086c);
+                this.f34086c = null;
+                return;
+            }
+            invalidate();
+        }
     }
 }

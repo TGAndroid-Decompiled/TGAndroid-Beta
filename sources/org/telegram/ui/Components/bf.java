@@ -1,87 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-public final class bf extends ImageView {
-    public final int f22731a;
-    public final ChatActivityEnterView f22732b;
+import android.animation.AnimatorSet;
+import org.telegram.messenger.AndroidUtilities;
+public final class bf implements Runnable {
+    public final int f22972a;
+    public final ChatActivityEnterView f22973b;
 
-    public bf(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
-        super(context);
-        this.f22731a = i10;
-        this.f22732b = chatActivityEnterView;
+    public bf(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f22972a = i10;
+        this.f22973b = chatActivityEnterView;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f22731a) {
+    public final void run() {
+        switch (this.f22972a) {
             case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                post(new ie(this.f22732b, 5));
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f22731a) {
-            case 2:
-                if (getAlpha() <= 0.0f) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        switch (this.f22731a) {
-            case 0:
-                super.setAlpha(f7);
-                ze zeVar = this.f22732b.I1;
-                if (zeVar != null) {
-                    zeVar.setTranslationX(zeVar.f30573a);
+                ChatActivityEnterView chatActivityEnterView = this.f22973b;
+                bf bfVar = chatActivityEnterView.f22041r3;
+                if ((!chatActivityEnterView.j0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.m2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.f22004k3 && !chatActivityEnterView.f22083z2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
+                    og ogVar = chatActivityEnterView.Z2;
+                    if (ogVar != null) {
+                        ogVar.r1();
+                    }
+                    chatActivityEnterView.E0.requestFocus();
+                    AndroidUtilities.showKeyboard(chatActivityEnterView.E0);
+                    AndroidUtilities.cancelRunOnUIThread(bfVar);
+                    AndroidUtilities.runOnUIThread(bfVar, 100L);
                     return;
                 }
                 return;
             case 1:
-                super.setAlpha(f7);
-                ze zeVar2 = this.f22732b.I1;
-                if (zeVar2 != null) {
-                    zeVar2.setTranslationX(zeVar2.f30573a);
+                og ogVar2 = this.f22973b.Z2;
+                if (ogVar2 != null) {
+                    ogVar2.k2(0, 0, 0, 0L, 0L, true);
                     return;
                 }
                 return;
             default:
-                super.setAlpha(f7);
-                ue ueVar = this.f22732b.Z0;
-                if (ueVar != null) {
-                    ueVar.invalidate();
+                ChatActivityEnterView chatActivityEnterView2 = this.f22973b;
+                AnimatorSet animatorSet = chatActivityEnterView2.V0;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    chatActivityEnterView2.V0.start();
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f22731a) {
-            case 2:
-                super.setVisibility(i10);
-                ue ueVar = this.f22732b.Z0;
-                if (ueVar != null) {
-                    ueVar.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.setVisibility(i10);
                 return;
         }
     }

@@ -7,34 +7,34 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.ui.Components.k9;
 import org.telegram.ui.Components.rr;
-import org.telegram.ui.x30;
+import org.telegram.ui.v30;
 public final class h0 extends FrameLayout {
-    public final ShapeDrawable f28946a;
-    public final x30 f28947b;
+    public final ShapeDrawable f29368a;
+    public final v30 f29369b;
 
-    public h0(x30 x30Var, Context context, ShapeDrawable shapeDrawable) {
+    public h0(v30 v30Var, Context context, ShapeDrawable shapeDrawable) {
         super(context);
-        this.f28947b = x30Var;
-        this.f28946a = shapeDrawable;
+        this.f29369b = v30Var;
+        this.f29368a = shapeDrawable;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        x30 x30Var = this.f28947b;
-        k9 k9Var = x30Var.J;
-        TextView textView = x30Var.K;
-        float f7 = x30Var.O;
-        ShapeDrawable shapeDrawable = this.f28946a;
+        v30 v30Var = this.f29369b;
+        k9 k9Var = v30Var.J;
+        TextView textView = v30Var.K;
+        float f7 = v30Var.O;
+        ShapeDrawable shapeDrawable = this.f29368a;
         if (f7 == 1.0f) {
             shapeDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             k9Var.setTranslationX(0.0f);
             textView.setTranslationX(0.0f);
         } else {
-            float interpolation = 1.0f - rr.f27701f.getInterpolation(f7);
-            float left = (x30Var.P - getLeft()) * interpolation;
-            shapeDrawable.setBounds((int) left, 0, getMeasuredWidth() + ((int) ((x30Var.R - getRight()) * interpolation)), getMeasuredHeight());
+            float interpolation = 1.0f - rr.f28022f.getInterpolation(f7);
+            float left = (v30Var.P - getLeft()) * interpolation;
+            shapeDrawable.setBounds((int) left, 0, getMeasuredWidth() + ((int) ((v30Var.R - getRight()) * interpolation)), getMeasuredHeight());
             k9Var.setTranslationX(left);
-            textView.setTranslationX(-((x30Var.Q - textView.getLeft()) * interpolation));
+            textView.setTranslationX(-((v30Var.Q - textView.getLeft()) * interpolation));
         }
         shapeDrawable.draw(canvas);
         super.dispatchDraw(canvas);

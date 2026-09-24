@@ -18,7 +18,7 @@ import android.os.Build;
 import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.List;
-import w7.z6;
+import w7.a7;
 public abstract class c {
     public static void a(Context context, boolean z10, TaskCompletionSource taskCompletionSource) {
         try {
@@ -67,7 +67,7 @@ public abstract class c {
                     break;
                 }
             }
-            if (i12 == 1 && z6.f44832a == null) {
+            if (i12 == 1 && a7.f44872a == null) {
                 if (Build.VERSION.SDK_INT < 35) {
                     int c10 = c(false);
                     int c11 = c(true);
@@ -75,12 +75,12 @@ public abstract class c {
                         if (c11 == 0) {
                         }
                     }
-                    z6.f44832a = Boolean.valueOf(z10);
+                    a7.f44872a = Boolean.valueOf(z10);
                     if (!z10) {
                     }
                 }
                 z10 = false;
-                z6.f44832a = Boolean.valueOf(z10);
+                a7.f44872a = Boolean.valueOf(z10);
                 if (!z10) {
                 }
             }
@@ -130,10 +130,10 @@ public abstract class c {
     public static e9.a1 d(e eVar) {
         e9.f0 u10 = e9.i0.u();
         e9.k0 k0Var = k2.b.e;
-        e9.m0 m0Var = k0Var.f8076b;
+        e9.m0 m0Var = k0Var.f8075b;
         if (m0Var == null) {
             m0Var = k0Var.c();
-            k0Var.f8076b = m0Var;
+            k0Var.f8075b = m0Var;
         }
         e9.o1 it = m0Var.iterator();
         while (it.hasNext()) {

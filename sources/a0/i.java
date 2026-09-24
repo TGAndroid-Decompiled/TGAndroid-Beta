@@ -195,7 +195,7 @@ public final class i implements Cloneable {
             }
             return this.f18b[i10];
         }
-        throw new IllegalArgumentException(hg.c.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final void k(Object obj, long j3) {
@@ -332,7 +332,7 @@ public final class i implements Cloneable {
             }
             return this.f19c[i10];
         }
-        throw new IllegalArgumentException(hg.c.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final String toString() {

@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ul;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.rr;
 public final class u6 extends FrameLayout {
     public View f5608a;
@@ -115,7 +115,7 @@ public final class u6 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int A;
+        int B;
         float f7;
         int i14;
         ArrayList arrayList = this.f5609b;
@@ -132,29 +132,29 @@ public final class u6 extends FrameLayout {
             }
         }
         if (i17 < 2) {
-            A = 0;
+            B = 0;
         } else {
-            A = ul.A(40.0f, i17, dp) / (i17 - 1);
+            B = ok.B(40.0f, i17, dp) / (i17 - 1);
         }
         if (c()) {
             f7 = 20.0f;
         } else {
             f7 = 30.0f;
         }
-        int min = Math.min(AndroidUtilities.dp(f7), A);
-        int y3 = ul.y(40.0f, i16, 2);
+        int min = Math.min(AndroidUtilities.dp(f7), B);
+        int A = ok.A(40.0f, i16, 2);
         int dp2 = (AndroidUtilities.dp(40.0f) + i16) / 2;
         int dp3 = AndroidUtilities.dp(12.33f);
         if (!c()) {
-            i14 = (ul.A(40.0f, i17, dp) - ((i17 - 1) * min)) / 2;
+            i14 = (ok.B(40.0f, i17, dp) - ((i17 - 1) * min)) / 2;
         } else {
             i14 = 0;
         }
         int i19 = dp3 + i14;
         for (int i20 = 0; i20 < arrayList.size(); i20++) {
             if (((s6) arrayList.get(i20)).getVisibility() == 0) {
-                ((s6) arrayList.get(i20)).layout(i19, y3, AndroidUtilities.dp(40.0f) + i19, dp2);
-                i19 = org.telegram.messenger.z0.C(40.0f, min, i19);
+                ((s6) arrayList.get(i20)).layout(i19, A, AndroidUtilities.dp(40.0f) + i19, dp2);
+                i19 = org.telegram.messenger.f0.C(40.0f, min, i19);
             }
         }
     }

@@ -4,12 +4,12 @@ import b2.m0;
 import b2.o0;
 import b2.s;
 public final class d implements o0 {
-    public final float f41968a;
-    public final int f41969b;
+    public final float f42287a;
+    public final int f42288b;
 
     public d(float f7, int i10) {
-        this.f41968a = f7;
-        this.f41969b = i10;
+        this.f42287a = f7;
+        this.f42288b = i10;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class d implements o0 {
         }
         if (obj != null && d.class == obj.getClass()) {
             d dVar = (d) obj;
-            if (this.f41968a == dVar.f41968a && this.f41969b == dVar.f41969b) {
+            if (this.f42287a == dVar.f42287a && this.f42288b == dVar.f42288b) {
                 return true;
             }
         }
@@ -36,11 +36,11 @@ public final class d implements o0 {
     }
 
     public final int hashCode() {
-        return ((Float.valueOf(this.f41968a).hashCode() + 527) * 31) + this.f41969b;
+        return ((Float.valueOf(this.f42287a).hashCode() + 527) * 31) + this.f42288b;
     }
 
     public final String toString() {
-        return "smta: captureFrameRate=" + this.f41968a + ", svcTemporalLayerCount=" + this.f41969b;
+        return "smta: captureFrameRate=" + this.f42287a + ", svcTemporalLayerCount=" + this.f42288b;
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.fg0;
+import org.telegram.ui.Components.pg0;
 import org.telegram.ui.Components.rr;
 public final class nb extends q6 {
     public final lc A2;
@@ -33,7 +33,7 @@ public final class nb extends q6 {
         lcVar.f5094v1.O0(false);
         lcVar.f5035c1.clearAnimation();
         ViewPropertyAnimator duration = lcVar.f5035c1.animate().alpha(0.0f).setDuration(180L);
-        rr rrVar = rr.f27702g;
+        rr rrVar = rr.f28023g;
         duration.setInterpolator(rrVar).start();
         if (lcVar.f5047g0 != 2) {
             lcVar.Y0.clearAnimation();
@@ -49,12 +49,12 @@ public final class nb extends q6 {
             lcVar.f5074p1.setVisibility(0);
             lcVar.f5074p1.setAlpha(0.0f);
             lcVar.f5074p1.clearAnimation();
-            lcVar.f5074p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(rr.f27702g).start();
+            lcVar.f5074p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(rr.f28023g).start();
             return;
         }
         lcVar.f5074p1.a(false, z11);
         lcVar.f5074p1.clearAnimation();
-        ViewPropertyAnimator interpolator = lcVar.f5074p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(rr.f27702g);
+        ViewPropertyAnimator interpolator = lcVar.f5074p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(rr.f28023g);
         if (z11) {
             j3 = 500;
         } else {
@@ -118,7 +118,7 @@ public final class nb extends q6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        rr rrVar = rr.f27702g;
+        rr rrVar = rr.f28023g;
         duration.setInterpolator(rrVar).start();
         lcVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = lcVar.Y0.animate();
@@ -158,11 +158,11 @@ public final class nb extends q6 {
         lcVar.f5035c1.f5121f.d();
         lcVar.l0(0, false, true);
         qg.j jVar = this.J0;
-        if ((jVar instanceof qg.x2) && !this.K0) {
-            qg.x2 x2Var = (qg.x2) jVar;
+        if ((jVar instanceof qg.v2) && !this.K0) {
+            qg.v2 v2Var = (qg.v2) jVar;
             this.K0 = true;
-            x2Var.q();
-            View focusedView = x2Var.getFocusedView();
+            v2Var.q();
+            View focusedView = v2Var.getFocusedView();
             focusedView.requestFocus();
             AndroidUtilities.showKeyboard(focusedView);
         }
@@ -181,7 +181,7 @@ public final class nb extends q6 {
             zbVar.x(6, z10);
             r6 r6Var = lcVar.f5057j1;
             if (r6Var != null) {
-                ((fg0) r6Var.f5458c).a(lcVar.X0.k(), true);
+                ((pg0) r6Var.f5458c).a(lcVar.X0.k(), true);
             }
         }
         bc bcVar = lcVar.f5035c1;

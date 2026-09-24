@@ -1,23 +1,23 @@
 package qg;
 
-import org.telegram.ui.tt0;
+import org.telegram.ui.st0;
 public final class m implements q0.a {
-    public final int f41402a;
-    public final tt0 f41403b;
+    public final int f41740a;
+    public final st0 f41741b;
 
-    public m(tt0 tt0Var, int i10) {
-        this.f41402a = i10;
-        this.f41403b = tt0Var;
+    public m(st0 st0Var, int i10) {
+        this.f41740a = i10;
+        this.f41741b = st0Var;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f41402a) {
+        switch (this.f41740a) {
             case 0:
-                p0.Z(this.f41403b, (Integer) obj);
+                n0.Z(this.f41741b, (Integer) obj);
                 return;
             default:
-                p0.c0(this.f41403b, (Integer) obj);
+                n0.c0(this.f41741b, (Integer) obj);
                 return;
         }
     }

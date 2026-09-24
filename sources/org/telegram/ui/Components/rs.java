@@ -5,35 +5,35 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_bots;
 public final class rs {
-    public final int f27713a;
-    public final ns f27714b;
-    public boolean f27715c;
+    public final int f28034a;
+    public final ns f28035b;
+    public boolean f28036c;
     public boolean d;
     public boolean e;
-    public long f27716f;
-    public String f27717g;
+    public long f28037f;
+    public String f28038g;
     public final ArrayList h = new ArrayList();
-    public boolean f27718i = false;
+    public boolean f28039i = false;
 
     public rs(int i10, ns nsVar) {
-        this.f27713a = i10;
-        this.f27714b = nsVar;
+        this.f28034a = i10;
+        this.f28035b = nsVar;
     }
 
     public final void a() {
-        if (!this.f27715c && !this.e) {
-            this.f27715c = true;
+        if (!this.f28036c && !this.e) {
+            this.f28036c = true;
             boolean z10 = this.d;
-            int i10 = this.f27713a;
+            int i10 = this.f28034a;
             if (!z10) {
                 qs qsVar = new qs(this, 0);
                 MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-                messagesStorage.getStorageQueue().postRunnable(new org.telegram.ui.ActionBar.p(this, messagesStorage, qsVar, 14));
+                messagesStorage.getStorageQueue().postRunnable(new org.telegram.messenger.video.o(this, messagesStorage, qsVar, 17));
                 return;
             }
             TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
             getpopularappbots.limit = 20;
-            String str = this.f27717g;
+            String str = this.f28038g;
             if (str == null) {
                 str = "";
             }

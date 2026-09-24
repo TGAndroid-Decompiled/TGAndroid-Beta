@@ -3,25 +3,25 @@ package org.telegram.ui;
 import android.util.SparseArray;
 import org.telegram.messenger.MessageObject;
 public final class ni {
-    public boolean f35530a;
-    public final boolean f35531b;
-    public final SparseArray f35532c;
-    public final xn d;
+    public boolean f35877a;
+    public final boolean f35878b;
+    public final SparseArray f35879c;
+    public final wn d;
 
-    public ni(xn xnVar, boolean z10, SparseArray sparseArray) {
-        this.d = xnVar;
-        this.f35531b = z10;
-        this.f35532c = sparseArray;
+    public ni(wn wnVar, boolean z10, SparseArray sparseArray) {
+        this.d = wnVar;
+        this.f35878b = z10;
+        this.f35879c = sparseArray;
     }
 
     public final boolean a(int i10) {
-        xn xnVar = this.d;
-        int i11 = i10 - xnVar.A0.J;
-        if (i11 >= 0 && i11 < xnVar.f39563u6.size()) {
-            MessageObject messageObject = (MessageObject) xnVar.f39563u6.get(i11);
+        wn wnVar = this.d;
+        int i11 = i10 - wnVar.A0.J;
+        if (i11 >= 0 && i11 < wnVar.f39647u6.size()) {
+            MessageObject messageObject = (MessageObject) wnVar.f39647u6.get(i11);
             if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f35532c;
-                boolean z10 = this.f35531b;
+                SparseArray sparseArray = this.f35879c;
+                boolean z10 = this.f35878b;
                 if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
                     return true;
                 }

@@ -7,22 +7,22 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class re1 extends z61 {
-    public boolean f36806d2;
-    public final se1 f36807e2;
+public final class re1 extends a71 {
+    public boolean f37309d2;
+    public final se1 f37310e2;
 
     public re1(se1 se1Var, se1 se1Var2, Activity activity) {
         super(se1Var2, activity, false, null, 3, null);
-        this.f36807e2 = se1Var;
-        this.f36806d2 = true;
+        this.f37310e2 = se1Var;
+        this.f37309d2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f36806d2) {
-            this.f36806d2 = false;
-            this.f36807e2.f37266f.s(null);
+        if (this.f37309d2) {
+            this.f37309d2 = false;
+            this.f37310e2.f37710f.s(null);
         }
     }
 
@@ -31,17 +31,17 @@ public final class re1 extends z61 {
         int i10;
         int i11;
         long j3;
-        se1 se1Var = this.f36807e2;
-        i10 = ((org.telegram.ui.ActionBar.n2) se1Var).currentAccount;
+        se1 se1Var = this.f37310e2;
+        i10 = ((org.telegram.ui.ActionBar.m2) se1Var).currentAccount;
         boolean z10 = false;
         if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
             MediaDataController mediaDataController = se1Var.getMediaDataController();
-            i11 = ((org.telegram.ui.ActionBar.n2) se1Var).currentAccount;
+            i11 = ((org.telegram.ui.ActionBar.m2) se1Var).currentAccount;
             TLRPC.TL_messages_stickerSet stickerSetByEmojiOrName = mediaDataController.getStickerSetByEmojiOrName(UserConfig.getInstance(i11).defaultTopicIcons);
             if (stickerSetByEmojiOrName == null) {
                 j3 = 0;
             } else {
-                j3 = stickerSetByEmojiOrName.set.f18110id;
+                j3 = stickerSetByEmojiOrName.set.f18348id;
             }
             if (j3 == MediaDataController.getStickerSetId(document)) {
                 z10 = true;

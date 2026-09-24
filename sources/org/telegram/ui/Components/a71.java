@@ -1,46 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.util.Map;
-import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
-public final class a71 implements g2.h {
-    public final g2.h f22380a;
-    public final long f22381b;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class a71 extends c20 {
+    public final ci.h2 J;
+    public final b71 K;
 
-    public a71(ExtendedDefaultDataSource extendedDefaultDataSource, long j3) {
-        this.f22380a = extendedDefaultDataSource;
-        this.f22381b = j3;
+    public a71(b71 b71Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.K = b71Var;
+        ci.h2 h2Var = this.f23131r;
+        this.J = h2Var;
+        h2Var.setImeOptions(268435459);
+        h2Var.setHint(LocaleController.getString(R.string.VoipGroupSearchMembers));
+        h2Var.addTextChangedListener(new ci.i2(this, 14));
+        h2Var.setOnEditorActionListener(new e1(this, 10));
     }
 
     @Override
-    public final void addTransferListener(g2.c0 c0Var) {
-        this.f22380a.addTransferListener(c0Var);
+    public int[] getColorKeys() {
+        return null;
     }
 
     @Override
-    public final void close() {
-        this.f22380a.close();
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return this.f22380a.getResponseHeaders();
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.f22380a.getUri();
-    }
-
-    @Override
-    public final long open(g2.m mVar) {
-        g2.l a2 = mVar.a();
-        a2.f9358b = mVar.e + this.f22381b;
-        return this.f22380a.open(a2.d());
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        return this.f22380a.read(bArr, i10, i11);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        this.K.E(motionEvent, this.J);
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

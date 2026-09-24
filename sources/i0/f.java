@@ -15,9 +15,9 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import v7.h8;
 import v7.i8;
-public class f extends h8 {
+import v7.j8;
+public class f extends i8 {
     public static Class f10584a = null;
     public static Constructor f10585b = null;
     public static Method f10586c = null;
@@ -66,16 +66,16 @@ public class f extends h8 {
         h();
         try {
             Object newInstance = f10585b.newInstance(null);
-            for (h0.f fVar : eVar.f10037a) {
-                File d10 = i8.d(context);
+            for (h0.f fVar : eVar.f10036a) {
+                File d10 = j8.d(context);
                 if (d10 == null) {
                     return null;
                 }
                 try {
-                    if (!i8.b(d10, resources, fVar.f10041f)) {
+                    if (!j8.b(d10, resources, fVar.f10040f)) {
                         return null;
                     }
-                    if (!g(newInstance, d10.getPath(), fVar.f10039b, fVar.f10040c)) {
+                    if (!g(newInstance, d10.getPath(), fVar.f10038b, fVar.f10039c)) {
                         return null;
                     }
                     d10.delete();
@@ -105,7 +105,7 @@ public class f extends h8 {
         String readlink;
         if (iVarArr.length >= 1) {
             try {
-                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(iVarArr, i10).f15293a, "r", null);
+                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(iVarArr, i10).f15485a, "r", null);
                 if (openFileDescriptor == null) {
                     if (openFileDescriptor != null) {
                         openFileDescriptor.close();

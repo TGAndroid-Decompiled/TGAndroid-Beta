@@ -11,11 +11,11 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import v7.k8;
+import v7.l8;
 public abstract class o extends j9.a implements w {
     public static final boolean d;
     public static final s0 e;
-    public static final k8 f11035f;
+    public static final l8 f11035f;
     public static final Object h;
     public volatile Object f11036a;
     public volatile c f11037b;
@@ -301,9 +301,9 @@ public abstract class o extends j9.a implements w {
             if (nVar2 != nVar) {
                 n nVar3 = new n();
                 do {
-                    k8 k8Var = f11035f;
-                    k8Var.f(nVar3, nVar2);
-                    if (k8Var.c(this, nVar2, nVar3)) {
+                    l8 l8Var = f11035f;
+                    l8Var.f(nVar3, nVar2);
+                    if (l8Var.c(this, nVar2, nVar3)) {
                         do {
                             LockSupport.park(this);
                             if (!Thread.interrupted()) {

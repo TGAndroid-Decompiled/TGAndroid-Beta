@@ -7,9 +7,9 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.s00;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.xn;
-public final class d3 extends xn {
+import org.telegram.ui.Components.yc;
+import org.telegram.ui.wn;
+public final class d3 extends wn {
     public boolean Pc;
     public final TL_stars.TL_starGiftUnique Qc;
     public final long Rc;
@@ -26,10 +26,10 @@ public final class d3 extends xn {
         super.onBecomeFullyVisible();
         if (!this.Pc) {
             this.Pc = true;
-            qc O = xc.a0(this).O(this.Qc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Rc)));
-            O.f27314r = false;
+            qc O = yc.a0(this).O(this.Qc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Rc)));
+            O.f27579r = false;
             O.j();
-            s00 s00Var = this.f39465m9;
+            s00 s00Var = this.f39549m9;
             if (s00Var != null) {
                 s00Var.c(true);
             }

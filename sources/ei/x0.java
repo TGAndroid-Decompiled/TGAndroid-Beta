@@ -7,17 +7,17 @@ import ci.rc;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 public final class x0 implements SensorEventListener {
-    public final int f8702a;
-    public long f8703b;
-    public float[] f8704c;
+    public final int f8701a;
+    public long f8702b;
+    public float[] f8703c;
     public final a1 d;
 
     public x0(a1 a1Var, int i10) {
-        this.f8702a = i10;
+        this.f8701a = i10;
         switch (i10) {
             case 1:
                 this.d = a1Var;
-                this.f8704c = new float[3];
+                this.f8703c = new float[3];
                 return;
             default:
                 this.d = a1Var;
@@ -26,17 +26,17 @@ public final class x0 implements SensorEventListener {
     }
 
     public final void c() {
-        switch (this.f8702a) {
+        switch (this.f8701a) {
             case 0:
                 a1 a1Var = this.d;
-                if (a1Var.f8207k != null && this.f8704c != null) {
-                    this.f8703b = System.currentTimeMillis();
+                if (a1Var.f8206k != null && this.f8703c != null) {
+                    this.f8702b = System.currentTimeMillis();
                     try {
                         JSONObject jSONObject = new JSONObject();
-                        jSONObject.put("x", -this.f8704c[0]);
-                        jSONObject.put("y", -this.f8704c[1]);
-                        jSONObject.put("z", -this.f8704c[2]);
-                        org.telegram.ui.web.y0 y0Var = a1Var.f8207k;
+                        jSONObject.put("x", -this.f8703c[0]);
+                        jSONObject.put("y", -this.f8703c[1]);
+                        jSONObject.put("z", -this.f8703c[2]);
+                        org.telegram.ui.web.y0 y0Var = a1Var.f8206k;
                         y0Var.d("window.Telegram.WebView.receiveEvent('accelerometer_changed', " + jSONObject + ");");
                         return;
                     } catch (Exception unused) {
@@ -45,16 +45,16 @@ public final class x0 implements SensorEventListener {
                 }
                 return;
             default:
-                float[] fArr = this.f8704c;
+                float[] fArr = this.f8703c;
                 a1 a1Var2 = this.d;
-                if (a1Var2.f8207k != null) {
-                    this.f8703b = System.currentTimeMillis();
+                if (a1Var2.f8206k != null) {
+                    this.f8702b = System.currentTimeMillis();
                     try {
                         JSONObject jSONObject2 = new JSONObject();
                         jSONObject2.put("x", fArr[0]);
                         jSONObject2.put("y", fArr[1]);
                         jSONObject2.put("z", fArr[2]);
-                        org.telegram.ui.web.y0 y0Var2 = a1Var2.f8207k;
+                        org.telegram.ui.web.y0 y0Var2 = a1Var2.f8206k;
                         y0Var2.d("window.Telegram.WebView.receiveEvent('gyroscope_changed', " + jSONObject2 + ");");
                     } catch (Exception unused2) {
                     }
@@ -69,26 +69,26 @@ public final class x0 implements SensorEventListener {
 
     @Override
     public final void onAccuracyChanged(Sensor sensor, int i10) {
-        int i11 = this.f8702a;
+        int i11 = this.f8701a;
     }
 
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
-        switch (this.f8702a) {
+        switch (this.f8701a) {
             case 0:
                 a1 a1Var = this.d;
-                rc rcVar = a1Var.f8209m;
+                rc rcVar = a1Var.f8208m;
                 if (rcVar != null) {
                     AndroidUtilities.cancelRunOnUIThread(rcVar);
-                    a1Var.f8209m = null;
+                    a1Var.f8208m = null;
                 }
-                if (!a1Var.f8208l && a1Var.f8207k != null) {
-                    long currentTimeMillis = System.currentTimeMillis() - this.f8703b;
-                    this.f8704c = sensorEvent.values;
-                    long j3 = a1Var.f8202c;
+                if (!a1Var.f8207l && a1Var.f8206k != null) {
+                    long currentTimeMillis = System.currentTimeMillis() - this.f8702b;
+                    this.f8703c = sensorEvent.values;
+                    long j3 = a1Var.f8201c;
                     if (currentTimeMillis < j3) {
                         rc rcVar2 = new rc(this, 9);
-                        a1Var.f8209m = rcVar2;
+                        a1Var.f8208m = rcVar2;
                         AndroidUtilities.runOnUIThread(rcVar2, j3 - currentTimeMillis);
                         return;
                     }
@@ -98,23 +98,23 @@ public final class x0 implements SensorEventListener {
                 return;
             default:
                 a1 a1Var2 = this.d;
-                rc rcVar3 = a1Var2.f8211o;
+                rc rcVar3 = a1Var2.f8210o;
                 if (rcVar3 != null) {
                     AndroidUtilities.cancelRunOnUIThread(rcVar3);
-                    a1Var2.f8211o = null;
+                    a1Var2.f8210o = null;
                 }
-                if (!a1Var2.f8208l && a1Var2.f8207k != null) {
-                    float[] fArr = this.f8704c;
+                if (!a1Var2.f8207l && a1Var2.f8206k != null) {
+                    float[] fArr = this.f8703c;
                     float f7 = fArr[0];
                     float[] fArr2 = sensorEvent.values;
                     fArr[0] = f7 + fArr2[0];
                     fArr[1] = fArr[1] + fArr2[1];
                     fArr[2] = fArr[2] + fArr2[2];
-                    long currentTimeMillis2 = System.currentTimeMillis() - this.f8703b;
+                    long currentTimeMillis2 = System.currentTimeMillis() - this.f8702b;
                     long j10 = a1Var2.e;
                     if (currentTimeMillis2 < j10) {
                         rc rcVar4 = new rc(this, 10);
-                        a1Var2.f8211o = rcVar4;
+                        a1Var2.f8210o = rcVar4;
                         AndroidUtilities.runOnUIThread(rcVar4, j10 - currentTimeMillis2);
                         return;
                     }

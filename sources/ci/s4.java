@@ -29,7 +29,7 @@ public final class s4 extends View {
     public boolean e;
     public boolean f5486f;
     public View.OnClickListener h;
-    public final org.telegram.ui.Components.yc f5487n;
+    public final org.telegram.ui.Components.zc f5487n;
     public int f5488r;
     public String f5489s;
     public float v;
@@ -47,14 +47,14 @@ public final class s4 extends View {
         this.f5485c = paint2;
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, false, false, false);
         this.d = o6Var;
-        this.f5487n = new org.telegram.ui.Components.yc(this);
+        this.f5487n = new org.telegram.ui.Components.zc(this);
         this.f5488r = -1;
         rr rrVar = rr.h;
         this.f5492y = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
         this.E = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
         o6Var.setCallback(this);
         o6Var.r(-1);
-        o6Var.f26614b = 17;
+        o6Var.f26925b = 17;
         o6Var.t(AndroidUtilities.dp(16.0f));
         o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         o6Var.G = AndroidUtilities.displaySize.x;
@@ -64,7 +64,7 @@ public final class s4 extends View {
         paint.setColor(-1);
         paint2.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, d6Var));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        w7.z5.a(this);
+        w7.a6.a(this);
     }
 
     public final void a(int i10, int i11, final l8 l8Var) {
@@ -298,7 +298,7 @@ public final class s4 extends View {
             float f13 = f7 + f10;
             org.telegram.ui.Components.o6 o6Var = this.d;
             o6Var.l(f11, f12, f13, f12);
-            o6Var.f26631w = (int) (e7 * 255.0f);
+            o6Var.f26942w = (int) (e7 * 255.0f);
             o6Var.draw(canvas);
         }
         canvas.restore();
@@ -331,18 +331,18 @@ public final class s4 extends View {
             z10 = false;
         }
         int action = motionEvent.getAction();
-        org.telegram.ui.Components.yc ycVar = this.f5487n;
+        org.telegram.ui.Components.zc zcVar = this.f5487n;
         if (action == 0) {
-            ycVar.c(z10);
+            zcVar.c(z10);
         } else if (motionEvent.getAction() == 1) {
-            if (ycVar.h && z10 && (onClickListener = this.h) != null) {
+            if (zcVar.h && z10 && (onClickListener = this.h) != null) {
                 onClickListener.onClick(this);
             }
-            ycVar.c(false);
+            zcVar.c(false);
         } else if (motionEvent.getAction() == 3) {
-            ycVar.c(false);
+            zcVar.c(false);
         }
-        if (ycVar.h || super.onTouchEvent(motionEvent)) {
+        if (zcVar.h || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

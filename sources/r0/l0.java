@@ -3,38 +3,38 @@ package r0;
 import android.view.View;
 import java.lang.ref.WeakReference;
 public final class l0 {
-    public final WeakReference f41805a;
+    public final WeakReference f42124a;
 
     public l0(View view) {
-        this.f41805a = new WeakReference(view);
+        this.f42124a = new WeakReference(view);
     }
 
     public final void a(float f7) {
-        View view = (View) this.f41805a.get();
+        View view = (View) this.f42124a.get();
         if (view != null) {
             view.animate().alpha(f7);
         }
     }
 
     public final void b() {
-        View view = (View) this.f41805a.get();
+        View view = (View) this.f42124a.get();
         if (view != null) {
             view.animate().cancel();
         }
     }
 
     public final void c(long j3) {
-        View view = (View) this.f41805a.get();
+        View view = (View) this.f42124a.get();
         if (view != null) {
             view.animate().setDuration(j3);
         }
     }
 
     public final void d(m0 m0Var) {
-        View view = (View) this.f41805a.get();
+        View view = (View) this.f42124a.get();
         if (view != null) {
             if (m0Var != null) {
-                view.animate().setListener(new qg.n0(m0Var, view));
+                view.animate().setListener(new pg.d0(m0Var, view));
             } else {
                 view.animate().setListener(null);
             }
@@ -42,7 +42,7 @@ public final class l0 {
     }
 
     public final void e(float f7) {
-        View view = (View) this.f41805a.get();
+        View view = (View) this.f42124a.get();
         if (view != null) {
             view.animate().translationY(f7);
         }

@@ -9,19 +9,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class eg1 implements RequestDelegate {
-    public final int f32919a;
-    public final TwoStepVerificationActivity f32920b;
+    public final int f33379a;
+    public final TwoStepVerificationActivity f33380b;
 
     public eg1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f32919a = i10;
-        this.f32920b = twoStepVerificationActivity;
+        this.f33379a = i10;
+        this.f33380b = twoStepVerificationActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f32919a) {
+        switch (this.f33379a) {
             case 0:
-                final TwoStepVerificationActivity twoStepVerificationActivity = this.f32920b;
+                final TwoStepVerificationActivity twoStepVerificationActivity = this.f33380b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -36,10 +36,10 @@ public final class eg1 implements RequestDelegate {
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(twoStepVerificationActivity2.getParentActivity());
                                     alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
                                     String string = LocaleController.getString(R.string.ResetPassword);
-                                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
-                                    b2Var.R = string;
-                                    b2Var.T = LocaleController.getString(R.string.RestorePasswordResetPasswordOk);
-                                    twoStepVerificationActivity2.showDialog(b2Var, new s5(twoStepVerificationActivity2, 18));
+                                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+                                    a2Var.R = string;
+                                    a2Var.T = LocaleController.getString(R.string.RestorePasswordResetPasswordOk);
+                                    twoStepVerificationActivity2.showDialog(a2Var, new r5(twoStepVerificationActivity2, 18));
                                     return;
                                 } else if (tLObject2 instanceof TL_account.resetPasswordRequestedWait) {
                                     twoStepVerificationActivity2.I.pending_reset_date = ((TL_account.resetPasswordRequestedWait) tLObject2).until_date;
@@ -74,7 +74,7 @@ public final class eg1 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f32920b;
+                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f33380b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -99,7 +99,7 @@ public final class eg1 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f32920b;
+                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f33380b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -114,10 +114,10 @@ public final class eg1 implements RequestDelegate {
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(twoStepVerificationActivity22.getParentActivity());
                                     alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
                                     String string = LocaleController.getString(R.string.ResetPassword);
-                                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18409a;
-                                    b2Var.R = string;
-                                    b2Var.T = LocaleController.getString(R.string.RestorePasswordResetPasswordOk);
-                                    twoStepVerificationActivity22.showDialog(b2Var, new s5(twoStepVerificationActivity22, 18));
+                                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+                                    a2Var.R = string;
+                                    a2Var.T = LocaleController.getString(R.string.RestorePasswordResetPasswordOk);
+                                    twoStepVerificationActivity22.showDialog(a2Var, new r5(twoStepVerificationActivity22, 18));
                                     return;
                                 } else if (tLObject2 instanceof TL_account.resetPasswordRequestedWait) {
                                     twoStepVerificationActivity22.I.pending_reset_date = ((TL_account.resetPasswordRequestedWait) tLObject2).until_date;
@@ -152,7 +152,7 @@ public final class eg1 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f32920b;
+                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f33380b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -177,7 +177,7 @@ public final class eg1 implements RequestDelegate {
                 });
                 return;
             case 4:
-                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f32920b;
+                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f33380b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -202,7 +202,7 @@ public final class eg1 implements RequestDelegate {
                 });
                 return;
             case 5:
-                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f32920b;
+                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f33380b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -227,7 +227,7 @@ public final class eg1 implements RequestDelegate {
                 });
                 return;
             default:
-                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f32920b;
+                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f33380b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

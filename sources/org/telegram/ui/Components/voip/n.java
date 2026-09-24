@@ -2,28 +2,28 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
 public final class n implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29074a;
-    public final u f29075b;
+    public final int f29491a;
+    public final u f29492b;
 
     public n(u uVar, int i10) {
-        this.f29074a = i10;
-        this.f29075b = uVar;
+        this.f29491a = i10;
+        this.f29492b = uVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         boolean z10;
-        switch (this.f29074a) {
+        switch (this.f29491a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u uVar = this.f29075b;
-                uVar.f29212a0 = floatValue;
-                uVar.f29214b0.setAlpha(floatValue);
-                uVar.f29211a.invalidate();
+                u uVar = this.f29492b;
+                uVar.f29634a0 = floatValue;
+                uVar.f29636b0.setAlpha(floatValue);
+                uVar.f29633a.invalidate();
                 return;
             default:
-                u uVar2 = this.f29075b;
-                p pVar = uVar2.f29211a;
+                u uVar2 = this.f29492b;
+                p pVar = uVar2.f29633a;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (floatValue2 < 0.5f) {
                     z10 = false;
@@ -32,12 +32,12 @@ public final class n implements ValueAnimator.AnimatorUpdateListener {
                     z10 = true;
                 }
                 if (z10 && !uVar2.K0) {
-                    uVar2.f29242x0.setAlpha(1.0f);
+                    uVar2.f29664x0.setAlpha(1.0f);
                     uVar2.K0 = true;
                     pVar.d.clearImage();
                 }
                 float f7 = floatValue2 * 180.0f;
-                uVar2.f29242x0.setRotationY(f7);
+                uVar2.f29664x0.setRotationY(f7);
                 pVar.d.setRotationY(f7);
                 return;
         }

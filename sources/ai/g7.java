@@ -20,7 +20,7 @@ public final class g7 implements ToIntFunction {
             case 1:
                 return ((TL_stories.StoryItem) obj).date;
             case 2:
-                return -((TL_stories.StoryItem) hg.c.h(1, ((TL_stories.PeerStories) obj).stories)).date;
+                return -((TL_stories.StoryItem) hg.c.g(1, ((TL_stories.PeerStories) obj).stories)).date;
             case 3:
                 return ((Integer) ((Object[]) obj)[1]).intValue();
             case 4:
@@ -28,9 +28,9 @@ public final class g7 implements ToIntFunction {
             case 5:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 6:
-                return ((TLRPC.Message) obj).f18104id;
+                return ((TLRPC.Message) obj).f18342id;
             case 7:
-                return ((TLRPC.Message) obj).f18104id;
+                return ((TLRPC.Message) obj).f18342id;
             case 8:
                 return ((org.telegram.ui.Components.f6) obj).d;
             case 9:
@@ -53,7 +53,7 @@ public final class g7 implements ToIntFunction {
                 }
                 return Integer.MIN_VALUE;
             case 13:
-                return ((yf.d) obj).f46743a;
+                return ((yf.d) obj).f47057a;
             case 14:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 15:

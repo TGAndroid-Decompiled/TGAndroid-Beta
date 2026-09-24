@@ -1,44 +1,47 @@
 package pg;
 
-import android.graphics.RectF;
+import android.graphics.Color;
+import android.opengl.GLES20;
+import java.util.HashMap;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
 public final class g1 {
-    public final l f40816a;
-    public float f40817b;
-    public float f40818c;
-    public float d;
-    public float e;
-    public float f40819f;
-    public float f40820g;
-    public float h;
-    public float f40821i;
-    public float f40822j;
-    public float f40823k;
-    public boolean f40824l;
+    public int f41120a;
+    public HashMap f41121b;
 
-    public g1(l lVar) {
-        this.f40816a = lVar;
+    public static void a(int i10, int i11) {
+        GLES20.glUniform4f(i10, Color.red(i11) / 255.0f, Color.green(i11) / 255.0f, Color.blue(i11) / 255.0f, Color.alpha(i11) / 255.0f);
     }
 
-    public final void a(RectF rectF) {
-        l lVar = this.f40816a;
-        if (lVar.o() == 4) {
-            float f7 = this.f40817b;
-            float f10 = this.f40823k;
-            float f11 = this.f40818c;
-            rectF.set(f7 - f10, f11 - f10, f7 + f10, f11 + f10);
-            rectF.union(this.d, this.e);
-            rectF.union(this.f40821i, this.f40822j);
-        } else {
-            float max = Math.max(Math.abs(this.d), Math.abs(this.e));
-            float f12 = this.f40817b;
-            float f13 = max * 1.42f;
-            float f14 = this.f40818c;
-            rectF.set(f12 - f13, f14 - f13, f12 + f13, f14 + f13);
-            if (lVar.o() == 3) {
-                rectF.union(this.f40821i, this.f40822j);
-            }
+    public static b2.q0 b(int i10, String str) {
+        int glCreateShader = GLES20.glCreateShader(i10);
+        GLES20.glShaderSource(glCreateShader, str);
+        GLES20.glCompileShader(glCreateShader);
+        int[] iArr = new int[1];
+        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+        if (iArr[0] == 0 && BuildVars.LOGS_ENABLED) {
+            FileLog.e(GLES20.glGetShaderInfoLog(glCreateShader));
         }
-        float f15 = (-this.f40819f) - 3.0f;
-        rectF.inset(f15, f15);
+        int i11 = iArr[0];
+        ?? obj = new Object();
+        obj.f3195a = glCreateShader;
+        obj.f3196b = i11;
+        return obj;
+    }
+
+    public static void c(int i10, int i11, int i12) {
+        if (i10 != 0) {
+            GLES20.glDeleteShader(i10);
+        }
+        if (i11 != 0) {
+            GLES20.glDeleteShader(i11);
+        }
+        if (i12 != 0) {
+            GLES20.glDeleteProgram(i10);
+        }
+    }
+
+    public final int d(String str) {
+        return ((Integer) this.f41121b.get(str)).intValue();
     }
 }

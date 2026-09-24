@@ -3,7 +3,7 @@ package ig;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import java.util.ArrayList;
-import org.telegram.messenger.ul;
+import org.telegram.messenger.ok;
 public final class a extends g {
     @Override
     public float getMinDistance() {
@@ -40,10 +40,10 @@ public final class a extends g {
             int i15 = 0;
             while (i15 < size) {
                 kg.a aVar = (kg.a) arrayList3.get(i15);
-                boolean z10 = aVar.f13618n;
-                Paint paint = aVar.f13610c;
-                float[] fArr = aVar.f13615k;
-                if (!z10 && aVar.f13619o == 0.0f) {
+                boolean z10 = aVar.f13616n;
+                Paint paint = aVar.f13608c;
+                float[] fArr = aVar.f13613k;
+                if (!z10 && aVar.f13617o == 0.0f) {
                     i10 = i14;
                     arrayList = arrayList3;
                     i11 = i15;
@@ -56,8 +56,8 @@ public final class a extends g {
                     } else {
                         f7 = fArr2[1] * this.C0;
                     }
-                    long[] jArr = aVar.f13608a.f12984a;
-                    float f12 = aVar.f13619o;
+                    long[] jArr = aVar.f13606a.f12984a;
+                    float f12 = aVar.f13617o;
                     int i16 = 0;
                     int i17 = 0;
                     while (i16 < length) {
@@ -79,9 +79,9 @@ public final class a extends g {
                                 arrayList2 = arrayList3;
                                 f11 = (float) bVar.e;
                             }
-                            float c10 = ul.c((float) j3, f11, f12, 1.0f) * (i12 - measuredHeight2);
+                            float b10 = ok.b((float) j3, f11, f12, 1.0f) * (i12 - measuredHeight2);
                             fArr[i17] = f10;
-                            fArr[i17 + 1] = c10;
+                            fArr[i17 + 1] = b10;
                             int i19 = i17 + 3;
                             fArr[i17 + 2] = f10;
                             i17 += 4;

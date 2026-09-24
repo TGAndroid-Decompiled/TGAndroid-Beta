@@ -14,8 +14,8 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.gj;
-import w7.x5;
-import w7.z5;
+import w7.a6;
+import w7.y5;
 public final class c extends LinearLayout {
     public static final int e = 0;
     public final d6 f13004a;
@@ -33,17 +33,17 @@ public final class c extends LinearLayout {
         ih.a c10 = ih.a.c(cVar, context, gjVar, d6Var);
         cVar2.f4252a = c10;
         c10.setOnClickListener(new e2(5));
-        z5.b((ih.a) cVar2.f4252a, 0.065f, 2.0f);
+        a6.b((ih.a) cVar2.f4252a, 0.065f, 2.0f);
         ih.a c11 = ih.a.c(cVar, context, gjVar, d6Var);
         cVar3.f4252a = c11;
         c11.setOnClickListener(new e2(5));
-        z5.b((ih.a) cVar3.f4252a, 0.065f, 2.0f);
+        a6.b((ih.a) cVar3.f4252a, 0.065f, 2.0f);
         a(cVar2, LocaleController.getString(R.string.Reply), R.drawable.input_reply, false);
         a(cVar3, LocaleController.getString(R.string.Forward), R.drawable.input_forward, true);
         setOrientation(0);
         setClipChildren(false);
-        addView((ih.a) cVar2.f4252a, x5.m(1.0f, 0, 56, 1, -1, 0));
-        addView((ih.a) cVar3.f4252a, x5.m(1.0f, 0, 56, -1, 1, 0));
+        addView((ih.a) cVar2.f4252a, y5.m(1.0f, 0, 56, 1, -1, 0));
+        addView((ih.a) cVar3.f4252a, y5.m(1.0f, 0, 56, -1, 1, 0));
     }
 
     public final void a(cf.c cVar, String str, int i10, boolean z10) {
@@ -70,14 +70,14 @@ public final class c extends LinearLayout {
         }
         textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
         cVar.f4253b = textView;
-        ((ih.a) cVar.f4252a).addView(textView, x5.e(-2, -2, 17));
+        ((ih.a) cVar.f4252a).addView(textView, y5.e(-2, -2, 17));
     }
 
     public final void b(cf.c cVar) {
         int i10;
         float f7 = this.d * ((le.c) cVar.f4254c).e;
         float f10 = (1.0f - f7) * (-AndroidUtilities.dp(54.0f));
-        float interpolation = (1.0f - ke.a.f13577a.getInterpolation(f7)) * (getMeasuredWidth() / 2.0f);
+        float interpolation = (1.0f - ke.a.f13575a.getInterpolation(f7)) * (getMeasuredWidth() / 2.0f);
         if (cVar == this.f13005b) {
             interpolation *= -1.0f;
         }

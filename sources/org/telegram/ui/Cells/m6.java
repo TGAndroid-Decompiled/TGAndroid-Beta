@@ -2,10 +2,10 @@ package org.telegram.ui.Cells;
 
 import android.view.View;
 import org.telegram.ui.Components.ao;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.LaunchActivity;
 public final class m6 extends ai.ca {
-    public final int S = 1;
+    public final int S = 0;
     public final View T;
 
     public m6(o6 o6Var, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -20,11 +20,11 @@ public final class m6 extends ai.ca {
                 ((o6) this.T).b(j3);
                 return;
             case 1:
-                bb bbVar = (bb) this.T;
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                za zaVar = (za) this.T;
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(bbVar.getContext(), j3, ai.u9.a((ml0) bbVar.getParent()));
+                    R.getOrCreateStoryViewer().D(zaVar.getContext(), j3, ai.u9.a((wl0) zaVar.getParent()));
                     return;
                 }
                 return;
@@ -35,9 +35,9 @@ public final class m6 extends ai.ca {
         }
     }
 
-    public m6(bb bbVar) {
+    public m6(za zaVar) {
         super(null, false);
-        this.T = bbVar;
+        this.T = zaVar;
     }
 
     public m6(ao aoVar) {

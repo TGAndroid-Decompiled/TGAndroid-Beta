@@ -1,25 +1,25 @@
 package xh;
 public final class v1 implements Runnable {
-    public final int f46116a;
-    public final o2 f46117b;
-    public final int f46118c;
+    public final int f46430a;
+    public final o2 f46431b;
+    public final int f46432c;
 
     public v1(o2 o2Var, int i10, int i11) {
-        this.f46116a = i11;
-        this.f46117b = o2Var;
-        this.f46118c = i10;
+        this.f46430a = i11;
+        this.f46431b = o2Var;
+        this.f46432c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f46116a) {
+        switch (this.f46430a) {
             case 0:
-                this.f46117b.f46002f.scrollBy(0, this.f46118c);
+                this.f46431b.f46316f.scrollBy(0, this.f46432c);
                 return;
             default:
-                j2 j2Var = this.f46117b.f46002f;
+                j2 j2Var = this.f46431b.f46316f;
                 if (j2Var != null) {
-                    j2Var.setSpanCount(this.f46118c);
+                    j2Var.setSpanCount(this.f46432c);
                     return;
                 }
                 return;

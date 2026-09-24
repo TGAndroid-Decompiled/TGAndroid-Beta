@@ -46,8 +46,8 @@ public final class b0 implements Runnable {
             case 1:
                 ii.x3 x3Var = (ii.x3) this.e;
                 View A4 = x3Var.A4(this.f4365b);
-                if (A4 instanceof org.telegram.ui.Cells.q9) {
-                    x3Var.f11738n3.c0(this.f4366c, this.d, (org.telegram.ui.Cells.q9) A4);
+                if (A4 instanceof org.telegram.ui.Cells.p9) {
+                    x3Var.f11738n3.c0(this.f4366c, this.d, (org.telegram.ui.Cells.p9) A4);
                     return;
                 }
                 return;

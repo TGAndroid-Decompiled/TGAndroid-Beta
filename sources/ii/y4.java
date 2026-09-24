@@ -59,7 +59,7 @@ public final class y4 {
                 str = "p";
             }
             if (uVar2.e != null) {
-                StringBuilder h = w.c.h(str, ":local:");
+                StringBuilder h = v7.j.h(str, ":local:");
                 h.append(this.e.e);
                 sb2 = h.toString();
             } else {
@@ -68,15 +68,15 @@ public final class y4 {
                     u uVar3 = this.e;
                     TLRPC.Document document2 = uVar3.h;
                     if (document2 != null) {
-                        j3 = document2.f18089id;
+                        j3 = document2.f18327id;
                     } else {
                         TLRPC.Photo photo2 = uVar3.f11637g;
                         if (photo2 != null) {
-                            j3 = photo2.f18107id;
+                            j3 = photo2.f18345id;
                         }
                     }
                 }
-                StringBuilder h10 = w.c.h(str, ":");
+                StringBuilder h10 = v7.j.h(str, ":");
                 h10.append(this.e.f11633a);
                 h10.append(":");
                 h10.append(j3);
@@ -105,7 +105,7 @@ public final class y4 {
                     photoSize = null;
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
                         TLRPC.PhotoSize photoSize4 = arrayList.get(i12);
-                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f18108w, photoSize4.h) - photoSize3)) < i11) {
+                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f18346w, photoSize4.h) - photoSize3)) < i11) {
                             photoSize = photoSize4;
                             i11 = abs;
                         }

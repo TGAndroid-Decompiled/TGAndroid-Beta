@@ -5,26 +5,26 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ee extends org.telegram.ui.Components.z71 {
-    public final Context f32901a;
-    public final int f32902b;
-    public final int f32903c;
+public final class ee extends org.telegram.ui.Components.n81 {
+    public final Context f33353a;
+    public final int f33354b;
+    public final int f33355c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final ArrayList e = new ArrayList();
-    public final fe f32904f;
+    public final fe f33356f;
 
     public ee(fe feVar, Context context, int i10, long j3, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f32904f = feVar;
-        this.f32901a = context;
-        this.f32902b = i10;
-        this.f32903c = i11;
+        this.f33356f = feVar;
+        this.f33353a = context;
+        this.f33354b = i10;
+        this.f33355c = i11;
         this.d = d6Var;
         i();
     }
 
     @Override
     public final View d(int i10) {
-        return new de(this.f32904f, this.f32901a, i10, this.f32902b, this.f32903c, new ai.o8(this, i10, 18), this.d);
+        return new de(this.f33356f, this.f33353a, i10, this.f33354b, this.f33355c, new ai.o8(this, i10, 18), this.d);
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class ee extends org.telegram.ui.Components.z71 {
         if (i10 >= 0) {
             ArrayList arrayList = this.e;
             if (i10 < arrayList.size()) {
-                return ((org.telegram.ui.Components.h51) arrayList.get(i10)).f24520z;
+                return ((org.telegram.ui.Components.v51) arrayList.get(i10)).f29055z;
             }
             return 1;
         }
@@ -59,12 +59,12 @@ public final class ee extends org.telegram.ui.Components.z71 {
     public final void i() {
         ArrayList arrayList = this.e;
         arrayList.clear();
-        fe feVar = this.f32904f;
+        fe feVar = this.f33356f;
         if (!feVar.h.isEmpty()) {
-            arrayList.add(org.telegram.ui.Components.h51.C(1));
+            arrayList.add(org.telegram.ui.Components.v51.C(1));
         }
-        if (!feVar.f33295n.isEmpty()) {
-            arrayList.add(org.telegram.ui.Components.h51.C(0));
+        if (!feVar.f33632n.isEmpty()) {
+            arrayList.add(org.telegram.ui.Components.v51.C(0));
         }
     }
 

@@ -1,55 +1,126 @@
 package org.telegram.ui.web;
 
-import android.webkit.ValueCallback;
+import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
-import java.io.File;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import java.io.InputStream;
+import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-public final class a2 implements ValueCallback {
-    public final int f38620a;
-    public final h2 f38621b;
-    public final WebView f38622c;
-    public final File d;
-    public final z1 e;
+import org.telegram.messenger.Timer;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import w7.y5;
+public final class a2 implements Utilities.Callback {
+    public final int f38972a;
+    public final Timer.Task f38973b;
+    public final boolean[] f38974c;
+    public final Timer d;
+    public final i2 e;
+    public final Utilities.Callback f38975f;
 
-    public a2(h2 h2Var, WebView webView, File file, z1 z1Var, int i10) {
-        this.f38620a = i10;
-        this.f38621b = h2Var;
-        this.f38622c = webView;
-        this.d = file;
-        this.e = z1Var;
+    public a2(Timer.Task task, boolean[] zArr, Timer timer, i2 i2Var, Utilities.Callback callback, int i10) {
+        this.f38972a = i10;
+        this.f38973b = task;
+        this.f38974c = zArr;
+        this.d = timer;
+        this.e = i2Var;
+        this.f38975f = callback;
     }
 
     @Override
-    public final void onReceiveValue(Object obj) {
-        switch (this.f38620a) {
+    public final void run(Object obj) {
+        switch (this.f38972a) {
             case 0:
-                String str = (String) obj;
-                File file = this.d;
-                String absolutePath = file.getAbsolutePath();
-                h2 h2Var = this.f38621b;
-                WebView webView = this.f38622c;
-                webView.saveWebArchive(absolutePath, false, new a2(h2Var, webView, file, this.e, 1));
-                return;
-            default:
-                h2 h2Var2 = this.f38621b;
-                File file2 = this.d;
-                z1 z1Var = this.e;
-                String str2 = (String) obj;
-                this.f38622c.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "false"), new h0(1));
-                try {
-                    ni.f fVar = new ni.f(file2);
-                    h2Var2.f38723b = fVar;
-                    if (!((ArrayList) fVar.f15233b).isEmpty()) {
-                        z1Var.run(((k1) ((ArrayList) h2Var2.f38723b.f15233b).get(0)).a());
+                Timer.Task task = this.f38973b;
+                boolean[] zArr = this.f38974c;
+                Timer timer = this.d;
+                i2 i2Var = this.e;
+                Utilities.Callback callback = this.f38975f;
+                InputStream inputStream = (InputStream) obj;
+                Timer.done(task);
+                if (!zArr[0]) {
+                    Timer.Task start = Timer.start(timer, "readHTML");
+                    String str = i2Var.f39089a;
+                    final a2 a2Var = new a2(start, zArr, timer, i2Var, callback, 1);
+                    if (inputStream == null) {
+                        a2Var.run(null);
                         return;
                     }
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    Context context = LaunchActivity.G1;
+                    if (context == null) {
+                        context = ApplicationLoader.applicationContext;
+                    }
+                    Activity findActivity = AndroidUtilities.findActivity(context);
+                    if (findActivity == null) {
+                        a2Var.run(null);
+                        return;
+                    }
+                    View rootView = findActivity.findViewById(16908290).getRootView();
+                    if (!(rootView instanceof ViewGroup)) {
+                        a2Var.run(null);
+                        return;
+                    }
+                    final ?? frameLayout = new FrameLayout(context);
+                    ((ViewGroup) rootView).addView(frameLayout);
+                    final WebView webView = new WebView(context);
+                    WebSettings settings = webView.getSettings();
+                    settings.setAllowContentAccess(false);
+                    settings.setDatabaseEnabled(false);
+                    settings.setAllowFileAccess(false);
+                    settings.setJavaScriptEnabled(true);
+                    settings.setSaveFormData(false);
+                    settings.setGeolocationEnabled(false);
+                    settings.setDomStorageEnabled(false);
+                    settings.setAllowFileAccessFromFileURLs(false);
+                    settings.setAllowUniversalAccessFromFileURLs(false);
+                    webView.setWebViewClient(new d2(i2Var, inputStream));
+                    webView.setWebChromeClient(new WebChromeClient());
+                    frameLayout.addView(webView, y5.c(-1.0f, -1));
+                    final boolean[] zArr2 = {false};
+                    webView.addJavascriptInterface(new Object() {
+                        @JavascriptInterface
+                        public void done(String str2) {
+                            AndroidUtilities.runOnUIThread(new a0(zArr2, webView, frameLayout, str2, a2Var, 6));
+                        }
+                    }, "Instant");
+                    webView.loadUrl(str);
+                    return;
                 }
-                z1Var.run(null);
+                return;
+            default:
+                Timer.Task task2 = this.f38973b;
+                boolean[] zArr3 = this.f38974c;
+                Timer timer2 = this.d;
+                i2 i2Var2 = this.e;
+                Utilities.Callback callback2 = this.f38975f;
+                JSONObject jSONObject = (JSONObject) obj;
+                Timer.done(task2);
+                if (!zArr3[0]) {
+                    Timer.Task start2 = Timer.start(timer2, "parseJSON");
+                    try {
+                        i2Var2.f39091c = i2Var2.i(i2Var2.f39089a, jSONObject);
+                    } catch (Exception e) {
+                        Timer.log(timer2, "error: " + e);
+                        FileLog.e(e);
+                    }
+                    Timer.done(start2);
+                    callback2.run(i2Var2);
+                    TLRPC.TL_webPage tL_webPage = i2Var2.f39091c;
+                    if (tL_webPage != null) {
+                        i2.e.put(tL_webPage, i2Var2);
+                    }
+                    Timer.finish(timer2);
+                    return;
+                }
                 return;
         }
     }

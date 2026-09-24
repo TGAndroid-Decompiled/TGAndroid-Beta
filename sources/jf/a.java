@@ -5,7 +5,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.RandomAccessFile;
-import lf.n;
+import lf.m;
 public abstract class a {
     public String f12968a;
     public long f12969b;
@@ -50,7 +50,7 @@ public abstract class a {
                 }
                 return null;
             }
-            return new n(bufferedInputStream, file.length());
+            return new m(bufferedInputStream, file.length());
         } catch (Exception unused) {
             return null;
         }

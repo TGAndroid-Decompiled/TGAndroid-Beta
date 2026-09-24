@@ -1,68 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.AsyncTask;
-import org.telegram.messenger.FileLog;
-public final class r71 extends AsyncTask {
-    public int f27577a = 0;
-    public final u71 f27578b;
+import java.nio.ByteBuffer;
+import org.telegram.messenger.FourierTransform;
+public final class r71 {
+    public final ByteBuffer f27891c;
+    public long e;
+    public final s71 f27892f;
+    public final FourierTransform.FFT f27889a = new FourierTransform.FFT(1024, 48000.0f);
+    public final float[] f27890b = new float[1024];
+    public int d = 0;
 
-    public r71(u71 u71Var) {
-        this.f27578b = u71Var;
-    }
-
-    @Override
-    public final Object doInBackground(Object[] objArr) {
-        Bitmap frameAtTime;
-        u71 u71Var = this.f27578b;
-        this.f27577a = ((Integer[]) objArr)[0].intValue();
-        Bitmap bitmap = null;
-        if (!isCancelled()) {
-            try {
-                frameAtTime = u71Var.f28428r.getFrameAtTime(u71Var.f28431x * this.f27577a * 1000, 2);
-            } catch (Exception e) {
-                e = e;
-            }
-            try {
-                if (!isCancelled()) {
-                    if (frameAtTime != null) {
-                        Bitmap createBitmap = Bitmap.createBitmap(u71Var.f28432y, u71Var.E, frameAtTime.getConfig());
-                        Canvas canvas = new Canvas(createBitmap);
-                        float max = Math.max(u71Var.f28432y / frameAtTime.getWidth(), u71Var.E / frameAtTime.getHeight());
-                        int width = (int) (frameAtTime.getWidth() * max);
-                        int height = (int) (frameAtTime.getHeight() * max);
-                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((u71Var.f28432y - width) / 2, (u71Var.E - height) / 2, width, height), (Paint) null);
-                        frameAtTime.recycle();
-                        return createBitmap;
-                    }
-                    return frameAtTime;
-                }
-            } catch (Exception e7) {
-                e = e7;
-                bitmap = frameAtTime;
-                FileLog.e(e);
-                return bitmap;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        if (!isCancelled()) {
-            u71 u71Var = this.f27578b;
-            u71Var.v.add(bitmap);
-            u71Var.invalidate();
-            int i10 = this.f27577a;
-            if (i10 < u71Var.F) {
-                u71Var.b(i10 + 1);
-            } else {
-                u71Var.O = true;
-            }
-        }
+    public r71(s71 s71Var) {
+        this.f27892f = s71Var;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
+        this.f27891c = allocateDirect;
+        allocateDirect.position(0);
     }
 }

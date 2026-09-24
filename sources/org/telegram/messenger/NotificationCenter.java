@@ -394,10 +394,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f15580id;
+        private int f15820id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f15580id = i10;
+            this.f15820id = i10;
             this.args = objArr;
         }
     }
@@ -475,9 +475,9 @@ public class NotificationCenter {
                 } else {
                     lVar.getClass();
                 }
-                StringBuilder l4 = hg.c.l(i11, "Index ", " must be in 0..");
-                l4.append(lVar.f27b - 1);
-                throw new IndexOutOfBoundsException(l4.toString());
+                StringBuilder j3 = hg.c.j(i11, "Index ", " must be in 0..");
+                j3.append(lVar.f27b - 1);
+                throw new IndexOutOfBoundsException(j3.toString());
             }
             this.ids.f27b = 0;
             this.notificationCenter = null;
@@ -911,7 +911,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(hg.c.i(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(hg.c.h(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -959,18 +959,18 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder m10 = hg.c.m("key=", keyAt, " CHANGED: ", intValue, " -> ");
-                m10.append(intValue2);
-                Log.i("ObserverDiff", m10.toString());
+                StringBuilder k10 = hg.c.k("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                k10.append(intValue2);
+                Log.i("ObserverDiff", k10.toString());
             }
         }
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder l4 = hg.c.l(keyAt2, "key=", " ADDED (size=");
-                l4.append(sparseArray2.valueAt(i11));
-                l4.append(")");
-                Log.i("ObserverDiff", l4.toString());
+                StringBuilder j3 = hg.c.j(keyAt2, "key=", " ADDED (size=");
+                j3.append(sparseArray2.valueAt(i11));
+                j3.append(")");
+                Log.i("ObserverDiff", j3.toString());
             }
         }
     }
@@ -1089,12 +1089,12 @@ public class NotificationCenter {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with View with destroyed Context");
                                 valueAt.remove(size);
                             }
-                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.n2) {
-                            if (((org.telegram.ui.ActionBar.n2) notificationCenterDelegate).isFinished) {
+                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.m2) {
+                            if (((org.telegram.ui.ActionBar.m2) notificationCenterDelegate).isFinished) {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BaseFragment");
                                 valueAt.remove(size);
                             }
-                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.f3) && ((org.telegram.ui.ActionBar.f3) notificationCenterDelegate).isDismissed()) {
+                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.e3) && ((org.telegram.ui.ActionBar.e3) notificationCenterDelegate).isDismissed()) {
                             FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BottomSheet");
                             valueAt.remove(size);
                         }
@@ -1391,7 +1391,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f15580id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f15820id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }

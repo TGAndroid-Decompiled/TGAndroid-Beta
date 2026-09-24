@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class l9 extends e9.l1 {
-    public final e9.d f48480b;
+    public final e9.d f48797b;
 
     public l9(e9.d dVar) {
         super(2);
-        this.f48480b = dVar;
+        this.f48797b = dVar;
     }
 
     @Override
     public final void clear() {
-        this.f48480b.clear();
+        this.f48797b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f48480b.f8047b.entrySet();
+        Set entrySet = this.f48797b.f8046b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class l9 extends e9.l1 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f48480b.isEmpty();
+        return this.f48797b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.c(this.f48480b, (char) 0);
+        return new e9.c(this.f48797b, (char) 0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class l9 extends e9.l1 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((lg) this.f48480b.e).f48481c;
+        d dVar = ((lg) this.f48797b.e).f48798c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -68,7 +68,7 @@ public final class l9 extends e9.l1 {
     public final boolean removeAll(Collection collection) {
         try {
             if (collection != null) {
-                return w7.h9.a(this, collection);
+                return w7.i9.a(this, collection);
             }
             throw null;
         } catch (UnsupportedOperationException unused) {
@@ -94,7 +94,7 @@ public final class l9 extends e9.l1 {
                 if (size >= 0) {
                     i10 = size + 1;
                 } else {
-                    throw new IllegalArgumentException(hg.c.i(size, "expectedSize cannot be negative but was: "));
+                    throw new IllegalArgumentException(hg.c.h(size, "expectedSize cannot be negative but was: "));
                 }
             } else if (size < 1073741824) {
                 i10 = (int) Math.ceil(size / 0.75d);
@@ -107,11 +107,11 @@ public final class l9 extends e9.l1 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            lg lgVar = (lg) this.f48480b.e;
-            ed edVar = lgVar.f48471a;
+            lg lgVar = (lg) this.f48797b.e;
+            ed edVar = lgVar.f48788a;
             if (edVar == null) {
-                edVar = new ed(lgVar, lgVar.f48481c);
-                lgVar.f48471a = edVar;
+                edVar = new ed(lgVar, lgVar.f48798c);
+                lgVar.f48788a = edVar;
             }
             return edVar.retainAll(hashSet);
         }
@@ -119,6 +119,6 @@ public final class l9 extends e9.l1 {
 
     @Override
     public final int size() {
-        return this.f48480b.f8047b.size();
+        return this.f48797b.f8046b.size();
     }
 }

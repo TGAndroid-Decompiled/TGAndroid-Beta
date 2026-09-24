@@ -1,33 +1,63 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class hb0 implements Runnable {
-    public final int f33801a;
-    public final sb0 f33802b;
+public final class hb0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.dw0 {
+    public final int f34167a;
+    public final rb0 f34168b;
 
-    public hb0(sb0 sb0Var, int i10) {
-        this.f33801a = i10;
-        this.f33802b = sb0Var;
+    public hb0(rb0 rb0Var, int i10) {
+        this.f34167a = i10;
+        this.f34168b = rb0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33801a) {
-            case 0:
-                sb0 sb0Var = this.f33802b;
-                sb0Var.f37231r.f20177b.requestFocus();
-                AndroidUtilities.showKeyboard(sb0Var.f37231r.f20177b);
-                return;
-            case 1:
-                sb0 sb0Var2 = this.f33802b;
-                sb0Var2.f37231r.f20177b.clearFocus();
-                AndroidUtilities.hideKeyboard(sb0Var2.f37231r.f20177b);
+    public void J(int i10, int i11, boolean z10) {
+        this.f34168b.V(i10);
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        rb0 rb0Var = this.f34168b;
+        rb0Var.T.a(rb0Var.e);
+        rb0Var.finishFragment();
+    }
+
+    @Override
+    public void h(int i10) {
+        switch (this.f34167a) {
+            case 2:
+                rb0 rb0Var = this.f34168b;
+                ArrayList arrayList = rb0Var.P;
+                if (i10 < arrayList.size()) {
+                    rb0Var.f37276w.setText(LocaleController.formatDateAudio(rb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+                    return;
+                }
+                rb0Var.f37276w.setText("");
                 return;
             default:
-                nf.f.s(this.f33802b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
+                rb0 rb0Var2 = this.f34168b;
+                rb0Var2.F.clearFocus();
+                rb0Var2.O = true;
+                ArrayList arrayList2 = rb0Var2.R;
+                if (i10 < arrayList2.size()) {
+                    rb0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
+                } else {
+                    rb0Var2.F.setText("");
+                }
+                rb0Var2.O = false;
                 return;
         }
+    }
+
+    @Override
+    public void n() {
+        int i10 = this.f34167a;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

@@ -3,13 +3,13 @@ package org.telegram.messenger.secretmedia;
 import android.net.Uri;
 import g2.c;
 import g2.c0;
-import g2.j;
 import g2.m;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
+import v7.j;
 public final class EncryptedFileDataSource extends c {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
@@ -53,12 +53,12 @@ public final class EncryptedFileDataSource extends c {
 
     @Override
     public long open(m mVar) {
-        Uri uri = mVar.f9363a;
-        long j3 = mVar.f9366f;
+        Uri uri = mVar.f9362a;
+        long j3 = mVar.f9365f;
         long j10 = mVar.e;
         this.uri = uri;
-        File file = new File(mVar.f9363a.getPath());
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), w.c.g(file.getName(), ".key")));
+        File file = new File(mVar.f9362a.getPath());
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), j.t(file.getName(), ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(j10);
         transferInitializing(mVar);
@@ -76,7 +76,7 @@ public final class EncryptedFileDataSource extends c {
             }
             return this.bytesRemaining;
         }
-        throw new j(2008);
+        throw new g2.j(2008);
     }
 
     @Override

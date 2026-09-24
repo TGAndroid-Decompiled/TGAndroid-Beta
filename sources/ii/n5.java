@@ -8,24 +8,24 @@ import java.util.LinkedHashSet;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
-public final class n5 extends g51 {
+import org.telegram.ui.Components.wl0;
+public final class n5 extends u51 {
     public static final int f11516a = 0;
 
     static {
-        g51.setup(new g51());
+        u51.setup(new u51());
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
         boolean z11;
         p5 p5Var = (p5) view;
-        a aVar = (a) h51Var.G;
-        d3 d3Var = (d3) h51Var.H;
+        a aVar = (a) v51Var.G;
+        d3 d3Var = (d3) v51Var.H;
         r5 r5Var = p5Var.v;
         boolean z12 = true;
         if (p5Var.f11207a != aVar) {
@@ -79,9 +79,9 @@ public final class n5 extends g51 {
     }
 
     @Override
-    public final View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, wl0 wl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         p5 p5Var = new p5(context, d6Var);
-        p5Var.setBackground(new b2(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18789d6, d6Var)));
+        p5Var.setBackground(new b2(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19045d6, d6Var)));
         return p5Var;
     }
 

@@ -2,34 +2,34 @@ package le;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.voip.u1;
+import org.telegram.ui.Components.voip.v1;
 public final class d extends AnimatorListenerAdapter {
-    public final int f13964a;
-    public final float f13965b;
-    public final float f13966c;
+    public final int f14187a;
+    public final float f14188b;
+    public final float f14189c;
     public final Object d;
 
     public d(Object obj, float f7, float f10, int i10) {
-        this.f13964a = i10;
+        this.f14187a = i10;
         this.d = obj;
-        this.f13965b = f7;
-        this.f13966c = f10;
+        this.f14188b = f7;
+        this.f14189c = f10;
     }
 
     public void a() {
         f fVar = (f) this.d;
-        if (fVar.f13971g) {
-            fVar.d(this.f13965b + this.f13966c, 1.0f);
-            if (fVar.f13971g) {
-                fVar.f13971g = false;
+        if (fVar.f14194g) {
+            fVar.d(this.f14188b + this.f14189c, 1.0f);
+            if (fVar.f14194g) {
+                fVar.f14194g = false;
             }
-            fVar.f13968b.C(fVar.e, fVar.f13967a);
+            fVar.f14191b.C(fVar.e, fVar.f14190a);
         }
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f13964a) {
+        switch (this.f14187a) {
             case 0:
                 a();
                 return;
@@ -41,24 +41,24 @@ public final class d extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f13964a) {
+        switch (this.f14187a) {
             case 0:
                 a();
                 return;
             default:
-                u1 u1Var = (u1) this.d;
-                u1Var.O = false;
-                u1Var.M = true;
-                u1Var.W = this.f13965b;
-                u1Var.f29250a0 = this.f13966c;
-                u1Var.requestLayout();
+                v1 v1Var = (v1) this.d;
+                v1Var.O = false;
+                v1Var.M = true;
+                v1Var.W = this.f14188b;
+                v1Var.f29681a0 = this.f14189c;
+                v1Var.requestLayout();
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f13964a) {
+        switch (this.f14187a) {
             case 0:
                 ((f) this.d).getClass();
                 return;

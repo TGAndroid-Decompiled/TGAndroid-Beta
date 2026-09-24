@@ -1,34 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class pw0 extends AnimatorListenerAdapter {
-    public final int f27171a;
-    public final qw0 f27172b;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class pw0 extends bb {
+    public ss X;
 
-    public pw0(qw0 qw0Var, int i10) {
-        this.f27171a = i10;
-        this.f27172b = qw0Var;
+    public pw0(Context context) {
+        super(context, null, true, false, null);
+        fixNavigationBar();
+        this.E = true;
+        this.f22954y = true;
+        K();
+        wl0 wl0Var = this.d;
+        int i10 = this.backgroundPaddingLeft;
+        wl0Var.setPadding(i10, 0, i10, 0);
+        this.d.j(new ug0(this, 5));
+        this.d.setOnItemClickListener(new j(this, 14));
+    }
+
+    public static void P(pw0 pw0Var, int i10) {
+        Object obj;
+        v51 G = pw0Var.X.G(i10 - 1);
+        if (G != null) {
+            obj = G.G;
+        } else {
+            obj = null;
+        }
+        if (obj instanceof TLRPC.User) {
+            MessagesController.getInstance(pw0Var.currentAccount).openApp(pw0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
+        }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27171a) {
-            case 0:
-                qw0 qw0Var = this.f27172b;
-                qw0Var.f27475y = 1.0f;
-                qw0Var.invalidate();
-                qw0Var.G = null;
-                return;
-            case 1:
-                qw0 qw0Var2 = this.f27172b;
-                qw0Var2.m(((Float) qw0Var2.v.getAnimatedValue()).floatValue());
-                qw0Var2.v = null;
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                this.f27172b.F = null;
-                return;
-        }
+    public final vl0 v(wl0 wl0Var) {
+        ss ssVar = new ss(wl0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
+        this.X = ssVar;
+        ssVar.f25265r = false;
+        return ssVar;
+    }
+
+    @Override
+    public final CharSequence y() {
+        return LocaleController.getString(R.string.SearchAppsExamples);
     }
 }

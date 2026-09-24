@@ -12,7 +12,7 @@ public final class c7 extends org.telegram.ui.Cells.o6 {
 
     @Override
     public final void b(long j3) {
-        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+        org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
         if (R == null) {
             return;
         }

@@ -1,22 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-public final class ta0 extends z5 {
-    public final ua0 f28139a;
+public final class ta0 extends g.p {
+    public final za0 f28457c;
 
-    public ta0(ua0 ua0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
-        super(document, fontMetricsInt);
-        this.f28139a = ua0Var;
+    public ta0(za0 za0Var) {
+        this.f28457c = za0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        ua0 ua0Var = this.f28139a;
-        int i15 = ua0Var.f28447y;
-        int i16 = i14 + i12;
-        int i17 = this.measuredSize;
-        ua0Var.f28440c.set((int) f7, hg.c.C(i16, i17, 2, i15), (int) (f7 + i17), ((i16 + i17) / 2) + i15);
+    public final int i(int i10) {
+        za0 za0Var = this.f28457c;
+        gg.k1 k1Var = za0Var.f30816f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = k1Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
+            }
+            if (J instanceof TLRPC.Document) {
+                return 20;
+            }
+            if (k1Var.I() != null || k1Var.U != null) {
+                i10 = i11;
+            }
+            sa0 sa0Var = za0Var.d;
+            sa0Var.B1();
+            return sa0Var.R.get(i10);
+        }
+        return 100;
     }
 }

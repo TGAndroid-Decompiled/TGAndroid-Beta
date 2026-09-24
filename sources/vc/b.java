@@ -1,6 +1,6 @@
 package vc;
 
-import c5.i;
+import ee.v;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -12,13 +12,14 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.q3;
+import org.telegram.ui.Cells.c1;
 import tc.g;
-import w7.q8;
+import v7.j;
+import w7.r8;
 public abstract class b {
-    public static final c f44236a = new c();
+    public static final c f44553a = new c();
 
-    public static HttpURLConnection a(String str, i iVar) {
+    public static HttpURLConnection a(String str, v vVar) {
         Throwable th2;
         OutputStream outputStream;
         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://api.stripe.com/v1/tokens").openConnection();
@@ -29,7 +30,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = iVar.f3892a;
+        String str2 = vVar.f8184b;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -45,7 +46,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f44236a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f44553a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +78,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f44234a;
-            String str2 = aVar.f44235b;
+            String str = aVar.f44551a;
+            String str2 = aVar.f44552b;
             if (str == null) {
                 encode = null;
             } else {
@@ -94,8 +95,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static lf.i c(java.util.HashMap r7, c5.i r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, c5.i):lf.i");
+    public static la.h c(java.util.HashMap r7, ee.v r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, ee.v):la.h");
     }
 
     public static LinkedList d(String str, Map map) {
@@ -120,13 +121,13 @@ public abstract class b {
         if (obj instanceof List) {
             List<Object> list = (List) obj;
             LinkedList linkedList = new LinkedList();
-            String g10 = w.c.g(str, "[]");
+            String t10 = j.t(str, "[]");
             if (list.isEmpty()) {
                 linkedList.add(new a(str, ""));
                 return linkedList;
             }
             for (Object obj2 : list) {
-                linkedList.addAll(e(obj2, g10));
+                linkedList.addAll(e(obj2, t10));
             }
             return linkedList;
         } else if (!"".equals(obj)) {
@@ -139,24 +140,24 @@ public abstract class b {
             linkedList3.add(new a(str, obj.toString()));
             return linkedList3;
         } else {
-            throw new g(q3.j("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
+            throw new g(c1.k("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
         }
     }
 
-    public static a5.a f(java.util.HashMap r7, c5.i r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.f(java.util.HashMap, c5.i):a5.a");
+    public static a5.a f(java.util.HashMap r7, ee.v r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.f(java.util.HashMap, ee.v):a5.a");
     }
 
     public static void g(int i10, String str, String str2) {
         String str3;
         try {
             JSONObject jSONObject = new JSONObject(str).getJSONObject("error");
-            q8.a(jSONObject.optString("charge"));
-            q8.a(jSONObject.optString("code"));
-            q8.a(jSONObject.optString("decline_code"));
-            str3 = q8.a(jSONObject.optString("message"));
-            q8.a(jSONObject.optString("param"));
-            q8.a(jSONObject.optString("type"));
+            r8.a(jSONObject.optString("charge"));
+            r8.a(jSONObject.optString("code"));
+            r8.a(jSONObject.optString("decline_code"));
+            str3 = r8.a(jSONObject.optString("message"));
+            r8.a(jSONObject.optString("param"));
+            r8.a(jSONObject.optString("type"));
         } catch (JSONException unused) {
             str3 = "An improperly formatted error response was found.";
         }

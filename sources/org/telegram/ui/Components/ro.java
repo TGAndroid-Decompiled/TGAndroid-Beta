@@ -10,49 +10,49 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-public final class ro extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final org.telegram.ui.ActionBar.d6 f27686a;
-    public final ImageView f27687b;
-    public final org.telegram.ui.ActionBar.i5 f27688c;
-    public final org.telegram.ui.ActionBar.i5 d;
-    public final org.telegram.ui.ActionBar.i5 e;
-    public final org.telegram.ui.jl f27689f;
+public final class ro extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
+    public final org.telegram.ui.ActionBar.d6 f28006a;
+    public final ImageView f28007b;
+    public final org.telegram.ui.ActionBar.h5 f28008c;
+    public final org.telegram.ui.ActionBar.h5 d;
+    public final org.telegram.ui.ActionBar.h5 e;
+    public final org.telegram.ui.il f28009f;
     public boolean h;
-    public boolean f27690n;
+    public boolean f28010n;
 
     public ro(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f27686a = d6Var;
+        this.f28006a = d6Var;
         ImageView imageView = new ImageView(context);
-        this.f27687b = imageView;
+        this.f28007b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, w7.x5.e(52, 46, 51));
-        org.telegram.ui.ActionBar.i5 i5Var = new org.telegram.ui.ActionBar.i5(context);
-        this.f27688c = i5Var;
-        i5Var.setTextSize(14);
-        i5Var.setTypeface(AndroidUtilities.bold());
-        addView(i5Var, w7.x5.d(-1, 18.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
-        org.telegram.ui.ActionBar.i5 i5Var2 = new org.telegram.ui.ActionBar.i5(context);
-        this.d = i5Var2;
-        i5Var2.setTextSize(14);
-        NotificationCenter.listenEmojiLoading(i5Var2);
-        addView(i5Var2, w7.x5.d(-1, 18.0f, 51, 52.0f, 24.0f, 0.0f, 0.0f));
-        org.telegram.ui.ActionBar.i5 i5Var3 = new org.telegram.ui.ActionBar.i5(context);
-        this.e = i5Var3;
-        i5Var3.setTextSize(14);
-        i5Var3.l(LocaleController.getString(R.string.TapForForwardingOptions), false);
-        i5Var3.setAlpha(0.0f);
-        addView(i5Var3, w7.x5.d(-1, 18.0f, 51, 52.0f, 24.0f, 0.0f, 0.0f));
-        org.telegram.ui.jl jlVar = new org.telegram.ui.jl(this, context, new vh.h());
-        this.f27689f = jlVar;
-        jlVar.setRoundRadius(AndroidUtilities.dp(6.0f));
-        addView(jlVar, w7.x5.d(34, 34.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
+        addView(imageView, w7.y5.e(52, 46, 51));
+        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
+        this.f28008c = h5Var;
+        h5Var.setTextSize(14);
+        h5Var.setTypeface(AndroidUtilities.bold());
+        addView(h5Var, w7.y5.d(-1, 18.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
+        org.telegram.ui.ActionBar.h5 h5Var2 = new org.telegram.ui.ActionBar.h5(context);
+        this.d = h5Var2;
+        h5Var2.setTextSize(14);
+        NotificationCenter.listenEmojiLoading(h5Var2);
+        addView(h5Var2, w7.y5.d(-1, 18.0f, 51, 52.0f, 24.0f, 0.0f, 0.0f));
+        org.telegram.ui.ActionBar.h5 h5Var3 = new org.telegram.ui.ActionBar.h5(context);
+        this.e = h5Var3;
+        h5Var3.setTextSize(14);
+        h5Var3.l(LocaleController.getString(R.string.TapForForwardingOptions), false);
+        h5Var3.setAlpha(0.0f);
+        addView(h5Var3, w7.y5.d(-1, 18.0f, 51, 52.0f, 24.0f, 0.0f, 0.0f));
+        org.telegram.ui.il ilVar = new org.telegram.ui.il(this, context, new vh.g());
+        this.f28009f = ilVar;
+        ilVar.setRoundRadius(AndroidUtilities.dp(6.0f));
+        addView(ilVar, w7.y5.d(34, 34.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
         e();
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.f27690n) {
+        if (!this.f28010n) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -60,15 +60,15 @@ public final class ro extends FrameLayout implements org.telegram.ui.ActionBar.y
 
     @Override
     public final void e() {
-        int i10 = org.telegram.ui.ActionBar.h6.f19089te;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27686a;
-        this.f27687b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i10, d6Var), PorterDuff.Mode.MULTIPLY));
-        this.f27688c.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19125ve, d6Var));
+        int i10 = org.telegram.ui.ActionBar.h6.f19347te;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f28006a;
+        this.f28007b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i10, d6Var), PorterDuff.Mode.MULTIPLY));
+        this.f28008c.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19383ve, d6Var));
         int i11 = org.telegram.ui.ActionBar.h6.Xk;
         int v02 = org.telegram.ui.ActionBar.h6.v0(i11, d6Var);
-        org.telegram.ui.ActionBar.i5 i5Var = this.d;
-        i5Var.setTextColor(v02);
-        i5Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, d6Var));
+        org.telegram.ui.ActionBar.h5 h5Var = this.d;
+        h5Var.setTextColor(v02);
+        h5Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, d6Var));
         this.e.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
     }
 

@@ -7,27 +7,27 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class cq extends FrameLayout {
-    public final View f23089a;
-    public final TextView f23090b;
+    public final View f23364a;
+    public final TextView f23365b;
 
     public cq(Context context) {
         super(context);
         View view = new View(context);
-        this.f23089a = view;
+        this.f23364a = view;
         int dp = AndroidUtilities.dp(4.0f);
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
         int w03 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false);
         view.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, w02, w03, w03));
-        addView(view, w7.x5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        addView(view, w7.y5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView = new TextView(context);
-        this.f23090b = textView;
+        this.f23365b = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setGravity(17);
-        org.telegram.messenger.z0.q(textView, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false), 1, 14.0f);
-        addView(textView, w7.x5.e(-2, -2, 17));
+        org.telegram.messenger.f0.q(textView, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false), 1, 14.0f);
+        addView(textView, w7.y5.e(-2, -2, 17));
     }
 
     @Override
@@ -36,6 +36,6 @@ public final class cq extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f23090b.setText(charSequence);
+        this.f23365b.setText(charSequence);
     }
 }

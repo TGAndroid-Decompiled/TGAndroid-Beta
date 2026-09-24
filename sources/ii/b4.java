@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import org.telegram.ui.Cells.r9;
-import org.telegram.ui.r70;
+import org.telegram.ui.Cells.q9;
+import org.telegram.ui.p70;
 public final class b4 extends HorizontalScrollView {
     public final int f11242a;
     public final Object f11243b;
@@ -41,7 +41,7 @@ public final class b4 extends HorizontalScrollView {
 
     @Override
     public void onScrollChanged(int i10, int i11, int i12, int i13) {
-        r9 textSelectionHelper;
+        q9 textSelectionHelper;
         switch (this.f11242a) {
             case 1:
                 super.onScrollChanged(i10, i11, i12, i13);
@@ -53,10 +53,10 @@ public final class b4 extends HorizontalScrollView {
                 return;
             case 2:
                 super.onScrollChanged(i10, i11, i12, i13);
-                r70 r70Var = (r70) this.f11243b;
-                if (r70Var.d != null) {
-                    r70Var.d = null;
-                    r70Var.f36712f = null;
+                p70 p70Var = (p70) this.f11243b;
+                if (p70Var.d != null) {
+                    p70Var.d = null;
+                    p70Var.f36412f = null;
                     return;
                 }
                 return;
@@ -66,9 +66,9 @@ public final class b4 extends HorizontalScrollView {
         }
     }
 
-    public b4(Context context, r70 r70Var) {
+    public b4(Context context, p70 p70Var) {
         super(context);
         this.f11242a = 2;
-        this.f11243b = r70Var;
+        this.f11243b = p70Var;
     }
 }

@@ -10,11 +10,11 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.eg0;
+import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.nq;
+import org.telegram.ui.Components.og0;
 import org.telegram.ui.Components.vr;
 import org.telegram.ui.Components.wu;
-import org.telegram.ui.Components.zc;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -39,7 +39,7 @@ public final class e2 implements View.OnClickListener {
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 3:
-                int i11 = ei.n.f8478n;
+                int i11 = ei.n.f8477n;
                 return;
             case 4:
                 return;
@@ -50,7 +50,7 @@ public final class e2 implements View.OnClickListener {
                 int i13 = org.telegram.ui.Cells.x.L;
                 return;
             case 7:
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null) {
                     R.presentFragment(new PremiumPreviewFragment(0, "contact"));
                     return;
@@ -68,35 +68,35 @@ public final class e2 implements View.OnClickListener {
                 }
                 return;
             case 9:
-                int i14 = nq.f26477e0;
+                int i14 = nq.f26764e0;
                 return;
             case 10:
-                int i15 = vr.f29376s;
+                int i15 = vr.f29787s;
                 return;
             case 11:
                 float[] fArr = FragmentContextView.O0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 12:
-                eg0 eg0Var = eg0.f23661p0;
-                wu wuVar = eg0Var.U;
+                og0 og0Var = og0.f27042p0;
+                wu wuVar = og0Var.U;
                 if (wuVar != null) {
                     wuVar.H();
                 } else {
-                    PhotoViewer photoViewer = eg0Var.V;
+                    PhotoViewer photoViewer = og0Var.V;
                     if (photoViewer != null) {
                         photoViewer.P0();
                         MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                eg0.j(false);
+                og0.j(false);
                 return;
             case 13:
-                org.telegram.ui.Components.voip.j1.j();
+                org.telegram.ui.Components.voip.k1.j();
                 return;
             case 14:
-                org.telegram.ui.Cells.z1 z1Var = (org.telegram.ui.Cells.z1) view;
-                z1Var.c(!z1Var.b(), true);
+                org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) view;
+                a2Var.c(!a2Var.b(), true);
                 return;
             case 15:
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -104,14 +104,14 @@ public final class e2 implements View.OnClickListener {
                     sharedInstance.hangUp();
                     return;
                 } else {
-                    org.telegram.ui.Components.voip.m2.i();
+                    org.telegram.ui.Components.voip.n2.i();
                     return;
                 }
             case 16:
-                tg.n1.e0(0, null);
+                tg.m1.e0(0, null);
                 return;
             case 17:
-                ArrayList arrayList = ExternalActionActivity.f30760x;
+                ArrayList arrayList = ExternalActionActivity.f31061x;
                 return;
             case 18:
                 return;
@@ -143,10 +143,10 @@ public final class e2 implements View.OnClickListener {
                 int i16 = xh.m.A0;
                 return;
             case 25:
-                zc[] zcVarArr = xh.v.f46100p0;
+                ad[] adVarArr = xh.v.f46414p0;
                 return;
             case 26:
-                int i17 = xh.c0.f45766f0;
+                int i17 = xh.c0.f46080f0;
                 return;
             case 27:
                 int i18 = yh.s0.D0;

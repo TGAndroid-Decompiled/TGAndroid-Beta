@@ -1,13 +1,17 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-public final class gy extends org.telegram.ui.Components.p5 {
+import android.content.Context;
+import android.view.MotionEvent;
+public final class gy extends org.telegram.ui.Components.c20 {
+    public gy(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+    }
+
     @Override
-    public final void draw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(1.0f));
-        super.draw(canvas);
-        canvas.restore();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && getAlpha() < 0.25f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

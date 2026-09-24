@@ -19,5 +19,5 @@ public interface ui {
 
     void u0();
 
-    void x0(gh ghVar);
+    void x0(hh hhVar);
 }

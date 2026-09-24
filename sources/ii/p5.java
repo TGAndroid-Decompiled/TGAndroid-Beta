@@ -16,11 +16,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.ca;
+import org.telegram.ui.Cells.ba;
+import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Cells.r9;
-import v7.o8;
-public final class p5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
+import v7.p8;
+public final class p5 extends a0 implements org.telegram.ui.ActionBar.x5, p9 {
     public d3 E;
     public i6 F;
     public boolean G;
@@ -63,7 +63,7 @@ public final class p5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         b4Var.setClipChildren(false);
         b4Var.setClipToPadding(false);
         b4Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        addView(b4Var, w7.x5.d(-1, -2.0f, 51, 0.0f, 6.0f, 0.0f, 0.0f));
+        addView(b4Var, w7.y5.d(-1, -2.0f, 51, 0.0f, 6.0f, 0.0f, 0.0f));
         r5 r5Var = new r5(context, d6Var);
         this.v = r5Var;
         o5 o5Var = new o5(this, context);
@@ -75,24 +75,24 @@ public final class p5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        r9 r9Var;
+        q9 q9Var;
         super.dispatchDraw(canvas);
         if (this.F != null) {
             d3 d3Var = this.E;
             if (d3Var != null) {
-                r9Var = d3Var.f11293a.getTextSelectionHelper();
+                q9Var = d3Var.f11293a.getTextSelectionHelper();
             } else {
-                r9Var = null;
+                q9Var = null;
             }
-            if (r9Var != null) {
+            if (q9Var != null) {
                 ArrayList arrayList = this.f11559x;
                 arrayList.clear();
                 fillTextLayoutBlocks(arrayList);
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ca caVar = (ca) arrayList.get(i10);
+                    ba baVar = (ba) arrayList.get(i10);
                     canvas.save();
-                    canvas.translate(caVar.getX(), caVar.getY());
-                    r9Var.a0(canvas, this, i10);
+                    canvas.translate(baVar.getX(), baVar.getY());
+                    q9Var.a0(canvas, this, i10);
                     canvas.restore();
                 }
             }
@@ -513,7 +513,7 @@ public final class p5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         int i15;
         int i16 = i12 - i10;
         int i17 = this.f11209c;
-        int d = o8.d(this.f11207a);
+        int d = p8.d(this.f11207a);
         boolean z11 = this.f11560y;
         if (z11) {
             i14 = d;
@@ -528,11 +528,11 @@ public final class p5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         a aVar = this.f11207a;
         int i18 = 0;
         if (aVar != null && (i15 = aVar.f11198l) > 0) {
-            i18 = AndroidUtilities.dp(hg.c.g(i15, 1, 16, 10));
+            i18 = AndroidUtilities.dp(hg.c.f(i15, 1, 16, 10));
         }
         int i19 = i16 - i17;
         int i20 = measuredHeight + i18;
-        i1Var.layout(AndroidUtilities.dp(16.0f) + i14, i18, hg.c.f(16.0f, i19, AndroidUtilities.dp(16.0f) + i14), i20);
+        i1Var.layout(AndroidUtilities.dp(16.0f) + i14, i18, org.telegram.messenger.f0.b(16.0f, i19, AndroidUtilities.dp(16.0f) + i14), i20);
         int dp = AndroidUtilities.dp(9.0f) + i20;
         b4 b4Var = this.f11557s;
         b4Var.layout(i14, dp, i19, b4Var.getMeasuredHeight() + dp);
@@ -545,7 +545,7 @@ public final class p5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         int i13;
         int size = View.MeasureSpec.getSize(i10);
         int i14 = 0;
-        int max = Math.max(0, (size - this.f11209c) - o8.d(this.f11207a));
+        int max = Math.max(0, (size - this.f11209c) - p8.d(this.f11207a));
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, max - (AndroidUtilities.dp(16.0f) * 2)), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
         i1 i1Var = this.f11556r;
@@ -559,11 +559,11 @@ public final class p5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         if (aVar == null || (i12 = aVar.f11198l) <= 0) {
             dp = 0;
         } else {
-            dp = AndroidUtilities.dp(hg.c.g(i12, 1, 16, 10));
+            dp = AndroidUtilities.dp(hg.c.f(i12, 1, 16, 10));
         }
         a aVar2 = this.f11207a;
         if (aVar2 != null && (i13 = aVar2.f11199m) > 0) {
-            i14 = AndroidUtilities.dp(hg.c.g(i13, 1, 16, 10));
+            i14 = AndroidUtilities.dp(hg.c.f(i13, 1, 16, 10));
         }
         setMeasuredDimension(size, b4Var.getMeasuredHeight() + AndroidUtilities.dp(9.0f) + i14 + dp + measuredHeight);
     }

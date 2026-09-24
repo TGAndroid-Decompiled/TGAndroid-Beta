@@ -1,26 +1,24 @@
 package pg;
+public final class q0 implements Runnable {
+    public final int f41188a;
+    public final s0 f41189b;
+    public final a5.a f41190c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class q0 extends AnimatorListenerAdapter {
-    public final int f40887a;
-    public final r0 f40888b;
-
-    public q0(r0 r0Var, int i10) {
-        this.f40887a = i10;
-        this.f40888b = r0Var;
+    public q0(s0 s0Var, a5.a aVar, int i10) {
+        this.f41188a = i10;
+        this.f41189b = s0Var;
+        this.f41190c = aVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40887a) {
+    public final void run() {
+        switch (this.f41188a) {
             case 0:
-                r0 r0Var = this.f40888b;
-                r0Var.K = null;
-                r0Var.f40908f.f(new org.telegram.ui.web.t0(this, 9));
+                this.f41189b.p(this.f41190c, true);
                 return;
             default:
-                this.f40888b.f40908f.f(new org.telegram.ui.web.t0(this, 10));
+                s0 s0Var = this.f41189b;
+                s0Var.f41210f.f(new q0(s0Var, this.f41190c, 0));
                 return;
         }
     }

@@ -1,56 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.tgnet.TLObject;
-public final class r11 implements Runnable {
-    public final int f27524a;
-    public final int f27525b;
-    public final Object f27526c;
-    public final Object d;
-    public final Object e;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class r11 extends s4.s0 {
+    public final ThemeEditorView.EditorAlert f27819a;
 
-    public r11(int i10, Object obj, Object obj2, TLObject tLObject, int i11) {
-        this.f27524a = i11;
-        this.f27525b = i10;
-        this.f27526c = obj;
-        this.d = obj2;
-        this.e = tLObject;
+    public r11(ThemeEditorView.EditorAlert editorAlert) {
+        this.f27819a = editorAlert;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r11.run():void");
-    }
-
-    public r11(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f27524a = i11;
-        this.f27526c = obj;
-        this.f27525b = i10;
-        this.d = obj2;
-        this.e = obj3;
-    }
-
-    public r11(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f27524a = i11;
-        this.f27526c = obj;
-        this.d = obj2;
-        this.f27525b = i10;
-        this.e = obj3;
-    }
-
-    public r11(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f27524a = i11;
-        this.f27526c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f27525b = i10;
-    }
-
-    public r11(qg.p2 p2Var, Bitmap bitmap, int i10, org.telegram.ui.ir0 ir0Var) {
-        this.f27524a = 15;
-        this.f27526c = p2Var;
-        this.e = bitmap;
-        this.f27525b = i10;
-        this.d = ir0Var;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ThemeEditorView.EditorAlert.s(this.f27819a);
     }
 }

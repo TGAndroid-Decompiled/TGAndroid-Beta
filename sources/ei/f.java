@@ -3,97 +3,97 @@ package ei;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
-public final class f extends rg.v1 {
-    public final int f8306n;
+public final class f extends rg.w1 {
+    public final int f8305n;
 
     public f(Context context, int i10) {
         super(context);
-        this.f8306n = i10;
+        this.f8305n = i10;
     }
 
     @Override
     public final void a() {
-        switch (this.f8306n) {
+        switch (this.f8305n) {
             case 0:
                 super.a();
-                rg.u1 u1Var = this.f42473a;
-                u1Var.f42460q = true;
-                u1Var.K = false;
-                u1Var.L = true;
-                u1Var.H = true;
-                u1Var.c();
+                rg.v1 v1Var = this.f42801a;
+                v1Var.f42785q = true;
+                v1Var.K = false;
+                v1Var.L = true;
+                v1Var.H = true;
+                v1Var.c();
                 return;
             case 1:
                 super.a();
-                rg.u1 u1Var2 = this.f42473a;
-                u1Var2.f42460q = true;
-                u1Var2.K = false;
-                u1Var2.L = true;
-                u1Var2.H = true;
-                u1Var2.c();
+                rg.v1 v1Var2 = this.f42801a;
+                v1Var2.f42785q = true;
+                v1Var2.K = false;
+                v1Var2.L = true;
+                v1Var2.H = true;
+                v1Var2.c();
                 return;
             case 2:
-                rg.u1 u1Var3 = new rg.u1(50);
-                this.f42473a = u1Var3;
-                u1Var3.N = 100;
-                u1Var3.M = false;
-                u1Var3.G = false;
-                u1Var3.K = true;
-                u1Var3.H = true;
-                u1Var3.J = false;
-                u1Var3.f42461r = 4;
-                u1Var3.f42465w = 0.98f;
-                u1Var3.v = 0.98f;
-                u1Var3.f42464u = 0.98f;
-                u1Var3.c();
+                rg.v1 v1Var3 = new rg.v1(50);
+                this.f42801a = v1Var3;
+                v1Var3.N = 100;
+                v1Var3.M = false;
+                v1Var3.G = false;
+                v1Var3.K = true;
+                v1Var3.H = true;
+                v1Var3.J = false;
+                v1Var3.f42786r = 4;
+                v1Var3.f42790w = 0.98f;
+                v1Var3.v = 0.98f;
+                v1Var3.f42789u = 0.98f;
+                v1Var3.c();
                 return;
             case 3:
-                rg.u1 u1Var4 = this.f42473a;
-                u1Var4.f42460q = true;
-                u1Var4.K = false;
-                u1Var4.H = true;
-                u1Var4.J = true;
-                u1Var4.f42454k = AndroidUtilities.dp(-14.0f);
-                rg.u1 u1Var5 = this.f42473a;
-                u1Var5.f42466x = 2000L;
-                u1Var5.f42467y = 3000;
-                u1Var5.f42461r = 16;
-                u1Var5.G = false;
-                u1Var5.N = 28;
-                u1Var5.P = h6.Mj;
-                u1Var5.c();
+                rg.v1 v1Var4 = this.f42801a;
+                v1Var4.f42785q = true;
+                v1Var4.K = false;
+                v1Var4.H = true;
+                v1Var4.J = true;
+                v1Var4.f42779k = AndroidUtilities.dp(-14.0f);
+                rg.v1 v1Var5 = this.f42801a;
+                v1Var5.f42791x = 2000L;
+                v1Var5.f42792y = 3000;
+                v1Var5.f42786r = 16;
+                v1Var5.G = false;
+                v1Var5.N = 28;
+                v1Var5.P = h6.Mj;
+                v1Var5.c();
                 return;
             case 4:
-                rg.u1 u1Var6 = this.f42473a;
-                u1Var6.f42460q = true;
-                u1Var6.K = false;
-                u1Var6.H = true;
-                u1Var6.J = true;
-                u1Var6.f42454k = AndroidUtilities.dp(-14.0f);
-                rg.u1 u1Var7 = this.f42473a;
-                u1Var7.f42466x = 2000L;
-                u1Var7.f42467y = 3000;
-                u1Var7.f42461r = 16;
-                u1Var7.G = false;
-                u1Var7.N = 28;
-                u1Var7.P = h6.Mj;
-                u1Var7.c();
+                rg.v1 v1Var6 = this.f42801a;
+                v1Var6.f42785q = true;
+                v1Var6.K = false;
+                v1Var6.H = true;
+                v1Var6.J = true;
+                v1Var6.f42779k = AndroidUtilities.dp(-14.0f);
+                rg.v1 v1Var7 = this.f42801a;
+                v1Var7.f42791x = 2000L;
+                v1Var7.f42792y = 3000;
+                v1Var7.f42786r = 16;
+                v1Var7.G = false;
+                v1Var7.N = 28;
+                v1Var7.P = h6.Mj;
+                v1Var7.c();
                 return;
             default:
                 super.a();
-                rg.u1 u1Var8 = this.f42473a;
-                u1Var8.f42460q = true;
-                u1Var8.K = false;
-                u1Var8.L = true;
-                u1Var8.H = true;
-                u1Var8.c();
+                rg.v1 v1Var8 = this.f42801a;
+                v1Var8.f42785q = true;
+                v1Var8.K = false;
+                v1Var8.L = true;
+                v1Var8.H = true;
+                v1Var8.c();
                 return;
         }
     }
 
     @Override
     public int getStarsRectWidth() {
-        switch (this.f8306n) {
+        switch (this.f8305n) {
             case 0:
                 return getMeasuredWidth();
             case 1:
@@ -107,18 +107,18 @@ public final class f extends rg.v1 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f8306n) {
+        switch (this.f8305n) {
             case 3:
                 super.onMeasure(i10, i11);
-                this.f42473a.f42448b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                this.f42801a.f42773b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
                 return;
             case 4:
                 super.onMeasure(i10, i11);
-                this.f42473a.f42448b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                this.f42801a.f42773b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
                 return;
             case 5:
                 super.onMeasure(i10, i11);
-                this.f42473a.f42448b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                this.f42801a.f42773b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
                 return;
             default:
                 super.onMeasure(i10, i11);

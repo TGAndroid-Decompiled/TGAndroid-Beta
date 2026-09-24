@@ -1,46 +1,51 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class y2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29340a;
-    public final z2 f29341b;
+import org.telegram.messenger.Utilities;
+public final class y2 extends View {
+    public final TextPaint f29759a;
+    public final Paint f29760b;
+    public final float f29761c;
+    public final String d;
+    public volatile Bitmap e;
 
-    public y2(z2 z2Var, int i10) {
-        this.f29340a = i10;
-        this.f29341b = z2Var;
+    public y2(Context context, String str) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f29759a = textPaint;
+        this.f29760b = new Paint(1);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint.setColor(-1);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        this.f29761c = textPaint.measureText(str);
+        this.d = str;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29340a) {
-            case 0:
-                z2 z2Var = this.f29341b;
-                z2Var.getClass();
-                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                z2Var.d = intValue;
-                z2Var.e = intValue;
-                z2Var.f29354f = intValue;
-                z2Var.h = intValue;
-                z2Var.f29355n = intValue;
-                z2Var.invalidate();
-                return;
-            default:
-                z2 z2Var2 = this.f29341b;
-                z2Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z2Var2.d = AndroidUtilities.lerp(z2Var2.F, AndroidUtilities.dp(56.0f), floatValue);
-                z2Var2.e = AndroidUtilities.lerp(z2Var2.F, AndroidUtilities.dp(36.0f), floatValue);
-                z2Var2.f29354f = AndroidUtilities.lerp(z2Var2.F, AndroidUtilities.dp(60.0f), floatValue);
-                z2Var2.h = AndroidUtilities.lerp(z2Var2.F, AndroidUtilities.dp(36.0f), floatValue);
-                z2Var2.f29355n = AndroidUtilities.lerp(z2Var2.F, AndroidUtilities.dp(64.0f), floatValue);
-                z2Var2.f29356r = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), floatValue);
-                z2Var2.f29357s = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), floatValue);
-                z2Var2.v = AndroidUtilities.lerp(0, 0, floatValue);
-                z2Var2.f29358w = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), floatValue);
-                z2Var2.f29359x = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), floatValue);
-                z2Var2.invalidate();
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.e != null) {
+            canvas.drawBitmap(this.e, 0.0f, 0.0f, this.f29760b);
         }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (z10) {
+            Utilities.globalQueue.postRunnable(new i2.h0(this, 27));
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f29761c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 }

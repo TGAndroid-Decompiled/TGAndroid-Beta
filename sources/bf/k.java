@@ -1,6 +1,6 @@
 package bf;
 
-import v7.i0;
+import v7.k0;
 public final class k extends p {
     public final int f3538g;
     public final String h;
@@ -13,13 +13,13 @@ public final class k extends p {
     }
 
     @Override
-    public final void a(i0 i0Var) {
+    public final void a(k0 k0Var) {
         switch (this.f3538g) {
             case 0:
-                i0Var.i(this);
+                k0Var.i(this);
                 return;
             default:
-                i0Var.s(this);
+                k0Var.s(this);
                 return;
         }
     }

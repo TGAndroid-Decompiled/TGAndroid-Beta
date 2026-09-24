@@ -12,31 +12,31 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.LinearLayout;
 public abstract class w1 extends ViewGroup {
     public int E;
-    public boolean f14329a;
-    public int f14330b;
-    public int f14331c;
+    public boolean f14567a;
+    public int f14568b;
+    public int f14569c;
     public int d;
     public int e;
-    public int f14332f;
+    public int f14570f;
     public float h;
-    public boolean f14333n;
-    public int[] f14334r;
-    public int[] f14335s;
+    public boolean f14571n;
+    public int[] f14572r;
+    public int[] f14573s;
     public Drawable v;
-    public int f14336w;
-    public int f14337x;
-    public int f14338y;
+    public int f14574w;
+    public int f14575x;
+    public int f14576y;
 
     public w1(Context context, AttributeSet attributeSet, int i10) {
         super(context, attributeSet, i10);
-        this.f14329a = true;
-        this.f14330b = -1;
-        this.f14331c = 0;
+        this.f14567a = true;
+        this.f14568b = -1;
+        this.f14569c = 0;
         this.e = 8388659;
-        int[] iArr = f.a.f8759n;
-        lf.i Q = lf.i.Q(context, attributeSet, iArr, i10);
-        r0.i0.j(this, context, iArr, attributeSet, (TypedArray) Q.f14012c, i10);
-        TypedArray typedArray = (TypedArray) Q.f14012c;
+        int[] iArr = f.a.f8758n;
+        la.h Q = la.h.Q(context, attributeSet, iArr, i10);
+        r0.i0.j(this, context, iArr, attributeSet, (TypedArray) Q.f14152c, i10);
+        TypedArray typedArray = (TypedArray) Q.f14152c;
         int i11 = typedArray.getInt(1, -1);
         if (i11 >= 0) {
             setOrientation(i11);
@@ -50,16 +50,16 @@ public abstract class w1 extends ViewGroup {
             setBaselineAligned(z10);
         }
         this.h = typedArray.getFloat(4, -1.0f);
-        this.f14330b = typedArray.getInt(3, -1);
-        this.f14333n = typedArray.getBoolean(7, false);
+        this.f14568b = typedArray.getInt(3, -1);
+        this.f14571n = typedArray.getBoolean(7, false);
         setDividerDrawable(Q.F(5));
-        this.f14338y = typedArray.getInt(8, 0);
+        this.f14576y = typedArray.getInt(8, 0);
         this.E = typedArray.getDimensionPixelSize(6, 0);
         Q.R();
     }
 
     public final void c(Canvas canvas, int i10) {
-        this.v.setBounds(getPaddingLeft() + this.E, i10, (getWidth() - getPaddingRight()) - this.E, this.f14337x + i10);
+        this.v.setBounds(getPaddingLeft() + this.E, i10, (getWidth() - getPaddingRight()) - this.E, this.f14575x + i10);
         this.v.draw(canvas);
     }
 
@@ -69,7 +69,7 @@ public abstract class w1 extends ViewGroup {
     }
 
     public final void d(Canvas canvas, int i10) {
-        this.v.setBounds(i10, getPaddingTop() + this.E, this.f14336w + i10, (getHeight() - getPaddingBottom()) - this.E);
+        this.v.setBounds(i10, getPaddingTop() + this.E, this.f14574w + i10, (getHeight() - getPaddingBottom()) - this.E);
         this.v.draw(canvas);
     }
 
@@ -98,28 +98,28 @@ public abstract class w1 extends ViewGroup {
     @Override
     public int getBaseline() {
         int i10;
-        if (this.f14330b < 0) {
+        if (this.f14568b < 0) {
             return super.getBaseline();
         }
         int childCount = getChildCount();
-        int i11 = this.f14330b;
+        int i11 = this.f14568b;
         if (childCount > i11) {
             View childAt = getChildAt(i11);
             int baseline = childAt.getBaseline();
             if (baseline == -1) {
-                if (this.f14330b == 0) {
+                if (this.f14568b == 0) {
                     return -1;
                 }
                 throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout points to a View that doesn't know how to get its baseline.");
             }
-            int i12 = this.f14331c;
+            int i12 = this.f14569c;
             if (this.d == 1 && (i10 = this.e & 112) != 48) {
                 if (i10 != 16) {
                     if (i10 == 80) {
-                        i12 = ((getBottom() - getTop()) - getPaddingBottom()) - this.f14332f;
+                        i12 = ((getBottom() - getTop()) - getPaddingBottom()) - this.f14570f;
                     }
                 } else {
-                    i12 = hg.c.C(((getBottom() - getTop()) - getPaddingTop()) - getPaddingBottom(), this.f14332f, 2, i12);
+                    i12 = hg.c.z(((getBottom() - getTop()) - getPaddingTop()) - getPaddingBottom(), this.f14570f, 2, i12);
                 }
             }
             return i12 + ((LinearLayout.LayoutParams) ((v1) childAt.getLayoutParams())).topMargin + baseline;
@@ -128,7 +128,7 @@ public abstract class w1 extends ViewGroup {
     }
 
     public int getBaselineAlignedChildIndex() {
-        return this.f14330b;
+        return this.f14568b;
     }
 
     public Drawable getDividerDrawable() {
@@ -140,7 +140,7 @@ public abstract class w1 extends ViewGroup {
     }
 
     public int getDividerWidth() {
-        return this.f14336w;
+        return this.f14574w;
     }
 
     public int getGravity() {
@@ -152,7 +152,7 @@ public abstract class w1 extends ViewGroup {
     }
 
     public int getShowDividers() {
-        return this.f14338y;
+        return this.f14576y;
     }
 
     public int getVirtualChildCount() {
@@ -165,17 +165,17 @@ public abstract class w1 extends ViewGroup {
 
     public final boolean h(int i10) {
         if (i10 == 0) {
-            if ((this.f14338y & 1) == 0) {
+            if ((this.f14576y & 1) == 0) {
                 return false;
             }
             return true;
         } else if (i10 == getChildCount()) {
-            if ((this.f14338y & 4) == 0) {
+            if ((this.f14576y & 4) == 0) {
                 return false;
             }
             return true;
         } else {
-            if ((this.f14338y & 2) != 0) {
+            if ((this.f14576y & 2) != 0) {
                 for (int i11 = i10 - 1; i11 >= 0; i11--) {
                     if (getChildAt(i11).getVisibility() != 8) {
                         return true;
@@ -200,14 +200,14 @@ public abstract class w1 extends ViewGroup {
                 while (i11 < virtualChildCount) {
                     View childAt = getChildAt(i11);
                     if (childAt != null && childAt.getVisibility() != 8 && h(i11)) {
-                        c(canvas, (childAt.getTop() - ((LinearLayout.LayoutParams) ((v1) childAt.getLayoutParams())).topMargin) - this.f14337x);
+                        c(canvas, (childAt.getTop() - ((LinearLayout.LayoutParams) ((v1) childAt.getLayoutParams())).topMargin) - this.f14575x);
                     }
                     i11++;
                 }
                 if (h(virtualChildCount)) {
                     View childAt2 = getChildAt(virtualChildCount - 1);
                     if (childAt2 == null) {
-                        bottom = (getHeight() - getPaddingBottom()) - this.f14337x;
+                        bottom = (getHeight() - getPaddingBottom()) - this.f14575x;
                     } else {
                         bottom = childAt2.getBottom() + ((LinearLayout.LayoutParams) ((v1) childAt2.getLayoutParams())).bottomMargin;
                     }
@@ -225,7 +225,7 @@ public abstract class w1 extends ViewGroup {
                     if (a2) {
                         left2 = childAt3.getRight() + ((LinearLayout.LayoutParams) v1Var).rightMargin;
                     } else {
-                        left2 = (childAt3.getLeft() - ((LinearLayout.LayoutParams) v1Var).leftMargin) - this.f14336w;
+                        left2 = (childAt3.getLeft() - ((LinearLayout.LayoutParams) v1Var).leftMargin) - this.f14574w;
                     }
                     d(canvas, left2);
                 }
@@ -238,14 +238,14 @@ public abstract class w1 extends ViewGroup {
                         right = getPaddingLeft();
                     } else {
                         left = getWidth() - getPaddingRight();
-                        i10 = this.f14336w;
+                        i10 = this.f14574w;
                         right = left - i10;
                     }
                 } else {
                     v1 v1Var2 = (v1) childAt4.getLayoutParams();
                     if (a2) {
                         left = childAt4.getLeft() - ((LinearLayout.LayoutParams) v1Var2).leftMargin;
-                        i10 = this.f14336w;
+                        i10 = this.f14574w;
                         right = left - i10;
                     } else {
                         right = childAt4.getRight() + ((LinearLayout.LayoutParams) v1Var2).rightMargin;
@@ -279,12 +279,12 @@ public abstract class w1 extends ViewGroup {
     }
 
     public void setBaselineAligned(boolean z10) {
-        this.f14329a = z10;
+        this.f14567a = z10;
     }
 
     public void setBaselineAlignedChildIndex(int i10) {
         if (i10 >= 0 && i10 < getChildCount()) {
-            this.f14330b = i10;
+            this.f14568b = i10;
             return;
         }
         throw new IllegalArgumentException("base aligned child index out of range (0, " + getChildCount() + ")");
@@ -297,11 +297,11 @@ public abstract class w1 extends ViewGroup {
         this.v = drawable;
         boolean z10 = false;
         if (drawable != null) {
-            this.f14336w = drawable.getIntrinsicWidth();
-            this.f14337x = drawable.getIntrinsicHeight();
+            this.f14574w = drawable.getIntrinsicWidth();
+            this.f14575x = drawable.getIntrinsicHeight();
         } else {
-            this.f14336w = 0;
-            this.f14337x = 0;
+            this.f14574w = 0;
+            this.f14575x = 0;
         }
         if (drawable == null) {
             z10 = true;
@@ -337,7 +337,7 @@ public abstract class w1 extends ViewGroup {
     }
 
     public void setMeasureWithLargestChildEnabled(boolean z10) {
-        this.f14333n = z10;
+        this.f14571n = z10;
     }
 
     public void setOrientation(int i10) {
@@ -348,10 +348,10 @@ public abstract class w1 extends ViewGroup {
     }
 
     public void setShowDividers(int i10) {
-        if (i10 != this.f14338y) {
+        if (i10 != this.f14576y) {
             requestLayout();
         }
-        this.f14338y = i10;
+        this.f14576y = i10;
     }
 
     public void setVerticalGravity(int i10) {

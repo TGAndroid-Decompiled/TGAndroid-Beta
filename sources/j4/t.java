@@ -30,7 +30,7 @@ public final class t implements i {
         this.f12792b = i10;
         e2.v vVar = new e2.v(1024);
         this.f12793c = vVar;
-        byte[] bArr = vVar.f7917a;
+        byte[] bArr = vVar.f7916a;
         this.d = new a4.h(bArr, bArr.length);
         this.f12799l = -9223372036854775807L;
     }

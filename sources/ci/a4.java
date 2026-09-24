@@ -6,9 +6,9 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.pv0;
+import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.rr;
-public final class a4 extends org.telegram.ui.ActionBar.f3 {
+public final class a4 extends org.telegram.ui.ActionBar.e3 {
     public final z3 f4339b;
     public ValueAnimator f4340c;
     public o1.k d;
@@ -24,10 +24,10 @@ public final class a4 extends org.telegram.ui.ActionBar.f3 {
         z3Var.setMultipleOnClick(false);
         z3Var.setOnBackClickListener(new x3(this, 0));
         z3Var.setOnSelectListener(new bi.v(this, 4));
-        pv0 pv0Var = new pv0(context, null);
-        this.containerView = pv0Var;
+        aw0 aw0Var = new aw0(context, null);
+        this.containerView = aw0Var;
         int i10 = this.backgroundPaddingLeft;
-        pv0Var.setPadding(i10, 0, i10, 0);
+        aw0Var.setPadding(i10, 0, i10, 0);
         this.containerView.addView(z3Var);
     }
 
@@ -62,10 +62,10 @@ public final class a4 extends org.telegram.ui.ActionBar.f3 {
         }
         this.e = Boolean.valueOf(z10);
         if (z10) {
-            o1.k kVar = new o1.k(z3Var, o1.h.f15309n, height);
+            o1.k kVar = new o1.k(z3Var, o1.h.f15501n, height);
             this.d = kVar;
-            kVar.f15326u.a(0.75f);
-            this.d.f15326u.b(350.0f);
+            kVar.f15518u.a(0.75f);
+            this.d.f15518u.b(350.0f);
             this.d.a(new y3(this, height, x3Var));
             this.d.f();
             return;

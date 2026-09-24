@@ -38,7 +38,7 @@ public final class w implements g0 {
                         if (this.f12844j != -1) {
                             e2.a.n("PesReader", "Unexpected start indicator: expected " + this.f12844j + " more bytes");
                         }
-                        if (vVar.f7919c == 0) {
+                        if (vVar.f7918c == 0) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -71,7 +71,7 @@ public final class w implements g0 {
                             }
                             if (i13 > 0) {
                                 a2 -= i13;
-                                vVar.I(vVar.f7918b + a2);
+                                vVar.I(vVar.f7917b + a2);
                             }
                             iVar.a(vVar);
                             int i21 = this.f12844j;

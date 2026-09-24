@@ -21,7 +21,7 @@ public final class i extends l {
     public i(int i10, List list) {
         this.f260k = i10 == -1 ? 1 : i10;
         if (list != null) {
-            byte[] bArr = e2.e.f7880a;
+            byte[] bArr = e2.e.f7879a;
             if (list.size() == 1 && ((byte[]) list.get(0)).length == 1) {
                 byte b10 = ((byte[]) list.get(0))[0];
             }
@@ -55,7 +55,7 @@ public final class i extends l {
     @Override
     public final void g(j jVar) {
         boolean z10;
-        ByteBuffer byteBuffer = jVar.f10079c;
+        ByteBuffer byteBuffer = jVar.f10078c;
         byteBuffer.getClass();
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();

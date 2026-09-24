@@ -9,16 +9,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.ar0;
-import org.telegram.ui.Components.gk0;
-import org.telegram.ui.Components.o70;
+import org.telegram.ui.Components.qk0;
 import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.aa1;
 import org.telegram.ui.ba1;
+import org.telegram.ui.ca1;
+import org.telegram.ui.tt;
 public final class q3 implements View.OnLongClickListener {
     public final int f1416a;
     public final Object f1417b;
@@ -46,18 +46,18 @@ public final class q3 implements View.OnLongClickListener {
                 if (e4Var != null) {
                     e4Var.e(true);
                 }
-                gk0 gk0Var = e6Var.f823r3;
-                if (gk0Var == null) {
-                    org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                    gk0 gk0Var2 = new gk0(2, e6Var.C2, e6Var.getContext(), R, new x3(4, e6Var.B0));
-                    e6Var.f823r3 = gk0Var2;
-                    gk0Var2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
-                    e6Var.addView(e6Var.f823r3, e6Var.getChildCount() - 1, w7.x5.d(-2, 74.0f, 53, 0.0f, 0.0f, 12.0f, 64.0f));
+                qk0 qk0Var = e6Var.f823r3;
+                if (qk0Var == null) {
+                    org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
+                    qk0 qk0Var2 = new qk0(2, e6Var.C2, e6Var.getContext(), R, new x3(4, e6Var.B0));
+                    e6Var.f823r3 = qk0Var2;
+                    qk0Var2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
+                    e6Var.addView(e6Var.f823r3, e6Var.getChildCount() - 1, w7.y5.d(-2, 74.0f, 53, 0.0f, 0.0f, 12.0f, 64.0f));
                     e6Var.f823r3.setVisibility(8);
                     e6Var.f823r3.setDelegate(new z4(e6Var));
                     e6Var.f823r3.p(null, null, true);
                 } else {
-                    e6Var.bringChildToFront(gk0Var);
+                    e6Var.bringChildToFront(qk0Var);
                     e6Var.f823r3.n();
                 }
                 e6Var.f823r3.setFragment(LaunchActivity.R());
@@ -66,7 +66,7 @@ public final class q3 implements View.OnLongClickListener {
                 return true;
             case 1:
                 org.telegram.ui.Components.c0 c0Var = (org.telegram.ui.Components.c0) this.f1418c;
-                ci.o5 o5Var = ((org.telegram.ui.Components.d0) this.f1417b).f23174n;
+                ci.o5 o5Var = ((org.telegram.ui.Components.d0) this.f1417b).f23417n;
                 if (o5Var != null) {
                     return ((Boolean) o5Var.run(c0Var)).booleanValue();
                 }
@@ -74,20 +74,20 @@ public final class q3 implements View.OnLongClickListener {
             case 2:
                 org.telegram.ui.Components.j8 j8Var = (org.telegram.ui.Components.j8) this.f1417b;
                 float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(true);
-                org.telegram.ui.ActionBar.b1 b1Var = j8Var.X;
-                b1Var.d(playbackSpeed, false);
-                b1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G8, (org.telegram.ui.ActionBar.d6) this.f1418c));
+                org.telegram.ui.ActionBar.a1 a1Var = j8Var.X;
+                a1Var.d(playbackSpeed, false);
+                a1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G8, (org.telegram.ui.ActionBar.d6) this.f1418c));
                 j8Var.F0(false);
-                org.telegram.ui.ActionBar.v0 v0Var = j8Var.V;
-                v0Var.setDimMenu(0.15f);
-                v0Var.M(b1Var, null);
+                org.telegram.ui.ActionBar.u0 u0Var = j8Var.V;
+                u0Var.setDimMenu(0.15f);
+                u0Var.M(a1Var, null);
                 MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
                 return true;
             case 3:
-                o70 o70Var = (o70) this.f1417b;
-                ((ar0) this.f1418c).run();
-                if (o70Var.J) {
-                    o70Var.u();
+                y70 y70Var = (y70) this.f1417b;
+                ((tt) this.f1418c).run();
+                if (y70Var.J) {
+                    y70Var.u();
                     return true;
                 }
                 return true;
@@ -99,16 +99,16 @@ public final class q3 implements View.OnLongClickListener {
                     return false;
                 }
                 if (AndroidUtilities.addToClipboard(messageObject.sponsoredUrl)) {
-                    new xc(org.telegram.ui.Components.lb.a(photoViewer.E), dVar).k(false).j();
+                    new yc(org.telegram.ui.Components.lb.a(photoViewer.E), dVar).k(false).j();
                 }
                 return true;
             case 5:
                 ProfileActivity profileActivity = (ProfileActivity) this.f1417b;
                 ImageView imageView = (ImageView) this.f1418c;
-                org.telegram.ui.ActionBar.n1 b10 = org.telegram.ui.Components.o9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f31255g1, profileActivity.f31383z0);
+                org.telegram.ui.ActionBar.m1 b10 = org.telegram.ui.Components.o9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f31556g1, profileActivity.f31684z0);
                 if (b10 != null) {
                     b10.setOnDismissListener(new org.telegram.ui.f0(profileActivity, 3));
-                    profileActivity.f31364w0 = imageView;
+                    profileActivity.f31665w0 = imageView;
                     profileActivity.H3(0.3f);
                     UndoView undoView = profileActivity.M;
                     if (undoView == null) {
@@ -119,29 +119,29 @@ public final class q3 implements View.OnLongClickListener {
                 }
                 return false;
             default:
-                aa1 aa1Var = (aa1) this.f1417b;
+                ba1 ba1Var = (ba1) this.f1417b;
                 kg.f fVar = (kg.f) this.f1418c;
-                ba1 ba1Var = aa1Var.d;
-                t00 t00Var = aa1Var.f31719a;
+                ca1 ca1Var = ba1Var.d;
+                t00 t00Var = ba1Var.f32351a;
                 boolean z10 = false;
-                if (t00Var.f28025c) {
-                    ba1Var.f();
-                    ArrayList arrayList = ba1Var.f32038n;
-                    ig.g gVar = ba1Var.f32036c;
+                if (t00Var.f28347c) {
+                    ca1Var.f();
+                    ArrayList arrayList = ca1Var.f32602n;
+                    ig.g gVar = ca1Var.f32600c;
                     int size = arrayList.size();
                     for (int i10 = 0; i10 < size; i10++) {
-                        ((aa1) arrayList.get(i10)).f31719a.setChecked(false);
-                        ((aa1) arrayList.get(i10)).f31720b.f13618n = false;
-                        if (ba1Var.f32039r.f32553c > 0 && i10 < gVar.d.size()) {
-                            ((kg.f) gVar.d.get(i10)).f13618n = false;
+                        ((ba1) arrayList.get(i10)).f32351a.setChecked(false);
+                        ((ba1) arrayList.get(i10)).f32352b.f13616n = false;
+                        if (ca1Var.f32603r.f33319c > 0 && i10 < gVar.d.size()) {
+                            ((kg.f) gVar.d.get(i10)).f13616n = false;
                         }
                     }
                     z10 = true;
                     t00Var.setChecked(true);
-                    fVar.f13618n = true;
-                    ba1Var.f32035b.z();
-                    if (ba1Var.f32039r.f32553c > 0) {
-                        ((kg.f) gVar.d.get(aa1Var.f31721c)).f13618n = true;
+                    fVar.f13616n = true;
+                    ca1Var.f32599b.z();
+                    if (ca1Var.f32603r.f33319c > 0) {
+                        ((kg.f) gVar.d.get(ba1Var.f32353c)).f13616n = true;
                         gVar.z();
                     }
                 }

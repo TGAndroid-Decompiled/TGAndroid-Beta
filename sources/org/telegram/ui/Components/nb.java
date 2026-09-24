@@ -23,7 +23,7 @@ public abstract class nb extends ub {
     public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
         mb mbVar = this.button;
         if (mbVar != null && view != mbVar) {
-            i11 = org.telegram.messenger.ul.D(12.0f, mbVar.getMeasuredWidth(), i11);
+            i11 = org.telegram.messenger.ok.D(12.0f, mbVar.getMeasuredWidth(), i11);
         }
         super.measureChildWithMargins(view, i10, i11, i12, i13);
         if (view != this.button) {
@@ -53,15 +53,15 @@ public abstract class nb extends ub {
         this.button = mbVar;
         if (mbVar != null) {
             addCallback(mbVar);
-            addView(mbVar, 0, w7.x5.h(-2.0f, -2.0f, 8388629));
+            addView(mbVar, 0, w7.y5.h(-2.0f, -2.0f, 8388629));
         }
     }
 
     public void setTimer() {
         jc jcVar = new jc(getContext(), this.resourcesProvider);
         this.timerView = jcVar;
-        jcVar.f25246b = 5000L;
-        addView(jcVar, w7.x5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
+        jcVar.f25359b = 5000L;
+        addView(jcVar, w7.y5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public void setWrapWidth() {

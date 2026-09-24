@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
-public final class va extends lc0 {
+public final class va extends wc0 {
     public final boolean D0;
     public final boolean E0;
     public final bb F0;
@@ -31,7 +31,7 @@ public final class va extends lc0 {
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
             bb bbVar = this.F0;
-            drawable = ((org.telegram.ui.ActionBar.f3) bbVar).shadowDrawable;
+            drawable = ((org.telegram.ui.ActionBar.e3) bbVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 bbVar.dismiss();
             }

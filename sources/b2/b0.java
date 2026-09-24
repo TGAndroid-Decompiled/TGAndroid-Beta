@@ -13,7 +13,7 @@ public final class b0 {
     public boolean e = true;
 
     public b0() {
-        e9.g0 g0Var = e9.i0.f8067b;
+        e9.g0 g0Var = e9.i0.f8066b;
         this.f2934g = e9.a1.e;
     }
 }

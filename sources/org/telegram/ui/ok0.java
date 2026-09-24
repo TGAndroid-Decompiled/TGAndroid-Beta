@@ -12,12 +12,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ok0 extends org.telegram.ui.ActionBar.j {
-    public final Context f35904a;
-    public final sk0 f35905b;
+    public final Context f36243a;
+    public final sk0 f36244b;
 
     public ok0(sk0 sk0Var, Context context) {
-        this.f35905b = sk0Var;
-        this.f35904a = context;
+        this.f36244b = sk0Var;
+        this.f36243a = context;
     }
 
     @Override
@@ -25,11 +25,11 @@ public final class ok0 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.k kVar;
-        sk0 sk0Var = this.f35905b;
+        sk0 sk0Var = this.f36244b;
         org.telegram.ui.ActionBar.d6 d6Var = sk0Var.h;
         SparseArray sparseArray = sk0Var.J;
         if (i10 == -1) {
-            kVar = ((org.telegram.ui.ActionBar.n2) sk0Var).actionBar;
+            kVar = ((org.telegram.ui.ActionBar.m2) sk0Var).actionBar;
             if (kVar.s()) {
                 sk0.W(sk0Var);
                 return;
@@ -40,21 +40,21 @@ public final class ok0 extends org.telegram.ui.ActionBar.j {
         }
         if (i10 == 1) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(sk0Var.getParentActivity(), 0, d6Var);
-            alertDialog$Builder.f18409a.R = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
-            alertDialog$Builder.f18409a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new rs(11));
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new eu(this, 28));
+            alertDialog$Builder.f18647a.R = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
+            alertDialog$Builder.f18647a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.voip.e1(13));
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new du(this, 28));
             TextView textView = (TextView) alertDialog$Builder.o().d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19026q7, d6Var));
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19284q7, d6Var));
             }
         } else if (i10 == 2) {
             int size = sparseArray.size();
-            Context context = this.f35904a;
+            Context context = this.f36243a;
             if (size == 1) {
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
-                i12 = ((org.telegram.ui.ActionBar.n2) sk0Var).currentAccount;
+                i12 = ((org.telegram.ui.ActionBar.m2) sk0Var).currentAccount;
                 Uri a2 = ((qk0) sparseArray.valueAt(0)).a(i12);
                 if (a2 != null) {
                     intent.putExtra("android.intent.extra.STREAM", a2);
@@ -65,7 +65,7 @@ public final class ok0 extends org.telegram.ui.ActionBar.j {
                 intent2.setAction("android.intent.action.SEND_MULTIPLE");
                 ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
                 for (int i13 = 0; i13 < sparseArray.size(); i13++) {
-                    i11 = ((org.telegram.ui.ActionBar.n2) sk0Var).currentAccount;
+                    i11 = ((org.telegram.ui.ActionBar.m2) sk0Var).currentAccount;
                     Uri a10 = ((qk0) sparseArray.valueAt(i13)).a(i11);
                     if (a10 != null) {
                         arrayList.add(a10);
@@ -78,7 +78,7 @@ public final class ok0 extends org.telegram.ui.ActionBar.j {
             }
             sk0.W(sk0Var);
             sk0Var.c0();
-            sk0Var.f37320f.l();
+            sk0Var.f37797f.l();
         }
     }
 }

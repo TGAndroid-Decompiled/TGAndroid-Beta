@@ -1,13 +1,13 @@
 package ii;
 
 import android.view.View;
-import org.telegram.ui.Components.o70;
+import org.telegram.ui.Components.y70;
 public interface v3 {
-    o70 D(View view);
+    y70 F(View view);
 
-    void F();
+    void G();
 
-    void H(u3 u3Var, View view);
+    void J(u3 u3Var, View view);
 
     void d(w3 w3Var, View view);
 
@@ -15,7 +15,7 @@ public interface v3 {
 
     void g(e6 e6Var, String str);
 
-    void h(int i10);
+    void i(int i10);
 
     void l();
 
@@ -23,7 +23,7 @@ public interface v3 {
 
     void onContentChanged();
 
-    void q(a aVar);
+    void p(a aVar);
 
     void s();
 

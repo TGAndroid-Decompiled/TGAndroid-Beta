@@ -1,20 +1,20 @@
 package zd;
 public abstract class w0 extends a0 {
-    public static final int f48885f = 0;
-    public long f48886c;
+    public static final int f49203f = 0;
+    public long f49204c;
     public boolean d;
     public hd.e e;
 
     public final void f(boolean z10) {
         long j3;
-        long j10 = this.f48886c;
+        long j10 = this.f49204c;
         if (z10) {
             j3 = 4294967296L;
         } else {
             j3 = 1;
         }
         long j11 = j10 - j3;
-        this.f48886c = j11;
+        this.f49204c = j11;
         if (j11 <= 0 && this.d) {
             shutdown();
         }
@@ -24,13 +24,13 @@ public abstract class w0 extends a0 {
 
     public final void h(boolean z10) {
         long j3;
-        long j10 = this.f48886c;
+        long j10 = this.f49204c;
         if (z10) {
             j3 = 4294967296L;
         } else {
             j3 = 1;
         }
-        this.f48886c = j3 + j10;
+        this.f49204c = j3 + j10;
         if (!z10) {
             this.d = true;
         }
@@ -58,7 +58,7 @@ public abstract class w0 extends a0 {
     }
 
     public void k(long j3, t0 t0Var) {
-        f0.f48836s.o(j3, t0Var);
+        f0.f49154s.o(j3, t0Var);
     }
 
     public abstract void shutdown();

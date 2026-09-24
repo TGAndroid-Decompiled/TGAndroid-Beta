@@ -1,21 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class h61 extends rg.b1 {
-    public final i61 M;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class h61 extends AnimatorListenerAdapter {
+    public final int f34118a;
+    public final j61 f34119b;
 
-    public h61(i61 i61Var, Context context) {
-        super(context, 2, null);
-        this.M = i61Var;
+    public h61(j61 j61Var, int i10) {
+        this.f34118a = i10;
+        this.f34119b = j61Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        i61 i61Var = this.M;
-        if (i61Var.getParent() instanceof View) {
-            ((View) i61Var.getParent()).invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f34118a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f34119b.I = null;
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                this.f34119b.I = null;
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                j61 j61Var = this.f34119b;
+                j61Var.N = 0.0f;
+                j61Var.I = null;
+                j61Var.M = false;
+                j61Var.d(true, false);
+                return;
         }
     }
 }

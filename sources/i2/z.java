@@ -1,7 +1,7 @@
 package i2;
 
 import java.util.List;
-public final class z implements e2.m, m4.a1 {
+public final class z implements e2.m, m4.z0 {
     public final int f10912a;
     public final List f10913b;
 

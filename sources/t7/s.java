@@ -1,6 +1,6 @@
 package t7;
 public abstract class s {
-    public static r f42985a;
+    public static r f43307a;
 
     public static boolean a(int i10, CharSequence charSequence) {
         if (i10 < charSequence.length()) {
@@ -83,10 +83,10 @@ public abstract class s {
         q qVar;
         synchronized (s.class) {
             try {
-                if (f42985a == null) {
-                    f42985a = new r(0);
+                if (f43307a == null) {
+                    f43307a = new r(0);
                 }
-                qVar = (q) f42985a.O0(oVar);
+                qVar = (q) f43307a.O0(oVar);
             } catch (Throwable th2) {
                 throw th2;
             }

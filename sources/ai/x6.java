@@ -45,7 +45,7 @@ public final class x6 extends yr {
         } else {
             i11 = R.string.SortByReactions;
         }
-        org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i14, LocaleController.getString(i11), false, k7Var.f1134s);
+        org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i14, LocaleController.getString(i11), false, k7Var.f1134s);
         if (!k7Var.O.f1577a) {
             c10.setAlpha(0.5f);
         }
@@ -109,7 +109,7 @@ public final class x6 extends yr {
         } else {
             i12 = R.drawable.menu_views_recent;
         }
-        org.telegram.ui.ActionBar.f1 c11 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i12, LocaleController.getString(R.string.SortByTime), false, k7Var.f1134s);
+        org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i12, LocaleController.getString(R.string.SortByTime), false, k7Var.f1134s);
         if (k7Var.O.f1577a) {
             c11.setAlpha(0.5f);
         }
@@ -168,9 +168,9 @@ public final class x6 extends yr {
                 }
             }
         });
-        View k1Var = new org.telegram.ui.ActionBar.k1(y6Var.getContext(), org.telegram.ui.ActionBar.h6.H8, k7Var.f1134s);
-        k1Var.setTag(R.id.fit_width_tag, 1);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.a(k1Var, w7.x5.n(-1, 8));
+        View j1Var = new org.telegram.ui.ActionBar.j1(y6Var.getContext(), org.telegram.ui.ActionBar.h6.H8, k7Var.f1134s);
+        j1Var.setTag(R.id.fit_width_tag, 1);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.a(j1Var, w7.y5.n(-1, 8));
         if (z10) {
             i13 = R.string.StoryReactionsSortDescription;
         } else {
@@ -180,12 +180,12 @@ public final class x6 extends yr {
         d dVar = k7Var.f1134s;
         TextView textView = new TextView(actionBarPopupWindow$ActionBarPopupWindowLayout.getContext());
         textView.setTextSize(1, 13.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18895j5, dVar));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19151j5, dVar));
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setText(string);
         textView.setTag(R.id.fit_width_tag, 1);
         textView.setMaxWidth(AndroidUtilities.dp(200.0f));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.a(textView, w7.x5.n(-1, -2));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.a(textView, w7.y5.n(-1, -2));
     }
 
     @Override

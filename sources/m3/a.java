@@ -4,12 +4,12 @@ import b2.m0;
 import b2.o0;
 import b2.s;
 public final class a implements o0 {
-    public final int f14434a;
-    public final String f14435b;
+    public final int f14672a;
+    public final String f14673b;
 
     public a(int i10, String str) {
-        this.f14434a = i10;
-        this.f14435b = str;
+        this.f14672a = i10;
+        this.f14673b = str;
     }
 
     @Override
@@ -24,9 +24,9 @@ public final class a implements o0 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Ait(controlCode=");
-        sb2.append(this.f14434a);
+        sb2.append(this.f14672a);
         sb2.append(",url=");
-        return a4.a.t(sb2, this.f14435b, ")");
+        return a4.a.t(sb2, this.f14673b, ")");
     }
 
     @Override

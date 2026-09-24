@@ -1,49 +1,27 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import w7.x5;
-public final class l1 extends FrameLayout {
-    public final q1 f29019a;
-    public final RectF f29020b;
+import org.telegram.ui.Components.lj0;
+public final class l1 implements Runnable {
+    public final int f29440a;
+    public final p1 f29441b;
+    public final lj0 f29442c;
 
-    public l1(Context context, q1 q1Var) {
-        super(context);
-        this.f29020b = new RectF();
-        this.f29019a = q1Var;
-        q1Var.a(this);
-        setWillNotDraw(false);
-        TextView textView = new TextView(context);
-        textView.setTextColor(-1);
-        textView.setText(LocaleController.getString(R.string.VoipRateCallTitle));
-        textView.setTextSize(1, 15.0f);
-        textView.setGravity(1);
-        textView.setTypeface(AndroidUtilities.bold());
-        TextView textView2 = new TextView(context);
-        textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(-1);
-        textView2.setGravity(1);
-        textView2.setText(LocaleController.getString(R.string.VoipRateCallDescription));
-        addView(textView, x5.d(-1, -2.0f, 3, 0.0f, 24.0f, 0.0f, 0.0f));
-        addView(textView2, x5.d(-1, -2.0f, 3, 0.0f, 50.0f, 0.0f, 0.0f));
+    public l1(p1 p1Var, lj0 lj0Var, int i10) {
+        this.f29440a = i10;
+        this.f29441b = p1Var;
+        this.f29442c = lj0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f29020b;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        float x10 = ((View) getParent()).getX() + getX();
-        float y3 = ((View) getParent()).getY() + getY();
-        q1 q1Var = this.f29019a;
-        q1Var.d(x10, y3);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), q1Var.b());
-        super.dispatchDraw(canvas);
+    public final void run() {
+        switch (this.f29440a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new l1(this.f29441b, this.f29442c, 1));
+                return;
+            default:
+                this.f29441b.removeView(this.f29442c);
+                return;
+        }
     }
 }

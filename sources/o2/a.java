@@ -12,39 +12,39 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 public final class a implements g2.h {
-    public final g2.h f15334a;
-    public final byte[] f15335b;
-    public final byte[] f15336c;
+    public final g2.h f15526a;
+    public final byte[] f15527b;
+    public final byte[] f15528c;
     public CipherInputStream d;
 
     public a(g2.h hVar, byte[] bArr, byte[] bArr2) {
-        this.f15334a = hVar;
-        this.f15335b = bArr;
-        this.f15336c = bArr2;
+        this.f15526a = hVar;
+        this.f15527b = bArr;
+        this.f15528c = bArr2;
     }
 
     @Override
     public final void addTransferListener(c0 c0Var) {
         c0Var.getClass();
-        this.f15334a.addTransferListener(c0Var);
+        this.f15526a.addTransferListener(c0Var);
     }
 
     @Override
     public final void close() {
         if (this.d != null) {
             this.d = null;
-            this.f15334a.close();
+            this.f15526a.close();
         }
     }
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f15334a.getResponseHeaders();
+        return this.f15526a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f15334a.getUri();
+        return this.f15526a.getUri();
     }
 
     @Override
@@ -52,11 +52,11 @@ public final class a implements g2.h {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             try {
-                cipher.init(2, new SecretKeySpec(this.f15335b, "AES"), new IvParameterSpec(this.f15336c));
-                g2.k kVar = new g2.k(this.f15334a, mVar);
+                cipher.init(2, new SecretKeySpec(this.f15527b, "AES"), new IvParameterSpec(this.f15528c));
+                g2.k kVar = new g2.k(this.f15526a, mVar);
                 this.d = new CipherInputStream(kVar, cipher);
                 if (!kVar.d) {
-                    kVar.f9354a.open(kVar.f9355b);
+                    kVar.f9353a.open(kVar.f9354b);
                     kVar.d = true;
                     return -1L;
                 }

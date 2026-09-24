@@ -1,226 +1,104 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.os.Build;
-import android.provider.Settings;
-import android.view.MotionEvent;
-import android.view.View;
-import android.webkit.WebView;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public abstract class qf0 extends FrameLayout {
-    public float E;
-    public boolean F;
-    public boolean G;
-    public int H;
-    public int I;
-    public float J;
-    public boolean K;
-    public ac0 L;
-    public int f27329a;
-    public PhotoViewer f27330b;
-    public LinearLayout f27331c;
-    public TextView d;
-    public TextView e;
-    public qu f27332f;
-    public ci.bb h;
-    public RadialProgressView f27333n;
-    public View f27334r;
-    public String f27335s;
-    public ArrayList v;
-    public String f27336w;
-    public boolean f27337x;
-    public TLRPC.WebPage f27338y;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+public final class qf0 {
+    public float f27599a = 0.0f;
+    public float f27600b = 25.0f;
+    public float f27601c = 50.0f;
+    public float d = 75.0f;
+    public float e = 100.0f;
+    public float[] f27602f;
 
-    public static void a(org.telegram.ui.bu0 bu0Var, String str) {
-        String str2;
-        double ceil;
-        int videoDuration = bu0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = bu0Var.v;
-        arrayList.clear();
-        if (videoDuration > 15) {
-            String[] split = str.split("\\|");
-            String t10 = a4.a.t(new StringBuilder(), split[0].split("\\$")[0], "2/");
-            String str3 = split[0].split("\\$N")[1];
-            if (split.length == 3) {
-                str2 = split[2].split("M#")[1];
-            } else if (split.length == 2) {
-                str2 = split[1].split("t#")[1];
-            } else {
-                str2 = split[3].split("M#")[1];
+    public final float[] a() {
+        float f7 = this.f27599a;
+        float f10 = this.e;
+        int i10 = 5;
+        float[] fArr = {-0.001f, f7 / 100.0f, 0.0f, f7 / 100.0f, 0.25f, this.f27600b / 100.0f, 0.5f, this.f27601c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f10 / 100.0f, 1.001f, f10 / 100.0f};
+        int i11 = 100;
+        ArrayList arrayList = new ArrayList(100);
+        ArrayList arrayList2 = new ArrayList(100);
+        arrayList2.add(Float.valueOf(fArr[0]));
+        arrayList2.add(Float.valueOf(fArr[1]));
+        int i12 = 1;
+        while (i12 < i10) {
+            int i13 = (i12 - 1) * 2;
+            float f11 = fArr[i13];
+            float f12 = fArr[i13 + 1];
+            int i14 = i12 * 2;
+            float f13 = fArr[i14];
+            float f14 = fArr[i14 + 1];
+            int i15 = i12 + 1;
+            int i16 = i15 * 2;
+            float f15 = fArr[i16];
+            float f16 = fArr[i16 + 1];
+            int i17 = (i12 + 2) * 2;
+            float f17 = fArr[i17];
+            float f18 = fArr[i17 + 1];
+            int i18 = 1;
+            while (i18 < i11) {
+                float f19 = i18 * 0.01f;
+                float f20 = f19 * f19;
+                float f21 = f20 * f19;
+                float z10 = ((((((f13 * 3.0f) - f11) - (f15 * 3.0f)) + f17) * f21) + ((((f15 * 4.0f) + ((f11 * 2.0f) - (f13 * 5.0f))) - f17) * f20) + com.google.android.gms.internal.vision.e2.z(f15, f11, f19, f13 * 2.0f)) * 0.5f;
+                float max = Math.max(0.0f, Math.min(1.0f, ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f21) + ((((4.0f * f16) + ((2.0f * f12) - (5.0f * f14))) - f18) * f20) + com.google.android.gms.internal.vision.e2.z(f16, f12, f19, f14 * 2.0f)) * 0.5f));
+                if (z10 > f11) {
+                    arrayList2.add(Float.valueOf(z10));
+                    arrayList2.add(Float.valueOf(max));
+                }
+                if ((i18 - 1) % 2 == 0) {
+                    arrayList.add(Float.valueOf(max));
+                }
+                i18++;
+                i11 = 100;
             }
-            if (videoDuration <= 100) {
-                ceil = Math.ceil(videoDuration / 25.0f);
-            } else if (videoDuration <= 250) {
-                ceil = Math.ceil((videoDuration / 2.0f) / 25.0f);
-            } else if (videoDuration <= 500) {
-                ceil = Math.ceil((videoDuration / 4.0f) / 25.0f);
-            } else if (videoDuration <= 1000) {
-                ceil = Math.ceil((videoDuration / 5.0f) / 25.0f);
-            } else {
-                ceil = Math.ceil((videoDuration / 10.0f) / 25.0f);
-            }
-            int i10 = (int) ceil;
-            for (int i11 = 0; i11 < i10; i11++) {
-                Locale locale = Locale.ROOT;
-                arrayList.add(t10 + "M" + i11 + str3 + "&sigh=" + str2);
-            }
+            arrayList2.add(Float.valueOf(f15));
+            arrayList2.add(Float.valueOf(f16));
+            i12 = i15;
+            i10 = 5;
+            i11 = 100;
         }
-    }
-
-    public final void b(boolean z10) {
-        ac0 ac0Var = this.L;
-        if (!z10 && this.G) {
-            AndroidUtilities.runOnUIThread(ac0Var, 500L);
-        } else if (z10 && !this.G) {
-            AndroidUtilities.cancelRunOnUIThread(ac0Var);
-        }
-    }
-
-    public final java.lang.String c(int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qf0.c(int):java.lang.String");
-    }
-
-    public final boolean d() {
-        return this.f27337x;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.K) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public final boolean e() {
-        boolean z10;
-        if (this.f27337x && "inapp".equals(MessagesController.getInstance(this.f27329a).youtubePipType)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10 && Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(getContext())) {
-            e5.B((Activity) getContext(), null, false);
-            return false;
-        } else if (this.f27333n.getVisibility() == 0) {
-            return false;
-        } else {
-            if (eg0.f23661p0.P) {
-                eg0.j(false);
-                AndroidUtilities.runOnUIThread(new mf0(this, 0), 300L);
-                return true;
+        arrayList2.add(Float.valueOf(fArr[12]));
+        arrayList2.add(Float.valueOf(fArr[13]));
+        this.f27602f = new float[arrayList.size()];
+        int i19 = 0;
+        while (true) {
+            float[] fArr2 = this.f27602f;
+            if (i19 >= fArr2.length) {
+                break;
             }
-            this.h.setVisibility(0);
-            Activity activity = (Activity) getContext();
-            qu quVar = this.f27332f;
-            TLRPC.WebPage webPage = this.f27338y;
-            if (eg0.x(z10, activity, this, quVar, webPage.embed_width, webPage.embed_height, false)) {
-                eg0.w(PhotoViewer.t1());
-            }
+            fArr2[i19] = ((Float) arrayList.get(i19)).floatValue();
+            i19++;
+        }
+        int size = arrayList2.size();
+        float[] fArr3 = new float[size];
+        for (int i20 = 0; i20 < size; i20++) {
+            fArr3[i20] = ((Float) arrayList2.get(i20)).floatValue();
+        }
+        return fArr3;
+    }
+
+    public final boolean b() {
+        if (Math.abs(this.f27599a - 0.0f) < 1.0E-5d && Math.abs(this.f27600b - 25.0f) < 1.0E-5d && Math.abs(this.f27601c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.e - 100.0f) < 1.0E-5d) {
             return true;
         }
+        return false;
     }
 
-    public final void f() {
-        if (this.G && this.f27337x) {
-            h("pauseVideo();");
-            this.G = false;
-            b(true);
-        }
+    public final void c(InputSerializedData inputSerializedData, boolean z10) {
+        this.f27599a = inputSerializedData.readFloat(z10);
+        this.f27600b = inputSerializedData.readFloat(z10);
+        this.f27601c = inputSerializedData.readFloat(z10);
+        this.d = inputSerializedData.readFloat(z10);
+        this.e = inputSerializedData.readFloat(z10);
     }
 
-    public final void g() {
-        if (!this.G && this.f27337x) {
-            h("playVideo();");
-            this.G = true;
-            b(false);
-        }
-    }
-
-    public float getBufferedPosition() {
-        return this.J;
-    }
-
-    public int getCurrentPosition() {
-        return this.I;
-    }
-
-    public int getVideoDuration() {
-        return this.H;
-    }
-
-    public WebView getWebView() {
-        return this.f27332f;
-    }
-
-    public final void h(String str) {
-        this.f27332f.evaluateJavascript(str, null);
-    }
-
-    public final void i(long j3) {
-        boolean z10 = this.G;
-        this.I = (int) j3;
-        if (z10) {
-            f();
-        }
-        if (z10) {
-            AndroidUtilities.runOnUIThread(new ai.j(this, j3, 21), 100L);
-            return;
-        }
-        h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        qu quVar = this.f27332f;
-        if (quVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.f27338y;
-            int i12 = webPage.embed_width;
-            int i13 = 100;
-            if (i12 == 0) {
-                i12 = 100;
-            }
-            int i14 = webPage.embed_height;
-            if (i14 != 0) {
-                i13 = i14;
-            }
-            int size = View.MeasureSpec.getSize(i10);
-            int size2 = View.MeasureSpec.getSize(i11);
-            float f7 = i12;
-            float f10 = i13;
-            float min = Math.min(size / f7, size2 / f10);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) quVar.getLayoutParams();
-            int i15 = (int) (f7 * min);
-            layoutParams.width = i15;
-            int i16 = (int) (f10 * min);
-            layoutParams.height = i16;
-            layoutParams.topMargin = (size2 - i16) / 2;
-            layoutParams.leftMargin = (size - i15) / 2;
-        }
-        super.onMeasure(i10, i11);
-    }
-
-    public void setPlaybackSpeed(float f7) {
-        this.E = f7;
-        if (this.f27333n.getVisibility() != 0) {
-            if (this.f27337x) {
-                h("setPlaybackSpeed(" + f7 + ");");
-                return;
-            }
-            return;
-        }
-        this.F = true;
-    }
-
-    public void setTouchDisabled(boolean z10) {
-        this.K = z10;
+    public final void d(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeFloat(this.f27599a);
+        outputSerializedData.writeFloat(this.f27600b);
+        outputSerializedData.writeFloat(this.f27601c);
+        outputSerializedData.writeFloat(this.d);
+        outputSerializedData.writeFloat(this.e);
     }
 }

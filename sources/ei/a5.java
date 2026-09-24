@@ -1,25 +1,25 @@
 package ei;
 public final class a5 implements Runnable {
-    public final int f8220a;
-    public final b5 f8221b;
+    public final int f8219a;
+    public final b5 f8220b;
 
     public a5(b5 b5Var, int i10) {
-        this.f8220a = i10;
-        this.f8221b = b5Var;
+        this.f8219a = i10;
+        this.f8220b = b5Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f8220a) {
+        switch (this.f8219a) {
             case 0:
-                b5 b5Var = this.f8221b;
-                if (b5Var.f8248w) {
+                b5 b5Var = this.f8220b;
+                if (b5Var.f8247w) {
                     b5Var.d();
                     return;
                 }
                 return;
             default:
-                this.f8221b.invalidateSelf();
+                this.f8220b.invalidateSelf();
                 return;
         }
     }

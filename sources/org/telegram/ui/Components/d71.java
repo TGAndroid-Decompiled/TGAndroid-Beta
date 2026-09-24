@@ -1,153 +1,231 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.io.File;
-import java.net.URLEncoder;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class d71 {
-    public int f23300a;
-    public boolean f23301b;
-    public long f23302c;
-    public Uri d;
-    public long e;
-    public Uri f23303f;
-    public TLRPC.Document f23304g;
-    public TLRPC.Document h;
-    public int f23305i;
-    public int f23306j;
-    public long f23307k;
-    public double f23308l;
-    public String f23309m;
+public final class d71 extends Drawable implements w5, x6, NotificationCenter.NotificationCenterDelegate {
+    public final p20 f23509a;
+    public final int f23510b;
+    public float f23511c;
+    public final boolean d;
+    public ImageReceiver e;
+    public final HashSet f23512f;
+    public final q5 h;
+    public final c71 f23513n;
+    public final ImageReceiver f23514r;
+    public final int f23515s;
+    public boolean v;
+    public final TLRPC.TL_videoSizeStickerMarkup f23516w;
 
-    public static Uri a(int i10, int i11, TLRPC.Document document) {
-        StringBuilder l4 = hg.c.l(i10, "?account=", "&id=");
-        l4.append(document.f18089id);
-        l4.append("&hash=");
-        l4.append(document.access_hash);
-        l4.append("&dc=");
-        l4.append(document.dc_id);
-        l4.append("&size=");
-        l4.append(document.size);
-        l4.append("&mime=");
-        l4.append(URLEncoder.encode(document.mime_type, "UTF-8"));
-        l4.append("&rid=");
-        l4.append(i11);
-        l4.append("&name=");
-        l4.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
-        l4.append("&reference=");
-        byte[] bArr = document.file_reference;
-        if (bArr == null) {
-            bArr = new byte[0];
-        }
-        l4.append(Utilities.bytesToHex(bArr));
-        String sb2 = l4.toString();
-        return Uri.parse("tg://" + MessageObject.getFileName(document) + sb2);
-    }
-
-    public static d71 d(int i10, TLRPC.Document document, TLRPC.Document document2, int i11, boolean z10) {
-        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo;
-        String str;
-        String str2;
-        ?? obj = new Object();
-        int i12 = 0;
-        while (true) {
-            if (i12 < document.attributes.size()) {
-                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i12);
-                if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                    tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentAttribute;
-                    break;
-                }
-                i12++;
-            } else {
-                tL_documentAttributeVideo = null;
-                break;
-            }
-        }
-        if (tL_documentAttributeVideo != null && (str2 = tL_documentAttributeVideo.video_codec) != null) {
-            str = str2.toLowerCase();
+    public d71(TLRPC.VideoSize videoSize, boolean z10, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        p20 p20Var = new p20();
+        this.f23509a = p20Var;
+        this.f23512f = new HashSet();
+        this.f23514r = new ImageReceiver();
+        this.f23515s = UserConfig.selectedAccount;
+        this.f23510b = i10;
+        this.d = z10;
+        int k10 = i0.a.k(videoSize.background_colors.get(0).intValue(), 255);
+        if (videoSize.background_colors.size() > 1) {
+            i11 = i0.a.k(videoSize.background_colors.get(1).intValue(), 255);
         } else {
-            str = null;
+            i11 = 0;
         }
-        obj.f23300a = i10;
-        obj.f23304g = document;
-        obj.f23302c = document.f18089id;
-        obj.d = a(i10, i11, document);
-        if (document2 != null) {
-            obj.h = document2;
-            obj.e = document2.f18089id;
-            obj.f23303f = a(i10, i11, document2);
-            File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(document2, null, false, z10);
-            if (pathToAttach != null && pathToAttach.exists()) {
-                obj.f23303f = Uri.fromFile(pathToAttach);
+        if (videoSize.background_colors.size() > 2) {
+            i12 = i0.a.k(videoSize.background_colors.get(2).intValue(), 255);
+        } else {
+            i12 = 0;
+        }
+        p20Var.d(k10, i11, i12, videoSize.background_colors.size() > 3 ? i0.a.k(videoSize.background_colors.get(3).intValue(), 255) : 0);
+        if (videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup) {
+            TLRPC.TL_videoSizeEmojiMarkup tL_videoSizeEmojiMarkup = (TLRPC.TL_videoSizeEmojiMarkup) videoSize;
+            if (i10 == 1 && z10) {
+                i13 = 7;
+            } else if (i10 == 2) {
+                i13 = 15;
             } else {
-                File pathToAttach2 = FileLoader.getInstance(i10).getPathToAttach(document2, null, true, z10);
-                if (pathToAttach2 != null && pathToAttach2.exists()) {
-                    obj.f23303f = Uri.fromFile(pathToAttach2);
-                }
+                i13 = 8;
             }
+            q5 q5Var = new q5(i13, UserConfig.selectedAccount, tL_videoSizeEmojiMarkup.emoji_id);
+            this.h = q5Var;
+            q5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        } else if (videoSize instanceof TLRPC.TL_videoSizeStickerMarkup) {
+            this.f23516w = (TLRPC.TL_videoSizeStickerMarkup) videoSize;
+            c71 c71Var = new c71(this);
+            this.f23513n = c71Var;
+            c71Var.setInvalidateAll(true);
+            if (i10 == 1) {
+                c71Var.setAutoRepeatCount(2);
+            }
+            d();
         }
-        obj.f23309m = str;
-        long j3 = document.size;
-        obj.f23307k = j3;
-        if (tL_documentAttributeVideo != null) {
-            double d = tL_documentAttributeVideo.duration;
-            obj.f23305i = tL_documentAttributeVideo.f18090w;
-            obj.f23306j = tL_documentAttributeVideo.h;
-            obj.f23308l = j3 / d;
-        }
-        File pathToAttach3 = FileLoader.getInstance(i10).getPathToAttach(document, null, false, z10);
-        if (pathToAttach3 != null && pathToAttach3.exists()) {
-            obj.d = Uri.fromFile(pathToAttach3);
-            return obj;
-        }
-        File pathToAttach4 = FileLoader.getInstance(i10).getPathToAttach(document, null, true, z10);
-        if (pathToAttach4 != null && pathToAttach4.exists()) {
-            obj.d = Uri.fromFile(pathToAttach4);
-        }
-        return obj;
     }
 
-    public final boolean b() {
-        Uri uri = this.d;
-        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
+    @Override
+    public final void b(ImageReceiver imageReceiver) {
+        HashSet hashSet = this.f23512f;
+        hashSet.remove(imageReceiver);
+        if (hashSet.isEmpty()) {
+            q5 q5Var = this.h;
+            if (q5Var != null) {
+                q5Var.p(this);
+            }
+            c71 c71Var = this.f23513n;
+            if (c71Var != null) {
+                c71Var.onDetachedFromWindow();
+            }
+            ImageReceiver imageReceiver2 = this.f23514r;
+            if (imageReceiver2 != null) {
+                imageReceiver2.onDetachedFromWindow();
+            }
+        }
+        if (this.f23516w != null) {
+            NotificationCenter.getInstance(this.f23515s).removeObserver(this, NotificationCenter.groupStickersDidLoad);
+        }
+    }
+
+    @Override
+    public final void c(ImageReceiver imageReceiver) {
+        if (imageReceiver != null) {
+            this.f23511c = imageReceiver.getRoundRadius()[0];
+            HashSet hashSet = this.f23512f;
+            if (hashSet.isEmpty()) {
+                q5 q5Var = this.h;
+                if (q5Var != null) {
+                    q5Var.b(this);
+                }
+                c71 c71Var = this.f23513n;
+                if (c71Var != null) {
+                    c71Var.onAttachedToWindow();
+                }
+                ImageReceiver imageReceiver2 = this.f23514r;
+                if (imageReceiver2 != null) {
+                    imageReceiver2.onAttachedToWindow();
+                }
+            }
+            hashSet.add(imageReceiver);
+            if (this.f23516w != null) {
+                NotificationCenter.getInstance(this.f23515s).addObserver(this, NotificationCenter.groupStickersDidLoad);
+            }
+        }
+    }
+
+    public final void d() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d71.d():void");
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.groupStickersDidLoad && !this.v) {
+            d();
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        ImageReceiver imageReceiver;
+        p20 p20Var = this.f23509a;
+        p20Var.b(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom);
+        Paint paint = p20Var.f27233c;
+        if (this.e != null) {
+            this.f23511c = imageReceiver.getRoundRadius()[0];
+        }
+        float f7 = this.f23511c;
+        if (f7 == 0.0f) {
+            canvas.drawRect(getBounds(), paint);
+        } else {
+            canvas.drawRoundRect(p20Var.h, f7, f7, paint);
+        }
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        int width = ((int) (getBounds().width() * 0.7f)) >> 1;
+        q5 q5Var = this.h;
+        if (q5Var != null) {
+            ai.l4 l4Var = q5Var.f27498k;
+            if (l4Var != null) {
+                l4Var.setRoundRadius((int) (width * 2 * 0.13f));
+            }
+            q5Var.setBounds(centerX - width, centerY - width, centerX + width, centerY + width);
+            q5Var.draw(canvas);
+        }
+        c71 c71Var = this.f23513n;
+        if (c71Var != null) {
+            float f10 = width * 2;
+            c71Var.setRoundRadius((int) (0.13f * f10));
+            c71Var.setImageCoords(centerX - width, centerY - width, f10, f10);
+            c71Var.draw(canvas);
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup;
+        if (this == obj) {
             return true;
+        }
+        if (obj != null && d71.class == obj.getClass()) {
+            d71 d71Var = (d71) obj;
+            q5 q5Var = d71Var.h;
+            if (this.f23510b == d71Var.f23510b) {
+                p20 p20Var = this.f23509a;
+                int i10 = p20Var.d;
+                p20 p20Var2 = d71Var.f23509a;
+                if (i10 == p20Var2.d && p20Var.e == p20Var2.e && p20Var.f27234f == p20Var2.f27234f && p20Var.f27235g == p20Var2.f27235g) {
+                    q5 q5Var2 = this.h;
+                    if (q5Var2 != null && q5Var != null) {
+                        if (q5Var2.i() == q5Var.i()) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.f23516w;
+                    if (tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = d71Var.f23516w) != null && tL_videoSizeStickerMarkup2.stickerset.f18341id == tL_videoSizeStickerMarkup.stickerset.f18341id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id) {
+                        return true;
+                    }
+                }
+            }
         }
         return false;
     }
 
-    public final boolean c() {
-        Uri uri = this.f23303f;
-        if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
-            return true;
-        }
-        return false;
+    @Override
+    public final int getOpacity() {
+        return 0;
     }
 
-    public final void e(boolean z10) {
-        if (!b() && this.f23304g != null) {
-            File pathToAttach = FileLoader.getInstance(this.f23300a).getPathToAttach(this.f23304g, null, false, z10);
-            if (pathToAttach != null && pathToAttach.exists()) {
-                this.d = Uri.fromFile(pathToAttach);
-            } else {
-                File pathToAttach2 = FileLoader.getInstance(this.f23300a).getPathToAttach(this.f23304g, null, true, z10);
-                if (pathToAttach2 != null && pathToAttach2.exists()) {
-                    this.d = Uri.fromFile(pathToAttach2);
-                }
-            }
+    @Override
+    public final void invalidate() {
+        Iterator it = this.f23512f.iterator();
+        while (it.hasNext()) {
+            ((ImageReceiver) it.next()).invalidate();
         }
-        if (!c() && this.h != null) {
-            File pathToAttach3 = FileLoader.getInstance(this.f23300a).getPathToAttach(this.h, null, false, z10);
-            if (pathToAttach3 != null && pathToAttach3.exists()) {
-                this.f23303f = Uri.fromFile(pathToAttach3);
-                return;
-            }
-            File pathToAttach4 = FileLoader.getInstance(this.f23300a).getPathToAttach(this.h, null, true, z10);
-            if (pathToAttach4 != null && pathToAttach4.exists()) {
-                this.f23303f = Uri.fromFile(pathToAttach4);
-            }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f23509a.f27233c.setAlpha(i10);
+        q5 q5Var = this.h;
+        if (q5Var != null) {
+            q5Var.setAlpha(i10);
         }
+    }
+
+    @Override
+    public final void a(lj0 lj0Var) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

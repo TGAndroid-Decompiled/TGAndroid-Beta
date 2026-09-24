@@ -17,12 +17,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class r6 extends LinearLayout {
-    public static final int f20766c = 0;
-    public TLRPC.RequestPeerType f20767a;
-    public ArrayList f20768b;
+    public static final int f20857c = 0;
+    public TLRPC.RequestPeerType f20858a;
+    public ArrayList f20859b;
 
     public final void a(Boolean bool, int i10, int i11) {
-        ArrayList arrayList = this.f20768b;
+        ArrayList arrayList = this.f20859b;
         if (bool != null) {
             if (bool.booleanValue()) {
                 arrayList.add(s6.a(AndroidUtilities.replaceTags(LocaleController.getString(i10))));
@@ -36,9 +36,9 @@ public final class r6 extends LinearLayout {
         int i10;
         String string;
         int i11;
-        ArrayList arrayList = this.f20768b;
-        if (this.f20767a != requestPeerType) {
-            this.f20767a = requestPeerType;
+        ArrayList arrayList = this.f20859b;
+        if (this.f20858a != requestPeerType) {
+            this.f20858a = requestPeerType;
             removeAllViews();
             arrayList.clear();
             if (requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) {
@@ -82,13 +82,13 @@ public final class r6 extends LinearLayout {
                             } else {
                                 string = LocaleController.getString(R.string.EditAdminChangeGroupInfo);
                             }
-                            q3.s(string, 1, arrayList2);
+                            c1.s(string, 1, arrayList2);
                         }
                         if (tL_chatAdminRights.post_messages && z10) {
-                            q3.s(LocaleController.getString(R.string.EditAdminPostMessages), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.EditAdminPostMessages), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.edit_messages && z10) {
-                            q3.s(LocaleController.getString(R.string.EditAdminEditMessages), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.EditAdminEditMessages), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.delete_messages) {
                             if (z10) {
@@ -96,31 +96,31 @@ public final class r6 extends LinearLayout {
                             } else {
                                 i10 = R.string.EditAdminGroupDeleteMessages;
                             }
-                            q3.s(LocaleController.getString(i10), 1, arrayList2);
+                            c1.s(LocaleController.getString(i10), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.ban_users && !z10) {
-                            q3.s(LocaleController.getString(R.string.EditAdminBanUsers), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.EditAdminBanUsers), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.invite_users) {
-                            q3.s(LocaleController.getString(R.string.EditAdminAddUsers), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.EditAdminAddUsers), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.pin_messages && !z10) {
-                            q3.s(LocaleController.getString(R.string.EditAdminPinMessages), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.EditAdminPinMessages), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.add_admins) {
-                            q3.s(LocaleController.getString(R.string.EditAdminAddAdmins), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.EditAdminAddAdmins), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.anonymous && !z10) {
-                            q3.s(LocaleController.getString(R.string.EditAdminSendAnonymously), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.EditAdminSendAnonymously), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.manage_call) {
-                            q3.s(LocaleController.getString(R.string.StartVoipChatPermission), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.StartVoipChatPermission), 1, arrayList2);
                         }
                         if (tL_chatAdminRights.manage_topics && !z10) {
-                            q3.s(LocaleController.getString(R.string.ManageTopicsPermission), 1, arrayList2);
+                            c1.s(LocaleController.getString(R.string.ManageTopicsPermission), 1, arrayList2);
                         }
                         if (arrayList2.size() == 1) {
-                            arrayList.add(s6.a(TextUtils.concat(replaceTags2, " ", ((s6) arrayList2.get(0)).f20920b)));
+                            arrayList.add(s6.a(TextUtils.concat(replaceTags2, " ", ((s6) arrayList2.get(0)).f21050b)));
                         } else if (!arrayList2.isEmpty()) {
                             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(replaceTags);
                             valueOf.append((CharSequence) " ");
@@ -128,7 +128,7 @@ public final class r6 extends LinearLayout {
                                 if (i14 > 0) {
                                     valueOf.append((CharSequence) ", ");
                                 }
-                                valueOf.append((CharSequence) ((s6) arrayList2.get(i14)).f20920b.toString().toLowerCase());
+                                valueOf.append((CharSequence) ((s6) arrayList2.get(i14)).f21050b.toString().toLowerCase());
                             }
                             valueOf.append((CharSequence) ".");
                             arrayList.add(s6.a(valueOf));
@@ -139,13 +139,13 @@ public final class r6 extends LinearLayout {
             if (!arrayList.isEmpty()) {
                 m4 m4Var = new m4(getContext(), 20);
                 m4Var.setText(LocaleController.getString(R.string.PeerRequirements));
-                int i15 = org.telegram.ui.ActionBar.h6.f18789d6;
+                int i15 = org.telegram.ui.ActionBar.h6.f19045d6;
                 m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, i15, false));
-                addView(m4Var, w7.x5.n(-1, -2));
+                addView(m4Var, w7.y5.n(-1, -2));
                 Drawable colorDrawable = new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, i15, false));
                 View t3Var = new t3(getContext(), 9, 1);
                 t3Var.setBackground(colorDrawable);
-                addView(t3Var, w7.x5.n(-1, -2));
+                addView(t3Var, w7.y5.n(-1, -2));
                 int size = arrayList.size();
                 int i16 = 0;
                 while (i16 < size) {
@@ -154,34 +154,34 @@ public final class r6 extends LinearLayout {
                     s6 s6Var = (s6) obj;
                     Context context = getContext();
                     LinearLayout linearLayout = new LinearLayout(context);
-                    linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18789d6, false));
+                    linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19045d6, false));
                     linearLayout.setOrientation(0);
                     ImageView imageView = new ImageView(context);
                     imageView.setScaleType(ImageView.ScaleType.CENTER);
-                    if (s6Var.f20919a <= 0) {
+                    if (s6Var.f21049a <= 0) {
                         i11 = R.drawable.list_check;
                     } else {
                         i11 = R.drawable.list_circle;
                     }
                     imageView.setImageResource(i11);
                     imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.L6, false), PorterDuff.Mode.MULTIPLY));
-                    linearLayout.addView(imageView, w7.x5.p(20, 20, 0.0f, 51, (s6Var.f20919a * 16) + 17, -1, 0, 0));
+                    linearLayout.addView(imageView, w7.y5.p(20, 20, 0.0f, 51, (s6Var.f21049a * 16) + 17, -1, 0, 0));
                     TextView textView = new TextView(context);
                     textView.setTextSize(1, 14.0f);
-                    textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19189z6, false));
+                    textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19447z6, false));
                     textView.setSingleLine(false);
-                    textView.setText(s6Var.f20920b);
-                    linearLayout.addView(textView, w7.x5.t(-1, -2, 1, 6, 4, 24, 4));
-                    addView(linearLayout, w7.x5.n(-1, -2));
+                    textView.setText(s6Var.f21050b);
+                    linearLayout.addView(textView, w7.y5.t(-1, -2, 1, 6, 4, 24, 4));
+                    addView(linearLayout, w7.y5.n(-1, -2));
                 }
-                Drawable colorDrawable2 = new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18789d6, false));
+                Drawable colorDrawable2 = new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19045d6, false));
                 View t3Var2 = new t3(getContext(), 12, 1);
                 t3Var2.setBackground(colorDrawable2);
-                addView(t3Var2, w7.x5.n(-1, -2));
-                Drawable V0 = org.telegram.ui.ActionBar.h6.V0(getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f18753b7);
+                addView(t3Var2, w7.y5.n(-1, -2));
+                Drawable V0 = org.telegram.ui.ActionBar.h6.V0(getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f19009b7);
                 View t3Var3 = new t3(getContext(), 12, 1);
                 t3Var3.setBackground(V0);
-                addView(t3Var3, w7.x5.n(-1, -2));
+                addView(t3Var3, w7.y5.n(-1, -2));
             }
         }
     }

@@ -1,9 +1,4 @@
 package org.telegram.ui;
-public final class f70 extends og.a {
-    public final String f33208c;
-
-    public f70(String str) {
-        super(5, true);
-        this.f33208c = str;
-    }
+public interface f70 {
+    void a(g70 g70Var, long j3);
 }

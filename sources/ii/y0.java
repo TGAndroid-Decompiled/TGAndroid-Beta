@@ -8,10 +8,10 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Cells.r9;
-import v7.p8;
-public final class y0 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
+import v7.q8;
+public final class y0 extends a0 implements org.telegram.ui.ActionBar.x5, p9 {
     public final org.telegram.ui.ActionBar.d6 f11761n;
     public final Paint f11762r;
     public final Paint f11763s;
@@ -32,7 +32,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         int i10 = org.telegram.ui.ActionBar.h6.vk;
         org.telegram.ui.ActionBar.d6 d6Var = this.f11761n;
         this.f11762r.setColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
-        this.f11763s.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19109uf, d6Var));
+        this.f11763s.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19367uf, d6Var));
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
             i10 = this.f11209c;
         }
         int h = (h() - i10) / 4;
-        arrayList.add(p8.a((i10 + h) - AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f) + (h() - h), AndroidUtilities.dp(12.0f)));
+        arrayList.add(q8.a((i10 + h) - AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f) + (h() - h), AndroidUtilities.dp(12.0f)));
     }
 
     public int[] getColorKeys() {
@@ -75,7 +75,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
     public final void onDraw(Canvas canvas) {
         int i10;
         Canvas canvas2;
-        r9 textSelectionHelper;
+        q9 textSelectionHelper;
         if (this.f11764w) {
             i10 = 0;
         } else {
@@ -88,7 +88,7 @@ public final class y0 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         if (t2Var != null && (textSelectionHelper = t2Var.f11625a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f20771u0 && R <= textSelectionHelper.f20774x0) {
+            if (R >= 0 && R >= textSelectionHelper.f20836u0 && R <= textSelectionHelper.f20839x0) {
                 canvas2 = canvas;
                 canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + h10, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f11763s);
                 float dp = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;

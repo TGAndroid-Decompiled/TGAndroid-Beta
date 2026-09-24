@@ -1,6 +1,6 @@
 package ci;
 
-import org.telegram.ui.f01;
+import org.telegram.ui.d01;
 public final class ec extends gc {
     public final int f4662g;
     public final Object h;
@@ -14,9 +14,9 @@ public final class ec extends gc {
     public final void e() {
         switch (this.f4662g) {
             case 0:
-                f01 f01Var = (f01) this.h;
-                f01Var.Q = false;
-                f01Var.invalidate();
+                d01 d01Var = (d01) this.h;
+                d01Var.Q = false;
+                d01Var.invalidate();
                 return;
             case 1:
                 ai.e6 t10 = ((ai.jc) this.h).t();
@@ -36,9 +36,9 @@ public final class ec extends gc {
     public final void f(boolean z10) {
         switch (this.f4662g) {
             case 0:
-                f01 f01Var = (f01) this.h;
-                f01Var.Q = true;
-                f01Var.invalidate();
+                d01 d01Var = (d01) this.h;
+                d01Var.Q = true;
+                d01Var.invalidate();
                 return;
             case 1:
                 ai.e6 t10 = ((ai.jc) this.h).t();

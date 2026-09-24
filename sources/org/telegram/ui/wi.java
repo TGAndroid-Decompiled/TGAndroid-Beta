@@ -5,16 +5,16 @@ import org.telegram.messenger.AndroidUtilities;
 public final class wi extends nf.e {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.t1 f38994f;
-    public final xn f38995g;
+    public final org.telegram.ui.Cells.u1 f39356f;
+    public final wn f39357g;
     public final Object h;
 
-    public wi(xn xnVar, int i10, Object obj, org.telegram.ui.Cells.t1 t1Var, int i11) {
+    public wi(wn wnVar, int i10, Object obj, org.telegram.ui.Cells.u1 u1Var, int i11) {
         this.d = i11;
-        this.f38995g = xnVar;
+        this.f39357g = wnVar;
         this.e = i10;
         this.h = obj;
-        this.f38994f = t1Var;
+        this.f39356f = u1Var;
     }
 
     @Override
@@ -40,19 +40,19 @@ public final class wi extends nf.e {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                xn xnVar = this.f38995g;
-                xnVar.f39580vb = i10;
-                xnVar.f39594wb = 1;
-                xnVar.f39607xb = (CharacterStyle) this.h;
-                this.f38994f.invalidate();
+                wn wnVar = this.f39357g;
+                wnVar.f39664vb = i10;
+                wnVar.f39678wb = 1;
+                wnVar.f39691xb = (CharacterStyle) this.h;
+                this.f39356f.invalidate();
                 return;
             default:
                 int i11 = this.e;
-                xn xnVar2 = this.f38995g;
-                xnVar2.f39580vb = i11;
-                xnVar2.f39594wb = 3;
-                xnVar2.f39619yb = (String) this.h;
-                this.f38994f.invalidate();
+                wn wnVar2 = this.f39357g;
+                wnVar2.f39664vb = i11;
+                wnVar2.f39678wb = 3;
+                wnVar2.f39703yb = (String) this.h;
+                this.f39356f.invalidate();
                 return;
         }
     }

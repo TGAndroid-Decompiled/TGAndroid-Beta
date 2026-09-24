@@ -75,14 +75,14 @@ public class h extends f {
                 obj = null;
             }
             if (obj != null) {
-                h0.f[] fVarArr = eVar.f10037a;
+                h0.f[] fVarArr = eVar.f10036a;
                 int length = fVarArr.length;
                 int i11 = 0;
                 while (true) {
                     if (i11 < length) {
                         h0.f fVar = fVarArr[i11];
                         Context context2 = context;
-                        if (!i(context2, obj, fVar.f10038a, fVar.e, fVar.f10039b, fVar.f10040c ? 1 : 0, FontVariationAxis.fromFontVariationSettings(fVar.d))) {
+                        if (!i(context2, obj, fVar.f10037a, fVar.e, fVar.f10038b, fVar.f10039c ? 1 : 0, FontVariationAxis.fromFontVariationSettings(fVar.d))) {
                             try {
                                 this.f10594k.invoke(obj, null);
                                 break;

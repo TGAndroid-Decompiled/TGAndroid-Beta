@@ -22,7 +22,7 @@ public final class p3 extends op {
                 return;
             case 1:
                 super.invalidate();
-                ((org.telegram.ui.Cells.r2) this.e).invalidate();
+                ((org.telegram.ui.Cells.s2) this.e).invalidate();
                 return;
             default:
                 super.invalidate();

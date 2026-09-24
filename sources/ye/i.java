@@ -5,20 +5,20 @@ import java.util.ArrayList;
 public final class i {
     public StringBuilder d;
     public String e;
-    public String f46714f;
-    public char f46715g;
+    public String f47028f;
+    public char f47029g;
     public StringBuilder h;
-    public int f46711a = 1;
-    public final StringBuilder f46712b = new StringBuilder();
-    public final ArrayList f46713c = new ArrayList();
-    public boolean f46716i = false;
+    public int f47025a = 1;
+    public final StringBuilder f47026b = new StringBuilder();
+    public final ArrayList f47027c = new ArrayList();
+    public boolean f47030i = false;
 
     public final void a() {
         String str;
-        if (!this.f46716i) {
+        if (!this.f47030i) {
             return;
         }
-        String a2 = af.a.a(this.f46714f);
+        String a2 = af.a.a(this.f47028f);
         StringBuilder sb2 = this.h;
         if (sb2 != null) {
             str = af.a.a(sb2.toString());
@@ -30,11 +30,11 @@ public final class i {
         pVar.f3541g = str2;
         pVar.h = a2;
         pVar.f3542i = str;
-        this.f46713c.add(pVar);
+        this.f47027c.add(pVar);
         this.d = null;
-        this.f46716i = false;
+        this.f47030i = false;
         this.e = null;
-        this.f46714f = null;
+        this.f47028f = null;
         this.h = null;
     }
 }

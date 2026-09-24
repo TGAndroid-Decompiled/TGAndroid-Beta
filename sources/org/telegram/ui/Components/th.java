@@ -15,20 +15,19 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class th implements Runnable {
-    public final int f28190a;
+    public final int f28512a;
 
     public th(int i10) {
-        this.f28190a = i10;
+        this.f28512a = i10;
     }
 
     @Override
     public final void run() {
-        xc a02;
-        switch (this.f28190a) {
+        switch (this.f28512a) {
             case 0:
                 return;
             case 1:
-                int i10 = vn.f28774m1;
+                int i10 = vn.f29174m1;
                 return;
             case 2:
                 PhotoViewer.t1().G0(false, false);
@@ -37,7 +36,7 @@ public final class th implements Runnable {
                 PhotoViewer.t1().G0(false, false);
                 return;
             case 4:
-                int i11 = cu.f23104b;
+                int i11 = cu.f23383b;
                 return;
             case 5:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
@@ -49,103 +48,97 @@ public final class th implements Runnable {
                 }
                 return;
             case 7:
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                return;
+            case 8:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            case 9:
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != 0) {
                     ?? obj = new Object();
-                    obj.f19352a = true;
+                    obj.f19567a = true;
                     R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
-            case 8:
-                int i12 = g01.f24125f;
-                return;
-            case 9:
-                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                w01.f29454f = Boolean.TRUE;
-                edit.putBoolean("nothanos", true).apply();
-                return;
             case 10:
-                SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
-                w01.f29454f = Boolean.TRUE;
-                edit2.putBoolean("nothanos", true).apply();
+                int i12 = u01.f28651f;
                 return;
             case 11:
-                int i13 = w21.f29476f0;
+                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                k11.f25577f = Boolean.TRUE;
+                edit.putBoolean("nothanos", true).apply();
                 return;
             case 12:
-                SavedMessagesController.openSavedMessages();
+                SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
+                k11.f25577f = Boolean.TRUE;
+                edit2.putBoolean("nothanos", true).apply();
                 return;
             case 13:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+                int i13 = k31.f25613f0;
                 return;
             case 14:
-                org.telegram.ui.Components.voip.m2.i();
+                SavedMessagesController.openSavedMessages();
                 return;
             case 15:
-                ai.x7.p();
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
                 return;
             case 16:
-                org.telegram.ui.f60 f60Var = org.telegram.ui.f60.D3;
-                if (f60Var != null) {
-                    f60Var.show();
+                org.telegram.ui.Components.voip.n2.i();
+                return;
+            case 17:
+                ai.x7.p();
+                return;
+            case 18:
+                org.telegram.ui.d60 d60Var = org.telegram.ui.d60.D3;
+                if (d60Var != null) {
+                    d60Var.show();
                     return;
                 }
                 return;
-            case 17:
+            case 19:
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().setMicMute(false, true, false);
                     return;
                 }
                 return;
-            case 18:
+            case 20:
                 Pattern pattern = LaunchActivity.B1;
                 return;
-            case 19:
+            case 21:
                 Pattern pattern2 = LaunchActivity.B1;
                 return;
-            case 20:
+            case 22:
                 Pattern pattern3 = LaunchActivity.B1;
                 ApplicationLoader.mainInterfacePausedStageQueue = false;
                 ApplicationLoader.mainInterfacePausedStageQueueTime = System.currentTimeMillis();
                 return;
-            case 21:
-                return;
-            case 22:
-                CallReceiver.checkLastReceivedCall();
-                return;
             case 23:
-                CallReceiver.checkLastReceivedCall();
                 return;
             case 24:
-                xc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
+                CallReceiver.checkLastReceivedCall();
                 return;
             case 25:
-                xc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
+                CallReceiver.checkLastReceivedCall();
                 return;
             case 26:
-                Drawable[] drawableArr = PhotoViewer.U8;
+                yc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
             case 27:
-                xc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
+                yc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
             case 28:
-                xc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
+                Drawable[] drawableArr = PhotoViewer.U8;
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null && (a02 = xc.a0(U)) != null) {
-                    qc M = a02.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                    M.f27306j = 5000;
-                    M.j();
-                    return;
-                }
+                yc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
         }
     }
 
     public th(Object obj, int i10) {
-        this.f28190a = i10;
+        this.f28512a = i10;
     }
 
     private final void a() {

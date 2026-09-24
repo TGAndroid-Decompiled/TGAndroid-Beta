@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Cells.r9;
-import v7.p8;
-public final class r4 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
+import v7.q8;
+public final class r4 extends a0 implements org.telegram.ui.ActionBar.x5, p9 {
     public final int[] E;
     public final org.telegram.ui.ActionBar.d6 f11585n;
     public final Paint f11586r;
@@ -48,7 +48,7 @@ public final class r4 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         horizontalScrollView.setPadding(0, 0, 0, 0);
         horizontalScrollView.setFillViewport(true);
         horizontalScrollView.addView(frameLayout, new FrameLayout.LayoutParams(-2, -2));
-        addView(horizontalScrollView, w7.x5.e(-1, -2, 16));
+        addView(horizontalScrollView, w7.y5.e(-1, -2, 16));
         e();
     }
 
@@ -66,7 +66,7 @@ public final class r4 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
 
     @Override
     public final void e() {
-        int i10 = org.telegram.ui.ActionBar.h6.f19109uf;
+        int i10 = org.telegram.ui.ActionBar.h6.f19367uf;
         org.telegram.ui.ActionBar.d6 d6Var = this.f11585n;
         this.f11586r.setColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
         this.f11589x = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var);
@@ -78,7 +78,7 @@ public final class r4 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
         int[] iArr = this.E;
         i(iArr);
-        arrayList.add(p8.a(iArr[0], iArr[1], iArr[2], iArr[3]));
+        arrayList.add(q8.a(iArr[0], iArr[1], iArr[2], iArr[3]));
     }
 
     public int[] getColorKeys() {
@@ -131,14 +131,14 @@ public final class r4 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
     @Override
     public final void onDraw(Canvas canvas) {
         b3 b3Var;
-        r9 textSelectionHelper;
+        q9 textSelectionHelper;
         if (this.f11589x != org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, this.f11585n)) {
             e();
         }
         if (this.f11588w != null && (b3Var = this.f11590y) != null && (textSelectionHelper = b3Var.f11241a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f20771u0 && R <= textSelectionHelper.f20774x0) {
+            if (R >= 0 && R >= textSelectionHelper.f20836u0 && R <= textSelectionHelper.f20839x0) {
                 int[] iArr = this.E;
                 i(iArr);
                 canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f11586r);

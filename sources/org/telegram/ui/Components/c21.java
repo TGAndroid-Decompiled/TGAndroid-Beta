@@ -1,43 +1,60 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class c21 implements MessagesController.IsInChatCheckedCallback, org.telegram.ui.ActionBar.a2 {
-    public final long f22895a;
-    public final Object f22896b;
-    public final Object f22897c;
-    public final Object d;
-    public final TLObject e;
-    public final Object f22898f;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class c21 extends FrameLayout {
+    public final ImageView f23136a;
+    public final a21 f23137b;
+    public final ThemeEditorView.EditorAlert f23138c;
 
-    public c21(w21 w21Var, org.telegram.ui.ActionBar.f1 f1Var, o70 o70Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
-        this.f22896b = w21Var;
-        this.f22897c = f1Var;
-        this.d = o70Var;
-        this.f22895a = j3;
-        this.e = user;
-        this.f22898f = chat;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        yh.y3.L0((yh.y3) this.f22896b, (TL_stars.TL_starGiftUnique) this.f22897c, (TLRPC.PaymentForm) this.d, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) this.e, this.f22895a, (CharSequence) this.f22898f, b2Var);
-    }
-
-    @Override
-    public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new g21((w21) this.f22896b, z10, (org.telegram.ui.ActionBar.f1) this.f22897c, (o70) this.d, this.f22895a, (TLRPC.User) this.e, (TLRPC.Chat) this.f22898f));
-    }
-
-    public c21(yh.y3 y3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.PaymentForm paymentForm, TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails tL_inputInvoiceStarGiftDropOriginalDetails, long j3, CharSequence charSequence) {
-        this.f22896b = y3Var;
-        this.f22897c = tL_starGiftUnique;
-        this.d = paymentForm;
-        this.e = tL_inputInvoiceStarGiftDropOriginalDetails;
-        this.f22895a = j3;
-        this.f22898f = charSequence;
+    public c21(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context);
+        this.f23138c = editorAlert;
+        View view = new View(context);
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(18.0f), -854795));
+        addView(view, w7.y5.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(R.drawable.smiles_inputsearch);
+        imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.y5.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f23136a = imageView2;
+        imageView2.setScaleType(scaleType);
+        gq gqVar = new gq();
+        imageView2.setImageDrawable(gqVar);
+        gqVar.f24492f = AndroidUtilities.dp(7.0f);
+        imageView2.setScaleX(0.1f);
+        imageView2.setScaleY(0.1f);
+        imageView2.setAlpha(0.0f);
+        addView(imageView2, w7.y5.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
+        imageView2.setOnClickListener(new i80(this, 21));
+        a21 a21Var = new a21(this, context);
+        this.f23137b = a21Var;
+        a21Var.setTextSize(1, 16.0f);
+        a21Var.setHintTextColor(-6774617);
+        a21Var.setTextColor(-14540254);
+        a21Var.setBackgroundDrawable(null);
+        a21Var.setPadding(0, 0, 0, 0);
+        a21Var.setMaxLines(1);
+        a21Var.setLines(1);
+        a21Var.setSingleLine(true);
+        a21Var.setImeOptions(268435459);
+        a21Var.setHint(LocaleController.getString(R.string.Search));
+        a21Var.setCursorColor(-11491093);
+        a21Var.setCursorSize(AndroidUtilities.dp(20.0f));
+        a21Var.setCursorWidth(1.5f);
+        addView(a21Var, w7.y5.d(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
+        a21Var.addTextChangedListener(new b21(this));
+        a21Var.setOnEditorActionListener(new e1(this, 9));
     }
 }

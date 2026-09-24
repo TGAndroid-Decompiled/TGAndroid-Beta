@@ -9,9 +9,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class oc extends mb {
-    public Runnable f26716a;
-    public Runnable f26717b;
-    public qc f26718c;
+    public Runnable f27017a;
+    public Runnable f27018b;
+    public qc f27019c;
     public final TextView d;
     public boolean e;
 
@@ -31,11 +31,11 @@ public final class oc extends mb {
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(w02);
-            org.telegram.messenger.ul.l(R.string.UndoNoCaps, textView, 16);
+            org.telegram.messenger.ok.l(R.string.UndoNoCaps, textView, 16);
             float f7 = z11 ? 34.0f : 12.0f;
             boolean z12 = LocaleController.isRTL;
-            w7.d6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
-            addView(textView, w7.x5.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
+            w7.e6.a(textView, z12 ? 12.0f : f7, 8.0f, z12 ? f7 : 12.0f, 8.0f);
+            addView(textView, w7.y5.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }
         if (z11) {
             ImageView imageView = new ImageView(getContext());
@@ -44,21 +44,21 @@ public final class oc extends mb {
             if (!z10) {
                 imageView.setBackground(org.telegram.ui.ActionBar.h6.f0((w02 & 16777215) | 419430400, 1, -1));
             }
-            w7.d6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, w7.x5.h(56.0f, 48.0f, 16));
+            w7.e6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
+            addView(imageView, w7.y5.h(56.0f, 48.0f, 16));
         }
         setOnClickListener(new f0(this, 6));
     }
 
     @Override
     public final void a(qc qcVar) {
-        this.f26718c = qcVar;
+        this.f27019c = qcVar;
     }
 
     @Override
     public final void b() {
-        this.f26718c = null;
-        Runnable runnable = this.f26717b;
+        this.f27019c = null;
+        Runnable runnable = this.f27018b;
         if (runnable != null && !this.e) {
             runnable.run();
         }
@@ -72,13 +72,13 @@ public final class oc extends mb {
     }
 
     public final void f() {
-        if (this.f26718c != null) {
+        if (this.f27019c != null) {
             this.e = true;
-            Runnable runnable = this.f26716a;
+            Runnable runnable = this.f27017a;
             if (runnable != null) {
                 runnable.run();
             }
-            qc qcVar = this.f26718c;
+            qc qcVar = this.f27019c;
             if (qcVar != null) {
                 qcVar.b();
             }

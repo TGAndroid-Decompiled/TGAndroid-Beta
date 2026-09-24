@@ -18,7 +18,7 @@ public final class g extends kotlin.jvm.internal.j implements l {
             case 0:
                 Throwable th2 = (Throwable) obj;
                 ((i) this.f11080c).b();
-                return gd.i.f9603a;
+                return gd.i.f9602a;
             default:
                 Throwable th3 = (Throwable) obj;
                 if (th3 != null) {
@@ -27,9 +27,9 @@ public final class g extends kotlin.jvm.internal.j implements l {
                 Object obj2 = a0.f13139s;
                 a0 a0Var = (a0) this.f11080c;
                 synchronized (obj2) {
-                    a0.f13138r.remove(a0Var.b().getAbsolutePath());
+                    a0.f13138r.remove(a0Var.c().getAbsolutePath());
                 }
-                return gd.i.f9603a;
+                return gd.i.f9602a;
         }
     }
 }

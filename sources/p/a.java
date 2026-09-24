@@ -1,7 +1,7 @@
 package p;
 
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.yc;
 public interface a {
-    qc b(xc xcVar);
+    qc a(yc ycVar);
 }

@@ -25,7 +25,7 @@ public abstract class o7 extends FrameLayout {
     public ai.q0 f5247n;
     public n f5248r;
     public float f5249s;
-    public qg.e2 v;
+    public qg.c2 v;
     public ValueAnimator f5250w;
     public boolean f5251x;
     public ValueAnimator f5252y;
@@ -110,8 +110,8 @@ public abstract class o7 extends FrameLayout {
         paint.setAlpha((int) (this.f5249s * 255.0f));
         canvas.drawCircle(rectF.centerX(), rectF.centerY(), Math.min(rectF.width() / 2.0f, rectF.height() / 2.0f) - 1.0f, paint);
         super.dispatchDraw(canvas);
-        qg.e2 e2Var = this.v;
-        if (e2Var != null && e2Var.getWidth() > 0 && this.v.getHeight() > 0) {
+        qg.c2 c2Var = this.v;
+        if (c2Var != null && c2Var.getWidth() > 0 && this.v.getHeight() > 0) {
             canvas.save();
             canvas.translate(rectF.left, rectF.top);
             canvas.scale(rectF.width() / this.v.getWidth(), rectF.height() / this.v.getHeight());

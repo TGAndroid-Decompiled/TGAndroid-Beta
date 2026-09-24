@@ -1,6 +1,49 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public interface yc0 {
-    void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3);
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class yc0 implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f40106a;
+    public final float[] f40107b = {0.0f, 1.0f};
+    public final FrameLayout f40108c;
+    public final zc0 d;
+
+    public yc0(zc0 zc0Var, FrameLayout frameLayout) {
+        this.d = zc0Var;
+        this.f40108c = frameLayout;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float interpolation;
+        float lerp = AndroidUtilities.lerp(this.f40107b, valueAnimator.getAnimatedFraction());
+        if (lerp >= 0.7f && !this.f40106a) {
+            zc0 zc0Var = this.d;
+            cd0 cd0Var = zc0Var.f40429b;
+            cd0 cd0Var2 = zc0Var.f40429b;
+            if (cd0Var.f32659o0 != null) {
+                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet.playTogether(ObjectAnimator.ofFloat(cd0Var2.f32659o0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(cd0Var2.f32659o0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(cd0Var2.f32659o0, View.ALPHA, 0.0f, 1.0f));
+                animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
+                animatorSet.setDuration(250L);
+                animatorSet.start();
+                this.f40106a = true;
+            }
+        }
+        if (lerp <= 0.5f) {
+            interpolation = org.telegram.ui.Components.rr.f28023g.getInterpolation(lerp / 0.5f) * 1.1f;
+        } else if (lerp <= 0.75f) {
+            interpolation = 1.1f - (org.telegram.ui.Components.rr.f28023g.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
+        } else {
+            interpolation = (org.telegram.ui.Components.rr.f28023g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
+        }
+        FrameLayout frameLayout = this.f40108c;
+        frameLayout.setScaleX(interpolation);
+        frameLayout.setScaleY(interpolation);
+    }
 }

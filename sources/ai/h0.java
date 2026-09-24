@@ -30,16 +30,16 @@ public final class h0 extends org.telegram.ui.Components.k9 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        int g10;
+        int f7;
         switch (this.e) {
             case 1:
-                int i12 = this.f25558a.f25209n;
+                int i12 = this.f25692a.f25323n;
                 if (i12 == 0) {
-                    g10 = 0;
+                    f7 = 0;
                 } else {
-                    g10 = hg.c.g(i12, 1, 20, 24);
+                    f7 = hg.c.f(i12, 1, 20, 24);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(g10), 1073741824), i11);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824), i11);
                 return;
             default:
                 super.onMeasure(i10, i11);

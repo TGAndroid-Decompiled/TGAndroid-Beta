@@ -6,11 +6,11 @@ import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 public final class b extends p {
-    public final int f13580g;
+    public final int f13578g;
 
     public b(d dVar, p pVar, String str, int i10) {
         super(dVar, pVar, str);
-        this.f13580g = i10;
+        this.f13578g = i10;
     }
 
     public static void h(StringBuffer stringBuffer, p pVar) {
@@ -79,23 +79,23 @@ public final class b extends p {
 
     @Override
     public final String toString() {
-        switch (this.f13580g) {
+        switch (this.f13578g) {
             case 0:
                 StringBuffer stringBuffer = new StringBuffer();
                 h(stringBuffer, this);
                 stringBuffer.append("[off=");
-                long j3 = ((d) ((p) this.f3545c).f3544b).f7290b;
+                long j3 = ((d) ((p) this.f3545c).f3544b).f7286b;
                 d dVar = (d) this.f3544b;
-                stringBuffer.append(j3 - dVar.f7290b);
+                stringBuffer.append(j3 - dVar.f7286b);
                 stringBuffer.append(",pos=");
-                stringBuffer.append(dVar.f7290b);
+                stringBuffer.append(dVar.f7286b);
                 stringBuffer.append(",len=");
                 mf.a aVar = (mf.a) dVar;
-                stringBuffer.append(aVar.e() + aVar.f7290b);
+                stringBuffer.append(aVar.e() + aVar.f7286b);
                 stringBuffer.append("]");
                 return stringBuffer.toString();
             default:
-                return a4.a.s(new StringBuilder("mp4[pos="), ((d) this.f3544b).f7290b, "]");
+                return a4.a.s(new StringBuilder("mp4[pos="), ((d) this.f3544b).f7286b, "]");
         }
     }
 }

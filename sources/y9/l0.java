@@ -1,29 +1,29 @@
 package y9;
 public final class l0 extends a2 {
-    public final long f46527a;
-    public final String f46528b;
-    public final u1 f46529c;
+    public final long f46841a;
+    public final String f46842b;
+    public final u1 f46843c;
     public final v1 d;
     public final w1 e;
-    public final z1 f46530f;
+    public final z1 f46844f;
 
     public l0(long j3, String str, u1 u1Var, v1 v1Var, w1 w1Var, z1 z1Var) {
-        this.f46527a = j3;
-        this.f46528b = str;
-        this.f46529c = u1Var;
+        this.f46841a = j3;
+        this.f46842b = str;
+        this.f46843c = u1Var;
         this.d = v1Var;
         this.e = w1Var;
-        this.f46530f = z1Var;
+        this.f46844f = z1Var;
     }
 
     public final com.google.firebase.messaging.n a() {
         ?? obj = new Object();
-        obj.f7319a = Long.valueOf(this.f46527a);
-        obj.f7320b = this.f46528b;
-        obj.f7321c = this.f46529c;
+        obj.f7312a = Long.valueOf(this.f46841a);
+        obj.f7313b = this.f46842b;
+        obj.f7314c = this.f46843c;
         obj.d = this.d;
         obj.e = this.e;
-        obj.f7322f = this.f46530f;
+        obj.f7315f = this.f46844f;
         return obj;
     }
 
@@ -35,9 +35,9 @@ public final class l0 extends a2 {
         }
         if (obj instanceof a2) {
             l0 l0Var = (l0) ((a2) obj);
-            z1 z1Var2 = l0Var.f46530f;
+            z1 z1Var2 = l0Var.f46844f;
             w1 w1Var2 = l0Var.e;
-            if (this.f46527a == l0Var.f46527a && this.f46528b.equals(l0Var.f46528b) && this.f46529c.equals(l0Var.f46529c) && this.d.equals(l0Var.d) && ((w1Var = this.e) != null ? w1Var.equals(w1Var2) : w1Var2 == null) && ((z1Var = this.f46530f) != null ? z1Var.equals(z1Var2) : z1Var2 == null)) {
+            if (this.f46841a == l0Var.f46841a && this.f46842b.equals(l0Var.f46842b) && this.f46843c.equals(l0Var.f46843c) && this.d.equals(l0Var.d) && ((w1Var = this.e) != null ? w1Var.equals(w1Var2) : w1Var2 == null) && ((z1Var = this.f46844f) != null ? z1Var.equals(z1Var2) : z1Var2 == null)) {
                 return true;
             }
         }
@@ -46,8 +46,8 @@ public final class l0 extends a2 {
 
     public final int hashCode() {
         int hashCode;
-        long j3 = this.f46527a;
-        int hashCode2 = (((((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f46528b.hashCode()) * 1000003) ^ this.f46529c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003;
+        long j3 = this.f46841a;
+        int hashCode2 = (((((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f46842b.hashCode()) * 1000003) ^ this.f46843c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003;
         int i10 = 0;
         w1 w1Var = this.e;
         if (w1Var == null) {
@@ -56,7 +56,7 @@ public final class l0 extends a2 {
             hashCode = w1Var.hashCode();
         }
         int i11 = (hashCode2 ^ hashCode) * 1000003;
-        z1 z1Var = this.f46530f;
+        z1 z1Var = this.f46844f;
         if (z1Var != null) {
             i10 = z1Var.hashCode();
         }
@@ -64,6 +64,6 @@ public final class l0 extends a2 {
     }
 
     public final String toString() {
-        return "Event{timestamp=" + this.f46527a + ", type=" + this.f46528b + ", app=" + this.f46529c + ", device=" + this.d + ", log=" + this.e + ", rollouts=" + this.f46530f + "}";
+        return "Event{timestamp=" + this.f46841a + ", type=" + this.f46842b + ", app=" + this.f46843c + ", device=" + this.d + ", log=" + this.e + ", rollouts=" + this.f46844f + "}";
     }
 }

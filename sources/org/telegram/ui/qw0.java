@@ -1,34 +1,33 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
-public final class qw0 implements Comparator {
-    public final int f36623a;
-    public final MessagesController f36624b;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class qw0 extends a71 {
+    public final ai.m0 f36988d2;
+    public final r61[] f36989e2;
+    public final PremiumPreviewFragment f36990f2;
 
-    public qw0(MessagesController messagesController, int i10) {
-        this.f36623a = i10;
-        this.f36624b = messagesController;
+    public qw0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, ai.m0 m0Var, r61[] r61VarArr) {
+        super(premiumPreviewFragment2, activity, true, num, i10, true, d6Var, i11);
+        this.f36990f2 = premiumPreviewFragment;
+        this.f36988d2 = m0Var;
+        this.f36989e2 = r61VarArr;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int i10;
-        int i11;
-        dx0 dx0Var = (dx0) obj;
-        dx0 dx0Var2 = (dx0) obj2;
-        switch (this.f36623a) {
-            case 0:
-                MessagesController messagesController = this.f36624b;
-                i10 = messagesController.businessFeaturesTypesToPosition.get(dx0Var.f32736a, Integer.MAX_VALUE);
-                i11 = messagesController.businessFeaturesTypesToPosition.get(dx0Var2.f32736a, Integer.MAX_VALUE);
-                break;
-            default:
-                MessagesController messagesController2 = this.f36624b;
-                i10 = messagesController2.premiumFeaturesTypesToPosition.get(dx0Var.f32736a, Integer.MAX_VALUE);
-                i11 = messagesController2.premiumFeaturesTypesToPosition.get(dx0Var2.f32736a, Integer.MAX_VALUE);
-                break;
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        this.f36988d2.run(l4, num);
+        r61 r61Var = this.f36989e2[0];
+        if (r61Var != null) {
+            this.f36990f2.f31451s0 = null;
+            r61Var.dismiss();
         }
-        return i10 - i11;
     }
 }

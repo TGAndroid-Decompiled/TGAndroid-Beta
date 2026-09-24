@@ -14,11 +14,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.SubMenu;
 import java.io.IOException;
-import l.n;
+import l.o;
 import m.l1;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import v7.v7;
+import v7.w7;
 public final class h extends MenuInflater {
     public static final Class[] e;
     public static final Class[] f13130f;
@@ -99,8 +99,8 @@ public final class h extends MenuInflater {
                             gVar.f13112g = true;
                         } else if (name2.equals("item")) {
                             if (!gVar.h) {
-                                n nVar = gVar.f13129z;
-                                if (nVar != null && nVar.f13767a.hasSubMenu()) {
+                                o oVar = gVar.f13129z;
+                                if (oVar != null && oVar.f13988a.hasSubMenu()) {
                                     gVar.h = true;
                                     gVar.b(menu2.addSubMenu(gVar.f13109b, gVar.f13113i, gVar.f13114j, gVar.f13115k).getItem());
                                 } else {
@@ -124,7 +124,7 @@ public final class h extends MenuInflater {
                         boolean equals = name3.equals("group");
                         Context context = this.f13133c;
                         if (equals) {
-                            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f8761p);
+                            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f8760p);
                             gVar.f13109b = obtainStyledAttributes.getResourceId(1, 0);
                             gVar.f13110c = obtainStyledAttributes.getInt(3, 0);
                             gVar.d = obtainStyledAttributes.getInt(4, 0);
@@ -134,7 +134,7 @@ public final class h extends MenuInflater {
                             obtainStyledAttributes.recycle();
                         } else {
                             if (name3.equals("item")) {
-                                TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f8762q);
+                                TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f8761q);
                                 gVar.f13113i = obtainStyledAttributes2.getResourceId(2, 0);
                                 gVar.f13114j = (obtainStyledAttributes2.getInt(5, gVar.f13110c) & (-65536)) | (obtainStyledAttributes2.getInt(6, gVar.d) & 65535);
                                 gVar.f13115k = obtainStyledAttributes2.getText(7);
@@ -175,7 +175,7 @@ public final class h extends MenuInflater {
                                     z10 = false;
                                 }
                                 if (z10 && gVar.f13126w == 0 && gVar.f13127x == null) {
-                                    gVar.f13129z = (n) gVar.a(string3, f13130f, this.f13132b);
+                                    gVar.f13129z = (o) gVar.a(string3, f13130f, this.f13132b);
                                 } else {
                                     if (z10) {
                                         Log.w("SupportMenuInflater", "Ignoring attribute 'actionProviderClass'. Action view already specified.");
@@ -190,7 +190,7 @@ public final class h extends MenuInflater {
                                     gVar.D = null;
                                 }
                                 if (obtainStyledAttributes2.hasValue(18)) {
-                                    if (!obtainStyledAttributes2.hasValue(18) || (resourceId = obtainStyledAttributes2.getResourceId(18, 0)) == 0 || (colorStateList = v7.a(context, resourceId)) == null) {
+                                    if (!obtainStyledAttributes2.hasValue(18) || (resourceId = obtainStyledAttributes2.getResourceId(18, 0)) == 0 || (colorStateList = w7.a(context, resourceId)) == null) {
                                         colorStateList = obtainStyledAttributes2.getColorStateList(18);
                                     }
                                     gVar.C = colorStateList;
@@ -227,7 +227,7 @@ public final class h extends MenuInflater {
 
     @Override
     public final void inflate(int i10, Menu menu) {
-        if (!(menu instanceof l.k)) {
+        if (!(menu instanceof l.l)) {
             super.inflate(i10, menu);
             return;
         }

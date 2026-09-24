@@ -3,9 +3,9 @@ package hg;
 import android.os.Bundle;
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.xn;
-public final class w0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.wn;
+public final class w0 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5 {
     public final int f10439a;
     public final x0 f10440b;
 
@@ -15,7 +15,7 @@ public final class w0 implements org.telegram.ui.ActionBar.a2, Utilities.Callbac
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         switch (this.f10439a) {
             case 0:
                 this.f10440b.X();
@@ -28,15 +28,15 @@ public final class w0 implements org.telegram.ui.ActionBar.a2, Utilities.Callbac
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        h51 h51Var = (h51) obj;
+        v51 v51Var = (v51) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         x0 x0Var = this.f10440b;
-        if (!x0Var.d.h(h51Var)) {
-            int i10 = h51Var.d;
-            if (i10 != 2 && h51Var.f15508a != 17) {
+        if (!x0Var.d.h(v51Var)) {
+            int i10 = v51Var.d;
+            if (i10 != 2 && v51Var.f15700a != 17) {
                 if (i10 == 1) {
                     x0Var.f10454s = !x0Var.f10454s;
                     x0Var.f10450c.Y2.N(true);
@@ -64,7 +64,7 @@ public final class w0 implements org.telegram.ui.ActionBar.a2, Utilities.Callbac
             bundle.putLong("user_id", x0Var.getUserConfig().getClientUserId());
             bundle.putInt("chatMode", 5);
             bundle.putString("quick_reply", "hello");
-            x0Var.presentFragment(new xn(bundle));
+            x0Var.presentFragment(new wn(bundle));
         }
     }
 }

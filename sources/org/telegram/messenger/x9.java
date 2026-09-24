@@ -4,72 +4,72 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class x9 implements RequestDelegate {
-    public final int f17847a;
-    public final MessagesController f17848b;
-    public final long f17849c;
+    public final int f18093a;
+    public final MessagesController f18094b;
+    public final long f18095c;
 
     public x9(MessagesController messagesController, long j3, int i10) {
-        this.f17847a = i10;
-        this.f17848b = messagesController;
-        this.f17849c = j3;
+        this.f18093a = i10;
+        this.f18094b = messagesController;
+        this.f18095c = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17847a) {
+        switch (this.f18093a) {
             case 0:
-                this.f17848b.lambda$markMessageAsRead2$235(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$markMessageAsRead2$235(this.f18095c, tLObject, tL_error);
                 return;
             case 1:
-                this.f17848b.lambda$markMessageAsRead2$236(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$markMessageAsRead2$236(this.f18095c, tLObject, tL_error);
                 return;
             case 2:
-                this.f17848b.lambda$pinDialog$364(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$pinDialog$364(this.f18095c, tLObject, tL_error);
                 return;
             case 3:
-                this.f17848b.lambda$saveWallpaperToServer$121(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$saveWallpaperToServer$121(this.f18095c, tLObject, tL_error);
                 return;
             case 4:
-                this.f17848b.lambda$updateTimerProc$160(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$updateTimerProc$160(this.f18095c, tLObject, tL_error);
                 return;
             case 5:
-                this.f17848b.lambda$deleteUserPhoto$115(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$deleteUserPhoto$115(this.f18095c, tLObject, tL_error);
                 return;
             case 6:
-                this.f17848b.lambda$reorderPinnedDialogs$363(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$reorderPinnedDialogs$363(this.f18095c, tLObject, tL_error);
                 return;
             case 7:
-                this.f17848b.lambda$loadPeerSettings$80(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$loadPeerSettings$80(this.f18095c, tLObject, tL_error);
                 return;
             case 8:
-                this.f17848b.lambda$setChannelSlowMode$94(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$setChannelSlowMode$94(this.f18095c, tLObject, tL_error);
                 return;
             case 9:
-                this.f17848b.lambda$loadChannelAdmins$65(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$loadChannelAdmins$65(this.f18095c, tLObject, tL_error);
                 return;
             case 10:
-                this.f17848b.lambda$deleteDialog$141(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$deleteDialog$141(this.f18095c, tLObject, tL_error);
                 return;
             case 11:
-                this.f17848b.lambda$addDialogToFolder$198(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$addDialogToFolder$198(this.f18095c, tLObject, tL_error);
                 return;
             case 12:
-                this.f17848b.lambda$setDefaultSendAs$275(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$setDefaultSendAs$275(this.f18095c, tLObject, tL_error);
                 return;
             case 13:
-                this.f17848b.lambda$deleteMessages$122(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$deleteMessages$122(this.f18095c, tLObject, tL_error);
                 return;
             case 14:
-                this.f17848b.lambda$deleteMessages$123(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$deleteMessages$123(this.f18095c, tLObject, tL_error);
                 return;
             case 15:
-                this.f17848b.lambda$deleteMessages$125(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$deleteMessages$125(this.f18095c, tLObject, tL_error);
                 return;
             case 16:
-                this.f17848b.lambda$setBoostsToUnblockRestrictions$96(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$setBoostsToUnblockRestrictions$96(this.f18095c, tLObject, tL_error);
                 return;
             default:
-                this.f17848b.lambda$markDialogAsUnread$360(this.f17849c, tLObject, tL_error);
+                this.f18094b.lambda$markDialogAsUnread$360(this.f18095c, tLObject, tL_error);
                 return;
         }
     }

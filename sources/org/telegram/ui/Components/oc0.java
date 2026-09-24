@@ -1,17 +1,31 @@
 package org.telegram.ui.Components;
-public final class oc0 implements Runnable {
-    public boolean f26719a;
-    public final tc0 f26720b;
 
-    public oc0(tc0 tc0Var) {
-        this.f26720b = tc0Var;
+import android.graphics.RuntimeShader;
+import java.util.Arrays;
+import org.telegram.messenger.AndroidUtilities;
+public final class oc0 {
+    public final RuntimeShader f27020a;
+    public final float[] f27021b = {1.0f, 1.0f, 0.0f, 0.0f};
+    public final float[] f27022c = {1.0f, 1.0f, 0.0f, 0.0f};
+
+    public oc0(int i10) {
+        nc0.b();
+        this.f27020a = nc0.a(AndroidUtilities.readRes(i10));
     }
 
-    @Override
-    public final void run() {
-        boolean z10 = this.f26719a;
-        tc0 tc0Var = this.f26720b;
-        tc0Var.a(z10);
-        tc0Var.postDelayed(this, tc0Var.L);
+    public final void a(float[] fArr) {
+        float[] fArr2 = this.f27021b;
+        if (!Arrays.equals(fArr, fArr2)) {
+            System.arraycopy(fArr, 0, fArr2, 0, 4);
+            this.f27020a.setFloatUniform("transformGradient", fArr2);
+        }
+    }
+
+    public final void b(float[] fArr) {
+        float[] fArr2 = this.f27022c;
+        if (!Arrays.equals(fArr, fArr2)) {
+            System.arraycopy(fArr, 0, fArr2, 0, 4);
+            this.f27020a.setFloatUniform("transformPattern", fArr2);
+        }
     }
 }

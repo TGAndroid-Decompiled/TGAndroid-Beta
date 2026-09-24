@@ -12,10 +12,10 @@ public final class v implements e2.m, e2.h {
     public void accept(Object obj) {
         switch (this.f10882a) {
             case 1:
-                ((m4.f1) obj).a(this.f10883b);
+                ((m4.e1) obj).a(this.f10883b);
                 return;
             default:
-                ((m4.f1) obj).U(this.f10883b);
+                ((m4.e1) obj).U(this.f10883b);
                 return;
         }
     }

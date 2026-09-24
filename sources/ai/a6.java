@@ -14,13 +14,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cj0;
+import org.telegram.ui.Components.mj0;
 import org.telegram.ui.Components.rr;
 public final class a6 extends FrameLayout {
     public final y5 f520a;
     public final z5 f521b;
     public final TextView[] f522c;
-    public cj0 d;
+    public mj0 d;
     public final c6 e;
     public Paint f523f;
     public float h;
@@ -35,7 +35,7 @@ public final class a6 extends FrameLayout {
         y5 y5Var = new y5(this, context, 0);
         this.f520a = y5Var;
         y5Var.setRoundRadius(AndroidUtilities.dp(16.0f));
-        addView(y5Var, w7.x5.d(32, 32.0f, 0, 12.0f, 2.0f, 0.0f, 0.0f));
+        addView(y5Var, w7.y5.d(32, 32.0f, 0, 12.0f, 2.0f, 0.0f, 0.0f));
         setClipChildren(false);
         z5 z5Var = new z5(context, 0);
         this.f521b = z5Var;
@@ -45,7 +45,7 @@ public final class a6 extends FrameLayout {
         z5Var.setEllipsizeByGradient(AndroidUtilities.dp(4.0f));
         z5Var.setPivotX(0.0f);
         NotificationCenter.listenEmojiLoading(z5Var);
-        addView(z5Var, w7.x5.d(-2, -2.0f, 0, 54.0f, 0.0f, 86.0f, 0.0f));
+        addView(z5Var, w7.y5.d(-2, -2.0f, 0, 54.0f, 0.0f, 86.0f, 0.0f));
         for (int i10 = 0; i10 < 2; i10++) {
             this.f522c[i10] = new TextView(context);
             this.f522c[i10].setTextSize(1, 12.0f);
@@ -54,7 +54,7 @@ public final class a6 extends FrameLayout {
             this.f522c[i10].setEllipsize(TextUtils.TruncateAt.MIDDLE);
             this.f522c[i10].setTextColor(-1);
             this.f522c[i10].setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(1.0f));
-            addView(this.f522c[i10], w7.x5.d(-2, -2.0f, 0, 51.0f, 18.0f, 83.0f, 0.0f));
+            addView(this.f522c[i10], w7.y5.d(-2, -2.0f, 0, 51.0f, 18.0f, 83.0f, 0.0f));
         }
         this.f521b.setTextColor(-1);
     }
@@ -77,7 +77,7 @@ public final class a6 extends FrameLayout {
             } else {
                 if (this.f524n) {
                     this.f524n = false;
-                    if (this.d.f23048f < 0.2f) {
+                    if (this.d.f26508f < 0.2f) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -90,34 +90,34 @@ public final class a6 extends FrameLayout {
                 f10 = 1.0f;
                 z11 = true;
             }
-            cj0 cj0Var = this.d;
+            mj0 mj0Var = this.d;
             y5 y5Var = this.f520a;
-            if (cj0Var == null) {
-                cj0 cj0Var2 = new cj0(y5Var);
-                this.d = cj0Var2;
-                cj0Var2.d(null, true, false);
+            if (mj0Var == null) {
+                mj0 mj0Var2 = new mj0(y5Var);
+                this.d = mj0Var2;
+                mj0Var2.d(null, true, false);
             }
-            this.d.f23058q = 0;
+            this.d.f26518q = 0;
             ImageReceiver imageReceiver = y5Var.getImageReceiver();
             float b10 = com.google.android.gms.internal.vision.e2.b(1.0f, this.h, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
             this.d.f((int) (rectF.left - b10), (int) (rectF.top - b10), (int) (rectF.right + b10), (int) (rectF.bottom + b10));
-            cj0 cj0Var3 = this.d;
+            mj0 mj0Var3 = this.d;
             if (z11) {
                 clamp = 1.0f;
             } else {
                 clamp = Utilities.clamp(f10, 1.0f, 0.0f);
             }
-            cj0Var3.e(clamp, true);
-            if (this.f525r && z11 && this.d.f23048f >= 0.9f) {
+            mj0Var3.e(clamp, true);
+            if (this.f525r && z11 && this.d.f26508f >= 0.9f) {
                 this.h = Utilities.clamp(this.h - ((1000.0f / AndroidUtilities.screenRefreshRate) / 300.0f), 1.0f, 0.0f);
             }
             if (z10) {
                 if (f7 != 1.0f) {
                     Paint t10 = ia.t(imageReceiver, false);
                     t10.setAlpha((int) (this.h * 255.0f));
-                    cj0 cj0Var4 = this.d;
-                    cj0Var4.f23061t = t10;
-                    cj0Var4.a(canvas);
+                    mj0 mj0Var4 = this.d;
+                    mj0Var4.f26521t = t10;
+                    mj0Var4.a(canvas);
                 }
                 if (this.f523f == null) {
                     Paint paint = new Paint(1);
@@ -128,9 +128,9 @@ public final class a6 extends FrameLayout {
                     this.f523f.setStrokeCap(Paint.Cap.ROUND);
                 }
                 this.f523f.setAlpha((int) (255.0f * f7 * this.h));
-                cj0 cj0Var5 = this.d;
-                cj0Var5.f23061t = this.f523f;
-                cj0Var5.a(canvas);
+                mj0 mj0Var5 = this.d;
+                mj0Var5.f26521t = this.f523f;
+                mj0Var5.a(canvas);
             }
         }
     }

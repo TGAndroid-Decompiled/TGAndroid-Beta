@@ -39,7 +39,7 @@ public final class l0 extends View {
             i10 = 0;
         }
         float f10 = f7 + i10;
-        return ((getHeight() - f10) - g0Var.f14097y) - AndroidUtilities.dp(32.0f);
+        return ((getHeight() - f10) - g0Var.f14317y) - AndroidUtilities.dp(32.0f);
     }
 
     private float getContainerWidth() {
@@ -57,7 +57,7 @@ public final class l0 extends View {
         MediaController.CropState cropState;
         float f7;
         float f10;
-        qg.a2 a2Var;
+        qg.y1 y1Var;
         float f11;
         float f12;
         m0 m0Var = this.d;
@@ -104,7 +104,7 @@ public final class l0 extends View {
                 f11 = 1.0f;
                 f12 = 1.0f;
             }
-            float lerp4 = AndroidUtilities.lerp(1.0f, (m0Var.f5149b.getScaleX() * (a2Var.getWidth() / f12)) / b7Var.getWidth(), f14);
+            float lerp4 = AndroidUtilities.lerp(1.0f, (m0Var.f5149b.getScaleX() * (y1Var.getWidth() / f12)) / b7Var.getWidth(), f14);
             canvas.scale(lerp4, lerp4);
             canvas.rotate(m0Var.f5149b.getRotation() * f14);
             canvas.translate(((m0Var.f5149b.getContentWidth() * f12) / 2.0f) * f14, ((m0Var.f5149b.getContentHeight() * f11) / 2.0f) * f14);
@@ -139,12 +139,12 @@ public final class l0 extends View {
         currentWidth = m0Var.getCurrentWidth();
         lg.g gVar = m0Var.f5157y;
         currentHeight = m0Var.getCurrentHeight();
-        int i12 = gVar.f14053i;
+        int i12 = gVar.f14273i;
         if (i12 == 90 || i12 == 270) {
             currentHeight = currentWidth;
             currentWidth = currentHeight;
         }
-        float z12 = com.google.android.gms.internal.vision.e2.z(gVar.f14056l, 1.0f, f14, 1.0f);
+        float z12 = com.google.android.gms.internal.vision.e2.z(gVar.f14276l, 1.0f, f14, 1.0f);
         float f16 = currentWidth;
         float containerWidth = getContainerWidth() / f16;
         float f17 = currentHeight;
@@ -152,16 +152,16 @@ public final class l0 extends View {
             containerWidth = getContainerHeight() / f17;
         }
         canvas.translate(gVar.d * 1.0f, gVar.e * 1.0f);
-        float f18 = (gVar.f14051f / z12) * containerWidth;
-        qg.a2 a2Var2 = m0Var.f5149b;
-        if (a2Var2 != null && (cropState = a2Var2.G0) != null) {
+        float f18 = (gVar.f14271f / z12) * containerWidth;
+        qg.y1 y1Var2 = m0Var.f5149b;
+        if (y1Var2 != null && (cropState = y1Var2.G0) != null) {
             lerp = AndroidUtilities.lerp(cropState.cropScale, f18, f13);
         } else {
             lerp = AndroidUtilities.lerp(1.0f, f18, f13);
         }
         canvas.scale(lerp, lerp);
-        canvas.translate(gVar.f14049b * f16 * 1.0f, gVar.f14050c * f17 * 1.0f);
-        float d = m0Var.d.d(i12, false) + m0Var.f5149b.getOrientation() + gVar.f14052g;
+        canvas.translate(gVar.f14269b * f16 * 1.0f, gVar.f14270c * f17 * 1.0f);
+        float d = m0Var.d.d(i12, false) + m0Var.f5149b.getOrientation() + gVar.f14272g;
         MediaController.CropState cropState4 = m0Var.f5149b.G0;
         if (cropState4 == null) {
             lerp2 = AndroidUtilities.lerp(0.0f, d, m0Var.f5154s);
@@ -180,15 +180,15 @@ public final class l0 extends View {
         } else {
             lg.n nVar = g0Var.L;
             if (nVar != null) {
-                z10 = nVar.f14085j;
+                z10 = nVar.f14305j;
             }
             z10 = false;
         }
         canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, e6Var.e(z10)), 1.0f);
         canvas.translate((-m0Var.f5149b.getContentWidth()) / 2.0f, (-m0Var.f5149b.getContentHeight()) / 2.0f);
-        qg.a2 a2Var3 = m0Var.f5149b;
-        Paint paint2 = a2Var3.F0;
-        Bitmap bitmap = a2Var3.A0;
+        qg.y1 y1Var3 = m0Var.f5149b;
+        Paint paint2 = y1Var3.F0;
+        Bitmap bitmap = y1Var3.A0;
         if (bitmap != null) {
             paint2.setAlpha(255);
             canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint2);

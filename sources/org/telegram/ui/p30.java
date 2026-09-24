@@ -1,29 +1,25 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class p30 extends org.telegram.ui.Components.d8 {
-    public final f60 E;
-    public final Activity f36018y;
+public final class p30 extends TextView {
+    public final RectF f36382a;
+    public final d60 f36383b;
 
-    public p30(f60 f60Var, LaunchActivity launchActivity, Activity activity) {
-        super(launchActivity);
-        this.E = f60Var;
-        this.f36018y = activity;
+    public p30(d60 d60Var, Context context) {
+        super(context);
+        this.f36383b = d60Var;
+        this.f36382a = new RectF();
     }
 
     @Override
-    public final TextView a() {
-        TextView textView = new TextView(this.f36018y);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18868hg, false));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(51);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(new pv(9, this, textView));
-        return textView;
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.f36382a;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f36383b.f32945g1);
+        super.onDraw(canvas);
     }
 }

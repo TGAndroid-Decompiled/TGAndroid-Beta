@@ -12,36 +12,36 @@ import n4.y;
 import y9.o0;
 import y9.p0;
 public final class p {
-    public static final HashMap f44914f;
-    public static final String f44915g;
-    public final Context f44916a;
-    public final u f44917b;
-    public final a f44918c;
+    public static final HashMap f45231f;
+    public static final String f45232g;
+    public final Context f45233a;
+    public final u f45234b;
+    public final a f45235c;
     public final y d;
     public final da.b e;
 
     static {
         HashMap hashMap = new HashMap();
-        f44914f = hashMap;
+        f45231f = hashMap;
         e2.o(5, hashMap, "armeabi", 6, "armeabi-v7a");
         e2.o(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f44915g = "Crashlytics Android SDK/18.6.0";
+        f45232g = "Crashlytics Android SDK/18.6.0";
     }
 
     public p(Context context, u uVar, a aVar, y yVar, da.b bVar) {
-        this.f44916a = context;
-        this.f44917b = uVar;
-        this.f44918c = aVar;
+        this.f45233a = context;
+        this.f45234b = uVar;
+        this.f45235c = aVar;
         this.d = yVar;
         this.e = bVar;
     }
 
     public static p0 c(com.google.firebase.messaging.t tVar, int i10) {
         int i11;
-        String str = (String) tVar.f7336c;
-        String str2 = (String) tVar.f7335b;
+        String str = (String) tVar.f7329c;
+        String str2 = (String) tVar.f7328b;
         StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) tVar.d;
         int i12 = 0;
         if (stackTraceElementArr == null) {
@@ -91,7 +91,7 @@ public final class p {
                 obj.f4253b = str;
                 obj.f4254c = fileName;
                 obj.d = Long.valueOf(j10);
-                arrayList.add(obj.p());
+                arrayList.add(obj.o());
             } else {
                 throw new NullPointerException("Null symbol");
             }
@@ -100,10 +100,10 @@ public final class p {
     }
 
     public final List a() {
-        a aVar = this.f44918c;
+        a aVar = this.f45235c;
         String str = aVar.e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f44857b));
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f45174b));
         }
         throw new NullPointerException("Null name");
     }

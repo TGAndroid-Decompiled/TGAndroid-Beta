@@ -4,37 +4,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class d implements Runnable {
-    public final int f44330a;
-    public final g f44331b;
+    public final int f44647a;
+    public final f f44648b;
 
-    public d(g gVar, int i10) {
-        this.f44330a = i10;
-        this.f44331b = gVar;
+    public d(f fVar, int i10) {
+        this.f44647a = i10;
+        this.f44648b = fVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f44330a) {
+        switch (this.f44647a) {
             case 0:
-                g gVar = this.f44331b;
-                if (gVar.f44350j.isEmpty()) {
-                    gVar.f44349i = true;
-                    g.f44343n = null;
-                    f fVar = gVar.f44347f;
-                    if (fVar != null) {
-                        fVar.f44333a = false;
-                        gVar.f44347f = null;
+                f fVar = this.f44648b;
+                if (fVar.f44666j.isEmpty()) {
+                    fVar.f44665i = true;
+                    f.f44659n = null;
+                    e eVar = fVar.f44663f;
+                    if (eVar != null) {
+                        eVar.f44649a = false;
+                        fVar.f44663f = null;
                     }
-                    gVar.d.removeView(gVar.e);
-                    if (gVar.d.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) gVar.d.getParent()).removeView(gVar.d);
+                    fVar.d.removeView(fVar.e);
+                    if (fVar.d.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) fVar.d.getParent()).removeView(fVar.d);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                ArrayList arrayList = this.f44331b.f44350j;
+                ArrayList arrayList = this.f44648b.f44666j;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     ((View) arrayList.get(i10)).invalidate();
                 }

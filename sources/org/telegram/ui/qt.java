@@ -1,29 +1,26 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class qt implements NotificationCenter.NotificationCenterDelegate {
-    public final int f36614a;
-    public final View f36615b;
+import j$.util.Objects;
+public final class qt {
+    public String f36969a;
+    public String f36970b;
+    public String f36971c;
+    public String d;
 
-    public qt(int i10, View view) {
-        this.f36614a = i10;
-        this.f36615b = view;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && qt.class == obj.getClass()) {
+            qt qtVar = (qt) obj;
+            if (Objects.equals(this.f36969a, qtVar.f36969a) && Objects.equals(this.f36971c, qtVar.f36971c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
-        switch (this.f36614a) {
-            case 0:
-                org.telegram.ui.Cells.fa faVar = (org.telegram.ui.Cells.fa) this.f36615b;
-                if (i10 == NotificationCenter.emojiLoaded) {
-                    faVar.getTextView().invalidate();
-                    return;
-                }
-                return;
-            default:
-                ((tj0) this.f36615b).invalidate();
-                return;
-        }
+    public final int hashCode() {
+        return Objects.hash(this.f36969a, this.f36971c);
     }
 }

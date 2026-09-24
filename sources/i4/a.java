@@ -11,10 +11,10 @@ public final class a {
     public static String a(v vVar, StringBuilder sb2) {
         boolean z10 = false;
         sb2.setLength(0);
-        int i10 = vVar.f7918b;
-        int i11 = vVar.f7919c;
+        int i10 = vVar.f7917b;
+        int i11 = vVar.f7918c;
         while (i10 < i11 && !z10) {
-            char c10 = (char) vVar.f7917a[i10];
+            char c10 = (char) vVar.f7916a[i10];
             if ((c10 < 'A' || c10 > 'Z') && ((c10 < 'a' || c10 > 'z') && ((c10 < '0' || c10 > '9') && c10 != '#' && c10 != '-' && c10 != '.' && c10 != '_'))) {
                 z10 = true;
             } else {
@@ -22,7 +22,7 @@ public final class a {
                 sb2.append(c10);
             }
         }
-        vVar.K(i10 - vVar.f7918b);
+        vVar.K(i10 - vVar.f7917b);
         return sb2.toString();
     }
 
@@ -41,12 +41,12 @@ public final class a {
     public static void c(v vVar) {
         while (true) {
             for (boolean z10 = true; vVar.a() > 0 && z10; z10 = false) {
-                int i10 = vVar.f7918b;
-                byte[] bArr = vVar.f7917a;
+                int i10 = vVar.f7917b;
+                byte[] bArr = vVar.f7916a;
                 byte b10 = bArr[i10];
                 char c10 = (char) b10;
                 if (c10 != '\t' && c10 != '\n' && c10 != '\f' && c10 != '\r' && c10 != ' ') {
-                    int i11 = vVar.f7919c;
+                    int i11 = vVar.f7918c;
                     int i12 = i10 + 2;
                     if (i12 <= i11) {
                         int i13 = i10 + 1;
@@ -62,7 +62,7 @@ public final class a {
                                     i12 = i14;
                                 }
                             }
-                            vVar.K(i11 - vVar.f7918b);
+                            vVar.K(i11 - vVar.f7917b);
                         }
                     }
                 } else {

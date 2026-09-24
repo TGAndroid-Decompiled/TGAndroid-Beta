@@ -1,41 +1,23 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-public final class k60 extends s4.o {
-    public final ArrayList f34584b;
-    public final l60 f34585c;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+public final class k60 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final FrameLayout f34935a;
+    public final n60 f34936b;
 
-    public k60(l60 l60Var, ArrayList arrayList) {
-        this.f34585c = l60Var;
-        this.f34584b = arrayList;
+    public k60(n60 n60Var, FrameLayout frameLayout) {
+        this.f34936b = n60Var;
+        this.f34935a = frameLayout;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return true;
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        ArrayList arrayList = this.f34584b;
-        if (i10 < arrayList.size()) {
-            l60 l60Var = this.f34585c;
-            if (i11 < l60Var.e.size()) {
-                return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(l60Var.e.get(i11));
-            }
-            return false;
+    public final void onGlobalLayout() {
+        this.f34935a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        n60 n60Var = this.f34936b;
+        if (n60Var.f35740z0 == null) {
+            n60Var.f35740z0 = (tc) n60Var.y0(n60Var.Z);
         }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f34585c.e.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f34584b.size();
+        n60Var.f35740z0.f38029f.setOnClickListener(new f60(this, 1));
     }
 }

@@ -11,9 +11,9 @@ public final class m3 extends s4.s0 {
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        org.telegram.ui.ActionBar.v0 v0Var;
+        org.telegram.ui.ActionBar.u0 u0Var;
         w3 w3Var = this.f5165a;
-        if (w3Var.f5717n.K1 && (v0Var = w3Var.G) != null && v0Var.getSearchField() != null) {
+        if (w3Var.f5717n.K1 && (u0Var = w3Var.G) != null && u0Var.getSearchField() != null) {
             AndroidUtilities.hideKeyboard(w3Var.G.getSearchContainer());
         }
     }

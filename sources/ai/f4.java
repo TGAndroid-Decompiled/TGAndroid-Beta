@@ -2,8 +2,8 @@ package ai;
 
 import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.la0;
-public final class f4 implements la0 {
+import org.telegram.ui.Components.wa0;
+public final class f4 implements wa0 {
     public final e6 f873a;
 
     public f4(e6 e6Var) {
@@ -17,14 +17,14 @@ public final class f4 implements la0 {
     }
 
     @Override
-    public final void L(int i10, int i11, CharSequence charSequence, boolean z10) {
-        this.f873a.f773b2.P0(i10, i11, charSequence, z10);
+    public final void O(int i10, int i11, CharSequence charSequence, boolean z10) {
+        this.f873a.f773b2.O0(i10, i11, charSequence, z10);
     }
 
     @Override
-    public final void O(String str) {
+    public final void P(String str) {
         a4 a4Var = this.f873a.f773b2;
-        a4Var.V();
+        a4Var.U();
         a4Var.U0.h(str);
     }
 

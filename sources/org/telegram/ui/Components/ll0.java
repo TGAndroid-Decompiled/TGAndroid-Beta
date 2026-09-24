@@ -1,4 +1,10 @@
 package org.telegram.ui.Components;
-public abstract class ll0 extends s4.h0 {
-    public abstract boolean D(s4.c1 c1Var);
+
+import android.view.View;
+public interface ll0 {
+    void c(float f7, float f10, int i10, View view);
+
+    boolean d1(View view);
+
+    void r0(View view, float f7, float f10);
 }

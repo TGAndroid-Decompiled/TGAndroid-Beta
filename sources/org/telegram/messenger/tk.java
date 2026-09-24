@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class tk implements Runnable {
-    public final int f17400a;
-    public final TopicsController f17401b;
+    public final int f17632a;
+    public final TopicsController f17633b;
 
     public tk(TopicsController topicsController, int i10) {
-        this.f17400a = i10;
-        this.f17401b = topicsController;
+        this.f17632a = i10;
+        this.f17633b = topicsController;
     }
 
     @Override
     public final void run() {
-        switch (this.f17400a) {
+        switch (this.f17632a) {
             case 0:
-                this.f17401b.lambda$applyPinnedOrder$17();
+                this.f17633b.lambda$applyPinnedOrder$17();
                 return;
             default:
-                this.f17401b.lambda$databaseCleared$25();
+                this.f17633b.lambda$databaseCleared$25();
                 return;
         }
     }

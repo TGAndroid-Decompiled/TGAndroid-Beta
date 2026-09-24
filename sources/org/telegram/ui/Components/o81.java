@@ -1,51 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
-import java.io.File;
-import org.telegram.ui.WallpapersListActivity;
-public final class o81 {
-    public String f26683a;
-    public final Activity f26684b;
-    public final org.telegram.ui.ActionBar.n2 f26685c;
-    public final n81 d;
-    public File e;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class o81 implements ll0, ml0 {
+    public final v81 f26960a;
 
-    public o81(Activity activity, WallpapersListActivity wallpapersListActivity, n81 n81Var) {
-        this.f26684b = activity;
-        this.f26685c = wallpapersListActivity;
-        this.d = n81Var;
+    public o81(v81 v81Var) {
+        this.f26960a = v81Var;
     }
 
-    public final void a(int r9, int r10, android.content.Intent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o81.a(int, int, android.content.Intent):void");
-    }
-
-    public final void b() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f26685c;
-        if (n2Var != null) {
-            Activity parentActivity = n2Var.getParentActivity();
-            if (parentActivity != null) {
-                int i10 = Build.VERSION.SDK_INT;
-                if (i10 >= 33) {
-                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
-                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES"}, 4);
-                        return;
-                    }
-                } else if (i10 >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                    parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                    return;
-                }
+    @Override
+    public void c(float f7, float f10, int i10, View view) {
+        v81 v81Var = this.f26960a;
+        u81 u81Var = v81Var.f29100y;
+        if (u81Var != null) {
+            w81 w81Var = (w81) ((l.d) u81Var).f13909a;
+            if (w81Var.f29925x || w81Var.H) {
+                return;
             }
-            org.telegram.ui.dq0 dq0Var = new org.telegram.ui.dq0(2, false, false, null);
-            dq0Var.f32703x = false;
-            dq0Var.V = new m81(this);
-            n2Var.presentFragment(dq0Var);
-            return;
         }
-        Intent intent = new Intent("android.intent.action.PICK");
-        intent.setType("image/*");
-        this.f26684b.startActivityForResult(intent, 11);
+        t81 t81Var = (t81) view;
+        if (i10 != v81Var.F || u81Var == null) {
+            Utilities.Callback2Return callback2Return = v81Var.f29089l0;
+            if (callback2Return != null && ((Boolean) callback2Return.run(Integer.valueOf(t81Var.f28442a.f28196a), Integer.valueOf(i10))).booleanValue()) {
+                return;
+            }
+            v81Var.d(t81Var.f28442a.f28196a, i10);
+        }
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        Utilities.Callback2Return callback2Return = this.f26960a.f29076b;
+        if (callback2Return == null) {
+            return false;
+        }
+        return ((Boolean) callback2Return.run(Integer.valueOf(((t81) view).f28442a.f28196a), view)).booleanValue();
+    }
+
+    @Override
+    public boolean d1(View view) {
+        return false;
+    }
+
+    @Override
+    public void r0(View view, float f7, float f10) {
     }
 }

@@ -2,28 +2,28 @@ package g2;
 
 import java.io.InputStream;
 public final class k extends InputStream {
-    public final h f9354a;
-    public final m f9355b;
+    public final h f9353a;
+    public final m f9354b;
     public boolean d = false;
     public boolean e = false;
-    public final byte[] f9356c = new byte[1];
+    public final byte[] f9355c = new byte[1];
 
     public k(h hVar, m mVar) {
-        this.f9354a = hVar;
-        this.f9355b = mVar;
+        this.f9353a = hVar;
+        this.f9354b = mVar;
     }
 
     @Override
     public final void close() {
         if (!this.e) {
-            this.f9354a.close();
+            this.f9353a.close();
             this.e = true;
         }
     }
 
     @Override
     public final int read() {
-        byte[] bArr = this.f9356c;
+        byte[] bArr = this.f9355c;
         if (read(bArr, 0, bArr.length) == -1) {
             return -1;
         }
@@ -39,9 +39,9 @@ public final class k extends InputStream {
     public final int read(byte[] bArr, int i10, int i11) {
         e2.d.g(!this.e);
         boolean z10 = this.d;
-        h hVar = this.f9354a;
+        h hVar = this.f9353a;
         if (!z10) {
-            hVar.open(this.f9355b);
+            hVar.open(this.f9354b);
             this.d = true;
         }
         int read = hVar.read(bArr, i10, i11);

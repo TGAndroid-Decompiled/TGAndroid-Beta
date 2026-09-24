@@ -2,18 +2,18 @@ package gd;
 
 import java.io.Serializable;
 public final class f implements Serializable {
-    public final Object f9598a;
+    public final Object f9597a;
 
     public static final Throwable a(Object obj) {
         if (obj instanceof e) {
-            return ((e) obj).f9597a;
+            return ((e) obj).f9596a;
         }
         return null;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof f) {
-            if (!kotlin.jvm.internal.i.a(this.f9598a, ((f) obj).f9598a)) {
+            if (!kotlin.jvm.internal.i.a(this.f9597a, ((f) obj).f9597a)) {
                 return false;
             }
             return true;
@@ -22,7 +22,7 @@ public final class f implements Serializable {
     }
 
     public final int hashCode() {
-        Object obj = this.f9598a;
+        Object obj = this.f9597a;
         if (obj == null) {
             return 0;
         }
@@ -30,7 +30,7 @@ public final class f implements Serializable {
     }
 
     public final String toString() {
-        Object obj = this.f9598a;
+        Object obj = this.f9597a;
         if (obj instanceof e) {
             return ((e) obj).toString();
         }

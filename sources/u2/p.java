@@ -7,28 +7,28 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 public final class p implements e0 {
-    public final c5.g f43389a;
-    public final of.b f43390b;
-    public qb.b f43391c;
+    public final c5.g f43728a;
+    public final of.b f43729b;
+    public qb.b f43730c;
     public final long d;
     public final long e;
-    public final long f43392f;
-    public final float f43393g;
+    public final long f43731f;
+    public final float f43732g;
     public final float h;
-    public boolean f43394i;
+    public boolean f43733i;
 
     public p(Context context, c3.m mVar) {
         of.b bVar = new of.b(context, 18);
-        this.f43390b = bVar;
+        this.f43729b = bVar;
         qb.b bVar2 = new qb.b(28);
-        this.f43391c = bVar2;
+        this.f43730c = bVar2;
         ?? obj = new Object();
         obj.f3870b = mVar;
         obj.f3872f = bVar2;
         obj.f3871c = new HashMap();
         obj.d = new HashMap();
         obj.f3869a = true;
-        this.f43389a = obj;
+        this.f43728a = obj;
         if (bVar != ((of.b) obj.e)) {
             obj.e = bVar;
             ((HashMap) obj.f3871c).clear();
@@ -36,10 +36,10 @@ public final class p implements e0 {
         }
         this.d = -9223372036854775807L;
         this.e = -9223372036854775807L;
-        this.f43392f = -9223372036854775807L;
-        this.f43393g = -3.4028235E38f;
+        this.f43731f = -9223372036854775807L;
+        this.f43732g = -3.4028235E38f;
         this.h = -3.4028235E38f;
-        this.f43394i = true;
+        this.f43733i = true;
     }
 
     public static e0 e(Class cls, g2.g gVar) {
@@ -79,13 +79,13 @@ public final class p implements e0 {
             b2.f0 f0Var5 = k0Var2.f3070b;
             int I = e2.d0.I(f0Var5.f2985a, f0Var5.f2986b);
             if (k0Var2.f3070b.h != -9223372036854775807L) {
-                c3.m mVar = (c3.m) this.f43389a.f3870b;
+                c3.m mVar = (c3.m) this.f43728a.f3870b;
                 synchronized (mVar) {
                     mVar.d = 1;
                 }
             }
             try {
-                c5.g gVar = this.f43389a;
+                c5.g gVar = this.f43728a;
                 HashMap hashMap = (HashMap) gVar.d;
                 e0 e0Var = (e0) hashMap.get(Integer.valueOf(I));
                 if (e0Var == null) {
@@ -101,7 +101,7 @@ public final class p implements e0 {
                     a2.f2949a = this.d;
                 }
                 if (e0Var2.d == -3.4028235E38f) {
-                    a2.d = this.f43393g;
+                    a2.d = this.f43732g;
                 }
                 if (e0Var2.e == -3.4028235E38f) {
                     a2.e = this.h;
@@ -110,7 +110,7 @@ public final class p implements e0 {
                     a2.f2950b = this.e;
                 }
                 if (e0Var2.f2972c == -9223372036854775807L) {
-                    a2.f2951c = this.f43392f;
+                    a2.f2951c = this.f43731f;
                 }
                 b2.e0 e0Var3 = new b2.e0(a2);
                 if (!e0Var3.equals(k0Var2.f3071c)) {
@@ -211,7 +211,7 @@ public final class p implements e0 {
                     a[] aVarArr = new a[i0Var3.size() + 1];
                     aVarArr[c10] = a11;
                     for (int i10 = 0; i10 < i0Var3.size(); i10++) {
-                        if (this.f43394i) {
+                        if (this.f43733i) {
                             b2.r rVar = new b2.r();
                             rVar.f3245q = b2.r0.n(((b2.j0) i0Var3.get(i10)).f3037b);
                             rVar.d = ((b2.j0) i0Var3.get(i10)).f3038c;
@@ -220,16 +220,16 @@ public final class p implements e0 {
                             rVar.f3233b = ((b2.j0) i0Var3.get(i10)).f3039f;
                             rVar.f3232a = ((b2.j0) i0Var3.get(i10)).f3040g;
                             b2.s sVar = new b2.s(rVar);
-                            tg.d dVar = new tg.d(5, this, sVar);
-                            of.b bVar = this.f43390b;
-                            r5.d dVar2 = new r5.d(dVar, 10);
-                            lf.i iVar = new lf.i(5);
+                            s5.e eVar = new s5.e(6, this, sVar);
+                            of.b bVar = this.f43729b;
+                            r5.d dVar = new r5.d(eVar, 10);
+                            la.h hVar = new la.h(6);
                             qb.b bVar2 = new qb.b(26);
-                            if (this.f43391c.W(sVar)) {
+                            if (this.f43730c.W(sVar)) {
                                 b2.r a12 = sVar.a();
                                 a12.f3245q = b2.r0.n("application/x-media3-cues");
                                 a12.f3238j = sVar.f3301r;
-                                a12.O = this.f43391c.D(sVar);
+                                a12.O = this.f43730c.D(sVar);
                                 sVar = new b2.s(a12);
                             }
                             b2.s sVar2 = sVar;
@@ -264,18 +264,18 @@ public final class p implements e0 {
                             }
                             b2.k0 k0Var3 = new b2.k0("", new b2.z(yVar), f0Var2, new b2.e0(d0Var), b2.n0.K, g0Var3);
                             f0Var2.getClass();
-                            aVarArr[i11] = new v0(k0Var3, bVar, dVar2, iVar.A(k0Var3), bVar2, 1048576, sVar2);
+                            aVarArr[i11] = new w0(k0Var3, bVar, dVar, hVar.A(k0Var3), bVar2, 1048576, sVar2);
                         } else {
-                            of.b bVar3 = this.f43390b;
+                            of.b bVar3 = this.f43729b;
                             bVar3.getClass();
-                            aVarArr[i10 + 1] = new k1((b2.j0) i0Var3.get(i10), bVar3, new qb.b(26));
+                            aVarArr[i10 + 1] = new l1((b2.j0) i0Var3.get(i10), bVar3, new qb.b(26));
                         }
                     }
-                    a11 = new n0(aVarArr);
+                    a11 = new o0(aVarArr);
                 }
                 b2.a0 a0Var2 = k0Var2.e;
                 if (a0Var2.f3362b != 0 || a0Var2.d != Long.MIN_VALUE || a0Var2.f3364f) {
-                    e eVar = new e(a11);
+                    e eVar2 = new e(a11);
                     long j10 = a0Var2.f3362b;
                     if (j10 >= 0) {
                         z10 = true;
@@ -283,24 +283,24 @@ public final class p implements e0 {
                         z10 = false;
                     }
                     e2.d.b(z10);
-                    e2.d.g(!eVar.h);
-                    eVar.f43279b = j10;
+                    e2.d.g(!eVar2.h);
+                    eVar2.f43617b = j10;
                     long j11 = a0Var2.d;
-                    e2.d.g(!eVar.h);
-                    eVar.f43280c = j11;
-                    e2.d.g(!eVar.h);
-                    eVar.d = !a0Var2.f3365g;
+                    e2.d.g(!eVar2.h);
+                    eVar2.f43618c = j11;
+                    e2.d.g(!eVar2.h);
+                    eVar2.d = !a0Var2.f3365g;
                     boolean z13 = a0Var2.e;
-                    e2.d.g(!eVar.h);
-                    eVar.e = z13;
+                    e2.d.g(!eVar2.h);
+                    eVar2.e = z13;
                     boolean z14 = a0Var2.f3364f;
-                    e2.d.g(!eVar.h);
-                    eVar.f43281f = z14;
+                    e2.d.g(!eVar2.h);
+                    eVar2.f43619f = z14;
                     boolean z15 = a0Var2.h;
-                    e2.d.g(!eVar.h);
-                    eVar.f43282g = z15;
-                    eVar.h = true;
-                    a11 = new h(eVar);
+                    e2.d.g(!eVar2.h);
+                    eVar2.f43620g = z15;
+                    eVar2.h = true;
+                    a11 = new h(eVar2);
                 }
                 k0Var2.f3070b.getClass();
                 if (k0Var2.f3070b.d == null) {
@@ -313,14 +313,14 @@ public final class p implements e0 {
             }
         }
         long j12 = k0Var2.f3070b.h;
-        String str7 = e2.d0.f7871a;
+        String str7 = e2.d0.f7870a;
         throw null;
     }
 
     @Override
     public final e0 b(boolean z10) {
-        this.f43394i = z10;
-        c5.g gVar = this.f43389a;
+        this.f43733i = z10;
+        c5.g gVar = this.f43728a;
         gVar.f3869a = z10;
         c3.m mVar = (c3.m) gVar.f3870b;
         synchronized (mVar) {
@@ -334,7 +334,7 @@ public final class p implements e0 {
 
     @Override
     public final e0 c() {
-        c5.g gVar = this.f43389a;
+        c5.g gVar = this.f43728a;
         gVar.getClass();
         synchronized (((c3.m) gVar.f3870b)) {
         }
@@ -343,8 +343,8 @@ public final class p implements e0 {
 
     @Override
     public final e0 d(qb.b bVar) {
-        this.f43391c = bVar;
-        c5.g gVar = this.f43389a;
+        this.f43730c = bVar;
+        c5.g gVar = this.f43728a;
         gVar.f3872f = bVar;
         c3.m mVar = (c3.m) gVar.f3870b;
         synchronized (mVar) {

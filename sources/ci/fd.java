@@ -26,9 +26,9 @@ public final class fd implements DialogInterface.OnCancelListener {
                 return;
             case 3:
                 fi.t0 t0Var = (fi.t0) this.f4713b;
-                ConnectionsManager.getInstance(t0Var.d).cancelRequest(t0Var.f9176r, true);
-                t0Var.f9175q = null;
-                t0Var.f9176r = 0;
+                ConnectionsManager.getInstance(t0Var.d).cancelRequest(t0Var.f9175r, true);
+                t0Var.f9174q = null;
+                t0Var.f9175r = 0;
                 return;
             default:
                 ((lg.p) this.f4713b).I = false;

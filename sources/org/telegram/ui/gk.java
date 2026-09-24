@@ -6,42 +6,42 @@ import android.view.View;
 import java.util.WeakHashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class gk extends org.telegram.ui.Components.z71 {
-    public final Context f33583a;
-    public final xn f33584b;
+public final class gk extends org.telegram.ui.Components.n81 {
+    public final Context f33942a;
+    public final wn f33943b;
 
-    public gk(xn xnVar, Context context) {
-        this.f33584b = xnVar;
-        this.f33583a = context;
+    public gk(wn wnVar, Context context) {
+        this.f33943b = wnVar;
+        this.f33942a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        if (view instanceof zn) {
-            ((zn) view).f40196a.Jc(this.f33584b.f39560u3);
+        if (view instanceof yn) {
+            ((yn) view).f40177a.Jc(this.f33943b.f39644u3);
         }
-        WeakHashMap weakHashMap = r0.i0.f41795a;
+        WeakHashMap weakHashMap = r0.i0.f42114a;
         r0.y.c(view);
     }
 
     @Override
     public final View d(int i10) {
-        Context context = this.f33583a;
-        xn xnVar = this.f33584b;
+        Context context = this.f33942a;
+        wn wnVar = this.f33943b;
         if (i10 == 0) {
-            return new ln(xnVar, context);
+            return new kn(wnVar, context);
         }
         Bundle bundle = new Bundle();
         bundle.putInt("chatMode", 7);
         bundle.putInt("searchType", i10);
-        bundle.putString("searchHashtag", xnVar.f39560u3);
-        fk fkVar = new fk(context, xnVar.getParentLayout(), bundle, 0);
+        bundle.putString("searchHashtag", wnVar.f39644u3);
+        fk fkVar = new fk(context, wnVar.getParentLayout(), bundle, 0);
         fkVar.h = false;
-        yn ynVar = fkVar.f40196a;
-        ynVar.L.f9064a = xnVar.L;
-        ynVar.f39346ca = xnVar.f39370ea;
-        ynVar.f39358da = xnVar;
-        ynVar.V8 = new g(this, 13);
+        xn xnVar = fkVar.f40177a;
+        xnVar.L.f9063a = wnVar.L;
+        xnVar.f39430ca = wnVar.f39454ea;
+        xnVar.f39442da = wnVar;
+        xnVar.V8 = new g(this, 13);
         return fkVar;
     }
 

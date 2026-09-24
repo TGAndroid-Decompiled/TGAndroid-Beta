@@ -4,17 +4,17 @@ import android.util.LongSparseArray;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.g91;
+import org.telegram.ui.l21;
 public abstract class d1 {
-    public static boolean f38677a;
-    public static boolean f38678b;
-    public static ArrayList f38679c;
+    public static boolean f39030a;
+    public static boolean f39031b;
+    public static ArrayList f39032c;
     public static LongSparseArray d;
     public static ArrayList e;
 
     public static ArrayList a(Utilities.Callback callback) {
         boolean z10;
-        if (callback != null && !f38678b) {
+        if (callback != null && !f39031b) {
             if (e == null) {
                 e = new ArrayList();
             }
@@ -27,30 +27,30 @@ public abstract class d1 {
         if (z10) {
             return null;
         }
-        return f38679c;
+        return f39032c;
     }
 
     public static void b() {
-        if (!f38677a && !f38678b) {
-            f38677a = true;
-            f38679c = new ArrayList();
+        if (!f39030a && !f39031b) {
+            f39030a = true;
+            f39032c = new ArrayList();
             d = new LongSparseArray();
-            Utilities.globalQueue.postRunnable(new g91(5));
+            Utilities.globalQueue.postRunnable(new l21(7));
         }
     }
 
     public static void c(c1 c1Var) {
         if (c1Var != null && c1Var.d != null) {
             b();
-            c1 c1Var2 = (c1) d.get(c1Var.f38668a);
+            c1 c1Var2 = (c1) d.get(c1Var.f39024a);
             if (c1Var2 != null) {
                 c1Var2.d = c1Var.d;
             } else {
-                f38679c.add(c1Var);
-                d.put(c1Var.f38668a, c1Var);
+                f39032c.add(c1Var);
+                d.put(c1Var.f39024a, c1Var);
             }
-            AndroidUtilities.cancelRunOnUIThread(new g91(4));
-            AndroidUtilities.runOnUIThread(new g91(4), 1000L);
+            AndroidUtilities.cancelRunOnUIThread(new l21(6));
+            AndroidUtilities.runOnUIThread(new l21(6), 1000L);
         }
     }
 }

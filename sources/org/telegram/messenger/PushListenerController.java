@@ -44,7 +44,7 @@ public class PushListenerController {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 k9.h.f(ApplicationLoader.applicationContext);
-                com.google.firebase.messaging.v vVar = FirebaseMessaging.f7249l;
+                a4.m mVar = FirebaseMessaging.f7249l;
                 synchronized (FirebaseMessaging.class) {
                     firebaseMessaging = FirebaseMessaging.getInstance(k9.h.c());
                 }
@@ -72,7 +72,7 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f13498a) == 0) {
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f13496a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;

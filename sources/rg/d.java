@@ -11,34 +11,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ul;
+import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.t3;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.l51;
-import w7.x5;
-public final class d extends ll0 {
-    public final d6 f42218c;
+import org.telegram.ui.Components.vl0;
+import org.telegram.ui.m51;
+import w7.y5;
+public final class d extends vl0 {
+    public final d6 f42537c;
     public final int d;
     public final int e;
-    public final ArrayList f42219f;
+    public final ArrayList f42538f;
     public final z0 h;
-    public int f42220n;
-    public c f42221r;
-    public final boolean f42222s;
+    public int f42539n;
+    public c f42540r;
+    public final boolean f42541s;
 
     public d(int i10, d6 d6Var) {
         ArrayList arrayList = new ArrayList();
-        this.f42219f = arrayList;
-        this.f42222s = true;
-        this.f42218c = d6Var;
+        this.f42538f = arrayList;
+        this.f42541s = true;
+        this.f42537c = d6Var;
         z0 z0Var = new z0(h6.Lj, h6.Mj, h6.Nj, h6.Oj, d6Var);
         this.h = z0Var;
-        z0Var.f42515o = 0.0f;
-        z0Var.f42516p = 0.0f;
-        z0Var.f42517q = 1.0f;
+        z0Var.f42834o = 0.0f;
+        z0Var.f42835p = 0.0f;
+        z0Var.f42836q = 1.0f;
         MessagesController messagesController = MessagesController.getInstance(i10);
         arrayList.add(new e(messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, LocaleController.getString(R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString(R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium))));
         arrayList.add(new e(messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, LocaleController.getString(R.string.PinChatsLimitTitle), LocaleController.formatString(R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium))));
@@ -79,14 +79,14 @@ public final class d extends ll0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f42630f == 0) {
-            f fVar = (f) c1Var.f42627a;
+        if (c1Var.f42949f == 0) {
+            f fVar = (f) c1Var.f42946a;
             int i11 = i10 - this.e;
-            ArrayList arrayList = this.f42219f;
+            ArrayList arrayList = this.f42538f;
             fVar.a((e) arrayList.get(i11));
-            LimitPreviewView limitPreviewView = fVar.f42236c;
+            LimitPreviewView limitPreviewView = fVar.f42555c;
             limitPreviewView.F = ((e) arrayList.get(i11)).e;
-            limitPreviewView.f22076c = this.f42220n;
+            limitPreviewView.f22313c = this.f42539n;
         }
     }
 
@@ -94,31 +94,31 @@ public final class d extends ll0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         t3 t3Var;
         Context context = viewGroup.getContext();
-        d6 d6Var = this.f42218c;
+        d6 d6Var = this.f42537c;
         if (i10 != 1) {
             if (i10 != 2) {
                 ?? fVar = new f(context, d6Var);
-                fVar.f42236c.setParentViewForGradien(this.f42221r);
-                fVar.f42236c.setStaticGradinet(this.h);
+                fVar.f42555c.setParentViewForGradien(this.f42540r);
+                fVar.f42555c.setStaticGradinet(this.h);
                 t3Var = fVar;
             } else {
                 t3Var = new t3(context, 16);
             }
-        } else if (this.f42222s) {
-            ?? l51Var = new l51(context, 10);
-            LinearLayout f7 = ul.f(context, 0);
+        } else if (this.f42541s) {
+            ?? m51Var = new m51(context, 10);
+            LinearLayout f7 = ok.f(context, 0);
             ImageView imageView = new ImageView(context);
-            imageView.setImageDrawable(a1.c(context.getDrawable(R.drawable.other_2x_large), a1.d().f42197a));
-            f7.addView(imageView, x5.d(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
+            imageView.setImageDrawable(a1.c(context.getDrawable(R.drawable.other_2x_large), a1.d().f42516a));
+            f7.addView(imageView, y5.d(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setText(LocaleController.getString(R.string.DoubledLimits));
             textView.setGravity(17);
             textView.setTextSize(1, 20.0f);
             textView.setTextColor(h6.v0(h6.G6, d6Var));
             textView.setTypeface(AndroidUtilities.bold());
-            f7.addView(textView, x5.e(-2, -2, 16));
-            l51Var.addView(f7, x5.e(-2, -2, 17));
-            t3Var = l51Var;
+            f7.addView(textView, y5.e(-2, -2, 16));
+            m51Var.addView(f7, y5.e(-2, -2, 17));
+            t3Var = m51Var;
         } else {
             t3Var = new t3(context, 64);
         }

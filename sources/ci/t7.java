@@ -20,9 +20,9 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f01;
 import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.t01;
 public final class t7 extends View {
     public s7 E;
     public View F;
@@ -40,11 +40,11 @@ public final class t7 extends View {
     public final RectF f5559f;
     public final ImageReceiver h;
     public boolean f5560n;
-    public f01 f5561r;
-    public f01 f5562s;
+    public t01 f5561r;
+    public t01 f5562s;
     public final Path v;
     public final Paint f5563w;
-    public final org.telegram.ui.Components.yc f5564x;
+    public final org.telegram.ui.Components.zc f5564x;
     public boolean f5565y;
 
     public t7(Activity activity, int i10, ha haVar) {
@@ -55,7 +55,7 @@ public final class t7 extends View {
         this.h = new ImageReceiver(this);
         this.v = new Path();
         this.f5563w = new Paint(1);
-        this.f5564x = new org.telegram.ui.Components.yc(this);
+        this.f5564x = new org.telegram.ui.Components.zc(this);
         this.J = new int[2];
         this.K = new int[2];
         this.f5556a = i10;
@@ -67,7 +67,7 @@ public final class t7 extends View {
         if (s7Var == null) {
             return;
         }
-        this.f5561r = new f01(s7Var.b(), 16.0f, AndroidUtilities.bold());
+        this.f5561r = new t01(s7Var.b(), 16.0f, AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.E.a());
         if (spannableStringBuilder.toString().contains(">")) {
             spannableStringBuilder.clear();
@@ -79,7 +79,7 @@ public final class t7 extends View {
             pqVar.setScale(1.25f, 1.25f);
             spannableStringBuilder.setSpan(pqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         }
-        this.f5562s = new f01(spannableStringBuilder, 14.0f, null);
+        this.f5562s = new t01(spannableStringBuilder, 14.0f, null);
         this.E.d(this.h);
         this.f5560n = true;
     }
@@ -95,10 +95,10 @@ public final class t7 extends View {
         int[] iArr;
         int[] iArr2;
         float e = this.d.e(this.f5565y);
-        f01 f01Var = this.f5561r;
-        if (f01Var != null && this.f5562s != null && e > 0.0f) {
-            f01Var.f23795p = getWidth() * 0.7f;
-            this.f5562s.f23795p = getWidth() * 0.7f;
+        t01 t01Var = this.f5561r;
+        if (t01Var != null && this.f5562s != null && e > 0.0f) {
+            t01Var.f28367p = getWidth() * 0.7f;
+            this.f5562s.f28367p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -110,7 +110,7 @@ public final class t7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f5561r.f23785c, this.f5562s.f23785c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f5561r.f28357c, this.f5562s.f28357c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f5560n) {
                 f10 = dp3;
             } else {
@@ -164,20 +164,20 @@ public final class t7 extends View {
                 imageReceiver.draw(canvas);
             }
             float centerY = rectF.centerY() - ((this.f5562s.j() + (this.f5561r.j() + dp4)) / f12);
-            f01 f01Var2 = this.f5561r;
+            t01 t01Var2 = this.f5561r;
             float f16 = rectF.left;
             if (this.f5560n) {
                 f13 = dp5 + dp3 + dp5;
             } else {
                 f13 = 0.0f;
             }
-            f01Var2.c(f16 + f13 + f11, (f01Var2.j() / f12) + centerY, e, -1, canvas);
-            f01 f01Var3 = this.f5562s;
+            t01Var2.c(f16 + f13 + f11, (t01Var2.j() / f12) + centerY, e, -1, canvas);
+            t01 t01Var3 = this.f5562s;
             float f17 = rectF.left;
             if (this.f5560n) {
                 f14 = dp3 + dp5 + dp5;
             }
-            f01Var3.c(f17 + f14 + f11, this.f5561r.j() + centerY + dp4 + (this.f5562s.j() / f12), e, org.telegram.ui.ActionBar.h6.v(-16777216, -1610612737), canvas);
+            t01Var3.c(f17 + f14 + f11, this.f5561r.j() + centerY + dp4 + (this.f5562s.j() / f12), e, org.telegram.ui.ActionBar.h6.v(-16777216, -1610612737), canvas);
             canvas.restore();
         }
     }
@@ -186,36 +186,36 @@ public final class t7 extends View {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         ia iaVar;
         boolean z10 = this.f5565y;
-        org.telegram.ui.Components.yc ycVar = this.f5564x;
+        org.telegram.ui.Components.zc zcVar = this.f5564x;
         if (z10 && this.E != null) {
             int action = motionEvent.getAction();
             RectF rectF = this.e;
             if (action == 0) {
                 if (rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     this.L = true;
-                    ycVar.c(true);
+                    zcVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (ycVar.h && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
-                    ycVar.c(false);
+                if (zcVar.h && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                    zcVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (ycVar.h && (iaVar = this.f5558c) != null && this.E != null) {
+                if (zcVar.h && (iaVar = this.f5558c) != null && this.E != null) {
                     iaVar.run(new p7(this, 1));
                 }
-                ycVar.c(false);
+                zcVar.c(false);
                 this.L = false;
             } else if (motionEvent.getAction() == 3) {
-                ycVar.c(false);
+                zcVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !ycVar.h) {
+            if (!this.L && !zcVar.h) {
                 return false;
             }
             return true;
         }
         this.L = false;
-        ycVar.c(false);
+        zcVar.c(false);
         return false;
     }
 

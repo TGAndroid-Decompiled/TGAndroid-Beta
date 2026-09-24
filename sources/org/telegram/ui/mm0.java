@@ -1,70 +1,55 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class mm0 extends AnimatorListenerAdapter {
-    public final int f35356a;
-    public final boolean f35357b;
-    public final in0 f35358c;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class mm0 implements Comparator {
+    public final gn0 f35611a;
 
-    public mm0(in0 in0Var, boolean z10, int i10) {
-        this.f35356a = i10;
-        this.f35358c = in0Var;
-        this.f35357b = z10;
+    public mm0(gn0 gn0Var) {
+        this.f35611a = gn0Var;
+    }
+
+    public final int a(TLRPC.SecureValueError secureValueError) {
+        if (secureValueError instanceof TLRPC.TL_secureValueError) {
+            return 0;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
+            return 1;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
+            return 2;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
+            return 3;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
+            return 4;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
+            return 5;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
+            return 6;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
+            return 7;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
+            return gn0.C0(this.f35611a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
+        }
+        return 100;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f35356a) {
-            case 0:
-                in0 in0Var = this.f35358c;
-                AnimatorSet animatorSet = in0Var.M;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    in0Var.M = null;
-                    return;
-                }
-                return;
-            default:
-                in0 in0Var2 = this.f35358c;
-                AnimatorSet animatorSet2 = in0Var2.M;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    in0Var2.M = null;
-                    return;
-                }
-                return;
+    public final int compare(Object obj, Object obj2) {
+        int a2 = a((TLRPC.SecureValueError) obj);
+        int a10 = a((TLRPC.SecureValueError) obj2);
+        if (a2 < a10) {
+            return -1;
         }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35356a) {
-            case 0:
-                in0 in0Var = this.f35358c;
-                AnimatorSet animatorSet = in0Var.M;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f35357b) {
-                        in0Var.N.setVisibility(4);
-                        return;
-                    } else {
-                        in0Var.L.getContentView().setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-            default:
-                in0 in0Var2 = this.f35358c;
-                AnimatorSet animatorSet2 = in0Var2.M;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f35357b) {
-                        in0Var2.P.setVisibility(4);
-                        return;
-                    } else {
-                        in0Var2.O.setVisibility(4);
-                        return;
-                    }
-                }
-                return;
+        if (a2 > a10) {
+            return 1;
         }
+        return 0;
     }
 }

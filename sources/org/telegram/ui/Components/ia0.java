@@ -1,33 +1,18 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class ia0 extends g.p {
-    public final oa0 f24926c;
-
-    public ia0(oa0 oa0Var) {
-        this.f24926c = oa0Var;
-    }
-
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ia0 extends org.telegram.ui.d01 {
     @Override
-    public final int i(int i10) {
-        oa0 oa0Var = this.f24926c;
-        gg.k1 k1Var = oa0Var.f26696f;
-        if (i10 != 0) {
-            int i11 = i10 - 1;
-            Object J = k1Var.J(i11);
-            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
-                return 100;
-            }
-            if (J instanceof TLRPC.Document) {
-                return 20;
-            }
-            if (k1Var.I() != null || k1Var.U != null) {
-                i10 = i11;
-            }
-            ha0 ha0Var = oa0Var.d;
-            ha0Var.B1();
-            return ha0Var.R.get(i10);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().hasNotThumb()) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
+            return;
         }
-        return 100;
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

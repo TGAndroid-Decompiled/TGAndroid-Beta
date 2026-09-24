@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-public final class q3 extends org.telegram.ui.ActionBar.f1 {
+public final class q3 extends org.telegram.ui.ActionBar.e1 {
     public final int L;
     public long M;
     public o3 N;
@@ -16,12 +16,12 @@ public final class q3 extends org.telegram.ui.ActionBar.f1 {
         setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         c(h6.v0(h6.E8, d6Var), h6.v0(h6.F8, d6Var));
         setIconColor(-1);
-        this.f18612c.setTranslationX(AndroidUtilities.dp(2.0f));
-        this.f18612c.setScaleX(1.2f);
-        this.f18612c.setScaleY(1.2f);
+        this.f18820c.setTranslationX(AndroidUtilities.dp(2.0f));
+        this.f18820c.setScaleX(1.2f);
+        this.f18820c.setScaleY(1.2f);
         a(2);
         setBackground(null);
-        this.f18612c.addOnAttachStateChangeListener(new ai.u2(this, 13));
+        this.f18820c.addOnAttachStateChangeListener(new ai.u2(this, 13));
     }
 
     @Override

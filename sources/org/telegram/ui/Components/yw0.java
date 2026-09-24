@@ -1,52 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.NotificationCenter;
-public final class yw0 extends w9 implements NotificationCenter.NotificationCenterDelegate {
-    public final int G;
-    public int H;
-    public String I;
+import android.animation.ValueAnimator;
+public final class yw0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f30702a;
+    public final bx0 f30703b;
 
-    public yw0(Context context, int i10) {
-        super(context);
-        this.I = "tg_placeholders_android";
-        this.G = i10;
+    public yw0(bx0 bx0Var, int i10) {
+        this.f30702a = i10;
+        this.f30703b = bx0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.diceStickersDidLoad) {
-            if (this.I.equals((String) objArr[0])) {
-                t();
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f30702a) {
+            case 0:
+                bx0 bx0Var = this.f30703b;
+                bx0Var.getClass();
+                bx0Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bx0Var.invalidate();
+                return;
+            case 1:
+                bx0 bx0Var2 = this.f30703b;
+                bx0Var2.getClass();
+                bx0Var2.m(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                bx0 bx0Var3 = this.f30703b;
+                bx0Var3.getClass();
+                bx0Var3.f23091y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bx0Var3.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        t();
-        NotificationCenter.getInstance(this.G).addObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    public void setStickerNum(int i10) {
-        if (this.H != i10) {
-            this.H = i10;
-            t();
-        }
-    }
-
-    public void setStickerPackName(String str) {
-        this.I = str;
-    }
-
-    public final void t() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yw0.t():void");
     }
 }

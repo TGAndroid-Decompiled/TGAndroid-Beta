@@ -1,18 +1,18 @@
 package x7;
 public final class t1 implements ia.d {
-    public static final t1 f45536a = new Object();
-    public static final ia.c f45537b = new ia.c("errorCode", hg.c.o(w.c.k(c0.class, new z(1))));
-    public static final ia.c f45538c = new ia.c("isColdCall", hg.c.o(w.c.k(c0.class, new z(2))));
-    public static final ia.c d = new ia.c("imageInfo", hg.c.o(w.c.k(c0.class, new z(3))));
-    public static final ia.c e = new ia.c("detectorOptions", hg.c.o(w.c.k(c0.class, new z(4))));
+    public static final t1 f45850a = new Object();
+    public static final ia.c f45851b = new ia.c("errorCode", hg.c.m(v7.j.l(c0.class, new z(1))));
+    public static final ia.c f45852c = new ia.c("isColdCall", hg.c.m(v7.j.l(c0.class, new z(2))));
+    public static final ia.c d = new ia.c("imageInfo", hg.c.m(v7.j.l(c0.class, new z(3))));
+    public static final ia.c e = new ia.c("detectorOptions", hg.c.m(v7.j.l(c0.class, new z(4))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         r0 r0Var = (r0) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f45537b, r0Var.f45516a);
-        eVar.a(f45538c, r0Var.f45517b);
+        eVar.a(f45851b, r0Var.f45830a);
+        eVar.a(f45852c, r0Var.f45831b);
         eVar.a(d, null);
-        eVar.a(e, r0Var.f45518c);
+        eVar.a(e, r0Var.f45832c);
     }
 }

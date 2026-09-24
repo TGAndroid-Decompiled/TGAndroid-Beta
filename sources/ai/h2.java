@@ -22,14 +22,14 @@ public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
     public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
         float dp;
         m2 m2Var = m2.Z;
-        m2Var.M = w7.p.a(scaleGestureDetector.getScaleFactor() * m2Var.M, 0.6f, m2Var.f1231a);
+        m2Var.M = w7.q.a(scaleGestureDetector.getScaleFactor() * m2Var.M, 0.6f, m2Var.f1231a);
         m2Var.J = (int) (m2Var.n() * m2Var.M);
         m2Var.K = (int) (m2Var.m() * m2Var.M);
         AndroidUtilities.runOnUIThread(new f(this, 3));
         o1.k kVar = m2Var.P;
-        kVar.f15317b = m2Var.N;
-        kVar.f15318c = true;
-        o1.l lVar = kVar.f15326u;
+        kVar.f15509b = m2Var.N;
+        kVar.f15510c = true;
+        o1.l lVar = kVar.f15518u;
         float focusX = scaleGestureDetector.getFocusX();
         int i10 = AndroidUtilities.displaySize.x;
         if (focusX >= i10 / 2.0f) {
@@ -37,17 +37,17 @@ public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
         } else {
             dp = AndroidUtilities.dp(16.0f);
         }
-        lVar.f15332i = dp;
+        lVar.f15524i = dp;
         o1.k kVar2 = m2Var.P;
-        if (!kVar2.f15319f) {
+        if (!kVar2.f15511f) {
             kVar2.f();
         }
         o1.k kVar3 = m2Var.Q;
-        kVar3.f15317b = m2Var.O;
-        kVar3.f15318c = true;
-        kVar3.f15326u.f15332i = w7.p.a(scaleGestureDetector.getFocusY() - (m2Var.K / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - m2Var.K) - AndroidUtilities.dp(16.0f));
+        kVar3.f15509b = m2Var.O;
+        kVar3.f15510c = true;
+        kVar3.f15518u.f15524i = w7.q.a(scaleGestureDetector.getFocusY() - (m2Var.K / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - m2Var.K) - AndroidUtilities.dp(16.0f));
         o1.k kVar4 = m2Var.Q;
-        if (!kVar4.f15319f) {
+        if (!kVar4.f15511f) {
             kVar4.f();
         }
         return true;
@@ -69,20 +69,20 @@ public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
     @Override
     public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
         m2 m2Var = m2.Z;
-        if (!m2Var.P.f15319f && !m2Var.Q.f15319f) {
+        if (!m2Var.P.f15511f && !m2Var.Q.f15511f) {
             a();
             return;
         }
         ArrayList arrayList = new ArrayList();
         g2 g2Var = new g2(this, arrayList, 0);
         o1.k kVar = m2Var.P;
-        if (!kVar.f15319f) {
+        if (!kVar.f15511f) {
             arrayList.add(kVar);
         } else {
             kVar.a(g2Var);
         }
         o1.k kVar2 = m2Var.Q;
-        if (!kVar2.f15319f) {
+        if (!kVar2.f15511f) {
             arrayList.add(kVar2);
         } else {
             kVar2.a(g2Var);

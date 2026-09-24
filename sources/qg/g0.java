@@ -1,23 +1,20 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.ui.tt0;
-public final class g0 extends View {
-    public final tt0 f41318a;
+import org.telegram.ui.st0;
+public final class g0 implements c {
+    public final st0 f41630a;
 
-    public g0(tt0 tt0Var, Context context) {
-        super(context);
-        this.f41318a = tt0Var;
+    public g0(st0 st0Var) {
+        this.f41630a = st0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        e0 e0Var = this.f41318a.W0;
-        if (e0Var != null) {
-            e0Var.d(canvas);
-        }
+    public final void a() {
+        this.f41630a.s0(null, true);
+    }
+
+    @Override
+    public final j b() {
+        return this.f41630a.S0;
     }
 }

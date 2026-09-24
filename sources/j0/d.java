@@ -15,7 +15,7 @@ import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.util.Log;
 import java.lang.reflect.Method;
-import v7.r8;
+import v7.s8;
 public final class d extends Drawable implements Drawable.Callback, c, b {
     public static final PorterDuff.Mode h = PorterDuff.Mode.SRC_IN;
     public static Method f12535n;
@@ -133,7 +133,7 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
 
     @Override
     public final int getLayoutDirection() {
-        return r8.a(this.f12539f);
+        return s8.a(this.f12539f);
     }
 
     @Override
@@ -293,7 +293,7 @@ public final class d extends Drawable implements Drawable.Callback, c, b {
 
     @Override
     public final boolean onLayoutDirectionChanged(int i10) {
-        return r8.b(i10, this.f12539f);
+        return s8.b(i10, this.f12539f);
     }
 
     @Override

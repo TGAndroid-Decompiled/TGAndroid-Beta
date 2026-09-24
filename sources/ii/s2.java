@@ -2,12 +2,14 @@ package ii;
 
 import android.app.Activity;
 import android.net.Uri;
+import android.util.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.ContactsController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.uq0;
+import org.telegram.ui.tq0;
 public final class s2 implements Runnable {
     public final int f11609a;
     public final int f11610b;
@@ -18,7 +20,7 @@ public final class s2 implements Runnable {
     public final Object h;
 
     public s2(Activity activity, int i10, TLRPC.InputGroupCall inputGroupCall, boolean z10, TLRPC.GroupCall groupCall, HashSet hashSet) {
-        this.f11609a = 4;
+        this.f11609a = 5;
         this.d = activity;
         this.f11610b = i10;
         this.e = inputGroupCall;
@@ -52,8 +54,18 @@ public final class s2 implements Runnable {
         this.f11611c = z10;
     }
 
-    public s2(ContactsController contactsController, int i10, ArrayList arrayList, ArrayList arrayList2, a0.i iVar, boolean z10) {
+    public s2(ki.q qVar, Size size, int i10, boolean z10, RuntimeException[] runtimeExceptionArr, CountDownLatch countDownLatch) {
         this.f11609a = 1;
+        this.d = qVar;
+        this.e = size;
+        this.f11610b = i10;
+        this.f11611c = z10;
+        this.f11612f = runtimeExceptionArr;
+        this.h = countDownLatch;
+    }
+
+    public s2(ContactsController contactsController, int i10, ArrayList arrayList, ArrayList arrayList2, a0.i iVar, boolean z10) {
+        this.f11609a = 2;
         this.d = contactsController;
         this.f11610b = i10;
         this.e = arrayList;
@@ -62,9 +74,9 @@ public final class s2 implements Runnable {
         this.f11611c = z10;
     }
 
-    public s2(uq0 uq0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
-        this.f11609a = 5;
-        this.d = uq0Var;
+    public s2(tq0 tq0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
+        this.f11609a = 6;
+        this.d = tq0Var;
         this.f11612f = str;
         this.f11610b = i10;
         this.e = tLObject;

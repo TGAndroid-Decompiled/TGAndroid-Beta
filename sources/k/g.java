@@ -10,9 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import java.lang.reflect.Constructor;
-import l.m;
 import l.n;
-import l.r;
+import l.o;
+import l.s;
 public final class g {
     public CharSequence A;
     public CharSequence B;
@@ -36,7 +36,7 @@ public final class g {
     public int f13126w;
     public String f13127x;
     public String f13128y;
-    public n f13129z;
+    public o f13129z;
     public ColorStateList C = null;
     public PorterDuff.Mode D = null;
     public int f13109b = 0;
@@ -103,17 +103,17 @@ public final class g {
             }
         }
         if (this.f13122r >= 2) {
-            if (menuItem instanceof m) {
-                m mVar = (m) menuItem;
-                mVar.f13764x = (mVar.f13764x & (-5)) | 4;
-            } else if (menuItem instanceof r) {
-                r rVar = (r) menuItem;
-                l0.a aVar = rVar.f13774c;
+            if (menuItem instanceof n) {
+                n nVar = (n) menuItem;
+                nVar.f13985x = (nVar.f13985x & (-5)) | 4;
+            } else if (menuItem instanceof s) {
+                s sVar = (s) menuItem;
+                l0.a aVar = sVar.f13995c;
                 try {
-                    if (rVar.d == null) {
-                        rVar.d = aVar.getClass().getDeclaredMethod("setExclusiveCheckable", Boolean.TYPE);
+                    if (sVar.d == null) {
+                        sVar.d = aVar.getClass().getDeclaredMethod("setExclusiveCheckable", Boolean.TYPE);
                     }
-                    rVar.d.invoke(aVar, Boolean.TRUE);
+                    sVar.d.invoke(aVar, Boolean.TRUE);
                 } catch (Exception e7) {
                     Log.w("MenuItemWrapper", "Error while calling setExclusiveCheckable", e7);
                 }
@@ -132,10 +132,10 @@ public final class g {
                 Log.w("SupportMenuInflater", "Ignoring attribute 'itemActionViewLayout'. Action view already specified.");
             }
         }
-        n nVar = this.f13129z;
-        if (nVar != null) {
+        o oVar = this.f13129z;
+        if (oVar != null) {
             if (menuItem instanceof l0.a) {
-                ((l0.a) menuItem).a(nVar);
+                ((l0.a) menuItem).a(oVar);
             } else {
                 Log.w("MenuItemCompat", "setActionProvider: item does not implement SupportMenuItem; ignoring");
             }

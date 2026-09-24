@@ -1,102 +1,39 @@
 package yh;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.text.Spanned;
+import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.i20;
-public final class p3 extends FrameLayout {
-    public final x0 f47539a;
-    public final o3 f47540b;
-    public final o3 f47541c;
-    public final o3 d;
-    public boolean e;
-    public final i20 f47542f;
-    public final RectF h;
+public final class p3 implements View.OnClickListener {
+    public final int f47858a;
+    public final u3 f47859b;
 
-    public p3(Context context, org.telegram.ui.ActionBar.d6 d6Var, x0 x0Var) {
-        super(context);
-        this.f47542f = new i20();
-        this.h = new RectF();
-        this.f47539a = x0Var;
-        o3 o3Var = new o3(context, d6Var);
-        this.f47540b = o3Var;
-        o3 o3Var2 = new o3(context, d6Var);
-        this.f47541c = o3Var2;
-        o3 o3Var3 = new o3(context, d6Var);
-        this.d = o3Var3;
-        addView(o3Var, w7.x5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
-        addView(o3Var2, w7.x5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
-        addView(o3Var3, w7.x5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
-    }
-
-    public final void a(f3 f3Var, float f7, boolean z10, f3 f3Var2, float f10, boolean z11, f3 f3Var3, float f11, boolean z12) {
-        x0 x0Var = this.f47539a;
-        o3 o3Var = this.f47540b;
-        if (f3Var != null) {
-            if (z10) {
-                f7 = Math.max(0.5f, f7);
-            }
-            o3Var.setVisibility(0);
-            o3Var.e(f3Var.f47055a, f3Var.f47056b, x0Var);
-            o3Var.setTranslationY(AndroidUtilities.dp(36.0f) * ((f7 - 0.5f) / 1.5f));
-        } else {
-            o3Var.setVisibility(4);
-        }
-        o3 o3Var2 = this.f47541c;
-        if (f3Var2 != null) {
-            float f12 = f10;
-            if (z11) {
-                f12 = Math.max(0.5f, f12);
-            }
-            float f13 = (f12 - 0.5f) / 1.5f;
-            o3Var2.setVisibility(0);
-            o3Var2.e(f3Var2.f47055a, f3Var2.f47056b, x0Var);
-            o3Var2.setTranslationY(AndroidUtilities.dp(36.0f) * f13);
-            if (z11 && f13 <= 0.0f && !this.e) {
-                this.e = true;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(o3Var2, 23));
-                ofFloat.setDuration(180L);
-                ofFloat.start();
-            }
-        } else {
-            o3Var2.setVisibility(4);
-        }
-        o3 o3Var3 = this.d;
-        if (f3Var3 != null) {
-            float f14 = f11;
-            if (z12) {
-                f14 = Math.max(0.5f, f14);
-            }
-            o3Var3.setVisibility(0);
-            o3Var3.e(f3Var3.f47055a, f3Var3.f47056b, x0Var);
-            o3Var3.setTranslationY(AndroidUtilities.dp(36.0f) * ((f14 - 0.5f) / 1.5f));
-            return;
-        }
-        o3Var3.setVisibility(4);
+    public p3(u3 u3Var, int i10) {
+        this.f47858a = i10;
+        this.f47859b = u3Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        super.dispatchDraw(canvas);
-        canvas.save();
-        RectF rectF = this.h;
-        rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f));
-        i20 i20Var = this.f47542f;
-        i20Var.b(canvas, rectF, 1, 1.0f);
-        rectF.set(0.0f, getHeight() - AndroidUtilities.dp(8.0f), getWidth(), getHeight());
-        i20Var.b(canvas, rectF, 3, 1.0f);
-        canvas.restore();
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(37.66f), 1073741824));
+    public final void onClick(View view) {
+        View.OnClickListener onClickListener;
+        switch (this.f47858a) {
+            case 0:
+                CharSequence text = this.f47859b.v.getText();
+                if (text instanceof Spanned) {
+                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
+                    if (clickableSpanArr.length > 0) {
+                        clickableSpanArr[0].onClick(view);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                u3 u3Var = this.f47859b;
+                if (u3Var.N.getVisibility() == 0 && (onClickListener = u3Var.T) != null) {
+                    onClickListener.onClick(view);
+                    return;
+                }
+                return;
+        }
     }
 }

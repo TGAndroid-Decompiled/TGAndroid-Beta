@@ -4,11 +4,11 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashMap;
-import v7.m8;
+import v7.n8;
 public final class w extends t {
     public static final HashMap e;
-    public final Constructor f9579b;
-    public final Object[] f9580c;
+    public final Constructor f9578b;
+    public final Object[] f9579c;
     public final HashMap d;
 
     static {
@@ -27,34 +27,34 @@ public final class w extends t {
     public w(Class cls, v vVar) {
         super(vVar);
         this.d = new HashMap();
-        m8 m8Var = ib.c.f11056a;
-        Constructor b10 = m8Var.b(cls);
-        this.f9579b = b10;
+        n8 n8Var = ib.c.f11056a;
+        Constructor b10 = n8Var.b(cls);
+        this.f9578b = b10;
         ib.c.f(b10);
-        String[] c10 = m8Var.c(cls);
+        String[] c10 = n8Var.c(cls);
         for (int i10 = 0; i10 < c10.length; i10++) {
             this.d.put(c10[i10], Integer.valueOf(i10));
         }
-        Class<?>[] parameterTypes = this.f9579b.getParameterTypes();
-        this.f9580c = new Object[parameterTypes.length];
+        Class<?>[] parameterTypes = this.f9578b.getParameterTypes();
+        this.f9579c = new Object[parameterTypes.length];
         for (int i11 = 0; i11 < parameterTypes.length; i11++) {
-            this.f9580c[i11] = e.get(parameterTypes[i11]);
+            this.f9579c[i11] = e.get(parameterTypes[i11]);
         }
     }
 
     @Override
     public final Object a() {
-        return (Object[]) this.f9580c.clone();
+        return (Object[]) this.f9579c.clone();
     }
 
     @Override
     public final Object b(Object obj) {
         Object[] objArr = (Object[]) obj;
-        Constructor constructor = this.f9579b;
+        Constructor constructor = this.f9578b;
         try {
             return constructor.newInstance(objArr);
         } catch (IllegalAccessException e7) {
-            m8 m8Var = ib.c.f11056a;
+            n8 n8Var = ib.c.f11056a;
             throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e7);
         } catch (IllegalArgumentException e10) {
             e = e10;
@@ -70,12 +70,12 @@ public final class w extends t {
     @Override
     public final void c(Object obj, lb.a aVar, s sVar) {
         Object[] objArr = (Object[]) obj;
-        String str = sVar.f9571c;
+        String str = sVar.f9570c;
         Integer num = (Integer) this.d.get(str);
         if (num != null) {
             int intValue = num.intValue();
-            Object read = sVar.f9572f.read(aVar);
-            if (read == null && sVar.f9573g) {
+            Object read = sVar.f9571f.read(aVar);
+            if (read == null && sVar.f9572g) {
                 StringBuilder w10 = a4.a.w("null is not allowed as value for record component '", str, "' of primitive type; at path ");
                 w10.append(aVar.h());
                 throw new RuntimeException(w10.toString());
@@ -83,6 +83,6 @@ public final class w extends t {
             objArr[intValue] = read;
             return;
         }
-        throw new IllegalStateException("Could not find the index in the constructor '" + ib.c.b(this.f9579b) + "' for field with name '" + str + "', unable to determine which argument in the constructor the field corresponds to. This is unexpected behavior, as we expect the RecordComponents to have the same names as the fields in the Java class, and that the order of the RecordComponents is the same as the order of the canonical constructor parameters.");
+        throw new IllegalStateException("Could not find the index in the constructor '" + ib.c.b(this.f9578b) + "' for field with name '" + str + "', unable to determine which argument in the constructor the field corresponds to. This is unexpected behavior, as we expect the RecordComponents to have the same names as the fields in the Java class, and that the order of the RecordComponents is the same as the order of the canonical constructor parameters.");
     }
 }

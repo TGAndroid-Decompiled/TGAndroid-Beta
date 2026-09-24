@@ -1,24 +1,30 @@
 package org.telegram.messenger.video;
 
-import org.telegram.messenger.video.VideoPlayerHolderBase;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.ke0;
 public final class o implements Runnable {
-    public final int f17576a;
-    public final VideoPlayerHolderBase.AnonymousClass2 f17577b;
+    public final int f17816a;
+    public final Object f17817b;
+    public final Object f17818c;
+    public final Object d;
 
-    public o(VideoPlayerHolderBase.AnonymousClass2 anonymousClass2, int i10) {
-        this.f17576a = i10;
-        this.f17577b = anonymousClass2;
+    public o(Object obj, Object obj2, Object obj3, int i10) {
+        this.f17816a = i10;
+        this.f17817b = obj;
+        this.f17818c = obj2;
+        this.d = obj3;
     }
 
     @Override
     public final void run() {
-        switch (this.f17576a) {
-            case 0:
-                this.f17577b.lambda$onRenderedFirstFrame$2();
-                return;
-            default:
-                this.f17577b.lambda$onError$1();
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.o.run():void");
+    }
+
+    public o(ke0 ke0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
+        this.f17816a = 27;
+        this.f17817b = ke0Var;
+        this.f17818c = tL_error;
+        this.d = tLObject;
     }
 }

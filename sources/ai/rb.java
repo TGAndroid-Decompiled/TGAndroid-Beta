@@ -33,7 +33,7 @@ public final class rb implements OnBackInvokedCallback {
                 ((ci.lc) this.f1474b).M();
                 return;
             case 3:
-                ((g.s) this.f1474b).r();
+                ((g.s) this.f1474b).s();
                 return;
             default:
                 ((Runnable) this.f1474b).run();

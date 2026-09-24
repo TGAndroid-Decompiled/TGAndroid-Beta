@@ -18,11 +18,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.yc;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ck0;
-import org.telegram.ui.f50;
-import org.telegram.ui.f60;
+import org.telegram.ui.d50;
+import org.telegram.ui.d60;
 import org.telegram.ui.wf1;
 public final class t7 implements View.OnClickListener {
     public final int f1556a;
@@ -63,27 +63,27 @@ public final class t7 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f18409a.L0.run();
+                alertDialog$Builder.f18647a.L0.run();
                 ck0Var.run();
                 return;
             case 3:
-                f60 f60Var = (f60) this.f1558c;
+                d60 d60Var = (d60) this.f1558c;
                 ArrayList arrayList = (ArrayList) this.d;
                 TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.e;
                 int size = arrayList.size();
                 int i11 = this.f1557b;
                 if (i11 < size) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) f60Var.f33099a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) d60Var.f32919a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
-                    f60Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    f50 f50Var = f60Var.f33123f3;
-                    if (f50Var != null) {
-                        f50Var.dismiss();
+                    d60Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
+                    d50 d50Var = d60Var.f32943f3;
+                    if (d50Var != null) {
+                        d50Var.dismiss();
                         return;
                     } else if (((Integer) arrayList.get(i11)).intValue() != 9 && ((Integer) arrayList.get(i11)).intValue() != 10 && ((Integer) arrayList.get(i11)).intValue() != 11) {
-                        f60Var.d1(true);
+                        d60Var.d1(true);
                         return;
                     } else {
                         return;
@@ -93,24 +93,24 @@ public final class t7 implements View.OnClickListener {
             case 4:
                 ci.d dVar = (ci.d) this.f1558c;
                 Context context = (Context) this.d;
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.e;
+                org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.e;
                 if (!dVar.N) {
                     dVar.setLoading(true);
                     int i12 = this.f1557b;
-                    PasskeysController.create(context, i12, new ei.h1(dVar, context, f3Var, i12, 6));
+                    PasskeysController.create(context, i12, new ei.h1(dVar, context, e3Var, i12, 6));
                     return;
                 }
                 return;
             case 5:
                 ProfileActivity profileActivity = (ProfileActivity) this.f1558c;
                 String str = (String) this.e;
-                ((org.telegram.ui.ActionBar.n1) ((AtomicReference) this.d).get()).dismiss();
+                ((org.telegram.ui.ActionBar.m1) ((AtomicReference) this.d).get()).dismiss();
                 try {
                     AndroidUtilities.addToClipboard(str);
                     if (this.f1557b == profileActivity.O3) {
-                        xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessHoursCopied)).j();
+                        yc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessHoursCopied)).j();
                     } else {
-                        xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessLocationCopied)).j();
+                        yc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessLocationCopied)).j();
                     }
                     return;
                 } catch (Exception e) {
@@ -122,12 +122,12 @@ public final class t7 implements View.OnClickListener {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.e;
                 MessagesController messagesController = wf1Var.getMessagesController();
-                long j3 = -wf1Var.f38936a;
-                if (messagesController.isDialogMuted(j3, tL_forumTopic.f18135id)) {
-                    wf1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f18135id, false);
+                long j3 = -wf1Var.f39293a;
+                if (messagesController.isDialogMuted(j3, tL_forumTopic.f18373id)) {
+                    wf1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f18373id, false);
                     wf1Var.finishPreviewFragment();
-                    if (xc.a(wf1Var)) {
-                        xc.z(wf1Var, 4, 0, wf1Var.getResourceProvider()).j();
+                    if (yc.a(wf1Var)) {
+                        yc.z(wf1Var, 4, 0, wf1Var.getResourceProvider()).j();
                         return;
                     }
                     return;
@@ -145,9 +145,9 @@ public final class t7 implements View.OnClickListener {
         this.e = obj3;
     }
 
-    public t7(org.telegram.ui.ActionBar.n2 n2Var, Object obj, Serializable serializable, int i10, int i11) {
+    public t7(org.telegram.ui.ActionBar.m2 m2Var, Object obj, Serializable serializable, int i10, int i11) {
         this.f1556a = i11;
-        this.f1558c = n2Var;
+        this.f1558c = m2Var;
         this.d = obj;
         this.e = serializable;
         this.f1557b = i10;

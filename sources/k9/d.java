@@ -11,14 +11,14 @@ import java.util.HashSet;
 import java.util.Set;
 import q9.r;
 public final class d implements pa.b {
-    public final int f13527a;
-    public final Object f13528b;
-    public final Object f13529c;
+    public final int f13525a;
+    public final Object f13526b;
+    public final Object f13527c;
 
     public d(int i10, Object obj, Object obj2) {
-        this.f13527a = i10;
-        this.f13529c = obj;
-        this.f13528b = obj2;
+        this.f13525a = i10;
+        this.f13527c = obj;
+        this.f13526b = obj2;
     }
 
     @Override
@@ -26,10 +26,10 @@ public final class d implements pa.b {
         ApplicationInfo applicationInfo;
         Bundle bundle;
         boolean z10;
-        switch (this.f13527a) {
+        switch (this.f13525a) {
             case 0:
-                h hVar = (h) this.f13529c;
-                Context context = (Context) this.f13528b;
+                h hVar = (h) this.f13527c;
+                Context context = (Context) this.f13526b;
                 String d = hVar.d();
                 ma.a aVar = (ma.a) hVar.d.a(ma.a.class);
                 ?? obj = new Object();
@@ -54,31 +54,31 @@ public final class d implements pa.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj.f43596a = z11;
+                obj.f43919a = z11;
                 return obj;
             case 1:
-                return new na.g((Context) this.f13528b, (String) this.f13529c);
+                return new na.g((Context) this.f13526b, (String) this.f13527c);
             default:
-                q9.g gVar = (q9.g) this.f13529c;
-                q9.a aVar2 = (q9.a) this.f13528b;
-                q9.d dVar = aVar2.f41129f;
+                q9.g gVar = (q9.g) this.f13527c;
+                q9.a aVar2 = (q9.a) this.f13526b;
+                q9.d dVar = aVar2.f41452f;
                 ?? obj2 = new Object();
                 HashSet hashSet = new HashSet();
                 HashSet hashSet2 = new HashSet();
                 HashSet hashSet3 = new HashSet();
                 HashSet hashSet4 = new HashSet();
                 HashSet hashSet5 = new HashSet();
-                Set<q9.j> set = aVar2.f41128c;
-                Set set2 = aVar2.f41130g;
+                Set<q9.j> set = aVar2.f41451c;
+                Set set2 = aVar2.f41453g;
                 for (q9.j jVar : set) {
-                    int i11 = jVar.f41146c;
-                    int i12 = jVar.f41145b;
+                    int i11 = jVar.f41469c;
+                    int i12 = jVar.f41468b;
                     if (i11 == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    r rVar = jVar.f41144a;
+                    r rVar = jVar.f41467a;
                     if (z10) {
                         if (i12 == 2) {
                             hashSet4.add(rVar);
@@ -107,8 +107,8 @@ public final class d implements pa.b {
     }
 
     public d(Context context, String str) {
-        this.f13527a = 1;
-        this.f13528b = context;
-        this.f13529c = str;
+        this.f13525a = 1;
+        this.f13526b = context;
+        this.f13527c = str;
     }
 }

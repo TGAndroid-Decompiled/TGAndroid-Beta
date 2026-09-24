@@ -4,7 +4,7 @@ import com.google.android.gms.internal.vision.e2;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
-import v7.i0;
+import v7.k0;
 public abstract class p {
     public final int f3543a;
     public Object f3544b;
@@ -22,7 +22,7 @@ public abstract class p {
         this.f3546f = null;
     }
 
-    public abstract void a(i0 i0Var);
+    public abstract void a(k0 k0Var);
 
     public void b(p pVar) {
         pVar.g();

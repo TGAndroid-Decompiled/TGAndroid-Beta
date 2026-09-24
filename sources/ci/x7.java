@@ -8,7 +8,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.hb1;
 public final class x7 implements Utilities.CallbackReturn {
     public final int f5836a;
     public final KeyEvent.Callback f5837b;
@@ -24,24 +23,24 @@ public final class x7 implements Utilities.CallbackReturn {
             case 0:
                 MessageObject messageObject = (MessageObject) obj;
                 ((d8) this.f5837b).f4536r0 = messageObject;
-                return Boolean.valueOf(MediaController.getInstance().setPlaylist(org.telegram.messenger.z0.k(messageObject), messageObject, 0L));
+                return Boolean.valueOf(MediaController.getInstance().setPlaylist(org.telegram.messenger.f0.k(messageObject), messageObject, 0L));
             case 1:
                 di.d dVar = (di.d) this.f5837b;
-                return dVar.f7735n[((Integer) obj).intValue() % dVar.f7735n.length];
+                return dVar.f7734n[((Integer) obj).intValue() % dVar.f7734n.length];
             case 2:
-                return new hb1(26, (org.telegram.ui.l0) this.f5837b, (Integer) obj);
+                return new org.telegram.ui.web.f1(2, (org.telegram.ui.l0) this.f5837b, (Integer) obj);
             case 3:
-                qg.p0 p0Var = (qg.p0) this.f5837b;
+                qg.n0 n0Var = (qg.n0) this.f5837b;
                 if (((Integer) obj).intValue() == 2) {
-                    wi wiVar = new wi(p0Var.getContext(), new qg.y(p0Var), false, false, false, p0Var.Q1);
+                    wi wiVar = new wi(n0Var.getContext(), new qg.y(n0Var), false, false, false, n0Var.Q1);
                     wiVar.drawNavigationBar = true;
                     wiVar.L1(LocaleController.getString(R.string.AddImage));
-                    wiVar.Z1 = new qg.z(p0Var, wiVar);
+                    wiVar.Z1 = new qg.z(n0Var, wiVar);
                     wiVar.setOnDismissListener(new f1(7));
                     wiVar.J1(1, false);
                     wiVar.r1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    wiVar.f29677j0.f0();
+                    wiVar.f29997j0.f0();
                     wiVar.show();
                 }
                 return Boolean.TRUE;
@@ -50,7 +49,7 @@ public final class x7 implements Utilities.CallbackReturn {
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
                 yh.y6 y6Var = (yh.y6) this.f5837b;
-                return y6Var.f47993n[((Integer) obj).intValue() % y6Var.f47993n.length];
+                return y6Var.f48290n[((Integer) obj).intValue() % y6Var.f48290n.length];
         }
     }
 }

@@ -56,7 +56,7 @@ public final class h implements i {
                             return;
                         }
                     }
-                    int i10 = vVar.f7918b;
+                    int i10 = vVar.f7917b;
                     int a2 = vVar.a();
                     for (h0 h0Var : (h0[]) this.f12692g) {
                         vVar.J(i10);
@@ -74,7 +74,7 @@ public final class h implements i {
                     int i11 = this.e;
                     if (i11 < 10) {
                         int min = Math.min(a10, 10 - i11);
-                        System.arraycopy(vVar.f7917a, vVar.f7918b, vVar2.f7917a, this.e, min);
+                        System.arraycopy(vVar.f7916a, vVar.f7917b, vVar2.f7916a, this.e, min);
                         if (this.e + min == 10) {
                             vVar2.J(0);
                             if (73 == vVar2.x() && 68 == vVar2.x() && 51 == vVar2.x()) {
@@ -127,7 +127,7 @@ public final class h implements i {
                     rVar.f3245q = r0.n("application/dvbsubs");
                     rVar.f3248t = Collections.singletonList(e0Var.f12668b);
                     rVar.d = e0Var.f12667a;
-                    hg.c.u(rVar, Z1);
+                    hg.c.s(rVar, Z1);
                     h0VarArr[i10] = Z1;
                 }
                 return;
@@ -141,7 +141,7 @@ public final class h implements i {
                 rVar2.f3232a = f0Var.e;
                 rVar2.f3244p = r0.n("video/mp2t");
                 rVar2.f3245q = r0.n("application/id3");
-                hg.c.u(rVar2, Z12);
+                hg.c.s(rVar2, Z12);
                 return;
         }
     }

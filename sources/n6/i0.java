@@ -5,10 +5,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 public final class i0 implements Handler.Callback {
-    public final j0 f15025a;
+    public final j0 f15263a;
 
     public i0(j0 j0Var) {
-        this.f15025a = j0Var;
+        this.f15263a = j0Var;
     }
 
     @Override
@@ -18,19 +18,19 @@ public final class i0 implements Handler.Callback {
             if (i10 != 1) {
                 return false;
             }
-            synchronized (this.f15025a.f15034a) {
+            synchronized (this.f15263a.f15272a) {
                 try {
                     g0 g0Var = (g0) message.obj;
-                    h0 h0Var = (h0) this.f15025a.f15034a.get(g0Var);
-                    if (h0Var != null && h0Var.f15019b == 3) {
+                    h0 h0Var = (h0) this.f15263a.f15272a.get(g0Var);
+                    if (h0Var != null && h0Var.f15257b == 3) {
                         Log.e("GmsClientSupervisor", "Timeout waiting for ServiceConnection callback ".concat(String.valueOf(g0Var)), new Exception());
-                        ComponentName componentName = h0Var.f15021f;
+                        ComponentName componentName = h0Var.f15259f;
                         if (componentName == null) {
                             g0Var.getClass();
                             componentName = null;
                         }
                         if (componentName == null) {
-                            String str = g0Var.f15016b;
+                            String str = g0Var.f15254b;
                             l.h(str);
                             componentName = new ComponentName(str, "unknown");
                         }
@@ -41,19 +41,19 @@ public final class i0 implements Handler.Callback {
             }
             return true;
         }
-        synchronized (this.f15025a.f15034a) {
+        synchronized (this.f15263a.f15272a) {
             try {
                 g0 g0Var2 = (g0) message.obj;
-                h0 h0Var2 = (h0) this.f15025a.f15034a.get(g0Var2);
-                if (h0Var2 != null && h0Var2.f15018a.isEmpty()) {
-                    if (h0Var2.f15020c) {
-                        h0Var2.h.f15036c.removeMessages(1, h0Var2.e);
+                h0 h0Var2 = (h0) this.f15263a.f15272a.get(g0Var2);
+                if (h0Var2 != null && h0Var2.f15256a.isEmpty()) {
+                    if (h0Var2.f15258c) {
+                        h0Var2.h.f15274c.removeMessages(1, h0Var2.e);
                         j0 j0Var = h0Var2.h;
-                        j0Var.d.b(j0Var.f15035b, h0Var2);
-                        h0Var2.f15020c = false;
-                        h0Var2.f15019b = 2;
+                        j0Var.d.b(j0Var.f15273b, h0Var2);
+                        h0Var2.f15258c = false;
+                        h0Var2.f15257b = 2;
                     }
-                    this.f15025a.f15034a.remove(g0Var2);
+                    this.f15263a.f15272a.remove(g0Var2);
                 }
             } finally {
             }

@@ -110,7 +110,7 @@ public final class r5 extends ViewGroup {
                 Object obj = arrayList.get(i12);
                 i12++;
                 TL_iv.pageTableCell pagetablecell3 = (TL_iv.pageTableCell) obj;
-                if (((LinkedHashSet) ((ei.d5) this.h).f8287b).contains(pagetablecell3)) {
+                if (((LinkedHashSet) ((ei.d5) this.h).f8286b).contains(pagetablecell3)) {
                     int b10 = this.f11591a.b(pagetablecell3);
                     int a2 = this.f11591a.a(pagetablecell3);
                     if (b10 < i10 || (b10 == i10 && a2 < i11)) {
@@ -125,14 +125,14 @@ public final class r5 extends ViewGroup {
     }
 
     public final void b() {
-        int i10 = org.telegram.ui.ActionBar.h6.f19036qh;
+        int i10 = org.telegram.ui.ActionBar.h6.f19294qh;
         org.telegram.ui.ActionBar.d6 d6Var = this.f11592b;
         this.f11595n.setColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
         int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.M6, d6Var);
         int red = Color.red(v02);
         int green = Color.green(v02);
         int blue = Color.blue(v02);
-        this.f11596r.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19018ph, d6Var));
+        this.f11596r.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19275ph, d6Var));
         this.f11597s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
         int i11 = org.telegram.ui.ActionBar.h6.Oh;
@@ -353,7 +353,7 @@ public final class r5 extends ViewGroup {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                if (((LinkedHashSet) ((ei.d5) this.h).f8287b).contains((TL_iv.pageTableCell) obj)) {
+                if (((LinkedHashSet) ((ei.d5) this.h).f8286b).contains((TL_iv.pageTableCell) obj)) {
                     return true;
                 }
             }
@@ -452,12 +452,12 @@ public final class r5 extends ViewGroup {
                 i12 = 12;
             }
             if (i20 == 2) {
-                max = hg.c.f(i12 * 4, size / 2, 0);
+                max = org.telegram.messenger.f0.b(i12 * 4, size / 2, 0);
             } else {
                 max = Math.max(0, Math.round(size / 1.5f));
             }
             float f10 = i12 * 2;
-            int b10 = org.telegram.messenger.z0.b(f10, max, dp5);
+            int y3 = org.telegram.messenger.f0.y(f10, max, dp5);
             for (int i21 = 0; i21 < i20; i21++) {
                 this.f11593c[i21] = dp5;
             }
@@ -474,7 +474,7 @@ public final class r5 extends ViewGroup {
                     if (i6.n(s5Var.f11617b) == 1 && (a2 = this.f11591a.a(s5Var.f11617b)) >= 0 && a2 < i20) {
                         int dp6 = AndroidUtilities.dp(f10) + Math.round(Layout.getDesiredWidth(i1Var.getText(), i1Var.getPaint()));
                         int[] iArr = this.f11593c;
-                        iArr[a2] = Math.max(iArr[a2], Math.min(b10, dp6));
+                        iArr[a2] = Math.max(iArr[a2], Math.min(y3, dp6));
                     }
                 }
                 i22++;
@@ -494,7 +494,7 @@ public final class r5 extends ViewGroup {
                             for (int i25 = a10; i25 < min; i25++) {
                                 i24 += this.f11593c[i25];
                             }
-                            int min2 = Math.min((min - a10) * b10, AndroidUtilities.dp(f10) + Math.round(Layout.getDesiredWidth(i1Var2.getText(), i1Var2.getPaint()))) - i24;
+                            int min2 = Math.min((min - a10) * y3, AndroidUtilities.dp(f10) + Math.round(Layout.getDesiredWidth(i1Var2.getText(), i1Var2.getPaint()))) - i24;
                             while (a10 < min && min2 > 0) {
                                 int i26 = ((min2 + i18) - 1) / (min - a10);
                                 int[] iArr2 = this.f11593c;
@@ -537,7 +537,7 @@ public final class r5 extends ViewGroup {
                     i17 = i32;
                 } else {
                     s5 s5Var3 = (s5) childAt3;
-                    int b11 = this.f11591a.b(s5Var3.f11617b);
+                    int b10 = this.f11591a.b(s5Var3.f11617b);
                     int a11 = this.f11591a.a(s5Var3.f11617b);
                     int n11 = i6.n(s5Var3.f11617b);
                     i17 = i32;
@@ -549,8 +549,8 @@ public final class r5 extends ViewGroup {
                     if (i6.o(s5Var3.f11617b) == 1) {
                         int measuredHeight = s5Var3.getMeasuredHeight();
                         int[] iArr4 = this.d;
-                        if (measuredHeight > iArr4[b11]) {
-                            iArr4[b11] = s5Var3.getMeasuredHeight();
+                        if (measuredHeight > iArr4[b10]) {
+                            iArr4[b10] = s5Var3.getMeasuredHeight();
                         }
                     }
                 }
@@ -560,13 +560,13 @@ public final class r5 extends ViewGroup {
                 View childAt4 = getChildAt(i35);
                 if (childAt4 instanceof s5) {
                     s5 s5Var4 = (s5) childAt4;
-                    int b12 = this.f11591a.b(s5Var4.f11617b);
+                    int b11 = this.f11591a.b(s5Var4.f11617b);
                     int o9 = i6.o(s5Var4.f11617b);
                     if (o9 > 1) {
-                        int i36 = b12;
+                        int i36 = b11;
                         int i37 = 0;
                         while (true) {
-                            i15 = b12 + o9;
+                            i15 = b11 + o9;
                             if (i36 >= i15 || i36 >= i19) {
                                 break;
                             }
@@ -578,19 +578,19 @@ public final class r5 extends ViewGroup {
                             int i38 = measuredHeight2 - i37;
                             int max2 = i38 / Math.max(o9, 1);
                             int max3 = i38 % Math.max(o9, 1);
-                            while (b12 < i15 && b12 < i19) {
+                            while (b11 < i15 && b11 < i19) {
                                 int[] iArr5 = this.d;
-                                int i39 = iArr5[b12];
+                                int i39 = iArr5[b11];
                                 if (max3 > 0) {
                                     i16 = 1;
                                 } else {
                                     i16 = 0;
                                 }
-                                iArr5[b12] = max2 + i16 + i39;
+                                iArr5[b11] = max2 + i16 + i39;
                                 if (max3 > 0) {
                                     max3--;
                                 }
-                                b12++;
+                                b11++;
                             }
                         }
                     }
@@ -603,7 +603,7 @@ public final class r5 extends ViewGroup {
                     i14 = i40;
                 } else {
                     s5 s5Var5 = (s5) childAt5;
-                    int b13 = this.f11591a.b(s5Var5.f11617b);
+                    int b12 = this.f11591a.b(s5Var5.f11617b);
                     int a12 = this.f11591a.a(s5Var5.f11617b);
                     int n12 = i6.n(s5Var5.f11617b);
                     int o10 = i6.o(s5Var5.f11617b);
@@ -613,7 +613,7 @@ public final class r5 extends ViewGroup {
                         i41 += this.f11593c[i42];
                     }
                     int i43 = 0;
-                    for (int i44 = b13; i44 < b13 + o10 && i44 < i19; i44++) {
+                    for (int i44 = b12; i44 < b12 + o10 && i44 < i19; i44++) {
                         i43 += this.d[i44];
                     }
                     s5Var5.measure(View.MeasureSpec.makeMeasureSpec(i41, 1073741824), View.MeasureSpec.makeMeasureSpec(i43, 1073741824));
@@ -656,7 +656,7 @@ public final class r5 extends ViewGroup {
         if (i6Var == null || (q5Var = this.h) == null || i10 < 0 || i10 >= i6Var.f11439b || i11 < 0 || i11 >= i6Var.f11440c) {
             return false;
         }
-        return ((LinkedHashSet) ((ei.d5) q5Var).f8287b).contains(i6Var.d[i10][i11]);
+        return ((LinkedHashSet) ((ei.d5) q5Var).f8286b).contains(i6Var.d[i10][i11]);
     }
 
     public final int q() {

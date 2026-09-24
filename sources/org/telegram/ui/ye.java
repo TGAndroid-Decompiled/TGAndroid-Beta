@@ -6,24 +6,24 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ye implements Runnable {
-    public final int f39801a;
-    public final Object f39802b;
-    public final Object f39803c;
+    public final int f40116a;
+    public final Object f40117b;
+    public final Object f40118c;
     public final Object d;
     public final Object e;
-    public final Object f39804f;
+    public final Object f40119f;
     public final Object h;
-    public final Object f39805n;
+    public final Object f40120n;
 
     public ye(KeyEvent.Callback callback, Object obj, Object obj2, String str, Object obj3, TLObject tLObject, Object obj4, int i10) {
-        this.f39801a = i10;
-        this.f39802b = callback;
+        this.f40116a = i10;
+        this.f40117b = callback;
         this.d = obj;
         this.e = obj2;
-        this.f39803c = str;
-        this.f39804f = obj3;
+        this.f40118c = str;
+        this.f40119f = obj3;
         this.h = tLObject;
-        this.f39805n = obj4;
+        this.f40120n = obj4;
     }
 
     @Override
@@ -32,46 +32,46 @@ public final class ye implements Runnable {
     }
 
     public ye(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f39801a = i10;
-        this.f39802b = obj;
+        this.f40116a = i10;
+        this.f40117b = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f39804f = obj4;
-        this.f39803c = obj5;
+        this.f40119f = obj4;
+        this.f40118c = obj5;
         this.h = obj6;
-        this.f39805n = obj7;
+        this.f40120n = obj7;
     }
 
     public ye(Object obj, Object obj2, String str, TLObject tLObject, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f39801a = i10;
-        this.f39802b = obj;
+        this.f40116a = i10;
+        this.f40117b = obj;
         this.d = obj2;
-        this.f39803c = str;
+        this.f40118c = str;
         this.e = tLObject;
-        this.f39804f = obj3;
+        this.f40119f = obj3;
         this.h = obj4;
-        this.f39805n = obj5;
+        this.f40120n = obj5;
     }
 
-    public ye(jn jnVar, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
-        this.f39801a = 2;
-        this.f39802b = jnVar;
-        this.d = b2Var;
-        this.f39804f = tLObject;
-        this.f39803c = hashSet;
+    public ye(in inVar, org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
+        this.f40116a = 2;
+        this.f40117b = inVar;
+        this.d = a2Var;
+        this.f40119f = tLObject;
+        this.f40118c = hashSet;
         this.h = tL_inputGroupCallInviteMessage;
         this.e = messageObject;
-        this.f39805n = tL_error;
+        this.f40120n = tL_error;
     }
 
-    public ye(xn xnVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, kg kgVar, String str, nf.e eVar) {
-        this.f39801a = 1;
-        this.f39802b = xnVar;
+    public ye(wn wnVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, hg hgVar, String str, nf.e eVar) {
+        this.f40116a = 1;
+        this.f40117b = wnVar;
         this.d = tL_error;
         this.e = tLObject;
-        this.f39804f = tLObject2;
-        this.h = kgVar;
-        this.f39803c = str;
-        this.f39805n = eVar;
+        this.f40119f = tLObject2;
+        this.h = hgVar;
+        this.f40118c = str;
+        this.f40120n = eVar;
     }
 }

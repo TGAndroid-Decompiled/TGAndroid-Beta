@@ -1,87 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-public final class mp0 extends ku {
-    public boolean V;
-    public int W;
-    public int f26256a0;
-    public ValueAnimator f26257b0;
-    public final hq0 f26258c0;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class mp0 implements o1.g {
+    public final int f26560a;
+    public final int[] f26561b;
+    public final NotificationCenter.NotificationCenterDelegate f26562c;
+    public final View d;
 
-    public mp0(hq0 hq0Var, Context context, sp0 sp0Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, sp0Var, null, 1, true, d6Var);
-        this.f26258c0 = hq0Var;
+    public mp0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, View view, int[] iArr, int i10) {
+        this.f26560a = i10;
+        this.f26562c = notificationCenterDelegate;
+        this.d = view;
+        this.f26561b = iArr;
     }
 
     @Override
-    public final void c(float f7) {
-        this.f26258c0.Y0();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.V) {
-            cu editText = this.f26258c0.d.getEditText();
-            editText.setOffsetY(editText.getOffsetY() - ((this.f26256a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
-            ofFloat.addUpdateListener(new i70(editText, 18));
-            ValueAnimator valueAnimator = this.f26257b0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.f26257b0 = ofFloat;
-            ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(rr.f27701f);
-            ofFloat.start();
-            this.V = false;
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f26560a) {
+            case 0:
+                ((uq0) this.f26562c).Q0((org.telegram.ui.Cells.g7) this.d, this.f26561b, f7 / 1000.0f);
+                return;
+            default:
+                ((bq0) this.f26562c).d.Q0(this.d, this.f26561b, f7 / 1000.0f);
+                return;
         }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void f() {
-        super.f();
-        lz emojiView = getEmojiView();
-        hq0 hq0Var = this.f26258c0;
-        if (emojiView != null) {
-            emojiView.f26030w0 = false;
-            emojiView.f26032w2 = false;
-            emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(hq0Var.G0.d);
-        }
-        FrameLayout frameLayout = hq0Var.f24777c0;
-        if (frameLayout != null) {
-            frameLayout.bringToFront();
-        }
-        lp0 lp0Var = hq0Var.f24776c;
-        if (lp0Var != null) {
-            lp0Var.bringToFront();
-        }
-        lp0 lp0Var2 = hq0Var.f24780f;
-        if (lp0Var2 != null) {
-            lp0Var2.bringToFront();
-        }
-    }
-
-    @Override
-    public final void q(int i10, int i11) {
-        hq0 hq0Var = this.f26258c0;
-        lp0 lp0Var = hq0Var.f24776c;
-        if (!TextUtils.isEmpty(getEditText().getText())) {
-            this.V = true;
-            this.W = getEditText().getMeasuredHeight();
-            this.f26256a0 = getEditText().getScrollY();
-            invalidate();
-        } else {
-            getEditText().animate().cancel();
-            getEditText().setOffsetY(0.0f);
-            this.V = false;
-        }
-        hq0Var.f24799v0 = lp0Var.getTop() + hq0Var.f24798u0;
-        lp0Var.invalidate();
     }
 }

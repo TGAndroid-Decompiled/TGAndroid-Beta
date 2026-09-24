@@ -25,9 +25,9 @@ import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.ui.Components.n70;
 import org.telegram.ui.Components.rr;
-public abstract class e0 extends FrameLayout implements n70 {
+import org.telegram.ui.Components.x70;
+public abstract class e0 extends FrameLayout implements x70 {
     public static final int f4559x0 = 0;
     public final LinearGradient E;
     public final Matrix F;
@@ -277,7 +277,7 @@ public abstract class e0 extends FrameLayout implements n70 {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
             org.telegram.ui.Components.e6 e6Var = this.I;
-            float f7 = e6Var.f23575c;
+            float f7 = e6Var.f23817c;
             int i10 = 0;
             while (true) {
                 arrayList = this.h;
@@ -289,7 +289,7 @@ public abstract class e0 extends FrameLayout implements n70 {
                     s sVar = d0Var.h;
                     int i11 = sVar.f5469c;
                     int i12 = sVar.f5468b;
-                    float f10 = e6VarArr[i11].f23575c;
+                    float f10 = e6VarArr[i11].f23817c;
                     rectF.set((getMeasuredWidth() / f10) * i12, (getMeasuredHeight() / f7) * i11, (getMeasuredWidth() / f10) * (i12 + 1), (getMeasuredHeight() / f7) * (i11 + 1));
                     if (rectF.contains(x10, y3)) {
                         break;
@@ -315,11 +315,11 @@ public abstract class e0 extends FrameLayout implements n70 {
                     AndroidUtilities.runOnUIThread(a0Var2, ViewConfiguration.getLongPressTimeout());
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (v7.z6.a(motionEvent.getX(), motionEvent.getY(), this.V, this.W) > AndroidUtilities.touchSlop * 1.2f && (a0Var = this.f4572i0) != null) {
+                if (v7.a7.a(motionEvent.getX(), motionEvent.getY(), this.V, this.W) > AndroidUtilities.touchSlop * 1.2f && (a0Var = this.f4572i0) != null) {
                     AndroidUtilities.cancelRunOnUIThread(a0Var);
                     this.f4572i0 = null;
                 }
-                if (!this.f4567e0 && getFilledProgress() >= 1.0f && this.f4570g0 != null && d0Var != null && v7.z6.a(motionEvent.getX(), motionEvent.getY(), this.V, this.W) > AndroidUtilities.touchSlop * 1.2f) {
+                if (!this.f4567e0 && getFilledProgress() >= 1.0f && this.f4570g0 != null && d0Var != null && v7.a7.a(motionEvent.getX(), motionEvent.getY(), this.V, this.W) > AndroidUtilities.touchSlop * 1.2f) {
                     this.f4567e0 = true;
                     this.f4571h0 = this.f4570g0;
                     this.f4565c0 = 0.0f;
@@ -335,14 +335,14 @@ public abstract class e0 extends FrameLayout implements n70 {
                 } else if (this.f4567e0 && this.f4571h0 != null) {
                     float x11 = motionEvent.getX();
                     float y10 = motionEvent.getY();
-                    float f11 = e6Var.f23575c;
+                    float f11 = e6Var.f23817c;
                     int i13 = 0;
                     while (true) {
                         if (i13 < arrayList.size()) {
                             s sVar2 = ((d0) arrayList.get(i13)).h;
                             int i14 = sVar2.f5469c;
                             int i15 = sVar2.f5468b;
-                            float f12 = e6VarArr[i14].f23575c;
+                            float f12 = e6VarArr[i14].f23817c;
                             rectF.set((getMeasuredWidth() / f12) * i15, (getMeasuredHeight() / f11) * i14, (getMeasuredWidth() / f12) * (i15 + 1), (getMeasuredHeight() / f11) * (i14 + 1));
                             if (rectF.contains(x11, y10)) {
                                 break;
@@ -363,7 +363,7 @@ public abstract class e0 extends FrameLayout implements n70 {
                         s sVar3 = this.f4571h0.h;
                         int i16 = sVar3.f5469c;
                         int i17 = sVar3.f5468b;
-                        float f14 = e6VarArr[i16].f23575c;
+                        float f14 = e6VarArr[i16].f23817c;
                         rectF.set((getMeasuredWidth() / f14) * i17, (getMeasuredHeight() / f13) * i16, (getMeasuredWidth() / f14) * (i17 + 1), (getMeasuredHeight() / f13) * (i16 + 1));
                         this.f4561a0 = this.f4565c0;
                         this.f4563b0 = this.f4566d0;
@@ -990,7 +990,7 @@ public abstract class e0 extends FrameLayout implements n70 {
         }
         this.d = cameraView;
         if (cameraView != null) {
-            addView(cameraView, w7.x5.e(-1, -1, 119));
+            addView(cameraView, w7.y5.e(-1, -1, 119));
         }
         CameraView cameraView3 = this.d;
         if (cameraView3 != null) {

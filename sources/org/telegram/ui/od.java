@@ -6,12 +6,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class od implements View.OnFocusChangeListener {
-    public final int f35776a;
-    public final Object f35777b;
+    public final int f36124a;
+    public final Object f36125b;
 
     public od(Object obj, int i10) {
-        this.f35776a = i10;
-        this.f35777b = obj;
+        this.f36124a = i10;
+        this.f36125b = obj;
     }
 
     @Override
@@ -24,9 +24,9 @@ public final class od implements View.OnFocusChangeListener {
         float f14;
         float f15;
         float f16;
-        switch (this.f35776a) {
+        switch (this.f36124a) {
             case 0:
-                yd ydVar = ((je) this.f35777b).U0;
+                yd ydVar = ((je) this.f36125b).U0;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
@@ -35,92 +35,92 @@ public final class od implements View.OnFocusChangeListener {
                 ydVar.b(f7, f7, true);
                 return;
             case 1:
-                ry ryVar = (ry) this.f35777b;
+                qy qyVar = (qy) this.f36125b;
                 if (z10) {
-                    ryVar.Y.b(true);
+                    qyVar.Y.b(true);
                     return;
                 }
                 return;
             case 2:
-                rg0 rg0Var = ((be0) this.f35777b).W;
+                qg0 qg0Var = ((ae0) this.f36125b).W;
                 if (z10) {
-                    rg0Var.f36822c.setEditText((EditText) view);
-                    rg0Var.f36822c.setDispatchBackWhenEmpty(true);
+                    qg0Var.f36874c.setEditText((EditText) view);
+                    qg0Var.f36874c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 3:
-                org.telegram.ui.Components.yc0 yc0Var = (org.telegram.ui.Components.yc0) this.f35777b;
+                org.telegram.ui.Components.jd0 jd0Var = (org.telegram.ui.Components.jd0) this.f36125b;
                 if (z10) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
                 }
-                yc0Var.b(f10, f10, true);
+                jd0Var.b(f10, f10, true);
                 return;
             case 4:
-                org.telegram.ui.Components.yc0 yc0Var2 = ((ke0) this.f35777b).f34696x;
+                org.telegram.ui.Components.jd0 jd0Var2 = ((je0) this.f36125b).f34772x;
                 if (z10) {
                     f11 = 1.0f;
                 } else {
                     f11 = 0.0f;
                 }
-                yc0Var2.b(f11, f11, true);
+                jd0Var2.b(f11, f11, true);
                 return;
             case 5:
-                org.telegram.ui.Components.yc0 yc0Var3 = ((se0) this.f35777b).f37254b;
+                org.telegram.ui.Components.jd0 jd0Var3 = ((re0) this.f36125b).f37300b;
                 if (z10) {
                     f12 = 1.0f;
                 } else {
                     f12 = 0.0f;
                 }
-                yc0Var3.b(f12, f12, true);
+                jd0Var3.b(f12, f12, true);
                 return;
             case 6:
-                rg0 rg0Var2 = ((ve0) this.f35777b).f38376y;
+                qg0 qg0Var2 = ((ue0) this.f36125b).f38433y;
                 if (z10) {
-                    rg0Var2.f36822c.setEditText((EditText) view);
-                    rg0Var2.f36822c.setDispatchBackWhenEmpty(true);
+                    qg0Var2.f36874c.setEditText((EditText) view);
+                    qg0Var2.f36874c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 7:
-                org.telegram.ui.Components.yc0 yc0Var4 = ((gf0) this.f35777b).f33546a;
+                org.telegram.ui.Components.jd0 jd0Var4 = ((ff0) this.f36125b).f33641a;
                 if (z10) {
                     f13 = 1.0f;
                 } else {
                     f13 = 0.0f;
                 }
-                yc0Var4.b(f13, f13, true);
+                jd0Var4.b(f13, f13, true);
                 return;
             case 8:
-                rg0 rg0Var3 = ((uf0) this.f35777b).f38093s0;
+                qg0 qg0Var3 = ((tf0) this.f36125b).f38081s0;
                 if (z10) {
-                    rg0Var3.f36822c.setEditText((EditText) view);
-                    rg0Var3.f36822c.setDispatchBackWhenEmpty(true);
+                    qg0Var3.f36874c.setEditText((EditText) view);
+                    qg0Var3.f36874c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 9:
-                org.telegram.ui.Components.yc0 yc0Var5 = ((qg0) this.f35777b).e;
+                org.telegram.ui.Components.jd0 jd0Var5 = ((pg0) this.f36125b).e;
                 if (z10) {
                     f14 = 1.0f;
                 } else {
                     f14 = 0.0f;
                 }
-                yc0Var5.b(f14, f14, true);
+                jd0Var5.b(f14, f14, true);
                 return;
             case 10:
-                org.telegram.ui.Components.yc0 yc0Var6 = ((PasscodeActivity) this.f35777b).f30858f;
+                org.telegram.ui.Components.jd0 jd0Var6 = ((PasscodeActivity) this.f36125b).f31159f;
                 if (z10) {
                     f15 = 1.0f;
                 } else {
                     f15 = 0.0f;
                 }
-                yc0Var6.b(f15, f15, true);
+                jd0Var6.b(f15, f15, true);
                 return;
             case 11:
-                td1 td1Var = (td1) this.f35777b;
+                td1 td1Var = (td1) this.f36125b;
                 if (z10) {
                     td1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
                     return;
@@ -129,13 +129,13 @@ public final class od implements View.OnFocusChangeListener {
                     return;
                 }
             default:
-                org.telegram.ui.Components.yc0 yc0Var7 = ((TwoStepVerificationActivity) this.f35777b).v;
+                org.telegram.ui.Components.jd0 jd0Var7 = ((TwoStepVerificationActivity) this.f36125b).v;
                 if (z10) {
                     f16 = 1.0f;
                 } else {
                     f16 = 0.0f;
                 }
-                yc0Var7.b(f16, f16, true);
+                jd0Var7.b(f16, f16, true);
                 return;
         }
     }

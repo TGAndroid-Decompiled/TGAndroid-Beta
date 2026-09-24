@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.view.MotionEvent;
-public final class xb1 extends org.telegram.ui.Cells.ka {
+public final class xb1 extends org.telegram.ui.Cells.ia {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (getParent() != null && getParent().getParent() != null) {

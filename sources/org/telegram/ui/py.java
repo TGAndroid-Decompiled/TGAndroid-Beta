@@ -1,220 +1,151 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.Collections;
+import android.content.Context;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class py extends s4.v {
-    public s4.c1 d;
-    public boolean e;
-    public boolean f36221f;
-    public final qy f36222g;
-    public final ry h;
+public final class py extends FrameLayout {
+    public static final int L = 0;
+    public boolean E;
+    public ix F;
+    public gg.m G;
+    public boolean H;
+    public final sw I;
+    public final sw J;
+    public final qy K;
+    public my f36679a;
+    public a5.a f36680b;
+    public tw f36681c;
+    public xw d;
+    public s4.y e;
+    public oy f36682f;
+    public int h;
+    public ww f36683n;
+    public org.telegram.ui.Components.zk0 f36684r;
+    public int f36685s;
+    public int v;
+    public org.telegram.ui.Components.u00 f36686w;
+    public rw f36687x;
+    public org.telegram.ui.Components.bl0 f36688y;
 
-    public py(ry ryVar, qy qyVar) {
-        this.h = ryVar;
-        this.f36222g = qyVar;
+    public py(Context context, qy qyVar) {
+        super(context);
+        this.K = qyVar;
+        this.I = new sw(this, 1);
+        this.J = new sw(this, 2);
+    }
+
+    public static void a(py pyVar, tw twVar) {
+        pyVar.f36681c = twVar;
+    }
+
+    public static s4.y b(py pyVar) {
+        return pyVar.e;
+    }
+
+    public static void c(py pyVar, s4.y yVar) {
+        pyVar.e = yVar;
+    }
+
+    public static int d(py pyVar) {
+        return pyVar.v;
+    }
+
+    public static void e(py pyVar, int i10) {
+        pyVar.v = i10;
+    }
+
+    public static void f(py pyVar, org.telegram.ui.Components.u00 u00Var) {
+        pyVar.f36686w = u00Var;
+    }
+
+    public static oy g(py pyVar) {
+        return pyVar.f36682f;
+    }
+
+    public static void h(py pyVar, oy oyVar) {
+        pyVar.f36682f = oyVar;
+    }
+
+    public static void i(py pyVar, rw rwVar) {
+        pyVar.f36687x = rwVar;
+    }
+
+    public static void j(py pyVar, org.telegram.ui.Components.bl0 bl0Var) {
+        pyVar.f36688y = bl0Var;
+    }
+
+    public static void k(py pyVar, org.telegram.ui.Components.zk0 zk0Var) {
+        pyVar.f36684r = zk0Var;
+    }
+
+    public static void l(py pyVar, int i10) {
+        pyVar.f36685s = i10;
+    }
+
+    public static gg.m m(py pyVar) {
+        return pyVar.d;
+    }
+
+    public static void n(py pyVar, xw xwVar) {
+        pyVar.d = xwVar;
+    }
+
+    public static void o(py pyVar, ww wwVar) {
+        pyVar.f36683n = wwVar;
     }
 
     @Override
-    public final int b(int i10, int i11) {
-        if (this.f36221f) {
-            return 0;
+    public final void onMeasure(int i10, int i11) {
+        ((FrameLayout.LayoutParams) this.f36679a.getLayoutParams()).bottomMargin = 0;
+        super.onMeasure(i10, i11);
+    }
+
+    public final boolean p() {
+        int i10 = this.f36685s;
+        if (i10 != 0 && i10 != 7 && i10 != 8) {
+            return false;
         }
-        return super.b(i10, i11);
+        return true;
     }
 
-    @Override
-    public final long d(RecyclerView recyclerView, int i10, float f7, float f10) {
-        ry ryVar;
-        org.telegram.ui.Cells.r2 r2Var;
-        if (i10 == 4) {
-            return 200L;
-        }
-        if (i10 == 8 && (r2Var = (ryVar = this.h).X0) != null) {
-            AndroidUtilities.runOnUIThread(new gh(1, r2Var), this.f36222g.f36637x.e);
-            ryVar.X0 = null;
-        }
-        return super.d(recyclerView, i10, f7, f10);
-    }
-
-    @Override
-    public final int e(androidx.recyclerview.widget.RecyclerView r13, s4.c1 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.py.e(androidx.recyclerview.widget.RecyclerView, s4.c1):int");
-    }
-
-    @Override
-    public final float f(float f7) {
-        return 3500.0f;
-    }
-
-    @Override
-    public final float g() {
-        return 0.45f;
-    }
-
-    @Override
-    public final float h(float f7) {
-        return Float.MAX_VALUE;
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        char c10;
-        int i10;
-        ry ryVar = this.h;
-        ArrayList arrayList = ryVar.f36958a1;
-        View view = c1Var2.f42627a;
-        char c11 = 0;
-        if (view instanceof org.telegram.ui.Cells.r2) {
-            long dialogId = ((org.telegram.ui.Cells.r2) view).getDialogId();
-            TLRPC.Dialog dialog = (TLRPC.Dialog) ryVar.getMessagesController().dialogs_dict.f(dialogId);
-            if (dialog != null && ryVar.g4(dialog) && !DialogObject.isFolderDialogId(dialogId)) {
-                int b10 = c1Var.b();
-                int b11 = c1Var2.b();
-                qy qyVar = this.f36222g;
-                if (qyVar.f36629a.getItemAnimator() == null) {
-                    qyVar.f36629a.setItemAnimator(qyVar.f36637x);
+    public final void q(boolean z10) {
+        boolean z11;
+        z11 = ((org.telegram.ui.ActionBar.m2) this.K).isPaused;
+        if (!z11) {
+            sw swVar = this.J;
+            if (z10) {
+                AndroidUtilities.cancelRunOnUIThread(swVar);
+                this.f36679a.setItemAnimator(this.f36687x);
+                swVar.run();
+            } else if (this.H) {
+            } else {
+                this.H = true;
+                if (!this.f36687x.k()) {
+                    this.f36679a.setItemAnimator(null);
                 }
-                yw ywVar = qyVar.d;
-                ry ryVar2 = ywVar.R;
-                int i11 = ywVar.F;
-                ArrayList R3 = ryVar2.R3(i11, ywVar.h, ywVar.f9839r, false);
-                int G = ywVar.G(b10);
-                int G2 = ywVar.G(b11);
-                TLRPC.Dialog dialog2 = (TLRPC.Dialog) R3.get(G);
-                TLRPC.Dialog dialog3 = (TLRPC.Dialog) R3.get(G2);
-                int i12 = ywVar.h;
-                if (i12 != 7 && i12 != 8) {
-                    int i13 = dialog2.pinnedNum;
-                    dialog2.pinnedNum = dialog3.pinnedNum;
-                    dialog3.pinnedNum = i13;
-                } else {
-                    MessagesController.DialogFilter[] dialogFilterArr = MessagesController.getInstance(i11).selectedDialogFilter;
-                    if (ywVar.h == 8) {
-                        c10 = 1;
-                    } else {
-                        c10 = 0;
-                    }
-                    MessagesController.DialogFilter dialogFilter = dialogFilterArr[c10];
-                    int i14 = dialogFilter.pinnedDialogs.get(dialog2.f18087id);
-                    dialogFilter.pinnedDialogs.put(dialog2.f18087id, dialogFilter.pinnedDialogs.get(dialog3.f18087id));
-                    dialogFilter.pinnedDialogs.put(dialog3.f18087id, i14);
-                }
-                Collections.swap(R3, G, G2);
-                ywVar.W(null);
-                int i15 = ryVar.f36978e0[0].f36635s;
-                if (i15 != 7) {
-                    i10 = 8;
-                    if (i15 != 8) {
-                        ryVar.Z0 = true;
-                        return true;
-                    }
-                } else {
-                    i10 = 8;
-                }
-                MessagesController.DialogFilter[] dialogFilterArr2 = ryVar.getMessagesController().selectedDialogFilter;
-                if (ryVar.f36978e0[0].f36635s == i10) {
-                    c11 = 1;
-                }
-                MessagesController.DialogFilter dialogFilter2 = dialogFilterArr2[c11];
-                if (!arrayList.contains(dialogFilter2)) {
-                    arrayList.add(dialogFilter2);
-                    return true;
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        if (c1Var != null) {
-            this.f36222g.f36629a.d1(false);
-        }
-        this.d = c1Var;
-        if (c1Var != null) {
-            View view = c1Var.f42627a;
-            if (view instanceof org.telegram.ui.Cells.r2) {
-                ((org.telegram.ui.Cells.r2) view).f20742w = false;
+                AndroidUtilities.runOnUIThread(swVar, 36L);
             }
         }
     }
 
     @Override
-    public final void q(s4.c1 c1Var) {
-        int i10;
-        ry ryVar = this.h;
-        if (c1Var != null) {
-            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) c1Var.f42627a;
-            long dialogId = r2Var.getDialogId();
-            boolean isFolderDialogId = DialogObject.isFolderDialogId(dialogId);
-            int i11 = 0;
-            qy qyVar = this.f36222g;
-            if (isFolderDialogId) {
-                ny nyVar = qyVar.f36629a;
-                int i12 = ny.f35622v3;
-                nyVar.z1(false, r2Var);
-                return;
+    public void setTranslationX(float f7) {
+        py pyVar;
+        if (getTranslationX() != f7) {
+            super.setTranslationX(f7);
+            qy qyVar = this.K;
+            if (qyVar.f37035g3 && (pyVar = qyVar.f37021e0[0]) == this) {
+                qyVar.f37125z0.g(Math.abs(pyVar.getTranslationX()) / qyVar.f37021e0[0].getMeasuredWidth(), qyVar.f37021e0[1].h);
             }
-            TLRPC.Dialog dialog = (TLRPC.Dialog) ryVar.getMessagesController().dialogs_dict.f(dialogId);
-            if (dialog == null) {
-                return;
-            }
-            if (!ryVar.getMessagesController().isPromoDialog(dialogId, false) && ryVar.V2 == 0) {
-                i10 = ((org.telegram.ui.ActionBar.n2) ryVar).currentAccount;
-                if (SharedConfig.getChatSwipeAction(i10) == 1) {
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(Long.valueOf(dialogId));
-                    ryVar.M2 = (dialog.unread_count > 0 || dialog.unread_mark) ? 1 : 1;
-                    ryVar.r4(arrayList, 101, true, false, null);
-                    return;
-                }
-            }
-            if (ChatObject.isCommunity(ryVar.getMessagesController().getChat(Long.valueOf(-dialogId)))) {
-                ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(Long.valueOf(dialogId));
-                ryVar.r4(arrayList2, 111, true, false, null);
-                return;
-            }
-            ryVar.W0 = r2Var;
-            i2.a0 a0Var = new i2.a0(this, dialog, qyVar.d.h(), c1Var.b(), 5);
-            ryVar.A4(true, true);
-            if (Utilities.random.nextInt(1000) == 1) {
-                if (ryVar.V0 == null) {
-                    ny nyVar2 = qyVar.f36629a;
-                    ?? obj = new Object();
-                    obj.f22417a = new Paint(1);
-                    Paint paint = new Paint(1);
-                    obj.f22418b = paint;
-                    obj.e = 0L;
-                    obj.f22420f = new RectF();
-                    paint.setStyle(Paint.Style.STROKE);
-                    paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                    obj.f22419c = nyVar2;
-                    ryVar.V0 = obj;
-                }
-                org.telegram.ui.Components.ad0 ad0Var = ryVar.V0;
-                ad0Var.d = a0Var;
-                ad0Var.h = 0.0f;
-                ad0Var.f22421g = 0.0f;
-                ad0Var.e = System.currentTimeMillis();
-                ad0Var.f22419c.invalidate();
-                return;
-            }
-            a0Var.run();
-            return;
+            qyVar.m3();
         }
-        ryVar.W0 = null;
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            this.K.m3();
+        }
+        super.setTranslationY(f7);
     }
 }

@@ -22,13 +22,13 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.mk;
+import org.telegram.messenger.lk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.jv0;
+import org.telegram.ui.Components.uv0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.z61;
+import org.telegram.ui.a71;
 import org.telegram.ui.zk0;
 public final class b8 implements Runnable {
     public final int f606a;
@@ -123,7 +123,7 @@ public final class b8 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f18318id, peerDialogId);
+                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f18556id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f7);
                                 }
@@ -178,20 +178,20 @@ public final class b8 implements Runnable {
                 ProfileActivity.m0((ProfileActivity) obj3, (TLRPC.User) obj2, (String) obj, z12, z11);
                 return;
             case 3:
-                final z61 z61Var = (z61) obj3;
+                final a71 a71Var = (a71) obj3;
                 final String str = (String) obj2;
                 String[] strArr = (String[]) obj;
                 final LinkedHashSet linkedHashSet = new LinkedHashSet();
                 final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(z61Var.V).getReactionsMap();
+                HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(a71Var.V).getReactionsMap();
                 final ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
                 boolean fullyConsistsOfEmojis = Emoji.fullyConsistsOfEmojis(str);
                 ArrayList arrayList6 = new ArrayList();
                 HashMap hashMap = new HashMap();
                 ArrayList arrayList7 = new ArrayList();
-                zk0 zk0Var = new zk0(z61Var, str, this.f607b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f608c);
-                int i16 = z61Var.W;
+                zk0 zk0Var = new zk0(a71Var, str, this.f607b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f608c);
+                int i16 = a71Var.W;
                 if (i16 == 13) {
                     Utilities.doCallbacks(new Utilities.Callback() {
                         @Override
@@ -199,10 +199,10 @@ public final class b8 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(z61Var.V).getEmojiSuggestions(z61.a2, str, false, new kv0(7, linkedHashSet2, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(a71Var.V).getEmojiSuggestions(a71.a2, str, false, new ds0(8, linkedHashSet2, runnable), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(z61Var.V).getAnimatedEmojiByKeywords(str, new i51(linkedHashSet2, runnable, 0));
+                                    MediaDataController.getInstance(a71Var.V).getAnimatedEmojiByKeywords(str, new j51(linkedHashSet2, runnable, 0));
                                     return;
                             }
                         }
@@ -218,7 +218,7 @@ public final class b8 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(z61Var.V).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(a71Var.V).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i17 = 0; i17 < availableEffects.effects.size(); i17++) {
                                                 try {
@@ -229,7 +229,7 @@ public final class b8 implements Runnable {
                                                         } else {
                                                             arrayList8 = arrayList4;
                                                         }
-                                                        arrayList8.add(zg.p0.e(tL_availableEffect));
+                                                        arrayList8.add(zg.o0.e(tL_availableEffect));
                                                     }
                                                 } catch (Exception unused) {
                                                 }
@@ -238,8 +238,8 @@ public final class b8 implements Runnable {
                                         runnable.run();
                                         return;
                                     default:
-                                        z61 z61Var2 = z61Var;
-                                        MediaDataController.getInstance(z61Var2.V).getEmojiSuggestions(z61.a2, str, false, new a1.d(z61Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
+                                        a71 a71Var2 = a71Var;
+                                        MediaDataController.getInstance(a71Var2.V).getEmojiSuggestions(a71.a2, str, false, new a1.d(a71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -253,7 +253,7 @@ public final class b8 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(z61Var.V).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(a71Var.V).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i17 = 0; i17 < availableEffects.effects.size(); i17++) {
                                                 try {
@@ -264,7 +264,7 @@ public final class b8 implements Runnable {
                                                         } else {
                                                             arrayList8 = arrayList4;
                                                         }
-                                                        arrayList8.add(zg.p0.e(tL_availableEffect));
+                                                        arrayList8.add(zg.o0.e(tL_availableEffect));
                                                     }
                                                 } catch (Exception unused) {
                                                 }
@@ -273,8 +273,8 @@ public final class b8 implements Runnable {
                                         runnable.run();
                                         return;
                                     default:
-                                        z61 z61Var2 = z61Var;
-                                        MediaDataController.getInstance(z61Var2.V).getEmojiSuggestions(z61.a2, str, false, new a1.d(z61Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
+                                        a71 a71Var2 = a71Var;
+                                        MediaDataController.getInstance(a71Var2.V).getEmojiSuggestions(a71.a2, str, false, new a1.d(a71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -289,19 +289,19 @@ public final class b8 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(z61Var.V).getEmojiSuggestions(z61.a2, str, false, new kv0(7, linkedHashSet, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(a71Var.V).getEmojiSuggestions(a71.a2, str, false, new ds0(8, linkedHashSet, runnable), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(z61Var.V).getAnimatedEmojiByKeywords(str, new i51(linkedHashSet, runnable, 0));
+                                    MediaDataController.getInstance(a71Var.V).getAnimatedEmojiByKeywords(str, new j51(linkedHashSet, runnable, 0));
                                     return;
                             }
                         }
-                    }, new e4(z61Var, strArr, str, linkedHashSet, 12), new mk(z61Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new e4((Object) z61Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.z(z61Var, str, arrayList7, 12), zk0Var);
+                    }, new e4(a71Var, strArr, str, linkedHashSet, 12), new lk(a71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new e4((Object) a71Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.z(a71Var, str, arrayList7, 12), zk0Var);
                     return;
                 }
             case 4:
                 Runnable runnable = (Runnable) obj;
-                ((pg.r0) obj3).l((pg.s0) obj2, z12, z11);
+                ((pg.s0) obj3).l((pg.t0) obj2, z12, z11);
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -310,11 +310,11 @@ public final class b8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.r0 r0Var = ((pg.b1) obj3).f40772y.f40801c;
-                jv0 jv0Var = r0Var.f40909g;
-                n7.a1 h = r0Var.h(new RectF(0.0f, 0.0f, jv0Var.f25428a, jv0Var.f25429b), false, z12, z11);
+                pg.s0 s0Var = ((pg.d1) obj3).f41084y.f41111c;
+                uv0 uv0Var = s0Var.f41211g;
+                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, uv0Var.f28926a, uv0Var.f28927b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f15083b;
+                    bitmapArr[0] = (Bitmap) h.f15395b;
                 }
                 countDownLatch.countDown();
                 return;
@@ -339,9 +339,9 @@ public final class b8 implements Runnable {
         this.f608c = z11;
     }
 
-    public b8(pg.b1 b1Var, boolean z10, boolean z11, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
+    public b8(pg.d1 d1Var, boolean z10, boolean z11, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
         this.f606a = 5;
-        this.d = b1Var;
+        this.d = d1Var;
         this.f607b = z10;
         this.f608c = z11;
         this.e = bitmapArr;

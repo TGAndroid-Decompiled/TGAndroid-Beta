@@ -1,47 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class mg implements Utilities.Callback2 {
-    public final int f35290a;
-    public final xn f35291b;
-    public final String f35292c;
+import org.telegram.tgnet.TLRPC;
+public final class mg implements Runnable {
+    public final int f35543a;
+    public final wn f35544b;
+    public final TLRPC.User f35545c;
 
-    public mg(xn xnVar, String str, int i10) {
-        this.f35290a = i10;
-        this.f35291b = xnVar;
-        this.f35292c = str;
+    public mg(wn wnVar, TLRPC.User user, int i10) {
+        this.f35543a = i10;
+        this.f35544b = wnVar;
+        this.f35545c = user;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f35290a) {
+    public final void run() {
+        switch (this.f35543a) {
             case 0:
-                if (bool.booleanValue()) {
-                    boolean booleanValue = bool2.booleanValue();
-                    xn xnVar = this.f35291b;
-                    String str = this.f35292c;
-                    if (booleanValue) {
-                        xnVar.getMessagesController().addWebBrowserException(str, false);
-                    }
-                    xnVar.getParentActivity();
-                    nf.f.n(str);
-                    return;
-                }
+                wn wnVar = this.f35544b;
+                wnVar.getClass();
+                wnVar.presentFragment(wn.R9(this.f35545c.f18468id));
                 return;
             default:
-                xn xnVar2 = this.f35291b;
-                xnVar2.getClass();
-                if (bool.booleanValue()) {
-                    boolean booleanValue2 = bool2.booleanValue();
-                    String str2 = this.f35292c;
-                    if (booleanValue2) {
-                        xnVar2.getMessagesController().addWebBrowserException(str2, true);
-                    }
-                    nf.f.m(xnVar2.getParentActivity(), str2, false, null);
-                    return;
-                }
+                this.f35544b.ma(this.f35545c);
                 return;
         }
     }

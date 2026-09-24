@@ -17,20 +17,20 @@ public final class xu extends View {
     public boolean G;
     public long H;
     public boolean I;
-    public final int f30054a;
-    public final Drawable[] f30055b;
-    public final Drawable f30056c;
+    public final int f30395a;
+    public final Drawable[] f30396b;
+    public final Drawable f30397c;
     public final Drawable d;
     public String e;
-    public boolean f30057f;
+    public boolean f30398f;
     public int h;
-    public final int[] f30058n;
-    public final int[] f30059r;
-    public final Paint f30060s;
+    public final int[] f30399n;
+    public final int[] f30400r;
+    public final Paint f30401s;
     public final RectF v;
-    public final e6 f30061w;
-    public final e6 f30062x;
-    public final org.telegram.ui.ActionBar.d6 f30063y;
+    public final e6 f30402w;
+    public final e6 f30403x;
+    public final org.telegram.ui.ActionBar.d6 f30404y;
 
     public xu(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -40,27 +40,27 @@ public final class xu extends View {
         } else {
             f7 = 32.0f;
         }
-        this.f30054a = AndroidUtilities.dp(f7);
-        this.f30055b = new Drawable[11];
-        this.f30058n = new int[]{0, 0};
-        this.f30059r = new int[]{0, 0};
-        this.f30060s = new Paint(1);
+        this.f30395a = AndroidUtilities.dp(f7);
+        this.f30396b = new Drawable[11];
+        this.f30399n = new int[]{0, 0};
+        this.f30400r = new int[]{0, 0};
+        this.f30401s = new Paint(1);
         this.v = new RectF();
         rr rrVar = rr.h;
-        this.f30061w = new e6(this, 125L, rrVar);
-        this.f30062x = new e6(this, 125L, rrVar);
+        this.f30402w = new e6(this, 125L, rrVar);
+        this.f30403x = new e6(this, 125L, rrVar);
         this.F = -1;
         this.G = true;
-        this.f30063y = d6Var;
-        this.f30056c = getResources().getDrawable(R.drawable.stickers_back_all);
+        this.f30404y = d6Var;
+        this.f30397c = getResources().getDrawable(R.drawable.stickers_back_all);
         this.d = getResources().getDrawable(R.drawable.stickers_back_arrow);
         a();
     }
 
     public final void a() {
-        int i10 = org.telegram.ui.ActionBar.h6.f18859h5;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f30063y;
-        org.telegram.ui.ActionBar.h6.w1(org.telegram.ui.ActionBar.h6.v0(i10, d6Var), this.f30056c);
+        int i10 = org.telegram.ui.ActionBar.h6.f19115h5;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f30404y;
+        org.telegram.ui.ActionBar.h6.w1(org.telegram.ui.ActionBar.h6.v0(i10, d6Var), this.f30397c);
         org.telegram.ui.ActionBar.h6.w1(org.telegram.ui.ActionBar.h6.v0(i10, d6Var), this.d);
         CompoundEmoji.setPlaceholderColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Me, d6Var));
     }
@@ -79,7 +79,7 @@ public final class xu extends View {
         xu xuVar = this;
         int measuredWidth = xuVar.getMeasuredWidth();
         int measuredHeight = xuVar.getMeasuredHeight() - AndroidUtilities.dp(2.0f);
-        Drawable drawable = xuVar.f30056c;
+        Drawable drawable = xuVar.f30397c;
         boolean z10 = false;
         drawable.setBounds(0, 0, measuredWidth, measuredHeight);
         drawable.draw(canvas);
@@ -91,28 +91,28 @@ public final class xu extends View {
         drawable2.setBounds(dp3, measuredHeight2, dp4, measuredHeight3);
         drawable2.draw(canvas);
         if (xuVar.e != null) {
-            boolean z11 = xuVar.f30057f;
-            org.telegram.ui.ActionBar.d6 d6Var = xuVar.f30063y;
-            int[] iArr = xuVar.f30058n;
-            e6 e6Var2 = xuVar.f30061w;
-            Paint paint = xuVar.f30060s;
-            Drawable[] drawableArr = xuVar.f30055b;
+            boolean z11 = xuVar.f30398f;
+            org.telegram.ui.ActionBar.d6 d6Var = xuVar.f30404y;
+            int[] iArr = xuVar.f30399n;
+            e6 e6Var2 = xuVar.f30402w;
+            Paint paint = xuVar.f30401s;
+            Drawable[] drawableArr = xuVar.f30396b;
             RectF rectF = xuVar.v;
             float f10 = 1.0f;
-            int i10 = xuVar.f30054a;
+            int i10 = xuVar.f30395a;
             if (z11) {
                 int i11 = 0;
                 while (i11 < 2) {
                     if (i11 == 0) {
                         e6Var = e6Var2;
                     } else {
-                        e6Var = xuVar.f30062x;
+                        e6Var = xuVar.f30403x;
                     }
                     float d = e6Var.d(iArr[i11], z10);
                     float max = Math.max(0.0f, Math.min(f10, -d));
                     rectF.set((int) ((i10 * (d + f10)) + AndroidUtilities.dp((f7 * 4.0f) + (Math.max(0.0f, Math.min(f10, f7)) * 3.0f) + 5.0f)), AndroidUtilities.lerp(((AndroidUtilities.dp(f10) + i10) * i11) + AndroidUtilities.dp(3.0f), (xuVar.getMeasuredHeight() - i10) / 2, max), dp2 + i10, lerp + i10);
                     rectF.inset(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(max * (-2.0f)));
-                    paint.setColor(org.telegram.ui.ActionBar.h6.l1(AndroidUtilities.lerp(f10, 0.5f, max), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18878i6, d6Var)));
+                    paint.setColor(org.telegram.ui.ActionBar.h6.l1(AndroidUtilities.lerp(f10, 0.5f, max), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19134i6, d6Var)));
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
                     int i12 = 0;
                     while (i12 < 5) {
@@ -131,7 +131,7 @@ public final class xu extends View {
                 }
                 drawableArr[0].setBounds(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - i10) / 2, AndroidUtilities.dp(5.0f) + i10, (getMeasuredHeight() + i10) / 2);
                 drawableArr[0].draw(canvas);
-                canvas.drawRect(AndroidUtilities.dp(8.45f) + i10, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.45f) + i10 + 1, getMeasuredHeight() - AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.f18910k0);
+                canvas.drawRect(AndroidUtilities.dp(8.45f) + i10, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(8.45f) + i10 + 1, getMeasuredHeight() - AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.f19166k0);
                 return;
             }
             float d10 = e6Var2.d(iArr[0], false);
@@ -139,7 +139,7 @@ public final class xu extends View {
             float f11 = dp7;
             rectF.set((int) ((i10 * d10) + AndroidUtilities.dp((d10 * 4.0f) + 5.0f)), f11, dp + i10, dp7 + i10);
             rectF.inset(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(-2.0f));
-            paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18878i6, d6Var));
+            paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19134i6, d6Var));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
             for (int i14 = 0; i14 < 6; i14++) {
                 Drawable drawable3 = drawableArr[i14];
@@ -166,12 +166,12 @@ public final class xu extends View {
         if (this.I) {
             this.I = false;
             return false;
-        } else if (!this.f30057f) {
+        } else if (!this.f30398f) {
             return super.onTouchEvent(motionEvent);
         } else {
             int i13 = 0;
             while (true) {
-                Drawable[] drawableArr = this.f30055b;
+                Drawable[] drawableArr = this.f30396b;
                 if (i13 < drawableArr.length) {
                     if (drawableArr[i13].getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) || ((i12 = this.F) != -1 && ((i13 == 0 || ((i12 == 0 && i13 >= 1 && i13 <= 5) || (i12 == 1 && i13 >= 6 && i13 <= 10))) && ((int) motionEvent.getX()) >= drawableArr[i13].getBounds().left && ((int) motionEvent.getX()) <= drawableArr[i13].getBounds().right))) {
                         break;
@@ -186,7 +186,7 @@ public final class xu extends View {
                 return false;
             }
             int action = motionEvent.getAction();
-            int[] iArr = this.f30058n;
+            int[] iArr = this.f30399n;
             if (action == 0) {
                 this.F = -1;
                 this.H = System.currentTimeMillis();
@@ -198,7 +198,7 @@ public final class xu extends View {
                 this.G = z11;
             }
             int i14 = iArr[0];
-            int[] iArr2 = this.f30059r;
+            int[] iArr2 = this.f30400r;
             iArr2[0] = i14;
             iArr2[1] = iArr[1];
             if (System.currentTimeMillis() - this.H > 300 && motionEvent.getAction() == 2) {

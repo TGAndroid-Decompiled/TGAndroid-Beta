@@ -11,21 +11,21 @@ import org.telegram.ui.Components.h5;
 import org.telegram.ui.Components.o6;
 import org.telegram.ui.Components.rr;
 public final class a2 extends cu {
-    public final h5 f45742c;
+    public final h5 f46056c;
     public int d;
     public final o6 e;
-    public final s2 f45743f;
+    public final s2 f46057f;
 
     public a2(s2 s2Var, Context context, d6 d6Var) {
         super(context, d6Var);
-        this.f45743f = s2Var;
-        this.f45742c = new h5(this);
+        this.f46057f = s2Var;
+        this.f46056c = new h5(this);
         o6 o6Var = new o6(false, true, true, false);
         this.e = o6Var;
         o6Var.k(0.2f, 160L, rr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
         o6Var.setCallback(this);
-        o6Var.f26614b = 5;
+        o6Var.f26925b = 5;
     }
 
     @Override
@@ -33,11 +33,11 @@ public final class a2 extends cu {
         int i10;
         super.dispatchDraw(canvas);
         if (this.d < 0) {
-            i10 = h6.f19008p7;
+            i10 = h6.f19265p7;
         } else {
             i10 = h6.P5;
         }
-        int a2 = this.f45742c.a(h6.v0(i10, this.f45743f.f46071f), false);
+        int a2 = this.f46056c.a(h6.v0(i10, this.f46057f.f46385f), false);
         o6 o6Var = this.e;
         o6Var.r(a2);
         o6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());

@@ -15,24 +15,24 @@ public final class f5 implements Runnable {
         int e;
         switch (this.f4674a) {
             case 0:
-                qg.z1 z1Var = this.f4675b.f5336d1;
-                if (z1Var != null) {
-                    z1Var.invalidate();
+                qg.x1 x1Var = this.f4675b.f5336d1;
+                if (x1Var != null) {
+                    x1Var.invalidate();
                     return;
                 }
                 return;
             case 1:
-                new rg.x0((org.telegram.ui.ActionBar.n2) new ai.y3(this.f4675b, 3), 14, true).show();
+                new rg.x0((org.telegram.ui.ActionBar.m2) new ai.y3(this.f4675b, 3), 14, true).show();
                 return;
             case 2:
                 this.f4675b.z0(false);
                 return;
             default:
                 q6 q6Var = this.f4675b;
-                boolean z10 = pg.t0.e(q6Var.F1).f40959k;
+                boolean z10 = pg.u0.e(q6Var.F1).f41267k;
                 int i10 = 0;
                 while (true) {
-                    List list = pg.l.f40847b;
+                    List list = pg.l.f41148b;
                     if (i10 < list.size()) {
                         pg.l lVar = (pg.l) list.get(i10);
                         if (z10) {
@@ -48,7 +48,7 @@ public final class f5 implements Runnable {
                         n6Var.setSelected(false);
                         n6Var.setOnClickListener(new ai.v0(s1Var, 10));
                         n6Var.setOnLongClickListener(new m5(q6Var, 0));
-                        q6Var.I1.a(n6Var, w7.x5.n(-1, 48));
+                        q6Var.I1.a(n6Var, w7.y5.n(-1, 48));
                         i10++;
                     } else {
                         return;

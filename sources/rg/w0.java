@@ -8,55 +8,55 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.d90;
-import w7.x5;
+import org.telegram.ui.Components.n90;
+import w7.y5;
 public final class w0 extends LinearLayout {
-    public int f42479a;
-    public final TextView f42480b;
-    public final d90 f42481c;
+    public int f42796a;
+    public final TextView f42797b;
+    public final n90 f42798c;
     public LinearLayout d;
     public final l0 e;
-    public final ViewGroup f42482f;
+    public final ViewGroup f42799f;
     public boolean h;
-    public final x0 f42483n;
+    public final x0 f42800n;
 
     public w0(x0 x0Var, Context context, int i10) {
         super(context);
-        this.f42483n = x0Var;
+        this.f42800n = x0Var;
         setOrientation(1);
         ViewGroup z10 = x0Var.z(context, i10);
-        this.f42482f = z10;
+        this.f42799f = z10;
         addView(z10);
         this.e = (l0) z10;
         TextView textView = new TextView(context);
-        this.f42480b = textView;
+        this.f42797b = textView;
         textView.setGravity(1);
-        int i11 = h6.f18895j5;
+        int i11 = h6.f19151j5;
         textView.setTextColor(x0Var.getThemedColor(i11));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, x5.d(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
-        d90 d90Var = new d90(context, null);
-        this.f42481c = d90Var;
-        d90Var.setGravity(1);
-        d90Var.setTextSize(1, 15.0f);
-        d90Var.setTextColor(x0Var.getThemedColor(i11));
+        addView(textView, y5.d(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
+        n90 n90Var = new n90(context, null);
+        this.f42798c = n90Var;
+        n90Var.setGravity(1);
+        n90Var.setTextSize(1, 15.0f);
+        n90Var.setTextColor(x0Var.getThemedColor(i11));
         if (!x0Var.E) {
-            d90Var.setLines(2);
+            n90Var.setLines(2);
         }
-        addView(d90Var, x5.t(-1, -2, 1, 21, 10, 21, 16));
+        addView(n90Var, y5.t(-1, -2, 1, 21, 10, 21, 16));
         setImportantForAccessibility(2);
         setClipChildren(false);
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f42482f) {
+        if (view == this.f42799f) {
             boolean z10 = view instanceof b;
             if (z10) {
                 setTranslationY(0.0f);
             } else {
-                setTranslationY(this.f42483n.L);
+                setTranslationY(this.f42800n.L);
             }
             if (z10) {
                 return super.drawChild(canvas, view, j3);
@@ -72,24 +72,24 @@ public final class w0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f42480b;
+        TextView textView = this.f42797b;
         textView.setVisibility(0);
-        ViewGroup viewGroup = this.f42482f;
+        ViewGroup viewGroup = this.f42799f;
         boolean z10 = viewGroup instanceof b;
-        x0 x0Var = this.f42483n;
+        x0 x0Var = this.f42800n;
         if (z10) {
             ((b) viewGroup).setTopOffset(x0Var.L);
         }
-        viewGroup.getLayoutParams().height = x0Var.f42493s;
-        d90 d90Var = this.f42481c;
-        d90Var.setVisibility(0);
+        viewGroup.getLayoutParams().height = x0Var.f42812s;
+        n90 n90Var = this.f42798c;
+        n90Var.setVisibility(0);
         ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);
         if (this.h) {
             viewGroup.getLayoutParams().height = getMeasuredHeight() - AndroidUtilities.dp(16.0f);
             ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
             textView.setVisibility(8);
-            d90Var.setVisibility(8);
+            n90Var.setVisibility(8);
             super.onMeasure(i10, i11);
         }
     }

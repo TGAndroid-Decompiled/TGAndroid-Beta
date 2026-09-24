@@ -1,21 +1,21 @@
 package wh;
 
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.ea0;
-public final class b extends ea0 {
-    public final d f45023a0;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.pa0;
+public final class b extends pa0 {
+    public final d f45337a0;
 
-    public b(d dVar, n2 n2Var, long j3) {
-        super(n2Var, j3);
-        this.f45023a0 = dVar;
+    public b(d dVar, m2 m2Var, long j3) {
+        super(m2Var, j3);
+        this.f45337a0 = dVar;
     }
 
     @Override
     public final void dismiss() {
-        d dVar = this.f45023a0;
-        b bVar = dVar.f45029i;
-        if (bVar != null && !bVar.U.f45062b) {
-            dVar.f45029i = null;
+        d dVar = this.f45337a0;
+        b bVar = dVar.f45343i;
+        if (bVar != null && !bVar.U.f45376b) {
+            dVar.f45343i = null;
         }
         super.dismiss();
     }

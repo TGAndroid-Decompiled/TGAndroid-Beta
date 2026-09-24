@@ -10,42 +10,42 @@ import android.view.ActionMode;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
-import w7.o6;
-import w7.q7;
+import w7.p6;
+import w7.r7;
 public final class m extends Button implements u0.k {
-    public final e2.c f14223a;
-    public final w0 f14224b;
-    public t f14225c;
+    public final e2.c f14461a;
+    public final w0 f14462b;
+    public t f14463c;
 
     public m(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 2130968648);
         b3.a(context);
         a3.a(this, getContext());
         e2.c cVar = new e2.c(this);
-        this.f14223a = cVar;
+        this.f14461a = cVar;
         cVar.f(attributeSet, 2130968648);
         w0 w0Var = new w0(this);
-        this.f14224b = w0Var;
+        this.f14462b = w0Var;
         w0Var.f(attributeSet, 2130968648);
         w0Var.b();
         getEmojiTextViewHelper().a(attributeSet, 2130968648);
     }
 
     private t getEmojiTextViewHelper() {
-        if (this.f14225c == null) {
-            this.f14225c = new t(this);
+        if (this.f14463c == null) {
+            this.f14463c = new t(this);
         }
-        return this.f14225c;
+        return this.f14463c;
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f14223a;
+        e2.c cVar = this.f14461a;
         if (cVar != null) {
             cVar.b();
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
             w0Var.b();
         }
@@ -53,74 +53,74 @@ public final class m extends Button implements u0.k {
 
     @Override
     public int getAutoSizeMaxTextSize() {
-        if (s3.f14299b) {
+        if (s3.f14537b) {
             return super.getAutoSizeMaxTextSize();
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
-            return Math.round(w0Var.f14324i.e);
+            return Math.round(w0Var.f14562i.e);
         }
         return -1;
     }
 
     @Override
     public int getAutoSizeMinTextSize() {
-        if (s3.f14299b) {
+        if (s3.f14537b) {
             return super.getAutoSizeMinTextSize();
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
-            return Math.round(w0Var.f14324i.d);
+            return Math.round(w0Var.f14562i.d);
         }
         return -1;
     }
 
     @Override
     public int getAutoSizeStepGranularity() {
-        if (s3.f14299b) {
+        if (s3.f14537b) {
             return super.getAutoSizeStepGranularity();
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
-            return Math.round(w0Var.f14324i.f14163c);
+            return Math.round(w0Var.f14562i.f14401c);
         }
         return -1;
     }
 
     @Override
     public int[] getAutoSizeTextAvailableSizes() {
-        if (s3.f14299b) {
+        if (s3.f14537b) {
             return super.getAutoSizeTextAvailableSizes();
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
-            return w0Var.f14324i.f14164f;
+            return w0Var.f14562i.f14402f;
         }
         return new int[0];
     }
 
     @Override
     public int getAutoSizeTextType() {
-        if (s3.f14299b) {
+        if (s3.f14537b) {
             if (super.getAutoSizeTextType() != 1) {
                 return 0;
             }
             return 1;
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var == null) {
             return 0;
         }
-        return w0Var.f14324i.f14161a;
+        return w0Var.f14562i.f14399a;
     }
 
     @Override
     public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return q7.d(super.getCustomSelectionActionModeCallback());
+        return r7.d(super.getCustomSelectionActionModeCallback());
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f14223a;
+        e2.c cVar = this.f14461a;
         if (cVar != null) {
             return cVar.d();
         }
@@ -128,7 +128,7 @@ public final class m extends Button implements u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f14223a;
+        e2.c cVar = this.f14461a;
         if (cVar != null) {
             return cVar.e();
         }
@@ -136,11 +136,11 @@ public final class m extends Button implements u0.k {
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f14224b.d();
+        return this.f14462b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f14224b.e();
+        return this.f14462b.e();
     }
 
     @Override
@@ -158,19 +158,19 @@ public final class m extends Button implements u0.k {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        w0 w0Var = this.f14224b;
-        if (w0Var != null && !s3.f14299b) {
-            w0Var.f14324i.a();
+        w0 w0Var = this.f14462b;
+        if (w0Var != null && !s3.f14537b) {
+            w0Var.f14562i.a();
         }
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
-            g1 g1Var = w0Var.f14324i;
-            if (!s3.f14299b && g1Var.f()) {
+            g1 g1Var = w0Var.f14562i;
+            if (!s3.f14537b && g1Var.f()) {
                 g1Var.a();
             }
         }
@@ -184,11 +184,11 @@ public final class m extends Button implements u0.k {
 
     @Override
     public final void setAutoSizeTextTypeUniformWithConfiguration(int i10, int i11, int i12, int i13) {
-        if (s3.f14299b) {
+        if (s3.f14537b) {
             super.setAutoSizeTextTypeUniformWithConfiguration(i10, i11, i12, i13);
             return;
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
             w0Var.i(i10, i11, i12, i13);
         }
@@ -196,11 +196,11 @@ public final class m extends Button implements u0.k {
 
     @Override
     public final void setAutoSizeTextTypeUniformWithPresetSizes(int[] iArr, int i10) {
-        if (s3.f14299b) {
+        if (s3.f14537b) {
             super.setAutoSizeTextTypeUniformWithPresetSizes(iArr, i10);
             return;
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
             w0Var.j(iArr, i10);
         }
@@ -208,11 +208,11 @@ public final class m extends Button implements u0.k {
 
     @Override
     public void setAutoSizeTextTypeWithDefaults(int i10) {
-        if (s3.f14299b) {
+        if (s3.f14537b) {
             super.setAutoSizeTextTypeWithDefaults(i10);
             return;
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
             w0Var.k(i10);
         }
@@ -221,7 +221,7 @@ public final class m extends Button implements u0.k {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f14223a;
+        e2.c cVar = this.f14461a;
         if (cVar != null) {
             cVar.g();
         }
@@ -230,7 +230,7 @@ public final class m extends Button implements u0.k {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f14223a;
+        e2.c cVar = this.f14461a;
         if (cVar != null) {
             cVar.h(i10);
         }
@@ -238,7 +238,7 @@ public final class m extends Button implements u0.k {
 
     @Override
     public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(q7.e(callback, this));
+        super.setCustomSelectionActionModeCallback(r7.e(callback, this));
     }
 
     public void setEmojiCompatEnabled(boolean z10) {
@@ -247,25 +247,25 @@ public final class m extends Button implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((o6) getEmojiTextViewHelper().f14301b.f20300b).a(inputFilterArr));
+        super.setFilters(((p6) getEmojiTextViewHelper().f14539b.f13369b).a(inputFilterArr));
     }
 
     public void setSupportAllCaps(boolean z10) {
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
-            w0Var.f14319a.setAllCaps(z10);
+            w0Var.f14557a.setAllCaps(z10);
         }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f14223a;
+        e2.c cVar = this.f14461a;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f14223a;
+        e2.c cVar = this.f14461a;
         if (cVar != null) {
             cVar.m(mode);
         }
@@ -273,14 +273,14 @@ public final class m extends Button implements u0.k {
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         w0Var.l(colorStateList);
         w0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         w0Var.m(mode);
         w0Var.b();
     }
@@ -288,7 +288,7 @@ public final class m extends Button implements u0.k {
     @Override
     public final void setTextAppearance(Context context, int i10) {
         super.setTextAppearance(context, i10);
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
             w0Var.g(context, i10);
         }
@@ -296,14 +296,14 @@ public final class m extends Button implements u0.k {
 
     @Override
     public final void setTextSize(int i10, float f7) {
-        boolean z10 = s3.f14299b;
+        boolean z10 = s3.f14537b;
         if (z10) {
             super.setTextSize(i10, f7);
             return;
         }
-        w0 w0Var = this.f14224b;
+        w0 w0Var = this.f14462b;
         if (w0Var != null) {
-            g1 g1Var = w0Var.f14324i;
+            g1 g1Var = w0Var.f14562i;
             if (!z10 && !g1Var.f()) {
                 g1Var.g(f7, i10);
             }

@@ -1,7 +1,59 @@
 package org.telegram.ui;
-public final class w00 extends org.telegram.ui.Cells.f3 {
+
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class w00 implements TextWatcher {
+    public final y00 f38843a;
+
+    public w00(y00 y00Var) {
+        this.f38843a = y00Var;
+    }
+
     @Override
-    public final int a() {
-        return 25;
+    public final void afterTextChanged(Editable editable) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        String str;
+        int i10;
+        b10 b10Var = this.f38843a.e;
+        if (!TextUtils.equals(editable, b10Var.f32267w)) {
+            b10Var.f32264n = !TextUtils.isEmpty(editable);
+            b10Var.f32267w = org.telegram.ui.Components.z5.onlyEmojiSpans(editable);
+            p00 p00Var = b10Var.I;
+            if (p00Var != null) {
+                p00Var.e(org.telegram.ui.Components.z5.cloneSpans(b10Var.f32267w, -1, p00Var.f36363s.getPaint().getFontMetricsInt(), 0.5f), true);
+            }
+            q00 q00Var = b10Var.J;
+            if (q00Var != null) {
+                org.telegram.ui.Cells.u3 u3Var = q00Var.f36704r;
+                if (b10.k0(b10Var.f32267w)) {
+                    if (b10Var.f32268x) {
+                        i10 = R.string.FilterNameAnimationsDisable;
+                    } else {
+                        i10 = R.string.FilterNameAnimationsEnable;
+                    }
+                    str = LocaleController.getString(i10);
+                } else {
+                    str = null;
+                }
+                u3Var.setText(str);
+            }
+            kVar = ((org.telegram.ui.ActionBar.m2) b10Var).actionBar;
+            CharSequence charSequence = b10Var.f32267w;
+            kVar2 = ((org.telegram.ui.ActionBar.m2) b10Var).actionBar;
+            kVar.setTitle(org.telegram.ui.Components.z5.cloneSpans(charSequence, -1, kVar2.getTitleFontMetricsInt()));
+        }
+        b10Var.i0(true);
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

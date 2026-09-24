@@ -17,12 +17,15 @@ public final class f4 implements View.OnLayoutChangeListener {
             case 0:
                 ((i4) this.f4673b).d();
                 return;
-            default:
+            case 1:
                 kg.c cVar = (kg.c) this.f4673b;
-                TextView textView = cVar.f13589c;
+                TextView textView = cVar.f13587c;
                 textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
-                TextView textView2 = cVar.f13588b;
+                TextView textView2 = cVar.f13586b;
                 textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
+                return;
+            default:
+                ((ki.h) this.f4673b).F();
                 return;
         }
     }

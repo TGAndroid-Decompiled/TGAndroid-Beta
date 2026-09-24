@@ -2,7 +2,7 @@ package ci;
 
 import android.app.Activity;
 import android.app.Dialog;
-public final class pb extends org.telegram.ui.ActionBar.n2 {
+public final class pb extends org.telegram.ui.ActionBar.m2 {
     public final int f5308a;
     public final lc f5309b;
 
@@ -52,13 +52,13 @@ public final class pb extends org.telegram.ui.ActionBar.n2 {
     }
 
     @Override
-    public boolean presentFragment(org.telegram.ui.ActionBar.n2 n2Var) {
+    public boolean presentFragment(org.telegram.ui.ActionBar.m2 m2Var) {
         switch (this.f5308a) {
             case 0:
                 this.f5309b.T();
                 return false;
             default:
-                return super.presentFragment(n2Var);
+                return super.presentFragment(m2Var);
         }
     }
 

@@ -13,18 +13,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import v7.r6;
+import v7.s6;
 public abstract class w {
-    public static final HashMap f41958a = new HashMap();
+    public static final HashMap f42277a = new HashMap();
 
     public static void a(String str, ArrayList arrayList) {
         if ("audio/raw".equals(str)) {
-            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f41915a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f42234a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
                 arrayList.add(o.i("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, true, false, false));
             }
             Collections.sort(arrayList, new e8(new Object(), 3));
         }
-        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f41915a)) {
+        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f42234a)) {
             arrayList.add((o) arrayList.remove(0));
         }
     }
@@ -91,7 +91,7 @@ public abstract class w {
         synchronized (w.class) {
             try {
                 s sVar = new s(str, z10, z11);
-                HashMap hashMap = f41958a;
+                HashMap hashMap = f42277a;
                 List list = (List) hashMap.get(sVar);
                 if (list != null) {
                     return list;
@@ -100,7 +100,7 @@ public abstract class w {
                 if (z10 && e.isEmpty() && Build.VERSION.SDK_INT <= 23) {
                     e = e(sVar, new qb.b(20));
                     if (!e.isEmpty()) {
-                        e2.a.n("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) e.get(0)).f41915a);
+                        e2.a.n("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) e.get(0)).f42234a);
                     }
                 }
                 a(str, e);
@@ -164,7 +164,7 @@ public abstract class w {
             return mediaCodecInfo.isSoftwareOnly();
         }
         if (!r0.i(str)) {
-            String b10 = r6.b(mediaCodecInfo.getName());
+            String b10 = s6.b(mediaCodecInfo.getName());
             if (!b10.startsWith("arc.")) {
                 if (!b10.startsWith("omx.google.") && !b10.startsWith("omx.ffmpeg.")) {
                     if ((!b10.startsWith("omx.sec.") || !b10.contains(".sw.")) && !b10.equals("omx.qcom.video.decoder.hevcswvdec") && !b10.startsWith("c2.android.") && !b10.startsWith("c2.google.")) {

@@ -7,83 +7,83 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class af implements Utilities.Callback {
-    public final int f31778a;
-    public final xn f31779b;
+    public final int f32135a;
+    public final wn f32136b;
 
-    public af(xn xnVar, int i10) {
-        this.f31778a = i10;
-        this.f31779b = xnVar;
+    public af(wn wnVar, int i10) {
+        this.f32135a = i10;
+        this.f32136b = wnVar;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f31778a;
-        xn xnVar = this.f31779b;
+        int i10 = this.f32135a;
+        wn wnVar = this.f32136b;
         switch (i10) {
             case 0:
                 MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                xn xnVar2 = this.f31779b;
-                xnVar2.f39390g5 = messageSuggestionParams;
-                xnVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
-                xnVar2.yb(true, null, xnVar2.p5, null, null, null, false, true);
+                wn wnVar2 = this.f32136b;
+                wnVar2.f39474g5 = messageSuggestionParams;
+                wnVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
+                wnVar2.yb(true, null, wnVar2.p5, null, null, null, false, true);
                 return;
             case 1:
-                xnVar.vb(true, false);
+                wnVar.vb(true, false);
                 if (((Boolean) obj).booleanValue()) {
-                    xnVar.finishFragment();
+                    wnVar.finishFragment();
                     return;
                 }
                 return;
             case 2:
-                xnVar.da((String) obj, false);
+                wnVar.E1 = (ChannelBoostsController.CanApplyBoost) obj;
                 return;
             case 3:
-                xnVar.Db((MessageSuggestionParams) obj);
+                wnVar.da((String) obj, false);
                 return;
             case 4:
-                xnVar.E1 = (ChannelBoostsController.CanApplyBoost) obj;
+                wnVar.Db((MessageSuggestionParams) obj);
                 return;
             case 5:
                 View view = (View) obj;
-                if (view instanceof org.telegram.ui.Cells.t1) {
-                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
-                    t1Var.E8 = xnVar.t9();
-                    t1Var.F8 = xnVar.C9();
-                    boolean B9 = xnVar.B9();
-                    if (t1Var.G8 != B9) {
-                        t1Var.G8 = B9;
-                        xnVar.f39596x0.getClass();
+                if (view instanceof org.telegram.ui.Cells.u1) {
+                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+                    u1Var.E8 = wnVar.t9();
+                    u1Var.F8 = wnVar.C9();
+                    boolean B9 = wnVar.B9();
+                    if (u1Var.G8 != B9) {
+                        u1Var.G8 = B9;
+                        wnVar.f39680x0.getClass();
                         int R = RecyclerView.R(view);
-                        t1Var.f21134n8 = true;
-                        t1Var.forceLayout();
+                        u1Var.f21435n8 = true;
+                        u1Var.forceLayout();
                         if (R >= 0) {
-                            xnVar.A0.m(R);
+                            wnVar.A0.m(R);
                         }
                     }
-                    t1Var.H8 = xnVar.Q8();
-                    int R8 = xnVar.R8();
-                    if (t1Var.I8 != R8) {
-                        t1Var.I8 = R8;
-                        t1Var.y4();
-                        t1Var.invalidate();
+                    u1Var.H8 = wnVar.Q8();
+                    int R8 = wnVar.R8();
+                    if (u1Var.I8 != R8) {
+                        u1Var.I8 = R8;
+                        u1Var.y4();
+                        u1Var.invalidate();
                         return;
                     }
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.w0) {
                     org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
-                    w0Var.f21480e0 = xnVar.t9();
-                    w0Var.f21493i0 = xnVar.C9();
-                    xnVar.B9();
-                    xnVar.Q8();
-                    int R82 = xnVar.R8();
-                    if (w0Var.f21496j0 != R82) {
-                        w0Var.f21496j0 = R82;
+                    w0Var.f21715e0 = wnVar.t9();
+                    w0Var.f21728i0 = wnVar.C9();
+                    wnVar.B9();
+                    wnVar.Q8();
+                    int R82 = wnVar.R8();
+                    if (w0Var.f21731j0 != R82) {
+                        w0Var.f21731j0 = R82;
                         w0Var.invalidate();
                         return;
                     }
                     return;
-                } else if (view instanceof org.telegram.ui.Cells.v1) {
-                    ((org.telegram.ui.Cells.v1) view).getTextView().setTranslationX(xnVar.R8() / 2.0f);
+                } else if (view instanceof org.telegram.ui.Cells.w1) {
+                    ((org.telegram.ui.Cells.w1) view).getTextView().setTranslationX(wnVar.R8() / 2.0f);
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.b0) {
                     view.invalidate();
@@ -97,32 +97,32 @@ public final class af implements Utilities.Callback {
             case 6:
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus != null) {
-                    xnVar.D1 = tL_premium_boostsStatus;
-                    xnVar.getMessagesController().getBoostsController().userCanBoostChannel(xnVar.T5, tL_premium_boostsStatus, new af(xnVar, 4));
+                    wnVar.D1 = tL_premium_boostsStatus;
+                    wnVar.getMessagesController().getBoostsController().userCanBoostChannel(wnVar.T5, tL_premium_boostsStatus, new af(wnVar, 2));
                     return;
                 }
                 return;
             case 7:
                 Long l4 = (Long) obj;
-                org.telegram.ui.Components.w21 w21Var = xnVar.R1;
-                if (w21Var != null) {
-                    w21Var.m(l4.longValue(), true);
+                org.telegram.ui.Components.k31 k31Var = wnVar.R1;
+                if (k31Var != null) {
+                    k31Var.m(l4.longValue(), true);
                     return;
                 }
                 return;
             case 8:
-                cs csVar = xnVar.f39348d0;
-                csVar.f32396c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
+                bs bsVar = wnVar.f39432d0;
+                bsVar.f32459c.add(((org.telegram.ui.ActionBar.u0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();
-                int i11 = xn.Gc;
-                xnVar.Ba(intValue);
+                int i11 = wn.Gc;
+                wnVar.Ba(intValue);
                 return;
             default:
                 int intValue2 = ((Integer) obj).intValue();
-                int i12 = xn.Gc;
-                xnVar.Ba(intValue2);
+                int i12 = wn.Gc;
+                wnVar.Ba(intValue2);
                 return;
         }
     }

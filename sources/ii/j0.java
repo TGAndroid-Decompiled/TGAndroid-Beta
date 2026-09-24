@@ -3,8 +3,8 @@ package ii;
 import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.ca;
-public final class j0 implements ca {
+import org.telegram.ui.Cells.ba;
+public final class j0 implements ba {
     public final Layout f11445a;
     public final int f11446b;
     public final int f11447c;
@@ -42,8 +42,8 @@ public final class j0 implements ca {
         TL_iv.PageBlock pageBlock;
         TL_iv.PageCaption pageCaption;
         TL_iv.RichText richText;
-        a N = this.d.f11478c.N();
-        if (N != null && (pageBlock = N.f11191b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
+        a M = this.d.f11478c.M();
+        if (M != null && (pageBlock = M.f11191b) != null && (pageCaption = pageBlock.caption) != null && (richText = pageCaption.text) != null) {
             return g6.r(richText, null, true);
         }
         return "";

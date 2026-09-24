@@ -1,14 +1,19 @@
 package v7;
 
-import android.text.SpannableStringBuilder;
+import android.util.Base64;
+import java.util.LinkedHashMap;
+import org.json.JSONException;
+import org.json.JSONObject;
 public abstract class p6 {
-    public static void a(Object obj, SpannableStringBuilder spannableStringBuilder, int i10, int i11) {
-        Object[] spans;
-        for (Object obj2 : spannableStringBuilder.getSpans(i10, i11, obj.getClass())) {
-            if (spannableStringBuilder.getSpanStart(obj2) == i10 && spannableStringBuilder.getSpanEnd(obj2) == i11 && spannableStringBuilder.getSpanFlags(obj2) == 33) {
-                spannableStringBuilder.removeSpan(obj2);
-            }
+    public static byte[] a(JSONObject jSONObject) {
+        LinkedHashMap linkedHashMap = d1.f.f7395a;
+        String optString = jSONObject.optString("challenge", "");
+        kotlin.jvm.internal.i.b(optString);
+        if (optString.length() != 0) {
+            byte[] decode = Base64.decode(optString, 11);
+            kotlin.jvm.internal.i.d(decode, "decode(...)");
+            return decode;
         }
-        spannableStringBuilder.setSpan(obj, i10, i11, 33);
+        throw new JSONException("Challenge not found in request or is unexpectedly empty");
     }
 }

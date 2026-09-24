@@ -1,35 +1,25 @@
 package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
-public final class ja1 implements iq {
-    public final TLRPC.TL_chatChannelParticipant f34398a;
-    public final boolean f34399b;
-    public final boolean[] f34400c;
+public final class ja1 extends kq {
+    public final boolean[] f34721d1;
+    public final sa1 f34722e1;
+    public final la1 f34723f1;
 
-    public ja1(TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant, boolean z10, boolean[] zArr) {
-        this.f34398a = tL_chatChannelParticipant;
-        this.f34399b = z10;
-        this.f34400c = zArr;
+    public ja1(la1 la1Var, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10, boolean[] zArr, sa1 sa1Var) {
+        super(j3, j10, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z10, null);
+        this.f34723f1 = la1Var;
+        this.f34721d1 = zArr;
+        this.f34722e1 = sa1Var;
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = this.f34398a;
-        if (i10 == 0) {
-            TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
-            channelParticipant.admin_rights = null;
-            channelParticipant.rank = "";
-            return;
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        if (!z10 && z11 && this.f34721d1[0]) {
+            sa1 sa1Var = this.f34722e1;
+            if (org.telegram.ui.Components.yc.a(sa1Var)) {
+                org.telegram.ui.Components.yc.C(sa1Var, this.f34723f1.f35255a.first_name).j();
+            }
         }
-        TLRPC.ChannelParticipant channelParticipant2 = tL_chatChannelParticipant.channelParticipant;
-        channelParticipant2.admin_rights = tL_chatAdminRights;
-        channelParticipant2.rank = str;
-        if (this.f34399b) {
-            this.f34400c[0] = true;
-        }
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
     }
 }

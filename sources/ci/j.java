@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.widget.ImageView;
 public final class j extends ImageView {
     public final float f4800a;
-    public final org.telegram.ui.Components.yc f4801b;
+    public final org.telegram.ui.Components.zc f4801b;
 
     public j(Context context) {
         super(context);
-        this.f4801b = new org.telegram.ui.Components.yc(this);
+        this.f4801b = new org.telegram.ui.Components.zc(this);
         this.f4800a = 0.2f;
     }
 

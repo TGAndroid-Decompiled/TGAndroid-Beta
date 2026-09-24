@@ -18,13 +18,13 @@ import i2.f;
 import i2.f0;
 import java.util.ArrayList;
 import n4.y;
-import w7.l;
+import w7.m;
 public final class b extends f implements Handler.Callback {
     public final a I;
     public final c0 J;
     public final Handler K;
     public final l3.a L;
-    public l M;
+    public m M;
     public boolean N;
     public boolean O;
     public long P;
@@ -38,11 +38,11 @@ public final class b extends f implements Handler.Callback {
         if (looper == null) {
             handler = null;
         } else {
-            String str = d0.f7871a;
+            String str = d0.f7870a;
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f42580a;
+        this.I = a.f42899a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -70,13 +70,13 @@ public final class b extends f implements Handler.Callback {
                 if (a2 != null) {
                     a aVar = this.I;
                     if (aVar.b(a2)) {
-                        l a10 = aVar.a(a2);
+                        m a10 = aVar.a(a2);
                         byte[] c10 = o0VarArr[i10].c();
                         c10.getClass();
                         l3.a aVar2 = this.L;
                         aVar2.clear();
                         aVar2.b(c10.length);
-                        aVar2.f10079c.put(c10);
+                        aVar2.f10078c.put(c10);
                         aVar2.c();
                         p0 a11 = a10.a(aVar2);
                         if (a11 != null) {
@@ -195,17 +195,17 @@ public final class b extends f implements Handler.Callback {
                 l3.a aVar = this.L;
                 aVar.clear();
                 y yVar = this.f10640c;
-                yVar.h();
+                yVar.n();
                 int w10 = w(yVar, aVar, 0);
                 if (w10 == -4) {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
                     } else if (aVar.e >= this.f10645w) {
-                        aVar.f13860r = this.P;
+                        aVar.f14081r = this.P;
                         aVar.c();
-                        l lVar = this.M;
-                        String str = d0.f7871a;
-                        p0 a2 = lVar.a(aVar);
+                        m mVar = this.M;
+                        String str = d0.f7870a;
+                        p0 a2 = mVar.a(aVar);
                         if (a2 != null) {
                             ArrayList arrayList = new ArrayList(a2.f3170a.length);
                             C(a2, arrayList);
@@ -215,7 +215,7 @@ public final class b extends f implements Handler.Callback {
                         }
                     }
                 } else if (w10 == -5) {
-                    s sVar = (s) yVar.f14970c;
+                    s sVar = (s) yVar.f15208c;
                     sVar.getClass();
                     this.P = sVar.f3305w;
                 }

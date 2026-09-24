@@ -1,22 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class s91 extends org.telegram.ui.Components.ml0 {
-    public int X2;
-    public final ra1 Y2;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class s91 extends org.telegram.ui.Components.n81 {
+    public final boolean f37643a;
+    public final boolean f37644b;
+    public final boolean f37645c;
+    public final FrameLayout d;
+    public final sa1 e;
 
-    public s91(ra1 ra1Var, Context context) {
-        super(context, null);
-        this.Y2 = ra1Var;
+    public s91(sa1 sa1Var, boolean z10, boolean z11, boolean z12, FrameLayout frameLayout) {
+        this.e = sa1Var;
+        this.f37643a = z10;
+        this.f37644b = z11;
+        this.f37645c = z12;
+        this.d = frameLayout;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        w91 w91Var;
-        super.onMeasure(i10, i11);
-        if (this.X2 != getMeasuredHeight() && (w91Var = this.Y2.X) != null) {
-            w91Var.l();
+    public final View d(int i10) {
+        sa1 sa1Var = this.e;
+        if (sa1Var.f37667l0) {
+            return sa1Var.f37665j0;
         }
-        this.X2 = getMeasuredHeight();
+        boolean z10 = this.f37643a;
+        FrameLayout frameLayout = this.d;
+        if (z10) {
+            if (i10 == 0) {
+                return frameLayout;
+            }
+            i10--;
+        }
+        if (this.f37644b) {
+            if (i10 == 0) {
+                return sa1Var.f37665j0;
+            }
+            i10--;
+        }
+        if (this.f37645c && i10 == 0) {
+            return sa1Var.f37666k0;
+        }
+        return frameLayout;
+    }
+
+    @Override
+    public final int e() {
+        if (this.e.f37667l0) {
+            return 1;
+        }
+        return (this.f37643a ? 1 : 0) + (this.f37644b ? 1 : 0) + (this.f37645c ? 1 : 0);
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

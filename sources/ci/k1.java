@@ -48,10 +48,10 @@ public final class k1 extends FrameLayout {
         int i10;
         int i11;
         boolean z10;
-        int i12 = org.telegram.ui.ActionBar.h6.f18859h5;
+        int i12 = org.telegram.ui.ActionBar.h6.f19115h5;
         s2 s2Var = this.f4883s;
         i1 i1Var = s2Var.f5474f;
-        d6Var = ((org.telegram.ui.ActionBar.f3) s2Var).resourcesProvider;
+        d6Var = ((org.telegram.ui.ActionBar.e3) s2Var).resourcesProvider;
         int v02 = org.telegram.ui.ActionBar.h6.v0(i12, d6Var);
         Paint paint = this.f4877a;
         paint.setColor(v02);
@@ -81,9 +81,9 @@ public final class k1 extends FrameLayout {
         float d = this.h.d(f10, false);
         float paddingTop = (s2Var.f5479x + i1Var.getPaddingTop()) - AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), i1Var.getPaddingTop(), d);
         RectF rectF = AndroidUtilities.rectTmp;
-        i10 = ((org.telegram.ui.ActionBar.f3) s2Var).backgroundPaddingLeft;
+        i10 = ((org.telegram.ui.ActionBar.e3) s2Var).backgroundPaddingLeft;
         int width = getWidth();
-        i11 = ((org.telegram.ui.ActionBar.f3) s2Var).backgroundPaddingLeft;
+        i11 = ((org.telegram.ui.ActionBar.e3) s2Var).backgroundPaddingLeft;
         rectF.set(i10, paddingTop, width - i11, AndroidUtilities.dp(8.0f) + getHeight());
         if (this.d != null) {
             this.f4880f.reset();
@@ -151,9 +151,9 @@ public final class k1 extends FrameLayout {
         super.onLayout(z10, i10, i11, i12, i13);
         if (this.d == null) {
             s2 s2Var = this.f4883s;
-            d6Var = ((org.telegram.ui.ActionBar.f3) s2Var).resourcesProvider;
+            d6Var = ((org.telegram.ui.ActionBar.e3) s2Var).resourcesProvider;
             if (d6Var != null) {
-                d6Var2 = ((org.telegram.ui.ActionBar.f3) s2Var).resourcesProvider;
+                d6Var2 = ((org.telegram.ui.ActionBar.e3) s2Var).resourcesProvider;
                 if (!d6Var2.a()) {
                     return;
                 }

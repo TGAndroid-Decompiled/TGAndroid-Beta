@@ -2,7 +2,7 @@ package hg;
 
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.v51;
 public final class n1 implements Utilities.Callback5, Utilities.Callback5Return {
     public final z1 f10355a;
 
@@ -11,21 +11,21 @@ public final class n1 implements Utilities.Callback5, Utilities.Callback5Return 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        z1.W(this.f10355a, (h51) obj, (View) obj2);
+        z1.W(this.f10355a, (v51) obj, (View) obj2);
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         boolean z10;
-        h51 h51Var = (h51) obj;
+        v51 v51Var = (v51) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        if (h51Var.f15508a == 16) {
-            Object obj6 = h51Var.G;
+        if (v51Var.f15700a == 16) {
+            Object obj6 = v51Var.G;
             if (!(obj6 instanceof b2) || !((b2) obj6).f10209g) {
-                this.f10355a.e0(h51Var, view);
+                this.f10355a.e0(v51Var, view);
                 z10 = true;
                 return Boolean.valueOf(z10);
             }

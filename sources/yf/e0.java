@@ -3,9 +3,9 @@ package yf;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.Collections;
-import org.telegram.ui.cb1;
+import org.telegram.ui.db1;
 public abstract class e0 {
-    public static final cb1 f46768a = new cb1(20);
+    public static final db1 f47082a = new db1(20);
 
     public static int a(ArrayList arrayList, int i10, ArrayList arrayList2) {
         boolean z10;
@@ -83,12 +83,12 @@ public abstract class e0 {
             rectF5.top = Float.MAX_VALUE;
             rectF5.left = Float.MAX_VALUE;
         }
-        Collections.sort(arrayList2, f46768a);
+        Collections.sort(arrayList2, f47082a);
         return i10;
     }
 
     public static float b(float f7) {
-        return 1.0f - w7.p.a(f7, 0.0f, 1.0f);
+        return 1.0f - w7.q.a(f7, 0.0f, 1.0f);
     }
 
     public static boolean c(float[] fArr) {

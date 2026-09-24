@@ -1,142 +1,44 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class l51 extends FrameLayout {
-    public final int f34864a;
+import java.util.ArrayList;
+public final class l51 extends g.p {
+    public final int f35193c;
+    public final a71 d;
 
-    public l51(Context context, int i10) {
-        super(context);
-        this.f34864a = i10;
+    public l51(a71 a71Var, int i10) {
+        this.f35193c = i10;
+        this.d = a71Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f34864a) {
-            case 6:
-                org.telegram.ui.ActionBar.h6.f18875i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.h6.f18875i3.getIntrinsicHeight());
-                org.telegram.ui.ActionBar.h6.f18875i3.draw(canvas);
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f34864a) {
-            case 9:
-                return super.drawChild(canvas, view, j3);
-            case 10:
-            default:
-                return super.drawChild(canvas, view, j3);
-            case 11:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean hasOverlappingRendering() {
-        switch (this.f34864a) {
-            case 8:
-                return false;
-            default:
-                return super.hasOverlappingRendering();
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f34864a) {
-            case 5:
-                super.onDraw(canvas);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.h6.f18910k0);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f34864a) {
-            case 2:
-                int childCount = getChildCount();
-                int i14 = 0;
-                int i15 = 0;
-                for (int i16 = 0; i16 < childCount; i16++) {
-                    if (getChildAt(i16).getMeasuredWidth() + i14 > getMeasuredWidth()) {
-                        i15 += getChildAt(i16).getMeasuredHeight();
-                        i14 = 0;
-                    }
-                    getChildAt(i16).layout(i14, i15, getChildAt(i16).getMeasuredWidth() + i14, getChildAt(i16).getMeasuredHeight() + i15);
-                    i14 += getChildAt(i16).getMeasuredWidth();
-                }
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
+    public final int i(int i10) {
+        int i11;
+        ArrayList arrayList;
         int i12;
-        switch (this.f34864a) {
+        switch (this.f35193c) {
             case 0:
-                super.onMeasure(i10, org.telegram.messenger.ul.C(36.0f, View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(i10, i11);
-                return;
-            case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
-                int childCount = getChildCount();
-                int i13 = 0;
-                if (childCount > 0) {
-                    i12 = getChildAt(0).getMeasuredHeight();
-                } else {
-                    i12 = 0;
-                }
-                int i14 = 0;
-                int i15 = 0;
-                for (int i16 = 0; i16 < childCount; i16++) {
-                    if (getChildAt(i16).getMeasuredWidth() + i14 > size) {
-                        i15 += getChildAt(i16).getMeasuredHeight();
-                        i14 = 0;
+                a71 a71Var = this.d;
+                if (a71Var.f32045w0.indexOfKey(i10) < 0 && a71Var.f32053z0.indexOfKey(i10) < 0 && i10 != a71Var.f32008f && i10 != a71Var.f32050y && i10 != a71Var.f32023n && i10 != a71Var.h && i10 != a71Var.v && i10 != a71Var.f31995a && i10 != a71Var.f32047x) {
+                    if ((i10 >= a71Var.E && i10 < a71Var.F) || a71Var.Q) {
+                        return 8;
                     }
-                    i14 += getChildAt(i16).getMeasuredWidth();
+                    return 5;
                 }
-                int measuredWidth = getMeasuredWidth();
-                if (getChildCount() != 0) {
-                    i13 = AndroidUtilities.dp(16.0f) + i12 + i15;
-                }
-                setMeasuredDimension(measuredWidth, i13);
-                return;
-            case 3:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                return;
-            case 4:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                return;
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
+                return a71Var.f32033r0.J;
             default:
-                super.onMeasure(i10, i11);
-                return;
-            case 10:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
-                return;
+                a71 a71Var2 = this.d;
+                k61 k61Var = a71Var2.f32030q0;
+                int j3 = k61Var.j(i10);
+                if (j3 == 6) {
+                    return a71Var2.f32033r0.J;
+                }
+                if (j3 != 5) {
+                    a71 a71Var3 = k61Var.f34941s;
+                    if (a71Var3.W != 14 ? i10 <= (i11 = k61Var.f34937c) || (i10 - i11) - 1 >= a71Var3.C1.size() : (arrayList = a71Var3.B1) == null || i10 < (i12 = k61Var.f34937c) || i10 - i12 >= arrayList.size()) {
+                        return 5;
+                    }
+                }
+                return 8;
         }
     }
 }

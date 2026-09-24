@@ -5,25 +5,25 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
-public final class t0 extends g51 {
+import org.telegram.ui.Components.wl0;
+public final class t0 extends u51 {
     public static final int f11622a = 0;
 
     static {
-        g51.setup(new g51());
+        u51.setup(new u51());
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
         boolean z11;
         float f7;
         u0 u0Var = (u0) view;
-        a aVar = (a) h51Var.G;
-        e3 e3Var = (e3) h51Var.H;
+        a aVar = (a) v51Var.G;
+        e3 e3Var = (e3) v51Var.H;
         i1 i1Var = u0Var.d;
         boolean z12 = false;
         if (u0Var.f11647f != aVar) {
@@ -58,7 +58,7 @@ public final class t0 extends g51 {
     }
 
     @Override
-    public final View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, wl0 wl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new u0(context, d6Var);
     }
 

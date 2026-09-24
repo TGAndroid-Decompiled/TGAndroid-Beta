@@ -10,7 +10,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class fu extends cu {
-    public Drawable f24088c;
+    public Drawable f24257c;
     public final int d;
     public final ku e;
 
@@ -18,7 +18,7 @@ public final class fu extends cu {
         super(context, d6Var);
         this.e = kuVar;
         this.d = i10;
-        this.f24088c = null;
+        this.f24257c = null;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class fu extends cu {
             } else {
                 z10 = false;
             }
-            org.telegram.ui.xn.k8(menu, null, z10, true, true, true);
+            org.telegram.ui.wn.k8(menu, null, z10, true, true, true);
             return;
         }
         kuVar.i(menu);
@@ -61,8 +61,8 @@ public final class fu extends cu {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         ku kuVar = this.e;
-        rl0 rl0Var = kuVar.f25695c;
-        if (rl0Var != null) {
+        bm0 bm0Var = kuVar.f25864c;
+        if (bm0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
                 z10 = true;
@@ -73,15 +73,15 @@ public final class fu extends cu {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (kuVar.f25697n != z11) {
-                kuVar.f25697n = z11;
+            if (kuVar.f25866n != z11) {
+                kuVar.f25866n = z11;
                 if (z11) {
-                    this.f24088c = rl0Var.d;
-                    rl0Var.a(R.drawable.msg_edit, true);
+                    this.f24257c = bm0Var.d;
+                    bm0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                rl0Var.b(this.f24088c, true);
-                this.f24088c = null;
+                bm0Var.b(this.f24257c, true);
+                this.f24257c = null;
             }
         }
     }
@@ -93,9 +93,9 @@ public final class fu extends cu {
         ku kuVar = this.e;
         if (kuVar.e && motionEvent.getAction() == 0) {
             kuVar.u();
-            if (kuVar.f25701x && (guVar = kuVar.d) != null) {
+            if (kuVar.f25870x && (guVar = kuVar.d) != null) {
                 guVar.t(false);
-                kuVar.f25701x = false;
+                kuVar.f25870x = false;
                 kuVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {

@@ -1,36 +1,26 @@
 package org.telegram.ui;
+public final class da0 implements Runnable {
+    public final int f33051a;
+    public final boolean f33052b;
+    public final Object f33053c;
+    public final Object d;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class da0 implements RequestDelegate {
-    public final int f32549a;
-    public final LaunchActivity f32550b;
-
-    public da0(LaunchActivity launchActivity, int i10) {
-        this.f32549a = i10;
-        this.f32550b = launchActivity;
+    public da0(Object obj, Object obj2, boolean z10, int i10) {
+        this.f33051a = i10;
+        this.f33053c = obj;
+        this.d = obj2;
+        this.f33052b = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f32549a;
-        LaunchActivity launchActivity = this.f32550b;
-        switch (i10) {
-            case 0:
-                Pattern pattern = LaunchActivity.B1;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new ia0(0, launchActivity, (TL_account.Password) tLObject));
-                    return;
-                }
-                return;
-            default:
-                Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new hw(26, launchActivity, tLObject));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.da0.run():void");
+    }
+
+    public da0(Object obj, boolean z10, Object obj2, int i10) {
+        this.f33051a = i10;
+        this.f33053c = obj;
+        this.f33052b = z10;
+        this.d = obj2;
     }
 }

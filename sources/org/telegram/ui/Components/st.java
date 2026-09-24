@@ -3,26 +3,26 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class st implements ViewTreeObserver.OnPreDrawListener {
-    public final int f27987a;
-    public final View f27988b;
+    public final int f28316a;
+    public final View f28317b;
 
     public st(int i10, View view) {
-        this.f27987a = i10;
-        this.f27988b = view;
+        this.f28316a = i10;
+        this.f28317b = view;
     }
 
     @Override
     public final boolean onPreDraw() {
-        switch (this.f27987a) {
+        switch (this.f28316a) {
             case 0:
-                org.telegram.ui.ActionBar.h4 h4Var = ((EditTextBoldCursor) this.f27988b).floatingActionMode;
-                if (h4Var != null) {
-                    h4Var.e();
+                org.telegram.ui.ActionBar.g4 g4Var = ((EditTextBoldCursor) this.f28317b).floatingActionMode;
+                if (g4Var != null) {
+                    g4Var.e();
                     return true;
                 }
                 return true;
             default:
-                ((m70) this.f27988b).invalidate();
+                ((w70) this.f28317b).invalidate();
                 return true;
         }
     }

@@ -1,28 +1,28 @@
 package z7;
 public final class we {
-    public final String f48608a;
-    public final String f48609b;
-    public final String f48610c;
+    public final String f48925a;
+    public final String f48926b;
+    public final String f48927c;
     public final String d;
     public final m e;
-    public final String f48611f;
-    public final Boolean f48612g;
+    public final String f48928f;
+    public final Boolean f48929g;
     public final Boolean h;
-    public final Boolean f48613i;
-    public final Integer f48614j;
-    public final Integer f48615k;
+    public final Boolean f48930i;
+    public final Integer f48931j;
+    public final Integer f48932k;
 
-    public we(v7.d8 d8Var) {
-        this.f48608a = d8Var.f43895a;
-        this.f48609b = d8Var.f43896b;
-        this.f48610c = d8Var.f43897c;
-        this.d = d8Var.d;
-        this.e = (m) d8Var.f43902k;
-        this.f48611f = d8Var.e;
-        this.f48612g = (Boolean) d8Var.f43898f;
-        this.h = (Boolean) d8Var.f43899g;
-        this.f48613i = (Boolean) d8Var.h;
-        this.f48614j = d8Var.f43900i;
-        this.f48615k = (Integer) d8Var.f43901j;
+    public we(v7.e8 e8Var) {
+        this.f48925a = e8Var.f44221a;
+        this.f48926b = e8Var.f44222b;
+        this.f48927c = e8Var.f44223c;
+        this.d = e8Var.d;
+        this.e = (m) e8Var.f44228k;
+        this.f48928f = e8Var.e;
+        this.f48929g = (Boolean) e8Var.f44224f;
+        this.h = (Boolean) e8Var.f44225g;
+        this.f48930i = (Boolean) e8Var.h;
+        this.f48931j = e8Var.f44226i;
+        this.f48932k = (Integer) e8Var.f44227j;
     }
 }

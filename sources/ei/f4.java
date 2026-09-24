@@ -8,36 +8,36 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
 public final class f4 extends FrameLayout {
-    public Path f8319a;
-    public float f8320b;
-    public int f8321c;
+    public Path f8318a;
+    public float f8319b;
+    public int f8320c;
     public int d;
     public int e;
-    public c0 f8322f;
+    public c0 f8321f;
 
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
         float height = (getHeight() - AndroidUtilities.dp(32.0f)) / 2.0f;
-        float max = Math.max((getWidth() - this.e) - AndroidUtilities.dp(4.0f), getHeight()) * this.f8320b;
+        float max = Math.max((getWidth() - this.e) - AndroidUtilities.dp(4.0f), getHeight()) * this.f8319b;
         float dp = AndroidUtilities.dp(16.0f) + max;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(AndroidUtilities.dp(14.0f) - max, (AndroidUtilities.dp(4.0f) + height) - max, AndroidUtilities.dp(6.0f) + this.e + max, (getHeight() - AndroidUtilities.dp(12.0f)) + max);
-        Path path = this.f8319a;
+        Path path = this.f8318a;
         path.rewind();
         path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
         canvas.clipPath(path);
         canvas.drawColor(this.d);
-        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f8320b) / 0.5f)) * 255.0f), 31);
+        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f8319b) / 0.5f)) * 255.0f), 31);
         canvas.translate(AndroidUtilities.dp(10.0f), height);
-        c0 c0Var = this.f8322f;
+        c0 c0Var = this.f8321f;
         if (c0Var != null) {
             c0Var.setDrawBackgroundDrawable(false);
-            this.f8322f.draw(canvas);
-            this.f8322f.setDrawBackgroundDrawable(true);
+            this.f8321f.draw(canvas);
+            this.f8321f.setDrawBackgroundDrawable(true);
         }
         canvas.restore();
-        canvas.translate((1.0f - this.f8320b) * (-AndroidUtilities.dp(8.0f)), 0.0f);
+        canvas.translate((1.0f - this.f8319b) * (-AndroidUtilities.dp(8.0f)), 0.0f);
         super.draw(canvas);
         canvas.restore();
     }
@@ -58,7 +58,7 @@ public final class f4 extends FrameLayout {
     }
 
     public void setBotMenuButton(c0 c0Var) {
-        this.f8322f = c0Var;
+        this.f8321f = c0Var;
         invalidate();
     }
 
@@ -68,8 +68,8 @@ public final class f4 extends FrameLayout {
     }
 
     public void setProgress(float f7) {
-        this.f8320b = f7;
-        this.d = i0.a.d(f7, h6.w0(null, h6.f18779cf, false), this.f8321c);
+        this.f8319b = f7;
+        this.d = i0.a.d(f7, h6.w0(null, h6.f19035cf, false), this.f8320c);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             getChildAt(i10).setAlpha(f7);
         }

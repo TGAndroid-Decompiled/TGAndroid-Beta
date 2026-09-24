@@ -47,7 +47,15 @@ public final class b0 implements r2.u {
         return obj;
     }
 
-    public void b(long j3) {
+    @Override
+    public MediaCodecInfo b(int i10) {
+        if (((MediaCodecInfo[]) this.f3839c) == null) {
+            this.f3839c = new MediaCodecList(this.f3838b).getCodecInfos();
+        }
+        return ((MediaCodecInfo[]) this.f3839c)[i10];
+    }
+
+    public void c(long j3) {
         int i10 = this.f3838b;
         long[] jArr = (long[]) this.f3839c;
         if (i10 == jArr.length) {
@@ -56,14 +64,6 @@ public final class b0 implements r2.u {
         int i11 = this.f3838b;
         this.f3838b = i11 + 1;
         ((long[]) this.f3839c)[i11] = j3;
-    }
-
-    @Override
-    public MediaCodecInfo c(int i10) {
-        if (((MediaCodecInfo[]) this.f3839c) == null) {
-            this.f3839c = new MediaCodecList(this.f3838b).getCodecInfos();
-        }
-        return ((MediaCodecInfo[]) this.f3839c)[i10];
     }
 
     public void d(long[] jArr) {
@@ -80,76 +80,76 @@ public final class b0 implements r2.u {
         int i10;
         Message message;
         g.c cVar = (g.c) this.f3839c;
-        g.g gVar = new g.g(cVar.f9211a, this.f3838b);
+        g.g gVar = new g.g(cVar.f9210a, this.f3838b);
         View view = cVar.e;
-        g.f fVar = gVar.f9245f;
+        g.f fVar = gVar.f9244f;
         if (view != null) {
-            fVar.f9237r = view;
+            fVar.f9236r = view;
         } else {
             CharSequence charSequence = cVar.d;
             if (charSequence != null) {
                 fVar.d = charSequence;
-                TextView textView = fVar.f9235p;
+                TextView textView = fVar.f9234p;
                 if (textView != null) {
                     textView.setText(charSequence);
                 }
             }
-            Drawable drawable = cVar.f9213c;
+            Drawable drawable = cVar.f9212c;
             if (drawable != null) {
-                fVar.f9233n = drawable;
-                ImageView imageView = fVar.f9234o;
+                fVar.f9232n = drawable;
+                ImageView imageView = fVar.f9233o;
                 if (imageView != null) {
                     imageView.setVisibility(0);
-                    fVar.f9234o.setImageDrawable(drawable);
+                    fVar.f9233o.setImageDrawable(drawable);
                 }
             }
         }
-        CharSequence charSequence2 = cVar.f9214f;
+        CharSequence charSequence2 = cVar.f9213f;
         if (charSequence2 != null) {
-            androidx.biometric.w wVar = cVar.f9215g;
+            androidx.biometric.w wVar = cVar.f9214g;
             fVar.getClass();
             if (wVar != null) {
-                message = fVar.f9244z.obtainMessage(-2, wVar);
+                message = fVar.f9243z.obtainMessage(-2, wVar);
             } else {
                 message = null;
             }
-            fVar.f9229j = charSequence2;
-            fVar.f9230k = message;
+            fVar.f9228j = charSequence2;
+            fVar.f9229k = message;
         }
-        if (cVar.f9216i != null) {
-            AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) cVar.f9212b.inflate(fVar.v, (ViewGroup) null);
-            if (cVar.f9219l) {
-                i10 = fVar.f9241w;
+        if (cVar.f9215i != null) {
+            AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) cVar.f9211b.inflate(fVar.v, (ViewGroup) null);
+            if (cVar.f9218l) {
+                i10 = fVar.f9240w;
             } else {
-                i10 = fVar.f9242x;
+                i10 = fVar.f9241x;
             }
-            Object obj = cVar.f9216i;
+            Object obj = cVar.f9215i;
             ArrayAdapter arrayAdapter = obj;
             if (obj == null) {
-                arrayAdapter = new ArrayAdapter(cVar.f9211a, i10, 16908308, (Object[]) null);
+                arrayAdapter = new ArrayAdapter(cVar.f9210a, i10, 16908308, (Object[]) null);
             }
-            fVar.f9238s = arrayAdapter;
-            fVar.f9239t = cVar.f9220m;
-            if (cVar.f9217j != null) {
+            fVar.f9237s = arrayAdapter;
+            fVar.f9238t = cVar.f9219m;
+            if (cVar.f9216j != null) {
                 alertController$RecycleListView.setOnItemClickListener(new g.b(cVar, fVar));
             }
-            if (cVar.f9219l) {
+            if (cVar.f9218l) {
                 alertController$RecycleListView.setChoiceMode(1);
             }
             fVar.e = alertController$RecycleListView;
         }
-        View view2 = cVar.f9218k;
+        View view2 = cVar.f9217k;
         if (view2 != null) {
-            fVar.f9226f = view2;
-            fVar.f9227g = false;
+            fVar.f9225f = view2;
+            fVar.f9226g = false;
         }
         gVar.setCancelable(true);
         gVar.setCanceledOnTouchOutside(true);
         gVar.setOnCancelListener(null);
         gVar.setOnDismissListener(null);
-        l.l lVar = cVar.h;
-        if (lVar != null) {
-            gVar.setOnKeyListener(lVar);
+        l.m mVar = cVar.h;
+        if (mVar != null) {
+            gVar.setOnKeyListener(mVar);
         }
         return gVar;
     }
@@ -158,9 +158,9 @@ public final class b0 implements r2.u {
         if (i10 >= 0 && i10 < this.f3838b) {
             return ((long[]) this.f3839c)[i10];
         }
-        StringBuilder l4 = hg.c.l(i10, "Invalid index ", ", size is ");
-        l4.append(this.f3838b);
-        throw new IndexOutOfBoundsException(l4.toString());
+        StringBuilder j3 = hg.c.j(i10, "Invalid index ", ", size is ");
+        j3.append(this.f3838b);
+        throw new IndexOutOfBoundsException(j3.toString());
     }
 
     public synchronized List g() {
@@ -178,8 +178,8 @@ public final class b0 implements r2.u {
     public long h(c3.l lVar) {
         e2.v vVar = (e2.v) this.f3839c;
         int i10 = 0;
-        lVar.h(vVar.f7917a, 0, 1, false);
-        int i11 = vVar.f7917a[0] & 255;
+        lVar.h(vVar.f7916a, 0, 1, false);
+        int i11 = vVar.f7916a[0] & 255;
         if (i11 == 0) {
             return Long.MIN_VALUE;
         }
@@ -190,10 +190,10 @@ public final class b0 implements r2.u {
             i13++;
         }
         int i14 = i11 & (~i12);
-        lVar.h(vVar.f7917a, 1, i13, false);
+        lVar.h(vVar.f7916a, 1, i13, false);
         while (i10 < i13) {
             i10++;
-            i14 = (vVar.f7917a[i10] & 255) + (i14 << 8);
+            i14 = (vVar.f7916a[i10] & 255) + (i14 << 8);
         }
         this.f3838b = i13 + 1 + this.f3838b;
         return i14;

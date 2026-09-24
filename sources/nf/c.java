@@ -12,28 +12,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.g4;
 import org.telegram.ui.i4;
 import org.telegram.ui.m3;
 import s4.c1;
 public final class c implements Runnable {
-    public final int f15179a = 0;
-    public final TLObject f15180b;
-    public final int f15181c;
+    public final int f15416a = 0;
+    public final TLObject f15417b;
+    public final int f15418c;
     public final boolean d;
     public final Object e;
-    public final Object f15182f;
+    public final Object f15419f;
     public final Object h;
-    public final Object f15183n;
+    public final Object f15420n;
 
-    public c(e eVar, b2[] b2VarArr, TLObject tLObject, int i10, Uri uri, Context context, boolean z10) {
+    public c(e eVar, a2[] a2VarArr, TLObject tLObject, int i10, Uri uri, Context context, boolean z10) {
         this.e = eVar;
-        this.f15182f = b2VarArr;
-        this.f15180b = tLObject;
-        this.f15181c = i10;
+        this.f15419f = a2VarArr;
+        this.f15417b = tLObject;
+        this.f15418c = i10;
         this.h = uri;
-        this.f15183n = context;
+        this.f15420n = context;
         this.d = z10;
     }
 
@@ -41,23 +41,23 @@ public final class c implements Runnable {
     public final void run() {
         c1 K;
         int i10 = 0;
-        switch (this.f15179a) {
+        switch (this.f15416a) {
             case 0:
                 e eVar = (e) this.e;
-                b2[] b2VarArr = (b2[]) this.f15182f;
-                TLObject tLObject = this.f15180b;
-                int i11 = this.f15181c;
+                a2[] a2VarArr = (a2[]) this.f15419f;
+                TLObject tLObject = this.f15417b;
+                int i11 = this.f15418c;
                 Uri uri = (Uri) this.h;
-                Context context = (Context) this.f15183n;
+                Context context = (Context) this.f15420n;
                 boolean z10 = this.d;
                 if (eVar != null) {
                     eVar.b();
                 } else {
                     try {
-                        b2VarArr[0].dismiss();
+                        a2VarArr[0].dismiss();
                     } catch (Throwable unused) {
                     }
-                    b2VarArr[0] = null;
+                    a2VarArr[0] = null;
                 }
                 if (tLObject instanceof TL_account.webPagePreview) {
                     TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject;
@@ -77,12 +77,12 @@ public final class c implements Runnable {
                 return;
             default:
                 i4 i4Var = (i4) this.e;
-                TLObject tLObject2 = this.f15180b;
-                int i12 = this.f15181c;
-                TLRPC.WebPage webPage2 = (TLRPC.WebPage) this.f15182f;
+                TLObject tLObject2 = this.f15417b;
+                int i12 = this.f15418c;
+                TLRPC.WebPage webPage2 = (TLRPC.WebPage) this.f15419f;
                 MessageObject messageObject = (MessageObject) this.h;
                 boolean z11 = this.d;
-                String str = (String) this.f15183n;
+                String str = (String) this.f15420n;
                 boolean z12 = tLObject2 instanceof TLRPC.TL_messages_webPage;
                 TLRPC.WebPage webPage3 = tLObject2;
                 if (z12) {
@@ -94,7 +94,7 @@ public final class c implements Runnable {
                 if (webPage3 instanceof TLRPC.TL_webPage) {
                     TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) webPage3;
                     if (tL_webPage.cached_page != null) {
-                        if (!i4Var.f34005d0.isEmpty() && i4Var.f34005d0.get(0) == webPage2) {
+                        if (!i4Var.f34378d0.isEmpty() && i4Var.f34378d0.get(0) == webPage2) {
                             if (messageObject != null) {
                                 messageObject.messageOwner.media.webpage = tL_webPage;
                                 TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
@@ -102,12 +102,12 @@ public final class c implements Runnable {
                                 MessagesStorage.getInstance(i12).putMessages((TLRPC.messages_Messages) tL_messages_messages, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled ? 1 : 0, 0L);
                             }
                             if (z11) {
-                                i4Var.f34005d0.add(tL_webPage);
+                                i4Var.f34378d0.add(tL_webPage);
                             } else {
-                                i4Var.f34005d0.set(0, tL_webPage);
+                                i4Var.f34378d0.set(0, tL_webPage);
                             }
-                            if (i4Var.f34005d0.size() == 1) {
-                                ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f18236id).commit();
+                            if (i4Var.f34378d0.size() == 1) {
+                                ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f18474id).commit();
                                 i4Var.e0(z11 ? 1 : 0, tL_webPage, false);
                                 if (str != null) {
                                     i4Var.V(str, false);
@@ -115,7 +115,7 @@ public final class c implements Runnable {
                             }
                         }
                         i iVar = new i(1);
-                        iVar.k(tL_webPage, tL_webPage.f18236id);
+                        iVar.k(tL_webPage, tL_webPage.f18474id);
                         MessagesStorage.getInstance(i12).putWebPages(iVar);
                         return;
                     }
@@ -130,11 +130,11 @@ public final class c implements Runnable {
                             page.views = i14;
                             page.flags |= 8;
                             while (true) {
-                                m3[] m3VarArr = i4Var.f34021u0;
+                                m3[] m3VarArr = i4Var.f34394u0;
                                 if (i10 < m3VarArr.length) {
-                                    g4 g4Var = m3VarArr[i10].f35131c;
-                                    if (g4Var.E == webPage2 && (K = i4Var.f34021u0[i10].f35130b.K(g4Var.h() - 1)) != null) {
-                                        i4Var.f34021u0[i10].f35131c.y(K);
+                                    g4 g4Var = m3VarArr[i10].f35448c;
+                                    if (g4Var.E == webPage2 && (K = i4Var.f34394u0[i10].f35447b.K(g4Var.h() - 1)) != null) {
+                                        i4Var.f34394u0[i10].f35448c.y(K);
                                     }
                                     i10++;
                                 } else if (messageObject != null) {
@@ -161,11 +161,11 @@ public final class c implements Runnable {
 
     public c(i4 i4Var, TLObject tLObject, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z10, String str) {
         this.e = i4Var;
-        this.f15180b = tLObject;
-        this.f15181c = i10;
-        this.f15182f = webPage;
+        this.f15417b = tLObject;
+        this.f15418c = i10;
+        this.f15419f = webPage;
         this.h = messageObject;
         this.d = z10;
-        this.f15183n = str;
+        this.f15420n = str;
     }
 }

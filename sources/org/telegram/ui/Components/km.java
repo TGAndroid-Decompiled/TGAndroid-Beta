@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class km {
-    public final ArrayList f25626a = new ArrayList();
-    public final HashMap f25627b = new HashMap();
-    public int f25628c;
+    public final ArrayList f25796a = new ArrayList();
+    public final HashMap f25797b = new HashMap();
+    public int f25798c;
     public int d;
     public int e;
-    public float f25629f;
-    public final ArrayList f25630g;
+    public float f25799f;
+    public final ArrayList f25800g;
     public final rm h;
 
     public km(rm rmVar, ArrayList arrayList) {
         this.h = rmVar;
-        this.f25630g = arrayList;
+        this.f25800g = arrayList;
         a();
     }
 

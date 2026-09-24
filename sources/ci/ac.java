@@ -8,8 +8,8 @@ import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.cf0;
-import org.telegram.ui.e40;
+import org.telegram.ui.bf0;
+import org.telegram.ui.c40;
 public final class ac extends ClickableSpan {
     public final int f4357a;
     public final Object f4358b;
@@ -30,14 +30,14 @@ public final class ac extends ClickableSpan {
                 lh.c cVar = (lh.c) this.f4358b;
                 lh.a aVar = cVar.I;
                 if (aVar != null && (groupCallMessage = cVar.H) != null) {
-                    ((e40) aVar).a(groupCallMessage);
+                    ((c40) aVar).a(groupCallMessage);
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f4358b;
-                Context context = x1Var.getContext();
-                nf.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.pa) x1Var.M).e.f36340r);
+                org.telegram.ui.Cells.y1 y1Var = (org.telegram.ui.Cells.y1) this.f4358b;
+                Context context = y1Var.getContext();
+                nf.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.pa) y1Var.M).e.f36820r);
                 return;
             case 3:
                 ((org.telegram.ui.ub) this.f4358b).finishFragment();
@@ -46,17 +46,17 @@ public final class ac extends ClickableSpan {
                 ((org.telegram.ui.r1) this.f4358b).run();
                 return;
             case 5:
-                ((org.telegram.ui.Components.xc) this.f4358b).f29979a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((org.telegram.ui.Components.yc) this.f4358b).f30578a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
                 ((ActionBarLayout) ((LaunchActivity) this.f4358b).O()).P(new PremiumPreviewFragment(0, "gift"));
                 return;
             case 7:
-                ((cf0) this.f4358b).q(false);
+                ((bf0) this.f4358b).q(false);
                 return;
             case 8:
-                rg.j0 j0Var = ((rg.c0) this.f4358b).f42217c;
-                tg.o.m(j0Var.f22661n, rg.j0.i1(j0Var), j0Var.f42261a0, null);
+                rg.j0 j0Var = ((rg.c0) this.f4358b).f42536c;
+                tg.m.m(j0Var.f22949n, rg.j0.i1(j0Var), j0Var.f42580a0, null);
                 return;
             default:
                 return;
@@ -98,12 +98,12 @@ public final class ac extends ClickableSpan {
             case 8:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, rg.j0.R0(((rg.c0) this.f4358b).f42217c)));
+                textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, rg.j0.R0(((rg.c0) this.f4358b).f42536c)));
                 return;
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                Integer num = ((rg.k1) this.f4358b).f42314u0;
+                Integer num = ((rg.k1) this.f4358b).f42633u0;
                 if (num != null) {
                     textPaint.setColor(num.intValue());
                     return;

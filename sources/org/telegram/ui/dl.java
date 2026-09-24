@@ -1,17 +1,35 @@
 package org.telegram.ui;
+public final class dl implements Runnable {
+    public final int f33125a;
+    public final el f33126b;
 
-import android.app.Activity;
-public final class dl extends org.telegram.ui.Components.x50 {
-    public final xn f32679d1;
-
-    public dl(xn xnVar, Activity activity, org.telegram.ui.Components.p50 p50Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity, p50Var, d6Var, true);
-        this.f32679d1 = xnVar;
+    public dl(el elVar, int i10) {
+        this.f33125a = i10;
+        this.f33126b = elVar;
     }
 
     @Override
-    public final void m(boolean z10, boolean z11) {
-        super.m(z10, z11);
-        this.f32679d1.f39569uc.a(z10, true);
+    public final void run() {
+        switch (this.f33125a) {
+            case 0:
+                jk jkVar = this.f33126b.H.Y;
+                if (jkVar != null) {
+                    jkVar.T0 = false;
+                    org.telegram.ui.Components.eg egVar = jkVar.U0;
+                    if (egVar != null) {
+                        egVar.u(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                jk jkVar2 = this.f33126b.H.Y;
+                if (jkVar2 != null) {
+                    jkVar2.H0();
+                    return;
+                }
+                return;
+        }
     }
 }

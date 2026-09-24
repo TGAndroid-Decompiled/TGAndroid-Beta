@@ -21,7 +21,7 @@ public class MediaStreamTrack {
                     return mediaType;
                 }
             }
-            throw new IllegalArgumentException(hg.c.i(i10, "Unknown native media type: "));
+            throw new IllegalArgumentException(hg.c.h(i10, "Unknown native media type: "));
         }
 
         public int getNative() {

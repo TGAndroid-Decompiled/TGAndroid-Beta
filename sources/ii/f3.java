@@ -62,17 +62,17 @@ public final class f3 implements b6 {
         }
         switch (i10) {
             case 1:
-                v3Var.h(3);
+                v3Var.i(3);
                 return;
             case 2:
-                v3Var.h(6);
+                v3Var.i(6);
                 return;
             case 3:
                 r.U(x3Var.getContext(), "", new q1(x3Var, 1), x3Var.f11726g3);
                 return;
             case 4:
             case 5:
-                v3Var.h(1);
+                v3Var.i(1);
                 return;
             case 6:
                 x3Var.t3();

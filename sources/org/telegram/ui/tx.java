@@ -1,54 +1,88 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.ScrollView;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-public final class tx extends ScrollView {
-    public final int f37804a;
+public final class tx extends AnimatorListenerAdapter {
+    public final int f38230a;
+    public final float f38231b;
+    public final qy f38232c;
 
-    public tx(Context context, int i10) {
-        super(context);
-        this.f37804a = i10;
+    public tx(qy qyVar, float f7, int i10) {
+        this.f38230a = i10;
+        this.f38232c = qyVar;
+        this.f38231b = f7;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f37804a) {
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        switch (this.f38230a) {
             case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i11), Math.min(AndroidUtilities.displaySize.y * 0.35f, AndroidUtilities.dp(400.0f))), View.MeasureSpec.getMode(i11)));
-                return;
-            case 1:
+                super.onAnimationEnd(animator);
+                qy qyVar = this.f38232c;
+                qyVar.f37104u3 = null;
+                int i12 = 0;
+                qyVar.O = false;
+                qyVar.Q = true;
+                qyVar.R = true;
+                qyVar.fragmentView.invalidate();
+                if (qyVar.K) {
+                    i10 = 81;
+                } else {
+                    i10 = 0;
+                }
+                qyVar.f37120x3 = -(AndroidUtilities.dp(i10 + 48) - this.f38231b);
+                qyVar.f37021e0[0].setTranslationY(0.0f);
+                while (true) {
+                    py[] pyVarArr = qyVar.f37021e0;
+                    if (i12 < pyVarArr.length) {
+                        py pyVar = pyVarArr[i12];
+                        if (pyVar != null) {
+                            pyVar.f36679a.requestLayout();
+                        }
+                        i12++;
+                    } else {
+                        qyVar.fragmentView.requestLayout();
+                        gy gyVar = qyVar.X;
+                        if (gyVar != null && qyVar.f37004b.f14186f) {
+                            gyVar.f23131r.requestFocus();
+                            AndroidUtilities.showKeyboard(qyVar.X.f23131r);
+                            return;
+                        }
+                        return;
+                    }
+                }
+                break;
             default:
-                super.onMeasure(i10, i11);
-                return;
-            case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
-                return;
-        }
-    }
-
-    @Override
-    public boolean onRequestFocusInDescendants(int i10, Rect rect) {
-        switch (this.f37804a) {
-            case 1:
-                return false;
-            default:
-                return super.onRequestFocusInDescendants(i10, rect);
-        }
-    }
-
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f37804a) {
-            case 1:
-                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top = AndroidUtilities.dp(20.0f) + rect.top;
-                rect.bottom = AndroidUtilities.dp(50.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z10);
+                super.onAnimationEnd(animator);
+                qy qyVar2 = this.f38232c;
+                qyVar2.f37104u3 = null;
+                qyVar2.P = 0;
+                qyVar2.O = true;
+                if (qyVar2.K) {
+                    i11 = 81;
+                } else {
+                    i11 = 0;
+                }
+                qyVar2.f37120x3 = AndroidUtilities.dp(i11 + 48) - this.f38231b;
+                qyVar2.f37021e0[0].setTranslationY(0.0f);
+                int i13 = 0;
+                while (true) {
+                    py[] pyVarArr2 = qyVar2.f37021e0;
+                    if (i13 < pyVarArr2.length) {
+                        py pyVar2 = pyVarArr2[i13];
+                        if (pyVar2 != null) {
+                            pyVar2.f36679a.requestLayout();
+                        }
+                        i13++;
+                    } else {
+                        qyVar2.E0.l(1.0f, false);
+                        qyVar2.fragmentView.requestLayout();
+                        return;
+                    }
+                }
         }
     }
 }

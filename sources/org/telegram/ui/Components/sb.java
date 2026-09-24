@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 public final class sb implements o1.g {
-    public final int f27894a;
-    public final ub f27895b;
-    public final q0.a f27896c;
+    public final int f28212a;
+    public final ub f28213b;
+    public final q0.a f28214c;
 
     public sb(q0.a aVar, ub ubVar, int i10) {
-        this.f27894a = i10;
-        this.f27896c = aVar;
-        this.f27895b = ubVar;
+        this.f28212a = i10;
+        this.f28214c = aVar;
+        this.f28213b = ubVar;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f27894a) {
+        switch (this.f28212a) {
             case 0:
-                ((gb) this.f27896c).accept(Float.valueOf(this.f27895b.getTranslationY()));
+                ((gb) this.f28214c).accept(Float.valueOf(this.f28213b.getTranslationY()));
                 return;
             default:
-                ((nl) this.f27896c).accept(Float.valueOf(this.f27895b.getTranslationY()));
+                ((nl) this.f28214c).accept(Float.valueOf(this.f28213b.getTranslationY()));
                 return;
         }
     }

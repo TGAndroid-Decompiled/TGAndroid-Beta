@@ -44,7 +44,7 @@ public final class b3 extends org.telegram.ui.web.b1 {
         k3Var.v.setWebView(y0Var);
         a1 a1Var = k3Var.B0;
         if (a1Var != null) {
-            a1Var.f8207k = y0Var;
+            a1Var.f8206k = y0Var;
         }
         k3Var.m0.setWebView(y0Var);
         k3Var.F();
@@ -54,8 +54,8 @@ public final class b3 extends org.telegram.ui.web.b1 {
     public final void L(org.telegram.ui.web.y0 y0Var) {
         k3 k3Var = this.S0;
         a1 a1Var = k3Var.B0;
-        if (a1Var != null && a1Var.f8207k == y0Var) {
-            a1Var.f8207k = null;
+        if (a1Var != null && a1Var.f8206k == y0Var) {
+            a1Var.f8206k = null;
             a1Var.b();
         }
         k3Var.m0.setWebView(null);

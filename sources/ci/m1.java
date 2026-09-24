@@ -1,10 +1,10 @@
 package ci;
 
 import android.content.Context;
-import org.telegram.ui.Components.kx;
+import org.telegram.ui.Components.lx;
 import org.telegram.ui.Components.lz;
-import org.telegram.ui.n51;
-import org.telegram.ui.z61;
+import org.telegram.ui.a71;
+import org.telegram.ui.o51;
 public final class m1 extends ji.o {
     public final int f5158q;
     public final Object f5159r;
@@ -22,14 +22,14 @@ public final class m1 extends ji.o {
                 ((p1) this.f5159r).f5277b3 = true;
                 return;
             case 1:
-                ((lz) this.f5159r).f25977f0 = true;
+                ((lz) this.f5159r).f26238f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((z61) this.f5159r).f40054w1 = true;
+                ((a71) this.f5159r).f32046w1 = true;
                 return;
         }
     }
@@ -41,19 +41,19 @@ public final class m1 extends ji.o {
                 ((p1) this.f5159r).f5277b3 = false;
                 return;
             case 1:
-                ((lz) this.f5159r).f25977f0 = false;
+                ((lz) this.f5159r).f26238f0 = false;
                 return;
             case 2:
-                ((kx) this.f5159r).Q.f25977f0 = false;
+                ((lx) this.f5159r).Q.f26238f0 = false;
                 return;
             case 3:
-                ((n51) this.f5159r).R.f40054w1 = false;
+                ((o51) this.f5159r).R.f32046w1 = false;
                 return;
             case 4:
-                ((z61) this.f5159r).f40054w1 = false;
+                ((a71) this.f5159r).f32046w1 = false;
                 return;
             default:
-                ((n51) this.f5159r).R.f40054w1 = false;
+                ((o51) this.f5159r).R.f32046w1 = false;
                 return;
         }
     }

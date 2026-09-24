@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class n0 extends LinearLayout implements org.telegram.ui.ActionBar.y5 {
+public final class n0 extends LinearLayout implements org.telegram.ui.ActionBar.x5 {
     public final org.telegram.ui.ActionBar.d6 f11504a;
     public final ImageView f11505b;
     public final TextView f11506c;
@@ -22,7 +22,7 @@ public final class n0 extends LinearLayout implements org.telegram.ui.ActionBar.
         ImageView imageView = new ImageView(context);
         this.f11505b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, w7.x5.t(42, 42, 19, 0, 0, 0, 0));
+        addView(imageView, w7.y5.t(42, 42, 19, 0, 0, 0, 0));
         TextView textView = new TextView(context);
         this.f11506c = textView;
         textView.setTextSize(1, 16.0f);
@@ -30,9 +30,9 @@ public final class n0 extends LinearLayout implements org.telegram.ui.ActionBar.
         this.d = textView2;
         textView2.setTextSize(1, 16.0f);
         textView2.setGravity(5);
-        addView(textView, w7.x5.t(-2, -2, 19, 8, 0, 0, 0));
-        addView(new Space(context), w7.x5.o(0, -2, 1.0f, 119));
-        addView(textView2, w7.x5.t(-2, -2, 21, 8, 0, 0, 0));
+        addView(textView, w7.y5.t(-2, -2, 19, 8, 0, 0, 0));
+        addView(new Space(context), w7.y5.o(0, -2, 1.0f, 119));
+        addView(textView2, w7.y5.t(-2, -2, 21, 8, 0, 0, 0));
         imageView.setImageResource(o0Var.f11519a);
         textView.setText(o0Var.f11520b);
         textView2.setText((CharSequence) o0Var.f11521c.get(0));

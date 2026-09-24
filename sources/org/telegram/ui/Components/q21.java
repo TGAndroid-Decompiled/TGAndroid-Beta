@@ -1,59 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class q21 extends g51 {
-    public static final int f27209a = 0;
+import org.telegram.tgnet.tl.TL_stars;
+public final class q21 implements MessagesController.IsInChatCheckedCallback, org.telegram.ui.ActionBar.z1 {
+    public final long f27476a;
+    public final Object f27477b;
+    public final Object f27478c;
+    public final Object d;
+    public final TLObject e;
+    public final Object f27479f;
 
-    static {
-        g51.setup(new g51());
+    public q21(k31 k31Var, org.telegram.ui.ActionBar.e1 e1Var, y70 y70Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
+        this.f27477b = k31Var;
+        this.f27478c = e1Var;
+        this.d = y70Var;
+        this.f27476a = j3;
+        this.e = user;
+        this.f27479f = chat;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        boolean z11;
-        int i10;
-        r21 r21Var = (r21) view;
-        boolean z12 = false;
-        if (h51Var.f24513r) {
-            r21Var.f();
-        } else {
-            Object obj = h51Var.G;
-            if (obj == null) {
-                if (h51Var.d == -2) {
-                    r21Var.c();
-                } else {
-                    if ((h51Var.f24519y & 1) != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    r21Var.d(z11, h51Var.f24512q, h51Var.e);
-                }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!h51Var.I) {
-                    r21Var.g(h51Var.f24518x, (TLRPC.TL_forumTopic) obj, h51Var.e);
-                } else {
-                    r21Var.b(h51Var.f24518x, (TLRPC.TL_forumTopic) obj, h51Var.e);
-                }
-            }
-        }
-        if (w7.c0.a(h51Var.f24519y, 8)) {
-            i10 = AndroidUtilities.dp(10.0f);
-        } else {
-            i10 = 0;
-        }
-        r21Var.L = i10;
-        if (d61Var != null && d61Var.f23292c3 && r21Var.f27538s) {
-            z12 = true;
-        }
-        r21Var.setReorder(z12);
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        yh.x3.L0((yh.x3) this.f27477b, (TL_stars.TL_starGiftUnique) this.f27478c, (TLRPC.PaymentForm) this.d, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) this.e, this.f27476a, (CharSequence) this.f27479f, a2Var);
     }
 
     @Override
-    public final View createView(Context context, ml0 ml0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new r21(context, i10, d6Var);
+    public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
+        AndroidUtilities.runOnUIThread(new u21((k31) this.f27477b, z10, (org.telegram.ui.ActionBar.e1) this.f27478c, (y70) this.d, this.f27476a, (TLRPC.User) this.e, (TLRPC.Chat) this.f27479f));
+    }
+
+    public q21(yh.x3 x3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.PaymentForm paymentForm, TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails tL_inputInvoiceStarGiftDropOriginalDetails, long j3, CharSequence charSequence) {
+        this.f27477b = x3Var;
+        this.f27478c = tL_starGiftUnique;
+        this.d = paymentForm;
+        this.e = tL_inputInvoiceStarGiftDropOriginalDetails;
+        this.f27476a = j3;
+        this.f27479f = charSequence;
     }
 }

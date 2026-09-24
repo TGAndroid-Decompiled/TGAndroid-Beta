@@ -9,10 +9,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.ca;
+import org.telegram.ui.Cells.ba;
+import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Cells.r9;
-public final class h5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
+public final class h5 extends a0 implements org.telegram.ui.ActionBar.x5, p9 {
     public final org.telegram.ui.ActionBar.d6 f11404n;
     public final i1 f11405r;
     public f5 f11406s;
@@ -35,30 +35,30 @@ public final class h5 extends a0 implements org.telegram.ui.ActionBar.y5, q9 {
         i1Var.setTextColorKey(org.telegram.ui.ActionBar.h6.Oh);
         i1Var.setAccentHint(true);
         i1Var.setHint(LocaleController.getString(R.string.ArticleHintAuthor));
-        i1Var.setListener(new a4.m(this, 22));
+        i1Var.setListener(new a4.m(this, 23));
         i1Var.setDelegate(new ei.d5(this, 19));
-        addView(i1Var, w7.x5.e(-1, -2, 51));
+        addView(i1Var, w7.y5.e(-1, -2, 51));
         e();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        r9 r9Var;
+        q9 q9Var;
         f5 f5Var = this.f11406s;
         if (f5Var != null) {
-            r9Var = ((c3) f5Var).f11269a.getTextSelectionHelper();
+            q9Var = ((c3) f5Var).f11269a.getTextSelectionHelper();
         } else {
-            r9Var = null;
+            q9Var = null;
         }
-        if (r9Var != null) {
+        if (q9Var != null) {
             ArrayList arrayList = this.v;
             arrayList.clear();
             fillTextLayoutBlocks(arrayList);
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                ca caVar = (ca) arrayList.get(i10);
+                ba baVar = (ba) arrayList.get(i10);
                 canvas.save();
-                canvas.translate(caVar.getX(), caVar.getY());
-                r9Var.a0(canvas, this, i10);
+                canvas.translate(baVar.getX(), baVar.getY());
+                q9Var.a0(canvas, this, i10);
                 canvas.restore();
             }
         }

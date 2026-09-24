@@ -1,25 +1,46 @@
 package org.telegram.ui;
-public final class zm0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f40194a;
-    public final en0 f40195b;
 
-    public zm0(en0 en0Var, int i10) {
-        this.f40194a = i10;
-        this.f40195b = en0Var;
+import android.content.Context;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class zm0 extends TextView {
+    public final int f40526a;
+
+    public zm0(Context context, int i10) {
+        super(context);
+        this.f40526a = i10;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40194a) {
-            case 0:
-                en0 en0Var = this.f40195b;
-                en0Var.c(true);
-                en0Var.Q.finishFragment();
-                return;
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f40526a) {
+            case 3:
+                return Button.class.getName();
             default:
-                en0 en0Var2 = this.f40195b;
-                en0Var2.c(true);
-                en0Var2.Q.K1(null, 0, true);
+                return super.getAccessibilityClassName();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f40526a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
+                return;
+            case 3:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 4:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
                 return;
         }
     }

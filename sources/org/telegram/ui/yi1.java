@@ -8,38 +8,38 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class yi1 {
-    public String f39833a;
-    public final int f39834b;
-    public final int f39835c;
+    public String f40151a;
+    public final int f40152b;
+    public final int f40153c;
     public final int d;
     public final int e;
-    public int f39836f;
-    public TLRPC.TL_wallPaper f39837g;
+    public int f40154f;
+    public TLRPC.TL_wallPaper f40155g;
     public float h;
-    public final File f39838i;
-    public final boolean f39839j;
-    public final boolean f39840k;
-    public TLRPC.WallPaper f39841l;
-    public Bitmap f39842m;
+    public final File f40156i;
+    public final boolean f40157j;
+    public final boolean f40158k;
+    public TLRPC.WallPaper f40159l;
+    public Bitmap f40160m;
 
     public yi1(int i10, int i11, String str, int i12) {
-        this.f39833a = str;
-        this.f39834b = i10 | (-16777216);
+        this.f40151a = str;
+        this.f40152b = i10 | (-16777216);
         int i13 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f39835c = i13;
-        this.f39836f = i13 == 0 ? 0 : i12;
+        this.f40153c = i13;
+        this.f40154f = i13 == 0 ? 0 : i12;
         this.h = 1.0f;
     }
 
     public final String a() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(String.valueOf(this.f39834b));
-        sb2.append(this.f39835c);
+        sb2.append(String.valueOf(this.f40152b));
+        sb2.append(this.f40153c);
         sb2.append(this.d);
         sb2.append(this.e);
-        sb2.append(this.f39836f);
+        sb2.append(this.f40154f);
         sb2.append(this.h);
-        String str = this.f39833a;
+        String str = this.f40151a;
         if (str == null) {
             str = "";
         }
@@ -51,13 +51,13 @@ public final class yi1 {
         String str;
         String str2;
         String str3 = null;
-        int i10 = this.f39835c;
+        int i10 = this.f40153c;
         if (i10 != 0) {
             str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (i10 >> 8)) & 255), Byte.valueOf((byte) (i10 & 255))).toLowerCase();
         } else {
             str = null;
         }
-        int i11 = this.f39834b;
+        int i11 = this.f40152b;
         String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (i11 >> 8)) & 255), Byte.valueOf((byte) (i11 & 255))).toLowerCase();
         int i12 = this.d;
         if (i12 != 0) {
@@ -83,20 +83,20 @@ public final class yi1 {
             }
         } else if (str != null) {
             String D = a4.a.D(lowerCase, "-", str);
-            if (this.f39837g != null) {
-                StringBuilder h = w.c.h(D, "&rotation=");
-                h.append(AndroidUtilities.getWallpaperRotation(this.f39836f, true));
+            if (this.f40155g != null) {
+                StringBuilder h = v7.j.h(D, "&rotation=");
+                h.append(AndroidUtilities.getWallpaperRotation(this.f40154f, true));
                 lowerCase = h.toString();
             } else {
-                StringBuilder h10 = w.c.h(D, "?rotation=");
-                h10.append(AndroidUtilities.getWallpaperRotation(this.f39836f, true));
+                StringBuilder h10 = v7.j.h(D, "?rotation=");
+                h10.append(AndroidUtilities.getWallpaperRotation(this.f40154f, true));
                 lowerCase = h10.toString();
             }
         }
-        if (this.f39837g != null) {
-            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f39837g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
-            if (this.f39839j) {
-                return w.c.g(str4, "&mode=motion");
+        if (this.f40155g != null) {
+            String str4 = "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/bg/" + this.f40155g.slug + "?intensity=" + ((int) (this.h * 100.0f)) + "&bg_color=" + lowerCase;
+            if (this.f40157j) {
+                return v7.j.t(str4, "&mode=motion");
             }
             return str4;
         }
@@ -104,25 +104,25 @@ public final class yi1 {
     }
 
     public yi1(String str, int i10, int i11, int i12, int i13) {
-        this.f39833a = str;
-        this.f39834b = i10 | (-16777216);
-        this.f39835c = i11 == 0 ? 0 : i11 | (-16777216);
+        this.f40151a = str;
+        this.f40152b = i10 | (-16777216);
+        this.f40153c = i11 == 0 ? 0 : i11 | (-16777216);
         this.d = i12 == 0 ? 0 : i12 | (-16777216);
         this.e = i13 != 0 ? i13 | (-16777216) : 0;
         this.h = 1.0f;
-        this.f39840k = true;
+        this.f40158k = true;
     }
 
     public yi1(String str, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, File file) {
-        this.f39833a = str;
-        this.f39834b = i10 | (-16777216);
+        this.f40151a = str;
+        this.f40152b = i10 | (-16777216);
         int i15 = i11 == 0 ? 0 : i11 | (-16777216);
-        this.f39835c = i15;
+        this.f40153c = i15;
         this.d = i12 == 0 ? 0 : i12 | (-16777216);
         this.e = i13 != 0 ? i13 | (-16777216) : 0;
-        this.f39836f = i15 == 0 ? 45 : i14;
+        this.f40154f = i15 == 0 ? 45 : i14;
         this.h = f7;
-        this.f39838i = file;
-        this.f39839j = z10;
+        this.f40156i = file;
+        this.f40157j = z10;
     }
 }

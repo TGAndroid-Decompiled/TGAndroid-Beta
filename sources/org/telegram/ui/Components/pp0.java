@@ -1,56 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class pp0 implements View.OnTouchListener {
-    public final int f27115a;
-    public final Rect f27116b;
-    public final hq0 f27117c;
+import org.telegram.messenger.AndroidUtilities;
+public final class pp0 implements Runnable {
+    public final int f27402a;
+    public final uq0 f27403b;
 
-    public pp0(hq0 hq0Var, int i10) {
-        this.f27115a = i10;
-        switch (i10) {
-            case 1:
-                this.f27117c = hq0Var;
-                this.f27116b = new Rect();
-                return;
-            default:
-                this.f27117c = hq0Var;
-                this.f27116b = new Rect();
-                return;
-        }
+    public pp0(uq0 uq0Var, int i10) {
+        this.f27402a = i10;
+        this.f27403b = uq0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        hq0 hq0Var;
-        org.telegram.ui.ActionBar.n1 n1Var;
-        hq0 hq0Var2;
-        org.telegram.ui.ActionBar.n1 n1Var2;
-        switch (this.f27115a) {
+    public final void run() {
+        switch (this.f27402a) {
             case 0:
-                if (motionEvent.getActionMasked() == 0 && (n1Var = (hq0Var = this.f27117c).J0) != null && n1Var.isShowing()) {
-                    Rect rect = this.f27116b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        hq0Var.J0.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+                uq0 uq0Var = this.f27403b;
+                uq0Var.A0 = true;
+                c20 c20Var = uq0Var.f28893y0;
+                c20Var.f23131r.setText("");
+                AndroidUtilities.showKeyboard(c20Var.f23131r);
+                return;
             default:
-                if (motionEvent.getActionMasked() == 0 && (n1Var2 = (hq0Var2 = this.f27117c).J0) != null && n1Var2.isShowing()) {
-                    Rect rect2 = this.f27116b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        hq0Var2.J0.d(true);
-                        return false;
+                th thVar = new th(9);
+                uq0 uq0Var2 = this.f27403b;
+                if (uq0Var2.isKeyboardVisible()) {
+                    c20 c20Var2 = uq0Var2.f28893y0;
+                    if (c20Var2 != null) {
+                        AndroidUtilities.hideKeyboard(c20Var2.f23131r);
                     }
-                    return false;
+                    AndroidUtilities.runOnUIThread(thVar, 300L);
+                    return;
                 }
-                return false;
+                thVar.run();
+                return;
         }
     }
 }

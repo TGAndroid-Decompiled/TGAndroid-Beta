@@ -1,18 +1,18 @@
 package bf;
 
-import v7.i0;
+import v7.k0;
 public final class d extends p {
     public final int f3530g;
     public String h;
 
     @Override
-    public final void a(i0 i0Var) {
+    public final void a(k0 k0Var) {
         switch (this.f3530g) {
             case 0:
-                i0Var.c(this);
+                k0Var.c(this);
                 return;
             default:
-                i0Var.q(this);
+                k0Var.q(this);
                 return;
         }
     }

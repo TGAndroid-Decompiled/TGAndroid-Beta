@@ -108,7 +108,7 @@ public final class d {
                 if (oVar == null) {
                     oVar = new o(new com.google.android.gms.internal.cast.a());
                 }
-                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f44203a);
+                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f44521a);
             case 16:
                 return new i7.g(context, looper, commonSettings, (w5.b) obj, kVar, lVar);
             case 17:

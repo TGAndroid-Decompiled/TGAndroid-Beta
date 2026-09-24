@@ -2,18 +2,18 @@ package org.telegram.ui.Components.voip;
 
 import android.content.Context;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.x30;
+import org.telegram.ui.v30;
 public final class i0 extends UndoView {
-    public final x30 f28961f0;
+    public final v30 f29379f0;
 
-    public i0(x30 x30Var, Context context) {
+    public i0(v30 v30Var, Context context) {
         super(context);
-        this.f28961f0 = x30Var;
+        this.f29379f0 = v30Var;
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f28961f0.invalidate();
+        this.f29379f0.invalidate();
     }
 }

@@ -1,14 +1,14 @@
 package s2;
 
 import b2.s;
-import org.telegram.ui.Cells.q3;
 import q3.i;
 import s3.c;
-import w7.l;
+import v7.j;
+import w7.m;
 public final class a {
-    public static final a f42580a = new Object();
+    public static final a f42899a = new Object();
 
-    public final l a(s sVar) {
+    public final m a(s sVar) {
         String str = sVar.f3301r;
         if (str != null) {
             char c10 = 65535;
@@ -57,7 +57,7 @@ public final class a {
                     return new c();
             }
         }
-        throw new IllegalArgumentException(q3.i("Attempted to create decoder for unsupported MIME type: ", str));
+        throw new IllegalArgumentException(j.g("Attempted to create decoder for unsupported MIME type: ", str));
     }
 
     public final boolean b(s sVar) {

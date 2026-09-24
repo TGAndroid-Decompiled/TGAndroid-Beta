@@ -1,43 +1,30 @@
 package l5;
 
-import android.os.Process;
-import w7.f6;
-public final class p implements Runnable {
-    public final int f13895a;
-    public final Runnable f13896b;
+import android.os.Looper;
+import com.google.android.gms.internal.cast.c0;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+public final class p implements Executor {
+    public final int f14117a = 1;
+    public final Object f14118b;
 
-    public p(int i10, Runnable runnable) {
-        this.f13895a = i10;
-        this.f13896b = runnable;
+    public p(Looper looper) {
+        this.f14118b = new c0(looper, 4);
     }
 
     @Override
-    public final void run() {
-        switch (this.f13895a) {
+    public final void execute(Runnable runnable) {
+        switch (this.f14117a) {
             case 0:
-                try {
-                    this.f13896b.run();
-                    return;
-                } catch (Exception e) {
-                    f6.b("Executor", "Background execution failure.", e);
-                    return;
-                }
-            case 1:
-                this.f13896b.run();
+                ((Executor) this.f14118b).execute(new o(0, runnable));
                 return;
             default:
-                Process.setThreadPriority(0);
-                this.f13896b.run();
+                ((c0) this.f14118b).post(runnable);
                 return;
         }
     }
 
-    public String toString() {
-        switch (this.f13895a) {
-            case 1:
-                return this.f13896b.toString();
-            default:
-                return super.toString();
-        }
+    public p(ExecutorService executorService) {
+        this.f14118b = executorService;
     }
 }

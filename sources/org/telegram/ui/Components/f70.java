@@ -1,32 +1,44 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-public final class f70 implements View.OnLayoutChangeListener {
-    public final int f23876a;
-    public final Object f23877b;
+public final class f70 extends ix0 {
+    public final int K;
 
-    public f70(Object obj, int i10) {
-        this.f23876a = i10;
-        this.f23877b = obj;
+    public f70(Context context, View view, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
+        super(context, view, i10, d6Var);
+        this.K = i11;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        switch (this.f23876a) {
+    public void onAttachedToWindow() {
+        switch (this.K) {
             case 0:
-                o70 o70Var = (o70) this.f23877b;
-                if (o70Var.D()) {
-                    o70Var.O();
+                super.onAttachedToWindow();
+                this.f25164b.getImageReceiver().startAnimation();
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                this.f25164b.getImageReceiver().startAnimation();
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.K) {
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    e(false, false);
                     return;
                 }
                 return;
             default:
-                cx0 cx0Var = (cx0) this.f23877b;
-                ai.p4 p4Var = cx0Var.h;
-                if (p4Var != null && p4Var.getLayout() != null) {
-                    cx0Var.F = p4Var.getLayout().getLineWidth(0);
-                    return;
-                }
+                super.setVisibility(i10);
                 return;
         }
     }

@@ -3,45 +3,45 @@ package org.telegram.messenger.voip;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.NativeInstance;
 public final class n0 implements NativeInstance.AudioLevelsCallback, NativeInstance.VideoSourcesCallback, NativeInstance.RequestBroadcastPartCallback, NativeInstance.RequestCurrentTimeCallback, Instance.OnStateUpdatedListener {
-    public final int f17669a;
-    public final VoIPService f17670b;
-    public final int f17671c;
+    public final int f17913a;
+    public final VoIPService f17914b;
+    public final int f17915c;
 
     public n0(VoIPService voIPService, int i10, int i11) {
-        this.f17669a = i11;
-        this.f17670b = voIPService;
-        this.f17671c = i10;
+        this.f17913a = i11;
+        this.f17914b = voIPService;
+        this.f17915c = i10;
     }
 
     @Override
     public void onStateUpdated(int i10, boolean z10) {
-        this.f17670b.lambda$createGroupInstance$80(this.f17671c, i10, z10);
+        this.f17914b.lambda$createGroupInstance$80(this.f17915c, i10, z10);
     }
 
     @Override
     public void run(long j3) {
-        this.f17670b.lambda$createGroupInstance$79(this.f17671c, j3);
+        this.f17914b.lambda$createGroupInstance$79(this.f17915c, j3);
     }
 
     @Override
     public void run(long j3, long j10, int i10, int i11) {
-        switch (this.f17669a) {
+        switch (this.f17913a) {
             case 2:
-                this.f17670b.lambda$createGroupInstance$75(this.f17671c, j3, j10, i10, i11);
+                this.f17914b.lambda$createGroupInstance$75(this.f17915c, j3, j10, i10, i11);
                 return;
             default:
-                this.f17670b.lambda$createGroupInstance$77(this.f17671c, j3, j10, i10, i11);
+                this.f17914b.lambda$createGroupInstance$77(this.f17915c, j3, j10, i10, i11);
                 return;
         }
     }
 
     @Override
     public void run(long j3, int[] iArr) {
-        this.f17670b.lambda$createGroupInstance$70(this.f17671c, j3, iArr);
+        this.f17914b.lambda$createGroupInstance$70(this.f17915c, j3, iArr);
     }
 
     @Override
     public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-        this.f17670b.lambda$createGroupInstance$68(this.f17671c, iArr, fArr, zArr);
+        this.f17914b.lambda$createGroupInstance$68(this.f17915c, iArr, fArr, zArr);
     }
 }

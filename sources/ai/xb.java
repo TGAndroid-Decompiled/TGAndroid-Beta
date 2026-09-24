@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.gk0;
-import org.telegram.ui.Components.pv0;
+import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.qk0;
 import org.telegram.ui.Components.rr;
-public final class xb extends pv0 {
+public final class xb extends aw0 {
     public final Path A0;
     public final RectF B0;
     public final RectF C0;
@@ -24,17 +24,17 @@ public final class xb extends pv0 {
     public final RectF E0;
     public final RectF F0;
     public final SparseArray G0;
-    public final org.telegram.ui.ActionBar.n2 H0;
+    public final org.telegram.ui.ActionBar.m2 H0;
     public final jc I0;
     public float f1733w0;
     public float f1734x0;
     public float f1735y0;
     public final float[] f1736z0;
 
-    public xb(jc jcVar, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+    public xb(jc jcVar, Context context, org.telegram.ui.ActionBar.m2 m2Var) {
         super(context, null);
         this.I0 = jcVar;
-        this.H0 = n2Var;
+        this.H0 = m2Var;
         this.f1736z0 = new float[8];
         this.A0 = new Path();
         this.B0 = new RectF();
@@ -75,7 +75,7 @@ public final class xb extends pv0 {
         int i10;
         zb zbVar;
         int i11;
-        gk0 gk0Var;
+        qk0 qk0Var;
         jc jcVar = this.I0;
         float[] fArr = jcVar.f1089o0;
         e6 currentPeerView = jcVar.f1087n0.getCurrentPeerView();
@@ -92,26 +92,26 @@ public final class xb extends pv0 {
             }
         }
         float f7 = 0.0f;
-        if (jcVar.f1092p1 && currentPeerView != null && (gk0Var = currentPeerView.f823r3) != null) {
+        if (jcVar.f1092p1 && currentPeerView != null && (qk0Var = currentPeerView.f823r3) != null) {
             float f10 = 0.0f;
             for (View view = currentPeerView; view != null && (view.getParent() instanceof View); view = (View) view.getParent()) {
                 f7 += view.getX();
                 f10 += view.getY();
             }
-            if (currentPeerView.f823r3.getReactionsWindow() != null && currentPeerView.f823r3.getReactionsWindow().f48929c != null) {
-                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f823r3.getReactionsWindow().f48929c.getTranslationY());
-                currentPeerView.f823r3.getReactionsWindow().f48929c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f823r3.getReactionsWindow() != null && currentPeerView.f823r3.getReactionsWindow().f49236c != null) {
+                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f823r3.getReactionsWindow().f49236c.getTranslationY());
+                currentPeerView.f823r3.getReactionsWindow().f49236c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
-            gk0Var.getHitRect(rect);
+            qk0Var.getHitRect(rect);
             rect.offset((int) f7, (int) f10);
             if (motionEvent.getAction() == 0 && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 currentPeerView.b1(false);
                 return true;
             }
             motionEvent.offsetLocation(-rect.left, -rect.top);
-            gk0Var.dispatchTouchEvent(motionEvent);
+            qk0Var.dispatchTouchEvent(motionEvent);
             return true;
         }
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
@@ -126,7 +126,7 @@ public final class xb extends pv0 {
                 ofFloat.addUpdateListener(new ub(this, 0));
                 jcVar.G.addListener(new vb(this, 0));
                 jcVar.G.setDuration(250L);
-                jcVar.G.setInterpolator(rr.f27701f);
+                jcVar.G.setInterpolator(rr.f28022f);
                 jcVar.G.start();
             }
             if (jcVar.V >= 0.3f) {
@@ -233,8 +233,8 @@ public final class xb extends pv0 {
         super.onAttachedToWindow();
         jc jcVar = this.I0;
         if (jcVar.f1061b && !jcVar.f1064c) {
-            org.telegram.ui.ActionBar.n2 n2Var = this.H0;
-            AndroidUtilities.requestAdjustResize(n2Var.getParentActivity(), n2Var.getClassGuid());
+            org.telegram.ui.ActionBar.m2 m2Var = this.H0;
+            AndroidUtilities.requestAdjustResize(m2Var.getParentActivity(), m2Var.getClassGuid());
         }
         org.telegram.ui.Components.qc.a(this, new wb(this));
         NotificationCenter.getInstance(jcVar.h).addObserver(jcVar, NotificationCenter.storiesListUpdated);
@@ -285,7 +285,7 @@ public final class xb extends pv0 {
                 ofFloat.addUpdateListener(new ub(this, 1));
                 jcVar.G.addListener(new vb(this, 1));
                 jcVar.G.setDuration(150L);
-                jcVar.G.setInterpolator(rr.f27701f);
+                jcVar.G.setInterpolator(rr.f28022f);
                 jcVar.G.start();
             }
             e6 t10 = jcVar.t();

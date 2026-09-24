@@ -39,8 +39,8 @@ public abstract class x8 extends FrameLayout implements w2 {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextColor(-1);
         textView.setText(LocaleController.getString(R.string.StoryLive));
-        frameLayout.addView(textView, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        w8Var.addView(frameLayout, w7.x5.r(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
+        frameLayout.addView(textView, w7.y5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
+        w8Var.addView(frameLayout, w7.y5.r(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
             public final x8 f5679b;
 
@@ -63,7 +63,7 @@ public abstract class x8 extends FrameLayout implements w2 {
                 }
             }
         });
-        w7.z5.a(frameLayout);
+        w7.a6.a(frameLayout);
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.d = frameLayout2;
         TextView textView2 = new TextView(context);
@@ -72,8 +72,8 @@ public abstract class x8 extends FrameLayout implements w2 {
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setTextColor(-1);
         textView2.setText(LocaleController.getString(R.string.StoryPhoto));
-        frameLayout2.addView(textView2, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        w8Var.addView(frameLayout2, w7.x5.r(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
+        frameLayout2.addView(textView2, w7.y5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
+        w8Var.addView(frameLayout2, w7.y5.r(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
         frameLayout2.setOnClickListener(new View.OnClickListener(this) {
             public final x8 f5679b;
 
@@ -96,7 +96,7 @@ public abstract class x8 extends FrameLayout implements w2 {
                 }
             }
         });
-        w7.z5.a(frameLayout2);
+        w7.a6.a(frameLayout2);
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.f5841f = frameLayout3;
         TextView textView3 = new TextView(context);
@@ -105,8 +105,8 @@ public abstract class x8 extends FrameLayout implements w2 {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextColor(-1);
         textView3.setText(LocaleController.getString(R.string.StoryVideo));
-        frameLayout3.addView(textView3, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        w8Var.addView(frameLayout3, w7.x5.t(-2, -1, 112, 0, 0, 0, 0));
+        frameLayout3.addView(textView3, w7.y5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
+        w8Var.addView(frameLayout3, w7.y5.t(-2, -1, 112, 0, 0, 0, 0));
         frameLayout3.setOnClickListener(new View.OnClickListener(this) {
             public final x8 f5679b;
 
@@ -129,8 +129,8 @@ public abstract class x8 extends FrameLayout implements w2 {
                 }
             }
         });
-        w7.z5.a(frameLayout3);
-        addView(w8Var, w7.x5.e(-2, -1, 113));
+        w7.a6.a(frameLayout3);
+        addView(w8Var, w7.y5.e(-2, -1, 113));
     }
 
     public final void a(int i10) {

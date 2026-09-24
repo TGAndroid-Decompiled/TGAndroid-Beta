@@ -1,47 +1,23 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
-public final class bn0 extends TextView {
-    public final int f32150a;
+public final class bn0 extends TimerTask {
+    public final cn0 f32440a;
 
-    public bn0(Context context, int i10) {
-        super(context);
-        this.f32150a = i10;
+    public bn0(cn0 cn0Var) {
+        this.f32440a = cn0Var;
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f32150a) {
-            case 3:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
+    public final void run() {
+        cn0 cn0Var = this.f32440a;
+        if (cn0Var.v == null) {
+            return;
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f32150a) {
-            case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 2:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
-                return;
-            case 3:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 4:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
-                return;
-        }
+        double currentTimeMillis = System.currentTimeMillis();
+        cn0Var.f32744y = (int) (cn0Var.f32744y - (currentTimeMillis - cn0Var.F));
+        cn0Var.F = currentTimeMillis;
+        AndroidUtilities.runOnUIThread(new il0(this, 6));
     }
 }

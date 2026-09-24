@@ -8,36 +8,36 @@ public enum r0 extends b2 {
     public final void d(l lVar, a aVar) {
         String g10 = aVar.g(b2.E0);
         if (g10.length() > 0) {
-            lVar.f7685i.f(g10);
+            lVar.f7684i.f(g10);
         } else {
-            lVar.f7685i.h = true;
+            lVar.f7684i.h = true;
         }
         char d = aVar.d();
         if (d != 0) {
             if (d != 65535) {
                 if (d != '&') {
                     if (d != '\'') {
-                        lVar.f7685i.e(d);
+                        lVar.f7684i.e(d);
                         return;
                     } else {
-                        lVar.f7682c = b2.f7638d0;
+                        lVar.f7681c = b2.f7637d0;
                         return;
                     }
                 }
                 int[] c10 = lVar.c('\'', true);
                 if (c10 != null) {
-                    lVar.f7685i.g(c10);
+                    lVar.f7684i.g(c10);
                     return;
                 } else {
-                    lVar.f7685i.e('&');
+                    lVar.f7684i.e('&');
                     return;
                 }
             }
             lVar.l(this);
-            lVar.f7682c = b2.f7632a;
+            lVar.f7681c = b2.f7631a;
             return;
         }
         lVar.m(this);
-        lVar.f7685i.e((char) 65533);
+        lVar.f7684i.e((char) 65533);
     }
 }

@@ -12,28 +12,28 @@ import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.List;
 public class b {
-    public static final View.AccessibilityDelegate f41762c = new View.AccessibilityDelegate();
-    public final View.AccessibilityDelegate f41763a;
-    public final a f41764b;
+    public static final View.AccessibilityDelegate f42081c = new View.AccessibilityDelegate();
+    public final View.AccessibilityDelegate f42082a;
+    public final a f42083b;
 
     public b() {
-        this(f41762c);
+        this(f42081c);
     }
 
-    public k2.u a(View view) {
-        AccessibilityNodeProvider accessibilityNodeProvider = this.f41763a.getAccessibilityNodeProvider(view);
+    public n2.e a(View view) {
+        AccessibilityNodeProvider accessibilityNodeProvider = this.f42082a.getAccessibilityNodeProvider(view);
         if (accessibilityNodeProvider != null) {
-            return new k2.u(accessibilityNodeProvider, 23);
+            return new n2.e(accessibilityNodeProvider, 18);
         }
         return null;
     }
 
     public void b(View view, AccessibilityEvent accessibilityEvent) {
-        this.f41763a.onInitializeAccessibilityEvent(view, accessibilityEvent);
+        this.f42082a.onInitializeAccessibilityEvent(view, accessibilityEvent);
     }
 
     public void c(View view, s0.d dVar) {
-        this.f41763a.onInitializeAccessibilityNodeInfo(view, dVar.f42576a);
+        this.f42082a.onInitializeAccessibilityNodeInfo(view, dVar.f42895a);
     }
 
     public boolean d(View view, int i10, Bundle bundle) {
@@ -44,9 +44,9 @@ public class b {
         if (list == null) {
             list = Collections.EMPTY_LIST;
         }
-        for (int i11 = 0; i11 < list.size() && ((AccessibilityNodeInfo.AccessibilityAction) ((s0.c) list.get(i11)).f42573a).getId() != i10; i11++) {
+        for (int i11 = 0; i11 < list.size() && ((AccessibilityNodeInfo.AccessibilityAction) ((s0.c) list.get(i11)).f42892a).getId() != i10; i11++) {
         }
-        boolean performAccessibilityAction = this.f41763a.performAccessibilityAction(view, i10, bundle);
+        boolean performAccessibilityAction = this.f42082a.performAccessibilityAction(view, i10, bundle);
         if (!performAccessibilityAction && i10 == 2131296269 && bundle != null) {
             int i12 = bundle.getInt("ACCESSIBILITY_CLICKABLE_SPAN_ID", -1);
             SparseArray sparseArray = (SparseArray) view.getTag(2131296683);
@@ -70,7 +70,7 @@ public class b {
     }
 
     public b(View.AccessibilityDelegate accessibilityDelegate) {
-        this.f41763a = accessibilityDelegate;
-        this.f41764b = new a(this);
+        this.f42082a = accessibilityDelegate;
+        this.f42083b = new a(this);
     }
 }

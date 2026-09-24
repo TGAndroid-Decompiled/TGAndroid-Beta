@@ -1,23 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
 import android.view.View;
-public final class ep0 implements ah.m {
-    public final int f23732a;
-    public final ml0 f23733b;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ep0 extends s4.s0 {
+    public final ff f23966a;
 
-    public ep0(ml0 ml0Var, int i10) {
-        this.f23732a = i10;
-        this.f23733b = ml0Var;
+    public ep0(ff ffVar) {
+        this.f23966a = ffVar;
     }
 
     @Override
-    public final boolean a(Canvas canvas, View view, long j3) {
-        switch (this.f23732a) {
-            case 0:
-                return ((jp0) this.f23733b).drawChild(canvas, view, j3);
-            default:
-                return ((qt0) this.f23733b).drawChild(canvas, view, j3);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z10;
+        float f7;
+        ff ffVar = this.f23966a;
+        View view = ffVar.f25116u;
+        if (ffVar.f25117w.I0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        Boolean bool = ffVar.f25118x;
+        if (bool != null && z10 == bool.booleanValue()) {
+            return;
+        }
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        animate.alpha(f7).setDuration(150L).start();
+        ffVar.f25118x = Boolean.valueOf(z10);
     }
 }

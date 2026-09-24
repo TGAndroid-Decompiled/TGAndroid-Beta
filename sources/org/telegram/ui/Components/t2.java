@@ -7,29 +7,29 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class t2 implements Runnable {
-    public final int f28069a;
-    public final int f28070b;
-    public final long f28071c;
+    public final int f28377a;
+    public final int f28378b;
+    public final long f28379c;
     public final long d;
     public final Utilities.Callback e;
-    public final long f28072f;
+    public final long f28380f;
 
     public t2(int i10, long j3, long j10, Utilities.Callback callback, long j11, int i11) {
-        this.f28069a = i11;
-        this.f28070b = i10;
-        this.f28071c = j3;
+        this.f28377a = i11;
+        this.f28378b = i10;
+        this.f28379c = j3;
         this.d = j10;
         this.e = callback;
-        this.f28072f = j11;
+        this.f28380f = j11;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.d6 dVar;
-        switch (this.f28069a) {
+        switch (this.f28377a) {
             case 0:
-                int i10 = this.f28070b;
-                t2 t2Var = new t2(i10, this.f28071c, this.d, this.e, this.f28072f, 1);
+                int i10 = this.f28378b;
+                t2 t2Var = new t2(i10, this.f28379c, this.d, this.e, this.f28380f, 1);
                 if (!yh.t5.y(i10, false).e) {
                     yh.t5 y3 = yh.t5.y(i10, false);
                     y3.e = false;
@@ -40,14 +40,14 @@ public final class t2 implements Runnable {
                 t2Var.run();
                 return;
             default:
-                int i11 = this.f28070b;
+                int i11 = this.f28378b;
                 long j3 = yh.t5.y(i11, false).p().amount;
-                long j10 = this.f28071c;
+                long j10 = this.f28379c;
                 Utilities.Callback callback = this.e;
-                long j11 = this.f28072f;
+                long j11 = this.f28380f;
                 if (j3 < j10) {
                     Activity activity = AndroidUtilities.getActivity();
-                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                    org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                     if (!PhotoViewer.t1().Q1() && (U == null || !U.hasShownSheet())) {
                         if (U != null) {
                             dVar = U.getResourceProvider();
@@ -60,7 +60,7 @@ public final class t2 implements Runnable {
                     org.telegram.ui.ActionBar.d6 d6Var = dVar;
                     if (activity != null) {
                         long j12 = this.d;
-                        new yh.l7(activity, d6Var, j10, 13, DialogObject.getShortName(i11, j12), new org.telegram.ui.g6(j11, 1, callback), j12).show();
+                        new yh.l7(activity, d6Var, j10, 13, DialogObject.getShortName(i11, j12), new org.telegram.ui.f6(j11, 1, callback), j12).show();
                         return;
                     }
                     return;

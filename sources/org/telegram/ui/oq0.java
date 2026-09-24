@@ -1,28 +1,52 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-public final class oq0 extends g.p {
-    public final uq0 f35946c;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+public final class oq0 implements org.telegram.ui.Components.xl0 {
+    public final tq0 f36313a;
 
-    public oq0(uq0 uq0Var) {
-        this.f35946c = uq0Var;
+    public oq0(tq0 tq0Var) {
+        this.f36313a = tq0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        uq0 uq0Var = this.f35946c;
-        if (uq0Var.L.j(i10) != 1 && !uq0Var.Y && (uq0Var.J != null || !TextUtils.isEmpty(uq0Var.v))) {
-            int i12 = uq0Var.R;
-            int i13 = uq0Var.f38177g0;
-            if (i10 % i13 != i13 - 1) {
-                i11 = AndroidUtilities.dp(2.0f);
-            } else {
-                i11 = 0;
-            }
-            return i12 + i11;
+    public final void a(boolean z10) {
+        org.telegram.ui.ActionBar.b5 b5Var;
+        tq0 tq0Var = this.f36313a;
+        tq0Var.W = z10 ? 1 : 0;
+        if (z10) {
+            b5Var = ((org.telegram.ui.ActionBar.m2) tq0Var).parentLayout;
+            b5Var.getView().requestDisallowInterceptTouchEvent(true);
         }
-        return uq0Var.M.J;
+        tq0Var.K.d1(true);
+    }
+
+    @Override
+    public final boolean b(int i10) {
+        if (this.f36313a.L.j(i10) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(View view, boolean z10) {
+        if (z10 == this.f36313a.X && (view instanceof org.telegram.ui.Cells.t5)) {
+            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+            t5Var.f21191w.a(t5Var);
+        }
+    }
+
+    @Override
+    public final boolean d(int i10) {
+        Object obj;
+        tq0 tq0Var = this.f36313a;
+        MediaController.AlbumEntry albumEntry = tq0Var.J;
+        if (albumEntry != null) {
+            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
+        } else {
+            obj = ((MediaController.SearchImage) tq0Var.f38179f.get(i10)).f15811id;
+        }
+        return tq0Var.f38173b.containsKey(obj);
     }
 }

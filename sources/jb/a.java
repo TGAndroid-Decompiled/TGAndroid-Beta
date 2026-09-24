@@ -14,7 +14,7 @@ public final class a extends u {
     public class C0000a implements v {
         @Override
         public final u create(g gVar, kb.a aVar) {
-            if (aVar.f13565a == Date.class) {
+            if (aVar.f13563a == Date.class) {
                 return new a(0);
             }
             return null;

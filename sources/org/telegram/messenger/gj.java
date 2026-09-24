@@ -1,76 +1,67 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.LaunchActivity;
 public final class gj implements Runnable {
-    public final int f16226a = 1;
-    public final int f16227b;
-    public final boolean f16228c;
-    public final boolean d;
-    public final Object e;
-    public final Object f16229f;
-    public final Object h;
-    public final Object f16230n;
+    public final int f16470a = 0;
+    public final SendMessagesHelper f16471b;
+    public final MessageObject f16472c;
+    public final String d;
+    public final SendMessagesHelper.DelayedMessage e;
+    public final boolean f16473f;
+    public final SendMessagesHelper.DelayedMessage h;
+    public final Object f16474n;
+    public final HashMap f16475r;
+    public final boolean f16476s;
+    public final Object v;
+    public final TLObject f16477w;
+    public final TLObject f16478x;
 
-    public gj(int i10, ci.d dVar, TLObject tLObject, TL_stars.StarsSubscription starsSubscription, boolean z10, boolean z11, org.telegram.ui.ActionBar.f3[] f3VarArr) {
-        this.e = dVar;
-        this.f16229f = f3VarArr;
-        this.f16227b = i10;
-        this.f16228c = z10;
-        this.h = starsSubscription;
-        this.d = z11;
-        this.f16230n = tLObject;
+    public gj(SendMessagesHelper sendMessagesHelper, TLObject tLObject, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLObject tLObject2, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
+        this.f16471b = sendMessagesHelper;
+        this.v = tLObject;
+        this.f16478x = tL_messages_addPollAnswer;
+        this.f16477w = tLObject2;
+        this.f16472c = messageObject;
+        this.d = str;
+        this.e = delayedMessage;
+        this.f16473f = z10;
+        this.h = delayedMessage2;
+        this.f16474n = obj;
+        this.f16475r = hashMap;
+        this.f16476s = z11;
     }
 
     @Override
     public final void run() {
-        String formatString;
-        int i10 = this.f16226a;
-        Object obj = this.f16230n;
-        Object obj2 = this.h;
-        Object obj3 = this.f16229f;
-        Object obj4 = this.e;
-        switch (i10) {
+        switch (this.f16470a) {
             case 0:
-                ((SendMessagesHelper) obj4).lambda$performSendMessageRequest$95(this.f16228c, (TLRPC.Message) obj3, (ArrayList) obj2, this.d, (ArrayList) obj, this.f16227b);
+                HashMap hashMap = this.f16475r;
+                boolean z10 = this.f16476s;
+                this.f16471b.lambda$performSendMessageRequest$75((TLObject) this.v, (TLRPC.TL_messages_addPollAnswer) this.f16478x, this.f16477w, this.f16472c, this.d, this.e, this.f16473f, this.h, this.f16474n, hashMap, z10);
                 return;
             default:
-                TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) obj2;
-                TLObject tLObject = (TLObject) obj;
-                ((ci.d) obj4).setLoading(false);
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) obj3)[0];
-                if (f3Var != null) {
-                    f3Var.dismiss();
-                }
-                yh.t5.y(this.f16227b, false).S();
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    if (this.f16228c && !TextUtils.isEmpty(starsSubscription.title)) {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBizToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
-                    } else if (this.d && !TextUtils.isEmpty(starsSubscription.title)) {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledBotToastText, LocaleController.formatDateChat(starsSubscription.until_date), starsSubscription.title);
-                    } else {
-                        formatString = LocaleController.formatString(R.string.StarsSubscriptionCancelledToastText, LocaleController.formatDateChat(starsSubscription.until_date));
-                    }
-                    org.telegram.ui.Components.xc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionCancelledToast), AndroidUtilities.replaceTags(formatString), null).k(false);
-                    return;
-                }
+                HashMap hashMap2 = this.f16475r;
+                boolean z11 = this.f16476s;
+                this.f16471b.lambda$performSendMessageRequest$83((org.telegram.ui.ActionBar.m2) this.v, (TLRPC.TL_inputMediaStakeDice) this.f16477w, (TLRPC.TL_messages_sendMedia) this.f16478x, this.f16472c, this.d, this.e, this.f16473f, this.h, this.f16474n, hashMap2, z11);
                 return;
         }
     }
 
-    public gj(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, ArrayList arrayList, boolean z11, ArrayList arrayList2, int i10) {
-        this.e = sendMessagesHelper;
-        this.f16228c = z10;
-        this.f16229f = message;
-        this.h = arrayList;
-        this.d = z11;
-        this.f16230n = arrayList2;
-        this.f16227b = i10;
+    public gj(SendMessagesHelper sendMessagesHelper, org.telegram.ui.ActionBar.m2 m2Var, TLRPC.TL_inputMediaStakeDice tL_inputMediaStakeDice, TLRPC.TL_messages_sendMedia tL_messages_sendMedia, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11) {
+        this.f16471b = sendMessagesHelper;
+        this.v = m2Var;
+        this.f16477w = tL_inputMediaStakeDice;
+        this.f16478x = tL_messages_sendMedia;
+        this.f16472c = messageObject;
+        this.d = str;
+        this.e = delayedMessage;
+        this.f16473f = z10;
+        this.h = delayedMessage2;
+        this.f16474n = obj;
+        this.f16475r = hashMap;
+        this.f16476s = z11;
     }
 }

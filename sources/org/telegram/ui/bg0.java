@@ -1,45 +1,27 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class bg0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32109a;
-    public final fg0 f32110b;
+import android.view.View;
+public final class bg0 implements View.OnClickListener {
+    public final int f32403a = 0;
+    public final eg0 f32404b;
 
-    public bg0(fg0 fg0Var, int i10) {
-        this.f32109a = i10;
-        this.f32110b = fg0Var;
+    public bg0(eg0 eg0Var) {
+        this.f32404b = eg0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32109a) {
+    public final void onClick(View view) {
+        switch (this.f32403a) {
             case 0:
-                fg0 fg0Var = this.f32110b;
-                fg0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fg0Var.d.setAlpha(floatValue);
-                fg0Var.e.setAlpha(floatValue);
-                fg0Var.f33315f.setProgress(floatValue);
-                FrameLayout frameLayout = fg0Var.f33319w;
-                frameLayout.setAlpha(floatValue);
-                float f7 = (floatValue * 0.5f) + 0.5f;
-                frameLayout.setScaleX(f7);
-                frameLayout.setScaleY(f7);
+                this.f32404b.a();
                 return;
             default:
-                fg0 fg0Var2 = this.f32110b;
-                fg0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fg0Var2.f33315f.setProgress(floatValue2);
-                fg0Var2.d.setAlpha(floatValue2);
-                fg0Var2.e.setAlpha(floatValue2);
-                FrameLayout frameLayout2 = fg0Var2.f33319w;
-                frameLayout2.setAlpha(floatValue2);
-                float f10 = (floatValue2 * 0.5f) + 0.5f;
-                frameLayout2.setScaleX(f10);
-                frameLayout2.setScaleY(f10);
+                this.f32404b.a();
                 return;
         }
+    }
+
+    public bg0(eg0 eg0Var, og0 og0Var) {
+        this.f32404b = eg0Var;
     }
 }

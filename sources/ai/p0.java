@@ -4,9 +4,9 @@ import android.content.Context;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o70;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.xn;
+import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.yc;
+import org.telegram.ui.wn;
 public final class p0 implements Runnable {
     public final int f1377a = 3;
     public final long f1378b;
@@ -16,12 +16,12 @@ public final class p0 implements Runnable {
     public final Object f1380f;
     public final Object h;
 
-    public p0(int i10, Context context, long j3, long j10, org.telegram.ui.ActionBar.f3[] f3VarArr, org.telegram.ui.ActionBar.d6 d6Var) {
+    public p0(int i10, Context context, long j3, long j10, org.telegram.ui.ActionBar.e3[] e3VarArr, org.telegram.ui.ActionBar.d6 d6Var) {
         this.d = i10;
         this.e = context;
         this.f1378b = j3;
         this.f1379c = j10;
-        this.f1380f = f3VarArr;
+        this.f1380f = e3VarArr;
         this.h = d6Var;
     }
 
@@ -50,23 +50,23 @@ public final class p0 implements Runnable {
                     }
                     return;
                 } else {
-                    new xc(o1Var.f1329b, new d()).d0(tL_error, true);
+                    new yc(o1Var.f1329b, new d()).d0(tL_error, true);
                     return;
                 }
             case 1:
                 ((MessagesController) this.e).lambda$deleteSavedDialog$144(this.f1378b, this.f1379c, (TLRPC.InputPeer) this.f1380f, this.d, (int[]) this.h);
                 return;
             case 2:
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f1380f;
+                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f1380f;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.h;
-                ((o70) this.e).u();
+                ((y70) this.e).u();
                 int i12 = this.d;
                 MessagesController messagesController = MessagesController.getInstance(i12);
                 long j11 = this.f1378b;
                 long j12 = this.f1379c;
                 boolean isDialogMuted = messagesController.isDialogMuted(j11, j12);
                 NotificationsController.getInstance(i12).muteDialog(j11, j12, !isDialogMuted);
-                if (xc.a(n2Var)) {
+                if (yc.a(m2Var)) {
                     if (!isDialogMuted) {
                         i10 = 3;
                     } else {
@@ -77,7 +77,7 @@ public final class p0 implements Runnable {
                     } else {
                         i11 = 0;
                     }
-                    xc.z(n2Var, i10, i11, d6Var).j();
+                    yc.z(m2Var, i10, i11, d6Var).j();
                     return;
                 }
                 return;
@@ -86,7 +86,7 @@ public final class p0 implements Runnable {
                 int i13 = this.d;
                 yh.o g10 = yh.o.g(i13);
                 long j13 = this.f1378b;
-                g10.f(context2, j13, this.f1379c, new ei.q3((org.telegram.ui.ActionBar.f3[]) this.f1380f, context2, i13, j13, (org.telegram.ui.ActionBar.d6) this.h, 2));
+                g10.f(context2, j13, this.f1379c, new ei.q3((org.telegram.ui.ActionBar.e3[]) this.f1380f, context2, i13, j13, (org.telegram.ui.ActionBar.d6) this.h, 2));
                 return;
         }
     }
@@ -109,12 +109,12 @@ public final class p0 implements Runnable {
         this.h = iArr;
     }
 
-    public p0(o70 o70Var, int i10, long j3, long j10, xn xnVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.e = o70Var;
+    public p0(y70 y70Var, int i10, long j3, long j10, wn wnVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.e = y70Var;
         this.d = i10;
         this.f1378b = j3;
         this.f1379c = j10;
-        this.f1380f = xnVar;
+        this.f1380f = wnVar;
         this.h = d6Var;
     }
 }

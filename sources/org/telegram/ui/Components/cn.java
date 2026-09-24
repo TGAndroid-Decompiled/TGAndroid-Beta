@@ -7,13 +7,13 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class cn implements org.telegram.ui.nt {
-    public final int f23075a;
-    public final vn f23076b;
+public final class cn implements org.telegram.ui.lt {
+    public final int f23351a;
+    public final vn f23352b;
 
     public cn(vn vnVar, int i10) {
-        this.f23076b = vnVar;
-        this.f23075a = i10;
+        this.f23352b = vnVar;
+        this.f23351a = i10;
     }
 
     @Override
@@ -107,47 +107,47 @@ public final class cn implements org.telegram.ui.nt {
     }
 
     @Override
-    public final o70 j(ci.m6 m6Var) {
-        o70 F = o70.F(m6Var, null, new View(this.f23076b.getContext()));
-        F.f26669s = 0;
-        F.f26670t = false;
+    public final y70 j(ci.m6 m6Var) {
+        y70 F = y70.F(m6Var, null, new View(this.f23352b.getContext()));
+        F.f30547s = 0;
+        F.f30548t = false;
         int i10 = R.drawable.msg_replace;
         String string = LocaleController.getString(R.string.ReplaceAttachedPollMedia);
-        final int i11 = this.f23075a;
+        final int i11 = this.f23351a;
         F.c(i10, string, new Runnable(this) {
-            public final cn f22791b;
+            public final cn f23026b;
 
             {
-                this.f22791b = this;
+                this.f23026b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f22791b.f23076b.b0(i11);
+                        this.f23026b.f23352b.b0(i11);
                         return;
                     default:
-                        this.f22791b.f23076b.e0(i11, null);
+                        this.f23026b.f23352b.e0(i11, null);
                         return;
                 }
             }
         }, false);
         F.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-            public final cn f22791b;
+            public final cn f23026b;
 
             {
-                this.f22791b = this;
+                this.f23026b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        this.f22791b.f23076b.b0(i11);
+                        this.f23026b.f23352b.b0(i11);
                         return;
                     default:
-                        this.f22791b.f23076b.e0(i11, null);
+                        this.f23026b.f23352b.e0(i11, null);
                         return;
                 }
             }
@@ -244,7 +244,7 @@ public final class cn implements org.telegram.ui.nt {
     }
 
     @Override
-    public final void f(CharSequence charSequence, String str, org.telegram.ui.dt dtVar) {
+    public final void f(CharSequence charSequence, String str, org.telegram.ui.bt btVar) {
     }
 
     @Override

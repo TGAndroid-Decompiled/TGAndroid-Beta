@@ -2,26 +2,26 @@ package pg;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class b0 implements Runnable {
-    public final int f40760a;
-    public final d0 f40761b;
-    public final s0 f40762c;
+    public final int f41062a;
+    public final e0 f41063b;
+    public final t0 f41064c;
 
-    public b0(d0 d0Var, s0 s0Var, int i10) {
-        this.f40760a = i10;
-        this.f40761b = d0Var;
-        this.f40762c = s0Var;
+    public b0(e0 e0Var, t0 t0Var, int i10) {
+        this.f41062a = i10;
+        this.f41063b = e0Var;
+        this.f41064c = t0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f40760a) {
+        switch (this.f41062a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new b0(this.f40761b, this.f40762c, 1));
+                AndroidUtilities.runOnUIThread(new b0(this.f41063b, this.f41064c, 1));
                 return;
             default:
-                d0 d0Var = this.f40761b;
-                d0Var.getClass();
-                d0Var.f40782i = this.f40762c.f40935a;
+                e0 e0Var = this.f41063b;
+                e0Var.getClass();
+                e0Var.f41090i = this.f41064c.f41248a;
                 return;
         }
     }

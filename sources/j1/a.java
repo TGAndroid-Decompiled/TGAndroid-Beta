@@ -5,39 +5,19 @@ import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.WeakHashMap;
-import k2.u;
+import n2.e;
 import r0.i0;
 import s0.d;
-public final class a extends u {
+public final class a extends e {
     public final b f12543c;
 
     public a(b bVar) {
-        super(23);
+        super(18);
         this.f12543c = bVar;
     }
 
     @Override
-    public final d Z(int i10) {
-        return new d(AccessibilityNodeInfo.obtain(this.f12543c.j(i10).f42576a));
-    }
-
-    @Override
-    public final d a0(int i10) {
-        int i11;
-        b bVar = this.f12543c;
-        if (i10 == 2) {
-            i11 = bVar.f12549k;
-        } else {
-            i11 = bVar.f12550l;
-        }
-        if (i11 == Integer.MIN_VALUE) {
-            return null;
-        }
-        return Z(i11);
-    }
-
-    @Override
-    public final boolean c0(int i10, int i11, Bundle bundle) {
+    public final boolean H(int i10, int i11, Bundle bundle) {
         int i12;
         int i13;
         b bVar = this.f12543c;
@@ -87,7 +67,27 @@ public final class a extends u {
             }
             return false;
         }
-        WeakHashMap weakHashMap = i0.f41795a;
+        WeakHashMap weakHashMap = i0.f42114a;
         return view.performAccessibilityAction(i11, bundle);
+    }
+
+    @Override
+    public final d u(int i10) {
+        return new d(AccessibilityNodeInfo.obtain(this.f12543c.j(i10).f42895a));
+    }
+
+    @Override
+    public final d v(int i10) {
+        int i11;
+        b bVar = this.f12543c;
+        if (i10 == 2) {
+            i11 = bVar.f12549k;
+        } else {
+            i11 = bVar.f12550l;
+        }
+        if (i11 == Integer.MIN_VALUE) {
+            return null;
+        }
+        return u(i11);
     }
 }

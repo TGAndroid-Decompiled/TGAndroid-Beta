@@ -1,15 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ImageReceiver;
-public final class o61 extends ImageReceiver {
-    public final p61 f26636a;
+import org.telegram.messenger.AndroidUtilities;
+public final class o61 extends oz {
+    public final r61 X;
 
-    public o61(p61 p61Var) {
-        this.f26636a = p61Var;
+    public o61(r61 r61Var, int i10) {
+        super(i10, false);
+        this.X = r61Var;
     }
 
     @Override
-    public final void invalidate() {
-        this.f26636a.invalidate();
+    public final int W0(s4.z0 z0Var) {
+        if (this.X.f27876a3) {
+            return AndroidUtilities.displaySize.y;
+        }
+        return super.W0(z0Var);
     }
 }

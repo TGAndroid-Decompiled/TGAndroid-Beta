@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.os.Bundle;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-public abstract class v00 extends co0 {
+public abstract class v00 extends po0 {
     public final boolean d;
 
     public v00(boolean z10) {
@@ -39,7 +39,7 @@ public abstract class v00 extends co0 {
     public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
         super.e(view, accessibilityNodeInfo);
         if (this.d) {
-            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42573a);
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42892a);
             accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
         }
     }
@@ -49,7 +49,7 @@ public abstract class v00 extends co0 {
         if (super.g(view, i10, bundle)) {
             return true;
         }
-        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42573a).getId()) {
+        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42892a).getId()) {
             l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
             return true;
         }

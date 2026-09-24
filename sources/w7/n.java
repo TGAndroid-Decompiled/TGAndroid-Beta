@@ -1,15 +1,7 @@
 package w7;
-
-import android.view.View;
-import android.view.ViewParent;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.TextView;
 public abstract class n {
-    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
-        if (inputConnection != null && editorInfo.hintText == null) {
-            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
-            }
-        }
+    public static final ld.b a(Enum[] entries) {
+        kotlin.jvm.internal.i.e(entries, "entries");
+        return new ld.b(entries);
     }
 }

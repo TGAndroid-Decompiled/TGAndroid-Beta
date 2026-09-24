@@ -23,10 +23,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.h90;
+import org.telegram.ui.Components.r90;
 import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.tv;
+import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.uv;
 public final class db extends View {
     public static Object I;
     public static Vector J;
@@ -40,7 +40,7 @@ public final class db extends View {
     public StaticLayout d;
     public float e;
     public org.telegram.ui.Components.v5 f748f;
-    public final h90 h;
+    public final r90 h;
     public final Path f749n;
     public final ArrayList f750r;
     public final ArrayList f751s;
@@ -56,7 +56,7 @@ public final class db extends View {
         this.f745a = d6Var;
         setMinimumWidth(AndroidUtilities.dp(196.0f));
         setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-        setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18878i6, d6Var), 0, 8));
+        setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19134i6, d6Var), 0, 8));
         setClickable(true);
         TextPaint textPaint = new TextPaint(1);
         this.f746b = textPaint;
@@ -64,14 +64,14 @@ public final class db extends View {
         int i11 = org.telegram.ui.ActionBar.h6.E8;
         textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         this.f747c = new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.SRC_IN);
-        h90 h90Var = new h90(d6Var);
-        this.h = h90Var;
-        h90Var.setCallback(this);
-        h90Var.e(org.telegram.ui.ActionBar.h6.l1(0.2f, -1), org.telegram.ui.ActionBar.h6.l1(0.05f, -1));
+        r90 r90Var = new r90(d6Var);
+        this.h = r90Var;
+        r90Var.setCallback(this);
+        r90Var.e(org.telegram.ui.ActionBar.h6.l1(0.2f, -1), org.telegram.ui.ActionBar.h6.l1(0.05f, -1));
         Path path = new Path();
         this.f749n = path;
-        h90Var.f24619x = path;
-        h90Var.j(4.0f);
+        r90Var.f27922x = path;
+        r90Var.j(4.0f);
         boolean[] zArr = {true};
         this.f753x = obj;
         if (z10) {
@@ -84,8 +84,8 @@ public final class db extends View {
                 TLRPC.Photo photo = (TLRPC.Photo) tLObject;
                 TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputStickeredMediaPhoto.f18153id = tL_inputPhoto;
-                tL_inputPhoto.f18102id = photo.f18107id;
+                tL_inputStickeredMediaPhoto.f18391id = tL_inputPhoto;
+                tL_inputPhoto.f18340id = photo.f18345id;
                 tL_inputPhoto.access_hash = photo.access_hash;
                 byte[] bArr = photo.file_reference;
                 tL_inputPhoto.file_reference = bArr;
@@ -97,8 +97,8 @@ public final class db extends View {
                 TLRPC.Document document = (TLRPC.Document) tLObject;
                 TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
                 TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                tL_inputStickeredMediaDocument.f18152id = tL_inputDocument;
-                tL_inputDocument.f18095id = document.f18089id;
+                tL_inputStickeredMediaDocument.f18390id = tL_inputDocument;
+                tL_inputDocument.f18333id = document.f18327id;
                 tL_inputDocument.access_hash = document.access_hash;
                 byte[] bArr2 = document.file_reference;
                 tL_inputDocument.file_reference = bArr2;
@@ -167,11 +167,11 @@ public final class db extends View {
         if (dbVar.f751s != null && arrayList != null && !arrayList.isEmpty()) {
             for (int i14 = 0; i14 < arrayList.size(); i14++) {
                 TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) arrayList.get(i14);
-                long j3 = inputStickerSet.f18103id;
+                long j3 = inputStickerSet.f18341id;
                 int i15 = 0;
                 while (true) {
                     if (i15 < dbVar.f751s.size()) {
-                        if (((TLRPC.InputStickerSet) dbVar.f751s.get(i15)).f18103id == j3) {
+                        if (((TLRPC.InputStickerSet) dbVar.f751s.get(i15)).f18341id == j3) {
                             break;
                         }
                         i15++;
@@ -217,15 +217,15 @@ public final class db extends View {
             return;
         }
         SpannableString spannableString = new SpannableString("x " + tL_messages_stickerSet.set.title);
-        spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, this.h.f24600a)), 0, spannableString.length(), 33);
-        spannableString.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+        spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, this.h.f27903a)), 0, spannableString.length(), 33);
+        spannableString.setSpan(new s51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
         int i10 = 0;
         while (true) {
             if (i10 >= arrayList.size()) {
                 document = null;
                 break;
-            } else if (arrayList.get(i10).f18089id == tL_messages_stickerSet.set.thumb_document_id) {
+            } else if (arrayList.get(i10).f18327id == tL_messages_stickerSet.set.thumb_document_id) {
                 document = arrayList.get(i10);
                 break;
             } else {
@@ -280,8 +280,8 @@ public final class db extends View {
         super.dispatchDraw(canvas);
         float f7 = this.f754y;
         if (f7 < 1.0f) {
-            h90 h90Var = this.h;
-            h90Var.setAlpha((int) ((1.0f - f7) * 255.0f));
+            r90 r90Var = this.h;
+            r90Var.setAlpha((int) ((1.0f - f7) * 255.0f));
             Path path = this.f749n;
             path.rewind();
             float paddingLeft = getPaddingLeft();
@@ -293,7 +293,7 @@ public final class db extends View {
             float paddingLeft2 = getPaddingLeft();
             int paddingTop3 = getPaddingTop();
             path.addRect(paddingLeft2, AndroidUtilities.dp(16.0f) + paddingTop3, (((getMeasuredWidth() - getPaddingRight()) - getPaddingLeft()) * 0.46f) + getPaddingLeft(), AndroidUtilities.dp(28.0f) + getPaddingTop(), direction);
-            h90Var.draw(canvas);
+            r90Var.draw(canvas);
             invalidate();
         }
         if (this.d != null) {
@@ -313,7 +313,7 @@ public final class db extends View {
         }
     }
 
-    public tv getAlert() {
+    public uv getAlert() {
         if (this.f751s == null) {
             int i10 = -this.G;
             this.G = i10;
@@ -321,7 +321,7 @@ public final class db extends View {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
             return null;
         }
-        return new tv(null, getContext(), this.f745a, this.f751s);
+        return new uv(null, getContext(), this.f745a, this.f751s);
     }
 
     @Override
@@ -400,13 +400,13 @@ public final class db extends View {
         CharSequence charSequence;
         String string;
         SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
-        spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, this.h.f24600a)), 0, spannableString.length(), 33);
-        spannableString.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+        spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, this.h.f27903a)), 0, spannableString.length(), 33);
+        spannableString.setSpan(new s51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         TLRPC.Document document = stickerSetCovered.cover;
         if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
             ArrayList<TLRPC.Document> arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (arrayList.get(i10).f18089id == stickerSetCovered.set.thumb_document_id) {
+                if (arrayList.get(i10).f18327id == stickerSetCovered.set.thumb_document_id) {
                     document = arrayList.get(i10);
                 }
             }
@@ -433,13 +433,13 @@ public final class db extends View {
 
     private void set(int i10) {
         boolean z10 = this.v;
-        h90 h90Var = this.h;
+        r90 r90Var = this.h;
         if (z10 && this.f752w) {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickersEmoji", i10, new Object[0]), 0, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, h90Var.f24600a), null));
+            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickersEmoji", i10, new Object[0]), 0, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, r90Var.f27903a), null));
         } else if (z10) {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsEmoji", i10, new Object[0]), 0, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, h90Var.f24600a), null));
+            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsEmoji", i10, new Object[0]), 0, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, r90Var.f27903a), null));
         } else {
-            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickers", i10, new Object[0]), 0, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, h90Var.f24600a), null));
+            setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryContainsStickers", i10, new Object[0]), 0, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, r90Var.f27903a), null));
         }
     }
 }

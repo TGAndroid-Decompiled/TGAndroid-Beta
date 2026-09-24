@@ -38,17 +38,17 @@ public final class z8 implements Runnable {
         c5.h hVar = (c5.h) this.f1787f;
         Activity activity = (Activity) this.h;
         if (list.isEmpty()) {
-            AndroidUtilities.runOnUIThread(new yh.k4(m0Var, 0));
+            AndroidUtilities.runOnUIThread(new yh.j4(m0Var, 0));
             return;
         }
         c5.o oVar = (c5.o) list.get(0);
         if (oVar.a() == null) {
-            AndroidUtilities.runOnUIThread(new yh.k4(m0Var, 1));
+            AndroidUtilities.runOnUIThread(new yh.j4(m0Var, 1));
             return;
         }
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(t5Var.f47732a).sendRequest(tL_payments_canPurchaseStore, new dh1(oVar, hVar, m0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
+        ConnectionsManager.getInstance(t5Var.f48028a).sendRequest(tL_payments_canPurchaseStore, new dh1(oVar, hVar, m0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
     }
 
     private final void b() {

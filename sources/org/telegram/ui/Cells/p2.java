@@ -1,31 +1,60 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class p2 extends ReplacementSpan {
-    public final int f20558a;
+import org.telegram.messenger.Utilities;
+public final class p2 {
+    public long f20772a;
+    public long f20773b;
+    public boolean f20774c;
+    public boolean d;
+    public long e;
+    public int f20775f;
+    public Integer f20776g;
+    public int h;
+    public int f20777i;
+    public boolean f20778j;
+    public boolean f20779k;
+    public float f20780l;
+    public boolean f20781m;
+    public int f20782n;
+    public boolean f20783o = false;
+    public long f20784p;
+    public final s2 f20785q;
 
-    public p2(int i10) {
-        this.f20558a = i10;
+    public p2(s2 s2Var) {
+        this.f20785q = s2Var;
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt == null) {
-            fontMetricsInt = paint.getFontMetricsInt();
-        }
-        if (fontMetricsInt != null) {
-            int i12 = 1 - (fontMetricsInt.descent - fontMetricsInt.ascent);
-            fontMetricsInt.descent = i12;
-            fontMetricsInt.bottom = i12;
-            fontMetricsInt.ascent = -1;
-            fontMetricsInt.top = -1;
-        }
-        return this.f20558a;
+    public final boolean a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.p2.a():boolean");
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    public final void b() {
+        boolean z10 = this.f20783o;
+        s2 s2Var = this.f20785q;
+        if (!z10) {
+            Integer num = this.f20776g;
+            if (num != null && s2Var.f20935f3 != null) {
+                float f7 = this.f20780l;
+                if (f7 != 1.0f) {
+                    this.f20780l = f7 + 0.08f;
+                    s2Var.invalidate();
+                    this.f20780l = Utilities.clamp(this.f20780l, 1.0f, 0.0f);
+                    return;
+                }
+            }
+            if (num == null) {
+                float f10 = this.f20780l;
+                if (f10 != 0.0f) {
+                    this.f20780l = f10 - 0.08f;
+                    s2Var.invalidate();
+                }
+            }
+            this.f20780l = Utilities.clamp(this.f20780l, 1.0f, 0.0f);
+            return;
+        }
+        if (System.currentTimeMillis() - this.f20784p > 100) {
+            this.f20783o = false;
+        }
+        s2Var.invalidate();
     }
 }

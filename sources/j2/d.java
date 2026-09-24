@@ -8,10 +8,10 @@ import e2.v;
 import java.util.List;
 import m4.a0;
 import m4.a1;
-import m4.b1;
-import m4.f1;
+import m4.e1;
 import m4.r;
-import m4.y0;
+import m4.x0;
+import m4.z0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -24,10 +24,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.yu0;
+import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.Components.jv0;
 import z3.n;
-public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, MessagesStorage.StringCallback, e2.h {
+public final class d implements m, x0, z0, RequestDelegateTimestamp, z1, MessagesStorage.StringCallback, e2.h {
     public final int f12560a;
     public final int f12561b;
     public final long f12562c;
@@ -46,12 +46,12 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
         n nVar = (n) this.d;
         z3.a aVar = (z3.a) obj;
         e2.d.h(nVar.h);
-        byte[] C2 = ob.a.C2(aVar.f48026a, aVar.f48028c);
-        v vVar = nVar.f48050c;
+        byte[] C2 = ob.a.C2(aVar.f48343a, aVar.f48345c);
+        v vVar = nVar.f48367c;
         vVar.getClass();
         vVar.H(C2.length, C2);
-        nVar.f48048a.d(C2.length, vVar);
-        long j3 = aVar.f48027b;
+        nVar.f48365a.d(C2.length, vVar);
+        long j3 = aVar.f48344b;
         long j10 = this.f12562c;
         if (j3 == -9223372036854775807L) {
             if (nVar.h.f3305w == Long.MAX_VALUE) {
@@ -68,11 +68,16 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
                 j10 = j3 + j11;
             }
         }
-        nVar.f48048a.c(j10, this.f12561b | 1, C2.length, 0, null);
+        nVar.f48365a.c(j10, this.f12561b | 1, C2.length, 0, null);
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
+    public void d(e1 e1Var, r rVar) {
+        e1Var.s(((a1) this.d).K0(rVar, e1Var, this.f12561b), this.f12562c);
+    }
+
+    @Override
+    public void f(a2 a2Var, int i10) {
         int i11 = this.f12560a;
         Object obj = this.d;
         int i12 = this.f12561b;
@@ -91,7 +96,7 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
                         }
                         if (str.equals(trim)) {
                             AndroidUtilities.hideKeyboard(editText);
-                            b2Var.dismiss();
+                            a2Var.dismiss();
                             return;
                         }
                         userFull.about = trim;
@@ -113,7 +118,7 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
                         }
                         if (str.equals(obj2)) {
                             AndroidUtilities.hideKeyboard(editText);
-                            b2Var.dismiss();
+                            a2Var.dismiss();
                             return;
                         }
                         chatFull.about = obj2;
@@ -125,7 +130,7 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 2, Long.valueOf(j3));
                     MessagesController.getInstance(i12).updateChatAbout(j10, obj2, chatFull);
                 }
-                b2Var.dismiss();
+                a2Var.dismiss();
                 return;
             default:
                 Runnable runnable = (Runnable) obj;
@@ -153,23 +158,18 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
     }
 
     @Override
-    public void g(f1 f1Var, r rVar) {
-        f1Var.s(((b1) this.d).K0(rVar, f1Var, this.f12561b), this.f12562c);
-    }
-
-    @Override
     public Object h(a0 a0Var, r rVar, int i10) {
         int i11;
         long j3;
         List list = (List) this.d;
         int i12 = this.f12561b;
         if (i12 == -1) {
-            i11 = a0Var.f14454t.l0();
+            i11 = a0Var.f14692t.l0();
         } else {
             i11 = i12;
         }
         if (i12 == -1) {
-            j3 = a0Var.f14454t.J0();
+            j3 = a0Var.f14692t.J0();
         } else {
             j3 = this.f12562c;
         }
@@ -184,7 +184,7 @@ public final class d implements m, y0, a1, RequestDelegateTimestamp, a2, Message
 
     @Override
     public void run(String str) {
-        yu0.i((yu0) this.d, this.f12562c, this.f12561b, str);
+        jv0.i((jv0) this.d, this.f12562c, this.f12561b, str);
     }
 
     public d(a aVar, int i10, long j3, long j10) {

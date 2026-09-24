@@ -3,8 +3,8 @@ package ii;
 import android.graphics.Rect;
 import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.ca;
-public final class s0 implements ca {
+import org.telegram.ui.Cells.ba;
+public final class s0 implements ba {
     public final Layout f11604a;
     public final int f11605b;
     public final int f11606c;

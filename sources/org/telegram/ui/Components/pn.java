@@ -5,40 +5,40 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.Emoji;
 public final class pn implements TextWatcher {
-    public final on f27109a;
-    public final int f27110b;
-    public final tn f27111c;
+    public final on f27393a;
+    public final int f27394b;
+    public final tn f27395c;
 
     public pn(tn tnVar, on onVar, int i10) {
-        this.f27111c = tnVar;
-        this.f27109a = onVar;
-        this.f27110b = i10;
+        this.f27395c = tnVar;
+        this.f27393a = onVar;
+        this.f27394b = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        vn vnVar = this.f27111c.d;
-        on onVar = this.f27109a;
+        vn vnVar = this.f27395c.d;
+        on onVar = this.f27393a;
         if (onVar.getTag() != null) {
             return;
         }
-        int i11 = this.f27110b;
+        int i11 = this.f27394b;
         if (i11 == 11) {
-            i10 = vnVar.f28799n0;
+            i10 = vnVar.f29199n0;
         } else {
             i10 = vnVar.m0;
         }
-        s4.c1 K = vnVar.f28805s.K(i10);
-        if (K != null && vnVar.f28812x != null) {
+        s4.c1 K = vnVar.f29205s.K(i10);
+        if (K != null && vnVar.f29212x != null) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, onVar.getEditField().getPaint().getFontMetricsInt(), false);
-            vnVar.f28812x.setDirection(1);
-            vnVar.f28812x.setDelegate(onVar);
-            vnVar.f28812x.setTranslationY(K.f42627a.getY());
-            vnVar.f28812x.e();
+            vnVar.f29212x.setDirection(1);
+            vnVar.f29212x.setDelegate(onVar);
+            vnVar.f29212x.setTranslationY(K.f42946a.getY());
+            vnVar.f29212x.e();
         }
         if (i11 == 11) {
             vnVar.O = editable;
@@ -46,7 +46,7 @@ public final class pn implements TextWatcher {
             vnVar.N = editable;
         }
         if (K != null) {
-            vn.L(vnVar, K.f42627a, i10);
+            vn.L(vnVar, K.f42946a, i10);
         }
         vnVar.T();
     }

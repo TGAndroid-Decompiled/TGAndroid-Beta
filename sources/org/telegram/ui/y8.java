@@ -8,8 +8,8 @@ public final class y8 extends FragmentContextView {
     public final int P0;
     public final NotificationCenter.NotificationCenterDelegate Q0;
 
-    public y8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.n2 n2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, n2Var, frameLayout, false, d6Var);
+    public y8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.m2 m2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, m2Var, frameLayout, false, d6Var);
         this.P0 = i10;
         this.Q0 = notificationCenterDelegate;
     }
@@ -33,8 +33,8 @@ public final class y8 extends FragmentContextView {
                 return;
             case 1:
                 org.telegram.ui.Components.hj hjVar = (org.telegram.ui.Components.hj) this.Q0;
-                org.telegram.ui.Components.ls lsVar2 = hjVar.f24700x;
-                FrameLayout frameLayout2 = hjVar.f24701y;
+                org.telegram.ui.Components.ls lsVar2 = hjVar.f24764x;
+                FrameLayout frameLayout2 = hjVar.f24765y;
                 if (i10 == 0) {
                     z11 = true;
                 } else {

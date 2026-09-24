@@ -6,17 +6,17 @@ import e9.a1;
 import e9.i0;
 import j$.util.Objects;
 import java.util.ArrayList;
-import v7.y7;
+import v7.z7;
 public final class o extends j {
-    public final String f41087b;
-    public final i0 f41088c;
+    public final String f41410b;
+    public final i0 f41411c;
 
     public o(String str, String str2, a1 a1Var) {
         super(str);
         e2.d.b(!a1Var.isEmpty());
-        this.f41087b = str2;
+        this.f41410b = str2;
         i0 v = i0.v(a1Var);
-        this.f41088c = v;
+        this.f41411c = v;
         String str3 = (String) v.get(0);
     }
 
@@ -47,7 +47,7 @@ public final class o extends j {
     public final void b(m0 m0Var) {
         char c10;
         Integer num;
-        String str = this.f41078a;
+        String str = this.f41401a;
         switch (str.hashCode()) {
             case 82815:
                 if (str.equals("TAL")) {
@@ -214,7 +214,7 @@ public final class o extends j {
                 c10 = 65535;
                 break;
         }
-        i0 i0Var = this.f41088c;
+        i0 i0Var = this.f41411c;
         try {
             switch (c10) {
                 case 0:
@@ -247,7 +247,7 @@ public final class o extends j {
                     return;
                 case 6:
                 case 21:
-                    String str3 = d0.f7871a;
+                    String str3 = d0.f7870a;
                     String[] split = ((String) i0Var.get(0)).split("/", -1);
                     int parseInt3 = Integer.parseInt(split[0]);
                     if (split.length > 1) {
@@ -271,7 +271,7 @@ public final class o extends j {
                     m0Var.f3102s = Integer.valueOf(Integer.parseInt((String) i0Var.get(0)));
                     return;
                 case '\f':
-                    Integer g10 = y7.g((String) i0Var.get(0));
+                    Integer g10 = z7.g((String) i0Var.get(0));
                     if (g10 == null) {
                         m0Var.D = (CharSequence) i0Var.get(0);
                         return;
@@ -325,7 +325,7 @@ public final class o extends j {
         }
         if (obj != null && o.class == obj.getClass()) {
             o oVar = (o) obj;
-            if (Objects.equals(this.f41078a, oVar.f41078a) && Objects.equals(this.f41087b, oVar.f41087b) && this.f41088c.equals(oVar.f41088c)) {
+            if (Objects.equals(this.f41401a, oVar.f41401a) && Objects.equals(this.f41410b, oVar.f41410b) && this.f41411c.equals(oVar.f41411c)) {
                 return true;
             }
         }
@@ -334,18 +334,18 @@ public final class o extends j {
 
     public final int hashCode() {
         int i10;
-        int h = a4.a.h(527, 31, this.f41078a);
-        String str = this.f41087b;
+        int h = a4.a.h(527, 31, this.f41401a);
+        String str = this.f41410b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        return this.f41088c.hashCode() + ((h + i10) * 31);
+        return this.f41411c.hashCode() + ((h + i10) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f41078a + ": description=" + this.f41087b + ": values=" + this.f41088c;
+        return this.f41401a + ": description=" + this.f41410b + ": values=" + this.f41411c;
     }
 }

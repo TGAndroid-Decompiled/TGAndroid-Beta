@@ -32,55 +32,53 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import k1.p;
-import k2.u;
 import n4.y;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.ul;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.k1;
-import org.telegram.ui.Cells.s9;
-import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Cells.z1;
+import org.telegram.ui.Cells.a2;
+import org.telegram.ui.Cells.c1;
+import org.telegram.ui.Cells.l1;
+import org.telegram.ui.Cells.r9;
+import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a01;
-import org.telegram.ui.Components.by0;
-import org.telegram.ui.Components.eo0;
+import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.l01;
+import org.telegram.ui.Components.my0;
 import org.telegram.ui.Components.na;
-import org.telegram.ui.Components.pv0;
+import org.telegram.ui.Components.ro0;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.ev;
 import org.telegram.ui.fv;
-import org.telegram.ui.gv;
+import org.telegram.ui.gn0;
+import org.telegram.ui.hv0;
+import org.telegram.ui.i5;
 import org.telegram.ui.i7;
-import org.telegram.ui.in0;
-import org.telegram.ui.iv0;
-import org.telegram.ui.j5;
-import org.telegram.ui.jl0;
-import org.telegram.ui.qm0;
-import org.telegram.ui.s6;
-import org.telegram.ui.wm0;
-import org.telegram.ui.x21;
+import org.telegram.ui.il0;
+import org.telegram.ui.om0;
+import org.telegram.ui.r6;
+import org.telegram.ui.um0;
+import org.telegram.ui.w21;
 import r0.i0;
-import r0.l1;
 import r0.n;
 import s4.g1;
 import s4.h1;
-import u2.z0;
+import u2.a1;
 import w9.m;
 import za.a0;
-public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessContinuation, n, ce.b {
-    public final int f15274a;
-    public Object f15275b;
-    public Object f15276c;
+public class a implements ro0, l1, i7, um0, fh.a, d6, le.e, s, n5.b, SuccessContinuation, n, ce.b {
+    public final int f15466a;
+    public Object f15467b;
+    public Object f15468c;
 
     public a(int i10, byte b10) {
-        this.f15274a = i10;
+        this.f15466a = i10;
     }
 
     @Override
@@ -95,20 +93,20 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
 
     @Override
     public void D(int i10, float f7, float f10, le.f fVar) {
-        ph.i iVar = (ph.i) this.f15276c;
-        iVar.f41019c.a(f7);
+        ph.i iVar = (ph.i) this.f15468c;
+        iVar.f41327c.a(f7);
         iVar.d.a(f7);
-        iVar.f41018b.a(f7);
-        ((Runnable) this.f15275b).run();
+        iVar.f41326b.a(f7);
+        ((Runnable) this.f15467b).run();
     }
 
     @Override
     public Paint G(String str) {
-        switch (this.f15274a) {
+        switch (this.f15466a) {
             case 8:
                 return h6.S0(str);
             default:
-                d6 d6Var = (d6) this.f15276c;
+                d6 d6Var = (d6) this.f15468c;
                 if (d6Var == null) {
                     return h6.S0(str);
                 }
@@ -118,20 +116,20 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
 
     @Override
     public int G0(int i10) {
-        switch (this.f15274a) {
+        switch (this.f15466a) {
             case 8:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f15275b;
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f15467b;
                 if (sparseIntArray != null) {
                     return sparseIntArray.get(i10);
                 }
                 return h6.w0(null, i10, false);
             default:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f15275b;
+                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f15467b;
                 int indexOfKey = sparseIntArray2.indexOfKey(i10);
                 if (indexOfKey >= 0) {
                     return sparseIntArray2.valueAt(indexOfKey);
                 }
-                d6 d6Var = (d6) this.f15276c;
+                d6 d6Var = (d6) this.f15468c;
                 if (d6Var == null) {
                     return h6.w0(null, i10, false);
                 }
@@ -140,66 +138,72 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public boolean G1(t1 t1Var, TLRPC.Chat chat) {
+    public boolean G1(u1 u1Var, TLRPC.Chat chat) {
         return false;
     }
 
-    @Override
-    public Object H(ce.c cVar, kd.c cVar2) {
-        Object H = ((y) this.f15275b).H(new p(cVar, (a0) this.f15276c), cVar2);
-        if (H == jd.a.f12959a) {
-            return H;
-        }
-        return gd.i.f9603a;
+    public boolean H(View view) {
+        g1 g1Var = (g1) this.f15468c;
+        h1 h1Var = (h1) this.f15467b;
+        int g10 = h1Var.g();
+        int x10 = h1Var.x();
+        int c10 = h1Var.c(view);
+        int C = h1Var.C(view);
+        g1Var.f42989b = g10;
+        g1Var.f42990c = x10;
+        g1Var.d = c10;
+        g1Var.e = C;
+        g1Var.f42988a = 24579;
+        return g1Var.a();
     }
 
     @Override
-    public void H0(s6 s6Var, zh.a aVar, boolean z10) {
-        gv gvVar = (gv) this.f15276c;
-        fv fvVar = gvVar.X;
+    public void H0(r6 r6Var, zh.a aVar, boolean z10) {
+        fv fvVar = (fv) this.f15468c;
+        ev evVar = fvVar.X;
         if (aVar != null) {
-            ((zh.b) this.f15275b).i(aVar);
-            gvVar.f33664e0.d();
-            zh.b bVar = gvVar.f33666g0;
-            by0[] by0VarArr = gvVar.f33661b0;
-            z1[] z1VarArr = gvVar.f33662c0;
-            z1 z1Var = z1VarArr[0];
-            if (z1Var != null) {
-                by0 by0Var = by0VarArr[0];
-                boolean z11 = bVar.f49152m;
-                by0Var.f22862c = z11;
-                z1Var.c(z11, true);
+            ((zh.b) this.f15467b).i(aVar);
+            fvVar.f33753e0.d();
+            zh.b bVar = fvVar.f33755g0;
+            my0[] my0VarArr = fvVar.f33750b0;
+            a2[] a2VarArr = fvVar.f33751c0;
+            a2 a2Var = a2VarArr[0];
+            if (a2Var != null) {
+                my0 my0Var = my0VarArr[0];
+                boolean z11 = bVar.f49467m;
+                my0Var.f26587c = z11;
+                a2Var.c(z11, true);
             }
-            z1 z1Var2 = z1VarArr[1];
-            if (z1Var2 != null) {
-                by0 by0Var2 = by0VarArr[1];
-                boolean z12 = bVar.f49153n;
-                by0Var2.f22862c = z12;
-                z1Var2.c(z12, true);
+            a2 a2Var2 = a2VarArr[1];
+            if (a2Var2 != null) {
+                my0 my0Var2 = my0VarArr[1];
+                boolean z12 = bVar.f49468n;
+                my0Var2.f26587c = z12;
+                a2Var2.c(z12, true);
             }
-            z1 z1Var3 = z1VarArr[2];
-            if (z1Var3 != null) {
-                by0 by0Var3 = by0VarArr[2];
-                boolean z13 = bVar.f49154o;
-                by0Var3.f22862c = z13;
-                z1Var3.c(z13, true);
+            a2 a2Var3 = a2VarArr[2];
+            if (a2Var3 != null) {
+                my0 my0Var3 = my0VarArr[2];
+                boolean z13 = bVar.f49469o;
+                my0Var3.f26587c = z13;
+                a2Var3.c(z13, true);
             }
-            z1 z1Var4 = z1VarArr[3];
-            if (z1Var4 != null) {
-                by0 by0Var4 = by0VarArr[3];
-                boolean z14 = bVar.f49155p;
-                by0Var4.f22862c = z14;
-                z1Var4.c(z14, true);
+            a2 a2Var4 = a2VarArr[3];
+            if (a2Var4 != null) {
+                my0 my0Var4 = my0VarArr[3];
+                boolean z14 = bVar.f49470p;
+                my0Var4.f26587c = z14;
+                a2Var4.c(z14, true);
             }
-            z1 z1Var5 = z1VarArr[4];
-            if (z1Var5 != null) {
-                by0 by0Var5 = by0VarArr[4];
-                boolean z15 = bVar.f49156q;
-                by0Var5.f22862c = z15;
-                z1Var5.c(z15, true);
+            a2 a2Var5 = a2VarArr[4];
+            if (a2Var5 != null) {
+                my0 my0Var5 = my0VarArr[4];
+                boolean z15 = bVar.f49471q;
+                my0Var5.f26587c = z15;
+                a2Var5.c(z15, true);
             }
-            gvVar.f33660a0.a(fvVar.d(), true);
-            fvVar.c(true);
+            fvVar.f33749a0.a(evVar.d(), true);
+            evVar.c(true);
         }
     }
 
@@ -209,11 +213,11 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     public void J(g gVar) {
-        androidx.biometric.n nVar = (androidx.biometric.n) this.f15276c;
-        a6.i iVar = (a6.i) this.f15275b;
-        int i10 = gVar.f15289b;
+        androidx.biometric.n nVar = (androidx.biometric.n) this.f15468c;
+        a6.i iVar = (a6.i) this.f15467b;
+        int i10 = gVar.f15481b;
         if (i10 == 0) {
-            nVar.execute(new i9.s(19, iVar, gVar.f15288a));
+            nVar.execute(new i9.s(19, iVar, gVar.f15480a));
         } else {
             nVar.execute(new q4(iVar, i10));
         }
@@ -221,11 +225,11 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
 
     @Override
     public void L0(int i10, int i11) {
-        switch (this.f15274a) {
+        switch (this.f15466a) {
             case 8:
                 return;
             default:
-                d6 d6Var = (d6) this.f15276c;
+                d6 d6Var = (d6) this.f15468c;
                 if (d6Var != null) {
                     d6Var.L0(i10, i11);
                     return;
@@ -236,21 +240,21 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
 
     @Override
     public boolean M0(long j3) {
-        return ((a01) this.f15276c).v;
+        return ((l01) this.f15468c).v;
     }
 
     @Override
-    public void N1(t1 t1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        nf.f.s(t1Var.getContext(), str);
+    public void N1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
+        nf.f.s(u1Var.getContext(), str);
     }
 
     @Override
-    public boolean O(t1 t1Var, TLRPC.TodoItem todoItem, boolean z10) {
+    public boolean O(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
         return false;
     }
 
     @Override
-    public CharacterStyle O1(t1 t1Var) {
+    public CharacterStyle O1(u1 u1Var) {
         return null;
     }
 
@@ -260,25 +264,25 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public boolean Q(t1 t1Var) {
+    public boolean Q(u1 u1Var) {
         return false;
     }
 
     @Override
-    public l1 Q0(View view, l1 l1Var) {
-        z4.g gVar = (z4.g) this.f15276c;
-        l1 h = i0.h(view, l1Var);
-        if (h.f41807a.n()) {
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        z4.g gVar = (z4.g) this.f15468c;
+        r0.l1 h = i0.h(view, l1Var);
+        if (h.f42126a.n()) {
             return h;
         }
-        Rect rect = (Rect) this.f15275b;
+        Rect rect = (Rect) this.f15467b;
         rect.left = h.b();
         rect.top = h.d();
         rect.right = h.c();
         rect.bottom = h.a();
         int childCount = gVar.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            l1 b10 = i0.b(gVar.getChildAt(i10), h);
+            r0.l1 b10 = i0.b(gVar.getChildAt(i10), h);
             rect.left = Math.min(b10.b(), rect.left);
             rect.top = Math.min(b10.d(), rect.top);
             rect.right = Math.min(b10.c(), rect.right);
@@ -288,7 +292,7 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public boolean Q1(t1 t1Var, MessageObject messageObject) {
+    public boolean Q1(u1 u1Var, MessageObject messageObject) {
         return false;
     }
 
@@ -300,10 +304,10 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     public h0 U(int i10) {
         int i11 = 0;
         while (true) {
-            int[] iArr = (int[]) this.f15275b;
+            int[] iArr = (int[]) this.f15467b;
             if (i11 < iArr.length) {
                 if (i10 == iArr[i11]) {
-                    return ((z0[]) this.f15276c)[i11];
+                    return ((a1[]) this.f15468c)[i11];
                 }
                 i11++;
             } else {
@@ -319,22 +323,22 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public boolean V1(t1 t1Var, TLRPC.PollAnswer pollAnswer) {
+    public boolean V1(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
         return false;
     }
 
     @Override
-    public boolean W0(t1 t1Var, boolean z10) {
+    public boolean W0(u1 u1Var, boolean z10) {
         return false;
     }
 
     @Override
     public void X(float f7, boolean z10) {
-        j5.f34325c = f7;
-        ((TextView) this.f15275b).setText("Saturation " + (f7 * 5.0f));
-        pv0 pv0Var = ((j5) this.f15276c).f34326b;
-        pv0Var.N();
-        pv0Var.M();
+        i5.f34400c = f7;
+        ((TextView) this.f15467b).setText("Saturation " + (f7 * 5.0f));
+        aw0 aw0Var = ((i5) this.f15468c).f34401b;
+        aw0Var.N();
+        aw0Var.M();
     }
 
     @Override
@@ -343,13 +347,13 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public iv0 Y1() {
+    public hv0 Y1() {
         return null;
     }
 
     @Override
     public boolean a() {
-        switch (this.f15274a) {
+        switch (this.f15466a) {
             case 8:
             default:
                 return h6.I.q();
@@ -357,13 +361,13 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public boolean a0(t1 t1Var) {
+    public boolean a0(u1 u1Var) {
         return false;
     }
 
     @Override
     public boolean a2(long j3) {
-        return ((a01) this.f15276c).f22282s;
+        return ((l01) this.f15468c).f25968s;
     }
 
     @Override
@@ -372,33 +376,43 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public void b(String str, String str2) {
-        in0 in0Var = ((qm0) this.f15276c).f36476a;
+    public boolean b0(u1 u1Var, TLRPC.User user) {
+        return false;
+    }
+
+    @Override
+    public void c(String str, String str2) {
+        gn0 gn0Var = ((om0) this.f15468c).f36253a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
-            in0Var.O1(true, str2, (jl0) this.f15275b, this, in0Var.B1);
+            gn0Var.O1(true, str2, (il0) this.f15467b, this, gn0Var.B1);
         } else {
-            in0Var.N1(true, false);
+            gn0Var.N1(true, false);
         }
     }
 
     @Override
-    public boolean b0(t1 t1Var, TLRPC.User user) {
+    public boolean c1(int i10, u1 u1Var) {
         return false;
     }
 
     @Override
-    public boolean c1(int i10, t1 t1Var) {
+    public boolean c2(u1 u1Var, TLRPC.TodoItem todoItem) {
         return false;
     }
 
     @Override
-    public boolean c2(t1 t1Var, TLRPC.TodoItem todoItem) {
-        return false;
+    public ch.d d() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            ch.e eVar = new ch.e(this);
+            ((PhotoViewer) this.f15468c).Z.add(eVar);
+            return eVar;
+        }
+        return new ch.f(this);
     }
 
     @Override
     public void dismiss() {
-        ((gv) this.f15276c).dismiss();
+        ((fv) this.f15468c).dismiss();
     }
 
     @Override
@@ -416,11 +430,143 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
         return true;
     }
 
-    public ArrayList g() {
+    @Override
+    public int g0(int i10) {
+        switch (this.f15466a) {
+            case 8:
+                return G0(i10);
+            default:
+                d6 d6Var = (d6) this.f15468c;
+                if (d6Var == null) {
+                    return h6.w0(null, i10, false);
+                }
+                return d6Var.g0(i10);
+        }
+    }
+
+    @Override
+    public int g1(int i10) {
+        switch (this.f15466a) {
+            case 8:
+                return G0(i10);
+            default:
+                d6 d6Var = (d6) this.f15468c;
+                if (d6Var == null) {
+                    return h6.w0(null, i10, false);
+                }
+                return d6Var.g1(i10);
+        }
+    }
+
+    @Override
+    public Object mo28get() {
+        rb.a aVar = new rb.a(23);
+        qb.b bVar = new qb.b(23);
+        Object mo28get = ((fd.a) this.f15467b).mo28get();
+        fd.a aVar2 = (fd.a) this.f15468c;
+        return new s5.h(aVar, bVar, s5.a.f43115f, (s5.j) mo28get, aVar2);
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        return null;
+    }
+
+    @Override
+    public Drawable getDrawable(String str) {
+        switch (this.f15466a) {
+            case 8:
+                return null;
+            default:
+                d6 d6Var = (d6) this.f15468c;
+                if (d6Var == null) {
+                    return h6.O0(str);
+                }
+                return d6Var.getDrawable(str);
+        }
+    }
+
+    @Override
+    public String h(u1 u1Var) {
+        return null;
+    }
+
+    @Override
+    public int h0(u1 u1Var) {
+        return 0;
+    }
+
+    @Override
+    public boolean h1(MessageObject messageObject) {
+        return c1.a(messageObject);
+    }
+
+    @Override
+    public Object l(ce.c cVar, kd.c cVar2) {
+        Object l4 = ((y) this.f15467b).l(new p(cVar, (a0) this.f15468c), cVar2);
+        if (l4 == jd.a.f12959a) {
+            return l4;
+        }
+        return gd.i.f9602a;
+    }
+
+    @Override
+    public boolean l0() {
+        return false;
+    }
+
+    @Override
+    public boolean l2(u1 u1Var, TL_iv.PageBlock pageBlock) {
+        return false;
+    }
+
+    @Override
+    public void m(float f7, float f10, int i10, int i11) {
+        switch (this.f15466a) {
+            case 8:
+                h6.q(f7, f10, i10, i11);
+                return;
+            default:
+                d6 d6Var = (d6) this.f15468c;
+                if (d6Var == null) {
+                    h6.q(f7, f10, i10, i11);
+                    return;
+                } else {
+                    d6Var.m(f7, f10, i10, i11);
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public int m0() {
+        return 0;
+    }
+
+    @Override
+    public boolean o0(z5 z5Var) {
+        return false;
+    }
+
+    @Override
+    public boolean p0() {
+        switch (this.f15466a) {
+            case 8:
+                return false;
+            default:
+                d6 d6Var = (d6) this.f15468c;
+                if (d6Var == null) {
+                    return h6.a1();
+                }
+                return d6Var.p0();
+        }
+    }
+
+    public ArrayList q() {
         ?? arrayList;
         ArrayList arrayList2 = new ArrayList();
-        Context context = (Context) this.f15275b;
-        Class cls = (Class) ((u) this.f15276c).f13371b;
+        Context context = (Context) this.f15467b;
+        Class cls = (Class) ((n2.e) this.f15468c).f15101b;
         Bundle bundle = null;
         try {
             PackageManager packageManager = context.getPackageManager();
@@ -455,143 +601,35 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public int g0(int i10) {
-        switch (this.f15274a) {
-            case 8:
-                return G0(i10);
-            default:
-                d6 d6Var = (d6) this.f15276c;
-                if (d6Var == null) {
-                    return h6.w0(null, i10, false);
+    public Task then(Object obj) {
+        switch (this.f15466a) {
+            case 22:
+                da.a aVar = (da.a) obj;
+                m mVar = ((w9.k) this.f15468c).e;
+                if (aVar == null) {
+                    Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
+                    return Tasks.forResult(null);
                 }
-                return d6Var.g0(i10);
-        }
-    }
-
-    @Override
-    public int g1(int i10) {
-        switch (this.f15274a) {
-            case 8:
-                return G0(i10);
+                return Tasks.whenAll(m.b(mVar), mVar.f45212m.y((Executor) this.f15467b, null));
             default:
-                d6 d6Var = (d6) this.f15276c;
-                if (d6Var == null) {
-                    return h6.w0(null, i10, false);
-                }
-                return d6Var.g1(i10);
+                return ((m) this.f15468c).e.l(new u4.g(1, this, (Boolean) obj));
         }
     }
 
-    @Override
-    public Object mo28get() {
-        rb.a aVar = new rb.a(23);
-        qb.b bVar = new qb.b(23);
-        Object mo28get = ((fd.a) this.f15275b).mo28get();
-        fd.a aVar2 = (fd.a) this.f15276c;
-        return new s5.g(aVar, bVar, s5.a.f42796f, (s5.i) mo28get, aVar2);
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public Drawable getDrawable(String str) {
-        switch (this.f15274a) {
-            case 8:
-                return null;
+    public String toString() {
+        switch (this.f15466a) {
+            case 13:
+                return "Bounds{lower=" + ((i0.b) this.f15467b) + " upper=" + ((i0.b) this.f15468c) + "}";
             default:
-                d6 d6Var = (d6) this.f15276c;
-                if (d6Var == null) {
-                    return h6.O0(str);
-                }
-                return d6Var.getDrawable(str);
+                return super.toString();
         }
     }
 
-    @Override
-    public String h(t1 t1Var) {
-        return null;
-    }
-
-    @Override
-    public int h0(t1 t1Var) {
-        return 0;
-    }
-
-    @Override
-    public boolean h1(MessageObject messageObject) {
-        return ul.a(messageObject);
-    }
-
-    @Override
-    public ch.d l() {
-        if (Build.VERSION.SDK_INT >= 29) {
-            ch.e eVar = new ch.e(this);
-            ((PhotoViewer) this.f15276c).Z.add(eVar);
-            return eVar;
-        }
-        return new ch.f(this);
-    }
-
-    @Override
-    public boolean l0() {
-        return false;
-    }
-
-    @Override
-    public boolean l2(t1 t1Var, TL_iv.PageBlock pageBlock) {
-        return false;
-    }
-
-    @Override
-    public void m(float f7, float f10, int i10, int i11) {
-        switch (this.f15274a) {
-            case 8:
-                h6.q(f7, f10, i10, i11);
-                return;
-            default:
-                d6 d6Var = (d6) this.f15276c;
-                if (d6Var == null) {
-                    h6.q(f7, f10, i10, i11);
-                    return;
-                } else {
-                    d6Var.m(f7, f10, i10, i11);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public int m0() {
-        return 0;
-    }
-
-    @Override
-    public boolean o0(z5 z5Var) {
-        return false;
-    }
-
-    @Override
-    public boolean p0() {
-        switch (this.f15274a) {
-            case 8:
-                return false;
-            default:
-                d6 d6Var = (d6) this.f15276c;
-                if (d6Var == null) {
-                    return h6.a1();
-                }
-                return d6Var.p0();
-        }
-    }
-
-    public View q(int i10, int i11, int i12, int i13) {
+    public View v(int i10, int i11, int i12, int i13) {
         int i14;
-        g1 g1Var = (g1) this.f15276c;
-        h1 h1Var = (h1) this.f15275b;
-        int u10 = h1Var.u();
+        g1 g1Var = (g1) this.f15468c;
+        h1 h1Var = (h1) this.f15467b;
+        int g10 = h1Var.g();
         int x10 = h1Var.x();
         if (i11 > i10) {
             i14 = 1;
@@ -600,68 +638,28 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
         }
         View view = null;
         while (i10 != i11) {
-            View I = h1Var.I(i10);
-            int d = h1Var.d(I);
-            int N = h1Var.N(I);
-            g1Var.f42670b = u10;
-            g1Var.f42671c = x10;
-            g1Var.d = d;
-            g1Var.e = N;
+            View y3 = h1Var.y(i10);
+            int c10 = h1Var.c(y3);
+            int C = h1Var.C(y3);
+            g1Var.f42989b = g10;
+            g1Var.f42990c = x10;
+            g1Var.d = c10;
+            g1Var.e = C;
             if (i12 != 0) {
-                g1Var.f42669a = i12;
+                g1Var.f42988a = i12;
                 if (g1Var.a()) {
-                    return I;
+                    return y3;
                 }
             }
             if (i13 != 0) {
-                g1Var.f42669a = i13;
+                g1Var.f42988a = i13;
                 if (g1Var.a()) {
-                    view = I;
+                    view = y3;
                 }
             }
             i10 += i14;
         }
         return view;
-    }
-
-    @Override
-    public Task then(Object obj) {
-        switch (this.f15274a) {
-            case 22:
-                da.a aVar = (da.a) obj;
-                m mVar = ((w9.k) this.f15276c).e;
-                if (aVar == null) {
-                    Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
-                    return Tasks.forResult(null);
-                }
-                return Tasks.whenAll(m.b(mVar), mVar.f44895m.y((Executor) this.f15275b, null));
-            default:
-                return ((m) this.f15276c).e.l(new u4.g(1, this, (Boolean) obj));
-        }
-    }
-
-    public String toString() {
-        switch (this.f15274a) {
-            case 13:
-                return "Bounds{lower=" + ((i0.b) this.f15275b) + " upper=" + ((i0.b) this.f15276c) + "}";
-            default:
-                return super.toString();
-        }
-    }
-
-    public boolean v(View view) {
-        g1 g1Var = (g1) this.f15276c;
-        h1 h1Var = (h1) this.f15275b;
-        int u10 = h1Var.u();
-        int x10 = h1Var.x();
-        int d = h1Var.d(view);
-        int N = h1Var.N(view);
-        g1Var.f42670b = u10;
-        g1Var.f42671c = x10;
-        g1Var.d = d;
-        g1Var.e = N;
-        g1Var.f42669a = 24579;
-        return g1Var.a();
     }
 
     @Override
@@ -671,11 +669,11 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
 
     @Override
     public String w(long j3) {
-        String trim = ((EditTextBoldCursor) this.f15275b).getText().toString().trim();
+        String trim = ((EditTextBoldCursor) this.f15467b).getText().toString().trim();
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((a01) this.f15276c).f22282s && TextUtils.isEmpty(trim)) {
+        if (!((l01) this.f15468c).f25968s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;
@@ -688,13 +686,13 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
 
     @Override
     public ColorFilter x() {
-        switch (this.f15274a) {
+        switch (this.f15466a) {
             case 8:
-                return h6.f19115v3;
+                return h6.f19373v3;
             default:
-                d6 d6Var = (d6) this.f15276c;
+                d6 d6Var = (d6) this.f15468c;
                 if (d6Var == null) {
-                    return h6.f19115v3;
+                    return h6.f19373v3;
                 }
                 return d6Var.x();
         }
@@ -704,66 +702,66 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     public void y(Canvas canvas, float f7, float f10, float f11, float f12) {
         canvas.save();
         canvas.clipRect(f7, f10, f11, f12);
-        ((PhotoViewer) this.f15276c).T0(canvas, (na) this.f15275b, -14277082, 855638016, false, true, true);
+        ((PhotoViewer) this.f15468c).T0(canvas, (na) this.f15467b, -14277082, 855638016, false, true, true);
         canvas.drawColor(637534208);
         canvas.restore();
     }
 
     @Override
-    public s9 z2() {
+    public r9 z2() {
         return null;
     }
 
     public a(int i10, Object obj, Object obj2) {
-        this.f15274a = i10;
-        this.f15275b = obj;
-        this.f15276c = obj2;
+        this.f15466a = i10;
+        this.f15467b = obj;
+        this.f15468c = obj2;
     }
 
     public a(Object obj, Object obj2, boolean z10, int i10) {
-        this.f15274a = i10;
-        this.f15276c = obj;
-        this.f15275b = obj2;
+        this.f15466a = i10;
+        this.f15468c = obj;
+        this.f15467b = obj2;
     }
 
     public a(Context context) {
-        this.f15274a = 26;
-        this.f15276c = new AtomicLong(-1L);
-        this.f15275b = new com.google.android.gms.common.api.j(context, p6.b.f40642k, new n6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6017c);
+        this.f15466a = 26;
+        this.f15468c = new AtomicLong(-1L);
+        this.f15467b = new com.google.android.gms.common.api.j(context, p6.b.f40944k, new n6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6017c);
     }
 
     public a(d6 d6Var) {
-        this.f15274a = 9;
-        this.f15275b = new SparseIntArray();
-        this.f15276c = d6Var;
-        c();
+        this.f15466a = 9;
+        this.f15467b = new SparseIntArray();
+        this.f15468c = d6Var;
+        g();
     }
 
     public a() {
-        this.f15274a = 24;
-        this.f15275b = new AtomicInteger();
-        this.f15276c = new AtomicInteger();
+        this.f15466a = 24;
+        this.f15467b = new AtomicInteger();
+        this.f15468c = new AtomicInteger();
     }
 
     public a(pg.i0 i0Var) {
-        this.f15274a = 10;
-        this.f15275b = i0Var;
+        this.f15466a = 10;
+        this.f15467b = i0Var;
     }
 
     public a(h1 h1Var) {
-        this.f15274a = 15;
-        this.f15275b = h1Var;
+        this.f15466a = 15;
+        this.f15467b = h1Var;
         ?? obj = new Object();
-        obj.f42669a = 0;
-        this.f15276c = obj;
+        obj.f42988a = 0;
+        this.f15468c = obj;
     }
 
     public a(int i10) {
-        this.f15274a = 20;
+        this.f15466a = 20;
         Bitmap createBitmap = Bitmap.createBitmap(i10, i10, Bitmap.Config.ALPHA_8);
-        this.f15275b = createBitmap;
+        this.f15467b = createBitmap;
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        this.f15276c = new BitmapShader(createBitmap, tileMode, tileMode);
+        this.f15468c = new BitmapShader(createBitmap, tileMode, tileMode);
     }
 
     @Override
@@ -774,15 +772,15 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     public void R1() {
     }
 
-    public void c() {
+    @Override
+    public void b() {
     }
 
     @Override
     public void clear() {
     }
 
-    @Override
-    public void d() {
+    public void g() {
     }
 
     @Override
@@ -818,35 +816,35 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     public a(w9.k kVar, Executor executor, String str) {
-        this.f15274a = 22;
-        this.f15276c = kVar;
-        this.f15275b = executor;
+        this.f15466a = 22;
+        this.f15468c = kVar;
+        this.f15467b = executor;
     }
 
     public a(z4.g gVar) {
-        this.f15274a = 27;
-        this.f15276c = gVar;
-        this.f15275b = new Rect();
+        this.f15466a = 27;
+        this.f15468c = gVar;
+        this.f15467b = new Rect();
     }
 
     @Override
-    public void A(t1 t1Var) {
+    public void A(u1 u1Var) {
     }
 
     @Override
-    public void C1(t1 t1Var) {
+    public void C1(u1 u1Var) {
     }
 
     @Override
-    public void D0(t1 t1Var) {
+    public void D0(u1 u1Var) {
     }
 
     @Override
-    public void F(t1 t1Var) {
+    public void F(u1 u1Var) {
     }
 
     @Override
-    public void F0(t1 t1Var) {
+    public void F0(u1 u1Var) {
     }
 
     @Override
@@ -854,15 +852,15 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public void I0(t1 t1Var) {
+    public void I0(u1 u1Var) {
     }
 
     @Override
-    public void K1(t1 t1Var) {
+    public void K1(u1 u1Var) {
     }
 
     @Override
-    public void L(t1 t1Var) {
+    public void L(u1 u1Var) {
     }
 
     @Override
@@ -874,19 +872,19 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public void N0(t1 t1Var) {
+    public void N0(u1 u1Var) {
     }
 
     @Override
-    public void T(t1 t1Var) {
+    public void T(u1 u1Var) {
     }
 
     @Override
-    public void X0(t1 t1Var) {
+    public void X0(u1 u1Var) {
     }
 
     @Override
-    public void Z0(t1 t1Var) {
+    public void Z0(u1 u1Var) {
     }
 
     @Override
@@ -894,15 +892,15 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public void e2(t1 t1Var) {
+    public void e2(u1 u1Var) {
     }
 
     @Override
-    public void i0(t1 t1Var) {
+    public void i0(u1 u1Var) {
     }
 
     @Override
-    public void m2(t1 t1Var) {
+    public void m2(u1 u1Var) {
     }
 
     @Override
@@ -910,145 +908,145 @@ public class a implements eo0, k1, i7, wm0, fh.a, d6, le.e, s, n5.b, SuccessCont
     }
 
     @Override
-    public void o(t1 t1Var) {
+    public void o(u1 u1Var) {
     }
 
     @Override
-    public void r(t1 t1Var) {
+    public void r(u1 u1Var) {
     }
 
     @Override
-    public void t(t1 t1Var) {
+    public void t(u1 u1Var) {
     }
 
     @Override
-    public void u(t1 t1Var) {
+    public void u(u1 u1Var) {
     }
 
     @Override
-    public void y0(t1 t1Var) {
+    public void y0(u1 u1Var) {
     }
 
     @Override
-    public void z(t1 t1Var) {
+    public void z(u1 u1Var) {
     }
 
-    public a(x21 x21Var) {
-        this.f15274a = 8;
-        this.f15276c = x21Var;
+    public a(w21 w21Var) {
+        this.f15466a = 8;
+        this.f15468c = w21Var;
     }
 
     public a(PhotoViewer photoViewer) {
-        this.f15274a = 7;
-        this.f15276c = photoViewer;
-        this.f15275b = new na(photoViewer.f30880b0, photoViewer.f30908e0, 0, false);
+        this.f15466a = 7;
+        this.f15468c = photoViewer;
+        this.f15467b = new na(photoViewer.f31181b0, photoViewer.f31209e0, 0, false);
     }
 
     private final void K(int i10, int i11) {
     }
 
     @Override
-    public void D1(t1 t1Var, boolean z10) {
+    public void D1(u1 u1Var, boolean z10) {
     }
 
     @Override
-    public void E(t1 t1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
     }
 
     @Override
-    public void H1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void H1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void M(int i10, t1 t1Var) {
+    public void M(int i10, u1 u1Var) {
     }
 
     @Override
-    public void P0(int i10, t1 t1Var) {
+    public void P0(int i10, u1 u1Var) {
     }
 
     @Override
-    public void R0(t1 t1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    public void R0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
     @Override
-    public void T1(t1 t1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    public void T1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
     }
 
     @Override
-    public void g2(t1 t1Var, long j3) {
+    public void g2(u1 u1Var, long j3) {
     }
 
     @Override
-    public void i(t1 t1Var, bi.f fVar) {
+    public void i(u1 u1Var, bi.f fVar) {
     }
 
     @Override
-    public void m1(t1 t1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void m1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void p1(t1 t1Var, TLRPC.Document document) {
+    public void p1(u1 u1Var, TLRPC.Document document) {
     }
 
     @Override
-    public void A0(t1 t1Var, TLObject tLObject, boolean z10) {
+    public void A0(u1 u1Var, TLObject tLObject, boolean z10) {
     }
 
     @Override
-    public void B0(t1 t1Var, float f7, float f10) {
+    public void B0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
-    public void V0(t1 t1Var, CharacterStyle characterStyle, boolean z10) {
+    public void V0(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
     }
 
     @Override
-    public void f0(t1 t1Var, float f7, float f10) {
+    public void f0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
-    public void q0(t1 t1Var, float f7, float f10) {
+    public void q0(u1 u1Var, float f7, float f10) {
     }
 
     @Override
-    public void u1(t1 t1Var, float f7, float f10) {
+    public void u1(u1 u1Var, float f7, float f10) {
     }
 
     @Override
-    public void y2(t1 t1Var, int i10, int i11) {
+    public void y2(u1 u1Var, int i10, int i11) {
     }
 
     @Override
-    public void U1(t1 t1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    public void U1(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
     @Override
-    public void n(t1 t1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+    public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
     }
 
     @Override
-    public void t0(t1 t1Var, TLRPC.User user, float f7, float f10) {
+    public void t0(u1 u1Var, TLRPC.User user, float f7, float f10) {
     }
 
     @Override
-    public void v0(t1 t1Var, float f7, float f10, boolean z10) {
+    public void v0(u1 u1Var, float f7, float f10, boolean z10) {
     }
 
     @Override
-    public void b2(t1 t1Var, int i10, float f7, float f10, boolean z10) {
+    public void b2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
     }
 
     @Override
-    public void j(t1 t1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    public void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
     }
 
     @Override
-    public void t2(t1 t1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    public void t2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 
     @Override
-    public void S(t1 t1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    public void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
     }
 
     @Override

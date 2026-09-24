@@ -1,35 +1,77 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import org.telegram.messenger.ChatObject;
-public final class zo implements org.telegram.ui.Components.v80 {
-    public final Context f40199a;
-    public final gp f40200b;
+import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class zo extends org.telegram.ui.Cells.e9 {
+    public ValueAnimator v;
+    public int f40535w;
+    public final fp f40536x;
 
-    public zo(gp gpVar, Context context) {
-        this.f40200b = gpVar;
-        this.f40199a = context;
+    public zo(fp fpVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 12, d6Var);
+        this.f40536x = fpVar;
+        this.f40535w = -1;
     }
 
     @Override
-    public final void c() {
-        this.f40200b.X(true);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.f40535w != -1) {
+            fp fpVar = this.f40536x;
+            if (fpVar.h != null) {
+                ArrayList arrayList = new ArrayList();
+                boolean z11 = false;
+                for (int i14 = 0; i14 < fpVar.h.getChildCount(); i14++) {
+                    View childAt = fpVar.h.getChildAt(i14);
+                    if (z11) {
+                        arrayList.add(childAt);
+                    } else if (childAt == this) {
+                        z11 = true;
+                    }
+                }
+                float height = this.f40535w - getHeight();
+                ValueAnimator valueAnimator = this.v;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.v = ofFloat;
+                ofFloat.addUpdateListener(new ig(arrayList, height, 1));
+                this.v.setInterpolator(org.telegram.ui.Components.rr.h);
+                this.v.setDuration(350L);
+                this.v.start();
+            }
+        }
+        this.f40535w = getHeight();
     }
 
     @Override
-    public final void i() {
-        gp gpVar = this.f40200b;
-        org.telegram.ui.Components.s60 s60Var = new org.telegram.ui.Components.s60(this.f40199a, gpVar.f33618l0, gpVar.Y, gpVar.f33621o0, gpVar, gpVar.Z, true, ChatObject.isChannel(gpVar.X));
-        gp gpVar2 = this.f40200b;
-        gpVar2.f33622p0 = s60Var;
-        gpVar2.f33622p0.show();
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void j() {
+    public final void setText(CharSequence charSequence) {
+        String str;
+        if (charSequence != 0) {
+            charSequence = AndroidUtilities.replaceTags(charSequence.toString());
+            int indexOf = charSequence.toString().indexOf(10);
+            fp fpVar = this.f40536x;
+            if (indexOf >= 0) {
+                charSequence.replace(indexOf, indexOf + 1, " ");
+                charSequence.setSpan(new ForegroundColorSpan(fpVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19265p7)), 0, indexOf, 33);
+            }
+            org.telegram.ui.Components.s51[] s51VarArr = (org.telegram.ui.Components.s51[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.s51.class);
+            ci.h2 h2Var = fpVar.f33694a;
+            if (h2Var != null && h2Var.getText() != null) {
+                str = fpVar.f33694a.getText().toString();
+            } else {
+                str = "";
+            }
+            for (int i10 = 0; i10 < s51VarArr.length; i10++) {
+                charSequence.setSpan(new org.telegram.ui.Cells.i(5, (Object) this, str), charSequence.getSpanStart(s51VarArr[i10]), charSequence.getSpanEnd(s51VarArr[i10]), 33);
+                charSequence.removeSpan(s51VarArr[i10]);
+            }
+        }
+        super.setText(charSequence);
     }
 }

@@ -1,147 +1,153 @@
 package org.telegram.messenger;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.text.SpannableString;
-import android.util.Pair;
-import java.io.File;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.BirthdayController;
-import org.telegram.messenger.FileLoadOperation;
-import org.telegram.messenger.FilePathDatabase;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.TelegramMediaSession;
-import org.telegram.messenger.TranslateController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
+import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.tgnet.tl.TL_update;
-public final class f0 implements Runnable {
-    public final int f16067a;
-    public final Object f16068b;
-    public final Object f16069c;
-    public final Object d;
-
-    public f0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f16067a = i10;
-        this.f16068b = obj;
-        this.f16069c = obj2;
-        this.d = obj3;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public abstract class f0 {
+    public static int A(float f7, int i10, int i11) {
+        return i11 - (i10 - AndroidUtilities.dp(f7));
     }
 
-    @Override
-    public final void run() {
-        switch (this.f16067a) {
-            case 0:
-                BirthdayController.c((BirthdayController) this.f16068b, (BirthdayController.TL_birthdays) this.f16069c, (ArrayList) this.d);
-                return;
-            case 1:
-                ((ImageLoader.AnonymousClass5) this.f16068b).lambda$fileLoadProgressChanged$7((String) this.f16069c, (FileLoadOperation) this.d);
-                return;
-            case 2:
-                ((ImageLoader.CacheOutTask) this.f16068b).lambda$onPostExecute$0((Drawable) this.f16069c, (String) this.d);
-                return;
-            case 3:
-                ((SendMessagesHelper.ImportingHistory.AnonymousClass3) this.f16068b).lambda$run$0((TLRPC.TL_error) this.f16069c, (TLRPC.TL_messages_startHistoryImport) this.d);
-                return;
-            case 4:
-                ((SendMessagesHelper.ImportingSticker.AnonymousClass1) this.f16068b).lambda$run$0((TLObject) this.f16069c, (Runnable) this.d);
-                return;
-            case 5:
-                ((TelegramMediaSession.SessionCallback) this.f16068b).lambda$onPlayFromMediaId$1((String) this.f16069c, (Bundle) this.d);
-                return;
-            case 6:
-                ((TranslateController) this.f16068b).lambda$detectStoryLanguage$33((TL_stories.StoryItem) this.f16069c, (TranslateController.StoryKey) this.d);
-                return;
-            case 7:
-                AndroidUtilities.lambda$showProxyAlert$19((boolean[]) this.f16068b, (org.telegram.ui.Components.zc[]) this.f16069c, (ni.b) this.d);
-                return;
-            case 8:
-                ((BetaUpdaterController) this.f16068b).lambda$checkForUpdate$1((String) this.f16069c, (Runnable) this.d);
-                return;
-            case 9:
-                BillingController.lambda$launchBillingFlow$3((ArrayList) this.d, (AtomicInteger) this.f16068b, (a0) this.f16069c);
-                return;
-            case 10:
-                BillingController.lambda$onPurchasesUpdatedInternal$7((AccountInstance) this.f16068b, (TLRPC.TL_payments_assignPlayMarketTransaction) this.f16069c, (TL_update.TL_updateSentPhoneCode) this.d);
-                return;
-            case 11:
-                CacheFetcher.a((CacheFetcher) this.f16068b, (Pair) this.f16069c, (Utilities.Callback) this.d);
-                return;
-            case 12:
-                ChannelBoostsController.a((Utilities.Callback) this.f16069c, (TLObject) this.f16068b, (TLRPC.TL_error) this.d);
-                return;
-            case 13:
-                ChatThemeController.e((File) this.f16068b, (List) this.f16069c, (Bitmap) this.d);
-                return;
-            case 14:
-                CodeHighlighting.lambda$highlightEditable$0((ArrayList) this.d, (SpannableString) this.f16068b, (Utilities.Callback) this.f16069c);
-                return;
-            case 15:
-                ((ContactsController) this.f16068b).lambda$addContact$51((TLRPC.Updates) this.f16069c, (TLRPC.User) this.d);
-                return;
-            case 16:
-                ((ContactsController) this.f16068b).lambda$reloadContactsStatuses$58((SharedPreferences.Editor) this.f16069c, (Vector) this.d);
-                return;
-            case 17:
-                ((ContactsController) this.f16068b).lambda$applyContactsUpdates$48((ArrayList) this.d, (ArrayList) this.f16069c);
-                return;
-            case 18:
-                ((DispatchQueuePoolBackground) this.f16068b).lambda$execute$1((Runnable) this.f16069c, (DispatchQueue) this.d);
-                return;
-            case 19:
-                ((DownloadController) this.f16068b).lambda$loadDownloadingFiles$10((ArrayList) this.d, (ArrayList) this.f16069c);
-                return;
-            case 20:
-                FactCheckController.lambda$getFromDatabase$5((MessagesStorage) this.f16068b, (ArrayList) this.d, (Utilities.Callback) this.f16069c);
-                return;
-            case 21:
-                ((FileLoadOperation) this.f16068b).lambda$getCurrentFile$3((File[]) this.f16069c, (CountDownLatch) this.d);
-                return;
-            case 22:
-                FileLoadOperation.lambda$cancelRequests$15((FileLoadOperation.RequestInfo) this.f16068b, (int[]) this.f16069c, (Runnable) this.d);
-                return;
-            case 23:
-                ((FileLoader) this.f16068b).lambda$setForceStreamLoadingFile$6((TLRPC.FileLocation) this.f16069c, (String) this.d);
-                return;
-            case 24:
-                ((FileLoader) this.f16068b).lambda$checkDownloadQueue$15((FileLoaderPriorityQueue) this.f16069c, (FileLoadOperation) this.d);
-                return;
-            case 25:
-                ((FilePathDatabase) this.f16068b).lambda$saveFileDialogId$5((File) this.f16069c, (FilePathDatabase.FileMeta) this.d);
-                return;
-            case 26:
-                LocaleController.lambda$applyRemoteLanguage$13((int[]) this.f16068b, (int[]) this.f16069c, (Runnable) this.d);
-                return;
-            case 27:
-                ((LocationController) this.f16068b).lambda$addSharingLocation$11((LocationController.SharingLocationInfo) this.f16069c, (LocationController.SharingLocationInfo) this.d);
-                return;
-            default:
-                ((MediaDataController) this.f16068b).lambda$processLoadedDiceStickers$88((String) this.f16069c, (TLRPC.TL_messages_stickerSet) this.d);
-                return;
-        }
+    public static int B(float f7, int i10, int i11) {
+        return (i10 - AndroidUtilities.dp(f7)) - i11;
     }
 
-    public f0(ArrayList arrayList, Object obj, Object obj2, int i10) {
-        this.f16067a = i10;
-        this.d = arrayList;
-        this.f16068b = obj;
-        this.f16069c = obj2;
+    public static int C(float f7, int i10, int i11) {
+        return AndroidUtilities.dp(f7) + i10 + i11;
     }
 
-    public f0(BaseController baseController, ArrayList arrayList, Object obj, int i10) {
-        this.f16067a = i10;
-        this.f16068b = baseController;
-        this.d = arrayList;
-        this.f16069c = obj;
+    public static int D(float f7, int i10, int i11) {
+        return (AndroidUtilities.dp(f7) * i10) + i11;
+    }
+
+    public static float a(float f7, float f10, float f11, float f12) {
+        return ((f7 + f10) / f11) + f12;
+    }
+
+    public static int b(float f7, int i10, int i11) {
+        return Math.max(i11, i10 - AndroidUtilities.dp(f7));
+    }
+
+    public static int c(String str, String str2, SharedPreferences sharedPreferences, int i10) {
+        return sharedPreferences.getInt(str + str2, i10);
+    }
+
+    public static SharedPreferences.Editor d(SharedPreferences.Editor editor, String str, String str2, String str3, String str4) {
+        return editor.remove(str).remove(str2).remove(str3).remove(str4);
+    }
+
+    public static LinearLayout e(Activity activity, int i10) {
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(i10);
+        return linearLayout;
+    }
+
+    public static TextView f(Context context, int i10, float f7) {
+        TextView textView = new TextView(context);
+        textView.setTextSize(i10, f7);
+        return textView;
+    }
+
+    public static String g(int i10, StringBuilder sb2) {
+        sb2.append(LocaleController.getString(i10));
+        return sb2.toString();
+    }
+
+    public static String h(long j3, char c10, StringBuilder sb2) {
+        sb2.append(LocaleController.formatNumber(j3, c10));
+        return sb2.toString();
+    }
+
+    public static String i(long j3, long j10, StringBuilder sb2) {
+        sb2.append(NotificationsController.getSharedPrefKey(j3, j10));
+        return sb2.toString();
+    }
+
+    public static ArrayList j(long j3, a0.i iVar) {
+        ArrayList arrayList = new ArrayList();
+        iVar.k(arrayList, j3);
+        return arrayList;
+    }
+
+    public static ArrayList k(MessageObject messageObject) {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(messageObject);
+        return arrayList;
+    }
+
+    public static TLRPC.EncryptedChat l(MessagesController messagesController, long j3) {
+        return messagesController.getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(j3)));
+    }
+
+    public static void m(int i10, TextView textView) {
+        textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    }
+
+    public static void n(int i10, StringBuilder sb2) {
+        sb2.append(i10);
+        FileLog.d(sb2.toString());
+    }
+
+    public static void o(int i10, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.z1 z1Var) {
+        alertDialog$Builder.k(LocaleController.getString(i10), z1Var);
+        alertDialog$Builder.o();
+    }
+
+    public static void p(int i10, org.telegram.ui.Components.yc ycVar, int i11, int i12) {
+        ycVar.Q(i11, i12, LocaleController.getString(i10)).j();
+    }
+
+    public static void q(TextView textView, int i10, int i11, float f7) {
+        textView.setTextColor(i10);
+        textView.setTextSize(i11, f7);
+        textView.setTypeface(AndroidUtilities.bold());
+    }
+
+    public static void r(SQLiteDatabase sQLiteDatabase, String str) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+    }
+
+    public static void s(SQLiteDatabase sQLiteDatabase, String str, String str2) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+        sQLiteDatabase.executeFast(str2).stepThis().dispose();
+    }
+
+    public static void t(SQLiteDatabase sQLiteDatabase, String str, String str2, String str3) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+        sQLiteDatabase.executeFast(str2).stepThis().dispose();
+        sQLiteDatabase.executeFast(str3).stepThis().dispose();
+    }
+
+    public static void u(SQLiteDatabase sQLiteDatabase, String str, String str2, String str3, String str4) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+        sQLiteDatabase.executeFast(str2).stepThis().dispose();
+        sQLiteDatabase.executeFast(str3).stepThis().dispose();
+        sQLiteDatabase.executeFast(str4).stepThis().dispose();
+    }
+
+    public static boolean v(String str, long j3, SharedPreferences sharedPreferences, boolean z10) {
+        return sharedPreferences.getBoolean(str + j3, z10);
+    }
+
+    public static boolean w(String str, String str2, String str3) {
+        return str3.contains(str + str2);
+    }
+
+    public static float x(float f7, float f10, float f11, float f12) {
+        return f12 - ((f7 - f10) / f11);
+    }
+
+    public static int y(float f7, int i10, int i11) {
+        return Math.max(i11, AndroidUtilities.dp(f7) + i10);
+    }
+
+    public static float z(float f7, float f10, float f11, float f12) {
+        return (f7 - f10) * f11 * f12;
     }
 }

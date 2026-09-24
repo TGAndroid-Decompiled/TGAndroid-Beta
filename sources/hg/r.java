@@ -2,7 +2,7 @@ package hg;
 
 import android.graphics.Bitmap;
 import org.telegram.messenger.Utilities;
-public final class r implements org.telegram.ui.ActionBar.a2, gh.b, d9.e, e2.m, e2.n {
+public final class r implements org.telegram.ui.ActionBar.z1, gh.b, d9.e, e2.m, e2.n {
     public final int f10381a;
 
     public r(int i10) {
@@ -46,13 +46,13 @@ public final class r implements org.telegram.ui.ActionBar.a2, gh.b, d9.e, e2.m, 
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         switch (this.f10381a) {
             case 0:
-                b2Var.dismiss();
+                a2Var.dismiss();
                 return;
             default:
-                b2Var.dismiss();
+                a2Var.dismiss();
                 return;
         }
     }

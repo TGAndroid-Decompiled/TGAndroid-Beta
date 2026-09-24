@@ -2,22 +2,22 @@ package dd;
 
 import java.util.Locale;
 public abstract class j extends k {
-    public String f7670c;
+    public String f7669c;
     public String d;
     public String e;
-    public final StringBuilder f7671f;
-    public String f7672g;
+    public final StringBuilder f7670f;
+    public String f7671g;
     public boolean h;
-    public boolean f7673i;
-    public boolean f7674j;
-    public cd.c f7675k;
+    public boolean f7672i;
+    public boolean f7673j;
+    public cd.c f7674k;
 
     public j(int i10) {
         super(i10, 0);
-        this.f7671f = new StringBuilder();
+        this.f7670f = new StringBuilder();
         this.h = false;
-        this.f7673i = false;
-        this.f7674j = false;
+        this.f7672i = false;
+        this.f7673j = false;
     }
 
     public final void d(char c10) {
@@ -30,38 +30,38 @@ public abstract class j extends k {
     }
 
     public final void e(char c10) {
-        this.f7673i = true;
-        String str = this.f7672g;
-        StringBuilder sb2 = this.f7671f;
+        this.f7672i = true;
+        String str = this.f7671g;
+        StringBuilder sb2 = this.f7670f;
         if (str != null) {
             sb2.append(str);
-            this.f7672g = null;
+            this.f7671g = null;
         }
         sb2.append(c10);
     }
 
     public final void f(String str) {
-        this.f7673i = true;
-        String str2 = this.f7672g;
-        StringBuilder sb2 = this.f7671f;
+        this.f7672i = true;
+        String str2 = this.f7671g;
+        StringBuilder sb2 = this.f7670f;
         if (str2 != null) {
             sb2.append(str2);
-            this.f7672g = null;
+            this.f7671g = null;
         }
         if (sb2.length() == 0) {
-            this.f7672g = str;
+            this.f7671g = str;
         } else {
             sb2.append(str);
         }
     }
 
     public final void g(int[] iArr) {
-        this.f7673i = true;
-        String str = this.f7672g;
-        StringBuilder sb2 = this.f7671f;
+        this.f7672i = true;
+        String str = this.f7671g;
+        StringBuilder sb2 = this.f7670f;
         if (str != null) {
             sb2.append(str);
-            this.f7672g = null;
+            this.f7671g = null;
         }
         for (int i10 : iArr) {
             sb2.appendCodePoint(i10);
@@ -70,11 +70,11 @@ public abstract class j extends k {
 
     public final void h(String str) {
         String str2;
-        String str3 = this.f7670c;
+        String str3 = this.f7669c;
         if (str3 != null) {
             str = str3.concat(str);
         }
-        this.f7670c = str;
+        this.f7669c = str;
         if (str != null) {
             str2 = str.toLowerCase(Locale.ENGLISH);
         } else {
@@ -84,36 +84,36 @@ public abstract class j extends k {
     }
 
     public final String i() {
-        String str = this.f7670c;
+        String str = this.f7669c;
         if (str != null && str.length() != 0) {
-            return this.f7670c;
+            return this.f7669c;
         }
         throw new IllegalArgumentException("Must be false");
     }
 
     public final void j() {
         String str;
-        if (this.f7675k == null) {
-            this.f7675k = new cd.c();
+        if (this.f7674k == null) {
+            this.f7674k = new cd.c();
         }
         String str2 = this.e;
-        StringBuilder sb2 = this.f7671f;
+        StringBuilder sb2 = this.f7670f;
         if (str2 != null) {
             String trim = str2.trim();
             this.e = trim;
             if (trim.length() > 0) {
-                if (this.f7673i) {
+                if (this.f7672i) {
                     if (sb2.length() > 0) {
                         str = sb2.toString();
                     } else {
-                        str = this.f7672g;
+                        str = this.f7671g;
                     }
                 } else if (this.h) {
                     str = "";
                 } else {
                     str = null;
                 }
-                cd.c cVar = this.f7675k;
+                cd.c cVar = this.f7674k;
                 String str3 = this.e;
                 int i10 = cVar.i(str3);
                 if (i10 != -1) {
@@ -153,22 +153,22 @@ public abstract class j extends k {
         }
         this.e = null;
         this.h = false;
-        this.f7673i = false;
+        this.f7672i = false;
         k.c(sb2);
-        this.f7672g = null;
+        this.f7671g = null;
     }
 
     @Override
     public j b() {
-        this.f7670c = null;
+        this.f7669c = null;
         this.d = null;
         this.e = null;
-        k.c(this.f7671f);
-        this.f7672g = null;
+        k.c(this.f7670f);
+        this.f7671g = null;
         this.h = false;
-        this.f7673i = false;
-        this.f7674j = false;
-        this.f7675k = null;
+        this.f7672i = false;
+        this.f7673j = false;
+        this.f7674k = null;
         return this;
     }
 }

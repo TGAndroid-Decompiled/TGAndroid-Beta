@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.ix;
-public final class q extends ml0 {
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.hx;
+public final class q extends wl0 {
     public final int X2;
-    public final ix Y2;
+    public final hx Y2;
 
-    public q(ix ixVar, Context context, int i10) {
+    public q(hx hxVar, Context context, int i10) {
         super(context, null);
         this.X2 = i10;
-        this.Y2 = ixVar;
+        this.Y2 = hxVar;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class q extends ml0 {
         boolean z10;
         switch (this.X2) {
             case 1:
-                ix ixVar = this.Y2;
-                ArrayList arrayList = ixVar.P;
+                hx hxVar = this.Y2;
+                ArrayList arrayList = hxVar.P;
                 arrayList.clear();
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
@@ -42,13 +42,13 @@ public final class q extends ml0 {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (R != ixVar.f576y.size() - 1) {
+                    if (R != hxVar.f576y.size() - 1) {
                         z11 = false;
                     }
                     a0Var.f496c = z11;
                     arrayList.add(a0Var);
                 }
-                Collections.sort(arrayList, ixVar.f573w0);
+                Collections.sort(arrayList, hxVar.f573w0);
                 while (i10 < arrayList.size()) {
                     a0 a0Var2 = (a0) arrayList.get(i10);
                     int save = canvas.save();
@@ -77,8 +77,8 @@ public final class q extends ml0 {
         switch (this.X2) {
             case 0:
                 if (motionEvent.getAction() == 0) {
-                    ix ixVar = this.Y2;
-                    if (ixVar.f549c0 > 0.2f || ixVar.getAlpha() == 0.0f) {
+                    hx hxVar = this.Y2;
+                    if (hxVar.f549c0 > 0.2f || hxVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }

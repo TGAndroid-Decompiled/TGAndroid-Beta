@@ -6,33 +6,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class k5 implements Runnable {
-    public final int f25513a;
-    public final m5 f25514b;
-    public final ArrayList f25515c;
+    public final int f25639a;
+    public final m5 f25640b;
+    public final ArrayList f25641c;
     public final HashSet d;
 
     public k5(m5 m5Var, ArrayList arrayList, HashSet hashSet, int i10) {
-        this.f25513a = i10;
-        this.f25514b = m5Var;
-        this.f25515c = arrayList;
+        this.f25639a = i10;
+        this.f25640b = m5Var;
+        this.f25641c = arrayList;
         this.d = hashSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f25513a) {
+        switch (this.f25639a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new k5(this.f25514b, this.f25515c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new k5(this.f25640b, this.f25641c, this.d, 1));
                 return;
             default:
-                m5 m5Var = this.f25514b;
-                m5Var.d(this.f25515c);
+                m5 m5Var = this.f25640b;
+                m5Var.d(this.f25641c);
                 HashSet hashSet = this.d;
                 if (!hashSet.isEmpty()) {
                     ArrayList<Long> arrayList = new ArrayList<>(hashSet);
                     TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
                     tL_messages_getCustomEmojiDocuments.document_id = arrayList;
-                    ConnectionsManager.getInstance(m5Var.e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.mo(3, m5Var, arrayList));
+                    ConnectionsManager.getInstance(m5Var.e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.lo(3, m5Var, arrayList));
                     return;
                 }
                 return;

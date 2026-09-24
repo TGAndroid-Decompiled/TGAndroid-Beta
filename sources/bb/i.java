@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import rd.p;
 import za.a0;
-import za.m;
+import za.n;
 import zd.c0;
 public final class i extends kd.j implements p {
     public final int f3468a;
@@ -33,11 +33,11 @@ public final class i extends kd.j implements p {
             case 3:
                 return new i((p) this.f3470c, this.d, cVar, 3);
             case 4:
-                return new i((m) this.f3470c, (id.h) this.d, cVar, 4);
+                return new i((n) this.f3470c, (id.h) this.d, cVar, 4);
             case 5:
                 return new i((a0) this.f3470c, (String) this.d, cVar, 5);
             default:
-                return new i((ni.f) this.f3470c, (ArrayList) this.d, cVar, 6);
+                return new i((oi.f) this.f3470c, (ArrayList) this.d, cVar, 6);
         }
     }
 
@@ -45,24 +45,24 @@ public final class i extends kd.j implements p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f3468a) {
             case 0:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9603a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9602a);
             case 1:
-                return ((i) create((k1.t) obj, (id.c) obj2)).invokeSuspend(gd.i.f9603a);
+                return ((i) create((k1.t) obj, (id.c) obj2)).invokeSuspend(gd.i.f9602a);
             case 2:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9603a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9602a);
             case 3:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9603a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9602a);
             case 4:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9603a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9602a);
             case 5:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9603a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9602a);
             default:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9603a);
+                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f9602a);
         }
     }
 
     @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r22) {
+    public final java.lang.Object invokeSuspend(java.lang.Object r21) {
         throw new UnsupportedOperationException("Method not decompiled: bb.i.invokeSuspend(java.lang.Object):java.lang.Object");
     }
 

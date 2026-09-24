@@ -10,20 +10,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.kj0;
-import org.telegram.ui.ly;
-import org.telegram.ui.ry;
+import org.telegram.ui.ky;
+import org.telegram.ui.qy;
 import org.telegram.ui.wf1;
-public final class b0 implements kj0, ly {
-    public final b1 f38626a;
-    public final boolean[] f38627b;
-    public final String f38628c;
+public final class b0 implements kj0, ky {
+    public final b1 f38979a;
+    public final boolean[] f38980b;
+    public final String f38981c;
     public final TL_keyboard.TL_buttonTypeRequestPeer d;
     public final da e;
 
     public b0(b1 b1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, da daVar) {
-        this.f38626a = b1Var;
-        this.f38627b = zArr;
-        this.f38628c = str;
+        this.f38979a = b1Var;
+        this.f38980b = zArr;
+        this.f38981c = str;
         this.d = tL_buttonTypeRequestPeer;
         this.e = daVar;
     }
@@ -34,7 +34,7 @@ public final class b0 implements kj0, ly {
     }
 
     @Override
-    public boolean K(ry ryVar) {
+    public boolean K(qy qyVar) {
         return false;
     }
 
@@ -42,12 +42,12 @@ public final class b0 implements kj0, ly {
     public void a(ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
             int i10 = 0;
-            this.f38627b[0] = true;
+            this.f38980b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            b1 b1Var = this.f38626a;
+            b1 b1Var = this.f38979a;
             MessagesController.getInstance(b1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(b1Var.U);
-            String str = this.f38628c;
+            String str = this.f38981c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             int size = arrayList.size();
@@ -61,15 +61,15 @@ public final class b0 implements kj0, ly {
     }
 
     @Override
-    public boolean u(ry ryVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
+    public boolean u(qy qyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
         if (!arrayList.isEmpty()) {
             int i12 = 0;
-            this.f38627b[0] = true;
+            this.f38980b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            b1 b1Var = this.f38626a;
+            b1 b1Var = this.f38979a;
             MessagesController.getInstance(b1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(b1Var.U);
-            String str = this.f38628c;
+            String str = this.f38981c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             HashSet hashSet = new HashSet();
@@ -85,7 +85,7 @@ public final class b0 implements kj0, ly {
             }
             ConnectionsManager.getInstance(b1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(b1Var, this.e, str, 1));
         }
-        ryVar.finishFragment();
+        qyVar.finishFragment();
         return true;
     }
 }

@@ -8,7 +8,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import w7.p;
+import w7.q;
 public abstract class b {
     public static e a(d6 d6Var) {
         e eVar = new e(d6Var);
@@ -18,11 +18,11 @@ public abstract class b {
         eVar.d(285212672, 83886079);
         float dpf2 = AndroidUtilities.dpf2(2.0f);
         float dpf22 = AndroidUtilities.dpf2(0.33333334f);
-        eVar.f7726n = dpf2;
-        eVar.f7727r = dpf22;
+        eVar.f7725n = dpf2;
+        eVar.f7726r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.4f);
         float dpf24 = AndroidUtilities.dpf2(0.4f);
-        eVar.f7725f = dpf23;
+        eVar.f7724f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
@@ -35,7 +35,7 @@ public abstract class b {
         eVar.d(536870912, 0);
         float dpf2 = AndroidUtilities.dpf2(0.5f);
         float dpf22 = AndroidUtilities.dpf2(0.5f);
-        eVar.f7725f = dpf2;
+        eVar.f7724f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
@@ -65,11 +65,11 @@ public abstract class b {
         eVar.d(1073741824, 0);
         float dpf2 = AndroidUtilities.dpf2(3.6666667f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f7726n = dpf2;
-        eVar.f7727r = dpf22;
+        eVar.f7725n = dpf2;
+        eVar.f7726r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.5f);
         float dpf24 = AndroidUtilities.dpf2(0.5f);
-        eVar.f7725f = dpf23;
+        eVar.f7724f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
@@ -82,11 +82,11 @@ public abstract class b {
         eVar.d(536870912, 0);
         float dpf2 = AndroidUtilities.dpf2(3.3333333f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f7726n = dpf2;
-        eVar.f7727r = dpf22;
+        eVar.f7725n = dpf2;
+        eVar.f7726r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(1.0f);
         float dpf24 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f7725f = dpf23;
+        eVar.f7724f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
@@ -99,11 +99,11 @@ public abstract class b {
         eVar.d(536870912, 83886079);
         float dpf2 = AndroidUtilities.dpf2(2.667f);
         float dpf22 = AndroidUtilities.dpf2(0.85f);
-        eVar.f7726n = dpf2;
-        eVar.f7727r = dpf22;
+        eVar.f7725n = dpf2;
+        eVar.f7726r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.4f);
         float dpf24 = AndroidUtilities.dpf2(0.4f);
-        eVar.f7725f = dpf23;
+        eVar.f7724f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
@@ -114,11 +114,11 @@ public abstract class b {
         eVar.f(1157627903, 0);
         eVar.e(587202559, 0);
         eVar.d(939524096, 0);
-        eVar.f7726n = AndroidUtilities.dpf2(3.5f);
-        eVar.f7727r = 0.0f;
+        eVar.f7725n = AndroidUtilities.dpf2(3.5f);
+        eVar.f7726r = 0.0f;
         float dpf2 = AndroidUtilities.dpf2(0.6666667f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f7725f = dpf2;
+        eVar.f7724f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
@@ -134,7 +134,7 @@ public abstract class b {
         eVar.e(352321535, 352321535);
         float dpf2 = AndroidUtilities.dpf2(0.6666667f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f7725f = dpf2;
+        eVar.f7724f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
@@ -145,11 +145,11 @@ public abstract class b {
         eVar.f(-1, 553648127);
         eVar.e(0, 553648127);
         eVar.d(1207959552, 83886079);
-        eVar.f7726n = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f7727r = 0.0f;
+        eVar.f7725n = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f7726r = 0.0f;
         float dpf2 = AndroidUtilities.dpf2(0.67f);
         float dpf22 = AndroidUtilities.dpf2(0.67f);
-        eVar.f7725f = dpf2;
+        eVar.f7724f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
@@ -160,11 +160,11 @@ public abstract class b {
         eVar.f(1157627903, 0);
         eVar.e(587202559, 0);
         eVar.d(637534208, 0);
-        eVar.f7726n = AndroidUtilities.dpf2(4.0f);
-        eVar.f7727r = 0.0f;
+        eVar.f7725n = AndroidUtilities.dpf2(4.0f);
+        eVar.f7726r = 0.0f;
         float dpf2 = AndroidUtilities.dpf2(0.6666667f);
         float dpf22 = AndroidUtilities.dpf2(0.6666667f);
-        eVar.f7725f = dpf2;
+        eVar.f7724f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
@@ -176,17 +176,17 @@ public abstract class b {
         eVar.d(805306368, 83886079);
         float dpf2 = AndroidUtilities.dpf2(4.0f);
         float dpf22 = AndroidUtilities.dpf2(0.33333334f);
-        eVar.f7726n = dpf2;
-        eVar.f7727r = dpf22;
+        eVar.f7725n = dpf2;
+        eVar.f7726r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.4f);
         float dpf24 = AndroidUtilities.dpf2(0.4f);
-        eVar.f7725f = dpf23;
+        eVar.f7724f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
 
     public static int m(float f7, int i10, int i11) {
-        float a2 = p.a(f7, 0.0f, 1.0f);
+        float a2 = q.a(f7, 0.0f, 1.0f);
         if (a2 <= 0.0f) {
             return Color.argb(0, 0, 0, 0);
         }
@@ -200,7 +200,7 @@ public abstract class b {
         int green2 = Color.green(i11);
         int blue2 = Color.blue(i11);
         float f10 = 1.0f - a2;
-        return Color.argb(p.b(Math.round(a2 * 255.0f), 0, 255), p.b(Math.round((red2 - (red * f10)) / a2), 0, 255), p.b(Math.round((green2 - (green * f10)) / a2), 0, 255), p.b(Math.round((blue2 - (blue * f10)) / a2), 0, 255));
+        return Color.argb(q.b(Math.round(a2 * 255.0f), 0, 255), q.b(Math.round((red2 - (red * f10)) / a2), 0, 255), q.b(Math.round((green2 - (green * f10)) / a2), 0, 255), q.b(Math.round((blue2 - (blue * f10)) / a2), 0, 255));
     }
 
     public static e n(d6 d6Var) {
@@ -211,11 +211,11 @@ public abstract class b {
         eVar.d(536870912, 83886079);
         float dpf2 = AndroidUtilities.dpf2(2.667f);
         float dpf22 = AndroidUtilities.dpf2(0.85f);
-        eVar.f7726n = dpf2;
-        eVar.f7727r = dpf22;
+        eVar.f7725n = dpf2;
+        eVar.f7726r = dpf22;
         float dpf23 = AndroidUtilities.dpf2(0.4f);
         float dpf24 = AndroidUtilities.dpf2(0.4f);
-        eVar.f7725f = dpf23;
+        eVar.f7724f = dpf23;
         eVar.h = dpf24;
         return eVar;
     }
@@ -228,7 +228,7 @@ public abstract class b {
         eVar.d(536870912, 0);
         float dpf2 = AndroidUtilities.dpf2(0.55f);
         float dpf22 = AndroidUtilities.dpf2(0.55f);
-        eVar.f7725f = dpf2;
+        eVar.f7724f = dpf2;
         eVar.h = dpf22;
         return eVar;
     }
@@ -239,9 +239,9 @@ public abstract class b {
         eVar.f(0, 0);
         eVar.e(0, 0);
         eVar.d(0, 0);
-        eVar.f7726n = 0.0f;
-        eVar.f7727r = 0.0f;
-        eVar.f7725f = 0.0f;
+        eVar.f7725n = 0.0f;
+        eVar.f7726r = 0.0f;
+        eVar.f7724f = 0.0f;
         eVar.h = 0.0f;
         return eVar;
     }
@@ -252,9 +252,9 @@ public abstract class b {
         eVar.f(0, 0);
         eVar.e(0, 0);
         eVar.d(0, 0);
-        eVar.f7726n = 0.0f;
-        eVar.f7727r = 0.0f;
-        eVar.f7725f = 0.0f;
+        eVar.f7725n = 0.0f;
+        eVar.f7726r = 0.0f;
+        eVar.f7724f = 0.0f;
         eVar.h = 0.0f;
         return eVar;
     }

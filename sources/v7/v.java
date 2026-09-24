@@ -1,6 +1,14 @@
 package v7;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class v {
-    public static androidx.emoji2.text.q a(android.content.Context r8) {
-        throw new UnsupportedOperationException("Method not decompiled: v7.v.a(android.content.Context):androidx.emoji2.text.q");
+    public static void a(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
+        }
+        parcel.writeInt(0);
     }
 }

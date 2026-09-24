@@ -1,36 +1,65 @@
 package qg;
 
-import android.view.ViewGroup;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.ll0;
-public final class v1 extends ll0 {
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+public final class v1 extends GestureDetector.SimpleOnGestureListener {
+    public float f41946a;
+    public boolean f41947b;
+    public float f41948c;
+    public final x1 d;
+
+    public v1(x1 x1Var) {
+        this.d = x1Var;
     }
 
     @Override
-    public final int h() {
-        return pg.k0.c().size();
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        q1 q1Var = (q1) c1Var.f42627a;
-        pg.k0 k0Var = (pg.k0) pg.k0.c().get(i10);
-        q1Var.getClass();
-        q1Var.setTypeface(k0Var.d());
-        String str = k0Var.f40843c;
-        if (str == null) {
-            str = LocaleController.getString(k0Var.f40842b);
+    public final boolean onDown(MotionEvent motionEvent) {
+        float f7;
+        x1 x1Var = this.d;
+        boolean contains = x1Var.e.contains(motionEvent.getX(), motionEvent.getY());
+        if (x1Var.f41981f != contains) {
+            x1Var.f41981f = contains;
+            x1Var.invalidate();
+            if (contains) {
+                w1 w1Var = x1Var.K;
+                if (w1Var != null) {
+                    f7 = w1Var.get();
+                } else {
+                    f7 = x1Var.H.f41253c;
+                }
+                this.f41946a = f7;
+                this.f41947b = false;
+            }
         }
-        q1Var.setText(str);
+        return x1Var.f41981f;
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        q1 q1Var = new q1(viewGroup.getContext());
-        q1Var.setLayoutParams(new s4.p0(-1, -2));
-        return new s4.c1(q1Var);
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        x1 x1Var = this.d;
+        if (x1Var.f41981f) {
+            if (!this.f41947b) {
+                this.f41948c = motionEvent.getY() - motionEvent2.getY();
+                this.f41947b = true;
+            }
+            float f11 = this.f41946a;
+            float y3 = ((motionEvent.getY() - motionEvent2.getY()) - this.f41948c) / x1Var.e.height();
+            float f12 = x1Var.G;
+            float f13 = x1Var.F;
+            float a2 = w7.q.a(com.google.android.gms.internal.vision.e2.z(f12, f13, y3, f11), f13, f12);
+            w1 w1Var = x1Var.K;
+            if (w1Var != null) {
+                w1Var.K(a2);
+            } else {
+                x1Var.H.f41253c = a2;
+            }
+            x1Var.f41985w.d(a2, true);
+            Runnable runnable = x1Var.I;
+            if (runnable != null) {
+                runnable.run();
+            }
+            x1Var.invalidate();
+        }
+        return x1Var.f41981f;
     }
 }

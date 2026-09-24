@@ -16,9 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
-import n7.a1;
-import org.telegram.ui.Cells.q3;
-import org.telegram.ui.Components.mg;
+import n7.z0;
+import org.telegram.ui.Components.ng;
 import w7.la;
 import y8.k0;
 public final class v implements Runnable {
@@ -39,7 +38,7 @@ public final class v implements Runnable {
         if (fVar != null) {
             ((e6.h) fVar).o((String) this.d);
         } else {
-            g6.v.f9454n0.b("Discarded message for unknown namespace '%s'", (String) this.f3925c);
+            g6.v.f9453n0.b("Discarded message for unknown namespace '%s'", (String) this.f3925c);
         }
     }
 
@@ -82,9 +81,9 @@ public final class v implements Runnable {
             case 4:
                 ca.c cVar = (ca.c) this.d;
                 cVar.b((w9.b) this.f3924b, (TaskCompletionSource) this.f3925c);
-                ((AtomicInteger) cVar.f4185i.f15276c).set(0);
+                ((AtomicInteger) cVar.f4185i.f15468c).set(0);
                 double min = Math.min(3600000.0d, Math.pow(cVar.f4181b, cVar.a()) * (60000.0d / cVar.f4180a));
-                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f44862b;
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f45179b;
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", str2, null);
                 }
@@ -132,7 +131,7 @@ public final class v implements Runnable {
                 ((Handler) this.d).post(new i9.s(20, (z) this.f3925c, obj));
                 return;
             case 9:
-                ((mg) this.d).n((File) this.f3925c, (ArrayList) this.f3924b);
+                ((ng) this.d).n((File) this.f3925c, (ArrayList) this.f3924b);
                 return;
             case 10:
                 u4.f fVar2 = (u4.f) this.d;
@@ -143,7 +142,7 @@ public final class v implements Runnable {
                         lVar2.get();
                         return;
                     } catch (Exception e) {
-                        fVar2.f43565c.l(e);
+                        fVar2.f43888c.l(e);
                         return;
                     }
                 }
@@ -173,7 +172,7 @@ public final class v implements Runnable {
                             }
                         } catch (IOException | OutOfMemoryError | RuntimeException e7) {
                             Log.wtf("ShortcutInfoCompatSaver", "Unable to write bitmap to file", e7);
-                            throw new RuntimeException(q3.i("Unable to write bitmap to file ", str3), e7);
+                            throw new RuntimeException(v7.j.g("Unable to write bitmap to file ", str3), e7);
                         }
                     }
                     throw new IllegalArgumentException("path is empty");
@@ -185,12 +184,12 @@ public final class v implements Runnable {
             default:
                 k0 k0Var = (k0) this.f3925c;
                 y8.e0 e0Var = (y8.e0) this.d;
-                Task<byte[]> onRequest = ((x8.m) this.f3924b).f45645c.onRequest(k0Var.d, k0Var.f46336b, k0Var.f46337c);
+                Task<byte[]> onRequest = ((x8.m) this.f3924b).f45959c.onRequest(k0Var.d, k0Var.f46650b, k0Var.f46651c);
                 if (onRequest == null) {
                     x8.m.M0(e0Var, false, null);
                     return;
                 } else {
-                    onRequest.addOnCompleteListener(new ka.c(e0Var, 21));
+                    onRequest.addOnCompleteListener(new l.d(e0Var));
                     return;
                 }
         }
@@ -217,10 +216,10 @@ public final class v implements Runnable {
         this.f3925c = obj3;
     }
 
-    public v(la laVar, a1 a1Var, String str) {
+    public v(la laVar, z0 z0Var, String str) {
         this.f3923a = 12;
         this.f3924b = laVar;
-        this.f3925c = a1Var;
+        this.f3925c = z0Var;
         this.d = str;
     }
 }

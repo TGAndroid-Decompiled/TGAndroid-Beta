@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 import org.telegram.messenger.AndroidUtilities;
-public final class wb1 extends org.telegram.ui.Components.ml0 {
+public final class wb1 extends org.telegram.ui.Components.wl0 {
     public final int X2;
 
     public wb1(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {

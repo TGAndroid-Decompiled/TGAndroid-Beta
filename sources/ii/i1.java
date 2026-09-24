@@ -19,13 +19,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.b61;
+import org.telegram.ui.Components.c11;
 import org.telegram.ui.Components.cu;
-import org.telegram.ui.Components.n51;
-import org.telegram.ui.Components.o01;
-import org.telegram.ui.Components.x80;
+import org.telegram.ui.Components.h90;
 public final class i1 extends cu {
     public boolean E;
-    public x80 F;
+    public h90 F;
     public Paint G;
     public Layout H;
     public int I;
@@ -67,7 +67,7 @@ public final class i1 extends cu {
                 }
                 h1 h1Var = i1Var.f11415c;
                 if (h1Var != null && charSequence != null && i11 > i10 && i12 == i13) {
-                    h1Var.M(charSequence.subSequence(i10, i11));
+                    h1Var.K(charSequence.subSequence(i10, i11));
                 }
                 return spanned.subSequence(i12, i13);
             }
@@ -108,7 +108,7 @@ public final class i1 extends cu {
     }
 
     @Override
-    public final n51 createUrlSpan(String str) {
+    public final b61 createUrlSpan(String str) {
         return g6.k(str);
     }
 
@@ -118,7 +118,7 @@ public final class i1 extends cu {
         h1 h1Var;
         if (keyEvent.getKeyCode() == 61) {
             if (keyEvent.getAction() == 0 && (h1Var = this.f11415c) != null) {
-                h1Var.b0(keyEvent.isShiftPressed());
+                h1Var.X(keyEvent.isShiftPressed());
                 return true;
             }
         } else {
@@ -173,10 +173,10 @@ public final class i1 extends cu {
     }
 
     public final void n() {
-        org.telegram.ui.ActionBar.h4 h4Var = this.floatingActionMode;
-        if (h4Var != null) {
+        org.telegram.ui.ActionBar.g4 g4Var = this.floatingActionMode;
+        if (g4Var != null) {
             try {
-                h4Var.finish();
+                g4Var.finish();
             } catch (Exception unused) {
             }
         }
@@ -239,12 +239,12 @@ public final class i1 extends cu {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        o01[] o01VarArr;
+        c11[] c11VarArr;
         int i10;
         int i11;
         float f7;
         Layout layout = getLayout();
-        x80 x80Var = null;
+        h90 h90Var = null;
         if (layout == null) {
             this.F = null;
             this.H = null;
@@ -258,17 +258,17 @@ public final class i1 extends cu {
                 this.F = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (o01 o01Var : (o01[]) spanned.getSpans(0, spanned.length(), o01.class)) {
-                        int i12 = o01Var.f26561b.f26312a;
+                    for (c11 c11Var : (c11[]) spanned.getSpans(0, spanned.length(), c11.class)) {
+                        int i12 = c11Var.f23123b.f22840a;
                         if ((65536 & i12) != 0) {
-                            int spanStart = spanned.getSpanStart(o01Var);
-                            int spanEnd = spanned.getSpanEnd(o01Var);
+                            int spanStart = spanned.getSpanStart(c11Var);
+                            int spanEnd = spanned.getSpanEnd(c11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
-                                if (x80Var == null) {
-                                    x80Var = new x80(0);
-                                    x80Var.f29950n = false;
+                                if (h90Var == null) {
+                                    h90Var = new h90(0);
+                                    h90Var.f24694n = false;
                                 }
-                                x80Var.d(layout, spanStart, 0.0f);
+                                h90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
                                     i10 = -AndroidUtilities.dp(6.0f);
                                 } else if ((i12 & 16384) != 0) {
@@ -286,15 +286,15 @@ public final class i1 extends cu {
                                 } else {
                                     i11 = 0;
                                 }
-                                x80Var.f29951o = i11;
-                                layout.getSelectionPath(spanStart, spanEnd, x80Var);
+                                h90Var.f24695o = i11;
+                                layout.getSelectionPath(spanStart, spanEnd, h90Var);
                             }
                         }
                     }
-                    if (x80Var != null) {
-                        x80Var.f29950n = true;
+                    if (h90Var != null) {
+                        h90Var.f24694n = true;
                     }
-                    this.F = x80Var;
+                    this.F = h90Var;
                 }
             }
         }
@@ -302,7 +302,7 @@ public final class i1 extends cu {
             if (this.G == null) {
                 Paint paint = new Paint(1);
                 this.G = paint;
-                paint.setPathEffect(x80.c());
+                paint.setPathEffect(h90.c());
             }
             this.G.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.K6, this.e) & 872415231);
             canvas.save();
@@ -331,7 +331,7 @@ public final class i1 extends cu {
         super.onSelectionChanged(i10, i11);
         h1 h1Var = this.f11415c;
         if (h1Var != null) {
-            h1Var.D(this, i10, i11);
+            h1Var.B(this, i10, i11);
         }
     }
 
@@ -346,7 +346,7 @@ public final class i1 extends cu {
         h1 h1Var;
         h1 h1Var2;
         if (i10 != 16908319 || (h1Var2 = this.f11415c) == null || !h1Var2.f()) {
-            if (i10 == 16908322 && (h1Var = this.f11415c) != null && h1Var.q(this)) {
+            if (i10 == 16908322 && (h1Var = this.f11415c) != null && h1Var.p(this)) {
                 return true;
             }
             return super.onTextContextMenuItem(i10);
@@ -659,7 +659,7 @@ public final class i1 extends cu {
         }
         setHintTextColor(v02);
         setCursorColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var));
-        setHandlesColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18934l6, d6Var));
+        setHandlesColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19190l6, d6Var));
         m();
     }
 

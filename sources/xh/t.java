@@ -7,7 +7,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-public final class t extends yh.v3 {
+public final class t extends yh.u3 {
     public final Path A0;
     public final float[] B0;
     public final v C0;
@@ -40,9 +40,9 @@ public final class t extends yh.v3 {
     @Override
     public final void j(int i10) {
         v vVar = this.C0;
-        TextView textView = vVar.f46103b0;
+        TextView textView = vVar.f46417b0;
         if (textView != null && h6.B1(textView.getBackground(), i10, false)) {
-            vVar.f46103b0.invalidate();
+            vVar.f46417b0.invalidate();
         }
     }
 

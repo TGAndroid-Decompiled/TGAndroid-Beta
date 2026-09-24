@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.w9;
 public final class a7 extends w9 {
-    public vh.g G;
+    public vh.f G;
     public Path H;
     public RectF I;
     public Drawable J;
@@ -20,7 +20,7 @@ public final class a7 extends w9 {
         Drawable drawable = this.J;
         super.dispatchDraw(canvas);
         if (this.G == null) {
-            this.G = vh.g.e(this);
+            this.G = vh.f.e(this);
         }
         if (this.G != null) {
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -40,18 +40,18 @@ public final class a7 extends w9 {
 
     @Override
     public final void onAttachedToWindow() {
-        vh.g gVar = this.G;
-        if (gVar != null) {
-            gVar.a(this);
+        vh.f fVar = this.G;
+        if (fVar != null) {
+            fVar.a(this);
         }
         super.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        vh.g gVar = this.G;
-        if (gVar != null) {
-            gVar.b(this);
+        vh.f fVar = this.G;
+        if (fVar != null) {
+            fVar.b(this);
         }
         super.onDetachedFromWindow();
     }

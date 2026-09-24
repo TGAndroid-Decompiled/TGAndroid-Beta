@@ -1,65 +1,45 @@
 package pg;
-
-import android.graphics.PointF;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 public final class w0 {
-    public float f40980a;
-    public float f40981b;
-    public float f40982c;
-    public float d;
-    public float e;
-    public float f40983f;
-    public double f40984g;
-    public int h;
-    public int f40985i;
-    public ByteBuffer f40986j;
+    public final double f41284a;
+    public final double f41285b;
+    public final double f41286c;
+    public boolean d;
 
-    public final boolean a(PointF pointF, float f7, float f10, float f11, int i10) {
-        if ((i10 != -1 && i10 >= this.f40985i) || this.f40986j.position() == this.f40986j.limit()) {
-            d();
+    public w0(double d, double d10, double d11) {
+        this.f41284a = d;
+        this.f41285b = d10;
+        this.f41286c = d11;
+    }
+
+    public final float a(w0 w0Var) {
+        return (float) Math.sqrt(Math.pow(this.f41286c - w0Var.f41286c, 2.0d) + Math.pow(this.f41285b - w0Var.f41285b, 2.0d) + Math.pow(this.f41284a - w0Var.f41284a, 2.0d));
+    }
+
+    public final w0 b(w0 w0Var) {
+        return new w0((this.f41284a + w0Var.f41284a) * 0.5d, (this.f41285b + w0Var.f41285b) * 0.5d, (this.f41286c + w0Var.f41286c) * 0.5d);
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        if (i10 != -1) {
-            this.f40986j.position(i10 * 20);
+        if (obj == this) {
+            return true;
         }
-        this.f40986j.putFloat(pointF.x);
-        this.f40986j.putFloat(pointF.y);
-        this.f40986j.putFloat(f7);
-        this.f40986j.putFloat(f10);
-        this.f40986j.putFloat(f11);
+        if (!(obj instanceof w0)) {
+            return false;
+        }
+        w0 w0Var = (w0) obj;
+        if (this.f41284a != w0Var.f41284a || this.f41285b != w0Var.f41285b || this.f41286c != w0Var.f41286c) {
+            return false;
+        }
         return true;
     }
 
-    public final void b(int i10) {
-        int i11 = this.h + i10;
-        if (i11 > this.f40985i || this.f40986j == null) {
-            d();
-        }
-        this.h = i11;
-    }
-
-    public final void c() {
-        this.h = 0;
-        if (this.f40986j != null) {
-            return;
-        }
-        this.f40985i = 256;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(256 * 5 * 4);
-        this.f40986j = allocateDirect;
-        allocateDirect.order(ByteOrder.nativeOrder());
-        this.f40986j.position(0);
-    }
-
-    public final void d() {
-        if (this.f40986j != null) {
-            this.f40986j = null;
-        }
-        int max = Math.max(this.f40985i * 2, 256);
-        this.f40985i = max;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 20);
-        this.f40986j = allocateDirect;
-        allocateDirect.order(ByteOrder.nativeOrder());
-        this.f40986j.position(0);
+    public w0(double d, double d10, double d11, int i10) {
+        this.f41284a = d;
+        this.f41285b = d10;
+        this.f41286c = d11;
+        this.d = true;
     }
 }

@@ -1,39 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Matrix;
+import android.view.TextureView;
 import android.view.View;
-import org.telegram.ui.PhotoViewer;
-public final class nf0 implements Runnable {
-    public final int f26419a;
-    public final pf0 f26420b;
+public final class nf0 extends TextureView {
+    public final tf0 f26717a;
 
-    public nf0(pf0 pf0Var, int i10) {
-        this.f26419a = i10;
-        this.f26420b = pf0Var;
+    public nf0(tf0 tf0Var, Context context) {
+        super(context);
+        this.f26717a = tf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26419a) {
-            case 0:
-                org.telegram.ui.bu0 bu0Var = this.f26420b.f27020a;
-                RadialProgressView radialProgressView = bu0Var.f27333n;
-                View view = bu0Var.f27334r;
-                radialProgressView.setVisibility(4);
-                if (bu0Var.F) {
-                    bu0Var.F = false;
-                    bu0Var.setPlaybackSpeed(bu0Var.E);
-                }
-                view.setEnabled(true);
-                view.setAlpha(1.0f);
-                PhotoViewer photoViewer = bu0Var.f27330b;
-                if (photoViewer != null) {
-                    photoViewer.z0();
-                    return;
-                }
-                return;
-            default:
-                this.f26420b.f27020a.h.setVisibility(4);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        View.MeasureSpec.getSize(i10);
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void setTransform(Matrix matrix) {
+        super.setTransform(matrix);
+        wz wzVar = this.f26717a.f28490l0;
+        if (wzVar != null) {
+            int width = getWidth();
+            int height = getHeight();
+            pa paVar = wzVar.I;
+            if (paVar != null) {
+                Matrix matrix2 = paVar.v;
+                matrix.invert(matrix2);
+                float f7 = width;
+                float f10 = height;
+                matrix2.preScale(f7, f10);
+                matrix2.postScale(1.0f / f7, 1.0f / f10);
+                paVar.c(matrix2);
+                wzVar.e(false, false, false);
+            }
         }
     }
 }

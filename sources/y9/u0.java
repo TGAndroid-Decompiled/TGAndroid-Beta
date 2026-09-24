@@ -1,19 +1,19 @@
 package y9;
 public final class u0 extends v1 {
-    public final Double f46590a;
-    public final int f46591b;
-    public final boolean f46592c;
+    public final Double f46904a;
+    public final int f46905b;
+    public final boolean f46906c;
     public final int d;
     public final long e;
-    public final long f46593f;
+    public final long f46907f;
 
     public u0(Double d, int i10, boolean z10, int i11, long j3, long j10) {
-        this.f46590a = d;
-        this.f46591b = i10;
-        this.f46592c = z10;
+        this.f46904a = d;
+        this.f46905b = i10;
+        this.f46906c = z10;
         this.d = i11;
         this.e = j3;
-        this.f46593f = j10;
+        this.f46907f = j10;
     }
 
     public final boolean equals(Object obj) {
@@ -22,10 +22,10 @@ public final class u0 extends v1 {
         }
         if (obj instanceof v1) {
             v1 v1Var = (v1) obj;
-            Double d = this.f46590a;
-            if (d != null ? d.equals(((u0) v1Var).f46590a) : ((u0) v1Var).f46590a == null) {
+            Double d = this.f46904a;
+            if (d != null ? d.equals(((u0) v1Var).f46904a) : ((u0) v1Var).f46904a == null) {
                 u0 u0Var = (u0) v1Var;
-                if (this.f46591b == u0Var.f46591b && this.f46592c == u0Var.f46592c && this.d == u0Var.d && this.e == u0Var.e && this.f46593f == u0Var.f46593f) {
+                if (this.f46905b == u0Var.f46905b && this.f46906c == u0Var.f46906c && this.d == u0Var.d && this.e == u0Var.e && this.f46907f == u0Var.f46907f) {
                     return true;
                 }
             }
@@ -36,35 +36,35 @@ public final class u0 extends v1 {
     public final int hashCode() {
         int hashCode;
         int i10;
-        Double d = this.f46590a;
+        Double d = this.f46904a;
         if (d == null) {
             hashCode = 0;
         } else {
             hashCode = d.hashCode();
         }
-        int i11 = (((hashCode ^ 1000003) * 1000003) ^ this.f46591b) * 1000003;
-        if (this.f46592c) {
+        int i11 = (((hashCode ^ 1000003) * 1000003) ^ this.f46905b) * 1000003;
+        if (this.f46906c) {
             i10 = 1231;
         } else {
             i10 = 1237;
         }
         long j3 = this.e;
-        long j10 = this.f46593f;
+        long j10 = this.f46907f;
         return ((((((i11 ^ i10) * 1000003) ^ this.d) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Device{batteryLevel=");
-        sb2.append(this.f46590a);
+        sb2.append(this.f46904a);
         sb2.append(", batteryVelocity=");
-        sb2.append(this.f46591b);
+        sb2.append(this.f46905b);
         sb2.append(", proximityOn=");
-        sb2.append(this.f46592c);
+        sb2.append(this.f46906c);
         sb2.append(", orientation=");
         sb2.append(this.d);
         sb2.append(", ramUsed=");
         sb2.append(this.e);
         sb2.append(", diskUsed=");
-        return a4.a.s(sb2, this.f46593f, "}");
+        return a4.a.s(sb2, this.f46907f, "}");
     }
 }

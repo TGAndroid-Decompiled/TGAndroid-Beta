@@ -8,20 +8,20 @@ import ci.rc;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BotFullscreenButtons;
 public final class u2 implements View.OnLayoutChangeListener {
-    public final int f8629a;
-    public final Object f8630b;
+    public final int f8628a;
+    public final Object f8629b;
 
     public u2(Object obj, int i10) {
-        this.f8629a = i10;
-        this.f8630b = obj;
+        this.f8628a = i10;
+        this.f8629b = obj;
     }
 
     @Override
     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
         int i18;
-        int i19 = this.f8629a;
+        int i19 = this.f8628a;
         int i20 = 0;
-        Object obj = this.f8630b;
+        Object obj = this.f8629b;
         switch (i19) {
             case 0:
                 view.removeOnLayoutChangeListener(this);
@@ -35,15 +35,15 @@ public final class u2 implements View.OnLayoutChangeListener {
                     a3Var.setOffsetY(k3Var.G0);
                     a3Var.setSwipeOffsetAnimationDisallowed(false);
                 }
-                k3Var.f8439x.o(true, true);
+                k3Var.f8438x.o(true, true);
                 final AnimationNotificationsLocker animationNotificationsLocker = new AnimationNotificationsLocker();
                 animationNotificationsLocker.lock();
                 if (!k3Var.F0 && !k3Var.m()) {
-                    o1.k kVar = new o1.k(a3Var, p4.f8529b0, 0.0f);
+                    o1.k kVar = new o1.k(a3Var, p4.f8528b0, 0.0f);
                     o1.l lVar = new o1.l(0.0f);
                     lVar.a(0.75f);
                     lVar.b(500.0f);
-                    kVar.f15326u = lVar;
+                    kVar.f15518u = lVar;
                     kVar.a(new o1.f() {
                         @Override
                         public final void a(o1.h hVar, boolean z10, float f7, float f10) {
@@ -55,7 +55,7 @@ public final class u2 implements View.OnLayoutChangeListener {
                     a3Var.f(a3Var.getTopActionBarOffsetY() + (-a3Var.getOffsetY()), false, new rc(animationNotificationsLocker, 14));
                 }
                 a3Var.K = true;
-                if (k3Var.f8415d0 && botFullscreenButtons != null) {
+                if (k3Var.f8414d0 && botFullscreenButtons != null) {
                     botFullscreenButtons.setAlpha(0.0f);
                     botFullscreenButtons.animate().alpha(1.0f).setDuration(220L).start();
                     return;

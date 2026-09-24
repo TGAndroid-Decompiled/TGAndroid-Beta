@@ -30,8 +30,8 @@ public class t implements b0 {
                 u uVar = (u) this.f3793c;
                 e2.d.h(uVar.f3801k);
                 of.b bVar = uVar.f3801k;
-                long[] jArr = (long[]) bVar.f15486b;
-                long[] jArr2 = (long[]) bVar.f15487c;
+                long[] jArr = (long[]) bVar.f15678b;
+                long[] jArr2 = (long[]) bVar.f15679c;
                 int e = e2.d0.e(jArr, e2.d0.i((uVar.e * j3) / 1000000, 0L, uVar.f3800j - 1), false);
                 long j11 = 0;
                 if (e == -1) {
@@ -55,10 +55,10 @@ public class t implements b0 {
                 return (a0) this.f3793c;
             default:
                 e3.b bVar2 = (e3.b) this.f3793c;
-                a0 b10 = bVar2.f7932i[0].b(j3);
+                a0 b10 = bVar2.f7931i[0].b(j3);
                 int i12 = 1;
                 while (true) {
-                    e3.e[] eVarArr = bVar2.f7932i;
+                    e3.e[] eVarArr = bVar2.f7931i;
                     if (i12 < eVarArr.length) {
                         a0 b11 = eVarArr[i12].b(j3);
                         if (b11.f3703a.f3733b < b10.f3703a.f3733b) {

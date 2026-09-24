@@ -6,15 +6,15 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class b2 implements TextView.OnEditorActionListener {
-    public final a2 f45756a;
-    public final Utilities.Callback f45757b;
-    public final org.telegram.ui.ActionBar.b2[] f45758c;
+    public final a2 f46070a;
+    public final Utilities.Callback f46071b;
+    public final org.telegram.ui.ActionBar.a2[] f46072c;
     public final View d;
 
-    public b2(a2 a2Var, Utilities.Callback callback, org.telegram.ui.ActionBar.b2[] b2VarArr, View view) {
-        this.f45756a = a2Var;
-        this.f45757b = callback;
-        this.f45758c = b2VarArr;
+    public b2(a2 a2Var, Utilities.Callback callback, org.telegram.ui.ActionBar.a2[] a2VarArr, View view) {
+        this.f46070a = a2Var;
+        this.f46071b = callback;
+        this.f46072c = a2VarArr;
         this.d = view;
     }
 
@@ -23,13 +23,13 @@ public final class b2 implements TextView.OnEditorActionListener {
         if (i10 != 6) {
             return false;
         }
-        a2 a2Var = this.f45756a;
+        a2 a2Var = this.f46070a;
         String obj = a2Var.getText().toString();
         if (obj.length() > 0 && obj.length() <= 12) {
-            this.f45757b.run(obj);
-            org.telegram.ui.ActionBar.b2 b2Var = this.f45758c[0];
-            if (b2Var != null) {
-                b2Var.dismiss();
+            this.f46071b.run(obj);
+            org.telegram.ui.ActionBar.a2 a2Var2 = this.f46072c[0];
+            if (a2Var2 != null) {
+                a2Var2.dismiss();
             }
             View view = this.d;
             if (view != null) {

@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.os.Bundle;
-public final class fk extends zn {
-    public final int f33342f;
+public final class fk extends yn {
+    public final int f33679f;
     public boolean h;
 
-    public fk(Context context, org.telegram.ui.ActionBar.c5 c5Var, Bundle bundle, int i10) {
-        super(context, c5Var, bundle);
-        this.f33342f = i10;
+    public fk(Context context, org.telegram.ui.ActionBar.b5 b5Var, Bundle bundle, int i10) {
+        super(context, b5Var, bundle);
+        this.f33679f = i10;
     }
 
     @Override
     public final void a() {
-        switch (this.f33342f) {
+        switch (this.f33679f) {
             case 0:
                 if (!this.h) {
                     this.h = true;

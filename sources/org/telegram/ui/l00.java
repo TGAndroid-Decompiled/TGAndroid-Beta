@@ -1,113 +1,132 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class l00 extends v00 {
-    public final m00 E;
+public final class l00 extends og.b {
+    public final n00 d;
 
-    public l00(m00 m00Var, Context context, int i10, int i11) {
-        super(context, null, i10, i11);
-        this.E = m00Var;
+    public l00(n00 n00Var) {
+        this.d = n00Var;
     }
 
     @Override
-    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
-        m00 m00Var = this.E;
-        m00Var.d.Y.remove(tL_exportedChatlistInvite);
-        m00Var.d.T();
-        m00Var.d.U(true);
-    }
-
-    @Override
-    public final void c() {
-        org.telegram.ui.Components.o70 F = org.telegram.ui.Components.o70.F(this.E.d.container, null, this);
-        F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
-            public final l00 f34538b;
-
-            {
-                this.f34538b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        l00 l00Var = this.f34538b;
-                        String str = l00Var.f38253x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.xc(l00Var.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f34538b.d();
-                        return;
-                    default:
-                        this.f34538b.a();
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
-            public final l00 f34538b;
-
-            {
-                this.f34538b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        l00 l00Var = this.f34538b;
-                        String str = l00Var.f38253x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.xc(l00Var.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f34538b.d();
-                        return;
-                    default:
-                        this.f34538b.a();
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
-            public final l00 f34538b;
-
-            {
-                this.f34538b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        l00 l00Var = this.f34538b;
-                        String str = l00Var.f38253x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.xc(l00Var.E.d.Z, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f34538b.d();
-                        return;
-                    default:
-                        this.f34538b.a();
-                        return;
-                }
-            }
-        }, true);
-        if (LocaleController.isRTL) {
-            F.f26651i = 3;
+    public final boolean D(s4.c1 c1Var) {
+        int i10 = c1Var.f42949f;
+        if (i10 != 8 && i10 != 7) {
+            return false;
         }
-        F.Z();
+        return true;
+    }
+
+    public final s4.h0 F() {
+        return this.d.d.getAdapter();
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f35705d0.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return ((s00) this.d.f35705d0.get(i10)).f15700a;
+    }
+
+    @Override
+    public final void l() {
+        F().l();
+    }
+
+    @Override
+    public final void m(int i10) {
+        F().m(i10 + 1);
+    }
+
+    @Override
+    public final void p(int i10, int i11) {
+        F().p(i10 + 1, i11);
+    }
+
+    @Override
+    public final void q(int i10, int i11) {
+        F().q(i10 + 1, i11);
+    }
+
+    @Override
+    public final void r(int i10, int i11, Object obj) {
+        F().r(i10 + 1, i11, obj);
+    }
+
+    @Override
+    public final void s(int i10, int i11) {
+        F().s(i10 + 1, i11);
+    }
+
+    @Override
+    public final void t(int i10, int i11) {
+        F().t(i10 + 1, i11);
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        int i11;
+        int i12 = c1Var.f42949f;
+        View view = c1Var.f42946a;
+        ArrayList arrayList = this.d.f35705d0;
+        s00 s00Var = (s00) arrayList.get(i10);
+        int i13 = i10 + 1;
+        if (i13 < arrayList.size() && (i11 = ((s00) arrayList.get(i13)).f15700a) != 3 && i11 != 6) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i12 == 7) {
+            ((u00) view).e(s00Var.f37547m, z10);
+        } else if (i12 != 6 && i12 != 3) {
+            if (i12 != 0 && i12 == 8) {
+                i00 i00Var = (i00) view;
+                i00Var.f34322a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
+                if (i00Var.f34324c != z10) {
+                    i00Var.f34324c = z10;
+                    i00Var.setWillNotDraw(!z10);
+                }
+            }
+        } else {
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+            if (i12 == 6) {
+                e9Var.setFixedSize(0);
+                e9Var.setText(s00Var.d);
+                return;
+            }
+            e9Var.setFixedSize(12);
+            e9Var.setText("");
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View e9Var;
+        int i11;
+        n00 n00Var = this.d;
+        if (i10 == 8) {
+            e9Var = new i00(n00Var.getContext());
+            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19115h5, false));
+        } else if (i10 == 7) {
+            Context context = n00Var.getContext();
+            i11 = ((org.telegram.ui.ActionBar.e3) n00Var).currentAccount;
+            e9Var = new k00(this, context, i11, n00Var.X.f15817id);
+            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19115h5, false));
+        } else if (i10 != 6 && i10 != 3) {
+            e9Var = new m00(n00Var, n00Var.getContext());
+        } else {
+            e9Var = new org.telegram.ui.Cells.e9(n00Var.getContext());
+            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18989a7, false));
+        }
+        return new s4.c1(e9Var);
     }
 }

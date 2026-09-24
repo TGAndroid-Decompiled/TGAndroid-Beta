@@ -200,9 +200,9 @@ public class SurfaceTextureHelper {
                 this.handler.post(new gg.n(this, i10, i11, 12));
                 return;
             }
-            throw new IllegalArgumentException(hg.c.i(i11, "Texture height must be positive, but was "));
+            throw new IllegalArgumentException(hg.c.h(i11, "Texture height must be positive, but was "));
         }
-        throw new IllegalArgumentException(hg.c.i(i10, "Texture width must be positive, but was "));
+        throw new IllegalArgumentException(hg.c.h(i10, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {

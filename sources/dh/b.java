@@ -5,12 +5,12 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 public class b implements a {
-    public final d6 f7715a;
-    public final int f7716b;
-    public final float f7717c;
+    public final d6 f7714a;
+    public final int f7715b;
+    public final float f7716c;
     public int d;
     public int e;
-    public int f7718f;
+    public int f7717f;
     public int h;
 
     public b(int i10, d6 d6Var) {
@@ -24,11 +24,11 @@ public class b implements a {
 
     @Override
     public int a() {
-        return this.f7718f;
+        return this.f7717f;
     }
 
     public boolean b() {
-        if (AndroidUtilities.computePerceivedBrightness(h6.v0(this.f7716b, this.f7715a)) < 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(h6.v0(this.f7715b, this.f7714a)) < 0.721f) {
             return true;
         }
         return false;
@@ -40,14 +40,14 @@ public class b implements a {
     }
 
     public final void d() {
-        this.d = h6.l1(this.f7717c, h6.v0(this.f7716b, this.f7715a));
+        this.d = h6.l1(this.f7716c, h6.v0(this.f7715b, this.f7714a));
         if (b()) {
-            this.f7718f = 687865855;
+            this.f7717f = 687865855;
             this.h = 352321535;
             this.e = 0;
             return;
         }
-        this.f7718f = -1;
+        this.f7717f = -1;
         this.h = -1;
         this.e = 536870912;
     }
@@ -58,9 +58,9 @@ public class b implements a {
     }
 
     public b(d6 d6Var, int i10, float f7) {
-        this.f7715a = d6Var;
-        this.f7716b = i10;
-        this.f7717c = f7;
+        this.f7714a = d6Var;
+        this.f7715b = i10;
+        this.f7716c = f7;
         d();
     }
 }

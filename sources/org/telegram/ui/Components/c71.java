@@ -1,22 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.graphics.SurfaceTexture;
-public interface c71 {
-    void onError(f71 f71Var, Exception exc);
+import org.telegram.messenger.ImageReceiver;
+public final class c71 extends ImageReceiver {
+    public final d71 f23246a;
 
-    void onRenderedFirstFrame();
+    public c71(d71 d71Var) {
+        this.f23246a = d71Var;
+    }
 
-    void onRenderedFirstFrame(j2.a aVar);
-
-    void onSeekFinished(j2.a aVar);
-
-    void onSeekStarted(j2.a aVar);
-
-    void onStateChanged(boolean z10, int i10);
-
-    boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture);
-
-    void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture);
-
-    void onVideoSizeChanged(int i10, int i11, int i12, float f7);
+    @Override
+    public final void invalidate() {
+        this.f23246a.invalidate();
+    }
 }

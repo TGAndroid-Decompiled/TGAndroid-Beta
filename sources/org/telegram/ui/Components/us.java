@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public abstract class us extends v51 {
+public abstract class us extends j61 {
     public final int N;
     public final int O;
     public final ArrayList P;
@@ -19,20 +19,20 @@ public abstract class us extends v51 {
     public boolean X;
     public boolean Y;
     public int Z;
-    public int f28548a0;
-    public String f28549b0;
-    public final yp f28550c0;
+    public int f28899a0;
+    public String f28900b0;
+    public final yp f28901c0;
 
-    public us(ml0 ml0Var, Context context, int i10, int i11) {
-        super(ml0Var, context, i10, 0, false, null, null);
+    public us(wl0 wl0Var, Context context, int i10, int i11) {
+        super(wl0Var, context, i10, 0, false, null, null);
         this.P = new ArrayList();
         this.Q = new ArrayList();
         this.R = new ArrayList();
         this.S = new ArrayList();
         this.V = new ArrayList();
-        tn0 tn0Var = (tn0) this;
-        this.f28550c0 = new yp(tn0Var, 6);
-        this.f28663s = new d(tn0Var, 9);
+        go0 go0Var = (go0) this;
+        this.f28901c0 = new yp(go0Var, 6);
+        this.f25266s = new d(go0Var, 9);
         this.N = i10;
         this.O = i11;
         N(false);
@@ -51,7 +51,7 @@ public abstract class us extends v51 {
         while (i11 < size) {
             TLRPC.Dialog dialog = allDialogs.get(i11);
             i11++;
-            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f18087id));
+            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f18325id));
             if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat) && ChatObject.isPublic(chat) && !ChatObject.isNotInChat(chat)) {
                 arrayList.add(chat);
                 if (arrayList.size() >= 100) {

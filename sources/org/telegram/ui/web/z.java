@@ -6,31 +6,31 @@ import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class z implements Utilities.Callback {
-    public final int f38917a = 0;
-    public final b1 f38918b;
-    public final String f38919c;
+    public final int f39274a = 0;
+    public final b1 f39275b;
+    public final String f39276c;
     public final String d;
     public final Object e;
-    public final Object f38920f;
+    public final Object f39277f;
 
     public z(b1 b1Var, da daVar, String str, ei.t1 t1Var, String str2) {
-        this.f38918b = b1Var;
+        this.f39275b = b1Var;
         this.e = daVar;
-        this.f38919c = str;
-        this.f38920f = t1Var;
+        this.f39276c = str;
+        this.f39277f = t1Var;
         this.d = str2;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f38917a) {
+        switch (this.f39274a) {
             case 0:
                 da daVar = (da) this.e;
-                ei.t1 t1Var = (ei.t1) this.f38920f;
+                ei.t1 t1Var = (ei.t1) this.f39277f;
                 String str = this.d;
                 String str2 = (String) obj;
-                b1 b1Var = this.f38918b;
-                String str3 = this.f38919c;
+                b1 b1Var = this.f39275b;
+                String str3 = this.f39276c;
                 if (str2 == null) {
                     b1Var.y(daVar, "secure_storage_failed", b1.C("req_id", str3, "error", "RESTORE_CANCELLED"));
                     return;
@@ -44,17 +44,17 @@ public final class z implements Utilities.Callback {
                     return;
                 }
             default:
-                b1 b1Var2 = this.f38918b;
-                AndroidUtilities.runOnUIThread(new z8(b1Var2, (File) obj, (org.telegram.ui.ActionBar.b2) this.e, this.f38919c, this.d, (String) this.f38920f, 14));
+                b1 b1Var2 = this.f39275b;
+                AndroidUtilities.runOnUIThread(new z8(b1Var2, (File) obj, (org.telegram.ui.ActionBar.a2) this.e, this.f39276c, this.d, (String) this.f39277f, 14));
                 return;
         }
     }
 
-    public z(b1 b1Var, org.telegram.ui.ActionBar.b2 b2Var, String str, String str2, String str3) {
-        this.f38918b = b1Var;
-        this.e = b2Var;
-        this.f38919c = str;
+    public z(b1 b1Var, org.telegram.ui.ActionBar.a2 a2Var, String str, String str2, String str3) {
+        this.f39275b = b1Var;
+        this.e = a2Var;
+        this.f39276c = str;
         this.d = str2;
-        this.f38920f = str3;
+        this.f39277f = str3;
     }
 }

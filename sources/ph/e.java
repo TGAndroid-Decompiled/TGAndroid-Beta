@@ -17,23 +17,23 @@ import r0.p0;
 import r0.q0;
 import r0.t0;
 import r0.v0;
-import w7.c0;
+import w7.d0;
 public final class e extends b2.g {
     public static final RectF e;
-    public static final Rect f41012f;
-    public final ViewGroup f41013b;
-    public int f41014c;
+    public static final Rect f41320f;
+    public final ViewGroup f41321b;
+    public int f41322c;
     public final pe.b d = new pe.b(true);
 
     static {
         new PointF();
         e = new RectF();
-        f41012f = new Rect();
+        f41320f = new Rect();
     }
 
     public e(ViewGroup viewGroup) {
-        this.f41013b = viewGroup;
-        WeakHashMap weakHashMap = i0.f41795a;
+        this.f41321b = viewGroup;
+        WeakHashMap weakHashMap = i0.f42114a;
         if (Build.VERSION.SDK_INT >= 30) {
             t0.g(viewGroup, this);
             return;
@@ -50,7 +50,7 @@ public final class e extends b2.g {
         if (view != null && view2 != null && l1Var != null) {
             RectF rectF = e;
             if (k.c(view, view2, rectF)) {
-                Rect rect = f41012f;
+                Rect rect = f41320f;
                 rectF.round(rect);
                 int i10 = rect.left;
                 int i11 = rect.top;
@@ -59,7 +59,7 @@ public final class e extends b2.g {
                 if (i10 == 0 && i11 == 0 && width == 0 && height == 0) {
                     return l1Var;
                 }
-                return l1Var.f41807a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
+                return l1Var.f42126a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
             }
             return null;
         }
@@ -68,8 +68,8 @@ public final class e extends b2.g {
 
     @Override
     public final void S0() {
-        int i10 = this.f41014c - 1;
-        this.f41014c = i10;
+        int i10 = this.f41322c - 1;
+        this.f41322c = i10;
         if (i10 == 0) {
             Iterator it = this.d.iterator();
             while (it.hasNext()) {
@@ -83,13 +83,13 @@ public final class e extends b2.g {
         Iterator it = list.iterator();
         int i10 = 0;
         while (it.hasNext()) {
-            i10 |= ((v0) it.next()).f41830a.c();
+            i10 |= ((v0) it.next()).f42149a.c();
         }
-        if (c0.a(i10, 8)) {
+        if (d0.a(i10, 8)) {
             Iterator it2 = this.d.iterator();
             while (it2.hasNext()) {
                 d dVar = (d) it2.next();
-                l1 Z0 = Z0(l1Var, dVar.N(), this.f41013b);
+                l1 Z0 = Z0(l1Var, dVar.N(), this.f41321b);
                 if (Z0 != null) {
                     dVar.j(Z0);
                 }

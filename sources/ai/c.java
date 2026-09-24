@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ul;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.rr;
 public final class c extends FrameLayout {
     public final ImageView f620a;
@@ -35,7 +35,7 @@ public final class c extends FrameLayout {
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.h = 1.0f;
-        w7.z5.a(this);
+        w7.a6.a(this);
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
         this.f621b = o6Var;
         o6Var.r(-9866632);
@@ -52,17 +52,17 @@ public final class c extends FrameLayout {
         lVar.invalidateSelf();
         lVar.f481f = AndroidUtilities.dp(1.0f);
         frameLayout.setBackground(lVar);
-        addView(frameLayout, w7.x5.e(40, 40, 17));
+        addView(frameLayout, w7.y5.e(40, 40, 17));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.menu_comments);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView, w7.x5.e(20, 20, 17));
+        frameLayout.addView(imageView, w7.y5.e(20, 20, 17));
         ImageView imageView2 = new ImageView(context);
         this.f620a = imageView2;
         imageView2.setImageResource(R.drawable.menu_comments_arrow);
         imageView2.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView2, w7.x5.e(20, 20, 17));
+        frameLayout.addView(imageView2, w7.y5.e(20, 20, 17));
         imageView2.setPivotX(AndroidUtilities.dp(10.27f));
         imageView2.setPivotY(AndroidUtilities.dp(9.58f));
     }
@@ -79,7 +79,7 @@ public final class c extends FrameLayout {
             if (z10) {
                 f7 = 0.0f;
             }
-            ul.r(animate.rotation(f7), rr.h, 420L);
+            ok.s(animate.rotation(f7), rr.h, 420L);
             return;
         }
         if (z10) {

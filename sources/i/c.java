@@ -2,8 +2,8 @@ package i;
 
 import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
-import v7.f8;
-public final class c extends f8 {
+import v7.g8;
+public final class c extends g8 {
     public final ObjectAnimator f10558a;
     public final boolean f10559b;
 

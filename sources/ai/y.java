@@ -1,7 +1,7 @@
 package ai;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.ix;
+import org.telegram.ui.hx;
 public final class y implements Runnable {
     public final int f1737a;
     public final a0 f1738b;
@@ -15,12 +15,12 @@ public final class y implements Runnable {
     public final void run() {
         switch (this.f1737a) {
             case 0:
-                ix ixVar = this.f1738b.f495b0;
-                ValueAnimator valueAnimator = ixVar.f557j0;
+                hx hxVar = this.f1738b.f495b0;
+                ValueAnimator valueAnimator = hxVar.f557j0;
                 if (valueAnimator != null) {
                     valueAnimator.start();
                 }
-                ixVar.f558k0 = null;
+                hxVar.f558k0 = null;
                 return;
             default:
                 a0 a0Var = this.f1738b;

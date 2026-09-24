@@ -5,7 +5,6 @@ import android.util.Log;
 import com.google.android.gms.common.data.DataHolder;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.ui.Cells.q3;
 public final class k extends l6.a {
     public final int d;
     public final int e;
@@ -21,44 +20,44 @@ public final class k extends l6.a {
         Object valueOf;
         switch (this.d) {
             case 0:
-                DataHolder dataHolder = this.f13908a;
-                int i10 = this.f13909b;
+                DataHolder dataHolder = this.f14128a;
+                int i10 = this.f14129b;
                 dataHolder.c(i10, "event_type");
-                if (dataHolder.d[this.f13910c].getInt(i10, dataHolder.f6206c.getInt("event_type")) == 1) {
+                if (dataHolder.d[this.f14130c].getInt(i10, dataHolder.f6206c.getInt("event_type")) == 1) {
                     str = "changed";
                 } else {
-                    int i11 = this.f13909b;
+                    int i11 = this.f14129b;
                     dataHolder.c(i11, "event_type");
-                    if (dataHolder.d[this.f13910c].getInt(i11, dataHolder.f6206c.getInt("event_type")) == 2) {
+                    if (dataHolder.d[this.f14130c].getInt(i11, dataHolder.f6206c.getInt("event_type")) == 2) {
                         str = "deleted";
                     } else {
                         str = "unknown";
                     }
                 }
-                return q3.j("DataEventRef{ type=", str, ", dataitem=", new k(dataHolder, this.f13909b, this.e, 1).toString(), " }");
+                return org.telegram.ui.Cells.c1.k("DataEventRef{ type=", str, ", dataitem=", new k(dataHolder, this.f14129b, this.e, 1).toString(), " }");
             default:
                 boolean isLoggable = Log.isLoggable("DataItem", 3);
-                DataHolder dataHolder2 = this.f13908a;
-                int i12 = this.f13909b;
+                DataHolder dataHolder2 = this.f14128a;
+                int i12 = this.f14129b;
                 dataHolder2.c(i12, "data");
-                byte[] blob = dataHolder2.d[this.f13910c].getBlob(i12, dataHolder2.f6206c.getInt("data"));
+                byte[] blob = dataHolder2.d[this.f14130c].getBlob(i12, dataHolder2.f6206c.getInt("data"));
                 int i13 = this.e;
                 HashMap hashMap = new HashMap(i13);
                 for (int i14 = 0; i14 < i13; i14++) {
-                    l6.a aVar = new l6.a(dataHolder2, this.f13909b + i14);
-                    DataHolder dataHolder3 = aVar.f13908a;
-                    int i15 = aVar.f13909b;
+                    l6.a aVar = new l6.a(dataHolder2, this.f14129b + i14);
+                    DataHolder dataHolder3 = aVar.f14128a;
+                    int i15 = aVar.f14129b;
                     dataHolder3.c(i15, "asset_key");
-                    if (dataHolder3.d[aVar.f13910c].getString(i15, dataHolder3.f6206c.getInt("asset_key")) != null) {
-                        int i16 = aVar.f13909b;
+                    if (dataHolder3.d[aVar.f14130c].getString(i15, dataHolder3.f6206c.getInt("asset_key")) != null) {
+                        int i16 = aVar.f14129b;
                         dataHolder3.c(i16, "asset_key");
-                        hashMap.put(dataHolder3.d[aVar.f13910c].getString(i16, dataHolder3.f6206c.getInt("asset_key")), aVar);
+                        hashMap.put(dataHolder3.d[aVar.f14130c].getString(i16, dataHolder3.f6206c.getInt("asset_key")), aVar);
                     }
                 }
                 StringBuilder sb2 = new StringBuilder("DataItemRef{ ");
-                int i17 = this.f13909b;
+                int i17 = this.f14129b;
                 dataHolder2.c(i17, "path");
-                sb2.append("uri=".concat(String.valueOf(Uri.parse(dataHolder2.d[this.f13910c].getString(i17, dataHolder2.f6206c.getInt("path"))))));
+                sb2.append("uri=".concat(String.valueOf(Uri.parse(dataHolder2.d[this.f14130c].getString(i17, dataHolder2.f6206c.getInt("path"))))));
                 if (blob == null) {
                     valueOf = "null";
                 } else {

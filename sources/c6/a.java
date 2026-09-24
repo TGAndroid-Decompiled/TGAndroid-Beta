@@ -59,7 +59,7 @@ public final class a extends o6.a {
         try {
             jSONObject.put("id", this.f3936a);
             long j3 = this.f3938c;
-            Pattern pattern = g6.a.f9411a;
+            Pattern pattern = g6.a.f9410a;
             jSONObject.put("duration", j3 / 1000.0d);
             long j10 = this.f3942s;
             if (j10 != -1) {
@@ -126,21 +126,21 @@ public final class a extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.l(parcel, 2, this.f3936a);
-        w7.e0.l(parcel, 3, this.f3937b);
-        w7.e0.s(parcel, 4, 8);
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.l(parcel, 2, this.f3936a);
+        w7.f0.l(parcel, 3, this.f3937b);
+        w7.f0.s(parcel, 4, 8);
         parcel.writeLong(this.f3938c);
-        w7.e0.l(parcel, 5, this.d);
-        w7.e0.l(parcel, 6, this.e);
-        w7.e0.l(parcel, 7, this.f3939f);
-        w7.e0.l(parcel, 8, this.h);
-        w7.e0.l(parcel, 9, this.f3940n);
-        w7.e0.l(parcel, 10, this.f3941r);
-        w7.e0.s(parcel, 11, 8);
+        w7.f0.l(parcel, 5, this.d);
+        w7.f0.l(parcel, 6, this.e);
+        w7.f0.l(parcel, 7, this.f3939f);
+        w7.f0.l(parcel, 8, this.h);
+        w7.f0.l(parcel, 9, this.f3940n);
+        w7.f0.l(parcel, 10, this.f3941r);
+        w7.f0.s(parcel, 11, 8);
         parcel.writeLong(this.f3942s);
-        w7.e0.l(parcel, 12, this.v);
-        w7.e0.k(parcel, 13, this.f3943w, i10);
-        w7.e0.r(parcel, q6);
+        w7.f0.l(parcel, 12, this.v);
+        w7.f0.k(parcel, 13, this.f3943w, i10);
+        w7.f0.r(parcel, q6);
     }
 }

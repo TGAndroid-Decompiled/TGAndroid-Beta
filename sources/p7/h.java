@@ -5,15 +5,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import w7.e0;
+import w7.f0;
 public final class h extends o6.a {
     public static final Parcelable.Creator<h> CREATOR = new m8.h(29);
-    public final int f40655a;
-    public final Bundle f40656b;
+    public final int f40957a;
+    public final Bundle f40958b;
 
     public h(int i10, Bundle bundle) {
-        this.f40655a = i10;
-        this.f40656b = bundle;
+        this.f40957a = i10;
+        this.f40958b = bundle;
     }
 
     public final boolean equals(java.lang.Object r7) {
@@ -22,8 +22,8 @@ public final class h extends o6.a {
 
     public final int hashCode() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(Integer.valueOf(this.f40655a));
-        Bundle bundle = this.f40656b;
+        arrayList.add(Integer.valueOf(this.f40957a));
+        Bundle bundle = this.f40958b;
         if (bundle != null) {
             for (String str : bundle.keySet()) {
                 arrayList.add(str);
@@ -38,10 +38,10 @@ public final class h extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = e0.q(parcel, 20293);
-        e0.s(parcel, 1, 4);
-        parcel.writeInt(this.f40655a);
-        e0.b(parcel, 2, this.f40656b);
-        e0.r(parcel, q6);
+        int q6 = f0.q(parcel, 20293);
+        f0.s(parcel, 1, 4);
+        parcel.writeInt(this.f40957a);
+        f0.b(parcel, 2, this.f40958b);
+        f0.r(parcel, q6);
     }
 }

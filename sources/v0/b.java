@@ -1,16 +1,16 @@
 package v0;
 
 import android.os.Bundle;
-import n7.a1;
+import n7.z0;
 public abstract class b {
-    public final Bundle f43757a;
-    public final Bundle f43758b;
-    public final a1 f43759c;
+    public final Bundle f44077a;
+    public final Bundle f44078b;
+    public final z0 f44079c;
 
-    public b(Bundle bundle, Bundle bundle2, a1 a1Var) {
-        this.f43757a = bundle;
-        this.f43758b = bundle2;
-        this.f43759c = a1Var;
+    public b(Bundle bundle, Bundle bundle2, z0 z0Var) {
+        this.f44077a = bundle;
+        this.f44078b = bundle2;
+        this.f44079c = z0Var;
         bundle.putBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", false);
         bundle.putBoolean("androidx.credentials.BUNDLE_KEY_PREFER_IMMEDIATELY_AVAILABLE_CREDENTIALS", false);
         bundle2.putBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", false);

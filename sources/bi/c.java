@@ -15,7 +15,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.ui;
 import org.telegram.ui.Components.wi;
 public final class c implements ui {
@@ -36,7 +36,7 @@ public final class c implements ui {
         z zVar = this.f3557c;
         long j11 = zVar.d;
         wi wiVar = this.f3555a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29677j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29997j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -120,12 +120,8 @@ public final class c implements ui {
     }
 
     @Override
-    public final void x0(gh ghVar) {
-        ghVar.run();
-    }
-
-    @Override
-    public final void K0() {
+    public final void x0(hh hhVar) {
+        hhVar.run();
     }
 
     @Override
@@ -134,6 +130,10 @@ public final class c implements ui {
 
     @Override
     public final void j1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void K0() {
     }
 
     @Override

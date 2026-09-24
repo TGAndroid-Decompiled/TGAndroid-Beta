@@ -1,30 +1,12 @@
 package org.telegram.ui.Components;
+public final class z71 {
+    public final double f30798a;
+    public final int f30799b;
+    public final int f30800c;
 
-import android.view.View;
-import java.util.ArrayList;
-public abstract class z71 {
-    public abstract void b(View view, int i10, int i11);
-
-    public boolean c(int i10) {
-        return false;
-    }
-
-    public abstract View d(int i10);
-
-    public abstract int e();
-
-    public CharSequence g(int i10) {
-        return "";
-    }
-
-    public int h(int i10) {
-        return 0;
-    }
-
-    public void a(ArrayList arrayList) {
-    }
-
-    public int f(int i10) {
-        return i10;
+    public z71(int i10, int i11, double d) {
+        this.f30798a = d;
+        this.f30799b = i10;
+        this.f30800c = i11;
     }
 }

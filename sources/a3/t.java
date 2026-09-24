@@ -1,9 +1,9 @@
 package a3;
 
 import b2.u1;
-import v7.v6;
+import v7.w6;
 public final class t implements u1 {
     static {
-        v6.a(new s(0));
+        w6.a(new s(0));
     }
 }

@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.wk0;
+import org.telegram.ui.Components.gl0;
 public final class t extends s4.n0 {
     public final int f1539a;
 
@@ -56,9 +56,9 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(2.0f);
                 return;
             case 5:
-                wk0 wk0Var = (wk0) recyclerView.T(view);
-                if (wk0Var != null) {
-                    int b10 = wk0Var.b() % 4;
+                gl0 gl0Var = (gl0) recyclerView.T(view);
+                if (gl0Var != null) {
+                    int b10 = gl0Var.b() % 4;
                     int i10 = 0;
                     if (b10 == 0) {
                         dp = 0;
@@ -76,9 +76,9 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(4.0f);
                 return;
             case 6:
-                wk0 wk0Var2 = (wk0) recyclerView.T(view);
-                if (wk0Var2 != null) {
-                    int b11 = wk0Var2.b() % 4;
+                gl0 gl0Var2 = (gl0) recyclerView.T(view);
+                if (gl0Var2 != null) {
+                    int b11 = gl0Var2.b() % 4;
                     int i11 = 0;
                     if (b11 == 0) {
                         dp2 = 0;
@@ -96,15 +96,15 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(4.0f);
                 return;
             case 7:
-                wk0 wk0Var3 = (wk0) recyclerView.T(view);
-                if (wk0Var3 != null) {
+                gl0 gl0Var3 = (gl0) recyclerView.T(view);
+                if (gl0Var3 != null) {
                     int i12 = 0;
-                    if (wk0Var3.f42630f != 5) {
+                    if (gl0Var3.f42949f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;
                     }
-                    int b12 = wk0Var3.b() % 4;
+                    int b12 = gl0Var3.b() % 4;
                     if (b12 == 0) {
                         dp3 = 0;
                     } else {
@@ -174,7 +174,7 @@ public final class t extends s4.n0 {
                         } else {
                             i10 = 0;
                         }
-                        canvas.drawLine(dp, f7, width - i10, f7, org.telegram.ui.ActionBar.h6.f18910k0);
+                        canvas.drawLine(dp, f7, width - i10, f7, org.telegram.ui.ActionBar.h6.f19166k0);
                     }
                 }
                 return;

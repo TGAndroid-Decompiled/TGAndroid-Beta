@@ -25,34 +25,34 @@ public final class l extends o6.a {
 
     static {
         aa.a aVar = new aa.a();
-        aVar.v(4, "com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime");
-        aVar.v(4, "com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate");
-        aVar.v(4, "com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate");
-        aVar.v(1, "com.google.android.gms.cast.metadata.TITLE", "title");
-        aVar.v(1, "com.google.android.gms.cast.metadata.SUBTITLE", "subtitle");
-        aVar.v(1, "com.google.android.gms.cast.metadata.ARTIST", "artist");
-        aVar.v(1, "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist");
-        aVar.v(1, "com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName");
-        aVar.v(1, "com.google.android.gms.cast.metadata.COMPOSER", "composer");
-        aVar.v(2, "com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber");
-        aVar.v(2, "com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber");
-        aVar.v(2, "com.google.android.gms.cast.metadata.SEASON_NUMBER", "season");
-        aVar.v(2, "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode");
-        aVar.v(1, "com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle");
-        aVar.v(1, "com.google.android.gms.cast.metadata.STUDIO", "studio");
-        aVar.v(2, "com.google.android.gms.cast.metadata.WIDTH", "width");
-        aVar.v(2, "com.google.android.gms.cast.metadata.HEIGHT", "height");
-        aVar.v(1, "com.google.android.gms.cast.metadata.LOCATION_NAME", "location");
-        aVar.v(3, "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude");
-        aVar.v(3, "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude");
-        aVar.v(5, "com.google.android.gms.cast.metadata.SECTION_DURATION", "sectionDuration");
-        aVar.v(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "sectionStartTimeInMedia");
-        aVar.v(5, "com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "sectionStartAbsoluteTime");
-        aVar.v(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "sectionStartTimeInContainer");
-        aVar.v(2, "com.google.android.gms.cast.metadata.QUEUE_ITEM_ID", "queueItemId");
-        aVar.v(1, "com.google.android.gms.cast.metadata.BOOK_TITLE", "bookTitle");
-        aVar.v(2, "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "chapterNumber");
-        aVar.v(1, "com.google.android.gms.cast.metadata.CHAPTER_TITLE", "chapterTitle");
+        aVar.u(4, "com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime");
+        aVar.u(4, "com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate");
+        aVar.u(4, "com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate");
+        aVar.u(1, "com.google.android.gms.cast.metadata.TITLE", "title");
+        aVar.u(1, "com.google.android.gms.cast.metadata.SUBTITLE", "subtitle");
+        aVar.u(1, "com.google.android.gms.cast.metadata.ARTIST", "artist");
+        aVar.u(1, "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist");
+        aVar.u(1, "com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName");
+        aVar.u(1, "com.google.android.gms.cast.metadata.COMPOSER", "composer");
+        aVar.u(2, "com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber");
+        aVar.u(2, "com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber");
+        aVar.u(2, "com.google.android.gms.cast.metadata.SEASON_NUMBER", "season");
+        aVar.u(2, "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode");
+        aVar.u(1, "com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle");
+        aVar.u(1, "com.google.android.gms.cast.metadata.STUDIO", "studio");
+        aVar.u(2, "com.google.android.gms.cast.metadata.WIDTH", "width");
+        aVar.u(2, "com.google.android.gms.cast.metadata.HEIGHT", "height");
+        aVar.u(1, "com.google.android.gms.cast.metadata.LOCATION_NAME", "location");
+        aVar.u(3, "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude");
+        aVar.u(3, "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude");
+        aVar.u(5, "com.google.android.gms.cast.metadata.SECTION_DURATION", "sectionDuration");
+        aVar.u(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "sectionStartTimeInMedia");
+        aVar.u(5, "com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "sectionStartAbsoluteTime");
+        aVar.u(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "sectionStartTimeInContainer");
+        aVar.u(2, "com.google.android.gms.cast.metadata.QUEUE_ITEM_ID", "queueItemId");
+        aVar.u(1, "com.google.android.gms.cast.metadata.BOOK_TITLE", "bookTitle");
+        aVar.u(2, "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "chapterNumber");
+        aVar.u(1, "com.google.android.gms.cast.metadata.CHAPTER_TITLE", "chapterTitle");
         e = aVar;
     }
 
@@ -174,7 +174,7 @@ public final class l extends o6.a {
                                     if (i10 != 4) {
                                         if (i10 == 5) {
                                             long j3 = bundle.getLong(str);
-                                            Pattern pattern = g6.a.f9411a;
+                                            Pattern pattern = g6.a.f9410a;
                                             jSONObject.put(str2, j3 / 1000.0d);
                                         }
                                     }
@@ -273,7 +273,7 @@ public final class l extends o6.a {
                                                 if (i10 != 4) {
                                                     if (i10 == 5) {
                                                         long optLong = jSONObject.optLong(next);
-                                                        Pattern pattern = g6.a.f9411a;
+                                                        Pattern pattern = g6.a.f9410a;
                                                         hashSet = hashSet2;
                                                         try {
                                                             bundle.putLong(str, optLong * 1000);
@@ -366,13 +366,13 @@ public final class l extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.p(parcel, 2, this.f4006a);
-        w7.e0.b(parcel, 3, this.f4007b);
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.p(parcel, 2, this.f4006a);
+        w7.f0.b(parcel, 3, this.f4007b);
         int i11 = this.f4008c;
-        w7.e0.s(parcel, 4, 4);
+        w7.f0.s(parcel, 4, 4);
         parcel.writeInt(i11);
-        w7.e0.r(parcel, q6);
+        w7.f0.r(parcel, q6);
     }
 
     public l(int i10) {

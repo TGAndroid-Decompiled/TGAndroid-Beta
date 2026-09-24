@@ -1,4 +1,6 @@
 package m4;
+
+import java.util.List;
 public interface y0 {
-    void g(f1 f1Var, r rVar);
+    void a(e1 e1Var, r rVar, List list);
 }

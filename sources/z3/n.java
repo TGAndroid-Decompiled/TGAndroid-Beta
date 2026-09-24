@@ -8,19 +8,19 @@ import e2.d0;
 import e2.v;
 import java.io.EOFException;
 public final class n implements h0 {
-    public final h0 f48048a;
-    public final k f48049b;
-    public m f48052g;
+    public final h0 f48365a;
+    public final k f48366b;
+    public m f48369g;
     public s h;
-    public boolean f48053i;
+    public boolean f48370i;
     public int d = 0;
     public int e = 0;
-    public byte[] f48051f = d0.f7872b;
-    public final v f48050c = new v();
+    public byte[] f48368f = d0.f7871b;
+    public final v f48367c = new v();
 
     public n(h0 h0Var, k kVar) {
-        this.f48048a = h0Var;
-        this.f48049b = kVar;
+        this.f48365a = h0Var;
+        this.f48366b = kVar;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class n implements h0 {
         }
         e2.d.b(z10);
         boolean equals = sVar.equals(this.h);
-        k kVar = this.f48049b;
+        k kVar = this.f48366b;
         if (!equals) {
             this.h = sVar;
             if (kVar.W(sVar)) {
@@ -49,10 +49,10 @@ public final class n implements h0 {
             } else {
                 mVar = null;
             }
-            this.f48052g = mVar;
+            this.f48369g = mVar;
         }
-        m mVar2 = this.f48052g;
-        h0 h0Var = this.f48048a;
+        m mVar2 = this.f48369g;
+        h0 h0Var = this.f48365a;
         if (mVar2 == null) {
             h0Var.b(sVar);
             return;
@@ -62,7 +62,7 @@ public final class n implements h0 {
         a2.f3238j = str;
         a2.v = Long.MAX_VALUE;
         a2.O = kVar.D(sVar);
-        hg.c.u(a2, h0Var);
+        hg.c.s(a2, h0Var);
     }
 
     @Override
@@ -77,11 +77,11 @@ public final class n implements h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        if (this.f48052g == null) {
-            return this.f48048a.e(kVar, i10, z10);
+        if (this.f48369g == null) {
+            return this.f48365a.e(kVar, i10, z10);
         }
         g(i10);
-        int read = kVar.read(this.f48051f, this.e, i10);
+        int read = kVar.read(this.f48368f, this.e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
@@ -94,25 +94,25 @@ public final class n implements h0 {
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        if (this.f48052g == null) {
-            this.f48048a.f(vVar, i10, i11);
+        if (this.f48369g == null) {
+            this.f48365a.f(vVar, i10, i11);
             return;
         }
         g(i10);
-        vVar.h(this.e, i10, this.f48051f);
+        vVar.h(this.e, i10, this.f48368f);
         this.e += i10;
     }
 
     public final void g(int i10) {
         byte[] bArr;
-        int length = this.f48051f.length;
+        int length = this.f48368f.length;
         int i11 = this.e;
         if (length - i11 >= i10) {
             return;
         }
         int i12 = i11 - this.d;
         int max = Math.max(i12 * 2, i10 + i12);
-        byte[] bArr2 = this.f48051f;
+        byte[] bArr2 = this.f48368f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -121,6 +121,6 @@ public final class n implements h0 {
         System.arraycopy(bArr2, this.d, bArr, 0, i12);
         this.d = 0;
         this.e = i12;
-        this.f48051f = bArr;
+        this.f48368f = bArr;
     }
 }

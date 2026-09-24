@@ -41,18 +41,18 @@ public final class l extends g {
             int i12 = 0;
             while (i12 < size) {
                 kg.f fVar = (kg.f) arrayList3.get(i12);
-                boolean z11 = fVar.f13618n;
-                Paint paint = fVar.f13609b;
-                float[] fArr2 = fVar.f13616l;
+                boolean z11 = fVar.f13616n;
+                Paint paint = fVar.f13607b;
+                float[] fArr2 = fVar.f13614l;
                 Path path = fVar.e;
-                if (!z11 && fVar.f13619o == 0.0f) {
+                if (!z11 && fVar.f13617o == 0.0f) {
                     arrayList = arrayList3;
                     i10 = size;
                 } else {
                     path.reset();
                     int length = this.f11135h0.f12991b.length;
-                    long[] jArr = fVar.f13608a.f12984a;
-                    fVar.f13611f.reset();
+                    long[] jArr = fVar.f13606a.f12984a;
+                    fVar.f13609f.reset();
                     int i13 = 0;
                     int i14 = 0;
                     while (true) {
@@ -144,11 +144,11 @@ public final class l extends g {
                     }
                     arrayList = arrayList3;
                     i10 = size;
-                    fVar.f13614j = i13;
-                    if (fVar.f13618n || fVar.f13619o != 0.0f) {
-                        paint.setAlpha((int) (fVar.f13619o * 255.0f));
+                    fVar.f13612j = i13;
+                    if (fVar.f13616n || fVar.f13617o != 0.0f) {
+                        paint.setAlpha((int) (fVar.f13617o * 255.0f));
                         if (z10) {
-                            canvas.drawLines(fArr2, 0, fVar.f13614j, paint);
+                            canvas.drawLines(fArr2, 0, fVar.f13612j, paint);
                         } else {
                             canvas.drawPath(path, paint);
                         }

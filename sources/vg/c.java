@@ -15,36 +15,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.i5;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.w9;
-import w7.x5;
+import w7.y5;
 public abstract class c extends FrameLayout {
-    public final d6 f44257a;
-    public final h9 f44258b;
-    public final w9 f44259c;
+    public final d6 f44574a;
+    public final h9 f44575b;
+    public final w9 f44576c;
     public final z5 d;
-    public final i5 e;
-    public final RadioButton f44260f;
+    public final h5 e;
+    public final RadioButton f44577f;
     public final Paint h;
-    public boolean f44261n;
+    public boolean f44578n;
 
     public c(Context context, d6 d6Var) {
         super(context);
         int i10;
         h9 h9Var = new h9((d6) null);
-        this.f44258b = h9Var;
+        this.f44575b = h9Var;
         this.h = new Paint(1);
-        this.f44257a = d6Var;
+        this.f44574a = d6Var;
         View view = new View(context);
-        addView(view, x5.n(-1, -1));
-        view.setBackgroundColor(h6.v0(h6.f18859h5, d6Var));
-        h9Var.f24592r = AndroidUtilities.dp(40.0f);
+        addView(view, y5.n(-1, -1));
+        view.setBackgroundColor(h6.v0(h6.f19115h5, d6Var));
+        h9Var.f24679r = AndroidUtilities.dp(40.0f);
         w9 w9Var = new w9(context);
-        this.f44259c = w9Var;
+        this.f44576c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
         addView(w9Var);
         z5 z5Var = new z5(context, 5);
@@ -52,7 +52,7 @@ public abstract class c extends FrameLayout {
         NotificationCenter.listenEmojiLoading(z5Var);
         NotificationCenter.listenEmojiLoading(w9Var);
         z5Var.setTextSize(16);
-        int i11 = h6.f18895j5;
+        int i11 = h6.f19151j5;
         z5Var.setTextColor(h6.v0(i11, d6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -61,16 +61,16 @@ public abstract class c extends FrameLayout {
         }
         z5Var.setGravity(i10);
         addView(z5Var);
-        i5 i5Var = new i5(context);
-        this.e = i5Var;
-        i5Var.setTextSize(14);
-        i5Var.setTextColor(h6.v0(i11, d6Var));
-        i5Var.setGravity(LocaleController.isRTL ? 5 : 3);
-        addView(i5Var);
+        h5 h5Var = new h5(context);
+        this.e = h5Var;
+        h5Var.setTextSize(14);
+        h5Var.setTextColor(h6.v0(i11, d6Var));
+        h5Var.setGravity(LocaleController.isRTL ? 5 : 3);
+        addView(h5Var);
         RadioButton radioButton = new RadioButton(context);
-        this.f44260f = radioButton;
+        this.f44577f = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(h6.v0(h6.f18897j7, d6Var), h6.v0(h6.E5, d6Var));
+        radioButton.b(h6.v0(h6.f19153j7, d6Var), h6.v0(h6.E5, d6Var));
         addView(radioButton);
         d();
         if (!b()) {
@@ -85,7 +85,7 @@ public abstract class c extends FrameLayout {
     public abstract boolean b();
 
     public void c(boolean z10, boolean z11) {
-        RadioButton radioButton = this.f44260f;
+        RadioButton radioButton = this.f44577f;
         if (radioButton.getVisibility() == 0) {
             radioButton.a(z10, true);
         }
@@ -123,7 +123,7 @@ public abstract class c extends FrameLayout {
         } else {
             f10 = 16.0f;
         }
-        this.f44259c.setLayoutParams(x5.d(40, 40.0f, i17, f7, 0.0f, f10, 0.0f));
+        this.f44576c.setLayoutParams(y5.d(40, 40.0f, i17, f7, 0.0f, f10, 0.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -152,7 +152,7 @@ public abstract class c extends FrameLayout {
         } else {
             f12 = 20.0f;
         }
-        this.d.setLayoutParams(x5.d(-1, -2.0f, i18, f11, 0.0f, f12, 0.0f));
+        this.d.setLayoutParams(y5.d(-1, -2.0f, i18, f11, 0.0f, f12, 0.0f));
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i13 = 5;
@@ -178,7 +178,7 @@ public abstract class c extends FrameLayout {
         } else {
             f14 = 20.0f;
         }
-        this.e.setLayoutParams(x5.d(-1, -2.0f, i20, f13, 0.0f, f14, 0.0f));
+        this.e.setLayoutParams(y5.d(-1, -2.0f, i20, f13, 0.0f, f14, 0.0f));
         boolean z12 = LocaleController.isRTL;
         if (z12) {
             i16 = 5;
@@ -194,15 +194,15 @@ public abstract class c extends FrameLayout {
         } else {
             f16 = 15.0f;
         }
-        this.f44260f.setLayoutParams(x5.d(22, 22.0f, i21, f15, 0.0f, f16, 0.0f));
+        this.f44577f.setLayoutParams(y5.d(22, 22.0f, i21, f15, 0.0f, f16, 0.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f44261n) {
-            int v02 = h6.v0(h6.f18790d7, this.f44257a);
+        if (this.f44578n) {
+            int v02 = h6.v0(h6.f19046d7, this.f44574a);
             Paint paint = this.h;
             paint.setColor(v02);
             if (b()) {
@@ -210,7 +210,7 @@ public abstract class c extends FrameLayout {
             } else {
                 i10 = 70;
             }
-            if (this.f44259c.getVisibility() == 8) {
+            if (this.f44576c.getVisibility() == 8) {
                 i10 -= 40;
             }
             int a2 = a() + i10;
@@ -243,31 +243,31 @@ public abstract class c extends FrameLayout {
     }
 
     public void setDivider(boolean z10) {
-        this.f44261n = z10;
+        this.f44578n = z10;
         invalidate();
     }
 
     public void setSubtitle(CharSequence charSequence) {
         boolean isEmpty = TextUtils.isEmpty(charSequence);
         z5 z5Var = this.d;
-        i5 i5Var = this.e;
+        h5 h5Var = this.e;
         if (isEmpty) {
             z5Var.setTranslationY(0.0f);
-            i5Var.setVisibility(8);
+            h5Var.setVisibility(8);
         } else {
             z5Var.setTranslationY(AndroidUtilities.dp(-9.0f));
-            i5Var.setTranslationY(AndroidUtilities.dp(12.0f));
-            i5Var.l(charSequence, false);
-            i5Var.setVisibility(0);
+            h5Var.setTranslationY(AndroidUtilities.dp(12.0f));
+            h5Var.l(charSequence, false);
+            h5Var.setVisibility(0);
         }
-        if (this.f44259c.getVisibility() == 8) {
+        if (this.f44576c.getVisibility() == 8) {
             if (LocaleController.isRTL) {
                 z5Var.setTranslationX(AndroidUtilities.dp(40.0f));
-                i5Var.setTranslationX(AndroidUtilities.dp(40.0f));
+                h5Var.setTranslationX(AndroidUtilities.dp(40.0f));
                 return;
             }
             z5Var.setTranslationX(AndroidUtilities.dp(-40.0f));
-            i5Var.setTranslationX(AndroidUtilities.dp(-40.0f));
+            h5Var.setTranslationX(AndroidUtilities.dp(-40.0f));
         }
     }
 }

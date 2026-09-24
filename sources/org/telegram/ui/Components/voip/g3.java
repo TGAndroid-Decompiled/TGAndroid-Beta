@@ -1,41 +1,31 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-public final class g3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28931a;
-    public final j3 f28932b;
+import org.telegram.messenger.AndroidUtilities;
+public final class g3 implements Runnable {
+    public final int f29352a;
+    public final l3 f29353b;
+    public final int f29354c;
 
-    public g3(j3 j3Var, int i10) {
-        this.f28931a = i10;
-        this.f28932b = j3Var;
+    public g3(l3 l3Var, int i10, int i11) {
+        this.f29352a = i11;
+        this.f29353b = l3Var;
+        this.f29354c = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28931a) {
+    public final void run() {
+        switch (this.f29352a) {
             case 0:
-                j3 j3Var = this.f28932b;
-                j3Var.getClass();
-                j3Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j3Var.invalidate();
+                AndroidUtilities.runOnUIThread(new g3(this.f29353b, this.f29354c, 2));
                 return;
             case 1:
-                j3 j3Var2 = this.f28932b;
-                j3Var2.getClass();
-                j3Var2.f28996w = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                j3Var2.invalidate();
+                AndroidUtilities.runOnUIThread(new g3(this.f29353b, this.f29354c, 3));
                 return;
             case 2:
-                j3 j3Var3 = this.f28932b;
-                j3Var3.getClass();
-                j3Var3.f28995s = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                j3Var3.invalidate();
+                this.f29353b.c(this.f29354c);
                 return;
             default:
-                j3 j3Var4 = this.f28932b;
-                j3Var4.getClass();
-                j3Var4.f28994r = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                j3Var4.invalidate();
+                this.f29353b.a(this.f29354c);
                 return;
         }
     }

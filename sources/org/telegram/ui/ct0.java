@@ -1,66 +1,55 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.Crop.CropAreaView;
-public final class ct0 extends AnimatorListenerAdapter {
-    public final float f32403a;
-    public final Runnable f32404b;
-    public final PhotoViewer f32405c;
+import android.view.MotionEvent;
+import org.telegram.messenger.video.VideoFramesRewinder;
+import org.telegram.messenger.video.VideoPlayerRewinder;
+public final class ct0 extends VideoPlayerRewinder {
+    public final PhotoViewer f32777a;
 
-    public ct0(PhotoViewer photoViewer, float f7, Runnable runnable) {
-        this.f32405c = photoViewer;
-        this.f32403a = f7;
-        this.f32404b = runnable;
+    public ct0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
+        super(videoFramesRewinder);
+        this.f32777a = photoViewer;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        PhotoViewer photoViewer = this.f32405c;
-        photoViewer.f31008p6 = null;
-        photoViewer.f30923f6 = 0.0f;
-        photoViewer.f30886b6 = 0.0f;
-        photoViewer.f30931g6 = 0.0f;
-        float q22 = photoViewer.q2(false);
-        photoViewer.f30914e6 = q22;
-        photoViewer.f30876a6 = q22;
-        photoViewer.f30908e0.invalidate();
-        CropAreaView cropAreaView = photoViewer.C1.f28468b.f14088a;
-        float q23 = photoViewer.q2(false);
-        cropAreaView.f21991n0 = 0.0f;
-        cropAreaView.f21992o0 = q23;
-        cropAreaView.f21993p0 = 0.0f;
-        cropAreaView.f21994q0 = 0.0f;
-        cropAreaView.invalidate();
-        photoViewer.C1.f28469c.setRotated(false);
-        float f7 = this.f32403a;
-        if (Math.abs(f7) > 0.0f) {
-            org.telegram.ui.Components.ue0 ue0Var = photoViewer.C1;
-            lg.f fVar = ue0Var.f28469c;
-            if (fVar != null) {
-                fVar.b(0.0f);
-                fVar.setRotated(false);
-            }
-            if (ue0Var.f28468b.m(f7)) {
-                photoViewer.f30881b1.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.h6.f19198zf), PorterDuff.Mode.MULTIPLY));
-            } else {
-                photoViewer.f30881b1.setColorFilter((ColorFilter) null);
-            }
+    public final void onRewindCanceled() {
+        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+        PhotoViewer photoViewer = this.f32777a;
+        PhotoViewer.k(photoViewer, obtain);
+        photoViewer.f31397z1.f(false);
+        org.telegram.ui.Components.og0.f27042p0.Q.f(false);
+    }
+
+    @Override
+    public final void onRewindStart(boolean z10) {
+        PhotoViewer photoViewer = this.f32777a;
+        photoViewer.f31397z1.e(false);
+        photoViewer.f31397z1.d(!z10);
+        photoViewer.f31397z1.f(true);
+        photoViewer.f31209e0.invalidate();
+        org.telegram.ui.Components.og0.v(z10);
+    }
+
+    @Override
+    public final void updateRewindProgressUi(long j3, float f7, boolean z10) {
+        PhotoViewer photoViewer = this.f32777a;
+        photoViewer.f31397z1.g(Math.abs(j3));
+        if (z10) {
+            photoViewer.f31315q3.h(f7, false);
+            photoViewer.f31324r3.invalidate();
         }
-        MediaController.CropState cropState = photoViewer.X4.f35092c;
-        if (cropState != null) {
-            cropState.cropPy = 0.0f;
-            cropState.cropPx = 0.0f;
-            cropState.cropPh = 1.0f;
-            cropState.cropPw = 1.0f;
-        }
-        Runnable runnable = this.f32404b;
-        if (runnable != null) {
-            runnable.run();
+        org.telegram.ui.Components.og0 og0Var = org.telegram.ui.Components.og0.f27042p0;
+        og0Var.Q.g(0L);
+        if (z10) {
+            og0Var.Z = f7;
+            ai.n4 n4Var = og0Var.f27046b0;
+            if (n4Var != null) {
+                n4Var.invalidate();
+            }
+            org.telegram.ui.Components.ng0 ng0Var = og0Var.h;
+            if (ng0Var != null) {
+                ng0Var.invalidate();
+            }
         }
     }
 }

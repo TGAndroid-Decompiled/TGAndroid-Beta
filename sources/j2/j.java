@@ -11,7 +11,7 @@ public final class j implements r0.d, r0.f {
 
     public j() {
         this.f12591a = 0;
-        this.f12592b = e.c();
+        this.f12592b = e.e();
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class j implements r0.d, r0.f {
     }
 
     public void f(LogSessionId logSessionId) {
-        e2.d.g(((LogSessionId) this.f12592b).equals(e.c()));
+        e2.d.g(((LogSessionId) this.f12592b).equals(e.e()));
         this.f12592b = logSessionId;
     }
 

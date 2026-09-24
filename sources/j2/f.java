@@ -27,17 +27,17 @@ import e9.a1;
 import e9.f1;
 import e9.g0;
 import e9.i0;
-import e9.k0;
 import ei.d5;
 import hg.r;
 import i2.s;
 import java.io.IOException;
 import java.util.List;
+import n2.l;
 import u2.b0;
 import u2.f0;
-import u2.j0;
+import u2.k0;
 import u2.t;
-public final class f implements z0, j0, n2.k {
+public final class f implements z0, k0, l {
     public final x f12564a;
     public final h1 f12565b;
     public final j1 f12566c;
@@ -51,17 +51,17 @@ public final class f implements z0, j0, n2.k {
     public f(x xVar) {
         xVar.getClass();
         this.f12564a = xVar;
-        String str = d0.f7871a;
+        String str = d0.f7870a;
         Looper myLooper = Looper.myLooper();
         this.f12567f = new p(myLooper == null ? Looper.getMainLooper() : myLooper, xVar, new r(26));
         h1 h1Var = new h1();
         this.f12565b = h1Var;
         this.f12566c = new j1();
         ?? obj = new Object();
-        obj.f7319a = h1Var;
-        g0 g0Var = i0.f8067b;
-        obj.f7320b = a1.e;
-        obj.f7321c = f1.h;
+        obj.f7312a = h1Var;
+        g0 g0Var = i0.f8066b;
+        obj.f7313b = a1.e;
+        obj.f7314c = f1.h;
         this.d = obj;
         this.e = new SparseArray();
     }
@@ -153,7 +153,7 @@ public final class f implements z0, j0, n2.k {
         }
         long j3 = 0;
         if (f0Var2 != null && f0Var2.b()) {
-            if (z10 && this.h.k0() == f0Var2.f43288b && this.h.O() == f0Var2.f43289c) {
+            if (z10 && this.h.k0() == f0Var2.f43628b && this.h.O() == f0Var2.f43629c) {
                 j3 = this.h.J0();
             }
         } else if (z10) {
@@ -170,10 +170,10 @@ public final class f implements z0, j0, n2.k {
         if (f0Var == null) {
             k1Var = null;
         } else {
-            k1Var = (k1) ((k0) this.d.f7321c).get(f0Var);
+            k1Var = (k1) ((e9.k0) this.d.f7314c).get(f0Var);
         }
         if (f0Var != null && k1Var != null) {
-            return m(k1Var, k1Var.g(f0Var.f43287a, this.f12565b).f3006c, f0Var);
+            return m(k1Var, k1Var.g(f0Var.f43627a, this.f12565b).f3006c, f0Var);
         }
         int l02 = this.h.l0();
         k1 w02 = this.h.w0();
@@ -186,7 +186,7 @@ public final class f implements z0, j0, n2.k {
     public final a o(int i10, f0 f0Var) {
         this.h.getClass();
         if (f0Var != null) {
-            if (((k1) ((k0) this.d.f7321c).get(f0Var)) != null) {
+            if (((k1) ((e9.k0) this.d.f7314c).get(f0Var)) != null) {
                 return n(f0Var);
             }
             return m(k1.f3073a, i10, f0Var);
@@ -213,7 +213,7 @@ public final class f implements z0, j0, n2.k {
     @Override
     public final void onAvailableCommandsChanged(x0 x0Var) {
         a l4 = l();
-        q(l4, 13, new e(3, l4, x0Var));
+        q(l4, 13, new e(l4, x0Var, 3));
     }
 
     @Override
@@ -345,7 +345,7 @@ public final class f implements z0, j0, n2.k {
         b1 b1Var = this.h;
         b1Var.getClass();
         n nVar = this.d;
-        nVar.d = n.p(b1Var, (i0) nVar.f7320b, (f0) nVar.e, (h1) nVar.f7319a);
+        nVar.d = n.p(b1Var, (i0) nVar.f7313b, (f0) nVar.e, (h1) nVar.f7312a);
         nVar.H(b1Var.w0());
         a l4 = l();
         q(l4, 0, new e(l4, i10));
@@ -376,7 +376,7 @@ public final class f implements z0, j0, n2.k {
     }
 
     public final a p() {
-        return n((f0) this.d.f7322f);
+        return n((f0) this.d.f7315f);
     }
 
     public final void q(a aVar, int i10, m mVar) {
@@ -386,7 +386,7 @@ public final class f implements z0, j0, n2.k {
 
     public final void r(i2.f0 f0Var, Looper looper) {
         boolean z10;
-        if (this.h != null && !((i0) this.d.f7320b).isEmpty()) {
+        if (this.h != null && !((i0) this.d.f7313b).isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
@@ -397,7 +397,7 @@ public final class f implements z0, j0, n2.k {
         this.f12568n = this.f12564a.a(looper, null);
         p pVar = this.f12567f;
         ah.b bVar = new ah.b(20, this, f0Var);
-        this.f12567f = new p(pVar.d, looper, pVar.f7899a, bVar, pVar.f7904i);
+        this.f12567f = new p(pVar.d, looper, pVar.f7898a, bVar, pVar.f7903i);
     }
 
     @Override
@@ -408,7 +408,7 @@ public final class f implements z0, j0, n2.k {
         b1 b1Var = this.h;
         b1Var.getClass();
         n nVar = this.d;
-        nVar.d = n.p(b1Var, (i0) nVar.f7320b, (f0) nVar.e, (h1) nVar.f7319a);
+        nVar.d = n.p(b1Var, (i0) nVar.f7313b, (f0) nVar.e, (h1) nVar.f7312a);
         a l4 = l();
         q(l4, 11, new s(l4, i10, a1Var, a1Var2));
     }

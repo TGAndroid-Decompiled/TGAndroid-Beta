@@ -4,8 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
-import n7.a1;
-import org.telegram.ui.Cells.q3;
+import n7.z0;
 public final class a {
     public String f3833a;
     public String f3834b;
@@ -28,16 +27,16 @@ public final class a {
         throw new IllegalArgumentException("Serialized doc id must be provided for first party products.");
     }
 
-    public a(a1 a1Var) {
-        Context context = (Context) a1Var.f15083b;
+    public a(z0 z0Var) {
+        Context context = (Context) z0Var.f15395b;
         int e = w9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
         if (e != 0) {
             this.f3833a = "Unity";
             String string = context.getResources().getString(e);
             this.f3834b = string;
-            String i10 = q3.i("Unity Editor version is: ", string);
+            String g10 = v7.j.g("Unity Editor version is: ", string);
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                Log.v("FirebaseCrashlytics", i10, null);
+                Log.v("FirebaseCrashlytics", g10, null);
                 return;
             }
             return;

@@ -45,12 +45,12 @@ public final class g {
                                         case 2:
                                             return p.e((Class) this, bVar);
                                         default:
-                                            return new u0(bVar, (c3.m) ((c5.g) this).f3870b);
+                                            return new v0(bVar, (c3.m) ((c5.g) this).f3870b);
                                     }
                                 }
                             };
                         } else {
-                            throw new IllegalArgumentException(hg.c.i(i10, "Unrecognized contentType: "));
+                            throw new IllegalArgumentException(hg.c.h(i10, "Unrecognized contentType: "));
                         }
                     } else {
                         iVar = new i2.o(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(u2.e0.class), 3);
@@ -68,7 +68,7 @@ public final class g {
                                 case 2:
                                     return p.e((Class) asSubclass, bVar);
                                 default:
-                                    return new u0(bVar, (c3.m) ((c5.g) asSubclass).f3870b);
+                                    return new v0(bVar, (c3.m) ((c5.g) asSubclass).f3870b);
                             }
                         }
                     };
@@ -86,7 +86,7 @@ public final class g {
                             case 2:
                                 return p.e((Class) asSubclass2, bVar);
                             default:
-                                return new u0(bVar, (c3.m) ((c5.g) asSubclass2).f3870b);
+                                return new v0(bVar, (c3.m) ((c5.g) asSubclass2).f3870b);
                         }
                     }
                 };
@@ -105,7 +105,7 @@ public final class g {
                         case 2:
                             return p.e((Class) asSubclass3, bVar);
                         default:
-                            return new u0(bVar, (c3.m) ((c5.g) asSubclass3).f3870b);
+                            return new v0(bVar, (c3.m) ((c5.g) asSubclass3).f3870b);
                     }
                 }
             };

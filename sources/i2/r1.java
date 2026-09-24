@@ -10,9 +10,9 @@ public final class r1 implements t0 {
     public final Object d;
     public Object e;
 
-    public r1(org.telegram.ui.web.t0 t0Var) {
+    public r1(org.telegram.ui.web.q0 q0Var) {
         this.d = new Handler(Looper.getMainLooper());
-        this.e = t0Var;
+        this.e = q0Var;
     }
 
     @Override

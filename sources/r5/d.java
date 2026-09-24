@@ -34,44 +34,45 @@ import org.telegram.messenger.t2;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Cells.w0;
-import org.telegram.ui.Components.bl0;
 import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.e80;
-import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.o80;
+import org.telegram.ui.Components.v51;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.po0;
+import org.telegram.ui.no0;
 import r0.l1;
 import r0.n;
 import rg.k;
-import rg.w1;
-import tg.d0;
-import tg.u0;
+import rg.q1;
+import tg.c0;
+import tg.t0;
+import tg.z0;
 import x2.i;
 import x2.m;
 import xh.j0;
 import xh.r1;
-import yh.a4;
 import yh.e0;
-import yh.m3;
+import yh.l3;
 import yh.t5;
 import yh.t7;
 import yh.w7;
+import yh.z3;
 import z3.g;
-public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m, yf.m, n, BillingController.ProductDetailsResponseListenerLegacy, d5, le.e, Utilities.Callback5, po0, h {
-    public final int f42000a;
-    public final Object f42001b;
+public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m, yf.m, n, BillingController.ProductDetailsResponseListenerLegacy, d5, le.e, Utilities.Callback5, no0, h {
+    public final int f42319a;
+    public final Object f42320b;
 
     public d(Object obj, int i10) {
-        this.f42000a = i10;
-        this.f42001b = obj;
+        this.f42319a = i10;
+        this.f42320b = obj;
     }
 
     @Override
     public void D(int i10, float f7, float f10, f fVar) {
-        View view = ((a4) this.f42001b).f46879b;
+        View view = ((z3) this.f42320b).f48307b;
         if (view instanceof w0) {
             ((w0) view).K();
         } else {
@@ -81,12 +82,12 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        e0 e0Var = (e0) this.f42001b;
+        e0 e0Var = (e0) this.f42320b;
         if (z10) {
             long j3 = i10;
             if (e0Var.I != j3) {
                 e0Var.I = j3;
-                e0Var.f47006r.setText(e0.o(j3));
+                e0Var.f47308r.setText(e0.o(j3));
             }
             e0Var.n(true);
         }
@@ -94,15 +95,15 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
 
     @Override
     public l1 Q0(View view, l1 l1Var) {
-        ((j0) this.f42001b).h.i(l1Var);
-        return l1.f41806b;
+        ((j0) this.f42320b).h.i(l1Var);
+        return l1.f42125b;
     }
 
     @Override
     public void a(int i10) {
-        switch (this.f42000a) {
+        switch (this.f42319a) {
             case 24:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f42001b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f42320b;
                 if (i10 == 1) {
                     callback2.run(Boolean.TRUE, null);
                     return;
@@ -113,7 +114,7 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
                     return;
                 }
             case 25:
-                m0 m0Var = (m0) this.f42001b;
+                m0 m0Var = (m0) this.f42320b;
                 if (i10 == 1) {
                     m0Var.run(Boolean.TRUE, null);
                     return;
@@ -124,12 +125,12 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
                     return;
                 }
             default:
-                e80 e80Var = (e80) this.f42001b;
+                o80 o80Var = (o80) this.f42320b;
                 if (i10 == 1) {
-                    e80Var.run(Boolean.TRUE, null);
+                    o80Var.run(Boolean.TRUE, null);
                     return;
                 } else if (i10 != 3) {
-                    e80Var.run(Boolean.FALSE, null);
+                    o80Var.run(Boolean.FALSE, null);
                     return;
                 } else {
                     return;
@@ -139,27 +140,27 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
 
     @Override
     public void accept(Object obj) {
-        switch (this.f42000a) {
+        switch (this.f42319a) {
             case 28:
-                z3.h hVar = (z3.h) this.f42001b;
+                z3.h hVar = (z3.h) this.f42320b;
                 z3.a aVar = (z3.a) obj;
-                g gVar = new g(aVar.f48027b, ob.a.C2(aVar.f48026a, aVar.f48028c));
-                hVar.f48037c.add(gVar);
-                long j3 = hVar.f48041j;
+                g gVar = new g(aVar.f48344b, ob.a.C2(aVar.f48343a, aVar.f48345c));
+                hVar.f48354c.add(gVar);
+                long j3 = hVar.f48358j;
                 if (j3 == -9223372036854775807L || aVar.d >= j3) {
                     hVar.b(gVar);
                     return;
                 }
                 return;
             default:
-                ((f0) this.f42001b).b((z3.a) obj);
+                ((f0) this.f42320b).b((z3.a) obj);
                 return;
         }
     }
 
     @Override
     public a1 b(int i10, b2.l1 l1Var, int[] iArr) {
-        i iVar = (i) this.f42001b;
+        i iVar = (i) this.f42320b;
         f0 u10 = i0.u();
         for (int i11 = 0; i11 < l1Var.f3083a; i11++) {
             u10.b(new x2.f(i10, l1Var, i11, iVar, iArr[i11]));
@@ -169,7 +170,7 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        tg.a1.Q((tg.a1) this.f42001b, view);
+        z0.Q((z0) this.f42320b, view);
     }
 
     @Override
@@ -179,63 +180,107 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
 
     @Override
     public void e(long j3) {
-        switch (this.f42000a) {
+        switch (this.f42319a) {
             case 14:
-                ((xh.d) this.f42001b).a(j3, true);
+                ((xh.d) this.f42320b).a(j3, true);
                 return;
             default:
-                ((m3) this.f42001b).h();
+                ((l3) this.f42320b).h();
                 return;
         }
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
-        switch (this.f42000a) {
+    public void f(a2 a2Var, int i10) {
+        switch (this.f42319a) {
             case 5:
-                ((u0) this.f42001b).run();
+                ((t0) this.f42320b).run();
                 return;
             case 6:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f42001b;
-                n2 R = LaunchActivity.R();
+                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f42320b;
+                m2 R = LaunchActivity.R();
                 if (R != null) {
-                    d0.T(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
+                    c0.T(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
                     return;
                 }
                 return;
             case 7:
-                ((t2) this.f42001b).run();
+                ((t2) this.f42320b).run();
                 return;
             case 8:
-                ((u0) this.f42001b).run();
+                ((t0) this.f42320b).run();
                 return;
             case 15:
-                ((m8) this.f42001b).run();
+                ((m8) this.f42320b).run();
                 return;
             default:
-                ((Utilities.Callback) this.f42001b).run(b2Var.g(i10, true, true));
+                ((Utilities.Callback) this.f42320b).run(a2Var.g(i10, true, true));
                 return;
         }
     }
 
     @Override
     public void g(pa.b bVar) {
-        t9.a aVar = (t9.a) this.f42001b;
+        t9.a aVar = (t9.a) this.f42320b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
         }
-        aVar.f43001b.set((t9.a) bVar.get());
+        aVar.f43323b.set((t9.a) bVar.get());
     }
 
     @Override
-    public boolean h(t0.i iVar, int i10, Bundle bundle) {
+    public Object i() {
+        SQLiteDatabase a2;
+        switch (this.f42319a) {
+            case 0:
+                s5.h hVar = (s5.h) ((s5.d) this.f42320b);
+                long q6 = hVar.f43129b.q() - hVar.d.d;
+                a2 = hVar.a();
+                a2.beginTransaction();
+                try {
+                    String[] strArr = {String.valueOf(q6)};
+                    Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE timestamp_ms < ? GROUP BY transport_name", strArr);
+                    while (rawQuery.moveToNext()) {
+                        int i10 = rawQuery.getInt(0);
+                        hVar.e(i10, o5.c.MESSAGE_TOO_OLD, rawQuery.getString(1));
+                    }
+                    rawQuery.close();
+                    int delete = a2.delete("events", "timestamp_ms < ?", strArr);
+                    a2.setTransactionSuccessful();
+                    a2.endTransaction();
+                    return Integer.valueOf(delete);
+                } finally {
+                }
+            case 1:
+                s5.h hVar2 = (s5.h) ((s5.c) ((da.b) this.f42320b).f7568i);
+                a2 = hVar2.a();
+                a2.beginTransaction();
+                try {
+                    a2.compileStatement("DELETE FROM log_event_dropped").execute();
+                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar2.f43129b.q()).execute();
+                    a2.setTransactionSuccessful();
+                    a2.endTransaction();
+                    return null;
+                } finally {
+                }
+            default:
+                t tVar = (t) this.f42320b;
+                for (l5.i iVar : (Iterable) ((s5.h) ((s5.d) tVar.f7329c)).c(new s0.b(16))) {
+                    ((la.h) tVar.d).V(iVar, 1, false);
+                }
+                return null;
+        }
+    }
+
+    @Override
+    public boolean k(t0.i iVar, int i10, Bundle bundle) {
         r0.d dVar;
-        s sVar = (s) this.f42001b;
+        s sVar = (s) this.f42320b;
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 25 && (i10 & 1) != 0) {
             try {
-                iVar.f42952a.d();
-                Parcelable parcelable = (Parcelable) iVar.f42952a.l();
+                iVar.f43274a.d();
+                Parcelable parcelable = (Parcelable) iVar.f43274a.l();
                 if (bundle == null) {
                     bundle = new Bundle();
                 } else {
@@ -247,14 +292,14 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
                 return false;
             }
         }
-        t0.h hVar = iVar.f42952a;
+        t0.h hVar = iVar.f43274a;
         ClipData clipData = new ClipData(hVar.getDescription(), new ClipData.Item(hVar.c()));
         if (i11 >= 31) {
             dVar = new j(clipData, 2);
         } else {
             r0.e eVar = new r0.e();
-            eVar.f41777b = clipData;
-            eVar.f41778c = 2;
+            eVar.f42096b = clipData;
+            eVar.f42097c = 2;
             dVar = eVar;
         }
         dVar.b(hVar.f());
@@ -266,54 +311,21 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
     }
 
     @Override
-    public Object i() {
-        SQLiteDatabase a2;
-        switch (this.f42000a) {
-            case 0:
-                s5.g gVar = (s5.g) ((s5.d) this.f42001b);
-                long q6 = gVar.f42807b.q() - gVar.d.d;
-                a2 = gVar.a();
-                a2.beginTransaction();
-                try {
-                    String[] strArr = {String.valueOf(q6)};
-                    Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE timestamp_ms < ? GROUP BY transport_name", strArr);
-                    while (rawQuery.moveToNext()) {
-                        int i10 = rawQuery.getInt(0);
-                        gVar.e(i10, o5.c.MESSAGE_TOO_OLD, rawQuery.getString(1));
-                    }
-                    rawQuery.close();
-                    int delete = a2.delete("events", "timestamp_ms < ?", strArr);
-                    a2.setTransactionSuccessful();
-                    a2.endTransaction();
-                    return Integer.valueOf(delete);
-                } finally {
-                }
-            case 1:
-                s5.g gVar2 = (s5.g) ((s5.c) ((da.b) this.f42001b).f7569i);
-                a2 = gVar2.a();
-                a2.beginTransaction();
-                try {
-                    a2.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + gVar2.f42807b.q()).execute();
-                    a2.setTransactionSuccessful();
-                    a2.endTransaction();
-                    return null;
-                } finally {
-                }
-            default:
-                t tVar = (t) this.f42001b;
-                for (l5.i iVar : (Iterable) ((s5.g) ((s5.d) tVar.f7336c)).c(new s0.b(10))) {
-                    ((lf.i) tVar.d).V(iVar, 1, false);
-                }
-                return null;
-        }
+    public void o(Canvas canvas, int i10) {
+        uh.h hVar = (uh.h) this.f42320b;
+        hVar.getClass();
+        canvas.save();
+        RectF rectF = hVar.f44069r;
+        canvas.translate(-rectF.left, (-rectF.top) + AndroidUtilities.dp(30.0f));
+        hVar.e(canvas, true, i10);
+        canvas.restore();
     }
 
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
         int i10;
-        r1 r1Var = (r1) this.f42001b;
-        ArrayList arrayList = r1Var.f46051n0;
+        r1 r1Var = (r1) this.f42320b;
+        ArrayList arrayList = r1Var.f46365n0;
         Iterator it = list.iterator();
         long j3 = 0;
         while (true) {
@@ -341,38 +353,27 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
         while (i10 < size2) {
             Object obj2 = arrayList.get(i10);
             i10++;
-            ((k) obj2).f42291g = j3;
+            ((k) obj2).f42610g = j3;
         }
-        AndroidUtilities.runOnUIThread(new w1(r1Var, 14));
-    }
-
-    @Override
-    public void p(Canvas canvas, int i10) {
-        uh.h hVar = (uh.h) this.f42001b;
-        hVar.getClass();
-        canvas.save();
-        RectF rectF = hVar.f43746r;
-        canvas.translate(-rectF.left, (-rectF.top) + AndroidUtilities.dp(30.0f));
-        hVar.e(canvas, true, i10);
-        canvas.restore();
+        AndroidUtilities.runOnUIThread(new q1(r1Var, 15));
     }
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        switch (this.f42000a) {
+        switch (this.f42319a) {
             case 23:
-                t5.b((t5) this.f42001b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
+                t5.b((t5) this.f42320b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
                 return;
             default:
-                t7 t7Var = (t7) this.f42001b;
-                h51 h51Var = (h51) obj;
+                t7 t7Var = (t7) this.f42320b;
+                v51 v51Var = (v51) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).intValue();
                 ((Float) obj4).floatValue();
                 ((Float) obj5).floatValue();
                 t7Var.getClass();
-                if (h51Var.G instanceof TL_stars.StarsTransaction) {
-                    w7.h1(t7Var.getContext(), false, 0L, t7Var.f47758c, (TL_stars.StarsTransaction) h51Var.G, t7Var.f47757b);
+                if (v51Var.G instanceof TL_stars.StarsTransaction) {
+                    w7.h1(t7Var.getContext(), false, 0L, t7Var.f48054c, (TL_stars.StarsTransaction) v51Var.G, t7Var.f48053b);
                     return;
                 }
                 return;
@@ -381,7 +382,7 @@ public final class d implements t5.b, t0.e, pa.a, a2, bl0, uh.a, Continuation, m
 
     @Override
     public Object then(Task task) {
-        ((CountDownLatch) this.f42001b).countDown();
+        ((CountDownLatch) this.f42320b).countDown();
         return null;
     }
 

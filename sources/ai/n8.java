@@ -2,6 +2,7 @@ package ai;
 
 import android.os.Build;
 import j$.util.Objects;
+import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,9 +18,8 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fr0;
-import org.telegram.ui.cb1;
-import org.telegram.ui.hb1;
+import org.telegram.ui.Components.cn0;
+import org.telegram.ui.db1;
 public final class n8 implements RequestDelegate {
     public final int f1303a;
     public final Object f1304b;
@@ -31,9 +31,9 @@ public final class n8 implements RequestDelegate {
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        final Comparator cb1Var;
+        final Comparator db1Var;
         Locale locale;
-        final Comparator cb1Var2;
+        final Comparator db1Var2;
         Locale locale2;
         int i10 = this.f1303a;
         Object obj = this.f1304b;
@@ -99,10 +99,10 @@ public final class n8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new gg.x1(17, (ii.b5) obj, tLObject));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new hb1(28, (org.telegram.ui.web.f2) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(4, (org.telegram.ui.web.g2) obj, tLObject));
                 return;
             case 19:
-                tg.y0 y0Var = (tg.y0) obj;
+                tg.x0 x0Var = (tg.x0) obj;
                 if (tLObject != null) {
                     TLRPC.TL_help_countriesList tL_help_countriesList = (TLRPC.TL_help_countriesList) tLObject;
                     HashMap hashMap = new HashMap();
@@ -132,11 +132,11 @@ public final class n8 implements RequestDelegate {
                         }
                         Collator collator = Collator.getInstance(locale);
                         Objects.requireNonNull(collator);
-                        cb1Var = new e8(collator, 5);
+                        db1Var = new e8(collator, 5);
                     } else {
-                        cb1Var = new cb1(7);
+                        db1Var = new db1(7);
                     }
-                    Collections.sort(arrayList, cb1Var);
+                    Collections.sort(arrayList, db1Var);
                     for (List list2 : hashMap.values()) {
                         Collections.sort(list2, new Comparator() {
                             @Override
@@ -145,14 +145,14 @@ public final class n8 implements RequestDelegate {
                                 TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
                                 switch (r2) {
                                     case 0:
-                                        return cb1Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
+                                        return db1Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
                                     default:
-                                        return cb1Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
+                                        return db1Var.compare(tL_help_country2.default_name, tL_help_country3.default_name);
                                 }
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new fr0(y0Var, hashMap, arrayList, 24));
+                    AndroidUtilities.runOnUIThread(new cn0((Object) x0Var, (Serializable) hashMap, arrayList, 27));
                     return;
                 }
                 return;
@@ -193,11 +193,11 @@ public final class n8 implements RequestDelegate {
                         }
                         Collator collator2 = Collator.getInstance(locale2);
                         Objects.requireNonNull(collator2);
-                        cb1Var2 = new e8(collator2, 5);
+                        db1Var2 = new e8(collator2, 5);
                     } else {
-                        cb1Var2 = new cb1(7);
+                        db1Var2 = new db1(7);
                     }
-                    Collections.sort(arrayList2, cb1Var2);
+                    Collections.sort(arrayList2, db1Var2);
                     for (List list4 : hashMap2.values()) {
                         Collections.sort(list4, new Comparator() {
                             @Override
@@ -206,45 +206,45 @@ public final class n8 implements RequestDelegate {
                                 TLRPC.TL_help_country tL_help_country3 = (TLRPC.TL_help_country) obj3;
                                 switch (r2) {
                                     case 0:
-                                        return cb1Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
+                                        return db1Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
                                     default:
-                                        return cb1Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
+                                        return db1Var2.compare(tL_help_country22.default_name, tL_help_country3.default_name);
                                 }
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new fr0(q1Var, hashMap2, arrayList2, 27));
+                    AndroidUtilities.runOnUIThread(new tg.r(q1Var, hashMap2, arrayList2, 0));
                     return;
                 }
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new p2.b(23, (tg.n1) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(29, (tg.m1) obj, tLObject));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new p2.b(26, (uf.c) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.i0(2, (uf.c) obj, tLObject));
                 return;
             case 23:
-                AndroidUtilities.runOnUIThread(new fr0((uf.d) obj, tLObject, tL_error, 28));
+                AndroidUtilities.runOnUIThread(new tg.r((uf.d) obj, tLObject, tL_error, 1));
                 return;
             case 24:
-                AndroidUtilities.runOnUIThread(new w9.v((yh.g) obj, tLObject, tL_error, 6));
+                AndroidUtilities.runOnUIThread(new tg.r((yh.g) obj, tLObject, tL_error, 9));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new uh.i(8, (yh.l) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.i0(14, (yh.l) obj, tLObject));
                 return;
             case 26:
-                AndroidUtilities.runOnUIThread(new uh.i(9, (yh.m) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.i0(15, (yh.m) obj, tLObject));
                 return;
             case 27:
-                AndroidUtilities.runOnUIThread(new uh.i(21, tLObject, (ii.q1) obj));
+                AndroidUtilities.runOnUIThread(new u2.i0(27, tLObject, (ii.q1) obj));
                 return;
             case 28:
-                AndroidUtilities.runOnUIThread(new uh.i(23, (yh.l5) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.i0(29, (yh.k5) obj, tLObject));
                 return;
             default:
                 yh.o8 o8Var = (yh.o8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(o8Var.f47517c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(o8Var.f47835c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     o8Var.getClass();

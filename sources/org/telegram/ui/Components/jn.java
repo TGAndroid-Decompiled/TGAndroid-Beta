@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class jn extends s4.d0 {
-    public final hg.g0 f25378r;
+    public final hg.g0 f25447r;
 
     public jn(hg.g0 g0Var, Context context) {
         super(context);
-        this.f25378r = g0Var;
+        this.f25447r = g0Var;
     }
 
     @Override
     public final int k(int i10, View view) {
         int i11;
-        vn vnVar = (vn) this.f25378r.V;
+        vn vnVar = (vn) this.f25447r.V;
         if (vnVar.V0) {
             i10 = -1;
         }
@@ -23,7 +23,7 @@ public final class jn extends s4.d0 {
             k10 += AndroidUtilities.dp(160.0f);
         }
         if (!vnVar.V0) {
-            k10 = org.telegram.messenger.z0.z(7.0f, vnVar.R0 - AndroidUtilities.statusBarHeight, k10);
+            k10 = org.telegram.messenger.f0.A(7.0f, vnVar.R0 - AndroidUtilities.statusBarHeight, k10);
         }
         if (vnVar.V0 && k10 == 0 && (i11 = vnVar.W0) >= 0) {
             vn.K(vnVar, i11);

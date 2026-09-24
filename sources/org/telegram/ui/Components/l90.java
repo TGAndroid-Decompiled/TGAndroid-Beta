@@ -1,12 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class l90 {
-    public final TL_iv.PageBlock f25849a;
-    public final int f25850b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class l90 extends org.telegram.ui.ActionBar.h5 {
+    public final org.telegram.ui.ActionBar.d6 M0;
+    public final k90 N0;
+    public o90 O0;
 
-    public l90(int i10, TL_iv.PageBlock pageBlock) {
-        this.f25849a = pageBlock;
-        this.f25850b = i10;
+    public l90(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.N0 = new k90(this);
+        this.M0 = d6Var;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getLayoutX(), getLayoutY());
+        if (this.N0.f(canvas)) {
+            invalidate();
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.l90.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

@@ -11,7 +11,7 @@ public class AuthTokensHelper {
         int i10 = sharedPreferences.getInt("count", 0);
         SerializedData serializedData = new SerializedData(tL_auth_loggedOut.getObjectSize());
         tL_auth_loggedOut.serializeToStream(serializedData);
-        sharedPreferences.edit().putString(hg.c.i(i10, "log_out_token_"), Utilities.bytesToHex(serializedData.toByteArray())).putInt("count", i10 + 1).apply();
+        sharedPreferences.edit().putString(hg.c.h(i10, "log_out_token_"), Utilities.bytesToHex(serializedData.toByteArray())).putInt("count", i10 + 1).apply();
         BackupAgent.requestBackup();
     }
 

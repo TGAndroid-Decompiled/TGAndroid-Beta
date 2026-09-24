@@ -25,7 +25,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.xn;
+import org.telegram.ui.wn;
 public final class y8 implements Runnable {
     public final int f5877a;
     public final Object f5878b;
@@ -93,7 +93,7 @@ public final class y8 implements Runnable {
             case 5:
                 FirebaseMessaging firebaseMessaging = (FirebaseMessaging) this.f5878b;
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f5879c;
-                com.google.firebase.messaging.v vVar = FirebaseMessaging.f7249l;
+                a4.m mVar = FirebaseMessaging.f7249l;
                 firebaseMessaging.getClass();
                 try {
                     taskCompletionSource.setResult(firebaseMessaging.a());
@@ -114,7 +114,7 @@ public final class y8 implements Runnable {
                 }
             case 7:
                 v0.f fVar = (v0.f) this.f5879c;
-                v0.i iVar = ((d1.e) this.f5878b).f7393f;
+                v0.i iVar = ((d1.e) this.f5878b).f7392f;
                 if (iVar != null) {
                     iVar.onResult(fVar);
                     return;
@@ -130,7 +130,7 @@ public final class y8 implements Runnable {
                 return;
             case 10:
                 v0.c cVar = (v0.c) this.f5879c;
-                v0.i iVar2 = ((e1.d) this.f5878b).f7852f;
+                v0.i iVar2 = ((e1.d) this.f5878b).f7851f;
                 if (iVar2 != null) {
                     iVar2.onResult(cVar);
                     return;
@@ -140,11 +140,11 @@ public final class y8 implements Runnable {
                 }
             case 11:
                 e2.c cVar2 = (e2.c) this.f5878b;
-                Object apply = ((i2.w) this.f5879c).apply(cVar2.f7869f);
-                cVar2.f7869f = apply;
+                Object apply = ((i2.w) this.f5879c).apply(cVar2.f7868f);
+                cVar2.f7868f = apply;
                 e2.b bVar = new e2.b(cVar2, apply, 1);
-                e2.z zVar = (e2.z) cVar2.f7868c;
-                if (zVar.f7926a.getLooper().getThread().isAlive()) {
+                e2.z zVar = (e2.z) cVar2.f7867c;
+                if (zVar.f7925a.getLooper().getThread().isAlive()) {
                     zVar.c(bVar);
                     return;
                 }
@@ -268,20 +268,20 @@ public final class y8 implements Runnable {
             case 17:
                 ei.k3 k3Var2 = (ei.k3) this.f5878b;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f5879c;
-                if (!k3Var2.f8414c0) {
+                if (!k3Var2.f8413c0) {
                     if (tL_error != null) {
                         k3Var2.k(false);
                         return;
                     } else {
-                        AndroidUtilities.runOnUIThread(k3Var2.f8434t0, 60000L);
+                        AndroidUtilities.runOnUIThread(k3Var2.f8433t0, 60000L);
                         return;
                     }
                 }
                 return;
             case 18:
                 ei.k3 k3Var3 = (ei.k3) this.f5878b;
-                org.telegram.ui.Components.qc Q = new org.telegram.ui.Components.xc(k3Var3.f8428p0, k3Var3.E).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f5879c));
-                Q.f27306j = 5000;
+                org.telegram.ui.Components.qc Q = new org.telegram.ui.Components.yc(k3Var3.f8427p0, k3Var3.E).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f5879c));
+                Q.f27571j = 5000;
                 Q.k(true);
                 return;
             case 19:
@@ -291,14 +291,14 @@ public final class y8 implements Runnable {
             case 20:
                 ei.e4 e4Var2 = (ei.e4) this.f5878b;
                 e4Var2.getClass();
-                e4Var2.presentFragment(xn.R9(((TL_payments.connectedBotStarRef) this.f5879c).bot_id));
+                e4Var2.presentFragment(wn.R9(((TL_payments.connectedBotStarRef) this.f5879c).bot_id));
                 return;
             case 21:
                 ei.q4 q4Var = (ei.q4) this.f5878b;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f5879c;
                 if (!q4Var.T) {
                     if (tL_error2 != null) {
-                        q4Var.f26744b.dismiss();
+                        q4Var.f27083b.dismiss();
                         return;
                     } else {
                         AndroidUtilities.runOnUIThread(q4Var.U, 60000L);
@@ -308,17 +308,17 @@ public final class y8 implements Runnable {
                 return;
             case 22:
                 ei.q4 q4Var2 = (ei.q4) this.f5878b;
-                org.telegram.ui.Components.qc Q2 = new org.telegram.ui.Components.xc(q4Var2.f26744b.getContainer(), q4Var2.f26743a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f5879c));
-                Q2.f27306j = 5000;
+                org.telegram.ui.Components.qc Q2 = new org.telegram.ui.Components.yc(q4Var2.f27083b.getContainer(), q4Var2.f27082a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f5879c));
+                Q2.f27571j = 5000;
                 Q2.k(true);
                 return;
             case 23:
                 fi.s sVar = (fi.s) this.f5878b;
                 sVar.getClass();
-                sVar.presentFragment(xn.R9(((gi.f) this.f5879c).f10010b.f18230id));
+                sVar.presentFragment(wn.R9(((gi.f) this.f5879c).f10009b.f18468id));
                 return;
             case 24:
-                ((fi.k0) this.f5878b).f9113s.presentFragment(xn.R9(((gi.f) this.f5879c).f10010b.f18230id));
+                ((fi.k0) this.f5878b).f9112s.presentFragment(wn.R9(((gi.f) this.f5879c).f10009b.f18468id));
                 return;
             case 25:
                 gg.c cVar3 = (gg.c) this.f5878b;
@@ -329,12 +329,12 @@ public final class y8 implements Runnable {
                 MessagesStorage.getInstance(i12).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                 Location location = cVar3.v;
                 cVar3.v = null;
-                cVar3.H(cVar3.f9665w, location, false);
+                cVar3.H(cVar3.f9664w, location, false);
                 return;
             case 26:
                 gg.i0 i0Var = (gg.i0) this.f5878b;
                 TLObject tLObject = (TLObject) this.f5879c;
-                int i13 = i0Var.f9766s0;
+                int i13 = i0Var.f9765s0;
                 ArrayList arrayList = i0Var.K;
                 i0Var.S = 0;
                 if (tLObject instanceof TLRPC.TL_contacts_sponsoredPeersEmpty) {
@@ -358,7 +358,7 @@ public final class y8 implements Runnable {
                 gg.i0 i0Var2 = (gg.i0) this.f5878b;
                 View view = (View) this.f5879c;
                 i0Var2.m0 = false;
-                i0Var2.f9760o0 = null;
+                i0Var2.f9759o0 = null;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -370,7 +370,7 @@ public final class y8 implements Runnable {
                 i0Var3.getClass();
                 try {
                     sb2.insert(0, "DELETE FROM search_recent WHERE ");
-                    MessagesStorage.getInstance(i0Var3.f9766s0).getDatabase().executeFast(sb2.toString()).stepThis().dispose();
+                    MessagesStorage.getInstance(i0Var3.f9765s0).getDatabase().executeFast(sb2.toString()).stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     FileLog.e(e10);
@@ -380,12 +380,12 @@ public final class y8 implements Runnable {
                 gg.u1 u1Var = (gg.u1) this.f5878b;
                 String str = (String) this.f5879c;
                 u1Var.I = str;
-                if (u1Var.f9932r) {
-                    u1Var.f9930f.g(str, true, false, u1Var.f9933s, u1Var.v, u1Var.f9935x, u1Var.f9934w, -1, 1);
+                if (u1Var.f9931r) {
+                    u1Var.f9929f.g(str, true, false, u1Var.f9932s, u1Var.v, u1Var.f9934x, u1Var.f9933w, -1, 1);
                 }
                 int i14 = UserConfig.selectedAccount;
                 ArrayList arrayList2 = new ArrayList(ContactsController.getInstance(i14).contacts);
-                u1Var.f9936y = true;
+                u1Var.f9935y = true;
                 int i15 = u1Var.F;
                 u1Var.F = i15 + 1;
                 u1Var.E = i15;

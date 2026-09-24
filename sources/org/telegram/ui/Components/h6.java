@@ -7,22 +7,22 @@ import android.text.TextPaint;
 import java.util.ArrayList;
 import java.util.Locale;
 public final class h6 {
-    public static final org.telegram.ui.Cells.u8 h = new org.telegram.ui.Cells.u8("progress", 3);
-    public final TextPaint f24523c;
+    public static final org.telegram.ui.Cells.t8 h = new org.telegram.ui.Cells.t8("progress", 3);
+    public final TextPaint f24637c;
     public ObjectAnimator d;
-    public final org.telegram.ui.Cells.t1 f24525g;
-    public final ArrayList f24521a = new ArrayList();
-    public final ArrayList f24522b = new ArrayList();
+    public final org.telegram.ui.Cells.u1 f24639g;
+    public final ArrayList f24635a = new ArrayList();
+    public final ArrayList f24636b = new ArrayList();
     public float e = 0.0f;
-    public int f24524f = 1;
+    public int f24638f = 1;
 
-    public h6(org.telegram.ui.Cells.t1 t1Var, TextPaint textPaint) {
-        this.f24523c = textPaint;
-        this.f24525g = t1Var;
+    public h6(org.telegram.ui.Cells.u1 u1Var, TextPaint textPaint) {
+        this.f24637c = textPaint;
+        this.f24639g = u1Var;
     }
 
     public final int a() {
-        ArrayList arrayList = this.f24521a;
+        ArrayList arrayList = this.f24635a;
         int size = arrayList.size();
         float f7 = 0.0f;
         for (int i10 = 0; i10 < size; i10++) {
@@ -37,8 +37,8 @@ public final class h6 {
         String str;
         TextPaint textPaint;
         ArrayList arrayList;
-        int i11 = this.f24524f;
-        ArrayList arrayList2 = this.f24521a;
+        int i11 = this.f24638f;
+        ArrayList arrayList2 = this.f24635a;
         if (i11 == i10 && !arrayList2.isEmpty()) {
             return;
         }
@@ -47,24 +47,24 @@ public final class h6 {
             objectAnimator.cancel();
             this.d = null;
         }
-        ArrayList arrayList3 = this.f24522b;
+        ArrayList arrayList3 = this.f24636b;
         arrayList3.clear();
         arrayList3.addAll(arrayList2);
         arrayList2.clear();
         Locale locale = Locale.US;
-        int i12 = this.f24524f;
+        int i12 = this.f24638f;
         StringBuilder sb2 = new StringBuilder();
         sb2.append(i12);
         String sb3 = sb2.toString();
         StringBuilder sb4 = new StringBuilder();
         sb4.append(i10);
         String sb5 = sb4.toString();
-        if (i10 > this.f24524f) {
+        if (i10 > this.f24638f) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f24524f = i10;
+        this.f24638f = i10;
         this.e = 0.0f;
         int i13 = 0;
         while (i13 < sb5.length()) {
@@ -81,7 +81,7 @@ public final class h6 {
                 arrayList = arrayList3;
             } else {
                 arrayList = arrayList3;
-                arrayList2.add(new StaticLayout(substring, this.f24523c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                arrayList2.add(new StaticLayout(substring, this.f24637c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
             }
             i13 = i14;
             arrayList3 = arrayList;
@@ -96,9 +96,9 @@ public final class h6 {
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, h, f7, 0.0f);
             this.d = ofFloat;
             ofFloat.setDuration(150L);
-            this.d.addListener(new org.telegram.ui.u4(this, 26));
+            this.d.addListener(new org.telegram.ui.t4(this, 26));
             this.d.start();
         }
-        this.f24525g.invalidate();
+        this.f24639g.invalidate();
     }
 }

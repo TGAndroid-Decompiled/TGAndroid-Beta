@@ -114,7 +114,7 @@ public abstract class d {
 
     public static void o(MediaFormat mediaFormat, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            mediaFormat.setByteBuffer(hg.c.i(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
+            mediaFormat.setByteBuffer(hg.c.h(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
         }
     }
 

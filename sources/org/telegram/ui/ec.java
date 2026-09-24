@@ -6,20 +6,20 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ec implements Utilities.Callback {
-    public final int f32887a;
-    public final ad f32888b;
+    public final int f33336a;
+    public final ad f33337b;
 
     public ec(ad adVar, int i10) {
-        this.f32887a = i10;
-        this.f32888b = adVar;
+        this.f33336a = i10;
+        this.f33337b = adVar;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f32887a) {
+        switch (this.f33336a) {
             case 0:
                 TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) obj;
-                ad adVar = this.f32888b;
+                ad adVar = this.f33337b;
                 adVar.E = wallPaper;
                 adVar.F = wallPaper;
                 adVar.G = wallPaper;
@@ -28,10 +28,10 @@ public final class ec implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new fc(adVar, 1), 350L);
                 return;
             case 1:
-                ad.V(this.f32888b, (ChannelBoostsController.CanApplyBoost) obj);
+                ad.V(this.f33337b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             default:
-                this.f32888b.W0((TL_stories.TL_premium_boostsStatus) obj);
+                this.f33337b.W0((TL_stories.TL_premium_boostsStatus) obj);
                 return;
         }
     }

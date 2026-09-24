@@ -1,41 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class eo0 implements oo0 {
-    public final qo0 f32993a;
+import android.os.AsyncTask;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class eo0 extends AsyncTask {
+    public final uc.a f33437a;
+    public final oo0 f33438b;
 
-    public eo0(qo0 qo0Var) {
-        this.f32993a = qo0Var;
+    public eo0(oo0 oo0Var, uc.a aVar) {
+        this.f33438b = oo0Var;
+        this.f33437a = aVar;
     }
 
     @Override
-    public final void a(TL_account.Password password) {
-        this.f32993a.f36484a0 = password;
+    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.eo0.doInBackground(java.lang.Object[]):java.lang.Object");
     }
 
     @Override
-    public final void b() {
-        this.f32993a.f36497f0 = null;
-    }
-
-    @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        qo0 qo0Var = this.f32993a;
-        oo0 oo0Var = qo0Var.T;
-        if (oo0Var != null) {
-            oo0Var.c(str, str2, z10, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
+    public final void onPostExecute(Object obj) {
+        String str = (String) obj;
+        oo0 oo0Var = this.f33438b;
+        if (oo0Var.Q0) {
+            return;
         }
-        if (qo0Var.S0) {
-            qo0Var.removeSelfFromStack();
+        if (str == null) {
+            org.telegram.ui.Components.e5.w0(oo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+        } else {
+            oo0Var.f36296w0 = str;
+            oo0Var.t0();
         }
-        if (qo0Var.T != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        oo0Var.H0(true, false);
+        oo0Var.D0(false);
     }
 }

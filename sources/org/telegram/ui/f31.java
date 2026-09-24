@@ -1,54 +1,103 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
 public final class f31 implements Runnable {
-    public final int f33087a;
-    public final boolean[] f33088b;
-    public final Utilities.Callback f33089c;
+    public final int f33522a;
+    public final wn f33523b;
+    public final Activity f33524c;
+    public final org.telegram.ui.ActionBar.d6 d;
+    public final MessageObject e;
 
-    public f31(int i10, Utilities.Callback callback, boolean[] zArr) {
-        this.f33087a = i10;
-        this.f33088b = zArr;
-        this.f33089c = callback;
+    public f31(wn wnVar, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject, int i10) {
+        this.f33522a = i10;
+        this.f33523b = wnVar;
+        this.f33524c = activity;
+        this.d = d6Var;
+        this.e = messageObject;
     }
 
     @Override
     public final void run() {
-        Utilities.Callback callback;
-        Utilities.Callback callback2;
-        Utilities.Callback callback3;
-        switch (this.f33087a) {
+        switch (this.f33522a) {
             case 0:
-                boolean[] zArr = this.f33088b;
-                if (!zArr[0] && (callback = this.f33089c) != null) {
-                    zArr[0] = true;
-                    callback.run(Boolean.TRUE);
-                }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.th(29), 220L);
+                wn wnVar = this.f33523b;
+                org.telegram.ui.Components.yc a02 = org.telegram.ui.Components.yc.a0(wnVar);
+                String string = LocaleController.getString(R.string.AdReported);
+                final Activity activity = this.f33524c;
+                a02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                nf.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject = this.e;
+                wnVar.Fa(messageObject);
+                wnVar.Ha(messageObject);
                 return;
             case 1:
-                boolean[] zArr2 = this.f33088b;
-                if (!zArr2[0] && (callback2 = this.f33089c) != null) {
-                    zArr2[0] = true;
-                    callback2.run(Boolean.FALSE);
-                    return;
-                }
+                wn wnVar2 = this.f33523b;
+                org.telegram.ui.Components.yc a03 = org.telegram.ui.Components.yc.a0(wnVar2);
+                String string2 = LocaleController.getString(R.string.AdReported);
+                final Activity activity2 = this.f33524c;
+                a03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                nf.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject2 = this.e;
+                wnVar2.Fa(messageObject2);
+                wnVar2.Ha(messageObject2);
                 return;
             default:
-                boolean[] zArr3 = this.f33088b;
-                if (!zArr3[0] && (callback3 = this.f33089c) != null) {
-                    callback3.run("cancelled");
-                    zArr3[0] = true;
-                    return;
-                }
+                wn wnVar3 = this.f33523b;
+                org.telegram.ui.Components.yc a04 = org.telegram.ui.Components.yc.a0(wnVar3);
+                String string3 = LocaleController.getString(R.string.AdReported);
+                final Activity activity3 = this.f33524c;
+                a04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                nf.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject3 = this.e;
+                wnVar3.Fa(messageObject3);
+                wnVar3.Ha(messageObject3);
                 return;
         }
-    }
-
-    public f31(yh.t5 t5Var, boolean[] zArr, Utilities.Callback callback) {
-        this.f33087a = 2;
-        this.f33088b = zArr;
-        this.f33089c = callback;
     }
 }

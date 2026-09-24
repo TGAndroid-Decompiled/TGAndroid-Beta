@@ -1,23 +1,23 @@
 package r7;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
-import v7.g5;
+import v7.h5;
 public final class h extends x {
-    public final TaskCompletionSource f42020b;
-    public final i f42021c;
+    public final TaskCompletionSource f42339b;
+    public final i f42340c;
 
     public h(TaskCompletionSource taskCompletionSource, i iVar) {
-        this.f42020b = taskCompletionSource;
-        this.f42021c = iVar;
+        this.f42339b = taskCompletionSource;
+        this.f42340c = iVar;
     }
 
     @Override
     public final void p0(v vVar) {
-        g5.a(vVar.f42046a, null, this.f42020b);
+        h5.a(vVar.f42365a, null, this.f42339b);
     }
 
     @Override
     public final void zze() {
-        this.f42021c.L0();
+        this.f42340c.L0();
     }
 }

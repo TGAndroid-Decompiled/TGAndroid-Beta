@@ -1,7 +1,7 @@
 package ii;
 
 import android.view.View;
-import org.telegram.ui.Cells.q9;
+import org.telegram.ui.Cells.p9;
 public final class p2 implements Runnable {
     public final int f11545a;
     public final x3 f11546b;
@@ -68,21 +68,21 @@ public final class p2 implements Runnable {
             case 14:
                 x3 x3Var = this.f11546b;
                 View z13 = x3Var.z1(this.f11547c);
-                if (z13 instanceof q9) {
-                    x3Var.f11738n3.c0(0, 0, (q9) z13);
+                if (z13 instanceof p9) {
+                    x3Var.f11738n3.c0(0, 0, (p9) z13);
                     return;
                 }
                 return;
             case 15:
                 x3 x3Var2 = this.f11546b;
                 View z14 = x3Var2.z1(this.f11547c);
-                if (z14 instanceof q9) {
+                if (z14 instanceof p9) {
                     if (z14 instanceof e6) {
                         i10 = ((e6) z14).getEditText().length();
                     } else {
                         i10 = 0;
                     }
-                    x3Var2.f11738n3.c0(0, i10, (q9) z14);
+                    x3Var2.f11738n3.c0(0, i10, (p9) z14);
                     return;
                 }
                 return;

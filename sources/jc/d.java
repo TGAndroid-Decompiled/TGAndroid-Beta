@@ -83,7 +83,7 @@ public abstract class d {
         f(7, i24, bVar);
         if (bVar.a(8, i23) != 0) {
             bVar.b(8, i23, 1);
-            int i25 = fVar.f10165a;
+            int i25 = fVar.f10164a;
             if (i25 < 2) {
                 c11 = 1;
                 c10 = 0;
@@ -152,25 +152,25 @@ public abstract class d {
             }
             dc.a aVar2 = new dc.a();
             if (i10 >= 0 && i10 < 8) {
-                int i41 = (cVar.f10151a << 3) | i10;
+                int i41 = (cVar.f10150a << 3) | i10;
                 aVar2.b(i41, 5);
                 aVar2.b(c(i41, 1335), 10);
                 dc.a aVar3 = new dc.a();
                 aVar3.b(21522, 15);
-                if (aVar2.f7600b == aVar3.f7600b) {
+                if (aVar2.f7599b == aVar3.f7599b) {
                     int i42 = 0;
                     while (true) {
-                        int[] iArr3 = aVar2.f7599a;
+                        int[] iArr3 = aVar2.f7598a;
                         if (i42 >= iArr3.length) {
                             break;
                         }
-                        iArr3[i42] = iArr3[i42] ^ aVar3.f7599a[i42];
+                        iArr3[i42] = iArr3[i42] ^ aVar3.f7598a[i42];
                         i42++;
                     }
-                    if (aVar2.f7600b == 15) {
+                    if (aVar2.f7599b == 15) {
                         int i43 = 0;
                         while (true) {
-                            int i44 = aVar2.f7600b;
+                            int i44 = aVar2.f7599b;
                             if (i43 >= i44) {
                                 break;
                             }
@@ -194,7 +194,7 @@ public abstract class d {
                             dc.a aVar4 = new dc.a();
                             aVar4.b(i25, 6);
                             aVar4.b(c(i25, 7973), 12);
-                            if (aVar4.f7600b == 18) {
+                            if (aVar4.f7599b == 18) {
                                 int i46 = 17;
                                 for (int i47 = 0; i47 < 6; i47++) {
                                     for (int i48 = 0; i48 < 3; i48++) {
@@ -208,7 +208,7 @@ public abstract class d {
                                     }
                                 }
                             } else {
-                                throw new Exception("should not happen but we got: " + aVar4.f7600b);
+                                throw new Exception("should not happen but we got: " + aVar4.f7599b);
                             }
                         }
                         int i50 = i37 - 1;
@@ -223,7 +223,7 @@ public abstract class d {
                                 for (int i54 = 0; i54 < 2; i54++) {
                                     int i55 = i50 - i54;
                                     if (g(bVar.a(i55, i51))) {
-                                        if (i52 < aVar.f7600b) {
+                                        if (i52 < aVar.f7599b) {
                                             boolean d12 = aVar.d(i52);
                                             i52++;
                                             i12 = d12;
@@ -266,7 +266,7 @@ public abstract class d {
                                                     i14 = i13 & 1;
                                                     break;
                                                 default:
-                                                    throw new IllegalArgumentException(hg.c.i(i10, "Invalid mask pattern: "));
+                                                    throw new IllegalArgumentException(hg.c.h(i10, "Invalid mask pattern: "));
                                             }
                                             if (i14 == 0) {
                                                 z10 = true;
@@ -286,12 +286,12 @@ public abstract class d {
                             i51 += i53;
                             i50 -= 2;
                         }
-                        if (i52 == aVar.f7600b) {
+                        if (i52 == aVar.f7599b) {
                             return;
                         }
-                        throw new Exception("Not all bits consumed: " + i52 + '/' + aVar.f7600b);
+                        throw new Exception("Not all bits consumed: " + i52 + '/' + aVar.f7599b);
                     }
-                    throw new Exception("should not happen but we got: " + aVar2.f7600b);
+                    throw new Exception("should not happen but we got: " + aVar2.f7599b);
                 }
                 throw new IllegalArgumentException("Sizes don't match");
             }

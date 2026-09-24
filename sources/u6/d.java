@@ -8,22 +8,22 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import n6.l;
-import w7.v;
+import w7.w;
 public abstract class d {
-    public static String f43576a;
-    public static int f43577b;
-    public static Boolean f43578c;
+    public static String f43899a;
+    public static int f43900b;
+    public static Boolean f43901c;
 
     public static String a() {
         BufferedReader bufferedReader;
-        if (f43576a == null) {
+        if (f43899a == null) {
             if (Build.VERSION.SDK_INT >= 28) {
-                f43576a = Application.getProcessName();
+                f43899a = Application.getProcessName();
             } else {
-                int i10 = f43577b;
+                int i10 = f43900b;
                 if (i10 == 0) {
                     i10 = Process.myPid();
-                    f43577b = i10;
+                    f43900b = i10;
                 }
                 String str = null;
                 str = null;
@@ -53,14 +53,14 @@ public abstract class d {
                     }
                     b.a(bufferedReader);
                 }
-                f43576a = str;
+                f43899a = str;
             }
         }
-        return f43576a;
+        return f43899a;
     }
 
     public static boolean b() {
-        Boolean bool = f43578c;
+        Boolean bool = f43901c;
         if (bool == null) {
             if (Build.VERSION.SDK_INT >= 28) {
                 bool = Boolean.valueOf(Process.isIsolated());
@@ -71,13 +71,13 @@ public abstract class d {
                     if (invoke != null) {
                         bool = (Boolean) invoke;
                     } else {
-                        throw new RuntimeException(v.a(objArr));
+                        throw new RuntimeException(w.a(objArr));
                     }
                 } catch (ReflectiveOperationException unused) {
                     bool = Boolean.FALSE;
                 }
             }
-            f43578c = bool;
+            f43901c = bool;
         }
         return bool.booleanValue();
     }

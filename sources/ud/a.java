@@ -1,19 +1,19 @@
 package ud;
 
 import java.util.Iterator;
-import w7.w;
+import w7.x;
 public abstract class a implements Iterable {
-    public final char f43626a;
-    public final char f43627b;
-    public final int f43628c = 1;
+    public final char f43949a;
+    public final char f43950b;
+    public final int f43951c = 1;
 
     public a(char c10, char c11) {
-        this.f43626a = c10;
-        this.f43627b = (char) w.a(c10, c11, 1);
+        this.f43949a = c10;
+        this.f43950b = (char) x.a(c10, c11, 1);
     }
 
     @Override
     public final Iterator iterator() {
-        return new b(this.f43626a, this.f43627b, this.f43628c);
+        return new b(this.f43949a, this.f43950b, this.f43951c);
     }
 }

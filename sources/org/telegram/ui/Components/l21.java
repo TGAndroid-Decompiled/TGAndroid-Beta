@@ -1,32 +1,42 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class l21 extends s4.s0 {
-    public final int f25799a;
-    public final w21 f25800b;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class l21 extends TextView {
+    public View f26004a;
+    public ViewPropertyAnimator f26005b;
+    public boolean f26006c;
+    public wq0 d;
 
-    public l21(w21 w21Var, int i10) {
-        this.f25799a = i10;
-        this.f25800b = w21Var;
+    public final void a() {
+        if (this.f26004a == null) {
+            return;
+        }
+        View view = (View) getParent();
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        for (View view2 = this.f26004a; view2 != view; view2 = (View) view2.getParent()) {
+            i12 += view2.getTop();
+            i11 += view2.getLeft();
+        }
+        int width = ((this.f26004a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
+        if (width >= 0) {
+            if (getMeasuredWidth() + width > view.getMeasuredWidth()) {
+                i10 = (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
+            } else {
+                i10 = width;
+            }
+        }
+        setTranslationX(i10);
+        setTranslationY(i12 - getMeasuredHeight());
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f25799a) {
-            case 0:
-                w21 w21Var = this.f25800b;
-                if (w21Var.k()) {
-                    w21Var.l();
-                    return;
-                }
-                return;
-            default:
-                w21 w21Var2 = this.f25800b;
-                if (w21Var2.k()) {
-                    w21Var2.l();
-                    return;
-                }
-                return;
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        a();
     }
 }

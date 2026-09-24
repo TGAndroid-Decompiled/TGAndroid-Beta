@@ -1,16 +1,16 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class qk extends org.telegram.ui.Components.f61 {
-    public final xn N;
+public final class qk extends org.telegram.ui.Components.t61 {
+    public final wn N;
 
-    public qk(xn xnVar, Context context) {
+    public qk(wn wnVar, Context context) {
         super(context);
-        this.N = xnVar;
+        this.N = wnVar;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
-        return this.N.f39370ea;
+        return this.N.f39454ea;
     }
 }

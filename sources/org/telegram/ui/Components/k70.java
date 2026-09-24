@@ -1,37 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.PopupWindow;
-public final class k70 implements PopupWindow.OnDismissListener {
-    public final ViewGroup f25530a;
-    public final o70 f25531b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class k70 extends AnimatorListenerAdapter {
+    public final int f25657a;
+    public final l70 f25658b;
 
-    public k70(o70 o70Var, ViewGroup viewGroup) {
-        this.f25531b = o70Var;
-        this.f25530a = viewGroup;
+    public k70(l70 l70Var, int i10) {
+        this.f25657a = i10;
+        this.f25658b = l70Var;
     }
 
     @Override
-    public final void onDismiss() {
-        View view;
-        o70 o70Var = this.f25531b;
-        o70Var.f26659m = null;
-        o70.a(o70Var, this.f25530a);
-        View view2 = o70Var.f26665p0;
-        if (view2 != null) {
-            view2.setPressed(false);
-            o70Var.f26665p0 = null;
-        }
-        if (o70Var.f26663o0 != null && (view = o70Var.f26646f) != null) {
-            view.setOnTouchListener(null);
-        }
-        o70Var.f26663o0 = null;
-        o70Var.N();
-        Runnable runnable = o70Var.f26664p;
-        if (runnable != null) {
-            runnable.run();
-            o70Var.f26664p = null;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25657a) {
+            case 0:
+                l70 l70Var = this.f25658b;
+                l70Var.e.f26371d0 = null;
+                l70Var.requestLayout();
+                return;
+            default:
+                l70 l70Var2 = this.f25658b;
+                l70Var2.e.f26371d0 = null;
+                l70Var2.f26030a = false;
+                return;
         }
     }
 }

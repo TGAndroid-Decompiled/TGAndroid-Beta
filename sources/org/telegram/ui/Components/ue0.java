@@ -1,306 +1,414 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.ContextThemeWrapper;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Parcelable;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.PhotoViewer;
-public final class ue0 extends FrameLayout {
-    public final re0 E;
-    public final re0 F;
-    public te0 f28467a;
-    public final lg.p f28468b;
-    public final lg.f f28469c;
-    public final boolean d;
-    public final ImageReceiver e;
-    public boolean f28470f;
-    public boolean h;
-    public float f28471n;
-    public float f28472r;
-    public AnimatorSet f28473s;
-    public AnimatorSet v;
-    public float f28474w;
-    public final Paint f28475x;
-    public final org.telegram.ui.ActionBar.d6 f28476y;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class ue0 implements DialogInterface.OnClickListener {
+    public final ze0 f28764a;
 
-    public ue0(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(contextThemeWrapper);
-        this.h = true;
-        this.f28472r = 1.0f;
-        this.f28474w = 0.0f;
-        this.f28475x = new Paint(1);
-        this.E = new re0(this, 0);
-        this.F = new re0(this, 1);
-        this.f28476y = d6Var;
-        this.d = contextThemeWrapper instanceof BubbleActivity;
-        lg.p pVar = new lg.p(contextThemeWrapper);
-        this.f28468b = pVar;
-        pVar.setListener(new k2.u(this, 13));
-        pVar.setBottomPadding(AndroidUtilities.dp(64.0f));
-        addView(pVar);
-        this.e = new ImageReceiver(this);
-        lg.f fVar = new lg.f(contextThemeWrapper);
-        this.f28469c = fVar;
-        fVar.setListener(new ci.h0(2, this));
-        addView(fVar, w7.x5.d(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+    public ue0(ze0 ze0Var) {
+        this.f28764a = ze0Var;
     }
 
-    public final void a() {
-        lg.p pVar = this.f28468b;
-        pVar.f14089b.setVisibility(4);
-        CropAreaView cropAreaView = pVar.f14088a;
-        cropAreaView.setDimVisibility(false);
-        cropAreaView.f(false, false);
-        cropAreaView.invalidate();
-    }
-
-    public final void b(Bitmap bitmap, int i10, boolean z10, boolean z11, lg.g gVar, t61 t61Var, MediaController.CropState cropState) {
-        boolean z12;
-        requestLayout();
-        int i11 = 0;
-        this.f28470f = false;
-        Bitmap bitmap2 = null;
-        this.e.setImageBitmap((Drawable) null);
-        lg.p pVar = this.f28468b;
-        ImageView imageView = pVar.f14089b;
-        pVar.f14096x = z10;
-        pVar.d = t61Var;
-        pVar.e = gVar;
-        pVar.K = i10;
-        pVar.f14095w = bitmap;
-        CropAreaView cropAreaView = pVar.f14088a;
-        boolean z13 = true;
-        if (t61Var != null) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        cropAreaView.setIsVideo(z12);
-        if (bitmap == null && t61Var == null) {
-            pVar.L = null;
-            imageView.setImageDrawable(null);
-        } else {
-            int currentWidth = pVar.getCurrentWidth();
-            int currentHeight = pVar.getCurrentHeight();
-            lg.n nVar = pVar.L;
-            if (nVar != null && z11) {
-                float f7 = currentWidth;
-                nVar.e *= nVar.f14079a / f7;
-                nVar.f14079a = f7;
-                nVar.f14080b = currentHeight;
-                nVar.h();
-                Matrix matrix = nVar.f14086k;
-                lg.p pVar2 = nVar.f14087l;
-                matrix.getValues(pVar2.H);
-                matrix.reset();
-                float f10 = nVar.e;
-                matrix.postScale(f10, f10);
-                float[] fArr = pVar2.H;
-                matrix.postTranslate(fArr[2], fArr[5]);
-                pVar2.r(false);
+    public static void a(String str, ContentValues contentValues) {
+        if (str.startsWith("X-")) {
+            contentValues.put("data2", (Integer) 0);
+            contentValues.put("data3", str.substring(2));
+        } else if ("PREF".equalsIgnoreCase(str)) {
+            contentValues.put("data2", (Integer) 12);
+        } else if ("HOME".equalsIgnoreCase(str)) {
+            contentValues.put("data2", (Integer) 1);
+        } else if (!"MOBILE".equalsIgnoreCase(str) && !"CELL".equalsIgnoreCase(str)) {
+            if ("OTHER".equalsIgnoreCase(str)) {
+                contentValues.put("data2", (Integer) 7);
+            } else if ("WORK".equalsIgnoreCase(str)) {
+                contentValues.put("data2", (Integer) 3);
+            } else if (!"RADIO".equalsIgnoreCase(str) && !"VOICE".equalsIgnoreCase(str)) {
+                if ("PAGER".equalsIgnoreCase(str)) {
+                    contentValues.put("data2", (Integer) 6);
+                } else if ("CALLBACK".equalsIgnoreCase(str)) {
+                    contentValues.put("data2", (Integer) 8);
+                } else if ("CAR".equalsIgnoreCase(str)) {
+                    contentValues.put("data2", (Integer) 9);
+                } else if ("ASSISTANT".equalsIgnoreCase(str)) {
+                    contentValues.put("data2", (Integer) 19);
+                } else if ("MMS".equalsIgnoreCase(str)) {
+                    contentValues.put("data2", (Integer) 20);
+                } else if (str.startsWith("FAX")) {
+                    contentValues.put("data2", (Integer) 4);
+                } else {
+                    contentValues.put("data2", (Integer) 0);
+                    contentValues.put("data3", str);
+                }
             } else {
-                pVar.L = new lg.n(pVar, currentWidth, currentHeight);
-                cropAreaView.getViewTreeObserver().addOnPreDrawListener(new lg.l(pVar, cropState, currentHeight, currentWidth));
+                contentValues.put("data2", (Integer) 14);
             }
-            if (t61Var == null) {
-                bitmap2 = pVar.f14095w;
-            }
-            imageView.setImageBitmap(bitmap2);
-        }
-        lg.f fVar = this.f28469c;
-        fVar.setFreeform(z10);
-        fVar.b(0.0f);
-        fVar.setMirrored(false);
-        fVar.setRotated(false);
-        if (cropState != null) {
-            fVar.b(cropState.cropRotate);
-            if (cropState.transformRotation == 0) {
-                z13 = false;
-            }
-            fVar.setRotated(z13);
-            fVar.setMirrored(cropState.mirrored);
         } else {
-            fVar.setRotated(false);
-            fVar.setMirrored(false);
+            contentValues.put("data2", (Integer) 2);
         }
-        if (!z10) {
-            i11 = 4;
-        }
-        fVar.setVisibility(i11);
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        lg.p pVar;
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        if (this.f28470f && view == (pVar = this.f28468b)) {
-            RectF actualRect = pVar.getActualRect();
-            int dp = AndroidUtilities.dp(32.0f);
-            org.telegram.ui.ms0 ms0Var = (org.telegram.ui.ms0) this.f28467a;
-            ms0Var.getClass();
-            PhotoViewer photoViewer = ms0Var.f35384a;
-            float measuredWidth = (photoViewer.S7.getMeasuredWidth() - AndroidUtilities.dp(32.0f)) * photoViewer.f31075w8;
-            int i10 = dp / 2;
-            int dp2 = AndroidUtilities.dp(2.0f) + (((int) (measuredWidth + AndroidUtilities.dp(16.0f))) - i10);
-            int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(156.0f);
-            float f7 = actualRect.left;
-            float f10 = this.f28472r;
-            float f11 = ((dp2 - f7) * f10) + f7;
-            float f12 = actualRect.top;
-            float z10 = com.google.android.gms.internal.vision.e2.z(measuredHeight, f12, f10, f12);
-            float width = ((dp - actualRect.width()) * this.f28472r) + actualRect.width();
-            ImageReceiver imageReceiver = this.e;
-            imageReceiver.setRoundRadius((int) (width / 2.0f));
-            imageReceiver.setImageCoords(f11, z10, width, width);
-            imageReceiver.setAlpha(this.f28471n);
-            imageReceiver.draw(canvas);
-            float f13 = this.f28474w;
-            Paint paint = this.f28475x;
-            if (f13 > 0.0f) {
-                paint.setColor(-1);
-                paint.setAlpha((int) (this.f28474w * 255.0f));
-                canvas.drawCircle(actualRect.centerX(), actualRect.centerY(), actualRect.width() / 2.0f, paint);
-            }
-            paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19198zf, this.f28476y));
-            paint.setAlpha(Math.min(255, (int) (this.f28472r * 255.0f * this.f28471n)));
-            canvas.drawCircle(dp2 + i10, AndroidUtilities.dp(8.0f) + measuredHeight + dp, AndroidUtilities.dp(3.0f), paint);
-        }
-        return drawChild;
-    }
-
-    public float getRectSizeX() {
-        return this.f28468b.getCropWidth();
-    }
-
-    public float getRectSizeY() {
-        return this.f28468b.getCropHeight();
-    }
-
-    public float getRectX() {
-        return this.f28468b.getCropLeft() - AndroidUtilities.dp(14.0f);
-    }
-
-    public float getRectY() {
-        int i10;
-        float cropTop = this.f28468b.getCropTop() - AndroidUtilities.dp(14.0f);
-        if (!this.d) {
-            i10 = AndroidUtilities.statusBarHeight;
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        Intent intent;
+        String str;
+        ze0 ze0Var;
+        String str2;
+        Intent intent2;
+        Integer num;
+        ArrayList<? extends Parcelable> arrayList;
+        Integer num2;
+        Integer num3;
+        Integer num4;
+        Integer num5;
+        String str3;
+        String str4;
+        ArrayList arrayList2;
+        Integer num6;
+        String str5;
+        Integer num7;
+        Integer num8;
+        Integer num9 = 7;
+        Integer num10 = 5;
+        Integer num11 = 4;
+        Integer num12 = 6;
+        ze0 ze0Var2 = this.f28764a;
+        ArrayList arrayList3 = ze0Var2.M;
+        ArrayList arrayList4 = ze0Var2.L;
+        Integer num13 = 0;
+        if (i10 == 0) {
+            intent = new Intent("android.intent.action.INSERT");
+            intent.setType("vnd.android.cursor.dir/raw_contact");
+        } else if (i10 == 1) {
+            intent = new Intent("android.intent.action.INSERT_OR_EDIT");
+            intent.setType("vnd.android.cursor.item/contact");
         } else {
-            i10 = 0;
+            intent = null;
         }
-        return cropTop - i10;
-    }
-
-    public Bitmap getVideoThumb() {
-        if (this.f28470f && this.h) {
-            return this.e.getBitmap();
+        TLRPC.TL_userContact_old2 tL_userContact_old2 = ze0Var2.N;
+        intent.putExtra("name", ContactsController.formatName(tL_userContact_old2.first_name, tL_userContact_old2.last_name));
+        ArrayList<? extends Parcelable> arrayList5 = new ArrayList<>();
+        int i11 = 0;
+        while (true) {
+            str = "data1";
+            ze0Var = ze0Var2;
+            str2 = "mimetype";
+            if (i11 >= arrayList3.size()) {
+                break;
+            }
+            AndroidUtilities.VcardItem vcardItem = (AndroidUtilities.VcardItem) arrayList3.get(i11);
+            int i12 = i11;
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("mimetype", "vnd.android.cursor.item/phone_v2");
+            contentValues.put("data1", vcardItem.getValue(false));
+            a(vcardItem.getRawType(false), contentValues);
+            arrayList5.add(contentValues);
+            i11 = i12 + 1;
+            ze0Var2 = ze0Var;
+            arrayList3 = arrayList3;
         }
-        return null;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f28468b.invalidate();
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.h && this.f28470f) {
-            if (this.e.isInsideImage(motionEvent.getX(), motionEvent.getY())) {
-                if (motionEvent.getAction() == 1) {
-                    ((org.telegram.ui.ms0) this.f28467a).f();
+        int i13 = 0;
+        boolean z10 = false;
+        while (i13 < arrayList4.size()) {
+            AndroidUtilities.VcardItem vcardItem2 = (AndroidUtilities.VcardItem) arrayList4.get(i13);
+            int i14 = i13;
+            int i15 = vcardItem2.type;
+            boolean z11 = z10;
+            if (i15 == 1) {
+                ContentValues contentValues2 = new ContentValues();
+                contentValues2.put(str2, "vnd.android.cursor.item/email_v2");
+                intent2 = intent;
+                contentValues2.put(str, vcardItem2.getValue(false));
+                a(vcardItem2.getRawType(false), contentValues2);
+                arrayList5.add(contentValues2);
+                num = num9;
+                num5 = num13;
+                num3 = num10;
+                num4 = num11;
+                num2 = num12;
+                str4 = str;
+                str3 = str2;
+                arrayList2 = arrayList4;
+                arrayList = arrayList5;
+            } else {
+                intent2 = intent;
+                ArrayList arrayList6 = arrayList4;
+                ArrayList<? extends Parcelable> arrayList7 = arrayList5;
+                num = num9;
+                if (i15 == 3) {
+                    ContentValues contentValues3 = new ContentValues();
+                    contentValues3.put(str2, "vnd.android.cursor.item/website");
+                    String str6 = str2;
+                    contentValues3.put(str, vcardItem2.getValue(false));
+                    String rawType = vcardItem2.getRawType(false);
+                    if (rawType.startsWith("X-")) {
+                        contentValues3.put("data2", num13);
+                        contentValues3.put("data3", rawType.substring(2));
+                    } else if ("HOMEPAGE".equalsIgnoreCase(rawType)) {
+                        contentValues3.put("data2", (Integer) 1);
+                    } else if ("BLOG".equalsIgnoreCase(rawType)) {
+                        contentValues3.put("data2", (Integer) 2);
+                    } else if ("PROFILE".equalsIgnoreCase(rawType)) {
+                        contentValues3.put("data2", (Integer) 3);
+                    } else if ("HOME".equalsIgnoreCase(rawType)) {
+                        contentValues3.put("data2", num11);
+                    } else if ("WORK".equalsIgnoreCase(rawType)) {
+                        contentValues3.put("data2", num10);
+                    } else if ("FTP".equalsIgnoreCase(rawType)) {
+                        contentValues3.put("data2", num12);
+                    } else {
+                        if ("OTHER".equalsIgnoreCase(rawType)) {
+                            num8 = num;
+                            contentValues3.put("data2", num8);
+                        } else {
+                            num8 = num;
+                            contentValues3.put("data2", num13);
+                            contentValues3.put("data3", rawType);
+                        }
+                        arrayList = arrayList7;
+                        arrayList.add(contentValues3);
+                        num = num8;
+                        num5 = num13;
+                        num4 = num11;
+                        num2 = num12;
+                        str4 = str;
+                        arrayList2 = arrayList6;
+                        str3 = str6;
+                        num3 = num10;
+                    }
+                    arrayList = arrayList7;
+                    num8 = num;
+                    arrayList.add(contentValues3);
+                    num = num8;
+                    num5 = num13;
+                    num4 = num11;
+                    num2 = num12;
+                    str4 = str;
+                    arrayList2 = arrayList6;
+                    str3 = str6;
+                    num3 = num10;
+                } else {
+                    String str7 = str2;
+                    arrayList = arrayList7;
+                    if (i15 == 4) {
+                        ContentValues contentValues4 = new ContentValues();
+                        contentValues4.put(str7, "vnd.android.cursor.item/note");
+                        contentValues4.put(str, vcardItem2.getValue(false));
+                        arrayList.add(contentValues4);
+                        num5 = num13;
+                        num3 = num10;
+                        str3 = str7;
+                        num4 = num11;
+                        num2 = num12;
+                    } else {
+                        num2 = num12;
+                        if (i15 == 5) {
+                            ContentValues contentValues5 = new ContentValues();
+                            contentValues5.put(str7, "vnd.android.cursor.item/contact_event");
+                            contentValues5.put(str, vcardItem2.getValue(false));
+                            contentValues5.put("data2", (Integer) 3);
+                            arrayList.add(contentValues5);
+                            num5 = num13;
+                            num3 = num10;
+                            num4 = num11;
+                            str3 = str7;
+                        } else {
+                            num3 = num10;
+                            num4 = num11;
+                            num5 = num13;
+                            if (i15 == 2) {
+                                ContentValues contentValues6 = new ContentValues();
+                                contentValues6.put(str7, "vnd.android.cursor.item/postal-address_v2");
+                                String[] rawValue = vcardItem2.getRawValue();
+                                String str8 = str;
+                                if (rawValue.length > 0) {
+                                    contentValues6.put("data5", rawValue[0]);
+                                }
+                                if (rawValue.length > 1) {
+                                    contentValues6.put("data6", rawValue[1]);
+                                }
+                                if (rawValue.length > 2) {
+                                    contentValues6.put("data4", rawValue[2]);
+                                }
+                                if (rawValue.length > 3) {
+                                    contentValues6.put("data7", rawValue[3]);
+                                }
+                                if (rawValue.length > 4) {
+                                    contentValues6.put("data8", rawValue[4]);
+                                }
+                                if (rawValue.length > 5) {
+                                    contentValues6.put("data9", rawValue[5]);
+                                }
+                                if (rawValue.length > 6) {
+                                    contentValues6.put("data10", rawValue[6]);
+                                }
+                                String rawType2 = vcardItem2.getRawType(false);
+                                if ("HOME".equalsIgnoreCase(rawType2)) {
+                                    contentValues6.put("data2", (Integer) 1);
+                                } else if ("WORK".equalsIgnoreCase(rawType2)) {
+                                    contentValues6.put("data2", (Integer) 2);
+                                } else if ("OTHER".equalsIgnoreCase(rawType2)) {
+                                    contentValues6.put("data2", (Integer) 3);
+                                }
+                                arrayList.add(contentValues6);
+                                str3 = str7;
+                                arrayList2 = arrayList6;
+                                str4 = str8;
+                            } else {
+                                String str9 = str;
+                                if (i15 == 20) {
+                                    ContentValues contentValues7 = new ContentValues();
+                                    contentValues7.put(str7, "vnd.android.cursor.item/im");
+                                    String rawType3 = vcardItem2.getRawType(true);
+                                    String rawType4 = vcardItem2.getRawType(false);
+                                    str3 = str7;
+                                    contentValues7.put(str9, vcardItem2.getValue(false));
+                                    if ("AIM".equalsIgnoreCase(rawType3)) {
+                                        num7 = num5;
+                                        contentValues7.put("data5", num7);
+                                        str5 = str9;
+                                    } else {
+                                        str5 = str9;
+                                        num7 = num5;
+                                        if ("MSN".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data5", (Integer) 1);
+                                        } else if ("YAHOO".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data5", (Integer) 2);
+                                        } else if ("SKYPE".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data5", (Integer) 3);
+                                        } else if ("QQ".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data5", num4);
+                                        } else if ("GOOGLE-TALK".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data5", num3);
+                                        } else if ("ICQ".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data5", num2);
+                                        } else if ("JABBER".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data5", num);
+                                        } else if ("NETMEETING".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data5", (Integer) 8);
+                                        } else {
+                                            contentValues7.put("data5", (Integer) (-1));
+                                            contentValues7.put("data6", vcardItem2.getRawType(true));
+                                        }
+                                    }
+                                    if ("HOME".equalsIgnoreCase(rawType4)) {
+                                        contentValues7.put("data2", (Integer) 1);
+                                    } else if ("WORK".equalsIgnoreCase(rawType4)) {
+                                        contentValues7.put("data2", (Integer) 2);
+                                    } else if ("OTHER".equalsIgnoreCase(rawType4)) {
+                                        contentValues7.put("data2", (Integer) 3);
+                                    }
+                                    arrayList.add(contentValues7);
+                                    num5 = num7;
+                                    arrayList2 = arrayList6;
+                                    str4 = str5;
+                                } else {
+                                    str3 = str7;
+                                    Integer num14 = num5;
+                                    str4 = str9;
+                                    if (i15 != 6 || z11) {
+                                        num5 = num14;
+                                        arrayList2 = arrayList6;
+                                    } else {
+                                        ContentValues contentValues8 = new ContentValues();
+                                        String str10 = str3;
+                                        contentValues8.put(str10, "vnd.android.cursor.item/organization");
+                                        int i16 = i14;
+                                        while (i16 < arrayList6.size()) {
+                                            ArrayList arrayList8 = arrayList6;
+                                            AndroidUtilities.VcardItem vcardItem3 = (AndroidUtilities.VcardItem) arrayList8.get(i16);
+                                            int i17 = i16;
+                                            String str11 = str10;
+                                            if (vcardItem3.type == 6) {
+                                                String rawType5 = vcardItem3.getRawType(true);
+                                                if ("ORG".equalsIgnoreCase(rawType5)) {
+                                                    String[] rawValue2 = vcardItem3.getRawValue();
+                                                    if (rawValue2.length != 0) {
+                                                        num6 = num14;
+                                                        if (rawValue2.length >= 1) {
+                                                            contentValues8.put(str4, rawValue2[0]);
+                                                        }
+                                                        if (rawValue2.length >= 2) {
+                                                            contentValues8.put("data5", rawValue2[1]);
+                                                        }
+                                                    }
+                                                } else {
+                                                    num6 = num14;
+                                                    if ("TITLE".equalsIgnoreCase(rawType5)) {
+                                                        contentValues8.put("data4", vcardItem3.getValue(false));
+                                                    } else if ("ROLE".equalsIgnoreCase(rawType5)) {
+                                                        contentValues8.put("data4", vcardItem3.getValue(false));
+                                                    }
+                                                }
+                                                String rawType6 = vcardItem3.getRawType(true);
+                                                if ("WORK".equalsIgnoreCase(rawType6)) {
+                                                    contentValues8.put("data2", (Integer) 1);
+                                                } else if ("OTHER".equalsIgnoreCase(rawType6)) {
+                                                    contentValues8.put("data2", (Integer) 2);
+                                                }
+                                                i16 = i17 + 1;
+                                                arrayList6 = arrayList8;
+                                                num14 = num6;
+                                                str10 = str11;
+                                            }
+                                            num6 = num14;
+                                            i16 = i17 + 1;
+                                            arrayList6 = arrayList8;
+                                            num14 = num6;
+                                            str10 = str11;
+                                        }
+                                        str3 = str10;
+                                        num5 = num14;
+                                        arrayList2 = arrayList6;
+                                        arrayList.add(contentValues8);
+                                        z10 = true;
+                                        i13 = i14 + 1;
+                                        arrayList4 = arrayList2;
+                                        arrayList5 = arrayList;
+                                        intent = intent2;
+                                        num12 = num2;
+                                        num10 = num3;
+                                        num11 = num4;
+                                        num13 = num5;
+                                        str2 = str3;
+                                        str = str4;
+                                        num9 = num;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    str4 = str;
+                    arrayList2 = arrayList6;
                 }
-                return true;
             }
+            z10 = z11;
+            i13 = i14 + 1;
+            arrayList4 = arrayList2;
+            arrayList5 = arrayList;
+            intent = intent2;
+            num12 = num2;
+            num10 = num3;
+            num11 = num4;
+            num13 = num5;
+            str2 = str3;
+            str = str4;
+            num9 = num;
         }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        lg.n nVar;
-        super.onLayout(z10, i10, i11, i12, i13);
-        lg.p pVar = this.f28468b;
-        CropAreaView cropAreaView = pVar.f14088a;
-        float cropWidth = cropAreaView.getCropWidth();
-        if (cropWidth != 0.0f && (nVar = pVar.L) != null) {
-            cropAreaView.a(pVar.h, nVar.f14079a / nVar.f14080b);
-            cropAreaView.setActualRect(cropAreaView.getAspectRatio());
-            cropAreaView.d(pVar.f14091f);
-            lg.n.g(pVar.L, cropAreaView.getCropWidth() / cropWidth, 0.0f, 0.0f);
-            pVar.r(false);
+        Intent intent3 = intent;
+        intent3.putExtra("finishActivityOnSaveCompleted", true);
+        intent3.putParcelableArrayListExtra("data", arrayList5);
+        try {
+            ze0Var.f30856r.getParentActivity().startActivity(intent3);
+            ze0Var.dismiss();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.h && this.f28470f) {
-            if (this.e.isInsideImage(motionEvent.getX(), motionEvent.getY())) {
-                if (motionEvent.getAction() == 1) {
-                    ((org.telegram.ui.ms0) this.f28467a).f();
-                }
-                return true;
-            }
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    public void setAspectRatio(float f7) {
-        this.f28468b.setAspectRatio(f7);
-    }
-
-    public void setDelegate(te0 te0Var) {
-        this.f28467a = te0Var;
-    }
-
-    public void setFreeform(boolean z10) {
-        this.f28468b.setFreeform(z10);
-    }
-
-    public void setSubtitle(String str) {
-        this.f28468b.setSubtitle(str);
-    }
-
-    public void setVideoThumbFlashAlpha(float f7) {
-        this.f28474w = f7;
-        invalidate();
-    }
-
-    public void setVideoThumbVisible(boolean z10) {
-        float f7;
-        if (this.h == z10) {
-            return;
-        }
-        this.h = z10;
-        AnimatorSet animatorSet = this.v;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.v = animatorSet2;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.F, f7));
-        this.v.setDuration(180L);
-        this.v.addListener(new se0(this, 1));
-        this.v.start();
     }
 }

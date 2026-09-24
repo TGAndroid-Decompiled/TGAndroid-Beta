@@ -1,78 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.text.Layout;
 import android.text.SpannableString;
-import android.text.style.ReplacementSpan;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class ad extends ReplacementSpan {
-    public final org.telegram.ui.ActionBar.d6 f22413a;
-    public final Paint f22414b = new Paint(1);
-    public final f01 f22415c;
-    public final Runnable d;
-    public yc e;
-    public Integer f22416f;
+public class ad extends n90 {
+    public bd L;
+    public bd M;
 
-    public ad(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f22413a = d6Var;
-        this.d = runnable;
-        this.f22415c = new f01(charSequence, 12.0f, null);
-    }
-
-    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var, Integer num) {
-        SpannableString spannableString = new SpannableString("btn");
-        ad adVar = new ad(charSequence, runnable, d6Var);
-        spannableString.setSpan(adVar, 0, spannableString.length(), 33);
-        adVar.f22416f = num;
-        return spannableString;
-    }
-
-    public final int a() {
-        return (int) (this.f22415c.f23785c + AndroidUtilities.dp(14.0f));
-    }
-
-    public final void c(zc zcVar, boolean z10) {
-        if (this.e == null) {
-            this.e = new yc(zcVar);
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.M != null && getMeasuredWidth() > 0) {
+            SpannableString spannableString = new SpannableString(" btn");
+            spannableString.setSpan(this.M, 1, spannableString.length(), 33);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.ellipsize(getText(), getPaint(), (((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - this.M.a()) - AndroidUtilities.dp(4.0f), TextUtils.TruncateAt.END));
+            spannableStringBuilder.append((CharSequence) spannableString);
+            setText(spannableStringBuilder);
+            this.M = null;
         }
-        this.e.c(z10);
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        float a2;
-        int v02;
-        float dpf2 = AndroidUtilities.dpf2(17.0f);
-        float f10 = (i12 + i14) / 2.0f;
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f11 = dpf2 / 2.0f;
-        rectF.set(f7, f10 - f11, a() + f7, f10 + f11);
-        yc ycVar = this.e;
-        if (ycVar == null) {
-            a2 = 1.0f;
-        } else {
-            a2 = ycVar.a(0.025f);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        Layout layout;
+        bd bdVar;
+        Runnable runnable;
+        bd bdVar2;
+        int action = motionEvent.getAction();
+        float x10 = motionEvent.getX() - getPaddingLeft();
+        int y3 = ((int) motionEvent.getY()) - getPaddingTop();
+        if ((getText() instanceof Spanned) && (layout = getLayout()) != null) {
+            int lineForVertical = layout.getLineForVertical(y3);
+            Spanned spanned = (Spanned) getText();
+            bd[] bdVarArr = (bd[]) spanned.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), bd.class);
+            for (int i10 = 0; i10 < bdVarArr.length; i10++) {
+                bdVar = bdVarArr[i10];
+                float primaryHorizontal = layout.getPrimaryHorizontal(spanned.getSpanStart(bdVar));
+                float primaryHorizontal2 = layout.getPrimaryHorizontal(spanned.getSpanEnd(bdVar));
+                if (primaryHorizontal2 < primaryHorizontal) {
+                    primaryHorizontal2 = primaryHorizontal;
+                    primaryHorizontal = primaryHorizontal2;
+                }
+                if (x10 >= primaryHorizontal && x10 <= primaryHorizontal2) {
+                    break;
+                }
+            }
         }
-        canvas.save();
-        canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        Integer num = this.f22416f;
-        if (num != null) {
-            v02 = num.intValue();
+        bdVar = null;
+        if (action == 0) {
+            this.L = bdVar;
+            if (bdVar != null) {
+                bdVar.c(this, true);
+                return true;
+            }
+        } else if (action != 1 && action != 3) {
+            if (action == 2 && (bdVar2 = this.L) != null && bdVar2 != bdVar) {
+                bdVar2.c(this, false);
+                this.L = null;
+            }
         } else {
-            v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, this.f22413a);
+            bd bdVar3 = this.L;
+            if (bdVar3 != null) {
+                bdVar3.c(this, false);
+                if (action == 1 && (runnable = this.L.d) != null) {
+                    runnable.run();
+                }
+            }
+            this.L = null;
         }
-        int i15 = v02;
-        int l1 = org.telegram.ui.ActionBar.h6.l1(0.15f, i15);
-        Paint paint2 = this.f22414b;
-        paint2.setColor(l1);
-        canvas.drawRoundRect(rectF, f11, f11, paint2);
-        this.f22415c.c(f7 + AndroidUtilities.dp(7.0f), f10, 1.0f, i15, canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return a();
+        if (this.L == null && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 }

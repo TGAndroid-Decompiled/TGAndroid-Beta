@@ -6,11 +6,11 @@ import com.google.android.gms.internal.vision.e2;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import v7.r6;
+import v7.s6;
 public abstract class f {
-    public static final Pattern f7883a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
-    public static final Pattern f7884b = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
-    public static final Pattern f7885c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
+    public static final Pattern f7882a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
+    public static final Pattern f7883b = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
+    public static final Pattern f7884c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
     public static final HashMap d;
 
     static {
@@ -128,9 +128,9 @@ public abstract class f {
         }
         if (replace.startsWith("rgba")) {
             if (z10) {
-                pattern = f7885c;
+                pattern = f7884c;
             } else {
-                pattern = f7884b;
+                pattern = f7883b;
             }
             Matcher matcher = pattern.matcher(replace);
             if (matcher.matches()) {
@@ -154,7 +154,7 @@ public abstract class f {
                 return Color.argb(parseInt, parseInt2, parseInt3, Integer.parseInt(group5, 10));
             }
         } else if (replace.startsWith("rgb")) {
-            Matcher matcher2 = f7883a.matcher(replace);
+            Matcher matcher2 = f7882a.matcher(replace);
             if (matcher2.matches()) {
                 String group6 = matcher2.group(1);
                 group6.getClass();
@@ -167,7 +167,7 @@ public abstract class f {
                 return Color.rgb(parseInt4, parseInt5, Integer.parseInt(group8, 10));
             }
         } else {
-            Integer num = (Integer) d.get(r6.b(replace));
+            Integer num = (Integer) d.get(s6.b(replace));
             if (num != null) {
                 return num.intValue();
             }

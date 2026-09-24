@@ -9,21 +9,21 @@ import java.util.Map;
 import le.c;
 import le.f;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ul;
-import org.telegram.ui.Components.voip.v2;
+import org.telegram.messenger.ok;
+import org.telegram.ui.Components.voip.w2;
 public abstract class b extends ViewGroup {
-    public int f13636a;
-    public int f13637b;
-    public final LinkedHashMap f13638c;
+    public int f13634a;
+    public int f13635b;
+    public final LinkedHashMap f13636c;
 
     public b(Context context) {
         super(context);
-        this.f13638c = new LinkedHashMap(16);
+        this.f13636c = new LinkedHashMap(16);
     }
 
-    public final void a(v2 v2Var) {
-        addView(v2Var);
-        this.f13638c.put(v2Var, new a(v2Var, new h0(this, 9)));
+    public final void a(w2 w2Var) {
+        addView(w2Var);
+        this.f13636c.put(w2Var, new a(w2Var, new h0(this, 9)));
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -42,7 +42,7 @@ public abstract class b extends ViewGroup {
             z12 = true;
         }
         if (measuredWidth2 > 0 && measuredHeight > 0) {
-            LinkedHashMap linkedHashMap = this.f13638c;
+            LinkedHashMap linkedHashMap = this.f13636c;
             int i12 = 0;
             for (a aVar : linkedHashMap.values()) {
                 if (aVar.h) {
@@ -53,36 +53,36 @@ public abstract class b extends ViewGroup {
                 i12 = 1;
             }
             if (!z12) {
-                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (ul.A(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
+                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (ok.B(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
                 min = AndroidUtilities.dp(76.0f);
                 i10 = (measuredWidth2 - (i12 * min2)) / 2;
                 measuredWidth2 = min2;
             } else {
-                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (ul.A(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
+                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (ok.B(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
                 i10 = (measuredHeight - (i12 * min)) / 2;
             }
             int i13 = 0;
             for (Map.Entry entry : linkedHashMap.entrySet()) {
                 a aVar2 = (a) entry.getValue();
                 boolean z14 = aVar2.h;
-                v2 v2Var = aVar2.e;
-                f fVar2 = aVar2.f13633b;
-                c cVar = aVar2.f13634c;
-                f fVar3 = aVar2.f13632a;
+                w2 w2Var = aVar2.e;
+                f fVar2 = aVar2.f13631b;
+                c cVar = aVar2.f13632c;
+                f fVar3 = aVar2.f13630a;
                 if (z14) {
                     if (!z12) {
-                        measuredWidth = ((measuredWidth2 - v2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i13) + i10;
+                        measuredWidth = ((measuredWidth2 - w2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i13) + i10;
                         i11 = getMeasuredHeight() - AndroidUtilities.dp(76.0f);
                     } else {
-                        measuredWidth = ((measuredWidth2 - v2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
+                        measuredWidth = ((measuredWidth2 - w2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
                         i11 = (min * i13) + i10;
                     }
-                    if (!z11 && ((z10 || fVar3.f13971g) && cVar.f13963f)) {
+                    if (!z11 && ((z10 || fVar3.f14194g) && cVar.f14186f)) {
                         fVar3.a(measuredWidth);
                     } else {
                         fVar3.c(measuredWidth);
                     }
-                    if (!z11 && ((z10 || fVar2.f13971g) && cVar.f13963f)) {
+                    if (!z11 && ((z10 || fVar2.f14194g) && cVar.f14186f)) {
                         fVar2.a(i11);
                     } else {
                         fVar2.c(i11);
@@ -90,7 +90,7 @@ public abstract class b extends ViewGroup {
                     i13++;
                 }
                 boolean z15 = aVar2.h;
-                if (!z11 && (z10 || ((fVar = cVar.h) != null && fVar.f13971g))) {
+                if (!z11 && (z10 || ((fVar = cVar.h) != null && fVar.f14194g))) {
                     z13 = true;
                 } else {
                     z13 = false;
@@ -101,8 +101,8 @@ public abstract class b extends ViewGroup {
         }
     }
 
-    public final void c(v2 v2Var, boolean z10, boolean z11) {
-        a aVar = (a) this.f13638c.get(v2Var);
+    public final void c(w2 w2Var, boolean z10, boolean z11) {
+        a aVar = (a) this.f13636c.get(w2Var);
         if (aVar != null && aVar.h != z10) {
             aVar.h = z10;
             b(z11, false);
@@ -129,12 +129,12 @@ public abstract class b extends ViewGroup {
         for (int i12 = 0; i12 < childCount; i12++) {
             getChildAt(i12).measure(makeMeasureSpec, makeMeasureSpec2);
         }
-        if (this.f13636a == size && this.f13637b == size2) {
+        if (this.f13634a == size && this.f13635b == size2) {
             b(true, false);
             return;
         }
         b(false, true);
-        this.f13636a = size;
-        this.f13637b = size2;
+        this.f13634a = size;
+        this.f13635b = size2;
     }
 }

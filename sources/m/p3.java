@@ -14,29 +14,29 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.o70;
-import w7.x5;
+import org.telegram.ui.Components.y70;
+import w7.y5;
 public final class p3 implements n5.b {
-    public Object f14270a;
-    public Object f14271b;
-    public Object f14272c;
+    public Object f14508a;
+    public Object f14509b;
+    public Object f14510c;
     public Object d;
     public Object e;
-    public Object f14273f;
+    public Object f14511f;
     public Object h;
 
     public p3(Set set, a0.f fVar, String str, String str2, n8.a aVar) {
         Set unmodifiableSet = set == null ? Collections.EMPTY_SET : DesugarCollections.unmodifiableSet(set);
-        this.f14270a = unmodifiableSet;
+        this.f14508a = unmodifiableSet;
         a0.f fVar2 = fVar == null ? Collections.EMPTY_MAP : fVar;
-        this.f14272c = fVar2;
+        this.f14510c = fVar2;
         this.d = str;
         this.e = str2;
-        this.f14273f = aVar == null ? n8.a.f15160a : aVar;
+        this.f14511f = aVar == null ? n8.a.f15397a : aVar;
         HashSet hashSet = new HashSet(unmodifiableSet);
         Iterator it = fVar2.values().iterator();
         if (!it.hasNext()) {
-            this.f14271b = DesugarCollections.unmodifiableSet(hashSet);
+            this.f14509b = DesugarCollections.unmodifiableSet(hashSet);
             return;
         }
         throw a4.a.k(it);
@@ -44,18 +44,18 @@ public final class p3 implements n5.b {
 
     public void a() {
         c(null);
-        o70 o70Var = (o70) this.f14272c;
-        if (o70Var != null) {
-            o70Var.u();
-            this.f14272c = null;
+        y70 y70Var = (y70) this.f14510c;
+        if (y70Var != null) {
+            y70Var.u();
+            this.f14510c = null;
         }
         this.d = null;
         this.e = null;
-        this.f14273f = null;
+        this.f14511f = null;
     }
 
     public void b(e6 e6Var, ArrayList arrayList) {
-        d6 d6Var = (d6) this.f14271b;
+        d6 d6Var = (d6) this.f14509b;
         LinearLayout linearLayout = (LinearLayout) this.d;
         if (linearLayout != null) {
             linearLayout.removeAllViews();
@@ -67,9 +67,9 @@ public final class p3 implements n5.b {
                 ii.o0 o0Var = (ii.o0) obj;
                 ii.n0 n0Var = new ii.n0(e6Var.getContext(), o0Var, d6Var);
                 n0Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                n0Var.setBackground(h6.Y(h6.v0(h6.f18878i6, d6Var), 0, 0));
+                n0Var.setBackground(h6.Y(h6.v0(h6.f19134i6, d6Var), 0, 0));
                 n0Var.setOnClickListener(new ai.d0(this, e6Var, o0Var, 10));
-                ((LinearLayout) this.d).addView(n0Var, x5.n(-1, 48));
+                ((LinearLayout) this.d).addView(n0Var, y5.n(-1, 48));
             }
         }
     }
@@ -88,8 +88,8 @@ public final class p3 implements n5.b {
     }
 
     public void d(e6 e6Var, String str) {
-        o70 o70Var;
-        o70 o70Var2;
+        y70 y70Var;
+        y70 y70Var2;
         if (str == null) {
             a();
             return;
@@ -100,38 +100,38 @@ public final class p3 implements n5.b {
             return;
         }
         c(e6Var);
-        if (((e6) this.f14273f) == e6Var && a2.equals((ArrayList) this.e) && (o70Var2 = (o70) this.f14272c) != null && o70Var2.D()) {
+        if (((e6) this.f14511f) == e6Var && a2.equals((ArrayList) this.e) && (y70Var2 = (y70) this.f14510c) != null && y70Var2.D()) {
             return;
         }
-        if (((e6) this.f14273f) == e6Var && (o70Var = (o70) this.f14272c) != null && o70Var.D() && ((LinearLayout) this.d) != null) {
+        if (((e6) this.f14511f) == e6Var && (y70Var = (y70) this.f14510c) != null && y70Var.D() && ((LinearLayout) this.d) != null) {
             this.e = a2;
             b(e6Var, a2);
-            ((o70) this.f14272c).O();
+            ((y70) this.f14510c).O();
             return;
         }
         a();
         c(e6Var);
-        this.f14273f = e6Var;
+        this.f14511f = e6Var;
         this.e = a2;
         LinearLayout linearLayout = new LinearLayout(e6Var.getContext());
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         b(e6Var, a2);
-        o70 a10 = ((ii.p0) this.f14270a).a(e6Var.getEditText());
+        y70 a10 = ((ii.p0) this.f14508a).a(e6Var.getEditText());
         a10.Q = true;
-        a10.f26669s = 0;
-        a10.f26670t = false;
-        a10.r((LinearLayout) this.d, x5.n(220, -2));
+        a10.f30547s = 0;
+        a10.f30548t = false;
+        a10.r((LinearLayout) this.d, y5.n(220, -2));
         a10.X = AndroidUtilities.dp(240.0f);
-        a10.f26651i = 3;
+        a10.f30529i = 3;
         a10.a0(-AndroidUtilities.dp(12.0f), 0.0f);
-        a10.f26664p = new i2.h0(this, 4);
-        a10.f26644d0 = true;
+        a10.f30542p = new i2.h0(this, 4);
+        a10.f30522d0 = true;
         if (a10.D()) {
             a10.C();
         }
         a10.Z();
-        this.f14272c = a10;
+        this.f14510c = a10;
     }
 
     @Override
@@ -139,30 +139,30 @@ public final class p3 implements n5.b {
         rb.a aVar = new rb.a(23);
         qb.b bVar = new qb.b(23);
         ?? obj = new Object();
-        obj.f7564a = (Context) ((fd.a) this.f14270a).mo28get();
-        obj.f7565b = (m5.d) ((fd.a) this.f14271b).mo28get();
-        obj.f7566c = (s5.d) ((fd.a) this.f14272c).mo28get();
-        obj.d = (lf.i) ((lf.i) this.d).mo28get();
+        obj.f7563a = (Context) ((fd.a) this.f14508a).mo28get();
+        obj.f7564b = (m5.d) ((fd.a) this.f14509b).mo28get();
+        obj.f7565c = (s5.d) ((fd.a) this.f14510c).mo28get();
+        obj.d = (la.h) ((la.h) this.d).mo28get();
         obj.e = (Executor) ((fd.a) this.e).mo28get();
-        obj.f7567f = (t5.c) ((fd.a) this.f14273f).mo28get();
-        obj.f7568g = aVar;
+        obj.f7566f = (t5.c) ((fd.a) this.f14511f).mo28get();
+        obj.f7567g = aVar;
         obj.h = bVar;
-        obj.f7569i = (s5.c) ((fd.a) this.h).mo28get();
+        obj.f7568i = (s5.c) ((fd.a) this.h).mo28get();
         return obj;
     }
 
     public p3(ii.p0 p0Var, d6 d6Var) {
-        this.f14270a = p0Var;
-        this.f14271b = d6Var;
+        this.f14508a = p0Var;
+        this.f14509b = d6Var;
     }
 
     public p3(String str, ba.c cVar, com.google.firebase.messaging.t tVar) {
         this.d = new com.google.firebase.messaging.m(this, false);
         this.e = new com.google.firebase.messaging.m(this, true);
-        this.f14273f = new c5.b0(10, (byte) 0);
+        this.f14511f = new c5.b0(10, (byte) 0);
         this.h = new AtomicMarkableReference(null, false);
-        this.f14272c = str;
-        this.f14270a = new x9.f(cVar);
-        this.f14271b = tVar;
+        this.f14510c = str;
+        this.f14508a = new x9.f(cVar);
+        this.f14509b = tVar;
     }
 }

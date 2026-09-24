@@ -14,13 +14,13 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.dl0;
 import org.telegram.ui.Components.qz;
-import org.telegram.ui.Components.tk0;
-import org.telegram.ui.j01;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.h01;
 public final class u9 implements fc {
-    public final ml0 f1581a;
-    public final j01 f1582b;
+    public final wl0 f1581a;
+    public final h01 f1582b;
     public final int[] f1583c;
     public final boolean d;
     public t9 e;
@@ -30,23 +30,23 @@ public final class u9 implements fc {
     public boolean f1586r;
     public int f1587s;
 
-    public u9(ml0 ml0Var, boolean z10) {
+    public u9(wl0 wl0Var, boolean z10) {
         this.f1583c = new int[2];
-        this.f1581a = ml0Var;
+        this.f1581a = wl0Var;
         this.d = z10;
         this.f1582b = null;
     }
 
-    public static u9 a(ml0 ml0Var) {
-        return new u9(ml0Var, false);
+    public static u9 a(wl0 wl0Var) {
+        return new u9(wl0Var, false);
     }
 
     @Override
     public final void Z(long j3, int i10, d5 d5Var) {
         ArrayList arrayList;
-        ml0 ml0Var = this.f1581a;
-        if (ml0Var != null && (ml0Var.getParent() instanceof b0)) {
-            b0 b0Var = (b0) ml0Var.getParent();
+        wl0 wl0Var = this.f1581a;
+        if (wl0Var != null && (wl0Var.getParent() instanceof b0)) {
+            b0 b0Var = (b0) wl0Var.getParent();
             if (b0Var.k(j3)) {
                 b0Var.f547b0.add(d5Var);
                 return;
@@ -56,8 +56,8 @@ public final class u9 implements fc {
             }
         }
         int i11 = 0;
-        if (ml0Var != null && (ml0Var.getParent() instanceof k7)) {
-            k7 k7Var = (k7) ml0Var.getParent();
+        if (wl0Var != null && (wl0Var.getParent() instanceof k7)) {
+            k7 k7Var = (k7) wl0Var.getParent();
             qz qzVar = k7Var.f1136x;
             e7 e7Var = k7Var.f1135w;
             if (e7Var != null && (arrayList = e7Var.f851c) != null && qzVar != null) {
@@ -68,7 +68,7 @@ public final class u9 implements fc {
                             TL_stories.StoryReaction storyReaction = z6Var.f1781c;
                             if (storyReaction instanceof TL_stories.TL_storyReactionPublicRepost) {
                                 TL_stories.TL_storyReactionPublicRepost tL_storyReactionPublicRepost = (TL_stories.TL_storyReactionPublicRepost) storyReaction;
-                                if (tL_storyReactionPublicRepost.story != null && DialogObject.getPeerDialogId(tL_storyReactionPublicRepost.peer_id) == j3 && tL_storyReactionPublicRepost.story.f18318id == i10) {
+                                if (tL_storyReactionPublicRepost.story != null && DialogObject.getPeerDialogId(tL_storyReactionPublicRepost.peer_id) == j3 && tL_storyReactionPublicRepost.story.f18556id == i10) {
                                     break;
                                 }
                             } else {
@@ -86,7 +86,7 @@ public final class u9 implements fc {
                     int N0 = qzVar.N0();
                     if (i11 < L0 || i11 > N0) {
                         qzVar.h1(i11, AndroidUtilities.dp(60.0f));
-                        ml0Var.post(d5Var);
+                        wl0Var.post(d5Var);
                         return;
                     }
                 }
@@ -141,16 +141,16 @@ public final class u9 implements fc {
         gcVar.f914b = null;
         gcVar.f915c = null;
         gcVar.e = null;
-        ml0 ml0Var = this.f1581a;
-        if (ml0Var != null && (ml0Var.getParent() instanceof b0)) {
-            b0Var = (b0) ml0Var.getParent();
+        wl0 wl0Var = this.f1581a;
+        if (wl0Var != null && (wl0Var.getParent() instanceof b0)) {
+            b0Var = (b0) wl0Var.getParent();
         } else {
             b0Var = null;
         }
         if (b0Var != null && !b0Var.g()) {
             viewGroup = b0Var.f565r;
         } else {
-            viewGroup = ml0Var;
+            viewGroup = wl0Var;
         }
         ViewGroup viewGroup2 = this.f1582b;
         if (viewGroup2 != null) {
@@ -179,35 +179,35 @@ public final class u9 implements fc {
                         gcVar.f916f = dcVar;
                         return true;
                     }
-                } else if (childAt instanceof org.telegram.ui.Cells.r2) {
-                    org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) childAt;
-                    ImageReceiver imageReceiver = r2Var.Y1;
-                    org.telegram.ui.Cells.j2 j2Var = r2Var.f20732u0;
-                    long dialogId = r2Var.getDialogId();
+                } else if (childAt instanceof org.telegram.ui.Cells.s2) {
+                    org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) childAt;
+                    ImageReceiver imageReceiver = s2Var.Y1;
+                    org.telegram.ui.Cells.k2 k2Var = s2Var.f21006u0;
+                    long dialogId = s2Var.getDialogId();
                     boolean z11 = this.d;
-                    if ((dialogId == j3 && !z11) || (z11 && r2Var.O())) {
+                    if ((dialogId == j3 && !z11) || (z11 && s2Var.O())) {
                         gcVar.f913a = childAt;
-                        gcVar.f922m = j2Var;
+                        gcVar.f922m = k2Var;
                         gcVar.f914b = imageReceiver;
-                        gcVar.f917g = (View) r2Var.getParent();
+                        gcVar.f917g = (View) s2Var.getParent();
                         if (z11) {
                             gcVar.f921l = imageReceiver;
-                            boolean z12 = j2Var.f674w;
+                            boolean z12 = k2Var.f674w;
                         }
                         gcVar.f920k = 1.0f;
                         c(gcVar);
                         return true;
                     }
-                } else if (childAt instanceof org.telegram.ui.Cells.t1) {
-                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt;
-                    if (t1Var.getMessageObject().getId() == i10) {
+                } else if (childAt instanceof org.telegram.ui.Cells.u1) {
+                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
+                    if (u1Var.getMessageObject().getId() == i10) {
                         gcVar.f913a = childAt;
                         if (i12 != 1 && i12 != 2) {
-                            gcVar.f915c = t1Var.F9;
+                            gcVar.f915c = u1Var.F9;
                         } else {
-                            gcVar.f915c = t1Var.getPhotoImage();
+                            gcVar.f915c = u1Var.getPhotoImage();
                         }
-                        gcVar.f917g = (View) t1Var.getParent();
+                        gcVar.f917g = (View) u1Var.getParent();
                         gcVar.f920k = 1.0f;
                         c(gcVar);
                         return true;
@@ -226,31 +226,31 @@ public final class u9 implements fc {
                         c(gcVar);
                         return true;
                     }
-                } else if ((childAt instanceof org.telegram.ui.Cells.t7) && ml0Var != null) {
+                } else if ((childAt instanceof org.telegram.ui.Cells.t7) && wl0Var != null) {
                     org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) childAt;
                     MessageObject messageObject = t7Var.getMessageObject();
                     if ((t7Var.getStyle() == 1 && i11 == 0) || (messageObject != null && messageObject.isStory() && messageObject.getId() == i11 && messageObject.storyItem.dialogId == j3)) {
-                        tk0 fastScroll = ml0Var.getFastScroll();
+                        dl0 fastScroll = wl0Var.getFastScroll();
                         int[] iArr = new int[2];
                         if (fastScroll != null) {
                             fastScroll.getLocationInWindow(iArr);
                         }
                         gcVar.f913a = childAt;
-                        gcVar.f915c = t7Var.f21348c;
+                        gcVar.f915c = t7Var.f21200c;
                         gcVar.e = new q5(t7Var, fastScroll, iArr, 1);
                         gcVar.f917g = (View) t7Var.getParent();
                         gcVar.f920k = 1.0f;
                         c(gcVar);
                         return true;
                     }
-                } else if (childAt instanceof org.telegram.ui.Cells.bb) {
-                    org.telegram.ui.Cells.bb bbVar = (org.telegram.ui.Cells.bb) childAt;
-                    if (bbVar.getDialogId() == j3) {
-                        y5 y5Var = bbVar.f19813a;
+                } else if (childAt instanceof org.telegram.ui.Cells.za) {
+                    org.telegram.ui.Cells.za zaVar = (org.telegram.ui.Cells.za) childAt;
+                    if (zaVar.getDialogId() == j3) {
+                        y5 y5Var = zaVar.f21912a;
                         gcVar.f913a = y5Var;
-                        gcVar.f922m = bbVar.T;
+                        gcVar.f922m = zaVar.T;
                         gcVar.f914b = y5Var.getImageReceiver();
-                        gcVar.f917g = (View) bbVar.getParent();
+                        gcVar.f917g = (View) zaVar.getParent();
                         gcVar.f920k = 1.0f;
                         c(gcVar);
                         return true;
@@ -258,7 +258,7 @@ public final class u9 implements fc {
                 } else if (childAt instanceof org.telegram.ui.Cells.o6) {
                     org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) childAt;
                     org.telegram.ui.Components.w9 w9Var = o6Var.h;
-                    if (o6Var.f20546x != j3) {
+                    if (o6Var.f20754x != j3) {
                         continue;
                     } else {
                         if (w9Var != null && w9Var.getImageReceiver() != null && w9Var.getImageReceiver().getImageDrawable() != null) {
@@ -266,7 +266,7 @@ public final class u9 implements fc {
                         } else {
                             z10 = false;
                         }
-                        if (o6Var.f20542n == i11 && z10) {
+                        if (o6Var.f20750n == i11 && z10) {
                             gcVar.f913a = w9Var;
                             gcVar.f915c = w9Var.getImageReceiver();
                             gcVar.f917g = (View) o6Var.getParent();
@@ -275,14 +275,14 @@ public final class u9 implements fc {
                             if (alphaInternal < 1.0f) {
                                 Paint paint = new Paint(1);
                                 gcVar.f919j = paint;
-                                paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18859h5, o6Var.getResourcesProvider()));
+                                paint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19115h5, o6Var.getResourcesProvider()));
                             }
                             c(gcVar);
                             return true;
                         } else if (!z10) {
-                            org.telegram.ui.Cells.n6 n6Var = o6Var.f20540c;
+                            org.telegram.ui.Cells.n6 n6Var = o6Var.f20748c;
                             gcVar.f913a = n6Var;
-                            gcVar.f922m = o6Var.f20547y;
+                            gcVar.f922m = o6Var.f20755y;
                             gcVar.f914b = n6Var.getImageReceiver();
                             gcVar.f917g = (View) o6Var.getParent();
                             float alphaInternal2 = o6Var.getAlphaInternal() * o6Var.getAlpha();
@@ -290,7 +290,7 @@ public final class u9 implements fc {
                             if (alphaInternal2 < 1.0f) {
                                 Paint paint2 = new Paint(1);
                                 gcVar.f919j = paint2;
-                                paint2.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18859h5, o6Var.getResourcesProvider()));
+                                paint2.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19115h5, o6Var.getResourcesProvider()));
                             }
                             c(gcVar);
                             return true;
@@ -300,20 +300,20 @@ public final class u9 implements fc {
                     org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) childAt;
                     if (i6Var.getDialogId() == j3) {
                         gcVar.f913a = i6Var;
-                        gcVar.f922m = i6Var.f20214u0;
-                        gcVar.f914b = i6Var.f20209r;
+                        gcVar.f922m = i6Var.f20439u0;
+                        gcVar.f914b = i6Var.f20434r;
                         gcVar.f917g = (View) i6Var.getParent();
                         gcVar.f920k = 1.0f;
                         c(gcVar);
                         return true;
                     }
-                } else if (childAt instanceof org.telegram.ui.Cells.d8) {
-                    org.telegram.ui.Cells.d8 d8Var = (org.telegram.ui.Cells.d8) childAt;
-                    if (d8Var.getPostInfo().b() == i11) {
-                        gcVar.f913a = d8Var.getImageView();
-                        gcVar.f922m = d8Var.getStoryAvatarParams();
-                        gcVar.f915c = d8Var.getImageView().getImageReceiver();
-                        gcVar.f917g = (View) d8Var.getParent();
+                } else if (childAt instanceof org.telegram.ui.Cells.c8) {
+                    org.telegram.ui.Cells.c8 c8Var = (org.telegram.ui.Cells.c8) childAt;
+                    if (c8Var.getPostInfo().b() == i11) {
+                        gcVar.f913a = c8Var.getImageView();
+                        gcVar.f922m = c8Var.getStoryAvatarParams();
+                        gcVar.f915c = c8Var.getImageView().getImageReceiver();
+                        gcVar.f917g = (View) c8Var.getParent();
                         gcVar.f920k = 1.0f;
                         c(gcVar);
                         return true;
@@ -339,9 +339,9 @@ public final class u9 implements fc {
         return false;
     }
 
-    public u9(j01 j01Var) {
+    public u9(h01 h01Var) {
         this.f1583c = new int[2];
-        this.f1582b = j01Var;
+        this.f1582b = h01Var;
         this.f1581a = null;
     }
 }

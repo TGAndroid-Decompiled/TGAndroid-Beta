@@ -8,18 +8,18 @@ import ci.rc;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.k;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.n20;
-import org.telegram.ui.o20;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.l20;
+import org.telegram.ui.m20;
 import s4.c0;
 import s4.c1;
-import yh.w2;
+import yh.r2;
 import yh.w7;
-public final class f extends n20 {
+public final class f extends l20 {
     public final int K0 = 0;
     public final q0 L0;
-    public final o20 M0;
+    public final m20 M0;
 
     public f(i iVar, Activity activity) {
         super(iVar, activity);
@@ -38,21 +38,21 @@ public final class f extends n20 {
         switch (this.K0) {
             case 0:
                 i iVar = (i) this.M0;
-                if (viewGroup == iVar.f35660c && iVar.R.isAttachedToWindow()) {
-                    kVar = ((n2) iVar).actionBar;
-                    boolean z10 = kVar.f19296n0;
+                if (viewGroup == iVar.f35436c && iVar.R.isAttachedToWindow()) {
+                    kVar = ((m2) iVar).actionBar;
+                    boolean z10 = kVar.f19541n0;
                     int top = (((View) iVar.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - k.getCurrentActionBarHeight();
                     int bottom = ((View) iVar.R.getParent()).getBottom();
                     boolean z11 = false;
                     if (i11 < 0) {
-                        if (iVar.f35660c.getHeight() - bottom >= 0) {
-                            ml0 currentListView = iVar.R.getCurrentListView();
+                        if (iVar.f35436c.getHeight() - bottom >= 0) {
+                            wl0 currentListView = iVar.R.getCurrentListView();
                             int L0 = ((c0) currentListView.getLayoutManager()).L0();
                             int i15 = -1;
                             if (L0 != -1) {
                                 c1 K = currentListView.K(L0);
                                 if (K != null) {
-                                    i15 = K.f42627a.getTop();
+                                    i15 = K.f42946a.getTop();
                                 }
                                 int paddingTop = currentListView.getPaddingTop();
                                 if (i15 != paddingTop || L0 != 0) {
@@ -78,7 +78,7 @@ public final class f extends n20 {
                         }
                         return;
                     } else if (z10) {
-                        ml0 currentListView2 = iVar.R.getCurrentListView();
+                        wl0 currentListView2 = iVar.R.getCurrentListView();
                         iArr[1] = i11;
                         if (top > 0) {
                             iArr[1] = 0;
@@ -89,10 +89,10 @@ public final class f extends n20 {
                         }
                         return;
                     } else if (i11 > 0) {
-                        ml0 currentListView3 = iVar.R.getCurrentListView();
-                        if (iVar.f35660c.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
+                        wl0 currentListView3 = iVar.R.getCurrentListView();
+                        if (iVar.f35436c.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
                             iArr[1] = i11;
-                            iVar.f35660c.B0();
+                            iVar.f35436c.B0();
                             return;
                         }
                         return;
@@ -103,21 +103,21 @@ public final class f extends n20 {
                 return;
             default:
                 w7 w7Var = (w7) this.M0;
-                if (viewGroup == w7Var.f35660c && w7Var.R.isAttachedToWindow()) {
-                    kVar2 = ((n2) w7Var).actionBar;
-                    boolean z12 = kVar2.f19296n0;
+                if (viewGroup == w7Var.f35436c && w7Var.R.isAttachedToWindow()) {
+                    kVar2 = ((m2) w7Var).actionBar;
+                    boolean z12 = kVar2.f19541n0;
                     int top2 = (((View) w7Var.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - k.getCurrentActionBarHeight();
                     int bottom2 = ((View) w7Var.R.getParent()).getBottom();
                     boolean z13 = false;
                     if (i11 < 0) {
-                        if ((w7Var.f35660c.getHeight() - w7Var.f35660c.getPaddingBottom()) - bottom2 >= 0) {
-                            ml0 currentListView4 = w7Var.R.getCurrentListView();
+                        if ((w7Var.f35436c.getHeight() - w7Var.f35436c.getPaddingBottom()) - bottom2 >= 0) {
+                            wl0 currentListView4 = w7Var.R.getCurrentListView();
                             int L02 = ((c0) currentListView4.getLayoutManager()).L0();
                             int i16 = -1;
                             if (L02 != -1) {
                                 c1 K2 = currentListView4.K(L02);
                                 if (K2 != null) {
-                                    i16 = K2.f42627a.getTop();
+                                    i16 = K2.f42946a.getTop();
                                 }
                                 int paddingTop2 = currentListView4.getPaddingTop();
                                 if (i16 != paddingTop2 || L02 != 0) {
@@ -143,7 +143,7 @@ public final class f extends n20 {
                         }
                         return;
                     } else if (z12) {
-                        ml0 currentListView5 = w7Var.R.getCurrentListView();
+                        wl0 currentListView5 = w7Var.R.getCurrentListView();
                         iArr[1] = i11;
                         if (top2 > 0) {
                             iArr[1] = 0;
@@ -154,10 +154,10 @@ public final class f extends n20 {
                         }
                         return;
                     } else if (i11 > 0) {
-                        ml0 currentListView6 = w7Var.R.getCurrentListView();
-                        if ((w7Var.f35660c.getHeight() - w7Var.f35660c.getPaddingBottom()) - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
+                        wl0 currentListView6 = w7Var.R.getCurrentListView();
+                        if ((w7Var.f35436c.getHeight() - w7Var.f35436c.getPaddingBottom()) - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
                             iArr[1] = i11;
-                            w7Var.f35660c.B0();
+                            w7Var.f35436c.B0();
                             return;
                         }
                         return;
@@ -180,9 +180,9 @@ public final class f extends n20 {
             case 0:
                 i iVar = (i) this.M0;
                 try {
-                    if (viewGroup == iVar.f35660c && iVar.R.isAttachedToWindow()) {
-                        ml0 currentListView = iVar.R.getCurrentListView();
-                        if (iVar.f35660c.getHeight() - ((View) iVar.R.getParent()).getBottom() >= 0) {
+                    if (viewGroup == iVar.f35436c && iVar.R.isAttachedToWindow()) {
+                        wl0 currentListView = iVar.R.getCurrentListView();
+                        if (iVar.f35436c.getHeight() - ((View) iVar.R.getParent()).getBottom() >= 0) {
                             iArr[1] = i13;
                             currentListView.scrollBy(0, i13);
                             return;
@@ -198,9 +198,9 @@ public final class f extends n20 {
             default:
                 w7 w7Var = (w7) this.M0;
                 try {
-                    if (viewGroup == w7Var.f35660c && w7Var.R.isAttachedToWindow()) {
-                        ml0 currentListView2 = w7Var.R.getCurrentListView();
-                        if ((w7Var.f35660c.getHeight() - w7Var.f35660c.getPaddingBottom()) - ((View) w7Var.R.getParent()).getBottom() >= 0) {
+                    if (viewGroup == w7Var.f35436c && w7Var.R.isAttachedToWindow()) {
+                        wl0 currentListView2 = w7Var.R.getCurrentListView();
+                        if ((w7Var.f35436c.getHeight() - w7Var.f35436c.getPaddingBottom()) - ((View) w7Var.R.getParent()).getBottom() >= 0) {
                             iArr[1] = i13;
                             currentListView2.scrollBy(0, i13);
                             return;
@@ -210,7 +210,7 @@ public final class f extends n20 {
                     return;
                 } catch (Throwable th3) {
                     FileLog.e(th3);
-                    AndroidUtilities.runOnUIThread(new w2(this, 5));
+                    AndroidUtilities.runOnUIThread(new r2(this, 6));
                     return;
                 }
         }

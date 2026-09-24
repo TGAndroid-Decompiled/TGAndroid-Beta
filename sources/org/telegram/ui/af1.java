@@ -9,7 +9,7 @@ public final class af1 extends s4.y {
 
     @Override
     public final boolean q() {
-        if (this.S.f38978x > 0) {
+        if (this.S.f39335x > 0) {
             return true;
         }
         return false;

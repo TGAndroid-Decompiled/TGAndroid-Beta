@@ -1,55 +1,38 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class wa0 implements MessagesController.MessagesLoadedCallback {
-    public final ia0 f38581a;
-    public final boolean[] f38582b;
-    public final Bundle f38583c;
-    public final TLRPC.ChatInvite d;
-    public final LaunchActivity e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+public final class wa0 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.lj0 f38931a;
+    public final org.telegram.ui.Components.ij0 f38932b;
+    public final boolean f38933c;
+    public final LaunchActivity d;
 
-    public wa0(LaunchActivity launchActivity, ia0 ia0Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
-        this.e = launchActivity;
-        this.f38581a = ia0Var;
-        this.f38582b = zArr;
-        this.f38583c = bundle;
-        this.d = chatInvite;
+    public wa0(LaunchActivity launchActivity, org.telegram.ui.Components.lj0 lj0Var, org.telegram.ui.Components.ij0 ij0Var, boolean z10) {
+        this.d = launchActivity;
+        this.f38931a = lj0Var;
+        this.f38932b = ij0Var;
+        this.f38933c = z10;
     }
 
     @Override
-    public final void onError() {
-        LaunchActivity launchActivity = this.e;
-        if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.e5.u0((org.telegram.ui.ActionBar.n2) hg.c.h(1, launchActivity.f30791d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
+    public final void onAnimationEnd(Animator animator) {
+        LaunchActivity launchActivity = this.d;
+        launchActivity.G0 = null;
+        launchActivity.f31134z0.invalidate();
+        launchActivity.f31112o0.invalidate();
+        launchActivity.f31112o0.setImageDrawable(null);
+        launchActivity.f31112o0.setVisibility(8);
+        launchActivity.f31114p0.setVisibility(8);
+        org.telegram.ui.Components.lj0 lj0Var = this.f38931a;
+        if (lj0Var != null) {
+            lj0Var.setImageDrawable(this.f38932b);
         }
-        try {
-            this.f38581a.run();
-        } catch (Exception e) {
-            FileLog.e(e);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeAccentListUpdated, new Object[0]);
+        if (!this.f38933c && lj0Var != null) {
+            lj0Var.setVisibility(0);
         }
-    }
-
-    @Override
-    public final void onMessagesLoaded(boolean z10) {
-        try {
-            this.f38581a.run();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        if (this.f38582b[0]) {
-            return;
-        }
-        xn xnVar = new xn(this.f38583c);
-        TLRPC.ChatInvite chatInvite = this.d;
-        if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
-            xnVar.K5 = chatInvite;
-        }
-        ((ActionBarLayout) this.e.O()).P(xnVar);
+        qy.f36995w4 = false;
     }
 }

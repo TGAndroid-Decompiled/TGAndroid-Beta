@@ -9,24 +9,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Cells.n2;
-import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Cells.o2;
+import org.telegram.ui.Cells.s2;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
-public final class q0 extends g51 {
+import org.telegram.ui.Components.wl0;
+public final class q0 extends u51 {
     static {
-        g51.setup(new g51());
+        u51.setup(new u51());
     }
 
-    public static h51 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
+    public static v51 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
         long j3;
         TLRPC.User user = communityPeerDialog.user;
         if (user != null) {
-            h51 J = h51.J(q0.class);
-            long j10 = user.f18230id;
+            v51 J = v51.J(q0.class);
+            long j10 = user.f18468id;
             J.B = j10;
             J.d = (int) (j10 ^ (j10 >>> 32));
             J.G = user;
@@ -34,9 +34,9 @@ public final class q0 extends g51 {
             return J;
         }
         TLRPC.Chat chat = communityPeerDialog.chat;
-        h51 J2 = h51.J(q0.class);
+        v51 J2 = v51.J(q0.class);
         if (chat != null) {
-            j3 = -chat.f18083id;
+            j3 = -chat.f18321id;
         } else {
             j3 = 0;
         }
@@ -48,62 +48,62 @@ public final class q0 extends g51 {
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        r2 r2Var = (r2) view;
-        r2Var.setDialogCellDelegate((n2) h51Var.H);
-        Object obj = h51Var.G;
+    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+        s2 s2Var = (s2) view;
+        s2Var.setDialogCellDelegate((o2) v51Var.H);
+        Object obj = v51Var.G;
         boolean z11 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            r2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, chat);
-            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f18083id);
+            s2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, chat);
+            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f18321id);
             if (dialog != null) {
                 z11 = false;
             }
-            r2Var.P0 = z11;
+            s2Var.P0 = z11;
             if (dialog != null) {
-                r2Var.setCustomMessageWithoutRebuild(null);
-                r2Var.X(dialog, 0, 0);
+                s2Var.setCustomMessageWithoutRebuild(null);
+                s2Var.X(dialog, 0, 0);
                 return;
             }
-            r2Var.setCustomMessageWithoutRebuild(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
-            r2Var.W(-chat.f18083id, null, 0, false, false);
+            s2Var.setCustomMessageWithoutRebuild(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
+            s2Var.W(-chat.f18321id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
-            r2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, user);
-            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f18230id);
+            s2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, user);
+            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f18468id);
             if (dialog2 != null) {
                 z11 = false;
             }
-            r2Var.P0 = z11;
+            s2Var.P0 = z11;
             if (dialog2 != null) {
-                r2Var.setCustomMessageWithoutRebuild(null);
-                r2Var.X(dialog2, 0, 0);
+                s2Var.setCustomMessageWithoutRebuild(null);
+                s2Var.X(dialog2, 0, 0);
                 return;
             }
-            r2Var.setCustomMessageWithoutRebuild(LocaleController.getString(R.string.Bot));
-            r2Var.W(user.f18230id, null, 0, false, false);
+            s2Var.setCustomMessageWithoutRebuild(LocaleController.getString(R.string.Bot));
+            s2Var.W(user.f18468id, null, 0, false, false);
         }
     }
 
     @Override
-    public final boolean contentsEquals(h51 h51Var, h51 h51Var2) {
-        if (h51Var.d == h51Var2.d) {
+    public final boolean contentsEquals(v51 v51Var, v51 v51Var2) {
+        if (v51Var.d == v51Var2.d) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, ml0 ml0Var, int i10, int i11, d6 d6Var) {
-        r2 r2Var = new r2(null, context, false, i10, d6Var);
-        r2Var.O0 = true;
-        return r2Var;
+    public final View createView(Context context, wl0 wl0Var, int i10, int i11, d6 d6Var) {
+        s2 s2Var = new s2(null, context, false, i10, d6Var);
+        s2Var.O0 = true;
+        return s2Var;
     }
 
     @Override
-    public final boolean equals(h51 h51Var, h51 h51Var2) {
-        if (h51Var.d == h51Var2.d) {
+    public final boolean equals(v51 v51Var, v51 v51Var2) {
+        if (v51Var.d == v51Var2.d) {
             return true;
         }
         return false;

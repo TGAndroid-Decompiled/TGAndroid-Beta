@@ -20,16 +20,16 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.e80;
-import org.telegram.ui.Components.jn0;
-import org.telegram.ui.Components.rc0;
-import org.telegram.ui.Components.tc0;
+import org.telegram.ui.Components.cd0;
+import org.telegram.ui.Components.ed0;
+import org.telegram.ui.Components.o80;
+import org.telegram.ui.Components.vn0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.ag0;
-import org.telegram.ui.kz0;
+import org.telegram.ui.a71;
+import org.telegram.ui.iz0;
 import org.telegram.ui.ye;
-import org.telegram.ui.z61;
-public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBar.a2, rc0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
+import org.telegram.ui.zf0;
+public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBar.z1, cd0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
     public final Object f899a;
     public final Object f900b;
     public final Object f901c;
@@ -46,16 +46,16 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void a(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ye((KeyEvent.Callback) ((ag0) this.f899a), (Object) hVar, (Object) list, (String) this.f900b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f901c), (TLObject) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((jn0) this.e), 4));
+        AndroidUtilities.runOnUIThread(new ye((KeyEvent.Callback) ((zf0) this.f899a), (Object) hVar, (Object) list, (String) this.f900b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f901c), (TLObject) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((vn0) this.e), 4));
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        org.telegram.ui.ActionBar.n3 n3Var = (org.telegram.ui.ActionBar.n3) this.f899a;
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        org.telegram.ui.ActionBar.m3 m3Var = (org.telegram.ui.ActionBar.m3) this.f899a;
         ((boolean[]) this.f900b)[0] = true;
-        n3Var.h(n3Var.f19419w, (org.telegram.ui.ActionBar.m3) this.f901c, true);
+        m3Var.h(m3Var.f19633w, (org.telegram.ui.ActionBar.l3) this.f901c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
-        ((org.telegram.ui.ActionBar.b2[]) this.e)[0].dismiss();
+        ((org.telegram.ui.ActionBar.a2[]) this.e)[0].dismiss();
     }
 
     @Override
@@ -79,15 +79,15 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f31489s0;
-        ((kz0) iVar.f303b).a(canvas, h6Var, h6Var2);
+        int i10 = ProfileStoriesView.f31790s0;
+        ((iz0) iVar.f303b).a(canvas, h6Var, h6Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
     }
 
     @Override
     public void onFailure(Exception e) {
-        v0.o request = (v0.o) this.f899a;
+        v0.n request = (v0.n) this.f899a;
         f1.a aVar = (f1.a) this.f900b;
         v0.i iVar = (v0.i) this.f901c;
         Executor executor = (Executor) this.d;
@@ -95,7 +95,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
         kotlin.jvm.internal.i.e(e, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.i.e(request, "request");
-        for (v0.q qVar : request.f43766a) {
+        for (v0.p pVar : request.f44085a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.e).g(request, cancellationSignal, executor, iVar);
@@ -103,31 +103,31 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ye((yh.t5) this.f899a, list, (e80) this.f900b, (TLRPC.TL_inputStorePaymentStarsGift) this.f901c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.e, 12));
+        AndroidUtilities.runOnUIThread(new ye((yh.t5) this.f899a, list, (o80) this.f900b, (TLRPC.TL_inputStorePaymentStarsGift) this.f901c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.e, 12));
     }
 
     @Override
-    public void q(tc0 tc0Var, int i10) {
-        org.telegram.ui.Components.e5.c((ci.d) this.f899a, (tc0) this.f900b, (tc0) this.f901c, (tc0) this.d, (tc0) this.e);
+    public void q(ed0 ed0Var, int i10) {
+        org.telegram.ui.Components.e5.c((ci.d) this.f899a, (ed0) this.f900b, (ed0) this.f901c, (ed0) this.d, (ed0) this.e);
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
         TLRPC.TL_availableReaction tL_availableReaction;
-        z61 z61Var = (z61) this.f899a;
+        a71 a71Var = (a71) this.f899a;
         LinkedHashSet linkedHashSet = (LinkedHashSet) this.f900b;
         HashMap hashMap = (HashMap) this.f901c;
         ArrayList arrayList2 = (ArrayList) this.d;
         Runnable runnable = (Runnable) this.e;
-        z61Var.getClass();
+        a71Var.getClass();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             try {
                 if (((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.startsWith("animated_")) {
                     linkedHashSet.add(Long.valueOf(Long.parseLong(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.substring(9))));
                 } else {
-                    int i11 = z61Var.W;
+                    int i11 = a71Var.W;
                     if ((i11 == 1 || i11 == 11 || i11 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji)) != null) {
-                        arrayList2.add(zg.p0.c(tL_availableReaction));
+                        arrayList2.add(zg.o0.c(tL_availableReaction));
                     }
                 }
             } catch (Exception unused) {

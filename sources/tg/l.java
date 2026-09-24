@@ -1,22 +1,14 @@
 package tg;
-public final class l implements Runnable {
-    public final int f43111a;
-    public final o f43112b;
 
-    public l(o oVar, int i10) {
-        this.f43111a = i10;
-        this.f43112b = oVar;
-    }
+import org.telegram.ui.ActionBar.d6;
+public final class l {
+    public final a0 f43414a;
+    public final d6 f43415b;
+    public final m f43416c;
 
-    @Override
-    public final void run() {
-        switch (this.f43111a) {
-            case 0:
-                this.f43112b.dismiss();
-                return;
-            default:
-                this.f43112b.onBackPressed();
-                return;
-        }
+    public l(m mVar, a0 a0Var, d6 d6Var) {
+        this.f43416c = mVar;
+        this.f43414a = a0Var;
+        this.f43415b = d6Var;
     }
 }

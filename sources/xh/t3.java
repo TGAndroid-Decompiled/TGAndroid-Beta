@@ -6,7 +6,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-public final class t3 extends org.telegram.ui.ActionBar.f1 {
+public final class t3 extends org.telegram.ui.ActionBar.e1 {
     public final int L;
     public long M;
     public r3 N;
@@ -19,10 +19,10 @@ public final class t3 extends org.telegram.ui.ActionBar.f1 {
         int i11 = h6.F8;
         c(v02, h6.v0(i11, d6Var));
         e(h6.v0(i11, d6Var), PorterDuff.Mode.SRC_IN);
-        this.f18612c.setTranslationX(AndroidUtilities.dp(2.0f));
+        this.f18820c.setTranslationX(AndroidUtilities.dp(2.0f));
         a(2);
         setBackground(null);
-        this.f18612c.addOnAttachStateChangeListener(new ai.u2(this, 14));
+        this.f18820c.addOnAttachStateChangeListener(new ai.u2(this, 14));
     }
 
     @Override

@@ -9,7 +9,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ry;
+import org.telegram.ui.qy;
 public final class va implements Runnable {
     public final int f5682a = 0;
     public final long f5683b;
@@ -42,7 +42,7 @@ public final class va implements Runnable {
                 boolean z10 = this.f5684c;
                 long j3 = this.f5683b;
                 if (!z10) {
-                    ai.d2.W = new ai.d2(lcVar.f5029b, lcVar.f5033c, storyItem, j3, storyItem.f18318id, z10, inputGroupCall, true, this.d);
+                    ai.d2.W = new ai.d2(lcVar.f5029b, lcVar.f5033c, storyItem, j3, storyItem.f18556id, z10, inputGroupCall, true, this.d);
                 }
                 gc gcVar = lcVar.F;
                 if (gcVar != null) {
@@ -55,38 +55,38 @@ public final class va implements Runnable {
                 rectF.set(0.0f, 0.0f, point.x, point.y);
                 lcVar.G = AndroidUtilities.dp(8.0f);
                 lcVar.q(true);
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 storyItem.dialogId = j3;
                 storyItem.justUploaded = true;
                 U.getOrCreateStoryViewer().F(lcVar.f5029b, storyItem, null);
-                NotificationCenter.getInstance(lcVar.f5033c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f18100id));
+                NotificationCenter.getInstance(lcVar.f5033c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f18338id));
                 return;
             default:
-                ry ryVar = (ry) notificationCenterDelegate;
+                qy qyVar = (qy) notificationCenterDelegate;
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
                 TLRPC.User user = (TLRPC.User) tLObject;
                 long j10 = this.f5683b;
                 boolean z11 = this.f5684c;
                 if (chat != null) {
-                    ryVar.getClass();
+                    qyVar.getClass();
                     if (ChatObject.isNotInChat(chat)) {
-                        ryVar.getMessagesController().deleteDialog(j10, 0, z11);
+                        qyVar.getMessagesController().deleteDialog(j10, 0, z11);
                     } else {
-                        ryVar.getMessagesController().deleteParticipantFromChat(-j10, ryVar.getMessagesController().getUser(Long.valueOf(ryVar.getUserConfig().getClientUserId())), (TLRPC.Chat) null, z11, z11);
+                        qyVar.getMessagesController().deleteParticipantFromChat(-j10, qyVar.getMessagesController().getUser(Long.valueOf(qyVar.getUserConfig().getClientUserId())), (TLRPC.Chat) null, z11, z11);
                     }
                 } else {
-                    ryVar.getMessagesController().deleteDialog(j10, 0, z11);
+                    qyVar.getMessagesController().deleteDialog(j10, 0, z11);
                     if (user != null && user.bot && this.d) {
-                        ryVar.getMessagesController().blockPeer(user.f18230id);
+                        qyVar.getMessagesController().blockPeer(user.f18468id);
                     }
                 }
-                ryVar.getMessagesController().checkIfFolderEmpty(ryVar.V2);
+                qyVar.getMessagesController().checkIfFolderEmpty(qyVar.V2);
                 return;
         }
     }
 
-    public va(ry ryVar, TLRPC.Chat chat, long j3, boolean z10, TLRPC.User user, boolean z11) {
-        this.e = ryVar;
+    public va(qy qyVar, TLRPC.Chat chat, long j3, boolean z10, TLRPC.User user, boolean z11) {
+        this.e = qyVar;
         this.f5685f = chat;
         this.f5683b = j3;
         this.f5684c = z10;

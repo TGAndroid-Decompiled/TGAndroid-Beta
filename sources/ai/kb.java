@@ -15,7 +15,7 @@ import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ou;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.zc;
 public class kb extends View {
     public boolean E;
     public long F;
@@ -29,7 +29,7 @@ public class kb extends View {
     public LinearGradient f1157f;
     public final Matrix h;
     public final org.telegram.ui.Cells.z f1158n;
-    public final yc f1159r;
+    public final zc f1159r;
     public final boolean f1160s;
     public final boolean v;
     public final boolean f1161w;
@@ -47,7 +47,7 @@ public class kb extends View {
         this.h = new Matrix();
         org.telegram.ui.Cells.z f02 = org.telegram.ui.ActionBar.h6.f0(1174405119, 2, -1);
         this.f1158n = f02;
-        this.f1159r = new yc(this);
+        this.f1159r = new zc(this);
         this.f1160s = false;
         this.v = false;
         this.E = false;
@@ -102,18 +102,18 @@ public class kb extends View {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
         org.telegram.ui.Cells.z zVar = this.f1158n;
-        yc ycVar = this.f1159r;
+        zc zcVar = this.f1159r;
         if (action == 0) {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                ycVar.f30207f = new ou(1, view);
+                zcVar.f30840f = new ou(1, view);
             }
-            ycVar.c(true);
+            zcVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
             zVar.setState(new int[]{16842919, 16842910});
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            ycVar.c(false);
+            zcVar.c(false);
             zVar.setState(new int[0]);
         }
         super.dispatchTouchEvent(motionEvent);

@@ -1,65 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class rs0 extends AnimatorListenerAdapter {
-    public final int f27719a;
-    public final yu0 f27720b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class rs0 extends u00 {
+    public final fs0 U;
+    public final jv0 V;
 
-    public rs0(yu0 yu0Var, int i10) {
-        this.f27719a = i10;
-        this.f27720b = yu0Var;
+    public rs0(jv0 jv0Var, Context context, fs0 fs0Var) {
+        super(context, null);
+        this.V = jv0Var;
+        this.U = fs0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27719a) {
-            case 0:
-                this.f27720b.L0 = null;
-                return;
-            default:
-                yu0 yu0Var = this.f27720b;
-                org.telegram.ui.ActionBar.v0 v0Var = yu0Var.f30431n0;
-                rt0[] rt0VarArr = yu0Var.f30426k0;
-                yu0Var.f30417f1 = null;
-                int i10 = 4;
-                if (yu0Var.f30423i1) {
-                    rt0VarArr[1].setVisibility(8);
-                    if (v0Var != null && !yu0Var.D()) {
-                        if (yu0Var.v0()) {
-                            i10 = 8;
-                        }
-                        v0Var.setVisibility(i10);
-                        yu0Var.f30433o0 = 0.0f;
-                    } else {
-                        yu0Var.f30433o0 = yu0Var.b0(0.0f);
-                        yu0Var.s1(0.0f);
-                    }
-                    yu0Var.q1(false);
-                    yu0Var.f30455x0 = 0;
-                } else {
-                    rt0 rt0Var = rt0VarArr[0];
-                    rt0VarArr[0] = rt0VarArr[1];
-                    rt0VarArr[1] = rt0Var;
-                    rt0Var.setVisibility(8);
-                    if (v0Var != null && yu0Var.f30455x0 == 2) {
-                        if (yu0Var.v0()) {
-                            i10 = 8;
-                        }
-                        v0Var.setVisibility(i10);
-                    }
-                    yu0Var.f30455x0 = 0;
-                    yu0Var.Z0(1.0f, rt0VarArr[0].F);
-                    yu0Var.L0();
-                    yu0Var.f1();
-                }
-                yu0Var.f30419g1 = false;
-                yu0Var.f30459y1 = false;
-                yu0Var.f30456x1 = false;
-                yu0Var.N0(false);
-                yu0Var.G.setEnabled(true);
-                yu0Var.I0.setEnabled(true);
-                return;
+    public final int getColumnsCount() {
+        return this.V.f25522m1[jv0.p0(this.U.F) ? 1 : 0];
+    }
+
+    @Override
+    public final int getViewType() {
+        setIsSingleCell(false);
+        int i10 = this.U.F;
+        if (i10 == 0 || i10 == 5) {
+            return 2;
         }
+        if (i10 == 1) {
+            return 3;
+        }
+        if (i10 != 2 && i10 != 4) {
+            if (i10 == 3) {
+                return 5;
+            }
+            if (i10 != 7) {
+                if (i10 == 6) {
+                    if (this.V.I0.getTabsCount() == 1) {
+                        setIsSingleCell(true);
+                        return 1;
+                    }
+                } else if (jv0.p0(i10)) {
+                    return 27;
+                }
+                return 1;
+            }
+        }
+        return 6;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        jv0 jv0Var = this.V;
+        jv0Var.T0.setColor(jv0Var.h0(org.telegram.ui.ActionBar.h6.f19045d6));
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), jv0Var.T0);
+        super.onDraw(canvas);
     }
 }

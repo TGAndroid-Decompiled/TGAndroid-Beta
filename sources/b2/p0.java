@@ -2,7 +2,7 @@ package b2;
 
 import java.util.Arrays;
 import java.util.List;
-import v7.z7;
+import v7.a8;
 public final class p0 {
     public final o0[] f3170a;
     public final long f3171b;
@@ -15,7 +15,7 @@ public final class p0 {
         if (o0VarArr.length == 0) {
             return this;
         }
-        String str = e2.d0.f7871a;
+        String str = e2.d0.f7870a;
         o0[] o0VarArr2 = this.f3170a;
         Object[] copyOf = Arrays.copyOf(o0VarArr2, o0VarArr2.length + o0VarArr.length);
         System.arraycopy(o0VarArr, 0, copyOf, o0VarArr2.length, o0VarArr.length);
@@ -43,7 +43,7 @@ public final class p0 {
     }
 
     public final int hashCode() {
-        return z7.b(this.f3171b) + (Arrays.hashCode(this.f3170a) * 31);
+        return a8.b(this.f3171b) + (Arrays.hashCode(this.f3170a) * 31);
     }
 
     public final String toString() {

@@ -4,9 +4,9 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.u7;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.jv0;
 import org.telegram.ui.Components.oz;
+import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.uv0;
 import s4.z0;
 public final class i extends oz {
     public final int X = 0;
@@ -28,13 +28,13 @@ public final class i extends oz {
     }
 
     @Override
-    public jv0 D1(int i10) {
+    public uv0 D1(int i10) {
         switch (this.X) {
             case 0:
-                jv0 jv0Var = (jv0) this.Y;
-                jv0Var.f25429b = 100.0f;
-                jv0Var.f25428a = 100.0f;
-                return jv0Var;
+                uv0 uv0Var = (uv0) this.Y;
+                uv0Var.f28927b = 100.0f;
+                uv0Var.f28926a = 100.0f;
+                return uv0Var;
             default:
                 return super.D1(i10);
         }
@@ -42,19 +42,19 @@ public final class i extends oz {
 
     @Override
     public void U(of.e eVar, z0 z0Var, View view, s0.d dVar) {
-        n7.b bVar;
+        he.c cVar;
         switch (this.X) {
             case 0:
                 super.U(eVar, z0Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42576a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42895a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
-                    bVar = new n7.b(collectionItemInfo);
+                    cVar = new he.c(collectionItemInfo);
                 } else {
-                    bVar = null;
+                    cVar = null;
                 }
-                if (bVar != null) {
-                    Object obj = bVar.f15085a;
+                if (cVar != null) {
+                    Object obj = cVar.f10188a;
                     if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                         accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
                         return;
@@ -72,7 +72,7 @@ public final class i extends oz {
     public int W0(z0 z0Var) {
         switch (this.X) {
             case 1:
-                if (((d61) this.Y).f23290a3) {
+                if (((r61) this.Y).f27876a3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(z0Var);
@@ -94,8 +94,8 @@ public final class i extends oz {
         }
     }
 
-    public i(d61 d61Var, int i10) {
+    public i(r61 r61Var, int i10) {
         super(i10, false);
-        this.Y = d61Var;
+        this.Y = r61Var;
     }
 }

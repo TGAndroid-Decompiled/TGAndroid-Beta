@@ -24,10 +24,10 @@ public class HashtagSearchController {
 
     public static final class MessageCompositeID {
         final long dialog_id;
-        final int f15569id;
+        final int f15809id;
 
         public MessageCompositeID(TLRPC.Message message) {
-            this(MessageObject.getDialogId(message), message.f18104id);
+            this(MessageObject.getDialogId(message), message.f18342id);
         }
 
         public boolean equals(Object obj) {
@@ -36,7 +36,7 @@ public class HashtagSearchController {
             }
             if (obj != null && MessageCompositeID.class == obj.getClass()) {
                 MessageCompositeID messageCompositeID = (MessageCompositeID) obj;
-                if (this.dialog_id == messageCompositeID.dialog_id && this.f15569id == messageCompositeID.f15569id) {
+                if (this.dialog_id == messageCompositeID.dialog_id && this.f15809id == messageCompositeID.f15809id) {
                     return true;
                 }
             }
@@ -44,12 +44,12 @@ public class HashtagSearchController {
         }
 
         public int hashCode() {
-            return Objects.hash(Long.valueOf(this.dialog_id), Integer.valueOf(this.f15569id));
+            return Objects.hash(Long.valueOf(this.dialog_id), Integer.valueOf(this.f15809id));
         }
 
         public MessageCompositeID(long j3, int i10) {
             this.dialog_id = j3;
-            this.f15569id = i10;
+            this.f15809id = i10;
         }
     }
 
@@ -184,11 +184,11 @@ public class HashtagSearchController {
                     searchResult.messages.add(messageObject);
                 }
                 TLRPC.Message message = messageObject.messageOwner;
-                message.realId = message.f18104id;
-                message.f18104id = num.intValue();
+                message.realId = message.f18342id;
+                message.f18342id = num.intValue();
             }
             if (!messages_messages.messages.isEmpty()) {
-                TLRPC.Message message2 = (TLRPC.Message) hg.c.h(1, messages_messages.messages);
+                TLRPC.Message message2 = (TLRPC.Message) hg.c.g(1, messages_messages.messages);
                 searchResult.lastOffsetId = message2.realId;
                 searchResult.lastOffsetPeer = message2.peer_id;
             }
@@ -252,7 +252,7 @@ public class HashtagSearchController {
         edit.clear();
         edit.putInt("count", this.history.size());
         for (int i10 = 0; i10 < this.history.size(); i10++) {
-            edit.putString(hg.c.i(i10, "e_"), this.history.get(i10));
+            edit.putString(hg.c.h(i10, "e_"), this.history.get(i10));
         }
         edit.apply();
     }
@@ -296,7 +296,7 @@ public class HashtagSearchController {
         SearchResult searchResult = getSearchResult(i12);
         if (i11 >= 0 && i11 < searchResult.messages.size()) {
             searchResult.selectedIndex = i11;
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i10), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), Integer.valueOf(searchResult.messages.get(i11).messageOwner.f18104id));
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i10), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), Integer.valueOf(searchResult.messages.get(i11).messageOwner.f18342id));
         }
     }
 
@@ -367,7 +367,7 @@ public class HashtagSearchController {
                 if (i11 == 1) {
                     TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
                     tL_messages_searchGlobal.limit = 21;
-                    tL_messages_searchGlobal.f18194q = str4;
+                    tL_messages_searchGlobal.f18432q = str4;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
                     tL_channels_searchPosts = tL_messages_searchGlobal;
@@ -381,7 +381,7 @@ public class HashtagSearchController {
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInputPeer(tLObject);
-                    tL_messages_search.f18192q = str3;
+                    tL_messages_search.f18430q = str3;
                     tL_messages_search.limit = 21;
                     int i13 = searchResult.lastOffsetId;
                     if (i13 != 0) {

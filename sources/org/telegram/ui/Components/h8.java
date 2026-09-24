@@ -7,15 +7,15 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class h8 implements Runnable {
-    public final int f24560a = 0;
-    public final i8 f24561b;
-    public final ArrayList f24562c;
+    public final int f24653a = 0;
+    public final i8 f24654b;
+    public final ArrayList f24655c;
     public final String d;
 
     public h8(i8 i8Var, String str, ArrayList arrayList) {
-        this.f24561b = i8Var;
+        this.f24654b = i8Var;
         this.d = str;
-        this.f24562c = arrayList;
+        this.f24655c = arrayList;
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class h8 implements Runnable {
         TLRPC.Document document;
         boolean z10;
         String str;
-        int i11 = this.f24560a;
+        int i11 = this.f24653a;
         String str2 = this.d;
-        ArrayList arrayList = this.f24562c;
-        i8 i8Var = this.f24561b;
+        ArrayList arrayList = this.f24655c;
+        i8 i8Var = this.f24654b;
         switch (i11) {
             case 0:
                 i8Var.getClass();
@@ -99,14 +99,14 @@ public final class h8 implements Runnable {
                 AndroidUtilities.runOnUIThread(new h8(i8Var, arrayList2, str2));
                 return;
             default:
-                j8 j8Var = i8Var.f24898n;
+                j8 j8Var = i8Var.f24944n;
                 if (j8Var.h) {
-                    j8Var.f25169f = true;
+                    j8Var.f25283f = true;
                     i8Var.d = arrayList;
                     i8Var.e = str2;
                     i8Var.l();
-                    j8Var.f25182r.n0(0);
-                    org.telegram.messenger.ul.q(R.string.NoAudioFoundPlayerInfo, new Object[]{str2}, j8Var.f25193y);
+                    j8Var.f25296r.n0(0);
+                    org.telegram.messenger.ok.q(R.string.NoAudioFoundPlayerInfo, new Object[]{str2}, j8Var.f25307y);
                     return;
                 }
                 return;
@@ -114,8 +114,8 @@ public final class h8 implements Runnable {
     }
 
     public h8(i8 i8Var, ArrayList arrayList, String str) {
-        this.f24561b = i8Var;
-        this.f24562c = arrayList;
+        this.f24654b = i8Var;
+        this.f24655c = arrayList;
         this.d = str;
     }
 }

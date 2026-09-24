@@ -1,21 +1,37 @@
 package v7;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 public abstract class e0 {
-    public static boolean a(Context context) {
-        ApplicationInfo applicationInfo;
-        Intent putExtra = new Intent().addFlags(268435456).setAction("com.android.settings.panel.action.MEDIA_OUTPUT").putExtra("com.android.settings.panel.extra.PACKAGE_NAME", context.getPackageName());
-        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(putExtra, 0)) {
-            ActivityInfo activityInfo = resolveInfo.activityInfo;
-            if (activityInfo != null && (applicationInfo = activityInfo.applicationInfo) != null && (applicationInfo.flags & 129) != 0) {
-                context.startActivity(putExtra);
-                return true;
-            }
+    public static int a(Context context) {
+        boolean z10;
+        int i10;
+        float fraction;
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        if (displayMetrics.widthPixels < displayMetrics.heightPixels) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return false;
+        TypedValue typedValue = new TypedValue();
+        Resources resources = context.getResources();
+        if (z10) {
+            i10 = 2131165335;
+        } else {
+            i10 = 2131165334;
+        }
+        resources.getValue(i10, typedValue, true);
+        int i11 = typedValue.type;
+        if (i11 == 5) {
+            fraction = typedValue.getDimension(displayMetrics);
+        } else if (i11 == 6) {
+            int i12 = displayMetrics.widthPixels;
+            fraction = typedValue.getFraction(i12, i12);
+        } else {
+            return -2;
+        }
+        return (int) fraction;
     }
 }

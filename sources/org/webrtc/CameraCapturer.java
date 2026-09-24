@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Looper;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.ui.Cells.q3;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
 abstract class CameraCapturer implements CameraVideoCapturer {
@@ -208,14 +207,6 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public CameraCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, CameraEnumerator cameraEnumerator) {
         this.eventsHandler = cameraEventsHandler == null ? new CameraVideoCapturer.CameraEventsHandler() {
             @Override
-            public void onCameraClosed() {
-            }
-
-            @Override
-            public void onCameraDisconnected() {
-            }
-
-            @Override
             public void onCameraError(String str2) {
             }
 
@@ -225,6 +216,14 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
             @Override
             public void onCameraOpening(String str2) {
+            }
+
+            @Override
+            public void onCameraClosed() {
+            }
+
+            @Override
+            public void onCameraDisconnected() {
             }
 
             @Override
@@ -279,7 +278,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(q3.i("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(v7.j.g("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -329,9 +328,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder m10 = hg.c.m("changeCaptureFormat: ", i10, "x", i11, "@");
-        m10.append(i12);
-        Logging.d("CameraCapturer", m10.toString());
+        StringBuilder k10 = hg.c.k("changeCaptureFormat: ", i10, "x", i11, "@");
+        k10.append(i12);
+        Logging.d("CameraCapturer", k10.toString());
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i10, i11, i12);
@@ -393,9 +392,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder m10 = hg.c.m("startCapture: ", i10, "x", i11, "@");
-        m10.append(i12);
-        Logging.d("CameraCapturer", m10.toString());
+        StringBuilder k10 = hg.c.k("startCapture: ", i10, "x", i11, "@");
+        k10.append(i12);
+        Logging.d("CameraCapturer", k10.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {

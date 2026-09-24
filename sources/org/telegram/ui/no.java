@@ -1,36 +1,50 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-public final class no implements Runnable {
-    public final int f35568a;
-    public final long f35569b;
-    public final long f35570c;
-    public final org.telegram.ui.ActionBar.n2 d;
+import org.telegram.tgnet.TLRPC;
+public final class no extends lu0 {
+    public final ro f35909a;
 
-    public no(org.telegram.ui.ActionBar.n2 n2Var, long j3, long j10, int i10) {
-        this.f35568a = i10;
-        this.d = n2Var;
-        this.f35569b = j3;
-        this.f35570c = j10;
+    public no(ro roVar) {
+        this.f35909a = roVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.v51 v51Var;
-        switch (this.f35568a) {
-            case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f35569b, this.f35570c, new c5((so) this.d, 4));
-                return;
-            default:
-                org.telegram.ui.web.y1 y1Var = (org.telegram.ui.web.y1) this.d;
-                y1Var.f38915f = this.f35569b;
-                y1Var.h = this.f35570c;
-                org.telegram.ui.Components.x51 x51Var = y1Var.f30163a;
-                if (x51Var != null && (v51Var = x51Var.Y2) != null && x51Var.G) {
-                    v51Var.N(true);
-                    return;
-                }
-                return;
+    public final org.telegram.ui.vu0 E(org.telegram.messenger.MessageObject r9, org.telegram.tgnet.TLRPC.FileLocation r10, int r11, boolean r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.no.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.vu0");
+    }
+
+    @Override
+    public final void G() {
+        this.f35909a.e.getImageReceiver().setVisible(true, true);
+    }
+
+    @Override
+    public final boolean M() {
+        ro roVar = this.f35909a;
+        long j3 = roVar.C0;
+        if (j3 == 0) {
+            return true;
         }
+        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+        tL_photos_updateProfilePhoto.bot = roVar.getMessagesController().getInputUser(j3);
+        tL_photos_updateProfilePhoto.flags |= 2;
+        tL_photos_updateProfilePhoto.f18453id = new TLRPC.TL_inputPhotoEmpty();
+        roVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new m(this, 2));
+        return false;
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f35909a.f37399s.q(str, str2, z10);
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 }

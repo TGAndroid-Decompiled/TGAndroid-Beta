@@ -1,18 +1,18 @@
 package s4;
 
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.nx0;
+import org.telegram.ui.Components.yx0;
 public abstract class x extends v {
     public int d;
 
     @Override
     public final int e(RecyclerView recyclerView, c1 c1Var) {
         int i10;
-        nx0 nx0Var = (nx0) this;
-        if (c1Var.f42630f == 3) {
+        yx0 yx0Var = (yx0) this;
+        if (c1Var.f42949f == 3) {
             i10 = 0;
         } else {
-            i10 = nx0Var.d;
+            i10 = yx0Var.d;
         }
         return v.l(i10, 0);
     }

@@ -1,118 +1,97 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.TextureView;
 import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class k11 extends ll0 {
-    public final Context f25459c;
-    public int d;
-    public ArrayList e = new ArrayList();
-    public ArrayList f25460f = new ArrayList();
-    public xm h;
-    public String f25461n;
-    public final ThemeEditorView.EditorAlert f25462r;
+import org.telegram.messenger.MessagesController;
+public final class k11 extends TextureView {
+    public static Boolean f25577f;
+    public i11 f25578a;
+    public final o1.a f25579b;
+    public final ArrayList f25580c;
+    public Runnable d;
+    public boolean e;
 
-    public k11(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f25462r = editorAlert;
-        this.f25459c = context;
+    public k11(Context context, Runnable runnable) {
+        super(context);
+        this.f25579b = new o1.a(this, 1);
+        this.f25580c = new ArrayList();
+        this.d = runnable;
+        setOpaque(false);
+        setSurfaceTextureListener(new ki.c(this, 3));
     }
 
-    public static CharSequence E(String str, String str2) {
-        if (TextUtils.isEmpty(str)) {
-            return "";
+    public static void b(Runnable runnable) {
+        if (runnable == null) {
+            return;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String trim = str.trim();
-        String lowerCase = trim.toLowerCase();
-        int i10 = 0;
-        while (true) {
-            int indexOf = lowerCase.indexOf(str2, i10);
-            if (indexOf == -1) {
-                break;
-            }
-            int length = str2.length() + indexOf;
-            if (i10 != 0 && i10 != indexOf + 1) {
-                spannableStringBuilder.append((CharSequence) trim.substring(i10, indexOf));
-            } else if (i10 == 0 && indexOf != 0) {
-                spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
-            }
-            String substring = trim.substring(indexOf, Math.min(trim.length(), length));
-            if (substring.startsWith(" ")) {
-                spannableStringBuilder.append((CharSequence) " ");
-            }
-            String trim2 = substring.trim();
-            int length2 = spannableStringBuilder.length();
-            spannableStringBuilder.append((CharSequence) trim2);
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
-            i10 = length;
+        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+            AndroidUtilities.runOnUIThread(runnable);
+        } else {
+            runnable.run();
         }
-        if (i10 != -1 && i10 < trim.length()) {
-            spannableStringBuilder.append((CharSequence) trim.substring(i10));
-        }
-        return spannableStringBuilder;
     }
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
+    public static boolean c() {
+        if (f25577f == null) {
+            f25577f = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
+        }
+        Boolean bool = f25577f;
+        if (bool != null && bool.booleanValue()) {
+            return false;
+        }
         return true;
     }
 
-    @Override
-    public final int h() {
-        if (this.e.isEmpty()) {
-            return 0;
-        }
-        return this.e.size() + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int c10;
-        if (c1Var.f42630f == 0) {
-            boolean z10 = true;
-            int i11 = i10 - 1;
-            org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) ((ArrayList) this.e.get(i11)).get(0);
-            if (j6Var.f19258f == org.telegram.ui.ActionBar.h6.Nd) {
-                c10 = 0;
-            } else {
-                c10 = j6Var.c();
+    public final void a(View view) {
+        int i10 = 0;
+        int i11 = 0;
+        boolean z10 = false;
+        while (true) {
+            ArrayList arrayList = this.f25580c;
+            if (i11 >= arrayList.size()) {
+                break;
             }
-            org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) c1Var.f42627a;
-            a9Var.f19772a.setText((CharSequence) this.f25460f.get(i11));
-            a9Var.f19773b = c10;
-            if (c10 != 0) {
-                z10 = false;
+            j11 j11Var = (j11) arrayList.get(i11);
+            if (j11Var.f25214a == view) {
+                Runnable runnable = j11Var.d;
+                if (runnable != null) {
+                    b(runnable);
+                    j11Var.d = null;
+                }
+                arrayList.remove(i11);
+                i11--;
+                z10 = true;
             }
-            a9Var.setWillNotDraw(z10);
-            a9Var.invalidate();
+            i11++;
         }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View a9Var;
-        Context context = this.f25459c;
-        if (i10 != 0) {
-            a9Var = new View(context);
-            a9Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
-        } else {
-            a9Var = new org.telegram.ui.Cells.a9(context);
-            a9Var.setLayoutParams(new s4.p0(-1, -2));
+        if (!z10) {
+            i11 i11Var = this.f25578a;
+            ArrayList arrayList2 = i11Var.W;
+            if (i11Var.f24883b.get()) {
+                Handler handler = i11Var.getHandler();
+                if (handler == null) {
+                    while (i10 < arrayList2.size()) {
+                        h11 h11Var = (h11) arrayList2.get(i10);
+                        if (h11Var.f24584a.contains(view)) {
+                            Runnable runnable2 = h11Var.f24587f;
+                            if (runnable2 != null) {
+                                b(runnable2);
+                                h11Var.f24587f = null;
+                            }
+                            arrayList2.remove(i10);
+                            i10--;
+                        }
+                        i10++;
+                    }
+                    return;
+                }
+                handler.sendMessage(handler.obtainMessage(5, view));
+            }
         }
-        return new s4.c1(a9Var);
     }
 }

@@ -1,47 +1,102 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class np0 implements gg.g0 {
-    public final hq0 f26476a;
+import android.view.View;
+import android.widget.Toast;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.PhotoViewer;
+public final class np0 implements View.OnClickListener {
+    public final int f26762a;
+    public final uq0 f26763b;
 
-    public np0(hq0 hq0Var) {
-        this.f26476a = hq0Var;
+    public np0(uq0 uq0Var, int i10) {
+        this.f26762a = i10;
+        this.f26763b = uq0Var;
     }
 
     @Override
-    public final void a(a0.i iVar, ArrayList arrayList) {
-        int i10;
-        int i11;
-        int i12;
-        int i13 = 0;
-        while (i13 < arrayList.size()) {
-            TLObject tLObject = ((gg.h0) arrayList.get(i13)).f9736a;
-            if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
-                arrayList.remove(i13);
-                i13--;
-            }
-            i13++;
+    public final void onClick(View view) {
+        switch (this.f26762a) {
+            case 0:
+                uq0 uq0Var = this.f26763b;
+                op opVar = uq0Var.f28867e0;
+                opVar.a(!opVar.f27163a.f22180q, true);
+                uq0Var.Z0();
+                return;
+            case 1:
+                uq0 uq0Var2 = this.f26763b;
+                org.telegram.ui.ActionBar.m1 m1Var = uq0Var2.J0;
+                if (m1Var != null && m1Var.isShowing()) {
+                    uq0Var2.J0.d(true);
+                }
+                uq0Var2.V0(false);
+                return;
+            case 2:
+                uq0 uq0Var3 = this.f26763b;
+                org.telegram.ui.ActionBar.m1 m1Var2 = uq0Var3.J0;
+                if (m1Var2 != null && m1Var2.isShowing()) {
+                    uq0Var3.J0.d(true);
+                }
+                uq0Var3.V0(true);
+                return;
+            case 3:
+                uq0 uq0Var4 = this.f26763b;
+                String[] strArr = uq0Var4.f28878o0;
+                if (uq0Var4.U.m() == 0) {
+                    if (uq0Var4.f28877n0 || strArr[0] != null) {
+                        uq0Var4.dismiss();
+                        PhotoViewer.t1().G0(true, false);
+                        if (strArr[0] == null && uq0Var4.f28875l0) {
+                            uq0Var4.m0 = true;
+                            Toast.makeText(uq0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        uq0Var4.getContext();
+                        uq0Var4.M0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                uq0 uq0Var5 = this.f26763b;
+                String[] strArr2 = uq0Var5.f28878o0;
+                if (uq0Var5.U.m() == 0) {
+                    if (uq0Var5.f28877n0 || strArr2[0] != null) {
+                        uq0Var5.dismiss();
+                        if (strArr2[0] == null && uq0Var5.f28875l0) {
+                            uq0Var5.m0 = true;
+                            Toast.makeText(uq0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        uq0Var5.getContext();
+                        uq0Var5.M0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                uq0 uq0Var6 = this.f26763b;
+                String[] strArr3 = uq0Var6.f28878o0;
+                if (uq0Var6.U.m() == 0) {
+                    if (uq0Var6.f28877n0 || strArr3[0] != null) {
+                        uq0Var6.dismiss();
+                        if (strArr3[0] == null && uq0Var6.f28875l0) {
+                            uq0Var6.m0 = true;
+                            Toast.makeText(uq0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                            return;
+                        }
+                        uq0Var6.getContext();
+                        uq0Var6.M0();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                this.f26763b.V0(true);
+                return;
         }
-        hq0 hq0Var = this.f26476a;
-        hq0Var.E0 = arrayList;
-        for (int i14 = 0; i14 < hq0Var.E0.size(); i14++) {
-            gg.h0 h0Var = (gg.h0) hq0Var.E0.get(i14);
-            TLObject tLObject2 = h0Var.f9736a;
-            if (tLObject2 instanceof TLRPC.User) {
-                i12 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
-                MessagesController.getInstance(i12).putUser((TLRPC.User) h0Var.f9736a, true);
-            } else if (tLObject2 instanceof TLRPC.Chat) {
-                i11 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
-                MessagesController.getInstance(i11).putChat((TLRPC.Chat) h0Var.f9736a, true);
-            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
-                i10 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
-                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) h0Var.f9736a, true);
-            }
-        }
-        hq0Var.M.l();
     }
 }

@@ -21,7 +21,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.RadialProgress2;
-public final class a1 extends View implements DownloadController.FileDownloadProgressListener, org.telegram.ui.Cells.q9 {
+public final class a1 extends View implements DownloadController.FileDownloadProgressListener, org.telegram.ui.Cells.p9 {
     public int E;
     public int F;
     public int G;
@@ -31,33 +31,33 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
     public TL_iv.pageBlockAudio K;
     public TLRPC.Document L;
     public MessageObject M;
-    public final r70 f31622a;
-    public final g4 f31623b;
-    public b3 f31624c;
+    public final p70 f31925a;
+    public final g4 f31926b;
+    public b3 f31927c;
     public b3 d;
     public final RadialProgress2 e;
-    public final org.telegram.ui.Components.bo0 f31625f;
+    public final org.telegram.ui.Components.oo0 f31928f;
     public boolean h;
-    public int f31626n;
-    public final int f31627r;
-    public int f31628s;
+    public int f31929n;
+    public final int f31930r;
+    public int f31931s;
     public String v;
-    public b3 f31629w;
-    public StaticLayout f31630x;
-    public int f31631y;
+    public b3 f31932w;
+    public StaticLayout f31933x;
+    public int f31934y;
 
-    public a1(Context context, r70 r70Var, g4 g4Var) {
+    public a1(Context context, p70 p70Var, g4 g4Var) {
         super(context);
-        this.f31627r = AndroidUtilities.dp(58.0f);
-        this.f31622a = r70Var;
-        this.f31623b = g4Var;
+        this.f31930r = AndroidUtilities.dp(58.0f);
+        this.f31925a = p70Var;
+        this.f31926b = g4Var;
         RadialProgress2 radialProgress2 = new RadialProgress2(this, null);
         this.e = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
-        this.J = DownloadController.getInstance(((i4) r70Var).X).generateObserverTag();
-        org.telegram.ui.Components.bo0 bo0Var = new org.telegram.ui.Components.bo0(this);
-        this.f31625f = bo0Var;
-        bo0Var.h = new z0(this, 0);
+        this.J = DownloadController.getInstance(((i4) p70Var).X).generateObserverTag();
+        org.telegram.ui.Components.oo0 oo0Var = new org.telegram.ui.Components.oo0(this);
+        this.f31928f = oo0Var;
+        oo0Var.h = new z0(this, 0);
     }
 
     private int getIconForCurrentState() {
@@ -75,7 +75,7 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
     }
 
     public final void a(boolean z10) {
-        int i10 = ((i4) this.f31622a).X;
+        int i10 = ((i4) this.f31925a).X;
         String attachFileName = FileLoader.getAttachFileName(this.L);
         boolean exists = FileLoader.getInstance(i10).getPathToAttach(this.L, true).exists();
         boolean isEmpty = TextUtils.isEmpty(attachFileName);
@@ -117,9 +117,9 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
         MessageObject messageObject;
         int i10;
         if (this.L != null && (messageObject = this.M) != null) {
-            org.telegram.ui.Components.bo0 bo0Var = this.f31625f;
-            if (!bo0Var.e) {
-                bo0Var.i(messageObject.audioProgress);
+            org.telegram.ui.Components.oo0 oo0Var = this.f31928f;
+            if (!oo0Var.e) {
+                oo0Var.i(messageObject.audioProgress);
             }
             if (MediaController.getInstance().isPlayingMessage(this.M)) {
                 i10 = this.M.audioProgressSec;
@@ -142,22 +142,22 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
             String str = this.v;
             if (str == null || !str.equals(formatShortDuration)) {
                 this.v = formatShortDuration;
-                TextPaint textPaint = i4.f33980e1;
+                TextPaint textPaint = i4.f34353e1;
                 textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-                this.f31630x = new StaticLayout(formatShortDuration, textPaint, (int) Math.ceil(textPaint.measureText(formatShortDuration)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.f31933x = new StaticLayout(formatShortDuration, textPaint, (int) Math.ceil(textPaint.measureText(formatShortDuration)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
-            i4.f33980e1.setColor(this.f31622a.b());
+            i4.f34353e1.setColor(this.f31925a.b());
             invalidate();
         }
     }
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        b3 b3Var = this.f31629w;
+        b3 b3Var = this.f31932w;
         if (b3Var != null) {
             arrayList.add(b3Var);
         }
-        b3 b3Var2 = this.f31624c;
+        b3 b3Var2 = this.f31927c;
         if (b3Var2 != null) {
             arrayList.add(b3Var2);
         }
@@ -180,11 +180,11 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         a(false);
-        b3 b3Var = this.f31629w;
+        b3 b3Var = this.f31932w;
         if (b3Var != null) {
             b3Var.attach(this);
         }
-        b3 b3Var2 = this.f31624c;
+        b3 b3Var2 = this.f31927c;
         if (b3Var2 != null) {
             b3Var2.attach(this);
         }
@@ -197,12 +197,12 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        DownloadController.getInstance(((i4) this.f31622a).X).removeLoadingFileObserver(this);
-        b3 b3Var = this.f31629w;
+        DownloadController.getInstance(((i4) this.f31925a).X).removeLoadingFileObserver(this);
+        b3 b3Var = this.f31932w;
         if (b3Var != null) {
             b3Var.detach(this);
         }
-        b3 b3Var2 = this.f31624c;
+        b3 b3Var2 = this.f31927c;
         if (b3Var2 != null) {
             b3Var2.detach(this);
         }
@@ -217,66 +217,66 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
         if (this.K == null) {
             return;
         }
-        int i10 = org.telegram.ui.ActionBar.h6.f18886ie;
-        int i11 = org.telegram.ui.ActionBar.h6.f18904je;
-        int i12 = org.telegram.ui.ActionBar.h6.f19106uc;
-        int i13 = org.telegram.ui.ActionBar.h6.f19123vc;
+        int i10 = org.telegram.ui.ActionBar.h6.f19142ie;
+        int i11 = org.telegram.ui.ActionBar.h6.f19160je;
+        int i12 = org.telegram.ui.ActionBar.h6.f19364uc;
+        int i13 = org.telegram.ui.ActionBar.h6.f19381vc;
         RadialProgress2 radialProgress2 = this.e;
         radialProgress2.g(i10, i11, i12, i13);
         int i14 = org.telegram.ui.ActionBar.h6.Bd;
-        r70 r70Var = this.f31622a;
-        ((i4) r70Var).getClass();
+        p70 p70Var = this.f31925a;
+        ((i4) p70Var).getClass();
         int i15 = 0;
         radialProgress2.d = org.telegram.ui.ActionBar.h6.w0(null, i14, false);
         radialProgress2.draw(canvas);
         canvas.save();
-        canvas.translate(this.f31631y, this.E);
-        this.f31625f.b(canvas);
+        canvas.translate(this.f31934y, this.E);
+        this.f31928f.b(canvas);
         canvas.restore();
-        if (this.f31630x != null) {
+        if (this.f31933x != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(54.0f) + this.F, AndroidUtilities.dp(6.0f) + this.E);
-            this.f31630x.draw(canvas);
+            this.f31933x.draw(canvas);
             canvas.restore();
         }
-        if (this.f31629w != null) {
+        if (this.f31932w != null) {
             canvas.save();
-            this.f31629w.f31947s = AndroidUtilities.dp(54.0f) + this.F;
-            this.f31629w.v = this.E - AndroidUtilities.dp(16.0f);
-            b3 b3Var = this.f31629w;
-            canvas.translate(b3Var.f31947s, b3Var.v);
-            i4.v(r70Var, canvas, this, 0);
-            this.f31629w.draw(canvas, this);
+            this.f31932w.f32291s = AndroidUtilities.dp(54.0f) + this.F;
+            this.f31932w.v = this.E - AndroidUtilities.dp(16.0f);
+            b3 b3Var = this.f31932w;
+            canvas.translate(b3Var.f32291s, b3Var.v);
+            i4.v(p70Var, canvas, this, 0);
+            this.f31932w.draw(canvas, this);
             canvas.restore();
             i15 = 1;
         }
-        b3 b3Var2 = this.f31624c;
-        int i16 = this.f31627r;
+        b3 b3Var2 = this.f31927c;
+        int i16 = this.f31930r;
         if (b3Var2 != null) {
             canvas.save();
-            b3 b3Var3 = this.f31624c;
-            int i17 = this.f31626n;
-            b3Var3.f31947s = i17;
+            b3 b3Var3 = this.f31927c;
+            int i17 = this.f31929n;
+            b3Var3.f32291s = i17;
             b3Var3.v = i16;
             canvas.translate(i17, i16);
-            i4.v(r70Var, canvas, this, i15);
-            this.f31624c.draw(canvas, this);
+            i4.v(p70Var, canvas, this, i15);
+            this.f31927c.draw(canvas, this);
             canvas.restore();
             i15++;
         }
         if (this.d != null) {
             canvas.save();
             b3 b3Var4 = this.d;
-            int i18 = this.f31626n;
-            b3Var4.f31947s = i18;
-            int i19 = this.f31628s;
+            int i18 = this.f31929n;
+            b3Var4.f32291s = i18;
+            int i19 = this.f31931s;
             b3Var4.v = i16 + i19;
             canvas.translate(i18, i16 + i19);
-            i4.v(r70Var, canvas, this, i15);
+            i4.v(p70Var, canvas, this, i15);
             this.d.draw(canvas, this);
             canvas.restore();
         }
-        i4.u(canvas, r70Var, this.K, getMeasuredHeight());
+        i4.u(canvas, p70Var, this.K, getMeasuredHeight());
     }
 
     @Override
@@ -289,13 +289,13 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
         StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.AccDescrIVAudio));
-        if (this.f31629w != null) {
+        if (this.f31932w != null) {
             sb2.append(", ");
-            sb2.append(this.f31629w.d.getText());
+            sb2.append(this.f31932w.d.getText());
         }
-        if (this.f31624c != null) {
+        if (this.f31927c != null) {
             sb2.append(", ");
-            sb2.append(this.f31624c.d.getText());
+            sb2.append(this.f31927c.d.getText());
         }
         if (this.d != null) {
             sb2.append(", ");
@@ -315,11 +315,11 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
         if (pageblockaudio != null) {
             int i13 = pageblockaudio.level;
             if (i13 > 0) {
-                this.f31626n = AndroidUtilities.dp(18.0f) + AndroidUtilities.dp(i13 * 14);
+                this.f31929n = AndroidUtilities.dp(18.0f) + AndroidUtilities.dp(i13 * 14);
             } else {
-                this.f31626n = AndroidUtilities.dp(18.0f);
+                this.f31929n = AndroidUtilities.dp(18.0f);
             }
-            int dp2 = (size - this.f31626n) - AndroidUtilities.dp(18.0f);
+            int dp2 = (size - this.f31929n) - AndroidUtilities.dp(18.0f);
             int dp3 = AndroidUtilities.dp(44.0f);
             this.F = AndroidUtilities.dp(16.0f);
             int dp4 = AndroidUtilities.dp(5.0f);
@@ -327,24 +327,24 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
             int i14 = this.F;
             this.e.q(i14, dp4, i14 + dp3, dp4 + dp3);
             TL_iv.pageBlockAudio pageblockaudio2 = this.K;
-            b3 q6 = i4.q(this.f31622a, this, null, pageblockaudio2.caption.text, dp2, this.f31627r, pageblockaudio2, this.f31623b);
-            this.f31624c = q6;
+            b3 q6 = i4.q(this.f31925a, this, null, pageblockaudio2.caption.text, dp2, this.f31930r, pageblockaudio2, this.f31926b);
+            this.f31927c = q6;
             if (q6 != null) {
-                int height = this.f31624c.d.getHeight() + AndroidUtilities.dp(8.0f);
-                this.f31628s = height;
-                dp = org.telegram.messenger.z0.C(8.0f, height, dp);
+                int height = this.f31927c.d.getHeight() + AndroidUtilities.dp(8.0f);
+                this.f31931s = height;
+                dp = org.telegram.messenger.f0.C(8.0f, height, dp);
             }
             i12 = dp;
             TL_iv.pageBlockAudio pageblockaudio3 = this.K;
             TL_iv.RichText richText = pageblockaudio3.caption.credit;
-            int i15 = this.f31627r + this.f31628s;
-            if (this.f31623b.G) {
-                alignment = org.telegram.ui.Components.jw0.a();
+            int i15 = this.f31930r + this.f31931s;
+            if (this.f31926b.G) {
+                alignment = org.telegram.ui.Components.uw0.a();
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
             Layout.Alignment alignment2 = alignment;
-            b3 p5 = i4.p(this.f31622a, this, null, richText, dp2, i15, pageblockaudio3, alignment2, 0, this.f31623b);
+            b3 p5 = i4.p(this.f31925a, this, null, richText, dp2, i15, pageblockaudio3, alignment2, 0, this.f31926b);
             this.d = p5;
             if (p5 != null) {
                 i12 += this.d.d.getHeight() + AndroidUtilities.dp(4.0f);
@@ -354,11 +354,11 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
             }
             String musicAuthor = this.M.getMusicAuthor(false);
             String musicTitle = this.M.getMusicTitle(false);
-            int C = org.telegram.messenger.z0.C(50.0f, this.F, dp3);
-            this.f31631y = C;
+            int C = org.telegram.messenger.f0.C(50.0f, this.F, dp3);
+            this.f31934y = C;
             int dp5 = (size - C) - AndroidUtilities.dp(18.0f);
             if (TextUtils.isEmpty(musicTitle) && TextUtils.isEmpty(musicAuthor)) {
-                this.f31629w = null;
+                this.f31932w = null;
                 this.E = ((dp3 - AndroidUtilities.dp(30.0f)) / 2) + this.G;
             } else {
                 if (!TextUtils.isEmpty(musicTitle) && !TextUtils.isEmpty(musicAuthor)) {
@@ -369,16 +369,16 @@ public final class a1 extends View implements DownloadController.FileDownloadPro
                     spannableStringBuilder = new SpannableStringBuilder(musicAuthor);
                 }
                 if (!TextUtils.isEmpty(musicAuthor)) {
-                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.e51(AndroidUtilities.bold()), 0, musicAuthor.length(), 18);
+                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.s51(AndroidUtilities.bold()), 0, musicAuthor.length(), 18);
                 }
                 CharSequence ellipsize = TextUtils.ellipsize(spannableStringBuilder, org.telegram.ui.ActionBar.h6.O2, dp5, TextUtils.TruncateAt.END);
-                b3 b3Var = new b3(this.f31622a);
-                this.f31629w = b3Var;
-                b3Var.d = new StaticLayout(ellipsize, i4.f33980e1, dp5, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f31629w.f31945n = this.K;
+                b3 b3Var = new b3(this.f31925a);
+                this.f31932w = b3Var;
+                b3Var.d = new StaticLayout(ellipsize, i4.f34353e1, dp5, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.f31932w.f32289n = this.K;
                 this.E = AndroidUtilities.dp(11.0f) + ((dp3 - AndroidUtilities.dp(30.0f)) / 2) + this.G;
             }
-            this.f31625f.j(dp5, AndroidUtilities.dp(30.0f));
+            this.f31928f.j(dp5, AndroidUtilities.dp(30.0f));
         } else {
             i12 = 1;
         }

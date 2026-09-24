@@ -28,14 +28,14 @@ public final class c implements c3.o {
 
     @Override
     public final List i() {
-        e9.g0 g0Var = i0.f8067b;
+        e9.g0 g0Var = i0.f8066b;
         return a1.e;
     }
 
     @Override
     public final int m(c3.p pVar, c3.s sVar) {
         e2.v vVar = this.f12616b;
-        int read = pVar.read(vVar.f7917a, 0, 16384);
+        int read = pVar.read(vVar.f7916a, 0, 16384);
         if (read == -1) {
             return -1;
         }

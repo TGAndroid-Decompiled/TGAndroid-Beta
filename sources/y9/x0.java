@@ -1,11 +1,11 @@
 package y9;
 public final class x0 extends x1 {
-    public final String f46606a;
-    public final String f46607b;
+    public final String f46920a;
+    public final String f46921b;
 
     public x0(String str, String str2) {
-        this.f46606a = str;
-        this.f46607b = str2;
+        this.f46920a = str;
+        this.f46921b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class x0 extends x1 {
         }
         if (obj instanceof x1) {
             x0 x0Var = (x0) ((x1) obj);
-            if (this.f46606a.equals(x0Var.f46606a) && this.f46607b.equals(x0Var.f46607b)) {
+            if (this.f46920a.equals(x0Var.f46920a) && this.f46921b.equals(x0Var.f46921b)) {
                 return true;
             }
         }
@@ -22,13 +22,13 @@ public final class x0 extends x1 {
     }
 
     public final int hashCode() {
-        return ((this.f46606a.hashCode() ^ 1000003) * 1000003) ^ this.f46607b.hashCode();
+        return ((this.f46920a.hashCode() ^ 1000003) * 1000003) ^ this.f46921b.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("RolloutVariant{rolloutId=");
-        sb2.append(this.f46606a);
+        sb2.append(this.f46920a);
         sb2.append(", variantId=");
-        return a4.a.t(sb2, this.f46607b, "}");
+        return a4.a.t(sb2, this.f46921b, "}");
     }
 }

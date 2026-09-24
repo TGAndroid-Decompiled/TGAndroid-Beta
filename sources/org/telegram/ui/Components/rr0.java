@@ -1,16 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class rr0 {
-    public final Context f27710a;
-    public final org.telegram.ui.ActionBar.n2 f27711b;
-    public final org.telegram.ui.ActionBar.d6 f27712c;
-    public final yu0 d;
+import org.telegram.messenger.Utilities;
+public final class rr0 implements Utilities.Callback {
+    public final org.telegram.ui.Cells.t7 f28031a;
+    public final float f28032b;
+    public final float f28033c;
 
-    public rr0(yu0 yu0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.d = yu0Var;
-        this.f27710a = context;
-        this.f27711b = n2Var;
-        this.f27712c = d6Var;
+    public rr0(org.telegram.ui.Cells.t7 t7Var, float f7, float f10) {
+        this.f28031a = t7Var;
+        this.f28032b = f7;
+        this.f28033c = f10;
+    }
+
+    @Override
+    public final void run(Object obj) {
+        Boolean bool = (Boolean) obj;
+        this.f28031a.n(this.f28032b, this.f28033c);
     }
 }

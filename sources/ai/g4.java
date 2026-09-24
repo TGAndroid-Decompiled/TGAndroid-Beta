@@ -6,15 +6,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.wi;
 import org.telegram.ui.jk;
-import org.telegram.ui.xn;
+import org.telegram.ui.wn;
 public final class g4 extends wi {
     public final int P2;
     public final NotificationCenter.NotificationCenterDelegate Q2;
 
-    public g4(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(activity, n2Var2, false, false, true, d6Var);
+    public g4(org.telegram.ui.ActionBar.m2 m2Var, Activity activity, org.telegram.ui.ActionBar.m2 m2Var2, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(activity, m2Var2, false, false, true, d6Var);
         this.P2 = i10;
-        this.Q2 = (NotificationCenter.NotificationCenterDelegate) n2Var;
+        this.Q2 = (NotificationCenter.NotificationCenterDelegate) m2Var;
     }
 
     @Override
@@ -30,15 +30,15 @@ public final class g4 extends wi {
                 super.dismissInternal();
                 return;
             case 2:
-                xn xnVar = (xn) this.Q2;
-                g4 g4Var2 = xnVar.J1;
+                wn wnVar = (wn) this.Q2;
+                g4 g4Var2 = wnVar.J1;
                 if (g4Var2 != null && g4Var2.isShowing()) {
-                    Activity parentActivity = xnVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) xnVar).classGuid;
+                    Activity parentActivity = wnVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.m2) wnVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 super.dismissInternal();
-                xnVar.T9(false, true);
+                wnVar.T9(false, true);
                 return;
             default:
                 super.dismissInternal();
@@ -75,22 +75,22 @@ public final class g4 extends wi {
                 }
                 return;
             default:
-                xn xnVar = (xn) this.Q2;
-                g4 g4Var4 = xnVar.J1;
+                wn wnVar = (wn) this.Q2;
+                g4 g4Var4 = wnVar.J1;
                 if (g4Var4 != null) {
                     g4Var4.setFocusable(false);
                 }
-                jk jkVar = xnVar.Y;
+                jk jkVar = wnVar.Y;
                 if (jkVar != null && jkVar.getEditField() != null) {
-                    xnVar.Y.getEditField().requestFocus();
+                    wnVar.Y.getEditField().requestFocus();
                 }
-                g4 g4Var5 = xnVar.J1;
+                g4 g4Var5 = wnVar.J1;
                 if (g4Var5 != null && g4Var5.isShowing()) {
-                    Activity parentActivity = xnVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) xnVar).classGuid;
+                    Activity parentActivity = wnVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.m2) wnVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
-                xnVar.T9(false, false);
+                wnVar.T9(false, false);
                 return;
         }
     }

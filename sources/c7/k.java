@@ -35,29 +35,29 @@ public final class k extends l {
     }
 
     public final String toString() {
-        lf.i iVar = new lf.i(getClass().getSimpleName());
+        la.h hVar = new la.h(getClass().getSimpleName());
         String valueOf = String.valueOf(this.f4105a.f4135a);
-        lf.i iVar2 = new lf.i(7, false);
-        ((lf.i) iVar.d).d = iVar2;
-        iVar.d = iVar2;
-        iVar2.f14012c = valueOf;
-        iVar2.f14011b = "errorCode";
+        la.h hVar2 = new la.h(8, false);
+        ((la.h) hVar.d).d = hVar2;
+        hVar.d = hVar2;
+        hVar2.f14152c = valueOf;
+        hVar2.f14151b = "errorCode";
         String str = this.f4106b;
         if (str != null) {
-            iVar.Z(str, "errorMessage");
+            hVar.Z(str, "errorMessage");
         }
-        return iVar.toString();
+        return hVar.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
+        int q6 = w7.f0.q(parcel, 20293);
         int i11 = this.f4105a.f4135a;
-        w7.e0.s(parcel, 2, 4);
+        w7.f0.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        w7.e0.l(parcel, 3, this.f4106b);
-        w7.e0.s(parcel, 4, 4);
+        w7.f0.l(parcel, 3, this.f4106b);
+        w7.f0.s(parcel, 4, 4);
         parcel.writeInt(this.f4107c);
-        w7.e0.r(parcel, q6);
+        w7.f0.r(parcel, q6);
     }
 }

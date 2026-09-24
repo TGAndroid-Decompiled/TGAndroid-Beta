@@ -2,39 +2,33 @@ package yh;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.tl.TL_stars;
 public final class s3 extends AnimatorListenerAdapter {
-    public final int f47685a;
-    public final v3 f47686b;
+    public final u3 f47985a;
 
-    public s3(v3 v3Var, int i10) {
-        this.f47685a = i10;
-        this.f47686b = v3Var;
+    public s3(u3 u3Var) {
+        this.f47985a = u3Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f47685a) {
-            case 0:
-                this.f47686b.f47808d0 = false;
-                return;
-            case 1:
-                this.f47686b.f47808d0 = false;
-                return;
-            case 2:
-                this.f47686b.N.setVisibility(4);
-                return;
-            case 3:
-                v3 v3Var = this.f47686b;
-                v3Var.f47826s0 = v3Var.f47824r0;
-                v3Var.d(v3Var.U);
-                return;
-            default:
-                v3 v3Var2 = this.f47686b;
-                v3Var2.f47827t0 = 1.0f;
-                v3Var2.f47804b.setScaleX(1.0f);
-                v3Var2.f47804b.setScaleY(v3Var2.f47827t0);
-                v3Var2.invalidate();
-                return;
+        u3 u3Var = this.f47985a;
+        r2 r2Var = u3Var.f48080i0;
+        u3Var.f48092s0 = u3Var.f48090r0;
+        u3Var.d(u3Var.U);
+        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = u3Var.e;
+        int i10 = 2 - u3Var.f48090r0;
+        stargiftattributemodelArr[i10] = (TL_stars.starGiftAttributeModel) u3Var.W.f6150f;
+        w7.Z0(u3Var.d[i10].getImageReceiver(), stargiftattributemodelArr[2 - u3Var.f48090r0].document, 160);
+        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) u3Var.f48069a0.f6150f;
+        if (stargiftattributepattern != null) {
+            org.telegram.ui.Components.q5 m10 = org.telegram.ui.Components.q5.m(UserConfig.selectedAccount, 7, stargiftattributepattern.document);
+            m10.f27500m = true;
+            m10.v();
         }
+        AndroidUtilities.cancelRunOnUIThread(r2Var);
+        AndroidUtilities.runOnUIThread(r2Var, 2500L);
     }
 }

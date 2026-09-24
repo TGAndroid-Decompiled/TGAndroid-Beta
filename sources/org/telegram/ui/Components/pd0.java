@@ -1,7 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-public final class pd0 {
-    public AnimatorSet f27005a;
-    public float f27006b;
+import android.view.MotionEvent;
+public final class pd0 extends qg.b {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
 }

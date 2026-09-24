@@ -21,7 +21,7 @@ public final class qc implements Runnable {
             arrayList.clear();
             TL_stories.TL_stories_getPeerMaxIDs tL_stories_getPeerMaxIDs = new TL_stories.TL_stories_getPeerMaxIDs();
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                tL_stories_getPeerMaxIDs.f18324id.add(MessagesController.getInstance(i10).getInputPeer(((Long) arrayList2.get(i11)).longValue()));
+                tL_stories_getPeerMaxIDs.f18562id.add(MessagesController.getInstance(i10).getInputPeer(((Long) arrayList2.get(i11)).longValue()));
             }
             ConnectionsManager.getInstance(i10).sendRequestTyped(tL_stories_getPeerMaxIDs, new Object(), new m0(1, this, arrayList2));
         }

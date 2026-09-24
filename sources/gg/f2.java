@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Cells.g8;
-public final class f2 extends g8 {
+import org.telegram.ui.Cells.f8;
+public final class f2 extends f8 {
     public final int O;
 
     public f2(int i10, Context context, d6 d6Var, boolean z10) {

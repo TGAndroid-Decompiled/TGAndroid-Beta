@@ -4,25 +4,25 @@ import ai.v8;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
-public final class m1 extends g51 {
-    public static final int f9845a = 0;
+import org.telegram.ui.Components.wl0;
+public final class m1 extends u51 {
+    public static final int f9844a = 0;
 
     static {
-        g51.setup(new g51());
+        u51.setup(new u51());
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        ((n1) view).a((v8) h51Var.G);
+    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+        ((n1) view).a((v8) v51Var.G);
     }
 
     @Override
-    public final View createView(Context context, ml0 ml0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, wl0 wl0Var, int i10, int i11, d6 d6Var) {
         return new n1(context, d6Var);
     }
 }

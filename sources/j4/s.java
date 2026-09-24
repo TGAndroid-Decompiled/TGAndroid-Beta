@@ -29,11 +29,11 @@ public final class s implements i {
         int i10;
         int i11;
         e2.d.h(this.f12782c);
-        String str = e2.d0.f7871a;
+        String str = e2.d0.f7870a;
         while (vVar.a() > 0) {
-            int i12 = vVar.f7918b;
-            int i13 = vVar.f7919c;
-            byte[] bArr = vVar.f7917a;
+            int i12 = vVar.f7917b;
+            int i13 = vVar.f7918c;
+            byte[] bArr = vVar.f7916a;
             this.f12788l += vVar.a();
             this.f12782c.d(vVar.a(), vVar);
             while (i12 < i13) {
@@ -100,11 +100,11 @@ public final class s implements i {
                 System.arraycopy((byte[]) m0Var3.f10769f, 0, bArr, m0Var.e + m0Var2.e, m0Var3.e);
                 String str2 = null;
                 f2.k h = f2.o.h((byte[]) m0Var2.f10769f, 3, m0Var2.e, null);
-                f2.h hVar = h.f8803b;
+                f2.h hVar = h.f8802b;
                 if (hVar != null) {
-                    int i13 = hVar.f8793a;
-                    boolean z11 = hVar.f8794b;
-                    str2 = e2.e.a(i13, hVar.f8795c, hVar.d, hVar.f8796f, z11, hVar.e);
+                    int i13 = hVar.f8792a;
+                    boolean z11 = hVar.f8793b;
+                    str2 = e2.e.a(i13, hVar.f8794c, hVar.d, hVar.f8795f, z11, hVar.e);
                 }
                 b2.r rVar2 = new b2.r();
                 rVar2.f3232a = str;
@@ -112,13 +112,13 @@ public final class s implements i {
                 rVar2.f3245q = r0.n("video/hevc");
                 rVar2.f3238j = str2;
                 rVar2.f3251x = h.e;
-                rVar2.f3252y = h.f8805f;
-                rVar2.f3253z = h.f8806g;
+                rVar2.f3252y = h.f8804f;
+                rVar2.f3253z = h.f8805g;
                 rVar2.A = h.h;
-                rVar2.G = new b2.j(h.f8809k, h.f8810l, h.f8811m, null, h.f8804c + 8, h.d + 8);
-                rVar2.D = h.f8807i;
-                rVar2.f3247s = h.f8808j;
-                rVar2.H = h.f8802a + 1;
+                rVar2.G = new b2.j(h.f8808k, h.f8809l, h.f8810m, null, h.f8803c + 8, h.d + 8);
+                rVar2.D = h.f8806i;
+                rVar2.f3247s = h.f8807j;
+                rVar2.H = h.f8801a + 1;
                 rVar2.f3248t = Collections.singletonList(bArr);
                 b2.s sVar = new b2.s(rVar2);
                 this.f12782c.b(sVar);
@@ -183,7 +183,7 @@ public final class s implements i {
     @Override
     public final void e(boolean z10) {
         e2.d.h(this.f12782c);
-        String str = e2.d0.f7871a;
+        String str = e2.d0.f7870a;
         if (z10) {
             this.f12780a.d.c(0);
             b(this.f12788l, 0, 0, this.f12789m);

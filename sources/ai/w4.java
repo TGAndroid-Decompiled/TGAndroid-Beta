@@ -3,7 +3,7 @@ package ai;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.em;
-import org.telegram.ui.Components.ux0;
+import org.telegram.ui.Components.fy0;
 public final class w4 implements org.telegram.ui.Components.ob {
     public final int f1651a;
     public final Object f1652b;
@@ -49,7 +49,7 @@ public final class w4 implements org.telegram.ui.Components.ob {
         org.telegram.ui.ActionBar.d6 d6Var;
         switch (this.f1651a) {
             case 0:
-                if (qcVar.f27300a == 2 && (x5Var = ((a5) this.f1652b).f519x.Q1) != null) {
+                if (qcVar.f27565a == 2 && (x5Var = ((a5) this.f1652b).f519x.Q1) != null) {
                     jc jcVar = ((ac) x5Var).d;
                     jcVar.Y0 = true;
                     jcVar.P();
@@ -70,12 +70,12 @@ public final class w4 implements org.telegram.ui.Components.ob {
                 org.telegram.ui.Components.ub ubVar = qcVar.e;
                 xh.j0 j0Var = (xh.j0) this.f1652b;
                 ch.d c10 = j0Var.e.c(ubVar, null, true);
-                d6Var = ((org.telegram.ui.ActionBar.f3) j0Var).resourcesProvider;
+                d6Var = ((org.telegram.ui.ActionBar.e3) j0Var).resourcesProvider;
                 dh.e eVar = new dh.e(d6Var);
                 eVar.e = new d2.c(4);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
                 float dpf22 = AndroidUtilities.dpf2(0.5f);
-                eVar.f7725f = dpf2;
+                eVar.f7724f = dpf2;
                 eVar.h = dpf22;
                 c10.o(eVar);
                 c10.q(AndroidUtilities.dp(16.0f));
@@ -96,7 +96,7 @@ public final class w4 implements org.telegram.ui.Components.ob {
         x5 x5Var;
         switch (this.f1651a) {
             case 0:
-                if (qcVar.f27300a == 2 && (x5Var = ((a5) this.f1652b).f519x.Q1) != null) {
+                if (qcVar.f27565a == 2 && (x5Var = ((a5) this.f1652b).f519x.Q1) != null) {
                     jc jcVar = ((ac) x5Var).d;
                     jcVar.Y0 = false;
                     jcVar.P();
@@ -169,7 +169,7 @@ public final class w4 implements org.telegram.ui.Components.ob {
             case 4:
                 return ((org.telegram.ui.Components.x7) this.f1652b).e.E.getHeight();
             case 5:
-                return ((org.telegram.ui.ActionBar.n2) this.f1652b).getBottomInset();
+                return ((org.telegram.ui.ActionBar.m2) this.f1652b).getBottomInset();
             case 6:
                 org.telegram.ui.Components.ob obVar = (org.telegram.ui.Components.ob) this.f1652b;
                 if (obVar == null) {
@@ -178,10 +178,10 @@ public final class w4 implements org.telegram.ui.Components.ob {
                 return obVar.f(i10);
             case 7:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((em) this.f1652b).f23723c.f26744b.getBottomInset();
+                dp = ((em) this.f1652b).f23957c.f27083b.getBottomInset();
                 break;
             case 8:
-                FrameLayout frameLayout = ((ux0) this.f1652b).f28591w;
+                FrameLayout frameLayout = ((fy0) this.f1652b).f24293w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
@@ -196,7 +196,7 @@ public final class w4 implements org.telegram.ui.Components.ob {
             case 10:
                 return 0;
             default:
-                return (int) ((zg.c0) ((yh.u3) this.f1652b).f47774c).f48944u;
+                return (int) ((zg.b0) ((yh.t3) this.f1652b).f48024c).f49251u;
         }
         return dp + editTextHeight;
     }

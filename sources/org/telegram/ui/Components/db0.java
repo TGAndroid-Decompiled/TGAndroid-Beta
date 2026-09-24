@@ -1,24 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-public final class db0 extends g.p {
-    public final ob0 f23366c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
+public final class db0 extends ReplacementSpan {
+    public final int f23573a;
+    public final KeyEvent.Callback f23574b;
 
-    public db0(ob0 ob0Var) {
-        this.f23366c = ob0Var;
+    public db0(KeyEvent.Callback callback, int i10) {
+        this.f23573a = i10;
+        this.f23574b = callback;
     }
 
     @Override
-    public final int i(int i10) {
-        MessageObject messageObject;
-        MessageObject.GroupedMessages a2;
-        if (i10 >= 0) {
-            ob0 ob0Var = this.f23366c;
-            if (i10 < ob0Var.f26711r.previewMessages.size() && (a2 = ob0.a(ob0Var, (messageObject = ob0Var.f26711r.previewMessages.get(i10)))) != null) {
-                return a2.getPosition(messageObject).spanSize;
-            }
-            return 1000;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = this.f23573a;
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f23573a) {
+            case 0:
+                return ((fb0) this.f23574b).f24129x;
+            case 1:
+                return (int) ((org.telegram.ui.lj0) this.f23574b).f35360n0;
+            default:
+                return (int) ((tg.m1) this.f23574b).f43440t0;
         }
-        return 1000;
+    }
+
+    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

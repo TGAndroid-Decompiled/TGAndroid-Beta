@@ -16,7 +16,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.NumberTextView;
-import org.telegram.ui.xn;
+import org.telegram.ui.wn;
 public final class a4 extends ChatActivityEnterView {
     public ValueAnimator f510o5;
     public int p5;
@@ -30,10 +30,10 @@ public final class a4 extends ChatActivityEnterView {
     }
 
     @Override
-    public final void D0(int i10, int i11) {
+    public final void C0(int i10, int i11) {
         e6 e6Var = this.f513s5;
         if (e6Var.f773b2 != null) {
-            this.f21776m3 = true;
+            this.f22020n3 = true;
             this.f511q5 = this.E0.getMeasuredHeight();
             this.f512r5 = this.E0.getScrollY();
             invalidate();
@@ -43,13 +43,13 @@ public final class a4 extends ChatActivityEnterView {
     }
 
     @Override
-    public final void M1(int i10, boolean z10) {
-        super.M1(i10, z10);
-        U1();
+    public final void L1(int i10, boolean z10) {
+        super.L1(i10, z10);
+        T1();
     }
 
     @Override
-    public final void Q1(boolean z10) {
+    public final void P1(boolean z10) {
         boolean z11;
         e6 e6Var = this.f513s5;
         if (!e6Var.F1 && !e6Var.G1) {
@@ -57,16 +57,16 @@ public final class a4 extends ChatActivityEnterView {
         } else {
             z11 = true;
         }
-        R1(z11, z10);
+        Q1(z11, z10);
     }
 
     @Override
-    public final boolean T0() {
+    public final boolean S0() {
         long messageMinPrice;
         int i10;
         int i11;
-        if (this.f21845z1.getAlpha() < 0.5f) {
-            I0();
+        if (this.A1.getAlpha() < 0.5f) {
+            H0();
             return false;
         }
         e6 e6Var = this.f513s5;
@@ -84,11 +84,11 @@ public final class a4 extends ChatActivityEnterView {
                 i10 = 400;
             }
             if (length > i10) {
-                NumberTextView numberTextView = this.f21709b0;
+                NumberTextView numberTextView = this.f21946b0;
                 if (numberTextView != null) {
                     AndroidUtilities.shakeViewSpring(numberTextView, 3.5f);
                     try {
-                        this.f21709b0.performHapticFeedback(3, 2);
+                        this.f21946b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }
@@ -112,24 +112,24 @@ public final class a4 extends ChatActivityEnterView {
             AndroidUtilities.hideKeyboard(this);
             e6Var.L3 = 0L;
             e6Var.r0(true);
-            L(true);
+            K(true);
             return true;
         }
-        return super.T0();
+        return super.S0();
     }
 
     @Override
-    public final boolean U0(int i10, boolean z10, int i11, boolean z11, long j3) {
+    public final boolean T0(int i10, boolean z10, int i11, boolean z11, long j3) {
         e6 e6Var = this.f513s5;
         if (MessagesController.getInstance(e6Var.C2).isFrozen()) {
             org.telegram.ui.b.b(e6Var.C2);
             return false;
         }
-        return super.U0(i10, z10, i11, z11, j3);
+        return super.T0(i10, z10, i11, z11, j3);
     }
 
-    public final void U1() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.a4.U1():void");
+    public final void T1() {
+        throw new UnsupportedOperationException("Method not decompiled: ai.a4.T1():void");
     }
 
     @Override
@@ -142,7 +142,7 @@ public final class a4 extends ChatActivityEnterView {
             float width = getWidth();
             e6 e6Var = this.f513s5;
             if (e6Var.f797i2 != null) {
-                f7 = this.f21839y * 1.5f;
+                f7 = this.f22076y * 1.5f;
             } else {
                 f7 = 0.0f;
             }
@@ -192,32 +192,32 @@ public final class a4 extends ChatActivityEnterView {
     }
 
     @Override
-    public final void i0(Menu menu) {
-        xn.k8(menu, null, false, !this.f513s5.O1.f645f, true, true);
+    public final void h0(Menu menu) {
+        wn.k8(menu, null, false, !this.f513s5.O1.f645f, true, true);
     }
 
     @Override
-    public final void i1(float f7, float f10, float f11, boolean z10) {
+    public final void h1(float f7, float f10, float f11, boolean z10) {
         LinearLayout linearLayout = this.f513s5.f791g2;
         if (linearLayout != null) {
             linearLayout.setTranslationX((1.0f - f11) * f7);
         }
-        super.i1(f7, f10, f11, z10);
+        super.h1(f7, f10, f11, z10);
     }
 
     @Override
-    public final boolean s1(Runnable runnable) {
+    public final boolean r1(Runnable runnable) {
         this.f513s5.n0(runnable);
         return true;
     }
 
     @Override
-    public final boolean u() {
+    public final boolean t() {
         return this.f513s5.D0(true);
     }
 
     @Override
-    public final void y0() {
-        U1();
+    public final void x0() {
+        T1();
     }
 }

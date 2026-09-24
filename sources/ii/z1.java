@@ -6,11 +6,11 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.hq0;
-import org.telegram.ui.Components.ug;
+import org.telegram.ui.Components.uq0;
+import org.telegram.ui.Components.vg;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ry;
-public final class z1 extends ug {
+import org.telegram.ui.qy;
+public final class z1 extends vg {
     public final int f11787l0;
     public final Object m0;
 
@@ -40,12 +40,12 @@ public final class z1 extends ug {
     public final boolean f() {
         switch (this.f11787l0) {
             case 0:
-                if (!((e2) this.m0).L0 && this.f28497r <= 0) {
+                if (!((e2) this.m0).L0 && this.f29141r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((c4) this.m0).W && this.f28497r <= 0) {
+                if (!((c4) this.m0).W && this.f29141r <= 0) {
                     return false;
                 }
                 return true;
@@ -64,12 +64,12 @@ public final class z1 extends ug {
         Object obj = this.m0;
         switch (i10) {
             case 2:
-                return ((hq0) obj).getThemedColor(org.telegram.ui.ActionBar.h6.S5);
+                return ((uq0) obj).getThemedColor(org.telegram.ui.ActionBar.h6.S5);
             case 3:
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = org.telegram.ui.ActionBar.h6.f19198zf;
+                int i11 = org.telegram.ui.ActionBar.h6.f19456zf;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).z1(i11);
         }
@@ -94,7 +94,7 @@ public final class z1 extends ug {
         switch (this.f11787l0) {
             case 3:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((ry) this.m0).I2.size(), new Object[0]));
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((qy) this.m0).I2.size(), new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);

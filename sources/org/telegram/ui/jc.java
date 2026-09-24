@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class jc extends q61 {
+public final class jc extends r61 {
     public final ad e;
 
     public jc(ad adVar, ic icVar) {

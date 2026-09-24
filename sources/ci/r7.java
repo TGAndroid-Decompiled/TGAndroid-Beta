@@ -4,7 +4,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.xn;
+import org.telegram.ui.wn;
 public final class r7 extends s7 {
     public final TLRPC.Chat f5459b;
 
@@ -24,8 +24,8 @@ public final class r7 extends s7 {
     }
 
     @Override
-    public final void c(org.telegram.ui.ActionBar.n2 n2Var) {
-        n2Var.presentFragment(xn.R9(-this.f5459b.f18083id));
+    public final void c(org.telegram.ui.ActionBar.m2 m2Var) {
+        m2Var.presentFragment(wn.R9(-this.f5459b.f18321id));
     }
 
     @Override

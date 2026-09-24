@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import java.io.FileNotFoundException;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.Cells.q3;
 public class CallNotificationSoundProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String str, String[] strArr) {
@@ -49,7 +48,7 @@ public class CallNotificationSoundProvider extends ContentProvider {
             }
             throw new FileNotFoundException("Unexpected application state");
         }
-        throw new SecurityException(q3.i("Unexpected file mode ", str));
+        throw new SecurityException(v7.j.g("Unexpected file mode ", str));
     }
 
     @Override

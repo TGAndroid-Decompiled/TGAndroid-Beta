@@ -1,67 +1,48 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class jz0 extends org.telegram.ui.Components.y80 {
-    public final ProfileActivity P0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.ImageReceiver;
+public final class jz0 extends AnimatorListenerAdapter {
+    public final ProfileActivity f34888a;
 
-    public jz0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.P0 = profileActivity;
+    public jz0(ProfileActivity profileActivity) {
+        this.f34888a = profileActivity;
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        super.setAlpha(f7);
-        this.P0.B3();
+    public final void onAnimationEnd(Animator animator) {
+        org.telegram.ui.ActionBar.k kVar;
+        int v02;
+        ProfileActivity profileActivity = this.f34888a;
+        kVar = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
+        if (profileActivity.f31617p2) {
+            v02 = 1090519039;
+        } else if (profileActivity.Q5 != null) {
+            v02 = 553648127;
+        } else {
+            v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19082f8, profileActivity.f31684z0);
+        }
+        kVar.A(v02, false);
+        fz0 fz0Var = profileActivity.f31540e0;
+        ImageReceiver imageReceiver = fz0Var.U;
+        org.telegram.ui.Components.d6 animation = imageReceiver.getAnimation();
+        if (animation != null) {
+            animation.w(fz0Var);
+        }
+        imageReceiver.clearImage();
+        ImageReceiver.BitmapHolder bitmapHolder = fz0Var.W;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            fz0Var.W = null;
+        }
+        fz0Var.V = 0.0f;
+        fz0Var.invalidate();
+        profileActivity.H0 = false;
+        profileActivity.l5(false);
     }
 
     @Override
-    public final void setTextColor(int i10) {
-        int l1;
-        super.setTextColor(i10);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.i5[] i5VarArr = profileActivity.f31326r;
-        org.telegram.ui.ActionBar.i5 i5Var = i5VarArr[2];
-        if (i5Var != null) {
-            i5Var.setTextColor(i10);
-            i5VarArr[3].setTextColor(i10);
-        }
-        d11 d11Var = profileActivity.f31223b6;
-        if (d11Var != null && d11Var.f32480c != (l1 = org.telegram.ui.ActionBar.h6.l1(1.4f, org.telegram.ui.ActionBar.h6.b(-0.02f, 0.15f, i10)))) {
-            d11Var.f32480c = l1;
-            d11Var.invalidateSelf();
-        }
-    }
-
-    @Override
-    public final void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        ProfileActivity profileActivity = this.P0;
-        profileActivity.Z3();
-        profileActivity.getClass();
-        profileActivity.f31326r[2].setTranslationX(f7);
-        profileActivity.f31326r[3].setTranslationX(f7);
-        org.telegram.ui.Components.iw0 iw0Var = profileActivity.T;
-        if (iw0Var != null) {
-            iw0Var.setTranslationX(f7 - profileActivity.Z3());
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.i5[] i5VarArr = profileActivity.f31326r;
-        if (profileActivity.T != null) {
-            AndroidUtilities.dp(3.0f);
-            profileActivity.T.getVisibilityFactor();
-        }
-        i5VarArr[2].setTranslationY(f7);
-        i5VarArr[3].setTranslationY(f7);
-        org.telegram.ui.Components.iw0 iw0Var = profileActivity.T;
-        if (iw0Var != null) {
-            iw0Var.setTranslationY(f7 - AndroidUtilities.dp(5.0f));
-        }
+    public final void onAnimationStart(Animator animator) {
     }
 }

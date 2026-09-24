@@ -16,7 +16,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.u31;
+import org.telegram.ui.Components.i41;
 public final class c6 {
     public TL_stories.StoryItem f642a = null;
     public k9 f643b = null;
@@ -40,12 +40,12 @@ public final class c6 {
         if (storyItem != null && (messageMedia = storyItem.media) != null) {
             if (messageMedia.photo != null) {
                 StringBuilder sb2 = new StringBuilder("photo#");
-                sb2.append(c6Var.f642a.media.photo.f18107id);
+                sb2.append(c6Var.f642a.media.photo.f18345id);
                 sb2.append("at");
                 return a4.a.o(c6Var.f642a.media.photo.dc_id, "dc", sb2);
             } else if (messageMedia.document != null) {
                 StringBuilder sb3 = new StringBuilder("doc#");
-                sb3.append(c6Var.f642a.media.document.f18089id);
+                sb3.append(c6Var.f642a.media.document.f18327id);
                 sb3.append("at");
                 return a4.a.o(c6Var.f642a.media.document.dc_id, "dc", sb3);
             } else {
@@ -93,7 +93,7 @@ public final class c6 {
             if (e6Var.O1.f645f) {
                 return String.format(Locale.US, "https://t.me/%1$s/s/live", UserObject.getPublicUsername(user));
             }
-            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(e6Var.O1.f642a.f18318id));
+            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(e6Var.O1.f642a.f18556id));
         }
         TLRPC.Chat chat = MessagesController.getInstance(e6Var.C2).getChat(Long.valueOf(-e6Var.B1));
         if (ChatObject.getPublicUsername(chat) == null) {
@@ -102,7 +102,7 @@ public final class c6 {
         if (e6Var.O1.f645f) {
             return String.format(Locale.US, "https://t.me/%1$s/s/live", ChatObject.getPublicUsername(chat));
         }
-        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(e6Var.O1.f642a.f18318id));
+        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(e6Var.O1.f642a.f18556id));
     }
 
     public final String f() {
@@ -229,7 +229,7 @@ public final class c6 {
                     }
                     if (tL_mediaAreaChannelPost != null && (chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(tL_mediaAreaChannelPost.channel_id))) != null) {
                         saVar = new sa();
-                        saVar.f1513b = Long.valueOf(-chat2.f18083id);
+                        saVar.f1513b = Long.valueOf(-chat2.f18321id);
                         saVar.e = true;
                         saVar.f1512a = i11;
                         saVar.f1515f = true;
@@ -315,7 +315,7 @@ public final class c6 {
         TL_stories.StoryItem storyItem = this.f642a;
         if (storyItem != null) {
             TLRPC.MessageMedia messageMedia = storyItem.media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f18100id) {
+            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f18338id) {
                 return true;
             }
             return false;
@@ -394,7 +394,7 @@ public final class c6 {
         }
         TL_stories.StoryItem storyItem = c6Var.f642a;
         if (storyItem != null) {
-            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, u31.A())) {
+            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, i41.A())) {
                 this.f646g = true;
                 TLRPC.TL_textWithEntities tL_textWithEntities = c6Var.f642a.translatedText;
                 String str = tL_textWithEntities.text;

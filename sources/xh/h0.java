@@ -8,16 +8,16 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.ng;
+import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.nn;
-public final class h0 implements ng {
-    public final TL_stars.TL_starGiftUnique f45832a;
-    public final j0 f45833b;
+import org.telegram.ui.mn;
+public final class h0 implements og {
+    public final TL_stars.TL_starGiftUnique f46146a;
+    public final j0 f46147b;
 
     public h0(j0 j0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f45833b = j0Var;
-        this.f45832a = tL_starGiftUnique;
+        this.f46147b = j0Var;
+        this.f46146a = tL_starGiftUnique;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class h0 implements ng {
         int i10;
         int i11;
         boolean z10;
-        j0 j0Var = this.f45833b;
-        p6 p6Var = j0Var.f45871w;
-        a5 a5Var = j0Var.f45865b;
-        i10 = ((org.telegram.ui.ActionBar.f3) j0Var).currentAccount;
-        a5Var.a(this.f45832a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f45868n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        j0 j0Var = this.f46147b;
+        p6 p6Var = j0Var.f46185w;
+        a5 a5Var = j0Var.f46179b;
+        i10 = ((org.telegram.ui.ActionBar.e3) j0Var).currentAccount;
+        a5Var.a(this.f46146a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f46182n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         j0Var.F = codePointCount;
         int i12 = j0Var.E;
@@ -62,14 +62,14 @@ public final class h0 implements ng {
             p6Var.animate().setListener(null).cancel();
             p6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                p6Var.setTextColor(j0Var.getThemedColor(h6.f19008p7));
+                p6Var.setTextColor(j0Var.getThemedColor(h6.f19265p7));
                 return;
             } else {
-                p6Var.setTextColor(j0Var.getThemedColor(h6.f19170y6));
+                p6Var.setTextColor(j0Var.getThemedColor(h6.f19428y6));
                 return;
             }
         }
-        p6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new qg.n0(this, 8));
+        p6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new pg.d0(this, 9));
     }
 
     @Override
@@ -108,7 +108,7 @@ public final class h0 implements ng {
     }
 
     @Override
-    public final nn p0() {
+    public final mn p0() {
         return null;
     }
 

@@ -1,15 +1,181 @@
 package org.telegram.ui.Components;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
-public final class qf implements View.OnKeyListener {
-    public final ChatActivityEnterView f27328a;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class qf extends ng {
+    public boolean e;
+    public float f27596f;
+    public float h;
+    public boolean f27597n;
+    public final ChatActivityEnterView f27598r;
 
-    public qf(ChatActivityEnterView chatActivityEnterView) {
-        this.f27328a = chatActivityEnterView;
+    public qf(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(chatActivityEnterView, context, d6Var);
+        this.f27598r = chatActivityEnterView;
+        this.e = true;
     }
 
     @Override
-    public final boolean onKey(android.view.View r6, int r7, android.view.KeyEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qf.onKey(android.view.View, int, android.view.KeyEvent):boolean");
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ChatActivityEnterView chatActivityEnterView = this.f27598r;
+        View view = chatActivityEnterView.J4;
+        if (view != null) {
+            setWindowView(view);
+            return;
+        }
+        org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
+        if (wnVar != null && wnVar.getParentLayout() != null && ((ActionBarLayout) chatActivityEnterView.P2.getParentLayout()).f18591b) {
+            setWindowView(chatActivityEnterView.P2.getParentLayout().getWindow().getDecorView());
+        } else {
+            setWindowView(chatActivityEnterView.O2.getWindow().getDecorView());
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (getLayout() != null && this.e) {
+            this.e = false;
+            this.f27598r.K(true);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        super.onMeasure(i10, i11);
+        ChatActivityEnterView chatActivityEnterView = this.f27598r;
+        if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
+            boolean z11 = false;
+            if (chatActivityEnterView.E0.getLineCount() > 2 && chatActivityEnterView.E0.getText() != null && !TextUtils.isEmpty(chatActivityEnterView.E0.getText().toString().trim())) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            chatActivityEnterView.p1(z10);
+            if (chatActivityEnterView.E0.getLineCount() > 2 && chatActivityEnterView.E0.getText() != null && !TextUtils.isEmpty(chatActivityEnterView.E0.getText().toString().trim())) {
+                z11 = true;
+            }
+            chatActivityEnterView.v1(z11);
+        }
+    }
+
+    @Override
+    public final boolean onTextContextMenuItem(int i10) {
+        ClipData primaryClip;
+        if (i10 == 16908322) {
+            ChatActivityEnterView chatActivityEnterView = this.f27598r;
+            if (chatActivityEnterView.E0 != null) {
+                try {
+                    ClipboardManager clipboardManager = (ClipboardManager) chatActivityEnterView.getContext().getSystemService("clipboard");
+                    if (clipboardManager == null) {
+                        primaryClip = null;
+                    } else {
+                        primaryClip = clipboardManager.getPrimaryClip();
+                    }
+                    if (primaryClip != null && primaryClip.getItemCount() >= 1 && primaryClip.getDescription() != null && primaryClip.getDescription().hasMimeType("text/html")) {
+                        String htmlText = primaryClip.getItemAt(0).getHtmlText();
+                        if (!TextUtils.isEmpty(htmlText)) {
+                            HashMap hashMap = new HashMap();
+                            ArrayList z10 = ii.e4.z(htmlText, hashMap);
+                            if (!z10.isEmpty()) {
+                                if (ii.d5.f(z10, hashMap)) {
+                                    if (MessagesController.getInstance(chatActivityEnterView.Q).richEditorAvailable()) {
+                                        int max = Math.max(0, chatActivityEnterView.E0.getSelectionStart());
+                                        int min = Math.min(chatActivityEnterView.E0.getText().length(), chatActivityEnterView.E0.getSelectionEnd());
+                                        chatActivityEnterView.K0(chatActivityEnterView.E0.getText().subSequence(0, Math.min(max, min)), htmlText, chatActivityEnterView.E0.getText().subSequence(Math.max(max, min), chatActivityEnterView.E0.getText().length()));
+                                        return true;
+                                    }
+                                } else {
+                                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ii.d5.j(z10, false));
+                                    Emoji.replaceEmoji((CharSequence) spannableStringBuilder, chatActivityEnterView.E0.getPaint().getFontMetricsInt(), false, (int[]) null);
+                                    z5[] z5VarArr = (z5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), z5.class);
+                                    if (z5VarArr != null) {
+                                        for (z5 z5Var : z5VarArr) {
+                                            z5Var.applyFontMetrics(chatActivityEnterView.E0.getPaint().getFontMetricsInt(), q5.g());
+                                        }
+                                    }
+                                    int max2 = Math.max(0, chatActivityEnterView.E0.getSelectionStart());
+                                    int min2 = Math.min(chatActivityEnterView.E0.getText().length(), chatActivityEnterView.E0.getSelectionEnd());
+                                    cj0[] cj0VarArr = (cj0[]) chatActivityEnterView.E0.getText().getSpans(max2, min2, cj0.class);
+                                    if (cj0VarArr != null && cj0VarArr.length > 0) {
+                                        cj0[] cj0VarArr2 = (cj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), cj0.class);
+                                        for (int i11 = 0; i11 < cj0VarArr2.length; i11++) {
+                                            spannableStringBuilder.removeSpan(cj0VarArr2[i11]);
+                                            spannableStringBuilder.removeSpan(cj0VarArr2[i11].f23337a);
+                                        }
+                                    } else {
+                                        dj0.a(spannableStringBuilder);
+                                    }
+                                    qf qfVar = chatActivityEnterView.E0;
+                                    qfVar.setText(qfVar.getText().replace(max2, min2, spannableStringBuilder));
+                                    chatActivityEnterView.E0.setSelection(Math.min(max2 + spannableStringBuilder.length(), chatActivityEnterView.E0.getText().length()));
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        }
+        return super.onTextContextMenuItem(i10);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ChatActivityEnterView chatActivityEnterView = this.f27598r;
+        if (chatActivityEnterView.v()) {
+            if (motionEvent.getAction() == 0) {
+                this.f27596f = motionEvent.getX();
+                this.h = motionEvent.getY();
+                this.f27597n = true;
+            } else if (this.f27597n && motionEvent.getAction() == 2) {
+                if (Math.abs(motionEvent.getX() - this.f27596f) > AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.h) > AndroidUtilities.touchSlop) {
+                    this.f27597n = false;
+                }
+            } else if (this.f27597n) {
+                if (chatActivityEnterView.Z2 != null) {
+                    int i10 = org.telegram.ui.ActionBar.h6.f19384vf;
+                    int i11 = ChatActivityEnterView.f21938n5;
+                    setHandlesColor(chatActivityEnterView.i0(i10));
+                    chatActivityEnterView.Z2.r1();
+                }
+                qf qfVar = chatActivityEnterView.E0;
+                if (qfVar != null && !AndroidUtilities.showKeyboard(qfVar)) {
+                    chatActivityEnterView.E0.clearFocus();
+                    chatActivityEnterView.E0.requestFocus();
+                }
+            }
+            return this.f27597n;
+        }
+        if (motionEvent.getAction() == 0 && chatActivityEnterView.Z2 != null) {
+            int i12 = org.telegram.ui.ActionBar.h6.f19384vf;
+            int i13 = ChatActivityEnterView.f21938n5;
+            setHandlesColor(chatActivityEnterView.i0(i12));
+            chatActivityEnterView.Z2.r1();
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void setOffsetY(float f7) {
+        super.setOffsetY(f7);
+        this.f27598r.f22078y1.invalidate();
     }
 }

@@ -26,27 +26,27 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.UndoView;
-public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.m6, org.telegram.ui.Components.cl0, MessagesStorage.BooleanCallback, c5.p, org.telegram.ui.Components.voip.i3, BillingController.ProductDetailsResponseListenerLegacy, e2.h, org.telegram.ui.Components.u40 {
-    public final int f32546a;
-    public final int f32547b;
-    public final Object f32548c;
+public final class da implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.m6, org.telegram.ui.Components.ml0, MessagesStorage.BooleanCallback, c5.p, org.telegram.ui.Components.voip.j3, BillingController.ProductDetailsResponseListenerLegacy, e2.h, org.telegram.ui.Components.u40 {
+    public final int f33048a;
+    public final int f33049b;
+    public final Object f33050c;
     public final Object d;
     public final Object e;
 
-    public da(int i10, aj ajVar, org.telegram.ui.ActionBar.c5 c5Var, org.telegram.ui.Components.v40 v40Var) {
-        this.f32546a = 11;
-        this.f32547b = i10;
-        this.f32548c = ajVar;
-        this.d = c5Var;
+    public da(int i10, aj ajVar, org.telegram.ui.ActionBar.b5 b5Var, org.telegram.ui.Components.v40 v40Var) {
+        this.f33048a = 11;
+        this.f33049b = i10;
+        this.f33050c = ajVar;
+        this.d = b5Var;
         this.e = v40Var;
     }
 
     @Override
     public void Q(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z10, final TLRPC.VideoSize videoSize) {
-        final aj ajVar = (aj) this.f32548c;
-        final org.telegram.ui.ActionBar.c5 c5Var = (org.telegram.ui.ActionBar.c5) this.d;
+        final aj ajVar = (aj) this.f33050c;
+        final org.telegram.ui.ActionBar.b5 b5Var = (org.telegram.ui.ActionBar.b5) this.d;
         final org.telegram.ui.Components.v40 v40Var = (org.telegram.ui.Components.v40) this.e;
-        final int i10 = this.f32547b;
+        final int i10 = this.f33049b;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -69,7 +69,7 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                     tL_photos_uploadProfilePhoto.flags |= 16;
                 }
                 int i12 = i10;
-                ConnectionsManager.getInstance(i12).sendRequest(tL_photos_uploadProfilePhoto, new ya(i12, photoSize2, photoSize, ajVar, c5Var, 12));
+                ConnectionsManager.getInstance(i12).sendRequest(tL_photos_uploadProfilePhoto, new ya(i12, photoSize2, photoSize, ajVar, b5Var, 12));
                 v40Var.j();
             }
         });
@@ -77,60 +77,60 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void a(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ai.cb(hVar, (org.telegram.ui.ActionBar.n2) this.f32548c, list, this.f32547b, (c5.f) this.d, (ex0) this.e, 11));
+        AndroidUtilities.runOnUIThread(new ai.cb(hVar, (org.telegram.ui.ActionBar.m2) this.f33050c, list, this.f33049b, (c5.f) this.d, (cx0) this.e, 11));
     }
 
     @Override
     public void accept(Object obj) {
-        a5.a aVar = (a5.a) this.f32548c;
-        ((u2.j0) obj).h(aVar.f277b, (u2.f0) aVar.f278c, (u2.t) this.d, (u2.b0) this.e, this.f32547b);
+        a5.a aVar = (a5.a) this.f33050c;
+        ((u2.k0) obj).h(aVar.f277b, (u2.f0) aVar.f278c, (u2.t) this.d, (u2.b0) this.e, this.f33049b);
     }
 
     @Override
     public void b(CharSequence charSequence) {
-        org.telegram.ui.Components.o6 o6Var = (org.telegram.ui.Components.o6) this.f32548c;
+        org.telegram.ui.Components.o6 o6Var = (org.telegram.ui.Components.o6) this.f33050c;
         ArrayList arrayList = (ArrayList) this.d;
-        StaticLayout h = o6Var.h(this.f32547b - ((int) Math.ceil(Math.min(o6Var.d, o6Var.h))), charSequence);
+        StaticLayout h = o6Var.h(this.f33049b - ((int) Math.ceil(Math.min(o6Var.d, o6Var.h))), charSequence);
         org.telegram.ui.Components.l6 l6Var = new org.telegram.ui.Components.l6(o6Var, h, o6Var.d, arrayList.size());
         org.telegram.ui.Components.l6 l6Var2 = new org.telegram.ui.Components.l6(o6Var, h, o6Var.h, arrayList.size());
         ((ArrayList) this.e).add(l6Var);
         arrayList.add(l6Var2);
         float f7 = o6Var.d;
-        float f10 = l6Var.f25825f;
+        float f10 = l6Var.f26021f;
         o6Var.d = f7 + f10;
         o6Var.h += f10;
         o6Var.e = Math.max(o6Var.e, h.getHeight());
-        o6Var.f26618i = Math.max(o6Var.f26618i, h.getHeight());
+        o6Var.f26929i = Math.max(o6Var.f26929i, h.getHeight());
     }
 
     @Override
     public boolean d(int i10, View view) {
         int i11;
-        org.telegram.ui.Components.in0 in0Var = (org.telegram.ui.Components.in0) this.f32548c;
-        org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.d;
+        org.telegram.ui.Components.un0 un0Var = (org.telegram.ui.Components.un0) this.f33050c;
+        org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.d;
         org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.e;
-        ArrayList arrayList = in0Var.f25009r;
+        ArrayList arrayList = un0Var.f28833r;
         if (i10 >= 0 && i10 < arrayList.size()) {
-            int i12 = this.f32547b;
+            int i12 = this.f33049b;
             if (UserConfig.getInstance(i12).isPremium()) {
                 if (!UserConfig.getInstance(i12).isPremium()) {
-                    new rg.x0(n2Var, 24, true).show();
+                    new rg.x0(m2Var, 24, true).show();
                     return true;
                 }
-                org.telegram.ui.Components.gn0 gn0Var = ((org.telegram.ui.Components.hn0) view).f24753a;
-                if (gn0Var != null) {
-                    gn0Var.q();
+                org.telegram.ui.Components.sn0 sn0Var = ((org.telegram.ui.Components.tn0) view).f28565a;
+                if (sn0Var != null) {
+                    sn0Var.q();
                 }
-                org.telegram.ui.Components.fn0 fn0Var = (org.telegram.ui.Components.fn0) arrayList.get(i10);
-                org.telegram.ui.Components.o70 H = org.telegram.ui.Components.o70.H(n2Var, view);
-                H.f26651i = 3;
+                org.telegram.ui.Components.rn0 rn0Var = (org.telegram.ui.Components.rn0) arrayList.get(i10);
+                org.telegram.ui.Components.y70 H = org.telegram.ui.Components.y70.H(m2Var, view);
+                H.f30529i = 3;
                 int i13 = R.drawable.menu_tag_rename;
-                if (TextUtils.isEmpty(fn0Var.f24015c)) {
+                if (TextUtils.isEmpty(rn0Var.f28005c)) {
                     i11 = R.string.SavedTagLabelTag;
                 } else {
                     i11 = R.string.SavedTagRenameTag;
                 }
-                H.c(i13, LocaleController.getString(i11), new ai.c9(in0Var, i12, fn0Var, d6Var, 21), false);
+                H.c(i13, LocaleController.getString(i11), new ai.c9(un0Var, i12, rn0Var, d6Var, 21), false);
                 H.Z();
                 return true;
             }
@@ -144,13 +144,13 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         TL_bots.toggleUsername toggleusername;
-        int i11 = this.f32546a;
-        int i12 = this.f32547b;
+        int i11 = this.f33048a;
+        int i12 = this.f33049b;
         Object obj = this.e;
         Object obj2 = this.d;
-        Object obj3 = this.f32548c;
+        Object obj3 = this.f33050c;
         switch (i11) {
             case 0:
                 final fa faVar = (fa) obj3;
@@ -159,8 +159,8 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 final boolean z10 = tL_username.active;
                 final String str = tL_username.username;
                 final boolean z11 = !z10;
-                qa qaVar = faVar.f33265a;
-                long j3 = qaVar.f36343x;
+                qa qaVar = faVar.f33574a;
+                long j3 = qaVar.f36823x;
                 if (j3 == 0) {
                     TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
                     toggleusername2.username = str;
@@ -174,14 +174,14 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                     toggleusername = toggleusername3;
                 }
                 ConnectionsManager connectionsManager = qaVar.getConnectionsManager();
-                final int i13 = this.f32547b;
+                final int i13 = this.f33049b;
                 connectionsManager.sendRequest(toggleusername, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         AndroidUtilities.runOnUIThread(new org.telegram.messenger.bj(fa.this, str, tLObject, i13, z11, tL_error, tL_username, z10));
                     }
                 });
-                qaVar.f36342w.add(tL_username.username);
+                qaVar.f36822w.add(tL_username.username);
                 ((na) view).setLoading(true);
                 return;
             case 1:
@@ -201,30 +201,30 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 }
                 return;
             case 4:
-                org.telegram.ui.Components.yu0 yu0Var = (org.telegram.ui.Components.yu0) obj3;
+                org.telegram.ui.Components.jv0 jv0Var = (org.telegram.ui.Components.jv0) obj3;
                 MessageObject messageObject = (MessageObject) obj;
-                org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(yu0Var.getContext(), 3, (org.telegram.ui.ActionBar.d6) obj2)};
+                org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(jv0Var.getContext(), 3, (org.telegram.ui.ActionBar.d6) obj2)};
                 TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
                 TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
                 TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
                 tL_inputMediaPoll.poll = tL_poll;
                 TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
-                tL_poll.f18109id = poll.f18109id;
+                tL_poll.f18347id = poll.f18347id;
                 tL_poll.question = poll.question;
                 tL_poll.answers = poll.answers;
                 tL_poll.closed = true;
                 tL_messages_editMessage.media = tL_inputMediaPoll;
-                int i14 = this.f32547b;
-                tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(yu0Var.f30425j1);
-                tL_messages_editMessage.f18166id = messageObject.getId();
+                int i14 = this.f33049b;
+                tL_messages_editMessage.peer = MessagesController.getInstance(i14).getInputPeer(jv0Var.f25518j1);
+                tL_messages_editMessage.f18404id = messageObject.getId();
                 tL_messages_editMessage.flags |= 16384;
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.br0(b2VarArr, i14, ConnectionsManager.getInstance(i14).sendRequest(tL_messages_editMessage, new ai.za(yu0Var, b2VarArr, i14, tL_messages_editMessage, 5)), 1), 500L);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.nr0(a2VarArr, i14, ConnectionsManager.getInstance(i14).sendRequest(tL_messages_editMessage, new ai.za(jv0Var, a2VarArr, i14, tL_messages_editMessage, 5)), 1), 500L);
                 return;
         }
     }
 
     @Override
-    public wu0 getCloseIntoObject() {
+    public vu0 getCloseIntoObject() {
         return null;
     }
 
@@ -234,21 +234,21 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     }
 
     @Override
-    public void h(org.telegram.ui.Components.voip.j3 j3Var) {
-        mi1 mi1Var = (mi1) this.f32548c;
-        org.telegram.ui.Components.voip.k3 k3Var = (org.telegram.ui.Components.voip.k3) this.d;
+    public void h(org.telegram.ui.Components.voip.k3 k3Var) {
+        mi1 mi1Var = (mi1) this.f33050c;
+        org.telegram.ui.Components.voip.l3 l3Var = (org.telegram.ui.Components.voip.l3) this.d;
         VoIPService voIPService = (VoIPService) this.e;
         if (VoIPService.getSharedInstance() != null) {
             AndroidUtilities.cancelRunOnUIThread(mi1Var.S0);
             mi1Var.R0 = false;
-            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(mi1Var.f35304b, false, Integer.valueOf(this.f32547b));
-            mi1Var.u(k3Var, voIPService);
+            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(mi1Var.f35558b, false, Integer.valueOf(this.f33049b));
+            mi1Var.u(l3Var, voIPService);
         }
     }
 
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
-        ArrayList arrayList = (ArrayList) this.f32548c;
+        ArrayList arrayList = (ArrayList) this.f33050c;
         TLRPC.Chat chat = (TLRPC.Chat) this.d;
         Utilities.Callback callback = (Utilities.Callback) this.e;
         Iterator it = list.iterator();
@@ -271,36 +271,36 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 }
             }
         }
-        AndroidUtilities.runOnUIThread(new tg.p(chat, this.f32547b, arrayList, callback, 1));
+        AndroidUtilities.runOnUIThread(new tg.n(chat, this.f33049b, arrayList, callback, 1));
     }
 
     @Override
     public void run(boolean z10) {
         boolean z11;
         int i10;
-        ry ryVar = (ry) this.f32548c;
+        qy qyVar = (qy) this.f33050c;
         ArrayList arrayList = (ArrayList) this.d;
         HashSet hashSet = (HashSet) this.e;
         if (arrayList.isEmpty()) {
             return;
         }
         ArrayList arrayList2 = new ArrayList(arrayList);
-        UndoView Y3 = ryVar.Y3();
-        int i11 = this.f32547b;
+        UndoView Y3 = qyVar.Y3();
+        int i11 = this.f33049b;
         if (Y3 != null) {
             if (i11 == 102) {
                 i10 = 27;
             } else {
                 i10 = 26;
             }
-            Y3.n(arrayList2, i10, null, null, new cw(ryVar, i11, arrayList2, z10, hashSet), null);
+            Y3.n(arrayList2, i10, null, null, new bw(qyVar, i11, arrayList2, z10, hashSet), null);
         }
         if (i11 == 103) {
             z11 = true;
         } else {
             z11 = false;
         }
-        ryVar.b4(z11);
+        qyVar.b4(z11);
     }
 
     @Override
@@ -309,27 +309,27 @@ public final class da implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     }
 
     public da(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f32546a = i11;
-        this.f32548c = obj;
-        this.f32547b = i10;
+        this.f33048a = i11;
+        this.f33050c = obj;
+        this.f33049b = i10;
         this.d = obj2;
         this.e = obj3;
     }
 
     public da(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f32546a = i11;
-        this.f32548c = obj;
+        this.f33048a = i11;
+        this.f33050c = obj;
         this.d = obj2;
-        this.f32547b = i10;
+        this.f33049b = i10;
         this.e = obj3;
     }
 
     public da(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f32546a = i11;
-        this.f32548c = obj;
+        this.f33048a = i11;
+        this.f33050c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f32547b = i10;
+        this.f33049b = i10;
     }
 
     @Override

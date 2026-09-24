@@ -1,12 +1,6 @@
 package l2;
 public interface h {
-    boolean H();
-
-    long M();
-
-    long P(long j3);
-
-    long S(long j3, long j10);
+    long A(long j3, long j10);
 
     long b(long j3);
 
@@ -16,7 +10,13 @@ public interface h {
 
     long j(long j3, long j10);
 
-    m2.j m(long j3);
+    m2.j k(long j3);
 
-    long v(long j3, long j10);
+    long s(long j3, long j10);
+
+    boolean w();
+
+    long y();
+
+    long z(long j3);
 }

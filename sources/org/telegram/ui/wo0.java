@@ -1,56 +1,36 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-public final class wo0 implements Utilities.Callback2 {
-    public final int f39063a;
-    public final TL_stars.TL_starGiftUnique f39064b;
-    public final long f39065c;
-    public final NotificationCenter.NotificationCenterDelegate d;
-    public final Object e;
-    public final Object f39066f;
+import android.view.View;
+public final class wo0 extends org.telegram.ui.Components.n81 {
+    public final tp0 f39721a;
 
-    public wo0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, Object obj2, int i10) {
-        this.f39063a = i10;
-        this.d = notificationCenterDelegate;
-        this.e = obj;
-        this.f39064b = tL_starGiftUnique;
-        this.f39065c = j3;
-        this.f39066f = obj2;
+    public wo0(tp0 tp0Var) {
+        this.f39721a = tp0Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        boolean z10;
-        switch (this.f39063a) {
-            case 0:
-                up0.U((up0) this.d, (boolean[]) this.e, this.f39064b, this.f39065c, (so0) this.f39066f, (yh.b3) obj, (nf.e) obj2);
-                return;
-            default:
-                yh.y3 y3Var = (yh.y3) this.d;
-                xh.j0 j0Var = (xh.j0) this.f39066f;
-                String str = (String) obj2;
-                ((nf.e) this.e).b();
-                if (((Boolean) obj).booleanValue()) {
-                    yh.k2 k2Var = y3Var.O0;
-                    if (k2Var != null) {
-                        if (j0Var != null) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        k2Var.b(this.f39064b, this.f39065c, z10);
-                    }
-                    if (j0Var != null) {
-                        AndroidUtilities.runOnUIThread(new xh.d0(j0Var, 2));
-                        y3Var.skipDismissAnimation();
-                    }
-                    y3Var.dismiss();
-                    return;
-                }
-                return;
+    public final View d(int i10) {
+        tp0 tp0Var = this.f39721a;
+        if (i10 == 1) {
+            return tp0Var.h;
         }
+        if (i10 == 0) {
+            return tp0Var.f38162n;
+        }
+        return null;
+    }
+
+    @Override
+    public final int e() {
+        return 2;
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

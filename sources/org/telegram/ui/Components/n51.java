@@ -1,41 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class n51 extends URLSpan {
-    public final n01 f26349a;
-    public boolean f26350b;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class n51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f26642a;
+    public int f26643b;
+    public final int f26644c;
+    public final Object d;
 
-    public n51(String str, n01 n01Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f26349a = n01Var;
+    public n51(org.telegram.ui.zu zuVar, int i10, int i11) {
+        this.f26642a = 1;
+        this.d = zuVar;
+        this.f26643b = i10;
+        this.f26644c = i11;
     }
 
     @Override
-    public final void onClick(View view) {
-        if (this.f26350b && (view.getContext() instanceof LaunchActivity)) {
-            ((LaunchActivity) view.getContext()).X0 = true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f26642a) {
+            case 0:
+                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f26644c);
+                r51 r51Var = (r51) this.d;
+                r51Var.N = true;
+                r51Var.f27867n.scrollBy(0, floatValue - this.f26643b);
+                r51Var.N = false;
+                this.f26643b = floatValue;
+                return;
+            default:
+                ((org.telegram.ui.zu) this.d).f40567c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f26643b, this.f26644c), PorterDuff.Mode.SRC_IN));
+                return;
         }
-        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        n01 n01Var = this.f26349a;
-        if (n01Var != null) {
-            n01Var.a(textPaint);
-            if (textPaint.linkColor == color) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            textPaint.setUnderlineText(z10);
-        }
+    public n51(r51 r51Var, int i10) {
+        this.f26642a = 0;
+        this.d = r51Var;
+        this.f26644c = i10;
+        this.f26643b = 0;
     }
 }

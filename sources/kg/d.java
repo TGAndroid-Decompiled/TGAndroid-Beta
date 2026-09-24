@@ -9,16 +9,17 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
+import org.telegram.messenger.f0;
 import org.telegram.ui.je;
 import yh.w7;
 public final class d {
-    public final long[] f13593a;
-    public final CharSequence[] f13594b;
-    public final CharSequence[] f13595c;
+    public final long[] f13591a;
+    public final CharSequence[] f13592b;
+    public final CharSequence[] f13593c;
     public final StaticLayout[] d;
     public final StaticLayout[] e;
-    public int f13596f;
-    public int f13597g;
+    public int f13594f;
+    public int f13595g;
     public DecimalFormat h;
 
     public d(long r25, long r27, boolean r29, float r30, int r31, android.text.TextPaint r32, android.text.TextPaint r33) {
@@ -38,9 +39,9 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i11];
         if (staticLayout == null) {
             if (i10 == 0) {
-                charSequenceArr = this.f13594b;
+                charSequenceArr = this.f13592b;
             } else {
-                charSequenceArr = this.f13595c;
+                charSequenceArr = this.f13593c;
             }
             CharSequence charSequence = charSequenceArr[i11];
             if (i10 == 0) {
@@ -81,7 +82,7 @@ public final class d {
             if (i10 == 1) {
                 return "≈" + BillingController.getInstance().formatCurrency(j3, "USD");
             }
-            return w7.X0(false, hg.c.k(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
+            return w7.X0(false, f0.h(j3, ' ', new StringBuilder("XTR ")), 0.65f, null);
         } else {
             return AndroidUtilities.formatWholeNumber((int) j3, 0);
         }

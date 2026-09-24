@@ -1,96 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.R;
-public final class py0 extends Drawable {
-    public boolean f27180a;
-    public final e6 f27181b;
-    public final Drawable f27182c;
-    public final Drawable d;
-    public int e = 255;
-
-    public py0(org.telegram.ui.Cells.t1 t1Var) {
-        this.f27181b = new e6(t1Var, 420L, rr.h);
-        this.f27182c = t1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
-        this.d = t1Var.getContext().getResources().getDrawable(R.drawable.summary_stars);
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class py0 extends FrameLayout {
+    public float E;
+    public float F;
+    public ValueAnimator G;
+    public ValueAnimator H;
+    public com.google.firebase.messaging.m I;
+    public float J;
+    public boolean K;
+    public org.telegram.ui.Components.voip.h L;
+    public Paint f27441a;
+    public Paint f27442b;
+    public Paint f27443c;
+    public Paint d;
+    public boolean e;
+    public ci.bb f27444f;
+    public TextView h;
+    public TextView f27445n;
+    public TextView f27446r;
+    public TextView f27447s;
+    public TextView v;
+    public View f27448w;
+    public int f27449x;
+    public org.telegram.ui.Cells.ea f27450y;
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        Drawable drawable = this.d;
-        drawable.setBounds(bounds);
-        drawable.setAlpha(this.e);
-        drawable.draw(canvas);
-        float e = this.f27181b.e(this.f27180a);
-        float centerX = getBounds().centerX();
-        float centerY = getBounds().centerY();
-        float width = getBounds().width();
-        canvas.save();
-        if (e < 0.5f) {
-            float abs = Math.abs(e - 0.5f) + 0.5f;
-            canvas.scale(abs, abs, centerX, centerY);
+    public final void invalidate() {
+        TextView textView = this.f27447s;
+        TextView textView2 = this.f27446r;
+        TextView textView3 = this.f27445n;
+        TextView textView4 = this.h;
+        super.invalidate();
+        this.f27444f.invalidate();
+        int i10 = this.f27449x;
+        int i11 = org.telegram.ui.ActionBar.h6.Vi;
+        if (i10 != org.telegram.ui.ActionBar.h6.w0(null, i11, false)) {
+            this.f27449x = org.telegram.ui.ActionBar.h6.w0(null, i11, false);
+            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f27449x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f27449x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f27449x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f27449x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
         }
-        canvas.save();
-        int i10 = (e > 0.5f ? 1 : (e == 0.5f ? 0 : -1));
-        if (i10 > 0) {
-            float abs2 = Math.abs(e - 0.5f) + 0.5f;
-            float f7 = -abs2;
-            float f10 = width * 0.32f;
-            canvas.scale(f7, f7, getBounds().left + f10, getBounds().bottom - f10);
-            float f11 = 1.0f - abs2;
-            canvas.translate((-width) * f11 * 0.4f, f11 * width * 0.4f);
+        this.f27450y.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        this.f27448w.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19046d7, false));
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        com.google.firebase.messaging.m mVar = this.I;
+        if (mVar != null) {
+            mVar.f7309a = true;
+            AnimatorSet animatorSet = (AnimatorSet) mVar.f7311c;
+            if (!animatorSet.isRunning()) {
+                animatorSet.start();
+            }
         }
-        Rect bounds2 = getBounds();
-        Drawable drawable2 = this.f27182c;
-        drawable2.setBounds(bounds2);
-        drawable2.setAlpha(this.e);
-        drawable2.draw(canvas);
-        canvas.restore();
-        canvas.save();
-        if (i10 > 0) {
-            float f12 = -(Math.abs(e - 0.5f) + 0.5f);
-            float f13 = 0.32f * width;
-            canvas.scale(f12, f12, getBounds().right - f13, getBounds().top + f13);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        com.google.firebase.messaging.m mVar = this.I;
+        if (mVar != null) {
+            mVar.f7309a = false;
+            ((AnimatorSet) mVar.f7311c).cancel();
         }
-        canvas.rotate(180.0f, centerX, centerY);
-        if (i10 > 0) {
-            float abs3 = 1.0f - (Math.abs(e - 0.5f) + 0.5f);
-            canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
-        }
-        drawable2.setBounds(getBounds());
-        drawable2.setAlpha(this.e);
-        drawable2.draw(canvas);
-        canvas.restore();
-        canvas.restore();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f27182c.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f27182c.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.e = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27182c.setColorFilter(colorFilter);
-        this.d.setColorFilter(colorFilter);
     }
 }

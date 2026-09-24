@@ -1,166 +1,412 @@
 package yh;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.opengl.Matrix;
 import android.view.View;
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
-public final class p2 {
-    public final q2 f47530a;
-    public k1 d;
-    public int f47533f;
-    public int f47534g;
-    public float f47536j;
-    public float f47537k;
-    public final ArrayList f47531b = new ArrayList();
-    public int f47532c = 0;
-    public boolean e = false;
-    public final float[] h = new float[16];
-    public float[] f47535i = new float[16];
-    public boolean f47538l = false;
+public final class p2 extends FrameLayout {
+    public float E;
+    public int F;
+    public ValueAnimator G;
+    public o2 H;
+    public final rg.q1 I;
+    public final View[] f47848a;
+    public final Matrix f47849b;
+    public final float[] f47850c;
+    public float d;
+    public float e;
+    public boolean f47851f;
+    public final float[][] h;
+    public final float[] f47852n;
+    public final float[] f47853r;
+    public final Integer[] f47854s;
+    public final HashSet v;
+    public final HashMap f47855w;
+    public final HashMap f47856x;
+    public final float[] f47857y;
 
-    public p2(q2 q2Var) {
-        this.f47530a = q2Var;
+    public p2(Context context, View[] viewArr) {
+        super(context);
+        this.f47849b = new Matrix();
+        float[] fArr = new float[16];
+        this.f47850c = fArr;
+        this.d = 0.0f;
+        this.e = 0.0f;
+        this.f47851f = true;
+        this.h = new float[][]{new float[]{-1.0f, 0.0f, 0.0f, 0.0f}, new float[]{1.0f, 0.0f, 0.0f, 0.0f}, new float[]{0.0f, 1.0f, 0.0f, 0.0f}, new float[]{0.0f, -1.0f, 0.0f, 0.0f}, new float[]{0.0f, 0.0f, -1.0f, 0.0f}, new float[]{0.0f, 0.0f, 1.0f, 0.0f}};
+        this.f47852n = new float[4];
+        this.f47853r = new float[6];
+        this.f47854s = new Integer[]{0, 1, 2, 3, 4, 5};
+        this.v = new HashSet();
+        this.f47855w = new HashMap();
+        this.f47856x = new HashMap();
+        this.f47857y = new float[6];
+        this.F = -1;
+        this.I = new rg.q1(this, 29);
+        setClipToOutline(false);
+        setClipToPadding(false);
+        android.opengl.Matrix.setIdentityM(fArr, 0);
+        this.f47848a = viewArr;
+        for (View view : viewArr) {
+            addView(view, w7.y5.e(108, 108, 17));
+        }
     }
 
-    public final void a(int i10) {
-        this.f47531b.add(new o2(3, 0.0f, 0.0f, i10, -1, 0.0f, null, null));
+    public static void b(float f7, float f10, float f11, float[] fArr) {
+        double d = f11;
+        float cos = (float) Math.cos(d);
+        float sin = (float) Math.sin(d);
+        float f12 = 1.0f - cos;
+        float f13 = f12 * f7;
+        fArr[0] = (f13 * f7) + cos;
+        float f14 = f13 * f10;
+        float f15 = sin * 0.0f;
+        fArr[4] = f14 - f15;
+        float f16 = f13 * 0.0f;
+        float f17 = sin * f10;
+        fArr[8] = f16 + f17;
+        fArr[12] = 0.0f;
+        fArr[1] = f14 + f15;
+        float f18 = f12 * f10;
+        fArr[5] = (f10 * f18) + cos;
+        float f19 = f18 * 0.0f;
+        float f20 = sin * f7;
+        fArr[9] = f19 - f20;
+        fArr[13] = 0.0f;
+        fArr[2] = f16 - f17;
+        fArr[6] = f19 + f20;
+        fArr[10] = com.google.android.gms.internal.vision.e2.x(f12, 0.0f, 0.0f, cos);
+        fArr[14] = 0.0f;
+        fArr[3] = 0.0f;
+        fArr[7] = 0.0f;
+        fArr[11] = 0.0f;
+        fArr[15] = 1.0f;
     }
 
-    public final void b() {
-        k1 k1Var;
-        boolean z10 = this.e;
-        q2 q2Var = this.f47530a;
-        if (!z10) {
-            int i10 = this.f47532c;
-            ArrayList arrayList = this.f47531b;
-            if (i10 < arrayList.size()) {
-                o2 o2Var = (o2) arrayList.get(this.f47532c);
-                boolean z11 = true;
-                this.f47532c++;
-                int i11 = o2Var.f47490a;
-                int i12 = o2Var.e;
-                float f7 = o2Var.f47491b;
-                int i13 = o2Var.d;
-                int c10 = m1.j.c(i11);
-                if (c10 != 0) {
-                    if (c10 != 1) {
-                        if (c10 != 2) {
-                            if (c10 != 3) {
-                                if (c10 != 4) {
-                                    if (c10 == 5) {
-                                        if (f7 <= 0.0f) {
-                                            z11 = false;
-                                        }
-                                        q2Var.f47584f = z11;
-                                        b();
-                                        return;
-                                    }
-                                    return;
-                                }
-                                this.f47538l = true;
-                                View view = o2Var.f47494g;
-                                ValueAnimator valueAnimator = q2Var.G;
-                                if (valueAnimator != null) {
-                                    valueAnimator.cancel();
-                                    q2Var.G = null;
-                                }
-                                RectF rectF = new RectF();
-                                rectF.left = view.getX() - q2Var.getX();
-                                rectF.top = view.getY() - q2Var.getY();
-                                rectF.right = rectF.left + view.getWidth();
-                                rectF.bottom = rectF.top + view.getHeight();
-                                AndroidUtilities.removeFromParent(view);
-                                int childCount = q2Var.getChildCount();
-                                q2Var.addView(view, w7.x5.e(64, 64, 17));
-                                q2Var.v.add(Integer.valueOf(i12));
-                                q2Var.f47588w.put(Integer.valueOf(childCount), Integer.valueOf(i12));
-                                q2Var.f47589x.put(Integer.valueOf(childCount), rectF);
-                                q2Var.F = childCount;
-                                q2Var.E = 0.0f;
-                                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                                q2Var.G = ofFloat;
-                                ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(q2Var, 22));
-                                q2Var.G.addListener(new qg.n0(q2Var, 9));
-                                q2Var.G.setDuration(i13 * 16);
-                                q2Var.G.setInterpolator(rr.h);
-                                q2Var.G.start();
-                                return;
-                            }
-                            System.arraycopy(q2Var.f47583c, 0, this.h, 0, 16);
-                            float f10 = o2Var.f47493f;
-                            float[] fArr = new float[16];
-                            Matrix.setIdentityM(fArr, 0);
-                            if (f10 != 0.0f) {
-                                Matrix.rotateM(fArr, 0, -f10, 0.0f, 0.0f, 1.0f);
-                            }
-                            if (i12 != 0) {
-                                if (i12 != 1) {
-                                    if (i12 != 2) {
-                                        if (i12 != 3) {
-                                            if (i12 == 4) {
-                                                Matrix.rotateM(fArr, 0, 180.0f, 0.0f, 1.0f, 0.0f);
-                                            }
-                                        } else {
-                                            Matrix.rotateM(fArr, 0, -90.0f, 1.0f, 0.0f, 0.0f);
-                                        }
-                                    } else {
-                                        Matrix.rotateM(fArr, 0, 90.0f, 1.0f, 0.0f, 0.0f);
-                                    }
-                                } else {
-                                    Matrix.rotateM(fArr, 0, -90.0f, 0.0f, 1.0f, 0.0f);
-                                }
-                            } else {
-                                Matrix.rotateM(fArr, 0, 90.0f, 0.0f, 1.0f, 0.0f);
-                            }
-                            this.f47535i = fArr;
-                            this.f47534g = i13;
-                            this.f47533f = i13;
-                            this.f47536j = q2Var.d;
-                            this.f47537k = q2Var.e;
-                            return;
-                        }
-                        this.f47533f = i13;
-                        this.f47534g = i13;
-                        return;
-                    }
-                    q2Var.d = (o2Var.f47492c * 0.01f) + q2Var.d;
-                    q2Var.e = (f7 * 0.01f) + q2Var.e;
-                    this.f47533f = 1;
-                    this.f47534g = 1;
-                    return;
-                }
-                Runnable runnable = o2Var.h;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                b();
-                return;
+    public static void c(float[] fArr, float[] fArr2, float[] fArr3) {
+        float f7 = fArr[1];
+        float f10 = fArr2[2];
+        float f11 = fArr[2];
+        fArr3[0] = (f7 * f10) - (fArr2[1] * f11);
+        float f12 = fArr2[0];
+        float f13 = fArr[0];
+        fArr3[1] = (f11 * f12) - (f10 * f13);
+        fArr3[2] = (f13 * fArr2[1]) - (fArr[1] * f12);
+    }
+
+    public static void d(float[] fArr, float[] fArr2, float[] fArr3) {
+        float[] fArr4 = new float[16];
+        android.opengl.Matrix.multiplyMM(fArr4, 0, fArr, 0, fArr2, 0);
+        System.arraycopy(fArr4, 0, fArr3, 0, 16);
+    }
+
+    public static void e(float[] fArr) {
+        float f7 = fArr[0];
+        float f10 = fArr[1];
+        float f11 = fArr[2];
+        float f12 = f11 * f11;
+        float sqrt = (float) Math.sqrt(f12 + (f10 * f10) + (f7 * f7));
+        if (sqrt > 0.0f) {
+            fArr[0] = fArr[0] / sqrt;
+            fArr[1] = fArr[1] / sqrt;
+            fArr[2] = fArr[2] / sqrt;
+        }
+    }
+
+    public final void a() {
+        if (Math.abs(this.d) > 1.0E-4f || Math.abs(this.e) > 1.0E-4f) {
+            float[] fArr = new float[16];
+            b(1.0f, 0.0f, this.d, fArr);
+            float[] fArr2 = this.f47850c;
+            d(fArr, fArr2, fArr2);
+            b(0.0f, 1.0f, this.e, fArr);
+            d(fArr, fArr2, fArr2);
+            if (this.f47851f) {
+                this.d *= 0.96f;
+                this.e *= 0.96f;
             }
         }
-        q2Var.H = null;
-        if (!this.e && (k1Var = this.d) != null) {
-            k1Var.run();
-        }
     }
 
-    public final void c(float f7, float f10) {
-        this.f47531b.add(new o2(2, f7, f10, 0, -1, 0.0f, null, null));
-    }
-
-    public final void d(boolean z10) {
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        RectF rectF;
+        boolean z10;
+        boolean z11;
         float f7;
-        if (z10) {
-            f7 = 1.0f;
+        char c10;
+        float f10;
+        int i10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        int indexOfChild = indexOfChild(view);
+        if (indexOfChild >= 6) {
+            if (this.F == indexOfChild) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            rectF = (RectF) this.f47856x.get(Integer.valueOf(indexOfChild));
+            Integer num = (Integer) this.f47855w.get(Integer.valueOf(indexOfChild));
+            if (num != null) {
+                indexOfChild = num.intValue();
+            }
+            if (view instanceof v2) {
+                v2 v2Var = (v2) view;
+                if (z10) {
+                    f14 = this.E;
+                } else {
+                    f14 = 1.0f;
+                }
+                float f15 = 1.0f - f14;
+                v2Var.d.setAlpha(f15);
+                v2Var.e.setAlpha(f15);
+                if (!z10 || this.E >= 1.0f) {
+                    this.f47848a[indexOfChild].setVisibility(8);
+                }
+            }
+            z11 = true;
         } else {
-            f7 = -1.0f;
+            rectF = null;
+            z10 = false;
+            z11 = false;
         }
-        this.f47531b.add(new o2(6, f7, 0.0f, 0, -1, 0.0f, null, null));
+        float[][] fArr = this.h;
+        android.opengl.Matrix.multiplyMV(this.f47852n, 0, this.f47850c, 0, fArr[indexOfChild], 0);
+        float f16 = this.f47852n[2];
+        if (f16 < 0.001f) {
+            return false;
+        }
+        view.setAlpha(Math.min(1.0f, f16 / 0.3f));
+        float width = view.getWidth() / 2.0f;
+        if (z11 && (view instanceof v2)) {
+            float dp = AndroidUtilities.dp(-6.0f);
+            f7 = 1.0f;
+            if (z10) {
+                f13 = this.E;
+            } else {
+                f13 = 1.0f;
+            }
+            c10 = 6;
+            f10 = (f13 * AndroidUtilities.dp(2.0f)) + dp;
+        } else {
+            f7 = 1.0f;
+            c10 = 6;
+            f10 = 0.0f;
+        }
+        float dp2 = AndroidUtilities.dp(108.0f) / 2.0f;
+        float width2 = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        float[] fArr2 = new float[4];
+        float[] fArr3 = new float[4];
+        float[] fArr4 = new float[4];
+        System.arraycopy(fArr[indexOfChild], 0, fArr2, 0, 4);
+        if (indexOfChild != 0) {
+            if (indexOfChild != 1) {
+                if (indexOfChild != 2) {
+                    if (indexOfChild != 3) {
+                        if (indexOfChild != 4) {
+                            i10 = 3;
+                            if (indexOfChild == 5) {
+                                fArr3[0] = f7;
+                                fArr3[1] = 0.0f;
+                                fArr3[2] = 0.0f;
+                                fArr4[0] = 0.0f;
+                                fArr4[1] = -1.0f;
+                                fArr4[2] = 0.0f;
+                            }
+                        } else {
+                            i10 = 3;
+                            fArr3[0] = -1.0f;
+                            fArr3[1] = 0.0f;
+                            fArr3[2] = 0.0f;
+                            fArr4[0] = 0.0f;
+                            fArr4[1] = -1.0f;
+                            fArr4[2] = 0.0f;
+                        }
+                    } else {
+                        i10 = 3;
+                        fArr3[0] = f7;
+                        fArr3[1] = 0.0f;
+                        fArr3[2] = 0.0f;
+                        fArr4[0] = 0.0f;
+                        fArr4[1] = 0.0f;
+                        fArr4[2] = -1.0f;
+                    }
+                } else {
+                    i10 = 3;
+                    fArr3[0] = f7;
+                    fArr3[1] = 0.0f;
+                    fArr3[2] = 0.0f;
+                    fArr4[0] = 0.0f;
+                    fArr4[1] = 0.0f;
+                    fArr4[2] = f7;
+                }
+            } else {
+                i10 = 3;
+                fArr3[0] = 0.0f;
+                fArr3[1] = 0.0f;
+                fArr3[2] = -1.0f;
+                fArr4[0] = 0.0f;
+                fArr4[1] = -1.0f;
+                fArr4[2] = 0.0f;
+            }
+        } else {
+            i10 = 3;
+            fArr3[0] = 0.0f;
+            fArr3[1] = 0.0f;
+            fArr3[2] = f7;
+            fArr4[0] = 0.0f;
+            fArr4[1] = -1.0f;
+            fArr4[2] = 0.0f;
+        }
+        fArr3[i10] = 0.0f;
+        fArr4[i10] = 0.0f;
+        float f17 = this.f47857y[indexOfChild];
+        if (f17 != 0.0f) {
+            double radians = (float) Math.toRadians(f17);
+            float cos = (float) Math.cos(radians);
+            float sin = (float) Math.sin(radians);
+            float f18 = fArr3[0];
+            float f19 = fArr4[0];
+            float f20 = fArr3[1];
+            float f21 = fArr4[1];
+            float f22 = fArr3[2];
+            float f23 = fArr4[2];
+            fArr3[0] = (f19 * sin) + (f18 * cos);
+            fArr3[1] = (f21 * sin) + (f20 * cos);
+            fArr3[2] = (f23 * sin) + (f22 * cos);
+            fArr4[0] = (f19 * cos) + ((-f18) * sin);
+            fArr4[1] = (f21 * cos) + ((-f20) * sin);
+            fArr4[2] = (f23 * cos) + ((-f22) * sin);
+        }
+        float[] fArr5 = new float[4];
+        float[] fArr6 = new float[4];
+        float[] fArr7 = new float[4];
+        android.opengl.Matrix.multiplyMV(fArr5, 0, this.f47850c, 0, fArr2, 0);
+        float[] fArr8 = fArr5;
+        android.opengl.Matrix.multiplyMV(fArr6, 0, this.f47850c, 0, fArr3, 0);
+        float[] fArr9 = fArr6;
+        android.opengl.Matrix.multiplyMV(fArr7, 0, this.f47850c, 0, fArr4, 0);
+        float f24 = 64.0f * dp2;
+        int i11 = 2;
+        int i12 = 1;
+        float[][] fArr10 = (float[][]) Array.newInstance(Float.TYPE, 4, i10);
+        int i13 = 0;
+        for (int i14 = 4; i13 < i14; i14 = 4) {
+            if (i13 != i12 && i13 != i11) {
+                f11 = -1.0f;
+            } else {
+                f11 = 1.0f;
+            }
+            if (i13 != 0 && i13 != i12) {
+                f12 = -1.0f;
+            } else {
+                f12 = 1.0f;
+            }
+            float[] fArr11 = fArr10[i13];
+            float[] fArr12 = fArr8;
+            float[] fArr13 = fArr9;
+            fArr11[0] = com.google.android.gms.internal.vision.e2.B(fArr7[0], f12, (fArr9[0] * f11) + fArr8[0], dp2);
+            fArr11[1] = com.google.android.gms.internal.vision.e2.B(fArr7[1], f12, (fArr13[1] * f11) + fArr12[1], dp2);
+            fArr11[2] = com.google.android.gms.internal.vision.e2.B(fArr7[2], f12, (fArr13[2] * f11) + fArr12[2], dp2);
+            i13++;
+            fArr9 = fArr13;
+            fArr8 = fArr12;
+            i12 = 1;
+            i11 = 2;
+        }
+        char c11 = 2;
+        float[] fArr14 = new float[8];
+        int i15 = 0;
+        while (i15 < 4) {
+            float[] fArr15 = fArr10[i15];
+            float f25 = f24 / (f24 - fArr15[c11]);
+            int i16 = i15 * 2;
+            fArr14[i16] = (fArr15[0] * f25) + width2;
+            fArr14[i16 + 1] = (fArr15[1] * f25) + height;
+            i15++;
+            c11 = 2;
+        }
+        float f26 = (width2 - width) - f10;
+        float f27 = (height - width) - f10;
+        float f28 = width2 + width + f10;
+        float f29 = height + width + f10;
+        float[] fArr16 = new float[8];
+        fArr16[0] = f26;
+        fArr16[1] = f27;
+        fArr16[2] = f28;
+        fArr16[i10] = f27;
+        fArr16[4] = f28;
+        fArr16[5] = f29;
+        fArr16[c10] = f26;
+        fArr16[7] = f29;
+        if (z10 && rectF != null) {
+            float f30 = rectF.left;
+            float f31 = rectF.top;
+            float f32 = rectF.right;
+            float f33 = rectF.bottom;
+            float[] fArr17 = new float[8];
+            fArr17[0] = f30;
+            fArr17[1] = f31;
+            fArr17[2] = f32;
+            fArr17[i10] = f31;
+            fArr17[4] = f32;
+            fArr17[5] = f33;
+            fArr17[c10] = f30;
+            fArr17[7] = f33;
+            AndroidUtilities.lerp(fArr17, fArr14, this.E, fArr14);
+        }
+        Matrix matrix = this.f47849b;
+        matrix.reset();
+        matrix.setPolyToPoly(fArr16, 0, fArr14, 0, 4);
+        canvas.save();
+        canvas.concat(matrix);
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.restore();
+        return drawChild;
     }
 
-    public final void e(v2 v2Var, int i10, float f7) {
-        this.f47531b.add(new o2(5, 0.0f, 0.0f, 32, i10, f7, v2Var, null));
+    public final void f(int i10, FrameLayout frameLayout) {
+        if (i10 == -1) {
+            i10 = 5;
+        }
+        AndroidUtilities.removeFromParent(frameLayout);
+        int childCount = getChildCount();
+        addView(frameLayout, w7.y5.e(64, 64, 17));
+        this.v.add(Integer.valueOf(i10));
+        this.f47855w.put(Integer.valueOf(childCount), Integer.valueOf(i10));
+    }
+
+    @Override
+    public final int getChildDrawingOrder(int i10, int i11) {
+        if (i11 < 6) {
+            Integer[] numArr = this.f47854s;
+            if (i11 < numArr.length) {
+                return numArr[i11].intValue();
+            }
+        }
+        return i11;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        AndroidUtilities.runOnUIThread(this.I, 16L);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        AndroidUtilities.cancelRunOnUIThread(this.I);
     }
 }

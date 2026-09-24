@@ -1,67 +1,32 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-public final class sc0 implements org.telegram.ui.Components.kt0 {
-    public final dd0 f37239a;
+import android.content.Context;
+import org.telegram.tgnet.tl.TL_stories;
+public final class sc0 extends org.telegram.ui.Components.jv0 {
+    public final cd0 f37692f2;
 
-    public sc0(dd0 dd0Var) {
-        this.f37239a = dd0Var;
+    public sc0(cd0 cd0Var, Context context, org.telegram.ui.Components.bv0 bv0Var, cd0 cd0Var2, rc0 rc0Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 0L, bv0Var, 0, null, null, null, 8, 0, cd0Var2, rc0Var, 0, d6Var, null);
+        this.f37692f2 = cd0Var;
     }
 
     @Override
-    public final void R() {
-        int c02;
-        boolean z10;
-        dd0 dd0Var = this.f37239a;
-        tc0 tc0Var = dd0Var.K0;
-        if (tc0Var == null) {
-            c02 = 0;
-        } else {
-            c02 = tc0Var.c0(8);
-        }
-        dd0Var.L0.setText(LocaleController.formatPluralString("LocationStories", c02, new Object[0]));
-        rc0 rc0Var = dd0Var.T;
-        if (c02 > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (rc0Var.f9920i0 != z10) {
-            rc0Var.f9920i0 = z10;
-            rc0Var.l();
-            dd0Var.U.v0(0, AndroidUtilities.dp(200.0f), null);
-        }
+    public final int B0() {
+        return 32;
     }
 
     @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.ml0 f() {
-        return this.f37239a.U;
-    }
-
-    @Override
-    public final TLRPC.Chat g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
-        return false;
-    }
-
-    @Override
-    public final boolean p() {
+    public final boolean N() {
         return true;
     }
 
     @Override
-    public final void E() {
+    public final int S0() {
+        return 3;
+    }
+
+    @Override
+    public final TL_stories.MediaArea getStoriesArea() {
+        return this.f37692f2.M0;
     }
 }

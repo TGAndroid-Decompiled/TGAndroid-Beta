@@ -1,10 +1,6 @@
 package v7;
 public abstract class y {
-    public y(androidx.fragment.app.v0 operation) {
-        kotlin.jvm.internal.i.e(operation, "operation");
-    }
+    public abstract void a(Throwable th2);
 
-    public boolean a() {
-        throw null;
-    }
+    public abstract void b(com.google.firebase.messaging.t tVar);
 }

@@ -15,57 +15,57 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 public final class i implements ActionMode.Callback {
-    public final ActionMode.Callback f43243a;
-    public final TextView f43244b;
-    public Class f43245c;
+    public final ActionMode.Callback f43562a;
+    public final TextView f43563b;
+    public Class f43564c;
     public Method d;
     public boolean e;
-    public boolean f43246f = false;
+    public boolean f43565f = false;
 
     public i(ActionMode.Callback callback, TextView textView) {
-        this.f43243a = callback;
-        this.f43244b = textView;
+        this.f43562a = callback;
+        this.f43563b = textView;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        return this.f43243a.onActionItemClicked(actionMode, menuItem);
+        return this.f43562a.onActionItemClicked(actionMode, menuItem);
     }
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        return this.f43243a.onCreateActionMode(actionMode, menu);
+        return this.f43562a.onCreateActionMode(actionMode, menu);
     }
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        this.f43243a.onDestroyActionMode(actionMode);
+        this.f43562a.onDestroyActionMode(actionMode);
     }
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
         Method declaredMethod;
         boolean z10;
-        TextView textView = this.f43244b;
+        TextView textView = this.f43563b;
         Context context = textView.getContext();
         PackageManager packageManager = context.getPackageManager();
-        boolean z11 = this.f43246f;
+        boolean z11 = this.f43565f;
         Class<?> cls = Integer.TYPE;
         if (!z11) {
-            this.f43246f = true;
+            this.f43565f = true;
             try {
                 Class<?> cls2 = Class.forName("com.android.internal.view.menu.MenuBuilder");
-                this.f43245c = cls2;
+                this.f43564c = cls2;
                 this.d = cls2.getDeclaredMethod("removeItemAt", cls);
                 this.e = true;
             } catch (ClassNotFoundException | NoSuchMethodException unused) {
-                this.f43245c = null;
+                this.f43564c = null;
                 this.d = null;
                 this.e = false;
             }
         }
         try {
-            if (this.e && this.f43245c.isInstance(menu)) {
+            if (this.e && this.f43564c.isInstance(menu)) {
                 declaredMethod = this.d;
             } else {
                 declaredMethod = menu.getClass().getDeclaredMethod("removeItemAt", cls);
@@ -105,6 +105,6 @@ public final class i implements ActionMode.Callback {
             }
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException unused2) {
         }
-        return this.f43243a.onPrepareActionMode(actionMode, menu);
+        return this.f43562a.onPrepareActionMode(actionMode, menu);
     }
 }

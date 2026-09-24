@@ -23,7 +23,7 @@ public final class f {
         if (eVar == eVar2) {
             m mVar = (m) this.e.d;
             int i11 = this.f12957b;
-            return ((String) mVar.f7317b).substring(i11, i10 + i11).getBytes(((dc.e) mVar.f7318c).f7613a[this.f12958c].charset()).length;
+            return ((String) mVar.f7310b).substring(i11, i10 + i11).getBytes(((dc.e) mVar.f7311c).f7612a[this.f12958c].charset()).length;
         }
         return i10;
     }
@@ -35,11 +35,11 @@ public final class f {
         sb2.append(eVar);
         sb2.append('(');
         if (eVar == hc.e.ECI) {
-            sb2.append(((dc.e) mVar.f7318c).f7613a[this.f12958c].charset().displayName());
+            sb2.append(((dc.e) mVar.f7311c).f7612a[this.f12958c].charset().displayName());
         } else {
             int i10 = this.d;
             int i11 = this.f12957b;
-            String substring = ((String) mVar.f7317b).substring(i11, i10 + i11);
+            String substring = ((String) mVar.f7310b).substring(i11, i10 + i11);
             StringBuilder sb3 = new StringBuilder();
             for (int i12 = 0; i12 < substring.length(); i12++) {
                 if (substring.charAt(i12) >= ' ' && substring.charAt(i12) <= '~') {

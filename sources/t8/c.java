@@ -9,21 +9,21 @@ import com.google.android.gms.internal.vision.g3;
 import com.google.android.gms.internal.vision.u2;
 import java.nio.ByteBuffer;
 import java.util.HashSet;
-import lf.i;
+import la.h;
 import n6.l;
-import org.telegram.ui.Cells.q3;
+import org.telegram.ui.Cells.c1;
 public final class c extends g {
-    public final q8.a f42995b;
-    public final u2 f42996c;
+    public final q8.a f43317b;
+    public final u2 f43318c;
     public final Object d;
     public boolean e;
 
     public c(u2 u2Var) {
         super(3);
-        this.f42995b = new q8.a();
+        this.f43317b = new q8.a();
         this.d = new Object();
         this.e = true;
-        this.f42996c = u2Var;
+        this.f43318c = u2Var;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class c extends g {
                 if (!this.e) {
                     return;
                 }
-                this.f42996c.l();
+                this.f43318c.l();
                 this.e = false;
             } catch (Throwable th2) {
                 throw th2;
@@ -42,10 +42,10 @@ public final class c extends g {
         }
     }
 
-    public final SparseArray Z0(i iVar) {
+    public final SparseArray Z0(h hVar) {
         ByteBuffer I;
         a[] n10;
-        Bitmap bitmap = (Bitmap) iVar.d;
+        Bitmap bitmap = (Bitmap) hVar.d;
         if (bitmap != null) {
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
@@ -61,22 +61,22 @@ public final class c extends g {
                 float blue = Color.blue(pixel);
                 I.put(i12, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
                 if (i14 % 2 == 0 && i13 % 2 == 0) {
-                    float a2 = q3.a(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
-                    float a10 = q3.a(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
+                    float b10 = c1.b(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
+                    float b11 = c1.b(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
                     int i15 = i11 + 1;
-                    I.put(i11, (byte) a2);
+                    I.put(i11, (byte) b10);
                     i11 += 2;
-                    I.put(i15, (byte) a10);
+                    I.put(i15, (byte) b11);
                 }
             }
         } else {
-            I = iVar.I();
+            I = hVar.I();
         }
         synchronized (this.d) {
             if (this.e) {
-                u2 u2Var = this.f42996c;
+                u2 u2Var = this.f43318c;
                 l.h(I);
-                n10 = u2Var.n(I, g3.b(iVar));
+                n10 = u2Var.n(I, g3.b(hVar));
             } else {
                 throw new IllegalStateException("Cannot use detector after release()");
             }
@@ -85,14 +85,14 @@ public final class c extends g {
         SparseArray sparseArray = new SparseArray(n10.length);
         int i16 = 0;
         for (a aVar : n10) {
-            int i17 = aVar.f42989a;
+            int i17 = aVar.f43311a;
             i16 = Math.max(i16, i17);
             if (hashSet.contains(Integer.valueOf(i17))) {
                 i17 = i16 + 1;
                 i16 = i17;
             }
             hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f42995b.a(i17), aVar);
+            sparseArray.append(this.f43317b.a(i17), aVar);
         }
         return sparseArray;
     }

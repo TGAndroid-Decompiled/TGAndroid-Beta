@@ -67,10 +67,10 @@ public abstract class ca extends ScrollView {
         paint2.setXfermode(new PorterDuffXfermode(mode));
         this.f4450f = m9Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f18789d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19045d6, false));
         ba baVar = new ba(this, context);
         this.f4449c = baVar;
-        addView(baVar, w7.x5.c(-2.0f, -1));
+        addView(baVar, w7.y5.c(-2.0f, -1));
         h2 h2Var = new h2(this, context, 1);
         this.f4447a = h2Var;
         if (Build.VERSION.SDK_INT >= 25) {
@@ -142,8 +142,8 @@ public abstract class ca extends ScrollView {
             return false;
         }
         rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top = org.telegram.messenger.z0.C(20.0f, this.H, rect.top);
-        rect.bottom = org.telegram.messenger.z0.C(50.0f, this.H, rect.bottom);
+        rect.top = org.telegram.messenger.f0.C(20.0f, this.H, rect.top);
+        rect.bottom = org.telegram.messenger.f0.C(50.0f, this.H, rect.bottom);
         return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 

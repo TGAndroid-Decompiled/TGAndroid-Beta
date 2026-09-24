@@ -299,7 +299,7 @@ public final class i2 {
             }
             this.f11425c.clear();
             this.d = b10;
-            ((x3) this.f11423a.f275b).f11728h3.F();
+            ((x3) this.f11423a.f275b).f11728h3.G();
         }
     }
 
@@ -325,7 +325,7 @@ public final class i2 {
         i2.h0 h0Var = this.f11427g;
         AndroidUtilities.cancelRunOnUIThread(h0Var);
         AndroidUtilities.runOnUIThread(h0Var, 800L);
-        ((x3) this.f11423a.f275b).f11728h3.F();
+        ((x3) this.f11423a.f275b).f11728h3.G();
     }
 
     public final void h() {
@@ -355,7 +355,7 @@ public final class i2 {
         this.f11425c.clear();
         this.d = b();
         this.e = false;
-        ((x3) this.f11423a.f275b).f11728h3.F();
+        ((x3) this.f11423a.f275b).f11728h3.G();
     }
 
     public final void k() {

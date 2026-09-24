@@ -5,61 +5,61 @@ import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class gt implements Runnable {
-    public final int f24424a;
-    public final jt f24425b;
+    public final int f24523a;
+    public final jt f24524b;
 
     public gt(jt jtVar, int i10) {
-        this.f24424a = i10;
-        this.f24425b = jtVar;
+        this.f24523a = i10;
+        this.f24524b = jtVar;
     }
 
     @Override
     public final void run() {
         int i10;
         Bitmap bitmap;
-        switch (this.f24424a) {
+        switch (this.f24523a) {
             case 0:
-                jt jtVar = this.f24425b;
+                jt jtVar = this.f24524b;
                 try {
-                    i10 = jtVar.f25404w + 0;
-                    bitmap = jtVar.f25398b;
+                    i10 = jtVar.f25483w + 0;
+                    bitmap = jtVar.f25477b;
                 } catch (Exception e) {
                     FileLog.e(e);
                     jtVar.E = true;
                 }
                 if (bitmap != null) {
-                    if (bitmap.getWidth() == jtVar.f25405x) {
-                        if (jtVar.f25398b.getHeight() != i10) {
+                    if (bitmap.getWidth() == jtVar.f25484x) {
+                        if (jtVar.f25477b.getHeight() != i10) {
                         }
-                        jtVar.f25398b.eraseColor(0);
-                        jtVar.f25399c.save();
-                        jtVar.f25399c.translate(0.0f, 0);
-                        jtVar.c(jtVar.f25399c);
-                        jtVar.f25399c.restore();
-                        jtVar.f25398b.prepareToDraw();
+                        jtVar.f25477b.eraseColor(0);
+                        jtVar.f25478c.save();
+                        jtVar.f25478c.translate(0.0f, 0);
+                        jtVar.c(jtVar.f25478c);
+                        jtVar.f25478c.restore();
+                        jtVar.f25477b.prepareToDraw();
                         AndroidUtilities.runOnUIThread(jtVar.H);
                         return;
                     }
                 }
-                Bitmap bitmap2 = jtVar.f25398b;
+                Bitmap bitmap2 = jtVar.f25477b;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
                 }
-                jtVar.f25398b = Bitmap.createBitmap(jtVar.f25405x, i10, Bitmap.Config.ARGB_8888);
-                jtVar.f25399c = new Canvas(jtVar.f25398b);
-                jtVar.f25398b.eraseColor(0);
-                jtVar.f25399c.save();
-                jtVar.f25399c.translate(0.0f, 0);
-                jtVar.c(jtVar.f25399c);
-                jtVar.f25399c.restore();
-                jtVar.f25398b.prepareToDraw();
+                jtVar.f25477b = Bitmap.createBitmap(jtVar.f25484x, i10, Bitmap.Config.ARGB_8888);
+                jtVar.f25478c = new Canvas(jtVar.f25477b);
+                jtVar.f25477b.eraseColor(0);
+                jtVar.f25478c.save();
+                jtVar.f25478c.translate(0.0f, 0);
+                jtVar.c(jtVar.f25478c);
+                jtVar.f25478c.restore();
+                jtVar.f25477b.prepareToDraw();
                 AndroidUtilities.runOnUIThread(jtVar.H);
                 return;
             default:
-                jt jtVar2 = this.f24425b;
-                jtVar2.f25400f = false;
+                jt jtVar2 = this.f24524b;
+                jtVar2.f25479f = false;
                 jtVar2.g();
-                if (!jtVar2.f25397a) {
+                if (!jtVar2.f25476a) {
                     jtVar2.j();
                     return;
                 } else if (jtVar2.v == jtVar2.J) {

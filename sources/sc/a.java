@@ -1,41 +1,39 @@
 package sc;
 
 import android.os.AsyncTask;
+import ee.v;
 import java.util.Locale;
-import lf.i;
+import k2.u;
+import la.h;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.ja;
-import org.telegram.ui.fo0;
-import org.telegram.ui.jl0;
-import org.telegram.ui.qo0;
+import org.telegram.ui.do0;
+import org.telegram.ui.il0;
+import org.telegram.ui.oo0;
 import tc.g;
-import w7.r8;
+import w7.s8;
 public final class a extends AsyncTask {
-    public final String f42845a;
-    public final uc.a f42846b;
-    public final fo0 f42847c;
-    public final ja d;
+    public final String f43167a;
+    public final uc.a f43168b;
+    public final do0 f43169c;
+    public final u d;
 
-    public a(ja jaVar, String str, uc.a aVar, fo0 fo0Var) {
-        this.d = jaVar;
-        this.f42845a = str;
-        this.f42846b = aVar;
-        this.f42847c = fo0Var;
+    public a(u uVar, String str, uc.a aVar, do0 do0Var) {
+        this.d = uVar;
+        this.f43167a = str;
+        this.f43168b = aVar;
+        this.f43169c = do0Var;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         Void[] voidArr = (Void[]) objArr;
-        ja jaVar = this.d;
+        u uVar = this.d;
         try {
-            String str = this.f42845a;
-            ?? obj = new Object();
-            obj.f3892a = str;
-            i c10 = vc.b.c(r8.a(this.f42846b), obj);
-            Object obj2 = jaVar.f20300b;
+            h c10 = vc.b.c(s8.a(this.f43168b), new v(this.f43167a, 3));
+            Object obj = uVar.f13369b;
             return new b(c10, null);
         } catch (g e) {
-            Object obj3 = jaVar.f20300b;
+            Object obj2 = uVar.f13369b;
             return new b(null, e);
         }
     }
@@ -43,23 +41,23 @@ public final class a extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         b bVar = (b) obj;
-        Object obj2 = this.d.f20300b;
-        i iVar = bVar.f42848a;
-        fo0 fo0Var = this.f42847c;
-        if (iVar != null) {
-            qo0 qo0Var = fo0Var.f33352a;
-            if (qo0Var.Q0) {
+        Object obj2 = this.d.f13369b;
+        h hVar = bVar.f43170a;
+        do0 do0Var = this.f43169c;
+        if (hVar != null) {
+            oo0 oo0Var = do0Var.f33139a;
+            if (oo0Var.Q0) {
                 return;
             }
-            qo0Var.f36518w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) iVar.f14012c, (String) iVar.f14011b);
-            AndroidUtilities.runOnUIThread(new jl0(fo0Var, 8));
+            oo0Var.f36296w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) hVar.f14152c, (String) hVar.f14151b);
+            AndroidUtilities.runOnUIThread(new il0(do0Var, 8));
             return;
         }
-        Exception exc = bVar.f42849b;
+        Exception exc = bVar.f43171b;
         if (exc != null) {
-            fo0Var.a(exc);
+            do0Var.a(exc);
         } else {
-            fo0Var.a(new RuntimeException("Somehow got neither a token response or an error response"));
+            do0Var.a(new RuntimeException("Somehow got neither a token response or an error response"));
         }
     }
 }

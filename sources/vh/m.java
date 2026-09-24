@@ -1,15 +1,25 @@
 package vh;
+public final class m implements Runnable {
+    public final int f44715a;
+    public final n f44716b;
 
-import android.view.View;
-import java.util.List;
-import k2.u;
-public final class m {
-    public final u f44396a;
-    public boolean f44397b;
-    public int f44398c;
-    public int d;
+    public m(n nVar, int i10) {
+        this.f44715a = i10;
+        this.f44716b = nVar;
+    }
 
-    public m(View view, List list, l lVar) {
-        this.f44396a = new u(view.getContext(), new k(this, view, list, lVar));
+    @Override
+    public final void run() {
+        switch (this.f44715a) {
+            case 0:
+                n nVar = this.f44716b;
+                nVar.post(new m(nVar, 1));
+                return;
+            default:
+                n nVar2 = this.f44716b;
+                nVar2.d = true;
+                nVar2.b();
+                return;
+        }
     }
 }

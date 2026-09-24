@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 public final class e1 extends o6.a {
     public static final Parcelable.Creator<e1> CREATOR = new n0(12);
-    public final boolean f46320a;
-    public final List f46321b;
+    public final boolean f46634a;
+    public final List f46635b;
 
     public e1(ArrayList arrayList, boolean z10) {
-        this.f46320a = z10;
-        this.f46321b = arrayList;
+        this.f46634a = z10;
+        this.f46635b = arrayList;
     }
 
     public final boolean equals(Object obj) {
@@ -23,7 +23,7 @@ public final class e1 extends o6.a {
         }
         if (obj != null && e1.class == obj.getClass()) {
             e1 e1Var = (e1) obj;
-            if (this.f46320a == e1Var.f46320a && ((list2 = this.f46321b) == (list = e1Var.f46321b) || (list2 != null && list2.equals(list)))) {
+            if (this.f46634a == e1Var.f46634a && ((list2 = this.f46635b) == (list = e1Var.f46635b) || (list2 != null && list2.equals(list)))) {
                 return true;
             }
         }
@@ -31,20 +31,20 @@ public final class e1 extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f46320a), this.f46321b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f46634a), this.f46635b});
     }
 
     public final String toString() {
-        String valueOf = String.valueOf(this.f46321b);
-        return "AppWearDetailsParcelable{isWatchface=" + this.f46320a + ", watchfaceCategories=" + valueOf + "}";
+        String valueOf = String.valueOf(this.f46635b);
+        return "AppWearDetailsParcelable{isWatchface=" + this.f46634a + ", watchfaceCategories=" + valueOf + "}";
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.s(parcel, 1, 4);
-        parcel.writeInt(this.f46320a ? 1 : 0);
-        w7.e0.n(parcel, 2, this.f46321b);
-        w7.e0.r(parcel, q6);
+        int q6 = w7.f0.q(parcel, 20293);
+        w7.f0.s(parcel, 1, 4);
+        parcel.writeInt(this.f46634a ? 1 : 0);
+        w7.f0.n(parcel, 2, this.f46635b);
+        w7.f0.r(parcel, q6);
     }
 }

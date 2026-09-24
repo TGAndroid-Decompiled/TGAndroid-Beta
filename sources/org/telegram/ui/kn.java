@@ -1,58 +1,96 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class kn extends w7.y5 {
-    public MessageObject f34765a;
-    public int f34766b = 0;
-    public boolean f34767c = true;
-    public int d = 0;
-    public int e;
-    public boolean f34768f;
-    public int f34769g;
-    public final xn h;
+import java.util.ArrayList;
+import java.util.Collections;
+public final class kn extends View {
+    public final ArrayList f35075a;
+    public final ArrayList f35076b;
+    public final wn f35077c;
 
-    public kn(xn xnVar) {
-        this.h = xnVar;
+    public kn(wn wnVar, Context context) {
+        super(context);
+        this.f35077c = wnVar;
+        this.f35075a = new ArrayList();
+        this.f35076b = new ArrayList();
     }
 
-    @Override
     public final void a() {
-        MessageObject messageObject = this.f34765a;
-        xn xnVar = this.h;
-        if (messageObject != null) {
-            xnVar.A0.T();
-            int indexOf = xnVar.f39563u6.indexOf(this.f34765a) + xnVar.A0.J;
-            if (indexOf >= 0) {
-                xnVar.f39621z0.i1(indexOf, (int) ((this.e + this.f34769g) - xnVar.f39541s9), this.f34768f);
+        ArrayList arrayList = this.f35075a;
+        arrayList.clear();
+        wn wnVar = this.f35077c;
+        arrayList.add(wnVar.K1);
+        arrayList.add(wnVar.f39680x0);
+        arrayList.add(wnVar.X);
+        arrayList.add(wnVar.K3);
+        arrayList.add(wnVar.I1);
+        arrayList.add(wnVar.X2);
+        arrayList.add(wnVar.Y);
+        arrayList.add(wnVar.f39506j1);
+        arrayList.add(wnVar.S);
+        arrayList.add(wnVar.R1);
+        arrayList.removeAll(Collections.singleton(null));
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        wn wnVar = this.f35077c;
+        wnVar.f39600qc = true;
+        ArrayList arrayList = this.f35076b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((View) obj).setVisibility(0);
+        }
+        arrayList.clear();
+        wnVar.f39600qc = false;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        a();
+        wn wnVar = this.f35077c;
+        wnVar.f39600qc = true;
+        ArrayList arrayList = this.f35075a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            View view = (View) obj;
+            if (view.getVisibility() == 0) {
+                view.setVisibility(8);
+                this.f35076b.add(view);
             }
-        } else {
-            xnVar.A0.T();
-            xnVar.f39621z0.i1(this.f34766b, this.d, this.f34767c);
         }
-        this.f34765a = null;
-        xnVar.f39459m3 = true;
-        xnVar.Wc(false);
-        AndroidUtilities.runOnUIThread(new aj(this, 8));
+        wnVar.f39600qc = false;
     }
 
     @Override
-    public final void c() {
-        xn xnVar = this.h;
-        xnVar.I9 = xnVar.getNotificationCenter().setAnimationInProgress(xnVar.I9, xn.Mc);
-        sk skVar = xnVar.f39593wa;
-        if (skVar.f34262n) {
-            skVar.d();
-        }
-    }
-
-    @Override
-    public final void d(View view) {
-        if (view instanceof org.telegram.ui.Cells.t1) {
-            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
-            t1Var.setDelegate(null);
-            t1Var.setResourcesProvider(null);
+    public void setTranslationX(float f7) {
+        super.setTranslationX(f7);
+        a();
+        ArrayList arrayList = this.f35075a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            View view = (View) obj;
+            if (view != null) {
+                view.setTranslationX(f7);
+            }
         }
     }
 }

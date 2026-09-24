@@ -1,9 +1,15 @@
 package l;
 
-import android.graphics.Point;
-import android.view.Display;
-public abstract class u {
-    public static void a(Display display, Point point) {
-        display.getRealSize(point);
+import android.widget.PopupWindow;
+public final class u implements PopupWindow.OnDismissListener {
+    public final w f13997a;
+
+    public u(w wVar) {
+        this.f13997a = wVar;
+    }
+
+    @Override
+    public final void onDismiss() {
+        this.f13997a.c();
     }
 }

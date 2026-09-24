@@ -1,73 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.AsyncTask;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-public final class n71 extends AsyncTask {
-    public int f26366a = 0;
-    public final Paint f26367b = new Paint(3);
-    public final q71 f26368c;
+import android.net.Uri;
+import java.util.Map;
+import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
+public final class n71 implements g2.h {
+    public final g2.h f26657a;
+    public final long f26658b;
 
-    public n71(q71 q71Var) {
-        this.f26368c = q71Var;
+    public n71(ExtendedDefaultDataSource extendedDefaultDataSource, long j3) {
+        this.f26657a = extendedDefaultDataSource;
+        this.f26658b = j3;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        q71 q71Var = this.f26368c;
-        this.f26366a = ((Integer[]) objArr)[0].intValue();
-        Bitmap bitmap = null;
-        if (!isCancelled()) {
-            try {
-                Bitmap frameAtTime = q71Var.f27266y.getFrameAtTime(q71Var.H * this.f26366a * 1000, 2);
-                try {
-                    if (!isCancelled()) {
-                        if (frameAtTime != null) {
-                            Bitmap createBitmap = Bitmap.createBitmap(q71Var.I, q71Var.J, frameAtTime.getConfig());
-                            Canvas canvas = new Canvas(createBitmap);
-                            float max = Math.max(q71Var.I / frameAtTime.getWidth(), q71Var.J / frameAtTime.getHeight());
-                            int width = (int) (frameAtTime.getWidth() * max);
-                            int height = (int) (frameAtTime.getHeight() * max);
-                            Rect rect = new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight());
-                            int i10 = q71Var.I;
-                            int i11 = q71Var.J;
-                            canvas.drawBitmap(frameAtTime, rect, new Rect((i10 - width) / 2, (i11 - height) / 2, (i10 + width) / 2, (i11 + height) / 2), this.f26367b);
-                            frameAtTime.recycle();
-                            return createBitmap;
-                        }
-                        return frameAtTime;
-                    }
-                } catch (Exception e) {
-                    e = e;
-                    bitmap = frameAtTime;
-                    FileLog.e(e);
-                    return bitmap;
-                }
-            } catch (Exception e7) {
-                e = e7;
-            }
-        }
-        return null;
+    public final void addTransferListener(g2.c0 c0Var) {
+        this.f26657a.addTransferListener(c0Var);
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        if (!isCancelled()) {
-            q71 q71Var = this.f26368c;
-            ArrayList arrayList = q71Var.F;
-            ?? obj2 = new Object();
-            obj2.f26676a = bitmap;
-            arrayList.add(obj2);
-            q71Var.invalidate();
-            int i10 = this.f26366a;
-            if (i10 < q71Var.K) {
-                q71Var.d(i10 + 1);
-            }
-        }
+    public final void close() {
+        this.f26657a.close();
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        return this.f26657a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.f26657a.getUri();
+    }
+
+    @Override
+    public final long open(g2.m mVar) {
+        g2.l a2 = mVar.a();
+        a2.f9357b = mVar.e + this.f26658b;
+        return this.f26657a.open(a2.d());
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        return this.f26657a.read(bArr, i10, i11);
     }
 }

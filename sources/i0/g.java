@@ -17,9 +17,9 @@ import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.List;
-import v7.h8;
 import v7.i8;
-public final class g extends h8 {
+import v7.j8;
+public final class g extends i8 {
     public static final Class f10587a;
     public static final Constructor f10588b;
     public static final Method f10589c;
@@ -79,12 +79,12 @@ public final class g extends h8 {
             obj = null;
         }
         if (obj != null) {
-            for (h0.f fVar : eVar.f10037a) {
-                int i11 = fVar.f10041f;
-                File d10 = i8.d(context);
+            for (h0.f fVar : eVar.f10036a) {
+                int i11 = fVar.f10040f;
+                File d10 = j8.d(context);
                 if (d10 != null) {
                     try {
-                        if (i8.b(d10, resources, i11)) {
+                        if (j8.b(d10, resources, i11)) {
                             try {
                                 fileInputStream = new FileInputStream(d10);
                             } catch (IOException unused2) {
@@ -94,7 +94,7 @@ public final class g extends h8 {
                                 FileChannel channel = fileInputStream.getChannel();
                                 mappedByteBuffer = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
                                 fileInputStream.close();
-                                if (mappedByteBuffer != null && g(obj, mappedByteBuffer, fVar.e, fVar.f10039b, fVar.f10040c)) {
+                                if (mappedByteBuffer != null && g(obj, mappedByteBuffer, fVar.e, fVar.f10038b, fVar.f10039c)) {
                                 }
                             } finally {
                                 break;
@@ -128,13 +128,13 @@ public final class g extends h8 {
             while (true) {
                 if (i11 < length) {
                     o0.i iVar = iVarArr[i11];
-                    Uri uri = iVar.f15293a;
+                    Uri uri = iVar.f15485a;
                     ByteBuffer byteBuffer = (ByteBuffer) mVar.get(uri);
                     if (byteBuffer == null) {
-                        byteBuffer = i8.e(context, uri);
+                        byteBuffer = j8.e(context, uri);
                         mVar.put(uri, byteBuffer);
                     }
-                    if (byteBuffer == null || !g(obj, byteBuffer, iVar.f15294b, iVar.f15295c, iVar.d)) {
+                    if (byteBuffer == null || !g(obj, byteBuffer, iVar.f15486b, iVar.f15487c, iVar.d)) {
                         break;
                     }
                     i11++;

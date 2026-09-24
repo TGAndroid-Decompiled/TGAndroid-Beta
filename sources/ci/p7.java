@@ -34,10 +34,10 @@ public final class p7 implements Utilities.Callback {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
+                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj;
                 s7 s7Var2 = this.f5300b.E;
-                if (s7Var2 != null || n2Var == null) {
-                    s7Var2.c(n2Var);
+                if (s7Var2 != null || m2Var == null) {
+                    s7Var2.c(m2Var);
                     return;
                 }
                 return;

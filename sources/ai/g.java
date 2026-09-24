@@ -15,21 +15,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.al0;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.mr0;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.oa0;
 import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wi;
+import org.telegram.ui.Components.xr0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.dy;
-import org.telegram.ui.ix;
+import org.telegram.ui.cy;
+import org.telegram.ui.hx;
+import org.telegram.ui.py;
 import org.telegram.ui.qy;
-import org.telegram.ui.ry;
-import org.telegram.ui.tt0;
-import org.telegram.ui.xn;
-import org.telegram.ui.yw;
-public final class g implements al0 {
+import org.telegram.ui.st0;
+import org.telegram.ui.wn;
+import org.telegram.ui.xw;
+public final class g implements kl0 {
     public final int f887a;
     public final Object f888b;
 
@@ -45,37 +45,36 @@ public final class g implements al0 {
         TLRPC.BotInlineResult botInlineResult;
         TLRPC.Document document2;
         long longValue;
-        int i12;
         org.telegram.ui.Components.q5 q5Var;
         org.telegram.ui.ActionBar.k kVar;
         Object O;
-        h51 G;
+        v51 G;
         long j3;
         switch (this.f887a) {
             case 0:
-                ((ix) this.f888b).i((a0) view, false);
+                ((hx) this.f888b).i((a0) view, false);
                 return;
             case 1:
                 bi.u uVar = (bi.u) this.f888b;
-                mr0 mr0Var = uVar.W;
-                org.telegram.ui.ActionBar.n2 n2Var = mr0Var.f3599a;
+                xr0 xr0Var = uVar.W;
+                org.telegram.ui.ActionBar.m2 m2Var = xr0Var.f3599a;
                 if (view instanceof org.telegram.ui.Cells.t7) {
                     MessageObject messageObject = ((org.telegram.ui.Cells.t7) view).getMessageObject();
-                    if (mr0Var.G.C1) {
-                        if (mr0Var.c(messageObject)) {
-                            mr0Var.g(messageObject);
+                    if (xr0Var.G.C1) {
+                        if (xr0Var.c(messageObject)) {
+                            xr0Var.g(messageObject);
                             return;
                         } else {
-                            mr0Var.e(messageObject);
+                            xr0Var.e(messageObject);
                             return;
                         }
                     }
-                    jc orCreateStoryViewer = n2Var.getOrCreateStoryViewer();
+                    jc orCreateStoryViewer = m2Var.getOrCreateStoryViewer();
                     Context context = uVar.getContext();
                     int id2 = messageObject.getId();
                     u8 u8Var = uVar.f3583a;
                     u9 a2 = u9.a(uVar.f3586f);
-                    if ((n2Var instanceof ProfileActivity) && ((ProfileActivity) n2Var).f31336s1) {
+                    if ((m2Var instanceof ProfileActivity) && ((ProfileActivity) m2Var).f31637s1) {
                         i11 = AndroidUtilities.dp(68.0f);
                     } else {
                         i11 = 0;
@@ -117,7 +116,7 @@ public final class g implements al0 {
                 ci.d2 d2Var = e2Var.f4595c;
                 if (i10 >= 0) {
                     e2Var.d.getClass();
-                    if (RecyclerView.U(view).f42630f != 4) {
+                    if (RecyclerView.U(view).f42949f != 4) {
                         ArrayList arrayList = d2Var.f4506s;
                         ArrayList arrayList2 = d2Var.v;
                         if (i10 >= arrayList.size()) {
@@ -142,13 +141,12 @@ public final class g implements al0 {
                             document2 = q5Var.e;
                         }
                         if (document2 == null && longValue != 0) {
-                            i12 = ((org.telegram.ui.ActionBar.f3) s2Var2).currentAccount;
-                            document2 = org.telegram.ui.Components.q5.f(i12, longValue);
+                            document2 = org.telegram.ui.Components.q5.f(ci.s2.X(s2Var2), longValue);
                         }
                         if (document2 != null) {
                             Utilities.Callback3Return callback3Return2 = s2Var2.f5480y;
                             if (callback3Return2 != null) {
-                                callback3Return2.run(d2Var.f4503f.get(Long.valueOf(document2.f18089id)), document2, Boolean.FALSE);
+                                callback3Return2.run(d2Var.f4503f.get(Long.valueOf(document2.f18327id)), document2, Boolean.FALSE);
                             }
                             s2Var2.dismiss();
                             return;
@@ -161,14 +159,14 @@ public final class g implements al0 {
             case 5:
                 ci.nb nbVar = (ci.nb) this.f888b;
                 pg.k0 k0Var = (pg.k0) pg.k0.c().get(i10);
-                nbVar.l1.setTypeface(k0Var.f40841a);
-                pg.t0 e = pg.t0.e(nbVar.F1);
-                String str = k0Var.f40841a;
-                e.f40958j = str;
-                e.f40952a.edit().putString("typeface", str).apply();
+                nbVar.l1.setTypeface(k0Var.f41143a);
+                pg.u0 e = pg.u0.e(nbVar.F1);
+                String str = k0Var.f41143a;
+                e.f41266j = str;
+                e.f41260a.edit().putString("typeface", str).apply();
                 qg.j jVar = nbVar.J0;
-                if (jVar instanceof qg.x2) {
-                    ((qg.x2) jVar).setTypeface(k0Var);
+                if (jVar instanceof qg.v2) {
+                    ((qg.v2) jVar).setTypeface(k0Var);
                 }
                 nbVar.P0(false);
                 return;
@@ -176,9 +174,9 @@ public final class g implements al0 {
                 di.i.x0((di.i) this.f888b, i10);
                 return;
             case 7:
-                v51 v51Var = ((di.h) this.f888b).f7741b0;
-                if (v51Var != null) {
-                    v51Var.G(i10 - 1);
+                j61 j61Var = ((di.h) this.f888b).f7740b0;
+                if (j61Var != null) {
+                    j61Var.G(i10 - 1);
                     return;
                 }
                 return;
@@ -190,28 +188,28 @@ public final class g implements al0 {
                 if (view instanceof org.telegram.ui.Cells.n4) {
                     org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
                     if (n4Var.E) {
-                        dy dyVar = i0Var.U;
-                        if (dyVar != null) {
-                            dyVar.f32739a.N4(n4Var.getDialogId(), view);
+                        cy cyVar = i0Var.U;
+                        if (cyVar != null) {
+                            cyVar.f32801a.N4(n4Var.getDialogId(), view);
                             return;
                         }
                         return;
                     }
                 }
-                dy dyVar2 = i0Var.U;
-                if (dyVar2 != null) {
-                    ry ryVar = dyVar2.f32739a;
+                cy cyVar2 = i0Var.U;
+                if (cyVar2 != null) {
+                    qy qyVar = cyVar2.f32801a;
                     long longValue2 = ((Long) view.getTag()).longValue();
-                    if (ryVar.f37014l2) {
-                        if (ryVar.h5(longValue2)) {
-                            if (!ryVar.I2.isEmpty()) {
-                                ryVar.P3(longValue2, ryVar.i3(longValue2, null));
-                                ryVar.a5();
-                                kVar = ((org.telegram.ui.ActionBar.n2) ryVar).actionBar;
+                    if (qyVar.f37057l2) {
+                        if (qyVar.h5(longValue2)) {
+                            if (!qyVar.I2.isEmpty()) {
+                                qyVar.P3(longValue2, qyVar.i3(longValue2, null));
+                                qyVar.a5();
+                                kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
                                 kVar.h(true);
                                 return;
                             }
-                            ryVar.O3(longValue2, 0L, true, null);
+                            qyVar.O3(longValue2, 0L, true, null);
                             return;
                         }
                         return;
@@ -222,30 +220,30 @@ public final class g implements al0 {
                     } else {
                         bundle.putLong("chat_id", -longValue2);
                     }
-                    ryVar.J3();
-                    if (AndroidUtilities.isTablet() && ryVar.f36978e0 != null) {
-                        int i13 = 0;
+                    qyVar.J3();
+                    if (AndroidUtilities.isTablet() && qyVar.f37021e0 != null) {
+                        int i12 = 0;
                         while (true) {
-                            qy[] qyVarArr = ryVar.f36978e0;
-                            if (i13 < qyVarArr.length) {
-                                yw ywVar = qyVarArr[i13].d;
-                                ryVar.f37033p2.dialogId = longValue2;
-                                ywVar.f9840s = longValue2;
-                                i13++;
+                            py[] pyVarArr = qyVar.f37021e0;
+                            if (i12 < pyVarArr.length) {
+                                xw xwVar = pyVarArr[i12].d;
+                                qyVar.f37076p2.dialogId = longValue2;
+                                xwVar.f9839s = longValue2;
+                                i12++;
                             } else {
-                                ryVar.g5(MessagesController.UPDATE_MASK_SELECT_DIALOG, true);
+                                qyVar.g5(MessagesController.UPDATE_MASK_SELECT_DIALOG, true);
                             }
                         }
                     }
-                    if (ryVar.f37023n2 != null) {
-                        if (ryVar.getMessagesController().checkCanOpenChat(bundle, ryVar)) {
-                            ryVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                            ryVar.presentFragment(new xn(bundle));
+                    if (qyVar.f37066n2 != null) {
+                        if (qyVar.getMessagesController().checkCanOpenChat(bundle, qyVar)) {
+                            qyVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+                            qyVar.presentFragment(new wn(bundle));
                             return;
                         }
                         return;
-                    } else if (ryVar.getMessagesController().checkCanOpenChat(bundle, ryVar)) {
-                        ryVar.presentFragment(new xn(bundle));
+                    } else if (qyVar.getMessagesController().checkCanOpenChat(bundle, qyVar)) {
+                        qyVar.presentFragment(new wn(bundle));
                         return;
                     } else {
                         return;
@@ -255,14 +253,14 @@ public final class g implements al0 {
             case 10:
                 hg.k0 k0Var2 = (hg.k0) this.f888b;
                 hg.h0 h0Var = k0Var2.f10314x;
-                wi wiVar = k0Var2.f26744b;
+                wi wiVar = k0Var2.f27083b;
                 s4.h0 adapter = k0Var2.f10312s.getAdapter();
                 hg.i0 i0Var2 = k0Var2.f10315y;
                 if (adapter == i0Var2) {
                     ArrayList arrayList3 = i0Var2.d;
-                    int i14 = i10 - 1;
-                    if (i14 >= 0 && i14 < arrayList3.size()) {
-                        O = arrayList3.get(i14);
+                    int i13 = i10 - 1;
+                    if (i13 >= 0 && i13 < arrayList3.size()) {
+                        O = arrayList3.get(i13);
                     } else {
                         O = null;
                     }
@@ -277,8 +275,8 @@ public final class g implements al0 {
                 }
                 if (O instanceof hg.b2) {
                     if (!UserConfig.getInstance(wiVar.J1).isPremium()) {
-                        if (wiVar.f29665f0 != null) {
-                            new rg.x0(wiVar.f29665f0, k0Var2.getContext(), wiVar.J1, true, 31, false, null).show();
+                        if (wiVar.f29985f0 != null) {
+                            new rg.x0(wiVar.f29985f0, k0Var2.getContext(), wiVar.J1, true, 31, false, null).show();
                             return;
                         }
                         return;
@@ -290,21 +288,21 @@ public final class g implements al0 {
                 return;
             case 11:
                 hg.m0 m0Var = (hg.m0) this.f888b;
-                h51 G2 = m0Var.f10340d0.G(i10 - 1);
+                v51 G2 = m0Var.f10340d0.G(i10 - 1);
                 if (G2 != null) {
                     hg.c0 c0Var = m0Var.Z;
                     if (!c0Var.h(G2)) {
-                        int i15 = G2.d;
-                        int i16 = hg.m0.f10335g0;
-                        if (i15 == -1) {
+                        int i14 = G2.d;
+                        int i15 = hg.m0.f10335g0;
+                        if (i14 == -1) {
                             m0Var.f10341e0 = true;
                             c0Var.h = true;
                             m0Var.f10340d0.N(true);
                             m0Var.T(true);
                             return;
                         }
-                        int i17 = hg.m0.f10336h0;
-                        if (i15 == -2) {
+                        int i16 = hg.m0.f10336h0;
+                        if (i14 == -2) {
                             m0Var.f10341e0 = false;
                             c0Var.h = false;
                             m0Var.f10340d0.N(true);
@@ -318,11 +316,11 @@ public final class g implements al0 {
                 return;
             case 12:
                 hi.b bVar = (hi.b) this.f888b;
-                int i18 = bVar.X.G(i10 - 1).d;
-                if (i18 == 151) {
+                int i17 = bVar.X.G(i10 - 1).d;
+                if (i17 == 151) {
                     bVar.Q(false);
                     return;
-                } else if (i18 == 150) {
+                } else if (i17 == 150) {
                     bVar.Q(true);
                     return;
                 } else {
@@ -330,7 +328,7 @@ public final class g implements al0 {
                 }
             case 13:
                 mg.i iVar = (mg.i) this.f888b;
-                Runnable runnable = ((mg.a) iVar.E.get(i10)).f14780c;
+                Runnable runnable = ((mg.a) iVar.E.get(i10)).f15015c;
                 if (runnable != null) {
                     runnable.run();
                     iVar.c(false);
@@ -338,25 +336,25 @@ public final class g implements al0 {
                 }
                 return;
             case 14:
-                tt0 tt0Var = (tt0) this.f888b;
+                st0 st0Var = (st0) this.f888b;
                 pg.k0 k0Var3 = (pg.k0) pg.k0.c().get(i10);
-                tt0Var.f41499u1.setTypeface(k0Var3.f40841a);
-                pg.t0 e7 = pg.t0.e(tt0Var.P1);
-                String str2 = k0Var3.f40841a;
-                e7.f40958j = str2;
-                e7.f40952a.edit().putString("typeface", str2).apply();
-                qg.j jVar2 = tt0Var.S0;
-                if (jVar2 instanceof qg.x2) {
-                    ((qg.x2) jVar2).setTypeface(k0Var3);
+                st0Var.f41788u1.setTypeface(k0Var3.f41143a);
+                pg.u0 e7 = pg.u0.e(st0Var.P1);
+                String str2 = k0Var3.f41143a;
+                e7.f41266j = str2;
+                e7.f41260a.edit().putString("typeface", str2).apply();
+                qg.j jVar2 = st0Var.S0;
+                if (jVar2 instanceof qg.v2) {
+                    ((qg.v2) jVar2).setTypeface(k0Var3);
                 }
-                tt0Var.A0(false);
+                st0Var.A0(false);
                 return;
             case 15:
-                qg.l1 l1Var = (qg.l1) this.f888b;
-                l1Var.f41401b3.accept(Integer.valueOf(l1Var.f41400a3.b(i10)));
-                pg.t0 t0Var = l1Var.f41400a3;
-                t0Var.f40954c.put(Integer.valueOf(t0Var.f40955f), Integer.valueOf(t0Var.b(i10)));
-                t0Var.e = true;
+                qg.j1 j1Var = (qg.j1) this.f888b;
+                j1Var.f41691b3.accept(Integer.valueOf(j1Var.f41690a3.b(i10)));
+                pg.u0 u0Var = j1Var.f41690a3;
+                u0Var.f41262c.put(Integer.valueOf(u0Var.f41263f), Integer.valueOf(u0Var.b(i10)));
+                u0Var.e = true;
                 return;
             case 16:
                 rg.j0.W((rg.j0) this.f888b, view);
@@ -365,31 +363,31 @@ public final class g implements al0 {
                 rg.s0 s0Var = (rg.s0) this.f888b;
                 if (view != null) {
                     s0Var.w1(view, true);
-                    s0Var.f42359d3 = false;
+                    s0Var.f42678d3 = false;
                     s0Var.v0(0, view.getTop() - ((s0Var.getMeasuredHeight() - view.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                     return;
                 }
                 return;
             case 18:
-                ((da0) this.f888b).h(view);
+                ((oa0) this.f888b).h(view);
                 return;
             case 19:
                 ((wh.n) this.f888b).h(view);
                 return;
             case 20:
                 xh.m4 m4Var = (xh.m4) this.f888b;
-                ci.d dVar = m4Var.f45967c0;
+                ci.d dVar = m4Var.f46281c0;
                 HashSet hashSet = m4Var.Z;
-                v51 v51Var2 = m4Var.f45969e0;
-                if (v51Var2 != null && (G = v51Var2.G(i10 - 1)) != null) {
+                j61 j61Var2 = m4Var.f46283e0;
+                if (j61Var2 != null && (G = j61Var2.G(i10 - 1)) != null) {
                     Object obj = G.G;
                     if (obj instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                        int i19 = savedStarGift.msg_id;
-                        if (i19 == 0) {
+                        int i18 = savedStarGift.msg_id;
+                        if (i18 == 0) {
                             j3 = savedStarGift.saved_id;
                         } else {
-                            j3 = i19;
+                            j3 = i18;
                         }
                         boolean z10 = false;
                         if (hashSet.contains(Long.valueOf(j3))) {

@@ -2,17 +2,16 @@ package zg;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.gk0;
-import org.telegram.ui.xn;
-import w7.x5;
-import yh.e2;
+import org.telegram.ui.Components.qk0;
+import org.telegram.ui.wn;
+import w7.y5;
 public final class r implements Runnable {
-    public final int f49108a;
-    public final t f49109b;
+    public final int f49424a;
+    public final t f49425b;
 
     public r(t tVar, int i10) {
-        this.f49108a = i10;
-        this.f49109b = tVar;
+        this.f49424a = i10;
+        this.f49425b = tVar;
     }
 
     @Override
@@ -20,18 +19,18 @@ public final class r implements Runnable {
         boolean z10;
         int i10;
         int i11;
-        switch (this.f49108a) {
+        switch (this.f49424a) {
             case 0:
-                this.f49109b.c(true);
+                this.f49425b.c(true);
                 return;
             default:
-                t tVar = this.f49109b;
+                t tVar = this.f49425b;
                 tVar.e = tVar.b();
-                int i12 = tVar.f49115f;
+                int i12 = tVar.f49431f;
                 int i13 = tVar.h;
-                xn xnVar = tVar.f49112a;
-                if (tVar.f49113b == null) {
-                    if (xnVar.getUserConfig().getClientUserId() == xnVar.a()) {
+                wn wnVar = tVar.f49428a;
+                if (tVar.f49429b == null) {
+                    if (wnVar.getUserConfig().getClientUserId() == wnVar.a()) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -41,11 +40,11 @@ public final class r implements Runnable {
                     } else {
                         i10 = 0;
                     }
-                    xn xnVar2 = tVar.f49112a;
-                    ?? gk0Var = new gk0(i10, xnVar.getCurrentAccount(), tVar.getContext(), xnVar2, xnVar.getResourceProvider());
-                    gk0Var.l1 = 1.0f;
-                    gk0Var.setWillNotDraw(false);
-                    tVar.f49113b = gk0Var;
+                    wn wnVar2 = tVar.f49428a;
+                    ?? qk0Var = new qk0(i10, wnVar.getCurrentAccount(), tVar.getContext(), wnVar2, wnVar.getResourceProvider());
+                    qk0Var.l1 = 1.0f;
+                    qk0Var.setWillNotDraw(false);
+                    tVar.f49429b = qk0Var;
                     int dp = AndroidUtilities.dp(4.0f);
                     if (LocaleController.isRTL) {
                         i11 = 0;
@@ -58,21 +57,21 @@ public final class r implements Runnable {
                     if (!LocaleController.isRTL) {
                         i13 = 0;
                     }
-                    gk0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
-                    tVar.f49113b.setDelegate(new e2(tVar));
-                    tVar.f49113b.setClipChildren(false);
-                    tVar.f49113b.setClipToPadding(false);
-                    tVar.addView(tVar.f49113b, x5.e(-2, i12 + 70, 5));
+                    qk0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    tVar.f49429b.setDelegate(new n2.e(tVar, 28));
+                    tVar.f49429b.setClipChildren(false);
+                    tVar.f49429b.setClipToPadding(false);
+                    tVar.addView(tVar.f49429b, y5.e(-2, i12 + 70, 5));
                 }
                 tVar.c(false);
-                if (tVar.f49113b.isEnabled()) {
-                    tVar.f49120x = true;
-                    tVar.f49113b.p(tVar.e, xnVar.Z7, true);
-                    tVar.f49113b.r(false);
+                if (tVar.f49429b.isEnabled()) {
+                    tVar.f49436x = true;
+                    tVar.f49429b.p(tVar.e, wnVar.Z7, true);
+                    tVar.f49429b.r(false);
                     return;
                 }
-                tVar.f49120x = false;
-                tVar.f49113b.setTransitionProgress(1.0f);
+                tVar.f49436x = false;
+                tVar.f49429b.setTransitionProgress(1.0f);
                 return;
         }
     }

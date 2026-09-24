@@ -1,101 +1,40 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.h9;
-public final class a3 extends View {
-    public final m3 f46875a;
-    public final ImageReceiver f46876b;
-    public final Path f46877c;
-    public final Paint d;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class a3 {
+    public final zf.b f47189a;
+    public final TLRPC.TL_payments_paymentFormStarGift f47190b;
+    public final zf.a f47191c;
 
-    public a3(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
-        super(context);
-        Path path = new Path();
-        this.f46877c = path;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        m3 m3Var = new m3(this, starGift, 60, 0.27f);
-        this.f46875a = m3Var;
-        m3Var.f47407t = 3;
-        h9 h9Var = new h9((org.telegram.ui.ActionBar.d6) null);
-        h9Var.p(tLObject);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f46876b = imageReceiver;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
-        imageReceiver.setForUserOrChat(tLObject, h9Var);
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.E6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        path.rewind();
-        path.moveTo(0.0f, -AndroidUtilities.dp(8.0f));
-        path.lineTo(AndroidUtilities.dp(6.166f), 0.0f);
-        path.lineTo(0.0f, AndroidUtilities.dp(8.0f));
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f46876b.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f46876b.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
-        int height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
-        m3 m3Var = this.f46875a;
-        m3Var.setBounds(width, height, AndroidUtilities.dp(60.0f) + width, AndroidUtilities.dp(60.0f) + height);
-        m3Var.draw(canvas);
-        canvas.save();
-        canvas.translate((getWidth() / 2.0f) - (AndroidUtilities.dp(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.f46877c, this.d);
-        canvas.restore();
-        ImageReceiver imageReceiver = this.f46876b;
-        imageReceiver.setImageCoords(AndroidUtilities.dp(96.0f) + width, height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
-        imageReceiver.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
-    }
-
-    public a3(Context context, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(context);
-        Path path = new Path();
-        this.f46877c = path;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        m3 m3Var = new m3(this, tL_starGiftUnique, 60, 0.27f);
-        this.f46875a = m3Var;
-        m3Var.f47407t = 3;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f46876b = imageReceiver;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
-        imageReceiver.setImageBitmap(org.telegram.ui.Cells.u6.a(60, "fragment"));
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.E6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.33f));
-        path.rewind();
-        path.moveTo(0.0f, -AndroidUtilities.dp(8.0f));
-        path.lineTo(AndroidUtilities.dp(6.166f), 0.0f);
-        path.lineTo(0.0f, AndroidUtilities.dp(8.0f));
+    public a3(zf.b bVar, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
+        long j3;
+        this.f47189a = bVar;
+        this.f47190b = tL_payments_paymentFormStarGift;
+        t5[][] t5VarArr = t5.S;
+        if (tL_payments_paymentFormStarGift != null) {
+            ArrayList<TLRPC.TL_labeledPrice> arrayList = tL_payments_paymentFormStarGift.invoice.prices;
+            int size = arrayList.size();
+            int i10 = 0;
+            j3 = 0;
+            while (i10 < size) {
+                TLRPC.TL_labeledPrice tL_labeledPrice = arrayList.get(i10);
+                i10++;
+                j3 += tL_labeledPrice.amount;
+            }
+        } else {
+            j3 = 0;
+        }
+        zf.b bVar2 = zf.b.f49216a;
+        if (bVar == bVar2) {
+            this.f47191c = zf.a.g(j3, bVar2);
+            return;
+        }
+        zf.b bVar3 = zf.b.f49217b;
+        if (bVar == bVar3) {
+            this.f47191c = zf.a.i(j3, bVar3);
+        } else {
+            this.f47191c = zf.a.i(0L, bVar2);
+        }
     }
 }

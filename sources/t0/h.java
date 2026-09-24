@@ -13,5 +13,5 @@ public interface h {
 
     Object l();
 
-    void p();
+    void o();
 }

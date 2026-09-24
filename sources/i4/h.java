@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import v7.p6;
+import v7.q6;
 public abstract class h {
     public static final Pattern f10974a = Pattern.compile("^(\\S+)\\s+-->\\s+(\\S+)((?:.|\\f)*)?$");
     public static final Pattern f10975b = Pattern.compile("(\\S+?):(\\S+)");
@@ -232,7 +232,7 @@ public abstract class h {
                     }
                     i14 = i12 | i13;
                 }
-                p6.a(new StyleSpan(i14), spannableStringBuilder, i15, length);
+                q6.a(new StyleSpan(i14), spannableStringBuilder, i15, length);
             } else {
                 i11 = 1;
             }
@@ -244,32 +244,32 @@ public abstract class h {
             }
             if (bVar.f10945g) {
                 if (bVar.f10945g) {
-                    p6.a(new ForegroundColorSpan(bVar.f10944f), spannableStringBuilder, i15, length);
+                    q6.a(new ForegroundColorSpan(bVar.f10944f), spannableStringBuilder, i15, length);
                 } else {
                     throw new IllegalStateException("Font color not defined");
                 }
             }
             if (bVar.f10946i) {
                 if (bVar.f10946i) {
-                    p6.a(new BackgroundColorSpan(bVar.h), spannableStringBuilder, i15, length);
+                    q6.a(new BackgroundColorSpan(bVar.h), spannableStringBuilder, i15, length);
                 } else {
                     throw new IllegalStateException("Background color not defined.");
                 }
             }
             if (bVar.e != null) {
-                p6.a(new TypefaceSpan(bVar.e), spannableStringBuilder, i15, length);
+                q6.a(new TypefaceSpan(bVar.e), spannableStringBuilder, i15, length);
             }
             int i25 = bVar.f10951n;
             if (i25 != 1) {
                 if (i25 != 2) {
                     if (i25 == 3) {
-                        p6.a(new RelativeSizeSpan(bVar.f10952o / 100.0f), spannableStringBuilder, i15, length);
+                        q6.a(new RelativeSizeSpan(bVar.f10952o / 100.0f), spannableStringBuilder, i15, length);
                     }
                 } else {
-                    p6.a(new RelativeSizeSpan(bVar.f10952o), spannableStringBuilder, i15, length);
+                    q6.a(new RelativeSizeSpan(bVar.f10952o), spannableStringBuilder, i15, length);
                 }
             } else {
-                p6.a(new AbsoluteSizeSpan((int) bVar.f10952o, true), spannableStringBuilder, i15, length);
+                q6.a(new AbsoluteSizeSpan((int) bVar.f10952o, true), spannableStringBuilder, i15, length);
             }
             if (bVar.f10954q) {
                 spannableStringBuilder.setSpan(new Object(), i15, length, 33);
@@ -400,7 +400,7 @@ public abstract class h {
                             if (!substring.trim().isEmpty()) {
                                 String trim = substring.trim();
                                 e2.d.b(!trim.isEmpty());
-                                String str4 = d0.f7871a;
+                                String str4 = d0.f7870a;
                                 String str5 = trim.split("[ \\.]", 2)[0];
                                 str5.getClass();
                                 switch (str5.hashCode()) {

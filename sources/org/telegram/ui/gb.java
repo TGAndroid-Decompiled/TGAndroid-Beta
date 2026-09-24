@@ -4,20 +4,20 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class gb extends mu0 {
-    public final ub f33503a;
+public final class gb extends lu0 {
+    public final ub f33866a;
 
     public gb(ub ubVar) {
-        this.f33503a = ubVar;
+        this.f33866a = ubVar;
     }
 
     @Override
-    public final wu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Cells.w0 w0Var;
         MessageObject messageObject2;
-        org.telegram.ui.Cells.t1 t1Var;
+        org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject3;
-        ub ubVar = this.f33503a;
+        ub ubVar = this.f33866a;
         int childCount = ubVar.v.getChildCount();
         int i11 = 0;
         while (true) {
@@ -26,9 +26,9 @@ public final class gb extends mu0 {
                 return null;
             }
             View childAt = ubVar.v.getChildAt(i11);
-            if (childAt instanceof org.telegram.ui.Cells.t1) {
-                if (messageObject != null && (messageObject3 = (t1Var = (org.telegram.ui.Cells.t1) childAt).getMessageObject()) != null && messageObject3.getId() == messageObject.getId()) {
-                    imageReceiver = t1Var.getPhotoImage();
+            if (childAt instanceof org.telegram.ui.Cells.u1) {
+                if (messageObject != null && (messageObject3 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && messageObject3.getId() == messageObject.getId()) {
+                    imageReceiver = u1Var.getPhotoImage();
                 }
             } else if ((childAt instanceof org.telegram.ui.Cells.w0) && (messageObject2 = (w0Var = (org.telegram.ui.Cells.w0) childAt).getMessageObject()) != null) {
                 if (messageObject != null) {
@@ -53,15 +53,15 @@ public final class gb extends mu0 {
             if (imageReceiver != null) {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
-                wu0 wu0Var = new wu0();
-                wu0Var.f39095b = iArr[0];
-                wu0Var.f39096c = iArr[1];
-                wu0Var.d = ubVar.v;
-                wu0Var.f39094a = imageReceiver;
-                wu0Var.e = imageReceiver.getBitmapSafe();
-                wu0Var.h = imageReceiver.getRoundRadius(true);
-                wu0Var.f39102l = true;
-                return wu0Var;
+                vu0 vu0Var = new vu0();
+                vu0Var.f38805b = iArr[0];
+                vu0Var.f38806c = iArr[1];
+                vu0Var.d = ubVar.v;
+                vu0Var.f38804a = imageReceiver;
+                vu0Var.e = imageReceiver.getBitmapSafe();
+                vu0Var.h = imageReceiver.getRoundRadius(true);
+                vu0Var.f38812l = true;
+                return vu0Var;
             }
             i11++;
         }

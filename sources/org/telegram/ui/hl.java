@@ -1,81 +1,143 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class hl extends FrameLayout {
-    public float f33880a;
-    public float f33881b;
-    public final xn f33882c;
+import android.view.accessibility.AccessibilityNodeInfo;
+import java.util.concurrent.atomic.AtomicReference;
+public final class hl extends org.telegram.ui.ActionBar.h5 {
+    public final int M0;
+    public final Object N0;
 
-    public hl(xn xnVar, Activity activity) {
-        super(activity);
-        this.f33882c = xnVar;
-        setOnLongClickListener(new v(this, 2));
+    public hl(Object obj, Context context, int i10) {
+        super(context);
+        this.M0 = i10;
+        this.N0 = obj;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        xn xnVar = this.f33882c;
-        if (view == xnVar.f39623z2) {
-            canvas.save();
-            canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
+    public boolean k(CharSequence charSequence) {
+        org.telegram.ui.ActionBar.h5 h5Var;
+        switch (this.M0) {
+            case 1:
+                AtomicReference atomicReference = (AtomicReference) this.N0;
+                if (atomicReference != null && (h5Var = (org.telegram.ui.ActionBar.h5) atomicReference.get()) != null) {
+                    h5Var.k(charSequence);
+                }
+                return l(charSequence, false);
+            default:
+                return super.k(charSequence);
         }
-        org.telegram.ui.ActionBar.i5[] i5VarArr = xnVar.D2;
-        if (view != i5VarArr[0] && view != i5VarArr[1]) {
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            if (view == xnVar.f39623z2) {
-                canvas.restore();
-            }
-            return drawChild;
-        }
-        canvas.save();
-        canvas.clipRect(0, 0, getMeasuredWidth() - AndroidUtilities.dp(38.0f), getMeasuredHeight());
-        boolean drawChild2 = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild2;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        xn xnVar = this.f33882c;
-        if (xnVar.A2) {
-            int i12 = 0;
-            while (true) {
-                AnimatorSet[] animatorSetArr = xnVar.H2;
-                if (i12 < animatorSetArr.length) {
-                    AnimatorSet animatorSet = animatorSetArr[i12];
-                    if (animatorSet != null) {
-                        animatorSet.start();
-                    }
-                    i12++;
-                } else {
-                    xnVar.A2 = false;
+    public void onAttachedToWindow() {
+        switch (this.M0) {
+            case 2:
+                super.onAttachedToWindow();
+                ((rp0) this.N0).f37429s.a();
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        switch (this.M0) {
+            case 2:
+                super.onDetachedFromWindow();
+                ((rp0) this.N0).f37429s.b();
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.M0) {
+            case 3:
+                int rightDrawableX = getRightDrawableX();
+                super.onDraw(canvas);
+                if (rightDrawableX != getRightDrawableX()) {
+                    ((ProfileActivity) this.N0).V4();
                     return;
                 }
-            }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f33880a = motionEvent.getY();
-        int action = motionEvent.getAction();
-        xn xnVar = this.f33882c;
-        if (action == 1) {
-            xnVar.finishPreviewFragment();
-        } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f33881b - this.f33880a;
-            xnVar.movePreviewFragment(f7);
-            if (f7 < 0.0f) {
-                this.f33881b = this.f33880a;
-            }
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.M0) {
+            case 3:
+                ProfileActivity profileActivity = (ProfileActivity) this.N0;
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                if (isFocusable()) {
+                    if (profileActivity.h != null || profileActivity.f31600n != null) {
+                        StringBuilder sb2 = new StringBuilder(getText());
+                        if (profileActivity.f31600n != null) {
+                            if (sb2.length() > 0) {
+                                sb2.append(", ");
+                            }
+                            sb2.append(profileActivity.f31600n);
+                        }
+                        if (profileActivity.h != null) {
+                            if (sb2.length() > 0) {
+                                sb2.append(", ");
+                            }
+                            sb2.append(profileActivity.h);
+                        }
+                        accessibilityNodeInfo.setText(sb2);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
         }
-        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        org.telegram.ui.ActionBar.h5 h5Var;
+        switch (this.M0) {
+            case 0:
+                super.setTranslationY(f7);
+                wn wnVar = (wn) this.N0;
+                if (this == wnVar.D2[0] && wnVar.H2[1] != null) {
+                    if (wnVar.O4 && f7 < 0.0f) {
+                        wnVar.f39707z2.setTranslationY(f7 / 2.0f);
+                        return;
+                    } else {
+                        wnVar.f39707z2.setTranslationY(0.0f);
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                AtomicReference atomicReference = (AtomicReference) this.N0;
+                if (atomicReference != null && (h5Var = (org.telegram.ui.ActionBar.h5) atomicReference.get()) != null) {
+                    h5Var.setTranslationY(f7);
+                }
+                super.setTranslationY(f7);
+                return;
+            default:
+                super.setTranslationY(f7);
+                return;
+        }
+    }
+
+    public hl(Context context, AtomicReference atomicReference) {
+        super(context);
+        this.M0 = 1;
+        this.N0 = atomicReference;
     }
 }

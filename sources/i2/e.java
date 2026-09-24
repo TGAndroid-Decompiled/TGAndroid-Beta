@@ -5,7 +5,7 @@ import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Looper;
 import com.google.android.gms.internal.vision.e2;
-import v7.v6;
+import v7.w6;
 public final class e {
     public final d9.i f10627a;
     public final Handler f10628b;
@@ -17,7 +17,7 @@ public final class e {
     public int e = 0;
 
     public e(Context context, Looper looper, p0 p0Var) {
-        this.f10627a = v6.a(new d(context, 0));
+        this.f10627a = w6.a(new d(context, 0));
         this.f10629c = p0Var;
         this.f10628b = new Handler(looper);
     }
@@ -35,7 +35,7 @@ public final class e {
             e2.z zVar = p0Var.f10832n;
             zVar.getClass();
             e2.y b10 = e2.z.b();
-            b10.f7924a = zVar.f7926a.obtainMessage(33, i10, 0);
+            b10.f7923a = zVar.f7925a.obtainMessage(33, i10, 0);
             b10.b();
         }
     }

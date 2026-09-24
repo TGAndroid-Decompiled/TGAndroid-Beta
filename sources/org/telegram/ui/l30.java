@@ -1,76 +1,224 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
+import android.os.Build;
+import android.view.View;
 import java.util.ArrayList;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
-public final class l30 extends org.telegram.ui.Components.bj0 {
-    public final f60 f34851r;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class l30 implements View.OnClickListener {
+    public final w5 f35179a = new w5(this, 5);
+    public final d60 f35180b;
 
-    public l30(f60 f60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f34851r = f60Var;
+    public l30(d60 d60Var) {
+        this.f35180b = d60Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName(Button.class.getName());
-        f60 f60Var = this.f34851r;
-        int i10 = f60Var.F1;
-        if (i10 != 0 && i10 != 1) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        accessibilityNodeInfo.setEnabled(z10);
-        if (f60Var.F1 == 1) {
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.VoipMute)));
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        f60 f60Var = this.f34851r;
-        s20 s20Var = f60Var.f33201y2;
-        ArrayList arrayList = f60Var.Z1;
-        if (f60Var.r1()) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (motionEvent.getAction() == 0 && f60Var.F1 == 0 && f60Var.f33099a1 != null) {
-            AndroidUtilities.runOnUIThread(s20Var, 300L);
-            f60Var.R1 = true;
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (f60Var.R1) {
-                AndroidUtilities.cancelRunOnUIThread(s20Var);
-                f60Var.R1 = false;
-            } else if (f60Var.S1) {
-                AndroidUtilities.cancelRunOnUIThread(f60Var.f33196x2);
-                f60Var.J1(0, true);
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().setMicMute(true, true, false);
+    public final void onClick(View view) {
+        org.telegram.ui.Components.j40 j40Var;
+        int i10;
+        TLObject chat;
+        LaunchActivity launchActivity;
+        d60 d60Var = this.f35180b;
+        j30 j30Var = d60Var.f33013x;
+        ArrayList arrayList = d60Var.f32982q0;
+        org.telegram.ui.Components.voip.w2 w2Var = d60Var.f33008w;
+        org.telegram.ui.Components.ij0 ij0Var = d60Var.K0;
+        AccountInstance accountInstance = d60Var.d;
+        if (d60Var.f32919a1 != null && d60Var.F1 != 3) {
+            int i11 = 6;
+            int i12 = 0;
+            if (d60Var.r1() && !d60Var.f32919a1.isScheduled()) {
+                v30 v30Var = d60Var.a2;
+                if (v30Var != null && v30Var.f29452b && (AndroidUtilities.isTablet() || d60.F3 == d60Var.q1())) {
+                    d60Var.e1(null);
+                    if (d60.F3) {
+                        AndroidUtilities.runOnUIThread(new c10(this, 5), 200L);
+                    }
+                    d60Var.f32952i0.setRequestedOrientation(-1);
+                    return;
+                } else if (!arrayList.isEmpty()) {
+                    ChatObject.VideoParticipant videoParticipant = (ChatObject.VideoParticipant) arrayList.get(0);
+                    if (AndroidUtilities.isTablet()) {
+                        d60Var.e1(videoParticipant);
+                        return;
+                    }
+                    if (d60.F3 == d60Var.q1()) {
+                        d60Var.e1(videoParticipant);
+                    }
+                    if (d60Var.q1()) {
+                        d60Var.f32952i0.setRequestedOrientation(6);
+                        return;
+                    } else {
+                        d60Var.f32952i0.setRequestedOrientation(1);
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            }
+            int i13 = d60Var.F1;
+            if (i13 == 5) {
+                if (!d60Var.H1) {
                     try {
-                        f60Var.f33188w.performHapticFeedback(3, 2);
+                        view.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
+                    d60Var.H1 = true;
+                    TL_phone.startScheduledGroupCall startscheduledgroupcall = new TL_phone.startScheduledGroupCall();
+                    startscheduledgroupcall.call = d60Var.f32919a1.getInputGroupCall();
+                    accountInstance.getConnectionsManager().sendRequest(startscheduledgroupcall, new RequestDelegate(this) {
+                        public final l30 f34907b;
+
+                        {
+                            this.f34907b = this;
+                        }
+
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            switch (r2) {
+                                case 0:
+                                    l30 l30Var = this.f34907b;
+                                    if (tLObject != null) {
+                                        l30Var.f35180b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                                        return;
+                                    } else {
+                                        l30Var.getClass();
+                                        return;
+                                    }
+                                default:
+                                    l30 l30Var2 = this.f34907b;
+                                    if (tLObject != null) {
+                                        l30Var2.f35180b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                                        return;
+                                    } else {
+                                        l30Var2.getClass();
+                                        return;
+                                    }
+                            }
+                        }
+                    });
                 }
-                arrayList.clear();
-                arrayList.addAll(f60Var.Y1);
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((org.telegram.ui.Components.voip.u) arrayList.get(i10)).j(true);
+            } else if (i13 != 7 && i13 != 6) {
+                if (VoIPService.getSharedInstance() != null && (i10 = d60Var.T1) != 1 && i10 != 2 && i10 != 6 && i10 != 5) {
+                    int i14 = d60Var.F1;
+                    if (i14 != 2 && i14 != 4) {
+                        try {
+                            if (i14 == 0) {
+                                if (Build.VERSION.SDK_INT >= 23 && (launchActivity = d60Var.f32952i0) != null && launchActivity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
+                                    org.telegram.ui.Components.ne0.e(R.raw.permission_request_microphone, R.string.VoipNeedMicPermissionWithHint, new String[]{"android.permission.RECORD_AUDIO"}, new String[]{"android.permission.RECORD_AUDIO"}, new ai.i(16));
+                                    return;
+                                }
+                                d60Var.J1(1, true);
+                                VoIPService.getSharedInstance().setMicMute(false, false, true);
+                                w2Var.performHapticFeedback(3, 2);
+                                return;
+                            }
+                            d60Var.J1(0, true);
+                            VoIPService.getSharedInstance().setMicMute(true, false, true);
+                            w2Var.performHapticFeedback(3, 2);
+                        } catch (Exception unused2) {
+                        }
+                    } else if (!d60Var.o1() && !d60Var.L0) {
+                        d60Var.L0 = true;
+                        AndroidUtilities.shakeView(w2Var.getTextView());
+                        try {
+                            view.performHapticFeedback(3, 2);
+                        } catch (Exception unused3) {
+                        }
+                        int nextInt = Utilities.random.nextInt(100);
+                        int i15 = 120;
+                        if (nextInt >= 32) {
+                            i12 = 240;
+                            if (nextInt < 64) {
+                                i15 = 240;
+                                i12 = 120;
+                            } else {
+                                i15 = 420;
+                                if (nextInt >= 97) {
+                                    i12 = 540;
+                                    if (nextInt == 98) {
+                                        i15 = 540;
+                                        i12 = 420;
+                                    } else {
+                                        i15 = 720;
+                                    }
+                                }
+                            }
+                        }
+                        ij0Var.P(i15);
+                        ij0Var.S(i15 - 1, this.f35179a);
+                        j30Var.setAnimation(ij0Var);
+                        ij0Var.M(i12);
+                        j30Var.d();
+                        if (d60Var.F1 == 2) {
+                            long peerId = MessageObject.getPeerId(((TLRPC.GroupCallParticipant) d60Var.f32919a1.participants.f(MessageObject.getPeerId(d60Var.A0))).peer);
+                            if (DialogObject.isUserDialog(peerId)) {
+                                chat = accountInstance.getMessagesController().getUser(Long.valueOf(peerId));
+                            } else {
+                                chat = accountInstance.getMessagesController().getChat(Long.valueOf(-peerId));
+                            }
+                            VoIPService.getSharedInstance().editCallMember(chat, null, null, null, Boolean.TRUE, null);
+                            d60Var.J1(4, true);
+                        }
+                    }
                 }
-                f60Var.S1 = false;
-                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                super.onTouchEvent(obtain);
-                obtain.recycle();
-                return true;
+            } else {
+                if (i13 == 6 && (j40Var = d60Var.f32970n0) != null) {
+                    j40Var.b(true);
+                }
+                TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
+                togglegroupcallstartsubscription.call = d60Var.f32919a1.getInputGroupCall();
+                TLRPC.GroupCall groupCall = d60Var.f32919a1.call;
+                boolean z10 = !groupCall.schedule_start_subscribed;
+                groupCall.schedule_start_subscribed = z10;
+                togglegroupcallstartsubscription.subscribed = z10;
+                accountInstance.getConnectionsManager().sendRequest(togglegroupcallstartsubscription, new RequestDelegate(this) {
+                    public final l30 f34907b;
+
+                    {
+                        this.f34907b = this;
+                    }
+
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        switch (r2) {
+                            case 0:
+                                l30 l30Var = this.f34907b;
+                                if (tLObject != null) {
+                                    l30Var.f35180b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                                    return;
+                                } else {
+                                    l30Var.getClass();
+                                    return;
+                                }
+                            default:
+                                l30 l30Var2 = this.f34907b;
+                                if (tLObject != null) {
+                                    l30Var2.f35180b.d.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
+                                    return;
+                                } else {
+                                    l30Var2.getClass();
+                                    return;
+                                }
+                        }
+                    }
+                });
+                if (d60Var.f32919a1.call.schedule_start_subscribed) {
+                    i11 = 7;
+                }
+                d60Var.J1(i11, true);
             }
         }
-        return super.onTouchEvent(motionEvent);
     }
 }

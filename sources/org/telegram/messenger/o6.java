@@ -8,61 +8,61 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class o6 implements Runnable {
-    public final int f16918a;
-    public final int f16919b;
-    public final Object f16920c;
+    public final int f17154a;
+    public final int f17155b;
+    public final Object f17156c;
 
     public o6(int i10, Object obj, int i11) {
-        this.f16918a = i11;
-        this.f16919b = i10;
-        this.f16920c = obj;
+        this.f17154a = i11;
+        this.f17155b = i10;
+        this.f17156c = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f16918a) {
+        switch (this.f17154a) {
             case 0:
-                ((MediaController.AnonymousClass4) this.f16920c).lambda$onCallStateChanged$0(this.f16919b);
+                ((MediaController.AnonymousClass4) this.f17156c).lambda$onCallStateChanged$0(this.f17155b);
                 return;
             case 1:
-                MessagesController.AnonymousClass1.lambda$setLocal$2(this.f16919b, (TLRPC.TL_help_appConfig) this.f16920c);
+                MessagesController.AnonymousClass1.lambda$setLocal$2(this.f17155b, (TLRPC.TL_help_appConfig) this.f17156c);
                 return;
             case 2:
-                MessagesController.AnonymousClass4.lambda$setLocal$2(this.f16919b, (TLRPC.messages_AvailableEffects) this.f16920c);
+                MessagesController.AnonymousClass4.lambda$setLocal$2(this.f17155b, (TLRPC.messages_AvailableEffects) this.f17156c);
                 return;
             case 3:
-                MessagesController.AnonymousClass5.lambda$setLocal$1(this.f16919b, (TL_account.TL_webBrowserSettings) this.f16920c);
+                MessagesController.AnonymousClass5.lambda$setLocal$1(this.f17155b, (TL_account.TL_webBrowserSettings) this.f17156c);
                 return;
             case 4:
-                AutoDeleteMediaTask.b(this.f16919b, (File) this.f16920c);
+                AutoDeleteMediaTask.b(this.f17155b, (File) this.f17156c);
                 return;
             case 5:
-                FileLoader.lambda$deleteFiles$16((ArrayList) this.f16920c, this.f16919b);
+                FileLoader.lambda$deleteFiles$16((ArrayList) this.f17156c, this.f17155b);
                 return;
             case 6:
-                ((FilesMigrationService) this.f16920c).lambda$updateProgress$1(this.f16919b);
+                ((FilesMigrationService) this.f17156c).lambda$updateProgress$1(this.f17155b);
                 return;
             case 7:
-                MediaController.lambda$saveFile$47((org.telegram.ui.ActionBar.b2) this.f16920c, this.f16919b);
+                MediaController.lambda$saveFile$47((org.telegram.ui.ActionBar.a2) this.f17156c, this.f17155b);
                 return;
             case 8:
-                PushListenerController.lambda$sendRegistrationToServer$1((String) this.f16920c, this.f16919b);
+                PushListenerController.lambda$sendRegistrationToServer$1((String) this.f17156c, this.f17155b);
                 return;
             case 9:
-                PushListenerController.lambda$processRemoteMessage$2(this.f16919b, (TLRPC.TL_updates) this.f16920c);
+                PushListenerController.lambda$processRemoteMessage$2(this.f17155b, (TLRPC.TL_updates) this.f17156c);
                 return;
             case 10:
-                SendMessagesHelper.lambda$handleError$119(this.f16919b, (AccountInstance) this.f16920c);
+                SendMessagesHelper.lambda$handleError$119(this.f17155b, (AccountInstance) this.f17156c);
                 return;
             default:
-                Utilities.lambda$doCallbacks$0(this.f16919b, (Utilities.Callback[]) this.f16920c);
+                Utilities.lambda$doCallbacks$0(this.f17155b, (Utilities.Callback[]) this.f17156c);
                 return;
         }
     }
 
     public o6(Object obj, int i10, int i11) {
-        this.f16918a = i11;
-        this.f16920c = obj;
-        this.f16919b = i10;
+        this.f17154a = i11;
+        this.f17156c = obj;
+        this.f17155b = i10;
     }
 }

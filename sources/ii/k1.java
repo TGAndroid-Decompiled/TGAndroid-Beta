@@ -10,9 +10,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.lz;
-import org.telegram.ui.Components.o70;
-import org.telegram.ui.Components.yg;
-import org.telegram.ui.wi0;
+import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.zg;
+import org.telegram.ui.vi0;
 public final class k1 implements View.OnClickListener {
     public final int f11464a;
     public final e2 f11465b;
@@ -77,20 +77,20 @@ public final class k1 implements View.OnClickListener {
                     e2Var2.A0 = lzVar;
                     lzVar.setVisibility(8);
                     lz lzVar2 = e2Var2.A0;
-                    lzVar2.f26032w2 = false;
+                    lzVar2.f26293w2 = false;
                     lzVar2.setDelegate(new v1(e2Var2));
                     int indexOfChild = e2Var2.O.indexOfChild(e2Var2.f11308a0);
                     if (indexOfChild < 0) {
                         indexOfChild = e2Var2.O.getChildCount();
                     }
-                    FrameLayout.LayoutParams e = w7.x5.e(-1, e2Var2.j0(), 87);
+                    FrameLayout.LayoutParams e = w7.y5.e(-1, e2Var2.j0(), 87);
                     e.bottomMargin = e2Var2.T0;
                     e2Var2.O.addView(e2Var2.A0, indexOfChild, e);
                 }
                 int j02 = e2Var2.j0();
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) e2Var2.A0.getLayoutParams();
                 if (layoutParams == null) {
-                    layoutParams = w7.x5.e(-1, j02, 87);
+                    layoutParams = w7.y5.e(-1, j02, 87);
                 } else {
                     layoutParams.height = j02;
                 }
@@ -104,16 +104,16 @@ public final class k1 implements View.OnClickListener {
                     AndroidUtilities.hideKeyboard(P22);
                 }
                 e2Var2.h0();
-                e2Var2.f11310b0.j(yg.d, true);
+                e2Var2.f11310b0.j(zg.d, true);
                 return;
             case 6:
                 final e2 e2Var3 = this.f11465b;
-                o70 o70Var = e2Var3.f11338x0;
-                if (o70Var != null) {
-                    o70Var.u();
+                y70 y70Var = e2Var3.f11338x0;
+                if (y70Var != null) {
+                    y70Var.u();
                     e2Var3.f11338x0 = null;
                 }
-                final o70 H = o70.H(e2Var3, view);
+                final y70 H = y70.H(e2Var3, view);
                 H.Q = true;
                 a Q2 = e2Var3.P.Q2();
                 if (Q2 != null && Q2.b()) {
@@ -195,10 +195,10 @@ public final class k1 implements View.OnClickListener {
                 return;
             case 7:
                 e2 e2Var4 = this.f11465b;
-                o70 o70Var2 = e2Var4.f11338x0;
+                y70 y70Var2 = e2Var4.f11338x0;
                 TL_iv.pageTableCell pagetablecell = null;
-                if (o70Var2 != null) {
-                    o70Var2.u();
+                if (y70Var2 != null) {
+                    y70Var2.u();
                     e2Var4.f11338x0 = null;
                 }
                 x3 x3Var2 = e2Var4.P;
@@ -226,10 +226,10 @@ public final class k1 implements View.OnClickListener {
                 }
             case 8:
                 e2 e2Var5 = this.f11465b;
-                o70 o70Var3 = e2Var5.f11338x0;
+                y70 y70Var3 = e2Var5.f11338x0;
                 TL_iv.pageBlockMath pageblockmath = null;
-                if (o70Var3 != null) {
-                    o70Var3.u();
+                if (y70Var3 != null) {
+                    y70Var3.u();
                     e2Var5.f11338x0 = null;
                 }
                 a Q22 = e2Var5.P.Q2();
@@ -255,9 +255,9 @@ public final class k1 implements View.OnClickListener {
             case 10:
                 e2 e2Var7 = this.f11465b;
                 e2Var7.r0();
-                wi0 wi0Var = e2Var7.O0;
-                if (wi0Var != null) {
-                    wi0Var.h(true);
+                vi0 vi0Var = e2Var7.O0;
+                if (vi0Var != null) {
+                    vi0Var.h(true);
                     e2Var7.O0 = null;
                     return;
                 }

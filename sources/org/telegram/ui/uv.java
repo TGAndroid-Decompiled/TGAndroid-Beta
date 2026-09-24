@@ -1,25 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class uv implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38223a;
-    public final ry f38224b;
-    public final float f38225c;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_account;
+public final class uv implements Utilities.Callback {
+    public final int f38544a;
+    public final qy f38545b;
 
-    public uv(ry ryVar, float f7, int i10) {
-        this.f38223a = i10;
-        this.f38224b = ryVar;
-        this.f38225c = f7;
+    public uv(qy qyVar, int i10) {
+        this.f38544a = i10;
+        this.f38545b = qyVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38223a) {
+    public final void run(Object obj) {
+        switch (this.f38544a) {
             case 0:
-                ry.V(this.f38224b, this.f38225c, valueAnimator);
+                qy qyVar = this.f38545b;
+                qyVar.O1 = (Long) obj;
+                qyVar.U4();
                 return;
             default:
-                ry.E0(this.f38224b, this.f38225c, valueAnimator);
+                qy.c0(this.f38545b, (TL_account.TL_birthday) obj);
                 return;
         }
     }

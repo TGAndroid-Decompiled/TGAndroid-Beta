@@ -4,19 +4,19 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class al extends s4.s0 {
-    public final hl f22464a;
+    public final hl f22705a;
 
     public al(hl hlVar) {
-        this.f22464a = hlVar;
+        this.f22705a = hlVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         boolean z10;
-        wk0 wk0Var;
-        hl hlVar = this.f22464a;
+        gl0 gl0Var;
+        hl hlVar = this.f22705a;
         ai.w0 w0Var = hlVar.P;
-        wi wiVar = hlVar.f26744b;
+        wi wiVar = hlVar.f27083b;
         if (i10 != 0) {
             z10 = true;
         } else {
@@ -29,10 +29,10 @@ public final class al extends s4.s0 {
         if (i10 == 0) {
             int dp = AndroidUtilities.dp(13.0f);
             int backgroundPaddingTop = wiVar.getBackgroundPaddingTop();
-            if (((wiVar.f29653b2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (wk0Var = (wk0) w0Var.K(0)) != null) {
-                View view = wk0Var.f42627a;
-                if (view.getTop() > hlVar.A0 - hlVar.f24747z0) {
-                    w0Var.v0(0, view.getTop() - (hlVar.A0 - hlVar.f24747z0), null);
+            if (((wiVar.f29973b2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (gl0Var = (gl0) w0Var.K(0)) != null) {
+                View view = gl0Var.f42946a;
+                if (view.getTop() > hlVar.A0 - hlVar.f24801z0) {
+                    w0Var.v0(0, view.getTop() - (hlVar.A0 - hlVar.f24801z0), null);
                 }
             }
         }
@@ -40,11 +40,11 @@ public final class al extends s4.s0 {
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        hl hlVar = this.f22464a;
+        hl hlVar = this.f22705a;
         hlVar.e0();
         if (hlVar.J != null) {
             hlVar.K += i11;
         }
-        hlVar.f26744b.X1(hlVar, i11);
+        hlVar.f27083b.X1(hlVar, i11);
     }
 }

@@ -29,7 +29,7 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ul;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.rr;
 public final class r3 extends FrameLayout {
@@ -111,14 +111,14 @@ public final class r3 extends FrameLayout {
         p3Var.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
         CheckBoxBase checkBoxBase = p3Var.getCheckBoxBase();
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        if (checkBoxBase.f21947u != i10) {
-            checkBoxBase.f21947u = i10;
+        if (checkBoxBase.f22184u != i10) {
+            checkBoxBase.f22184u = i10;
             checkBoxBase.b();
         }
         FrameLayout frameLayout = new FrameLayout(context);
         this.I = frameLayout;
-        frameLayout.addView(p3Var, w7.x5.e(26, 26, 17));
-        addView(frameLayout, w7.x5.d(36, 36.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(p3Var, w7.y5.e(26, 26, 17));
+        addView(frameLayout, w7.y5.d(36, 36.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
         frameLayout.setVisibility(0);
         frameLayout.setImportantForAccessibility(2);
         p3Var.setImportantForAccessibility(2);
@@ -451,7 +451,7 @@ public final class r3 extends FrameLayout {
             if (!z10) {
                 f11 = 0.7f;
             }
-            ul.r(scaleX.scaleY(f11).withEndAction(new bi.f(1, this, z10)), rr.h, 320L);
+            ok.s(scaleX.scaleY(f11).withEndAction(new bi.f(1, this, z10)), rr.h, 320L);
         }
         if (i10 >= 0) {
             p3Var.a(true, z11);
@@ -540,7 +540,7 @@ public final class r3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             p3 p3Var = this.J;
-            if (p3Var != null && p3Var.f26827a.f21943q) {
+            if (p3Var != null && p3Var.f27163a.f22180q) {
                 z10 = true;
             } else {
                 z10 = false;

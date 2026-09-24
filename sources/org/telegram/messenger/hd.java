@@ -4,15 +4,15 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hd implements RequestDelegate {
-    public final int f16299a;
+    public final int f16546a;
 
     public hd(int i10) {
-        this.f16299a = i10;
+        this.f16546a = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16299a) {
+        switch (this.f16546a) {
             case 0:
                 MessagesController.lambda$removeSuggestion$40(tLObject, tL_error);
                 return;

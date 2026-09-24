@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import k1.k;
-import v7.t7;
+import v7.u7;
 import zd.i2;
 import zd.l;
 public class b {
@@ -59,7 +59,7 @@ public class b {
             this._closeCause$volatile = d.f3524r;
             return;
         }
-        throw new IllegalArgumentException(hg.c.j(i10, "Invalid channel capacity: ", ", should be >=0").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Invalid channel capacity: ", ", should be >=0").toString());
     }
 
     public static void h(b bVar) {
@@ -74,7 +74,7 @@ public class b {
         if (obj instanceof l) {
             l lVar = (l) obj;
             h hVar = d.f3510a;
-            v b10 = lVar.b(null, gd.i.f9603a);
+            v b10 = lVar.b(null, gd.i.f9602a);
             if (b10 != null) {
                 lVar.e(b10);
                 return true;
@@ -95,11 +95,11 @@ public class b {
         Object obj;
         Object obj2 = h.get(this);
         h hVar = (h) f3504f.get(this);
-        if (hVar.f8182c > ((h) obj2).f8182c) {
+        if (hVar.f8181c > ((h) obj2).f8181c) {
             obj2 = hVar;
         }
         h hVar2 = (h) f3505g.get(this);
-        int i10 = (hVar2.f8182c > ((h) obj2).f8182c ? 1 : (hVar2.f8182c == ((h) obj2).f8182c ? 0 : -1));
+        int i10 = (hVar2.f8181c > ((h) obj2).f8181c ? 1 : (hVar2.f8181c == ((h) obj2).f8181c ? 0 : -1));
         h hVar3 = obj2;
         if (i10 > 0) {
             hVar3 = hVar2;
@@ -107,9 +107,9 @@ public class b {
         ee.d dVar = (ee.d) hVar3;
         loop0: while (true) {
             dVar.getClass();
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.d.f8160a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.d.f8159a;
             Object obj3 = atomicReferenceFieldUpdater.get(dVar);
-            v vVar = ee.a.f8155b;
+            v vVar = ee.a.f8154b;
             obj = null;
             if (obj3 == vVar) {
                 break;
@@ -131,7 +131,7 @@ public class b {
             int i11 = d.f3511b - 1;
             obj = obj;
             while (-1 < i11) {
-                if ((hVar5.f8182c * d.f3511b) + i11 < j3) {
+                if ((hVar5.f8181c * d.f3511b) + i11 < j3) {
                     break loop2;
                 }
                 while (true) {
@@ -158,7 +158,7 @@ public class b {
                 i11--;
                 obj = obj;
             }
-            hVar5 = (h) ((ee.d) ee.d.f8161b.get(hVar5));
+            hVar5 = (h) ((ee.d) ee.d.f8160b.get(hVar5));
             obj = obj;
         }
         if (obj != null) {
@@ -189,13 +189,13 @@ public class b {
             long andIncrement = d.getAndIncrement(this);
             long j3 = andIncrement / d.f3511b;
             if (g() <= andIncrement) {
-                if (hVar.f8182c < j3 && hVar.c() != null) {
+                if (hVar.f8181c < j3 && hVar.c() != null) {
                     k(j3, hVar);
                 }
                 h(this);
                 return;
             }
-            if (hVar.f8182c != j3) {
+            if (hVar.f8181c != j3) {
                 c cVar = c.f3509a;
                 while (true) {
                     a2 = ee.a.a(hVar, j3, cVar);
@@ -203,7 +203,7 @@ public class b {
                         t b10 = ee.a.b(a2);
                         while (true) {
                             t tVar = (t) atomicReferenceFieldUpdater.get(this);
-                            if (tVar.f8182c >= b10.f8182c) {
+                            if (tVar.f8181c >= b10.f8181c) {
                                 break;
                             } else if (!b10.j()) {
                                 break;
@@ -231,7 +231,7 @@ public class b {
                     h(this);
                 } else {
                     h hVar3 = (h) ee.a.b(a2);
-                    long j10 = hVar3.f8182c;
+                    long j10 = hVar3.f8181c;
                     if (j10 > j3) {
                         long j11 = j10 * d.f3511b;
                         if (d.compareAndSet(this, 1 + andIncrement, j11)) {
@@ -312,7 +312,7 @@ public class b {
                 while (true) {
                     AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f3505g;
                     t tVar = (t) atomicReferenceFieldUpdater.get(this);
-                    if (tVar.f8182c >= b10.f8182c) {
+                    if (tVar.f8181c >= b10.f8181c) {
                         break loop0;
                     } else if (!b10.j()) {
                         break;
@@ -335,18 +335,18 @@ public class b {
         }
         if (ee.a.d(a2)) {
             c();
-            if (hVar.f8182c * d.f3511b < g()) {
+            if (hVar.f8181c * d.f3511b < g()) {
                 hVar.b();
                 return null;
             }
         } else {
             h hVar3 = (h) ee.a.b(a2);
-            long j11 = hVar3.f8182c;
+            long j11 = hVar3.f8181c;
             if (!j() && j3 <= d.get(this) / d.f3511b) {
                 while (true) {
                     AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = h;
                     t tVar2 = (t) atomicReferenceFieldUpdater2.get(this);
-                    if (tVar2.f8182c >= j11 || !hVar3.j()) {
+                    if (tVar2.f8181c >= j11 || !hVar3.j()) {
                         break;
                     }
                     while (!atomicReferenceFieldUpdater2.compareAndSet(this, tVar2, hVar3)) {
@@ -419,7 +419,7 @@ public class b {
             } else {
                 f7 = f();
             }
-            cVar.resumeWith(t7.a(f7));
+            cVar.resumeWith(u7.a(f7));
             return;
         }
         throw new IllegalStateException(("Unexpected waiter: " + i2Var).toString());

@@ -10,7 +10,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import v7.r8;
+import v7.s8;
 public abstract class g extends Drawable implements Drawable.Callback {
     public static final int f10566x = 0;
     public b f10567a;
@@ -94,7 +94,7 @@ public abstract class g extends Drawable implements Drawable.Callback {
             drawable.setLevel(getLevel());
             drawable.setBounds(getBounds());
             if (Build.VERSION.SDK_INT >= 23) {
-                r8.b(r8.a(this), drawable);
+                s8.b(s8.a(this), drawable);
             }
             drawable.setAutoMirrored(this.f10567a.A);
             Rect rect = this.f10568b;
@@ -344,7 +344,7 @@ public abstract class g extends Drawable implements Drawable.Callback {
                 z10 = super.getPadding(rect);
             }
         }
-        if (this.f10567a.A && r8.a(this) == 1) {
+        if (this.f10567a.A && s8.a(this) == 1) {
             int i16 = rect.left;
             rect.left = rect.right;
             rect.right = i16;
@@ -439,7 +439,7 @@ public abstract class g extends Drawable implements Drawable.Callback {
             Drawable drawable = drawableArr[i13];
             if (drawable != null) {
                 if (Build.VERSION.SDK_INT >= 23) {
-                    z10 = r8.b(i10, drawable);
+                    z10 = s8.b(i10, drawable);
                 } else {
                     z10 = false;
                 }

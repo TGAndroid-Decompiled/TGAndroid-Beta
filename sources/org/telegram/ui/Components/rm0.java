@@ -1,83 +1,103 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class rm0 extends s4.o {
-    public final int f27676b;
-    public final int f27677c;
-    public final int d;
-    public final int e;
-    public final int f27678f;
-    public final ArrayList f27679g;
-    public final int h;
-    public final int f27680i;
-    public final ArrayList f27681j;
-    public final wm0 f27682k;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.KeyEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ub1;
+public final class rm0 extends AnimatorListenerAdapter {
+    public final int f27997a;
+    public final boolean f27998b;
+    public final float f27999c;
+    public final KeyEvent.Callback d;
 
-    public rm0(wm0 wm0Var, int i10, int i11, int i12, int i13, int i14, ArrayList arrayList, int i15, int i16, ArrayList arrayList2) {
-        this.f27682k = wm0Var;
-        this.f27676b = i10;
-        this.f27677c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f27678f = i14;
-        this.f27679g = arrayList;
-        this.h = i15;
-        this.f27680i = i16;
-        this.f27681j = arrayList2;
+    public rm0(KeyEvent.Callback callback, boolean z10, float f7, int i10) {
+        this.f27997a = i10;
+        this.d = callback;
+        this.f27998b = z10;
+        this.f27999c = f7;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return b(i10, i11);
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        switch (this.f27997a) {
+            case 0:
+                um0 um0Var = (um0) this.d;
+                ub1 ub1Var = um0Var.e;
+                um0Var.f28811h0 = null;
+                boolean z10 = this.f27998b;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                um0Var.f28812i0 = f7;
+                for (int i10 = 0; i10 < ub1Var.getChildCount(); i10++) {
+                    ub1Var.getChildAt(i10).invalidate();
+                }
+                ub1Var.invalidate();
+                um0Var.p();
+                if (!z10) {
+                    float childCount = um0Var.f28814k0 * ub1Var.getChildCount();
+                    float f10 = this.f27999c;
+                    float scrollX = (um0Var.getScrollX() + f10) / (um0Var.f28813j0 * ub1Var.getChildCount());
+                    float measuredWidth = (childCount - um0Var.getMeasuredWidth()) / childCount;
+                    if (scrollX > measuredWidth) {
+                        scrollX = measuredWidth;
+                        f10 = 0.0f;
+                    }
+                    float f11 = childCount * scrollX;
+                    if (f11 - f10 < 0.0f) {
+                        f11 = f10;
+                    }
+                    um0Var.f28815l0 = (um0Var.getScrollX() + f10) - f11;
+                    int i11 = (int) (f11 - f10);
+                    um0Var.m0 = i11;
+                    if (i11 < 0) {
+                        um0Var.m0 = 0;
+                    }
+                    for (int i12 = 0; i12 < ub1Var.getChildCount(); i12++) {
+                        View childAt = ub1Var.getChildAt(i12);
+                        if (childAt instanceof nx0) {
+                            ((nx0) childAt).setExpanded(false);
+                        }
+                        childAt.getLayoutParams().width = AndroidUtilities.dp(33.0f);
+                    }
+                    um0Var.f28810g0 = false;
+                    um0Var.getLayoutParams().height = AndroidUtilities.dp(36.0f);
+                    ub1Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                if (!this.f27998b) {
+                    super/*android.app.Dialog*/.dismiss();
+                    return;
+                }
+                return;
+        }
     }
 
     @Override
-    public final boolean b(int i10, int i11) {
-        MessageObject messageObject;
-        wm0 wm0Var = this.f27682k;
-        if (i10 >= 0 && i11 >= 0) {
-            if (i10 == this.f27677c && i11 == wm0Var.f29753s) {
-                return true;
-            }
-            if (i10 == this.d && i11 == wm0Var.f29755x) {
-                return true;
-            }
+    public void onAnimationStart(Animator animator) {
+        switch (this.f27997a) {
+            case 1:
+                super.onAnimationStart(animator);
+                wh.l lVar = ((wh.m) this.d).f45374y;
+                lVar.setVisibility(0);
+                if (this.f27998b) {
+                    float f7 = this.f27999c;
+                    lVar.setScaleX(f7);
+                    lVar.setScaleY(f7);
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-        MessageObject messageObject2 = null;
-        int i12 = this.e;
-        if (i10 >= i12 && i10 < this.f27678f) {
-            messageObject = (MessageObject) this.f27679g.get(i10 - i12);
-        } else {
-            int i13 = this.h;
-            if (i10 >= i13 && i10 < this.f27680i) {
-                messageObject = (MessageObject) this.f27681j.get(i10 - i13);
-            } else {
-                messageObject = null;
-            }
-        }
-        int i14 = wm0Var.v;
-        if (i11 >= i14 && i11 < wm0Var.f29754w) {
-            messageObject2 = (MessageObject) wm0Var.e.get(i11 - i14);
-        } else {
-            int i15 = wm0Var.f29756y;
-            if (i11 >= i15 && i11 < wm0Var.E) {
-                messageObject2 = (MessageObject) wm0Var.f29750f.get(i11 - i15);
-            }
-        }
-        if (messageObject2 != null && messageObject != null && messageObject2.getDocument() != null && messageObject.getDocument() != null && messageObject2.getDocument().f18089id == messageObject.getDocument().f18089id) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f27682k.f29752r;
-    }
-
-    @Override
-    public final int e() {
-        return this.f27676b;
     }
 }

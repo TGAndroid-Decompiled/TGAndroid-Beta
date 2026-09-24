@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class ok extends jh.e {
-    public final xn L;
+    public final wn L;
 
-    public ok(xn xnVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, gj gjVar, ah.c cVar) {
+    public ok(wn wnVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, gj gjVar, ah.c cVar) {
         super(cVar, context, gjVar, d6Var);
-        this.L = xnVar;
+        this.L = wnVar;
     }
 
     @Override

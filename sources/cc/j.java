@@ -1,6 +1,6 @@
 package cc;
 
-import v7.z6;
+import v7.a7;
 public abstract class j {
     public final float f4207a;
     public final float f4208b;
@@ -11,7 +11,7 @@ public abstract class j {
     }
 
     public static float a(j jVar, j jVar2) {
-        return z6.a(jVar.f4207a, jVar.f4208b, jVar2.f4207a, jVar2.f4208b);
+        return a7.a(jVar.f4207a, jVar.f4208b, jVar2.f4207a, jVar2.f4208b);
     }
 
     public final boolean equals(Object obj) {

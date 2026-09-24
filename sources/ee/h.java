@@ -9,19 +9,19 @@ import zd.e0;
 import zd.l0;
 import zd.w0;
 public final class h extends l0 implements kd.d, id.c {
-    public static final AtomicReferenceFieldUpdater f8165n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
+    public static final AtomicReferenceFieldUpdater f8164n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
     private volatile Object _reusableCancellableContinuation$volatile;
     public final a0 d;
     public final kd.c e;
-    public Object f8166f;
+    public Object f8165f;
     public final Object h;
 
     public h(a0 a0Var, kd.c cVar) {
         super(-1);
         this.d = a0Var;
         this.e = cVar;
-        this.f8166f = a.f8156c;
-        Object fold = cVar.getContext().fold(0, x.f8187c);
+        this.f8165f = a.f8155c;
+        Object fold = cVar.getContext().fold(0, x.f8186c);
         kotlin.jvm.internal.i.b(fold);
         this.h = fold;
     }
@@ -50,8 +50,8 @@ public final class h extends l0 implements kd.d, id.c {
 
     @Override
     public final Object j() {
-        Object obj = this.f8166f;
-        this.f8166f = a.f8156c;
+        Object obj = this.f8165f;
+        this.f8165f = a.f8155c;
         return obj;
     }
 
@@ -68,15 +68,15 @@ public final class h extends l0 implements kd.d, id.c {
         }
         a0 a0Var = this.d;
         if (a0Var.e()) {
-            this.f8166f = vVar;
-            this.f48848c = 0;
+            this.f8165f = vVar;
+            this.f49166c = 0;
             a0Var.c(context, this);
             return;
         }
         w0 a10 = c2.a();
-        if (a10.f48886c >= 4294967296L) {
-            this.f8166f = vVar;
-            this.f48848c = 0;
+        if (a10.f49204c >= 4294967296L) {
+            this.f8165f = vVar;
+            this.f49166c = 0;
             hd.e eVar = a10.e;
             if (eVar == null) {
                 eVar = new hd.e();

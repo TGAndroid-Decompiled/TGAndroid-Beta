@@ -11,8 +11,8 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.xq;
-import w7.x5;
-import w7.z5;
+import w7.a6;
+import w7.y5;
 public final class h extends FrameLayout implements le.e {
     public static final int[] f13024s;
     public final String[] f13025a;
@@ -143,7 +143,7 @@ public final class h extends FrameLayout implements le.e {
             if (i10 == 0) {
                 interpolator = rr.h;
             } else {
-                interpolator = ke.a.f13577a;
+                interpolator = ke.a.f13575a;
             }
             if (i10 == 0) {
                 j3 = 300;
@@ -155,7 +155,7 @@ public final class h extends FrameLayout implements le.e {
             if (i10 == 0) {
                 interpolator2 = rr.h;
             } else {
-                interpolator2 = ke.a.f13577a;
+                interpolator2 = ke.a.f13575a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i10 == 0) {
@@ -177,9 +177,9 @@ public final class h extends FrameLayout implements le.e {
             ih.b bVar = new ih.b(context, d6Var);
             ih.a d = ih.a.d(context, this.d, this.f13027c, d6Var, i16, i12);
             bVar.f11187b = d;
-            bVar.addView(d, x5.e(i11, i11, 80));
+            bVar.addView(d, y5.e(i11, i11, 80));
             d.setIconPadding(AndroidUtilities.dp(2.0f));
-            z5.b(bVar, 0.13f, 2.0f);
+            a6.b(bVar, 0.13f, 2.0f);
             float f7 = i11 / 2.0f;
             bVar.setPivotX(AndroidUtilities.dp(f7));
             bVar.setPivotY(AndroidUtilities.dp(f7 + 8.0f));
@@ -200,7 +200,7 @@ public final class h extends FrameLayout implements le.e {
                     xqVar.setReverse(true);
                 }
             }
-            addView(bVar, x5.e(i11, i11 + 8, this.f13030r));
+            addView(bVar, y5.e(i11, i11 + 8, this.f13030r));
             aVarArr[i10] = new aa.a(bVar, cVar, cVar2, false, 24);
             n1 n1Var = this.f13028f[i10];
             if (n1Var != null) {

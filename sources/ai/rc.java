@@ -29,10 +29,10 @@ public final class rc {
         arrayList.clear();
         for (int i10 = 0; i10 < iaVar.getChildCount(); i10++) {
             View childAt = iaVar.getChildAt(i10);
-            if (childAt instanceof org.telegram.ui.Cells.r2) {
-                j3 = ((org.telegram.ui.Cells.r2) childAt).getDialogId();
-            } else if (childAt instanceof org.telegram.ui.Cells.bb) {
-                j3 = ((org.telegram.ui.Cells.bb) childAt).getDialogId();
+            if (childAt instanceof org.telegram.ui.Cells.s2) {
+                j3 = ((org.telegram.ui.Cells.s2) childAt).getDialogId();
+            } else if (childAt instanceof org.telegram.ui.Cells.za) {
+                j3 = ((org.telegram.ui.Cells.za) childAt).getDialogId();
             } else {
                 j3 = 0;
             }

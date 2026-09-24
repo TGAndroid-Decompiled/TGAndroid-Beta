@@ -2,16 +2,16 @@ package db;
 
 import java.io.IOException;
 public abstract class t {
-    public static final p f7595a;
-    public static final q f7596b;
-    public static final t[] f7597c;
+    public static final p f7594a;
+    public static final q f7595b;
+    public static final t[] f7596c;
 
     static {
         p pVar = new p();
-        f7595a = pVar;
+        f7594a = pVar;
         q qVar = new q();
-        f7596b = qVar;
-        f7597c = new t[]{pVar, qVar, new t() {
+        f7595b = qVar;
+        f7596c = new t[]{pVar, qVar, new t() {
             public static Double b(String str, lb.a aVar) {
                 try {
                     Double valueOf = Double.valueOf(str);
@@ -58,7 +58,7 @@ public abstract class t {
     }
 
     public static t[] values() {
-        return (t[]) f7597c.clone();
+        return (t[]) f7596c.clone();
     }
 
     public abstract Number a(lb.a aVar);

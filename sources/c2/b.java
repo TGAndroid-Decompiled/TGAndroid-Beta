@@ -12,7 +12,7 @@ public final class b implements AudioManager.OnAudioFocusChangeListener {
     public b(AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler) {
         this.f3652b = onAudioFocusChangeListener;
         Looper looper = handler.getLooper();
-        String str = d0.f7871a;
+        String str = d0.f7870a;
         this.f3651a = new Handler(looper, null);
     }
 

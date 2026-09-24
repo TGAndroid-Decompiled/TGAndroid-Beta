@@ -3,12 +3,12 @@ package ai;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-import org.telegram.messenger.ul;
+import org.telegram.messenger.ok;
+import org.telegram.ui.Components.ix0;
 import org.telegram.ui.Components.pk;
 import org.telegram.ui.Components.u00;
-import org.telegram.ui.Components.xw0;
 import org.telegram.ui.wf1;
-public final class d7 extends xw0 {
+public final class d7 extends ix0 {
     public final int K = 0;
     public final Object L;
 
@@ -25,15 +25,15 @@ public final class d7 extends xw0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = wf1Var.f38964n.f35287a.animate();
+                    ViewPropertyAnimator animate = wf1Var.f39321n.f35540a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                wf1Var.f38964n.f35287a.animate().cancel();
-                TextView textView = wf1Var.f38964n.f35287a;
+                wf1Var.f39321n.f35540a.animate().cancel();
+                TextView textView = wf1Var.f39321n.f35540a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -60,7 +60,7 @@ public final class d7 extends xw0 {
         switch (this.K) {
             case 0:
                 k7 k7Var = ((e7) this.L).d;
-                super.onMeasure(i10, ul.d(k7Var.e, k7Var.f1132n - k7Var.f1133r.getPaddingTop(), 1073741824));
+                super.onMeasure(i10, ok.c(k7Var.e, k7Var.f1132n - k7Var.f1133r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);

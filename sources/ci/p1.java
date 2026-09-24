@@ -10,10 +10,10 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.pk0;
-public final class p1 extends ml0 {
-    public pk0 X2;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.zk0;
+public final class p1 extends wl0 {
+    public zk0 X2;
     public boolean Y2;
     public float Z2;
     public float f5276a3;
@@ -43,18 +43,18 @@ public final class p1 extends ml0 {
             View m10 = sVar.m(i10);
             int L0 = sVar.L0();
             if ((m10 == null && Math.abs(i10 - L0) > sVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
-                pk0 pk0Var = p1Var.X2;
+                zk0 zk0Var = p1Var.X2;
                 if (sVar.L0() < i10) {
                     i12 = 0;
                 } else {
                     i12 = 1;
                 }
-                pk0Var.f27074b = i12;
+                zk0Var.f30910b = i12;
                 p1Var.X2.c(i10, i11, false, false);
                 return;
             }
             m1 m1Var = new m1(p1Var, p1Var.getContext(), 0);
-            m1Var.f42777a = i10;
+            m1Var.f43096a = i10;
             m1Var.f13094p = i11;
             sVar.w0(m1Var);
         }
@@ -82,7 +82,7 @@ public final class p1 extends ml0 {
         if (!rect.isEmpty()) {
             this.D1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f26220o2;
+            q0.a aVar = this.f30092o2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -117,7 +117,7 @@ public final class p1 extends ml0 {
                     ArrayList arrayList4 = (ArrayList) sparseArray.get(top);
                     if (arrayList4 == null) {
                         if (!arrayList.isEmpty()) {
-                            arrayList4 = (ArrayList) hg.c.z(1, arrayList);
+                            arrayList4 = (ArrayList) hg.c.x(1, arrayList);
                         } else {
                             arrayList4 = new ArrayList();
                         }
@@ -160,7 +160,7 @@ public final class p1 extends ml0 {
             }
             if (n1Var == null) {
                 if (!arrayList2.isEmpty()) {
-                    n1Var = (n1) hg.c.z(1, arrayList2);
+                    n1Var = (n1) hg.c.x(1, arrayList2);
                 } else {
                     n1Var = new n1(this);
                     n1Var.l(7);
@@ -210,10 +210,10 @@ public final class p1 extends ml0 {
         super.setLayoutManager(o0Var);
         this.X2 = null;
         if (o0Var instanceof s4.c0) {
-            pk0 pk0Var = new pk0(this, (s4.c0) o0Var);
-            this.X2 = pk0Var;
-            pk0Var.f27078i = new l1(this, 0);
-            pk0Var.h = new a1.c(this, 15);
+            zk0 zk0Var = new zk0(this, (s4.c0) o0Var);
+            this.X2 = zk0Var;
+            zk0Var.f30914i = new l1(this, 0);
+            zk0Var.h = new a1.c(this, 15);
         }
     }
 }

@@ -1,125 +1,61 @@
 package w7;
 
-import android.graphics.Paint;
 import android.os.Build;
-import android.text.TextDirectionHeuristic;
-import android.text.TextDirectionHeuristics;
-import android.text.TextPaint;
-import android.text.method.PasswordTransformationMethod;
-import android.view.ActionMode;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.PopupWindow;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 public abstract class q7 {
-    public static p0.c a(m.z0 z0Var) {
-        int i10;
-        int i11;
-        int i12 = Build.VERSION.SDK_INT;
-        if (i12 >= 28) {
-            return new p0.c(b5.d.p(z0Var));
-        }
-        TextPaint textPaint = new TextPaint(z0Var.getPaint());
-        boolean z10 = false;
-        if (i12 >= 23) {
-            i10 = 1;
-            i11 = 1;
-        } else {
-            i10 = 0;
-            i11 = 0;
-        }
-        TextDirectionHeuristic textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR;
-        if (i12 >= 23) {
-            i10 = e0.b.d(z0Var);
-            i11 = e0.b.h(z0Var);
-        }
-        if (z0Var.getTransformationMethod() instanceof PasswordTransformationMethod) {
-            textDirectionHeuristic = TextDirectionHeuristics.LTR;
-        } else if (i12 >= 28 && (z0Var.getInputType() & 15) == 3) {
-            byte directionality = Character.getDirectionality(b5.d.h(androidx.emoji2.text.v.e(z0Var.getTextLocale()))[0].codePointAt(0));
-            textDirectionHeuristic = (directionality == 1 || directionality == 2) ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR;
-        } else {
-            if (z0Var.getLayoutDirection() == 1) {
-                z10 = true;
-            }
-            switch (z0Var.getTextDirection()) {
-                case 2:
-                    textDirectionHeuristic = TextDirectionHeuristics.ANYRTL_LTR;
-                    break;
-                case 3:
-                    textDirectionHeuristic = TextDirectionHeuristics.LTR;
-                    break;
-                case 4:
-                    textDirectionHeuristic = TextDirectionHeuristics.RTL;
-                    break;
-                case 5:
-                    textDirectionHeuristic = TextDirectionHeuristics.LOCALE;
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_RTL;
-                    break;
-                default:
-                    if (z10) {
-                        textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_RTL;
-                        break;
-                    }
-                    break;
-            }
-        }
-        return new p0.c(textPaint, textDirectionHeuristic, i10, i11);
-    }
+    public static Method f45081a;
+    public static boolean f45082b;
+    public static Field f45083c;
+    public static boolean d;
 
-    public static void b(int i10, TextView textView) {
-        int i11;
-        if (i10 >= 0) {
-            if (Build.VERSION.SDK_INT >= 28) {
-                b5.d.w(i10, textView);
-                return;
-            }
-            Paint.FontMetricsInt fontMetricsInt = textView.getPaint().getFontMetricsInt();
-            if (textView.getIncludeFontPadding()) {
-                i11 = fontMetricsInt.top;
-            } else {
-                i11 = fontMetricsInt.ascent;
-            }
-            if (i10 > Math.abs(i11)) {
-                textView.setPadding(textView.getPaddingLeft(), i10 + i11, textView.getPaddingRight(), textView.getPaddingBottom());
-                return;
-            }
+    public static void a(m.x xVar, boolean z10) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            e0.b.F(xVar, z10);
             return;
         }
-        throw new IllegalArgumentException();
+        if (!d) {
+            try {
+                Field declaredField = PopupWindow.class.getDeclaredField("mOverlapAnchor");
+                f45083c = declaredField;
+                declaredField.setAccessible(true);
+            } catch (NoSuchFieldException e) {
+                Log.i("PopupWindowCompatApi21", "Could not fetch mOverlapAnchor field from PopupWindow", e);
+            }
+            d = true;
+        }
+        Field field = f45083c;
+        if (field != null) {
+            try {
+                field.set(xVar, Boolean.valueOf(z10));
+            } catch (IllegalAccessException e7) {
+                Log.i("PopupWindowCompatApi21", "Could not set overlap anchor field in PopupWindow", e7);
+            }
+        }
     }
 
-    public static void c(int i10, TextView textView) {
-        int i11;
-        if (i10 >= 0) {
-            Paint.FontMetricsInt fontMetricsInt = textView.getPaint().getFontMetricsInt();
-            if (textView.getIncludeFontPadding()) {
-                i11 = fontMetricsInt.bottom;
-            } else {
-                i11 = fontMetricsInt.descent;
-            }
-            if (i10 > Math.abs(i11)) {
-                textView.setPadding(textView.getPaddingLeft(), textView.getPaddingTop(), textView.getPaddingRight(), i10 - i11);
-                return;
-            }
+    public static void b(PopupWindow popupWindow, int i10) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            e0.b.H(popupWindow, i10);
             return;
         }
-        throw new IllegalArgumentException();
-    }
-
-    public static ActionMode.Callback d(ActionMode.Callback callback) {
-        if ((callback instanceof u0.i) && Build.VERSION.SDK_INT >= 26) {
-            return ((u0.i) callback).f43243a;
+        if (!f45082b) {
+            try {
+                Method declaredMethod = PopupWindow.class.getDeclaredMethod("setWindowLayoutType", Integer.TYPE);
+                f45081a = declaredMethod;
+                declaredMethod.setAccessible(true);
+            } catch (Exception unused) {
+            }
+            f45082b = true;
         }
-        return callback;
-    }
-
-    public static ActionMode.Callback e(ActionMode.Callback callback, TextView textView) {
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 26 && i10 <= 27 && !(callback instanceof u0.i) && callback != null) {
-            return new u0.i(callback, textView);
+        Method method = f45081a;
+        if (method != null) {
+            try {
+                method.invoke(popupWindow, Integer.valueOf(i10));
+            } catch (Exception unused2) {
+            }
         }
-        return callback;
     }
 }

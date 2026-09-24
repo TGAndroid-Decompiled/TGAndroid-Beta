@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ul;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.rr;
 public final class ad extends View {
     public final Paint f4359a;
@@ -28,10 +28,10 @@ public final class ad extends View {
         o6Var.r(-1);
         o6Var.u(AndroidUtilities.bold());
         o6Var.setCallback(this);
-        o6Var.f26614b = 1;
+        o6Var.f26925b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, o6Var.f26617g)) {
+        if (!TextUtils.equals(sb2, o6Var.f26928g)) {
             o6Var.b();
             o6Var.q(sb2, false, true);
         }
@@ -44,7 +44,7 @@ public final class ad extends View {
         this.f4361c = false;
         animate().cancel();
         if (z10) {
-            ul.r(animate().translationY(AndroidUtilities.dp(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), rr.h, 220L);
+            ok.s(animate().translationY(AndroidUtilities.dp(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), rr.h, 220L);
             return;
         }
         setTranslationY(AndroidUtilities.dp(6.0f));

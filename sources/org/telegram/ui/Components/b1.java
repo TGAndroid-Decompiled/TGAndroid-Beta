@@ -4,21 +4,21 @@ import android.content.DialogInterface;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class b1 implements DialogInterface.OnDismissListener {
-    public final int f22546a;
-    public final Object f22547b;
+    public final int f22828a;
+    public final Object f22829b;
 
     public b1(Object obj, int i10) {
-        this.f22546a = i10;
-        this.f22547b = obj;
+        this.f22828a = i10;
+        this.f22829b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f22546a;
-        Object obj = this.f22547b;
+        int i10 = this.f22828a;
+        Object obj = this.f22829b;
         switch (i10) {
             case 0:
-                ((org.telegram.ui.sg) obj).run();
+                ((org.telegram.ui.rg) obj).run();
                 return;
             case 1:
                 AndroidUtilities.hideKeyboard((EditTextBoldCursor) obj);
@@ -30,7 +30,7 @@ public final class b1 implements DialogInterface.OnDismissListener {
                 ((ChatActivityEnterView) obj).L0 = null;
                 return;
             case 4:
-                ((wi) obj).f29731z2 = false;
+                ((wi) obj).f30051z2 = false;
                 return;
             case 5:
                 cu.i((cu) obj);
@@ -40,19 +40,19 @@ public final class b1 implements DialogInterface.OnDismissListener {
                 ((FragmentContextView) obj).c(false);
                 return;
             case 7:
-                in0.H = null;
+                un0.H = null;
                 ((View) obj).requestFocus();
                 return;
             case 8:
-                AndroidUtilities.hideKeyboard((cn0) obj);
+                AndroidUtilities.hideKeyboard((on0) obj);
                 return;
             default:
-                ThemeEditorView themeEditorView = ((x01) obj).d;
-                themeEditorView.f22188l = null;
-                if (themeEditorView.f22181b != null) {
-                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f22180a, themeEditorView.f22184g);
+                ThemeEditorView themeEditorView = ((l11) obj).d;
+                themeEditorView.f22425l = null;
+                if (themeEditorView.f22418b != null) {
+                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f22417a, themeEditorView.f22421g);
                     try {
-                        themeEditorView.h.addView(themeEditorView.f22180a, themeEditorView.f22184g);
+                        themeEditorView.h.addView(themeEditorView.f22417a, themeEditorView.f22421g);
                         themeEditorView.d();
                         return;
                     } catch (Exception unused) {

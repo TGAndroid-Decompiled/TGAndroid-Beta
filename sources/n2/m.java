@@ -1,18 +1,8 @@
 package n2;
 
-import android.os.Looper;
+import m4.o0;
 public interface m {
-    public static final ob.a f14884z = new ob.a(13);
-
-    void C(Looper looper, j2.k kVar);
-
-    int L0(b2.s sVar);
-
-    g Y0(j jVar, b2.s sVar);
-
-    void b();
-
-    l j0(j jVar, b2.s sVar);
+    public static final o0 f15121u = new o0(23);
 
     void release();
 }

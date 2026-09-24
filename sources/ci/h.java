@@ -94,7 +94,7 @@ public final class h implements TextWatcher {
                     c10.o(eh.b.i(mVar.f5113a));
                     iVar2.setBackgroundDrawable(c10);
                 }
-                mVar.f5115b.addView(mVar.M, w7.x5.e(-1, -1, 83));
+                mVar.f5115b.addView(mVar.M, w7.y5.e(-1, -1, 83));
                 mVar.w();
             }
             if (mVar.M.getAdapter() != null) {
@@ -102,7 +102,7 @@ public final class h implements TextWatcher {
                 MessagesController.getInstance(mVar.U).getUser(Long.valueOf(mVar.f5143x));
                 TLRPC.Chat chat = MessagesController.getInstance(mVar.U).getChat(Long.valueOf(-mVar.f5143x));
                 adapter.getClass();
-                adapter.f9810l0 = chat;
+                adapter.f9809l0 = chat;
                 mVar.M.getAdapter().U(charSequence, gVar.getEditText().getSelectionStart(), null, false, false);
             }
         }

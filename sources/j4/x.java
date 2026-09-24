@@ -35,7 +35,7 @@ public final class x {
     }
 
     public static long c(e2.v vVar) {
-        int i10 = vVar.f7918b;
+        int i10 = vVar.f7917b;
         if (vVar.a() < 9) {
             return -9223372036854775807L;
         }
@@ -60,7 +60,7 @@ public final class x {
     public final void a(c3.p pVar) {
         switch (this.f12847a) {
             case 0:
-                byte[] bArr = e2.d0.f7872b;
+                byte[] bArr = e2.d0.f7871b;
                 e2.v vVar = this.f12849c;
                 vVar.getClass();
                 vVar.H(bArr.length, bArr);
@@ -68,7 +68,7 @@ public final class x {
                 pVar.p();
                 return;
             default:
-                byte[] bArr2 = e2.d0.f7872b;
+                byte[] bArr2 = e2.d0.f7871b;
                 e2.v vVar2 = this.f12849c;
                 vVar2.getClass();
                 vVar2.H(bArr2.length, bArr2);

@@ -2,14 +2,14 @@ package x9;
 
 import org.json.JSONObject;
 public abstract class l {
-    public static final ka.c f45680a;
+    public static final ka.c f45994a;
 
     static {
         ka.e eVar = new ka.e();
-        a aVar = a.f45652a;
-        eVar.m(l.class, aVar);
-        eVar.m(b.class, aVar);
-        f45680a = new ka.c(eVar, 0);
+        a aVar = a.f45966a;
+        eVar.a(l.class, aVar);
+        eVar.a(b.class, aVar);
+        f45994a = new ka.c(eVar, 0);
     }
 
     public static b a(String str) {

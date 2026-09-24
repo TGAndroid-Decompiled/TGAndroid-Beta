@@ -10,7 +10,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.xn;
+import org.telegram.ui.wn;
 public final class fa implements RequestDelegate {
     public final int f883a = 0;
     public final long f884b;
@@ -37,7 +37,7 @@ public final class fa implements RequestDelegate {
                 ((ConferenceCall) this.f885c).lambda$poll$8((TL_phone.getGroupCallChainBlocks) this.d, this.f884b, (AtomicBoolean) this.e, (AtomicInteger) this.f886f, tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tL_error, (xn) this.f885c, tLObject, (TLRPC.FileLocation[]) this.d, (String) this.e, (TLRPC.FileLocation[]) this.f886f, this.f884b));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tL_error, (wn) this.f885c, tLObject, (TLRPC.FileLocation[]) this.d, (String) this.e, (TLRPC.FileLocation[]) this.f886f, this.f884b));
                 return;
         }
     }
@@ -50,8 +50,8 @@ public final class fa implements RequestDelegate {
         this.f886f = atomicInteger;
     }
 
-    public fa(xn xnVar, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j3) {
-        this.f885c = xnVar;
+    public fa(wn wnVar, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j3) {
+        this.f885c = wnVar;
         this.d = fileLocationArr;
         this.e = str;
         this.f886f = fileLocationArr2;

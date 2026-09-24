@@ -306,7 +306,7 @@ public final class s {
                 oVar2 = oVar;
             }
             v.append(", drm=[");
-            cVar.j(v, linkedHashSet.iterator());
+            cVar.p(v, linkedHashSet.iterator());
             v.append(']');
         } else {
             c10 = 0;
@@ -324,12 +324,12 @@ public final class s {
             v.append(i15);
         }
         double d = f10;
-        int i22 = g9.c.f9513a;
+        int i22 = g9.c.f9512a;
         if (Math.copySign(d - 1.0d, 1.0d) > 0.001d && d != 1.0d && (!Double.isNaN(d) || !Double.isNaN(1.0d))) {
             v.append(", par=");
             Object[] objArr = new Object[1];
             objArr[c10] = Float.valueOf(f10);
-            String str7 = e2.d0.f7871a;
+            String str7 = e2.d0.f7870a;
             v.append(String.format(Locale.US, "%.3f", objArr));
         }
         if (jVar != null) {
@@ -341,7 +341,7 @@ public final class s {
                     String b10 = j.b(jVar.f3025a);
                     String a2 = j.a(jVar.f3026b);
                     String c11 = j.c(jVar.f3027c);
-                    String str8 = e2.d0.f7871a;
+                    String str8 = e2.d0.f7870a;
                     Locale locale = Locale.US;
                     str2 = b10 + "/" + a2 + "/" + c11;
                 } else {
@@ -377,12 +377,12 @@ public final class s {
         }
         if (!i0Var.isEmpty()) {
             v.append(", labels=[");
-            cVar.j(v, e9.q.w(i0Var, new ai.w1(10)).iterator());
+            cVar.p(v, e9.q.w(i0Var, new ai.w1(10)).iterator());
             v.append("]");
         }
         if (i11 != 0) {
             v.append(", selectionFlags=[");
-            String str9 = e2.d0.f7871a;
+            String str9 = e2.d0.f7870a;
             ArrayList arrayList = new ArrayList();
             if ((i11 & 4) != 0) {
                 arrayList.add("auto");
@@ -393,12 +393,12 @@ public final class s {
             if ((i11 & 2) != 0) {
                 arrayList.add("forced");
             }
-            cVar.j(v, arrayList.iterator());
+            cVar.p(v, arrayList.iterator());
             v.append("]");
         }
         if (i20 != 0) {
             v.append(", roleFlags=[");
-            String str10 = e2.d0.f7871a;
+            String str10 = e2.d0.f7870a;
             ArrayList arrayList2 = new ArrayList();
             if ((i20 & 1) != 0) {
                 arrayList2.add("main");
@@ -449,7 +449,7 @@ public final class s {
             if ((i10 & 32768) != 0) {
                 arrayList2.add("auxiliary");
             }
-            cVar.j(v, arrayList2.iterator());
+            cVar.p(v, arrayList2.iterator());
             v.append("]");
         } else {
             i10 = i20;
@@ -457,7 +457,7 @@ public final class s {
         if ((i10 & 32768) != 0) {
             v.append(", auxiliaryTrackType=");
             int i25 = sVar.f3291g;
-            String str11 = e2.d0.f7871a;
+            String str11 = e2.d0.f7870a;
             if (i25 != 0) {
                 if (i25 != 1) {
                     if (i25 != 2) {

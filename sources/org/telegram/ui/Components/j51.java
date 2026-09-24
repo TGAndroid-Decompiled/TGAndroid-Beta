@@ -1,29 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class j51 extends URLSpan {
-    public final n01 f25148a;
+import android.util.SparseArray;
+import org.telegram.tgnet.TLRPC;
+public final class j51 extends g.p {
+    public final r51 f25257c;
 
-    public j51(String str, n01 n01Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f25148a = n01Var;
+    public j51(r51 r51Var) {
+        this.f25257c = r51Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        n01 n01Var = this.f25148a;
-        if (n01Var != null) {
-            n01Var.a(textPaint);
+    public final int i(int i10) {
+        r51 r51Var = this.f25257c;
+        s4.h0 adapter = r51Var.f27867n.getAdapter();
+        q51 q51Var = r51Var.f27869s;
+        if (adapter == q51Var) {
+            if ((q51Var.d.get(i10) instanceof Integer) || i10 >= q51Var.f27512w) {
+                return q51Var.v;
+            }
+            return 1;
         }
-        textPaint.setUnderlineText(true);
+        gg.g2 g2Var = r51Var.v;
+        SparseArray sparseArray = g2Var.f9730s;
+        if (i10 != g2Var.f9733y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return g2Var.e.a();
     }
 }

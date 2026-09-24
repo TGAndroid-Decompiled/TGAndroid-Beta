@@ -2,30 +2,30 @@ package d4;
 
 import android.graphics.Color;
 import com.google.android.gms.internal.vision.e2;
-import v7.y7;
+import v7.z7;
 public final class d {
-    public final String f7483a;
-    public final int f7484b;
-    public final Integer f7485c;
+    public final String f7482a;
+    public final int f7483b;
+    public final Integer f7484c;
     public final Integer d;
     public final float e;
-    public final boolean f7486f;
-    public final boolean f7487g;
+    public final boolean f7485f;
+    public final boolean f7486g;
     public final boolean h;
-    public final boolean f7488i;
-    public final int f7489j;
+    public final boolean f7487i;
+    public final int f7488j;
 
     public d(String str, int i10, Integer num, Integer num2, float f7, boolean z10, boolean z11, boolean z12, boolean z13, int i11) {
-        this.f7483a = str;
-        this.f7484b = i10;
-        this.f7485c = num;
+        this.f7482a = str;
+        this.f7483b = i10;
+        this.f7484c = num;
         this.d = num2;
         this.e = f7;
-        this.f7486f = z10;
-        this.f7487g = z11;
+        this.f7485f = z10;
+        this.f7486g = z11;
         this.h = z12;
-        this.f7488i = z13;
-        this.f7489j = i11;
+        this.f7487i = z13;
+        this.f7488j = i11;
     }
 
     public static int a(String str) {
@@ -85,9 +85,9 @@ public final class d {
                 z10 = false;
             }
             e2.d.b(z10);
-            int b10 = y7.b(((parseLong >> 24) & 255) ^ 255);
-            int b11 = y7.b((parseLong >> 16) & 255);
-            return Integer.valueOf(Color.argb(b10, y7.b(parseLong & 255), y7.b((parseLong >> 8) & 255), b11));
+            int b10 = z7.b(((parseLong >> 24) & 255) ^ 255);
+            int b11 = z7.b((parseLong >> 16) & 255);
+            return Integer.valueOf(Color.argb(b10, z7.b(parseLong & 255), z7.b((parseLong >> 8) & 255), b11));
         } catch (IllegalArgumentException e) {
             e2.a.o("SsaStyle", "Failed to parse color expression: '" + str + "'", e);
             return null;

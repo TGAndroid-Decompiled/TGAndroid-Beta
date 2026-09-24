@@ -51,8 +51,8 @@ public final class zb extends b7 {
         if (l8Var != null && l8Var.f5005u && l8Var.K && (nbVar = lcVar.f5094v1) != null && nbVar.R0 != null) {
             for (int i10 = 0; i10 < lcVar.f5094v1.R0.getChildCount(); i10++) {
                 View childAt = lcVar.f5094v1.R0.getChildAt(i10);
-                if (childAt instanceof qg.h1) {
-                    ((qg.h1) childAt).s();
+                if (childAt instanceof qg.f1) {
+                    ((qg.f1) childAt).s();
                 }
             }
         }
